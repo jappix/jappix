@@ -65,17 +65,32 @@ Last revision: 28/10/10
 	text-decoration: underline;
 }
 
-#manager input {
+#manager input,
+#manager select {
 	float: left;
 	margin-bottom: 5px;
 }
 
+#manager input[type=radio] {
+	margin-top: 1px;
+}
+
+#manager input[type=text],
+#manager input[type=password],
+#manager select {
+	margin-top: -2px;
+	font-size: 0.95em;
+}
+
 #manager input[type=text],
 #manager input[type=password] {
-	margin-top: -2px;
 	padding: 3px;
-	font-size: 0.95em;
 	min-width: 220px;
+}
+
+#manager select {
+	min-width: 160px;
+	max-width: 230px;
 }
 
 #manager-top {
@@ -401,6 +416,10 @@ Last revision: 28/10/10
 	margin: 5px 0 20px 22px;
 	padding-left: 12px;
 	clear: both;
+}
+
+#manager-content .clear {
+	margin: 0;
 }
 
 #manager-content textarea.notice-text {

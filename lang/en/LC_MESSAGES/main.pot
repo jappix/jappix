@@ -1559,6 +1559,30 @@ msgstr ""
 msgid "Design"
 msgstr ""
 
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
 msgid "Users"
 msgstr ""
 
@@ -1596,6 +1620,15 @@ msgid "All this Jappix node stored files can be managed with this tool: please s
 msgstr ""
 
 msgid "Jappix is fully customisable: you can change its design right here."
+msgstr ""
+
+msgid "This is not a valid image file, please use PNG, GIF or JPG!"
+msgstr ""
+
+msgid "I did not receive any image file, would you mind retry?"
+msgstr ""
+
+msgid "Your image file was successfully added to the list!"
 msgstr ""
 
 msgid "The requested change has been successfully done!"
@@ -1679,6 +1712,9 @@ msgstr ""
 msgid "Your design preferences have been successfully saved!"
 msgstr ""
 
+msgid "Please check your inputs: something is missing!"
+msgstr ""
+
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
 
@@ -1688,10 +1724,22 @@ msgstr ""
 msgid "Use your own image"
 msgstr ""
 
+msgid "Select a background to use and change the display options."
+msgstr ""
+
 msgid "Use your own color"
 msgstr ""
 
 msgid "Type the hexadecimal color value you want to use as a background."
+msgstr ""
+
+msgid "Manage background files"
+msgstr ""
+
+msgid "You can add a new background file to the list with this tool. Please send a valid image file."
+msgstr ""
+
+msgid "If you want to remove some background files, use the browser below."
 msgstr ""
 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
@@ -1842,6 +1890,9 @@ msgid "Add a new user with this tool, or change a password (type an existing use
 msgstr ""
 
 msgid "Manage"
+msgstr ""
+
+msgid "List"
 msgstr ""
 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."

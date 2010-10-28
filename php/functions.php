@@ -475,8 +475,10 @@ function genStrongHash($string) {
 // The function to generate the version hash
 function genHash($version) {
 	// Get the configuration files path
-	$conf_main = PHP_BASE.'/store/conf/main.xml';
-	$conf_hosts = PHP_BASE.'/store/conf/hosts.xml';
+	$conf_path = PHP_BASE.'/store/conf/';
+	$conf_main = $conf_path.'main.xml';
+	$conf_hosts = $conf_path.'hosts.xml';
+	$conf_background = $conf_path.'background.xml';
 	
 	// Get the hash of the main configuration file
 	if(file_exists($conf_main))
@@ -940,6 +942,15 @@ function isSafe($path) {
 		return false;
 	
 	return true;
+}
+
+// Checks if a file is a valid image
+function isImage($file) {
+	// This is an image
+	if(preg_match('/^(.+)(\.)(png|jpg|jpeg|gif|bmp)$/i', $file))
+		return true;
+	
+	return false;
 }
 
 // Puts a marker on the current opened manager tab
@@ -1630,6 +1641,37 @@ function browseFolder($folder, $mode) {
 	return true;
 }
 
+// Removes selected elements (files/folders)
+function removeElements() {
+	// Initialize the match
+	$elements_removed = false;
+	$elements_remove = array();
+	
+	// Try to get the elements to remove
+	foreach($_POST as $post_key => $post_value) {
+		// Is a safe file?
+		if(preg_match('/^element_(.+)$/i', $post_key) && isSafe($post_value)) {
+			// Update the marker
+			$elements_removed = true;
+			
+			// Get the real path
+			$post_element = PHP_BASE.'/store/'.$post_value;
+			
+			// Remove the current element
+			if(is_dir($post_element))
+				removeDir($post_element);
+			else if(file_exists($post_element))
+				unlink($post_element);
+		}
+	}
+	
+	// Show a notification message
+	if($elements_removed)
+		echo('<p class="info smallspace success">'.T_("The selected elements have been successfully removed.").'</p>');
+	else
+		echo('<p class="info smallspace fail">'.T_("You must select elements to remove!").'</p>');
+}
+
 // Manages users
 function manageUsers($action, $array) {
 	// Try to read the old XML file
@@ -1689,6 +1731,70 @@ function browseUsers() {
 	}
 }
 
+// Reads the background configuration
+function readBackground() {
+	// Read the background configuration XML
+	$background_data = readXML('conf', 'background');
+	
+	// Define the default values
+	$background_default = array();
+	$background_default['type'] = 'default';
+	$background_default['image_file'] = '';
+	$background_default['image_horizontal'] = 'center';
+	$background_default['image_vertical'] = 'top';
+	$background_default['image_color'] = '#cae1e9';
+	$background_default['color_color'] = '#cae1e9';
+	
+	// Stored data array
+	$background_conf = array();
+	
+	// Read the stored values
+	if($background_data) {
+		// Initialize the background configuration XML data
+		$background_xml = new SimpleXMLElement($background_data);
+		
+		// Loop the notice configuration elements
+		foreach($background_xml->children() as $background_child)
+			$background_conf[$background_child->getName()] = $background_child;
+	}
+	
+	// Checks no value is missing in the stored configuration
+	foreach($background_default as $background_name => $background_value) {
+		if(!isset($background_conf[$background_name]) || empty($background_conf[$background_name]))
+			$background_conf[$background_name] = $background_default[$background_name];
+	}
+	
+	return $background_conf;
+}
+
+// Writes the background configuration
+function writeBackground($array) {
+	// Generate the XML data
+	$xml = '';
+	
+	foreach($array as $key => $value)
+		$xml .= "\n".'	<'.$key.'>'.htmlspecialchars($value).'</'.$key.'>';
+	
+	// Write this data
+	writeXML('conf', 'background', $xml);
+}
+
+// Generates a list of the available background images
+function getBackgrounds() {
+	// Initialize the result array
+	$array = array();
+	
+	// Scan the background directory
+	$scan = scandir(PHP_BASE.'/store/backgrounds/');
+	
+	foreach($scan as $current) {
+		if(isImage($current))
+			array_push($array, $current);
+	}
+	
+	return $array;
+}
+
 // Reads the notice configuration
 function readNotice() {
 	// Read the notice configuration XML
@@ -1726,7 +1832,7 @@ function writeNotice($type, $simple) {
 	// Generate the XML data
 	$xml = 
 	'<type>'.$type.'</type>
-	<notice>'.htmlentities($simple).'</notice>'
+	<notice>'.htmlspecialchars($simple).'</notice>'
 	;
 	
 	// Write this data

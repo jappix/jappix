@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-28 18:46:43\n"
+"PO-Revision-Date: 2010-10-28 22:58:52\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2504,4 +2504,72 @@ msgstr "Définissez, avec cet outil, une annonce de page d'accueil pour tous vos
 #: 
 msgid "Your design preferences have been successfully saved!"
 msgstr "Vos préférences d'apparence ont été enregistrées avec succès !"
+
+#: 
+msgid "Please check your inputs: something is missing!"
+msgstr "Veuillez vérifier vos champs : quelque-chose manque !"
+
+#: 
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: 
+msgid "Vertical"
+msgstr "Vertical"
+
+#: 
+msgid "Center"
+msgstr "Centrer"
+
+#: 
+msgid "Left"
+msgstr "Gauche"
+
+#: 
+msgid "Right"
+msgstr "Droite"
+
+#: 
+msgid "Top"
+msgstr "Haut"
+
+#: 
+msgid "Bottom"
+msgstr "Bas"
+
+#: 
+msgid "Color"
+msgstr "Couleur"
+
+#: 
+msgid "Select a background to use and change the display options."
+msgstr "Sélectionnez un fond à utiliser et modifiez les options d'affichage."
+
+#: 
+msgid "You can add a new background file to the list with this tool. Please send a valid image file."
+msgstr "Vous pouvez ajouter un nouveau fond à la liste avec cet outil. Veillez à envoyer un fichier image valide."
+
+#: 
+msgid "This is not a valid image file, please use PNG, GIF or JPG!"
+msgstr "Ce n'est pas un fichier image valide, envoyez plutôt un PNG, GIF ou JPG !"
+
+#: 
+msgid "I did not receive any image file, would you mind retry?"
+msgstr "Je n'ai pas reçu de fichier image, pourriez-vous réessayer ?"
+
+#: 
+msgid "Your image file was successfully added to the list!"
+msgstr "Votre fichier image a été ajouté à la liste avec succès !"
+
+#: 
+msgid "Manage background files"
+msgstr "Gérer les fonds"
+
+#: 
+msgid "If you want to remove some background files, use the browser below."
+msgstr "Si vous voulez supprimer quelques fonds, utilisez l'explorateur ci-dessous."
+
+#: 
+msgid "List"
+msgstr "Liste"
 

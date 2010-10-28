@@ -25,6 +25,7 @@ $user_meta = T_("unknown");
 $user_name = '';
 $share_folder = 'share';
 $music_folder = 'music';
+$backgrounds_folder = 'backgrounds';
 $add_button = false;
 $remove_button = false;
 $save_button = false;
@@ -380,86 +381,59 @@ else
 				
 					// Music upload?
 					if(isset($_POST['upload'])) {
-						// Get the file name
+						// Get the file path
 						$name_music = $_FILES['music_file']['name'];
+						$temp_music = $_FILES['music_file']['tmp_name'];
+						$path_music = PHP_BASE.'/store/music/'.$name_music;
+						
+						// Any special name submitted?
+						if(isset($_POST['music_title']) && !empty($_POST['music_title'])) {
+							// Get the file extension
+							$ext_music = getFileExt($name_music);
+							
+							// New name
+							$name_music = '';
+							
+							// Add the artist name?
+							if(isset($_POST['music_artist']) && !empty($_POST['music_artist']))
+								$name_music .= $_POST['music_artist'].' - ';
+							
+							// Add the music title
+							$name_music .= $_POST['music_title'];
+							
+							// Add the album name?
+							if(isset($_POST['music_album']) && !empty($_POST['music_album']))
+								$name_music .= ' ['.$_POST['music_album'].']';
+							
+							// Add the extension
+							$name_music .= '.'.$ext_music;
+						}
+						
+						// An error occured?
+						if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>
+							<p class="info smallspace fail"><?php _e("I could not receive the music file, please retry!"); ?></p>
+						<?php }
 						
 						// Bad extension?
-						if(!preg_match('/^(.+)(\.(og(g|a)|mp3|wav))$/i', $name_music)) { ?>
+						else if(!preg_match('/^(.+)(\.(og(g|a)|mp3|wav))$/i', $name_music)) {
+						
+							// Remove the image file
+							if(file_exists($path_music))
+								unlink($path_music);
+						
+						?>
 							<p class="info smallspace fail"><?php _e("This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"); ?></p>
 						<?php }
 						
-						// Valid file
-						else {
-							// Get the temporary name
-							$temp_music = $_FILES['music_file']['tmp_name'];
-							
-							// Any special name submitted?
-							if(isset($_POST['music_title']) && !empty($_POST['music_title'])) {
-								// Get the file extension
-								$ext_music = getFileExt($name_music);
-								
-								// New name
-								$name_music = '';
-								
-								// Add the artist name?
-								if(isset($_POST['music_artist']) && !empty($_POST['music_artist']))
-									$name_music .= $_POST['music_artist'].' - ';
-								
-								// Add the music title
-								$name_music .= $_POST['music_title'];
-								
-								// Add the album name?
-								if(isset($_POST['music_album']) && !empty($_POST['music_album']))
-									$name_music .= ' ['.$_POST['music_album'].']';
-								
-								// Add the extension
-								$name_music .= '.'.$ext_music;
-							}
-							
-							// An error occured?
-							if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, PHP_BASE.'/store/music/'.$name_music)) { ?>
-								<p class="info smallspace fail"><?php _e("I could not receive the music file, please retry!"); ?></p>
-							<?php }
-							
-							// The file has been sent
-							else { ?>
-								<p class="info smallspace success"><?php _e("Your music file was successfully added!"); ?></p>
-							<?php }
-						}
+						// The file has been sent
+						else { ?>
+							<p class="info smallspace success"><?php _e("Your music file was successfully added!"); ?></p>
+						<?php }
 					}
 					
 					// File deletion?
-					else if(isset($_POST['remove'])) {
-						// Initialize the match
-						$elements_removed = false;
-						$elements_remove = array();
-						
-						// Try to get the elements to remove
-						foreach($_POST as $post_key => $post_value) {
-							// Is a safe file?
-							if(preg_match('/^element_(.+)$/i', $post_key) && isSafe($post_value)) {
-								// Update the marker
-								$elements_removed = true;
-								
-								// Get the real path
-								$post_element = PHP_BASE.'/store/'.$post_value;
-								
-								// Remove the current element
-								if(is_dir($post_element))
-									removeDir($post_element);
-								else if(file_exists($post_element))
-									unlink($post_element);
-							}
-						}
-						
-						if($elements_removed) { ?>
-							<p class="info smallspace success"><?php _e("The selected elements have been successfully removed."); ?></p>
-						<?php }
-						
-						else { ?>
-							<p class="info smallspace fail"><?php _e("You must select elements to remove!"); ?></p>
-						<?php }
-					}
+					else if(isset($_POST['remove']))
+						removeElements();
 					
 					// Purge requested
 					if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(updates))$/', $_GET['p'])) {
@@ -548,37 +522,173 @@ else
 				
 				<?php
 				
-					// Define initial form values
+					// Define initial background form values
+					$background_default = ' checked="checked"';
+					$background_image = '';
+					$background_color = '';
+					$background_image_horizontal_center = ' selected="selected"';
+					$background_image_horizontal_left = '';
+					$background_image_horizontal_right = '';
+					$background_image_vertical_center = ' selected="selected"';
+					$background_image_vertical_top = '';
+					$background_image_vertical_bottom = '';
+					
+					// Define initial notice form values
 					$notice_none = ' checked="checked"';
 					$notice_simple = '';
 					$notice_advanced = '';
 					$notice_text = '';
 					
+					// Handle the remove POST
+					if(isset($_POST['remove']))
+						removeElements();
+					
+					// Handle the upload POST
+					else if(isset($_POST['upload'])) {
+						// Get the file path
+						$name_background_image = $_FILES['background_image_upload']['name'];
+						$temp_background_image = $_FILES['background_image_upload']['tmp_name'];
+						$path_background_image = PHP_BASE.'/store/backgrounds/'.$name_background_image;
+						
+						// An error occured?
+						if(!isSafe($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>
+							<p class="info smallspace fail"><?php _e("I did not receive any image file, would you mind retry?"); ?></p>
+						<?php }
+						
+						// Bad extension?
+						else if(!isImage($name_background_image)) {
+							
+							// Remove the image file
+							if(file_exists($path_background_image))
+								unlink($path_background_image);
+							
+						?>
+							<p class="info smallspace fail"><?php _e("This is not a valid image file, please use PNG, GIF or JPG!"); ?></p>
+						<?php }
+						
+						// The file has been sent
+						else { ?>
+							<p class="info smallspace success"><?php _e("Your image file was successfully added to the list!"); ?></p>
+						<?php }
+					}
+					
 					// Handle the save POST
-					if(isset($_POST['save'])) {
+					else if(isset($_POST['save'])) {
+						// Marker
+						$save_marker = true;
+						
 						// Handle it for background
-						// TODO
+						$background = array();
+						
+						if(isset($_POST['background_type']))
+							$background['type'] = $_POST['background_type'];
+						
+						if(isset($_POST['background_image_file']))
+							$background['image_file'] = $_POST['background_image_file'];
+						
+						if(isset($_POST['background_image_horizontal']))
+							$background['image_horizontal'] = $_POST['background_image_horizontal'];
+						
+						if(isset($_POST['background_image_vertical']))
+							$background['image_vertical'] = $_POST['background_image_vertical'];
+						
+						if(isset($_POST['background_image_color']))
+							$background['image_color'] = $_POST['background_image_color'];
+						
+						if(isset($_POST['background_color_color']))
+							$background['color_color'] = $_POST['background_color_color'];
+						
+						// Write the configuration file
+						writeBackground($background);
 						
 						// Handle it for notice
 						if(isset($_POST['notice_type']))
 							$notice_type = $_POST['notice_type'];
 						else
-							$notice_type = 'default';
+							$notice_type = 'none';
 						
 						$notice_text = '';
 						
 						if(isset($_POST['notice_text']))
 							$notice_text = $_POST['notice_text'];
 						
-						// Write the notice configuration
-						writeNotice($notice_type, $notice_text);
+						// Check our values
+						if(!$notice_text && ($notice_type != 'none'))
+							$save_marker = false;
 						
-						// Show a success notice
+						// All is okay
+						if($save_marker) {
+							// Write the notice configuration
+							writeNotice($notice_type, $notice_text);
+							
+							// Show a success notice ?>
+							<p class="info smallspace success"><?php _e("Your design preferences have been successfully saved!"); ?></p>
+						<?php }
 						
-						?>
+						// Something went wrong
+						else { ?>
+							<p class="info smallspace fail"><?php _e("Please check your inputs: something is missing!"); ?></p>
+						<?php }
+					}
+					
+					// Get the available backgrounds
+					$backgrounds = getBackgrounds();
+					$backgrounds_number = count($backgrounds);
+					
+					// Read the background configuration
+					$background = readBackground();
+					
+					// Backgrounds are missing?
+					if(!$backgrounds_number && ($background['type'] == 'image'))
+						$background['type'] = 'default';
+					
+					switch($background['type']) {
+						// Simple notice input
+						case 'image':
+							$background_image = ' checked="checked"';
+							$background_default = '';
+							
+							break;
 						
-						<p class="info smallspace success"><?php _e("Your design preferences have been successfully saved!"); ?></p>
-					<?php }
+						// Advanced notice input
+						case 'color':
+							$background_color = ' checked="checked"';
+							$background_default = '';
+							
+							break;
+					}
+					
+					switch($background['image_horizontal']) {
+						// Left position
+						case 'left':
+							$background_image_horizontal_left = ' selected="selected"';
+							$background_image_horizontal_center = '';
+							
+							break;
+						
+						// Right position
+						case 'right':
+							$background_image_horizontal_right = ' selected="selected"';
+							$background_image_horizontal_center = '';
+							
+							break;
+					}
+					
+					switch($background['image_vertical']) {
+						// Left position
+						case 'top':
+							$background_image_vertical_top = ' selected="selected"';
+							$background_image_vertical_center = '';
+							
+							break;
+						
+						// Right position
+						case 'bottom':
+							$background_image_vertical_bottom = ' selected="selected"';
+							$background_image_vertical_center = '';
+							
+							break;
+					}
 					
 					// Read the notice configuration
 					$notice_conf = readNotice();
@@ -599,6 +709,10 @@ else
 							
 							break;
 					}
+					
+					// Folder view?
+					if(isset($_GET['b']) && isset($_GET['s']) && ($_GET['b'] == 'backgrounds'))
+						$backgrounds_folder = urldecode($_GET['s']);
 				
 				?>
 				
@@ -606,19 +720,90 @@ else
 				
 				<p><?php _e("Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"); ?></p>
 				
-				<label class="master" for="background_default"><?php _e("Use default background"); ?></label><input id="background_default" type="radio" name="background_type" value="default" />
+				<label class="master" for="background_default"><?php _e("Use default background"); ?></label><input id="background_default" type="radio" name="background_type" value="default"<?php echo($background_default); ?> />
 				
-				<label class="master" for="background_image"><?php _e("Use your own image"); ?></label><input id="background_image" type="radio" name="background_type" value="image" />
+				<?php if($backgrounds_number) { ?>
+					<label class="master" for="background_image"><?php _e("Use your own image"); ?></label><input id="background_image" type="radio" name="background_type" value="image"<?php echo($background_image); ?> />
 				
-				<div class="sub">
-					<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
-				</div>
+					<div class="sub">
+						<p><?php _e("Select a background to use and change the display options."); ?></p>
+						
+						<label for="background_image_file"><?php _e("Image"); ?></label><select id="background_image_file" name="background_image_file">
+							<?php
+							
+								// List the background files
+								foreach($backgrounds as $backgrounds_current) {
+									// Check this is the selected background
+									if($backgrounds_current == $background['image_file'])
+										$backgrounds_selected = ' selected="selected"';
+									else
+										$backgrounds_selected = '';
+									
+									// Encode the current background name
+									$backgrounds_current = htmlspecialchars($backgrounds_current);
+									
+									echo('<option value="'.$backgrounds_current.'"'.$backgrounds_selected.'>'.$backgrounds_current.'</option>');
+								}
+							
+							?>
+						</select>
+						
+						<label for="background_image_horizontal"><?php _e("Horizontal"); ?></label><select id="background_image_horizontal" name="background_image_horizontal">
+							<option value="center"<?php echo($background_image_horizontal_center); ?>><?php _e("Center"); ?></option>
+							<option value="left"<?php echo($background_image_horizontal_left); ?>><?php _e("Left"); ?></option>
+							<option value="right"<?php echo($background_image_horizontal_right); ?>><?php _e("Right"); ?></option>
+						</select>
+						
+						<label for="background_image_vertical"><?php _e("Vertical"); ?></label><select id="background_image_vertical" name="background_image_vertical">
+							<option value="center"<?php echo($background_image_vertical_center); ?>><?php _e("Center"); ?></option>
+							<option value="top"<?php echo($background_image_vertical_top); ?>><?php _e("Top"); ?></option>
+							<option value="bottom"<?php echo($background_image_vertical_bottom); ?>><?php _e("Bottom"); ?></option>
+						</select>
+						
+						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
+						
+						<div class="clear"></div>
+					</div>
+				<?php } ?>
 				
-				<label class="master" for="background_color"><?php _e("Use your own color"); ?></label><input id="background_color" type="radio" name="background_type" value="color" />
+				<label class="master" for="background_color"><?php _e("Use your own color"); ?></label><input id="background_color" type="radio" name="background_type" value="color"<?php echo($background_color); ?> />
 				
 				<div class="sub">
 					<p><?php _e("Type the hexadecimal color value you want to use as a background."); ?></p>
+					
+					<label for="background_color_color"><?php _e("Color"); ?></label><input id="background_color_color" type="text" name="background_color_color" value="<?php echo(htmlspecialchars($background['color_color'])); ?>" />
+					
+					<div class="clear"></div>
 				</div>
+				
+				<h4><?php _e("Manage background files"); ?></h4>
+				
+				<p><?php _e("You can add a new background file to the list with this tool. Please send a valid image file."); ?></p>
+				
+				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
+				
+				<div class="sub">
+					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" />
+					
+					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
+					
+					<div class="clear"></div>
+				</div>
+				
+				<p><?php _e("If you want to remove some background files, use the browser below."); ?></p>
+				
+				<fieldset>
+					<legend><?php _e("List"); ?></legend>
+					
+					<div class="browse">
+						<?php
+						
+						// List the background files
+						browseFolder($backgrounds_folder, 'backgrounds');
+						
+						?>
+					</div>
+				</fieldset>
 				
 				<h4><?php _e("Notice"); ?></h4>
 				
@@ -640,7 +825,7 @@ else
 				
 				<div class="clear"></div>
 				
-				<textarea class="notice-text" name="notice_text" rows="8" cols="60"><?php echo(htmlentities($notice_text)); ?></textarea>
+				<textarea class="notice-text" name="notice_text" rows="8" cols="60"><?php echo(htmlspecialchars($notice_text)); ?></textarea>
 			<?php }
 			
 			// Authorized and updates page requested
@@ -714,14 +899,18 @@ else
 				
 				<p><?php _e("Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."); ?></p>
 				
-				<div class="browse">
-					<?php
+				<fieldset>
+					<legend><?php _e("List"); ?></legend>
 					
-					// List the users
-					browseUsers();
-					
-					?>
-				</div>
+					<div class="browse">
+						<?php
+						
+						// List the users
+						browseUsers();
+						
+						?>
+					</div>
+				</fieldset>
 			<?php }
 			
 			// Authorized and updates page requested
