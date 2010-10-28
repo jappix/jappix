@@ -1,0 +1,79 @@
+/*
+
+Jappix - Wherever you are, talk !
+The CSS classes necessary for Jappix NS (Not Supported)
+
+-------------------------------------------------
+
+Licence : AGPL
+Author : Valérian Saliou
+Contact : mailing-list[at]jappix[dot]com
+Last revision : 13/04/10
+
+*/
+
+/* ///////// BEGIN GENERAL STYLE ///////// */
+	* {
+		margin: 0;
+		padding: 0;
+		color: #464646;
+	}
+	
+	body {
+		background: #cae1e9 url(../img/backgrounds/main-bg.png) repeat-x;
+		font: normal 1em "Lucida Grande", helvetica, sans-serif;
+		min-width: 1180px;
+		min-height: 600px;
+	}
+/* ///////// END GENERAL STYLE ///////// */
+
+/* ///////// BEGIN POPUP STYLE ///////// */
+	#popup {
+		border: 1px solid #c8c8c8;
+		background: #f3f3f3 url(../img/backgrounds/popup-background.png) bottom center repeat-x;
+		margin-right: auto;
+		margin-top: -225px;
+		margin-left: -275px;
+		width: 550px;
+		height: 400px;
+		position: absolute;
+		z-index: 10000;
+		left: 50%;
+		top: 50%;
+		opacity: 0.9;
+		box-shadow: 0 0 20px #000;
+	}
+
+	#popup .content {
+		margin: 10px;
+		font-size: 0.9em;
+	}
+	
+	#popup .content .logo {
+		background: url(../img/sprites/browser-ns.png) no-repeat;
+		width: 328px;
+		height: 69px;
+		margin: 55px 0 0 95px;
+	}
+	
+	#popup .content .text {
+		width: 500px;
+		height: 250px;
+		margin: 45px 0 0 15px;
+	}
+	
+	#popup .content .text p {
+		margin-bottom: 10px;
+		text-align: justify;
+	}
+	
+	#popup .content .text p.first {
+		margin-bottom: 20px;
+		font-weight: bold;
+	}
+	
+	#popup .content .text p.last {
+		margin-top: 30px;
+		font-size: 0.8em;
+	}
+/* ///////// END POPUP STYLE ///////// */

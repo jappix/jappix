@@ -1,0 +1,28 @@
+Jappix - The instant messaging. Reinvented.
+These are the installation instructions for Jappix
+
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+Licence : AGPL
+Author : Valérian Saliou
+Contact : mailing-list[at]jappix[dot]com
+Last revision : 05/04/10
+
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+Okay, it's very simple to install Jappix on your webserver, please check that things before you start :
+	- You run Apache 2.X.X
+	- Apache allows the .htaccess files (AllowOverride All)
+
+Now, we gonna configure the Jappix options, just open the 'config' folder and open the two files of that folder. Just complete the things that you want to change, here we are.
+
+Now, we will have to go a little bit further, with the http binding server configuration. In fact, the navigator's JavaScript restrictions make that we must configure a proxy on the same host the our js runs.
+
+If you've ejabberd installed on your server, you can use it on the 5280 socket, else, you can try this (requires Java JRE) :
+The last thing that you can do is to define this adress : http://jwchat.org/JHB/ directly in you .htaccess file, but please remember that you'll get dependent from a service that can be stopped at anytime !
+
+Now, you can try Jappix to see if it works. Have fun !
+
+The Jappix development team.
+
+Jappix. In free software we trust. 
