@@ -490,7 +490,13 @@ function genHash($version) {
 	else
 		$hash_hosts = '0';
 	
-	return md5($version.$hash_main.$hash_hosts);
+	// Get the hash of the background configuration file
+	if(file_exists($conf_background))
+		$hash_background = md5_file($conf_background);
+	else
+		$hash_background = '0';
+	
+	return md5($version.$hash_main.$hash_hosts.$hash_background);
 }
 
 // The function to hide the error messages
@@ -1059,6 +1065,25 @@ function numericToMonth($id) {
 	$array[12] = T_("December");
 	
 	return $array[$id];
+}
+
+// Get the maximum file upload size
+function uploadMaxSize() {
+	// Not allowed to upload files?
+	if(ini_get('file_uploads') != 1)
+		return 0;
+	
+	// Upload maximum file size
+	$upload = humanToBytes(ini_get('upload_max_filesize'));
+	
+	// POST maximum size
+	$post = humanToBytes(ini_get('post_max_size'));
+	
+	// Return the lowest value
+	if($upload <= $post)
+		return $upload;
+	
+	return $post;
 }
 
 // Extracts the version number with a version ID
@@ -1640,7 +1665,7 @@ function manageUsers($action, $array) {
 	writeXML('conf', 'users', $users_xml);
 }
 
-// Return users browsing informations
+// Returns users browsing informations
 function browseUsers() {
 	// Get the users
 	$array = getUsers();
@@ -1662,6 +1687,50 @@ function browseUsers() {
 		else
 			$marker = 'odd';
 	}
+}
+
+// Reads the notice configuration
+function readNotice() {
+	// Read the notice configuration XML
+	$notice_data = readXML('conf', 'notice');
+	
+	// Define the default values
+	$notice_default = array();
+	$notice_default['type'] = 'none';
+	$notice_default['notice'] = '';
+	
+	// Stored data array
+	$notice_conf = array();
+	
+	// Read the stored values
+	if($notice_data) {
+		// Initialize the notice configuration XML data
+		$notice_xml = new SimpleXMLElement($notice_data);
+		
+		// Loop the notice configuration elements
+		foreach($notice_xml->children() as $notice_child)
+			$notice_conf[$notice_child->getName()] = $notice_child;
+	}
+	
+	// Checks no value is missing in the stored configuration
+	foreach($notice_default as $notice_name => $notice_value) {
+		if(!isset($notice_conf[$notice_name]) || empty($notice_conf[$notice_name]))
+			$notice_conf[$notice_name] = $notice_default[$notice_name];
+	}
+	
+	return $notice_conf;
+}
+
+// Writes the notice configuration
+function writeNotice($type, $simple) {
+	// Generate the XML data
+	$xml = 
+	'<type>'.$type.'</type>
+	<notice>'.htmlentities($simple).'</notice>'
+	;
+	
+	// Write this data
+	writeXML('conf', 'notice', $xml);
 }
 
 ?>

@@ -6,7 +6,7 @@
 # License: AGPL
 # Author: Valérian Saliou
 # Contact: http://project.jappix.com/contact
-# Last revision: 27/10/10
+# Last revision: 28/10/10
 
 msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
 msgstr ""
@@ -1538,10 +1538,10 @@ msgstr ""
 msgid "%1s is not installed on your system, you should install %2s."
 msgstr ""
 
-msgid "PHP memory limit is sufficient (%s)."
+msgid "PHP maximum upload size is sufficient (%s)."
 msgstr ""
 
-msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
+msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
 msgstr ""
 
 msgid "Jappix manager"
@@ -1569,6 +1569,9 @@ msgid "This is a restricted area: only the authorized users can manage this Japp
 msgstr ""
 
 msgid "Please login to access the administration panel, thanks to the form below."
+msgstr ""
+
+msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
 msgstr ""
 
 msgid "Credentials"
@@ -1673,10 +1676,37 @@ msgstr ""
 msgid "Notice"
 msgstr ""
 
+msgid "Your design preferences have been successfully saved!"
+msgstr ""
+
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
 
-msgid "Define a global notice for all your users, such as a warn, an important message or an advert with this tool."
+msgid "Use default background"
+msgstr ""
+
+msgid "Use your own image"
+msgstr ""
+
+msgid "Use your own color"
+msgstr ""
+
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr ""
+
+msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
+msgstr ""
+
+msgid "Simple notice"
+msgstr ""
+
+msgid "This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr ""
+
+msgid "Advanced notice"
+msgstr ""
+
+msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
 msgstr ""
 
 msgid "Available updates"
@@ -1767,6 +1797,9 @@ msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly
 msgstr ""
 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
+msgstr ""
+
+msgid "The file you want to upload must be smaller than %s."
 msgstr ""
 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."

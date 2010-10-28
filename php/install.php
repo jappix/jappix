@@ -10,7 +10,7 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/10/10
+Last revision: 28/10/10
 
 */
 
@@ -129,7 +129,7 @@ else
 					<li><?php _e("Services installation"); ?></li>
 				</ol>
 				
-				<p><?php echo str_replace("%1s", getLanguageName($locale), str_replace("%2s", languageSwitcher($locale, true), T_("If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."))); ?></p>
+				<p><?php printf(T_("If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."), getLanguageName($locale), languageSwitcher($locale, true)); ?></p>
 				
 				<p><?php _e("If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"); ?> <a href="http://codingteam.net/project/jappix/doc" target="_blank">http://codingteam.net/project/jappix/doc</a></p>
 				
@@ -142,7 +142,7 @@ else
 				
 				<p><?php _e("Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."); ?></p>
 				
-				<p><?php echo str_replace("%1s", "<em>777</em>", str_replace("%2s", "<em>www-data</em>", T_("Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."))); ?></p>
+				<p><?php printf(T_("Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."), '<em>777</em>', '<em>www-data</em>'); ?></p>
 				
 				<?php if(is_writable(PHP_BASE.'/store')) {
 					// Create the store tree
@@ -154,7 +154,7 @@ else
 				else {
 					$continue = false;
 				?>
-					<p class="info bigspace fail"><?php echo str_replace("%s", "<em>./store</em>", T_("The folder is not writable, apply the good rights to the %s directory.")); ?></p>
+					<p class="info bigspace fail"><?php printf(T_("The folder is not writable, apply the good rights to the %s directory."), "<em>./store</em>"); ?></p>
 				<?php } ?>
 			<?php }
 			
@@ -226,23 +226,23 @@ else
 				
 				// Checks GD is installed
 				if(function_exists('gd_info')) { ?>
-					<p class="info smallspace first success"><?php echo str_replace("%s", "GD", T_("%s is installed on your system.")); ?></p>
+					<p class="info smallspace first success"><?php printf(T_("%s is installed on your system."), "GD"); ?></p>
 				<?php }
 				
 				else { ?>
-					<p class="info smallspace first fail"><?php echo str_replace("%1s", "GD", str_replace("%2s", "<em>php5-gd</em>", T_("%1s is not installed on your system, you should install %2s."))); ?></p>
+					<p class="info smallspace first fail"><?php printf(T_("%1s is not installed on your system, you should install %2s."), 'GD', '<em>php5-gd</em>'); ?></p>
 				<?php }
 				
-				// Checks the memory limit
-				$memory_limit = ini_get('memory_limit');
-				$memory_parse = humanToBytes($memory_limit);
+				// Checks the upload size limit
+				$upload_max = uploadMaxSize();
+				$upload_human = formatBytes($upload_max);
 				
-				if($memory_parse >= '64000000') { ?>
-					<p class="info smallspace last success"><?php echo str_replace("%s", $memory_limit, T_("PHP memory limit is sufficient (%s).")); ?></p>
+				if($upload_max >= 7000000) { ?>
+					<p class="info smallspace last success"><?php printf(T_("PHP maximum upload size is sufficient (%s)."), $upload_human); ?></p>
 				<?php }
 				
 				else { ?>
-					<p class="info smallspace last fail"><?php echo str_replace("%1s", $memory_limit, str_replace("%2s", "128M", str_replace("%3s", "<em>php.ini</em>", T_("PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s.")))); ?></p>
+					<p class="info smallspace last fail"><?php printf(T_("PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."), $upload_human, '8M', '<em>php.ini</em>'); ?></p>
 				<?php } ?>
 				
 				<p><?php _e("After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."); ?></p>

@@ -61,6 +61,10 @@ Last revision: 28/10/10
 	margin: 0 0 9px 12px;
 }
 
+#manager label.master {
+	text-decoration: underline;
+}
+
 #manager input {
 	float: left;
 	margin-bottom: 5px;
@@ -390,6 +394,21 @@ Last revision: 28/10/10
 
 #manager-content .browse .even {
 	background-color: #e4edef;
+}
+
+#manager-content .sub {
+	border-left: 1px solid black;
+	margin: 5px 0 20px 22px;
+	padding-left: 12px;
+	clear: both;
+}
+
+#manager-content textarea.notice-text {
+	height: 70px;
+	width: 600px;
+	margin-left: 4px;
+	padding: 5px;
+	font-size: 1.2em;
 }
 
 #manager-buttons {

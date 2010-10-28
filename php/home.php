@@ -10,7 +10,7 @@ This is the Jappix home html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/10/10
+Last revision: 28/10/10
 
 */
 
@@ -31,7 +31,8 @@ Last revision: 10/10/10
 				
 				<!-- The default homepage div -->
 					<div class="default homediv">
-						<p><?php echo str_replace("%1s", htmlspecialchars(SERVICE_NAME), str_replace("%2s", htmlspecialchars(SERVICE_DESC), T_("Welcome on %1s, « %2s »."))); ?></p>
+						<p><?php printf(T_("Welcome on %1s, « %2s »."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
+						
 						<p><?php _e("Login to your existing XMPP account or create a new one, that's fast and free!"); ?></p>
 						
 						<a class="button login buttons-images">
@@ -49,7 +50,7 @@ Last revision: 10/10/10
 				
 				<!-- The login homepage div -->
 					<div class="loginer homediv">
-						<p><?php echo str_replace("%1s", "<a onclick=\"return switchLoginer('".HOST_MAIN."');\">XMPP</a>", str_replace("%2s", "<a onclick=\"return switchLoginer('chat.facebook.com');\">Facebook</a>", str_replace("%3s", "<a onclick=\"return switchLoginer('gmail.com');\">Google Talk</a>", str_replace("%4s", "<a onclick=\"return switchHome('anonymouser');\">".T_("anonymous mode")."</a>", T_("Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."))))); ?></p>
+						<p><?php printf(T_("Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."), '<a onclick="return switchLoginer(HOST_MAIN);">XMPP</a>', '<a onclick="return switchLoginer(\'chat.facebook.com\');">Facebook</a>', '<a onclick="return switchLoginer(\'gmail.com\');">Google Talk</a>', '<a onclick="return switchHome(\'anonymouser\');">'.T_("anonymous mode").'</a>'); ?></p>
 						
 						<form action="#" method="post" onsubmit="return doLogin();">
 							<fieldset>
@@ -84,7 +85,7 @@ Last revision: 10/10/10
 				
 				<!-- The anonymous homepage div -->
 					<div class="anonymouser homediv">
-						<p><?php echo str_replace("%s", "<a onclick=\"return switchHome('loginer');\">".T_("login page")."</a>", T_("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s.")); ?></p>
+						<p><?php printf(T_("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), "<a onclick=\"return switchHome('loginer');\">".T_("login page")."</a>"); ?></p>
 						
 						<form action="#" method="post" onsubmit="return doAnonymous();">
 							<fieldset>
@@ -145,5 +146,24 @@ Last revision: 10/10/10
 				<?php echo languageSwitcher($locale, false); ?>
 			</span>
 		</div>
+		
+		<?php
+		
+			// Add the notice
+			$conf_notice = readNotice();
+			$type_notice = $conf_notice['type'];
+			$text_notice = $conf_notice['notice'];
+			
+			// Simple notice
+			if(($type_notice == 'simple') || ($type_notice == 'advanced')) {
+				// We must encode special HTML characters
+				if($type_notice == 'simple')
+					$text_notice = '<span class="title home-images">'.T_("Notice").'</span><span class="text">'.htmlentities($text_notice).'</span>';
+				
+				// Echo the notice
+				echo('<div class="notice '.$type_notice.'">'.$text_notice.'</div>');
+			}
+		
+		?>
 	</div>
 	<!-- END HOMEPAGE -->

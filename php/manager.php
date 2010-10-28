@@ -26,11 +26,13 @@ $user_name = '';
 $share_folder = 'share';
 $music_folder = 'music';
 $add_button = false;
-$edit_button = false;
 $remove_button = false;
 $save_button = false;
 $upload_button = false;
 $check_updates = false;
+
+// Start the session
+session_start();
 
 // Force the updates check?
 if(isset($_GET['p']) && ($_GET['p'] == 'check'))
@@ -45,34 +47,24 @@ if(isset($_POST['login'])) {
 	if(isset($_POST['user_name']) && !empty($_POST['user_name']))
 		$user = $_POST['user_name'];
 	
-	// Extract the remember checkbox value
-	if(isset($_POST['user_remember']) && ($_POST['user_remember'] == 'on'))
-		$user_remember = ' checked="checked"';
-	
 	if($user && (isset($_POST['user_password']) && !empty($_POST['user_password']))) {
 		// Get the password values
 		$password = genStrongHash($_POST['user_password']);
 		
-		// Remember me?
-		if($user_remember)
-			$stamp = time() + 604800;
-		else
-			$stamp = 0;
-		
-		// Write the cookies
-		setcookie('jappix_user', $user, $stamp);
-		setcookie('jappix_password', $password, $stamp);
+		// Write the session
+		$_SESSION['jappix_user'] = $user;
+		$_SESSION['jappix_password'] = $password;
 	}
 }
 
-// Cookies are set
-else if((isset($_COOKIE['jappix_user']) && !empty($_COOKIE['jappix_user'])) && (isset($_COOKIE['jappix_password']) && !empty($_COOKIE['jappix_password']))) {
+// Session is set
+else if((isset($_SESSION['jappix_user']) && !empty($_SESSION['jappix_user'])) && (isset($_SESSION['jappix_password']) && !empty($_SESSION['jappix_password']))) {
 	// Form sent pointer
 	$login_fired = true;
 	
-	// Get the cookies value
-	$user = $_COOKIE['jappix_user'];
-	$password = $_COOKIE['jappix_password'];
+	// Get the session values
+	$user = $_SESSION['jappix_user'];
+	$password = $_SESSION['jappix_password'];
 }
 
 // Validate the current session
@@ -87,9 +79,9 @@ if(($id != 0) && isset($_GET['a']) && !empty($_GET['a'])) {
 	switch($page_requested) {
 		// Logout request
 		case 'logout':
-			// Remove the cookies
-			setcookie('jappix_user');
-			setcookie('jappix_password');
+			// Remove the session
+			unset($_SESSION['jappix_user']);
+			unset($_SESSION['jappix_password']);
 			
 			// Set a logout marker
 			$logout_fired = true;
@@ -133,7 +125,9 @@ if(($id != 0) && isset($_GET['a']) && !empty($_GET['a'])) {
 		// Design request
 		case 'design':
 			// Allowed buttons
-			$edit_button = true;
+			$save_button = true;
+			$upload_button = true;
+			$remove_button = true;
 			
 			// Page ID
 			$id = 5;
@@ -516,6 +510,8 @@ else
 				
 				<p><?php _e("Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"); ?></p>
 				
+				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
+				
 				<fieldset>
 					<legend><?php _e("New"); ?></legend>
 					
@@ -527,7 +523,7 @@ else
 					
 					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" />
 					
-					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(humanToBytes(ini_get('upload_max_filesize')).''); ?>">
+					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 				</fieldset>
 				
 				<fieldset>
@@ -550,17 +546,101 @@ else
 				
 				<p><?php _e("Jappix is fully customisable: you can change its design right here."); ?></p>
 				
+				<?php
+				
+					// Define initial form values
+					$notice_none = ' checked="checked"';
+					$notice_simple = '';
+					$notice_advanced = '';
+					$notice_text = '';
+					
+					// Handle the save POST
+					if(isset($_POST['save'])) {
+						// Handle it for background
+						// TODO
+						
+						// Handle it for notice
+						if(isset($_POST['notice_type']))
+							$notice_type = $_POST['notice_type'];
+						else
+							$notice_type = 'default';
+						
+						$notice_text = '';
+						
+						if(isset($_POST['notice_text']))
+							$notice_text = $_POST['notice_text'];
+						
+						// Write the notice configuration
+						writeNotice($notice_type, $notice_text);
+						
+						// Show a success notice
+						
+						?>
+						
+						<p class="info smallspace success"><?php _e("Your design preferences have been successfully saved!"); ?></p>
+					<?php }
+					
+					// Read the notice configuration
+					$notice_conf = readNotice();
+					$notice_text = $notice_conf['notice'];
+					
+					switch($notice_conf['type']) {
+						// Simple notice input
+						case 'simple':
+							$notice_simple = ' checked="checked"';
+							$notice_none = '';
+							
+							break;
+						
+						// Advanced notice input
+						case 'advanced':
+							$notice_advanced = ' checked="checked"';
+							$notice_none = '';
+							
+							break;
+					}
+				
+				?>
+				
 				<h4><?php _e("Background"); ?></h4>
 				
 				<p><?php _e("Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"); ?></p>
 				
-				<i>[FEATURE NOT IMPLEMENTED]</i>
+				<label class="master" for="background_default"><?php _e("Use default background"); ?></label><input id="background_default" type="radio" name="background_type" value="default" />
+				
+				<label class="master" for="background_image"><?php _e("Use your own image"); ?></label><input id="background_image" type="radio" name="background_type" value="image" />
+				
+				<div class="sub">
+					<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
+				</div>
+				
+				<label class="master" for="background_color"><?php _e("Use your own color"); ?></label><input id="background_color" type="radio" name="background_type" value="color" />
+				
+				<div class="sub">
+					<p><?php _e("Type the hexadecimal color value you want to use as a background."); ?></p>
+				</div>
 				
 				<h4><?php _e("Notice"); ?></h4>
 				
-				<p><?php _e("Define a global notice for all your users, such as a warn, an important message or an advert with this tool."); ?></p>
+				<p><?php _e("Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."); ?></p>
 				
-				<i>[FEATURE NOT IMPLEMENTED]</i>
+				<label class="master" for="notice_none"><?php _e("None"); ?></label><input id="notice_none" type="radio" name="notice_type" value="none"<?php echo($notice_none); ?> />
+				
+				<label class="master" for="notice_simple"><?php _e("Simple notice"); ?></label><input id="notice_simple" type="radio" name="notice_type" value="simple"<?php echo($notice_simple); ?> />
+				
+				<div class="sub">
+					<p><?php _e("This notice only needs simple text to be displayed, but no code is allowed!"); ?></p>
+				</div>
+				
+				<label class="master" for="notice_advanced"><?php _e("Advanced notice"); ?></label><input id="notice_advanced" type="radio" name="notice_type" value="advanced"<?php echo($notice_advanced); ?> />
+				
+				<div class="sub">
+					<p><?php _e("You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."); ?></p>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<textarea class="notice-text" name="notice_text" rows="8" cols="60"><?php echo(htmlentities($notice_text)); ?></textarea>
 			<?php }
 			
 			// Authorized and updates page requested
@@ -673,7 +753,7 @@ else
 				?>
 						<h4><?php _e("Available updates"); ?></h4>
 						
-						<a class="info smallspace fail" href="./?p=update<?php echo keepGet('(p|b|s)', false); ?>"><?php echo str_replace('%s', '<em>'.$update_infos['id'].'</em>', T_("Your version is out to date. Update it now to %s by clicking here!")); ?></a>
+						<a class="info smallspace fail" href="./?p=update<?php echo keepGet('(p|b|s)', false); ?>"><?php printf(T_("Your version is out to date. Update it now to %s by clicking here!"), '<em>'.$update_infos['id'].'</em>'); ?></a>
 						
 						<h4><?php _e("What's new?"); ?></h4>
 						
@@ -694,6 +774,7 @@ else
 				
 				<p><?php _e("This is a restricted area: only the authorized users can manage this Jappix node."); ?></p>
 				<p><?php _e("Please login to access the administration panel, thanks to the form below."); ?></p>
+				<p><?php _e("To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."); ?></p>
 				
 				<fieldset>
 					<legend><?php _e("Credentials"); ?></legend>
@@ -701,8 +782,6 @@ else
 					<label for="user_name"><?php _e("User"); ?></label><input id="user_name" type="text" name="user_name" value="<?php echo(htmlspecialchars($user)); ?>" />
 					
 					<label for="user_password"><?php _e("Password"); ?></label><input id="user_password" type="password" name="user_password" />
-					
-					<label for="user_remember"><?php _e("Remember me"); ?></label><input id="user_remember" type="checkbox" name="user_remember"<?php echo $user_remember; ?> />
 				</fieldset>
 				
 				<?php
@@ -716,9 +795,11 @@ else
 				else if($login_fired) { ?>
 					<p class="info bigspace fail"><?php _e("Ups, I cannot recognize you as a valid administrator. Check your credentials!"); ?></p>
 				<?php
-					// Remove the cookies
-					setcookie('jappix_user');
-					setcookie('jappix_password');
+				
+					// Remove the session
+					unset($_SESSION['jappix_user']);
+					unset($_SESSION['jappix_password']);
+				
 				}
 			} ?>
 			
@@ -737,8 +818,6 @@ else
 					<input type="submit" name="upload" value="<?php _e("Upload"); ?>" />
 				<?php } if($remove_button) { ?>
 					<input type="submit" name="remove" value="<?php _e("Remove"); ?>" />
-				<?php } if($edit_button) { ?>
-					<input type="submit" name="edit" value="<?php _e("Edit"); ?>" />
 			<?php } ?>
 			
 			<div class="clear"></div>

@@ -10,7 +10,7 @@ The SVG loader for Jappix statistics
 License: AGPL
 Authors: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/10/10
+Last revision: 28/10/10
 
 */
 
@@ -30,13 +30,16 @@ require_once('./gettext.php');
 hideErrors();
 gzipThis();
 
+// Start the session
+session_start();
+
 // Check if the user is authorized
 $is_admin = false;
 
-if((isset($_COOKIE['jappix_user']) && !empty($_COOKIE['jappix_user'])) && (isset($_COOKIE['jappix_password']) && !empty($_COOKIE['jappix_password']))) {
-	// Get the cookies value
-	$user = $_COOKIE['jappix_user'];
-	$password = $_COOKIE['jappix_password'];
+if((isset($_SESSION['jappix_user']) && !empty($_SESSION['jappix_user'])) && (isset($_SESSION['jappix_password']) && !empty($_SESSION['jappix_password']))) {
+	// Get the session values
+	$user = $_SESSION['jappix_user'];
+	$password = $_SESSION['jappix_password'];
 	
 	// Checks the user is admin
 	$is_admin = isAdmin($user, $password);

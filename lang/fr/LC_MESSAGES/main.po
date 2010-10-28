@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-27 17:45:27\n"
+"PO-Revision-Date: 2010-10-28 18:46:43\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2046,12 +2046,12 @@ msgid "%1s is not installed on your system, you should install %2s."
 msgstr "%1s n'est pas installé sur votre système, vous devriez installer %2s."
 
 #: 
-msgid "PHP memory limit is sufficient (%s)."
-msgstr "La limite de la mémoire PHP est suffisante (%s)."
+#~ msgid "PHP memory limit is sufficient (%s)."
+#~ msgstr "La limite de la mémoire PHP est suffisante (%s)."
 
 #: 
-msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr "La limite de la mémoire PHP n'est pas suffisante (%1s), vous devriez la définir à %2s dans %3s."
+#~ msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
+#~ msgstr "La limite de la mémoire PHP n'est pas suffisante (%1s), vous devriez la définir à %2s dans %3s."
 
 #: 
 msgid "Jappix manager"
@@ -2366,8 +2366,8 @@ msgid "Change your Jappix node background with this tool. You can either set a c
 msgstr "Changez l'apparence de votre nœud Jappix avec cet outil. Vous pouvez soit définir une couleur personnalisée, soit envoyer une image. Laissez votre créativité s'exprimer !"
 
 #: 
-msgid "Define a global notice for all your users, such as a warn, an important message or an advert with this tool."
-msgstr "Définissez une annonce générale pour tous vos utilisateurs, comme un avertissement, un message important ou une publicité avec cet outil"
+#~ msgid "Define a global notice for all your users, such as a warn, an important message or an advert with this tool."
+#~ msgstr "Définissez une annonce générale pour tous vos utilisateurs, comme un avertissement, un message important ou une publicité avec cet outil."
 
 #: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
@@ -2444,4 +2444,64 @@ msgstr "Envoyez votre musique (Ogg Vorbis, MP3 ou WAV) pour pouvoir l'écouter e
 #: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr "Ce n'est pas un fichier musical valide, encodez-le en Ogg Vorbis, MP3 ou WAV !"
+
+#: 
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr "La limite PHP de la taille à l'envoi de fichiers est suffisante (%s)."
+
+#: 
+msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
+msgstr "La limite PHP de la taille à l'envoi de fichiers (%1s) n'est pas suffisante, vous devriez la définir à %2s dans le %3s."
+
+#: 
+msgid "The file you want to upload must be smaller than %s."
+msgstr "Le fichier que vous souhaitez envoyer doit être plus petit que %s."
+
+#: 
+#~ msgid "To ehance the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+#~ msgstr ""
+
+#: 
+msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+msgstr "Pour améliorer la sécurité, les sessions sont limitées dans le temps, et, quand votre navigateur sera fermé, vous serez déconnecté."
+
+#: 
+msgid "Use default background"
+msgstr "Utiliser le fond par défaut"
+
+#: 
+msgid "Use your own image"
+msgstr "Utiliser votre propre image"
+
+#: 
+msgid "Use your own color"
+msgstr "Utiliser votre propre couleur"
+
+#: 
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr "Entrez la valeur hexadécimale de la couleur que vous voulez utiliser comme fond."
+
+#: 
+msgid "Simple notice"
+msgstr "Annonce simple"
+
+#: 
+msgid "This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr "Cette annonce ne nécessite qu'un texte simple pour être affiché, mais aucun code n'est autorisé !"
+
+#: 
+msgid "Advanced notice"
+msgstr "Annonce avancée"
+
+#: 
+msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
+msgstr "Vous pouvez personnaliser votre annonce avec du code HTML, JS et CSS incorporé, mais vous devez coder l'apparence."
+
+#: 
+msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
+msgstr "Définissez, avec cet outil, une annonce de page d'accueil pour tous vos utilisateurs, comme un avertissement, un message important ou une publicité."
+
+#: 
+msgid "Your design preferences have been successfully saved!"
+msgstr "Vos préférences d'apparence ont été enregistrées avec succès !"
 
