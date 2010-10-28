@@ -1,0 +1,273 @@
+/*
+
+Jappix - An open social platform
+This is the Jappix Mini CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 25/10/10
+
+*/
+
+#jmini {
+	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+	display: none;
+	position: fixed;
+	z-index: 99;
+	bottom: 0;
+	right: 20px;
+}
+
+#jmini a {
+	text-decoration: none;
+	outline-style: none;
+}
+
+#jmini a:hover {
+	cursor: pointer;
+}
+
+#jmini a.pane {
+	background-color: #f4f4f4;
+	background-position: 0 -64px;
+	background-repeat: repeat-x;
+	border-color: #999999;
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+	font-weight: bold;
+	color: #333333;
+	display: block;
+	font-size: 11px;
+	padding: 6px;
+	height: 13px;
+}
+
+#jmini a.pane:hover {
+	border-color: #666666;
+}
+
+#jmini div.conversations {
+	position: relative;
+	float: left;
+}
+
+#jmini div.starter {
+	position: relative;
+	float: left;
+}
+
+#jmini div.conversation {
+	float: left;
+	position: relative;
+}
+
+#jmini a.chat-tab {
+	padding: 6px 14px 6px 6px;
+	border-width: 1px 0 0 1px;
+	float: right;
+	overflow: hidden;
+}
+
+#jmini a.chat-tab.clicked {
+	background: white;
+	position: relative;
+	border-top: none;
+	border-left: 1px solid #999999;
+	padding: 7px 14px 6px 6px;
+	max-width: 210px;
+	overflow: hidden;
+}
+
+#jmini a.chat-tab.unread {
+	background: #fffb80;
+}
+
+#jmini div.chat-content {
+	background-color: white;
+	border: 1px solid #999999;
+	height: 274px;
+	width: 230px;
+	position: absolute;
+	right: -1px;
+	bottom: 25px;
+}
+
+#jmini div.manage-messages {
+	height: 14px;
+	border-bottom: 1px solid #19445f;
+	background-color: #6d84b4;
+	padding: 4px 6px;
+	color: white;
+	font-weight: bold;
+}
+
+#jmini div.manage-messages a {
+	float: right;
+	margin: -1px 2px 0 5px;
+}
+
+#jmini div.received-messages {
+	padding: 5px 0;
+	height: 216px;
+	overflow: auto;
+}
+
+#jmini div.received-messages p {
+	margin: 4px 6px;
+}
+
+#jmini div.received-messages p.group {
+	margin: 4px 6px 9px 6px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+#jmini div.received-messages p a {
+	color: black;
+	text-decoration: underline;
+}
+
+#jmini div.received-messages b {
+	margin-bottom: 3px;
+	display: block;
+}
+
+#jmini div.received-messages b.me {
+	color: #1c405e;
+}
+
+#jmini div.received-messages b.him {
+	color: #801e1e;
+}
+
+#jmini input.send-messages {
+	background-color: white;
+	border-color: #999999;
+	border-style: solid;
+	border-width: 1px 0 0 0;
+	padding: 5px;
+	width: 230px;
+	font-size: 11px;
+}
+
+#jmini div.roster {
+	display: none;
+	position: absolute;
+	right: 0;
+	bottom: 25px;
+	background-color: white;
+	border: 1px solid #999999;
+	max-height: 350px;
+	min-width: 160px;
+	padding: 5px 0 5px 0;
+	overflow: auto;
+}
+
+#jmini a.friend {
+	display: block;
+	padding: 6px;
+	color: black;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+#jmini a.friend.offline {
+	display: none;
+}
+
+#jmini a.friend:hover {
+	background-color: #e6eaf8;
+	border-color: #a6afd0;
+}
+
+#jmini a.button {
+	padding: 6px 10px;
+}
+
+#jmini a.button.clicked {
+	position: relative;
+	background: white;
+	border-top: none;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	padding: 7px 10px 6px 10px;
+}
+
+#jmini span.counter {
+	display: block;
+	min-height: 16px;
+	padding-left: 25px;
+	background-position: 0 -268px;
+}
+
+#jmini span.presence {
+	display: block;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+	float: left;
+}
+
+#jmini .available,
+#jmini .chat {
+	background-position: 0 0;
+}
+
+#jmini .away {
+	background-position: 0 -16px;
+}
+
+#jmini .xa,
+#jmini .dnd {
+	background-position: 0 -32px;
+}
+
+#jmini .unavailable {
+	background-position: 0 -48px;
+}
+
+#jmini span.smiley {
+	font-size: 13px;
+	padding: 0 0 0 16px;
+	margin: 0 2px;
+}
+
+#jmini .smiley-wink {
+	background-position: 0 -112px;
+}
+
+#jmini .smiley-waii {
+	background-position: 0 -128px;
+}
+
+#jmini .smiley-unhappy {
+	background-position: 0 -144px;
+}
+
+#jmini .smiley-tongue {
+	background-position: 0 -160px;
+}
+
+#jmini .smiley-surprised {
+	background-position: 0 -176px;
+}
+
+#jmini .smiley-smile {
+	background-position: 0 -192px;
+}
+
+#jmini .smiley-happy {
+	background-position: 0 -208px;
+}
+
+#jmini .smiley-grin {
+	background-position: 0 -224px;
+}
+
+#jmini .smiley-evilgrin {
+	background-position: 0 -240px;
+}

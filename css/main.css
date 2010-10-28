@@ -1,0 +1,73 @@
+/*
+
+Jappix - An open social platform
+This is the main CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 30/08/10
+
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #cae1e9;
+	font: normal 0.9em helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+h1 {
+	margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	outline-style: none;
+}
+
+a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+input,
+textarea {
+	background-color: white;
+	border: 1px solid #636363;
+	font-size: 0.95em;
+	padding: 2px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+textarea {
+	font-size: 1.1em;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #e1a014;
+}
+
+input[disabled],
+textarea[disabled] {
+	background-color: #f3f3f3;
+	border: 1px solid #989898;
+}
+
+input[type=checkbox] {
+	margin-top: 2px;
+}
+
+.please-complete, .please-complete:hover, .please-complete:focus {
+	border: 1px #ac2525 solid !important;
+	background-color: #fdf5f5 !important;
+}

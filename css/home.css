@@ -1,0 +1,389 @@
+/*
+
+Jappix - An open social platform
+This is the home CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 10/10/10
+
+*/
+
+#home {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-height: 430px;
+	min-width: 830px;
+}
+
+#home .locale {
+	background-color: rgba(20,20,20,0.6);
+	position: absolute;
+	top: 0;
+	left: 12px;
+	font-size: 0.8em;
+	z-index: 100;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+#home .locale:hover span.list {
+	display: block;
+}
+
+#home .locale span.current {
+	display: block;
+	padding: 4px 10px;
+	color: white;
+}
+
+#home .locale span.list {
+	display: none;
+	list-style: none;
+	margin-top: 5px;
+}
+
+#home .locale span.list {
+	margin-bottom: 2px;
+}
+
+#home .locale span.list a {
+	display: block;
+	padding: 3px 10px;
+	margin: 2px 0;
+	color: white;
+}
+
+#home .locale span.list a:hover {
+	background-color: rgba(255,255,255,0.1);
+	text-decoration: none;
+}
+
+#home .locale span.current:hover,
+#home .locale span.list a:hover {
+	cursor: pointer;
+}
+
+#home .main {
+	background-color: rgba(20,20,20,0.8);
+	position: absolute;
+	top: 50%;
+	margin-top: -200px;
+	width: 800px;
+	height: 400px;
+	left: 50%;
+	margin-left: -400px;
+	z-index: 50;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	box-shadow: 0 0 35px #4e4e4e;
+	-moz-box-shadow: 0 0 35px #4e4e4e;
+	-webkit-box-shadow: 0 0 35px #4e4e4e;
+}
+
+#home .left {
+	float: left;
+	width: 350px;
+	height: 370px;
+	margin: 15px 0 15px 15px;
+	color: #cdcdcd;
+	text-align: center;
+}
+
+#home .left .logo {
+	background-position: 0 0;
+	float: left;
+	margin: 52px 38px 38px 38px;
+	width: 272px;
+	height: 68px;
+}
+
+#home .left p.upper {
+	margin: 12px 0 20px 0;
+}
+
+#home .left p.secondary {
+	margin: 8px 0 0 16px;
+	font-size: 0.9em;
+	width: 320px;
+}
+
+#home a.advanced {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 0.9em;
+}
+
+#home fieldset.advanced {
+	display: none;
+}
+
+#home .right {
+	background-color: #c4e0e3;
+	float: right;
+	width: 385px;
+	height: 350px;
+	margin: 15px 15px 15px 0;
+	padding: 10px;
+	font-size: 13px;
+	text-align: justify;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	box-shadow: 0 0 20px #202020;
+	-moz-box-shadow: 0 0 20px #202020;
+	-webkit-box-shadow: 0 0 20px #202020;
+}
+
+#home .right h1 {
+	font-size: 16px;
+	padding-bottom: 4px;
+	border-bottom: 1px black dotted;
+}
+
+#home .right h1.sub {
+	display: none;
+}
+
+#home .right p {
+	margin-bottom: 4px;
+}
+
+#home .right p a {
+	border-width: 0 0 1px 0;
+	border-style: dotted;
+	border-color: black;
+}
+
+#home .right p a:hover {
+	border-style: solid;
+	text-decoration: none;
+}
+
+#home .right a.button {
+	display: block;
+	margin-left: 22px;
+	padding: 15px 20px 13px 20px;
+	width: 300px;
+	height: 34px;
+	text-decoration: none;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#home .right a.button:hover {
+	cursor: pointer;
+}
+
+#home .right a.button span {
+	height: 16px;
+	width: 16px;
+	margin: 7px;
+	float: left;
+}
+
+#home .right a.button p {
+	padding: 1px 0 0 20px;
+	font-size: 23px;
+	float: left;
+}
+
+#home .right .login {
+	background-color: #72d071;
+	background-position: 0 0;
+	border: 1px solid #5cb55c;
+	margin-top: 22px;
+}
+
+#home .right .login:hover {
+	border: 1px solid #419141;
+}
+
+#home .right .login:active {
+	background-color: #97e896;
+	background-position: 0 -80px;
+}
+
+#home .right .login p {
+	color: #2d612d;
+	text-shadow: 1px 1px 1px #5cb55c;
+}
+
+#home .right .login span {
+	background-position: 0 -230px;
+}
+
+#home .right .register {
+	background-color: #f6ef82;
+	background-position: 0 -160px;
+	border: 1px solid #e3db56;
+	margin-top: 15px;
+}
+
+#home .right .register:hover {
+	border: 1px solid #d2c93f;
+}
+
+#home .right .register:active {
+	background-color: #fdf7af;
+	background-position: 0 -240px;
+}
+
+#home .right .register p {
+	color: #6d6813;
+	text-shadow: 1px 1px 1px #dbd56e;
+}
+
+#home .right .register span {
+	background-position: 0 -204px;
+}
+
+#home .right p.notice {
+	margin-top: 24px;
+	font-size: 0.9em;
+}
+
+#home .right .navigation {
+	clear: both;
+	width: 385px;
+	border-top: 1px black dotted;
+	position: absolute;
+	text-align: right;
+	bottom: 25px;
+	right: 25px;
+	padding-top: 6px;
+}
+
+#home .right .navigation a {
+	margin-left: 9px;
+	color: black;
+	text-decoration: none;
+	font-size: 0.9em;
+	height: 12px;
+	padding: 0 0 4px 20px;
+	float: right;
+}
+
+#home .right .navigation a:hover {
+	text-decoration: underline;
+}
+
+#home .right .navigation a.crypted {
+	background-position: 0 -100px;
+}
+
+#home .right .navigation a.uncrypted {
+	background-position: 0 -74px;
+}
+
+#home .right .navigation a.project {
+	background-position: 0 -126px;
+}
+
+#home .right .navigation a.manager {
+	background-position: 0 -152px;
+}
+
+#home .right .navigation a.mobile {
+	background-position: 0 -178px;
+}
+
+#home .loginer,
+#home .anonymouser,
+#home .registerer {
+	display: none;
+}
+
+#home .anonymouser input[type=text] {
+	width: 160px;
+}
+
+#home fieldset {
+	border: 1px solid black;
+	margin: 12px 0 12px 0;
+	padding-bottom: 3px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#home legend {
+	font-size: 0.9em;
+	margin: 0 0 5px 15px;
+	padding: 0 2px;
+	text-transform: uppercase;
+}
+
+#home label {
+	width: 110px;
+	display: block;
+	float: left;
+	clear: both;
+	margin: 0 0 5px 12px;
+}
+
+#home input,
+#home select {
+	float: left;
+	margin-bottom: 5px;
+}
+
+#home input[type=text],
+#home input[type=password],
+#home select {
+	width: 140px;
+}
+
+#home input[type=submit] {
+	min-width: 140px;
+	float: right;
+}
+
+#home span.jid {
+	display: block;
+	float: left;
+	margin: 0 4px;
+}
+
+#home input.nick, #home input.server {
+	width: 110px;
+}
+
+#home .info {
+	display: none;
+	padding: 6px;
+	position: absolute;
+	bottom: 62px;
+	right: 35px;
+	border-width: 1px;
+	border-style: dotted;
+	clear: both;
+	width: 350px;
+	min-height: 35px;
+}
+
+#home .success {
+	background-color: #aee578;
+	border-color: #85b05c;
+}
+
+#home .report {
+	background-color: #e9ea80;
+	border-color: #c9c66b;
+}
+
+#home .report span {
+	text-decoration: underline;
+}

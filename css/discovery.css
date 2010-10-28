@@ -1,0 +1,67 @@
+/*
+
+Jappix - An open social platform
+This is the discovery CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 26/08/10
+
+*/
+
+#discovery {
+	display: none;
+}
+
+#discovery .content {
+	padding: 10px 0 10px 0;
+}
+
+#discovery .content p {
+	margin: 5px 10px 5px 10px;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#discovery .discovery-head {
+	width: 606px;
+	height: 24px;
+	margin: 0 10px 10px 10px;
+	padding: 6px;
+	background: #d9e4e7;
+	border: 1px #a9bbbf solid;
+	color: #30575f;
+}
+
+#discovery .disco-server-text {
+	float: left;
+	font-size: 14px;
+	margin: 3px;
+}
+
+#discovery .disco-server-input {
+	float: right;
+	width: 200px;
+	padding: 2px;
+	height: 18px;
+	float: right;
+	margin-right: 10px;
+	padding: 2px;
+}
+
+#discovery .disco-category {
+	display: none;
+	margin-bottom: 18px;
+}
+
+#discovery .disco-category-title {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#discovery .discovery-forms {
+	display: none;
+}

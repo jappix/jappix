@@ -1,0 +1,2191 @@
+# Japanese translations for Jappix package.
+# This file is distributed under the same license as the Jappix package.
+# This file was translated from CodingTeam at <https://codingteam.net/>.
+msgid ""
+msgstr ""
+"Project-Id-Version: Jappix\n"
+"PO-Revision-Date: 2010-10-15 18:53:03\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: 
+msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
+msgstr "あなたのブラウザは古い為、Jappixが正常に動作しないかもしれません。Mozilla Firefoxで試してみて下さい。"
+
+#: 
+msgid "JavaScript is missing in your web browser, so that you'll not be able to launch the Jappix app! Please fix this."
+msgstr ""
+
+#: 
+#~ msgid "Jappix &bull; An open social network"
+#~ msgstr ""
+
+#: 
+msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
+msgstr "jappixはネットワークの問題により停止しました。バグか不正なログインです（入力した認証情報を確認してください）。ご不便をおかけして申し訳ありません。"
+
+#: 
+msgid "I couldn't obtain the element list on this server!"
+msgstr "このサーバーはこの要素リストを受け入れられません。"
+
+#: 
+msgid "Your password has been changed, now you can connect to your account with your new login data."
+msgstr "あなたのパスワードは変更されました。今から新しいパスワードでログインできます。"
+
+#: 
+msgid "Your XMPP account has been successfully removed, bye!"
+msgstr "あなたのXMPPアカウントは正常に削除されました。さようなら!"
+
+#: 
+msgid "You've been sucessfully logged out of your XMPP account, have a nice day!"
+msgstr "あなたはアカウントのログアウトに成功しました。良い一日を。"
+
+#: 
+msgid "Your browser does not support this functionnality, please try with Mozilla Firefox."
+msgstr "あなたのブラウザはこの機能をサポートしていません。Mozilla Firefoxで試してみて下さい。"
+
+#: 
+#~ msgid "It seems that one of your storage folder is not writable by PHP, please fix this before using Jappix."
+#~ msgstr "PHPがストレージフォルダに書き込む事が出来ない様です。Jappixを使う前にこれを修正してください。"
+
+#: 
+msgid "The room you joined seems not to exist. You should create it!"
+msgstr "参加すルームが存在しません。作成する必要があります。"
+
+#: 
+msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgstr "グループチャットは削除されました、今から誰でも再作成を行うことが出来ます。"
+
+#: 
+msgid "The user that you want to reach (message, punishment) is not present in the room."
+msgstr "あなたがメッセージや罰を送りたいユーザーがこのルームには存在しません。"
+
+#: 
+#~ msgid "You've been banned from a groupchat, you will be not be able to join it again, until the ban is lifted."
+#~ msgstr "あなたはグループチャットからバンされました。バンが解除されるまで参加することが出来ません。"
+
+#: 
+#~ msgid "You've been kicked from a groupchat."
+#~ msgstr "あなたはグループチャットからキックされました。"
+
+#: 
+msgid "Login"
+msgstr "ログイン"
+
+#: 
+msgid "Register"
+msgstr "登録"
+
+#: 
+msgid "Here we go!"
+msgstr "はじめよう!"
+
+#: 
+msgid "Server"
+msgstr "サーバー"
+
+#: 
+msgid "Password"
+msgstr "パスワード"
+
+#: 
+msgid "Remember me"
+msgstr "記憶する"
+
+#: 
+msgid "Messages"
+msgstr "メッセージ"
+
+#: 
+msgid "Profile"
+msgstr "プロフィール"
+
+#: 
+msgid "Options"
+msgstr "オプション"
+
+#: 
+msgid "Disconnect"
+msgstr "切断"
+
+#: 
+#~ msgid "Filter..."
+#~ msgstr ""
+
+#: 
+msgid "Add a friend..."
+msgstr "友達を追加..."
+
+#: 
+msgid "Your groupchats..."
+msgstr "グループチャット..."
+
+#: 
+msgid "Manage your favorite groupchats"
+msgstr "お気に入りのグループチャットを管理"
+
+#: 
+msgid "More stuffs..."
+msgstr "その他"
+
+#: 
+msgid "Get involved..."
+msgstr "参加する..."
+
+#: 
+msgid "Write code"
+msgstr "コードを書く"
+
+#: 
+msgid "Translate strings"
+msgstr "翻訳する"
+
+#: 
+msgid "Report a bug"
+msgstr "バグレポート"
+
+#: 
+msgid "Write documentation"
+msgstr "ドキュメントを書く"
+
+#: 
+msgid "Give money"
+msgstr "寄付"
+
+#: 
+msgid "Display all the buddies"
+msgstr "全ての友達を表示"
+
+#: 
+msgid "Display only the connected buddies"
+msgstr "接続している仲間のみ表示"
+
+#: 
+msgid "Map of my friends"
+msgstr ""
+
+#: 
+msgid "My collections"
+msgstr ""
+
+#: 
+msgid "Collections"
+msgstr ""
+
+#: 
+msgid "Message archives"
+msgstr ""
+
+#: 
+msgid "Buddy"
+msgstr ""
+
+#: 
+#~ msgid "All"
+#~ msgstr ""
+
+#: 
+msgid "Date"
+msgstr "日付"
+
+#: 
+msgid "About Jappix"
+msgstr "jappixについて"
+
+#: 
+msgid "A short message?"
+msgstr "短いメッセージですか?"
+
+#: 
+msgid "How are you?"
+msgstr "ご機嫌いかが?"
+
+#: 
+msgid "What are you doing?"
+msgstr "なにしてる?"
+
+#: 
+#~ msgid "Your friends"
+#~ msgstr "友達"
+
+#: 
+msgid "Join a chat..."
+msgstr "チャットに参加..."
+
+#: 
+#~ msgid "Your status"
+#~ msgstr "ステータス"
+
+#: 
+msgid "Available"
+msgstr "オンライン"
+
+#: 
+msgid "Talkative"
+msgstr "おしゃべり"
+
+#: 
+msgid "Away"
+msgstr "離席"
+
+#: 
+msgid "Not available"
+msgstr "対応不能"
+
+#: 
+msgid "Busy"
+msgstr "多忙"
+
+#: 
+msgid "None"
+msgstr "なし"
+
+#: 
+msgid "Afraid"
+msgstr "恐れ"
+
+#: 
+msgid "Amazed"
+msgstr "驚き"
+
+#: 
+msgid "Amorous"
+msgstr "恋心"
+
+#: 
+msgid "Angry"
+msgstr "怒り"
+
+#: 
+msgid "Annoyed"
+msgstr "困惑"
+
+#: 
+msgid "Anxious"
+msgstr "心配"
+
+#: 
+msgid "Aroused"
+msgstr "欲情"
+
+#: 
+msgid "Ashamed"
+msgstr "恥ずかしい"
+
+#: 
+msgid "Bored"
+msgstr "退屈"
+
+#: 
+msgid "Brave"
+msgstr "勇敢"
+
+#: 
+msgid "Calm"
+msgstr "冷静"
+
+#: 
+msgid "Cautious"
+msgstr "慎重"
+
+#: 
+msgid "Cold"
+msgstr "冷やか"
+
+#: 
+msgid "Confident"
+msgstr "大胆"
+
+#: 
+msgid "Confused"
+msgstr "混乱"
+
+#: 
+msgid "Contemplative"
+msgstr "沈思"
+
+#: 
+msgid "Contented"
+msgstr "満足"
+
+#: 
+msgid "Cranky"
+msgstr "不機嫌"
+
+#: 
+msgid "Crazy"
+msgstr "狂気"
+
+#: 
+msgid "Creative"
+msgstr "創造"
+
+#: 
+msgid "Curious"
+msgstr "好奇心"
+
+#: 
+msgid "Dejected"
+msgstr "落胆"
+
+#: 
+msgid "Depressed"
+msgstr "鬱"
+
+#: 
+msgid "Disappointed"
+msgstr "失望"
+
+#: 
+msgid "Disgusted"
+msgstr "反感"
+
+#: 
+msgid "Dismayed"
+msgstr "狼狽"
+
+#: 
+msgid "Distracted"
+msgstr "注意散漫"
+
+#: 
+msgid "Embarrassed"
+msgstr "戸惑い"
+
+#: 
+msgid "Envious"
+msgstr "羨望"
+
+#: 
+msgid "Excited"
+msgstr "興奮"
+
+#: 
+msgid "Flirtatious"
+msgstr "いちゃいちゃ"
+
+#: 
+msgid "Frustrated"
+msgstr "イライラ"
+
+#: 
+msgid "Grateful"
+msgstr "感謝"
+
+#: 
+msgid "Grieving"
+msgstr "悲嘆"
+
+#: 
+msgid "Grumpy"
+msgstr "不機嫌"
+
+#: 
+msgid "Guilty"
+msgstr "後ろめたい"
+
+#: 
+msgid "Happy"
+msgstr "幸福"
+
+#: 
+msgid "Hopeful"
+msgstr "希望に満ちた"
+
+#: 
+msgid "Hot"
+msgstr "元気"
+
+#: 
+msgid "Humbled"
+msgstr "謙虚"
+
+#: 
+msgid "Humiliated"
+msgstr "屈辱"
+
+#: 
+msgid "Hungry"
+msgstr "空腹"
+
+#: 
+msgid "Hurt"
+msgstr "苦痛"
+
+#: 
+msgid "Impressed"
+msgstr "感心"
+
+#: 
+msgid "In awe"
+msgstr "畏敬の念"
+
+#: 
+msgid "In love"
+msgstr "恋愛"
+
+#: 
+msgid "Indignant"
+msgstr "憤慨"
+
+#: 
+msgid "Interested"
+msgstr "興味津々"
+
+#: 
+msgid "Intoxicated"
+msgstr "陶酔"
+
+#: 
+msgid "Invincible"
+msgstr "無敵"
+
+#: 
+msgid "Jealous"
+msgstr "嫉妬"
+
+#: 
+msgid "Lonely"
+msgstr "寂しい"
+
+#: 
+msgid "Lost"
+msgstr "失望"
+
+#: 
+msgid "Lucky"
+msgstr "ラッキー"
+
+#: 
+msgid "Mean"
+msgstr "いじわる"
+
+#: 
+msgid "Moody"
+msgstr "気まぐれ"
+
+#: 
+msgid "Nervous"
+msgstr "神経質"
+
+#: 
+msgid "Neutral"
+msgstr "中立"
+
+#: 
+msgid "Offended"
+msgstr "不快"
+
+#: 
+msgid "Outraged"
+msgstr "激怒"
+
+#: 
+msgid "Playful"
+msgstr "冗談半分"
+
+#: 
+msgid "Proud"
+msgstr "高慢"
+
+#: 
+msgid "Relaxed"
+msgstr "リラックス"
+
+#: 
+msgid "Relieved"
+msgstr "安心"
+
+#: 
+msgid "Remorseful"
+msgstr "後悔"
+
+#: 
+msgid "Restless"
+msgstr "そわそわ"
+
+#: 
+msgid "Sad"
+msgstr "悲しい"
+
+#: 
+msgid "Sarcastic"
+msgstr "皮肉"
+
+#: 
+msgid "Satisfied"
+msgstr "満足"
+
+#: 
+msgid "Serious"
+msgstr "真剣"
+
+#: 
+msgid "Shocked"
+msgstr "ショック"
+
+#: 
+msgid "Shy"
+msgstr "気弱"
+
+#: 
+msgid "Sick"
+msgstr "病気"
+
+#: 
+msgid "Sleepy"
+msgstr "眠い"
+
+#: 
+msgid "Spontaneous"
+msgstr "自発的"
+
+#: 
+msgid "Stressed"
+msgstr "ストレス"
+
+#: 
+msgid "Strong"
+msgstr "強気"
+
+#: 
+msgid "Surprised"
+msgstr "びっくり"
+
+#: 
+msgid "Thankful"
+msgstr "感謝"
+
+#: 
+msgid "Thirsty"
+msgstr "熱望"
+
+#: 
+msgid "Tired"
+msgstr "疲労"
+
+#: 
+msgid "Undefined"
+msgstr "未定義"
+
+#: 
+msgid "Weak"
+msgstr "弱気"
+
+#: 
+msgid "Worried"
+msgstr "不安"
+
+#: 
+msgid "Chores"
+msgstr "雑用"
+
+#: 
+msgid "Groceries"
+msgstr "食料品"
+
+#: 
+msgid "Cleaning"
+msgstr "掃除"
+
+#: 
+msgid "Cooking"
+msgstr "料理"
+
+#: 
+msgid "Maintenance"
+msgstr "メンテナンス"
+
+#: 
+msgid "Dishes"
+msgstr "料理の盛り付け"
+
+#: 
+msgid "Laundry"
+msgstr "洗濯"
+
+#: 
+msgid "Gardening"
+msgstr "ガーデニング"
+
+#: 
+msgid "Errand"
+msgstr "用事"
+
+#: 
+msgid "Dog"
+msgstr "犬"
+
+#: 
+msgid "Drinking"
+msgstr "飲酒"
+
+#: 
+msgid "Beer"
+msgstr "ビール"
+
+#: 
+msgid "Coffee"
+msgstr "コーヒー"
+
+#: 
+msgid "Tea"
+msgstr "お茶"
+
+#: 
+msgid "Eating"
+msgstr "食事"
+
+#: 
+msgid "Snack"
+msgstr "お菓子"
+
+#: 
+msgid "Breakfast"
+msgstr "朝食"
+
+#: 
+msgid "Dinner"
+msgstr "夕食"
+
+#: 
+msgid "Lunch"
+msgstr "昼食"
+
+#: 
+msgid "Exercising"
+msgstr "運動"
+
+#: 
+msgid "Dancing"
+msgstr "ダンス"
+
+#: 
+msgid "Hiking"
+msgstr "ハイキング"
+
+#: 
+msgid "Jogging"
+msgstr "ジョギング"
+
+#: 
+msgid "Sport"
+msgstr "スポーツ"
+
+#: 
+msgid "Running"
+msgstr "ランニング"
+
+#: 
+msgid "Skiing"
+msgstr "スキー"
+
+#: 
+msgid "Swimming"
+msgstr "水泳"
+
+#: 
+msgid "Working out"
+msgstr "トレーニング"
+
+#: 
+msgid "Grooming"
+msgstr "訓練"
+
+#: 
+msgid "Spa"
+msgstr "温泉"
+
+#: 
+msgid "Teeth"
+msgstr "歯磨き"
+
+#: 
+msgid "Haircut"
+msgstr "散髪"
+
+#: 
+msgid "Shaving"
+msgstr "髭剃り"
+
+#: 
+msgid "Bath"
+msgstr "お風呂"
+
+#: 
+msgid "Shower"
+msgstr "シャワー"
+
+#: 
+msgid "Appointment"
+msgstr "予約"
+
+#: 
+msgid "Day off"
+msgstr "非番"
+
+#: 
+msgid "Hanging out"
+msgstr "ぼーっとしている"
+
+#: 
+msgid "Hiding"
+msgstr "潜伏"
+
+#: 
+msgid "Vacation"
+msgstr "休暇"
+
+#: 
+msgid "Praying"
+msgstr "祈り"
+
+#: 
+msgid "Holiday"
+msgstr "休日"
+
+#: 
+msgid "Sleeping"
+msgstr "睡眠"
+
+#: 
+msgid "Thinking"
+msgstr "思考"
+
+#: 
+msgid "Relaxing"
+msgstr "リラックス"
+
+#: 
+msgid "Fishing"
+msgstr "釣り"
+
+#: 
+msgid "Gaming"
+msgstr "ゲーム"
+
+#: 
+msgid "Going out"
+msgstr "外出"
+
+#: 
+msgid "Partying"
+msgstr "パーティ"
+
+#: 
+msgid "Reading"
+msgstr "読書"
+
+#: 
+msgid "Rehearsing"
+msgstr "リハーサル"
+
+#: 
+msgid "Shopping"
+msgstr "買い物"
+
+#: 
+msgid "Smoking"
+msgstr "喫煙"
+
+#: 
+msgid "Socializing"
+msgstr "交流"
+
+#: 
+msgid "Sunbathing"
+msgstr "日光浴"
+
+#: 
+msgid "TV"
+msgstr "テレビ"
+
+#: 
+msgid "Movie"
+msgstr "映画"
+
+#: 
+msgid "Talking"
+msgstr "会話"
+
+#: 
+msgid "Real life"
+msgstr "生活"
+
+#: 
+msgid "Phone"
+msgstr "電話"
+
+#: 
+msgid "Video phone"
+msgstr "テレビ電話"
+
+#: 
+msgid "Traveling"
+msgstr "旅行"
+
+#: 
+msgid "Commuting"
+msgstr "通勤"
+
+#: 
+msgid "Cycling"
+msgstr "サイクリング"
+
+#: 
+msgid "Driving"
+msgstr "運転"
+
+#: 
+msgid "In a car"
+msgstr "車の中"
+
+#: 
+msgid "On a bus"
+msgstr "バスの中"
+
+#: 
+msgid "On a plane"
+msgstr "飛行機の中"
+
+#: 
+msgid "On a train"
+msgstr "電車の中"
+
+#: 
+msgid "On a trip"
+msgstr "旅"
+
+#: 
+msgid "Walking"
+msgstr "散歩"
+
+#: 
+msgid "Working"
+msgstr "仕事"
+
+#: 
+msgid "Coding"
+msgstr "コーディング"
+
+#: 
+msgid "Meeting"
+msgstr "会議"
+
+#: 
+msgid "Studying"
+msgstr "勉強"
+
+#: 
+msgid "Writing"
+msgstr "執筆"
+
+#: 
+#~ msgid "Opened chats"
+#~ msgstr "チャット"
+
+#: 
+#~ msgid "Social channel"
+#~ msgstr "ソーシャルチャンネル"
+
+#: 
+msgid "View the profile of this user"
+msgstr "ユーザーのプロフィールを参照"
+
+#: 
+msgid "Repeat this notice"
+msgstr "お知らせを繰り返す"
+
+#: 
+msgid "Remove this notice"
+msgstr "お知らせを削除"
+
+#: 
+msgid "My profile"
+msgstr "プロフィール"
+
+#: 
+msgid "Identity"
+msgstr "身元"
+
+#: 
+msgid "Avatar"
+msgstr "アバター"
+
+#: 
+msgid "Others"
+msgstr "その他"
+
+#: 
+msgid "Civility"
+msgstr "礼節"
+
+#: 
+msgid "Complete name"
+msgstr "氏名"
+
+#: 
+msgid "Nick"
+msgstr "ニックネーム"
+
+#: 
+msgid "Given name"
+msgstr "名"
+
+#: 
+msgid "Family name"
+msgstr "性"
+
+#: 
+msgid "Birth"
+msgstr "誕生日"
+
+#: 
+msgid "Contact"
+msgstr "連絡先"
+
+#: 
+msgid "E-mail"
+msgstr "Eメール"
+
+#: 
+msgid "Website"
+msgstr "WEBサイト"
+
+#: 
+msgid "Picture of you"
+msgstr "アイコン"
+
+#: 
+msgid "Actual picture"
+msgstr "写真"
+
+#: 
+msgid "Delete"
+msgstr "削除"
+
+#: 
+msgid "What a pity! You have no avatar defined in your identity card!"
+msgstr "残念! あなたの自己紹介カードにアバターが登録されていません。"
+
+#: 
+msgid "Postal address"
+msgstr "住所"
+
+#: 
+msgid "Street"
+msgstr "番地"
+
+#: 
+msgid "City"
+msgstr "市町村"
+
+#: 
+msgid "Postal code"
+msgstr "郵便番号"
+
+#: 
+msgid "Country"
+msgstr "国"
+
+#: 
+msgid "Biography"
+msgstr "自己紹介"
+
+#: 
+msgid "Important notice"
+msgstr "重要なお知らせ"
+
+#: 
+msgid "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)."
+msgstr "繊細な個人情報をプロフィールに登録する情報に注意してください。あなたが望まなかったとしてもこの情報は全ての人にアクセス可能です。"
+
+#: 
+msgid "Everything is not private on XMPP, here's one of those things, your public profile (vCard)."
+msgstr "XMPPに秘密はありません、この公開プロフィール(vCard)もそのうちの一つです。"
+
+#: 
+msgid "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends."
+msgstr "あなたのアイコンや写真の様なアバター(最大 25Kバイト)を登録する事を強く推奨します、友達があなたを認識し易くなります。"
+
+#: 
+msgid "Save"
+msgstr "保存"
+
+#: 
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: 
+msgid "I edit my options"
+msgstr "オプションを編集"
+
+#: 
+msgid "Channel"
+msgstr "チャンネル"
+
+#: 
+msgid "Sounds"
+msgstr "サウンド"
+
+#: 
+msgid "Inactive"
+msgstr "無効"
+
+#: 
+msgid "Privacy"
+msgstr "プライバシー"
+
+#: 
+msgid "Message archiving"
+msgstr ""
+
+#: 
+#~ msgid "Archive expiring"
+#~ msgstr ""
+
+#: 
+#~ msgid "Never"
+#~ msgstr ""
+
+#: 
+#~ msgid "Daily"
+#~ msgstr ""
+
+#: 
+#~ msgid "Weekly"
+#~ msgstr ""
+
+#: 
+#~ msgid "Monthly"
+#~ msgstr ""
+
+#: 
+#~ msgid "Yearly"
+#~ msgstr ""
+
+#: 
+msgid "Geolocation"
+msgstr "位置情報"
+
+#: 
+msgid "Hide"
+msgstr "隠す"
+
+#: 
+msgid "Empty"
+msgstr "空"
+
+#: 
+msgid "Empty my channel"
+msgstr "チャンネルは空です"
+
+#: 
+msgid "Persistent"
+msgstr "持続"
+
+#: 
+msgid "Maximum notices"
+msgstr "お知らせの最大数"
+
+#: 
+msgid "Account"
+msgstr "アカウント"
+
+#: 
+msgid "Change my password"
+msgstr "パスワードの変更"
+
+#: 
+msgid "Delete my account"
+msgstr "アカウントの削除"
+
+#: 
+msgid "Old"
+msgstr "古い"
+
+#: 
+msgid "New (2 times)"
+msgstr "新しい(2回)"
+
+#: 
+msgid "Continue"
+msgstr "次"
+
+#: 
+msgid "To"
+msgstr "宛先"
+
+#: 
+msgid "Close"
+msgstr "閉じる"
+
+#: 
+msgid "unknown"
+msgstr "不明"
+
+#: 
+msgid "Unavailable"
+msgstr "使用出来ません"
+
+#: 
+msgid "Here it is! A new beautiful avatar!"
+msgstr "じゃーん! 新しくて素晴らしいアバターです!"
+
+#: 
+msgid "Not supported image file or bad size."
+msgstr "サポートされていない画像ファイルかサイズが大き過ぎます。"
+
+#: 
+#~ msgid "Add this room to my favorites"
+#~ msgstr "お気に入りにこのルームを追加"
+
+#: 
+msgid "Reply"
+msgstr "返信"
+
+#: 
+msgid "Error"
+msgstr "エラー"
+
+#: 
+msgid "Me"
+msgstr "自分"
+
+#: 
+msgid "Remove"
+msgstr "削除"
+
+#: 
+msgid "Rename"
+msgstr "名前変更"
+
+#: 
+msgid "I would like to add you in my buddy list."
+msgstr "仲間リストにあなたを追加させていただきます。"
+
+#: 
+msgid "Smiley insertion"
+msgstr "顔文字を挿入"
+
+#: 
+msgid "Change the style"
+msgstr ""
+
+#: 
+msgid "Text in bold"
+msgstr ""
+
+#: 
+msgid "Text in italic"
+msgstr ""
+
+#: 
+msgid "Underlined text"
+msgstr ""
+
+#: 
+msgid "Save the chat"
+msgstr "チャットを保存"
+
+#: 
+msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
+msgstr "チャット履歴を取得するには以下のリンクをクリックしてしばらく待ちます。次に再度クリックしてファイルを取得します。"
+
+#: 
+msgid "Generate the file!"
+msgstr "ファイルを生成!"
+
+#: 
+msgid "Download the file!"
+msgstr "ファイルをダウンロード"
+
+#: 
+msgid "Clean the current chat..."
+msgstr "現在のチャットiを消去"
+
+#: 
+msgid "Display user profile..."
+msgstr "ユーザープロフィールを表示..."
+
+#: 
+msgid "Add this contact to your friends..."
+msgstr "このコンタクトを友達に追加..."
+
+#: 
+#~ msgid "Close the chat"
+#~ msgstr "チャットを閉じる"
+
+#: 
+msgid "no subject defined for this room."
+msgstr "このルームには件名がありません。"
+
+#: 
+msgid "Administration panel for this room..."
+msgstr "このルームの管理パネル..."
+
+#: 
+msgid "Moderators"
+msgstr "モデレータ"
+
+#: 
+msgid "Participants"
+msgstr "参加者"
+
+#: 
+msgid "Visitors"
+msgstr "傍聴者"
+
+#: 
+msgid "Manage my favorites rooms"
+msgstr "お気に入りのルームを管理"
+
+#: 
+msgid "Change my favorites"
+msgstr "お気に入りを変更"
+
+#: 
+msgid "Search a room"
+msgstr "ルームを検索"
+
+#: 
+msgid "Select a favorite"
+msgstr "お気に入りを選択"
+
+#: 
+msgid "Name"
+msgstr "名前"
+
+#: 
+msgid "Room"
+msgstr "ルーム"
+
+#: 
+msgid "Add"
+msgstr "追加"
+
+#: 
+msgid "Edit"
+msgstr "編集"
+
+#: 
+msgid "Search a room on"
+msgstr "ルームを検索: "
+
+#: 
+msgid "No room found on this server."
+msgstr "このサーバーでルームは見つかりませんでした。"
+
+#: 
+msgid "Service discovery"
+msgstr "サービスディスカバリ"
+
+#: 
+msgid "Server to query"
+msgstr "サーバーに問い合わせ"
+
+#: 
+msgid "Sorry, but the server didn't return any result!"
+msgstr "ごめんなさい、サーバーがレスポンスを返しませんでした!"
+
+#: 
+msgid "Accounts"
+msgstr "アカウント"
+
+#: 
+msgid "Authentications"
+msgstr "認証"
+
+#: 
+msgid "Automation"
+msgstr "自動化"
+
+#: 
+msgid "Clients"
+msgstr "クライアント"
+
+#: 
+msgid "Collaboration"
+msgstr "コラボレーション"
+
+#: 
+msgid "Components"
+msgstr "コンポーネント"
+
+#: 
+msgid "Rooms"
+msgstr "ルーム"
+
+#: 
+msgid "Directories"
+msgstr "ディレクトリ"
+
+#: 
+msgid "Gateways"
+msgstr "ゲートウェイ"
+
+#: 
+msgid "News"
+msgstr "ニュース"
+
+#: 
+msgid "Hierarchy"
+msgstr "階層"
+
+#: 
+msgid "Proxies"
+msgstr "プロキシ"
+
+#: 
+msgid "Publication/Subscription"
+msgstr "公開/購読"
+
+#: 
+msgid "Storage"
+msgstr "ストレージ"
+
+#: 
+msgid "Service offline or broken"
+msgstr "サービスがオフラインか壊れています"
+
+#: 
+msgid "My inbox"
+msgstr "受信箱"
+
+#: 
+msgid "Available actions"
+msgstr "有効な動作"
+
+#: 
+msgid "Clean"
+msgstr "消去"
+
+#: 
+msgid "New"
+msgstr "New"
+
+#: 
+msgid "Received"
+msgstr "受信"
+
+#: 
+msgid "Subject"
+msgstr "件名"
+
+#: 
+msgid "Content"
+msgstr "内容"
+
+#: 
+msgid "Send the message"
+msgstr "メッセージを送信"
+
+#: 
+msgid "No message stored in your inbox."
+msgstr "受信箱に新しいメッセージはありません。"
+
+#: 
+msgid "MUC administration"
+msgstr "MUC管理"
+
+#: 
+msgid "You administrate this room"
+msgstr "あなたはこのルームを管理します"
+
+#: 
+msgid "Enter the new subject"
+msgstr "新しい件名を入力"
+
+#: 
+msgid "Configuration"
+msgstr "設定"
+
+#: 
+msgid "Authorizations"
+msgstr "許可"
+
+#: 
+msgid "Member list"
+msgstr "メンバーリスト"
+
+#: 
+msgid "Owner list"
+msgstr "所有者リスト"
+
+#: 
+msgid "Administrator list"
+msgstr "管理者リスト"
+
+#: 
+msgid "Outcast list"
+msgstr "追放者リスト"
+
+#: 
+msgid "Add an input"
+msgstr "入力を追加"
+
+#: 
+msgid "Destroy this MUC"
+msgstr "このMUCを解散する"
+
+#: 
+msgid "Yes, let's do it!"
+msgstr "はい、そうします!"
+
+#: 
+msgid "Your friend is writing a message..."
+msgstr "友達はメッセージを書いています。"
+
+#: 
+msgid "Your friend stopped writing a message."
+msgstr "友達はメッセージの書き込みを中断しました。"
+
+#: 
+msgid "Your friend is doing something else."
+msgstr "友達は何かをしています。"
+
+#: 
+msgid "Your friend closed the chat."
+msgstr "友達はチャットを閉じました。"
+
+#: 
+msgid "Requesting this service..."
+msgstr "サービスを要求中..."
+
+#: 
+msgid "Loading"
+msgstr "読み込み中"
+
+#: 
+#~ msgid "joined the chat room."
+#~ msgstr "チャットルームに参加"
+
+#: 
+#~ msgid "just left the chat room."
+#~ msgstr "チャットルームを退出"
+
+#: 
+msgid "Communicate with the entire world!"
+msgstr "全世界とコミュニケーション!"
+
+#: 
+#~ msgid "Jappix is a non-profit micro social network, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr "Jappix は何時でも何処でも誰とでもコミュニケーションを取れる非営利のマイクロソーシャルネットワークです。"
+
+#: 
+msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgstr "ここでは XMPPネットワークを使用する何百万人のユーザーと連絡を取ることが出来ます。コミュニティーへの参加は自由です!"
+
+#: 
+msgid "Hi there!"
+msgstr "こんにちは!"
+
+#: 
+msgid "Welcome on %1s, « %2s »."
+msgstr "ようこそ %1s « %2s » へ。"
+
+#: 
+msgid "Login to your existing XMPP account or create a new one, that's fast and free!"
+msgstr ""
+
+#: 
+msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgstr ""
+
+#: 
+msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
+msgstr ""
+
+#: 
+msgid "Previous"
+msgstr "戻る"
+
+#: 
+msgid "General"
+msgstr "一般"
+
+#: 
+msgid "XMPP ID"
+msgstr "XMPP ID"
+
+#: 
+msgid "Advanced"
+msgstr "高度"
+
+#: 
+msgid "Resource"
+msgstr "リソース"
+
+#: 
+msgid "Priority"
+msgstr "優先度"
+
+#: 
+msgid "Low"
+msgstr "低"
+
+#: 
+msgid "Medium"
+msgstr "中"
+
+#: 
+msgid "High"
+msgstr "高"
+
+#: 
+msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
+msgstr ""
+
+#: 
+msgid "login page"
+msgstr "ログインページ"
+
+#: 
+msgid "Share this link with your friends:"
+msgstr "次のリンクを友達と共有する:"
+
+#: 
+msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
+msgstr ""
+
+#: 
+msgid "Required"
+msgstr "要求"
+
+#: 
+msgid "You've successfully been registered, here's your XMPP ID:"
+msgstr ""
+
+#: 
+#~ msgid "Download"
+#~ msgstr "ダウンロード"
+
+#: 
+#~ msgid "Developers"
+#~ msgstr "開発者"
+
+#: 
+msgid "Encrypted"
+msgstr "暗号化済"
+
+#: 
+msgid "Uncrypted"
+msgstr "非暗号化"
+
+#: 
+msgid "Where am I?"
+msgstr "どこにいる?"
+
+#: 
+#~ msgid "Your conversations"
+#~ msgstr "会話"
+
+#: 
+msgid "What's up with you?"
+msgstr "なにしてる?"
+
+#: 
+msgid "Fetching the social channel..."
+msgstr "ソーシャルチャンネルを取得..."
+
+#: 
+msgid "You are synchronized with your network."
+msgstr "ネットワークと同期しました。"
+
+#: 
+msgid "Cannot send anything: you can only receive notices!"
+msgstr "何も送信できません: あなたはお知らせのみ受信できます!"
+
+#: 
+msgid "Media viewer"
+msgstr "メディアビューア"
+
+#: 
+msgid "Browse"
+msgstr "ブラウズ"
+
+#: 
+msgid "Command"
+msgstr "コマンド"
+
+#: 
+msgid "Subscribe"
+msgstr "購読"
+
+#: 
+msgid "Join"
+msgstr "参加"
+
+#: 
+msgid "Search"
+msgstr "検索"
+
+#: 
+msgid "No result!"
+msgstr "結果はありません!"
+
+#: 
+msgid "No notification!"
+msgstr "お知らせはありません!"
+
+#: 
+msgid "would like to add you as a friend."
+msgstr "はあなたを友達に追加したがっています。"
+
+#: 
+msgid "would like you to join this chatroom:"
+msgstr "はあなたをチャットルームに招待しています:"
+
+#: 
+msgid "Do you accept?"
+msgstr "許可しますか?"
+
+#: 
+msgid "Yes"
+msgstr "はい"
+
+#: 
+msgid "No"
+msgstr "いいえ"
+
+#: 
+msgid "would like to get an authorization."
+msgstr "は承認を欲しがっています。"
+
+#: 
+msgid "Submit"
+msgstr "送信"
+
+#: 
+msgid "Client"
+msgstr "クライアント"
+
+#: 
+msgid "System"
+msgstr "システム"
+
+#: 
+msgid "Local time"
+msgstr "ローカル時間"
+
+#: 
+msgid "Comments"
+msgstr "コメント"
+
+#: 
+msgid "User infos"
+msgstr "ユーザー情報"
+
+#: 
+msgid "See his/her position on the globe"
+msgstr "位置を見る"
+
+#: 
+msgid "Confirm"
+msgstr "確認"
+
+#: 
+msgid "anonymous mode"
+msgstr "匿名モード"
+
+#: 
+msgid "Groups"
+msgstr "グループ"
+
+#: 
+msgid "Unclassified"
+msgstr "秘密ではない"
+
+#: 
+msgid "Authorize"
+msgstr "承認"
+
+#: 
+msgid "Chat"
+msgstr "チャット"
+
+#: 
+msgid "Groupchat"
+msgstr "グループチャット"
+
+#: 
+msgid "Jappix Mobile"
+msgstr "Jappixモバイル"
+
+#: 
+msgid "Desktop"
+msgstr "デスクトップ"
+
+#: 
+msgid "Mobile"
+msgstr "モバイル"
+
+#: 
+msgid "Please wait..."
+msgstr "しばらくお待ち下さい..."
+
+#: 
+msgid "Please enable JavaScript"
+msgstr "JavaScriptを有効にして下さい"
+
+#: 
+msgid "My channel"
+msgstr "自分のチャンネル"
+
+#: 
+msgid "Channel of"
+msgstr "チャンネル: "
+
+#: 
+msgid "More notices..."
+msgstr "他のお知らせ..."
+
+#: 
+msgid "Attach a file..."
+msgstr "ファイルを添付..."
+
+#: 
+msgid "Unattach the file..."
+msgstr "添付ファイルの解除"
+
+#: 
+msgid "Who can see it..."
+msgstr "参照可能な人..."
+
+#: 
+msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
+msgstr "ファイルの送信中にエラーが発生しました: おそらく禁止されているかファイルが大き過ぎます!(最大6Mバイト)"
+
+#: 
+msgid "Authorization failed"
+msgstr "認証失敗"
+
+#: 
+msgid "Registration failed, please choose a different username"
+msgstr "登録に失敗しました、別のユーザー名を選んでください。"
+
+#: 
+msgid "Service unavailable"
+msgstr "サービス不能です。"
+
+#: 
+msgid "Internal server error, try later"
+msgstr "内部サーバーエラー、再度試してください。"
+
+#: 
+msgid "Your form has been sent successfully."
+msgstr "あなたのフォームは正常に送信されました。"
+
+#: 
+msgid "Application"
+msgstr "アプリケーション"
+
+#: 
+msgid "XMPP links"
+msgstr "XMPPリンク"
+
+#: 
+msgid "Open XMPP links with Jappix"
+msgstr "JappixでXMPPリンクを開く"
+
+#: 
+msgid "Show all friends"
+msgstr "全ての友達を見る"
+
+#: 
+msgid "changed the subject to:"
+msgstr "サブジェクトの変更"
+
+#: 
+msgid "Welcome!"
+msgstr "ようこそ"
+
+#: 
+msgid "Friends"
+msgstr "友達"
+
+#: 
+msgid "Welcome on Jappix, your own social cloud!"
+msgstr ""
+
+#: 
+msgid "Before you start using it, you'll have to change some settings, search for friends and complete your profile."
+msgstr ""
+
+#: 
+msgid "Enable the notification sounds"
+msgstr "案内音を有効にする"
+
+#: 
+#~ msgid "Share my position on the globe with my friends"
+#~ msgstr ""
+
+#: 
+msgid "Use this tool to find your friends on the server you are using right now, or add them later."
+msgstr ""
+
+#: 
+msgid "Great work! When you will press the save button, the profile editor will be opened."
+msgstr ""
+
+#: 
+msgid "All the Jappix team thank you for your interest. Happy socializing!"
+msgstr ""
+
+#: 
+msgid "Unknown name"
+msgstr "不明な名前"
+
+#: 
+msgid "Unknown country"
+msgstr "不明な国名"
+
+#: 
+msgid "Click to enable"
+msgstr "enableをクリック"
+
+#: 
+msgid "Click to disable"
+msgstr ""
+
+#: 
+msgid "Ask for authorization"
+msgstr ""
+
+#: 
+msgid "Prohibit"
+msgstr ""
+
+#: 
+msgid "Block"
+msgstr "除外"
+
+#: 
+msgid "Share my position on the globe"
+msgstr ""
+
+#: 
+msgid "An open social network"
+msgstr ""
+
+#: 
+msgid "Store a history of your chats"
+msgstr "チャット履歴を保持する"
+
+#: 
+msgid "Offline buddies"
+msgstr ""
+
+#: 
+msgid "Don't hide offline buddies"
+msgstr ""
+
+#: 
+msgid "Your friend is paying attention to the conversation."
+msgstr ""
+
+#: 
+msgid "Jappix installation"
+msgstr "Jappixのインストール"
+
+#: 
+msgid "Welcome to the Jappix installation!"
+msgstr "Jappixのインストールへようこそ!"
+
+#: 
+#~ msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform on your server. You don't even need any technical knowledge."
+#~ msgstr ""
+
+#: 
+msgid "Let's have a look to the installation steps:"
+msgstr "インストールのステップ:"
+
+#: 
+msgid "Welcome"
+msgstr "ようこそ"
+
+#: 
+msgid "Storage configuration"
+msgstr "ストレージの設定"
+
+#: 
+msgid "Main configuration"
+msgstr "メイン設定"
+
+#: 
+msgid "Hosts configuration"
+msgstr "ホストの設定"
+
+#: 
+msgid "Services installation"
+msgstr "サービスのインストール"
+
+#: 
+msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
+msgstr ""
+
+#: 
+msgid "It's time to build your own social cloud: just go to the next step!"
+msgstr ""
+
+#: 
+#~ msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and configuration) into a single secured storage folder."
+#~ msgstr ""
+
+#: 
+msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
+msgstr ""
+
+#: 
+msgid "The folder is writable, you can continue!"
+msgstr ""
+
+#: 
+msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
+msgstr ""
+
+#: 
+msgid "Service"
+msgstr "サービス"
+
+#: 
+msgid "Service name"
+msgstr "サービス名"
+
+#: 
+msgid "Service description"
+msgstr ""
+
+#: 
+msgid "Connection"
+msgstr "コネクション"
+
+#: 
+msgid "Lock the host"
+msgstr ""
+
+#: 
+msgid "Anonymous mode"
+msgstr "匿名モード"
+
+#: 
+msgid "Encryption"
+msgstr "暗号化"
+
+#: 
+msgid "Compression"
+msgstr "圧縮"
+
+#: 
+msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
+msgstr ""
+
+#: 
+msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
+msgstr ""
+
+#: 
+msgid "Main host"
+msgstr ""
+
+#: 
+msgid "Groupchat host"
+msgstr "グループチャットホスト"
+
+#: 
+msgid "Anonymous host"
+msgstr "匿名ホスト"
+
+#: 
+msgid "Directory host"
+msgstr "ホストの検索"
+
+#: 
+msgid "BOSH host"
+msgstr "BOSHホスト"
+
+#: 
+#~ msgid "You can install some extra softwares to your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
+#~ msgstr ""
+
+#: 
+msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
+msgstr ""
+
+#: 
+#~ msgid "After your finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
+#~ msgstr ""
+
+#: 
+msgid "Thanks for using Jappix!"
+msgstr "Jappixをご利用いただきありがとうございます"
+
+#: 
+msgid "Next"
+msgstr "次"
+
+#: 
+msgid "Finish"
+msgstr "完了"
+
+#: 
+msgid "Check again"
+msgstr "もう一度確認して下さい"
+
+#: 
+msgid "The folder is not writable, apply the good rights to the %s directory."
+msgstr ""
+
+#: 
+msgid "%s is installed on your system."
+msgstr "%s は、あなたのシステムにインストールされました"
+
+#: 
+msgid "%1s is not installed on your system, you should install %2s."
+msgstr "%1s はインストールされてません。%2sをインストールしてください"
+
+#: 
+msgid "PHP memory limit is sufficient (%s)."
+msgstr ""
+
+#: 
+msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
+msgstr ""
+
+#: 
+msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgstr ""
+
+#: 
+msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
+msgstr ""
+
+#: 
+msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
+msgstr ""
+
+#: 
+msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgstr ""
+
+#: 
+msgid "Manager"
+msgstr "マネージャー"
+
+#: 
+msgid "Project"
+msgstr "プロジェクト"
+
+#: 
+msgid "Administrator account"
+msgstr "管理者アカウント"
+
+#: 
+msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
+msgstr ""
+
+#: 
+msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
+msgstr ""
+
+#: 
+msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
+msgstr ""
+
+#: 
+msgid "Administrator"
+msgstr "管理者"
+
+#: 
+msgid "User"
+msgstr "ユーザー"
+
+#: 
+msgid "Ups, you missed something or the two passwords do not match!"
+msgstr "パスワードが一致していません"
+
+#: 
+#~ msgid "If the current language does not match yours, you can make Jappix speak %s it will be saved."
+#~ msgstr ""
+
+#: 
+msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
+msgstr ""
+
+#: 
+#~ msgid "Auto join"
+#~ msgstr ""
+
+#: 
+msgid "Automatic"
+msgstr "自動"
+
+#: 
+msgid "is now"
+msgstr ""
+
+#: 
+msgid "Add this groupchat to your favorites..."
+msgstr ""
+
+#: 
+#~ msgid "All chats"
+#~ msgstr ""
+
+#: 
+msgid "All tabs"
+msgstr "全てのタブ"
+
+#: 
+msgid "Close this tab"
+msgstr "このタブを閉じる"
+
+#: 
+msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr ""
+
+#: 
+msgid "Filter"
+msgstr "フィルター"
+
+#: 
+msgid "has been kicked"
+msgstr ""
+
+#: 
+msgid "has been banned"
+msgstr ""
+
+#: 
+msgid "no reason"
+msgstr ""
+
+#: 
+#~ msgid "You have been disconnect from your XMPP account. What do you want to do now?"
+#~ msgstr ""
+
+#: 
+msgid "Reconnect"
+msgstr "再接続"
+
+#: 
+#~ msgid "You have been disconnected from your XMPP account. What do you want to do now?"
+#~ msgstr ""
+
+#: 
+msgid "Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr ""
+
+#: 
+msgid "joined the chat room"
+msgstr "チャットルームに誘う"
+
+#: 
+msgid "left the chat room"
+msgstr "チャットルームに入室する"
+
+#: 
+msgid "no status"
+msgstr "ステータスがありません"
+

@@ -1,0 +1,178 @@
+/*
+
+Jappix - An open social platform
+This is the favorites CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 30/08/10
+
+*/
+
+#favorites {
+	display: none;
+}
+
+#favorites .fedit-head-select {
+	min-width: 190px;
+}
+
+#favorites .content {
+	padding: 10px 0 10px 0;
+}
+
+#favorites .content p {
+	margin: 5px 10px 5px 10px;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#favorites .switch-fav {
+	margin: 0 10px 0 10px;
+	width: 200px;
+	height: 355px;
+	border-right: 1px #c0c0c0 dotted;
+	float: left;
+}
+
+#favorites .switch-fav .room-switcher {
+	width: 188px;
+	height: 18px;
+	border-bottom: 1px #a9bbbf solid;
+	float: left;
+	padding: 10px 6px;
+	font-size: 13px;
+}
+
+#favorites .switch-fav .room-switcher:hover {
+	background: #dae4e7;
+	cursor: pointer;
+}
+
+#favorites .switch-fav .icon {
+	float: left;
+	height: 16px;
+	width: 16px;
+	margin: 0 8px 0 0;
+}
+
+#favorites .switch-fav .room-list .list-icon {
+	background-position: 0 0;
+}
+
+#favorites .switch-fav .room-list .muc-favorites-list {
+	width: 190px;
+}
+
+#favorites .switch-fav .room-list .muc-favorites-list:hover {
+	cursor: pointer;
+}
+
+#favorites .switch-fav .room-search .search-icon {
+	background-position: -16px 0;
+}
+
+#favorites .static-fav {
+	width: 385px;
+	height: 335px;
+	margin: 0 10px 0 0;
+	padding: 10px;
+	float: right;
+}
+
+#favorites .favorites-search {
+	display: none;
+}
+
+#favorites .static-fav-head {
+	width: 393px;
+	margin: -10px;
+}
+
+#favorites .static-fav-results {
+	width: 406px;
+	height: 314px;
+	margin: 10px -10px -10px -10px;
+	padding: 6px 0 0 0;
+}
+
+#favorites .fedit-line {
+	height: 30px;
+	font-size: 13px;
+	padding: 10px 0 4px 4px;
+	border-bottom: 1px #b0b0b0 solid;
+}
+
+#favorites .fedit-line:hover {
+	background: #dae4e7;
+}
+
+#favorites label {
+	width: 140px;
+	margin-top: 3px;
+}
+
+#favorites input {
+	height: 18px;
+	width: 186px;
+	padding: 2px;
+}
+
+#favorites .fedit-select {
+	min-width: 160px;
+}
+
+#favorites .fedit-actions {
+	float: right;
+	margin: 10px 0 10px 0;
+}
+
+#favorites input[type=checkbox] {
+	margin-top: 5px;
+}
+
+#favorites .fedit-actions a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#favorites .fedit-add {
+	float: right;
+}
+
+#favorites .fedit-edit {
+	float: right;
+	display: none;
+}
+
+#favorites .fedit-remove {
+	float: right;
+	display: none;
+	margin: 0 8px 0 0;
+}
+
+#favorites .fsearch-results {
+	overflow: auto;
+}
+
+#favorites .room-name {
+	margin: 4px 2px;
+	max-width: 210px;
+	float: left;
+}
+
+.popup .results a.one-button {
+	float: right;
+	font-size: 0.95em;
+	padding: 3px 6px;
+	margin-right: 4px;
+}
+
+#favorites .fsearch-noresults {
+	display: none;
+	font-size: 15px;
+	font-weight: bold;
+}
