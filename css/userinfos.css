@@ -1,0 +1,99 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the user-infos CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#userinfos {
+	display: none;
+}
+
+#userinfos .top {
+	height: 55px;
+}
+
+#userinfos .content {
+	height: 358px;
+	overflow: auto;
+}
+
+#userinfos .one-info {
+	display: none;
+}
+
+#userinfos .main-infos {
+	margin: 20px 20px 8px 20px;
+	height: 120px;
+	background: white;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#userinfos .avatar-container {
+	float: left;
+	text-align: center;
+	margin: 20px 35px;
+	width: 80px;
+	height: 80px;
+}
+
+#userinfos .avatar {
+	max-width: 80px;
+	max-height: 80px;
+}
+
+#userinfos h1 {
+	color: #335b64;
+	font-size: 2em;
+	padding-top: 12px;
+	margin-bottom: 6px;
+}
+
+#userinfos h2 {
+	color: #567e87;
+	font-size: 1.1em;
+	margin-bottom: 8px;
+}
+
+#userinfos h3 {
+	color: #70858a;
+	font-size: 0.8em;
+}
+
+#userinfos .block-infos {
+	margin: 7px 20px;
+	float: left;
+}
+
+#userinfos .one-line {
+	margin: 4px 0;
+	font-size: 0.9em;
+	float: left;
+}
+
+#userinfos .one-line b {
+	color: #38565c;
+	width: 120px;
+	float: left;
+}
+
+#userinfos .one-line span {
+	color: #38565c;
+	float: left;
+	width: 460px;
+}
+
+#userinfos textarea {
+	margin: 30px;
+	width: 572px;
+	height: 292px;
+}

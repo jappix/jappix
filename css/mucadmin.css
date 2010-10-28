@@ -1,0 +1,141 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the muc-admin CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#muc-admin {
+	display: none;
+}
+
+#muc-admin .top {
+	margin-bottom: -9px;
+}
+
+#muc-admin .content {
+	height: 358px;
+	padding: 10px 0 10px 0;
+}
+
+#muc-admin .content p {
+	margin: 5px 10px 5px 10px;
+	color: #424242;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#muc-admin .muc-admin-head-jid {
+	font-size: 14px;
+	text-decoration: underline;
+	float: right;
+	margin: 1px 4px 1px 1px;
+}
+
+#muc-admin .muc-admin-results {
+	height: 310px;
+	width: 620px;
+	margin: -5px 0 0 10px;
+	padding: 6px 0 0 0;
+	color: #686868;
+	overflow: auto;
+}
+
+#muc-admin .muc-admin-results fieldset {
+	border: 1px #9d9d9d solid;
+	margin: 0 10px 15px 0;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#muc-admin .muc-admin-results legend {
+	margin: 0 0 5px 15px;
+	color: #797979;
+	text-transform: uppercase;
+}
+
+#muc-admin .muc-admin-results label {
+	color: #494949;
+	width: 260px;
+	font-size: 14px;
+	display: block;
+	clear: both;
+	float: left;
+	margin: 0 0 10px 12px;
+}
+
+#muc-admin .muc-admin-results input {
+	margin: 0 10px 10px 0;
+	width: 200px;
+	float: left;
+}
+
+#muc-admin .muc-admin-results select {
+	margin: 0 10px 10px 0;
+	min-width: 150px;
+	float: left;
+}
+
+#muc-admin .muc-admin-results textarea {
+	height: 60px;
+	width: 300px;
+	margin: 5px 12px 10px 0;
+	float: left;
+}
+
+#muc-admin .muc-checkbox:hover {
+	cursor: pointer;
+}
+
+#muc-admin .aut-group {
+	color: red;
+	float: left;
+	padding-bottom: 4px;
+}
+
+#muc-admin .one-aut {
+	clear: both;
+	margin: 0 10px 5px 0;
+}
+
+#muc-admin .aut-add {
+	clear: both;
+	float: left;
+	margin-bottom: 5px;
+	color: #43666d;
+	font-size: 13px;
+}
+
+#muc-admin .aut-add:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#muc-admin .aut-remove {
+	float: left;
+	color: #43666d;
+	font-size: 15px;
+}
+
+#muc-admin .aut-remove:hover {
+	font-weight: bold;
+}
+
+#muc-admin .muc-admin-others a {
+	float: left;
+	color: #43666d;
+	font-size: 13px;
+}
+
+#muc-admin .muc-admin-others a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

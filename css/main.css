@@ -1,0 +1,119 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the main CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #cae1e9;
+	font: normal 0.9em helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+h1 {
+	margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	outline-style: none;
+}
+
+a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+input,
+textarea {
+	background-color: white;
+	border: 1px solid #636363;
+	font-size: 0.95em;
+	padding: 2px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #e1a014;
+}
+
+input[disabled],
+textarea[disabled] {
+	background-color: #f3f3f3;
+	border: 1px solid #989898;
+}
+
+#error, #info:hover {
+	cursor: pointer;
+}
+
+.board {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 18px;
+	z-index: 10000;
+	font-size: 13px;
+	padding: 6px;
+	box-shadow: 0 0 8px #4e4e4e;
+	-moz-box-shadow: 0 0 8px #4e4e4e;
+	-webkit-box-shadow: 0 0 8px #4e4e4e;
+}
+
+.error-p {
+	background-color: rgba(241,160,160,0.9);
+	color: #804040;
+}
+
+.info-p {
+	background-color: rgba(246,244,203,0.9);
+	color: #6b6111;
+}
+
+.please-complete, .please-complete:hover, .please-complete:focus {
+	border: 1px #bd3c3c solid !important;
+}
+
+#general-wait {
+	display: none;
+	z-index: 10000;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.general-wait-content {
+	background-color: rgba(255,255,255,0.9);
+	padding: 8px;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	box-shadow: 0 0 2px #000;
+	-moz-box-shadow: 0 0 2px #000;
+	-webkit-box-shadow: 0 0 2px #000;
+}

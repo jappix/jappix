@@ -1,0 +1,266 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the popup CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+.lock {
+	background-color: rgba(0,0,0,0.6);
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: fixed;
+	z-index: 9999;
+}
+
+.popup {
+	background-color: rgba(20,20,20,0.8);
+	margin-top: -250px;
+	margin-left: -330px;
+	width: 660px;
+	height: 500px;
+	position: absolute;
+	z-index: 10000;
+	left: 50%;
+	top: 50%;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	box-shadow: 0 0 35px #232323;
+	-moz-box-shadow: 0 0 35px #232323;
+	-webkit-box-shadow: 0 0 35px #232323;
+}
+
+.popup .popup-content {
+	margin: 10px;
+}
+
+.popup .top {
+	width: 640px;
+	height: 60px;
+	font-size: 1.2em;
+	padding-top: 9px;
+	margin-bottom: -9px;
+}
+
+.popup .top p {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1em;
+	color: white;
+	margin: 8px 0 0 40px;
+}
+
+.popup .tab {
+	width: 620px;
+	height: 25px;
+	margin: -14px 10px 0 10px;
+}
+
+.popup .tab a {
+	background-color: #d9e7ea;
+	color: #204249;
+	width: 180px;
+	height: 17px;
+	padding: 4px 4px 4px 16px;
+	margin-left: 5px;
+	display: block;
+	float: left;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+}
+
+.popup .tab a:hover {
+	background-color: #cedee1;
+	text-decoration: none;
+}
+
+.popup .tab a:active {
+	background-color: #c3d3d7;
+	text-decoration: none;
+}
+
+.popup .tab a.tab-active {
+	background-color: #e8f1f3 !important;
+}
+
+.popup .content {
+	background-color: #e8f1f3;
+	color: #666666;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.popup .content a {
+	color: #43666d;
+}
+
+.popup .head {
+	background: #d9e4e7;
+	border: 1px #a9bbbf solid;
+	width: 606px;
+	height: 24px;
+	margin: 0 10px 10px 10px;
+	padding: 6px;
+	color: #4c7179;
+}
+
+.popup .head-text {
+	float: left;
+	font-size: 0.9em;
+	margin: 3px;
+}
+
+.popup .head-actions {
+	float: right;
+	margin-top: 2px;
+}
+
+.popup .head-actions a {
+	font-size: 0.9em;
+	margin-right: 4px;
+}
+
+.popup .actions a {
+	color: #4c7179;
+	font-size: 0.9em;
+	margin-left: 5px;
+}
+
+.popup .head-actions a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.popup .head .head-input {
+	float: right;
+	width: 200px;
+	padding: 2px;
+}
+
+.popup .head .head-select {
+	float: right;
+}
+
+.popup .head .head-select:hover {
+	cursor: pointer;
+}
+
+.popup .forms {
+	width: 390px;
+	height: 328px;
+	margin: 15px;
+	float: left;
+}
+
+.popup .forms fieldset {
+	border: 1px #547177 solid;
+	margin: 0 0 15px 0;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.popup .forms legend {
+	margin: 0 0 5px 15px;
+	color: #40595e;
+	text-transform: uppercase;
+}
+
+.popup .forms label {
+	color: #494949;
+	width: 150px;
+	display: block;
+	float: left;
+	margin: 0 0 10px 12px;
+}
+
+.popup .forms input,
+.popup .forms select {
+	margin: 0 10px 10px 0;
+}
+
+.popup .results {
+	height: 310px;
+	width: 620px;
+	margin: -5px 0 0 10px;
+	padding: 6px 0 0 0;
+	color: #536266;
+	overflow: auto;
+}
+
+.popup .onetitle {
+	font-size: 0.9em;
+	padding: 4px;
+	font-weight: bold;
+}
+
+.popup .oneinstructions {
+	font-size: 0.9em;
+	padding: 4px;
+	margin: 8px 0;
+}
+
+.popup .oneresult {
+	font-size: 0.9em;
+	padding: 3px 0 4px 4px;
+	border-bottom: 1px #b0b0b0 solid;
+	overflow: hidden;
+}
+
+.popup .oneresult:hover {
+	background: #dae4e7;
+	cursor: pointer;
+}
+
+.popup .bottom {
+	width: 640px;
+	height: 40px;
+	margin-top: 5px;
+}
+
+.popup .wait {
+	display: none;
+	margin: 8px 0 0 3px;
+	float: left;
+}
+
+.popup .finish {
+	border: 1px solid white;
+	background-color: rgba(255,255,255,0.1);
+	color: white;
+	padding: 2px 8px;
+	margin: 7px 7px 0 0;
+	text-align: center;
+	height: 20px;
+	float: right;
+	font-size: 15px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.popup .finish:hover {
+	background-color: rgba(255,255,255,0.2);
+	cursor: pointer;
+}
+
+.popup .finish:active {
+	background-color: rgba(255,255,255,0.3);
+	cursor: pointer;
+}

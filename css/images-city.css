@@ -1,0 +1,62 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the images CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Olivier, Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+.body-images {
+	background-image: url(../img/sprites/background-city.png);
+	background-repeat: repeat-x;
+}
+
+.home-images {
+	background-image: url(../img/sprites/home.png);
+	background-repeat: no-repeat;
+}
+
+.buttons-images {
+	background-image: url(../img/sprites/buttons.png);
+	background-repeat: repeat-x;
+}
+
+.talk-images {
+	background-image: url(../img/sprites/talk.png);
+	background-repeat: no-repeat;
+}
+
+.mobile-images {
+	background-image: url(../img/sprites/mobile.png);
+	background-repeat: no-repeat;
+}
+
+.wait-lilliput {
+	background: url(../img/wait/wait-lilliput.gif) no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.wait-small {
+	background: url(../img/wait/wait-small.png) no-repeat;
+	height: 24px;
+	width: 24px;
+}
+
+.wait-medium {
+	background: url(../img/wait/wait-medium.gif) no-repeat;
+	height: 30px;
+	width: 30px;
+}
+
+.wait-big {
+	background: url(../img/wait/wait-big.gif) no-repeat;
+	height: 40px;
+	width: 40px;
+}

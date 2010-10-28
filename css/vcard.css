@@ -1,0 +1,134 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the vCard CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#vcard {
+	display: none;
+}
+
+#vcard .content {
+	height: 358px;
+}
+
+#vcard .avatar-container {
+	float: left;
+	text-align: center;
+	margin: 20px 0 35px 35px;
+	max-width: 96px;
+	max-height: 96px;
+}
+
+#vcard .avatar {
+	max-width: 96px;
+	max-height: 96px;
+}
+
+#vcard .avatar-delete {
+	display: none;
+	background: #ea7e7e;
+	border-top: #d46060 1px solid;
+	border-right: #d46060 1px solid;
+	border-bottom: #d46060 1px solid;
+	margin: 20px 35px 35px 0;
+	height: 30px;
+	width: 221px;
+	float: right;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#vcard .avatar-delete:hover {
+	background: #cf6868;
+	cursor: pointer;
+}
+
+#vcard .avatar-delete p {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1em;
+	color: #b13f3f;
+	margin: 5px 0 0 60px;
+}
+
+#vcard .no-avatar {
+	width: 300px;
+	color: #bd6b6b;
+	padding: 10px;
+	margin: 15px 0 20px 40px;
+	background: #ffd9d9;
+	border: 1px #e7b5b5 solid;
+	font-size: 0.8em;
+}
+
+#vcard .forms textarea {
+	height: 111px;
+	width: 358px;
+	margin: 5px 12px 10px 12px;
+}
+
+#vcard .forms .avatar-info {
+	display: none;
+	width: 390px;
+	height: 35px;
+	font-size: 12px;
+	background: #c4ed9b;
+	color: #578030;
+	border: #578030 1px solid;
+}
+
+#vcard .forms .avatar-info p {
+	margin: 10px;
+}
+
+#vcard .forms .avatar-ok {
+	background: #c4ed9b;
+	color: #578030;
+	border: #578030 1px solid;
+}
+
+#vcard .forms .avatar-error {
+	background: #d77e7e;
+	color: #7c1010;
+	border: #7c1010 1px solid;
+}
+
+#vcard .infos {
+	width: 195px;
+	height: 328px;
+	margin: 15px 15px 15px 0;
+	float: right;
+	background-color: rgba(255,239,104,0.8);
+	border: 1px #decb2f solid;
+	font-size: 0.8em;
+}
+
+#vcard .infos .infos-content {
+	margin: 8px;
+	color: #3f3f3f;
+}
+
+#vcard .infos .infos-content p {
+	margin-top: 10px;
+}
+
+#vcard .send {
+	float: right;
+}
+
+#vcard .send:hover {
+	cursor: pointer;
+}

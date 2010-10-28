@@ -1,0 +1,257 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the my-infos CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#my-infos {
+	background-color: rgba(20,20,20,0.7);
+	color: #919191;
+	margin-top: 10px;
+	padding-bottom: 3px;
+	max-height: 180px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: 0 0 10px #4e4e4e;
+	-moz-box-shadow: 0 0 10px #4e4e4e;
+	-webkit-box-shadow: 0 0 10px #4e4e4e;
+}
+
+#my-infos .title {
+	color: white;
+	padding: 4px 0 1px 10px;
+	font-size: 0.9em;
+}
+
+#my-infos .f-mood, #my-infos .f-activity, #my-infos .f-geoloc {
+	display: none;
+}
+
+#my-infos .content {
+	background: #e8f1f3;
+	color: #919191;
+	max-height: 140px;
+	padding-top: 1px;
+	margin: 4px 6px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#my-infos .element {
+	height: 32px;
+	margin: 3px 0;
+}
+
+#my-infos .element .icon {
+	float: left;
+	margin: 8px;
+}
+
+.icon-status,
+.icon-mood,
+.icon-activity,
+.icon-location {
+	height: 16px;
+	width: 16px;
+	display: none;
+}
+
+.status-unavailable,
+.status-error {
+	background-position: 0 -74px;
+}
+
+.status-available {
+	display: block;
+	background-position: 0 -90px;
+}
+
+.status-chat {
+	background-position: 0 -90px;
+}
+
+.status-away {
+	background-position: 0 -106px;
+}
+
+.status-xa, .status-dnd, .status-busy {
+	background-position: 0 -122px;
+}
+
+.mood-one {
+	background-position: 0 -299px;
+}
+
+.mood-two {
+	background-position: 0 -317px;
+}
+
+.mood-three {
+	background-position: 0 -335px;
+}
+
+.mood-four {
+	display: block;
+	background-position: 0 -353px;
+}
+
+.mood-five {
+	background-position: 0 -371px;
+}
+
+.mood-six {
+	background-position: 0 -389px;
+}
+
+.mood-seven {
+	background-position: 0 -407px;
+}
+
+.mood-eight {
+	background-position: 0 -425px;
+}
+
+.mood-nine {
+	background-position: 0 -443px;
+}
+
+.activity-chores {
+	background-position: 0 -461px;
+}
+
+.activity-drinking {
+	background-position: 0 -479px;
+}
+
+.activity-eating {
+	background-position: 0 -497px;
+}
+
+.activity-exercising {
+	display: block;
+	background-position: 0 -515px;
+}
+
+.activity-grooming {
+	background-position: 0 -551px;
+}
+
+.activity-appointment {
+	background-position: 0 -569px;
+}
+
+.activity-inactive {
+	background-position: 0 -533px;
+}
+
+.activity-relaxing {
+	background-position: 0 -623px;
+}
+
+.activity-talking {
+	background-position: 0 -605px;
+}
+
+.activity-traveling {
+	background-position: 0 -587px;
+}
+
+.activity-working {
+	background-position: 0 -641px;
+}
+
+.location-world {
+	display: block;
+	background-position: 0 -659px;
+}
+
+.tune-note {
+	display: block;
+	background-position: 0 -677px;
+}
+
+.channel-individual {
+	display: block;
+	background-position: 0 -22px;
+}
+
+#my-infos .element .type {
+	float: left;
+	margin: 3px 5px 2px 3px;
+}
+
+#my-infos .element select {
+	font-size: 0.9em;
+	height: 25px;
+}
+
+#my-infos .element .type a {
+	margin: 4px 2px;
+	display: block;
+	font-size: 0.9em;
+}
+
+.my-infos-text-item {
+	margin-left: 185px;
+	margin-top: -6px;
+	width: 244px;
+	position: absolute;
+	color: white;
+	z-index: 9999;
+	text-align: left;
+	font-size: 0.8em;
+	display: none;
+}
+
+.my-infos-text-subarrow {
+	background-position: 0 -234px;
+	opacity: 0.8;
+	width: 9px;
+	height: 20px;
+	margin-top: 12px;
+	float: left;
+}
+
+.my-infos-text-subitem {
+	background-color: rgba(0,0,0,0.8);
+	padding: 10px;
+	width: 215px;
+	float: left;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+.my-infos-text-p {
+	margin-right: 5px;
+	font-weight: bold;
+	float: left;
+}
+
+.my-infos-text-close {
+	float: right;
+	font-size: 0.8em;
+}
+
+.my-infos-text-close:hover {
+	cursor: pointer;
+}
+
+.my-infos-text-input {
+	width: 210px;
+	margin-top: 5px;
+}
+
+#my-infos .element select {
+	width: 140px;
+}

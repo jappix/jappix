@@ -1,0 +1,443 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the chat-engine CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#chat-engine {
+	background-color: rgba(20,20,20,0.7);
+	float: left;
+	z-index: 10;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 209px;
+	bottom: 0;
+	left: 0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-topright: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	box-shadow: 0 0 10px #4e4e4e;
+	-moz-box-shadow: 0 0 10px #4e4e4e;
+	-webkit-box-shadow: 0 0 10px #4e4e4e;
+}
+
+#chat-engine .title {
+	color: white;
+	padding: 4px 0 1px 10px;
+	font-size: 0.9em;
+}
+
+#chat-engine .chat-engine-chan {
+	background-color: #e0e7e8;
+	color: #5e5e5e;
+	position: absolute;
+	left: 6px;
+	right: 6px;
+	top: 25px;
+	bottom: 6px;
+	border-bottom-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+}
+
+#chat-engine .top {
+	border: 1px solid #cdc432;
+	background: #ffec6c;
+	color: #919191;
+	margin: 3px;
+	height: 80px;
+	display: block;
+	overflow: hidden;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#chat-engine .top .avatar-container {
+	float: left;
+	width: 70px;
+	height: 70px;
+	margin: 5px 5px 5px 9px;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+
+#chat-engine .top .avatar {
+	max-width: 70px;
+	max-height: 70px;
+}
+
+#chat-engine .top .name {
+	text-align: right;
+	padding: 7px;
+}
+
+#chat-engine p.bc-name {
+	font-size: 2.3em;
+	color: #777777;
+	margin-bottom: 3px;
+}
+
+#chat-engine p.bc-infos {
+	font-size: 0.85em;
+	color: #8c8c8c;
+	height: 16px;
+	overflow: hidden;
+	float: right;
+}
+
+#chat-engine div.bc-pep {
+	float: right;
+	margin-left: 6px;
+}
+
+#chat-engine div.bc-pep a {
+	height: 16px;
+	width: 16px;
+	margin-left: 4px;
+	float: left;
+}
+
+#chat-engine div.bc-pep a:hover {
+	cursor: default;
+}
+
+#chat-engine div.bc-pep a[href]:hover {
+	cursor: pointer;
+}
+
+#chat-engine .chatstate {
+	display: none;
+	background-color: rgba(234,234,234,0.8);
+	padding: 2px;
+	position: absolute;
+	bottom: 104px;
+	left: 4px;
+	right: 4px;
+	z-index: 30;
+	font-size: 0.7em;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#chat-engine .one-chatstate {
+	display: none;
+	margin: 1px 0 0 6px;
+}
+
+#chat-engine .content {
+	border: 1px solid #808080;
+	background: #f9f9f9;
+	color: #444444;
+	margin: 3px 3px 2px 3px;
+	display: block;
+	padding: 14px 10px 18px 10px;
+	font-size: 0.9em;
+	overflow: scroll;
+	overflow: auto;
+	position: absolute;
+	top: 85px;
+	right: 0;
+	left: 0;
+	bottom: 101px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#chat-engine .groupchat-content {
+	right: 185px !important;
+}
+
+#chat-engine .list {
+	border: 1px solid #808080;
+	background: #f9f9f9;
+	color: #919191;
+	margin: 3px;
+	display: block;
+	padding: 10px;
+	font-size: 13px;
+	float: right;
+	overflow: scroll;
+	overflow: auto;
+	width: 160px;
+	margin-top: 0;
+	position: absolute;
+	top: 88px;
+	right: 0;
+	bottom: 100px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#chat-engine .list .title {
+	font-weight: bold;
+	color: #6a6a6a;
+	padding: 0;
+}
+
+#chat-engine .list .user {
+	border-top: 1px solid #969696;
+	border-bottom: 1px solid #969696;
+	background: #f8f8f8;
+	color: #636363;
+	margin: 0 -10px 4px -10px;
+	height: 32px;
+	overflow: hidden;
+}
+
+#chat-engine .list .user:hover {
+	background: #f4f4f4;
+	cursor: pointer;
+}
+
+#chat-engine .list .user:active {
+	background: #f1f1f1;
+}
+
+#chat-engine .list .user .name {
+	float: left;
+	width: 105px;
+	height: 18px;
+	overflow: hidden;
+	margin: 7px 0 5px 3px;
+	padding-left: 18px;
+}
+
+#chat-engine .list .user .avatar-container {
+	text-align: center;
+	float: right;
+	height: 32px;
+	width: 32px;
+}
+
+#chat-engine .list .user img {
+	max-height: 32px;
+	max-width: 32px;
+}
+
+#chat-engine .content .thisFalseDivIsForJQuery {
+	height: 10px;
+}
+
+#chat-engine p.one-line b.me {
+	color: #38658a;
+}
+
+#chat-engine p.one-line b.him {
+	color: #873838;
+}
+
+#chat-engine p.one-line p {
+	float: left;
+}
+
+#chat-engine .content p.user-message {
+	margin-bottom: 3px;
+}
+
+#chat-engine .content p.system-message {
+	color: #4e794e;
+	margin-bottom: 3px;
+}
+
+#chat-engine .content p.my-nick {
+	font-weight: bold;
+	color: #de6666 !important;
+}
+
+#chat-engine .content p.my-nick b {
+	color: #de6666 !important;
+}
+
+#chat-engine .content p.old-message {
+	font-size: 11px;
+	margin-bottom: 1px;
+}
+
+#chat-engine .content a {
+	color: #5e5e5e;
+	text-decoration: underline;
+}
+
+#chat-engine .text {
+	color: #919191;
+	margin: 2px;
+	height: 97px;
+	display: block;
+	padding-right: 12px;
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	right: 1px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#chat-engine .text .tools {
+	background: white;
+	border: 1px solid #636363;
+	padding: 5px;
+	height: 18px;
+	width: 100%;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#chat-engine .text .tools .left {
+	float: left;
+	margin: 1px 4px 1px 4px;
+}
+
+#chat-engine .chat-tools-content {
+	height: 16px;
+	width: 16px;
+	margin-right: 6px;
+	float: left;
+}
+
+#chat-engine .tools-tooltip {
+	display: block;
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	float: left;
+}
+
+#chat-engine .text .tools .left .tools-smileys {
+	background-position: -16px -58px;
+}
+
+#chat-engine .text .tools .left .tools-save {
+	background-position: -32px -58px;
+}
+
+#chat-engine .text .tools .left .tools-clear {
+	background-position: -48px -58px;
+}
+
+#chat-engine .text .tools .left .tools-infos {
+	background-position: -64px -58px;
+}
+
+#chat-engine .text .tools .left .tools-add {
+	background-position: 0 -42px;
+	display: none;
+}
+
+#chat-engine .text .tools .left .tools-mucadmin {
+	background-position: -80px -58px;
+	display: none;
+}
+
+#chat-engine .text .tools .right .tools-close {
+	background-position: -96px -58px;
+	margin-right: 0;
+}
+
+#chat-engine .text .tools .right {
+	float: right;
+	margin: 1px 4px 1px 4px;
+}
+
+#chat-engine .text input {
+	padding: 5px;
+	margin-top: 3px;
+	height: 52px;
+	width: 100%;
+}
+
+#chat-engine .muc-password,
+#chat-engine .muc-nickname {
+	background: #f6eaea;
+	border: 1px solid #eab3b3;
+	height: 63px;
+}
+
+#chat-engine .muc-password p,
+#chat-engine .muc-nickname p {
+	color: black;
+	float: left;
+	margin: 23px 10px 0 16px;
+}
+
+#chat-engine .muc-password input,
+#chat-engine .muc-nickname input {
+	height: 14px;
+	width: 200px;
+	margin: 19px 10px 0 10px;
+}
+
+#chat-engine .tooltip {
+	display: none;
+	position: absolute;
+	bottom: 90px;
+	margin-left: -13px;
+	z-index: 40;
+	font-size: 0.8em;
+	color: white;
+}
+
+#chat-engine .tooltip a {
+	color: white;
+}
+
+.tooltip-subitem {
+	background-color: rgba(0,0,0,0.8);
+	padding: 10px;
+	width: 200px;
+	height: 110px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+.tooltip-subarrow {
+	background-position: 0 -244px;
+	opacity: 0.8;
+	height: 10px;
+	width: 18px;
+	margin-left: 12px;
+}
+
+.tooltip .tooltip-right-top {
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+.tooltip .tooltip-right-dchat:hover, .tooltip-right-fchat:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.tooltip .tooltip-right-fchat {
+	display: none;
+}

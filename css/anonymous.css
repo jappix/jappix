@@ -1,0 +1,45 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the anonymous mode CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/06/10
+
+*/
+
+#home {
+	display: none !important;
+}
+
+#main-content {
+	top: 10px !important;
+}
+
+#talk {
+	min-width: 500px !important;
+	min-height: 450px !important;
+}
+
+#right-content {
+	left: 0 !important;
+	min-width: 480px !important;
+	min-height: 430px !important;
+}
+
+#chat-engine {
+	right: 0 !important;
+	border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+}
+
+.chat-engine-chan {
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}

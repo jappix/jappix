@@ -1,0 +1,39 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the integratebox CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#integratebox {
+	display: none;
+}
+
+#integratebox .top {
+	height: 55px;
+}
+
+#integratebox .content {
+	height: 385px;
+	text-align: center;
+}
+
+#integratebox .one-media img {
+	max-height: 385px;
+	max-width: 640px;
+}
+
+#integratebox .one-media a img {
+	border: none;
+}
+
+#integratebox .one-media audio {
+	margin-top: 170px;
+}

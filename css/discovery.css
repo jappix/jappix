@@ -1,0 +1,163 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the discovery CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#discovery {
+	display: none;
+}
+
+#discovery .content {
+	height: 358px;
+	padding: 10px 0 10px 0;
+}
+
+#discovery .content p {
+	margin: 5px 10px 5px 10px;
+	color: #424242;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#discovery .discovery-head {
+	width: 606px;
+	height: 24px;
+	margin: 0 10px 10px 10px;
+	padding: 6px;
+	background: #d9e4e7;
+	border: 1px #a9bbbf solid;
+	color: #4c7179;
+}
+
+#discovery .disco-server-text {
+	float: left;
+	font-size: 14px;
+	margin: 3px;
+}
+
+#discovery .disco-server-input {
+	float: right;
+	width: 200px;
+	padding: 2px;
+	height: 18px;
+	float: right;
+	margin-right: 10px;
+	padding: 2px;
+}
+
+#discovery .disco-category {
+	display: none;
+	margin-bottom: 18px;
+}
+
+#discovery .disco-category-title {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#discovery .one-label {
+	float: left;
+	width: 180px;
+	margin: 6px 4px 4px 4px;
+}
+
+#discovery .one-input {
+	float: left;
+	margin: 4px;
+}
+
+#discovery .one-icon {
+	float: left;
+	width: 35px;
+	margin: 2px 2px 0 2px;
+	font-size: 30px;
+}
+
+#discovery .one-host,
+#discovery .one-jid {
+	float: left;
+	width: 160px;
+	font-weight: bold;
+	overflow: hidden;
+	margin: 11px 8px 8px 8px;
+}
+
+#discovery .one-type,
+#discovery .one-fn {
+	float: left;
+	width: 200px;
+	overflow: hidden;
+	margin: 11px 8px 8px 8px;
+}
+
+#discovery .one-jid,
+#discovery .one-fn {
+	margin: 4px;
+	width: 280px;
+}
+
+#discovery .one-name {
+	float: left;
+	margin: 4px;
+}
+
+#discovery .one-next {
+	float: right;
+	margin: 4px 8px 4px 4px;
+	font-weight: bold;
+}
+
+#discovery .one-actions {
+	float: left;
+	width: 150px;
+	margin: 8px;
+}
+
+#discovery .one-actions a {
+	float: left;
+	border: 1px solid #39565c;
+	background-color: #e2eaec;
+	width: 16px;
+	height: 16px;
+	padding: 2px 2px 4px 5px;
+	margin-right: 4px;
+	color: #39565c;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+#discovery .one-actions a:hover {
+	text-decoration: none;
+	background-color: #d6e1e3;
+}
+
+#discovery .one-actions a:active {
+	background-color: #d0dcde;
+}
+
+#discovery a.submit,
+#discovery a.cancel,
+#discovery a.back {
+	margin-right: 8px;
+	float: right;
+}
+
+#discovery .discovery-noresults {
+	display: none;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#discovery .discovery-forms {
+	display: none;
+}

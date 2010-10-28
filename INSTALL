@@ -1,0 +1,28 @@
+Jappix - An Open μSocial Platform
+These are the installation instructions for Jappix
+
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 16/07/10
+
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+It's very simple to install Jappix on your webserver, you just have to follow these things:
+
+# INSTALLATION
+	- The HTTP server : http://codingteam.net/project/jappix/doc/HttpServer
+	- The XMPP server : http://codingteam.net/project/jappix/doc/XmppServer
+	- The BOSH server : http://codingteam.net/project/jappix/doc/BoshServer
+	- The Jappix app. : http://codingteam.net/project/jappix/doc/JappixApp
+
+# CONFIGURATION
+	- Configure the main options : http://codingteam.net/project/jappix/doc/MainOptions
+	- Configure the hosts 	     : http://codingteam.net/project/jappix/doc/ConfHosts
+
+# MORE
+	- The whole documentation is available at : http://codingteam.net/project/jappix/doc
+
+Now, you can use Jappix. Happy socializing!

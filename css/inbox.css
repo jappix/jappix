@@ -1,0 +1,177 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the inbox CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#inbox {
+	display: none;
+}
+
+#inbox .content {
+	height: 358px;
+	padding: 10px 0 10px 0;
+}
+
+#inbox .content p {
+	margin: 5px 10px 5px 10px;
+	color: #424242;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#inbox .messages-results {
+	height: 310px;
+	width: 620px;
+	margin: -5px 0 0 10px;
+	padding: 6px 0 0 0;
+	color: #536266;
+	overflow: auto;
+}
+
+#inbox .message-unread {
+	background-color: #ccd8dc;
+}
+
+#inbox .message-reading {
+	background-color: #dde8ea;
+}
+
+#inbox .one-message {
+	height: 20px;
+	font-size: 13px;
+	padding: 3px 0 4px 4px;
+	border-bottom: 1px #b2c7cb solid;
+	overflow: hidden;
+}
+
+#inbox .one-message:hover {
+	background: #dae4e7;
+}
+
+#inbox .message-jid {
+	float: left;
+	width: 200px;
+	font-weight: bold;
+	margin: 2px;
+}
+
+#inbox .message-subject {
+	float: left;
+	width: 320px;
+	margin: 2px;
+}
+
+.message-jid, .message-subject:hover {
+	cursor: pointer;
+}
+
+#inbox .message-remove {
+	float: right;
+	margin: 2px 5px 2px 2px;
+}
+
+#inbox .message-remove:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#inbox .one-message-body {
+	background-color: #dde8ea;
+	display: none;
+}
+
+#inbox .one-message-body:hover {
+	background-color: #dae4e7;
+}
+
+#inbox .message-body {
+	padding: 8px 5px 5px 5px;
+	font-size: 13px;
+}
+
+#inbox .message-meta {
+	margin: 4px 5px 0 5px;
+	height: 26px;
+	border-top: 1px #b2c7cb dotted;
+}
+
+#inbox .message-meta a {
+	font-size: 0.85em;
+	margin: 5px;
+	float: right;
+}
+
+#inbox .message-meta a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#inbox .messages-noresults {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#inbox .a-show-messages {
+	display: none;
+}
+
+#inbox .messages-new {
+	display: none;
+	height: 300px;
+	width: 620px;
+	margin: -5px 0 0 10px;
+	padding: 16px 0 0 0;
+	color: #686868;
+}
+
+#inbox .messages-new-block {
+	border-top: 1px #686868 dotted;
+	padding: 10px 0 10px 0;
+	min-height: 25px;
+	clear: both;
+}
+
+#inbox .messages-new-text {
+	float: left;
+	width: 100px;
+}
+
+#inbox .messages-new-textarea {
+	width: 460px;
+	height: 142px;
+	margin-bottom: 10px;
+	float: left;
+}
+
+#inbox .messages-new input {
+	float: left;
+}
+
+#inbox .messages-new-to-input {
+	width: 260px;
+}
+
+#inbox .messages-new-subject-input {
+	width: 380px;
+}
+
+#inbox .messages-new-send a {
+	color: #4c7179;
+	font-size: 1em;
+	margin-right: 35px;
+	float: right;
+}
+
+#inbox .messages-new-send a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

@@ -1,0 +1,190 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the smileys CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+div.emoticon {
+	width: 16px;
+	height: 16px;
+	margin: 2px;
+	float: left;
+}
+
+div.emoticon:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+img.emoticon {
+	padding: 1px 0 0 16px;
+	height: 16px;
+	margin: 0 4px;
+}
+
+.emoticon-angry {
+	background-position: -784px 0;
+}
+
+.emoticon-bat {
+	background-position: -784px -18px;
+}
+
+.emoticon-beer {
+	background-position: -784px -36px;
+}
+
+.emoticon-biggrin {
+	background-position: -784px -54px;
+}
+
+.emoticon-blush {
+	background-position: -784px -72px;
+}
+
+.emoticon-boy {
+	background-position: -784px -90px;
+}
+
+.emoticon-brflower {
+	background-position: -784px -108px;
+}
+
+.emoticon-brheart {
+	background-position: -784px -126px;
+}
+
+.emoticon-coffee {
+	background-position: -784px -144px;
+}
+
+.emoticon-coolglasses {
+	background-position: -784px -162px;
+}
+
+.emoticon-cry {
+	background-position: -784px -180px;
+}
+
+.emoticon-cuffs {
+	background-position: -784px -198px;
+}
+
+.emoticon-devil {
+	background-position: -784px -216px;
+}
+
+.emoticon-drink {
+	background-position: -784px -234px;
+}
+
+.emoticon-flower {
+	background-position: -784px -252px;
+}
+
+.emoticon-frowning {
+	background-position: -784px -270px;
+}
+
+.emoticon-girl {
+	background-position: -784px -288px;
+}
+
+.emoticon-heart {
+	background-position: -784px -306px;
+}
+
+.emoticon-hugleft {
+	background-position: -784px -324px;
+}
+
+.emoticon-hugright {
+	background-position: -784px -342px;
+}
+
+.emoticon-kiss {
+	background-position: -784px -360px;
+}
+
+.emoticon-lamp {
+	background-position: -784px -378px;
+}
+
+.emoticon-lion {
+	background-position: -784px -396px;
+}
+
+.emoticon-mail {
+	background-position: -784px -414px;
+}
+
+.emoticon-moon {
+	background-position: -784px -432px;
+}
+
+.emoticon-music {
+	background-position: -784px -450px;
+}
+
+.emoticon-oh {
+	background-position: -784px -468px;
+}
+
+.emoticon-phone {
+	background-position: -784px -486px;
+}
+
+.emoticon-photo {
+	background-position: -784px -504px;
+}
+
+.emoticon-puke {
+	background-position: -784px -522px;
+}
+
+.emoticon-pussy {
+	background-position: -784px -540px;
+}
+
+.emoticon-rainbow {
+	background-position: -784px -558px;
+}
+
+.emoticon-smile {
+	background-position: -784px -576px;
+}
+
+.emoticon-star {
+	background-position: -784px -594px;
+}
+.emoticon-stare {
+	background-position: -784px -612px;
+}
+
+.emoticon-thumbdown {
+	background-position: -784px -630px;
+}
+
+.emoticon-thumbup {
+	background-position: -784px -648px;
+}
+
+.emoticon-tongue {
+	background-position: -784px -666px;
+}
+
+.emoticon-unhappy {
+	background-position: -784px -684px;
+}
+
+.emoticon-wink {
+	background-position: -784px -702px;
+}

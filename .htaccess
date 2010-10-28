@@ -1,0 +1,24 @@
+# Jappix - An Open μSocial Platform
+# This is the Apache .htaccess file for Jappix
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# License: AGPL
+# Author: Valérian Saliou
+# Contact: http://project.jappix.com/contact
+# Last revision: 17/07/10
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# BEGIN Rewrite
+	<IfModule mod_rewrite.c>
+		RewriteEngine	On
+		RewriteRule	bind	http://bind.jappix.com:8180/BOSH/ [P]
+	</IfModule>
+# END Rewrite
+
+# BEGIN AUTOINDEX DISABLING
+	<IfModule mod_autoindex.c>
+		Options	-Indexes
+	</IfModule>
+# END AUTOINDEX DISABLING

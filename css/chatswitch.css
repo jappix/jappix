@@ -1,0 +1,235 @@
+/*
+
+Jappix - An Open μSocial Platform
+This is the chat-switch CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 17/07/10
+
+*/
+
+#chat-switch {
+	background-color: rgba(20,20,20,0.7);
+	color: #919191;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 305px;
+	width: 209px;
+	float: left;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	box-shadow: 0 0 10px #4e4e4e;
+	-moz-box-shadow: 0 0 10px #4e4e4e;
+	-webkit-box-shadow: 0 0 10px #4e4e4e;
+}
+
+#chat-switch .switcher:hover {
+	cursor: pointer;
+}
+
+#chat-switch .switcher a {
+	display: block;
+	margin-top: 2px;
+	color: #444444;
+}
+
+#chat-switch .switcher a:hover {
+	text-decoration: none;
+}
+
+#chat-switch .title {
+	color: white;
+	padding: 4px 0 1px 3px;
+	font-size: 0.9em;
+}
+
+#chat-switch .content {
+	height: 274px;
+	width: 203px;
+	background: #e8f1f3;
+	color: #919191;
+	position: absolute;
+	left: 0px;
+	right: 10px;
+	top: 25px;
+	bottom: 6px;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#chat-switch .content .channels {
+	height: 240px;
+	margin-top: 5px;
+	font-size: 0.8em;
+}
+
+#chat-switch .content .chan-scroll {
+	overflow: auto;
+}
+
+#chat-switch .content .chan-scroll .chan .name {
+	width: 135px !important;
+}
+
+#chat-switch .content .chan-scroll .activechan .name {
+	width: 139px !important;
+}
+
+#chat-switch .content .chan {
+	border-top: 1px solid #b9c9cb;
+	border-bottom: 1px solid #b9c9cb;
+	background-color: #e2e9ea;
+	color: #919191;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
+#chat-switch .content .chan:hover {
+	border-top: 1px solid #b1c1c3;
+	border-bottom: 1px solid #b1c1c3;
+}
+
+#chat-switch .content .chan:active {
+	background-color: #eaeeef;
+}
+
+#chat-switch .content .chan .icon {
+	margin: 1px 0 0 8px;
+	height: 16px;
+	width: 16px;
+	float: left;
+}
+
+#chat-switch .content .chan .name {
+	margin: 1px 0 0 10px;
+	float: left;
+	width: 150px;
+	height: 18px;
+	overflow: hidden;
+}
+
+#chat-switch .content .exit {
+	float: left;
+	width: 8px;
+	color: #7a8a8c;
+	margin-top: 2px;
+	padding: 0 1px;
+}
+
+#chat-switch .composing {
+	color: #4f794f !important;
+}
+
+#chat-switch .paused {
+	color: #4a52a6 !important;
+}
+
+#chat-switch .active {
+	color: #444444 !important;
+}
+
+#chat-switch .inactive {
+	color: #646464 !important;
+}
+
+#chat-switch .gone {
+	color: #682222 !important;
+}
+
+#chat-switch .activechan {
+	border-top: 1px solid #c8c8c8;
+	border-bottom: 1px solid #c8c8c8;
+	background-color: #e0e7e8;
+	z-index: 20;
+	position: relative;
+	color: #919191;
+	height: 20px;
+	margin: 0 0 5px -6px;
+}
+
+#chat-switch .activechan .icon {
+	margin: 1px 2px 2px 8px;
+	height: 16px;
+	width: 16px;
+	float: left;
+}
+
+#chat-switch .activechan .name {
+	margin: 1px 0 0 10px;
+	width: 154px;
+	height: 18px;
+	float: left;
+	overflow: hidden;
+}
+
+#chat-switch .channel {
+	margin-top: 0;
+	font-size: 0.8em;
+}
+
+#chat-switch .channel .name {
+	margin-top: 1px;
+	width: 162px;
+	height: 18px;
+	overflow: hidden;
+}
+
+#chat-switch .channel .icon {
+	background-position: 0 -58px;
+	margin: 2px 0 0 8px;
+	float: left;
+	width: 16px;
+	height: 16px;
+}
+
+#chat-switch .chan-newmessage {
+	border-top: 1px #dfe083 solid;
+	border-bottom: 1px #dfe083 solid;
+	background-color: #f6ecbb !important;
+}
+
+#chat-switch .chan-newmessage:hover {
+	background-color: #fdf4cc !important;
+}
+
+#chat-switch .chan-newmessage:active {
+	background-color: #fdf5d1 !important;
+}
+
+#chat-switch .chan-unread .name a {
+	color: #414cb7 !important;
+}
+
+#chat-switch .groupchat-default {
+	background-position: -48px -40px;
+}
+
+#chat-switch .unavailable,
+#chat-switch .error {
+	background-position: 0 -74px;
+}
+
+#chat-switch .available {
+	background-position: 0 -89px;
+}
+
+#chat-switch .away {
+	background-position: 0 -105px;
+}
+
+#chat-switch .busy {
+	background-position: 0 -121px;
+}
