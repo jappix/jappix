@@ -526,6 +526,10 @@ else
 					$background_default = ' checked="checked"';
 					$background_image = '';
 					$background_color = '';
+					$background_image_repeat_no = '';
+					$background_image_repeat_all = '';
+					$background_image_repeat_x = ' selected="selected"';
+					$background_image_repeat_y = '';
 					$background_image_horizontal_center = ' selected="selected"';
 					$background_image_horizontal_left = '';
 					$background_image_horizontal_right = '';
@@ -585,6 +589,9 @@ else
 						
 						if(isset($_POST['background_image_file']))
 							$background['image_file'] = $_POST['background_image_file'];
+						
+						if(isset($_POST['background_image_repeat']))
+							$background['image_repeat'] = $_POST['background_image_repeat'];
 						
 						if(isset($_POST['background_image_horizontal']))
 							$background['image_horizontal'] = $_POST['background_image_horizontal'];
@@ -654,6 +661,29 @@ else
 						case 'color':
 							$background_color = ' checked="checked"';
 							$background_default = '';
+							
+							break;
+					}
+					
+					switch($background['image_repeat']) {
+						// No repeat
+						case 'no-repeat':
+							$background_image_repeat_no = ' selected="selected"';
+							$background_image_repeat_x = '';
+							
+							break;
+						
+						// Repeat
+						case 'repeat':
+							$background_image_repeat_all = ' selected="selected"';
+							$background_image_repeat_x = '';
+							
+							break;
+						
+						// Y repeat
+						case 'repeat-y':
+							$background_image_repeat_y = ' selected="selected"';
+							$background_image_repeat_x = '';
 							
 							break;
 					}
@@ -746,6 +776,13 @@ else
 								}
 							
 							?>
+						</select>
+						
+						<label for="background_image_repeat"><?php _e("Repeat"); ?></label><select id="background_image_repeat" name="background_image_repeat">
+							<option value="no-repeat"<?php echo($background_image_repeat_no); ?>><?php _e("No"); ?></option>
+							<option value="repeat"<?php echo($background_image_repeat_all); ?>><?php _e("All"); ?></option>
+							<option value="repeat-x"<?php echo($background_image_repeat_x); ?>><?php _e("Horizontal"); ?></option>
+							<option value="repeat-y"<?php echo($background_image_repeat_y); ?>><?php _e("Vertical"); ?></option>
 						</select>
 						
 						<label for="background_image_horizontal"><?php _e("Horizontal"); ?></label><select id="background_image_horizontal" name="background_image_horizontal">

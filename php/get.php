@@ -203,6 +203,14 @@ if($file && $type) {
 						$i++;
 					}
 					
+					// Apply the JS configuration
+					if($type == 'js')
+						$looped = setConfiguration($looped, $locale, $version);
+					
+					// Apply the CSS background
+					if($type == 'css')
+						$looped = setBackground($looped);
+					
 					// Set the Get API paths to the generated string
 					$pathered = setPath($looped, HOST_STATIC, $type, $locale);
 					
@@ -231,9 +239,6 @@ if($file && $type) {
 					require_once('./gettext.php');
 					includeTranslation($locale, 'main');
 					$output = setTranslation($output);
-					
-					// Apply the configuration
-					$output = setConfiguration($output, $locale, $version);
 					
 					// Generate the localized JS cache
 					$final = gzdeflate($output, 9);

@@ -658,6 +658,20 @@ function setConfiguration($string, $locale, $version) {
 	return $string;
 }
 
+// The function to set the background
+function setBackground($string) {
+	// Read the background configuration
+	
+	
+	// Generate the CSS code
+	
+	
+	// Apply it!
+	
+	
+	return $string;
+}
+
 // The function to include a translation file
 function includeTranslation($locale, $domain) {
 	T_setlocale(LC_MESSAGES, $locale);
@@ -1726,6 +1740,7 @@ function readBackground() {
 	$background_default = array();
 	$background_default['type'] = 'default';
 	$background_default['image_file'] = '';
+	$background_default['image_repeat'] = 'repeat-x';
 	$background_default['image_horizontal'] = 'center';
 	$background_default['image_vertical'] = 'top';
 	$background_default['image_color'] = '#cae1e9';

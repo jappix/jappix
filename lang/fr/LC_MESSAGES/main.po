@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-28 22:58:52\n"
+"PO-Revision-Date: 2010-10-29 20:42:12\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2572,4 +2572,12 @@ msgstr "Si vous voulez supprimer quelques fonds, utilisez l'explorateur ci-desso
 #: 
 msgid "List"
 msgstr "Liste"
+
+#: 
+msgid "Repeat"
+msgstr "Répéter"
+
+#: 
+msgid "All"
+msgstr "Tout"
 

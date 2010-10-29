@@ -6,7 +6,7 @@
 # License: AGPL
 # Author: Valérian Saliou
 # Contact: http://project.jappix.com/contact
-# Last revision: 28/10/10
+# Last revision: 29/10/10
 
 msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
 msgstr ""
@@ -1557,6 +1557,12 @@ msgid "Hosts"
 msgstr ""
 
 msgid "Design"
+msgstr ""
+
+msgid "Repeat"
+msgstr ""
+
+msgid "All"
 msgstr ""
 
 msgid "Horizontal"
