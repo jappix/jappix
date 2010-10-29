@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 30/10/10
 
 */
 
@@ -380,7 +380,7 @@ Last revision: 28/10/10
 }
 
 #home .report {
-	background-color: #e9ea80;
+	background-color: #f3f48b;
 	border-color: #c9c66b;
 }
 

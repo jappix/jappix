@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-15 18:55:37\n"
+"PO-Revision-Date: 2010-10-30 00:21:31\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,8 +18,8 @@ msgid "JavaScript is missing in your web browser, so that you'll not be able to 
 msgstr "Javascript è disattivato nel tuo browser, senza non potrai usare Jappix! Perpiacere Riattivalo."
 
 #: 
-#~ msgid "Jappix &bull; An open social network"
-#~ msgstr ""
+msgid "An open social network"
+msgstr "Un network sociale aperto"
 
 #: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
@@ -46,10 +46,6 @@ msgid "Your browser does not support this functionnality, please try with Mozill
 msgstr "Il tuo browser non supporta questa funzionalità, perpiacere prova con Mozilla Firefox."
 
 #: 
-#~ msgid "It seems that one of your storage folder is not writable by PHP, please fix this before using Jappix."
-#~ msgstr "Sembra che la directory per i dati temporanei non sai scrivibile da PHP, rettifica questa situazione prima di utilizzare Jappix."
-
-#: 
 msgid "The room you joined seems not to exist. You should create it!"
 msgstr "La room a cui hai scelto di partecipare non esiste, dovresti crearla!"
 
@@ -60,14 +56,6 @@ msgstr "La chat di gruppo è stata rimossa, qualcun altro sarà adesso in grado 
 #: 
 msgid "The user that you want to reach (message, punishment) is not present in the room."
 msgstr "L'utente non è presente nella room."
-
-#: 
-#~ msgid "You've been banned from a groupchat, you will be not be able to join it again, until the ban is lifted."
-#~ msgstr "Sei stato bandito da una groupchat, non potrai riaccedervi finche il ban non sarà rimosso."
-
-#: 
-#~ msgid "You've been kicked from a groupchat."
-#~ msgstr "Sei stato cacciato da una chat di gruppo."
 
 #: 
 msgid "Login"
@@ -94,6 +82,14 @@ msgid "Remember me"
 msgstr "Ricordami"
 
 #: 
+msgid "Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr "Per via di un problema di rete, sei stato disconnesso. Cosa vuoi fare adesso?"
+
+#: 
+msgid "Reconnect"
+msgstr "Riconnetti"
+
+#: 
 msgid "Messages"
 msgstr "Messaggi"
 
@@ -110,8 +106,8 @@ msgid "Disconnect"
 msgstr "Disconnettiti"
 
 #: 
-#~ msgid "Filter..."
-#~ msgstr "Filtra..."
+msgid "Filter"
+msgstr "Filtro"
 
 #: 
 msgid "Add a friend..."
@@ -182,10 +178,6 @@ msgid "Buddy"
 msgstr "Amici"
 
 #: 
-#~ msgid "All"
-#~ msgstr ""
-
-#: 
 msgid "Date"
 msgstr "Data"
 
@@ -206,16 +198,8 @@ msgid "What are you doing?"
 msgstr "Cosa stai facendo?"
 
 #: 
-#~ msgid "Your friends"
-#~ msgstr "I tuoi amici"
-
-#: 
 msgid "Join a chat..."
 msgstr "Unisciti ad una chat..."
-
-#: 
-#~ msgid "Your status"
-#~ msgstr "Il tuo status"
 
 #: 
 msgid "Available"
@@ -882,14 +866,6 @@ msgid "Writing"
 msgstr "Scrivo"
 
 #: 
-#~ msgid "Opened chats"
-#~ msgstr "Chat aperte"
-
-#: 
-#~ msgid "Social channel"
-#~ msgstr "Canale sociale"
-
-#: 
 msgid "View the profile of this user"
 msgstr "Guarda il profilo di questo utente"
 
@@ -1042,28 +1018,8 @@ msgid "Message archiving"
 msgstr "Archiviazione messaggi"
 
 #: 
-#~ msgid "Archive expiring"
-#~ msgstr ""
-
-#: 
-#~ msgid "Never"
-#~ msgstr ""
-
-#: 
-#~ msgid "Daily"
-#~ msgstr ""
-
-#: 
-#~ msgid "Weekly"
-#~ msgstr ""
-
-#: 
-#~ msgid "Monthly"
-#~ msgstr ""
-
-#: 
-#~ msgid "Yearly"
-#~ msgstr ""
+msgid "Store a history of your chats"
+msgstr "Salva la cronologia delle tue chats"
 
 #: 
 msgid "Geolocation"
@@ -1130,16 +1086,16 @@ msgid "Unavailable"
 msgstr "Non disponibile"
 
 #: 
+msgid "is now"
+msgstr "è adesso"
+
+#: 
 msgid "Here it is! A new beautiful avatar!"
 msgstr "Fatto, ecco il tuo nuovo avatar!"
 
 #: 
 msgid "Not supported image file or bad size."
 msgstr "Tipo immagine non supportata, o il file è troppo grande."
-
-#: 
-#~ msgid "Add this room to my favorites"
-#~ msgstr "Aggiungi questa room ai preferiti."
 
 #: 
 msgid "Reply"
@@ -1214,8 +1170,16 @@ msgid "Add this contact to your friends..."
 msgstr "Aggiungi questo contatto alla tua lista degli amici..."
 
 #: 
-#~ msgid "Close the chat"
-#~ msgstr "Chiudi la chat"
+msgid "Add this groupchat to your favorites..."
+msgstr "Aggiungi questa groupchat ai tuoi favoriti..."
+
+#: 
+msgid "All tabs"
+msgstr "Tutti i cavalieri"
+
+#: 
+msgid "Close this tab"
+msgstr "Chiudi questo cavaliere"
 
 #: 
 msgid "no subject defined for this room."
@@ -1434,6 +1398,10 @@ msgid "Yes, let's do it!"
 msgstr "Si, esegui!"
 
 #: 
+msgid "Your friend is paying attention to the conversation."
+msgstr "Il tuo amico sta guardando la conversazione."
+
+#: 
 msgid "Your friend is writing a message..."
 msgstr "Il tuo amico sta scrivendo un messaggio"
 
@@ -1458,20 +1426,36 @@ msgid "Loading"
 msgstr "Carcamento"
 
 #: 
-#~ msgid "joined the chat room."
-#~ msgstr "entrato nella chat room"
+msgid "joined the chat room"
+msgstr "Si è aggiunto alla chat room"
 
 #: 
-#~ msgid "just left the chat room."
-#~ msgstr "ha appena lasciato la stanza"
+msgid "left the chat room"
+msgstr "ha lasciato la chat room"
+
+#: 
+msgid "no status"
+msgstr "nessuno status"
+
+#: 
+msgid "has been kicked"
+msgstr "è stato cacciato"
+
+#: 
+msgid "has been banned"
+msgstr "è stato escluso"
+
+#: 
+msgid "no reason"
+msgstr "nessuna ragione"
 
 #: 
 msgid "Communicate with the entire world!"
 msgstr "Comunica con l'intero mondo"
 
 #: 
-#~ msgid "Jappix is a non-profit micro social network, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr "Jappix è un micro social network gratuito, che puoi accedere duvunque tu sia, qualsiasi volta tu voglia comunicare con chiunque."
+msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix è un platform sociale no-profit, che puoi accedere duvunque tu sia, qualsiasi volta tu abbia voglia di communicare con qualcuno."
 
 #: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
@@ -1558,12 +1542,12 @@ msgid "You've successfully been registered, here's your XMPP ID:"
 msgstr "La registrazione ha avuto successo, ecco il tuo ID XMPP:"
 
 #: 
-#~ msgid "Download"
-#~ msgstr "Scaricare"
+msgid "Manager"
+msgstr "Amministrazione"
 
 #: 
-#~ msgid "Developers"
-#~ msgstr "Sviluppatori"
+msgid "Project"
+msgstr "Progetto"
 
 #: 
 msgid "Encrypted"
@@ -1576,10 +1560,6 @@ msgstr "Non-criptato"
 #: 
 msgid "Where am I?"
 msgstr "Dove sono?"
-
-#: 
-#~ msgid "Your conversations"
-#~ msgstr "Le tue conversazioni"
 
 #: 
 msgid "What's up with you?"
@@ -1616,6 +1596,10 @@ msgstr "Sottoscrivi"
 #: 
 msgid "Join"
 msgstr "Unisciti"
+
+#: 
+msgid "Automatic"
+msgstr "Automatico"
 
 #: 
 msgid "Search"
@@ -1700,6 +1684,18 @@ msgstr "Non classificato"
 #: 
 msgid "Authorize"
 msgstr "Autorizza"
+
+#: 
+msgid "Ask for authorization"
+msgstr "Chiedi l'autorizzazione"
+
+#: 
+msgid "Prohibit"
+msgstr "Proibisci"
+
+#: 
+msgid "Block"
+msgstr "Blocca"
 
 #: 
 msgid "Chat"
@@ -1818,8 +1814,16 @@ msgid "Enable the notification sounds"
 msgstr "Attiva gli avvisi sonori"
 
 #: 
-#~ msgid "Share my position on the globe with my friends"
-#~ msgstr ""
+msgid "Share my position on the globe"
+msgstr "Condividi la mia attuale posizione"
+
+#: 
+msgid "Offline buddies"
+msgstr "Contatti non in linea"
+
+#: 
+msgid "Don't hide offline buddies"
+msgstr "Non nascondere i contatti non in linea"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
@@ -1850,40 +1854,8 @@ msgid "Click to disable"
 msgstr "Clicca per disattivare"
 
 #: 
-msgid "Ask for authorization"
-msgstr "Chiedi l'autorizzazione"
-
-#: 
-msgid "Prohibit"
-msgstr "Proibisci"
-
-#: 
-msgid "Block"
-msgstr "Blocca"
-
-#: 
-msgid "Share my position on the globe"
-msgstr "Condividi la mia attuale posizione"
-
-#: 
-msgid "An open social network"
-msgstr "Un network sociale aperto"
-
-#: 
-msgid "Store a history of your chats"
-msgstr "Salva la cronologia delle tue chats"
-
-#: 
-msgid "Offline buddies"
-msgstr "Contatti non in linea"
-
-#: 
-msgid "Don't hide offline buddies"
-msgstr "Non nascondere i contatti non in linea"
-
-#: 
-msgid "Your friend is paying attention to the conversation."
-msgstr "Il tuo amico sta guardando la conversazione."
+msgid "Installation"
+msgstr "Installazione"
 
 #: 
 msgid "Jappix installation"
@@ -1894,8 +1866,8 @@ msgid "Welcome to the Jappix installation!"
 msgstr "Benvenuti nella installazione di Jappix!"
 
 #: 
-#~ msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform on your server. You don't even need any technical knowledge."
-#~ msgstr ""
+msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgstr "Questo strumento ti aiuterà ad installare velocemente Jappix, il primo platform sociale basato su XMPP, sul tuo server. Non è richiesta alcuna conoscenza tecnica."
 
 #: 
 msgid "Let's have a look to the installation steps:"
@@ -1910,6 +1882,10 @@ msgid "Storage configuration"
 msgstr "Configurazione per lo storage dei dati"
 
 #: 
+msgid "Administrator account"
+msgstr "Account amministrativo"
+
+#: 
 msgid "Main configuration"
 msgstr "Configurazione principale"
 
@@ -1922,6 +1898,10 @@ msgid "Services installation"
 msgstr "Installazione servizi"
 
 #: 
+msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
+msgstr "Se la lingua corrente non riflette la tua (%1s), puoi fare in modo che Jappix sia tradotto in %2s e sarà salvato."
+
+#: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
 msgstr "Se hai bisogno di aiuto per l'installazione e la configurazione di Jappix, puoi utilizzare la nostra documentazione online disponibile qui: "
 
@@ -1930,8 +1910,8 @@ msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr "E' tempo di costruire il tuo social cloud: vai al prossimo punto!"
 
 #: 
-#~ msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and configuration) into a single secured storage folder."
-#~ msgstr ""
+msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgstr "Jappix salva i dati persistenti (come file condivisi, registri delle chat, la tua musica e la sua configurazione) dentro una singola directory per la memorizzazione."
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
@@ -1942,8 +1922,28 @@ msgid "The folder is writable, you can continue!"
 msgstr "La directory è scrivibile, puoi continuare!"
 
 #: 
+msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
+msgstr "Jappix ti offre la possibilità controllare la configurazione di Jappix, installare nuove plugins e cercare aggiornamenti. Ecco perchè devi creare un account amministrativo per accedere all'Amministrazione."
+
+#: 
+msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
+msgstr "Quando Jappix sarà installato, semplicemente clicca sul link “Amministrazione” nella home page per accedervi."
+
+#: 
+msgid "Ups, you missed something or the two passwords do not match!"
+msgstr "Oops, hai dimenticato qualcosa oppure le due password non coincidono!"
+
+#: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr ""
+msgstr "Jappix necessita l'impostazione di alcuni dati per funzionare correttamente. Perpiacere cambia i dati seguenti (o mantieni le impostazioni di default)."
+
+#: 
+msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
+msgstr "Nota che se non specifichi una delle impostazioni obbligatorie, sarà automaticamente completata con il valore di default."
+
+#: 
+msgid "User"
+msgstr "Utente"
 
 #: 
 msgid "Service"
@@ -2006,16 +2006,16 @@ msgid "BOSH host"
 msgstr "Server BOSH"
 
 #: 
-#~ msgid "You can install some extra softwares to your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-#~ msgstr ""
+msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
+msgstr "Puoi installare del software opzionale sul tuo server, per estendere le funzioni di Jappix. Alcune altre potrebbero essere modificate, per via delle restrizioni di sicurezza impostate di default."
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
 msgstr "Per completare questa operazione devi essere in grado di accedere al tuo server tramite terminale come root, Ricordati che questo è facoltativo, Jappix funziona anche senza questi moduli, ma alcune delle sue caratteristiche non saranno disponibili."
 
 #: 
-#~ msgid "After your finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-#~ msgstr ""
+msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
+msgstr "Dopo che completi il setup, Jappix generà i files di cache. Potrebbe essere un processo abbastanza lento, semplicemente aspetta che l'applicazione sia mostrata senza premere nessun tasto."
 
 #: 
 msgid "Thanks for using Jappix!"
@@ -2046,146 +2046,542 @@ msgid "%1s is not installed on your system, you should install %2s."
 msgstr "%1s non è installato sul tuo sistema, dovresti installare %2s."
 
 #: 
-msgid "PHP memory limit is sufficient (%s)."
-msgstr "Il limite impostato per l'esecuzione di scripts PHP è sufficente (%s)."
+#~ msgid "PHP memory limit is sufficient (%s)."
+#~ msgstr "Il limite impostato per l'esecuzione di scripts PHP è sufficente (%s)."
 
 #: 
-msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr "Il limite impostato per l'esecuzione di scripts PHP non è sufficente (%1s), dovrebbe essere almeno %2s dentro %3s."
+#~ msgid "PHP memory limit is not sufficient (%1s), you should define it to %2s in %3s."
+#~ msgstr "Il limite impostato per l'esecuzione di scripts PHP non è sufficente (%1s), dovrebbe essere almeno %2s dentro %3s."
 
 #: 
-msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr "Jappix salva i dati persistenti (come file condivisi, registri delle chat, la tua musica e la sua configurazione) dentro una singola directory per la memorizzazione."
+msgid "Jappix manager"
+msgstr "Manager di Jappix"
 
 #: 
-msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-msgstr "Puoi installare del software opzionale sul tuo server, per estendere le funzioni di Jappix. Alcune altre potrebbero essere modificate, per via delle restrizioni di sicurezza impostate di default."
+msgid "Manager access"
+msgstr "Access del manager"
 
 #: 
-msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr "Dopo che completi il setup, Jappix generà i files di cache. Potrebbe essere un processo abbastanza lento, semplicemente aspetta che l'applicazione sia mostrata senza premere nessun tasto."
+msgid "Statistics"
+msgstr "Statistiche"
 
 #: 
-msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr "Questo strumento ti aiuterà ad installare velocemente Jappix, il primo platform sociale basato su XMPP, sul tuo server. Non è richiesta alcuna conoscenza tecnica."
+msgid "Hosts"
+msgstr "Host"
 
 #: 
-msgid "Manager"
-msgstr "Amministrazione"
-
-#: 
-msgid "Project"
+msgid "Design"
 msgstr "Progetto"
 
 #: 
-msgid "Administrator account"
-msgstr "Account amministrativo"
-
-#: 
-msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr "Jappix ti offre la possibilità controllare la configurazione di Jappix, installare nuove plugins e cercare aggiornamenti. Ecco perchè devi creare un account amministrativo per accedere all'Amministrazione."
-
-#: 
-msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
-msgstr "Quando Jappix sarà installato, semplicemente clicca sul link “Amministrazione” nella home page per accedervi."
-
-#: 
-msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
-msgstr "Nota che se non specifichi una delle impostazioni obbligatorie, sarà automaticamente completata con il valore di default."
-
-#: 
-msgid "Administrator"
-msgstr "Amministratore"
-
-#: 
-msgid "User"
+msgid "Users"
 msgstr "Utente"
 
 #: 
-msgid "Ups, you missed something or the two passwords do not match!"
-msgstr "Oops, hai dimenticato qualcosa oppure le due password non coincidono!"
+msgid "Updates"
+msgstr "Aggiornamenti"
 
 #: 
-#~ msgid "If the current language does not match yours, you can make Jappix speak %s it will be saved."
-#~ msgstr ""
+msgid "This is a restricted area: only the authorized users can manage this Jappix node."
+msgstr "Questa è una area ristretta: solo gli utenti autorizzati possono gestire questo nodo Jappix"
 
 #: 
-msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr "Se la lingua corrente non riflette la tua (%1s), puoi fare in modo che Jappix sia tradotto in %2s e sarà salvato."
+msgid "Please login to access the administration panel, thanks to the form below."
+msgstr "Perpiacere effettua il login per accedere al pannello amministrativo, usando il form sottostante."
 
 #: 
-#~ msgid "Auto join"
-#~ msgstr ""
+msgid "Credentials"
+msgstr "Informazioni di accesso"
 
 #: 
-msgid "Automatic"
-msgstr "Automatico"
+msgid "You have been successfully logged out. Goodbye!"
+msgstr "Ti sei disconnesso con successo. Arrivederci!"
 
 #: 
-msgid "is now"
-msgstr "è adesso"
+msgid "Ups, I cannot recognize you as a valid administrator. Check your credentials!"
+msgstr "Ahi, non è stato possibile autenticarti come un amministratore valido. Controlla i tuoi dati di accesso"
 
 #: 
-msgid "Add this groupchat to your favorites..."
-msgstr "Aggiungi questa groupchat ai tuoi favoriti..."
+msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
+msgstr "Puoi trovare qui sotto, le statistiche base ottenute da Jappix."
 
 #: 
-#~ msgid "All chats"
-#~ msgstr ""
+msgid "Change your Jappix node configuration with this tool."
+msgstr "Cambia qui la configurazione del tuo nodo Jappix."
 
 #: 
-msgid "All tabs"
-msgstr "Tutti i cavalieri"
+msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+msgstr "Cambia qui gli hosts XMPP serviti da questo nodo Jappix."
 
 #: 
-msgid "Close this tab"
-msgstr "Chiudi questo cavaliere"
+msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
+msgstr "Tutti i file salvati di questo nodo Jappix possono essere controllati da questa pagina: perpiacere scegli una sotto-directory ed inizia a modificare il suo contenuto!"
 
 #: 
-msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix è un platform sociale no-profit, che puoi accedere duvunque tu sia, qualsiasi volta tu abbia voglia di communicare con qualcuno."
+msgid "Jappix is fully customisable: you can change its design right here."
+msgstr "Jappix è completamente personalizzabile: puoi cambiare qui il suo look."
 
 #: 
-msgid "Filter"
-msgstr "Filtro"
+msgid "The requested change has been successfully done!"
+msgstr "Il cambiamento richiesto è stato completato con successo!"
 
 #: 
-msgid "has been kicked"
-msgstr "è stato cacciato"
+msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
+msgstr "Puoi definire più di un amministratore per questo nodo Jappix e cambiare qui le passwords associate."
 
 #: 
-msgid "has been banned"
-msgstr "è stato escluso"
+msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
+msgstr "Aggiorna qui il tuo nodo Jappix, puoi anche controllare se una nuova versione e disponibile. Le informazioni sulle ultime versioni sono disponibili solo in inglese."
 
 #: 
-msgid "no reason"
-msgstr "nessuna ragione"
+msgid "Access statistics"
+msgstr "Statistiche sugli accessi"
 
 #: 
-#~ msgid "You have been disconnect from your XMPP account. What do you want to do now?"
-#~ msgstr ""
+msgid "Share statistics"
+msgstr "Condividi le statistiche"
 
 #: 
-msgid "Reconnect"
-msgstr "Riconnetti"
+msgid "Other statistics"
+msgstr "Altre statistiche"
 
 #: 
-#~ msgid "You have been disconnected from your XMPP account. What do you want to do now?"
-#~ msgstr ""
+msgid "Total"
+msgstr "Totali"
 
 #: 
-msgid "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr "Per via di un problema di rete, sei stato disconnesso. Cosa vuoi fare adesso?"
+msgid "Cache"
+msgstr "Cache"
 
 #: 
-msgid "joined the chat room"
+msgid "Logs"
+msgstr "Registri"
+
+#: 
+msgid "Music"
+msgstr "Musica"
+
+#: 
+msgid "Backgrounds"
+msgstr "Sfondi"
+
+#: 
+msgid "Share"
+msgstr "Condividi"
+
+#: 
+msgid "Background"
+msgstr "Sfondo"
+
+#: 
+msgid "Notice"
+msgstr "Avviso"
+
+#: 
+msgid "Available updates"
+msgstr "Aggiornamenti disponibili"
+
+#: 
+msgid "What's new?"
+msgstr "Cosa c'è di nuovo?"
+
+#: 
+msgid "A new Jappix version is available! Watch out what is new and launch the update!"
+msgstr "Una nuova versione di Jappix è disponibile! Controlla le note, ed avvia l'aggiornamento!"
+
+#: 
+msgid "Your version is out to date. Update it now to %s by clicking here!"
+msgstr "La tua versione è obsoleta. Aggiornala a %s cliccando qui!"
+
+#: 
+msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
+msgstr "La tua versione sembra essere aggiornata, ma puoi controllare gli aggiornamenti manualmente cliccando qui."
+
+#: 
+msgid "Update in progress"
+msgstr "Aggiornamento in corso"
+
+#: 
+msgid "The Jappix update is finished: you are now running the latest version. Have fun!"
+msgstr "L'aggiornamento di Jappix è completo: adesso stai utilizzando l'ultima versione. Divertiti!"
+
+#: 
+msgid "The update has failed! Please try again later..."
+msgstr "L'aggiornamento è fallito! Perpiacere, riprova più tardi..."
+
+#: 
+msgid "Downloading the package..."
+msgstr "Sto scaricando il pacchetto..."
+
+#: 
+msgid "Removing current Jappix system files..."
+msgstr "Rimozione dei file di sistema di Jappix..."
+
+#: 
+msgid "Extracting the package..."
+msgstr "Sto estraendo il pacchetto..."
+
+#: 
+msgid "Regenerating the storage folder tree..."
+msgstr "Sto ricostruendo la directory dell'archivio..."
+
+#: 
+msgid "Jappix is now up to date!"
+msgstr "Jappix è adesso aggiornato!"
+
+#: 
+msgid "Aborted: socket error!"
+msgstr "Interrotto: errore del socket!"
+
+#: 
+msgid "Aborted: buffer error!"
+msgstr "Interrotto: errore buffer!"
+
+#: 
+msgid "Aborted: everything is not writable!"
+msgstr "Interrotto: il percorso non è scrivibile!"
+
+#: 
+msgid "Aborted: could not extract the package!"
+msgstr "Interrotto: non è stato possibile estrarre il pacchetto!"
+
+#: 
+msgid "Visits"
+msgstr "Visite"
+
+#: 
+msgid "Daily"
+msgstr "Giornaliero"
+
+#: 
+msgid "Weekly"
+msgstr "Settimanale"
+
+#: 
+msgid "Monthly"
+msgstr "Mensile"
+
+#: 
+msgid "Yearly"
+msgstr "Annuale"
+
+#: 
+msgid "Size"
+msgstr "Dimensione"
+
+#: 
+msgid "Clean everything"
+msgstr "Ripristina tutto"
+
+#: 
+msgid "Purge cache"
+msgstr "Pulisci la cache"
+
+#: 
+msgid "Purge logs"
+msgstr "Cancella i registri"
+
+#: 
+msgid "Purge updates"
+msgstr "Pulisci la cartella degli aggiornamenti"
+
+#: 
+msgid "The storage folder you wanted to clean is now empty!"
+msgstr "Ho pulito la cartella degli archivi da te indicata!"
+
+#: 
+#~ msgid "Upload your music, encoded with Vorbis (.ogg or .oga) to be able to listen it into the Jappix application!"
+#~ msgstr "Carica la tua musica, codificata con Vorbis (.ogg or .oga) per essere in grado di ascoltarla nella applicazione Jappix!"
+
+#: 
+msgid "Title"
+msgstr "Titolo"
+
+#: 
+msgid "Artist"
+msgstr "Artista"
+
+#: 
+msgid "Album"
+msgstr "Album"
+
+#: 
+msgid "File"
+msgstr "File"
+
+#: 
+msgid "Upload"
+msgstr "Carica"
+
+#: 
+msgid "The folder is empty."
+msgstr "La cartella è vuota."
+
+#: 
+msgid "I could not receive the music file, please retry!"
+msgstr "Non sono riuscito a ricevere il file musicale, perpiacere riprova!"
+
+#: 
+#~ msgid "This is not a valid music file, please encode it with Vorbis!"
+#~ msgstr "Questo non è un file musicale valido, perpiacere codificalo con Vorbis!"
+
+#: 
+msgid "Your music file was successfully added!"
+msgstr "Il tuo file musicale è stato aggiunto con successo!"
+
+#: 
+#~ msgid "You must select files to remove!"
+#~ msgstr "Devi scegliere uno o più files per rimuoverlo/i."
+
+#: 
+#~ msgid "Add a new user with this tool. Please submit a strong password!"
+#~ msgstr "Aggiungi un nuovo utente con questa utilità. Perpiacere utilizza una password sicura!"
+
+#: 
+msgid "Manage"
+msgstr "Amministra"
+
+#: 
+msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
+msgstr "Rimuovi gli utenti amministrativi con questa utilità. Nota che deve essere presente almeno un utente amministrativo."
+
+#: 
+msgid "The user has been successfully added!"
+msgstr "L'utente è stato aggiunto con successo!"
+
+#: 
+msgid "The chosen users have been successfully removed."
+msgstr "Gli utenti selezionati sono stati rimossi con successo."
+
+#: 
+msgid "You must select one or more users to be removed!"
+msgstr "Devi selezionare uno o più utenti da rimuovere!"
+
+#: 
+msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
+msgstr "Aggiungi un nuovo utente con questa utilità oppure cambia la password di uno esistente. Perpiacere utilizza una password sicura."
+
+#: 
+msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
+msgstr "Cambia lo sfondo del tuo nodo Jappix in questa pagina. Puoi scegliere un colore una immagine caricata."
+
+#: 
+#~ msgid "Define a global notice for all your users, such as a warn, an important message or an advert with this tool."
+#~ msgstr "Puoi configurare un avviso globale per tutti i tuoi utenti, in questa pagina."
+
+#: 
+msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+msgstr "La manutenzione di Jappix è importante, tieni pulite le cartelle di archiviazione!"
+
+#: 
+msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgstr "Puoi controllare qui il contenuto che i tuoi utemti salvano sul server, e rimuore quello indesiderato."
+
+#: 
+msgid "The selected elements have been successfully removed."
+msgstr "Gli elementi selezionati sono stati rimossi con successo."
+
+#: 
+msgid "You must select elements to remove!"
+msgstr "Devi selezionare almeno un elemento da rimuovere."
+
+#: 
+msgid "January"
 msgstr ""
 
 #: 
-msgid "left the chat room"
+msgid "February"
 msgstr ""
 
 #: 
-msgid "no status"
+msgid "March"
+msgstr ""
+
+#: 
+msgid "April"
+msgstr ""
+
+#: 
+msgid "May"
+msgstr ""
+
+#: 
+msgid "June"
+msgstr ""
+
+#: 
+msgid "July"
+msgstr ""
+
+#: 
+msgid "August"
+msgstr ""
+
+#: 
+msgid "September"
+msgstr ""
+
+#: 
+msgid "October"
+msgstr ""
+
+#: 
+msgid "November"
+msgstr ""
+
+#: 
+msgid "December"
+msgstr ""
+
+#: 
+msgid "HTTPS storage"
+msgstr ""
+
+#: 
+msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
+msgstr ""
+
+#: 
+msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+msgstr ""
+
+#: 
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr ""
+
+#: 
+msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
+msgstr ""
+
+#: 
+msgid "The file you want to upload must be smaller than %s."
+msgstr ""
+
+#: 
+#~ msgid "To ehance the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+#~ msgstr ""
+
+#: 
+msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+msgstr ""
+
+#: 
+msgid "Use default background"
+msgstr ""
+
+#: 
+msgid "Use your own image"
+msgstr ""
+
+#: 
+msgid "Use your own color"
+msgstr ""
+
+#: 
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr ""
+
+#: 
+msgid "Simple notice"
+msgstr ""
+
+#: 
+msgid "This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr ""
+
+#: 
+msgid "Advanced notice"
+msgstr ""
+
+#: 
+msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
+msgstr ""
+
+#: 
+msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
+msgstr ""
+
+#: 
+msgid "Your design preferences have been successfully saved!"
+msgstr ""
+
+#: 
+msgid "Please check your inputs: something is missing!"
+msgstr ""
+
+#: 
+msgid "Horizontal"
+msgstr ""
+
+#: 
+msgid "Vertical"
+msgstr ""
+
+#: 
+msgid "Center"
+msgstr ""
+
+#: 
+msgid "Left"
+msgstr ""
+
+#: 
+msgid "Right"
+msgstr ""
+
+#: 
+msgid "Top"
+msgstr ""
+
+#: 
+msgid "Bottom"
+msgstr ""
+
+#: 
+msgid "Color"
+msgstr ""
+
+#: 
+msgid "Select a background to use and change the display options."
+msgstr ""
+
+#: 
+msgid "You can add a new background file to the list with this tool. Please send a valid image file."
+msgstr ""
+
+#: 
+msgid "This is not a valid image file, please use PNG, GIF or JPG!"
+msgstr ""
+
+#: 
+msgid "I did not receive any image file, would you mind retry?"
+msgstr ""
+
+#: 
+msgid "Your image file was successfully added to the list!"
+msgstr ""
+
+#: 
+msgid "Manage background files"
+msgstr ""
+
+#: 
+msgid "If you want to remove some background files, use the browser below."
+msgstr ""
+
+#: 
+msgid "List"
+msgstr ""
+
+#: 
+msgid "Repeat"
+msgstr ""
+
+#: 
+msgid "All"
+msgstr ""
+
+#: 
+msgid "Adapt"
 msgstr ""
 
