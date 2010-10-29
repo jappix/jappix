@@ -10,7 +10,7 @@ This is the Jappix Mobile lightweight PHP code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 29/10/10
 
 */
 
@@ -23,8 +23,8 @@ Last revision: 27/10/10
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
 	<title><?php _e("Jappix Mobile"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=mobile.css~images.css" type="text/css" media="all" />
-	<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;f=jsjac.js~constants.js~mobile.js"></script>
+	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=mobile.xml" type="text/css" media="all" />
+	<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=mobile.xml"></script>
 </head>
 
 <body>

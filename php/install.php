@@ -10,7 +10,7 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 29/10/10
 
 */
 
@@ -96,7 +96,7 @@ else
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php _e("Jappix installation"); ?> &bull; <?php echo($names[$step - 1]); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=main.css~install.css~images.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=install.xml" type="text/css" media="all" />
 	<!--[if lt IE 9]><link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=ie.css" type="text/css" media="all" /><![endif]-->
 </head>
 

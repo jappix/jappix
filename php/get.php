@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 29/10/10
 
 */
 
@@ -41,12 +41,37 @@ else {
 	header('Expires: '.gmdate('D, d M Y H:i:s', time()+$expires).' GMT');
 }
 
-// We check if the data has been submitted
-if((isset($_GET['t']) && !empty($_GET['t'])) && (isset($_GET['f']) && !empty($_GET['f'])) && (($_GET['t'] == 'css') || ($_GET['t'] == 'img') || ($_GET['t'] == 'js') || ($_GET['t'] == 'snd')) && isSafe($_GET['f'])) {
-	// We get the sent data
+// Initialize the vars
+$type = '';
+$file = '';
+
+// Read the type var
+if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|js|img|snd)$/', $_GET['t']))
 	$type = $_GET['t'];
+
+// Read the files var
+if(isset($_GET['f']) && !empty($_GET['f']) && isSafe($_GET['f']))
 	$file = $_GET['f'];
+
+// Read the group var (only for text files)
+if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET['g']) && preg_match('/^(css|js)$/', $type) && isSafe($_GET['g']) && file_exists('../xml/'.$_GET['g'])) {
+	$xml_data = file_get_contents('../xml/'.$_GET['g']);
 	
+	// Any data?
+	if($xml_data) {
+		$xml_read = new SimpleXMLElement($xml_data);
+		$xml_parse = $xml_read->$type;
+		
+		// Files were added to the list before (with file var)?
+		if($file)
+			$file .= '~'.$xml_parse;
+		else
+			$file = $xml_parse;
+	}
+}
+
+// We check if the data was submitted
+if($file && $type) {
 	// We define some stuffs
 	$version = getVersion();
 	$hash = genHash($version);

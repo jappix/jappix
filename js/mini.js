@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 29/10/10
 
 */
 
@@ -568,5 +568,5 @@ function replaceLinks(element) {
 
 // Append the CSS stylesheet
 $(document).ready(function() {
-	$('head').append('<link rel="stylesheet" href="' + JAPPIX_LOCATION + 'php/get.php?h=none&t=css&f=mini.css~images.css" type="text/css" media="all" />');
+	$('head').append('<link rel="stylesheet" href="' + JAPPIX_LOCATION + 'php/get.php?h=none&t=css&g=mini.xml" type="text/css" media="all" />');
 });

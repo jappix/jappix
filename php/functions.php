@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 29/10/10
 
 */
 
@@ -562,21 +562,6 @@ function sslLink() {
 		$link = '<a class="home-images uncrypted" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Uncrypted').'</a>';
 	
 	return $link;
-}
-
-// The function to put the good CSS theme
-function putTheme() {
-	// No theme defined
-	if(!isset($_GET['t']) || empty($_GET['t']))
-		return 'images.css';
-	
-	$imagecss = 'images-'.preg_replace('/[^a-z0-9]+/', '', $_GET['t']).'.css';
-	
-	// This theme does not exist
-	if(!file_exists('css/'.$imagecss))
-		return 'images.css';
-	
-	return $imagecss;
 }
 
 // The function to get the Jappix full URL
