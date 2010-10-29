@@ -229,7 +229,7 @@ if($file && $type) {
 				if($type == 'js') {
 					// Translate the JS script
 					require_once('./gettext.php');
-					includeTranslation($locale, 'main', '..');
+					includeTranslation($locale, 'main');
 					$output = setTranslation($output);
 					
 					// Apply the configuration

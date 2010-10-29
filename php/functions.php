@@ -160,11 +160,11 @@ function checkLanguage() {
 	if(isset($_GET['l']) && !empty($_GET['l'])) {
 		// We define some stuffs
 		$defined_lang = strtolower($_GET['l']);
-		$lang_file = './lang/'.$defined_lang.'/LC_MESSAGES/main.mo';
+		$lang_file = PHP_BASE.'/lang/'.$defined_lang.'/LC_MESSAGES/main.mo';
 		$lang_found = file_exists($lang_file);
 		
 		// We check if the asked translation exists
-		if ($lang_found)
+		if($lang_found)
 			$lang = $defined_lang;
 		else
 			$lang = 'en';
@@ -179,8 +179,8 @@ function checkLanguage() {
 		if(isset($_COOKIE['jappix_locale'])) {
 			$check_cookie = $_COOKIE['jappix_locale'];
 			
-			// The cookie has a value
-			if($check_cookie)
+			// The cookie has a value, check this value
+			if($check_cookie && file_exists(PHP_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo'))
 				$lang = $check_cookie;
 			else
 				$lang = 'en';
@@ -214,8 +214,9 @@ function checkLanguage() {
 				$lang_found = false;
 				
 				foreach($order as $nav_lang => $val) {
-					$lang_file = './lang/'.$nav_lang.'/LC_MESSAGES/main.mo';
-					if (!$lang_found) {
+					$lang_file = PHP_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo';
+					
+					if(!$lang_found) {
 						$lang_found = file_exists($lang_file);
 						if ($lang_found)
 							$lang = $nav_lang;
@@ -658,9 +659,9 @@ function setConfiguration($string, $locale, $version) {
 }
 
 // The function to include a translation file
-function includeTranslation($locale, $domain, $tree) {
+function includeTranslation($locale, $domain) {
 	T_setlocale(LC_MESSAGES, $locale);
-	T_bindtextdomain($domain, $tree.'/lang');
+	T_bindtextdomain($domain, PHP_BASE.'/lang');
 	T_bind_textdomain_codeset($domain, 'UTF-8');
 	T_textdomain($domain);
 }

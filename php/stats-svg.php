@@ -10,7 +10,7 @@ The SVG loader for Jappix statistics
 License: AGPL
 Authors: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 29/10/10
 
 */
 
@@ -62,7 +62,7 @@ else
 	$locale = 'en';
 
 // Include the translations
-includeTranslation($locale, 'main', PHP_BASE);
+includeTranslation($locale, 'main');
 
 $drawsvgchart = new DrawSVGChart;
 

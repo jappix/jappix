@@ -10,7 +10,7 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 29/10/10
 
 */
 
@@ -33,7 +33,7 @@ gzipThis();
 
 // Include the good language file
 $locale = checkLanguage();
-includeTranslation($locale, 'main', '.');
+includeTranslation($locale, 'main');
 
 // Get the Jappix version & its hash
 $version = getVersion();

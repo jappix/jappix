@@ -2569,8 +2569,9 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
     packet.setID(genID());
   
   // apply the xml:lang attribute
-  if (!packet.getXMLLang())
-    packet.setXMLLang(XML_LANG);
+  // FIXME: commented because of a Jappix official BOSH service bug!
+  //if (!packet.getXMLLang())
+  //  packet.setXMLLang(XML_LANG);
   
   // register callback with id
   if(cb)
