@@ -46,7 +46,7 @@ $type = '';
 $file = '';
 
 // Read the type var
-if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|js|img|snd)$/', $_GET['t']))
+if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|js|img|snd|store)$/', $_GET['t']))
 	$type = $_GET['t'];
 
 // Read the files var
@@ -115,6 +115,41 @@ if($file && $type) {
 	$loop_files = true;
 	$c = 0;
 	
+	// Define the real type if this is a "store" file
+	if($type == 'store') {
+		// Extract the file extension
+		switch(getFileExt($file)) {
+			// CSS file
+			case 'css':
+				$type = 'css';
+				
+				break;
+			
+			// JS file
+			case 'js':
+				$type = 'js';
+				
+				break;
+			
+			// Audio file
+			case 'ogg':
+			case 'oga':
+				$type = 'snd';
+				
+				break;
+			
+			// Image file
+			case 'png':
+			case 'jpg':
+			case 'jpeg':
+			case 'gif':
+			case 'bmp':
+				$type = 'img';
+				
+				break;
+		}
+	}
+	
 	// Check the cache exists for text files (avoid the heavy file_exists loop!)
 	if(!$is_developer && (($type == 'css') || ($type == 'js')) && hasCache($cache_lang))
 		$loop_files = false;
@@ -157,6 +192,8 @@ if($file && $type) {
 			header('Content-Type: image/gif');
 		else if(($mime == 'jpg') || ($mime == 'jpeg'))
 			header('Content-Type: image/jpeg');
+		else if($mime == 'bmp')
+			header('Content-Type: image/bmp');
 		else if(($mime == 'oga') || ($mime == 'ogg'))
 			header('Content-Type: audio/ogg');
 		

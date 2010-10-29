@@ -536,6 +536,7 @@ else
 					$background_image_vertical_center = ' selected="selected"';
 					$background_image_vertical_top = '';
 					$background_image_vertical_bottom = '';
+					$background_image_adapt = '';
 					
 					// Define initial notice form values
 					$notice_none = ' checked="checked"';
@@ -598,6 +599,9 @@ else
 						
 						if(isset($_POST['background_image_vertical']))
 							$background['image_vertical'] = $_POST['background_image_vertical'];
+						
+						if(isset($_POST['background_image_adapt']))
+							$background['image_adapt'] = 'on';
 						
 						if(isset($_POST['background_image_color']))
 							$background['image_color'] = $_POST['background_image_color'];
@@ -720,6 +724,9 @@ else
 							break;
 					}
 					
+					if($background['image_adapt'] == 'on')
+						$background_image_adapt = ' checked="checked"';
+					
 					// Read the notice configuration
 					$notice_conf = readNotice();
 					$notice_text = $notice_conf['notice'];
@@ -796,6 +803,8 @@ else
 							<option value="top"<?php echo($background_image_vertical_top); ?>><?php _e("Top"); ?></option>
 							<option value="bottom"<?php echo($background_image_vertical_bottom); ?>><?php _e("Bottom"); ?></option>
 						</select>
+						
+						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt"<?php echo($background_image_adapt); ?>" />
 						
 						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
 						

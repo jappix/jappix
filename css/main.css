@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/08/10
+Last revision: 29/10/10
 
 */
 
@@ -18,7 +18,6 @@ Last revision: 30/08/10
 }
 
 body {
-	background-color: #cae1e9;
 	font: normal 0.9em helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
 }
 

@@ -15,6 +15,7 @@ Last revision: 29/10/10
 .body-images {
 	background-image: url(../img/sprites/background.png);
 	background-repeat: repeat-x;
+	background-color: #cae1e9;
 }
 
 .install-images {

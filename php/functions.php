@@ -600,7 +600,7 @@ function setPath($string, $host, $type, $locale) {
 		$new = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(.+)(js)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&l='.$locale.'&t=$5&f=$7$8$9', $string);
 		
 		// Other "normal" links (no lang parameter)
-		$new = preg_replace('/((\")|(\'))(\.\/)(css|img|snd)(\/)(.+)(css|png|jpg|gif|oga)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $new);
+		$new = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd)(\/)(.+)(css|png|jpg|jpeg|gif|bmp|ogg|oga)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $new);
 	}
 	
 	// Replace the CSS strings
@@ -609,7 +609,7 @@ function setPath($string, $host, $type, $locale) {
 		if($host != '.')
 			$static = $host.'/php';
 		
-		$new = preg_replace('/(\(\.\.\/)(css|js|img|snd)[\/](.+)(css|js|png|jpg|gif|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$3$4)', $string);
+		$new = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)[\/](.+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$3$4)', $string);
 	}
 	
 	return $new;
@@ -660,16 +660,60 @@ function setConfiguration($string, $locale, $version) {
 
 // The function to set the background
 function setBackground($string) {
-	// Read the background configuration
+	// Get the default values
+	$array = defaultBackground();
 	
+	// Read the background configuration
+	$xml = readXML('conf', 'background');
+	
+	if($xml) {
+		$read = new SimpleXMLElement($xml);
+		
+		foreach($read->children() as $child)
+			$array[$child->getName()] = $child;
+	}
+	
+	$css = '';
 	
 	// Generate the CSS code
+	switch($array['type']) {
+		// Image
+		case 'image':
+			$css .= 
+	"\n".'	background-image: url(../store/backgrounds/'.urlencode($array['image_file']).');
+	background-repeat: '.$array['image_repeat'].';
+	background-position: '.$array['image_horizontal'].' '.$array['image_vertical'].';
+	background-color: '.$array['image_color'].';'
+			;
+			
+			// Add CSS code to adapt the image?
+			if($array['image_adapt'] == 'on')
+				$css .= 
+	'	background-attachment: fixed;
+	background-size: cover;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;';
+			
+			$css .= "\n";
+			
+			break;
+		
+		// Color
+		case 'color':
+			$css .= "\n".'	background-color: '.$array['color_color'].';'."\n";
+			
+			break;
+		
+		// Default: use the filtering regex
+		default:
+			$css .= '$3';
+			
+			break;
+	}
 	
-	
-	// Apply it!
-	
-	
-	return $string;
+	// Apply the replacement!
+	return preg_replace('/(\.body-images( )?\{)([^\{\}]+)(\})/i', '$1'.$css.'$4', $string);
 }
 
 // The function to include a translation file
@@ -1152,16 +1196,16 @@ function newUpdates($force) {
 // Gets the Jappix update informations
 function updateInformations() {
 	// Get the XML file content
-	$xml = file_get_contents(PHP_BASE.'/store/updates/version.xml');
+	$data = file_get_contents(PHP_BASE.'/store/updates/version.xml');
 	
 	// Transform the XML content into an array
 	$array = array();
 	
-	$xml = new SimpleXMLElement($xml);
-	
 	// No XML?
-	if(!$xml)
+	if(!$data)
 		return $array;
+	
+	$xml = new SimpleXMLElement($data);
 	
 	// Parse the XML to add it to the array
 	foreach($xml->children() as $this_child) {
@@ -1731,20 +1775,31 @@ function browseUsers() {
 	}
 }
 
-// Reads the background configuration
-function readBackground() {
-	// Read the background configuration XML
-	$background_data = readXML('conf', 'background');
+// Returns the default background array
+function defaultBackground() {
+	// New array
+	$background_default = array();
 	
 	// Define the default values
-	$background_default = array();
 	$background_default['type'] = 'default';
 	$background_default['image_file'] = '';
 	$background_default['image_repeat'] = 'repeat-x';
 	$background_default['image_horizontal'] = 'center';
 	$background_default['image_vertical'] = 'top';
+	$background_default['image_adapt'] = 'off';
 	$background_default['image_color'] = '#cae1e9';
 	$background_default['color_color'] = '#cae1e9';
+	
+	return $background_default;
+}
+
+// Reads the background configuration
+function readBackground() {
+	// Read the background configuration XML
+	$background_data = readXML('conf', 'background');
+	
+	// Get the default values
+	$background_default = defaultBackground();
 	
 	// Stored data array
 	$background_conf = array();

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-29 20:42:12\n"
+"PO-Revision-Date: 2010-10-30 00:00:24\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2580,4 +2580,8 @@ msgstr "Répéter"
 #: 
 msgid "All"
 msgstr "Tout"
+
+#: 
+msgid "Adapt"
+msgstr "Adapter"
 
