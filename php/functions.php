@@ -652,7 +652,7 @@ function setConfiguration($string, $locale, $version) {
 	
 	// Apply it!
 	foreach($array as $array_key => $array_value)
-		$string = preg_replace('/var '.$array_key.'((\s)?=(\s)?)null;/', 'var '.$array_key.'$1\''.addslashes($array_value).'\';', $string);
+		$string = preg_replace('/var '.$array_key.'(( )?=( )?)null;/', 'var '.$array_key.'$1\''.addslashes($array_value).'\';', $string);
 	
 	return $string;
 }
