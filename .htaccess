@@ -13,7 +13,7 @@
 # BEGIN Rewrite
 	<IfModule mod_rewrite.c>
 		RewriteEngine	On
-		RewriteRule	bind	http://bind.jappix.com:8180/BOSH/ [P]
+		RewriteRule	bind	http://bind.jappix.com/ [P]
 	</IfModule>
 # END Rewrite
 
