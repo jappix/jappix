@@ -8,12 +8,12 @@ This is the images CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 29/10/10
 
 */
 
 .body-images {
-	background-image: url(../img/sprites/background-clouds.png);
+	background-image: url(../img/sprites/background.png);
 	background-repeat: repeat-x;
 }
 
