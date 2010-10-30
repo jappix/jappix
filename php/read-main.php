@@ -10,27 +10,27 @@ This is the main configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
+// Define the default main configuration values
+$main_conf = array();
+$main_conf['name'] = 'Jappix';
+$main_conf['desc'] = 'a free social network';
+$main_conf['resource'] = 'Jappix';
+$main_conf['lock'] = 'off';
+$main_conf['anonymous'] = 'on';
+$main_conf['https_storage'] = 'off';
+$main_conf['encryption'] = 'on';
+$main_conf['compression'] = 'on';
+$main_conf['developer'] = 'off';
+
+// Define a default values array
+$main_default = $main_conf;
+
 // Read the main configuration file
 $main_data = readXML('conf', 'main');
-
-// Define the default main configuration values
-$main_default = array();
-$main_default['name'] = 'Jappix';
-$main_default['desc'] = 'a free social network';
-$main_default['resource'] = 'Jappix';
-$main_default['lock'] = 'off';
-$main_default['anonymous'] = 'on';
-$main_default['https_storage'] = 'off';
-$main_default['encryption'] = 'on';
-$main_default['compression'] = 'on';
-$main_default['developer'] = 'off';
-
-// Define the user main configuration values
-$main_conf = array();
 
 // Read the main configuration file
 if($main_data) {
@@ -38,15 +38,13 @@ if($main_data) {
 	$main_xml = new SimpleXMLElement($main_data);
 	
 	// Loop the main configuration elements
-	foreach($main_xml->children() as $main_child)
-		$main_conf[$main_child->getName()] = $main_child;
-}
-
-// Checks no value is missing in the user main configuration
-foreach($main_default as $main_name => $main_value) {
-	// Checks current item exists
-	if(!isset($main_conf[$main_name]) || empty($main_conf[$main_name]))
-		$main_conf[$main_name] = $main_default[$main_name];
+	foreach($main_xml->children() as $main_child) {
+		$main_value = $main_child->getName();
+		
+		// Only push this to the array if it exists
+		if(isset($main_conf[$main_value]) && $main_child)
+			$main_conf[$main_value] = $main_child;
+	}
 }
 
 // Finally, define the main configuration globals

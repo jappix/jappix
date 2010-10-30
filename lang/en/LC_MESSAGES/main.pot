@@ -1,17 +1,17 @@
 # Jappix - An open social platform
-# This are the default english strings of Jappix
+# These are the default english strings of Jappix
 
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 # License: AGPL
-# Author: Valérian Saliou
+# Author: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 29/10/10
+# Last revision: 30/10/10
 
-msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
+msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
 
-msgid "JavaScript is missing in your web browser, so that you'll not be able to launch the Jappix app! Please fix this."
+msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
 
 msgid "An open social network"
@@ -20,19 +20,19 @@ msgstr ""
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr ""
 
-msgid "I couldn't obtain the element list on this server!"
+msgid "The element list on this server could not be obtained!"
 msgstr ""
 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
 msgstr ""
 
-msgid "Your XMPP account has been successfully removed, bye!"
+msgid "Your XMPP account has been removed, bye!"
 msgstr ""
 
-msgid "You've been sucessfully logged out of your XMPP account, have a nice day!"
+msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr ""
 
-msgid "Your browser does not support this functionnality, please try with Mozilla Firefox."
+msgid "Your browser does not support this functionality, please try Mozilla Firefox."
 msgstr ""
 
 msgid "The room you joined seems not to exist. You should create it!"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
 msgstr ""
 
-msgid "The user that you want to reach (message, punishment) is not present in the room."
+msgid "The user that you want to reach is not present in the room."
 msgstr ""
 
 msgid "Login"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-msgid "Remember me"
+msgid "Remember login"
 msgstr ""
 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -83,25 +83,25 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-msgid "Add a friend..."
+msgid "Add a friend"
 msgstr ""
 
-msgid "Your groupchats..."
+msgid "Your groupchats"
 msgstr ""
 
 msgid "Manage your favorite groupchats"
 msgstr ""
 
-msgid "More stuffs..."
+msgid "More stuff..."
 msgstr ""
 
-msgid "Get involved..."
+msgid "Get involved!"
 msgstr ""
 
 msgid "Write code"
 msgstr ""
 
-msgid "Translate strings"
+msgid "Translate"
 msgstr ""
 
 msgid "Report a bug"
@@ -110,19 +110,19 @@ msgstr ""
 msgid "Write documentation"
 msgstr ""
 
-msgid "Give money"
+msgid "Donate"
 msgstr ""
 
-msgid "Display all the buddies"
+msgid "Show all friends"
 msgstr ""
 
-msgid "Display only the connected buddies"
+msgid "Only show connected friends"
 msgstr ""
 
-msgid "Map of my friends"
+msgid "Map of friends"
 msgstr ""
 
-msgid "My collections"
+msgid "Your Collections"
 msgstr ""
 
 msgid "Collections"
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Message archives"
 msgstr ""
 
-msgid "Buddy"
+msgid "Friend"
 msgstr ""
 
 msgid "Date"
@@ -149,7 +149,7 @@ msgstr ""
 msgid "What are you doing?"
 msgstr ""
 
-msgid "Join a chat..."
+msgid "Join a chat"
 msgstr ""
 
 msgid "Available"
@@ -650,7 +650,7 @@ msgstr ""
 msgid "Writing"
 msgstr ""
 
-msgid "View the profile of this user"
+msgid "View profile"
 msgstr ""
 
 msgid "Repeat this notice"
@@ -659,34 +659,34 @@ msgstr ""
 msgid "Remove this notice"
 msgstr ""
 
-msgid "My profile"
+msgid "Your profile"
 msgstr ""
 
 msgid "Identity"
 msgstr ""
 
-msgid "Avatar"
+msgid "Profile image"
 msgstr ""
 
 msgid "Others"
 msgstr ""
 
-msgid "Civility"
+msgid "Personal"
 msgstr ""
 
 msgid "Complete name"
 msgstr ""
 
-msgid "Nick"
+msgid "Nickname"
 msgstr ""
 
-msgid "Given name"
+msgid "First name"
 msgstr ""
 
-msgid "Family name"
+msgid "Last name"
 msgstr ""
 
-msgid "Birth"
+msgid "Date of birth"
 msgstr ""
 
 msgid "Contact"
@@ -698,19 +698,19 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-msgid "Picture of you"
+msgid "Upload"
 msgstr ""
 
-msgid "Actual picture"
+msgid "Current"
 msgstr ""
 
 msgid "Delete"
 msgstr ""
 
-msgid "What a pity! You have no avatar defined in your identity card!"
+msgid "What a pity! You have no profile image defined in your identity card!"
 msgstr ""
 
-msgid "Postal address"
+msgid "Address"
 msgstr ""
 
 msgid "Street"
@@ -731,13 +731,13 @@ msgstr ""
 msgid "Important notice"
 msgstr ""
 
-msgid "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)."
+msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
 msgstr ""
 
-msgid "Everything is not private on XMPP, here's one of those things, your public profile (vCard)."
+msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
 msgstr ""
 
-msgid "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends."
+msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
 msgstr ""
 
 msgid "Save"
@@ -746,7 +746,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "I edit my options"
+msgid "Edit options"
 msgstr ""
 
 msgid "Channel"
@@ -776,7 +776,7 @@ msgstr ""
 msgid "Empty"
 msgstr ""
 
-msgid "Empty my channel"
+msgid "Empty channel"
 msgstr ""
 
 msgid "Persistent"
@@ -788,10 +788,10 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-msgid "Change my password"
+msgid "Change password"
 msgstr ""
 
-msgid "Delete my account"
+msgid "Delete account"
 msgstr ""
 
 msgid "Old"
@@ -818,10 +818,10 @@ msgstr ""
 msgid "is now"
 msgstr ""
 
-msgid "Here it is! A new beautiful avatar!"
+msgid "Here it is! A new beautiful profile image!"
 msgstr ""
 
-msgid "Not supported image file or bad size."
+msgid "The image file is not supported or has a bad size."
 msgstr ""
 
 msgid "Reply"
@@ -830,7 +830,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-msgid "Me"
+msgid "You"
 msgstr ""
 
 msgid "Remove"
@@ -839,13 +839,13 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-msgid "I would like to add you in my buddy list."
+msgid "I would like to add you as a friend."
 msgstr ""
 
 msgid "Smiley insertion"
 msgstr ""
 
-msgid "Change the style"
+msgid "Change style"
 msgstr ""
 
 msgid "Text in bold"
@@ -857,28 +857,28 @@ msgstr ""
 msgid "Underlined text"
 msgstr ""
 
-msgid "Save the chat"
+msgid "Save chat"
 msgstr ""
 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
 msgstr ""
 
-msgid "Generate the file!"
+msgid "Generate file!"
 msgstr ""
 
-msgid "Download the file!"
+msgid "Download file!"
 msgstr ""
 
-msgid "Clean the current chat..."
+msgid "Clean current chat"
 msgstr ""
 
-msgid "Display user profile..."
+msgid "Show user profile"
 msgstr ""
 
-msgid "Add this contact to your friends..."
+msgid "Add this contact to your friends"
 msgstr ""
 
-msgid "Add this groupchat to your favorites..."
+msgid "Add this groupchat to your favorites"
 msgstr ""
 
 msgid "All tabs"
@@ -890,7 +890,7 @@ msgstr ""
 msgid "no subject defined for this room."
 msgstr ""
 
-msgid "Administration panel for this room..."
+msgid "Administration panel for this room"
 msgstr ""
 
 msgid "Moderators"
@@ -902,10 +902,10 @@ msgstr ""
 msgid "Visitors"
 msgstr ""
 
-msgid "Manage my favorites rooms"
+msgid "Manage favorite rooms"
 msgstr ""
 
-msgid "Change my favorites"
+msgid "Change favorites"
 msgstr ""
 
 msgid "Search a room"
@@ -986,7 +986,7 @@ msgstr ""
 msgid "Service offline or broken"
 msgstr ""
 
-msgid "My inbox"
+msgid "Your inbox"
 msgstr ""
 
 msgid "Available actions"
@@ -1007,10 +1007,10 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-msgid "Send the message"
+msgid "Send message"
 msgstr ""
 
-msgid "No message stored in your inbox."
+msgid "Your inbox is empty."
 msgstr ""
 
 msgid "MUC administration"
@@ -1019,7 +1019,7 @@ msgstr ""
 msgid "You administrate this room"
 msgstr ""
 
-msgid "Enter the new subject"
+msgid "Enter new subject"
 msgstr ""
 
 msgid "Configuration"
@@ -1067,7 +1067,7 @@ msgstr ""
 msgid "Requesting this service..."
 msgstr ""
 
-msgid "Loading"
+msgid "Loading..."
 msgstr ""
 
 msgid "joined the chat room"
@@ -1103,10 +1103,10 @@ msgstr ""
 msgid "Welcome on %1s, « %2s »."
 msgstr ""
 
-msgid "Login to your existing XMPP account or create a new one, that's fast and free!"
+msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us with great help."
 msgstr ""
 
 msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
@@ -1118,7 +1118,7 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-msgid "XMPP ID"
+msgid "XMPP address"
 msgstr ""
 
 msgid "Advanced"
@@ -1154,7 +1154,7 @@ msgstr ""
 msgid "Required"
 msgstr ""
 
-msgid "You've successfully been registered, here's your XMPP ID:"
+msgid "You have been registered, here is your XMPP address:"
 msgstr ""
 
 msgid "Manager"
@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "Uncrypted"
 msgstr ""
 
-msgid "Where am I?"
+msgid "Where are you?"
 msgstr ""
 
 msgid "What's up with you?"
@@ -1208,7 +1208,7 @@ msgstr ""
 msgid "No result!"
 msgstr ""
 
-msgid "No notification!"
+msgid "No notifications."
 msgstr ""
 
 msgid "would like to add you as a friend."
@@ -1226,7 +1226,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-msgid "would like to get an authorization."
+msgid "would like to get authorization."
 msgstr ""
 
 msgid "Submit"
@@ -1244,10 +1244,10 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-msgid "User infos"
+msgid "User profile"
 msgstr ""
 
-msgid "See his/her position on the globe"
+msgid "See their position on the globe"
 msgstr ""
 
 msgid "Confirm"
@@ -1295,7 +1295,7 @@ msgstr ""
 msgid "Please enable JavaScript"
 msgstr ""
 
-msgid "My channel"
+msgid "Your channel"
 msgstr ""
 
 msgid "Channel of"
@@ -1304,13 +1304,13 @@ msgstr ""
 msgid "More notices..."
 msgstr ""
 
-msgid "Attach a file..."
+msgid "Attach a file"
 msgstr ""
 
-msgid "Unattach the file..."
+msgid "Unattach the file"
 msgstr ""
 
-msgid "Who can see it..."
+msgid "Who can see it?"
 msgstr ""
 
 msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
@@ -1328,7 +1328,7 @@ msgstr ""
 msgid "Internal server error, try later"
 msgstr ""
 
-msgid "Your form has been sent successfully."
+msgid "Your form has been sent."
 msgstr ""
 
 msgid "Application"
@@ -1355,19 +1355,19 @@ msgstr ""
 msgid "Welcome on Jappix, your own social cloud!"
 msgstr ""
 
-msgid "Before you start using it, you'll have to change some settings, search for friends and complete your profile."
+msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
 msgstr ""
 
-msgid "Enable the notification sounds"
+msgid "Enable notification sounds"
 msgstr ""
 
-msgid "Share my position on the globe"
+msgid "Share your position on the globe"
 msgstr ""
 
-msgid "Offline buddies"
+msgid "Offline friends"
 msgstr ""
 
-msgid "Don't hide offline buddies"
+msgid "Don't hide offline friends"
 msgstr ""
 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
@@ -1376,7 +1376,7 @@ msgstr ""
 msgid "Great work! When you will press the save button, the profile editor will be opened."
 msgstr ""
 
-msgid "All the Jappix team thank you for your interest. Happy socializing!"
+msgid "Thanks from the Jappix team for your interest. Happy socializing!"
 msgstr ""
 
 msgid "Unknown name"
@@ -1403,7 +1403,7 @@ msgstr ""
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
 msgstr ""
 
-msgid "Let's have a look to the installation steps:"
+msgid "Let's have a look at the installation steps:"
 msgstr ""
 
 msgid "Welcome"
@@ -1433,7 +1433,7 @@ msgstr ""
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
 
-msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
 msgstr ""
 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
@@ -1448,7 +1448,7 @@ msgstr ""
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
 msgstr ""
 
-msgid "Ups, you missed something or the two passwords do not match!"
+msgid "Oops, you missed something or the two passwords do not match!"
 msgstr ""
 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
@@ -1529,7 +1529,7 @@ msgstr ""
 msgid "Check again"
 msgstr ""
 
-msgid "The folder is not writable, apply the good rights to the %s directory."
+msgid "The folder is not writable, set the right permissions to the %s directory."
 msgstr ""
 
 msgid "%s is installed on your system."
@@ -1601,19 +1601,19 @@ msgstr ""
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
 msgstr ""
 
-msgid "Please login to access the administration panel, thanks to the form below."
+msgid "Please use the form below to login to the administration panel."
 msgstr ""
 
-msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
 msgstr ""
 
 msgid "Credentials"
 msgstr ""
 
-msgid "You have been successfully logged out. Goodbye!"
+msgid "You have been logged out. Goodbye!"
 msgstr ""
 
-msgid "Ups, I cannot recognize you as a valid administrator. Check your credentials!"
+msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
 msgstr ""
 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
@@ -1631,16 +1631,16 @@ msgstr ""
 msgid "Jappix is fully customisable: you can change its design right here."
 msgstr ""
 
-msgid "This is not a valid image file, please use PNG, GIF or JPG!"
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr ""
 
-msgid "I did not receive any image file, would you mind retry?"
+msgid "The image could not be received, would you mind retry?"
 msgstr ""
 
-msgid "Your image file was successfully added to the list!"
+msgid "Your image was added to the list!"
 msgstr ""
 
-msgid "The requested change has been successfully done!"
+msgid "Changes saved!"
 msgstr ""
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
@@ -1718,7 +1718,7 @@ msgstr ""
 msgid "Notice"
 msgstr ""
 
-msgid "Your design preferences have been successfully saved!"
+msgid "Your design preferences have been saved!"
 msgstr ""
 
 msgid "Please check your inputs: something is missing!"
@@ -1742,13 +1742,13 @@ msgstr ""
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr ""
 
-msgid "Manage background files"
+msgid "Manage backgrounds"
 msgstr ""
 
-msgid "You can add a new background file to the list with this tool. Please send a valid image file."
+msgid "You can add a new background to the list with this tool. Please send a valid image."
 msgstr ""
 
-msgid "If you want to remove some background files, use the browser below."
+msgid "If you want to remove some backgrounds, use the browser below."
 msgstr ""
 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
@@ -1763,7 +1763,7 @@ msgstr ""
 msgid "Advanced notice"
 msgstr ""
 
-msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
+msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
 msgstr ""
 
 msgid "Available updates"
@@ -1772,7 +1772,7 @@ msgstr ""
 msgid "What's new?"
 msgstr ""
 
-msgid "A new Jappix version is available! Watch out what is new and launch the update!"
+msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
@@ -1784,22 +1784,22 @@ msgstr ""
 msgid "Update in progress"
 msgstr ""
 
-msgid "The Jappix update is finished: you are now running the latest version. Have fun!"
+msgid "Jappix has been updated: you are now running the latest version. Have fun!"
 msgstr ""
 
-msgid "The update has failed! Please try again later..."
+msgid "The update has failed! Please try again later."
 msgstr ""
 
-msgid "Downloading the package..."
+msgid "Downloading package..."
 msgstr ""
 
 msgid "Removing current Jappix system files..."
 msgstr ""
 
-msgid "Extracting the package..."
+msgid "Extracting package..."
 msgstr ""
 
-msgid "Regenerating the storage folder tree..."
+msgid "Regenerating storage folder tree..."
 msgstr ""
 
 msgid "Jappix is now up to date!"
@@ -1853,7 +1853,7 @@ msgstr ""
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
 msgstr ""
 
-msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
+msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
 msgstr ""
 
 msgid "The file you want to upload must be smaller than %s."
@@ -1880,16 +1880,16 @@ msgstr ""
 msgid "The folder is empty."
 msgstr ""
 
-msgid "I could not receive the music file, please retry!"
+msgid "The music could not be received, please retry!"
 msgstr ""
 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr ""
 
-msgid "Your music file was successfully added!"
+msgid "Your music has been added!"
 msgstr ""
 
-msgid "The selected elements have been successfully removed."
+msgid "The selected elements have been removed."
 msgstr ""
 
 msgid "You must select elements to remove!"
@@ -1907,10 +1907,10 @@ msgstr ""
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
 msgstr ""
 
-msgid "The user has been successfully added!"
+msgid "The user has been added!"
 msgstr ""
 
-msgid "The chosen users have been successfully removed."
+msgid "The chosen users have been removed."
 msgstr ""
 
 msgid "You must select one or more users to be removed!"

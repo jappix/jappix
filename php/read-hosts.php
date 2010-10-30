@@ -10,30 +10,30 @@ This is the hosts configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
 // Get the protocol we use
-if($_SERVER['HTTPS'])
+if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
 	$protocol = 'https';
 else
 	$protocol = 'http';
 
+// Define the default hosts configuration values
+$hosts_conf = array();
+$hosts_conf['main'] = 'jappix.com';
+$hosts_conf['muc'] = 'muc.jappix.com';
+$hosts_conf['vjud'] = 'vjud.jappix.com';
+$hosts_conf['anonymous'] = 'anonymous.jappix.com';
+$hosts_conf['bosh'] = 'http://bind.jappix.com/';
+$hosts_conf['static'] = '.';
+
+// Define a default values array
+$hosts_default = $hosts_conf;
+
 // Read the hosts configuration file
 $hosts_data = readXML('conf', 'hosts');
-
-// Define the default hosts configuration values
-$hosts_default = array();
-$hosts_default['main'] = 'jappix.com';
-$hosts_default['muc'] = 'muc.jappix.com';
-$hosts_default['vjud'] = 'vjud.jappix.com';
-$hosts_default['anonymous'] = 'anonymous.jappix.com';
-$hosts_default['bosh'] = 'http://bind.jappix.com/';
-$hosts_default['static'] = '.';
-
-// Define the user hosts configuration values
-$hosts_conf = array();
 
 // Read the hosts configuration file
 if($hosts_data) {
@@ -41,18 +41,13 @@ if($hosts_data) {
 	$hosts_xml = new SimpleXMLElement($hosts_data);
 	
 	// Loop the hosts configuration elements
-	foreach($hosts_xml->children() as $hosts_child)
-		$hosts_conf[$hosts_child->getName()] = $hosts_child;
-}
-
-// Checks no value is missing in the user hosts configuration
-foreach($hosts_default as $hosts_name => $hosts_value) {
-	// Checks current item exists
-	if(!isset($hosts_conf[$hosts_name]) || empty($hosts_conf[$hosts_name]))
-		$hosts_conf[$hosts_name] = $hosts_default[$hosts_name];
-	
-	// Replace the {PROTOCOL} element (if any)
-	$hosts_conf[$hosts_name] = str_replace('{PROTOCOL}', $protocol, $hosts_conf[$hosts_name]);
+	foreach($hosts_xml->children() as $hosts_child) {
+		$hosts_value = $hosts_child->getName();
+		
+		// Only push this to the array if it exists
+		if(isset($hosts_conf[$hosts_value]) && $hosts_child)
+			$hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, $hosts_child);
+	}
 }
 
 // Finally, define the hosts configuration globals

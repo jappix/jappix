@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-30 11:41:40\n"
+"PO-Revision-Date: 2010-10-30 17:04:51\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2179,19 +2179,19 @@ msgstr "Hinweis"
 
 #: 
 msgid "Available updates"
-msgstr "Verfügbare Updates"
+msgstr "Verfügbare Aktualisierungen"
 
 #: 
 msgid "What's new?"
-msgstr "Was gibt's Neues?"
+msgstr "Was gibt’s Neues?"
 
 #: 
 msgid "A new Jappix version is available! Watch out what is new and launch the update!"
-msgstr "Eine neue Jappix Version ist verfügbar! Schau nach, was neu ist und starte das Update!"
+msgstr "Eine neue Jappix-Version ist verfügbar! Schau nach den Neuerungen und starte die Aktualisierung!"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr "Deine Version ist veraltet. Klicke hier um auf %2 upzudaten."
+msgstr "Deine Version ist veraltet. Klicke hier, um auf %2 zu aktualisieren."
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
@@ -2199,31 +2199,31 @@ msgstr "Deine Version schein aktuell zu sein, aber du kannst es manuell prüfen,
 
 #: 
 msgid "Update in progress"
-msgstr "Update wird durchgeführt"
+msgstr "Wird aktualisiert"
 
 #: 
 msgid "The Jappix update is finished: you are now running the latest version. Have fun!"
-msgstr "Das Jappix Update ist abgeschlossen: Du hast nun die neuste Version. Viel Spass!"
+msgstr "Die Aktualisierung von Jappix ist abgeschlossen. Du hast nun die neuste Version. Viel Spaß!"
 
 #: 
 msgid "The update has failed! Please try again later..."
-msgstr "Das Update ist fehlgeschlagen. Versuch es später noch einmal..."
+msgstr "Die Aktualisierung schlug fehl. Versuche es später noch Mal …"
 
 #: 
 msgid "Downloading the package..."
-msgstr "Lade das Paket runter..."
+msgstr "Paket wird heruntergeladen …"
 
 #: 
 msgid "Removing current Jappix system files..."
-msgstr "Entferne aktuelle Jappix System-Dateien..."
+msgstr "Aktuelle Jappix-Systemdateien werden entfernt …"
 
 #: 
 msgid "Extracting the package..."
-msgstr "Entpacke das Paket..."
+msgstr "Paket wird entpackt …"
 
 #: 
 msgid "Regenerating the storage folder tree..."
-msgstr "Baue den Speicher-Ordnerbaum wieder neu auf..."
+msgstr "Speicherordner-Baum wird neu aufgebaut …"
 
 #: 
 msgid "Jappix is now up to date!"
@@ -2235,7 +2235,7 @@ msgstr "Abbruch: Socket-Fehler!"
 
 #: 
 msgid "Aborted: buffer error!"
-msgstr "Abbruch: Buffer-Fehler!"
+msgstr "Abbruch: Puffer-Fehler!"
 
 #: 
 msgid "Aborted: everything is not writable!"
@@ -2243,7 +2243,7 @@ msgstr "Abbruch: Keine Schreibrechte!"
 
 #: 
 msgid "Aborted: could not extract the package!"
-msgstr "Abbruch: Konnte das Paket nicht entpacken!"
+msgstr "Abbruch: Paket konnte nicht entpackt werden!"
 
 #: 
 msgid "Visits"
@@ -2279,11 +2279,11 @@ msgstr "Cache leeren"
 
 #: 
 msgid "Purge logs"
-msgstr "Logs leeren"
+msgstr "Protokolle löschen"
 
 #: 
 msgid "Purge updates"
-msgstr "Updates leeren"
+msgstr "Aktualisierungen löschen"
 
 #: 
 msgid "The storage folder you wanted to clean is now empty!"
@@ -2299,7 +2299,7 @@ msgstr "Titel"
 
 #: 
 msgid "Artist"
-msgstr "Artist"
+msgstr "Künstler"
 
 #: 
 msgid "Album"
@@ -2319,7 +2319,7 @@ msgstr "Dieser Ordner ist leer."
 
 #: 
 msgid "I could not receive the music file, please retry!"
-msgstr "Ich konnte die Musikdatei nicht empfangen, bitte versuch es noch einmal!"
+msgstr "Das Lied konnte nicht empfangen werden, bitte versuche es noch Mal."
 
 #: 
 #~ msgid "This is not a valid music file, please encode it with Vorbis!"
@@ -2327,7 +2327,7 @@ msgstr "Ich konnte die Musikdatei nicht empfangen, bitte versuch es noch einmal!
 
 #: 
 msgid "Your music file was successfully added!"
-msgstr "Deine Musikdatei wurde erfolgreich hinzugefügt!"
+msgstr "Das Lied wurde hinzugefügt."
 
 #: 
 #~ msgid "You must select files to remove!"
@@ -2563,11 +2563,11 @@ msgstr "Dein Bild wurde zur Liste hinzugefügt!"
 
 #: 
 msgid "Manage background files"
-msgstr "Hintergrunddateien verwalten"
+msgstr "Hintergründe verwalten"
 
 #: 
 msgid "If you want to remove some background files, use the browser below."
-msgstr "Nutze das untere Fenster, wenn du Hintergrunddateien löschen möchtest."
+msgstr "Nutze das untere Fenster, wenn du Hintergründe löschen möchtest."
 
 #: 
 msgid "List"
