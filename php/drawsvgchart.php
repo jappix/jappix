@@ -338,13 +338,13 @@ class DrawSVGChart {
             {
                 $text = $this->xml_object->createElement('text');            
 
-                $link = $this->xml_object->createElement('a', mb_substr(htmlentities($onlykeys_datas[$element]), 0, 7));
-                $link->setAttribute('xlink:href', str_replace('{data}', htmlentities($onlykeys_datas[$element]), $this->link));
+                $link = $this->xml_object->createElement('a', mb_substr(filterSpecialXML($onlykeys_datas[$element]), 0, 7));
+                $link->setAttribute('xlink:href', str_replace('{data}', filterSpecialXML($onlykeys_datas[$element]), $this->link));
                 $link->setAttribute('target', '_main');
                 $text->appendChild($link);
             }
             else
-                $text = $this->xml_object->createElement('text', mb_substr(htmlentities($onlykeys_datas[$element]), 0, 7));
+                $text = $this->xml_object->createElement('text', mb_substr(filterSpecialXML($onlykeys_datas[$element]), 0, 7));
 
             $text->setAttribute('class', 'reftext');
             $text->setAttribute('y', 248);

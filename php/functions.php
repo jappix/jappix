@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 30/10/10
 
 */
 
@@ -669,8 +669,11 @@ function setBackground($string) {
 	if($xml) {
 		$read = new SimpleXMLElement($xml);
 		
-		foreach($read->children() as $child)
-			$array[$child->getName()] = $child;
+		foreach($read->children() as $child) {
+			// Any value?
+			if($child)
+				$array[$child->getName()] = $child;
+		}
 	}
 	
 	$css = '';
@@ -1412,6 +1415,33 @@ function otherStats() {
 	arsort($others_stats);
 	
 	return $others_stats;
+}
+
+// Normalizes special chars
+function normalizeChars($string) {
+	$table = array(
+		'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
+		'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+		'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
+		'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
+		'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
+		'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
+		'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
+		'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r'
+	);
+	
+	return strtr($string, $table);
+}
+
+// Filters the XML special chars for the SVG drawer
+function filterSpecialXML($string) {
+	// Strange thing: when $string = 'Mises à jour' -> bug! but 'Mise à jour' -> ok!
+	$string = normalizeChars($string);
+	
+	// Encodes with HTML special chars
+	$string = htmlspecialchars($string);
+	
+	return $string;
 }
 
 // Writes the current visit in the total file

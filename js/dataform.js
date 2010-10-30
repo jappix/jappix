@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
@@ -182,7 +182,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 		buttonsCode += '<a class="back" onclick="openDiscovery();">' + _e("Close") + '</a>';
 	
 	if((action == 'back') && (target == 'welcome'))
-		buttonsCode += '<a class="back" onclick="dataForm(HOST_VJUD), \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
+		buttonsCode += '<a class="back" onclick="dataForm(HOST_VJUD, \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
 	
 	buttonsCode += '</div>';
 	

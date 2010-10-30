@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
@@ -242,18 +242,12 @@ function handleConnected() {
 	}
 }
 
-// Handles the user disconnected event
-function handleDisconnected() {
-	logThis('Jappix is now disconnected.');
-	
-	// We show the waiting image
-	$('#general-wait').show();
-	
+// Resets the Jappix session
+function resetJappix() {
 	// We stop the music player
 	actionMusic('abord');
 	
-	// We disconnect from the XMPP server
-	logout();
+	// Reset the page title
 	pageTitle('home');
 	
 	// Reset our database
@@ -306,6 +300,17 @@ function handleDisconnected() {
 	// And we show the home like when the user wasn't logged in
 	$('#home').show();
 	$('#talk').hide();
+}
+
+// Handles the user disconnected event
+function handleDisconnected() {
+	logThis('Jappix is now disconnected.');
+	
+	// We show the waiting image
+	//$('#general-wait').show();
+	
+	// Reset everything
+	resetJappix();
 	
 	// Is it a undesired disconnection?
 	if(CURRENT_SESSION && CONNECTED)

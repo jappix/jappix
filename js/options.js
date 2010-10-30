@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
@@ -267,8 +267,9 @@ function handleAccDeletion(iq) {
 	// If no errors
 	if(!handleErrorReply(iq)) {
 		clearLastSession();
-		quit();
+		resetJappix();
 		openThisInfo(2);
+		logout();
 		
 		logThis('Account deleted.');
 	}

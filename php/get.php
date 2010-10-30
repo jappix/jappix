@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 30/10/10
 
 */
 
@@ -244,34 +244,40 @@ if($file && $type) {
 					if($type == 'js')
 						$looped = setConfiguration($looped, $locale, $version);
 					
-					// Apply the CSS background
-					if($type == 'css')
+					// Apply some CSS stuffs
+					if($type == 'css') {
+						// Apply the CSS background
 						$looped = setBackground($looped);
-					
-					// Set the Get API paths to the generated string
-					$pathered = setPath($looped, HOST_STATIC, $type, $locale);
-					
-					// Optimize the code rendering
-					if($type == 'css' && !$is_developer)
-						$output = compressCSS($pathered);
-					else if($type == 'css' && $is_developer)
-						$output = $pathered;
-					
-					else if($type == 'js' && !$is_developer) {
-						require_once('./jsmin.php');
-						$output = JSMin::minify($pathered);
+						
+						// Set the CSS Get API paths
+						$looped = setPath($looped, HOST_STATIC, $type, $locale);
 					}
 					
-					else if($type == 'js' && $is_developer)
-						$output = $pathered;
+					// Optimize the code rendering
+					if(($type == 'css') && !$is_developer)
+						$output = compressCSS($looped);
+					
+					else if(($type == 'css') && $is_developer)
+						$output = $looped;
+					
+					else if(($type == 'js') && !$is_developer) {
+						require_once('./jsmin.php');
+						$output = JSMin::minify($looped);
+					}
+					
+					else if(($type == 'js') && $is_developer)
+						$output = $looped;
 					
 					// Generate the reference cache
 					$final = gzdeflate($output, 9);
 					genCache($final, $is_developer, $cache_hash);
 				}
 				
-				// Translate (if JS)
+				// Filter the JS
 				if($type == 'js') {
+					// Set the JS Get API paths
+					$output = setPath($output, HOST_STATIC, $type, $locale);
+					
 					// Translate the JS script
 					require_once('./gettext.php');
 					includeTranslation($locale, 'main');

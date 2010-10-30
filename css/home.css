@@ -84,9 +84,9 @@ Last revision: 30/10/10
 	left: 50%;
 	margin-left: -400px;
 	z-index: 50;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
+	border-radius: 12px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
 	box-shadow: 0 0 35px #4e4e4e;
 	-moz-box-shadow: 0 0 35px #4e4e4e;
 	-webkit-box-shadow: 0 0 35px #4e4e4e;
@@ -138,9 +138,9 @@ Last revision: 30/10/10
 	padding: 10px;
 	font-size: 13px;
 	text-align: justify;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 	box-shadow: 0 0 20px #202020;
 	-moz-box-shadow: 0 0 20px #202020;
 	-webkit-box-shadow: 0 0 20px #202020;
