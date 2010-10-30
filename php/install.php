@@ -118,7 +118,7 @@ else
 				<h3><?php _e("Welcome to the Jappix installation!"); ?></h3>
 				
 				<p><?php _e("This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."); ?></p>
-				<p><?php _e("Let's have a look to the installation steps:"); ?></p>
+				<p><?php _e("Let's have a look at the installation steps:"); ?></p>
 				
 				<ol>
 					<li><?php _e("Welcome"); ?></li>
@@ -140,7 +140,7 @@ else
 			else if($step == 2) { ?>
 				<h3><?php _e("Storage configuration"); ?></h3>
 				
-				<p><?php _e("Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."); ?></p>
+				<p><?php _e("Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."); ?></p>
 				
 				<p><?php printf(T_("Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."), '<em>777</em>', '<em>www-data</em>'); ?></p>
 				
@@ -154,7 +154,7 @@ else
 				else {
 					$continue = false;
 				?>
-					<p class="info bigspace fail"><?php printf(T_("The folder is not writable, apply the good rights to the %s directory."), "<em>./store</em>"); ?></p>
+					<p class="info bigspace fail"><?php printf(T_("The folder is not writable, set the right permissions to the %s directory."), "<em>./store</em>"); ?></p>
 				<?php } ?>
 			<?php }
 			

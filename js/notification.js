@@ -61,7 +61,7 @@ function newNotification(type, from, xid, body) {
 			break;
 		
 		case 'request':
-			text = from + ' ' + _e("would like to get an authorization.") + ' ' + _e("Do you accept?");
+			text = from + ' ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
 			break;
 		
 		default:

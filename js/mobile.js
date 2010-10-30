@@ -471,7 +471,7 @@ function displayMessage(xid, body, nick, hash) {
 	html = '<span><b';
 	
 	if(nick == 'me')
-		html += ' class="me">' + _e("Me");
+		html += ' class="me">' + _e("You");
 	else
 		html += ' class="him">' + nick;
 	

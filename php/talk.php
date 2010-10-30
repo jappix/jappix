@@ -10,7 +10,7 @@ This is the Jappix talk html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 30/10/10
 
 */
 
@@ -57,7 +57,7 @@ Last revision: 25/10/10
 						<div class="tools-content-subarrow talk-images"></div>
 						
 						<div class="tools-content-subitem">
-							<p class="nothing"><?php _e("No notification!"); ?></p>
+							<p class="nothing"><?php _e("No notifications."); ?></p>
 						</div>
 					</div>
 				</div>
@@ -76,26 +76,26 @@ Last revision: 25/10/10
 						
 						<div class="foot ibubble">
 							<div class="buddy-list-icon">
-								<a class="add talk-images" title="<?php _e("Add a friend..."); ?>"></a>
+								<a class="add talk-images" title="<?php _e("Add a friend"); ?>"></a>
 								
 								<div id="buddy-conf-add" class="buddy-conf-item bubble hidable">
 									<div class="buddy-conf-subarrow talk-images"></div>
 									
 									<div class="buddy-conf-subitem">
-										<p class="buddy-conf-p" style="margin-bottom: 0;"><?php _e("Add a friend..."); ?></p>
+										<p class="buddy-conf-p" style="margin-bottom: 0;"><?php _e("Add a friend"); ?></p>
 										<input type="text" class="buddy-conf-input add-contact-jid resetable" />
 									</div>
 								</div>
 							</div>
 							
 							<div class="buddy-list-icon">
-								<a class="join talk-images" title="<?php _e("Join a chat..."); ?>"></a>
+								<a class="join talk-images" title="<?php _e("Join a chat"); ?>"></a>
 								
 								<div id="buddy-conf-join" class="buddy-conf-item bubble hidable">
 									<div class="buddy-conf-subarrow talk-images"></div>
 									
 									<div class="buddy-conf-subitem search">
-										<p class="buddy-conf-p" style="margin-bottom: 0;"><?php _e("Join a chat..."); ?></p>
+										<p class="buddy-conf-p" style="margin-bottom: 0;"><?php _e("Join a chat"); ?></p>
 										<input type="text" class="buddy-conf-input join-jid resetable" />
 										<select name="join-type" class="buddy-conf-select buddy-conf-join-select resetable">
 											<option value="chat"><?php _e("Chat"); ?></option>
@@ -106,13 +106,13 @@ Last revision: 25/10/10
 							</div>
 							
 							<div class="buddy-list-icon">
-								<a class="groupchat talk-images" title="<?php _e("Your groupchats..."); ?>"></a>
+								<a class="groupchat talk-images" title="<?php _e("Your groupchats"); ?>"></a>
 								
 								<div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">
 									<div class="buddy-conf-subarrow talk-images"></div>
 									
 									<div class="buddy-conf-subitem">
-										<p class="buddy-conf-p"><?php _e("Your groupchats..."); ?></p>
+										<p class="buddy-conf-p"><?php _e("Your groupchats"); ?></p>
 										
 										<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select resetable">
 											<option value="none" class="gc-join-first-option"><?php _e("Select a favorite"); ?></option>
@@ -126,25 +126,25 @@ Last revision: 25/10/10
 							</div>
 							
 							<div class="buddy-list-icon">
-								<a class="more talk-images" title="<?php _e("More stuffs..."); ?>"></a>
+								<a class="more talk-images" title="<?php _e("More stuff"); ?>"></a>
 								
 								<div id="buddy-conf-more" class="buddy-conf-item bubble hidable">
 									<div class="buddy-conf-subarrow talk-images"></div>
 									
 									<div class="buddy-conf-subitem">
-										<p class="buddy-conf-p"><?php _e("More stuffs..."); ?></p>
+										<p class="buddy-conf-p"><?php _e("More stuff"); ?></p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-display-unavailable showable"><?php _e("Display all the buddies"); ?></a>
-											<a class="buddy-conf-more-display-available hidable"><?php _e("Display only the connected buddies"); ?></a>
+											&rarr; <a class="buddy-conf-more-display-unavailable showable"><?php _e("Show all friends"); ?></a>
+											<a class="buddy-conf-more-display-available hidable"><?php _e("Only show connected friends"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-map"><?php _e("Map of my friends"); ?></a>
+											&rarr; <a class="buddy-conf-more-map"><?php _e("Map of friends"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-collections"><?php _e("My collections"); ?></a>
+											&rarr; <a class="buddy-conf-more-collections"><?php _e("Your collections"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text archives-hidable showable">
@@ -163,20 +163,20 @@ Last revision: 25/10/10
 							</div>
 							
 							<div class="buddy-list-icon alone">
-								<a class="involve talk-images" title="<?php _e("Get involved..."); ?>"></a>
+								<a class="involve talk-images" title="<?php _e("Get involved!"); ?>"></a>
 								
 								<div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">
 									<div class="buddy-conf-subarrow talk-images"></div>
 									
 									<div class="buddy-conf-subitem">
-										<p class="buddy-conf-p"><?php _e("Get involved..."); ?></p>
+										<p class="buddy-conf-p"><?php _e("Get involved!"); ?></p>
 										
 										<p class="buddy-conf-text">
 											&rarr; <a href="http://codingteam.net/project/jappix/browse" target="_blank"><?php _e("Write code"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://codingteam.net/project/jappix/i18n" target="_blank"><?php _e("Translate strings"); ?></a>
+											&rarr; <a href="http://codingteam.net/project/jappix/i18n" target="_blank"><?php _e("Translate"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
@@ -188,7 +188,7 @@ Last revision: 25/10/10
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank"><?php _e("Give money"); ?></a>
+											&rarr; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank"><?php _e("Donate"); ?></a>
 										</p>
 									</div>
 								</div>
@@ -443,7 +443,7 @@ Last revision: 25/10/10
 							<div class="element f-geoloc hidable">
 								<div class="icon talk-images location-world"></div>
 								
-								<a href="http://www.openstreetmap.org/" target="_blank"><?php _e("Where am I?"); ?></a>
+								<a href="http://www.openstreetmap.org/" target="_blank"><?php _e("Where are you?"); ?></a>
 							</div>
 						</div>
 					</div>
@@ -486,14 +486,14 @@ Last revision: 25/10/10
 										</div>
 										
 										<div class="one-microblog-icon ibubble">
-											<a onclick="showBubble('#attach');" title="<?php _e("Attach a file..."); ?>" class="postit attach talk-images showable"></a>
-											<a onclick="unattachMicroblog();" title="<?php _e("Unattach the file..."); ?>" class="postit unattach talk-images hidable"></a>
+											<a onclick="showBubble('#attach');" title="<?php _e("Attach a file"); ?>" class="postit attach talk-images showable"></a>
+											<a onclick="unattachMicroblog();" title="<?php _e("Unattach the file"); ?>" class="postit unattach talk-images hidable"></a>
 											
 											<div id="attach" class="bubble hidable">
 												<div class="attach-subarrow talk-images"></div>
 												
 												<div class="attach-subitem">
-													<p class="attach-p"><?php _e("Attach a file..."); ?></p>
+													<p class="attach-p"><?php _e("Attach a file"); ?></p>
 													<input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />
 												</div>
 											</div>

@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 30/10/10
 
 */
 
@@ -83,7 +83,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		// Notice from another user
 		else {
 			// User profile
-			html += '<a title="' + _e("View the profile of this user") + '" class="mbtool profile" onclick="openUserInfos(\'' + from + '\');">☻</a>';
+			html += '<a title="' + _e("View profile") + '" class="mbtool profile" onclick="openUserInfos(\'' + from + '\');">☻</a>';
 			
 			// If PEP is enabled
 			if(enabledPEP())
@@ -219,7 +219,7 @@ function getMicroblog(xid, hash) {
 		var cTitle;
 		
 		if(xid == getXID())
-			cTitle = _e("My channel");
+			cTitle = _e("Your channel");
 		else
 			cTitle = _e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
 		

@@ -1234,7 +1234,7 @@ function processUpdate($url) {
 	
 	// We must get the archive from the server
 	if(!file_exists($path)) {
-		echo('<p>» '.T_("Downloading the package...").'</p>');
+		echo('<p>» '.T_("Downloading package...").'</p>');
 		
 		// Open the packages
 		$local = fopen($path, 'w');
@@ -1279,7 +1279,7 @@ function processUpdate($url) {
 	}
 	
 	// Then, we extract the archive
-	echo('<p>» '.T_("Extracting the package...").'</p>');
+	echo('<p>» '.T_("Extracting package...").'</p>');
 	
 	$zip = new ZipArchive;
 	$zip_open = $zip->open($path);
@@ -1342,7 +1342,7 @@ function processUpdate($url) {
 	
 	// Regenerates the store tree
 	if(file_exists($store_tree)) {
-		echo('<p>» '.T_("Regenerating the storage folder tree...").'</p>');
+		echo('<p>» '.T_("Regenerating storage folder tree...").'</p>');
 		
 		// Call the special regeneration script
 		include($store_tree);
@@ -1741,7 +1741,7 @@ function removeElements() {
 	
 	// Show a notification message
 	if($elements_removed)
-		echo('<p class="info smallspace success">'.T_("The selected elements have been successfully removed.").'</p>');
+		echo('<p class="info smallspace success">'.T_("The selected elements have been removed.").'</p>');
 	else
 		echo('<p class="info smallspace fail">'.T_("You must select elements to remove!").'</p>');
 }

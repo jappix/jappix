@@ -10,7 +10,7 @@ This is the Jappix popups html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 30/10/10
 
 */
 
@@ -18,32 +18,32 @@ Last revision: 25/10/10
 	<!-- BEGIN VCARD POPUP -->
 	<div id="vcard" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("My profile"); ?></div>
+			<div class="top"><?php _e("Your profile"); ?></div>
 			
 			<div class="tab">
 				<a class="tab1 tab-active" onclick="switchVCard(1);"><?php _e("Identity"); ?></a>
-				<a class="tab2" onclick="switchVCard(2);"><?php _e("Avatar"); ?></a>
+				<a class="tab2" onclick="switchVCard(2);"><?php _e("Profile image"); ?></a>
 				<a class="tab3" onclick="switchVCard(3);"><?php _e("Others"); ?></a>
 			</div>
 			
 			<div class="content">
 				<div id="lap1" class="one-lap forms">
 					<fieldset>
-						<legend><?php _e("Civility"); ?></legend>
+						<legend><?php _e("Personal"); ?></legend>
 						
 						<label for="FN"><?php _e("Complete name"); ?></label>
 						<input type="text" id="FN" class="resetable vcard-item" />
 						
-						<label for="NICKNAME"><?php _e("Nick"); ?></label>
+						<label for="NICKNAME"><?php _e("Nickname"); ?></label>
 						<input type="text" id="NICKNAME" class="resetable vcard-item" />
 						
-						<label for="N-GIVEN"><?php _e("Given name"); ?></label>
+						<label for="N-GIVEN"><?php _e("First name"); ?></label>
 						<input type="text" id="N-GIVEN" class="resetable vcard-item" />
 						
-						<label for="N-FAMILY"><?php _e("Family name"); ?></label>
+						<label for="N-FAMILY"><?php _e("Last name"); ?></label>
 						<input type="text" id="N-FAMILY" class="resetable vcard-item" />
 						
-						<label for="BDAY"><?php _e("Birth"); ?></label>
+						<label for="BDAY"><?php _e("Date of birth"); ?></label>
 						<input type="text" id="BDAY" class="resetable vcard-item" />
 					</fieldset>
 					
@@ -63,7 +63,7 @@ Last revision: 25/10/10
 				
 				<div id="lap2" class="one-lap forms">
 					<fieldset>
-						<legend><?php _e("Picture of you"); ?></legend>
+						<legend><?php _e("Upload"); ?></legend>
 						
 						<input type="hidden" id="PHOTO-TYPE" class="resetable vcard-item" />
 						<input type="hidden" id="PHOTO-BINVAL" class="resetable vcard-item" />
@@ -71,22 +71,22 @@ Last revision: 25/10/10
 					</fieldset>
 					
 					<fieldset>
-						<legend><?php _e("Actual picture"); ?></legend>
+						<legend><?php _e("Current"); ?></legend>
 						
 						<div class="avatar-container"></div>
 						
 						<a class="avatar-delete hidable" onclick="deleteAvatar();"><?php _e("Delete"); ?></a>
-						<div class="no-avatar"><?php _e("What a pity! You have no avatar defined in your identity card!"); ?></div>
+						<div class="no-avatar"><?php _e("What a pity! You have no profile image defined in your identity card!"); ?></div>
 					</fieldset>
 					
-					<div class="avatar-ok avatar-info hidable"><?php _e("Here it is! A new beautiful avatar!"); ?></div>
+					<div class="avatar-ok avatar-info hidable"><?php _e("Here it is! A new beautiful profile image!"); ?></div>
 					
-					<div class="avatar-error avatar-info hidable"><?php _e("Not supported image file or bad size."); ?></div>
+					<div class="avatar-error avatar-info hidable"><?php _e("The image file is not supported or has a bad size."); ?></div>
 				</div>
 				
 				<div id="lap3" class="one-lap forms">
 					<fieldset>
-						<legend><?php _e("Postal address"); ?></legend>
+						<legend><?php _e("Address"); ?></legend>
 						
 						<label for="ADR-STREET"><?php _e("Street"); ?></label>
 						<input type="text" id="ADR-STREET" class="resetable vcard-item" />
@@ -111,9 +111,9 @@ Last revision: 25/10/10
 				<div class="infos">
 					<p class="infos-title"><?php _e("Important notice"); ?></p>
 					
-					<p><?php _e("Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)."); ?></p>
-					<p><?php _e("Everything is not private on XMPP, here's one of those things, your public profile (vCard)."); ?></p>
-					<p><?php _e("It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends."); ?></p>
+					<p><?php _e("Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."); ?></p>
+					<p><?php _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard)."); ?></p>
+					<p><?php _e("It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."); ?></p>
 				</div>
 			</div>
 			
@@ -130,7 +130,7 @@ Last revision: 25/10/10
 	<!-- BEGIN OPTIONS POPUP -->
 	<div id="options" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("I edit my options"); ?></div>
+			<div class="top"><?php _e("Edit options"); ?></div>
 			
 			<div class="tab">
 				<a class="tab1 tab-active" onclick="switchOptions(1);"><?php _e("General"); ?></a>
@@ -169,7 +169,7 @@ Last revision: 25/10/10
 						<legend><?php _e("Channel"); ?></legend>
 						
 						<label><?php _e("Empty"); ?></label>
-						<a class="linked empty-channel"><?php _e("Empty my channel"); ?></a>
+						<a class="linked empty-channel"><?php _e("Empty channel"); ?></a>
 						
 						<label><?php _e("Persistent"); ?></label>
 						<input id="persistent" type="checkbox" class="resetable" />
@@ -187,7 +187,7 @@ Last revision: 25/10/10
 					
 					<div class="sub-ask sub-ask-empty sub-ask-element hidable">
 						<div class="sub-ask-top">
-							<div class="sub-ask-title"><?php _e("Empty my channel"); ?></div>
+							<div class="sub-ask-title"><?php _e("Empty channel"); ?></div>
 							<a class="sub-ask-close">X</a>
 						</div>
 						
@@ -205,15 +205,15 @@ Last revision: 25/10/10
 						<legend><?php _e("Account"); ?></legend>
 						
 						<label><?php _e("Password"); ?></label>
-						<a class="linked change-password"><?php _e("Change my password"); ?></a>
+						<a class="linked change-password"><?php _e("Change password"); ?></a>
 						
 						<label><?php _e("Delete"); ?></label>
-						<a class="linked delete-account"><?php _e("Delete my account"); ?></a>
+						<a class="linked delete-account"><?php _e("Delete account"); ?></a>
 					</fieldset>
 					
 					<div class="sub-ask sub-ask-pass sub-ask-element hidable">
 						<div class="sub-ask-top">
-							<div class="sub-ask-title"><?php _e("Change my password"); ?></div>
+							<div class="sub-ask-title"><?php _e("Change password"); ?></div>
 							<a class="sub-ask-close">X</a>
 						</div>
 						
@@ -231,7 +231,7 @@ Last revision: 25/10/10
 					
 					<div class="sub-ask sub-ask-delete sub-ask-element hidable">
 						<div class="sub-ask-top">
-							<div class="sub-ask-title"><?php _e("Delete my account"); ?></div>
+							<div class="sub-ask-title"><?php _e("Delete account"); ?></div>
 							<a class="sub-ask-close">X</a>
 						</div>
 						
@@ -258,14 +258,14 @@ Last revision: 25/10/10
 	<!-- BEGIN FAVORITES -->
 	<div id="favorites" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("Manage my favorites rooms"); ?></div>
+			<div class="top"><?php _e("Manage favorite rooms"); ?></div>
 			
 			<div class="content">
 				<div class="switch-fav">
 					<div class="room-switcher room-list">
 						<div class="icon list-icon talk-images"></div>
 						
-						<?php _e("Change my favorites"); ?>
+						<?php _e("Change favorites"); ?>
 					</div>
 					
 					<div class="room-switcher room-search">
@@ -293,7 +293,7 @@ Last revision: 25/10/10
 							</div>
 							
 							<div class="fedit-line">
-								<label><?php _e("Nick"); ?></label>
+								<label><?php _e("Nickname"); ?></label>
 								
 								<input class="fedit-nick fedit-required" type="text" />
 							</div>
@@ -450,7 +450,7 @@ Last revision: 25/10/10
 	<!-- BEGIN MESSAGES -->
 	<div id="inbox" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("My inbox"); ?></div>
+			<div class="top"><?php _e("Your inbox"); ?></div>
 			
 			<div class="content">
 				<div class="head messages-head">
@@ -464,7 +464,7 @@ Last revision: 25/10/10
 				</div>
 				
 				<div class="messages-results showable">
-					<p class="messages-noresults showable"><?php _e("No message stored in your inbox."); ?></p>
+					<p class="messages-noresults showable"><?php _e("Your inbox is empty."); ?></p>
 					
 					<div class="inbox"></div>
 				</div>
@@ -489,7 +489,7 @@ Last revision: 25/10/10
 					</div>
 					
 					<div class="messages-new-send messages-new-block">
-						<a onclick="sendThisMessage();"><?php _e("Send the message"); ?></a>
+						<a onclick="sendThisMessage();"><?php _e("Send message"); ?></a>
 					</div>
 				</div>
 			</div>
@@ -504,7 +504,7 @@ Last revision: 25/10/10
 	<!-- BEGIN USERINFOS -->
 	<div id="userinfos" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("User infos"); ?></div>
+			<div class="top"><?php _e("User profile"); ?></div>
 			
 			<div class="tab">
 				<a class="tab1 tab-active" onclick="switchUInfos(1);"><?php _e("General"); ?></a>
@@ -523,7 +523,7 @@ Last revision: 25/10/10
 					</div>
 					
 					<div class="block-infos">
-						<div class="one-line"><b><?php _e("Birth"); ?></b><span id="BUDDY-BDAY" class="reset-info"><?php _e("unknown"); ?></span></div>
+						<div class="one-line"><b><?php _e("Date of birth"); ?></b><span id="BUDDY-BDAY" class="reset-info"><?php _e("unknown"); ?></span></div>
 						
 						<div class="one-line"><b><?php _e("E-mail"); ?></b><span id="BUDDY-EMAIL-USERID" class="reset-info"><?php _e("unknown"); ?></span></div>
 						
@@ -586,18 +586,18 @@ Last revision: 25/10/10
 				<div class="one-welcome welcome1" style="display: block;">
 					<div class="infos">
 						<p class="infos-title"><?php _e("Welcome on Jappix, your own social cloud!"); ?></p>
-						<p><?php _e("Before you start using it, you'll have to change some settings, search for friends and complete your profile."); ?></p>
+						<p><?php _e("Before you start using it, you will have to change some settings, search for friends and complete your profile."); ?></p>
 					</div>
 					
 					<a class="box enabled" title="<?php _e("Click to disable"); ?>">
 						<span class="option"><?php _e("Sounds"); ?></span>
-						<span class="description"><?php _e("Enable the notification sounds"); ?></span>
+						<span class="description"><?php _e("Enable notification sounds"); ?></span>
 						<span class="image sound talk-images"></span>
 					</a>
 					
 					<a class="box enabled pep-hidable hidable" title="<?php _e("Click to disable"); ?>">
 						<span class="option"><?php _e("Geolocation"); ?></span>
-						<span class="description"><?php _e("Share my position on the globe"); ?></span>
+						<span class="description"><?php _e("Share your position on the globe"); ?></span>
 						<span class="image geolocation talk-images"></span>
 					</a>
 					
@@ -614,8 +614,8 @@ Last revision: 25/10/10
 					</a>
 					
 					<a class="box" title="<?php _e("Click to enable"); ?>">
-						<span class="option"><?php _e("Offline buddies"); ?></span>
-						<span class="description"><?php _e("Don't hide offline buddies"); ?></span>
+						<span class="option"><?php _e("Offline friends"); ?></span>
+						<span class="description"><?php _e("Don't hide offline friends"); ?></span>
 						<span class="image offline talk-images"></span>
 					</a>
 				</div>
@@ -633,7 +633,7 @@ Last revision: 25/10/10
 					<div class="infos">
 						<p class="infos-title"><?php _e("Profile"); ?></p>
 						<p><?php _e("Great work! When you will press the save button, the profile editor will be opened."); ?></p>
-						<p><?php _e("All the Jappix team thank you for your interest. Happy socializing!"); ?></p>
+						<p><?php _e("Thanks from the Jappix team for your interest. Happy socializing!"); ?></p>
 					</div>
 					
 					<div class="logo welcome-images"></div>
@@ -653,7 +653,7 @@ Last revision: 25/10/10
 	<!-- BEGIN MAP -->
 	<div id="map" class="lock hidable">
 		<div class="popup">
-			<div class="top"><?php _e("Map of my friends"); ?></div>
+			<div class="top"><?php _e("Map of friends"); ?></div>
 			
 			<div class="content"></div>
 			
@@ -693,7 +693,7 @@ Last revision: 25/10/10
 					</div>
 					
 					<div class="friend">
-						<?php _e("Buddy"); ?>
+						<?php _e("Friend"); ?>
 						<select multiple="multiple">
 						</select>
 					</div>
@@ -736,7 +736,7 @@ Last revision: 25/10/10
 						<fieldset>
 							<legend><?php _e("Subject"); ?></legend>
 							
-							<label for="topic-text"><?php _e("Enter the new subject"); ?></label>
+							<label for="topic-text"><?php _e("Enter new subject"); ?></label>
 							<textarea id="topic-text" name="room-topic" class="resetable" rows="8" cols="60" ></textarea>
 						</fieldset>
 					</div>

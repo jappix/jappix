@@ -4,7 +4,7 @@
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 # License: AGPL
-# Author: Valérian Saliou, Jan-Christoph Borchardt
+# Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
 # Last revision: 30/10/10
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-msgid "Remember login"
+msgid "Remember me"
 msgstr ""
 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -92,7 +92,7 @@ msgstr ""
 msgid "Manage your favorite groupchats"
 msgstr ""
 
-msgid "More stuff..."
+msgid "More stuff"
 msgstr ""
 
 msgid "Get involved!"
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Map of friends"
 msgstr ""
 
-msgid "Your Collections"
+msgid "Your collections"
 msgstr ""
 
 msgid "Collections"
@@ -698,9 +698,6 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-msgid "Upload"
-msgstr ""
-
 msgid "Current"
 msgstr ""
 
@@ -1067,7 +1064,7 @@ msgstr ""
 msgid "Requesting this service..."
 msgstr ""
 
-msgid "Loading..."
+msgid "Loading"
 msgstr ""
 
 msgid "joined the chat room"
@@ -1106,7 +1103,7 @@ msgstr ""
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us with great help."
+msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
 msgstr ""
 
 msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
@@ -1116,9 +1113,6 @@ msgid "Previous"
 msgstr ""
 
 msgid "General"
-msgstr ""
-
-msgid "XMPP address"
 msgstr ""
 
 msgid "Advanced"
@@ -1247,7 +1241,7 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-msgid "See their position on the globe"
+msgid "See his/her position on the globe"
 msgstr ""
 
 msgid "Confirm"
@@ -1310,9 +1304,6 @@ msgstr ""
 msgid "Unattach the file"
 msgstr ""
 
-msgid "Who can see it?"
-msgstr ""
-
 msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
 msgstr ""
 
@@ -1338,9 +1329,6 @@ msgid "XMPP links"
 msgstr ""
 
 msgid "Open XMPP links with Jappix"
-msgstr ""
-
-msgid "Show all friends"
 msgstr ""
 
 msgid "changed the subject to:"

@@ -358,7 +358,7 @@ function displayMessage(xid, body, nick, hash) {
 	else {
 		// Write the buddy name at the top of the message group
 		if(nick == 'me')
-			header = '<b class="me">' + _e("Me") + '</b>';
+			header = '<b class="me">' + _e("You") + '</b>';
 		else
 			header = '<b class="him">' + nick + '</b>';
 	}

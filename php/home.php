@@ -33,7 +33,7 @@ Last revision: 28/10/10
 					<div class="default homediv">
 						<p><?php printf(T_("Welcome on %1s, « %2s »."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
 						
-						<p><?php _e("Login to your existing XMPP account or create a new one, that's fast and free!"); ?></p>
+						<p><?php _e("Login to your existing XMPP account or create a new one for free!"); ?></p>
 						
 						<a class="button login buttons-images">
 							<span class="home-images"></span>
@@ -56,7 +56,7 @@ Last revision: 28/10/10
 							<fieldset>
 								<legend><?php _e("Required"); ?></legend>
 								
-								<label for="lnick"><?php _e("XMPP ID"); ?></label>
+								<label for="lnick"><?php _e("Address"); ?></label>
 								<input type="text" class="nick resetable" id="lnick" /><span class="jid">@</span><input type="text" class="server resetable" id="lserver" value="<?php echo HOST_MAIN; ?>" <?php lockHost(); ?>/>
 								<label for="lpassword"><?php _e("Password"); ?></label>
 								<input type="password" class="password resetable" id="lpassword" />
@@ -94,7 +94,7 @@ Last revision: 28/10/10
 								<label><?php _e("Room"); ?></label>
 								<input type="text" class="room resetable"<?php disableInput(ANONYMOUS) ?> />
 								
-								<label><?php _e("Nick"); ?></label>
+								<label><?php _e("Nickname"); ?></label>
 								<input type="text" class="nick resetable"<?php disableInput(ANONYMOUS) ?> />
 							</fieldset>
 							
@@ -115,7 +115,7 @@ Last revision: 28/10/10
 							<fieldset>
 								<legend><?php _e("Required"); ?></legend>
 								
-								<label for="rnick"><?php _e("XMPP ID"); ?></label>
+								<label for="rnick"><?php _e("Address"); ?></label>
 								<input type="text" class="nick resetable" id="rnick" /><span class="jid">@</span><input type="text" class="server resetable" id="rserver" value="<?php echo HOST_MAIN; ?>" <?php lockHost(); ?>/>
 								<label for="rpassword"><?php _e("Password"); ?></label>
 								<input type="password" class="password resetable" id="rpassword" />
@@ -126,7 +126,7 @@ Last revision: 28/10/10
 						</form>
 						
 						<div class="info success hidable">
-							<?php _e("You've successfully been registered, here's your XMPP ID:"); ?> <b></b>
+							<?php _e("You have been registered, here is your XMPP address:"); ?> <b></b>
 						</div>
 					</div>
 				

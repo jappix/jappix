@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/10/10
+Last revision: 30/10/10
 
 */
 
@@ -118,7 +118,7 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 	
 	switch(type) {
 		case 'nickname':
-			label_text = _e("Nick");
+			label_text = _e("Nickname");
 			break;
 		
 		case 'password':

@@ -379,7 +379,7 @@ function sendMessage(id, type) {
 			con.send(aMsg, handleErrorReply);
 			
 			// Finally we display the message we just sent
-			displayMessage('chat', id, _e("Me").htmlEnc(), body, getCompleteTime(), 'user-message', notXHTML, '', 'me');
+			displayMessage('chat', id, _e("You").htmlEnc(), body, getCompleteTime(), 'user-message', notXHTML, '', 'me');
 			
 			// Scroll to the last message
 			autoScroll(id);

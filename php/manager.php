@@ -244,7 +244,7 @@ else
 			<?php
 			
 			if(($id != 0) && newUpdates($check_updates)) { ?>
-				<a class="info bottomspace neutral" href="./?a=updates<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("A new Jappix version is available! Watch out what is new and launch the update!"); ?></a>
+				<a class="info bottomspace neutral" href="./?a=updates<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>
 			<?php }
 			
 			// Authorized and statistics page requested
@@ -334,7 +334,7 @@ else
 					
 					// Show a success alert
 					?>
-						<p class="info smallspace success"><?php _e("The requested change has been successfully done!"); ?></p>
+						<p class="info smallspace success"><?php _e("Changes saved!"); ?></p>
 					<?php
 				}
 				
@@ -363,7 +363,7 @@ else
 					
 					// Show a success alert
 					?>
-						<p class="info smallspace success"><?php _e("The requested change has been successfully done!"); ?></p>
+						<p class="info smallspace success"><?php _e("Changes saved!"); ?></p>
 					<?php
 				}
 				
@@ -411,7 +411,7 @@ else
 						
 						// An error occured?
 						if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>
-							<p class="info smallspace fail"><?php _e("I could not receive the music file, please retry!"); ?></p>
+							<p class="info smallspace fail"><?php _e("The music could not be received, please retry!"); ?></p>
 						<?php }
 						
 						// Bad extension?
@@ -427,7 +427,7 @@ else
 						
 						// The file has been sent
 						else { ?>
-							<p class="info smallspace success"><?php _e("Your music file was successfully added!"); ?></p>
+							<p class="info smallspace success"><?php _e("Your music has been added!"); ?></p>
 						<?php }
 					}
 					
@@ -482,7 +482,7 @@ else
 				
 				<h4><?php _e("Music"); ?></h4>
 				
-				<p><?php _e("Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"); ?></p>
+				<p><?php _e("Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"); ?></p>
 				
 				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
 				
@@ -557,7 +557,7 @@ else
 						
 						// An error occured?
 						if(!isSafe($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>
-							<p class="info smallspace fail"><?php _e("I did not receive any image file, would you mind retry?"); ?></p>
+							<p class="info smallspace fail"><?php _e("The image could not be received, would you mind retry?"); ?></p>
 						<?php }
 						
 						// Bad extension?
@@ -568,12 +568,12 @@ else
 								unlink($path_background_image);
 							
 						?>
-							<p class="info smallspace fail"><?php _e("This is not a valid image file, please use PNG, GIF or JPG!"); ?></p>
+							<p class="info smallspace fail"><?php _e("This is not a valid image, please use PNG, GIF or JPG!"); ?></p>
 						<?php }
 						
 						// The file has been sent
 						else { ?>
-							<p class="info smallspace success"><?php _e("Your image file was successfully added to the list!"); ?></p>
+							<p class="info smallspace success"><?php _e("Your image was added to the list!"); ?></p>
 						<?php }
 					}
 					
@@ -633,7 +633,7 @@ else
 							writeNotice($notice_type, $notice_text);
 							
 							// Show a success notice ?>
-							<p class="info smallspace success"><?php _e("Your design preferences have been successfully saved!"); ?></p>
+							<p class="info smallspace success"><?php _e("Your design preferences have been saved!"); ?></p>
 						<?php }
 						
 						// Something went wrong
@@ -822,9 +822,9 @@ else
 					<div class="clear"></div>
 				</div>
 				
-				<h4><?php _e("Manage background files"); ?></h4>
+				<h4><?php _e("Manage backgrounds"); ?></h4>
 				
-				<p><?php _e("You can add a new background file to the list with this tool. Please send a valid image file."); ?></p>
+				<p><?php _e("You can add a new background to the list with this tool. Please send a valid image."); ?></p>
 				
 				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
 				
@@ -836,7 +836,7 @@ else
 					<div class="clear"></div>
 				</div>
 				
-				<p><?php _e("If you want to remove some background files, use the browser below."); ?></p>
+				<p><?php _e("If you want to remove some backgrounds, use the browser below."); ?></p>
 				
 				<fieldset>
 					<legend><?php _e("List"); ?></legend>
@@ -866,7 +866,7 @@ else
 				<label class="master" for="notice_advanced"><?php _e("Advanced notice"); ?></label><input id="notice_advanced" type="radio" name="notice_type" value="advanced"<?php echo($notice_advanced); ?> />
 				
 				<div class="sub">
-					<p><?php _e("You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."); ?></p>
+					<p><?php _e("You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."); ?></p>
 				</div>
 				
 				<div class="clear"></div>
@@ -888,11 +888,11 @@ else
 					include(PHP_BASE.'/php/post-users.php');
 					
 					if($valid_user) { ?>
-						<p class="info smallspace success"><?php _e("The user has been successfully added!"); ?></p>
+						<p class="info smallspace success"><?php _e("The user has been added!"); ?></p>
 					<?php }
 					
 					else { ?>
-						<p class="info smallspace fail"><?php _e("Ups, you missed something or the two passwords do not match!"); ?></p>
+						<p class="info smallspace fail"><?php _e("Oops, you missed something or the two passwords do not match!"); ?></p>
 				<?php }
 				}
 				
@@ -921,7 +921,7 @@ else
 						manageUsers('remove', $users_remove);
 					
 					?>
-						<p class="info smallspace success"><?php _e("The chosen users have been successfully removed."); ?></p>
+						<p class="info smallspace success"><?php _e("The chosen users have been removed."); ?></p>
 					<?php }
 					
 					// Nobody has been removed
@@ -977,9 +977,9 @@ else
 						<h4><?php _e("Update in progress"); ?></h4>
 						
 						<?php if(processUpdate($update_infos['url'])) { ?>
-							<p class="info smallspace success"><?php _e("The Jappix update is finished: you are now running the latest version. Have fun!"); ?></p>
+							<p class="info smallspace success"><?php _e("Jappix has been updated: you are now running the latest version. Have fun!"); ?></p>
 						<?php } else { ?>
-							<p class="info smallspace fail"><?php _e("The update has failed! Please try again later..."); ?></p>
+							<p class="info smallspace fail"><?php _e("The update has failed! Please try again later."); ?></p>
 						<?php }
 					}
 					
@@ -1008,8 +1008,8 @@ else
 				<h3 class="login manager-images"><?php _e("Manager access"); ?></h3>
 				
 				<p><?php _e("This is a restricted area: only the authorized users can manage this Jappix node."); ?></p>
-				<p><?php _e("Please login to access the administration panel, thanks to the form below."); ?></p>
-				<p><?php _e("To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."); ?></p>
+				<p><?php _e("Please use the form below to login to the administration panel."); ?></p>
+				<p><?php _e("To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."); ?></p>
 				
 				<fieldset>
 					<legend><?php _e("Credentials"); ?></legend>
@@ -1023,12 +1023,12 @@ else
 				
 				// Disconnected
 				if($logout_fired) { ?>
-					<p class="info bigspace success"><?php _e("You have been successfully logged out. Goodbye!"); ?></p>
+					<p class="info bigspace success"><?php _e("You have been logged out. Goodbye!"); ?></p>
 				<?php }
 				
 				// Login error
 				else if($login_fired) { ?>
-					<p class="info bigspace fail"><?php _e("Ups, I cannot recognize you as a valid administrator. Check your credentials!"); ?></p>
+					<p class="info bigspace fail"><?php _e("Oops, you could not be recognized as a valid administrator. Check your credentials!"); ?></p>
 				<?php
 				
 					// Remove the session

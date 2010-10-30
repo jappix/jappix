@@ -700,7 +700,7 @@ function sendSubscribe(to, type) {
 	var status = '';
 	
 	if(type == 'subscribe')
-		status = _e("I would like to add you in my buddy list.");
+		status = _e("I would like to add you as a friend.");
 	
 	sendPresence(to, type, '', status);
 }

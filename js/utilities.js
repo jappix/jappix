@@ -308,7 +308,7 @@ function getBuddyName(xid) {
 	
 	// This is me?
 	if(xid == getXID())
-		bname = _e("Me");
+		bname = _e("You");
 	
 	// Not me...
 	else {

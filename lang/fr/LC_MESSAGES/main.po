@@ -4,18 +4,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-30 00:00:24\n"
+"PO-Revision-Date: 2010-10-30 18:49:08\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: 
-msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
-msgstr "Votre navigateur est trop ancien ou obsolète et ne fonctionnera pas correctement avec Jappix, essayez Mozilla Firefox."
+#~ msgid "Your browser is obsolete/old and will not work correctly with Jappix, you can try Mozilla Firefox."
+#~ msgstr "Votre navigateur est trop ancien ou obsolète et ne fonctionnera pas correctement avec Jappix, essayez Mozilla Firefox."
 
 #: 
-msgid "JavaScript is missing in your web browser, so that you'll not be able to launch the Jappix app! Please fix this."
-msgstr "JavaScript n'est pas actif dans votre navigateur, vous ne pourrez donc pas utiliser Jappix. Activez-le donc !"
+#~ msgid "JavaScript is missing in your web browser, so that you'll not be able to launch the Jappix app! Please fix this."
+#~ msgstr "JavaScript n'est pas actif dans votre navigateur, vous ne pourrez donc pas utiliser Jappix. Activez-le donc !"
 
 #: 
 msgid "An open social network"
@@ -26,24 +26,24 @@ msgid "Jappix has been interrupted by a network issue, a bug or bad login (check
 msgstr "Jappix a été interrompu par un problème réseau, un bug ou de mauvais identifiants (vérifiez-les !). Nous sommes désolés pour ce soucis."
 
 #: 
-msgid "I couldn't obtain the element list on this server!"
-msgstr "Je n'ai pas pu obtenir la liste des éléments sur le serveur !"
+#~ msgid "I couldn't obtain the element list on this server!"
+#~ msgstr "Je n'ai pas pu obtenir la liste des éléments sur le serveur !"
 
 #: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
 msgstr "Votre mot de passe a été changé, vous pouvez maintenant vous connecter à votre compte avec vos nouveaux identifiants."
 
 #: 
-msgid "Your XMPP account has been successfully removed, bye!"
-msgstr "Votre compte XMPP a été supprimé avec succès. Au revoir !"
+#~ msgid "Your XMPP account has been successfully removed, bye!"
+#~ msgstr "Votre compte XMPP a été supprimé avec succès. Au revoir !"
 
 #: 
-msgid "You've been sucessfully logged out of your XMPP account, have a nice day!"
-msgstr "Vous avez été déconnecté avec succès de votre compte XMPP. Bonne journée !"
+#~ msgid "You've been sucessfully logged out of your XMPP account, have a nice day!"
+#~ msgstr "Vous avez été déconnecté avec succès de votre compte XMPP. Bonne journée !"
 
 #: 
-msgid "Your browser does not support this functionnality, please try with Mozilla Firefox."
-msgstr "Votre navigateur ne supporte pas cette fonctionnalité, s'il vous plaît, essayez Mozilla Firefox."
+#~ msgid "Your browser does not support this functionnality, please try with Mozilla Firefox."
+#~ msgstr "Votre navigateur ne supporte pas cette fonctionnalité, s'il vous plaît, essayez Mozilla Firefox."
 
 #: 
 msgid "The room you joined seems not to exist. You should create it!"
@@ -54,8 +54,8 @@ msgid "The groupchat has been removed, now someone else will be able to recreate
 msgstr "Le salon a été supprimé avec succès, maintenant quelqu'un d'autre pourra le recréer."
 
 #: 
-msgid "The user that you want to reach (message, punishment) is not present in the room."
-msgstr "L'utilisateur que vous voulez atteindre (message, sanction) n'est pas présent dans ce salon."
+#~ msgid "The user that you want to reach (message, punishment) is not present in the room."
+#~ msgstr "L'utilisateur que vous voulez atteindre (message, sanction) n'est pas présent dans ce salon."
 
 #: 
 msgid "Login"
@@ -110,32 +110,32 @@ msgid "Filter"
 msgstr "Filtrer"
 
 #: 
-msgid "Add a friend..."
-msgstr "Ajouter un contact..."
+#~ msgid "Add a friend..."
+#~ msgstr "Ajouter un contact..."
 
 #: 
-msgid "Your groupchats..."
-msgstr "Vos salons de discussion..."
+#~ msgid "Your groupchats..."
+#~ msgstr "Vos salons de discussion..."
 
 #: 
 msgid "Manage your favorite groupchats"
 msgstr "Gérer mes salons favoris"
 
 #: 
-msgid "More stuffs..."
-msgstr "Plus de choses..."
+#~ msgid "More stuffs..."
+#~ msgstr "Plus de choses..."
 
 #: 
-msgid "Get involved..."
-msgstr "Aidez-nous..."
+#~ msgid "Get involved..."
+#~ msgstr "Aidez-nous..."
 
 #: 
 msgid "Write code"
 msgstr "Écrivez du code"
 
 #: 
-msgid "Translate strings"
-msgstr "Traduisez en votre langue"
+#~ msgid "Translate strings"
+#~ msgstr "Traduisez en votre langue"
 
 #: 
 msgid "Report a bug"
@@ -146,24 +146,24 @@ msgid "Write documentation"
 msgstr "Écrivez la documentation"
 
 #: 
-msgid "Give money"
-msgstr "Donnez de l'argent"
+#~ msgid "Give money"
+#~ msgstr "Donnez de l'argent"
 
 #: 
-msgid "Display all the buddies"
-msgstr "Afficher les contacts déconnectés"
+#~ msgid "Display all the buddies"
+#~ msgstr "Afficher les contacts déconnectés"
 
 #: 
-msgid "Display only the connected buddies"
-msgstr "N'afficher que les contacts connectés"
+#~ msgid "Display only the connected buddies"
+#~ msgstr "N'afficher que les contacts connectés"
 
 #: 
-msgid "Map of my friends"
-msgstr "Carte de mes amis"
+#~ msgid "Map of my friends"
+#~ msgstr "Carte de mes amis"
 
 #: 
-msgid "My collections"
-msgstr "Mes collections"
+#~ msgid "My collections"
+#~ msgstr "Mes collections"
 
 #: 
 msgid "Collections"
@@ -174,8 +174,8 @@ msgid "Message archives"
 msgstr "Archives des messages"
 
 #: 
-msgid "Buddy"
-msgstr "Contact"
+#~ msgid "Buddy"
+#~ msgstr "Contact"
 
 #: 
 msgid "Date"
@@ -198,8 +198,8 @@ msgid "What are you doing?"
 msgstr "Que faites-vous en ce moment ?"
 
 #: 
-msgid "Join a chat..."
-msgstr "Joindre une discussion..."
+#~ msgid "Join a chat..."
+#~ msgstr "Joindre une discussion..."
 
 #: 
 msgid "Available"
@@ -866,8 +866,8 @@ msgid "Writing"
 msgstr "Écrit"
 
 #: 
-msgid "View the profile of this user"
-msgstr "Afficher le profil de cet utilisateur"
+#~ msgid "View the profile of this user"
+#~ msgstr "Afficher le profil de cet utilisateur"
 
 #: 
 msgid "Repeat this notice"
@@ -878,44 +878,44 @@ msgid "Remove this notice"
 msgstr "Effacer cet avis"
 
 #: 
-msgid "My profile"
-msgstr "Mon profil"
+#~ msgid "My profile"
+#~ msgstr "Mon profil"
 
 #: 
 msgid "Identity"
 msgstr "Identité"
 
 #: 
-msgid "Avatar"
-msgstr "Avatar"
+#~ msgid "Avatar"
+#~ msgstr "Avatar"
 
 #: 
 msgid "Others"
 msgstr "Autres"
 
 #: 
-msgid "Civility"
-msgstr "Civilité"
+#~ msgid "Civility"
+#~ msgstr "Civilité"
 
 #: 
 msgid "Complete name"
 msgstr "Nom complet"
 
 #: 
-msgid "Nick"
-msgstr "Pseudo"
+#~ msgid "Nick"
+#~ msgstr "Pseudo"
 
 #: 
-msgid "Given name"
-msgstr "Prénom"
+#~ msgid "Given name"
+#~ msgstr "Prénom"
 
 #: 
-msgid "Family name"
-msgstr "Nom"
+#~ msgid "Family name"
+#~ msgstr "Nom"
 
 #: 
-msgid "Birth"
-msgstr "Naissance"
+#~ msgid "Birth"
+#~ msgstr "Naissance"
 
 #: 
 msgid "Contact"
@@ -930,24 +930,24 @@ msgid "Website"
 msgstr "Site web"
 
 #: 
-msgid "Picture of you"
-msgstr "Photo de vous"
+#~ msgid "Picture of you"
+#~ msgstr "Photo de vous"
 
 #: 
-msgid "Actual picture"
-msgstr "Photo actuelle"
+#~ msgid "Actual picture"
+#~ msgstr "Photo actuelle"
 
 #: 
 msgid "Delete"
 msgstr "Supprimer"
 
 #: 
-msgid "What a pity! You have no avatar defined in your identity card!"
-msgstr "Quel dommage ! Vous n'avez pas encore d'avatar défini dans votre carte d'identité !"
+#~ msgid "What a pity! You have no avatar defined in your identity card!"
+#~ msgstr "Quel dommage ! Vous n'avez pas encore d'avatar défini dans votre carte d'identité !"
 
 #: 
-msgid "Postal address"
-msgstr "Adresse postale"
+#~ msgid "Postal address"
+#~ msgstr "Adresse postale"
 
 #: 
 msgid "Street"
@@ -974,16 +974,16 @@ msgid "Important notice"
 msgstr "Important"
 
 #: 
-msgid "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)."
-msgstr "Faites attention à ce que vous écrivez dans votre profil, parce-que si vous y mettez des données personnelles sensibles, cela pourrait être accessible de n'importe qui."
+#~ msgid "Be careful of the informations you write into your profile, because if you put sensitive personal data in it.. it could be accessible from everyone (even someone you don't want to)."
+#~ msgstr "Faites attention à ce que vous écrivez dans votre profil, parce-que si vous y mettez des données personnelles sensibles, cela pourrait être accessible de n'importe qui."
 
 #: 
-msgid "Everything is not private on XMPP, here's one of those things, your public profile (vCard)."
-msgstr "Tout n'est pas privé sur XMPP, ici vous avez l'exemple d'une chose publique, votre profil (ou vCard)."
+#~ msgid "Everything is not private on XMPP, here's one of those things, your public profile (vCard)."
+#~ msgstr "Tout n'est pas privé sur XMPP, ici vous avez l'exemple d'une chose publique, votre profil (ou vCard)."
 
 #: 
-msgid "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends."
-msgstr "Il est très recommandé d'envoyer un avatar (25Kio maximum), comme une photo de vous, parce-que cela va permettre à vos amis de rapidement vous identifier."
+#~ msgid "It's strongly recommended to send an avatar (25Kio maximum), like a picture of yourself, because that makes you easily recognizable from your friends."
+#~ msgstr "Il est très recommandé d'envoyer un avatar (25Kio maximum), comme une photo de vous, parce-que cela va permettre à vos amis de rapidement vous identifier."
 
 #: 
 msgid "Save"
@@ -994,8 +994,8 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: 
-msgid "I edit my options"
-msgstr "J'édite mes préférences"
+#~ msgid "I edit my options"
+#~ msgstr "J'édite mes préférences"
 
 #: 
 msgid "Channel"
@@ -1034,8 +1034,8 @@ msgid "Empty"
 msgstr "Vider"
 
 #: 
-msgid "Empty my channel"
-msgstr "Vider mon canal"
+#~ msgid "Empty my channel"
+#~ msgstr "Vider mon canal"
 
 #: 
 msgid "Persistent"
@@ -1050,12 +1050,12 @@ msgid "Account"
 msgstr "Compte"
 
 #: 
-msgid "Change my password"
-msgstr "Changer mon mot de passe"
+#~ msgid "Change my password"
+#~ msgstr "Changer mon mot de passe"
 
 #: 
-msgid "Delete my account"
-msgstr "Supprimer mon compte"
+#~ msgid "Delete my account"
+#~ msgstr "Supprimer mon compte"
 
 #: 
 msgid "Old"
@@ -1090,12 +1090,12 @@ msgid "is now"
 msgstr "est maintenant"
 
 #: 
-msgid "Here it is! A new beautiful avatar!"
-msgstr "Et voilà ! Un nouvel avatar tout beau tout neuf !"
+#~ msgid "Here it is! A new beautiful avatar!"
+#~ msgstr "Et voilà ! Un nouvel avatar tout beau tout neuf !"
 
 #: 
-msgid "Not supported image file or bad size."
-msgstr "Fichier image non supporté ou trop gros."
+#~ msgid "Not supported image file or bad size."
+#~ msgstr "Fichier image non supporté ou trop gros."
 
 #: 
 msgid "Reply"
@@ -1106,8 +1106,8 @@ msgid "Error"
 msgstr "Erreur"
 
 #: 
-msgid "Me"
-msgstr "Moi"
+#~ msgid "Me"
+#~ msgstr "Moi"
 
 #: 
 msgid "Remove"
@@ -1118,16 +1118,16 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: 
-msgid "I would like to add you in my buddy list."
-msgstr "Je souhaiterai vous ajouter à ma liste d'amis."
+#~ msgid "I would like to add you in my buddy list."
+#~ msgstr "Je souhaiterai vous ajouter à ma liste d'amis."
 
 #: 
 msgid "Smiley insertion"
 msgstr "Insertion d'émoticône"
 
 #: 
-msgid "Change the style"
-msgstr "Changer le style"
+#~ msgid "Change the style"
+#~ msgstr "Changer le style"
 
 #: 
 msgid "Text in bold"
@@ -1142,36 +1142,36 @@ msgid "Underlined text"
 msgstr "Texte souligné"
 
 #: 
-msgid "Save the chat"
-msgstr "Enregistrer la discussion"
+#~ msgid "Save the chat"
+#~ msgstr "Enregistrer la discussion"
 
 #: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
 msgstr "Cliquez sur le lien suivant pour obtenir l'historique de la discussion. Cliquez à nouveau pour le récupérer."
 
 #: 
-msgid "Generate the file!"
-msgstr "Générer le fichier !"
+#~ msgid "Generate the file!"
+#~ msgstr "Générer le fichier !"
 
 #: 
-msgid "Download the file!"
-msgstr "Télécharger la conversation !"
+#~ msgid "Download the file!"
+#~ msgstr "Télécharger la conversation !"
 
 #: 
-msgid "Clean the current chat..."
-msgstr "Effacer la conversation courante..."
+#~ msgid "Clean the current chat..."
+#~ msgstr "Effacer la conversation courante..."
 
 #: 
-msgid "Display user profile..."
-msgstr "Afficher le profil de l'utilisateur..."
+#~ msgid "Display user profile..."
+#~ msgstr "Afficher le profil de l'utilisateur..."
 
 #: 
-msgid "Add this contact to your friends..."
-msgstr "Ajouter cette personne à vos amis..."
+#~ msgid "Add this contact to your friends..."
+#~ msgstr "Ajouter cette personne à vos amis..."
 
 #: 
-msgid "Add this groupchat to your favorites..."
-msgstr "Ajouter ce salon à vos favoris..."
+#~ msgid "Add this groupchat to your favorites..."
+#~ msgstr "Ajouter ce salon à vos favoris..."
 
 #: 
 msgid "All tabs"
@@ -1186,8 +1186,8 @@ msgid "no subject defined for this room."
 msgstr "aucun sujet défini pour ce salon."
 
 #: 
-msgid "Administration panel for this room..."
-msgstr "Panneau d'administration du salon..."
+#~ msgid "Administration panel for this room..."
+#~ msgstr "Panneau d'administration du salon..."
 
 #: 
 msgid "Moderators"
@@ -1202,12 +1202,12 @@ msgid "Visitors"
 msgstr "Visiteurs"
 
 #: 
-msgid "Manage my favorites rooms"
-msgstr "Gérer mes salons favoris"
+#~ msgid "Manage my favorites rooms"
+#~ msgstr "Gérer mes salons favoris"
 
 #: 
-msgid "Change my favorites"
-msgstr "Gérer mes favoris"
+#~ msgid "Change my favorites"
+#~ msgstr "Gérer mes favoris"
 
 #: 
 msgid "Search a room"
@@ -1314,8 +1314,8 @@ msgid "Service offline or broken"
 msgstr "Service hors ligne ou cassé"
 
 #: 
-msgid "My inbox"
-msgstr "Ma messagerie"
+#~ msgid "My inbox"
+#~ msgstr "Ma messagerie"
 
 #: 
 msgid "Available actions"
@@ -1342,12 +1342,12 @@ msgid "Content"
 msgstr "Contenu"
 
 #: 
-msgid "Send the message"
-msgstr "Envoyer le message"
+#~ msgid "Send the message"
+#~ msgstr "Envoyer le message"
 
 #: 
-msgid "No message stored in your inbox."
-msgstr "Aucun message n'est présent dans votre boîte de réception."
+#~ msgid "No message stored in your inbox."
+#~ msgstr "Aucun message n'est présent dans votre boîte de réception."
 
 #: 
 msgid "MUC administration"
@@ -1358,8 +1358,8 @@ msgid "You administrate this room"
 msgstr "Vous administrez ce salon"
 
 #: 
-msgid "Enter the new subject"
-msgstr "Entrez le nouveau sujet"
+#~ msgid "Enter the new subject"
+#~ msgstr "Entrez le nouveau sujet"
 
 #: 
 msgid "Configuration"
@@ -1470,8 +1470,8 @@ msgid "Welcome on %1s, « %2s »."
 msgstr "Bienvenue sur %1s, « %2s »."
 
 #: 
-msgid "Login to your existing XMPP account or create a new one, that's fast and free!"
-msgstr "Connectez-vous à un compte XMPP existant ou créez-en un nouveau, c'est rapide et gratuit !"
+#~ msgid "Login to your existing XMPP account or create a new one, that's fast and free!"
+#~ msgstr "Connectez-vous à un compte XMPP existant ou créez-en un nouveau, c'est rapide et gratuit !"
 
 #: 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
@@ -1490,8 +1490,8 @@ msgid "General"
 msgstr "Général"
 
 #: 
-msgid "XMPP ID"
-msgstr "ID XMPP"
+#~ msgid "XMPP ID"
+#~ msgstr "ID XMPP"
 
 #: 
 msgid "Advanced"
@@ -1538,8 +1538,8 @@ msgid "Required"
 msgstr "Requis"
 
 #: 
-msgid "You've successfully been registered, here's your XMPP ID:"
-msgstr "Vous avez été inscrit avec succès, voici votre ID XMPP :"
+#~ msgid "You've successfully been registered, here's your XMPP ID:"
+#~ msgstr "Vous avez été inscrit avec succès, voici votre ID XMPP :"
 
 #: 
 msgid "Manager"
@@ -1558,8 +1558,8 @@ msgid "Uncrypted"
 msgstr "Non-chiffré"
 
 #: 
-msgid "Where am I?"
-msgstr "Où suis-je ?"
+#~ msgid "Where am I?"
+#~ msgstr "Où suis-je ?"
 
 #: 
 msgid "What's up with you?"
@@ -1610,8 +1610,8 @@ msgid "No result!"
 msgstr "Aucun résultat !"
 
 #: 
-msgid "No notification!"
-msgstr "Aucune notification !"
+#~ msgid "No notification!"
+#~ msgstr "Aucune notification !"
 
 #: 
 msgid "would like to add you as a friend."
@@ -1634,8 +1634,8 @@ msgid "No"
 msgstr "Non"
 
 #: 
-msgid "would like to get an authorization."
-msgstr "voudrait obtenir une autorisation."
+#~ msgid "would like to get an authorization."
+#~ msgstr "voudrait obtenir une autorisation."
 
 #: 
 msgid "Submit"
@@ -1658,8 +1658,8 @@ msgid "Comments"
 msgstr "Commentaires"
 
 #: 
-msgid "User infos"
-msgstr "Informations de l'utilisateur"
+#~ msgid "User infos"
+#~ msgstr "Informations de l'utilisateur"
 
 #: 
 msgid "See his/her position on the globe"
@@ -1726,8 +1726,8 @@ msgid "Please enable JavaScript"
 msgstr "Veuillez activer JavaScript"
 
 #: 
-msgid "My channel"
-msgstr "Mon canal"
+#~ msgid "My channel"
+#~ msgstr "Mon canal"
 
 #: 
 msgid "Channel of"
@@ -1738,16 +1738,16 @@ msgid "More notices..."
 msgstr "Plus d'avis..."
 
 #: 
-msgid "Attach a file..."
-msgstr "Attacher un fichier..."
+#~ msgid "Attach a file..."
+#~ msgstr "Attacher un fichier..."
 
 #: 
-msgid "Unattach the file..."
-msgstr "Détacher le fichier..."
+#~ msgid "Unattach the file..."
+#~ msgstr "Détacher le fichier..."
 
 #: 
-msgid "Who can see it..."
-msgstr "Qui peut voir ça..."
+#~ msgid "Who can see it..."
+#~ msgstr "Qui peut voir ça..."
 
 #: 
 msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
@@ -1770,8 +1770,8 @@ msgid "Internal server error, try later"
 msgstr "Erreur interne du serveur, essayez plus tard"
 
 #: 
-msgid "Your form has been sent successfully."
-msgstr "Votre formulaire a bien été envoyé."
+#~ msgid "Your form has been sent successfully."
+#~ msgstr "Votre formulaire a bien été envoyé."
 
 #: 
 msgid "Application"
@@ -1806,24 +1806,24 @@ msgid "Welcome on Jappix, your own social cloud!"
 msgstr "Bienvenue sur Jappix, votre propre nuage social !"
 
 #: 
-msgid "Before you start using it, you'll have to change some settings, search for friends and complete your profile."
-msgstr "Avant que vous ne l'utilisiez, vous devrez renseigner quelques paramètres, rechercher vos amis et éditer votre profil."
+#~ msgid "Before you start using it, you'll have to change some settings, search for friends and complete your profile."
+#~ msgstr "Avant que vous ne l'utilisiez, vous devrez renseigner quelques paramètres, rechercher vos amis et éditer votre profil."
 
 #: 
-msgid "Enable the notification sounds"
-msgstr "Activer les sons de notification"
+#~ msgid "Enable the notification sounds"
+#~ msgstr "Activer les sons de notification"
 
 #: 
-msgid "Share my position on the globe"
-msgstr "Partager ma position sur le globe"
+#~ msgid "Share my position on the globe"
+#~ msgstr "Partager ma position sur le globe"
 
 #: 
-msgid "Offline buddies"
-msgstr "Contacts déconnectés"
+#~ msgid "Offline buddies"
+#~ msgstr "Contacts déconnectés"
 
 #: 
-msgid "Don't hide offline buddies"
-msgstr "Ne pas masquer les contacts hors ligne"
+#~ msgid "Don't hide offline buddies"
+#~ msgstr "Ne pas masquer les contacts hors ligne"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
@@ -1834,8 +1834,8 @@ msgid "Great work! When you will press the save button, the profile editor will 
 msgstr "Super boulot ! Quand vous cliquerez sur le bouton d'enregistrement, l'éditeur de profil sera ouvert."
 
 #: 
-msgid "All the Jappix team thank you for your interest. Happy socializing!"
-msgstr "Toute l'équipe de Jappix vous remercie pour votre intérêt. Bonne socialisation !"
+#~ msgid "All the Jappix team thank you for your interest. Happy socializing!"
+#~ msgstr "Toute l'équipe de Jappix vous remercie pour votre intérêt. Bonne socialisation !"
 
 #: 
 msgid "Unknown name"
@@ -1870,8 +1870,8 @@ msgid "This tool will help you fastly install Jappix, the first full-featured XM
 msgstr "Cet outil vous aidera à installer rapidement Jappix, le premier réseau social complet utilisant XMPP, sur votre serveur. Vous n'avez même pas besoin d'avoir des connaissances techniques."
 
 #: 
-msgid "Let's have a look to the installation steps:"
-msgstr "Jetons un coup d'œil aux étapes de l'installation :"
+#~ msgid "Let's have a look to the installation steps:"
+#~ msgstr "Jetons un coup d'œil aux étapes de l'installation :"
 
 #: 
 msgid "Welcome"
@@ -1910,8 +1910,8 @@ msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr "Il est temps de créer votre propre nuage social : rendez-vous à l'étape suivante !"
 
 #: 
-msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr "Jappix stocke les données persistantes (tout comme les fichiers partagés, les archives des discussions, votre propre musique et sa configuration) dans un seul dossier de stockage sécurisé."
+#~ msgid "Jappix stores the persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+#~ msgstr "Jappix stocke les données persistantes (tout comme les fichiers partagés, les archives des discussions, votre propre musique et sa configuration) dans un seul dossier de stockage sécurisé."
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
@@ -1930,8 +1930,8 @@ msgid "When Jappix will be installed, just click on the manager link on the home
 msgstr "Quand Jappix sera installé, vous n'aurez qu'à cliquer sur le lien vers le gestionnaire sur la page d'accueil pour y accéder."
 
 #: 
-msgid "Ups, you missed something or the two passwords do not match!"
-msgstr "Oups, vous avez raté quelque-chose ou les deux mots de passe ne correspondent pas !"
+#~ msgid "Ups, you missed something or the two passwords do not match!"
+#~ msgstr "Oups, vous avez raté quelque-chose ou les deux mots de passe ne correspondent pas !"
 
 #: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
@@ -2034,8 +2034,8 @@ msgid "Check again"
 msgstr "Vérifier à nouveau"
 
 #: 
-msgid "The folder is not writable, apply the good rights to the %s directory."
-msgstr "Le dossier ne peut pas être écrit, appliquez les bons droits au dossier %s."
+#~ msgid "The folder is not writable, apply the good rights to the %s directory."
+#~ msgstr "Le dossier ne peut pas être écrit, appliquez les bons droits au dossier %s."
 
 #: 
 msgid "%s is installed on your system."
@@ -2086,20 +2086,20 @@ msgid "This is a restricted area: only the authorized users can manage this Japp
 msgstr "Ceci est une zone à accès limité : seulement les personnes autorisées peuvent gérer ce nœud Jappix."
 
 #: 
-msgid "Please login to access the administration panel, thanks to the form below."
-msgstr "Authentifiez-vous pour accéder au panneau d'administration, grâce au formulaire ci-dessous."
+#~ msgid "Please login to access the administration panel, thanks to the form below."
+#~ msgstr "Authentifiez-vous pour accéder au panneau d'administration, grâce au formulaire ci-dessous."
 
 #: 
 msgid "Credentials"
 msgstr "Identifiants"
 
 #: 
-msgid "You have been successfully logged out. Goodbye!"
-msgstr "Vous avez été déconnecté avec succès. À bientôt !"
+#~ msgid "You have been successfully logged out. Goodbye!"
+#~ msgstr "Vous avez été déconnecté avec succès. À bientôt !"
 
 #: 
-msgid "Ups, I cannot recognize you as a valid administrator. Check your credentials!"
-msgstr "Oups, je ne peux pas vous reconnaître en tant qu'administrateur valide. Vérifiez vos identifiants !"
+#~ msgid "Ups, I cannot recognize you as a valid administrator. Check your credentials!"
+#~ msgstr "Oups, je ne peux pas vous reconnaître en tant qu'administrateur valide. Vérifiez vos identifiants !"
 
 #: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
@@ -2122,8 +2122,8 @@ msgid "Jappix is fully customisable: you can change its design right here."
 msgstr "Jappix est entièrement personnalisable : vous pouvez modifier son apparence ici-même."
 
 #: 
-msgid "The requested change has been successfully done!"
-msgstr "Le changement soumis a été opéré avec succès !"
+#~ msgid "The requested change has been successfully done!"
+#~ msgstr "Le changement soumis a été opéré avec succès !"
 
 #: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
@@ -2186,8 +2186,8 @@ msgid "What's new?"
 msgstr "Quoi de nouveau ?"
 
 #: 
-msgid "A new Jappix version is available! Watch out what is new and launch the update!"
-msgstr "Une nouvelle version de Jappix est disponible ! Jetez un œil à ce qui est nouveau et lancez la mise à jour !"
+#~ msgid "A new Jappix version is available! Watch out what is new and launch the update!"
+#~ msgstr "Une nouvelle version de Jappix est disponible ! Jetez un œil à ce qui est nouveau et lancez la mise à jour !"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
@@ -2202,28 +2202,28 @@ msgid "Update in progress"
 msgstr "Mise à jour en cours"
 
 #: 
-msgid "The Jappix update is finished: you are now running the latest version. Have fun!"
-msgstr "La mise à jour de Jappix est terminée: vous utilisez maintenant la dernière version. Amusez-vous bien !"
+#~ msgid "The Jappix update is finished: you are now running the latest version. Have fun!"
+#~ msgstr "La mise à jour de Jappix est terminée: vous utilisez maintenant la dernière version. Amusez-vous bien !"
 
 #: 
-msgid "The update has failed! Please try again later..."
-msgstr "La mise à jour a échoué ! Essayez plus tard..."
+#~ msgid "The update has failed! Please try again later..."
+#~ msgstr "La mise à jour a échoué ! Essayez plus tard..."
 
 #: 
-msgid "Downloading the package..."
-msgstr "Téléchargement du paquet..."
+#~ msgid "Downloading the package..."
+#~ msgstr "Téléchargement du paquet..."
 
 #: 
 msgid "Removing current Jappix system files..."
 msgstr "Suppression des fichiers systèmes de Jappix..."
 
 #: 
-msgid "Extracting the package..."
-msgstr "Extraction du paquet..."
+#~ msgid "Extracting the package..."
+#~ msgstr "Extraction du paquet..."
 
 #: 
-msgid "Regenerating the storage folder tree..."
-msgstr "Regénération de l'arbre du dossier de stockage..."
+#~ msgid "Regenerating the storage folder tree..."
+#~ msgstr "Regénération de l'arbre du dossier de stockage..."
 
 #: 
 msgid "Jappix is now up to date!"
@@ -2318,16 +2318,16 @@ msgid "The folder is empty."
 msgstr "Le dossier est vide."
 
 #: 
-msgid "I could not receive the music file, please retry!"
-msgstr "Je n'ai pas pû recevoir le fichier musical, réessayez !"
+#~ msgid "I could not receive the music file, please retry!"
+#~ msgstr "Je n'ai pas pû recevoir le fichier musical, réessayez !"
 
 #: 
 #~ msgid "This is not a valid music file, please encode it with Vorbis!"
 #~ msgstr "Ce n'est pas un fichier musical valide, encodez-le avec Vorbis !"
 
 #: 
-msgid "Your music file was successfully added!"
-msgstr "Votre fichier musical a été ajouté avec succès !"
+#~ msgid "Your music file was successfully added!"
+#~ msgstr "Votre fichier musical a été ajouté avec succès !"
 
 #: 
 #~ msgid "You must select files to remove!"
@@ -2346,12 +2346,12 @@ msgid "Remove users with this tool. Note that you cannot remove an user if he is
 msgstr "Supprimez des utilisateurs avec cet outil. Notez que vous ne pouvez pas supprimer un utilisateur s'il est le seul restant."
 
 #: 
-msgid "The user has been successfully added!"
-msgstr "L'utilisateur a été ajouté avec succès !"
+#~ msgid "The user has been successfully added!"
+#~ msgstr "L'utilisateur a été ajouté avec succès !"
 
 #: 
-msgid "The chosen users have been successfully removed."
-msgstr "Les utilisateurs choisis ont été supprimés avec succès."
+#~ msgid "The chosen users have been successfully removed."
+#~ msgstr "Les utilisateurs choisis ont été supprimés avec succès."
 
 #: 
 msgid "You must select one or more users to be removed!"
@@ -2378,8 +2378,8 @@ msgid "Stay tuned in what your users store on your server and remove undesired c
 msgstr "Restez informé de ce que vos utilisateurs stockent sur votre serveur, et supprimez le contenu indésirable avec cet outil."
 
 #: 
-msgid "The selected elements have been successfully removed."
-msgstr "Les éléments sélectionnés ont été effacés avec succès."
+#~ msgid "The selected elements have been successfully removed."
+#~ msgstr "Les éléments sélectionnés ont été effacés avec succès."
 
 #: 
 msgid "You must select elements to remove!"
@@ -2438,8 +2438,8 @@ msgid "HTTPS storage"
 msgstr "Stockage HTTPS"
 
 #: 
-msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
-msgstr "Envoyez votre musique (Ogg Vorbis, MP3 ou WAV) pour pouvoir l'écouter en utilisant Jappix !"
+#~ msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
+#~ msgstr "Envoyez votre musique (Ogg Vorbis, MP3 ou WAV) pour pouvoir l'écouter en utilisant Jappix !"
 
 #: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
@@ -2462,8 +2462,8 @@ msgstr "Le fichier que vous souhaitez envoyer doit être plus petit que %s."
 #~ msgstr ""
 
 #: 
-msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
-msgstr "Pour améliorer la sécurité, les sessions sont limitées dans le temps, et, quand votre navigateur sera fermé, vous serez déconnecté."
+#~ msgid "To improve the security, the sessions are limited in time and when your browser will be closed, you will be logged out."
+#~ msgstr "Pour améliorer la sécurité, les sessions sont limitées dans le temps, et, quand votre navigateur sera fermé, vous serez déconnecté."
 
 #: 
 msgid "Use default background"
@@ -2494,16 +2494,16 @@ msgid "Advanced notice"
 msgstr "Annonce avancée"
 
 #: 
-msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
-msgstr "Vous pouvez personnaliser votre annonce avec du code HTML, JS et CSS incorporé, mais vous devez coder l'apparence."
+#~ msgid "You can customize your notice with embedded HTML code, JS code and CSS, but you need to code the style."
+#~ msgstr "Vous pouvez personnaliser votre annonce avec du code HTML, JS et CSS incorporé, mais vous devez coder l'apparence."
 
 #: 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
 msgstr "Définissez, avec cet outil, une annonce de page d'accueil pour tous vos utilisateurs, comme un avertissement, un message important ou une publicité."
 
 #: 
-msgid "Your design preferences have been successfully saved!"
-msgstr "Vos préférences d'apparence ont été enregistrées avec succès !"
+#~ msgid "Your design preferences have been successfully saved!"
+#~ msgstr "Vos préférences d'apparence ont été enregistrées avec succès !"
 
 #: 
 msgid "Please check your inputs: something is missing!"
@@ -2546,28 +2546,28 @@ msgid "Select a background to use and change the display options."
 msgstr "Sélectionnez un fond à utiliser et modifiez les options d'affichage."
 
 #: 
-msgid "You can add a new background file to the list with this tool. Please send a valid image file."
-msgstr "Vous pouvez ajouter un nouveau fond à la liste avec cet outil. Veillez à envoyer un fichier image valide."
+#~ msgid "You can add a new background file to the list with this tool. Please send a valid image file."
+#~ msgstr "Vous pouvez ajouter un nouveau fond à la liste avec cet outil. Veillez à envoyer un fichier image valide."
 
 #: 
-msgid "This is not a valid image file, please use PNG, GIF or JPG!"
-msgstr "Ce n'est pas un fichier image valide, envoyez plutôt un PNG, GIF ou JPG !"
+#~ msgid "This is not a valid image file, please use PNG, GIF or JPG!"
+#~ msgstr "Ce n'est pas un fichier image valide, envoyez plutôt un PNG, GIF ou JPG !"
 
 #: 
-msgid "I did not receive any image file, would you mind retry?"
-msgstr "Je n'ai pas reçu de fichier image, pourriez-vous réessayer ?"
+#~ msgid "I did not receive any image file, would you mind retry?"
+#~ msgstr "Je n'ai pas reçu de fichier image, pourriez-vous réessayer ?"
 
 #: 
-msgid "Your image file was successfully added to the list!"
-msgstr "Votre fichier image a été ajouté à la liste avec succès !"
+#~ msgid "Your image file was successfully added to the list!"
+#~ msgstr "Votre fichier image a été ajouté à la liste avec succès !"
 
 #: 
-msgid "Manage background files"
-msgstr "Gérer les fonds"
+#~ msgid "Manage background files"
+#~ msgstr "Gérer les fonds"
 
 #: 
-msgid "If you want to remove some background files, use the browser below."
-msgstr "Si vous voulez supprimer quelques fonds, utilisez l'explorateur ci-dessous."
+#~ msgid "If you want to remove some background files, use the browser below."
+#~ msgstr "Si vous voulez supprimer quelques fonds, utilisez l'explorateur ci-dessous."
 
 #: 
 msgid "List"
@@ -2584,4 +2584,408 @@ msgstr "Tout"
 #: 
 msgid "Adapt"
 msgstr "Adapter"
+
+#: 
+msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
+msgstr "Votre navigateur est obsolète et ne fonctionnera pas correctement avec Jappix, essayez plutôt Mozilla Firefox."
+
+#: 
+msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
+msgstr "JavaScript est absent dans votre navigateur, vous ne pourrez donc pas lancer Jappix. Corrigez cela."
+
+#: 
+msgid "The element list on this server could not be obtained!"
+msgstr "La liste des éléments n'a pas pû être obtenue du serveur."
+
+#: 
+msgid "Your XMPP account has been removed, bye!"
+msgstr "Votre compte XMPP a été effacé, au revoir !"
+
+#: 
+msgid "You have been logged out of your XMPP account, have a nice day!"
+msgstr "Vous avez été déconnecté de votre compte XMPP, bonne journée !"
+
+#: 
+msgid "Your browser does not support this functionality, please try Mozilla Firefox."
+msgstr "Votre navigateur ne supporte pas cette fonctionnalité, essayez plutôt Mozilla Firefox."
+
+#: 
+msgid "The user that you want to reach is not present in the room."
+msgstr "L'utilisateur que vous souhaitez atteindre n'est pas présent dans le salon."
+
+#: 
+msgid "Add a friend"
+msgstr "Ajouter un ami"
+
+#: 
+msgid "Your groupchats"
+msgstr "Vos salons de discussion"
+
+#: 
+msgid "More stuff"
+msgstr "Plus de choses"
+
+#: 
+msgid "Get involved!"
+msgstr "Impliquez-vous !"
+
+#: 
+msgid "Translate"
+msgstr "Traduire"
+
+#: 
+msgid "Donate"
+msgstr "Faire un don"
+
+#: 
+msgid "Only show connected friends"
+msgstr "N'afficher que les amis en ligne"
+
+#: 
+msgid "Map of friends"
+msgstr "Carte des amis"
+
+#: 
+#~ msgid "Your Collections"
+#~ msgstr "Vos collections"
+
+#: 
+msgid "Friend"
+msgstr "Ami"
+
+#: 
+msgid "Join a chat"
+msgstr "Rejoindre une discussion"
+
+#: 
+msgid "View profile"
+msgstr "Voir le profil"
+
+#: 
+msgid "Your profile"
+msgstr "Votre profil"
+
+#: 
+msgid "Profile image"
+msgstr "Photo de profil"
+
+#: 
+msgid "Personal"
+msgstr "Personnel"
+
+#: 
+msgid "Nickname"
+msgstr "Pseudonyme"
+
+#: 
+msgid "First name"
+msgstr "Prénom"
+
+#: 
+msgid "Last name"
+msgstr "Nom"
+
+#: 
+msgid "Date of birth"
+msgstr "Date d'anniversaire"
+
+#: 
+msgid "Current"
+msgstr "Courant"
+
+#: 
+msgid "What a pity! You have no profile image defined in your identity card!"
+msgstr "Comment ça ? Vous n'avez pas de photo de profil définie dans votre carte d'identité !"
+
+#: 
+msgid "Address"
+msgstr "Adresse"
+
+#: 
+msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
+msgstr "Soyez prudent par rapport aux informations que vous inscrivez dans votre profil, étant donné que ceci peut être accessible de tous (même de ceux que vous ne voulez pas)."
+
+#: 
+msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
+msgstr "Tout n'est pas privé sur XMPP ; votre profil public est une de ces choses."
+
+#: 
+msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgstr "Il est fortement recommandé de définir une photo de profil (25Kio maximum), comme une image de vous, parce-que cela vous permet d'être facilement identifié par vos amis."
+
+#: 
+msgid "Edit options"
+msgstr "Éditer les options"
+
+#: 
+msgid "Empty channel"
+msgstr "Vider le canal"
+
+#: 
+msgid "Change password"
+msgstr "Changer de mot de passe"
+
+#: 
+msgid "Delete account"
+msgstr "Supprimer le compte"
+
+#: 
+msgid "Here it is! A new beautiful profile image!"
+msgstr "Et voilà ! Une nouvelle photo de profil !"
+
+#: 
+msgid "The image file is not supported or has a bad size."
+msgstr "Le fichier image n'est pas pris en charge ou est trop gros."
+
+#: 
+msgid "You"
+msgstr "Vous"
+
+#: 
+msgid "I would like to add you as a friend."
+msgstr "Je souhaiterai vous ajouter comme ami."
+
+#: 
+msgid "Change style"
+msgstr "Changer l'apparence"
+
+#: 
+msgid "Save chat"
+msgstr "Enregistrer la discussion"
+
+#: 
+msgid "Generate file!"
+msgstr "Générer le fichier !"
+
+#: 
+msgid "Download file!"
+msgstr "Télécharger le fichier !"
+
+#: 
+msgid "Clean current chat"
+msgstr "Nettoyer la discussion courante"
+
+#: 
+msgid "Show user profile"
+msgstr "Afficher le profil de l'utilisateur"
+
+#: 
+msgid "Add this contact to your friends"
+msgstr "Ajouter ce contact à vos amis"
+
+#: 
+msgid "Add this groupchat to your favorites"
+msgstr "Ajouter ce salon à vos favoris"
+
+#: 
+msgid "Administration panel for this room"
+msgstr "Panneau d'administration du salon"
+
+#: 
+msgid "Manage favorite rooms"
+msgstr "Gérer les salons favoris"
+
+#: 
+msgid "Change favorites"
+msgstr "Modifier les favoris"
+
+#: 
+msgid "Your inbox"
+msgstr "Votre boîte de réception"
+
+#: 
+msgid "Send message"
+msgstr "Envoyer le message"
+
+#: 
+msgid "Your inbox is empty."
+msgstr "Votre boîte de réception est vide."
+
+#: 
+msgid "Enter new subject"
+msgstr "Entrez le nouveau sujet"
+
+#: 
+msgid "Login to your existing XMPP account or create a new one for free!"
+msgstr "Connectez-vous à votre compte XMPP existant ou créez-en un nouveau gratuitement !"
+
+#: 
+msgid "You have been registered, here is your XMPP address:"
+msgstr "Vous avez été inscrit, voici votre adresse XMPP :"
+
+#: 
+msgid "Where are you?"
+msgstr "Où êtes-vous ?"
+
+#: 
+msgid "No notifications."
+msgstr "Pas de notifications."
+
+#: 
+msgid "would like to get authorization."
+msgstr "voudrait obtenir une autorisation."
+
+#: 
+msgid "User profile"
+msgstr "Profil de l'utilisateur"
+
+#: 
+msgid "Your channel"
+msgstr "Votre canal"
+
+#: 
+msgid "Attach a file"
+msgstr "Attacher un fichier"
+
+#: 
+msgid "Unattach the file"
+msgstr "Détacher le fichier"
+
+#: 
+msgid "Your form has been sent."
+msgstr "Votre formulaire a été soumis."
+
+#: 
+msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
+msgstr "Avant que vous ne commenciez à l'utiliser, vous aurez à changer quelques paramètres, rechercher vos amis et compléter votre profil."
+
+#: 
+msgid "Enable notification sounds"
+msgstr "Activer les sons de notification"
+
+#: 
+msgid "Share your position on the globe"
+msgstr "Partager votre position sur le globe"
+
+#: 
+msgid "Offline friends"
+msgstr "Amis hors ligne"
+
+#: 
+msgid "Don't hide offline friends"
+msgstr "Ne pas masquer les amis hors ligne"
+
+#: 
+msgid "Thanks from the Jappix team for your interest. Happy socializing!"
+msgstr "L'équipe derrière Jappix vous remercie pour votre intérêt. Bonne socialisation !"
+
+#: 
+msgid "Let's have a look at the installation steps:"
+msgstr "Jetons un coup d'œil aux étapes de l'installation :"
+
+#: 
+msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgstr "Jappix stocke les données persistantes (comme les fichiers partagés, les historiques des discussions et sa configuration) dans un dossier de stockage sécurisé."
+
+#: 
+msgid "Oops, you missed something or the two passwords do not match!"
+msgstr "Oups, vous avez oublié quelque-chose ou les deux mots de passe ne correspondent pas !"
+
+#: 
+msgid "The folder is not writable, set the right permissions to the %s directory."
+msgstr "Le dossier ne peut pas être écrit, appliquez les bonnes permissions au dossier %s."
+
+#: 
+msgid "Please use the form below to login to the administration panel."
+msgstr "Utilisez le formulaire ci-dessous pour vous connecter au panneau d'administration."
+
+#: 
+msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
+msgstr "Pour améliorer la sécurité, les sessions sont limitées dans le temps, et quand votre navigateur sera fermé, vous serez déconnecté."
+
+#: 
+msgid "You have been logged out. Goodbye!"
+msgstr "Vous avez été déconnecté. Au revoir !"
+
+#: 
+msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
+msgstr "Oups, vous n'avez pas pû être reconnu comme administrateur valide. Vérifiez vos identifiants !"
+
+#: 
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
+msgstr "Ce n'est pas une image valide, utilisez du PNG, GIF ou JPG !"
+
+#: 
+msgid "The image could not be received, would you mind retry?"
+msgstr "L'image n'a pas pû être reçue, pourriez-vous réessayer ?"
+
+#: 
+msgid "Your image was added to the list!"
+msgstr "Votre image a été ajoutée à la liste !"
+
+#: 
+msgid "Changes saved!"
+msgstr "Les changements ont été sauvegardés !"
+
+#: 
+msgid "Your design preferences have been saved!"
+msgstr "Vos préférences d'apparence ont été enregistrées !"
+
+#: 
+msgid "Manage backgrounds"
+msgstr "Gérer les fonds"
+
+#: 
+msgid "You can add a new background to the list with this tool. Please send a valid image."
+msgstr "Vous pouvez ajouter un nouveau fond à la liste avec cet outil. Veillez à envoyer une image valide."
+
+#: 
+msgid "If you want to remove some backgrounds, use the browser below."
+msgstr "Si vous voulez enlever des fonds, utilisez le navigateur ci-dessous."
+
+#: 
+msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
+msgstr "Vous pouvez personnaliser votre annonce avec du code intégré (HTML, CSS et JS), mais vous devez coder l'apparence."
+
+#: 
+msgid "A new Jappix version is available! Check what is new and launch the update!"
+msgstr "Une nouvelle version de Jappix est disponible ! Jetez un coup d'œil à ce qui est nouveau et lancez la mise à jour !"
+
+#: 
+msgid "Jappix has been updated: you are now running the latest version. Have fun!"
+msgstr "Jappix a été mis à jour : vous utilisez à présent la dernière version. Amusez-vous bien !"
+
+#: 
+msgid "The update has failed! Please try again later."
+msgstr "La mise à jour a échoué ! Veuillez réessayer plus tard."
+
+#: 
+msgid "Downloading package..."
+msgstr "Téléchargement du paquet..."
+
+#: 
+msgid "Extracting package..."
+msgstr "Extraction du paquet..."
+
+#: 
+msgid "Regenerating storage folder tree..."
+msgstr "Regénération de l'arbre de stockage..."
+
+#: 
+msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
+msgstr "Envoyez votre musique (Ogg Vorbis, MP3 ou WAV) pour pouvoir l'écouter depuis Jappix !"
+
+#: 
+msgid "The music could not be received, please retry!"
+msgstr "La musique n'a pas pû être reçue, veuillez réessayer !"
+
+#: 
+msgid "Your music has been added!"
+msgstr "Votre musique a été ajoutée !"
+
+#: 
+msgid "The selected elements have been removed."
+msgstr "Les éléments sélectionnés ont été enlevés."
+
+#: 
+msgid "The user has been added!"
+msgstr "L'utilisateur a été ajouté !"
+
+#: 
+msgid "The chosen users have been removed."
+msgstr "Les utilisateurs sélectionnés ont été enlevés."
+
+#: 
+msgid "Your collections"
+msgstr "Vos collections"
 

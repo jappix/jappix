@@ -85,7 +85,7 @@ function generateChat(type, id, xid, nick) {
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
 		specialClass = ' tools-muc-close';
 		specialCode = '<div class="content groupchat-content" id="chatContentFor' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
-		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room...") + '"></a>';
+		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
 		specialStyle = '';
 		
 		// Is this a gateway?
@@ -110,7 +110,7 @@ function generateChat(type, id, xid, nick) {
 			      		'<div class="gone one-chatstate">' + _e("Your friend closed the chat.") + '</div>' + 
 			      '</div>';
 		
-		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Display user profile...") + '" onclick="openUserInfos(\'' + xid + '\');"></a>';
+		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '" onclick="openUserInfos(\'' + xid + '\');"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -120,9 +120,9 @@ function generateChat(type, id, xid, nick) {
 		var addTitle;
 		
 		if(type == 'chat')
-			addTitle = _e("Add this contact to your friends...");
+			addTitle = _e("Add this contact to your friends");
 		else
-			addTitle = _e("Add this groupchat to your favorites...");
+			addTitle = _e("Add this groupchat to your favorites");
 		
 		specialLink += '<a class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
 	}
@@ -160,7 +160,7 @@ function generateChat(type, id, xid, nick) {
 						
 						'<div class="tooltip bubble-style">' + 
 							'<div class="tooltip-subitem">' + 
-								'<p class="tooltip-right-top">' + _e("Change the style") + '</p>' + 
+								'<p class="tooltip-right-top">' + _e("Change style") + '</p>' + 
 								'<label class="bold">' + _e("Text in bold") + '</label><input type="checkbox" class="bold" />' + 
 								'<label class="italic">' + _e("Text in italic") + '</label><input type="checkbox" class="italic" />' + 
 								'<label class="underline">' + _e("Underlined text") + '</label><input type="checkbox" class="underline" />' + 
@@ -183,17 +183,17 @@ function generateChat(type, id, xid, nick) {
 						
 						'<div class="tooltip bubble-save">' + 
 							'<div class="tooltip-subitem">' + 
-								'<p class="tooltip-right-top">' + _e("Save the chat") + '</p>' + 
+								'<p class="tooltip-right-top">' + _e("Save chat") + '</p>' + 
 								'<p style="margin-bottom: 8px;">' + _e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>' + 
-								'<a class="tooltip-right-dchat" onclick="downloadChat(\'' + xid + '\');">' + _e("Generate the file!") + '</a>' + 
-								'<a class="tooltip-right-fchat" target="_blank">' + _e("Download the file!") + '</a>' + 
+								'<a class="tooltip-right-dchat" onclick="downloadChat(\'' + xid + '\');">' + _e("Generate file!") + '</a>' + 
+								'<a class="tooltip-right-fchat" target="_blank">' + _e("Download file!") + '</a>' + 
 							'</div>' + 
 							
 							'<div class="tooltip-subarrow talk-images"></div>' + 
 						'</div>' + 
 					'</div>' + 
 					
-					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean the current chat...") + '" onclick="cleanChat(\'' + id + '\');"></a>' + 
+					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '" onclick="cleanChat(\'' + id + '\');"></a>' + 
 					
 					specialLink + 
 					

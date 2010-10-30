@@ -384,7 +384,7 @@ function handleDataFormContent(iq, type) {
 			// Command completed or subscription done
 			else if((bStatus == 'completed' && type == 'command') || (!xRegister && type == 'subscribe')) {
 				// Tell the user all was okay
-				$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent successfully.") + '</div>');
+				$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
 				
 				buttonsDataForm(type, 'back', sessionID, from, '', '', '', target, pathID);
 				
@@ -469,7 +469,7 @@ function fillDataForm(xml, id) {
 	});
 	
 	// Form username
-	appendDataForm(selector, id, target, _e("Nick"), 'username');
+	appendDataForm(selector, id, target, _e("Nickname"), 'username');
 	
 	// Form password
 	appendDataForm(selector, id, target, _e("Password"), 'password');
