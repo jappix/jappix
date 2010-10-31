@@ -71,13 +71,13 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	.replace(/(;-?\))($|\s|<)/gi, emoteImage('wink', '$1', '$2'))
 	
 	// Text in bold
-	.replace(/(^|\s|>)(\*)([^<>'"]+)(\*)($|\s|<)/gi, '$1<b>$3</b>$5')
+	.replace(/(^|\s|>)(\*)([^<>'"]+)(\*)($|\s|<)/gi, '$1$2<b>$3</b>$4$5')
 	
 	// Italic text
-	.replace(/(^|\s|>)(\/)([^<>'"]+)(\/)($|\s|<)/gi, '$1<i>$3</i>$5')
+	.replace(/(^|\s|>)(\/)([^<>'"]+)(\/)($|\s|<)/gi, '$1$2<i>$3</i>$4$5')
 	
 	// Underlined text
-	.replace(/(^|\s|>)(_)([^<>'"]+)(_)($|\s|<)/gi, '$1<span style="text-decoration: underline;">$3</span>$5');
+	.replace(/(^|\s|>)(_)([^<>'"]+)(_)($|\s|<)/gi, '$1$2<span style="text-decoration: underline;">$3</span>$4$5');
 	
 	// This is not yet a xHTML message (to avoid generating a link over another one)
 	if(html_encode) {
