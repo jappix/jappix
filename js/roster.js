@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 31/10/10
 
 */
 
@@ -81,7 +81,7 @@ function updateGroups() {
 			$(this).remove();
 		
 		// If the group contains no online buddy (and is not just hidden)
-		if(!hidden && ($(this).find('.group span').text() == '-'))
+		if(!hidden && $(this).find('a.group').hasClass('minus'))
 			$(this).hide();
 		else
 			$(this).show();
@@ -122,12 +122,12 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 				if(!exists(groupContent)) {
 					// Define some things
 					var groupCont = '#buddy-list .content';
-					var groupToggle = groupCont + ' .' + groupHash + ' p.group';
+					var groupToggle = groupCont + ' .' + groupHash + ' a.group';
 					
 					// Create the HTML markup of the group
 					$(groupCont).prepend(
 						'<div class="' + groupHash + ' one-group removable" data-group="' + cGroup.htmlEnc() + '">' + 
-							'<p class="group"><span>-</span> ' + cGroup.htmlEnc() + '</p>' + 
+							'<a class="group talk-images minus">' + cGroup.htmlEnc() + '</a>' + 
 							'<div class="group-buddies"></div>' + 
 						'</div>'
 					);
@@ -135,18 +135,18 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					// Create the click event which will hide and show the content
 					$(groupToggle).click(function() {
 						var group = $(groupBuddies);
-						var span = $(groupContent + ' span');
+						var group_toggle = $(groupContent + ' a.group');
 						
 						// We must hide the buddies
-						if(span.text() == '-') {
+						if(group_toggle.hasClass('minus')) {
 							group.hide();
-							span.text('+');
+							group_toggle.removeClass('minus').addClass('plus');
 						}
 						
 						// We must show the buddies
 						else {
+							group_toggle.removeClass('plus').addClass('minus');
 							group.show();
-							span.text('-');
 						}
 					});
 				}

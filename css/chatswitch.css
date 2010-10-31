@@ -8,7 +8,7 @@ This is the chat-switch CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/10/10
+Last revision: 31/10/10
 
 */
 
@@ -191,29 +191,5 @@ Last revision: 03/10/10
 }
 
 #chat-switch .channel .icon {
-	background-position: 0 -58px;
-}
-
-#chat-switch .groupchat-default {
-	background-position: -32px -42px;
-}
-
-#chat-switch .unavailable {
-	background-position: 0 -154px;
-}
-
-#chat-switch .available {
-	background-position: 0 -170px;
-}
-
-#chat-switch .away {
-	background-position: 0 -186px;
-}
-
-#chat-switch .busy {
-	background-position: 0 -202px;
-}
-
-#chat-switch .error {
-	background-position: 0 -218px;
+	background-position: 0 -59px;
 }

@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/10/10
+Last revision: 31/10/10
 
 */
 
@@ -196,8 +196,6 @@ function generateChat(type, id, xid, nick) {
 					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '" onclick="cleanChat(\'' + id + '\');"></a>' + 
 					
 					specialLink + 
-					
-					'<a class="tools-close' + specialClass + ' tools-tooltip talk-images" title="' + _e("Close this tab") + '" onclick="quitThisChat(\'' + xid + '\', \'' + id + '\', \'' + type + '\');"></a>' + 
 				'</div>' + 
 				
 				'<textarea class="message-area" ' + specialDisabled + ' data-to="' + xid + '" /></textarea>' + 

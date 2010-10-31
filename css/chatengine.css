@@ -8,7 +8,7 @@ This is the chat-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/10/10
+Last revision: 31/10/10
 
 */
 
@@ -305,40 +305,33 @@ Last revision: 10/10/10
 	margin-left: 4px;
 }
 
-#chat-engine .text .tools .tools-smileys {
-	background-position: -16px -58px;
+#chat-engine .text .tools-smileys {
+	background-position: 0 -388px;
 }
 
-#chat-engine .text .tools .tools-style {
-	background-position: -32px -58px;
+#chat-engine .text .tools-style {
+	background-position: 0 -700px;
 }
 
-#chat-engine .text .tools .tools-save {
-	background-position: -48px -58px;
+#chat-engine .text .tools-save {
+	background-position: 0 -719px;
 }
 
-#chat-engine .text .tools .tools-clear {
-	background-position: -64px -58px;
+#chat-engine .text .tools-clear {
+	background-position: 0 -739px;
 }
 
-#chat-engine .text .tools .tools-infos {
-	background-position: -80px -58px;
+#chat-engine .text .tools-infos {
+	background-position: 0 -758px;
 }
 
-#chat-engine .text .tools .tools-add {
-	background-position: 0 -42px;
+#chat-engine .text .tools-add {
 	display: none;
 }
 
-#chat-engine .text .tools .tools-mucadmin {
-	background-position: -96px -58px;
+#chat-engine .text .tools-mucadmin {
+	background-position: 0 -777px;
 	display: none;
-}
-
-#chat-engine .text .tools .tools-close {
-	background-position: -112px -58px;
-	margin: 1px 4px 1px 4px;
-	float: right;
 }
 
 #chat-engine .bubble-style label.bold {
@@ -427,7 +420,7 @@ Last revision: 10/10/10
 }
 
 .tooltip-subarrow {
-	background-position: 0 -244px;
+	background-position: 0 -251px;
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;

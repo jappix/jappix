@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/09/10
+Last revision: 31/10/10
 
 */
 
@@ -82,23 +82,23 @@ Last revision: 25/09/10
 }
 
 #welcome a.box span.image.sound {
-	background-position: -784px -724px;
+	background-position: 0 -900px;
 }
 
 #welcome a.box span.image.geolocation {
-	background-position: 0 -659px;
+	background-position: 0 -658px;
 }
 
 #welcome a.box span.image.xmpp {
-	background-position: -784px -829px;
+	background-position: 0 -990px;
 }
 
 #welcome a.box span.image.archives {
-	background-position: -784px -876px;
+	background-position: 0 -1025px;
 }
 
 #welcome a.box span.image.offline {
-	background-position: 0 -74px;
+	background-position: 0 -80px;
 }
 
 #welcome div.results {

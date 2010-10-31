@@ -8,7 +8,7 @@ This is the favorites CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/08/10
+Last revision: 31/10/10
 
 */
 
@@ -52,6 +52,10 @@ Last revision: 30/08/10
 	cursor: pointer;
 }
 
+#favorites .switch-fav .room-switcher:active {
+	background: #d8e1e3;
+}
+
 #favorites .switch-fav .icon {
 	float: left;
 	height: 16px;
@@ -60,19 +64,11 @@ Last revision: 30/08/10
 }
 
 #favorites .switch-fav .room-list .list-icon {
-	background-position: 0 0;
-}
-
-#favorites .switch-fav .room-list .muc-favorites-list {
-	width: 190px;
-}
-
-#favorites .switch-fav .room-list .muc-favorites-list:hover {
-	cursor: pointer;
+	background-position: 0 -855px;
 }
 
 #favorites .switch-fav .room-search .search-icon {
-	background-position: -16px 0;
+	background-position: 0 -876px;
 }
 
 #favorites .static-fav {

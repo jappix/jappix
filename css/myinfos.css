@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
@@ -54,24 +54,24 @@ Last revision: 27/10/10
 
 .status-unavailable,
 .status-error {
-	background-position: 0 -74px;
+	background-position: 0 -80px;
 }
 
 .status-available {
 	display: block;
-	background-position: 0 -90px;
+	background-position: 0 -96px;
 }
 
 .status-chat {
-	background-position: 0 -90px;
+	background-position: 0 -96px;
 }
 
 .status-away {
-	background-position: 0 -106px;
+	background-position: 0 -112px;
 }
 
 .status-xa, .status-dnd, .status-busy {
-	background-position: 0 -122px;
+	background-position: 0 -128px;
 }
 
 .mood-one {
@@ -157,8 +157,7 @@ Last revision: 27/10/10
 }
 
 .location-world {
-	display: block;
-	background-position: 0 -659px;
+	background-position: 0 -658px;
 }
 
 #my-infos .element select,
@@ -192,7 +191,7 @@ Last revision: 27/10/10
 }
 
 .my-infos-text-subarrow {
-	background-position: 0 -234px;
+	background-position: 0 -241px;
 	opacity: 0.8;
 	width: 9px;
 	height: 20px;

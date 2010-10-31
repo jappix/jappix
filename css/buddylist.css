@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
@@ -42,13 +42,24 @@ Last revision: 27/10/10
 	margin-bottom: 10px;
 }
 
-#buddy-list .one-group p.group {
+#buddy-list .one-group a.group {
 	color: #202c2f;
 	font-size: 0.8em;
 	margin: 3px 6px;
+	padding-left: 12px;
+	text-decoration: none;
+	display: block;
 }
 
-#buddy-list .one-group p.group:hover {
+#buddy-list .one-group a.group.plus {
+	background-position: -4px -1144px;
+}
+
+#buddy-list .one-group a.group.minus {
+	background-position: -4px -1163px;
+}
+
+#buddy-list .one-group a.group:hover {
 	cursor: pointer;
 }
 
@@ -143,29 +154,34 @@ Last revision: 27/10/10
 	margin-top: -2px;
 }
 
-#buddy-list .unavailable {
-	background-position: 0 -154px;
+#buddy-list .unavailable,
+#chat-switch .unavailable {
+	background-position: 0 -153px;
 }
 
 #buddy-list .available,
 #chat-engine .list .available,
-#chat-engine .list .chat {
-	background-position: 0 -170px;
+#chat-engine .list .chat,
+#chat-switch .available {
+	background-position: 0 -169px;
 }
 
 #buddy-list .away,
-#chat-engine .list .away {
-	background-position: 0 -186px;
+#chat-engine .list .away,
+#chat-switch .away {
+	background-position: 0 -185px;
 }
 
 #buddy-list .busy,
 #chat-engine .list .xa,
-#chat-engine .list .dnd {
-	background-position: 0 -202px;
+#chat-engine .list .dnd,
+#chat-switch .busy {
+	background-position: 0 -201px;
 }
 
-#buddy-list .error {
-	background-position: 0 -218px;
+#buddy-list .error,
+#chat-switch .error {
+	background-position: 0 -217px;
 }
 
 #buddy-list .buddy-infos {
@@ -183,7 +199,7 @@ Last revision: 27/10/10
 }
 
 .buddy-infos-subarrow {
-	background-position: 0 -234px;
+	background-position: 0 -241px;
 	opacity: 0.8;
 	width: 9px;
 	height: 20px;
@@ -202,20 +218,20 @@ Last revision: 27/10/10
 }
 
 .manage-infos p.bm-authorize {
-	background-position: 0 -781px;
+	background-position: 0 -1181px;
 }
 
 .manage-infos p.bm-remove {
-	background-position: 0 -756px;
+	background-position: 0 -1200px;
 	margin-bottom: 18px;
 }
 
 .manage-infos p.bm-rename {
-	background-position: 0 -727px;
+	background-position: 0 -1216px;
 }
 
 .manage-infos p.bm-group {
-	background-position: 0 -702px;
+	background-position: 0 -1241px;
 }
 
 .manage-infos div.bm-choose {
@@ -241,7 +257,7 @@ Last revision: 27/10/10
 
 .manage-infos p.bm-rename,
 .manage-infos p.bm-group {
-	height: 29px;
+	height: 26px;
 }
 
 .manage-infos p.bm-rename label,
@@ -275,15 +291,15 @@ Last revision: 27/10/10
 }
 
 .tune-note {
-	background-position: 0 -677px;
+	background-position: 0 -676px;
 }
 
 .view-individual {
-	background-position: 0 -22px;
+	background-position: 0 -38px;
 }
 
 .edit-buddy {
-	background-position: -784px -850px;
+	background-position: 0 -1008px;
 }
 
 #buddy-list .filter {
@@ -353,24 +369,26 @@ Last revision: 27/10/10
 	margin-right: 1px;
 }
 
-#buddy-list .add {
-	background-position: 0 -42px;
+#buddy-list .add,
+#chat-engine .text .tools-add {
+	background-position: 0 -1047px;
 }
 
 #buddy-list .join {
-	background-position: -16px -42px;
+	background-position: 0 -1065px;
 }
 
-#buddy-list .groupchat {
-	background-position: -32px -42px;
+#buddy-list .groupchat,
+#chat-switch .groupchat-default {
+	background-position: 0 -1082px;
 }
 
 #buddy-list .more {
-	background-position: -48px -42px;
+	background-position: 0 -1100px;
 }
 
 #buddy-list .involve {
-	background-position: -64px -42px;
+	background-position: 0 -1119px;
 }
 
 #buddy-list .foot-edit-finish a {
@@ -402,7 +420,7 @@ Last revision: 27/10/10
 }
 
 .buddy-conf-subarrow {
-	background-position: 0 -234px;
+	background-position: 0 -241px;
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;

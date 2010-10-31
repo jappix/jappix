@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
@@ -277,6 +277,7 @@ Last revision: 27/10/10
 	display: none;
 	background-color: #c7d5d9;
 	border: 1px solid #b9cbcf;
+	margin-top: 1px;
 	padding: 4px 8px;
 	text-decoration: none;
 	border-radius: 3px;

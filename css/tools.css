@@ -8,7 +8,7 @@ This is the tools CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/08/10
+Last revision: 31/10/10
 
 */
 
@@ -84,7 +84,7 @@ Last revision: 08/08/10
 }
 
 .tools-content-subarrow {
-	background-position: 0 -234px;
+	background-position: 0 -241px;
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;
@@ -131,13 +131,16 @@ Last revision: 08/08/10
 }
 
 .music-content .player a:hover {
-	cursor: pointer;
 	opacity: 0.8;
+}
+
+.music-content .player a:active {
+	opacity: 0.6;
 }
 
 .music-content .stop {
 	display: none;
-	background-position: 0 -258px;
+	background-position: 0 -270px;
 }
 
 .music-content .list {
