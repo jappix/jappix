@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 31/10/10
 
 */
 
@@ -23,9 +23,6 @@ $user = '';
 $password = '';
 $user_meta = T_("unknown");
 $user_name = '';
-$share_folder = 'share';
-$music_folder = 'music';
-$backgrounds_folder = 'backgrounds';
 $add_button = false;
 $remove_button = false;
 $save_button = false;
@@ -379,77 +376,15 @@ else
 				
 				<?php
 				
-					// Music upload?
-					if(isset($_POST['upload'])) {
-						// Get the file path
-						$name_music = $_FILES['music_file']['name'];
-						$temp_music = $_FILES['music_file']['tmp_name'];
-						$path_music = PHP_BASE.'/store/music/'.$name_music;
-						
-						// Any special name submitted?
-						if(isset($_POST['music_title']) && !empty($_POST['music_title'])) {
-							// Get the file extension
-							$ext_music = getFileExt($name_music);
-							
-							// New name
-							$name_music = '';
-							
-							// Add the artist name?
-							if(isset($_POST['music_artist']) && !empty($_POST['music_artist']))
-								$name_music .= $_POST['music_artist'].' - ';
-							
-							// Add the music title
-							$name_music .= $_POST['music_title'];
-							
-							// Add the album name?
-							if(isset($_POST['music_album']) && !empty($_POST['music_album']))
-								$name_music .= ' ['.$_POST['music_album'].']';
-							
-							// Add the extension
-							$name_music .= '.'.$ext_music;
-						}
-						
-						// An error occured?
-						if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>
-							<p class="info smallspace fail"><?php _e("The music could not be received, please retry!"); ?></p>
-						<?php }
-						
-						// Bad extension?
-						else if(!preg_match('/^(.+)(\.(og(g|a)|mp3|wav))$/i', $name_music)) {
-						
-							// Remove the image file
-							if(file_exists($path_music))
-								unlink($path_music);
-						
-						?>
-							<p class="info smallspace fail"><?php _e("This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"); ?></p>
-						<?php }
-						
-						// The file has been sent
-						else { ?>
-							<p class="info smallspace success"><?php _e("Your music has been added!"); ?></p>
-						<?php }
-					}
+					// Include the store configuration vars
+					include(PHP_BASE.'/php/vars-store.php');
 					
-					// File deletion?
-					else if(isset($_POST['remove']))
-						removeElements();
+					// Include the store configuration POST handler
+					include(PHP_BASE.'/php/post-store.php');
 					
-					// Purge requested
-					if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(updates))$/', $_GET['p'])) {
-						purgeFolder($_GET['p']);
+					// Include the store configuration GET handler
+					include(PHP_BASE.'/php/get-store.php');
 					
-					?>
-						<p class="info smallspace success"><?php _e("The storage folder you wanted to clean is now empty!"); ?></p>
-					<?php }
-					
-					// Folder view?
-					if(isset($_GET['b']) && isset($_GET['s'])) {
-						if($_GET['b'] == 'share')
-							$share_folder = urldecode($_GET['s']);
-						else if($_GET['b'] == 'music')
-							$music_folder = urldecode($_GET['s']);
-					}
 				?>
 				
 				<h4><?php _e("Maintenance"); ?></h4>
@@ -489,11 +424,11 @@ else
 				<fieldset>
 					<legend><?php _e("New"); ?></legend>
 					
-					<label for="music_title"><?php _e("Title"); ?></label><input id="music_title" type="text" name="music_title" />
+					<label for="music_title"><?php _e("Title"); ?></label><input id="music_title" type="text" name="music_title" value="<?php echo(htmlspecialchars($music_title)); ?>" />
 					
-					<label for="music_artist"><?php _e("Artist"); ?></label><input id="music_artist" type="text" name="music_artist" />
+					<label for="music_artist"><?php _e("Artist"); ?></label><input id="music_artist" type="text" name="music_artist" value="<?php echo(htmlspecialchars($music_artist)); ?>" />
 					
-					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" type="text" name="music_album" />
+					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
 					
 					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" />
 					
@@ -522,230 +457,14 @@ else
 				
 				<?php
 				
-					// Define initial background form values
-					$background_default = ' checked="checked"';
-					$background_image = '';
-					$background_color = '';
-					$background_image_repeat_no = '';
-					$background_image_repeat_all = '';
-					$background_image_repeat_x = ' selected="selected"';
-					$background_image_repeat_y = '';
-					$background_image_horizontal_center = ' selected="selected"';
-					$background_image_horizontal_left = '';
-					$background_image_horizontal_right = '';
-					$background_image_vertical_center = ' selected="selected"';
-					$background_image_vertical_top = '';
-					$background_image_vertical_bottom = '';
-					$background_image_adapt = '';
+					// Include the design configuration vars
+					include(PHP_BASE.'/php/vars-design.php');
 					
-					// Define initial notice form values
-					$notice_none = ' checked="checked"';
-					$notice_simple = '';
-					$notice_advanced = '';
-					$notice_text = '';
+					// Include the design configuration POST handler
+					include(PHP_BASE.'/php/post-design.php');
 					
-					// Handle the remove POST
-					if(isset($_POST['remove']))
-						removeElements();
-					
-					// Handle the upload POST
-					else if(isset($_POST['upload'])) {
-						// Get the file path
-						$name_background_image = $_FILES['background_image_upload']['name'];
-						$temp_background_image = $_FILES['background_image_upload']['tmp_name'];
-						$path_background_image = PHP_BASE.'/store/backgrounds/'.$name_background_image;
-						
-						// An error occured?
-						if(!isSafe($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>
-							<p class="info smallspace fail"><?php _e("The image could not be received, would you mind retry?"); ?></p>
-						<?php }
-						
-						// Bad extension?
-						else if(!isImage($name_background_image)) {
-							
-							// Remove the image file
-							if(file_exists($path_background_image))
-								unlink($path_background_image);
-							
-						?>
-							<p class="info smallspace fail"><?php _e("This is not a valid image, please use PNG, GIF or JPG!"); ?></p>
-						<?php }
-						
-						// The file has been sent
-						else { ?>
-							<p class="info smallspace success"><?php _e("Your image was added to the list!"); ?></p>
-						<?php }
-					}
-					
-					// Handle the save POST
-					else if(isset($_POST['save'])) {
-						// Marker
-						$save_marker = true;
-						
-						// Handle it for background
-						$background = array();
-						
-						if(isset($_POST['background_type']))
-							$background['type'] = $_POST['background_type'];
-						
-						if(isset($_POST['background_image_file']))
-							$background['image_file'] = $_POST['background_image_file'];
-						
-						if(isset($_POST['background_image_repeat']))
-							$background['image_repeat'] = $_POST['background_image_repeat'];
-						
-						if(isset($_POST['background_image_horizontal']))
-							$background['image_horizontal'] = $_POST['background_image_horizontal'];
-						
-						if(isset($_POST['background_image_vertical']))
-							$background['image_vertical'] = $_POST['background_image_vertical'];
-						
-						if(isset($_POST['background_image_adapt']))
-							$background['image_adapt'] = 'on';
-						
-						if(isset($_POST['background_image_color']))
-							$background['image_color'] = $_POST['background_image_color'];
-						
-						if(isset($_POST['background_color_color']))
-							$background['color_color'] = $_POST['background_color_color'];
-						
-						// Write the configuration file
-						writeBackground($background);
-						
-						// Handle it for notice
-						if(isset($_POST['notice_type']))
-							$notice_type = $_POST['notice_type'];
-						else
-							$notice_type = 'none';
-						
-						$notice_text = '';
-						
-						if(isset($_POST['notice_text']))
-							$notice_text = $_POST['notice_text'];
-						
-						// Check our values
-						if(!$notice_text && ($notice_type != 'none'))
-							$save_marker = false;
-						
-						// All is okay
-						if($save_marker) {
-							// Write the notice configuration
-							writeNotice($notice_type, $notice_text);
-							
-							// Show a success notice ?>
-							<p class="info smallspace success"><?php _e("Your design preferences have been saved!"); ?></p>
-						<?php }
-						
-						// Something went wrong
-						else { ?>
-							<p class="info smallspace fail"><?php _e("Please check your inputs: something is missing!"); ?></p>
-						<?php }
-					}
-					
-					// Get the available backgrounds
-					$backgrounds = getBackgrounds();
-					$backgrounds_number = count($backgrounds);
-					
-					// Read the background configuration
-					$background = readBackground();
-					
-					// Backgrounds are missing?
-					if(!$backgrounds_number && ($background['type'] == 'image'))
-						$background['type'] = 'default';
-					
-					switch($background['type']) {
-						// Simple notice input
-						case 'image':
-							$background_image = ' checked="checked"';
-							$background_default = '';
-							
-							break;
-						
-						// Advanced notice input
-						case 'color':
-							$background_color = ' checked="checked"';
-							$background_default = '';
-							
-							break;
-					}
-					
-					switch($background['image_repeat']) {
-						// No repeat
-						case 'no-repeat':
-							$background_image_repeat_no = ' selected="selected"';
-							$background_image_repeat_x = '';
-							
-							break;
-						
-						// Repeat
-						case 'repeat':
-							$background_image_repeat_all = ' selected="selected"';
-							$background_image_repeat_x = '';
-							
-							break;
-						
-						// Y repeat
-						case 'repeat-y':
-							$background_image_repeat_y = ' selected="selected"';
-							$background_image_repeat_x = '';
-							
-							break;
-					}
-					
-					switch($background['image_horizontal']) {
-						// Left position
-						case 'left':
-							$background_image_horizontal_left = ' selected="selected"';
-							$background_image_horizontal_center = '';
-							
-							break;
-						
-						// Right position
-						case 'right':
-							$background_image_horizontal_right = ' selected="selected"';
-							$background_image_horizontal_center = '';
-							
-							break;
-					}
-					
-					switch($background['image_vertical']) {
-						// Left position
-						case 'top':
-							$background_image_vertical_top = ' selected="selected"';
-							$background_image_vertical_center = '';
-							
-							break;
-						
-						// Right position
-						case 'bottom':
-							$background_image_vertical_bottom = ' selected="selected"';
-							$background_image_vertical_center = '';
-							
-							break;
-					}
-					
-					if($background['image_adapt'] == 'on')
-						$background_image_adapt = ' checked="checked"';
-					
-					// Read the notice configuration
-					$notice_conf = readNotice();
-					$notice_text = $notice_conf['notice'];
-					
-					switch($notice_conf['type']) {
-						// Simple notice input
-						case 'simple':
-							$notice_simple = ' checked="checked"';
-							$notice_none = '';
-							
-							break;
-						
-						// Advanced notice input
-						case 'advanced':
-							$notice_advanced = ' checked="checked"';
-							$notice_none = '';
-							
-							break;
-					}
+					// Include the design configuration reader
+					include(PHP_BASE.'/php/read-design.php');
 					
 					// Folder view?
 					if(isset($_GET['b']) && isset($_GET['s']) && ($_GET['b'] == 'backgrounds'))
@@ -874,7 +593,7 @@ else
 				<textarea class="notice-text" name="notice_text" rows="8" cols="60"><?php echo(htmlspecialchars($notice_text)); ?></textarea>
 			<?php }
 			
-			// Authorized and updates page requested
+			// Authorized and users page requested
 			else if($id == 6) { ?>
 				<h3 class="users manager-images"><?php _e("Users"); ?></h3>
 				

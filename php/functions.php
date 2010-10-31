@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 31/10/10
 
 */
 
@@ -71,19 +71,17 @@ function usersConfName() {
 		return '';
 	
 	// Read the conf folder
-	$conf_open = opendir($conf_dir.'/');
+	$conf_scan = scandir($conf_dir.'/');
 	$conf_name = '';
 	
 	// Loop the XML files
-	while($current = readdir($conf_open)) {
+	foreach($conf_scan as $current) {
 		if(preg_match('/(.+)(\.users\.xml)($)/', $current)) {
 			$conf_name = $current;
+			
 			break;
 		}
    	}
-   	
-   	// Close the opened dir
-   	closedir($conf_open);
    	
    	// Return the users file name
    	return $conf_name;
@@ -431,11 +429,11 @@ function getLanguageName($code) {
 function languageSwitcher($active_locale, $separate) {
 	// Initialize
 	$repertory = './lang/';
-	$open_rep = opendir($repertory);
+	$scan = scandir($repertory);
 	$html = '';
 	
 	// Loop the available languages
-	while($current = readdir($open_rep)) {
+	foreach($scan as $current) {
 		if($current && is_dir($repertory.$current) && ($current != $active_locale) && !preg_match('/^(\.(.+)?)$/i', $current)) {
 			$html .= '<a href="./?l='.$current.keepGet('l', false).'">'.getLanguageName($current).'</a>';
 			
@@ -444,9 +442,6 @@ function languageSwitcher($active_locale, $separate) {
 				$html .= ', ';
 		}
    	}
-   	
-   	// Close the opened dir
-   	closedir($open_rep);
    	
    	// Output the HTML code
    	return $html;
@@ -1364,16 +1359,13 @@ function shareStats() {
 	$array = array();
 	
 	// Open the directory
-	$open = opendir($path);
+	$scan = scandir($path);
 	
 	// Loop the share files
-	while($current = readdir($open)) {
+	foreach($scan as $current) {
 		if(is_dir($path.$current) && !preg_match('/^(\.(.+)?)$/i', $current))
 			array_push($array, $current);
    	}
-   	
-   	// Close the opened dir
-   	closedir($open);
 	
 	return $array;
 }

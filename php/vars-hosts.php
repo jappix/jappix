@@ -3,14 +3,14 @@
 /*
 
 Jappix - An open social platform
-This is the hosts configuration variables
+These are the hosts configuration variables
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
