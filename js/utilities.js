@@ -399,16 +399,22 @@ function parseDate(to_parse) {
 function relativeDate(to_parse) {
 	// Get the current date
 	var current_date = new Date(getXMPPTime());
+	var current_stamp = current_date.getTime();
 	
 	// Parse the given date
 	var old_date = new Date(to_parse);
+	var old_stamp = old_date.getTime();
 	var old_time = old_date.toLocaleTimeString();
 	
 	// Get the day number between the two dates
-	var days = parseInt(Math.abs((current_date.getTime() - old_date.getTime()) / 86400000));
+	var days = parseInt(Math.abs((old_stamp - current_stamp) / 86400000));
+	
+	// Invalid date?
+	if(isNaN(old_stamp) || isNaN(days))
+		return getCompleteTime();
 	
 	// Is it today?
-	if(days == 0)
+	if((days == 0) || (current_date < old_date))
 		return old_time;
 	
 	// It is yesterday?
