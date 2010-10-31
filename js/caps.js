@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 31/10/10
 
 */
 
@@ -38,6 +38,7 @@ function myDiscoInfos() {
 		NS_TUNE + NS_NOTIFY,
 		NS_GEOLOC + NS_NOTIFY,
 		NS_URN_MBLOG + NS_NOTIFY,
+		NS_URN_DELAY,
 		NS_ROSTER,
 		NS_HTTP_AUTH,
 		NS_CHATSTATES,

@@ -41,7 +41,7 @@ function handleMessage(message) {
 	
 	// Get message date
 	var time;
-	var stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']').attr('stamp');
+	var stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
 	
 	if(stamp)
 		time = relativeDate(stamp);
