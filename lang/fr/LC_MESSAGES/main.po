@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-31 13:49:12\n"
+"PO-Revision-Date: 2010-10-31 18:12:06\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1478,8 +1478,8 @@ msgid "Jappix is an open-source project from PostPro, a non-profit organization 
 msgstr "Jappix est un projet libre de PostPro, une organisation à but non lucratif qui nous aide beaucoup."
 
 #: 
-msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
-msgstr "Connectez-vous à votre compte %1s, %2s ou %3s. Sinon, utilisez le %4s pour rejoindre un salon."
+#~ msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
+#~ msgstr "Connectez-vous à votre compte %1s, %2s ou %3s. Sinon, utilisez le %4s pour rejoindre un salon."
 
 #: 
 msgid "Previous"
@@ -2996,4 +2996,12 @@ msgstr "Hier"
 #: 
 msgid "%s days ago"
 msgstr "Il y a %s jours"
+
+#: 
+#~ msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat without any account."
+#~ msgstr ""
+
+#: 
+msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
+msgstr "Connectez-vous à votre compte XMPP existant. Vous pouvez aussi utiliser le %s pour rejoindre un salon."
 

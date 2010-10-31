@@ -8,7 +8,7 @@ This is the smileys CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/10/10
+Last revision: 31/10/10
 
 */
 
@@ -27,164 +27,165 @@ div.emoticon:hover {
 span.emoticon {
 	font-size: 14px;
 	padding: 0 0 0 16px;
-	margin: 0 4px;
-}
-
-.emoticon-angry {
-	background-position: 0 0;
-}
-
-.emoticon-bat {
-	background-position: 0 -18px;
-}
-
-.emoticon-beer {
-	background-position: 0 -36px;
+	margin: 0 3px;
 }
 
 .emoticon-biggrin {
-	background-position: 0 -54px;
-}
-
-.emoticon-blush {
-	background-position: 0 -72px;
-}
-
-.emoticon-boy {
-	background-position: 0 -90px;
-}
-
-.emoticon-brflower {
-	background-position: 0 -108px;
-}
-
-.emoticon-brheart {
-	background-position: 0 -126px;
-}
-
-.emoticon-coffee {
-	background-position: 0 -144px;
-}
-
-.emoticon-coolglasses {
-	background-position: 0 -162px;
-}
-
-.emoticon-cry {
-	background-position: 0 -180px;
-}
-
-.emoticon-cuffs {
-	background-position: 0 -198px;
+	background-position: 0 0;
 }
 
 .emoticon-devil {
-	background-position: 0 -216px;
+	background-position: -16px 0;
 }
 
-.emoticon-drink {
-	background-position: 0 -234px;
-}
-
-.emoticon-flower {
-	background-position: 0 -252px;
-}
-
-.emoticon-frowning {
-	background-position: 0 -270px;
-}
-
-.emoticon-girl {
-	background-position: 0 -288px;
-}
-
-.emoticon-heart {
-	background-position: 0 -306px;
-}
-
-.emoticon-hugleft {
-	background-position: 0 -324px;
-}
-
-.emoticon-hugright {
-	background-position: 0 -342px;
-}
-
-.emoticon-kiss {
-	background-position: 0 -360px;
-}
-
-.emoticon-lamp {
-	background-position: 0 -378px;
-}
-
-.emoticon-lion {
-	background-position: 0 -396px;
-}
-
-.emoticon-mail {
-	background-position: 0 -414px;
-}
-
-.emoticon-moon {
-	background-position: 0 -432px;
-}
-
-.emoticon-music {
-	background-position: 0 -450px;
-}
-
-.emoticon-oh {
-	background-position: 0 -468px;
-}
-
-.emoticon-phone {
-	background-position: 0 -486px;
-}
-
-.emoticon-photo {
-	background-position: 0 -504px;
-}
-
-.emoticon-puke {
-	background-position: 0 -522px;
-}
-
-.emoticon-pussy {
-	background-position: 0 -540px;
-}
-
-.emoticon-rainbow {
-	background-position: 0 -558px;
-}
-
-.emoticon-smile {
-	background-position: 0 -576px;
-}
-
-.emoticon-star {
-	background-position: 0 -594px;
-}
-.emoticon-stare {
-	background-position: 0 -612px;
-}
-
-.emoticon-thumbdown {
-	background-position: 0 -630px;
-}
-
-.emoticon-thumbup {
-	background-position: 0 -648px;
+.emoticon-coolglasses {
+	background-position: -32px 0;
 }
 
 .emoticon-tongue {
-	background-position: 0 -666px;
+	background-position: -48px 0;
 }
 
-.emoticon-unhappy {
-	background-position: 0 -684px;
+.emoticon-smile {
+	background-position: -64px 0;
 }
 
 .emoticon-wink {
-	background-position: 0 -702px;
+	background-position: -80px 0;
+}
+
+.emoticon-blush {
+	background-position: -96px 0;
+}
+
+.emoticon-stare {
+	background-position: -112px 0;
+}
+
+.emoticon-frowning {
+	background-position: -128px 0;
+}
+
+.emoticon-oh {
+	background-position: -144px 0;
+}
+
+.emoticon-unhappy {
+	background-position: -160px 0;
+}
+
+.emoticon-cry {
+	background-position: -176px 0;
+}
+
+.emoticon-angry {
+	background-position: -192px 0;
+}
+
+.emoticon-puke {
+	background-position: -208px 0;
+}
+
+.emoticon-hugright {
+	background-position: -224px 0;
+}
+
+.emoticon-hugleft {
+	background-position: -240px 0;
+}
+
+.emoticon-lion {
+	background-position: -256px 0;
+}
+
+.emoticon-pussy {
+	background-position: -272px 0;
+}
+
+.emoticon-bat {
+	background-position: -288px 0;
+}
+
+.emoticon-kiss {
+	background-position: -304px 0;
+}
+
+.emoticon-heart {
+	background-position: -320px 0;
+}
+
+.emoticon-brheart {
+	background-position: -336px 0;
+}
+
+.emoticon-flower {
+	background-position: -352px 0;
+}
+
+.emoticon-brflower {
+	background-position: -368px 0;
+}
+
+.emoticon-thumbup {
+	background-position: -384px 0;
+}
+
+.emoticon-thumbdown {
+	background-position: -400px 0;
+}
+
+.emoticon-lamp {
+	background-position: -416px 0;
+}
+
+.emoticon-coffee {
+	background-position: -432px 0;
+}
+
+.emoticon-drink {
+	background-position: -448px 0;
+}
+
+.emoticon-beer {
+	background-position: -464px 0;
+}
+
+.emoticon-boy {
+	background-position: -480px 0;
+}
+
+.emoticon-girl {
+	background-position: -496px 0;
+}
+
+.emoticon-phone {
+	background-position: -512px 0;
+}
+
+.emoticon-photo {
+	background-position: -528px 0;
+}
+
+.emoticon-music {
+	background-position: -544px 0;
+}
+
+.emoticon-cuffs {
+	background-position: -560px 0;
+}
+
+.emoticon-mail {
+	background-position: -576px 0;
+}
+
+.emoticon-rainbow {
+	background-position: -592px 0;
+}
+
+.emoticon-star {
+	background-position: -608px 0;
+}
+
+.emoticon-moon {
+	background-position: -624px 0;
 }

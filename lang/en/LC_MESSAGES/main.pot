@@ -1106,7 +1106,7 @@ msgstr ""
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
 msgstr ""
 
-msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
+msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr ""
 
 msgid "Previous"

@@ -10,7 +10,7 @@ This is the Jappix home html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 31/10/10
 
 */
 
@@ -50,7 +50,7 @@ Last revision: 28/10/10
 				
 				<!-- The login homepage div -->
 					<div class="loginer homediv">
-						<p><?php printf(T_("Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."), '<a onclick="return switchLoginer(HOST_MAIN);">XMPP</a>', '<a onclick="return switchLoginer(\'chat.facebook.com\');">Facebook</a>', '<a onclick="return switchLoginer(\'gmail.com\');">Google Talk</a>', '<a onclick="return switchHome(\'anonymouser\');">'.T_("anonymous mode").'</a>'); ?></p>
+						<p><?php printf(T_("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a onclick="return switchHome(\'anonymouser\');">'.T_("anonymous mode").'</a>'); ?></p>
 						
 						<form action="#" method="post" onsubmit="return doLogin();">
 							<fieldset>

@@ -8,7 +8,7 @@ These are the others JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
@@ -33,21 +33,6 @@ function switchHome(div) {
 	
 	// We focus on the first input if needed
 	$(right + 'input:visible:first').focus();
-}
-
-// Allows the user to switch the XMPP hosts for loginer
-function switchLoginer(host) {
-	// The server input is disabled?
-	if($('#lserver').is(':disabled'))
-		return false;
-	
-	// Applies the new host
-	$('#home .loginer .server').val(host);
-	
-	// Focus on the first input
-	$('#lnick').focus();
-	
-	return false;
 }
 
 // Allows the user to display the advanced login options
