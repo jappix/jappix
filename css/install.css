@@ -8,7 +8,7 @@ This is the install CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 31/10/10
 
 */
 
@@ -124,7 +124,32 @@ body {
 }
 
 #install-content h3 {
+	padding-left: 24px;
 	margin-bottom: 15px;
+}
+
+#install-content h3.start {
+	background-position: 0 -73px;
+}
+
+#install-content h3.storage {
+	background-position: 0 -95px;
+}
+
+#install-content h3.account {
+	background-position: 0 -117px;
+}
+
+#install-content h3.main {
+	background-position: 0 -139px;
+}
+
+#install-content h3.hosts {
+	background-position: 0 -161px;
+}
+
+#install-content h3.services {
+	background-position: 0 -183px;
 }
 
 #install-content p {

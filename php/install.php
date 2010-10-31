@@ -10,7 +10,7 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 31/10/10
 
 */
 
@@ -115,7 +115,7 @@ else
 			
 			// First step: welcome
 			if($step == 1) { ?>
-				<h3><?php _e("Welcome to the Jappix installation!"); ?></h3>
+				<h3 class="start install-images"><?php _e("Welcome to the Jappix installation!"); ?></h3>
 				
 				<p><?php _e("This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."); ?></p>
 				<p><?php _e("Let's have a look at the installation steps:"); ?></p>
@@ -138,7 +138,7 @@ else
 			
 			// Second step: storage configuration
 			else if($step == 2) { ?>
-				<h3><?php _e("Storage configuration"); ?></h3>
+				<h3 class="storage install-images"><?php _e("Storage configuration"); ?></h3>
 				
 				<p><?php _e("Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."); ?></p>
 				
@@ -160,7 +160,7 @@ else
 			
 			// Third step: administrator account
 			else if($step == 3) { ?>
-				<h3><?php _e("Administrator account"); ?></h3>
+				<h3 class="account  install-images"><?php _e("Administrator account"); ?></h3>
 				
 				<p><?php _e("Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."); ?></p>
 				
@@ -178,7 +178,7 @@ else
 			
 			// Fourth step: main configuration
 			else if($step == 4) { ?>
-				<h3><?php _e("Main configuration"); ?></h3>
+				<h3 class="main install-images"><?php _e("Main configuration"); ?></h3>
 				
 				<p><?php _e("Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."); ?></p>
 				
@@ -195,7 +195,7 @@ else
 			
 			// Fifth step: hosts configuration
 			else if($step == 5) { ?>
-				<h3><?php _e("Hosts configuration"); ?></h3>
+				<h3 class="hosts install-images"><?php _e("Hosts configuration"); ?></h3>
 				
 				<p><?php _e("This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."); ?></p>
 				
@@ -214,7 +214,7 @@ else
 			
 			// Last step: services installation
 			else if($step == 6) { ?>
-				<h3><?php _e("Services installation"); ?></h3>
+				<h3 class="services install-images"><?php _e("Services installation"); ?></h3>
 				
 				<p><?php _e("You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."); ?></p>
 				<p><?php _e("To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."); ?></p>

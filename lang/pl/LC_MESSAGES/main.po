@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-31 11:13:37\n"
+"PO-Revision-Date: 2010-10-31 20:13:58\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1478,8 +1478,8 @@ msgid "Jappix is an open-source project from PostPro, a non-profit organization 
 msgstr "Jappix to projekt open-source od PostPro - organizacja non-profit która służy wspaniałą pomocą."
 
 #: 
-msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
-msgstr "Zaloguj do twojego %1s, %2s lub %3s konta. Możesz ponadto użyć  %4s do wejścia do pokoju."
+#~ msgid "Login to your %1s, %2s or %3s account. You can also use the %4s to join a groupchat."
+#~ msgstr "Zaloguj do twojego %1s, %2s lub %3s konta. Możesz ponadto użyć  %4s do wejścia do pokoju."
 
 #: 
 msgid "Previous"
@@ -1867,7 +1867,7 @@ msgstr "Witaj w instalacji Jappix!"
 
 #: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr "To narzędzie pomoże Ci szybko zainstalować Jappix-a, pierwszą platformę społecznościową opartą o protokół XMPP. Nie potrzebujesz nawed żadnej technicznej wiedzy w tej dziedzinie!"
+msgstr "To narzędzie pomoże Ci szybko zainstalować Jappix-a, pierwszą platformę społecznościową opartą o protokół XMPP."
 
 #: 
 #~ msgid "Let's have a look to the installation steps:"
@@ -1879,7 +1879,7 @@ msgstr "Witamy"
 
 #: 
 msgid "Storage configuration"
-msgstr "Konfiguracja magazynowania"
+msgstr "Konfiguracja folderów"
 
 #: 
 msgid "Administrator account"
@@ -2988,4 +2988,20 @@ msgstr "Wybrani użytkownicy zostali usunięci."
 #: 
 msgid "Your collections"
 msgstr "Twoja kolekcja"
+
+#: 
+msgid "Yesterday"
+msgstr ""
+
+#: 
+msgid "%s days ago"
+msgstr ""
+
+#: 
+#~ msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat without any account."
+#~ msgstr ""
+
+#: 
+msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
+msgstr ""
 
