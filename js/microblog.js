@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 31/10/10
 
 */
 
@@ -33,12 +33,9 @@ function displayMicroblog(packet, from, hash, mode) {
 		tName = getBuddyName(from);
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
 		
-		// Get the time and date
-		if(tDate) {
-			tDate = explodeThis('Z', tDate, 0);
-			tTime = explodeThis('T', tDate, 0) + ' (' +  explodeThis('T', tDate, 1) + ')';
-		}
-		
+		// Get the time
+		if(tDate)
+			tTime = parseDate(tDate);
 		else
 			tTime = '';
 		

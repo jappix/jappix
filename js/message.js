@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 20/10/10
+Last revision: 31/10/10
 
 */
 
@@ -24,7 +24,6 @@ function handleMessage(message) {
 	var body = message.getBody();
 	var node = message.getNode();
 	var subject = message.getSubject();
-	var time = getCompleteTime();
 	
 	// We generate some values
 	var xid = cutResource(from);
@@ -40,13 +39,14 @@ function handleMessage(message) {
 		hash = hex_md5(xid);
 	}
 	
-	// Message stamp (date)
-	var stamp = $(node).find('x[xmlns=' + NS_DELAY + ']').attr('stamp');
+	// Get message date
+	var time;
+	var stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']').attr('stamp');
 	
-	if(stamp) {
-		stamp = explodeThis('T', stamp, 1);
-		stamp = explodeThis('Z', stamp, 0);
-	}
+	if(stamp)
+		time = relativeDate(stamp);
+	else
+		time = getCompleteTime();
 	
 	// Chatstate message
 	if(node && ((type == 'chat') || !type)) {
@@ -190,18 +190,13 @@ function handleMessage(message) {
 	if(subject && (type == 'groupchat')) {
 		// Filter the received subject
 		var filteredSubject = filterThisMessage(subject, resource, true);
-		var subjectTime = time;
-		
-		// This message is time-stamped
-		if(stamp)
-			subjectTime = stamp;
 		
 		// Display the new subject at the top
 		$('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith('<span class="muc-topic" title="' + subject + '">' + filteredSubject + '</span>');
 		
 		// Display the new subject as a system message
 		if(resource)
-			$('#' + hash + ' .content').append('<div class="one-line system-message"><em>(' + subjectTime + ') </em>' + resource.htmlEnc() + ' ' + _e("changed the subject to:") + ' ' + filteredSubject + '</div>');
+			$('#' + hash + ' .content').append('<div class="one-line system-message"><em>(' + time + ') </em>' + resource.htmlEnc() + ' ' + _e("changed the subject to:") + ' ' + filteredSubject + '</div>');
 		
 		// Scroll to this subject
 		autoScroll(hash);
@@ -226,13 +221,10 @@ function handleMessage(message) {
 			
 			// We generate the message type and time
 			var message_type = 'user-message';
-			var messageT = time;
 			
 			// This is an old message
-			if(stamp && resource) {
-				messageT = stamp;
+			if(stamp && resource)
 				message_type = 'old-message';
-			}
 			
 			// This is a system message
 			else if(!resource)
@@ -261,7 +253,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(type, hash, resource.htmlEnc(), body, messageT, message_type, notXHTML, nickQuote);
+			displayMessage(type, hash, resource.htmlEnc(), body, time, message_type, notXHTML, nickQuote);
 			
 			// Scroll to the last message
 			autoScroll(hash);

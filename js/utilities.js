@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 31/10/10
 
 */
 
@@ -385,4 +385,36 @@ function xmlToString(xmlData) {
 	
 	// For Mozilla, Firefox, Opera, etc.
 	return (new XMLSerializer()).serializeToString(xmlData);
+}
+
+// Parses a XMPP date into an human-readable one
+function parseDate(to_parse) {
+	var date = new Date(to_parse);
+	var parsed = date.toLocaleDateString() + ' (' + date.toLocaleTimeString() + ')';
+	
+	return parsed; 
+}
+
+// Parses a XMPP date stamp into a relative one
+function relativeDate(to_parse) {
+	// Get the current date
+	var current_date = new Date(getXMPPTime());
+	
+	// Parse the given date
+	var old_date = new Date(to_parse);
+	var old_time = old_date.toLocaleTimeString();
+	
+	// Get the day number between the two dates
+	var days = parseInt(Math.abs((current_date.getTime() - old_date.getTime()) / 86400000));
+	
+	// Is it today?
+	if(days == 0)
+		return old_time;
+	
+	// It is yesterday?
+	if(days == 1)
+		return _e("Yesterday") + ' - ' + old_time;
+	
+	// Another longer period
+	return _e("%s days ago").replace(/%s/, days) + ' - ' + old_time;
 }

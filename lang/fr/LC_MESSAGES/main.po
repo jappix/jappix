@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-10-30 18:49:08\n"
+"PO-Revision-Date: 2010-10-31 13:49:12\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2687,7 +2687,7 @@ msgstr "Nom"
 
 #: 
 msgid "Date of birth"
-msgstr "Date d'anniversaire"
+msgstr "Anniversaire"
 
 #: 
 msgid "Current"
@@ -2988,4 +2988,12 @@ msgstr "Les utilisateurs sélectionnés ont été enlevés."
 #: 
 msgid "Your collections"
 msgstr "Vos collections"
+
+#: 
+msgid "Yesterday"
+msgstr "Hier"
+
+#: 
+msgid "%s days ago"
+msgstr "Il y a %s jours"
 

@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 30/10/10
+# Last revision: 31/10/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -1902,4 +1902,10 @@ msgid "The chosen users have been removed."
 msgstr ""
 
 msgid "You must select one or more users to be removed!"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "%s days ago"
 msgstr ""
