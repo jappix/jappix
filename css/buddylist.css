@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -52,11 +52,11 @@ Last revision: 31/10/10
 }
 
 #buddy-list .one-group a.group.plus {
-	background-position: -4px -1144px;
+	background-position: -4px -1143px;
 }
 
 #buddy-list .one-group a.group.minus {
-	background-position: -4px -1163px;
+	background-position: -4px -1162px;
 }
 
 #buddy-list .one-group a.group:hover {

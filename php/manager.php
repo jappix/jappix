@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -733,9 +733,9 @@ else
 				<fieldset>
 					<legend><?php _e("Credentials"); ?></legend>
 					
-					<label for="user_name"><?php _e("User"); ?></label><input id="user_name" type="text" name="user_name" value="<?php echo(htmlspecialchars($user)); ?>" />
+					<label for="user_name"><?php _e("User"); ?></label><input id="user_name" class="manager-images" type="text" name="user_name" value="<?php echo(htmlspecialchars($user)); ?>" />
 					
-					<label for="user_password"><?php _e("Password"); ?></label><input id="user_password" type="password" name="user_password" />
+					<label for="user_password"><?php _e("Password"); ?></label><input id="user_password" class="manager-images" type="password" name="user_password" />
 				</fieldset>
 				
 				<?php

@@ -10,12 +10,12 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
-// Someone is trying to hack us (calling the script from its directory)
-if(!is_dir('./php'))
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
 	exit;
 
 // Define the configuration folder

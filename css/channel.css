@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -288,12 +288,11 @@ Last revision: 31/10/10
 }
 
 #channel .channel-footer div {
-	float: left;
 	margin-left: 5px;
 	padding-left: 24px;
 	min-height: 16px;
 	font-size: 0.85em;
-	width: 500px !important;
+	width: auto !important;
 }
 
 #channel .channel-footer .sync {
