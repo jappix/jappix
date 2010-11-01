@@ -18,6 +18,7 @@ Last revision: 01/11/10
 $id = 0;
 $login_fired = false;
 $logout_fired = false;
+$form_parent = 'manager';
 $user_remember = '';
 $user = '';
 $password = '';
@@ -42,12 +43,12 @@ if(isset($_POST['login'])) {
 	$login_fired = true;
 	
 	// Extract the user name
-	if(isset($_POST['user_name']) && !empty($_POST['user_name']))
-		$user = $_POST['user_name'];
+	if(isset($_POST['admin_name']) && !empty($_POST['admin_name']))
+		$user = $_POST['admin_name'];
 	
-	if($user && (isset($_POST['user_password']) && !empty($_POST['user_password']))) {
+	if($user && (isset($_POST['admin_password']) && !empty($_POST['admin_password']))) {
 		// Get the password values
-		$password = genStrongHash($_POST['user_password']);
+		$password = genStrongHash($_POST['admin_password']);
 		
 		// Write the session
 		$_SESSION['jappix_user'] = $user;
@@ -424,11 +425,11 @@ else
 				<fieldset>
 					<legend><?php _e("New"); ?></legend>
 					
-					<label for="music_title"><?php _e("Title"); ?></label><input id="music_title" type="text" name="music_title" value="<?php echo(htmlspecialchars($music_title)); ?>" />
+					<label for="music_title"><?php _e("Title"); ?></label><input id="music_title" class="icon manager-images" type="text" name="music_title" value="<?php echo(htmlspecialchars($music_title)); ?>" />
 					
-					<label for="music_artist"><?php _e("Artist"); ?></label><input id="music_artist" type="text" name="music_artist" value="<?php echo(htmlspecialchars($music_artist)); ?>" />
+					<label for="music_artist"><?php _e("Artist"); ?></label><input id="music_artist" class="icon manager-images" type="text" name="music_artist" value="<?php echo(htmlspecialchars($music_artist)); ?>" />
 					
-					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
+					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" class="icon manager-images" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
 					
 					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" />
 					
@@ -733,9 +734,9 @@ else
 				<fieldset>
 					<legend><?php _e("Credentials"); ?></legend>
 					
-					<label for="user_name"><?php _e("User"); ?></label><input id="user_name" class="manager-images" type="text" name="user_name" value="<?php echo(htmlspecialchars($user)); ?>" />
+					<label for="admin_name"><?php _e("User"); ?></label><input id="admin_name" class="icon manager-images" type="text" name="admin_name" value="<?php echo(htmlspecialchars($user)); ?>" />
 					
-					<label for="user_password"><?php _e("Password"); ?></label><input id="user_password" class="manager-images" type="password" name="user_password" />
+					<label for="admin_password"><?php _e("Password"); ?></label><input id="admin_password" class="icon manager-images" type="password" name="admin_password" />
 				</fieldset>
 				
 				<?php

@@ -8,7 +8,7 @@ This is the install CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -73,6 +73,24 @@ body {
 	padding: 3px;
 	font-size: 0.95em;
 	min-width: 220px;
+}
+
+#install input.icon {
+	padding-left: 24px;
+	min-width: 196px;
+	max-height: 18px;
+}
+
+#install input.icon#user_name {
+	background-position: 4px -204px;
+}
+
+#install input.icon#user_password {
+	background-position: 4px -226px;
+}
+
+#install input.icon#user_repassword {
+	background-position: 4px -248px;
 }
 
 #install-top {

@@ -25,6 +25,7 @@ $conf_folder = PHP_BASE.'/store/conf';
 $step = 1;
 
 // Initialize some vars
+$form_parent = 'install';
 $user_name = '';
 $user_password = '';
 $valid_user = true;
@@ -172,7 +173,7 @@ else
 				include(PHP_BASE.'/php/form-users.php');
 				
 				if(!$valid_user) { ?>
-					<p class="info bigspace fail"><?php _e("Ups, you missed something or the two passwords do not match!"); ?></p>
+					<p class="info bigspace fail"><?php _e("Oops, you missed something or the two passwords do not match!"); ?></p>
 				<?php }
 			}
 			

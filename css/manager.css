@@ -88,18 +88,36 @@ Last revision: 01/11/10
 	min-width: 220px;
 }
 
-#manager input#user_name,
-#manager input#user_password {
-	padding-left: 22px;
-	min-width: 198px;
+#manager input.icon {
+	padding-left: 24px;
+	min-width: 196px;
+	max-height: 18px;
 }
 
-#manager input#user_name {
+#manager input.icon#admin_name {
 	background-position: 4px -510px;
 }
 
-#manager input#user_password {
+#manager input.icon#admin_password,
+#manager input.icon#user_repassword {
 	background-position: 4px -532px;
+}
+
+#manager input.icon#user_name,
+#manager input.icon#music_artist {
+	background-position: 4px -554px;
+}
+
+#manager input.icon#user_password {
+	background-position: 4px -576px;
+}
+
+#manager input.icon#music_title {
+	background-position: 4px -598px;
+}
+
+#manager input.icon#music_album {
+	background-position: 4px -620px;
 }
 
 #manager select {
