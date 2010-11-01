@@ -90,7 +90,7 @@ Last revision: 01/11/10
 
 #manager input.icon {
 	padding-left: 24px;
-	min-width: 196px;
+	min-width: 199px;
 	max-height: 18px;
 }
 
@@ -118,6 +118,11 @@ Last revision: 01/11/10
 
 #manager input.icon#music_album {
 	background-position: 4px -620px;
+}
+
+#manager input.icon#background_image_color,
+#manager input.icon#background_color_color {
+	background-position: 4px -641px;
 }
 
 #manager select {

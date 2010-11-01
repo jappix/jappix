@@ -526,7 +526,7 @@ else
 						
 						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt"<?php echo($background_image_adapt); ?>" />
 						
-						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
+						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" class="icon manager-images" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
 						
 						<div class="clear"></div>
 					</div>
@@ -537,7 +537,7 @@ else
 				<div class="sub">
 					<p><?php _e("Type the hexadecimal color value you want to use as a background."); ?></p>
 					
-					<label for="background_color_color"><?php _e("Color"); ?></label><input id="background_color_color" type="text" name="background_color_color" value="<?php echo(htmlspecialchars($background['color_color'])); ?>" />
+					<label for="background_color_color"><?php _e("Color"); ?></label><input id="background_color_color" class="icon manager-images" type="text" name="background_color_color" value="<?php echo(htmlspecialchars($background['color_color'])); ?>" />
 					
 					<div class="clear"></div>
 				</div>
