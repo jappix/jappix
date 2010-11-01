@@ -8,7 +8,7 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -71,13 +71,13 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	.replace(/(;-?\))($|\s|<)/gi, emoteImage('wink', '$1', '$2'))
 	
 	// Text in bold
-	.replace(/(^|\s|>)(\*)([^<>'"]+)(\*)($|\s|<)/gi, '$1$2<b>$3</b>$4$5')
+	.replace(/(^|\s|>)((\*)([^<>'"]+)(\*))($|\s|<)/gi, '$1<b>$2</b>$6')
 	
 	// Italic text
-	.replace(/(^|\s|>)(\/)([^<>'"]+)(\/)($|\s|<)/gi, '$1$2<i>$3</i>$4$5')
+	.replace(/(^|\s|>)((\/)([^<>'"]+)(\/))($|\s|<)/gi, '$1<i>$2</i>$6')
 	
 	// Underlined text
-	.replace(/(^|\s|>)(_)([^<>'"]+)(_)($|\s|<)/gi, '$1$2<span style="text-decoration: underline;">$3</span>$4$5');
+	.replace(/(^|\s|>)((_)([^<>'"]+)(_))($|\s|<)/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
 	
 	// This is not yet a xHTML message (to avoid generating a link over another one)
 	if(html_encode) {

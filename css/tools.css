@@ -188,6 +188,7 @@ Last revision: 31/10/10
 .music-content .search input {
 	margin: 2px;
 	width: 198px;
+	height: 15px;
 }
 
 .notifications-content .nothing {

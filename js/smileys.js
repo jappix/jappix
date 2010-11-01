@@ -8,7 +8,7 @@ These are the smileys JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 01/11/10
 
 */
 
@@ -55,8 +55,8 @@ function smileyLinks(hash) {
 		'(Z)',
 		'(X)',
 		'(P)',
-		'(8)',
 		'(T)',
+		'(8)',
 		'(%)',
 		'(E)',
 		'(R)',
@@ -97,8 +97,8 @@ function smileyLinks(hash) {
 		'beer',
 		'boy',
 		'girl',
-		'phone',
 		'photo',
+		'phone',
 		'music',
 		'cuffs',
 		'mail',

@@ -8,7 +8,7 @@ These are the others JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -60,7 +60,7 @@ function pageTitle(title) {
 	// We change the title of the page so that it will give the user's XID when he's logged in
 	switch(title) {
 		case 'home':
-			$(select).html(SERVICE_NAME.htmlEnc() + ' &bull ' + _e("An open social network"));
+			$(select).html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
 			break;
 		
 		case 'talk':
