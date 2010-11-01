@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 01/11/10
 
 */
 
@@ -50,28 +50,27 @@ Last revision: 30/10/10
 #home .locale span.list {
 	display: none;
 	list-style: none;
-	margin-top: 5px;
-}
-
-#home .locale span.list {
-	margin-bottom: 2px;
+	margin: 5px 0 2px;
 }
 
 #home .locale span.list a {
-	display: block;
-	padding: 3px 10px;
-	margin: 2px 0;
 	color: white;
+	padding: 3px 10px;
+	text-decoration: none;
+	display: block;
 }
 
 #home .locale span.list a:hover {
 	background-color: rgba(255,255,255,0.1);
-	text-decoration: none;
+	cursor: pointer;
 }
 
-#home .locale span.current:hover,
-#home .locale span.list a:hover {
-	cursor: pointer;
+#home .locale span.list a:active {
+	background-color: rgba(255,255,255,0.14);
+}
+
+#home .locale span.current:hover {
+	cursor: default;
 }
 
 #home .main {

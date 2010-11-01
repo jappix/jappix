@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -578,10 +578,7 @@ function jappixLocation() {
 }
 
 // The function to replace classical path to get.php paths
-function setPath($string, $host, $type, $locale) {
-	// We generate the hash
-	$hash = genHash(getVersion());
-	
+function setPath($string, $hash, $host, $type, $locale) {
 	// Initialize the static server path
 	$static = '.';
 	
@@ -592,10 +589,10 @@ function setPath($string, $host, $type, $locale) {
 			$static = $host;
 		
 		// Links to JS (must have a lang parameter)
-		$new = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(.+)(js)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&l='.$locale.'&t=$5&f=$7$8$9', $string);
+		$string = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(\S+)(js)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&l='.$locale.'&t=$5&f=$7$8$9', $string);
 		
 		// Other "normal" links (no lang parameter)
-		$new = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd)(\/)(.+)(css|png|jpg|jpeg|gif|bmp|ogg|oga)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $new);
+		$string = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $string);
 	}
 	
 	// Replace the CSS strings
@@ -604,10 +601,10 @@ function setPath($string, $host, $type, $locale) {
 		if($host != '.')
 			$static = $host.'/php';
 		
-		$new = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)[\/](.+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$3$4)', $string);
+		$string = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)(\/)(\S+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$4$5)', $string);
 	}
 	
-	return $new;
+	return $string;
 }
 
 // The function to set the good translation to a JS file

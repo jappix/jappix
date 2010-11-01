@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 01/11/10
 
 */
 
@@ -97,7 +97,7 @@ if($file && $type) {
 		$locale = '';
 	
 	// Define the cache lang name
-	if($locale && ($locale != 'en'))
+	if($locale)
 		$cache_lang = $cache_hash.'_'.$locale;
 	else
 		$cache_lang = $cache_hash;
@@ -240,17 +240,13 @@ if($file && $type) {
 						$i++;
 					}
 					
-					// Apply the JS configuration
-					if($type == 'js')
-						$looped = setConfiguration($looped, $locale, $version);
-					
-					// Apply some CSS stuffs
+					// Filter the CSS
 					if($type == 'css') {
 						// Apply the CSS background
 						$looped = setBackground($looped);
 						
-						// Set the CSS Get API paths
-						$looped = setPath($looped, HOST_STATIC, $type, $locale);
+						// Set the Get API paths
+						$looped = setPath($looped, $hash, HOST_STATIC, $type, '');
 					}
 					
 					// Optimize the code rendering
@@ -275,21 +271,21 @@ if($file && $type) {
 				
 				// Filter the JS
 				if($type == 'js') {
-					// Set the JS Get API paths
-					$output = setPath($output, HOST_STATIC, $type, $locale);
+					// Set the JS configuration
+					$output = setConfiguration($output, $locale, $version);
+					
+					// Set the Get API paths
+					$output = setPath($output, $hash, HOST_STATIC, $type, $locale);
 					
 					// Translate the JS script
 					require_once('./gettext.php');
 					includeTranslation($locale, 'main');
 					$output = setTranslation($output);
 					
-					// Generate the localized JS cache
+					// Generate the cache
 					$final = gzdeflate($output, 9);
 					genCache($final, $is_developer, $cache_lang);
 				}
-				
-				else
-					$final = gzdeflate($output, 9);
 				
 				// Output a well-encoded string
 				if($deflate_support)
