@@ -82,7 +82,7 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	// This is not yet a xHTML message (to avoid generating a link over another one)
 	if(html_encode) {
 		// Mail address
-		filteredMessage = filteredMessage.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z0-9\._-]+))(\s|$)/gi, '$1<a href="xmpp:$2" onclick="return checkChatCreate(\'$2\', \'chat\');">$2</a> <a href="mailto:$2" target="_blank">[✉]</a>$6')
+		filteredMessage = filteredMessage.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z0-9\._-]+))(\s|$)/gi, '$1<a href="xmpp:$2" onclick="return checkChatCreate(\'$2\', \'chat\');">$2</a>$6')
 		
 		// YouTube video box
 		.replace(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))(\S+)((&amp;\S)|(&\S)|\s|$)/gim, '<a onclick="return applyIntegrateBox(\'$8\', \'youtube\');" href="$&" target="_blank">$&</a> ')

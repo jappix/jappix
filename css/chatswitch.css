@@ -8,7 +8,7 @@ This is the chat-switch CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -36,7 +36,10 @@ Last revision: 31/10/10
 }
 
 #chat-switch .more-button {
+	background-position: 6px -1372px;
 	background-color: #d6dfe0;
+	width: 7px;
+	height: 17px;
 	padding: 1px 6px;
 	font-size: 0.9em;
 	text-decoration: none;

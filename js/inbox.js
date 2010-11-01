@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 09/10/10
+Last revision: 01/11/10
 
 Dependencies: search.js
 
@@ -251,9 +251,9 @@ function checkNewMessages() {
 	
 	// If there's no more unread messages
 	if(mSize)
-		mTools.text('(' + mSize + ')').show();
+		mTools.text(' (' + mSize + ')').show();
 	else
-		mTools.hide();
+		mTools.text('').hide();
 	
 	// If there's no more messages, we show a message
 	if(exists(mPath + 'one-message'))

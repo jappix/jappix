@@ -251,6 +251,8 @@ Last revision: 01/11/10
 }
 
 #channel a.mbtool {
+	width: 11px;
+	height: 11px;
 	display: block;
 	position: absolute;
 	right: 0;
@@ -261,7 +263,16 @@ Last revision: 01/11/10
 }
 
 #channel a.mbtool.profile {
+	background-position: -1px -1333px;
 	bottom: 24px;
+}
+
+#channel a.mbtool.repost {
+	background-position: -1px -1354px;
+}
+
+#channel a.mbtool.remove {
+	background-position: -1px -1312px;
 }
 
 #channel a.mbtool.repost,

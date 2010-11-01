@@ -8,7 +8,7 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/08/10
+Last revision: 01/11/10
 
 */
 
@@ -54,7 +54,7 @@ Last revision: 26/08/10
 
 #discovery .disco-category {
 	display: none;
-	margin-bottom: 18px;
+	margin-bottom: 22px;
 }
 
 #discovery .disco-category-title {

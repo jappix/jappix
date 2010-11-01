@@ -212,13 +212,6 @@ Last revision: 01/11/10
 	margin: 4px;
 }
 
-.popup .results .one-icon {
-	float: left;
-	width: 35px;
-	margin: 2px 2px 0 2px;
-	font-size: 30px;
-}
-
 .popup .results .avatar-container {
 	float: left;
 	width: 60px;
@@ -233,23 +226,78 @@ Last revision: 01/11/10
 	max-height: 60px;
 }
 
-.popup .results .one-host {
-	font-weight: bold;
+.popup .results .one-icon {
+	height: 16px;
+	width: 16px;
+	margin: 10px 3px 0 8px;
+	float: left;
+}
+
+.popup .results .one-icon.account,
+.popup .results .one-icon.auth {
+	background-position: 0 -777px;
+}
+
+.popup .results .one-icon.automation,
+.popup .results .one-icon.client {
+	background-position: 0 -1500px;
+}
+
+.popup .results .one-icon.collaboration {
+	background-position: 0 -1520px;
+}
+
+.popup .results .one-icon.proxy,
+.popup .results .one-icon.server,
+.popup .results .one-icon.others {
+	background-position: 0 -1540px;
+}
+
+.popup .results .one-icon.component,
+.popup .results .one-icon.gateway {
+	background-position: 0 -1560px;
+}
+
+.popup .results .one-icon.conference {
+	background-position: 0 -1082px;
+}
+
+.popup .results .one-icon.directory {
+	background-position: 0 -876px;
+}
+
+.popup .results .one-icon.headline,
+.popup .results .one-icon.hierarchy {
+	background-position: 0 -1580px;
+}
+
+.popup .results .one-icon.pubsub,
+.popup .results .one-icon.store {
+	background-position: 0 -1600px;
+}
+
+.popup .results .one-icon.loading {
+	background-position: 0 -1620px;
+}
+
+.popup .results .one-icon.down {
+	background-position: 0 -1640px;
 }
 
 .popup .results .one-host {
-	width: 160px;
+	font-weight: bold;
+	width: 172px;
 }
 
 .popup .results .one-type {
-	width: 200px;
+	width: 215px;
 }
 
 .popup .results .one-type,
 .popup .results .one-host {
 	float: left;
 	overflow: hidden;
-	margin: 11px 8px 8px 8px;
+	margin: 9px 8px;
 }
 
 .popup .results .one-jid,
@@ -317,31 +365,36 @@ Last revision: 01/11/10
 }
 
 .popup .results .one-actions {
+	width: 148px;
+	margin: 4px;
 	float: left;
-	width: 150px;
-	margin: 8px;
 }
 
 .popup .results .one-actions a {
-	float: left;
-	border: 1px solid #39565c;
-	background-color: #e2eaec;
 	width: 16px;
 	height: 16px;
-	padding: 2px 2px 4px 5px;
-	margin-right: 4px;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	padding: 2px 2px 4px 5px !important;
+	margin-top: 2px;
 }
 
-.popup .results .one-actions a:hover {
-	text-decoration: none;
-	background-color: #d6e1e3;
+.popup .results .one-actions a.browse {
+	background-position: 3px -1396px;
 }
 
-.popup .results .one-actions a:active {
-	background-color: #d0dcde;
+.popup .results .one-actions a.command {
+	background-position: 3px -1415px;
+}
+
+.popup .results .one-actions a.subscribe {
+	background-position: 4px -1435px;
+}
+
+.popup .results .one-actions a.join {
+	background-position: 3px -1455px;
+}
+
+.popup .results .one-actions a.search {
+	background-position: 4px -1475px;
 }
 
 .popup .results a.submit,

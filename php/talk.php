@@ -10,7 +10,7 @@ This is the Jappix talk html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 01/11/10
 
 */
 
@@ -20,7 +20,7 @@ Last revision: 30/10/10
 		<div id="top-content">
 			<!-- the tools we need to configure our account and logout -->
 				<div class="tools tools-all">
-					<a onclick="messagesOpen();" class="messages-hidable hidable"><?php _e("Messages"); ?> <span class="inbox-notify hidable"></span></a>
+					<a onclick="messagesOpen();" class="messages-hidable hidable"><?php _e("Messages"); ?><span class="inbox-notify hidable"></span></a>
 					<a onclick="openVCard();"><?php _e("Profile"); ?></a>
 					<a onclick="optionsOpen();" class="options-hidable hidable"><?php _e("Options"); ?></a>
 					<a onclick="normalQuit();"><?php _e("Disconnect"); ?></a>
@@ -28,7 +28,7 @@ Last revision: 30/10/10
 			
 			<!-- the music search and listen tool -->
 				<div class="tools-all ibubble">
-					<div class="tools music" onclick="openMusic();">♫</div>
+					<div class="tools music talk-images" onclick="openMusic();"></div>
 					
 					<div class="music-content tools-content bubble hidable">
 						<div class="tools-content-subarrow talk-images"></div>
@@ -51,7 +51,7 @@ Last revision: 30/10/10
 			
 			<!-- the notifications tool -->
 				<div class="tools-all ibubble">
-					<div class="tools notifications" onclick="showBubble('.notifications-content');">✱</div>
+					<div class="tools notifications talk-images" onclick="showBubble('.notifications-content');"></div>
 					
 					<div class="notifications-content tools-content bubble hidable">
 						<div class="tools-content-subarrow talk-images"></div>
@@ -119,7 +119,7 @@ Last revision: 30/10/10
 										</select>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-groupchat-edit"><?php _e("Manage your favorite groupchats"); ?></a>
+											- <a class="buddy-conf-groupchat-edit"><?php _e("Manage your favorite groupchats"); ?></a>
 										</p>
 									</div>
 								</div>
@@ -135,28 +135,28 @@ Last revision: 30/10/10
 										<p class="buddy-conf-p"><?php _e("More stuff"); ?></p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-display-unavailable showable"><?php _e("Show all friends"); ?></a>
+											- <a class="buddy-conf-more-display-unavailable showable"><?php _e("Show all friends"); ?></a>
 											<a class="buddy-conf-more-display-available hidable"><?php _e("Only show connected friends"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-map"><?php _e("Map of friends"); ?></a>
+											- <a class="buddy-conf-more-map"><?php _e("Map of friends"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-collections"><?php _e("Your collections"); ?></a>
+											- <a class="buddy-conf-more-collections"><?php _e("Your collections"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text archives-hidable showable">
-											&rarr; <a class="buddy-conf-more-archives"><?php _e("Message archives"); ?></a>
+											- <a class="buddy-conf-more-archives"><?php _e("Message archives"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a class="buddy-conf-more-service-disco"><?php _e("Service discovery"); ?></a>
+											- <a class="buddy-conf-more-service-disco"><?php _e("Service discovery"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://project.jappix.com/about" target="_blank"><?php _e("About Jappix"); ?></a>
+											- <a href="http://project.jappix.com/about" target="_blank"><?php _e("About Jappix"); ?></a>
 										</p>
 									</div>
 								</div>
@@ -172,23 +172,23 @@ Last revision: 30/10/10
 										<p class="buddy-conf-p"><?php _e("Get involved!"); ?></p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://codingteam.net/project/jappix/browse" target="_blank"><?php _e("Write code"); ?></a>
+											- <a href="http://codingteam.net/project/jappix/browse" target="_blank"><?php _e("Write code"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://codingteam.net/project/jappix/i18n" target="_blank"><?php _e("Translate"); ?></a>
+											- <a href="http://codingteam.net/project/jappix/i18n" target="_blank"><?php _e("Translate"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank"><?php _e("Report a bug"); ?></a>
+											- <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank"><?php _e("Report a bug"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="http://codingteam.net/project/jappix/doc" target="_blank"><?php _e("Write documentation"); ?></a>
+											- <a href="http://codingteam.net/project/jappix/doc" target="_blank"><?php _e("Write documentation"); ?></a>
 										</p>
 										
 										<p class="buddy-conf-text">
-											&rarr; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank"><?php _e("Donate"); ?></a>
+											- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank"><?php _e("Donate"); ?></a>
 										</p>
 									</div>
 								</div>
@@ -461,7 +461,7 @@ Last revision: 30/10/10
 						</div>
 						
 						<div class="more ibubble">
-							<div class="more-button" onclick="showBubble('#chat-switch .more-content');" title="<?php _e("All tabs"); ?>">▾</div>
+							<div class="more-button talk-images" onclick="showBubble('#chat-switch .more-content');" title="<?php _e("All tabs"); ?>"></div>
 							<div class="more-content bubble hidable">
 								<div class="channel switcher activechan" onclick="switchChan('channel');">
 									<div class="icon talk-images"></div>

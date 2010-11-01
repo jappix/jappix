@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -59,13 +59,13 @@ function displayMicroblog(packet, from, hash, mode) {
 					'<p class="infos">' + tTime + '</p>';
 		
 		// We can set an icon
-		if(tFType && (tFType == 'image' || tFType == 'video' || tFType == 'audio' || tFType == 'document' || tFType == 'package'))
+		if(tFType && ((tFType == 'image') || (tFType == 'video') || (tFType == 'audio') || (tFType == 'document') || (tFType == 'package')))
 			tFTClass = tFType;
 		else
 			tFTClass = 'other';
 		
 		// Supported image/video/sound
-		if(tFExt && (tFExt == 'jpg' || tFExt == 'jpeg' || tFExt == 'png' || tFExt == 'gif' || tFExt == 'ogg' || tFExt == 'oga' || tFExt == 'ogv'))
+		if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
 			tFEClick = 'onclick="return applyIntegrateBox(\'' + tFURL + '\', \'' + tFType + '\');" ';
 		else
 			tFEClick = '';
@@ -75,16 +75,16 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// It's my own notice, we can remove it!
 		if(from == getXID())
-			html += '<a onclick="removeMicroblog(\'' + tID + '\', \'' + tHash + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove">✘</a>';
+			html += '<a onclick="removeMicroblog(\'' + tID + '\', \'' + tHash + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 		
 		// Notice from another user
 		else {
 			// User profile
-			html += '<a title="' + _e("View profile") + '" class="mbtool profile" onclick="openUserInfos(\'' + from + '\');">☻</a>';
+			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="openUserInfos(\'' + from + '\');"></a>';
 			
 			// If PEP is enabled
 			if(enabledPEP())
-				html += '<a title="' + _e("Repeat this notice") + '" class="mbtool repost">♻</a>';
+				html += '<a title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
 		}
 		
 		html += '</div></div>';
@@ -123,7 +123,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		// Apply the click events
 		$('.' + tHash + ' a.repost').click(function() {
 			// Repeat the item
-			publishMicroblog('♺ ' + tName + ', ' + tTitle, tFName, tFURL, tFType, tFExt);
+			publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
 		});
 	});
 	

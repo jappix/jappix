@@ -10,7 +10,7 @@ This is the Jappix home html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -64,7 +64,7 @@ Last revision: 31/10/10
 								<input type="checkbox" class="remember" id="lremember" />
 							</fieldset>
 							
-							<a class="advanced showable" onclick="return showAdvanced();"><?php _e("Advanced"); ?> ▾</a>
+							<a class="advanced home-images showable" onclick="return showAdvanced();"><?php _e("Advanced"); ?></a>
 							
 							<fieldset class="hidable advanced">
 								<legend><?php _e("Advanced"); ?></legend>

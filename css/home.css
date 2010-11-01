@@ -118,16 +118,6 @@ Last revision: 01/11/10
 	width: 320px;
 }
 
-#home a.advanced {
-	display: block;
-	margin-bottom: 10px;
-	font-size: 0.9em;
-}
-
-#home fieldset.advanced {
-	display: none;
-}
-
 #home .right {
 	background-color: #c4e0e3;
 	float: right;
@@ -299,6 +289,19 @@ Last revision: 01/11/10
 	background-position: 0 -178px;
 }
 
+#home a.advanced {
+	background-position: 0 -282px;
+	font-size: 0.9em;
+	height: 16px;
+	margin-bottom: 10px;
+	padding-left: 16px;
+	display: block;
+}
+
+#home fieldset.advanced {
+	display: none;
+}
+
 #home .loginer,
 #home .anonymouser,
 #home .registerer {
@@ -312,7 +315,7 @@ Last revision: 01/11/10
 #home fieldset {
 	border: 1px solid black;
 	margin: 12px 0 12px 0;
-	padding-bottom: 3px;
+	padding: 2px 0 4px;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -343,6 +346,7 @@ Last revision: 01/11/10
 #home input[type=password],
 #home select {
 	width: 140px;
+	margin-top: -2px;
 }
 
 #home input[type=submit] {

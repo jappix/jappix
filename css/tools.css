@@ -8,7 +8,7 @@ This is the tools CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 01/11/10
 
 */
 
@@ -23,6 +23,8 @@ Last revision: 31/10/10
 #top-content .tools {
 	background-color: rgba(232,241,243,0.6);
 	padding: 3px 8px 5px 8px;
+	min-width: 10px;
+	height: 17px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	-moz-border-radius-bottomleft: 5px;
@@ -39,6 +41,14 @@ Last revision: 31/10/10
 #top-content .tools a:hover {
 	cursor: pointer;
 	text-decoration: underline;
+}
+
+#top-content .notifications {
+	background-position: 7px -1264px;
+}
+
+#top-content .music {
+	background-position: 6px -1286px;
 }
 
 #top-content .notifications:hover,
@@ -59,16 +69,7 @@ Last revision: 31/10/10
 #top-content .actived,
 #top-content .actived:hover,
 #top-content .actived:active {
-	background-color: rgba(232,241,243,0.9) !important;
-	color: #ac0505 !important;
-}
-
-#top-content .actived a {
-	color: #ac0505 !important;
-}
-
-#top-content .notifications.actived {
-	text-decoration: blink;
+	background-color: rgba(232,241,243,1) !important;
 }
 
 #top-content .inbox-notify {

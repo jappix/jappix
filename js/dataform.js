@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 01/11/10
 
 */
 
@@ -264,7 +264,7 @@ function handleDataFormContent(iq, type) {
 						// We display the waiting element
 						$(pathID + ' .disco-wait .disco-category-title').after(
 							'<div class="oneresult ' + target + '-oneresult ' + itemHash + '">' + 
-								'<div class="one-icon">☉</div>' + 
+								'<div class="one-icon loading talk-images"></div>' + 
 								'<div class="one-host">' + itemHost + '</div>' + 
 								'<div class="one-type">' + _e("Requesting this service...") + '</div>' + 
 							'</div>'
@@ -620,7 +620,7 @@ function handleThisBrowse(iq) {
 		else
 			gName = '';
 		
-		var icon, one, two, three, four, five;
+		var one, two, three, four, five;
 		
 		// Get the features that this entity supports
 		var findFeature = $(handleXML).find('feature');
@@ -658,71 +658,41 @@ function handleThisBrowse(iq) {
 		
 		// We define the toolbox links depending on the supported features
 		var tools = '';
-		var aTools = Array('browse', 'command', 'subscribe', 'join', 'search');
-		var bTools = Array(_e("Browse"), _e("Command"), _e("Subscribe"), _e("Join"), _e("Search"));
-		var cTools = Array('⌘', '⚒', '✎', '➲', '⚲');
+		var aTools = Array('search', 'join', 'subscribe', 'command', 'browse');
+		var bTools = Array(_e("Search"), _e("Join"), _e("Subscribe"), _e("Command"), _e("Browse"));
 		
-		for(var i = 0; i < buttons.length; i++)
+		for(var i = 0; i < buttons.length; i++) {
 			if(buttons[i])
-				tools += '<a onclick="dataForm(\'' + from + '\', \'' + aTools[i] + '\', \'\', \'\', \'' + target + '\');" title="' + bTools[i] + '">' + cTools[i] + '</a>';
+				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="dataForm(\'' + from + '\', \'' + aTools[i] + '\', \'\', \'\', \'' + target + '\');" title="' + bTools[i] + '"></a>';
+		}
 		
 		// As defined in the ref, we detect the type of each category to put an icon
 		switch(category) {
 			case 'account':
-				icon = '⚖';
-				break;
 			case 'auth':
-				icon = '⚗';
-				break;
 			case 'automation':
-				icon = '⚡';
-				break;
 			case 'client':
-				icon = '☘';
-				break;
 			case 'collaboration':
-				icon = '☻';
-				break;
 			case 'component':
-				icon = '☌';
-				break;
 			case 'conference':
-				icon = '⚑';
-				break;
 			case 'directory':
-				icon = '☎';
-				break;
 			case 'gateway':
-				icon = '⚙';
-				break;
 			case 'headline':
-				icon = '☀';
-				break;
 			case 'hierarchy':
-				icon = '☛';
-				break;
 			case 'proxy':
-				icon = '☔';
-				break;
 			case 'pubsub':
-				icon = '♞';
-				break;
 			case 'server':
-				icon = '⛂';
-				break;
 			case 'store':
-				icon = '⛃';
 				break;
+			
 			default:
-				icon = '★';
 				category = 'others';
-				break;
 		}
 		
-		// We display the item that we found
+		// We display the item we found
 		$(pathID + ' .disco-' + category + ' .disco-category-title').after(
 			'<div class="oneresult ' + target + '-oneresult ' + hash + '">' + 
-				'<div class="one-icon">' + icon + '</div>' + 
+				'<div class="one-icon ' + category + ' talk-images"></div>' + 
 				'<div class="one-host">' + from + '</div>' + 
 				'<div class="one-type">' + gName + '</div>' + 
 				'<div class="one-actions">' + tools + '</div>' + 
@@ -736,7 +706,7 @@ function handleThisBrowse(iq) {
 	else {
 		$(pathID + ' .disco-others .disco-category-title').after(
 			'<div class="oneresult ' + target + '-oneresult">' + 
-				'<div class="one-icon">☓</div>' + 
+				'<div class="one-icon down talk-images"></div>' + 
 				'<div class="one-host">' + from + '</div>' + 
 				'<div class="one-type">' + _e("Service offline or broken") + '</div>' + 
 			'</div>'
