@@ -8,7 +8,7 @@ These are the IQ JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 01/11/10
 
 */
 
@@ -22,15 +22,16 @@ function handleIQ(iq) {
 	var iqQuery = iq.getQuery();
 	var iqType = iq.getType();
 	
+	// Build the response
+	var iqResponse = new JSJaCIQ();
+	
+	iqResponse.setID(iqID);
+	iqResponse.setTo(iqFrom);
+	iqResponse.setType('result');
+	
 	// Software version query
 	if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0092.html */
-		
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
 		
 		var iqQuery = iqResponse.setQuery(NS_VERSION);
 		
@@ -47,12 +48,6 @@ function handleIQ(iq) {
 	else if((iqQueryXMLNS == NS_LAST) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0012.html */
 		
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
-		
 		var iqQuery = iqResponse.setQuery(NS_LAST);
 		iqQuery.setAttribute('seconds', getLastActivity());
 		
@@ -66,11 +61,6 @@ function handleIQ(iq) {
 		// REF : http://xmpp.org/extensions/xep-0092.html
 		
 		// Roster push
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
 		con.send(iqResponse);
 		
 		// Get the values
@@ -84,12 +74,6 @@ function handleIQ(iq) {
 	// Disco info query
 	else if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0030.html */
-		
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
 		
 		var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
 		
@@ -116,12 +100,6 @@ function handleIQ(iq) {
 	else if($(iqContent).find('time').size() && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0202.html */
 		
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
-		
 		var iqTime = iqResponse.appendNode('time', {'xmlns': NS_URN_TIME});
 		iqTime.appendChild(iq.buildNode('tzo', {'xmlns': NS_URN_TIME}, getDateTZO()));
 		iqTime.appendChild(iq.buildNode('utc', {'xmlns': NS_URN_TIME}, getXMPPTime('utc')));
@@ -134,12 +112,6 @@ function handleIQ(iq) {
 	// Ping
 	else if($(iqContent).find('ping').size() && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0199.html */
-		
-		var iqResponse = new JSJaCIQ();
-		
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
 		
 		con.send(iqResponse);
 		
