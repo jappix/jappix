@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -286,7 +286,7 @@ Last revision: 01/11/10
 
 .popup .results .one-host {
 	font-weight: bold;
-	width: 172px;
+	width: 165px;
 }
 
 .popup .results .one-type {
