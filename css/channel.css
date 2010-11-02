@@ -98,11 +98,11 @@ Last revision: 01/11/10
 }
 
 #channel div.update .attach {
-	background-position: 0 0;
+	background-position: 0 -1663px;
 }
 
 #channel div.update .unattach {
-	background-position: 0 -16px;
+	background-position: 0 -1683px;
 	display: none;
 }
 

@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 02/11/10
 
 */
 

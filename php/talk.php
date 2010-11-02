@@ -10,7 +10,7 @@ This is the Jappix talk html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -18,6 +18,9 @@ Last revision: 01/11/10
 	<!-- BEGIN TALKPAGE -->
 	<div id="talk" class="hidable">
 		<div id="top-content">
+			<!-- the logo tool -->
+				<div class="tools tools-logo talk-images"></div>
+			
 			<!-- the tools we need to configure our account and logout -->
 				<div class="tools tools-all">
 					<a onclick="messagesOpen();" class="messages-hidable hidable"><?php _e("Messages"); ?><span class="inbox-notify hidable"></span></a>

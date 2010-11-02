@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -295,7 +295,7 @@ Last revision: 01/11/10
 }
 
 .view-individual {
-	background-position: 0 -38px;
+	background-position: 0 -34px;
 }
 
 .edit-buddy {
