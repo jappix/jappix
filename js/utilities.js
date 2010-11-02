@@ -251,7 +251,7 @@ function getDateTZO() {
 
 // Parses a XMPP date into an human-readable one
 function parseDate(to_parse) {
-	var date = new Date(to_parse);
+	var date = Date.jab2date(to_parse);
 	var parsed = date.toLocaleDateString() + ' (' + date.toLocaleTimeString() + ')';
 	
 	return parsed; 
@@ -260,7 +260,7 @@ function parseDate(to_parse) {
 // Parses a XMPP date stamp into a relative one
 function relativeDate(to_parse) {
 	// Get the current date
-	var current_date = new Date(getXMPPTime('local'));
+	var current_date = Date.jab2date(getXMPPTime('utc'));
 	var current_stamp = current_date.getTime();
 	
 	// Parse the given date
