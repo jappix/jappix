@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 02/11/10
 
 */
 
@@ -365,7 +365,7 @@ function displayMessage(xid, body, nick, hash) {
 	
 	// Filter the message
 	body = body.htmlEnc()
-	       .replace(/(\w{3,5})(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>')
+	       .replace(/(https?|ftp|xmpp|irc|mailto|vnc|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>')
 	       .replace(/(;\)|;-\))(\s|$)/gi, smiley('wink'))
 	       .replace(/(:3|:-3)(\s|$)/gi, smiley('waii'))
 	       .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy'))

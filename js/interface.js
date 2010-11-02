@@ -12,6 +12,33 @@ Last revision: 02/11/10
 
 */
 
+// Changes the title of the document
+function pageTitle(title) {
+	// Title DOM element selector
+	var select = 'head title';
+	
+	// Anonymous mode?
+	var xid = getXID();
+	
+	if(isAnonymous())
+		xid = getDB('anonymous', 'room') + ' (' + _e("anonymous mode") + ')';
+	
+	// We change the title of the page so that it will give the user's XID when he's logged in
+	switch(title) {
+		case 'home':
+			$(select).html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
+			break;
+		
+		case 'talk':
+			$(select).html('Jappix &bull; ' + xid);
+			break;
+		
+		case 'new':
+			$(select).html('[*] Jappix &bull; ' + xid);
+			break;
+	}
+}
+
 // Switches to the given chan
 function switchChan(id) {
 	if(exists('#' + id)) {

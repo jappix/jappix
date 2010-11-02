@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 02/11/10
 
 */
 
@@ -458,7 +458,7 @@ function filter(msg) {
 	.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3')
 	
 	// Links
-	.replace(/(\w{3,5})(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>');
+	.replace(/(https?|ftp|xmpp|irc|mailto|vnc|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>');
 	
 	return msg;
 }

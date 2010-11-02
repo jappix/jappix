@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -428,7 +428,7 @@ function getLanguageName($code) {
 // The function which generates the language switcher hidden part
 function languageSwitcher($active_locale, $separate) {
 	// Initialize
-	$repertory = './lang/';
+	$repertory = PHP_BASE.'/lang/';
 	$scan = scandir($repertory);
 	$html = '';
 	
@@ -445,12 +445,6 @@ function languageSwitcher($active_locale, $separate) {
    	
    	// Output the HTML code
    	return $html;
-}
-
-// The function to disable an input
-function disableInput($value) {
-	if($value == 'off')
-		echo ' disabled="disabled"';
 }
 
 // The function to generate a strong hash
@@ -521,12 +515,6 @@ function httpsStorage() {
 function gzipThis() {
 	if(hasGZip() && !isDeveloper())
 		ob_start('ob_gzhandler');
-}
-
-// The function to add the input locker
-function lockHost() {
-	if(LOCK_HOST == 'on')
-		echo 'disabled="disabled" ';
 }
 
 // The function to check if anonymous mode is authorized
@@ -721,7 +709,7 @@ function includeTranslation($locale, $domain) {
 
 // The function to check the cache presence
 function hasCache($hash) {
-	if(file_exists('../store/cache/'.$hash.'.cache'))
+	if(file_exists(PHP_BASE.'/store/cache/'.$hash.'.cache'))
 		return true;
 	else
 		return false;
@@ -882,13 +870,13 @@ function getFileType($ext) {
 
 // The function to get the cached content
 function readCache($hash) {
-	return file_get_contents('../store/cache/'.$hash.'.cache');
+	return file_get_contents(PHP_BASE.'/store/cache/'.$hash.'.cache');
 }
 
 // The function to generate a cached file
 function genCache($string, $mode, $cache) {
 	if(!$mode) {
-		$cache_dir = '../store/cache';
+		$cache_dir = PHP_BASE.'/store/cache';
 		$file_put = $cache_dir.'/'.$cache.'.cache';
 		
 		// Cache not yet wrote

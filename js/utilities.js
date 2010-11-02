@@ -57,9 +57,22 @@ function generateURL(url) {
 	return url;
 }
 
+// Disables an input if needed
+function disableInput(value, condition) {
+	if(value == condition)
+		return ' disabled="disabled"';
+	
+	return '';
+}
+
 // Gets the asked translated string
 function _e(string) {
 	return string;
+}
+
+// Replaces '%s' to a given value for a translated string
+function printf(string, value) {
+	return string.replace('%s', value);
 }
 
 // Properly explodes a string with a given character
@@ -284,7 +297,7 @@ function relativeDate(to_parse) {
 		return _e("Yesterday") + ' - ' + old_time;
 	
 	// Another longer period
-	return _e("%s days ago").replace(/%s/, days) + ' - ' + old_time;
+	return printf(_e("%s days ago"), days) + ' - ' + old_time;
 }
 
 // Reverses the HTML encoding of a string
@@ -437,4 +450,9 @@ function xmlToString(xmlData) {
 	
 	// For Mozilla, Firefox, Opera, etc.
 	return (new XMLSerializer()).serializeToString(xmlData);
+}
+
+// Registers Jappix as the default XMPP links handler
+function xmppLinksHandler() {
+	navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
 }

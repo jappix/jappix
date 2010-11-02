@@ -141,10 +141,6 @@ Last revision: 02/11/10
 	border-bottom: 1px black dotted;
 }
 
-#home .right h1.sub {
-	display: none;
-}
-
 #home .right p {
 	margin-bottom: 4px;
 }
@@ -299,12 +295,6 @@ Last revision: 02/11/10
 }
 
 #home fieldset.advanced {
-	display: none;
-}
-
-#home .loginer,
-#home .anonymouser,
-#home .registerer {
 	display: none;
 }
 
