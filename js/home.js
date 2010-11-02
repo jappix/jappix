@@ -152,7 +152,7 @@ function switchHome(div) {
 				});
 				
 				$(current + ' form').submit(function() {
-					return doLogin();
+					return loginForm();
 				});
 				
 				break;
@@ -189,7 +189,7 @@ function switchHome(div) {
 			// Register tool
 			case 'registerer':
 				$(current + ' form').submit(function() {
-					return doRegister();
+					return registerForm();
 				});
 				
 				break;
@@ -209,6 +209,69 @@ function showAdvanced() {
 	
 	// Show the fieldset
 	$('#home fieldset.advanced').show();
+	
+	return false;
+}
+
+// Reads the login form values
+function loginForm() {
+	// We get the values
+	var lPath = '#home .loginer .';
+	var lServer = $(lPath + 'server').val();
+	var lNick = $(lPath + 'nick').val();
+	var lPass = $(lPath + 'password').val();
+	var lResource = $(lPath + 'resource').val();
+	var lPriority = $(lPath + 'priority').val();
+	var lRemember = $(lPath + 'remember').is(':checked');
+	
+	// Enough values?
+	if(lServer && lNick && lPass && lResource && lPriority)
+		doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember);
+	
+	// Something is missing?
+	else {
+		$(lPath + 'resetable').each(function() {
+			if(!$(this).val())
+				$(this).addClass('please-complete');
+			else
+				$(this).removeClass('please-complete');	
+		});
+	}
+	
+	return false;
+}
+
+// Reads the register form values
+function registerForm() {
+	var rPath = '#home .registerer .';
+	
+	// Fade out the old success info
+	$(rPath + 'success').hide();
+	
+	// Get the values
+	var username = $(rPath + 'nick').val();
+	var domain = $(rPath + 'server').val();
+	var pass = $(rPath + 'password').val();
+	var spass = $(rPath + 'spassword').val();
+	
+	// Enough values?
+	if(domain && username && pass && spass && (pass == spass)) {
+		// We remove the not completed class to avoid problems
+		$('#home .registerer input').removeClass('please-complete');
+		
+		// Fire the register event!
+		doRegister(username, domain, pass);
+	}
+	
+	// Something is missing?
+	else {
+		$(rPath + 'resetable').each(function() {
+			if(!$(this).val() || ($(this).is('#spassword') && pass && (pass != spass)))
+				$(this).addClass('please-complete');
+			else
+				$(this).removeClass('please-complete');	
+		});
+	}
 	
 	return false;
 }

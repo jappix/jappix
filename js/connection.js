@@ -12,6 +12,71 @@ Last revision: 02/11/10
 
 */
 
+// Does the user login
+var CURRENT_SESSION = false;
+
+function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
+	try {
+		// We remove the not completed class to avoid problems
+		$('#home .loginer input').removeClass('please-complete');
+		
+		// We add the login wait div
+		$('#general-wait').show();
+		
+		// We define the http binding parameters
+		oArgs = new Object();
+		oArgs.httpbase = HOST_BOSH;
+		oArgs.timerval = 2000;
+		
+		// We create the new http-binding connection
+		con = new JSJaCHttpBindingConnection(oArgs);
+		
+		// And we handle everything that happen
+		setupCon(con);
+		
+		// We retrieve what the user typed in the login inputs
+		oArgs = new Object();
+		oArgs.domain = lServer;
+		oArgs.username = lNick;
+		oArgs.resource = lResource;
+		oArgs.pass = lPass;
+		oArgs.secure = true;
+		
+		// Generate a session XML to be stored
+		session_xml = '<session><stored>true</stored><domain>' + lServer + '</domain><username>' + lNick + '</username><resource>' + lResource + '</resource><password>' + lPass + '</password><priority>' + lPriority + '</priority></session>';
+		
+		// Save the session parameters (for reconnect if network issue)
+		CURRENT_SESSION = session_xml;
+		
+		// Remember me?
+		if(lRemember)
+			setPersistent('session', 1, session_xml);
+		
+		// We store the infos of the user into the data-base
+		setDB('priority', 1, lPriority);
+		
+		// We connect !
+		con.connect(oArgs);
+		
+		logThis('Jappix is connecting...');
+	}
+	
+	catch(e) {
+		// Logs errors
+		logThis(e);
+		
+		// Reset the database (maximum size might be reached)
+		resetPersistent();
+		
+		// Try to login again
+		doLogin();
+	}
+	
+	finally {
+		return false;
+	}
+}
+
 // Handles the user registration
 function handleRegistered() {
 	logThis('A new account has been registered.');
@@ -27,153 +92,44 @@ function handleRegistered() {
 }
 
 // Does the user registration
-function doRegister() {
+function doRegister(username, domain, pass) {
 	logThis('Trying to register an account...');
 	
 	try {
-		var rPath = '#home .registerer .';
+		// We define the http binding parameters
+		oArgs = new Object();
+		oArgs.httpbase = HOST_BOSH;
+		oArgs.timerval = 2000;
 		
-		// Fade out the old success info
-		$(rPath + 'success').hide();
+		// We create the new http-binding connection
+		con = new JSJaCHttpBindingConnection(oArgs);
 		
-		// Get the values
-		var domain = $(rPath + 'server').val();
-		var username = $(rPath + 'nick').val();
-		var pass = $(rPath + 'password').val();
-		var spass = $(rPath + 'spassword').val();
+		// We setup the connection !
+		con.registerHandler('onconnect', handleRegistered);
+		con.registerHandler('onerror', handleError);
 		
-		// If the form is correctly completed
-		if(domain && username && pass && spass && pass == spass) {
-			// We remove the not completed class to avoid problems
-			$('#home .registerer input').removeClass('please-complete');
-			
-			// We define the http binding parameters
-			oArgs = new Object();
-			oArgs.httpbase = HOST_BOSH;
-			oArgs.timerval = 2000;
-			
-			// We create the new http-binding connection
-			con = new JSJaCHttpBindingConnection(oArgs);
-			
-			// We setup the connection !
-			con.registerHandler('onconnect', handleRegistered);
-			con.registerHandler('onerror', handleError);
-			
-			// We retrieve what the user typed in the register inputs
-			oArgs = new Object();
-			oArgs.domain = domain;
-			oArgs.username = username;
-			oArgs.resource = JAPPIX_RESOURCE + ' Register';
-			oArgs.pass = pass;
-			oArgs.register = true;
-			oArgs.secure = true;
-			
-			// We show the waiting image
-			$('#general-wait').show();
-			
-			// We show the registered information
-			$('#home .registerer .success b').text(username + '@' + domain);
-			
-			// And here we go : we connect !
-			con.connect(oArgs);
-		}
+		// We retrieve what the user typed in the register inputs
+		oArgs = new Object();
+		oArgs.domain = domain;
+		oArgs.username = username;
+		oArgs.resource = JAPPIX_RESOURCE + ' Register';
+		oArgs.pass = pass;
+		oArgs.register = true;
+		oArgs.secure = true;
 		
-		// We check if the form is entirely completed
-		else {
-			$(rPath + 'resetable').each(function() {
-				if(!$(this).val())
-					$(this).addClass('please-complete');
-				else
-					$(this).removeClass('please-complete');	
-			});
-		}
+		// We show the waiting image
+		$('#general-wait').show();
+		
+		// We change the registered information text
+		$('#home .registerer .success b').text(username + '@' + domain);
+		
+		// And here we go : we connect !
+		con.connect(oArgs);
 	}
 	
 	catch(e) {
 		// Logs errors
 		logThis(e);
-	}
-	
-	finally {
-		return false;
-	}
-}
-
-// Does the user login
-var CURRENT_SESSION = false;
-
-function doLogin() {
-	try {
-		// We get the values
-		var lPath = '#home .loginer .';
-		var lServer = $(lPath + 'server').val();
-		var lNick = $(lPath + 'nick').val();
-		var lPass = $(lPath + 'password').val();
-		var lResource = $(lPath + 'resource').val();
-		var lPriority = $(lPath + 'priority').val();
-		
-		if(lServer && lNick && lPass && lResource && lPriority) {
-			// We remove the not completed class to avoid problems
-			$('#home .loginer input').removeClass('please-complete');
-			
-			// We add the login wait div
-			$('#general-wait').show();
-			
-			// We define the http binding parameters
-			oArgs = new Object();
-			oArgs.httpbase = HOST_BOSH;
-			oArgs.timerval = 2000;
-			
-			// We create the new http-binding connection
-			con = new JSJaCHttpBindingConnection(oArgs);
-			
-			// And we handle everything that happen
-			setupCon(con);
-			
-			// We retrieve what the user typed in the login inputs
-			oArgs = new Object();
-			oArgs.domain = lServer;
-			oArgs.username = lNick;
-			oArgs.resource = lResource;
-			oArgs.pass = lPass;
-			oArgs.secure = true;
-			
-			// Generate a session XML to be stored
-			session_xml = '<session><stored>true</stored><domain>' + lServer + '</domain><username>' + lNick + '</username><resource>' + lResource + '</resource><password>' + lPass + '</password><priority>' + lPriority + '</priority></session>';
-			
-			// Save the session parameters (for reconnect if network issue)
-			CURRENT_SESSION = session_xml;
-			
-			// Remember me?
-			if($(lPath + 'remember').is(':checked'))
-				setPersistent('session', 1, session_xml);
-			
-			// We store the infos of the user into the data-base
-			setDB('priority', 1, lPriority);
-			
-			// We connect !
-			con.connect(oArgs);
-		}
-		
-		else {
-			$(lPath + 'resetable').each(function() {
-				if(!$(this).val())
-					$(this).addClass('please-complete');
-				else
-					$(this).removeClass('please-complete');	
-			});
-		}
-	}
-	
-	catch(e) {
-		// Logs errors
-		logThis(e);
-		
-		// Reset the database (maximum size might be reached)
-		resetPersistent();
-		
-		// Try to login again
-		doLogin();
 	}
 	
 	finally {
@@ -457,16 +413,15 @@ function loginFromSession(data) {
 	// Select the data
 	var session = $(data);
 	
-	// Apply the data to the form
-	var lPath = '#home .loginer .';
-	var lServer = $(lPath + 'server').val(session.find('domain').text());
-	var lNick = $(lPath + 'nick').val(session.find('username').text());
-	var lPass = $(lPath + 'password').val(session.find('password').text());
-	var lResource = $(lPath + 'resource').val(session.find('resource').text());
-	var lPriority = $(lPath + 'priority').val(session.find('priority').text());
-	
 	// Fire the login event
-	doLogin();
+	doLogin(
+		session.find('username').text(),
+		session.find('domain').text(),
+		session.find('password').text(),
+		session.find('resource').text(),
+		session.find('priority').text(),
+		'false'
+	);
 }
 
 // Quits a session normally
