@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -161,19 +161,12 @@ function localTimeUserInfos(iq) {
 		
 		// Any UTC?
 		if(utc) {
-			// Any TZO?
-			if(tzo)
-				tzo = parseDateTZO(tzo);
-			else
-				tzo = 0;
+			// Add the TZO if there's no one
+			if(tzo && utc.match(/^(.+)Z$/))
+				utc = RegExp.$1 + tzo;
 			
-			// Get the UTC stamp
-			var utc_date = new Date(utc);
-			var utc_stamp = utc_date.getTime();
-			
-			// Process the local date string
-			var local_date = new Date(utc_stamp + tzo);
-			var local_string = local_date.toLocaleString();
+			// Get the local date string
+			var local_string = Date.hrTime(utc);
 			
 			// Then display it
 			$(path + ' #BUDDY-TIME').text(local_string);

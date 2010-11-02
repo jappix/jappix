@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/10/10
+Last revision: 02/11/10
 
 */
 
@@ -145,7 +145,7 @@ function downloadChat(xid) {
 	var content = $(path + '#chatContentFor' + hash).clone().contents();
 	var avatar = $(path + '.top .avatar-container:first').html();
 	var nick = $(path + '.top .bc-name').text();
-	var date = getXMPPTime();
+	var date = getXMPPTime('local');
 	
 	// Filter the content smileys
 	$(content).find('span.emoticon').each(function() {

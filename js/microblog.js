@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -440,7 +440,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
-	var time = getXMPPTime('local');
+	var time = getXMPPTime('utc');
 	var id = hex_md5(body + time);
 	var nick = getNick();
 	var xid = getXID();

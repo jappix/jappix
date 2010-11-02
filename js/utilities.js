@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -249,29 +249,6 @@ function getDateTZO() {
 	return tzo;
 }
 
-// Parses a date TZO
-function parseDateTZO(tzo) {
-	// Get the sign
-	var sign = -1;
-	
-	if(tzo.match(/^-/))
-		sign = 1;
-	
-	// Remove the sign
-	tzo = tzo.replace(/^(\+|-)(.+)$/, '$2');
-	
-	// Get the hours
-	var hours = parseInt(explodeThis(':', tzo, 0));
-	
-	// Get the minutes
-	var minutes = parseInt(explodeThis(':', tzo, 1));
-	
-	// Process the TZO stamp
-	var stamp = (((hours * 60) + (minutes)) * 60 * 1000) * sign;
-	
-	return stamp;
-}
-
 // Parses a XMPP date into an human-readable one
 function parseDate(to_parse) {
 	var date = new Date(to_parse);
@@ -283,23 +260,23 @@ function parseDate(to_parse) {
 // Parses a XMPP date stamp into a relative one
 function relativeDate(to_parse) {
 	// Get the current date
-	var current_date = new Date(getXMPPTime());
+	var current_date = new Date(getXMPPTime('local'));
 	var current_stamp = current_date.getTime();
 	
 	// Parse the given date
-	var old_date = new Date(to_parse);
+	var old_date = Date.jab2date(to_parse);
 	var old_stamp = old_date.getTime();
 	var old_time = old_date.toLocaleTimeString();
 	
 	// Get the day number between the two dates
-	var days = parseInt(Math.abs((old_stamp - current_stamp) / 86400000));
+	var days = Math.round((current_stamp - old_stamp) / 86400000);
 	
 	// Invalid date?
 	if(isNaN(old_stamp) || isNaN(days))
 		return getCompleteTime();
 	
 	// Is it today?
-	if((days == 0) || (current_date < old_date))
+	if(days <= 0)
 		return old_time;
 	
 	// It is yesterday?

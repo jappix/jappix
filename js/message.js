@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 02/11/10
 
 */
 
@@ -102,7 +102,7 @@ function handleMessage(message) {
 	// Normal messages
 	if(type == 'normal' && body) {
 		var messageID = hex_md5(xid + subject + time);
-		var messageDate = getXMPPTime('local');
+		var messageDate = getXMPPTime('utc');
 		
 		// We display the received message
 		displayInboxMessage(xid, subject, body, 'unread', messageID, 'fresh', messageDate);

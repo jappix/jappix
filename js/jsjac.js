@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 02/11/10
 
 */
 
@@ -295,16 +295,19 @@ String.prototype.htmlEnc = function() {
  * @type Date
  */
 Date.jab2date = function(ts) {
+  // Get the UTC date
   var date = new Date(Date.UTC(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2)));
+  var date_offset = date.getTimezoneOffset() * 60 * 1000;
+  
   if (ts.substr(ts.length-6,1) != 'Z') { // there's an offset
     var offset = new Date();
     offset.setTime(0);
     offset.setUTCHours(ts.substr(ts.length-5,2));
     offset.setUTCMinutes(ts.substr(ts.length-2,2));
     if (ts.substr(ts.length-6,1) == '+')
-      date.setTime(date.getTime() - offset.getTime());
+      date.setTime(date.getTime() + offset.getTime() + date_offset);
     else if (ts.substr(ts.length-6,1) == '-')
-      date.setTime(date.getTime() + offset.getTime());
+      date.setTime(date.getTime() - offset.getTime() + date_offset);
   }
   return date;
 };
