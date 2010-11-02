@@ -89,6 +89,11 @@ function doRegister() {
 		}
 	}
 	
+	catch(e) {
+		// Logs errors
+		logThis(e);
+	}
+	
 	finally {
 		return false;
 	}
@@ -158,6 +163,17 @@ function doLogin() {
 					$(this).removeClass('please-complete');	
 			});
 		}
+	}
+	
+	catch(e) {
+		// Logs errors
+		logThis(e);
+		
+		// Reset the database (maximum size might be reached)
+		resetPersistent();
+		
+		// Try to login again
+		doLogin();
 	}
 	
 	finally {

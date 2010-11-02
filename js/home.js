@@ -75,7 +75,7 @@ function switchHome(div) {
 						'<label for="lpriority">' + _e("Priority") + '</label>' + 
 						'<select class="priority resetable" id="lpriority">' + 
 							'<option value="1">' + _e("Low") + '</option>' + 
-							'<option value="10">' + _e("Medium") + '</option>' + 
+							'<option value="10" selected="selected">' + _e("Medium") + '</option>' + 
 							'<option value="100">' + _e("High") + '</option>' + 
 						'</select>' + 
 					'</fieldset>' + 
