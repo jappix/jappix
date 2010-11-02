@@ -16,8 +16,7 @@ Last revision: 31/10/10
 	background-color: rgba(20,20,20,0.7);
 	color: #919191;
 	margin-top: 12px;
-	padding: 15px 6px 4px 6px;
-	max-height: 180px;
+	padding: 15px 6px 6px 6px;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -34,7 +33,7 @@ Last revision: 31/10/10
 	background: #e8f1f3;
 	color: #919191;
 	max-height: 140px;
-	padding-top: 1px;
+	padding: 1px 0;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -168,7 +167,7 @@ Last revision: 31/10/10
 #my-infos .element select {
 	font-size: 0.9em;
 	height: 25px;
-	width: 155px;
+	width: 170px;
 	margin: 3px 5px 2px 3px;
 }
 
@@ -179,7 +178,7 @@ Last revision: 31/10/10
 }
 
 .my-infos-text-item {
-	margin-left: 190px;
+	margin-left: 205px;
 	margin-top: -6px;
 	width: 244px;
 	position: absolute;

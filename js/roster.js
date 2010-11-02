@@ -520,8 +520,28 @@ function updateRosterItem(xid, rename, group) {
 	con.send(iq);
 }
 
+// Adapts the roster height, depending of the window size
+function adaptRoster() {
+	// Process the new height
+	var new_height = $('#left-content').height() - $('#my-infos').height() - 101;
+	
+	// New height too small
+	if(new_height < 207)
+		new_height = 207;
+	
+	// Apply the new height
+	$('#buddy-list .content').css('height', new_height);
+}
+
 // Define a global var for buddy list all buddies displayed
 var BLIST_ALL = false;
+
+// Window resize event handler
+$(window).resize(function() {
+	// Adapt the buddy-list size
+	if((typeof con != 'undefined') && con && con.connected())
+		adaptRoster();
+});
 
 // Launch this plugin!
 $(document).ready(function() {

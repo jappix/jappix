@@ -27,7 +27,7 @@ Last revision: 01/11/10
 #buddy-list .content {
 	background-color: #e8f1f3;
 	color: #666666;
-	height: 272px;
+	height: 207px;
 	padding: 4px 4px 0 4px;
 	overflow: auto;
 	border-top-left-radius: 4px;
@@ -142,7 +142,7 @@ Last revision: 01/11/10
 	font-weight: bold;
 	font-size: 0.8em;
 	color: #4c6166;
-	margin: 5px 0;
+	margin: 5px 0 5px 2px;
 	overflow: hidden;
 }
 
@@ -186,7 +186,7 @@ Last revision: 01/11/10
 
 #buddy-list .buddy-infos {
 	position: absolute;
-	left: 180px;
+	left: 195px;
 	margin-top: -48px;
 	z-index: 100;
 	width: 337px;
@@ -319,7 +319,7 @@ Last revision: 01/11/10
 #buddy-list .filter input {
 	border: none;
 	color: #56676b;
-	width: 174px;
+	width: 189px;
 	padding: 0;
 }
 

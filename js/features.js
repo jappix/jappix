@@ -75,6 +75,9 @@ function handleFeatures(xml) {
 		// Show the PEP elements
 		$('.pep-hidable').show();
 		
+		// Process the buddy-list height again
+		adaptRoster();
+		
 		// Geolocate the user
 		geolocate();
 		

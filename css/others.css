@@ -8,7 +8,7 @@ This is the others CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 02/11/10
 
 */
 
@@ -18,8 +18,6 @@ Last revision: 01/11/10
 
 #talk {
 	display: none;
-	min-height: 565px;
-	min-width: 880px;
 }
 
 #top-content {
@@ -37,6 +35,8 @@ Last revision: 01/11/10
 	left: 12px;
 	right: 12px;
 	bottom: 12px;
+	min-width: 850px;
+	min-height: 450px;
 }
 
 #left-content {
@@ -44,7 +44,8 @@ Last revision: 01/11/10
 	top: 0;
 	left: 0;
 	bottom: 0;
-	width: 210px;
+	width: 225px;
+	max-height: 650px;
 }
 
 #right-content {
@@ -53,9 +54,7 @@ Last revision: 01/11/10
 	top: 0;
 	right: 0;
 	bottom: 0;
-	left: 250px;
-	min-height: 515px;
-	min-width: 600px;
+	left: 265px;
 	z-index: 10;
 	border-radius: 6px;
 	-moz-border-radius: 6px;

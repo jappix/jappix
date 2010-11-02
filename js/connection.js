@@ -211,6 +211,9 @@ function handleConnected() {
 	$('#talk').show();
 	switchChan('channel');
 	
+	// Adapt the buddy-list size
+	adaptRoster();
+	
 	// We reset the homepage
 	switchHome('default');
 	

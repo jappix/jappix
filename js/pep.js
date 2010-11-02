@@ -474,15 +474,23 @@ function sendPosition(vLat, vLon, vAlt) {
 	
 	// Then, we display the user position link
 	if(vLat && vLon) {
+		// Apply the values
 		$('#my-infos .f-geoloc a').attr('href','http://www.openstreetmap.org/?mlat=' + vLat + '&amp;mlon=' + vLon + '&amp;zoom=14');
 		$('#my-infos .f-geoloc').show();
+		
+		// Process the buddy-list height again
+		adaptRoster();
 		
 		logThis('Geolocated.');
 	}
 	
 	else {
+		// Reset the values
 		$('#my-infos .f-geoloc a').attr('href','http://www.openstreetmap.org/');
 		$('#my-infos .f-geoloc').hide();
+		
+		// Process the buddy-list height again
+		adaptRoster();
 		
 		logThis('Not geolocated.');
 	}
