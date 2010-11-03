@@ -10,7 +10,7 @@ This is the Jappix home html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 03/11/10
 
 */
 
@@ -47,8 +47,14 @@ Last revision: 02/11/10
 				</div>
 				
 				<div class="navigation">
-					<a class="home-images mobile" href="./?m=mobile<?php echo keepGet('m', false); ?>"><?php _e("Mobile"); ?></a>
-					<a class="home-images manager" href="./?m=manager<?php echo keepGet('m', false); ?>"><?php _e("Manager"); ?></a>
+					<?php
+					
+						// Keep get var
+						$keep_get = keepGet('m', false);
+					
+					?>
+					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
+					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><?php _e("Manager"); ?></a>
 					<a class="home-images project" href="http://project.jappix.com"><?php _e("Project"); ?></a>
 					<?php if(sslCheck()) echo sslLink(); ?>
 				</div>

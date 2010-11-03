@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 03/11/10
 
 */
 
@@ -216,8 +216,13 @@ else
 			<div class="meta">
 				<span><?php echo(htmlspecialchars($user_meta)); ?></span>
 				
-				<?php if($id != 0) { ?>
-					<a class="logout manager-images" href="./?a=logout<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Disconnect"); ?></a>
+				<?php if($id != 0) {
+				
+					// Keep get
+					$keep_get = keepGet('(a|p|b|s)', false);
+				
+				?>
+					<a class="logout manager-images" href="./?a=logout<?php echo $keep_get; ?>"><?php _e("Disconnect"); ?></a>
 				<?php } ?>
 				
 				<a class="close manager-images" href="./<?php echo keepGet('(m|a|p|b|s)', true); ?>"><?php _e("Close"); ?></a>
@@ -228,13 +233,13 @@ else
 		
 		<?php if($id != 0) { ?>
 			<div id="manager-tabs">
-				<a<?php currentTab('statistics', $page_identifier); ?> href="./?a=statistics<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Statistics"); ?></a>
-				<a<?php currentTab('configuration', $page_identifier); ?> href="./?a=configuration<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Configuration"); ?></a>
-				<a<?php currentTab('hosts', $page_identifier); ?> href="./?a=hosts<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Hosts"); ?></a>
-				<a<?php currentTab('storage', $page_identifier); ?> href="./?a=storage<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Storage"); ?></a>
-				<a<?php currentTab('design', $page_identifier); ?> href="./?a=design<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Design"); ?></a>
-				<a<?php currentTab('users', $page_identifier); ?> href="./?a=users<?php echo keepGet('(a|p|bv)', false); ?>"><?php _e("Users"); ?></a>
-				<a<?php currentTab('updates', $page_identifier); ?> class="last" href="./?a=updates<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("Updates"); ?></a>
+				<a<?php currentTab('statistics', $page_identifier); ?> href="./?a=statistics<?php echo $keep_get; ?>"><?php _e("Statistics"); ?></a>
+				<a<?php currentTab('configuration', $page_identifier); ?> href="./?a=configuration<?php echo $keep_get; ?>"><?php _e("Configuration"); ?></a>
+				<a<?php currentTab('hosts', $page_identifier); ?> href="./?a=hosts<?php echo $keep_get; ?>"><?php _e("Hosts"); ?></a>
+				<a<?php currentTab('storage', $page_identifier); ?> href="./?a=storage<?php echo $keep_get; ?>"><?php _e("Storage"); ?></a>
+				<a<?php currentTab('design', $page_identifier); ?> href="./?a=design<?php echo $keep_get; ?>"><?php _e("Design"); ?></a>
+				<a<?php currentTab('users', $page_identifier); ?> href="./?a=users<?php echo $keep_get; ?>"><?php _e("Users"); ?></a>
+				<a<?php currentTab('updates', $page_identifier); ?> class="last" href="./?a=updates<?php echo $keep_get; ?>"><?php _e("Updates"); ?></a>
 			</div>
 		<?php } ?>
 		
@@ -242,7 +247,7 @@ else
 			<?php
 			
 			if(($id != 0) && newUpdates($check_updates)) { ?>
-				<a class="info bottomspace neutral" href="./?a=updates<?php echo keepGet('(a|p|b|s)', false); ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>
+				<a class="info bottomspace neutral" href="./?a=updates<?php echo $keep_get; ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>
 			<?php }
 			
 			// Authorized and statistics page requested
@@ -392,11 +397,18 @@ else
 				
 				<p><?php _e("Keep your Jappix node fresh and fast, clean the storage folders regularly!"); ?></p>
 				
+				<?php
+				
+					// Keep get
+					$keep_get = keepGet('p', false);
+				
+				?>
+				
 				<ul>
-					<li class="total"><a href="./?p=everything<?php echo keepGet('p', false); ?>"><?php _e("Clean everything"); ?></a></li>
-					<li><a href="./?p=cache<?php echo keepGet('p', false); ?>"><?php _e("Purge cache"); ?></a></li>
-					<li><a href="./?p=logs<?php echo keepGet('p', false); ?>"><?php _e("Purge logs"); ?></a></li>
-					<li><a href="./?p=updates<?php echo keepGet('p', false); ?>"><?php _e("Purge updates"); ?></a></li>
+					<li class="total"><a href="./?p=everything<?php echo $keep_get; ?>"><?php _e("Clean everything"); ?></a></li>
+					<li><a href="./?p=cache<?php echo $keep_get; ?>"><?php _e("Purge cache"); ?></a></li>
+					<li><a href="./?p=logs<?php echo $keep_get; ?>"><?php _e("Purge logs"); ?></a></li>
+					<li><a href="./?p=updates<?php echo $keep_get; ?>"><?php _e("Purge updates"); ?></a></li>
 				</ul>
 				
 				<h4><?php _e("Share"); ?></h4>

@@ -431,6 +431,7 @@ function getLanguageName($code) {
 // The function which generates the language switcher hidden part
 function languageSwitcher($active_locale, $separate) {
 	// Initialize
+	$keep_get = keepGet('l', false);
 	$repertory = PHP_BASE.'/lang/';
 	$scan = scandir($repertory);
 	$html = '';
@@ -445,7 +446,7 @@ function languageSwitcher($active_locale, $separate) {
 			continue;
 		
 		// Generate the HTML code
-		$html .= '<a href="./?l='.$current.keepGet('l', false).'">'.$current_name.'</a>';
+		$html .= '<a href="./?l='.$current.$keep_get.'">'.$current_name.'</a>';
 		
 		// Add a separator if asked
 		if($separate)
@@ -1650,6 +1651,7 @@ function browseFolder($folder, $mode) {
 	$directory = PHP_BASE.'/store/'.$folder;
 	$scan = scandir($directory);
 	$scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
+	$keep_get = keepGet('(s|b)', false);
 	
 	// Odd/even marker
 	$marker = 'odd';
@@ -1659,7 +1661,7 @@ function browseFolder($folder, $mode) {
 		// Filter the folder name
 		$previous_folder = substr($folder, 0, strrpos($folder, '/'));
 		
-		echo('<div class="one-browse previous manager-images"><a href="./?b='.$mode.'&s='.urlencode($previous_folder).keepGet('(s|b)', false).'">'.T_("Previous").'</a></div>');
+		echo('<div class="one-browse previous manager-images"><a href="./?b='.$mode.'&s='.urlencode($previous_folder).$keep_get.'">'.T_("Previous").'</a></div>');
 	}
 	
 	// Empty or non-existing directory?
@@ -1678,7 +1680,7 @@ function browseFolder($folder, $mode) {
 		// Directory?
 		if(is_dir($path)) {
 			$type = 'folder';
-			$href = './?b='.$mode.'&s='.urlencode($file).keepGet('(s|b)', false);
+			$href = './?b='.$mode.'&s='.urlencode($file).$keep_get;
 			$target = '';
 		}
 		
