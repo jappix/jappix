@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 03/11/10
 
 */
 
@@ -45,7 +45,7 @@ function anonymousConnected(con) {
 	pageTitle('talk');
 	
 	// Remove some nasty elements for the anonymous mode (and to make the DOM lighter)
-	$('#channel, #chat-switch .channel, .tools-muc-close, .tools-mucadmin, .tools-add, .lock:has(.popup):not(#userinfos, #integratebox), #top-content, #buddy-list, #my-infos .element:not(.f-presence)').remove();
+	$('#channel, #chat-switch .channel, .tools-mucadmin, .tools-add, .lock:has(.popup):not(#userinfos, #integratebox), #top-content, #buddy-list, #my-infos .element:not(.f-presence)').remove();
 	
 	// Hide waiting icon
 	$('#general-wait').hide();

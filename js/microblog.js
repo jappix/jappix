@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 03/11/10
 
 */
 
@@ -415,8 +415,8 @@ function sendMicroblog(aForm) {
 		
 		// Sufficient parameters
 		if(body) {
-			// Disable our input
-			$('.channel-header input[name=microblog_body]').attr('disabled', true);
+			// Disable & blur our input
+			$('.channel-header input[name=microblog_body]').attr('disabled', true).blur();
 			
 			// Send the message on the XMPP network
 			publishMicroblog(

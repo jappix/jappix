@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 03/11/10
 
 */
 
@@ -76,14 +76,13 @@ function generateChat(type, id, xid, nick) {
 	xid = escapeOnEvent(xid);
 	
 	// Special code
-	var specialAttributes, specialAvatar, specialName, specialClass, specialCode, specialLink, specialDisabled, specialStyle;
+	var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle;
 	
 	// Groupchat special code
 	if(type == 'groupchat') {
 		specialAttributes = ' data-type="groupchat" data-xid="' + xid + '"';
 		specialAvatar = '';
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
-		specialClass = ' tools-muc-close';
 		specialCode = '<div class="content groupchat-content" id="chatContentFor' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
 		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
 		specialStyle = '';
@@ -100,7 +99,6 @@ function generateChat(type, id, xid, nick) {
 		specialAttributes = '';
 		specialAvatar = '<div class="avatar-container"><img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
-		specialClass = '';
 		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>' + 
 			      '<div class="chatstate">' + 
 			      		'<div class="active one-chatstate">' + _e("Your friend is paying attention to the conversation.") + '</div>' + 

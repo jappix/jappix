@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 03/11/10
 
 */
 
@@ -422,7 +422,10 @@ function getLanguageName($code) {
 		'zu' => 'isiZulu'
 	);
 	
-	return $known[$code];
+	if(isset($known[$code]))
+		return $known[$code];
+	
+	return null;
 }
 
 // The function which generates the language switcher hidden part
@@ -434,13 +437,19 @@ function languageSwitcher($active_locale, $separate) {
 	
 	// Loop the available languages
 	foreach($scan as $current) {
-		if($current && is_dir($repertory.$current) && ($current != $active_locale) && !preg_match('/^(\.(.+)?)$/i', $current)) {
-			$html .= '<a href="./?l='.$current.keepGet('l', false).'">'.getLanguageName($current).'</a>';
-			
-			// Add a separator if asked
-			if($separate)
-				$html .= ', ';
-		}
+		// Get the current language name
+		$current_name = getLanguageName($current);
+		
+		// Not valid?
+		if(($current == $active_locale) || ($current_name == null))
+			continue;
+		
+		// Generate the HTML code
+		$html .= '<a href="./?l='.$current.keepGet('l', false).'">'.$current_name.'</a>';
+		
+		// Add a separator if asked
+		if($separate)
+			$html .= ', ';
    	}
    	
    	// Output the HTML code
