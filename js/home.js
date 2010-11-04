@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 04/11/10
 
 */
 
@@ -19,12 +19,12 @@ function switchHome(div) {
 	var right = home + 'right ';
 	var current = right + '.homediv.' + div;
 	
-	// We reset the homedivs
-	$(home + 'homediv:not(.default), ' + home + 'top:not(.default)').remove();
-	
 	// We switch the div
 	$(right + '.homediv, ' + right + '.top').hide();
 	$(right + '.' + div).show();
+	
+	// We reset the homedivs
+	$(home + 'homediv:not(.default), ' + home + 'top:not(.default)').remove();
 	
 	// Get the HTML code to display
 	var code = '';

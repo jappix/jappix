@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 04/11/10
 
 */
 
@@ -550,10 +550,13 @@ function sslCheck() {
 
 // The function to return the encrypted link
 function sslLink() {
-	if(!$_SERVER['HTTPS'])
-		$link = '<a class="home-images crypted" href="https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Encrypted').'</a>';
-	else
+	// Using HTTPS?
+	if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
 		$link = '<a class="home-images uncrypted" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Uncrypted').'</a>';
+	
+	// Using HTTP?
+	else
+		$link = '<a class="home-images crypted" href="https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Encrypted').'</a>';
 	
 	return $link;
 }
@@ -561,7 +564,7 @@ function sslLink() {
 // The function to get the Jappix full URL
 function jappixURL() {
 	// Check for HTTPS
-	$protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
+	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 	
 	// Full URL
 	$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -1137,13 +1140,19 @@ function uploadMaxSize() {
 // Extracts the version number with a version ID
 function versionNumber($id) {
 	// First, extract the number string from the [X]
-	$first_extract = preg_replace('/^(.+)\[(\S+)\]$/', '$2', $id);
+	$extract = preg_replace('/^(.+)\[(\S+)\]$/', '$2', $id);
 	
 	// Second extract: ~ (when this is a special version, like ~dev)
-	$second_extract = preg_replace('/^(.+)~(.+)$/', '$1', $first_extract);
+	if(strrpos($extract, '~') !== false) {
+		$extract = preg_replace('/^(.+)~(.+)$/', '$1', $extract);
+		
+		// Allows updates
+		$extract = floatval($extract) - 0.01;
+	}
 	
-	// Convert this to an integer
-	$extract = floatval($second_extract);
+	// Normal version
+	else
+		$extract = floatval($extract);
 	
 	return $extract;
 }

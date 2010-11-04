@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 04/11/10
 
 */
 
@@ -77,7 +77,7 @@ if($file && $type) {
 	$hash = genHash($version);
 	$path = '../'.$type.'/'.$file;
 	$position = strpos($file, '~');
-	$cache_hash = md5($type.$file.$hash);
+	$cache_hash = md5($type.$file.$hash.jappixLocation());
 	
 	// Check if the browser supports DEFLATE
 	$deflate_support = false;
