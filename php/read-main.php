@@ -10,21 +10,22 @@ This is the main configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 05/11/10
 
 */
 
 // Define the default main configuration values
-$main_conf = array();
-$main_conf['name'] = 'Jappix';
-$main_conf['desc'] = 'a free social network';
-$main_conf['resource'] = 'Jappix';
-$main_conf['lock'] = 'off';
-$main_conf['anonymous'] = 'on';
-$main_conf['https_storage'] = 'off';
-$main_conf['encryption'] = 'on';
-$main_conf['compression'] = 'on';
-$main_conf['developer'] = 'off';
+$main_conf = array(
+	     	'name' => 'Jappix',
+	     	'desc' => 'a free social network',
+	     	'resource' => 'Jappix',
+	     	'lock' => 'off',
+	     	'anonymous' => 'on',
+	     	'https_storage' => 'off',
+	     	'encryption' => 'on',
+	     	'compression' => 'on',
+	     	'developer' => 'off'
+	     );
 
 // Define a default values array
 $main_default = $main_conf;

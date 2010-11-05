@@ -10,7 +10,7 @@ This is the hosts configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 05/11/10
 
 */
 
@@ -21,13 +21,14 @@ else
 	$protocol = 'http';
 
 // Define the default hosts configuration values
-$hosts_conf = array();
-$hosts_conf['main'] = 'jappix.com';
-$hosts_conf['muc'] = 'muc.jappix.com';
-$hosts_conf['vjud'] = 'vjud.jappix.com';
-$hosts_conf['anonymous'] = 'anonymous.jappix.com';
-$hosts_conf['bosh'] = 'http://bind.jappix.com/';
-$hosts_conf['static'] = '.';
+$hosts_conf = array(
+	      	'main' => 'jappix.com',
+	      	'muc' => 'muc.jappix.com',
+	      	'vjud' => 'vjud.jappix.com',
+	      	'anonymous' => 'anonymous.jappix.com',
+	      	'bosh' => 'http://bind.jappix.com/',
+	      	'static' => '.'
+	      );
 
 // Define a default values array
 $hosts_default = $hosts_conf;

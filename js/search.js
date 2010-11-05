@@ -8,9 +8,7 @@ These are the seach tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 09/10/10
-
-Dependencies: utilities.js
+Last revision: 05/11/10
 
 */
 

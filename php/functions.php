@@ -10,7 +10,7 @@ These are the functions to checks things for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 04/11/10
+Last revision: 05/11/10
 
 */
 
@@ -1079,19 +1079,20 @@ function formatBytes($bytes, $precision = 2) {
 // Converts a human-readable bytes value to a computer one
 function humanToBytes($string) {
 	// Values array
-	$values = array();
-	$values['K'] = '000';
-	$values['M'] = '000000';
-	$values['G'] = '000000000';
-	$values['T'] = '000000000000';
-	$values['P'] = '000000000000000';
-	$values['E'] = '000000000000000000';
-	$values['Z'] = '000000000000000000000';
-	$values['Y'] = '000000000000000000000000';
+	$values = array(
+		       	'K' => 000,
+		       	'M' => 000000,
+		       	'G' => 000000000,
+		       	'T' => 000000000000,
+		       	'P' => 000000000000000,
+		       	'E' => 000000000000000000,
+		       	'Z' => 000000000000000000000,
+		       	'Y' => 000000000000000000000000
+		       );
 	
 	// Filter the string
 	foreach($values as $key => $zero)
-		$string = str_replace($key, $zero, $string);
+		$string = str_replace($key, $zero.'', $string);
 	
 	// Converts the string into an integer
 	$string = intval($string);
@@ -1101,19 +1102,20 @@ function humanToBytes($string) {
 
 // Set the good unity for a size in bytes
 function numericToMonth($id) {
-	$array = array();
-	$array[1] = T_("January");
-	$array[2] = T_("February");
-	$array[3] = T_("March");
-	$array[4] = T_("April");
-	$array[5] = T_("May");
-	$array[6] = T_("June");
-	$array[7] = T_("July");
-	$array[8] = T_("August");
-	$array[9] = T_("September");
-	$array[10] = T_("October");
-	$array[11] = T_("November");
-	$array[12] = T_("December");
+	$array = array(
+		      	1 => "January",
+		      	2 => "February",
+		      	3 => "March",
+		      	4 => "April",
+		      	5 => "May",
+		      	6 => "June",
+		      	7 => "July",
+		      	8 => "August",
+		      	9 => "September",
+		      	10 => "October",
+		      	11 => "November",
+		      	12 => "December"
+		      );
 	
 	return $array[$id];
 }
@@ -1395,17 +1397,16 @@ function largestShare($array, $number) {
 
 // Returns the others statistics array
 function otherStats() {
-	// New array
-	$others_stats = array();
-	
-	// Fill it with the values
-	$others_stats[T_("Backgrounds")] = sizeDir(PHP_BASE.'/store/backgrounds/');
-	$others_stats[T_("Cache")] = sizeDir(PHP_BASE.'/store/cache/');
-	$others_stats[T_("Configuration")] = sizeDir(PHP_BASE.'/store/conf/');
-	$others_stats[T_("Logs")] = sizeDir(PHP_BASE.'/store/logs/');
-	$others_stats[T_("Music")] = sizeDir(PHP_BASE.'/store/music/');
-	$others_stats[T_("Share")] = sizeDir(PHP_BASE.'/store/share/');
-	$others_stats[T_("Updates")] = sizeDir(PHP_BASE.'/store/updates/');
+	// Fill the array with the values
+	$others_stats = array(
+			     	T_("Backgrounds") => sizeDir(PHP_BASE.'/store/backgrounds/'),
+			     	T_("Cache") => sizeDir(PHP_BASE.'/store/cache/'),
+			     	T_("Configuration") => sizeDir(PHP_BASE.'/store/conf/'),
+			     	T_("Logs") => sizeDir(PHP_BASE.'/store/logs/'),
+			     	T_("Music") => sizeDir(PHP_BASE.'/store/music/'),
+			     	T_("Share") => sizeDir(PHP_BASE.'/store/share/'),
+			     	T_("Updates") => sizeDir(PHP_BASE.'/store/updates/')
+			     );
 	
 	// Sort this array
 	arsort($others_stats);
@@ -1446,9 +1447,10 @@ function writeTotalVisit() {
 	$stamp = time();
 	
 	// Initialize the defaults
-	$array = array();
-	$array['total'] = 0;
-	$array['stamp'] = $stamp;
+	$array = array(
+		      	'total' => 0,
+		      	'stamp' => $stamp
+		      );
 	
 	// Try to read the saved data
 	$total_data = readXML('access', 'total');
@@ -1552,12 +1554,13 @@ function writeVisit() {
 // Gets the array of the visits stats
 function getVisits() {
 	// New array
-	$array = array();
-	$array['total'] = 0;
-	$array['daily'] = 0;
-	$array['weekly'] = 0;
-	$array['monthly'] = 0;
-	$array['yearly'] = 0;
+	$array = array(
+		      	'total' => 0,
+		      	'daily' => 0,
+		      	'weekly' => 0,
+		      	'monthly' => 0,
+		      	'yearly' => 0
+		      );
 	
 	// Read the data
 	$data = readXML('access', 'total');
@@ -1575,11 +1578,12 @@ function getVisits() {
 		$age = time() - $array['stamp'];
 		
 		// Generate the time-dependant values
-		$timed = array();
-		$timed['daily'] = 86400;
-		$timed['weekly'] = 604800;
-		$timed['monthly'] = 2678400;
-		$timed['yearly'] = 31536000;
+		$timed = array(
+			      	'daily' => 86400,
+			      	'weekly' => 604800,
+			      	'monthly' => 2678400,
+			      	'yearly' => 31536000
+			      );
 		
 		foreach($timed as $timed_key => $timed_value) {
 			if($age >= $timed_value)
@@ -1804,18 +1808,17 @@ function browseUsers() {
 
 // Returns the default background array
 function defaultBackground() {
-	// New array
-	$background_default = array();
-	
 	// Define the default values
-	$background_default['type'] = 'default';
-	$background_default['image_file'] = '';
-	$background_default['image_repeat'] = 'repeat-x';
-	$background_default['image_horizontal'] = 'center';
-	$background_default['image_vertical'] = 'top';
-	$background_default['image_adapt'] = 'off';
-	$background_default['image_color'] = '#cae1e9';
-	$background_default['color_color'] = '#cae1e9';
+	$background_default = array(
+			      	'type' => 'default',
+			      	'image_file' => '',
+			      	'image_repeat' => 'repeat-x',
+			      	'image_horizontal' => 'center',
+			      	'image_vertical' => 'top',
+			      	'image_adapt' => 'off',
+			      	'image_color' => '#cae1e9',
+			      	'color_color' => '#cae1e9'
+			      );
 	
 	return $background_default;
 }
@@ -1884,9 +1887,10 @@ function readNotice() {
 	$notice_data = readXML('conf', 'notice');
 	
 	// Define the default values
-	$notice_default = array();
-	$notice_default['type'] = 'none';
-	$notice_default['notice'] = '';
+	$notice_default = array(
+			  	'type' => 'none',
+			  	'notice' => ''
+			  );
 	
 	// Stored data array
 	$notice_conf = array();

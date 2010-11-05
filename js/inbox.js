@@ -8,9 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
-
-Dependencies: search.js
+Last revision: 05/11/10
 
 */
 

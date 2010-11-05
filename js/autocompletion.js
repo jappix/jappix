@@ -8,9 +8,7 @@ These are the autocompletion tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/10/10
-
-Dependencies: utilities.js
+Last revision: 05/11/10
 
 */
 

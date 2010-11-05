@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 05/11/10
 
 */
 
@@ -69,4 +69,8 @@ input[type=checkbox] {
 .please-complete, .please-complete:hover, .please-complete:focus {
 	border: 1px #ac2525 solid !important;
 	background-color: #fdf5f5 !important;
+}
+
+.hidden {
+	display: none;
 }
