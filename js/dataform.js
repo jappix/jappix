@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 05/11/10
 
 */
 
@@ -629,11 +629,11 @@ function handleThisBrowse(iq) {
 			var current = findFeature.eq(i).attr('var');
 			
 			switch(current) {
-				case NS_DISCO_ITEMS:
+				case NS_SEARCH:
 					one = 1;
 					break;
 				
-				case NS_COMMANDS:
+				case NS_MUC:
 					two = 1;
 					break;
 				
@@ -641,11 +641,11 @@ function handleThisBrowse(iq) {
 					three = 1;
 					break;
 				
-				case NS_MUC:
+				case NS_COMMANDS:
 					four = 1;
 					break;
 				
-				case NS_SEARCH:
+				case NS_DISCO_ITEMS:
 					five = 1;
 					break;
 				
