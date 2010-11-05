@@ -45,6 +45,9 @@ textarea {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	box-shadow: 0 3px 10px #dcdcdc inset;
+	-moz-box-shadow: 0 3px 10px #dcdcdc inset;
+	-webkit-box-shadow: 0 3px 10px #dcdcdc inset;
 }
 
 textarea {
@@ -54,6 +57,9 @@ textarea {
 input:focus,
 textarea:focus {
 	border: 1px solid #e1a014;
+	box-shadow: 0 3px 10px #edd9bc inset;
+	-moz-box-shadow: 0 3px 10px #edd9bc inset;
+	-webkit-box-shadow: 0 3px 10px #edd9bc inset;
 }
 
 input[disabled],
@@ -68,7 +74,9 @@ input[type=checkbox] {
 
 .please-complete, .please-complete:hover, .please-complete:focus {
 	border: 1px #ac2525 solid !important;
-	background-color: #fdf5f5 !important;
+	box-shadow: 0 3px 10px #f39c9c inset !important;
+	-moz-box-shadow: 0 3px 10px #f39c9c inset !important;
+	-webkit-box-shadow: 0 3px 10px #f39c9c inset !important;
 }
 
 .hidden {

@@ -10,7 +10,7 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 05/11/10
 
 */
 
@@ -24,8 +24,6 @@ require_once('./php/read-hosts.php');
 
 // Get some extra-libs
 require_once('./php/gettext.php');
-require_once('./php/mobile-detect.php');
-$mobile = new Mobile_Detect();
 
 // Optimize the page rendering
 hideErrors();
@@ -73,9 +71,16 @@ else if(isset($_COOKIE['jappix_mode'])) {
 		$include_app = 'mobile';
 }
 
-// No cookie, is this a mobile app?
-else if($mobile -> isMobile())
-	$include_app = 'mobile';
+// No cookie, is this a mobile device?
+else {
+	// New mobile detect
+	require_once('./php/mobile-detect.php');
+	$mobile = new Mobile_Detect();
+	
+	// Really mobile?
+	if($mobile -> isMobile())
+		$include_app = 'mobile';
+}
 
 // Include it!
 include('./php/'.$include_app.'.php');

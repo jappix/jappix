@@ -10,9 +10,12 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 05/11/10
 
 */
+
+// Get the manager functions
+require_once(PHP_BASE.'/php/functions-manager.php');
 
 // Session manager
 $id = 0;

@@ -10,13 +10,14 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/11/10
+Last revision: 05/11/10
 
 */
 
 // We get the needed files
 define('PHP_BASE', '..');
 require_once('./functions.php');
+require_once('./functions-get.php');
 require_once('./read-main.php');
 require_once('./read-hosts.php');
 
@@ -73,47 +74,8 @@ if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET
 // We check if the data was submitted
 if($file && $type) {
 	// We define some stuffs
-	$version = getVersion();
-	$hash = genHash($version);
-	$path = '../'.$type.'/'.$file;
-	$position = strpos($file, '~');
-	$cache_hash = md5($type.$file.$hash.jappixLocation());
-	
-	// Check if the browser supports DEFLATE
-	$deflate_support = false;
-	
-	if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasGZip() && !$is_developer)
-		$deflate_support = true;
-	
-	// Internationalization
-	if($type == 'js') {
-		if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir('../lang/'.$_GET['l']))
-			$locale = $_GET['l'];
-		else
-			$locale = 'en';
-	}
-	
-	else
-		$locale = '';
-	
-	// Define the cache lang name
-	if($locale)
-		$cache_lang = $cache_hash.'_'.$locale;
-	else
-		$cache_lang = $cache_hash;
-	
-	// Explode the file string
-	if($position != false)
-		$array = explode('~', $file);
-	else
-		$array = array($file);
-	
-	// Define the reading vars
 	$dir = '../'.$type.'/';
-	$count = count($array);
-	$continue = true;
-	$loop_files = true;
-	$c = 0;
+	$path = $dir.$file;
 	
 	// Define the real type if this is a "store" file
 	if($type == 'store') {
@@ -150,21 +112,59 @@ if($file && $type) {
 		}
 	}
 	
+	// JS and CSS special stuffs
+	if(($type == 'css') || ($type == 'js')) {
+		$version = getVersion();
+		$hash = genHash($version);
+		$cache_hash = md5($path.$hash.jappixLocation());
+		
+		// Check if the browser supports DEFLATE
+		$deflate_support = false;
+		
+		if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasGZip() && !$is_developer)
+			$deflate_support = true;
+		
+		// Internationalization
+		if($type == 'js') {
+			if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir('../lang/'.$_GET['l']))
+				$locale = $_GET['l'];
+			else
+				$locale = 'en';
+		}
+		
+		else
+			$locale = '';
+		
+		// Define the cache lang name
+		if($locale)
+			$cache_lang = $cache_hash.'_'.$locale;
+		else
+			$cache_lang = $cache_hash;
+	}
+	
+	// Explode the file string
+	if(strpos($file, '~') != false)
+		$array = explode('~', $file);
+	else
+		$array = array($file);
+	
+	// Define the reading vars
+	$continue = true;
+	$loop_files = true;
+	
 	// Check the cache exists for text files (avoid the heavy file_exists loop!)
 	if(!$is_developer && (($type == 'css') || ($type == 'js')) && hasCache($cache_lang))
 		$loop_files = false;
 	
 	// Check if the all the file(s) exist(s)
 	if($loop_files) {
-		while($c < $count) {
+		foreach($array as $current) {
 			// Stop the loop if a file is missing
-			if(!file_exists($dir.$array[$c])) {
+			if(!file_exists($dir.$current)) {
 				$continue = false;
 				
 				break;
 			}
-			
-			$c++;
 		}
 	}
 	
@@ -230,15 +230,10 @@ if($file && $type) {
 				else {
 					// Initialize the loop
 					$looped = '';
-					$i = 0;
 					
-					// Fire the loop!
-					while($i < $count) {
-						// Add the content of the current file
-						$looped .= file_get_contents($dir.$array[$i])."\n";
-						
-						$i++;
-					}
+					// Add the content of the current file
+					foreach($array as $current)
+						$looped .= file_get_contents($dir.$current)."\n";
 					
 					// Filter the CSS
 					if($type == 'css') {

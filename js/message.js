@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 05/11/10
 
 */
 
@@ -40,11 +40,27 @@ function handleMessage(message) {
 	}
 	
 	// Get message date
-	var time;
-	var stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
+	var time, stamp;
+	var d_stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
 	
+	// New stamp (valid XEP)
+	if(d_stamp)
+		stamp = d_stamp;
+	
+	// Old stamp (obsolete XEP!)
+	else {
+		// Try to read the old-school stamp
+		var x_stamp = $(node).find('x[xmlns=' + NS_DELAY + ']:first').attr('stamp');
+		
+		if(x_stamp)
+			stamp = x_stamp.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');
+	}
+	
+	// Any stamp?
 	if(stamp)
 		time = relativeDate(stamp);
+	
+	// No stamp
 	else
 		time = getCompleteTime();
 	
