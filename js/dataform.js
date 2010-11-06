@@ -318,7 +318,7 @@ function handleDataFormContent(iq, type) {
 					// HTML code
 					var bHTML = '<div class="oneresult ' + target + '-oneresult ' + bHash + '">' + 
 							'<div class="avatar-container">' + 
-								'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+								'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 							'</div>' + 
 							'<div class="one-fn">' + bName + '</div>' + 
 							'<div class="one-ctry">' + bCountry + '</div>' + 
@@ -440,8 +440,8 @@ function appendDataForm(selector, id, target, label, type) {
 	selector.find(type).each(function() {
 		$('.' + id).append(
 			'<div class="oneresult ' + target + '-oneresult">' + 
-				'<label class="removable">' + label + '</label>' + 
-				'<input name="' + type + '" type="text" class="register-special dataform-i removable" />' + 
+				'<label>' + label + '</label>' + 
+				'<input name="' + type + '" type="text" class="register-special dataform-i" />' + 
 			'</div>'
 		);
 	});
@@ -514,7 +514,7 @@ function fillDataForm(xml, id) {
 				else
 					checked = '';
 				
-				input = '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox removable" ' + checked + ' />';
+				input = '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox" ' + checked + ' />';
 			}
 			
 			// List-multi checkboxes field
@@ -528,13 +528,13 @@ function fillDataForm(xml, id) {
 					else
 						nChecked = '';
 					
-					input += '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox removable" ' + nChecked + ' />';
+					input += '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox" ' + nChecked + ' />';
 				});
 			}
 			
 			// We check if the value comes from a radio input
 			else if(type == 'list-single') {
-				input = '<select name="' + field + '" data-type="' + type + '" class="dataform-i removable">';
+				input = '<select name="' + field + '" data-type="' + type + '" class="dataform-i">';
 				var selected;
 				
 				$(this).find('option').each(function() {
@@ -555,7 +555,7 @@ function fillDataForm(xml, id) {
 			
 			// Text-multi field
 			else if(type == 'text-multi')
-				input = '<textarea rows="8" cols="60" data-type="' + type + '" name="' + field + '" type="' + iType + '" class="dataform-i removable">' + value + '</textarea>';
+				input = '<textarea rows="8" cols="60" data-type="' + type + '" name="' + field + '" type="' + iType + '" class="dataform-i">' + value + '</textarea>';
 			
 			// Other stuffs that are similar
 			else {
@@ -565,13 +565,13 @@ function fillDataForm(xml, id) {
 				else
 					iType = 'text';
 				
-				input = '<input name="' + field + '" data-type="' + type + '" type="' + iType + '" class="dataform-i removable" value="' + value + '" />';
+				input = '<input name="' + field + '" data-type="' + type + '" type="' + iType + '" class="dataform-i" value="' + value + '" />';
 			}
 			
 			// Append the HTML markup for this field
 			$('.' + id).append(
 				'<div class="oneresult ' + target + '-oneresult"' + hideThis + '>' + 
-					'<label class="removable">' + label + '</label>' + 
+					'<label>' + label + '</label>' + 
 					input + 
 				'</div>'
 			);

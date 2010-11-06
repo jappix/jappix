@@ -21,7 +21,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		$('#home .loginer input').removeClass('please-complete');
 		
 		// We add the login wait div
-		$('#general-wait').show();
+		showGeneralWait();
 		
 		// We define the http binding parameters
 		oArgs = new Object();
@@ -81,8 +81,8 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 function handleRegistered() {
 	logThis('A new account has been registered.');
 	
-	// We hide the waiting image
-	$('#general-wait').hide();
+	// We remove the waiting image
+	removeGeneralWait();
 	
 	// We show the success information
 	$('#home .registerer .success').fadeIn('fast');
@@ -118,7 +118,7 @@ function doRegister(username, domain, pass) {
 		oArgs.secure = true;
 		
 		// We show the waiting image
-		$('#general-wait').show();
+		showGeneralWait();
 		
 		// We change the registered information text
 		$('#home .registerer .success b').text(username + '@' + domain);
@@ -141,9 +141,9 @@ function doRegister(username, domain, pass) {
 function doAnonymous() {
 	logThis('Trying to login anonymously...');
 	
-	var aPath = '#home .anonymouser .';
-	var room = $(aPath + 'room').val();
-	var nick = $(aPath + 'nick').val();
+	var aPath = '#home .anonymouser ';
+	var room = $(aPath + '.room').val();
+	var nick = $(aPath + '.nick').val();
 	
 	// If the form is correctly completed
 	if(room && nick) {
@@ -156,7 +156,7 @@ function doAnonymous() {
 	
 	// We check if the form is entirely completed
 	else {
-		$(aPath + 'resetable').each(function() {
+		$(aPath + 'input[type=text]').each(function() {
 			if(!$(this).val())
 				$(this).addClass('please-complete');
 			else
@@ -177,22 +177,14 @@ function handleConnected() {
 	CONNECTED = true;
 	
 	// We hide the home page
-	$('#home, #general-wait').hide();
+	$('#home').hide();
+	removeGeneralWait();
 	
 	// We show the chatting app.
 	createTalkPage();
-	$('#talk').show();
-	switchChan('channel');
-	
-	// Adapt the buddy-list size
-	adaptRoster();
 	
 	// We reset the homepage
 	switchHome('default');
-	
-	// Initialize our avatar
-	$('.channel-header').attr('class', 'showable channel-header mixed ' + hex_md5(getXID()));
-	$('.channel-header .avatar-container').html('<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />');
 	
 	// We change the title of the page
 	pageTitle('talk');
@@ -202,9 +194,6 @@ function handleConnected() {
 	
 	// Set last activity stamp
 	LAST_ACTIVITY = getTimeStamp();
-	
-	// Start the auto idle functions
-	liveIdle();
 	
 	// We open a new chat if a XMPP link was submitted
 	var link = getVar('x');
@@ -262,7 +251,7 @@ function terminate() {
 		CONNECTED = false;
 		
 		// Show the waiting item (useful if BOSH is sloooow)
-		$('#general-wait').show();
+		showGeneralWait();
 		
 		// Disconnect from the XMPP server
 		logout();
@@ -273,7 +262,7 @@ function terminate() {
 function quit() {
 	if(con.connected()) {
 		// We show the waiting image
-		$('#general-wait').show();
+		showGeneralWait();
 		
 		// We disconnect from the XMPP server
 		logout();
@@ -307,7 +296,7 @@ function acceptReconnect(mode) {
 	logThis('Trying to reconnect the user...');
 	
 	// Show waiting item
-	$('#general-wait').show();
+	showGeneralWait();
 	
 	// Remove the reconnect pane
 	$('#reconnect').remove();
@@ -395,7 +384,7 @@ function launchConnection() {
 		$('#home').hide();
 		
 		// Show the waiting icon
-		$('#general-wait').show();
+		showGeneralWait();
 		
 		// Login!
 		loginFromSession(session);

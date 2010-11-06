@@ -30,32 +30,32 @@ function openVCard() {
 				'<legend>' + _e("Personal") + '</legend>' + 
 				
 				'<label for="FN">' + _e("Complete name") + '</label>' + 
-				'<input type="text" id="FN" class="resetable vcard-item" />' + 
+				'<input type="text" id="FN" class="vcard-item" />' + 
 				
 				'<label for="NICKNAME">' + _e("Nickname") + '</label>' + 
-				'<input type="text" id="NICKNAME" class="resetable vcard-item" />' + 
+				'<input type="text" id="NICKNAME" class="vcard-item" />' + 
 				
 				'<label for="N-GIVEN">' + _e("First name") + '</label>' + 
-				'<input type="text" id="N-GIVEN" class="resetable vcard-item" />' + 
+				'<input type="text" id="N-GIVEN" class="vcard-item" />' + 
 				
 				'<label for="N-FAMILY">' + _e("Last name") + '</label>' + 
-				'<input type="text" id="N-FAMILY" class="resetable vcard-item" />' + 
+				'<input type="text" id="N-FAMILY" class="vcard-item" />' + 
 				
 				'<label for="BDAY">' + _e("Date of birth") + '</label>' + 
-				'<input type="text" id="BDAY" class="resetable vcard-item" />' + 
+				'<input type="text" id="BDAY" class="vcard-item" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Contact") + '</legend>' + 
 				
 				'<label for="EMAIL-USERID">' + _e("E-mail") + '</label>' + 
-				'<input type="text" id="EMAIL-USERID" class="resetable vcard-item" />' + 
+				'<input type="text" id="EMAIL-USERID" class="vcard-item" />' + 
 				
 				'<label for="TEL-NUMBER">' + _e("Phone") + '</label>' + 
-				'<input type="text" id="TEL-NUMBER" class="resetable vcard-item" />' + 
+				'<input type="text" id="TEL-NUMBER" class="vcard-item" />' + 
 				
 				'<label for="URL">' + _e("Website") + '</label>' + 
-				'<input type="text" id="URL" class="resetable vcard-item" />' + 
+				'<input type="text" id="URL" class="vcard-item" />' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -63,9 +63,9 @@ function openVCard() {
 			'<fieldset>' + 
 				'<legend>' + _e("Upload") + '</legend>' + 
 				
-				'<input type="hidden" id="PHOTO-TYPE" class="resetable vcard-item" />' + 
-				'<input type="hidden" id="PHOTO-BINVAL" class="resetable vcard-item" />' + 
-				'<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" class="resetable" onchange="sendThisAvatar()" />' + 
+				'<input type="hidden" id="PHOTO-TYPE" class="vcard-item" />' + 
+				'<input type="hidden" id="PHOTO-BINVAL" class="vcard-item" />' + 
+				'<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" onchange="sendThisAvatar()" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
@@ -73,13 +73,13 @@ function openVCard() {
 				
 				'<div class="avatar-container"></div>' + 
 				
-				'<a class="avatar-delete hidable" onclick="deleteAvatar();">' + _e("Delete") + '</a>' + 
+				'<a class="one-button avatar-delete talk-images" onclick="deleteAvatar();">' + _e("Delete") + '</a>' + 
 				'<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
 			'</fieldset>' + 
 			
-			'<div class="avatar-ok avatar-info hidable">' + _e("Here it is! A new beautiful profile image!") + '</div>' + 
+			'<div class="avatar-ok avatar-info">' + _e("Here it is! A new beautiful profile image!") + '</div>' + 
 			
-			'<div class="avatar-error avatar-info hidable">' + _e("The image file is not supported or has a bad size.") + '</div>' + 
+			'<div class="avatar-error avatar-info">' + _e("The image file is not supported or has a bad size.") + '</div>' + 
 		'</div>' + 
 		
 		'<div id="lap3" class="one-lap forms">' + 
@@ -87,22 +87,22 @@ function openVCard() {
 				'<legend>' + _e("Address") + '</legend>' + 
 				
 				'<label for="ADR-STREET">' + _e("Street") + '</label>' + 
-				'<input type="text" id="ADR-STREET" class="resetable vcard-item" />' + 
+				'<input type="text" id="ADR-STREET" class="vcard-item" />' + 
 				
 				'<label for="ADR-LOCALITY">' + _e("City") + '</label>' + 
-				'<input type="text" id="ADR-LOCALITY" class="resetable vcard-item" />' + 
+				'<input type="text" id="ADR-LOCALITY" class="vcard-item" />' + 
 				
 				'<label for="ADR-PCODE">' + _e("Postal code") + '</label>' + 
-				'<input type="text" id="ADR-PCODE" class="resetable vcard-item" />' + 
+				'<input type="text" id="ADR-PCODE" class="vcard-item" />' + 
 				
 				'<label for="ADR-CTRY">' + _e("Country") + '</label>' + 
-				'<input type="text" id="ADR-CTRY" class="resetable vcard-item" />' + 
+				'<input type="text" id="ADR-CTRY" class="vcard-item" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Biography") + '</legend>' + 
 				
-				'<textarea id="DESC" rows="8" cols="60" class="resetable vcard-item"></textarea>' + 
+				'<textarea id="DESC" rows="8" cols="60" class="vcard-item"></textarea>' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -195,7 +195,7 @@ function sendThisAvatar() {
 				$('#PHOTO-BINVAL').val(fSplitted[1]);
 				
 				// We display the avatar !
-				$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar removable" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
+				$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
 			}
 			
 			fReader.readAsDataURL(fFile);
@@ -226,7 +226,7 @@ function deleteAvatar() {
 // Creates a special vCard input
 function createInputVCard(id, type) {
 	if((type == 'user') && !exists('#vcard #' + id))
-		$('#vcard .content').append('<input id="' + id + '" class="removable vcard-item" type="hidden" />');
+		$('#vcard .content').append('<input id="' + id + '" class="vcard-item" type="hidden" />');
 }
 
 // Gets the vCard of a XID
@@ -242,6 +242,9 @@ function getVCard(to, type) {
 	
 	// Send the IQ to the good user
 	if(type == 'user') {
+		// Show the wait icon
+		$('#vcard .wait').show();
+		
 		// Apply the session ID
 		$('#vcard').attr('data-vcard', id);
 		
@@ -250,6 +253,9 @@ function getVCard(to, type) {
 	}
 	
 	else {
+		// Show the wait icon
+		$('#userinfos .wait').show();
+		
 		// Apply the session ID
 		$('#userinfos').attr('data-vcard', id);
 		
@@ -356,7 +362,7 @@ function handleVCard(iq, type) {
 		
 		// If there were no stored avatar previously
 		if($(xml).find('type').text() == 'none') {
-			xml = xml.replace(/<forced>(\S+)<\/forced>/gi, '<forced>true</forced>');
+			xml = xml.replace(/<forced>false<\/forced>/gi, '<forced>true</forced>');
 			setPersistent('avatar', iqFrom, xml);
 		}
 		
@@ -393,11 +399,11 @@ function handleVCard(iq, type) {
 		}
 		
 		// We display the avatar we have just received
-		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar removable" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
+		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
 	}
 	
 	else if(type == 'buddy')
-		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" /></div>');
+		$(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>');
 	
 	// Do someting depending of the type
 	if(type == 'user') {

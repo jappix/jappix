@@ -59,7 +59,7 @@ function openArchives() {
 		var current = buddies[i];
 		
 		// Create a new DOM element
-		$('#archives .friend select').append('<option value="' + current + '" class="removable">' + getBuddyName(current).htmlEnc() + '</option>');
+		$('#archives .friend select').append('<option value="' + current + '">' + getBuddyName(current).htmlEnc() + '</option>');
 	}
 }
 
@@ -67,15 +67,6 @@ function openArchives() {
 function closeArchives() {
 	// Destroy the popup
 	destroyPopup('archives');
-}
-
-// Resets the archive tools
-function resetArchives() {
-	// Hide the waiting icon
-	$('#archives .wait').hide();
-	
-	// Remove all removable archives items
-	$('#archives .removable').remove();
 }
 
 // Gets the archives for a buddy

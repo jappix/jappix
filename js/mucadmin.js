@@ -26,12 +26,12 @@ function fillMucAdmin(field, type, label, value, node) {
 		else
 			checked = '';
 		
-		input = '<input id="' + hash + '" name="' + field + '" type="checkbox" class="muc-admin-i muc-checkbox removable"' + checked + ' />';
+		input = '<input id="' + hash + '" name="' + field + '" type="checkbox" class="muc-admin-i muc-checkbox"' + checked + ' />';
 	}
 	
 	// We check if the value comes from a radio input
 	else if(type == 'list-single') {
-		input = '<select id="' + hash + '" name="' + field + '" class="muc-admin-i removable">';
+		input = '<select id="' + hash + '" name="' + field + '" class="muc-admin-i">';
 		var selected;
 		
 		$(node).find('option').each(function() {
@@ -58,10 +58,10 @@ function fillMucAdmin(field, type, label, value, node) {
 		else
 			iType = 'text';
 		
-		input = '<input id="' + hash + '" name="' + field + '" type="' + iType + '" class="muc-admin-i removable" value="' + value + '" />';
+		input = '<input id="' + hash + '" name="' + field + '" type="' + iType + '" class="muc-admin-i" value="' + value + '" />';
 	}
 	
-	$('.muc-admin-conf .last-element').before('<label for="' + hash + '" class="removable">' + label + '</label>' + input);
+	$('.muc-admin-conf .last-element').before('<label for="' + hash + '">' + label + '</label>' + input);
 }
 
 // Removes a MUC admin input
@@ -80,7 +80,7 @@ function addInputMucAdmin(xid, affiliation) {
 	var hash = hex_md5(xid + affiliation);
 	
 	$('#muc-admin .aut-' + affiliation + ' .aut-add').after(
-		'<div class="one-aut removable ' + hash + '">' + 
+		'<div class="one-aut ' + hash + '">' + 
 			'<input id="aut-' + affiliation + '" name="' + affiliation + '" type="text" class="muc-admin-i" value="' + xid + '" />' + 
 			'<a class="aut-remove">[-]</a>' + 
 		'</div>'
@@ -169,7 +169,7 @@ function openMucAdmin(xid) {
 					'<legend>' + _e("Subject") + '</legend>' + 
 					
 					'<label for="topic-text">' + _e("Enter new subject") + '</label>' + 
-					'<textarea id="topic-text" name="room-topic" class="resetable" rows="8" cols="60" ></textarea>' + 
+					'<textarea id="topic-text" name="room-topic" rows="8" cols="60" ></textarea>' + 
 				'</fieldset>' + 
 			'</div>' + 
 			

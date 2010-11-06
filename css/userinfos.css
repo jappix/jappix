@@ -16,11 +16,7 @@ Last revision: 06/11/10
 	overflow: auto;
 }
 
-#userinfos .one-info {
-	display: none;
-}
-
-#userinfos .one-info a {
+#userinfos .one-lap a {
 	text-decoration: underline;
 }
 

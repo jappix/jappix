@@ -38,7 +38,7 @@ function openFavorites() {
 				'<div class="head fedit-head static-fav-head">' + 
 					'<div class="head-text fedit-head-text">' + _e("Select a favorite") + '</div>' + 
 					
-					'<select name="fedit-head-select" class="head-select fedit-head-select resetable">' + 
+					'<select name="fedit-head-select" class="head-select fedit-head-select">' + 
 						'<option value="none" class="fedit-head-select-first-option">' + _e("Select a favorite") + '</option>' + 
 					'</select>' + 
 				'</div>' + 
@@ -393,7 +393,7 @@ function joinFavorite(room) {
 
 // Displays a given favorite
 function displayFavorites(xid, gcName, nick, hash, autojoin, password) {
-	var optionSet = '<option value="' + xid + '" class="' + hash + ' removable">' + gcName + '</option>';
+	var optionSet = '<option value="' + xid + '" class="' + hash + '">' + gcName + '</option>';
 	
 	// We complete the select forms
 	$('.gc-join-first-option').after(optionSet);

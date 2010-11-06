@@ -330,7 +330,7 @@ Last revision: 06/11/10
 	margin: 4px;
 }
 
-.popup .results a.one-button {
+.popup a.one-button {
 	display: none;
 	background-color: #c7d5d9;
 	border: 1px solid #b9cbcf;
@@ -342,11 +342,11 @@ Last revision: 06/11/10
 	-webkit-border-radius: 3px;
 }
 
-.popup .results a.one-button:hover {
+.popup a.one-button:hover {
 	border: 1px solid #95b1b7;
 }
 
-.popup .results a.one-button:active {
+.popup a.one-button:active {
 	border: 1px solid #77989f;
 }
 

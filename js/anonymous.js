@@ -25,9 +25,6 @@ function anonymousConnected(con) {
 	// Send our first presence
 	firstPresence('');
 	
-	// Start the auto idle functions
-	liveIdle();
-	
 	// Open the new groupchat
 	var room = $('#data .anonymous').attr('data-room');
 	
@@ -41,17 +38,14 @@ function anonymousConnected(con) {
 	// Create the new groupchat
 	checkChatCreate(room, 'groupchat');
 	
-	// Show the app
-	$('#talk').show();
-	
 	// We change the title of the page
 	pageTitle('talk');
 	
 	// Remove some nasty elements for the anonymous mode
 	$('.tools-mucadmin, .tools-add').remove();
 	
-	// Hide waiting icon
-	$('#general-wait').hide();
+	// Remove the waiting icon
+	removeGeneralWait();
 }
 
 // Disconnected from an anonymous session
@@ -59,11 +53,7 @@ function anonymousDisconnected() {
 	logThis('Jappix (anonymous) is now disconnected.');
 	
 	// Reset the anonymous tools
-	$('#talk').hide();
 	$('.removable').remove();
-	$('.showable').show();
-	$('.hidable').hide();
-	$('.resetable').val('');
 	
 	// Kill the auto idle functions
 	dieIdle();
@@ -107,7 +97,7 @@ function launchAnonymous() {
 	logThis('Anonymous mode detected, connecting...');
 	
 	// We add the login wait div
-	$('#general-wait').show();
+	showGeneralWait();
 	
 	// Fire the login action
 	anonymousLogin(HOST_ANONYMOUS);

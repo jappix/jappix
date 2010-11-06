@@ -72,7 +72,7 @@ function newNotification(type, from, xid, body) {
 	
 	if(text) {
 		// We create the html markup depending of the notification type
-		code = '<div class="one-notification ' + id + ' removable" title="' + body + '">';
+		code = '<div class="one-notification ' + id + '" title="' + body + '">';
 		code += '<p class="notification-text">' + text + '</p>';
 		code += '<p class="notification-actions">' + action + '</p>';
 		code += '</div>';

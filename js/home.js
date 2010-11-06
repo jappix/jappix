@@ -61,9 +61,9 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="lnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick resetable" id="lnick" /><span class="jid">@</span><input type="text" class="server resetable" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + '/>' + 
+						'<input type="text" class="nick" id="lnick" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + '/>' + 
 						'<label for="lpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password resetable" id="lpassword" />' + 
+						'<input type="password" class="password" id="lpassword" />' + 
 						'<label for="lremember">' + _e("Remember me") + '</label>' + 
 						'<input type="checkbox" class="remember" id="lremember" />' + 
 					'</fieldset>' + 
@@ -74,9 +74,9 @@ function switchHome(div) {
 						'<legend>' + _e("Advanced") + '</legend>' + 
 						
 						'<label for="lresource">' + _e("Resource") + '</label>' + 
-						'<input type="text" class="resource resetable" id="lresource" value="' + JAPPIX_RESOURCE + '" />' + 
+						'<input type="text" class="resource" id="lresource" value="' + JAPPIX_RESOURCE + '" />' + 
 						'<label for="lpriority">' + _e("Priority") + '</label>' + 
-						'<select class="priority resetable" id="lpriority">' + 
+						'<select class="priority" id="lpriority">' + 
 							'<option value="1">' + _e("Low") + '</option>' + 
 							'<option value="10" selected="selected">' + _e("Medium") + '</option>' + 
 							'<option value="100">' + _e("High") + '</option>' + 
@@ -98,10 +98,10 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label>' + _e("Room") + '</label>' + 
-						'<input type="text" class="room resetable"' + disable_form + ' />' + 
+						'<input type="text" class="room"' + disable_form + ' />' + 
 						
 						'<label>' + _e("Nickname") + '</label>' + 
-						'<input type="text" class="nick resetable"' + disable_form + ' />' + 
+						'<input type="text" class="nick"' + disable_form + ' />' + 
 					'</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '"' + disable_form + ' />' + 
@@ -127,10 +127,10 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="rnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick resetable" id="rnick" ' + disable_form + '/><span class="jid">@</span><input type="text" class="server resetable" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + '/>' + 
+						'<input type="text" class="nick" id="rnick" ' + disable_form + '/><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + '/>' + 
 						'<label for="rpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password resetable" id="rpassword" ' + disable_form + '/>' + 
-						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword resetable" id="spassword" ' + disable_form + '/>' + 
+						'<input type="password" class="password" id="rpassword" ' + disable_form + '/>' + 
+						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword" id="spassword" ' + disable_form + '/>' + 
 					'</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 
@@ -231,13 +231,13 @@ function showAdvanced() {
 // Reads the login form values
 function loginForm() {
 	// We get the values
-	var lPath = '#home .loginer .';
-	var lServer = $(lPath + 'server').val();
-	var lNick = $(lPath + 'nick').val();
-	var lPass = $(lPath + 'password').val();
-	var lResource = $(lPath + 'resource').val();
-	var lPriority = $(lPath + 'priority').val();
-	var lRemember = $(lPath + 'remember').is(':checked');
+	var lPath = '#home .loginer ';
+	var lServer = $(lPath + '.server').val();
+	var lNick = $(lPath + '.nick').val();
+	var lPass = $(lPath + '.password').val();
+	var lResource = $(lPath + '.resource').val();
+	var lPriority = $(lPath + '.priority').val();
+	var lRemember = $(lPath + '.remember').is(':checked');
 	
 	// Enough values?
 	if(lServer && lNick && lPass && lResource && lPriority)
@@ -245,7 +245,7 @@ function loginForm() {
 	
 	// Something is missing?
 	else {
-		$(lPath + 'resetable').each(function() {
+		$(lPath + 'input[type=text], ' + lPath + 'input[type=password]').each(function() {
 			if(!$(this).val())
 				$(this).addClass('please-complete');
 			else
@@ -258,16 +258,16 @@ function loginForm() {
 
 // Reads the register form values
 function registerForm() {
-	var rPath = '#home .registerer .';
+	var rPath = '#home .registerer ';
 	
 	// Fade out the old success info
-	$(rPath + 'success').hide();
+	$(rPath + '.success').hide();
 	
 	// Get the values
-	var username = $(rPath + 'nick').val();
-	var domain = $(rPath + 'server').val();
-	var pass = $(rPath + 'password').val();
-	var spass = $(rPath + 'spassword').val();
+	var username = $(rPath + '.nick').val();
+	var domain = $(rPath + '.server').val();
+	var pass = $(rPath + '.password').val();
+	var spass = $(rPath + '.spassword').val();
 	
 	// Enough values?
 	if(domain && username && pass && spass && (pass == spass)) {
@@ -280,7 +280,7 @@ function registerForm() {
 	
 	// Something is missing?
 	else {
-		$(rPath + 'resetable').each(function() {
+		$(rPath + 'input[type=text], ' + rPath + 'input[type=password]').each(function() {
 			if(!$(this).val() || ($(this).is('#spassword') && pass && (pass != spass)))
 				$(this).addClass('please-complete');
 			else

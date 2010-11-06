@@ -39,6 +39,29 @@ function pageTitle(title) {
 	}
 }
 
+// Creates a general-wait item
+function showGeneralWait() {
+	// Item exists?
+	if(exists('#general-wait'))
+		return false;
+	
+	// Generate the HTML code
+	var html = 
+	'<div id="general-wait" class="removable">' + 
+		'<div class="general-wait-content wait-big"></div>' + 
+	'</div>';
+	
+	// Append the HTML code
+	$('body').append(html);
+	
+	return true;
+}
+
+// Removes the general-wait item
+function removeGeneralWait() {
+	$('#general-wait').remove();
+}
+
 // Switches to the given chan
 function switchChan(id) {
 	if(exists('#' + id)) {
@@ -50,12 +73,13 @@ function switchChan(id) {
 		$('#chat-switch .switcher').removeClass('activechan').addClass('chan');
 		$('#chat-switch .' + id).addClass('activechan').removeClass('chan');
 		
-		// We scroll down to the last message
-		if(id != 'channel')
+		if(id != 'channel') {
+			// We scroll down to the last message
 			autoScroll(id);
-		
-		// We put the focus on the target chat input
-		$('#chat-engine #' + id + ' .text .message-area').focus();
+			
+			// We put the focus on the target chat input
+			$('#chat-engine #' + id + ' .text .message-area').focus();
+		}
 	}
 }
 

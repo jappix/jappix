@@ -222,7 +222,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 				'<div class="name talk-images available">' + nick.htmlEnc() + '</div>' + 
 				
 				'<div class="avatar-container">' + 
-					'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 				'</div>' + 
 			'</div>'
 		);
@@ -391,8 +391,8 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 			buddy.show();
 		
 		// Get the buddy avatar (only if a chat is opened)
-		if(!xid.match(/%/) && exists('#' + hash))
-			getAvatar(xid, 'cache', avatar, checksum);
+		if(exists('#' + hash))
+			getAvatar(xid, 'cache', 'true', 'forget');
 	}
 	
 	// If the buddy is online
@@ -405,8 +405,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 			buddy.show();
 		
 		// Get the online buddy avatar if not a gateway
-		if(!xid.match(/%/))
-			getAvatar(xid, 'cache', avatar, checksum);
+		getAvatar(xid, 'cache', avatar, checksum);
 	}
 	
 	// Display the presence in the chat

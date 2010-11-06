@@ -40,9 +40,9 @@ function createTalkPage() {
 			'<div class="tools tools-all">';
 				
 				if(!anonymous) html += 
-				'<a onclick="messagesOpen();" class="messages-hidable hidable">' + _e("Messages") +  '<span class="inbox-notify hidable"></span></a>' + 
+				'<a onclick="messagesOpen();" class="messages-hidable">' + _e("Messages") +  '<span class="inbox-notify"></span></a>' + 
 				'<a onclick="openVCard();">' + _e("Profile") +  '</a>' + 
-				'<a onclick="optionsOpen();" class="options-hidable hidable">' + _e("Options") +  '</a>' + 
+				'<a onclick="optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
 				'<a onclick="normalQuit();">' + _e("Disconnect") +  '</a>';
 				
 				else html +=
@@ -55,12 +55,12 @@ function createTalkPage() {
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools music talk-images" onclick="openMusic();"></div>' + 
 				
-				'<div class="music-content tools-content bubble hidable">' + 
+				'<div class="music-content tools-content bubble">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
 						'<div class="player">' + 
-							'<a class="stop talk-images hidable" onclick="actionMusic(\'stop\');"></a>' + 
+							'<a class="stop talk-images" onclick="actionMusic(\'stop\');"></a>' + 
 						'</div>' + 
 						
 						'<div class="list">' + 
@@ -68,7 +68,7 @@ function createTalkPage() {
 						'</div>' + 
 						
 						'<div class="search">' + 
-							'<input type="text" class="resetable" />' + 
+							'<input type="text" />' + 
 						'</div>' + 
 					'</div>' + 
 				'</div>' + 
@@ -77,7 +77,7 @@ function createTalkPage() {
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools notifications talk-images" onclick="showBubble(\'.notifications-content\');"></div>' + 
 				
-				'<div class="notifications-content tools-content bubble hidable">' + 
+				'<div class="notifications-content tools-content bubble">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
@@ -104,12 +104,12 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
 							
-							'<div id="buddy-conf-add" class="buddy-conf-item bubble hidable">' + 
+							'<div id="buddy-conf-add" class="buddy-conf-item bubble">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
 									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Add a friend") +  '</p>' + 
-									'<input type="text" class="buddy-conf-input add-contact-jid resetable" />' + 
+									'<input type="text" class="buddy-conf-input add-contact-jid" />' + 
 								'</div>' + 
 							'</div>' + 
 						'</div>' + 
@@ -117,13 +117,13 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
 							
-							'<div id="buddy-conf-join" class="buddy-conf-item bubble hidable">' + 
+							'<div id="buddy-conf-join" class="buddy-conf-item bubble">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem search">' + 
 									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Join a chat") +  '</p>' + 
-									'<input type="text" class="buddy-conf-input join-jid resetable" />' + 
-									'<select name="join-type" class="buddy-conf-select buddy-conf-join-select resetable">' + 
+									'<input type="text" class="buddy-conf-input join-jid" />' + 
+									'<select name="join-type" class="buddy-conf-select buddy-conf-join-select">' + 
 										'<option value="chat">' + _e("Chat") +  '</option>' + 
 										'<option value="groupchat">' + _e("Groupchat") +  '</option>' + 
 									'</select>' + 
@@ -134,13 +134,13 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
 							
-							'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">' + 
+							'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
 									'<p class="buddy-conf-p">' + _e("Your groupchats") +  '</p>' + 
 									
-									'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select resetable">' + 
+									'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select">' + 
 										'<option value="none" class="gc-join-first-option">' + _e("Select a favorite") +  '</option>' + 
 									'</select>' + 
 									
@@ -154,15 +154,15 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
 							
-							'<div id="buddy-conf-more" class="buddy-conf-item bubble hidable">' + 
+							'<div id="buddy-conf-more" class="buddy-conf-item bubble">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
 									'<p class="buddy-conf-p">' + _e("More stuff") +  '</p>' + 
 									
 									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-more-display-unavailable showable">' + _e("Show all friends") +  '</a>' + 
-										'<a class="buddy-conf-more-display-available hidable">' + _e("Only show connected friends") +  '</a>' + 
+										'- <a class="buddy-conf-more-display-unavailable">' + _e("Show all friends") +  '</a>' + 
+										'<a class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
 									'</p>' + 
 									
 									'<p class="buddy-conf-text">' + 
@@ -173,7 +173,7 @@ function createTalkPage() {
 										'- <a class="buddy-conf-more-collections">' + _e("Your collections") +  '</a>' + 
 									'</p>' + 
 									
-									'<p class="buddy-conf-text archives-hidable showable">' + 
+									'<p class="buddy-conf-text archives-hidable">' + 
 										'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
 									'</p>' + 
 									
@@ -191,7 +191,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon alone">' + 
 							'<a class="involve talk-images" title="' + _e("Get involved!") +  '"></a>' + 
 							
-							'<div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">' + 
+							'<div id="buddy-conf-involve" class="buddy-conf-item bubble">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
@@ -230,7 +230,7 @@ function createTalkPage() {
 						'<div class="element f-presence">' + 
 							'<div class="icon talk-images status-available"></div>' + 
 							
-							'<select name="statut" class="change-presence resetable" disabled="disabled">' + 
+							'<select name="statut" class="change-presence" disabled="disabled">' + 
 								'<option value="available">' + _e("Available") +  '</option>' + 
 								'<option value="chat">' + _e("Talkative") +  '</option>' + 
 								'<option value="away">' + _e("Away") +  '</option>' + 
@@ -238,7 +238,7 @@ function createTalkPage() {
 								'<option value="dnd">' + _e("Busy") +  '</option>' + 
 							'</select>' + 
 							
-							'<div id="my-infos-text-first" class="my-infos-text-item hidable">' + 
+							'<div id="my-infos-text-first" class="my-infos-text-item">' + 
 								'<div class="my-infos-text-subarrow talk-images"></div>' + 
 								
 								'<div class="my-infos-text-subitem">' + 
@@ -249,10 +249,10 @@ function createTalkPage() {
 						'</div>';
 						
 						if(!anonymous) html += 
-						'<div class="element f-mood pep-hidable hidable">' + 
+						'<div class="element f-mood pep-hidable">' + 
 							'<div class="icon talk-images mood-four"></div>' + 
 							
-							'<select name="mood" class="change-mood resetable">' + 
+							'<select name="mood" class="change-mood">' + 
 								'<option value="none">' + _e("None") +  '</option>' + 
 								'<option value="afraid">' + _e("Afraid") +  '</option>' + 
 								'<option value="amazed">' + _e("Amazed") +  '</option>' + 
@@ -340,7 +340,7 @@ function createTalkPage() {
 								'<option value="worried">' + _e("Worried") +  '</option>' + 
 							'</select>' + 
 							
-							'<div id="my-infos-text-second" class="my-infos-text-item hidable">' + 
+							'<div id="my-infos-text-second" class="my-infos-text-item">' + 
 								'<div class="my-infos-text-subarrow talk-images"></div>' + 
 								
 								'<div class="my-infos-text-subitem">' + 
@@ -350,10 +350,10 @@ function createTalkPage() {
 							'</div>' + 
 						'</div>' + 
 						
-						'<div class="element f-activity pep-hidable hidable">' + 
+						'<div class="element f-activity pep-hidable">' + 
 							'<div class="icon talk-images activity-exercising"></div>' + 
 							
-							'<select name="activity" class="change-activity resetable">' + 
+							'<select name="activity" class="change-activity">' + 
 								'<option value="none">' + _e("None") +  '</option>' + 
 								
 								'<optgroup label="' + _e("Chores") +  '">' + 
@@ -458,7 +458,7 @@ function createTalkPage() {
 								'</optgroup>' + 
 							'</select>' + 
 							
-							'<div id="my-infos-text-third" class="my-infos-text-item hidable">' + 
+							'<div id="my-infos-text-third" class="my-infos-text-item">' + 
 								'<div class="my-infos-text-subarrow talk-images"></div>' + 
 								
 								'<div class="my-infos-text-subitem">' + 
@@ -468,7 +468,7 @@ function createTalkPage() {
 							'</div>' + 
 						'</div>' + 
 						
-						'<div class="element f-geoloc hidable">' + 
+						'<div class="element f-geoloc">' + 
 							'<div class="icon talk-images location-world"></div>' + 
 							
 							'<a href="http://www.openstreetmap.org/" target="_blank">' + _e("Where are you?") +  '</a>' + 
@@ -495,7 +495,7 @@ function createTalkPage() {
 					'<div class="more ibubble">' + 
 						'<div class="more-button talk-images" onclick="showBubble(\'#chat-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
 						
-						'<div class="more-content bubble hidable">';
+						'<div class="more-content bubble">';
 							if(!anonymous) html += 
 							'<div class="channel switcher activechan" onclick="switchChan(\'channel\');">' + 
 								'<div class="icon talk-images"></div>' + 
@@ -510,28 +510,30 @@ function createTalkPage() {
 				
 				'<div id="chat-engine">';
 					if(!anonymous) html += 
-					'<div id="channel" class="showable chat-engine-chan">' + 
-						'<div class="showable channel-header mixed">' + 
-							'<div class="avatar-container"></div>' + 
+					'<div id="channel" class="chat-engine-chan" style="display: block;">' + 
+						'<div class="channel-header mixed ' + hex_md5(getXID()) + '">' + 
+							'<div class="avatar-container">' + 
+								'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+							'</div>' + 
 							
 							'<div class="update">' + 
 								'<p>' + _e("What\'s up with you?") +  '</p>' + 
 								
 								'<form action="#" method="post" onsubmit="return sendMicroblog(this);">' + 
 									'<div class="microblog-body">' + 
-										'<input class="resetable" type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
+										'<input type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
 									'</div>' + 
 									
 									'<div class="one-microblog-icon ibubble">' + 
-										'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images showable"></a>' + 
-										'<a onclick="unattachMicroblog();" title="' + _e("Unattach the file") +  '" class="postit unattach talk-images hidable"></a>' + 
+										'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
+										'<a onclick="unattachMicroblog();" title="' + _e("Unattach the file") +  '" class="postit unattach talk-images"></a>' + 
 										
-										'<div id="attach" class="bubble hidable">' + 
+										'<div id="attach" class="bubble">' + 
 											'<div class="attach-subarrow talk-images"></div>' + 
 											
 											'<div class="attach-subitem">' + 
 												'<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
-												'<input type="file" class="resetable" id="microblog-attach" onchange="attachMicroblog()" />' + 
+												'<input type="file" id="microblog-attach" onchange="attachMicroblog()" />' + 
 											'</div>' + 
 										'</div>' + 
 									'</div>' + 
@@ -539,14 +541,14 @@ function createTalkPage() {
 							'</div>' + 
 						'</div>' + 
 						
-						'<div class="showable channel-content mixed"></div>' + 
+						'<div class="channel-content mixed"></div>' + 
 						
 						'<div class="channel-footer">' + 
-							'<div class="sync hidable talk-images">' + _e("You are synchronized with your network.") +  '</div>' + 
+							'<div class="sync talk-images">' + _e("You are synchronized with your network.") +  '</div>' + 
 							
-							'<div class="unsync hidable talk-images">' + _e("Cannot send anything: you can only receive notices!") +  '</div>' + 
+							'<div class="unsync talk-images">' + _e("Cannot send anything: you can only receive notices!") +  '</div>' + 
 							
-							'<div class="fetch showable wait-small">' + _e("Fetching the social channel...") +  '</div>' + 
+							'<div class="fetch wait-small">' + _e("Fetching the social channel...") +  '</div>' + 
 						'</div>' + 
 					'</div>';
 				
@@ -559,36 +561,27 @@ function createTalkPage() {
 	// Create the HTML code
 	$('body').prepend(html);
 	
+	// Adapt the buddy-list size
+	adaptRoster();
+	
 	// Create JS events
 	eventsTalkPage();
+	
+	// Start the auto idle functions
+	liveIdle();
 	
 	return true;
 }
 
 // Destroys the talkpage code
 function destroyTalkPage() {
-	// Reset the page title
-	pageTitle('home');
-	
 	// Reset our database
 	resetDB();
 	
-	// Renitialize the stanza ID counter
+	// Reset some vars
 	STANZA_ID = 1;
-	
-	// We renitalise the html markup as its initiale look
-	$('.removable').remove();
-	$('.showable').show();
-	$('.hidable').hide();
-	$('.resetable').val('');
-	
-	// Reset the buddy list tools
 	BLIST_ALL = false;
-	
-	// Reset our first presence marker
 	FIRST_PRESENCE_SENT = false;
-	
-	// Reset the filtering tool
 	SEARCH_FILTERED = false;
 	
 	// Kill all timers, exept the board ones
@@ -597,6 +590,10 @@ function destroyTalkPage() {
 	// Kill the auto idle functions
 	dieIdle();
 	
-	// And we show the home like when the user wasn't logged in
+	// We renitalise the html markup as its initiale look
+	$('.removable').remove();
+	pageTitle('home');
+	
+	// Finally we show the homepage
 	$('#home').show();
 }

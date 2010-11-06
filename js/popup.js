@@ -19,8 +19,8 @@ function createPopup(id, content) {
 		return false;
 	
 	// Append the popup code
-	$('body').prepend(
-		'<div id="' + id + '" class="lock hidable">' + 
+	$('body').append(
+		'<div id="' + id + '" class="lock removable">' + 
 			'<div class="popup">' + 
 				content + 
 			'</div>' + 

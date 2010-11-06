@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/10/10
+Last revision: 06/11/10
 
 */
 
@@ -18,7 +18,11 @@ function getAvatar(xid, mode, enabled, photo) {
 	
 	// Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
 	var xml = getPersistent('avatar', xid);
-	var forced = $(xml).find('forced').text();
+	var forced = false;
+	
+	// Retrieving forced?
+	if($(xml).find('forced').text() == 'true')
+		forced = true;
 	
 	// No avatar in presence
 	if(!photo && !forced && (enabled == 'true')) {
@@ -40,7 +44,7 @@ function getAvatar(xid, mode, enabled, photo) {
 			updated = true;
 		
 		// If the avatar is yet stored and a new retrieving is not needed
-		if(mode == 'cache' && type && binval && checksum && updated) {
+		if((mode == 'cache') && type && binval && checksum && updated) {
 			displayAvatar(hex_md5(xid), type, binval);
 			
 			logThis('Read avatar from cache: ' + xid);
@@ -145,9 +149,9 @@ function resetAvatar(xid, hash) {
 
 // Displays the avatar of an user
 function displayAvatar(hash, type, binval) {
-	// Define the path to replace
-	var replacement = hash + ' .avatar-container';
-	var code = '<div class="avatar-container"><img class="avatar removable" src="';
+	// Initialize the vars
+	var container = hash + ' .avatar-container';
+	var code = '<img class="avatar" src="';
 	
 	// If the avatar exists
 	if((type != 'none') && (binval != 'none'))
@@ -155,8 +159,8 @@ function displayAvatar(hash, type, binval) {
 	else
 		code += './img/others/default-avatar.png';
 	
-	code += '" alt="" /></div>';
+	code += '" alt="" />';
 	
 	// Replace with the new avatar (in the roster and in the chat)
-	$('.' + replacement + ', #' + replacement).replaceWith(code);
+	$('.' + container + ', #' + container).html(code);
 }

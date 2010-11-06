@@ -126,7 +126,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					
 					// Create the HTML markup of the group
 					$(groupCont).prepend(
-						'<div class="' + groupHash + ' one-group removable" data-group="' + cGroup.htmlEnc() + '">' + 
+						'<div class="' + groupHash + ' one-group" data-group="' + cGroup.htmlEnc() + '">' + 
 							'<a class="group talk-images minus">' + cGroup.htmlEnc() + '</a>' + 
 							'<div class="group-buddies"></div>' + 
 						'</div>'

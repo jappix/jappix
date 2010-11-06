@@ -40,7 +40,7 @@ Last revision: 06/11/10
 // Homepage?
 if(!anonymousMode()) { ?>
 	<!-- BEGIN HOMEPAGE -->
-	<div id="home" class="showable">
+	<div id="home">
 		<div class="main">
 			<div class="left">
 				<div class="home-images logo"></div>
@@ -150,12 +150,6 @@ if(!anonymousMode()) { ?>
 		<!--[if lt IE 9]><p class="board" style="display: block;"><?php _e("Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."); ?></p><![endif]-->
 </div>
 <!-- END INFO BANNER -->
-
-<!-- BEGIN GENERAL WAIT -->
-<div id="general-wait" class="hidable">
-	<div class="general-wait-content wait-big"></div>
-</div>
-<!-- END GENERAL WAIT -->
 
 <!-- BEGIN DATE -->
 <div id="data">

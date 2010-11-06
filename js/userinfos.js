@@ -25,10 +25,10 @@ function openUserInfos(xid) {
 	'</div>' + 
 	
 	'<div class="content">' + 
-		'<div class="one-info info1" style="display: block;">' + 
+		'<div class="lap-active one-lap info1">' + 
 			'<div class="main-infos">' + 
 				'<div class="avatar-container">' + 
-					'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 				'</div>' + 
 				
 				'<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
@@ -55,7 +55,7 @@ function openUserInfos(xid) {
 			'</div>' + 
 		'</div>' + 
 		
-		'<div class="one-info info2">' + 
+		'<div class="one-lap info2">' + 
 			'<div class="block-infos">' + 
 				'<div class="one-line"><b>' + _e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
@@ -71,8 +71,8 @@ function openUserInfos(xid) {
 			'</div>' + 
 		'</div>' + 
 		
-		'<div class="one-info info3">' + 
-			'<textarea id="BUDDY-COMMENTS" rows="8" cols="60" class="resetable"></textarea>' + 
+		'<div class="one-lap info3">' + 
+			'<textarea id="BUDDY-COMMENTS" rows="8" cols="60"></textarea>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -91,9 +91,6 @@ function openUserInfos(xid) {
 
 // Gets the user-infos
 function retrieveUserInfos(xid) {
-	// Show the wait icon
-	$('#userinfos .wait').show();
-	
 	// We setup the waiting indicator
 	markers = 'vcard';
 	
@@ -291,7 +288,7 @@ function sendBuddyComments() {
 
 // Switches the user-infos tabs
 function switchUInfos(id) {
-	$('#userinfos .content .one-info').hide();
+	$('#userinfos .content .one-lap').hide();
 	$('#userinfos .content .info' + id).show();
 	$('#userinfos .tab a').removeClass('tab-active');
 	$('#userinfos .tab .tab' + id).addClass('tab-active');

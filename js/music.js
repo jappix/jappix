@@ -29,7 +29,7 @@ function parseMusic(xml, type) {
 	
 	// Create the result container
 	if(!exists(path_type)) {
-		var code = '<div class="' + type + ' removable"></div>';
+		var code = '<div class="' + type + '"></div>';
 		
 		if(type == 'local')
 			$(content).prepend(code);
@@ -61,7 +61,7 @@ function parseMusic(xml, type) {
 			uri = generateURL(uri);
 		
 		// Append the HTML code
-		$(path_type).append('<a class="song removable" id="' + id + '">‣ ' + title + '</a>');
+		$(path_type).append('<a class="song" id="' + id + '">‣ ' + title + '</a>');
 		
 		// Click event
 		$(path_type + ' #' + id).click(function() {
@@ -201,7 +201,7 @@ function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	
 	// We create a new audio tag if it does not exist
 	if(!exists('.music-audio'))
-		$(path + '.player').prepend('<audio class="music-audio removable" />');
+		$(path + '.player').prepend('<audio class="music-audio" />');
 	
 	// Apply the MIME type to the player
 	$('.music-audio').attr('type', mime);

@@ -29,29 +29,29 @@ function messagesOpen() {
 			'</div>' + 
 		'</div>' + 
 		
-		'<div class="messages-results showable">' + 
-			'<p class="messages-noresults showable">' + _e("Your inbox is empty.") + '</p>' + 
+		'<div class="messages-results">' + 
+			'<p class="messages-noresults">' + _e("Your inbox is empty.") + '</p>' + 
 			
 			'<div class="inbox"></div>' + 
 		'</div>' + 
 		
-		'<div class="messages-new hidable">' + 
+		'<div class="messages-new">' + 
 			'<div class="messages-new-to messages-new-block search">' + 
 				'<p class="messages-new-text">' + _e("To") + '</p>' + 
 				
-				'<input name="messages-new-to-input" class="messages-new-input messages-new-to-input resetable" />' + 
+				'<input name="messages-new-to-input" class="messages-new-input messages-new-to-input" type="text" />' + 
 			'</div>' + 
 			
 			'<div class="messages-new-topic messages-new-block">' + 
 				'<p class="messages-new-text">' + _e("Subject") + '</p>' + 
 				
-				'<input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input resetable" />' + 
+				'<input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input" type="text" />' + 
 			'</div>' + 
 			
 			'<div class="messages-new-body messages-new-block">' + 
 				'<p class="messages-new-text">' + _e("Content") + '</p>' + 
 				
-				'<textarea class="messages-new-textarea resetable" rows="8" cols="60"></textarea>' + 
+				'<textarea class="messages-new-textarea" rows="8" cols="60"></textarea>' + 
 			'</div>' + 
 			
 			'<div class="messages-new-send messages-new-block">' + 
@@ -161,10 +161,10 @@ function normalMessageSender(to, subject, body) {
 // Performs the normal message sender checks
 function sendThisMessage() {
 	// We get some informations
-	var mPath = '#inbox .';
-	var to = $(mPath + 'messages-new-to-input').val();
-	var body = $(mPath + 'messages-new-textarea').val();
-	var subject = $(mPath + 'messages-new-subject-input').val();
+	var mPath = '#inbox ';
+	var to = $(mPath + '.messages-new-to-input').val();
+	var body = $(mPath + '.messages-new-textarea').val();
+	var subject = $(mPath + '.messages-new-subject-input').val();
 	
 	if(to && body && subject) {
 		// New array of XID
@@ -200,7 +200,7 @@ function sendThisMessage() {
 	}
 	
 	else {
-		$(mPath + 'resetable').each(function() {
+		$(mPath + 'input[type=text], ' + mPath + 'textarea').each(function() {
 			if(!$(this).val())
 				$(this).addClass('please-complete');
 			else
@@ -230,13 +230,13 @@ function showMessages() {
 // Displays a normal message
 function displayInboxMessage(from, subject, content, status, id, type, date) {
 	// We generate the html code
-	var nContent = '<div class="one-message message-' + status + ' ' + id + ' removable">' + 
+	var nContent = '<div class="one-message message-' + status + ' ' + id + '">' + 
 				'<div class="message-jid" onclick="revealMessage(\'' + id + '\');">' + getBuddyName(from).htmlEnc() + '</div>' + 
 				'<div class="message-subject" onclick="revealMessage(\'' + id + '\');">' + subject.htmlEnc() + '</div>' + 
 				'<a onclick="deleteThisMessage(\'' + id + '\');" class="message-remove">' + _e("Delete") + '</a>' + 
 			'</div>' + 
 			
-			'<div class="one-message-body one-message-body' + id + ' removable">' + 
+			'<div class="one-message-body one-message-body' + id + '">' + 
 				'<div class="message-body">' + content.htmlEnc() + '</div>' + 
 				'<div class="message-meta">' + 
 					'<a onclick="hideThisMessage(\'' + id + '\');">' + _e("Hide") + '</a>' + 

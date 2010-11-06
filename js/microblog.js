@@ -49,9 +49,9 @@ function displayMicroblog(packet, from, hash, mode) {
 		tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
 		
 		// Display the received message
-		var html = '<div class="one-update removable ' + hash + ' ' + tHash + '">' + 
+		var html = '<div class="one-update ' + hash + ' ' + tHash + '">' + 
 				'<div class="avatar-container">' + 
-					'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 				'</div>' + 
 				
 				'<div class="body">' + 
@@ -222,15 +222,15 @@ function getMicroblog(xid, hash) {
 		
 		// Create a new individual channel
 		$('.channel-content.mixed').after(
-				'<div class="removable channel-content individual microblog-' + hash + '">' + 
+				'<div class="channel-content individual microblog-' + hash + '">' + 
 					'<a class="more" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
 					   .before(
-				'<div class="removable channel-header individual ' + hash + '">' + 
+				'<div class="channel-header individual ' + hash + '">' + 
 					'<div class="avatar-container">' + 
-						'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 
 					
 					'<div class="update">' + 

@@ -16,10 +16,6 @@ Last revision: 06/11/10
 	display: none;
 }
 
-#talk {
-	display: none;
-}
-
 #top-content {
 	position: absolute;
 	right: 12px;
@@ -65,7 +61,6 @@ Last revision: 06/11/10
 }
 
 #general-wait {
-	display: none;
 	z-index: 10000;
 	position: fixed;
 	top: 0;

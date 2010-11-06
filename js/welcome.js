@@ -31,7 +31,7 @@ function openWelcome() {
 	'</div>' + 
 	
 	'<div class="content">' + 
-		'<div class="one-welcome welcome1" style="display: block;">' + 
+		'<div class="lap-active one-lap welcome1">' + 
 			'<div class="infos">' + 
 				'<p class="infos-title">' + _e("Welcome on Jappix, your own social cloud!") + '</p>' + 
 				'<p>' + _e("Before you start using it, you will have to change some settings, search for friends and complete your profile.") + '</p>' + 
@@ -43,7 +43,7 @@ function openWelcome() {
 				'<span class="image sound talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box enabled pep-hidable hidable" title="' + _e("Click to disable") + '">' + 
+			'<a class="box enabled pep-hidable" title="' + _e("Click to disable") + '">' + 
 				'<span class="option">' + _e("Geolocation") + '</span>' + 
 				'<span class="description">' + _e("Share your position on the globe") + '</span>' + 
 				'<span class="image geolocation talk-images"></span>' + 
@@ -55,7 +55,7 @@ function openWelcome() {
 				'<span class="image xmpp talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box enabled archives-hidable pref hidable" title="' + _e("Click to enable") + '">' + 
+			'<a class="box enabled archives-hidable pref" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Message archiving") + '</span>' + 
 				'<span class="description">' + _e("Store a history of your chats") + '</span>' + 
 				'<span class="image archives talk-images"></span>' + 
@@ -68,7 +68,7 @@ function openWelcome() {
 			'</a>' + 
 		'</div>' + 
 		
-		'<div class="one-welcome welcome2">' + 
+		'<div class="one-lap welcome2">' + 
 			'<div class="infos">' + 
 				'<p class="infos-title">' + _e("Friends") + '</p>' + 
 				'<p>' + _e("Use this tool to find your friends on the server you are using right now, or add them later.") + '</p>' + 
@@ -77,7 +77,7 @@ function openWelcome() {
 			'<div class="results welcome-results"></div>' + 
 		'</div>' + 
 		
-		'<div class="one-welcome welcome3">' + 
+		'<div class="one-lap welcome3">' + 
 			'<div class="infos">' + 
 				'<p class="infos-title">' + _e("Profile") + '</p>' + 
 				'<p>' + _e("Great work! When you will press the save button, the profile editor will be opened.") + '</p>' + 
@@ -118,7 +118,7 @@ function switchWelcome(id) {
 	var tab = welcome + '.tab ';
 	var wait = $(welcome + '.wait');
 	
-	$(content + 'one-welcome').hide();
+	$(content + 'one-lap').hide();
 	$(content + 'welcome' + id).show();
 	$(tab + 'a').removeClass('tab-active');
 	$(tab + '.tab' + id).addClass('tab-active').removeClass('tab-missing');

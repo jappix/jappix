@@ -83,8 +83,8 @@ function handleError(packet) {
 				break;
 		}
 		
-		// Hide the general wait item (security)
-		$('#general-wait').hide();
+		// Remove the general wait item (security)
+		removeGeneralWait();
 		
 		// Show the homepage (security)
 		$('#home').show();

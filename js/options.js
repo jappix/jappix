@@ -14,7 +14,7 @@ Last revision: 06/11/10
 
 // Switches between the options tabs
 function switchOptions(id) {
-	$('#options .one-conf').hide();
+	$('#options .one-lap').hide();
 	$('#options #conf' + id).show();
 	$('#options .tab a').removeClass('tab-active');
 	$('#options .tab .tab' + id).addClass('tab-active');
@@ -28,37 +28,37 @@ function optionsOpen() {
 	
 	'<div class="tab">' + 
 		'<a class="tab1 tab-active" onclick="switchOptions(1);">' + _e("General") + '</a>' + 
-		'<a class="tab2 pubsub-hidable hidable" onclick="switchOptions(2);">' + _e("Channel") + '</a>' + 
+		'<a class="tab2 pubsub-hidable" onclick="switchOptions(2);">' + _e("Channel") + '</a>' + 
 		'<a class="tab3" onclick="switchOptions(3);">' + _e("Account") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
-		'<div id="conf1" class="one-conf forms">' + 
-			'<fieldset class="privacy hidable">' + 
+		'<div id="conf1" class="lap-active one-lap forms">' + 
+			'<fieldset class="privacy">' + 
 				'<legend>' + _e("Privacy") + '</legend>' + 
 				
-				'<label for="geolocation" class="pep-hidable hidable">' + _e("Geolocation") + '</label>' + 
-				'<input id="geolocation" type="checkbox" class="resetable pep-hidable hidable" />' + 
+				'<label for="geolocation" class="pep-hidable">' + _e("Geolocation") + '</label>' + 
+				'<input id="geolocation" type="checkbox" class="pep-hidable" />' + 
 				
-				'<label for="archiving" class="archives-hidable pref hidable">' + _e("Message archiving") + '</label>' + 
-				'<input id="archiving" type="checkbox" class="archives-hidable pref hidable resetable" />' + 
+				'<label for="archiving" class="archives-hidable pref">' + _e("Message archiving") + '</label>' + 
+				'<input id="archiving" type="checkbox" class="archives-hidable pref" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Application") + '</legend>' + 
 				
 				'<label for="sounds">' + _e("Sounds") + '</label>' + 
-				'<input id="sounds" type="checkbox" class="resetable" />' + 
+				'<input id="sounds" type="checkbox" />' + 
 				
 				'<label for="showall">' + _e("Show all friends") + '</label>' + 
-				'<input id="showall" type="checkbox" class="resetable" />' + 
+				'<input id="showall" type="checkbox" />' + 
 				
 				'<label>' + _e("XMPP links") + '</label>' + 
 				'<a class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
-		'<div id="conf2" class="one-conf forms">' + 
+		'<div id="conf2" class="one-lap forms">' + 
 			'<fieldset>' + 
 				'<legend>' + _e("Channel") + '</legend>' + 
 				
@@ -66,10 +66,10 @@ function optionsOpen() {
 				'<a class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
 				
 				'<label>' + _e("Persistent") + '</label>' + 
-				'<input id="persistent" type="checkbox" class="resetable" />' + 
+				'<input id="persistent" type="checkbox" />' + 
 				
 				'<label>' + _e("Maximum notices") + '</label>' + 
-				'<select id="maxnotices" class="resetable">' + 
+				'<select id="maxnotices">' + 
 					'<option value="50">50</option>' + 
 					'<option value="100">100</option>' + 
 					'<option value="500">500</option>' + 
@@ -79,7 +79,7 @@ function optionsOpen() {
 				'</select>' + 
 			'</fieldset>' + 
 			
-			'<div class="sub-ask sub-ask-empty sub-ask-element hidable">' + 
+			'<div class="sub-ask sub-ask-empty sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Empty channel") + '</div>' + 
 					'<a class="sub-ask-close">X</a>' + 
@@ -87,14 +87,14 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Password") + '</label>' + 
-					'<input type="password" class="purge-microblog check-empty resetable" />' + 
+					'<input type="password" class="purge-microblog check-empty" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom" onclick="purgeMyMicroblog();">' + _e("Empty") + ' &raquo;</a>' + 
 			'</div>' + 
 		'</div>' + 
 		
-		'<div id="conf3" class="one-conf forms">' + 
+		'<div id="conf3" class="one-lap forms">' + 
 			'<fieldset>' + 
 				'<legend>' + _e("Account") + '</legend>' + 
 				
@@ -105,7 +105,7 @@ function optionsOpen() {
 				'<a class="linked delete-account">' + _e("Delete account") + '</a>' + 
 			'</fieldset>' + 
 				
-			'<div class="sub-ask sub-ask-pass sub-ask-element hidable">' + 
+			'<div class="sub-ask sub-ask-pass sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Change password") + '</div>' + 
 					'<a class="sub-ask-close">X</a>' + 
@@ -113,17 +113,17 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Old") + '</label>' + 
-					'<input type="password" class="password-change old resetable" />' + 
+					'<input type="password" class="password-change old" />' + 
 					
 					'<label>' + _e("New (2 times)") + '</label>' + 
-					'<input type="password" class="password-change new1 resetable" />' + 
-					'<input type="password" class="password-change new2 resetable" />' + 
+					'<input type="password" class="password-change new1" />' + 
+					'<input type="password" class="password-change new2" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom" onclick="sendNewPassword();">' + _e("Continue") + ' &raquo;</a>' + 
 			'</div>' + 
 			
-			'<div class="sub-ask sub-ask-delete sub-ask-element hidable">' + 
+			'<div class="sub-ask sub-ask-delete sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Delete account") + '</div>' + 
 					'<a class="sub-ask-close">X</a>' + 
@@ -131,7 +131,7 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Password") + '</label>' + 
-					'<input type="password" class="delete-account check-password resetable" />' + 
+					'<input type="password" class="delete-account check-password" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom" onclick="deleteMyAccount();">' + _e("Delete") + ' &raquo;</a>' + 
@@ -148,6 +148,9 @@ function optionsOpen() {
 	
 	// Create the popup
 	createPopup('options', html);
+	
+	// Associate the events
+	launchOptions();
 	
 	var enabled_archives_pref = enabledArchives('pref');
 	var enabled_pubsub = enabledPubSub();
@@ -174,7 +177,7 @@ function optionsOpen() {
 	
 	// We show the "privacy" form if something is visible into it
 	if(enabled_archives_pref || enabled_pep)
-		$('#options fieldset.hidable:first').show();
+		$('#options fieldset.privacy').show();
 	
 	// We get the values of the forms for the sounds
 	if(getDB('options', 'sounds') == '0')
@@ -514,6 +517,3 @@ function launchOptions() {
 		}
 	});
 }
-
-// Launch this plugin!
-$(document).ready(launchOptions);

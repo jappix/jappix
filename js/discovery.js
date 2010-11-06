@@ -56,7 +56,7 @@ function openDiscovery() {
 		'<div class="discovery-head">' + 
 			'<div class="disco-server-text">' + _e("Server to query") + '</div>' + 
 			
-			'<input name="disco-server-input" class="disco-server-input resetable" value="' + HOST_MAIN + '" />' + 
+			'<input name="disco-server-input" class="disco-server-input" value="' + HOST_MAIN + '" />' + 
 		'</div>' + 
 		
 		'<div class="results discovery-results">' + 

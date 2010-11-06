@@ -97,7 +97,7 @@ function generateChat(type, id, xid, nick) {
 	// Chat (or other things?!) special code
 	else {
 		specialAttributes = '';
-		specialAvatar = '<div class="avatar-container"><img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
+		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
 		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>' + 
 			      '<div class="chatstate">' + 
@@ -126,7 +126,7 @@ function generateChat(type, id, xid, nick) {
 	}
 	
 	$('#chat-engine').append(
-		'<div id="' + id + '" class="chat-engine-chan removable"' + specialAttributes + ' data-xid="' + xid + '">' + 
+		'<div id="' + id + '" class="chat-engine-chan"' + specialAttributes + ' data-xid="' + xid + '">' + 
 			'<div class="top">' + 
 				specialAvatar + 
 				
@@ -230,7 +230,7 @@ function generateSwitch(type, id, xid, nick) {
 	}
 	
 	// Generate the HTML code
-	var html = '<div class="' + id + ' removable switcher chan" onclick="switchChan(\'' + id + '\');">' + 
+	var html = '<div class="' + id + ' switcher chan" onclick="switchChan(\'' + id + '\');">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
 			
 			'<div class="name">' + nick + '</div>';
