@@ -1915,3 +1915,9 @@ msgstr ""
 
 msgid "%s days ago"
 msgstr ""
+
+msgid "Last seen: %s"
+msgstr ""
+
+msgid "Inactive since: %s"
+msgstr ""

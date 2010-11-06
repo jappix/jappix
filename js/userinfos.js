@@ -32,8 +32,8 @@ function openUserInfos(xid) {
 				'</div>' + 
 				
 				'<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
-				'<h2 id="BUDDY-NICKNAME" class="reset-info">' + _e("unknown") + '</h2>' + 
-				'<h3 id="BUDDY-XID" class="reset-info">' + _e("unknown") + '</h3>' + 
+				'<h2 id="BUDDY-XID" class="reset-info">' + _e("unknown") + '</h2>' + 
+				'<h3 id="BUDDY-LAST" class="reset-info">' + _e("unknown") + '</h3>' + 
 			'</div>' + 
 			
 			'<div class="block-infos">' + 
@@ -92,7 +92,7 @@ function openUserInfos(xid) {
 // Gets the user-infos
 function retrieveUserInfos(xid) {
 	// We setup the waiting indicator
-	markers = 'vcard';
+	markers = 'vcard last';
 	
 	// We put the user's XID
 	$('#userinfos #BUDDY-XID').text(xid);
@@ -102,18 +102,25 @@ function retrieveUserInfos(xid) {
 	
 	// Get the highest resource for this XID
 	var cXID = getHighestResource(xid);
+	var pXID = xid;
 	
 	// If the user is logged in
 	if(cXID) {
+		// Change the XID
+		pXID = cXID;
+		
 		// We request the user's system infos
-		getVersion(cXID);
+		queryUserInfos(cXID, 'version')
 		
 		// We request the user's local time
-		getLocalTime(cXID);
+		queryUserInfos(cXID, 'time')
 		
 		// Add these to the markers
 		markers += ' version time';
 	}
+	
+	// We request the user's last activity
+	queryUserInfos(pXID, 'last');
 	
 	// Add the markers
 	$('#userinfos .content').addClass(markers);
@@ -122,11 +129,11 @@ function retrieveUserInfos(xid) {
 	displayBuddyComments(xid);
 }
 
-// Gets the version of the user's XMPP client
-function getVersion(xid) {
+// Builds the asked user-infos query
+function queryUserInfos(xid, mode) {
 	// Generate a session ID
 	var id = genID();
-	$('#userinfos').attr('data-version', id);
+	$('#userinfos').attr('data-' + mode, id);
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -134,24 +141,24 @@ function getVersion(xid) {
 	iq.setID(id);
 	iq.setType('get');
 	iq.setTo(xid);
-	iq.setQuery(NS_VERSION);
 	
-	con.send(iq, versionUserInfos);
-}
-
-// Gets the local time of the user's
-function getLocalTime(xid) {
-	// Generate a session ID
-	var id = genID();
-	$('#userinfos').attr('data-time', id);
+	// Last activity query
+	if(mode == 'last') {
+		iq.setQuery(NS_LAST);
+		con.send(iq, lastActivityUserInfos);
+	}
 	
-	// New IQ
-	var iq = new JSJaCIQ();
-	iq.setID(id);
-	iq.setType('get');
-	iq.setTo(xid);
-	iq.appendNode('time', {'xmlns': NS_URN_TIME});
-	con.send(iq, localTimeUserInfos);
+	// Time query
+	else if(mode == 'time') {
+		iq.appendNode('time', {'xmlns': NS_URN_TIME});
+		con.send(iq, localTimeUserInfos);
+	}
+	
+	// Version query
+	else if(mode == 'version') {
+		iq.setQuery(NS_VERSION);
+		con.send(iq, versionUserInfos);
+	}
 }
 
 // Checks if the waiting item can be hidden
@@ -168,6 +175,50 @@ function displayBuddyComments(xid) {
 	// Display the value
 	if(value)
 		$('#userinfos #BUDDY-COMMENTS').val(value);
+}
+
+// Displays the user's last activity result
+function lastActivityUserInfos(iq) {
+	// Extract the request ID
+	var id = iq.getID();
+	var path = '#userinfos[data-last=' + id + ']';
+	
+	// End if session does not exist
+	if(!exists(path))
+		return;
+	
+	if(iq && (iq.getType() == 'result')) {
+		// Get the values
+		var from = getStanzaFrom(iq);
+		var seconds = $(iq.getNode()).find('query').attr('seconds');
+		
+		// Any seconds?
+		if(seconds) {
+			var last;
+			
+			// Parse the date
+			var date_now = new Date();
+			var time_now = date_now.getTime();
+			var date_last = new Date(date_now - (seconds * 1000));
+			var date = date_last.toLocaleString();
+			
+			// Offline user
+			if(from.indexOf('/') == -1)
+				last = printf(_e("Last seen: %s"), date);
+			
+			// Online user
+			else
+				last = printf(_e("Inactive since: %s"), date);
+			
+			// Append this text
+			$('#userinfos #BUDDY-LAST').text(last);
+		}
+		
+		logThis('Last activity received: ' + from);
+	}
+	
+	$('#userinfos .content').removeClass('last');
+	wUserInfos();
 }
 
 // Displays the user's software version result
@@ -245,7 +296,7 @@ function localTimeUserInfos(iq) {
 function wUserInfos() {
 	var selector = $('#userinfos .content');
 	
-	if(!selector.hasClass('vcard') && !selector.hasClass('version') && !selector.hasClass('time'))
+	if(!selector.hasClass('vcard') && !selector.hasClass('last') && !selector.hasClass('version') && !selector.hasClass('time'))
 		$('#userinfos .wait').hide();
 }
 

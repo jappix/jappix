@@ -24,9 +24,9 @@ Last revision: 06/11/10
 	margin: 20px 20px 8px 20px;
 	height: 120px;
 	background: white;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 }
 
 #userinfos .avatar-container {
@@ -45,13 +45,13 @@ Last revision: 06/11/10
 #userinfos h1 {
 	font-size: 2em;
 	padding-top: 12px;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 }
 
 #userinfos h2 {
 	color: #447079;
 	font-size: 1.1em;
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 }
 
 #userinfos h3 {
