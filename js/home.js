@@ -291,8 +291,10 @@ function registerForm() {
 	return false;
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchHome() {
+	logThis('Welcome to Jappix! Happy coding in developer mode!');
+	
 	// Allows the user to switch the home page
 	$('#home .button').click(function() {
 		// Login button
@@ -303,4 +305,7 @@ $(document).ready(function() {
 		else
 			return switchHome('registerer');
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchHome);

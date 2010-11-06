@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -533,19 +533,14 @@ function adaptRoster() {
 	$('#buddy-list .content').css('height', new_height);
 }
 
+
+
 // Define a global var for buddy list all buddies displayed
 var BLIST_ALL = false;
 
-// Window resize event handler
-$(window).resize(function() {
-	// Adapt the buddy-list size
-	if((typeof con != 'undefined') && con && con.connected())
-		adaptRoster();
-});
-
-// Launch this plugin!
-$(document).ready(function() {
-	// BEGIN filtering tool
+// Plugin launcher
+function launchRoster() {
+	// Filtering tool
 	var iFilter = $('#buddy-list .filter input');
 	var aFilter = $('#buddy-list .filter a');
 	var pFilter = iFilter.attr('placeholder');
@@ -584,9 +579,7 @@ $(document).ready(function() {
 		// Resets the filtering tool
 		resetFilterBuddySearch();
 	});
-	// END filtering tool
 	
-	// BEGIN foot icons
 	// When the user click on the add button, show the contact adding tool
 	$('#buddy-list .foot .add').click(function() {
 		// We show the requested div
@@ -740,5 +733,11 @@ $(document).ready(function() {
 	$('.buddy-conf-more-service-disco').click(function() {
 		openDiscovery();
 	});
-	// END foot icons
+}
+
+// Window resize event handler
+$(window).resize(function() {
+	// Adapt the buddy-list size
+	if((typeof con != 'undefined') && con && con.connected())
+		adaptRoster();
 });

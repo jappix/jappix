@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 06/11/10
 
 */
 
@@ -809,8 +809,8 @@ function dieIdle() {
 		 .die('keydown', eventIdle);
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchPresence() {
 	// When a key is pressed...
 	$('.textPresence').keyup(function(e) {
 		// Enter : continue
@@ -838,4 +838,4 @@ $(document).ready(function() {
 		// Then we reset the presence input
 		$('.textPresence').val(status);
 	});
-});
+}

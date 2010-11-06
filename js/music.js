@@ -8,7 +8,7 @@ These are the music JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/10/10
+Last revision: 06/11/10
 
 */
 
@@ -122,7 +122,6 @@ function actionMusic(action) {
 	if(!playThis)
 		return;
 	
-	var pathTo = $('#top-content .music');
 	var stopButton = $('#top-content a.stop');
 	
 	// User play a song
@@ -141,23 +140,11 @@ function actionMusic(action) {
 	else if(action == 'stop') {
 		stopButton.hide();
 		playThis.pause();
-		pathTo.removeClass('actived');
+		$('#top-content .music').removeClass('actived');
 		$('.music-content .list a').removeClass('playing');
 		publishMusic();
 		
 		logThis('Music is now stopped.');
-	}
-	
-	// User disconnected without stopping music
-	else if(action == 'abord') {
-		// If a music is playing
-		if(pathTo.hasClass('actived')) {
-			stopButton.hide();
-			publishMusic();
-			pathTo.removeClass('actived');
-			
-			logThis('Music is now aborded.');
-		}
 	}
 }
 
@@ -239,8 +226,8 @@ function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	publishMusic(title, artist, source, duration, uri);
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchMusic() {
 	// When music search string submitted
 	$('.music-content input').keyup(function(e) {
 		// Enter : send
@@ -251,4 +238,4 @@ $(document).ready(function() {
 		if(e.keyCode == 27)
 			closeBubbles();
 	});
-});
+}

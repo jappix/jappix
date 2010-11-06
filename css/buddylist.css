@@ -141,7 +141,7 @@ Last revision: 06/11/10
 	height: 17px;
 	font-weight: bold;
 	font-size: 0.8em;
-	color: #4c6166;
+	color: #3d585f;
 	margin: 5px 0 5px 2px;
 	overflow: hidden;
 }
@@ -149,7 +149,7 @@ Last revision: 06/11/10
 #buddy-list .buddy-presence {
 	height: 14px;
 	font-size: 0.7em;
-	color: #5c787e;
+	color: #4e6c72;
 	padding: 2px 0 0 16px;
 	margin-top: -3px;
 }

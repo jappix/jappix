@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -526,8 +526,16 @@ function geolocate() {
 	});
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Displays all the supported PEP events for a given XID
+function displayAllPEP(xid) {
+	displayPEP(xid, 'mood');
+	displayPEP(xid, 'activity');
+	displayPEP(xid, 'tune');
+	displayPEP(xid, 'geoloc');
+}
+
+// Plugin launcher
+function launchPEP() {
 	// We detect if the user pressed a key
 	$('#my-infos-text-second').keyup(function(e) {
 		// We catch the inputs values
@@ -600,12 +608,4 @@ $(document).ready(function() {
 		else
 			sendActivity(valueActivity, '');
 	});
-});
-
-// Display all the supported PEP events for a given XID
-function displayAllPEP(xid) {
-	displayPEP(xid, 'mood');
-	displayPEP(xid, 'activity');
-	displayPEP(xid, 'tune');
-	displayPEP(xid, 'geoloc');
 }

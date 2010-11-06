@@ -10,7 +10,7 @@ This is the Jappix desktop html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/09/10
+Last revision: 06/11/10
 
 */
 
@@ -26,8 +26,6 @@ Last revision: 06/09/10
 
 if(!anonymousMode())
 	include('./php/home.php');	// The homepage html markup
-
-include('./php/talk.php');		// The talkpage html markup
 
 include('./php/popups.php');		// The popups html markup
 

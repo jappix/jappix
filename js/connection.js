@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -180,6 +180,7 @@ function handleConnected() {
 	$('#home, #general-wait').hide();
 	
 	// We show the chatting app.
+	createTalkPage();
 	$('#talk').show();
 	switchChan('channel');
 	
@@ -217,75 +218,12 @@ function handleConnected() {
 	}
 }
 
-// Resets the Jappix session
-function resetJappix() {
-	// We stop the music player
-	actionMusic('abord');
-	
-	// Reset the page title
-	pageTitle('home');
-	
-	// Reset our database
-	resetDB();
-	
-	// Renitialize the stanza ID counter
-	STANZA_ID = 1;
-	
-	// We renitalise the html markup as its initiale look
-	$('.removable').remove();
-	$('.showable').show();
-	$('.hidable').hide();
-	$('.resetable').val('');
-	$('#general-wait').hide();
-	$('#my-infos .element').attr('title', '');
-	$('#my-infos .f-presence select').attr('disabled', true);
-	$('#my-infos .f-presence .icon').attr('class', 'icon talk-images status-available');
-	$('#my-infos .f-mood .icon').attr('class', 'icon talk-images mood-four');
-	$('#my-infos .f-activity .icon').attr('class', 'icon talk-images activity-exercising');
-	
-	// Reset the buddy list tools
-	BLIST_ALL = false;
-	
-	// Reset our first presence marker
-	FIRST_PRESENCE_SENT = false;
-	
-	// Reset the microblog tools
-	unattachMicroblog();
-	
-	// Reset the filtering tool
-	SEARCH_FILTERED = false;
-	var iFilter = $('#buddy-list .filter input');
-	var pFilter = iFilter.attr('placeholder');
-	$('#buddy-list .filter a').hide();
-	iFilter.val(pFilter);
-	
-	// Kill all timers, exept the board ones
-	$('*:not(#error, #info)').stopTime();
-	
-	// Kill the auto idle functions
-	dieIdle();
-	
-	// We reset values for dynamic things
-	$('#home .server').val(HOST_MAIN);
-	$('#home .resource').val(JAPPIX_RESOURCE);
-	
-	// We reset the notification tool
-	checkNotifications();
-	
-	// And we show the home like when the user wasn't logged in
-	$('#home').show();
-	$('#talk').hide();
-}
-
 // Handles the user disconnected event
 function handleDisconnected() {
 	logThis('Jappix is now disconnected.');
 	
-	// We show the waiting image
-	//$('#general-wait').show();
-	
 	// Reset everything
-	resetJappix();
+	destroyTalkPage();
 	
 	// Is it a undesired disconnection?
 	if(CURRENT_SESSION && CONNECTED)
@@ -445,13 +383,8 @@ function getEverything() {
 	getStorage(NS_ROSTERNOTES);
 }
 
-// Logouts when the application is closed
-$(window).bind('beforeunload', terminate);
-
-// Launch this plugin!
-$(document).ready(function() {
-	logThis('Welcome to Jappix! Happy coding in developer mode :)');
-	
+// Plugin launcher
+function launchConnection() {
 	// Try to resume a stored session, if not anonymous
 	var session = getPersistent('session', 1);
 	
@@ -479,4 +412,10 @@ $(document).ready(function() {
 			switchHome('loginer');
 		}
 	}
-});
+}
+
+// Logouts when the application is closed
+$(window).bind('beforeunload', terminate);
+
+// Launch this plugin!
+$(document).ready(launchConnection);

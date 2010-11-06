@@ -79,7 +79,7 @@ function setPath($string, $hash, $host, $type, $locale) {
 
 // The function to set the good translation to a JS file
 function setTranslation($string) {
-	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.T_gettext('$1').'\")'", $string);
+	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.addslashes(T_gettext(stripslashes('$1'))).'\")'", $string);
 }
 
 // The function to set the good configuration to a JS file

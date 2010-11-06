@@ -8,16 +8,16 @@ This is the anonymous mode CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
-#main-content {
-	top: 10px !important;
+#top-content {
+	min-width: 500px !important;
 }
 
-#talk {
-	min-width: 500px !important;
+#main-content {
+	min-width: 490px !important;
 	min-height: 450px !important;
 }
 
@@ -26,20 +26,5 @@ Last revision: 27/10/10
 }
 
 #right-content {
-	left: 0 !important;
-	min-width: 480px !important;
-	min-height: 430px !important;
-}
-
-#chat-engine {
-	right: 0 !important;
-	border-bottom-right-radius: 6px;
-	-moz-border-radius-bottomright: 6px;
-	-webkit-border-bottom-right-radius: 6px;
-}
-
-.chat-engine-chan {
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	left: 0;
 }

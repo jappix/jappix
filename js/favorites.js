@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
@@ -316,46 +316,55 @@ function displayFavorites(xid, gcName, nick, hash, autojoin, password) {
 	$('.buddy-conf-groupchat-select').val('none');
 }
 
+// Plugin launcher
+function launchFavorites(container) {
+	if(container == 'talk') {
+		$('.buddy-conf-groupchat-select').change(function() {
+			var groupchat = $(this).val();
+			
+			if(groupchat != 'none') {
+				// We hide the bubble
+				closeBubbles();
+				
+				// Create the chat
+				checkChatCreate(groupchat, 'groupchat');
+				
+				// We reset the select value
+				$(this).val('none');
+			}
+		});
+	}
+	
+	else if(container == 'popup') {
+		var path = '#favorites .';
+		
+		// Keyboard events
+		$(path + 'fsearch-head-server').keyup(function(e) {
+			if(e.keyCode == 13)
+				getGCList();
+		});
+		
+		// Change events
+		$('.fedit-head-select').change(editFavorite);
+		
+		// Click events
+		$(path + 'room-switcher').click(function() {
+			$(path + 'favorites-content').hide();
+			resetFavorites();
+		});
+		
+		$(path + 'room-list').click(function() {
+			$(path + 'favorites-edit').show();
+		});
+		
+		$(path + 'room-search').click(function() {
+			$(path + 'favorites-search').show();
+			getGCList();
+		});
+	}
+}
+
 // Launch this plugin!
 $(document).ready(function() {
-	var path = '#favorites .';
-	
-	// Keyboard events
-	$(path + 'fsearch-head-server').keyup(function(e) {
-		if(e.keyCode == 13)
-			getGCList();
-	});
-	
-	// Change events
-	$('.fedit-head-select').change(editFavorite);
-	
-	$('.buddy-conf-groupchat-select').change(function() {
-		var groupchat = $(this).val();
-		
-		if(groupchat != 'none') {
-			// We hide the bubble
-			closeBubbles();
-			
-			// Create the chat
-			checkChatCreate(groupchat, 'groupchat');
-			
-			// We reset the select value
-			$(this).val('none');
-		}
-	});
-	
-	// Click events
-	$(path + 'room-switcher').click(function() {
-		$(path + 'favorites-content').hide();
-		resetFavorites();
-	});
-	
-	$(path + 'room-list').click(function() {
-		$(path + 'favorites-edit').show();
-	});
-	
-	$(path + 'room-search').click(function() {
-		$(path + 'favorites-search').show();
-		getGCList();
-	});
+	launchFavorites('popup');
 });

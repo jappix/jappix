@@ -28,6 +28,7 @@ Last revision: 02/11/10
 #top-content .tools a {
 	color: black;
 	padding: 0 2px;
+	margin: 0 1.5px;
 }
 
 #top-content .tools a:hover {

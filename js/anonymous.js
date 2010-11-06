@@ -8,13 +8,16 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 06/11/10
 
 */
 
 // Connected to an anonymous session
 function anonymousConnected(con) {
 	logThis('Jappix (anonymous) is now connected.');
+	
+	// Create the app
+	createTalkPage();
 	
 	// Connected marker
 	CURRENT_SESSION = true;
@@ -44,8 +47,8 @@ function anonymousConnected(con) {
 	// We change the title of the page
 	pageTitle('talk');
 	
-	// Remove some nasty elements for the anonymous mode (and to make the DOM lighter)
-	$('#channel, #chat-switch .channel, .tools-mucadmin, .tools-add, .lock:has(.popup):not(#userinfos, #integratebox), #top-content, #buddy-list, #my-infos .element:not(.f-presence)').remove();
+	// Remove some nasty elements for the anonymous mode
+	$('.tools-mucadmin, .tools-add').remove();
 	
 	// Hide waiting icon
 	$('#general-wait').hide();
@@ -99,8 +102,8 @@ function anonymousLogin(server) {
 	con.connect(oArgs);
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchAnonymous() {
 	logThis('Anonymous mode detected, connecting...');
 	
 	// We add the login wait div
@@ -108,4 +111,7 @@ $(document).ready(function() {
 	
 	// Fire the login action
 	anonymousLogin(HOST_ANONYMOUS);
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchAnonymous);

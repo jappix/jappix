@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 06/11/10
 
 */
 
@@ -267,7 +267,7 @@ function handleAccDeletion(iq) {
 	// If no errors
 	if(!handleErrorReply(iq)) {
 		clearLastSession();
-		resetJappix();
+		destroyTalkPage();
 		openThisInfo(2);
 		logout();
 		
@@ -353,8 +353,8 @@ function deleteMyAccount() {
 	}
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchOptions() {
 	// The click events on the links
 	$('#options .linked').click(function() {
 		$('#options .sub-ask').hide();
@@ -403,4 +403,7 @@ $(document).ready(function() {
 				deleteMyAccount();
 		}
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchOptions);

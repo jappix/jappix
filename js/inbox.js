@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 06/11/10
 
 */
 
@@ -312,8 +312,8 @@ function replyToThisMessage(id) {
 	$(mPath + 'messages-new-textarea').focus();
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchInbox() {
 	// Define the buddy search vars
 	var destination = '#inbox .messages-new-to';
 	var dHovered = destination + ' ul li.hovered:first';
@@ -354,4 +354,7 @@ $(document).ready(function() {
 		if(value && !value.match(/(^)(.+)((,)(\s))($)/))
 			$(this).val(value + ', ');
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchInbox);

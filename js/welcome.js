@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
@@ -171,12 +171,15 @@ function nextWelcome() {
 	switchWelcome(next);	
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchWelcome() {
 	$('#welcome a.box').click(function() {
 		if($(this).hasClass('enabled'))
 			$(this).removeClass('enabled').attr('title', _e("Click to enable"));
 		else
 			$(this).addClass('enabled').attr('title', _e("Click to disable"));
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchWelcome);

@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 09/10/10
+Last revision: 06/11/10
 
 */
 
@@ -173,9 +173,12 @@ function enabledArchives(sub) {
 	return false;
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchArchives() {
 	$('#archives .filter .friend select').change(function() {
 		getArchives($(this).val());
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchArchives);

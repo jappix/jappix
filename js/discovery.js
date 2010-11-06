@@ -8,7 +8,7 @@ These are the discovery JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
@@ -65,8 +65,8 @@ function quitDiscovery() {
 	resetDiscovery();
 }
 
-// Launch this plugin!
-$(document).ready(function() {
+// Plugin launcher
+function launchDiscovery() {
 	// We activate the form
 	$('#discovery .disco-server-input').keyup(function(e) {
 		if(e.keyCode == 13) {
@@ -75,4 +75,7 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-});
+}
+
+// Launch this plugin!
+$(document).ready(launchDiscovery);
