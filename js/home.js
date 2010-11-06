@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/11/10
+Last revision: 06/11/10
 
 */
 
@@ -27,6 +27,8 @@ function switchHome(div) {
 	$(home + 'homediv:not(.default), ' + home + 'top:not(.default)').remove();
 	
 	// Get the HTML code to display
+	var disable_form = '';
+	var lock_host = '';
 	var code = '';
 	
 	// Apply the previous link
@@ -51,6 +53,7 @@ function switchHome(div) {
 	switch(div) {
 		// Login tool
 		case 'loginer':
+			lock_host = disableInput(LOCK_HOST, 'on');
 			code = '<p>' + printf(_e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a class="to-anonymous">' + _e("anonymous mode") + '</a>') + '</p>' + 
 				
 				'<form action="#" method="post">' + 
@@ -58,7 +61,7 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="lnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick resetable" id="lnick" /><span class="jid">@</span><input type="text" class="server resetable" id="lserver" value="' + HOST_MAIN + '" ' + disableInput(LOCK_HOST, 'on') + '/>' + 
+						'<input type="text" class="nick resetable" id="lnick" /><span class="jid">@</span><input type="text" class="server resetable" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + '/>' + 
 						'<label for="lpassword">' + _e("Password") + '</label>' + 
 						'<input type="password" class="password resetable" id="lpassword" />' + 
 						'<label for="lremember">' + _e("Remember me") + '</label>' + 
@@ -87,6 +90,7 @@ function switchHome(div) {
 		
 		// Anonymous login tool
 		case 'anonymouser':
+			disable_form = disableInput(ANONYMOUS, 'off');
 			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a class="to-home">' + _e("login page") + '</a>') + '</p>' + 
 				
 				'<form action="#" method="post">' + 
@@ -94,13 +98,13 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label>' + _e("Room") + '</label>' + 
-						'<input type="text" class="room resetable"' +  disableInput(ANONYMOUS, 'off') + ' />' + 
+						'<input type="text" class="room resetable"' + disable_form + ' />' + 
 						
 						'<label>' + _e("Nickname") + '</label>' + 
-						'<input type="text" class="nick resetable"' +  disableInput(ANONYMOUS, 'off') + ' />' + 
+						'<input type="text" class="nick resetable"' + disable_form + ' />' + 
 					'</fieldset>' + 
 					
-					'<input type="submit" value="' + _e("Here we go!") + '"' +  disableInput(ANONYMOUS, 'off') + ' />' + 
+					'<input type="submit" value="' + _e("Here we go!") + '"' + disable_form + ' />' + 
 				'</form>' + 
 				
 				'<div class="info report">' + 
@@ -111,6 +115,11 @@ function switchHome(div) {
 		
 		// Register tool
 		case 'registerer':
+			disable_form = disableInput(REGISTRATION, 'off');
+			
+			if(!disable_form)
+				lock_host = disableInput(LOCK_HOST, 'on');
+			
 			code = '<p>' + _e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>' + 
 				
 				'<form action="#" method="post">' + 
@@ -118,21 +127,27 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="rnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick resetable" id="rnick" /><span class="jid">@</span><input type="text" class="server resetable" id="rserver" value="' + HOST_MAIN + '" ' + disableInput(LOCK_HOST, 'on') + '/>' + 
+						'<input type="text" class="nick resetable" id="rnick" ' + disable_form + '/><span class="jid">@</span><input type="text" class="server resetable" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + '/>' + 
 						'<label for="rpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password resetable" id="rpassword" />' + 
-						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword resetable" id="spassword" />' + 
+						'<input type="password" class="password resetable" id="rpassword" ' + disable_form + '/>' + 
+						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword resetable" id="spassword" ' + disable_form + '/>' + 
 					'</fieldset>' + 
 					
-					'<input type="submit" value="' + _e("Here we go!") + '" />' + 
+					'<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 
 				'</form>' + 
 				
 				'<div class="info success">' + 
-					'' + _e("You have been registered, here is your XMPP address:") + ' <b></b>' + 
+					_e("You have been registered, here is your XMPP address:") + ' <b></b>' + 
 				'</div>';
 			
 			break;
 	}
+	
+	// Form disabled?
+	if(disable_form)
+		code += '<div class="info fail">' + 
+				_e("This tool has been disabled, you cannot use it!") + 
+			'</div>';
 	
 	// Create this HTML code
 	if(code && !exists(current)) {

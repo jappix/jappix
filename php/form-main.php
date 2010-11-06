@@ -10,7 +10,7 @@ This is the main configuration form (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
@@ -28,6 +28,12 @@ if($anonymous_mode == 'on')
 	$check_anonymous_mode = $checked;
 else
 	$check_anonymous_mode = '';
+
+// Registration
+if($registration == 'on')
+	$check_registration = $checked;
+else
+	$check_registration = '';
 
 // HTTPS store
 if($https_storage == 'on')
@@ -65,6 +71,8 @@ else
 	<label for="lock_host"><?php _e("Lock the host"); ?></label><input id="lock_host" type="checkbox" name="lock_host"<?php echo $check_lock_host; ?> />
 	
 	<label for="anonymous_mode"><?php _e("Anonymous mode"); ?></label><input id="anonymous_mode" type="checkbox" name="anonymous_mode"<?php echo $check_anonymous_mode; ?> />
+	
+	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
 </fieldset>
 
 <fieldset>

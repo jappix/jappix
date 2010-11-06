@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 06/11/10
 
 */
 
@@ -468,7 +468,8 @@ function hideErrors() {
 }
 
 function hasGZip() {
-	if(COMPRESSION == 'on')
+	// Compression allowed by admin & browser?
+	if((COMPRESSION == 'on') && (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')))
 		return true;
 	
 	return false;

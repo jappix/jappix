@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -167,7 +167,7 @@ Last revision: 02/11/10
 #my-infos .element select {
 	font-size: 0.9em;
 	height: 25px;
-	width: 170px;
+	width: 180px;
 	margin: 3px 5px 2px 3px;
 }
 
@@ -178,7 +178,7 @@ Last revision: 02/11/10
 }
 
 .my-infos-text-item {
-	margin-left: 205px;
+	margin-left: 214px;
 	margin-top: -6px;
 	width: 244px;
 	position: absolute;

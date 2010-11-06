@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -355,7 +355,6 @@ Last revision: 02/11/10
 }
 
 #home .info {
-	display: none;
 	padding: 6px;
 	position: absolute;
 	bottom: 62px;
@@ -364,20 +363,26 @@ Last revision: 02/11/10
 	border-style: dotted;
 	clear: both;
 	width: 350px;
-	min-height: 35px;
 }
 
-#home .success {
+#home .info.success {
 	background-color: #aee578;
 	border-color: #85b05c;
+	display: none;
 }
 
-#home .report {
+#home .info.fail {
+	background-color: #f19d9d;
+	border-color: #b34f4f;
+}
+
+#home .info.report {
 	background-color: #f3f48b;
 	border-color: #c9c66b;
+	display: none;
 }
 
-#home .report span {
+#home .info.report span {
 	text-decoration: underline;
 }
 

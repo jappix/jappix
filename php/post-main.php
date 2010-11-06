@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
@@ -44,6 +44,12 @@ if(isset($_POST['anonymous_mode']) && !empty($_POST['anonymous_mode']))
 else
 	$anonymous_mode = 'off';
 
+// Registration
+if(isset($_POST['registration']) && !empty($_POST['registration']))
+	$registration = 'on';
+else
+	$registration = 'off';
+
 // HTTPS store
 if(isset($_POST['https_storage']) && !empty($_POST['https_storage']))
 	$https_storage = 'on';
@@ -75,6 +81,7 @@ $conf_xml =
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>
+	<registration>'.$registration.'</registration>
 	<https_storage>'.$https_storage.'</https_storage>
 	<encryption>'.$encryption.'</encryption>
 	<compression>'.$compression.'</compression>

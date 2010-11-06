@@ -10,7 +10,7 @@ These are the main configuration variables
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 06/11/10
 
 */
 
@@ -20,6 +20,7 @@ $service_desc = htmlspecialchars(SERVICE_DESC);
 $jappix_resource = htmlspecialchars(JAPPIX_RESOURCE);
 $lock_host = htmlspecialchars(LOCK_HOST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);
+$registration = htmlspecialchars(REGISTRATION);
 $https_storage = htmlspecialchars(HTTPS_STORAGE);
 $encryption = htmlspecialchars(ENCRYPTION);
 $compression = htmlspecialchars(COMPRESSION);

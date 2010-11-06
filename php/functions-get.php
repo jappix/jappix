@@ -10,7 +10,7 @@ These are the PHP functions for Jappix Get API
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 06/11/10
 
 */
 
@@ -85,33 +85,34 @@ function setTranslation($string) {
 // The function to set the good configuration to a JS file
 function setConfiguration($string, $locale, $version) {
 	// Configuration array
-	$array = array();
-	
-	// xml:lang
-	$array['XML_LANG'] = $locale;
-	
-	// Jappix parameters
-	$array['JAPPIX_LOCATION'] = jappixLocation();
-	$array['JAPPIX_VERSION'] = $version;
-	
-	// Main configuration
-	$array['SERVICE_NAME'] = SERVICE_NAME;
-	$array['SERVICE_DESC'] = SERVICE_DESC;
-	$array['JAPPIX_RESOURCE'] = JAPPIX_RESOURCE;
-	$array['LOCK_HOST'] = LOCK_HOST;
-	$array['ANONYMOUS'] = ANONYMOUS;
-	$array['HTTPS_STORAGE'] = HTTPS_STORAGE;
-	$array['ENCRYPTION'] = ENCRYPTION;
-	$array['COMPRESSION'] = COMPRESSION;
-	$array['DEVELOPER'] = DEVELOPER;
-	
-	// Hosts configuration
-	$array['HOST_MAIN'] = HOST_MAIN;
-	$array['HOST_MUC'] = HOST_MUC;
-	$array['HOST_VJUD'] = HOST_VJUD;
-	$array['HOST_ANONYMOUS'] = HOST_ANONYMOUS;
-	$array['HOST_BOSH'] = HOST_BOSH;
-	$array['HOST_STATIC'] = HOST_STATIC;
+	$array = array(
+		      	// xml:lang
+		      	'XML_LANG'		=> $locale,
+		      	
+		      	// Jappix parameters
+		      	'JAPPIX_LOCATION'	=> jappixLocation(),
+		      	'JAPPIX_VERSION'	=> $version,
+		      	
+		      	// Main configuration
+		      	'SERVICE_NAME'		=> SERVICE_NAME,
+		      	'SERVICE_DESC'		=> SERVICE_DESC,
+		      	'JAPPIX_RESOURCE'	=> JAPPIX_RESOURCE,
+		      	'LOCK_HOST'		=> LOCK_HOST,
+		      	'ANONYMOUS'		=> ANONYMOUS,
+		      	'REGISTRATION'		=> REGISTRATION,
+		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
+		      	'ENCRYPTION'		=> ENCRYPTION,
+		      	'COMPRESSION'		=> COMPRESSION,
+		      	'DEVELOPER'		=> DEVELOPER,
+		      	
+		      	// Hosts configuration
+		      	'HOST_MAIN'		=> HOST_MAIN,
+		      	'HOST_MUC'		=> HOST_MUC,
+		      	'HOST_VJUD'		=> HOST_VJUD,
+		      	'HOST_ANONYMOUS'	=> HOST_ANONYMOUS,
+		      	'HOST_BOSH'		=> HOST_BOSH,
+		      	'HOST_STATIC'		=> HOST_STATIC
+		      );
 	
 	// Apply it!
 	foreach($array as $array_key => $array_value)

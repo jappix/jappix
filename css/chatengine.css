@@ -8,7 +8,7 @@ This is the chat-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 06/11/10
 
 */
 
@@ -129,23 +129,15 @@ Last revision: 31/10/10
 }
 
 #chat-engine .content {
-	border: 1px solid #808080;
-	background: #f9f9f9;
 	color: #353535;
 	margin: 3px 3px 2px 3px;
 	display: block;
 	padding: 12px 10px 22px;
 	font-size: 0.9em;
-	overflow: scroll;
-	overflow: auto;
-	position: absolute;
 	top: 85px;
 	right: 0;
 	left: 0;
 	bottom: 101px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 
 #chat-engine .content a {
@@ -158,25 +150,31 @@ Last revision: 31/10/10
 }
 
 #chat-engine .list {
-	border: 1px solid #808080;
-	background: #f9f9f9;
 	color: #919191;
 	margin: 3px;
 	display: block;
 	padding: 10px;
 	font-size: 13px;
 	float: right;
-	overflow: scroll;
-	overflow: auto;
 	width: 160px;
 	margin-top: 0;
-	position: absolute;
 	top: 88px;
 	right: 0;
 	bottom: 100px;
+}
+
+#chat-engine .content,
+#chat-engine .list {
+	border: 1px solid #808080;
+	background: #f9f9f9;
+	overflow: auto;
+	position: absolute;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	box-shadow: 0 3px 10px #e8e8e8 inset;
+	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
+	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
 }
 
 #chat-engine .list .role {
