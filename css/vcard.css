@@ -8,13 +8,9 @@ This is the vCard CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/09/10
+Last revision: 06/11/10
 
 */
-
-#vcard {
-	display: none;
-}
 
 #vcard .avatar-container {
 	float: left;

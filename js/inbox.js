@@ -14,7 +14,61 @@ Last revision: 06/11/10
 
 // Opens the inbox popup
 function messagesOpen() {
-	$('#inbox').show();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Your inbox") + '</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="head messages-head">' + 
+			'<div class="head-text messages-head-text">' + _e("Available actions") + '</div>' + 
+			
+			'<div class="head-actions messages-head-actions">' + 
+				'<a onclick="deleteAllMessages();" class="a-delete-messages">' + _e("Clean") + '</a>' + 
+				'<a onclick="newMessage();" class="a-new-message">' + _e("New") + '</a>' + 
+				'<a onclick="showMessages();" class="a-show-messages">' + _e("Received") + '</a>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div class="messages-results showable">' + 
+			'<p class="messages-noresults showable">' + _e("Your inbox is empty.") + '</p>' + 
+			
+			'<div class="inbox"></div>' + 
+		'</div>' + 
+		
+		'<div class="messages-new hidable">' + 
+			'<div class="messages-new-to messages-new-block search">' + 
+				'<p class="messages-new-text">' + _e("To") + '</p>' + 
+				
+				'<input name="messages-new-to-input" class="messages-new-input messages-new-to-input resetable" />' + 
+			'</div>' + 
+			
+			'<div class="messages-new-topic messages-new-block">' + 
+				'<p class="messages-new-text">' + _e("Subject") + '</p>' + 
+				
+				'<input name="messages-new-subject-input" class="messages-new-input messages-new-subject-input resetable" />' + 
+			'</div>' + 
+			
+			'<div class="messages-new-body messages-new-block">' + 
+				'<p class="messages-new-text">' + _e("Content") + '</p>' + 
+				
+				'<textarea class="messages-new-textarea resetable" rows="8" cols="60"></textarea>' + 
+			'</div>' + 
+			
+			'<div class="messages-new-send messages-new-block">' + 
+				'<a onclick="sendThisMessage();">' + _e("Send message") + '</a>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<a class="finish" onclick="return messagesClose();">' + _e("Close") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('inbox', html);
+	
+	// Associate the events
+	launchInbox();
 }
 
 // Stores the inbox
@@ -49,13 +103,14 @@ function messagesStore() {
 
 // Closes the inbox popup
 function messagesClose() {
-	$('#inbox').hide();
-	
 	// We reset the divs
-	showMessages();
+	//showMessages();
 	
 	// We send to the database the new inbox
 	messagesStore();
+	
+	// Destroy the popup
+	destroyPopup('inbox');
 }
 
 // Creates a new normal message
@@ -355,6 +410,3 @@ function launchInbox() {
 			$(this).val(value + ', ');
 	});
 }
-
-// Launch this plugin!
-$(document).ready(launchInbox);

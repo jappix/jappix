@@ -14,7 +14,105 @@ Last revision: 06/11/10
 
 // Opens the favorites popup
 function openFavorites() {
-	$('#favorites').show();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Manage favorite rooms") + '</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="switch-fav">' + 
+			'<div class="room-switcher room-list">' + 
+				'<div class="icon list-icon talk-images"></div>' + 
+				
+				_e("Change favorites") + 
+			'</div>' + 
+			
+			'<div class="room-switcher room-search">' + 
+				'<div class="icon search-icon talk-images"></div>' + 
+				
+				_e("Search a room") + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div class="static-fav">' + 
+			'<div class="favorites-edit favorites-content">' + 
+				'<div class="head fedit-head static-fav-head">' + 
+					'<div class="head-text fedit-head-text">' + _e("Select a favorite") + '</div>' + 
+					
+					'<select name="fedit-head-select" class="head-select fedit-head-select resetable">' + 
+						'<option value="none" class="fedit-head-select-first-option">' + _e("Select a favorite") + '</option>' + 
+					'</select>' + 
+				'</div>' + 
+				
+				'<div class="results fedit-results static-fav-results">' + 
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Name") + '</label>' + 
+						
+						'<input class="fedit-title fedit-required" type="text" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Nickname") + '</label>' + 
+						
+						'<input class="fedit-nick fedit-required" type="text" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Room") + '</label>' + 
+						
+						'<input class="fedit-chan fedit-required" type="text" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Server") + '</label>' + 
+						
+						'<input class="fedit-server fedit-required" type="text" value="' + HOST_MUC + '" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Password") + '</label>' + 
+						
+						'<input class="fedit-password" type="password" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-line">' + 
+						'<label>' + _e("Automatic") + '</label>' + 
+						
+						'<input type="checkbox" class="fedit-autojoin" />' + 
+					'</div>' + 
+					
+					'<div class="fedit-actions">' + 
+						'<a class="fedit-terminate fedit-add" onclick="terminateThisFavorite(\'add\');">' + _e("Add") + '</a>' + 
+						'<a class="fedit-terminate fedit-edit" onclick="terminateThisFavorite(\'edit\');">' + _e("Edit") + '</a>' + 
+						'<a class="fedit-terminate fedit-remove" onclick="terminateThisFavorite(\'remove\');">' + _e("Remove") + '</a>' + 
+					'</div>' + 
+				'</div>' + 
+			'</div>' + 
+			
+			'<div class="favorites-search favorites-content">' + 
+				'<div class="head fsearch-head static-fav-head">' + 
+					'<div class="head-text fsearch-head-text">' + _e("Search a room on") + '</div>' + 
+					
+					'<input type="text" class="head-input fsearch-head-server" value="' + HOST_MUC + '" />' + 
+				'</div>' + 
+				
+				'<div class="results fsearch-results static-fav-results">' + 
+					'<p class="fsearch-noresults">' + _e("No room found on this server.") + '</p>' + 
+				'</div>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return quitFavorites();">' + _e("Close") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('favorites', html);
+	
+	// Associate the events
+	launchFavorites('popup');
 }
 
 // Resets the favorites elements
@@ -32,15 +130,8 @@ function resetFavorites() {
 
 // Quits the favorites popup
 function quitFavorites() {
-	var path = '#favorites';
-	
-	// We hide the popup
-	$(path).hide();
-	
-	// We reset some stuffs
-	resetFavorites();
-	$(path + ' .favorites-content').hide();
-	$(path + ' .favorites-edit').show();
+	// Destroy the popup
+	destroyPopup('favorites');
 }
 
 // Adds a room to the favorites
@@ -363,8 +454,3 @@ function launchFavorites(container) {
 		});
 	}
 }
-
-// Launch this plugin!
-$(document).ready(function() {
-	launchFavorites('popup');
-});

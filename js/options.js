@@ -22,8 +22,132 @@ function switchOptions(id) {
 
 // Opens the options popup
 function optionsOpen() {
-	// Reset the options popup
-	closeOptions();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Edit options") + '</div>' + 
+	
+	'<div class="tab">' + 
+		'<a class="tab1 tab-active" onclick="switchOptions(1);">' + _e("General") + '</a>' + 
+		'<a class="tab2 pubsub-hidable hidable" onclick="switchOptions(2);">' + _e("Channel") + '</a>' + 
+		'<a class="tab3" onclick="switchOptions(3);">' + _e("Account") + '</a>' + 
+	'</div>' + 
+	
+	'<div class="content">' + 
+		'<div id="conf1" class="one-conf forms">' + 
+			'<fieldset class="privacy hidable">' + 
+				'<legend>' + _e("Privacy") + '</legend>' + 
+				
+				'<label for="geolocation" class="pep-hidable hidable">' + _e("Geolocation") + '</label>' + 
+				'<input id="geolocation" type="checkbox" class="resetable pep-hidable hidable" />' + 
+				
+				'<label for="archiving" class="archives-hidable pref hidable">' + _e("Message archiving") + '</label>' + 
+				'<input id="archiving" type="checkbox" class="archives-hidable pref hidable resetable" />' + 
+			'</fieldset>' + 
+			
+			'<fieldset>' + 
+				'<legend>' + _e("Application") + '</legend>' + 
+				
+				'<label for="sounds">' + _e("Sounds") + '</label>' + 
+				'<input id="sounds" type="checkbox" class="resetable" />' + 
+				
+				'<label for="showall">' + _e("Show all friends") + '</label>' + 
+				'<input id="showall" type="checkbox" class="resetable" />' + 
+				
+				'<label>' + _e("XMPP links") + '</label>' + 
+				'<a class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
+			'</fieldset>' + 
+		'</div>' + 
+		
+		'<div id="conf2" class="one-conf forms">' + 
+			'<fieldset>' + 
+				'<legend>' + _e("Channel") + '</legend>' + 
+				
+				'<label>' + _e("Empty") + '</label>' + 
+				'<a class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
+				
+				'<label>' + _e("Persistent") + '</label>' + 
+				'<input id="persistent" type="checkbox" class="resetable" />' + 
+				
+				'<label>' + _e("Maximum notices") + '</label>' + 
+				'<select id="maxnotices" class="resetable">' + 
+					'<option value="50">50</option>' + 
+					'<option value="100">100</option>' + 
+					'<option value="500">500</option>' + 
+					'<option value="1000">1000</option>' + 
+					'<option value="5000">5000</option>' + 
+					'<option value="10000">10000</option>' + 
+				'</select>' + 
+			'</fieldset>' + 
+			
+			'<div class="sub-ask sub-ask-empty sub-ask-element hidable">' + 
+				'<div class="sub-ask-top">' + 
+					'<div class="sub-ask-title">' + _e("Empty channel") + '</div>' + 
+					'<a class="sub-ask-close">X</a>' + 
+				'</div>' + 
+				
+				'<div class="sub-ask-content">' + 
+					'<label>' + _e("Password") + '</label>' + 
+					'<input type="password" class="purge-microblog check-empty resetable" />' + 
+				'</div>' + 
+				
+				'<a class="sub-ask-bottom" onclick="purgeMyMicroblog();">' + _e("Empty") + ' &raquo;</a>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div id="conf3" class="one-conf forms">' + 
+			'<fieldset>' + 
+				'<legend>' + _e("Account") + '</legend>' + 
+				
+				'<label>' + _e("Password") + '</label>' + 
+				'<a class="linked change-password">' + _e("Change password") + '</a>' + 
+				
+				'<label>' + _e("Delete") + '</label>' + 
+				'<a class="linked delete-account">' + _e("Delete account") + '</a>' + 
+			'</fieldset>' + 
+				
+			'<div class="sub-ask sub-ask-pass sub-ask-element hidable">' + 
+				'<div class="sub-ask-top">' + 
+					'<div class="sub-ask-title">' + _e("Change password") + '</div>' + 
+					'<a class="sub-ask-close">X</a>' + 
+				'</div>' + 
+				
+				'<div class="sub-ask-content">' + 
+					'<label>' + _e("Old") + '</label>' + 
+					'<input type="password" class="password-change old resetable" />' + 
+					
+					'<label>' + _e("New (2 times)") + '</label>' + 
+					'<input type="password" class="password-change new1 resetable" />' + 
+					'<input type="password" class="password-change new2 resetable" />' + 
+				'</div>' + 
+				
+				'<a class="sub-ask-bottom" onclick="sendNewPassword();">' + _e("Continue") + ' &raquo;</a>' + 
+			'</div>' + 
+			
+			'<div class="sub-ask sub-ask-delete sub-ask-element hidable">' + 
+				'<div class="sub-ask-top">' + 
+					'<div class="sub-ask-title">' + _e("Delete account") + '</div>' + 
+					'<a class="sub-ask-close">X</a>' + 
+				'</div>' + 
+				
+				'<div class="sub-ask-content">' + 
+					'<label>' + _e("Password") + '</label>' + 
+					'<input type="password" class="delete-account check-password resetable" />' + 
+				'</div>' + 
+				
+				'<a class="sub-ask-bottom" onclick="deleteMyAccount();">' + _e("Delete") + ' &raquo;</a>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return saveOptions();">' + _e("Save") + '</a>' + 
+		'<a class="finish" onclick="return closeOptions();">' + _e("Cancel") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('options', html);
 	
 	var enabled_archives_pref = enabledArchives('pref');
 	var enabled_pubsub = enabledPubSub();
@@ -69,26 +193,12 @@ function optionsOpen() {
 		$('#showall').attr('checked', true);
 	else
 		$('#showall').attr('checked', false);
-	
-	// Show the options
-	$('#options').show();
 }
 
 // Closes the options popup
 function closeOptions() {
-	// We hide the divs
-	$('#options, #options .sub-ask').hide();
-	
-	// Reset the elements
-	$('#options input.resetable').val('');
-	$('#options .content').removeClass('microblog').removeClass('archives');
-	$('#archiving, #persistent, #maxnotices').removeAttr('disabled');
-	
-	// Reset the switcher
-	switchOptions(1);
-	
-	// We reset the inputs
-	$('#options input').removeClass('please-complete');
+	// Destroy the popup
+	destroyPopup('options');
 }
 
 // Manages the options wait item

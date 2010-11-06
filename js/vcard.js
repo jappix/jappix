@@ -8,17 +8,122 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/10/10
+Last revision: 06/11/10
 
 */
 
 // Opens the vCard popup
 function openVCard() {
-	// We reset the VCard manager
-	closeVCard();
+	// Popup HTML content
+	var html =
+	'<div class="top">' + _e("Your profile") + '</div>' + 
 	
-	// We display the VCard containers
-	$('#vcard').show();
+	'<div class="tab">' + 
+		'<a class="tab1 tab-active" onclick="switchVCard(1);">' + _e("Identity") + '</a>' + 
+		'<a class="tab2" onclick="switchVCard(2);">' + _e("Profile image") + '</a>' + 
+		'<a class="tab3" onclick="switchVCard(3);">' + _e("Others") + '</a>' + 
+	'</div>' + 
+	
+	'<div class="content">' + 
+		'<div id="lap1" class="lap-active one-lap forms">' + 
+			'<fieldset>' + 
+				'<legend>' + _e("Personal") + '</legend>' + 
+				
+				'<label for="FN">' + _e("Complete name") + '</label>' + 
+				'<input type="text" id="FN" class="resetable vcard-item" />' + 
+				
+				'<label for="NICKNAME">' + _e("Nickname") + '</label>' + 
+				'<input type="text" id="NICKNAME" class="resetable vcard-item" />' + 
+				
+				'<label for="N-GIVEN">' + _e("First name") + '</label>' + 
+				'<input type="text" id="N-GIVEN" class="resetable vcard-item" />' + 
+				
+				'<label for="N-FAMILY">' + _e("Last name") + '</label>' + 
+				'<input type="text" id="N-FAMILY" class="resetable vcard-item" />' + 
+				
+				'<label for="BDAY">' + _e("Date of birth") + '</label>' + 
+				'<input type="text" id="BDAY" class="resetable vcard-item" />' + 
+			'</fieldset>' + 
+			
+			'<fieldset>' + 
+				'<legend>' + _e("Contact") + '</legend>' + 
+				
+				'<label for="EMAIL-USERID">' + _e("E-mail") + '</label>' + 
+				'<input type="text" id="EMAIL-USERID" class="resetable vcard-item" />' + 
+				
+				'<label for="TEL-NUMBER">' + _e("Phone") + '</label>' + 
+				'<input type="text" id="TEL-NUMBER" class="resetable vcard-item" />' + 
+				
+				'<label for="URL">' + _e("Website") + '</label>' + 
+				'<input type="text" id="URL" class="resetable vcard-item" />' + 
+			'</fieldset>' + 
+		'</div>' + 
+		
+		'<div id="lap2" class="one-lap forms">' + 
+			'<fieldset>' + 
+				'<legend>' + _e("Upload") + '</legend>' + 
+				
+				'<input type="hidden" id="PHOTO-TYPE" class="resetable vcard-item" />' + 
+				'<input type="hidden" id="PHOTO-BINVAL" class="resetable vcard-item" />' + 
+				'<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" class="resetable" onchange="sendThisAvatar()" />' + 
+			'</fieldset>' + 
+			
+			'<fieldset>' + 
+				'<legend>' + _e("Current") + '</legend>' + 
+				
+				'<div class="avatar-container"></div>' + 
+				
+				'<a class="avatar-delete hidable" onclick="deleteAvatar();">' + _e("Delete") + '</a>' + 
+				'<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
+			'</fieldset>' + 
+			
+			'<div class="avatar-ok avatar-info hidable">' + _e("Here it is! A new beautiful profile image!") + '</div>' + 
+			
+			'<div class="avatar-error avatar-info hidable">' + _e("The image file is not supported or has a bad size.") + '</div>' + 
+		'</div>' + 
+		
+		'<div id="lap3" class="one-lap forms">' + 
+			'<fieldset>' + 
+				'<legend>' + _e("Address") + '</legend>' + 
+				
+				'<label for="ADR-STREET">' + _e("Street") + '</label>' + 
+				'<input type="text" id="ADR-STREET" class="resetable vcard-item" />' + 
+				
+				'<label for="ADR-LOCALITY">' + _e("City") + '</label>' + 
+				'<input type="text" id="ADR-LOCALITY" class="resetable vcard-item" />' + 
+				
+				'<label for="ADR-PCODE">' + _e("Postal code") + '</label>' + 
+				'<input type="text" id="ADR-PCODE" class="resetable vcard-item" />' + 
+				
+				'<label for="ADR-CTRY">' + _e("Country") + '</label>' + 
+				'<input type="text" id="ADR-CTRY" class="resetable vcard-item" />' + 
+			'</fieldset>' + 
+			
+			'<fieldset>' + 
+				'<legend>' + _e("Biography") + '</legend>' + 
+				
+				'<textarea id="DESC" rows="8" cols="60" class="resetable vcard-item"></textarea>' + 
+			'</fieldset>' + 
+		'</div>' + 
+		
+		'<div class="infos">' + 
+			'<p class="infos-title">' + _e("Important notice") + '</p>' + 
+			
+			'<p>' + _e("Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to).") + '</p>' + 
+			'<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
+			'<p>' + _e("It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends.") + '</p>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish disabled" onclick="return sendVCard();">' + _e("Save") + '</a>' + 
+		'<a class="finish" onclick="return closeVCard();">' + _e("Cancel") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('vcard', html);
 	
 	// We remove things that could keep being displayed
 	$('#vcard .avatar-info').hide();
@@ -29,25 +134,14 @@ function openVCard() {
 
 // Closes the vCard popup
 function closeVCard() {
-	// Hide the popup
-	$('#vcard').hide();
-	
-	// Reset the popup
-	$('#vcard .wait').show();
-	$('#vcard .resetable').val('');
-	$('#vcard .hidable').hide();
-	$('#vcard .removable').remove();
-	$('#vcard .finish:first').addClass('disabled');
-	deleteAvatar();
-	
-	// Switch to the first lap
-	switchVCard(1);
+	// Destroy the popup
+	destroyPopup('vcard');
 }
 
 // Switches the vCard popup tabs
 function switchVCard(id) {
-	$('#vcard .one-lap').hide();
-	$('#vcard #lap' + id).show();
+	$('#vcard .one-lap').removeClass('lap-active');
+	$('#vcard #lap' + id).addClass('lap-active');
 	$('#vcard .tab a').removeClass('tab-active');
 	$('#vcard .tab .tab' + id).addClass('tab-active');
 }

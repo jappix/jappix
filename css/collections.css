@@ -8,13 +8,9 @@ This is the collections CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/08/10
+Last revision: 06/11/10
 
 */
-
-#collections {
-	display: none;
-}
 
 #collections .content {
 	padding: 10px 0 10px 0;

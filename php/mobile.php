@@ -10,7 +10,7 @@ This is the Jappix Mobile lightweight PHP code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 06/11/10
 
 */
 
@@ -58,24 +58,6 @@ Last revision: 29/10/10
 		</div>
 		
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
-	</div>
-	
-	<div id="talk">
-		<div class="header">
-			<button onclick="doLogout();"><?php _e("Disconnect"); ?></button>
-		</div>
-		
-		<div id="roster">
-		</div>
-	</div>
-	
-	<div id="chat">
-		<div class="header">
-			<button onclick="returnToRoster();"><?php _e("Previous"); ?></button>
-		</div>
-		
-		<div id="chans">
-		</div>
 	</div>
 </body>
 

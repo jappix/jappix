@@ -8,13 +8,9 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 06/11/10
 
 */
-
-#discovery {
-	display: none;
-}
 
 #discovery .content {
 	padding: 10px 0 10px 0;

@@ -14,7 +14,43 @@ Last revision: 06/11/10
 
 // Opens the archive tools
 function openArchives() {
-	$('#archives').show();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Message archives") + '</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="filter">' + 
+			'<div class="search">' + 
+				_e("Search") + 
+				'<input type="text" />' + 
+			'</div>' + 
+			
+			'<div class="friend">' + 
+				_e("Friend") + 
+				'<select multiple="multiple">' + 
+				'</select>' + 
+			'</div>' + 
+			
+			'<div class="date">' + 
+				_e("Date") + 
+				'<select></select>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div class="logs"></div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return closeArchives();">' + _e("Close") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('archives', html);
+	
+	// Associate the events
+	launchArchives();
 	
 	// Get all the buddies in our roster
 	var buddies = getAllBuddies();
@@ -29,11 +65,8 @@ function openArchives() {
 
 // Closes the archive tools
 function closeArchives() {
-	// Closes the popup
-	$('#archives').hide();
-	
-	// Resets the popup
-	resetArchives();
+	// Destroy the popup
+	destroyPopup('archives');
 }
 
 // Resets the archive tools
@@ -179,6 +212,3 @@ function launchArchives() {
 		getArchives($(this).val());
 	});
 }
-
-// Launch this plugin!
-$(document).ready(launchArchives);

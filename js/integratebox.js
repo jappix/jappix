@@ -8,21 +8,32 @@ These are the integratebox JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 06/11/10
 
 */
 
 // Opens the integratebox popup
 function openIntegrateBox() {
-	$('#integratebox').show();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Media viewer") + '</div>' + 
+	
+	'<div class="content"></div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return closeIntegrateBox();">' + _e("Close") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('integratebox', html);
 }
 
 // Closes the integratebox popup
 function closeIntegrateBox() {
-	$('#integratebox').hide();
-	
-	// We reset the integratebox
-	$('#integratebox .one-media').remove();
+	// Destroy the popup
+	destroyPopup('integratebox');
 	
 	return false;
 }

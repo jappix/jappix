@@ -20,34 +20,94 @@ function openWelcome() {
 	if((server == 'gmail.com') || (server == 'chat.facebook.com'))
 		return;
 	
-	$('#welcome').show();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("Welcome!") + '</div>' + 
+	
+	'<div class="tab">' + 
+		'<a class="tab1 tab-active" onclick="switchWelcome(1);" data-step="1">' + _e("Options") + '</a>' + 
+		'<a class="tab2 tab-missing" onclick="switchWelcome(2);" data-step="2">' + _e("Friends") + '</a>' + 
+		'<a class="tab3 tab-missing" onclick="switchWelcome(3);" data-step="3">' + _e("Profile") + '</a>' + 
+	'</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="one-welcome welcome1" style="display: block;">' + 
+			'<div class="infos">' + 
+				'<p class="infos-title">' + _e("Welcome on Jappix, your own social cloud!") + '</p>' + 
+				'<p>' + _e("Before you start using it, you will have to change some settings, search for friends and complete your profile.") + '</p>' + 
+			'</div>' + 
+			
+			'<a class="box enabled" title="' + _e("Click to disable") + '">' + 
+				'<span class="option">' + _e("Sounds") + '</span>' + 
+				'<span class="description">' + _e("Enable notification sounds") + '</span>' + 
+				'<span class="image sound talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box enabled pep-hidable hidable" title="' + _e("Click to disable") + '">' + 
+				'<span class="option">' + _e("Geolocation") + '</span>' + 
+				'<span class="description">' + _e("Share your position on the globe") + '</span>' + 
+				'<span class="image geolocation talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box" title="' + _e("Click to enable") + '">' + 
+				'<span class="option">' + _e("XMPP links") + '</span>' + 
+				'<span class="description">' + _e("Open XMPP links with Jappix") + '</span>' + 
+				'<span class="image xmpp talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box enabled archives-hidable pref hidable" title="' + _e("Click to enable") + '">' + 
+				'<span class="option">' + _e("Message archiving") + '</span>' + 
+				'<span class="description">' + _e("Store a history of your chats") + '</span>' + 
+				'<span class="image archives talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box" title="' + _e("Click to enable") + '">' + 
+				'<span class="option">' + _e("Offline friends") + '</span>' + 
+				'<span class="description">' + _e("Don\'t hide offline friends") + '</span>' + 
+				'<span class="image offline talk-images"></span>' + 
+			'</a>' + 
+		'</div>' + 
+		
+		'<div class="one-welcome welcome2">' + 
+			'<div class="infos">' + 
+				'<p class="infos-title">' + _e("Friends") + '</p>' + 
+				'<p>' + _e("Use this tool to find your friends on the server you are using right now, or add them later.") + '</p>' + 
+			'</div>' + 
+			
+			'<div class="results welcome-results"></div>' + 
+		'</div>' + 
+		
+		'<div class="one-welcome welcome3">' + 
+			'<div class="infos">' + 
+				'<p class="infos-title">' + _e("Profile") + '</p>' + 
+				'<p>' + _e("Great work! When you will press the save button, the profile editor will be opened.") + '</p>' + 
+				'<p>' + _e("Thanks from the Jappix team for your interest. Happy socializing!") + '</p>' + 
+			'</div>' + 
+			
+			'<div class="logo welcome-images"></div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish next" onclick="return nextWelcome();">' + _e("Next") + ' »</a>' + 
+		'<a class="finish save" onclick="return saveWelcome();">' + _e("Save") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('welcome', html);
+	
+	// Associate the events
+	launchWelcome();
 	
 	logThis('Welcome assistant opened.');
 }
 
 // Closes the welcome tools
 function closeWelcome() {
-	// Path to
-	var welcome = '#welcome';
-	var box = $(welcome + ' a.box');
-	var tab = welcome + ' .tab .';
-	
-	// Hide it
-	$(welcome).hide();
-	
-	// Reset it
-	switchWelcome(1);
-	
-	box.eq(0).addClass('enabled').attr('title', _e("Click to disable"));
-	box.eq(1).addClass('enabled').attr('title', _e("Click to disable"));
-	box.eq(2).removeClass('enabled').attr('title', _e("Click to enable"));
-	box.eq(3).addClass('enabled').attr('title', _e("Click to disable"));
-	box.eq(4).removeClass('enabled').attr('title', _e("Click to enable"));
-	
-	$(tab + 'tab2, ' + tab + 'tab3').addClass('tab-missing');
-	$(welcome + ' .wait, ' + welcome + ' .hidable').hide();
-	$(welcome + ' .finish.save').hide();
-	$(welcome + ' .finish.next').show();
+	// Destroy the popup
+	destroyPopup('welcome');
 }
 
 // Switches the welcome tabs
@@ -180,6 +240,3 @@ function launchWelcome() {
 			$(this).addClass('enabled').attr('title', _e("Click to disable"));
 	});
 }
-
-// Launch this plugin!
-$(document).ready(launchWelcome);

@@ -8,13 +8,9 @@ This is the options CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/08/10
+Last revision: 06/11/10
 
 */
-
-#options {
-	display: none;
-}
 
 #options label {
 	width: 190px;

@@ -8,7 +8,7 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -103,7 +103,7 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 		.replace(/(\w{3,5})(:)(\S+)(\.)(jpg|jpeg|png|gif|tif|bmp)/gim, '<a onclick="return applyIntegrateBox(\'$&\', \'image\');" href="$&" target="_blank">$&</a>')
 		
 		// Simple link
-		.replace(/(\s|<br \/>|^)((https?|ftp|xmpp|irc|mailto|vnc|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+))/gim, '$1<a href="$2" target="_blank">$2</a>');
+		.replace(/(\s|<br \/>|^)((https?|ftp|xmpp|irc|mailto|vnc|webcal|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+))/gim, '$1<a href="$2" target="_blank">$2</a>');
 	}
 	
 	return filteredMessage;

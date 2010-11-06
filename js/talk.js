@@ -33,7 +33,7 @@ function createTalkPage() {
 	
 	// Generate the HTML code
 	var html = 
-	'<div id="talk">' + 
+	'<div id="talk" class="removable">' + 
 		'<div id="top-content">' + 
 			'<div class="tools tools-logo talk-images"></div>' + 
 			
@@ -577,7 +577,7 @@ function destroyTalkPage() {
 	STANZA_ID = 1;
 	
 	// We renitalise the html markup as its initiale look
-	$('#talk, .removable').remove();
+	$('.removable').remove();
 	$('.showable').show();
 	$('.hidable').hide();
 	$('.resetable').val('');

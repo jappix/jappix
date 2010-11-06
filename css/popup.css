@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/11/10
+Last revision: 06/11/10
 
 */
 
@@ -91,6 +91,14 @@ Last revision: 04/11/10
 	background-color: #e8f1f3 !important;
 }
 
+.popup .one-lap {
+	display: none;
+}
+
+.popup .one-lap.lap-active {
+	display: block;
+}
+
 .popup .content {
 	background-color: #e8f1f3;
 	color: #224249;
@@ -130,7 +138,7 @@ Last revision: 04/11/10
 
 .popup .head-actions a {
 	font-size: 0.9em;
-	margin-right: 4px;
+	margin: 0 4px;
 }
 
 .popup .actions a {

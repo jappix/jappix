@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
@@ -125,8 +125,9 @@ function resetDOM() {
 	document.getElementById('pwd').value = '';
 	
 	// Remove the useless DOM elements
-	document.getElementById('roster').innerHTML = '';
-	document.getElementById('chans').innerHTML = '';
+	var body = document.getElementsByTagName('body')[0];
+	body.removeChild(document.getElementById('talk'));
+	body.removeChild(document.getElementById('chat'));
 }
 
 /* END SHOW/HIDE FUNCTIONS */
@@ -278,8 +279,23 @@ function handleConnected() {
 	hideThis('home');
 	resetPanel();
 	
-	// Show the talk page
-	showThis('talk');
+	// Create the talk page
+	document.getElementsByTagName('body')[0].innerHTML +=
+	'<div id="talk">' + 
+		'<div class="header">' + 
+			'<button onclick="doLogout();">' + _e("Disconnect") + '</button>' + 
+		'</div>' + 
+		
+		'<div id="roster"></div>' + 
+	'</div>' + 
+	
+	'<div id="chat">' + 
+		'<div class="header">' + 
+			'<button onclick="returnToRoster();">' + _e("Previous") + '</button>' + 
+		'</div>' + 
+		
+		'<div id="chans"></div>' + 
+	'</div>';
 	
 	// Get the roster items
 	getRoster();
@@ -291,7 +307,6 @@ function handleError(error) {
 
 function handleDisconnected() {
 	// Reset the elements
-	hideThis('talk');
 	resetDOM();
 	
 	// Show the home page
@@ -458,7 +473,7 @@ function filter(msg) {
 	.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3')
 	
 	// Links
-	.replace(/(https?|ftp|xmpp|irc|mailto|vnc|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>');
+	.replace(/(https?|ftp|xmpp|irc|mailto|vnc|webcal|telnet|ssh|ldap|samba|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>');
 	
 	return msg;
 }

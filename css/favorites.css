@@ -8,13 +8,9 @@ This is the favorites CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 06/11/10
 
 */
-
-#favorites {
-	display: none;
-}
 
 #favorites .fedit-head-select {
 	min-width: 190px;

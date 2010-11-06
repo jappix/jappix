@@ -8,13 +8,9 @@ This is the archives CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/08/10
+Last revision: 06/11/10
 
 */
-
-#archives {
-	display: none;
-}
 
 #archives .content {
 	padding: 10px 0 10px 0;

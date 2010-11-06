@@ -8,17 +8,82 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 06/11/10
 
 */
 
 // Opens the user-infos popup
 function openUserInfos(xid) {
-	// Reset the popup
-	resetUserInfos();
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("User profile") + '</div>' + 
 	
-	// We show the needed elements
-	$('#userinfos, #userinfos .wait').show();
+	'<div class="tab">' + 
+		'<a class="tab1 tab-active" onclick="switchUInfos(1);">' + _e("General") + '</a>' + 
+		'<a class="tab2" onclick="switchUInfos(2);">' + _e("Advanced") + '</a>' + 
+		'<a class="tab3" onclick="switchUInfos(3);">' + _e("Comments") + '</a>' + 
+	'</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="one-info info1" style="display: block;">' + 
+			'<div class="main-infos">' + 
+				'<div class="avatar-container">' + 
+					'<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+				'</div>' + 
+				
+				'<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
+				'<h2 id="BUDDY-NICKNAME" class="reset-info">' + _e("unknown") + '</h2>' + 
+				'<h3 id="BUDDY-XID" class="reset-info">' + _e("unknown") + '</h3>' + 
+			'</div>' + 
+			
+			'<div class="block-infos">' + 
+				'<div class="one-line"><b>' + _e("Date of birth") + '</b><span id="BUDDY-BDAY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("E-mail") + '</b><span id="BUDDY-EMAIL-USERID" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("Phone") + '</b><span id="BUDDY-TEL-NUMBER" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("Website") + '</b><span id="BUDDY-URL" class="reset-info">' + _e("unknown") + '</span></div>' + 
+			'</div>' + 
+			
+			'<div class="block-infos">' + 
+				'<div class="one-line"><b>' + _e("Client") + '</b><span id="BUDDY-CLIENT" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("System") + '</b><span id="BUDDY-SYSTEM" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("Local time") + '</b><span id="BUDDY-TIME" class="reset-info">' + _e("unknown") + '</span></div>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div class="one-info info2">' + 
+			'<div class="block-infos">' + 
+				'<div class="one-line"><b>' + _e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("City") + '</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("Postal code") + '</b><span id="BUDDY-ADR-PCODE" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				
+				'<div class="one-line"><b>' + _e("Country") + '</b><span id="BUDDY-ADR-CTRY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+			'</div>' + 
+			
+			'<div class="block-infos">' + 
+				'<div class="one-line"><b>' + _e("Biography") + '</b><span id="BUDDY-DESC" class="reset-info">' + _e("unknown") + '</span></div>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<div class="one-info info3">' + 
+			'<textarea id="BUDDY-COMMENTS" rows="8" cols="60" class="resetable"></textarea>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return closeUserInfos();">' + _e("Close") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('userinfos', html);
 	
 	// We retrieve the user's vcard
 	retrieveUserInfos(xid);
@@ -232,26 +297,13 @@ function switchUInfos(id) {
 	$('#userinfos .tab .tab' + id).addClass('tab-active');
 }
 
-// Resets the user-infos popup
-function resetUserInfos() {
-	switchUInfos(1);
-	$('#userinfos .removable').remove();
-	$('#userinfos .resetable').val('');
-	$('#userinfos .reset-info').text(_e("unknown"));
-	$('#userinfos .content').removeClass('vcard').removeClass('version').removeClass('time');
-	$('#userinfos .avatar-container').html('<img class="avatar removable" src="' + './img/others/default-avatar.png' + '" alt="" />');
-}
-
 // Closes the user-infos popup
 function closeUserInfos() {
-	// Hide the popup
-	$('#userinfos').hide();
-	
 	// Send the buddy comments
 	sendBuddyComments();
 	
-	// Reset the popup
-	resetUserInfos();
+	// Destroy the popup
+	destroyPopup('userinfos');
 }
 
 // Gets the user's informations when creating a new chat
