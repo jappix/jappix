@@ -8,7 +8,7 @@ These are the constants JS scripts for Jappix
 License: AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -126,6 +126,10 @@ var HOST_VJUD = null;
 var HOST_ANONYMOUS = null;
 var HOST_BOSH = null;
 var HOST_STATIC = null;
+
+// Anonymous mode
+var ANONYMOUS_ROOM = null;
+var ANONYMOUS_NICK = null;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {

@@ -10,7 +10,7 @@ This is the Jappix desktop html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -29,6 +29,21 @@ Last revision: 06/11/10
 	
 	<?php if(anonymousMode()) { ?>
 		<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=anonymous.xml" type="text/css" media="all" />
+		
+		<script type="text/javascript">
+			<?php
+			
+				// Anonymous room
+				if(isset($_GET['r']) && !empty($_GET['r']))
+					echo('ANONYMOUS_ROOM = \''.$_GET['r'].'\';');
+				
+				// Anonymous nickname
+				if(isset($_GET['n']) && !empty($_GET['n']))
+					echo('ANONYMOUS_NICK = \''.$_GET['n'].'\';');
+			
+			?>
+		</script>
+		
 		<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=anonymous.xml"></script>
 	<?php } ?>
 </head>
@@ -150,25 +165,6 @@ if(!anonymousMode()) { ?>
 		<!--[if lt IE 9]><p class="board" style="display: block;"><?php _e("Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."); ?></p><![endif]-->
 </div>
 <!-- END INFO BANNER -->
-
-<!-- BEGIN DATE -->
-<div id="data">
-	<?php if(anonymousMode()) {
-		$ano_room = '';
-		$ano_nick = '';
-		
-		if(isset($_GET['r']) && !empty($_GET['r']))
-			$ano_room = $_GET['r'];
-		
-		if(isset($_GET['n']) && !empty($_GET['n']))
-			$ano_nick = $_GET['n'];
-	?>
-	
-		<div class="anonymous" data-room="<?php echo $ano_room; ?>" data-nick="<?php echo $ano_nick; ?>"></div>
-	
-	<?php } ?>
-</div>
-<!-- END DATE -->
 
 </body>
 

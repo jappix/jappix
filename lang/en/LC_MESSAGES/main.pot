@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 06/11/10
+# Last revision: 07/11/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -1913,7 +1913,10 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
-msgid "%s days ago"
+msgid "User currently active"
+msgstr ""
+
+msgid "Last seen: %s"
 msgstr ""
 
 msgid "Last seen: %s"

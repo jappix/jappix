@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -193,22 +193,31 @@ function lastActivityUserInfos(iq) {
 		var seconds = $(iq.getNode()).find('query').attr('seconds');
 		
 		// Any seconds?
-		if(seconds) {
+		if(seconds != undefined) {
+			// Initialize the parsing
 			var last;
+			seconds = parseInt(seconds);
 			
-			// Parse the date
-			var date_now = new Date();
-			var time_now = date_now.getTime();
-			var date_last = new Date(date_now - (seconds * 1000));
-			var date = date_last.toLocaleString();
+			// Active user
+			if(seconds <= 60)
+				last = _e("User currently active");
 			
-			// Offline user
-			if(from.indexOf('/') == -1)
-				last = printf(_e("Last seen: %s"), date);
-			
-			// Online user
-			else
-				last = printf(_e("Inactive since: %s"), date);
+			// Inactive user
+			else {
+				// Parse the date
+				var date_now = new Date();
+				var time_now = date_now.getTime();
+				var date_last = new Date(date_now - (seconds * 1000));
+				var date = date_last.toLocaleString();
+				
+				// Offline user
+				if(from.indexOf('/') == -1)
+					last = printf(_e("Last seen: %s"), date);
+				
+				// Online user
+				else
+					last = printf(_e("Inactive since: %s"), date);
+			}
 			
 			// Append this text
 			$('#userinfos #BUDDY-LAST').text(last);

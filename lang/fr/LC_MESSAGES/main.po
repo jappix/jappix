@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-06 23:06:11\n"
+"PO-Revision-Date: 2010-11-07 11:23:14\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2994,8 +2994,8 @@ msgid "Yesterday"
 msgstr "Hier"
 
 #: 
-msgid "%s days ago"
-msgstr "Il y a %s jours"
+#~ msgid "%s days ago"
+#~ msgstr "Il y a %s jours"
 
 #: 
 #~ msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat without any account."
@@ -3024,4 +3024,8 @@ msgstr "Dernièrement vu : %s"
 #: 
 msgid "Inactive since: %s"
 msgstr "Inactif depuis : %s"
+
+#: 
+msgid "User currently active"
+msgstr "Utilisateur actuellement actif"
 

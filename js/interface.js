@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 07/11/10
 
 */
 
@@ -21,7 +21,7 @@ function pageTitle(title) {
 	var xid = getXID();
 	
 	if(isAnonymous())
-		xid = getDB('anonymous', 'room') + ' (' + _e("anonymous mode") + ')';
+		xid = ANONYMOUS_ROOM + ' (' + _e("anonymous mode") + ')';
 	
 	// We change the title of the page so that it will give the user's XID when he's logged in
 	switch(title) {

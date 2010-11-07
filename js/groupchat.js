@@ -46,7 +46,7 @@ function getMUC(room, nickname, password) {
 		if(!isAnonymous())
 			nickname = getNick();
 		else
-			nickname = $('#data .anonymous').attr('data-nick');
+			nickname = ANONYMOUS_NICK;
 		
 		// If the nickname could not be retrieved, ask it
 		if(!nickname)

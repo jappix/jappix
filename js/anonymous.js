@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -25,18 +25,12 @@ function anonymousConnected(con) {
 	// Send our first presence
 	firstPresence('');
 	
-	// Open the new groupchat
-	var room = $('#data .anonymous').attr('data-room');
-	
 	// If no domain is defined, we assume this must be ours
-	if(room.indexOf('@') == -1)
-		room = room + '@' + HOST_MUC;
-	
-	// Store the room XID in the database
-	setDB('anonymous', 'room', room);
+	if(ANONYMOUS_ROOM.indexOf('@') == -1)
+		ANONYMOUS_ROOM = ANONYMOUS_ROOM + '@' + HOST_MUC;
 	
 	// Create the new groupchat
-	checkChatCreate(room, 'groupchat');
+	checkChatCreate(ANONYMOUS_ROOM, 'groupchat');
 	
 	// We change the title of the page
 	pageTitle('talk');

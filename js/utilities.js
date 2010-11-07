@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 07/11/10
 
 */
 
@@ -119,7 +119,10 @@ function getXIDHost(aXID) {
 
 // Checks if we are in the anonymous mode
 function isAnonymous() {
-	return exists('#data .anonymous');
+	if(ANONYMOUS_ROOM)
+		return true;
+	
+	return false;
 }
 
 // Checks if this is a private chat user
