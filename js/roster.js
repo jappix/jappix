@@ -126,7 +126,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					
 					// Create the HTML markup of the group
 					$(groupCont).prepend(
-						'<div class="' + groupHash + ' one-group" data-group="' + cGroup.htmlEnc() + '">' + 
+						'<div class="' + groupHash + ' one-group" data-group="' + escape(cGroup) + '">' + 
 							'<a class="group talk-images minus">' + cGroup.htmlEnc() + '</a>' + 
 							'<div class="group-buddies"></div>' + 
 						'</div>'
@@ -232,7 +232,8 @@ function applyBuddyInput(xid) {
 			}
 			
 			// Get the values
-			var this_value = $(this).val().htmlEnc();
+			var this_value = $(this).val();
+			var escaped_value = escape(this_value);
 			
 			// Check if the group yet exists
 			var group_exists = false;
@@ -244,7 +245,10 @@ function applyBuddyInput(xid) {
 			
 			// Create a new checked checkbox
 			if(!group_exists)
-				$(bm_choose).prepend('<label>' + this_value + '</label><input type="checkbox" data-group="' + this_value + '" checked="true" />');
+				$(bm_choose).prepend('<label>' + this_value.htmlEnc() + '</label><input type="checkbox" data-group="' + escaped_value + '" />');
+			
+			// Check the checkbox
+			$(bm_choose + ' input[data-group=' + escaped_value + ']').attr('checked', true);
 			
 			// Reset the value of this input
 			$(this).val('');
@@ -357,7 +361,7 @@ function thisBuddyGroups(xid) {
 	
 	// Each checked checkboxes
 	$(path + 'div.bm-choose input[type=checkbox]:checked').each(function() {
-		array.push($(this).attr('data-group').revertHtmlEnc());
+		array.push(unescape($(this).attr('data-group')));
 	});
 	
 	// Entered input value (and not yet in the array)
@@ -406,10 +410,10 @@ function getAllGroups() {
 	var groups = new Array();
 	
 	$('#buddy-list .one-group').each(function() {
-		var current = $(this).attr('data-group').revertHtmlEnc();
+		var current = unescape($(this).attr('data-group'));
 		
 		if((current != _e("Unclassified")) && (current != _e("Gateways")))
-			groups.push($(this).attr('data-group'));
+			groups.push(current);
 	});
 	
 	return groups.sort();
@@ -476,17 +480,17 @@ function buddyEdit(xid, nick, subscription, groups) {
 	var all_groups_dom = '';
 	
 	for(var a = 0; a < all_groups.length; a++) {
+		// Current group
+		var all_groups_current = all_groups[a];
+		
 		// Is the current group checked?
 		var checked = '';
 		
-		if(groups.indexOf(all_groups[a]) != -1)
+		if(groups.indexOf(all_groups_current) != -1)
 			checked = ' checked="true"';
 		
-		// Generate the group HTML
-		var all_groups_current = all_groups[a].htmlEnc();
-		
 		// Add the current group HTML
-		all_groups_dom += '<label>' + all_groups_current + '</label><input type="checkbox" data-group="' + all_groups_current + '"' + checked + ' />';
+		all_groups_dom += '<label>' + all_groups_current.htmlEnc() + '</label><input type="checkbox" data-group="' + escape(all_groups_current) + '"' + checked + ' />';
 	}
 	
 	// Prepend this in the DOM
