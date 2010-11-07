@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -17,9 +17,9 @@ Last revision: 06/11/10
 	color: #919191;
 	margin-top: 12px;
 	padding: 15px 6px 6px 6px;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	box-shadow: 0 0 10px #4e4e4e;
 	-moz-box-shadow: 0 0 10px #4e4e4e;
 	-webkit-box-shadow: 0 0 10px #4e4e4e;
