@@ -8,7 +8,7 @@ These are the integratebox JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -82,9 +82,6 @@ function codeIntegrateBox(serv, url) {
 
 // Applies a given integratebox element
 function applyIntegrateBox(url, serv) {
-	// Reset the integratebox (security)
-	closeIntegrateBox();
-	
 	// Apply the HTML code
 	var dom_code = codeIntegrateBox(serv, url);
 	
@@ -108,11 +105,10 @@ function applyIntegrateBox(url, serv) {
 				waitItem.hide();
 			});
 		}
+		
+		return false;
 	}
 	
 	// Nothing: return true to be able to open the URL in a new tab
-	else
-		return true;
-	
-	return false;
+	return true;
 }

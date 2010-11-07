@@ -32,8 +32,8 @@ function openUserInfos(xid) {
 				'</div>' + 
 				
 				'<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
-				'<h2 id="BUDDY-XID" class="reset-info">' + _e("unknown") + '</h2>' + 
-				'<h3 id="BUDDY-LAST" class="reset-info">' + _e("unknown") + '</h3>' + 
+				'<h2 class="buddy-xid" class="reset-info">' + _e("unknown") + '</h2>' + 
+				'<h3 class="buddy-last" class="reset-info">' + _e("unknown") + '</h3>' + 
 			'</div>' + 
 			
 			'<div class="block-infos">' + 
@@ -72,7 +72,7 @@ function openUserInfos(xid) {
 		'</div>' + 
 		
 		'<div class="one-lap info3">' + 
-			'<textarea id="BUDDY-COMMENTS" rows="8" cols="60"></textarea>' + 
+			'<textarea class="rosternotes" rows="8" cols="60"></textarea>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -95,7 +95,7 @@ function retrieveUserInfos(xid) {
 	markers = 'vcard last';
 	
 	// We put the user's XID
-	$('#userinfos #BUDDY-XID').text(xid);
+	$('#userinfos .buddy-xid').text(xid);
 	
 	// We get the vCard
 	getVCard(xid, 'buddy');
@@ -174,7 +174,7 @@ function displayBuddyComments(xid) {
 	
 	// Display the value
 	if(value)
-		$('#userinfos #BUDDY-COMMENTS').val(value);
+		$('#userinfos .rosternotes').val(value);
 }
 
 // Displays the user's last activity result
@@ -220,7 +220,7 @@ function lastActivityUserInfos(iq) {
 			}
 			
 			// Append this text
-			$('#userinfos #BUDDY-LAST').text(last);
+			$('#userinfos .buddy-last').text(last);
 		}
 		
 		logThis('Last activity received: ' + from);
@@ -312,8 +312,8 @@ function wUserInfos() {
 // Sends the buddy comments
 function sendBuddyComments() {
 	// Update the current value
-	var value = $('#userinfos #BUDDY-COMMENTS').val();
-	var xid = $('#userinfos #BUDDY-XID').text();
+	var value = $('#userinfos .rosternotes').val();
+	var xid = $('#userinfos .buddy-xid').text();
 	
 	// Necessary to update?
 	if(getDB('rosternotes', xid) == value)
@@ -361,6 +361,8 @@ function closeUserInfos() {
 	
 	// Destroy the popup
 	destroyPopup('userinfos');
+	
+	return false;
 }
 
 // Gets the user's informations when creating a new chat

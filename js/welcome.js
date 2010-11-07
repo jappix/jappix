@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -216,6 +216,8 @@ function saveWelcome() {
 	
 	// Open the profile editor
 	openVCard();
+	
+	return false;
 }
 
 // Goes to the next welcome step
@@ -228,7 +230,9 @@ function nextWelcome() {
 		next = parseInt($(missing + ':first').attr('data-step'));
 	
 	// Switch to the next step
-	switchWelcome(next);	
+	switchWelcome(next);
+	
+	return false;
 }
 
 // Plugin launcher

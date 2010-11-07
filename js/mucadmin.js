@@ -8,9 +8,105 @@ These are the muc-admin JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
+
+// Opens the MUC admin popup
+function openMucAdmin(xid) {
+	// Popup HTML content
+	var html = 
+	'<div class="top">' + _e("MUC administration") + '</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="head muc-admin-head">' + 
+			'<div class="head-text muc-admin-head-text">' + _e("You administrate this room") + '</div>' + 
+			
+			'<div class="muc-admin-head-jid">' + xid + '</div>' + 
+		'</div>' + 
+		
+		'<div class="muc-admin-results">' + 
+			'<div class="muc-admin-topic">' + 
+				'<fieldset>' + 
+					'<legend>' + _e("Subject") + '</legend>' + 
+					
+					'<label for="topic-text">' + _e("Enter new subject") + '</label>' + 
+					'<textarea id="topic-text" name="room-topic" rows="8" cols="60" ></textarea>' + 
+				'</fieldset>' + 
+			'</div>' + 
+			
+			'<div class="muc-admin-conf">' + 
+				'<fieldset>' + 
+					'<legend>' + _e("Configuration") + '</legend>' + 
+					
+					'<div class="last-element"></div>' + 
+				'</fieldset>' + 
+			'</div>' + 
+			
+			'<div class="muc-admin-aut">' + 
+				'<fieldset>' + 
+					'<legend>' + _e("Authorizations") + '</legend>' + 
+					
+					'<label>' + _e("Member list") + '</label>' + 
+					'<div class="aut-member aut-group">' + 
+						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+					
+					'<label>' + _e("Owner list") + '</label>' + 
+					'<div class="aut-owner aut-group">' + 
+						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+					
+					'<label>' + _e("Administrator list") + '</label>' + 
+					'<div class="aut-admin aut-group">' + 
+						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+					
+					'<label>' + _e("Outcast list") + '</label>' + 
+					'<div class="aut-outcast aut-group">' + 
+						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+				'</fieldset>' + 
+			'</div>' + 
+			
+			'<div class="muc-admin-others">' + 
+				'<fieldset>' + 
+					'<legend>' + _e("Others") + '</legend>' + 
+					
+					'<label>' + _e("Destroy this MUC") + '</label>' + 
+					'<a onclick="destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
+				'</fieldset>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish" onclick="return saveMucAdmin();">' + _e("Save") + '</a>' + 
+		'<a class="finish" onclick="return closeMucAdmin();">' + _e("Cancel") + '</a>' + 
+	'</div>';
+	
+	// Create the popup
+	createPopup('muc-admin', html);
+	
+	// We query the room to edit
+	queryMucAdmin(xid, 'options');
+	
+	// We get the affiliated user's privileges
+	queryMucAdmin(xid, 'member');
+	queryMucAdmin(xid, 'owner');
+	queryMucAdmin(xid, 'admin');
+	queryMucAdmin(xid, 'outcast');
+}
+
+// Closes the MUC admin popup
+function closeMucAdmin() {
+	// Destroy the popup
+	destroyPopup('muc-admin');
+	
+	return false;
+}
 
 // Fills the MUC admin fields
 function fillMucAdmin(field, type, label, value, node) {
@@ -134,6 +230,10 @@ function handleMucAdmin(iq) {
 
 // Queries the MUC admin form
 function queryMucAdmin(xid, type) {
+	// Show the wait icon
+	$('#muc-admin .wait').show();
+	
+	// New IQ
 	var iq = new JSJaCIQ();
 	
 	iq.setTo(xid);
@@ -148,97 +248,6 @@ function queryMucAdmin(xid, type) {
 	}
 	
 	con.send(iq, handleMucAdmin);
-}
-
-// Opens the MUC admin popup
-function openMucAdmin(xid) {
-	// Popup HTML content
-	var html = 
-	'<div class="top">' + _e("MUC administration") + '</div>' + 
-	
-	'<div class="content">' + 
-		'<div class="head muc-admin-head">' + 
-			'<div class="head-text muc-admin-head-text">' + _e("You administrate this room") + '</div>' + 
-			
-			'<div class="muc-admin-head-jid"></div>' + 
-		'</div>' + 
-		
-		'<div class="muc-admin-results">' + 
-			'<div class="muc-admin-topic">' + 
-				'<fieldset>' + 
-					'<legend>' + _e("Subject") + '</legend>' + 
-					
-					'<label for="topic-text">' + _e("Enter new subject") + '</label>' + 
-					'<textarea id="topic-text" name="room-topic" rows="8" cols="60" ></textarea>' + 
-				'</fieldset>' + 
-			'</div>' + 
-			
-			'<div class="muc-admin-conf">' + 
-				'<fieldset>' + 
-					'<legend>' + _e("Configuration") + '</legend>' + 
-					
-					'<div class="last-element"></div>' + 
-				'</fieldset>' + 
-			'</div>' + 
-			
-			'<div class="muc-admin-aut">' + 
-				'<fieldset>' + 
-					'<legend>' + _e("Authorizations") + '</legend>' + 
-					
-					'<label>' + _e("Member list") + '</label>' + 
-					'<div class="aut-member aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
-					'</div>' + 
-					
-					'<label>' + _e("Owner list") + '</label>' + 
-					'<div class="aut-owner aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
-					'</div>' + 
-					
-					'<label>' + _e("Administrator list") + '</label>' + 
-					'<div class="aut-admin aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
-					'</div>' + 
-					
-					'<label>' + _e("Outcast list") + '</label>' + 
-					'<div class="aut-outcast aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
-					'</div>' + 
-				'</fieldset>' + 
-			'</div>' + 
-			
-			'<div class="muc-admin-others">' + 
-				'<fieldset>' + 
-					'<legend>' + _e("Others") + '</legend>' + 
-					
-					'<label>' + _e("Destroy this MUC") + '</label>' + 
-					'<a onclick="destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
-				'</fieldset>' + 
-			'</div>' + 
-		'</div>' + 
-	'</div>' + 
-	
-	'<div class="bottom">' + 
-		'<div class="wait wait-medium"></div>' + 
-		
-		'<a class="finish" onclick="return saveMucAdmin();">' + _e("Save") + '</a>' + 
-		'<a class="finish" onclick="return cancelMucAdmin();">' + _e("Cancel") + '</a>' + 
-	'</div>';
-	
-	// Create the popup
-	createPopup('muc-admin', html);
-	
-	// We show the room name
-	$('#muc-admin .muc-admin-head-jid').text(xid);
-	
-	// We query the room to edit
-	queryMucAdmin(xid, 'options');
-	
-	// We get the affiliated user's privileges
-	queryMucAdmin(xid, 'member');
-	queryMucAdmin(xid, 'owner');
-	queryMucAdmin(xid, 'admin');
-	queryMucAdmin(xid, 'outcast');
 }
 
 // Sends the new chat-room topic
@@ -337,7 +346,7 @@ function handleDestroyMucAdminIQ(iq) {
 		quitThisChat(room, hash, 'groupchat');
 		
 		// We close the muc admin popup
-		quitMucAdmin();
+		closeMucAdmin();
 		
 		// We tell the user that all is okay
 		openThisInfo(5);
@@ -393,22 +402,11 @@ function sendMucAdmin() {
 	sendMucAdminIQ(xid, 'admin', 'aut');
 }
 
-// Closes the MUC admin popup
-function quitMucAdmin() {
-	// Destroy the popup
-	destroyPopup('muc-admin');
-}
-
 // Saves the MUC admin elements
 function saveMucAdmin() {
 	// We send the new options
 	sendMucAdmin();
 	
 	// And we quit the popup
-	quitMucAdmin();
-}
-
-// Cancels the MUC admin elements
-function cancelMucAdmin() {
-	quitMucAdmin();
+	return closeMucAdmin();
 }

@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -29,33 +29,33 @@ function openVCard() {
 			'<fieldset>' + 
 				'<legend>' + _e("Personal") + '</legend>' + 
 				
-				'<label for="FN">' + _e("Complete name") + '</label>' + 
-				'<input type="text" id="FN" class="vcard-item" />' + 
+				'<label for="USER-FN">' + _e("Complete name") + '</label>' + 
+				'<input type="text" id="USER-FN" class="vcard-item" />' + 
 				
-				'<label for="NICKNAME">' + _e("Nickname") + '</label>' + 
-				'<input type="text" id="NICKNAME" class="vcard-item" />' + 
+				'<label for="USER-NICKNAME">' + _e("Nickname") + '</label>' + 
+				'<input type="text" id="USER-NICKNAME" class="vcard-item" />' + 
 				
-				'<label for="N-GIVEN">' + _e("First name") + '</label>' + 
-				'<input type="text" id="N-GIVEN" class="vcard-item" />' + 
+				'<label for="USER-N-GIVEN">' + _e("First name") + '</label>' + 
+				'<input type="text" id="USER-N-GIVEN" class="vcard-item" />' + 
 				
-				'<label for="N-FAMILY">' + _e("Last name") + '</label>' + 
-				'<input type="text" id="N-FAMILY" class="vcard-item" />' + 
+				'<label for="USER-N-FAMILY">' + _e("Last name") + '</label>' + 
+				'<input type="text" id="USER-N-FAMILY" class="vcard-item" />' + 
 				
-				'<label for="BDAY">' + _e("Date of birth") + '</label>' + 
-				'<input type="text" id="BDAY" class="vcard-item" />' + 
+				'<label for="USER-BDAY">' + _e("Date of birth") + '</label>' + 
+				'<input type="text" id="USER-BDAY" class="vcard-item" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Contact") + '</legend>' + 
 				
-				'<label for="EMAIL-USERID">' + _e("E-mail") + '</label>' + 
-				'<input type="text" id="EMAIL-USERID" class="vcard-item" />' + 
+				'<label for="USER-EMAIL-USERID">' + _e("E-mail") + '</label>' + 
+				'<input type="text" id="USER-EMAIL-USERID" class="vcard-item" />' + 
 				
-				'<label for="TEL-NUMBER">' + _e("Phone") + '</label>' + 
-				'<input type="text" id="TEL-NUMBER" class="vcard-item" />' + 
+				'<label for="USER-TEL-NUMBER">' + _e("Phone") + '</label>' + 
+				'<input type="text" id="USER-TEL-NUMBER" class="vcard-item" />' + 
 				
-				'<label for="URL">' + _e("Website") + '</label>' + 
-				'<input type="text" id="URL" class="vcard-item" />' + 
+				'<label for="USER-URL">' + _e("Website") + '</label>' + 
+				'<input type="text" id="USER-URL" class="vcard-item" />' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -63,8 +63,8 @@ function openVCard() {
 			'<fieldset>' + 
 				'<legend>' + _e("Upload") + '</legend>' + 
 				
-				'<input type="hidden" id="PHOTO-TYPE" class="vcard-item" />' + 
-				'<input type="hidden" id="PHOTO-BINVAL" class="vcard-item" />' + 
+				'<input type="hidden" id="USER-PHOTO-TYPE" class="vcard-item" />' + 
+				'<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
 				'<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" onchange="sendThisAvatar()" />' + 
 			'</fieldset>' + 
 			
@@ -86,23 +86,23 @@ function openVCard() {
 			'<fieldset>' + 
 				'<legend>' + _e("Address") + '</legend>' + 
 				
-				'<label for="ADR-STREET">' + _e("Street") + '</label>' + 
-				'<input type="text" id="ADR-STREET" class="vcard-item" />' + 
+				'<label for="USER-ADR-STREET">' + _e("Street") + '</label>' + 
+				'<input type="text" id="USER-ADR-STREET" class="vcard-item" />' + 
 				
-				'<label for="ADR-LOCALITY">' + _e("City") + '</label>' + 
-				'<input type="text" id="ADR-LOCALITY" class="vcard-item" />' + 
+				'<label for="USER-ADR-LOCALITY">' + _e("City") + '</label>' + 
+				'<input type="text" id="USER-ADR-LOCALITY" class="vcard-item" />' + 
 				
-				'<label for="ADR-PCODE">' + _e("Postal code") + '</label>' + 
-				'<input type="text" id="ADR-PCODE" class="vcard-item" />' + 
+				'<label for="USER-ADR-PCODE">' + _e("Postal code") + '</label>' + 
+				'<input type="text" id="USER-ADR-PCODE" class="vcard-item" />' + 
 				
-				'<label for="ADR-CTRY">' + _e("Country") + '</label>' + 
-				'<input type="text" id="ADR-CTRY" class="vcard-item" />' + 
+				'<label for="USER-ADR-CTRY">' + _e("Country") + '</label>' + 
+				'<input type="text" id="USER-ADR-CTRY" class="vcard-item" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Biography") + '</legend>' + 
 				
-				'<textarea id="DESC" rows="8" cols="60" class="vcard-item"></textarea>' + 
+				'<textarea id="USER-DESC" rows="8" cols="60" class="vcard-item"></textarea>' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -191,8 +191,8 @@ function sendThisAvatar() {
 				});
 				
 				// We put the base64 values in a hidden input to be sent
-				$('#PHOTO-TYPE').val(fSplitted[0]);
-				$('#PHOTO-BINVAL').val(fSplitted[1]);
+				$('#USER-PHOTO-TYPE').val(fSplitted[0]);
+				$('#USER-PHOTO-BINVAL').val(fSplitted[1]);
 				
 				// We display the avatar !
 				$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
@@ -217,7 +217,7 @@ function deleteAvatar() {
 	$('#vcard .avatar').remove();
 	
 	// We reset the input value
-	$('#PHOTO-TYPE, #PHOTO-BINVAL').val('');
+	$('#USER-PHOTO-TYPE, #USER-PHOTO-BINVAL').val('');
 	
 	// We show the avatar-uploading request
 	$('#vcard .no-avatar').show();
@@ -225,6 +225,10 @@ function deleteAvatar() {
 
 // Creates a special vCard input
 function createInputVCard(id, type) {
+	// Generate the new ID
+	id = 'USER-' + id;
+	
+	// Can append the content
 	if((type == 'user') && !exists('#vcard #' + id))
 		$('#vcard .content').append('<input id="' + id + '" class="vcard-item" type="hidden" />');
 }
@@ -293,13 +297,13 @@ function handleVCard(iq, type) {
 	// We retrieve main values
 	$(iqNode).find('vCard').children().each(function() {
 		// Read the current parent node name
-		var tokenname = (this).nodeName;
+		var tokenname = (this).nodeName.toUpperCase();
 		
 		// Node with a parent
 		if($(this).children().size()) {
 			$(this).children().each(function() {
 				// Get the node values
-				var currentID = tokenname + '-' + (this).nodeName;
+				var currentID = tokenname + '-' + (this).nodeName.toUpperCase();
 				var currentText = $(this).text();
 				
 				// Create an input if it does not exist
@@ -315,7 +319,7 @@ function handleVCard(iq, type) {
 				
 				// Profile editor popup
 				else if(type == 'user')
-					$(path_vCard + ' #' + currentID).val(currentText);
+					$(path_vCard + ' #USER-' + currentID).val(currentText);
 			});
 		}
 		
@@ -351,7 +355,7 @@ function handleVCard(iq, type) {
 			
 			// Profile editor popup
 			else if(type == 'user')
-				$(path_vCard + ' #' + tokenname).val(currentText);
+				$(path_vCard + ' #USER-' + tokenname).val(currentText);
 		}
 	});
 	
@@ -374,8 +378,8 @@ function handleVCard(iq, type) {
 	var aBinval, aType, aContainer;
 	
 	if(type == 'user') {
-		aBinval = $('#PHOTO-BINVAL').val();
-		aType = $('#PHOTO-TYPE').val();
+		aBinval = $('#USER-PHOTO-BINVAL').val();
+		aType = $('#USER-PHOTO-TYPE').val();
 		aContainer = path_vCard + ' .avatar-container';
 	}
 	
@@ -431,7 +435,7 @@ function sendVCard() {
 	
 	// We send the identity part of the form
 	$('#vcard .vcard-item').each(function() {
-		var itemID = $(this).attr('id');
+		var itemID = $(this).attr('id').replace(/^USER-(.+)/, '$1');
 		var itemVal = $(this).val();
 		
 		if(itemVal && itemID) {
@@ -459,9 +463,9 @@ function sendVCard() {
 	if(enabledPEP()) {
 		// Values array
 		var read = new Array(
-			$('#NICKNAME').val(),
-			$('#PHOTO-BINVAL').val(),
-			$('#PHOTO-TYPE').val()
+			$('#USER-NICKNAME').val(),
+			$('#USER-PHOTO-BINVAL').val(),
+			$('#USER-PHOTO-TYPE').val()
 		);
 		
 		// Nodes array

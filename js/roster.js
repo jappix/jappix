@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -624,7 +624,8 @@ function launchRoster() {
 		showBubble('#buddy-conf-join');
 		
 		// We reset the input and focus on it
-		$('#buddy-conf-join .join-jid').val('').focus();
+		$('#buddy-conf-join .join-jid').removeClass('please-complete').val('').focus();
+		$('#buddy-conf-join .join-type').val('chat');
 	});
 	
 	// When a key is pressed...

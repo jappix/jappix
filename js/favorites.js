@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -132,6 +132,8 @@ function resetFavorites() {
 function quitFavorites() {
 	// Destroy the popup
 	destroyPopup('favorites');
+	
+	return false;
 }
 
 // Adds a room to the favorites
@@ -359,7 +361,7 @@ function handleGCList(iq) {
 					// Initialize the room HTML
 					html += '<div class="oneresult fsearch-oneresult" data-xid="' + roomXID + '">' + 
 							'<div class="room-name">' + roomName + '</div>' + 
-							'<a class="one-button join" onclick="joinFavorite(\'' + roomXID + '\');">' + _e("Join") + '</a>';
+							'<a class="one-button join" onclick="return joinFavorite(\'' + roomXID + '\');">' + _e("Join") + '</a>';
 					
 					// This room is yet a favorite
 					if(existDB('favorites', roomXID))
@@ -389,6 +391,8 @@ function handleGCList(iq) {
 function joinFavorite(room) {
 	quitFavorites();
 	checkChatCreate(room, 'groupchat', '', '', getXIDNick(room));
+	
+	return false;
 }
 
 // Displays a given favorite

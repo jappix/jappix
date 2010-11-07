@@ -10,7 +10,7 @@ These are the PHP functions for Jappix manager
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 07/11/10
 
 */
 
@@ -115,18 +115,18 @@ function sizeDir($dir) {
 // Set the good unity for a size in bytes
 function numericToMonth($id) {
 	$array = array(
-		      	1 => "January",
-		      	2 => "February",
-		      	3 => "March",
-		      	4 => "April",
-		      	5 => "May",
-		      	6 => "June",
-		      	7 => "July",
-		      	8 => "August",
-		      	9 => "September",
-		      	10 => "October",
-		      	11 => "November",
-		      	12 => "December"
+		      	1 => T_("January"),
+		      	2 => T_("February"),
+		      	3 => T_("March"),
+		      	4 => T_("April"),
+		      	5 => T_("May"),
+		      	6 => T_("June"),
+		      	7 => T_("July"),
+		      	8 => T_("August"),
+		      	9 => T_("September"),
+		      	10 => T_("October"),
+		      	11 => T_("November"),
+		      	12 =>T_( "December")
 		      );
 	
 	return $array[$id];

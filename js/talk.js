@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -123,7 +123,7 @@ function createTalkPage() {
 								'<div class="buddy-conf-subitem search">' + 
 									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Join a chat") +  '</p>' + 
 									'<input type="text" class="buddy-conf-input join-jid" />' + 
-									'<select name="join-type" class="buddy-conf-select buddy-conf-join-select">' + 
+									'<select class="buddy-conf-select buddy-conf-join-select join-type">' + 
 										'<option value="chat">' + _e("Chat") +  '</option>' + 
 										'<option value="groupchat">' + _e("Groupchat") +  '</option>' + 
 									'</select>' + 

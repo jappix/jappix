@@ -8,7 +8,7 @@ These are the map of friends functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -32,4 +32,6 @@ function openMap() {
 function closeMap() {
 	// Destroy the popup
 	destroyPopup('map');
+	
+	return false;
 }

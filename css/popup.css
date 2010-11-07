@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -475,8 +475,9 @@ a.finish {
 	border: 1px solid white;
 	background-color: rgba(255,255,255,0.1);
 	color: white;
-	padding: 3px 8px;
+	padding: 4px 8px;
 	margin-right: 7px;
+	font-size: 0.95em;
 	text-align: center;
 	text-decoration: none;
 	border-radius: 4px;
@@ -504,6 +505,6 @@ a.finish.disabled:active {
 }
 
 .popup a.finish {
-	margin-top: 7px;
+	margin-top: 6px;
 	float: right;
 }

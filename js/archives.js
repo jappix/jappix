@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -67,6 +67,8 @@ function openArchives() {
 function closeArchives() {
 	// Destroy the popup
 	destroyPopup('archives');
+	
+	return false;
 }
 
 // Gets the archives for a buddy

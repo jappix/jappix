@@ -8,7 +8,7 @@ These are the collections functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -34,6 +34,8 @@ function openCollections() {
 function closeCollections() {
 	// Destroy the popup
 	destroyPopup('collections');
+	
+	return false;
 }
 
 // Retrieve the collections of an entity
