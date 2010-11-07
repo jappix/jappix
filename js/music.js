@@ -8,7 +8,7 @@ These are the music JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -61,10 +61,16 @@ function parseMusic(xml, type) {
 			uri = generateURL(uri);
 		
 		// Append the HTML code
-		$(path_type).append('<a class="song" id="' + id + '">‣ ' + title + '</a>');
+		$(path_type).append('<a class="song" data-id="' + id + '">' + title + '</a>');
+		
+		// Current playing song?
+		var current_song = $(path_type + ' a[data-id=' + id + ']');
+		
+		if(exists('.music-audio[data-id=' + id + ']'))
+			current_song.addClass('playing');
 		
 		// Click event
-		$(path_type + ' #' + id).click(function() {
+		current_song.click(function() {
 			addMusic(id,  title, artist, source, duration, uri, mime, type);
 		});
 	});
@@ -142,6 +148,7 @@ function actionMusic(action) {
 		playThis.pause();
 		$('#top-content .music').removeClass('actived');
 		$('.music-content .list a').removeClass('playing');
+		$('.music-audio').remove();
 		publishMusic();
 		
 		logThis('Music is now stopped.');
@@ -199,12 +206,9 @@ function publishMusic(title, artist, source, duration, uri) {
 function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	var path = '.music-content ';
 	
-	// We create a new audio tag if it does not exist
-	if(!exists('.music-audio'))
-		$(path + '.player').prepend('<audio class="music-audio" />');
-	
-	// Apply the MIME type to the player
-	$('.music-audio').attr('type', mime);
+	// We remove & create a new audio tag
+	$('.music-audio').remove();
+	$(path + '.player').prepend('<audio class="music-audio" type="' + mime + '" data-id="' + id + '" />');
 	
 	// We apply the new source to the player
 	if(type == 'jamendo')
@@ -220,7 +224,7 @@ function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	
 	// We set a current played track indicator
 	$(path + '.list a').removeClass('playing');
-	$(path + 'a#' + id).addClass('playing');
+	$(path + 'a[data-id=' + id + ']').addClass('playing');
 	
 	// We publish what we listen
 	publishMusic(title, artist, source, duration, uri);
