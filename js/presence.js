@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 07/11/10
 
 */
 
@@ -411,8 +411,13 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	// Display the presence in the chat
 	if(exists('#' + hash)) {
 		// We generate a well formed status message
-		if(dStatus)
-			dStatus = ' (' + dStatus + ')';
+		if(dStatus) {
+			// No need to write the same status two times
+			if(dStatus == value)
+				dStatus = '';
+			else
+				dStatus = ' (' + dStatus + ')';
+		}
 		
 		// We show the presence value
 		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + '" title="' + status + '">' + value + dStatus + '</p>');
