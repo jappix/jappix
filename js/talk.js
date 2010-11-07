@@ -141,7 +141,7 @@ function createTalkPage() {
 									'<p class="buddy-conf-p">' + _e("Your groupchats") +  '</p>' + 
 									
 									'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select">' + 
-										'<option value="none" class="gc-join-first-option">' + _e("Select a favorite") +  '</option>' + 
+										'<option value="none" class="gc-join-first-option" selected="selected">' + _e("Select a favorite") +  '</option>' + 
 									'</select>' + 
 									
 									'<p class="buddy-conf-text">' + 

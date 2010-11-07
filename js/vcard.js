@@ -125,9 +125,6 @@ function openVCard() {
 	// Create the popup
 	createPopup('vcard', html);
 	
-	// We remove things that could keep being displayed
-	$('#vcard .avatar-info').hide();
-	
 	// We get the VCard informations
 	getVCard(getXID(), 'user');
 }

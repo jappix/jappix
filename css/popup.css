@@ -354,6 +354,13 @@ Last revision: 07/11/10
 	display: block;
 }
 
+.popup .results a.one-button {
+	float: right;
+	font-size: 0.95em;
+	padding: 3px 6px;
+	margin-right: 4px;
+}
+
 .popup .results a.one-vjud {
 	position: absolute;
 	right: 4px;

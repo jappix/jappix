@@ -38,9 +38,7 @@ function openFavorites() {
 				'<div class="head fedit-head static-fav-head">' + 
 					'<div class="head-text fedit-head-text">' + _e("Select a favorite") + '</div>' + 
 					
-					'<select name="fedit-head-select" class="head-select fedit-head-select">' + 
-						'<option value="none" class="fedit-head-select-first-option">' + _e("Select a favorite") + '</option>' + 
-					'</select>' + 
+					'<select name="fedit-head-select" class="head-select fedit-head-select"></select>' + 
 				'</div>' + 
 				
 				'<div class="results fedit-results static-fav-results">' + 
@@ -111,6 +109,9 @@ function openFavorites() {
 	// Create the popup
 	createPopup('favorites', html);
 	
+	// Load the favorites
+	loadFavorites();
+	
 	// Associate the events
 	launchFavorites('popup');
 }
@@ -138,17 +139,14 @@ function quitFavorites() {
 
 // Adds a room to the favorites
 function addThisFavorite(roomXID, roomName) {
-	// Generate the room hash
-	var hash = hex_md5(roomXID);
-	
 	// Add a remove button instead of the add one
 	$('#favorites .fsearch-results div[data-xid=' + roomXID + '] a.one-button.add').replaceWith('<a class="one-button remove" onclick="removeThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Remove") + '</a>');
 	
 	// Hide the add button in the (opened?) groupchat
-	$('#' + hash + ' .tools-add').hide();
+	$('#' + hex_md5(roomXID) + ' .tools-add').hide();
 	
 	// Add the database entry
-	displayFavorites(roomXID, explodeThis(' (', roomName, 0), getNick(), hash, '0', '');
+	displayFavorites(roomXID, explodeThis(' (', roomName, 0), getNick(), '0', '');
 	
 	// Publish the favorites
 	favoritePublish();
@@ -156,17 +154,14 @@ function addThisFavorite(roomXID, roomName) {
 
 // Removes a room from the favorites
 function removeThisFavorite(roomXID, roomName) {
-	// Generate the room hash
-	var hash = hex_md5(roomXID);
-	
 	// Add a remove button instead of the add one
 	$('#favorites .fsearch-results div[data-xid=' + roomXID + '] a.one-button.remove').replaceWith('<a class="one-button add" onclick="addThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Add") + '</a>');
 	
 	// Show the add button in the (opened?) groupchat
-	$('#' + hash + ' .tools-add').show();
+	$('#' + hex_md5(roomXID) + ' .tools-add').show();
 	
 	// Remove the favorite
-	removeFavorite(roomXID, hash);
+	removeFavorite(roomXID);
 	
 	// Publish the favorites
 	favoritePublish();
@@ -224,32 +219,28 @@ function terminateThisFavorite(type) {
 	var room = $('.fedit-chan').val();
 	var server = $('.fedit-server').val();
 	var xid = room + '@' + server;
-	var hash = hex_md5(xid);
 	var password = $('.fedit-password').val();
 	var autojoin = '0';
 	
 	if($('.fedit-autojoin').is(':checked'))
 		autojoin = '1';
 	
-	// We check what's the type of the query
-	if(type == 'add')
-		displayFavorites(xid, title, nick, hash, autojoin, password);
-	
-	else if(type == 'edit') {
-		// We delete the edited room
-		removeFavorite(xid, hash);
-		
-		// We add the room everywhere needed
-		displayFavorites(xid, title, nick, hash, autojoin, password);
-	}
-	
-	else if(type == 'remove')
-		removeFavorite(xid, hash);
-	
 	// We check the missing values and send this if okay
 	if((type == 'add') || (type == 'edit')) {
-		if(title && nick && room && server)
+		if(title && nick && room && server) {
 			favoritePublish();
+			
+			// Remove the edited room
+			if(type == 'edit')
+				removeFavorite(xid);
+			
+			// Display the favorites
+			displayFavorites(xid, title, nick, autojoin, password);
+			reloadFavorites();
+			
+			// Reset the inputs
+			resetFavorites();
+		}
 		
 		else {
 			$('.fedit-required').each(function() {
@@ -261,20 +252,25 @@ function terminateThisFavorite(type) {
 		}
 	}
 	
-	else if(type == 'remove')
+	// Must remove a favorite?
+	else if(type == 'remove') {
+		removeFavorite(xid);
+		
+		// Publish it!
 		favoritePublish();
-	
-	// We reset the inputs
-	resetFavorites();
+		
+		// Reset the inputs
+		resetFavorites();
+	}
 	
 	logThis('Action on this bookmark: ' + room + '@' + server + ' / ' + type);
 }
 
 // Removes a favorite
-function removeFavorite(xid, hash) {
+function removeFavorite(xid) {
 	// We remove the target favorite everywhere needed
-	$('.buddy-conf-groupchat-select .' + hash).remove();
-	$('.fedit-head-select .' + hash).remove();
+	$('.buddy-conf-groupchat-select option[value=' + xid + ']').remove();
+	$('.fedit-head-select option[value=' + xid + ']').remove();
 	removeDB('favorites', xid);
 }
 
@@ -396,19 +392,47 @@ function joinFavorite(room) {
 }
 
 // Displays a given favorite
-function displayFavorites(xid, gcName, nick, hash, autojoin, password) {
-	var optionSet = '<option value="' + xid + '" class="' + hash + '">' + gcName + '</option>';
+function displayFavorites(xid, gcName, nick, autojoin, password) {
+	var optionSet = '<option value="' + xid + '">' + gcName + '</option>';
 	
 	// We complete the select forms
 	$('.gc-join-first-option').after(optionSet);
-	$('.fedit-head-select-first-option').after(optionSet);
 	
 	// We store the informations
 	var value = '<groupchat><xid>' + xid + '</xid><name>' + gcName + '</name><nick>' + nick + '</nick><autojoin>' + autojoin + '</autojoin><password>' + password + '</password></groupchat>';
 	setDB('favorites', xid, value);
+}
+
+// Loads the favorites for the popup
+function loadFavorites() {
+	// Initialize the HTML code
+	var html = '<option value="none" class="fedit-head-select-first-option" selected="selected">' + _e("Select a favorite") + '</option>';
 	
-	// We show the default room
-	$('.buddy-conf-groupchat-select').val('none');
+	// Read the database
+	for(var i = 0; i < sessionStorage.length; i++) {
+		// Get the pointer values
+		var current = sessionStorage.key(i);
+		
+		// If the pointer is on a stored favorite
+		if(explodeThis('_', current, 0) == 'favorites') {
+			var data = sessionStorage.getItem(current);
+			
+			// Add the current favorite to the HTML code
+			html += '<option value="' + $(data).find('xid').text() + '">' + $(data).find('name').text() + '</option>';
+		}
+	}
+	
+	// Append the HTML code
+	$('#favorites .fedit-head-select').html(html);
+}
+
+// Reloads the favorites from the database
+function reloadFavorites() {
+	// Removes the favorites list
+	$('#favorites .fedit-head-select').empty();
+	
+	// Load the list again!
+	loadFavorites();
 }
 
 // Plugin launcher

@@ -8,7 +8,7 @@ These are the storage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/09/10
+Last revision: 07/11/10
 
 */
 
@@ -76,10 +76,9 @@ function handleStorage(iq) {
 		var autojoin = $(this).attr('autojoin');
 		var password = $(this).find('password').text();
 		var nick = $(this).find('nick').text();
-		var hash = hex_md5(xid);
 		
 		// We display the storage
-		displayFavorites(xid, name, nick, hash, autojoin, password);
+		displayFavorites(xid, name, nick, autojoin, password);
 		
 		// Join the chat if autojoin is enabled
 		if(autojoin == '1')
