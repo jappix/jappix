@@ -8,7 +8,7 @@ These are the constants JS scripts for Jappix
 License: AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 10/11/10
 
 */
 
@@ -99,6 +99,10 @@ var NS_FEATURE_IQREGISTER = NS_FEATURES + 'iq-register';
 var NS_FEATURE_COMPRESS = NS_FEATURES + 'compress';
 
 var NS_COMPRESS =     NS_PROTOCOL + 'compress';
+
+// Available locales
+var LOCALES_AVAILABLE_ID = new Array();
+var LOCALES_AVAILABLE_NAMES = new Array();
 
 // XML lang
 var XML_LANG = null;

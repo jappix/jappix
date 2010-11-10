@@ -10,7 +10,7 @@ These are the PHP functions for Jappix Get API
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -80,6 +80,37 @@ function setPath($string, $hash, $host, $type, $locale) {
 // The function to set the good translation to a JS file
 function setTranslation($string) {
 	return preg_replace('/_e\("([^\"\"]+)"\)/e', "'_e(\"'.addslashes(T_gettext(stripslashes('$1'))).'\")'", $string);
+}
+
+// The function to set the good locales
+function setLocales($string, $locale) {
+	// Generate the two JS array list
+	$available_list = availableLocales($locale);
+	$available_id = '';
+	$available_names = '';
+	
+	// Add the values to the arrays
+	foreach($available_list as $current_id => $current_name) {
+		$available_id .= '\''.$current_id.'\', ';
+		$available_names .= '\''.addslashes($current_name).'\', ';
+	}
+	
+	// Remove the last comma
+	$regex = '/(.+), $/';
+	$available_id = preg_replace($regex, '$1', $available_id);
+	$available_names = preg_replace($regex, '$1', $available_names);
+	
+	// Locales array
+	$array = array(
+			'LOCALES_AVAILABLE_ID' => $available_id,
+			'LOCALES_AVAILABLE_NAMES' => $available_names
+		      );
+	
+	// Apply it!
+	foreach($array as $array_key => $array_value)
+		$string = preg_replace('/(var '.$array_key.'(( )?=( )?)new Array\()(\);)/', '$1'.$array_value.'$5', $string);
+	
+	return $string;
 }
 
 // The function to set the good configuration to a JS file

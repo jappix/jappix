@@ -293,10 +293,13 @@ function registerForm() {
 
 // Plugin launcher
 function launchHome() {
-	logThis('Welcome to Jappix! Happy coding in developer mode!');
+	// Define the vars
+	var home = '#home .';
+	var button = home + 'button';
+	var locale = home + 'locale';
 	
 	// Allows the user to switch the home page
-	$('#home .button').click(function() {
+	$(button).click(function() {
 		// Login button
 		if($(this).is('.login'))
 			return switchHome('loginer');
@@ -305,6 +308,27 @@ function launchHome() {
 		else
 			return switchHome('registerer');
 	});
+	
+	// Allow the user to switch the language
+	$(locale).hover(function() {
+		// Initialize the HTML code
+		var keepget = $(locale).attr('data-keepget');
+		var html = '<div class="list">';
+		
+		// Generate each locale HTML code
+		$.each(LOCALES_AVAILABLE_ID, function(i) {
+			html += '<a href="./?l=' + LOCALES_AVAILABLE_ID[i] + keepget + '">' + LOCALES_AVAILABLE_NAMES[i].htmlEnc() + '</a>';
+		});
+		
+		html += '</div>';
+		
+		// Append the HTML code
+		$(locale).append(html);
+	}, function() {
+		$(locale + ' .list').remove();
+	});
+	
+	logThis('Welcome to Jappix! Happy coding in developer mode!');
 }
 
 // Launch this plugin!

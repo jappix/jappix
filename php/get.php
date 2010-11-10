@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 10/11/10
 
 */
 
@@ -266,6 +266,9 @@ if($file && $type) {
 				
 				// Filter the JS
 				if($type == 'js') {
+					// Set the JS locales
+					$output = setLocales($output, $locale);
+					
 					// Set the JS configuration
 					$output = setConfiguration($output, $locale, $version);
 					

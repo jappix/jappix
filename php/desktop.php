@@ -25,6 +25,7 @@ Last revision: 10/11/10
 	
 	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=desktop.xml" type="text/css" media="all" />
 	<!--[if lt IE 9]><link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=ie.css" type="text/css" media="all" /><![endif]-->
+	
 	<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=desktop.xml"></script>
 	
 	<?php if(anonymousMode()) { ?>
@@ -43,7 +44,6 @@ Last revision: 10/11/10
 			
 			?>
 		</script>
-		
 		<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=anonymous.xml"></script>
 	<?php } ?>
 </head>
@@ -100,12 +100,8 @@ if(!anonymousMode()) { ?>
 			</div>
 		</div>
 		
-		<div class="locale">
-			<span class="current"><?php echo getLanguageName($locale); ?></span>
-			
-			<span class="list">
-				<?php echo languageSwitcher($locale, false); ?>
-			</span>
+		<div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
+			<div class="current"><?php echo(getLanguageName($locale)); ?></div>
 		</div>
 		
 		<?php

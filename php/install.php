@@ -10,7 +10,7 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 10/11/10
 
 */
 
@@ -130,7 +130,7 @@ else
 					<li><?php _e("Services installation"); ?></li>
 				</ol>
 				
-				<p><?php printf(T_("If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."), getLanguageName($locale), languageSwitcher($locale, true)); ?></p>
+				<p><?php printf(T_("If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."), getLanguageName($locale), languageSwitcher($locale)); ?></p>
 				
 				<p><?php _e("If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"); ?> <a href="http://codingteam.net/project/jappix/doc" target="_blank">http://codingteam.net/project/jappix/doc</a></p>
 				

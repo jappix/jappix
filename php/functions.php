@@ -389,30 +389,38 @@ function getLanguageName($code) {
 	return null;
 }
 
-// The function which generates the language switcher hidden part
-function languageSwitcher($active_locale, $separate) {
+// The function which generates the available locales list
+function availableLocales($active_locale) {
 	// Initialize
-	$keep_get = keepGet('l', false);
-	$repertory = PHP_BASE.'/lang/';
-	$scan = scandir($repertory);
-	$html = '';
+	$scan = scandir(PHP_BASE.'/lang/');
+	$list = array();
 	
 	// Loop the available languages
-	foreach($scan as $current) {
+	foreach($scan as $current_id) {
 		// Get the current language name
-		$current_name = getLanguageName($current);
+		$current_name = getLanguageName($current_id);
 		
 		// Not valid?
-		if(($current == $active_locale) || ($current_name == null))
+		if(($current_id == $active_locale) || ($current_name == null))
 			continue;
 		
-		// Generate the HTML code
-		$html .= '<a href="./?l='.$current.$keep_get.'">'.$current_name.'</a>';
-		
-		// Add a separator if asked
-		if($separate)
-			$html .= ', ';
+		// Add this to the list
+		$list[$current_id] = $current_name;
    	}
+   	
+   	return $list;
+}
+
+// The function which generates the language switcher hidden part
+function languageSwitcher($active_locale) {
+	// Initialize
+	$keep_get = keepGet('l', false);
+	$list = availableLocales($active_locale);
+	$html = '';
+	
+	// Generate the HTML code
+	foreach($list as $current_id => $current_name)
+		$html .= '<a href="./?l='.$current_id.$keep_get.'">'.htmlspecialchars($current_name).'</a>, ';
    	
    	// Output the HTML code
    	return $html;
