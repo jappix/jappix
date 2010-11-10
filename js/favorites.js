@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 10/11/10
 
 */
 
@@ -334,8 +334,8 @@ function handleGCList(iq) {
 	var path = '#favorites .';
 	var from = getStanzaFrom(iq);
 	
-	if (!iq || iq.getType() != 'result') {
-		openThisError(2);
+	if (!iq || (iq.getType() != 'result')) {
+		openThisError(3);
 		
 		$(path + 'wait').hide();
 		

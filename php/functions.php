@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -161,11 +161,12 @@ function checkLanguage() {
 					$indice = explode('=', $entry);
 					$lang = strtolower(substr(trim($indice[0]), 0, 2));
 					
-					if(!$indice[1])
+					if(!isset($indice[1]) || !$indice[1])
 						$indice = 1;
 					else
 						$indice = $indice[1];
-						$order[$lang] = $indice;
+					
+					$order[$lang] = $indice;
 				}
 				
 				arsort($order);
@@ -467,6 +468,7 @@ function hideErrors() {
 		ini_set('display_errors','off');
 }
 
+// The function to check GZip is available
 function hasGZip() {
 	// Compression allowed by admin & browser?
 	if((COMPRESSION == 'on') && (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')))
@@ -475,8 +477,25 @@ function hasGZip() {
 	return false;
 }
 
+// The function to check HTTPS storage is allowed
 function httpsStorage() {
 	if(HTTPS_STORAGE == 'on')
+		return true;
+	
+	return false;
+}
+
+// The function to check HTTPS storage must be forced
+function httpsForce() {
+	if((HTTPS_FORCE == 'on') && sslCheck())
+		return true;
+	
+	return false;
+}
+
+// The function to check we use HTTPS
+function useHttps() {
+	if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
 		return true;
 	
 	return false;

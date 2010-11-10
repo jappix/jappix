@@ -8,7 +8,7 @@ These are the error functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/09/10
+Last revision: 10/11/10
 
 */
 
@@ -35,16 +35,16 @@ function showError(condition, reason, type) {
 			eText += reason;
 		}
 		
-		// Create the error text
-		$('#error p[data-id=3] span').text(eText);
-		
 		// We reveal the error
-		openThisError(3);
+		openThisError(1);
+		
+		// Create the error text
+		$('#board .one-board.error[data-id=1] span').text(eText);
 	}
 	
 	// Not enough data to output the error: output a generic board
 	else
-		openThisError(1);
+		openThisError(2);
 }
 
 // Handles the error from a packet and return true if any error

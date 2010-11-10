@@ -82,11 +82,23 @@ else {
 		$include_app = 'mobile';
 }
 
+// Special stuffs for Jappix apps
+if(($include_app == 'desktop') || ($include_app == 'mobile')) {
+	// Redirects the user to HTTPS if forced
+	if(!useHttps() && httpsForce()) {
+		// Apply some special headers
+		header('Status: 301 Moved Permanently', false, 301);
+		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		
+		// Kill the script!
+		exit;
+	}
+	
+	// Save this visit (for the stats)
+	writeVisit();
+}
+
 // Include it!
 include('./php/'.$include_app.'.php');
-
-// Save this visit (for the stats)
-if(($include_app == 'desktop') || ($include_app == 'mobile'))
-	writeVisit();
 
 ?>

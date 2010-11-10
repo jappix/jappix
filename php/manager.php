@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 10/11/10
 
 */
 
@@ -22,6 +22,7 @@ $id = 0;
 $login_fired = false;
 $logout_fired = false;
 $form_parent = 'manager';
+$user_password = '';
 $user_remember = '';
 $user = '';
 $password = '';

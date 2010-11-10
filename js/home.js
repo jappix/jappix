@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -241,7 +241,7 @@ function loginForm() {
 	
 	// Enough values?
 	if(lServer && lNick && lPass && lResource && lPriority)
-		doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember);
+		doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, false);
 	
 	// Something is missing?
 	else {

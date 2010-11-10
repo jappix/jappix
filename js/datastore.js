@@ -8,11 +8,9 @@ These are the temporary/persistent data store functions
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/09/10
+Last revision: 10/11/10
 
 */
-
-/* TEMPORARY DATABASE */
 
 // Temporary: used to read a database entry
 function getDB(type, id) {
@@ -43,9 +41,6 @@ function existDB(type, id) {
 function resetDB() {
 	sessionStorage.clear();
 }
-
-
-/* PERSISTENT DATABASE */
 
 // Persistent: used to read a database entry
 function getPersistent(type, id) {

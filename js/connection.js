@@ -8,14 +8,14 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
 // Does the user login
 var CURRENT_SESSION = false;
 
-function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
+function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, lRetry) {
 	try {
 		// We remove the not completed class to avoid problems
 		$('#home .loginer input').removeClass('please-complete');
@@ -63,13 +63,26 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 	
 	catch(e) {
 		// Logs errors
-		logThis(e);
+		logThis('Error while logging in: ' + e);
 		
-		// Reset the database (maximum size might be reached)
-		resetPersistent();
+		// We should try to re-login with an empty database
+		if(!lRetry) {
+			// Reset the database (maximum size might be reached)
+			resetPersistent();
+			
+			// Try to login again
+			doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, true);
+			
+			logThis('Retrying to login with an empty database...');
+		}
 		
-		// Try to login again
-		doLogin();
+		// Reset Jappix
+		else {
+			destroyTalkPage();
+			
+			// Open an unknown error
+			openThisError(2);
+		}
 	}
 	
 	finally {
@@ -347,7 +360,8 @@ function loginFromSession(data) {
 		session.find('password').text(),
 		session.find('resource').text(),
 		session.find('priority').text(),
-		'false'
+		false,
+		false
 	);
 }
 

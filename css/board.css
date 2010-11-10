@@ -1,0 +1,46 @@
+/*
+
+Jappix - An open social platform
+This is the board CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 10/11/10
+
+*/
+
+#board .one-board {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 18px;
+	z-index: 10000;
+	font-size: 13px;
+	padding: 6px 8px;
+	box-shadow: 0 0 8px #4e4e4e;
+	-moz-box-shadow: 0 0 8px #4e4e4e;
+	-webkit-box-shadow: 0 0 8px #4e4e4e;
+}
+
+#board .one-board:hover {
+	cursor: pointer;
+}
+
+#board .one-board.visible {
+	display: block;
+}
+
+#board .one-board.error {
+	background-color: rgba(241,160,160,0.9);
+	color: #6b1e1e;
+}
+
+#board .one-board.info {
+	background-color: rgba(248,246,186,0.9);
+	color: #5a5107;
+}

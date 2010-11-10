@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-07 11:23:14\n"
+"PO-Revision-Date: 2010-11-10 15:16:53\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2435,7 +2435,7 @@ msgstr "Décembre"
 
 #: 
 msgid "HTTPS storage"
-msgstr "Stockage HTTPS"
+msgstr "Stockage en HTTPS"
 
 #: 
 #~ msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen it into the Jappix application!"
@@ -2847,7 +2847,7 @@ msgstr "Votre formulaire a été soumis."
 
 #: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
-msgstr "Avant que vous ne commenciez à l'utiliser, vous aurez à changer quelques paramètres, rechercher vos amis et compléter votre profil."
+msgstr "Avant de l'utiliser, vous aurez à changer quelques paramètres, rechercher vos amis et compléter votre profil."
 
 #: 
 msgid "Enable notification sounds"
@@ -3028,4 +3028,8 @@ msgstr "Inactif depuis : %s"
 #: 
 msgid "User currently active"
 msgstr "Utilisateur actuellement actif"
+
+#: 
+msgid "Force HTTPS"
+msgstr "Forcer le HTTPS"
 

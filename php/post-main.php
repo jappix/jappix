@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -50,17 +50,23 @@ if(isset($_POST['registration']) && !empty($_POST['registration']))
 else
 	$registration = 'off';
 
-// HTTPS store
-if(isset($_POST['https_storage']) && !empty($_POST['https_storage']))
-	$https_storage = 'on';
-else
-	$https_storage = 'off';
-
 // Encryption
 if(isset($_POST['encryption']) && !empty($_POST['encryption']))
 	$encryption = 'on';
 else
 	$encryption = 'off';
+
+// HTTPS storage
+if(isset($_POST['https_storage']) && !empty($_POST['https_storage']))
+	$https_storage = 'on';
+else
+	$https_storage = 'off';
+
+// Force HTTPS
+if(isset($_POST['https_force']) && !empty($_POST['https_force']))
+	$https_force = 'on';
+else
+	$https_force = 'off';
 
 // Compression
 if(isset($_POST['compression']) && !empty($_POST['compression']))
@@ -82,8 +88,9 @@ $conf_xml =
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<registration>'.$registration.'</registration>
-	<https_storage>'.$https_storage.'</https_storage>
 	<encryption>'.$encryption.'</encryption>
+	<https_storage>'.$https_storage.'</https_storage>
+	<https_force>'.$https_force.'</https_force>
 	<compression>'.$compression.'</compression>
 	<developer>'.$developer.'</developer>'
 ;

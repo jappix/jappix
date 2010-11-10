@@ -8,7 +8,7 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -29,7 +29,6 @@ Last revision: 06/11/10
 	padding: 6px;
 	background: #d9e4e7;
 	border: 1px #a9bbbf solid;
-	color: #30575f;
 }
 
 #discovery .disco-server-text {

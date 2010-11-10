@@ -10,7 +10,7 @@ This is the main configuration form (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -35,17 +35,23 @@ if($registration == 'on')
 else
 	$check_registration = '';
 
-// HTTPS store
-if($https_storage == 'on')
-	$check_https_storage = $checked;
-else
-	$check_https_storage = '';
-
 // Encryption
 if($encryption == 'on')
 	$check_encryption = $checked;
 else
 	$check_encryption = '';
+
+// HTTPS storage
+if($https_storage == 'on')
+	$check_https_storage = $checked;
+else
+	$check_https_storage = '';
+
+// Force HTTPS
+if($https_force == 'on')
+	$check_https_force = $checked;
+else
+	$check_https_force = '';
 
 // Compression
 if($compression == 'on')
@@ -78,9 +84,11 @@ else
 <fieldset>
 	<legend><?php _e("Advanced"); ?></legend>
 	
+	<label for="encryption"><?php _e("Encryption"); ?></label><input id="encryption" type="checkbox" name="encryption"<?php echo $check_encryption; ?> />
+	
 	<label for="https_storage"><?php _e("HTTPS storage"); ?></label><input id="https_storage" type="checkbox" name="https_storage"<?php echo $check_https_storage; ?> />
 	
-	<label for="encryption"><?php _e("Encryption"); ?></label><input id="encryption" type="checkbox" name="encryption"<?php echo $check_encryption; ?> />
+	<label for="https_force"><?php _e("Force HTTPS"); ?></label><input id="https_force" type="checkbox" name="https_force"<?php echo $check_https_force; ?> />
 	
 	<label for="compression"><?php _e("Compression"); ?></label><input id="compression" type="checkbox" name="compression"<?php echo $check_compression; ?> />
 			

@@ -7,6 +7,13 @@
  * @version    SVN: $Id: Mobile_Detect.php 3 2009-05-21 13:06:28Z vic.stanciu $
  */
 
+/**
+ * MODIFIED FOR THE JAPPIX PROJECT
+ * Last revision: 10/11/10
+ *
+ * Thanks to Link Mauve for his patch!
+ */
+
 class Mobile_Detect {
     
     protected $accept;
@@ -14,6 +21,7 @@ class Mobile_Detect {
     
     protected $isMobile     = false;
     protected $isAndroid    = null;
+    protected $isIphone     = null;
     protected $isBlackberry = null;
     protected $isOpera      = null;
     protected $isPalm       = null;
@@ -37,7 +45,7 @@ class Mobile_Detect {
 
         if (isset($_SERVER['HTTP_X_WAP_PROFILE'])|| isset($_SERVER['HTTP_PROFILE'])) {
             $this->isMobile = true;
-        } elseif (strpos($this->accept,'text/vnd.wap.wml') > 0 || strpos($accept,'application/vnd.wap.xhtml+xml') > 0) {
+        } elseif (strpos($this->accept,'text/vnd.wap.wml') > 0 || strpos($this->accept,'application/vnd.wap.xhtml+xml') > 0) {
             $this->isMobile = true;
         } else {
             foreach ($this->devices as $device => $regexp) {

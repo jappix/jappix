@@ -21,6 +21,10 @@
 
 */
 
+/**
+ * MODIFIED FOR THE JAPPIX PROJECT
+ * Last revision: 10/11/10
+ */
 
   // Simple class to wrap file streams, string streams, etc.
   // seek is essential, and it should be byte stream
@@ -640,7 +644,21 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
                        ."(\.([-A-Za-z0-9_]))?"    // charset
                        ."(@([-A-Za-z0-9_]+))?/",  // @ modifier
                        $locale, $matches)) {
-          list(,$lang,,$country,,$charset,,$modifier) = $matches;
+          
+          $lang = '';
+          $country = '';
+          $charset = '';
+          $modifier = '';
+          
+          if(isset($matches[1]))
+             $lang = $matches[1];
+          if(isset($matches[3]))
+             $country = $matches[3];
+          if(isset($matches[5]))
+             $charset = $matches[5];
+          if(isset($matches[7]))
+             $modifier = $matches[7];
+          
           if ($modifier) {
             $locale_names = array("${lang}_$country.$charset@$modifier",
                                   "${lang}_$country@$modifier",

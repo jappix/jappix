@@ -10,7 +10,7 @@ This is the main configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 10/11/10
 
 */
 
@@ -22,8 +22,9 @@ $main_conf = array(
 	     	'lock'		=> 'off',
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
-	     	'https_storage'	=> 'off',
 	     	'encryption'	=> 'on',
+	     	'https_storage'	=> 'off',
+	     	'https_force'	=> 'off',
 	     	'compression'	=> 'on',
 	     	'developer'	=> 'off'
 	     );
@@ -56,8 +57,9 @@ define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('REGISTRATION', $main_conf['registration']);
-define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('ENCRYPTION', $main_conf['encryption']);
+define('HTTPS_STORAGE', $main_conf['https_storage']);
+define('HTTPS_FORCE', $main_conf['https_force']);
 define('COMPRESSION', $main_conf['compression']);
 define('DEVELOPER', $main_conf['developer']);
 
