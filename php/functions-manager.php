@@ -10,7 +10,7 @@ These are the PHP functions for Jappix manager
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
 
@@ -44,6 +44,34 @@ function isImage($file) {
 function currentTab($current, $page) {
 	if($current == $page)
 		echo ' class="tab-active"';
+}
+
+// Checks all the storage folders are writable
+function storageWritable() {
+	// Read the directory content
+	$dir = PHP_BASE.'/store/';
+	$scan = scandir($dir);
+	
+	// Writable marker
+	$writable = true;
+	
+	// Check that each folder is writable
+	foreach($scan as $current) {
+		// Current folder
+		$folder = $dir.$current;
+		
+		// A folder is not writable?
+		if(!preg_match('/^\.(.+)/', $current) && !is_writable($folder)) {
+			// Try to change the folder rights
+			chmod($folder, 0777);
+			
+			// Check it again!
+			if(!is_writable($folder))
+				$writable = false;
+		}
+	}
+	
+	return $writable;
 }
 
 // Removes a given directory (with all sub-elements)
@@ -308,10 +336,20 @@ function processUpdate($url) {
 	
 	// Check all the files are writable
 	foreach($scan as $scanned) {
-		if(!is_writable($dir_base.$scanned)) {
-			echo('<p>» '.T_("Aborted: everything is not writable!").'</p>');
+		// Element path
+		$scanned_current = $dir_base.$scanned;
+		
+		// Element not writable
+		if(!is_writable($scanned_current)) {
+			// Try to change the element rights
+			chmod($scanned_current, 0777);
 			
-			return false;
+			// Check it again!
+			if(!is_writable($scanned_current)) {
+				echo('<p>» '.T_("Aborted: everything is not writable!").'</p>');
+				
+				return false;
+			}
 		}
 	}
 	

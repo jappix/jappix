@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 11/11/10
 
 */
 
@@ -214,7 +214,7 @@ function createTalkPage() {
 									'</p>' + 
 									
 									'<p class="buddy-conf-text">' + 
-										'- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=contact%40post-pro.fr&amp;item_name=Jappix%20Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8" target="_blank">' + _e("Donate") +  '</a>' + 
+										'- <a href="http://project.jappix.com/donate" target="_blank">' + _e("Donate") +  '</a>' + 
 									'</p>' + 
 								'</div>' + 
 							'</div>' + 

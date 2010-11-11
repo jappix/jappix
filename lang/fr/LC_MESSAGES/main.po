@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-10 15:16:53\n"
+"PO-Revision-Date: 2010-11-11 13:45:04\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3032,4 +3032,8 @@ msgstr "Utilisateur actuellement actif"
 #: 
 msgid "Force HTTPS"
 msgstr "Forcer le HTTPS"
+
+#: 
+msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr "Vos dossiers de stockage ne peuvent être écrits, pourriez-vous appliquer les bons droits ?"
 

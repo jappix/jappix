@@ -250,9 +250,15 @@ else
 		<div id="manager-content">
 			<?php
 			
-			if(($id != 0) && newUpdates($check_updates)) { ?>
-				<a class="info bottomspace neutral" href="./?a=updates<?php echo $keep_get; ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>
-			<?php }
+			if($id != 0) {
+				if(!storageWritable()) { ?>
+					<p class="info bottomspace fail"><?php _e("Your storage folders are not writable, please apply the good rights!"); ?></p>
+				<?php }
+				
+				if(newUpdates($check_updates)) { ?>
+					<a class="info bottomspace neutral" href="./?a=updates<?php echo $keep_get; ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>
+				<?php }
+			}
 			
 			// Authorized and statistics page requested
 			if($id == 1) { ?>
