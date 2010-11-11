@@ -8,7 +8,7 @@ This is the server features JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 11/11/10
 
 */
 
@@ -62,21 +62,15 @@ function handleFeatures(xml) {
 		pubsub = true;
 	if($(xml).find('feature[var=' + NS_URN_ARCHIVE + ']').size())
 		archive = true;
-	if($(xml).find('feature[var=' + NS_URN_ARCHIVE + ':auto]').size())
+	if($(xml).find('feature[var=' + NS_URN_AR_AUTO + ']').size())
 		archive_auto = true;
-	if($(xml).find('feature[var=' + NS_URN_ARCHIVE + ':pref]').size())
+	if($(xml).find('feature[var=' + NS_URN_AR_PREF + ']').size())
 		archive_pref = true;
 	
 	// Active the pep elements if available
 	if(pep) {
 		// Update our database
-		setDB('feature', 'pep', 'true');
-		
-		// Show the PEP elements
-		$('.pep-hidable').show();
-		
-		// Process the buddy-list height again
-		adaptRoster();
+		enableFeature('pep');
 		
 		// Geolocate the user
 		geolocate();
@@ -95,32 +89,53 @@ function handleFeatures(xml) {
 	}
 	
 	// Active the pubsub features if available
-	if(pubsub) {
-		setDB('feature', NS_PUBSUB, true);
-		
-		// Show the PubSub elements
-		$('.pubsub-hidable').show();
-	}
+	if(pubsub)
+		enableFeature(NS_PUBSUB);
 	
 	// Active the archiving features if available
 	if(archive) {
-		setDB('feature', NS_URN_ARCHIVE, true);
-		
-		// Show the archive elements
-		$('.archives-hidable:not(.pref)').show();
+		enableFeature(NS_URN_ARCHIVE);
 		
 		// Active the archiving sub-features if available
-		if(archive_auto && archive_pref) {
-			setDB('feature', NS_URN_ARCHIVE + ':pref', true);
-			
-			// Show the archive sub-elements
-			$('.archives-hidable.pref').show();
-		}
+		if(archive_pref)
+			enableFeature(NS_URN_AR_PREF);
+		if(archive_auto)
+			enableFeature(NS_URN_AR_AUTO);
 	}
 	
 	// Hide the private life fieldset if nothing to show
 	if(!pep && !archive_pref)
 		$('#options fieldset.privacy').hide();
 	
+	// Apply the features
+	applyFeatures('talk');
+	
+	// Process the buddy-list height
+	if(pep)
+		adaptRoster();
+	
 	return false;
+}
+
+// The function to apply the features to an element
+function applyFeatures(id) {
+	// Path to the elements
+	var path = '#' + id + ' .';
+	
+	// PEP features
+	if(enabledPEP())
+		$(path + 'pep-hidable').show();
+	
+	// PubSub features
+	if(enabledPubSub())
+		$(path + 'pubsub-hidable').show();
+	
+	// Archives features
+	if(enabledArchives()) {
+		$(path + 'archives-hidable:not(.pref)').show();
+		
+		// Sub-feature: archives preferences
+		if(enabledArchives('pref') && enabledArchives('auto'))
+			$(path + 'archives-hidable.pref').show();
+	}
 }

@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 11/11/10
 
 */
 
@@ -217,14 +217,6 @@ function displayPEP(xid, type) {
 			}
 		}
 	}
-}
-
-// Checks if PEP is available on the current XMPP server
-function enabledPEP() {
-	if(getDB('feature', 'pep'))
-		return true;
-	else
-		return false;
 }
 
 // Changes the mood icon

@@ -1919,6 +1919,9 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
+msgid "%s days ago"
+msgstr ""
+
 msgid "User currently active"
 msgstr ""
 

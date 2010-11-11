@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
 
@@ -436,13 +436,38 @@ function getAllBuddies() {
 	return buddies;
 }
 
+// Enables a feature
+function enableFeature(feature) {
+	setDB('feature', feature, 'true');
+}
+
+// Checks if a feature is enabled
+function enabledFeature(feature) {
+	if(getDB('feature', feature) == 'true')
+		return true;
+	else
+		return false;
+}
+
+// Returns the XMPP server PEP support
+function enabledPEP() {
+	return enabledFeature('pep');
+}
+
 // Returns the XMPP server PubSub support
 function enabledPubSub() {
-	// Feature available?
-	if(getDB('feature', NS_PUBSUB) == 'true')
-		return true;
+	return enabledFeature(NS_PUBSUB);
+}
+
+// Returns the XMPP server archives support
+function enabledArchives(sub) {
+	var xmlns = NS_URN_ARCHIVE;
 	
-	return false;
+	// Any sub element sent?
+	if(sub)
+		xmlns += ':' + sub;
+	
+	return enabledFeature(xmlns);
 }
 
 // Converts a XML document into a string

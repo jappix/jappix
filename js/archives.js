@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
 
@@ -182,21 +182,6 @@ function handleConfigArchives(iq) {
 		logThis('Archives not configured.');
 	else
 		logThis('Archives configured.');
-}
-
-// Returns the XMPP server archiving support
-function enabledArchives(sub) {
-	var xmlns = NS_URN_ARCHIVE;
-	
-	// Any sub element sent
-	if(sub)
-		xmlns += ':' + sub;
-	
-	// Feature available?
-	if(getDB('feature', xmlns) == 'true')
-		return true;
-	
-	return false;
 }
 
 // Plugin launcher

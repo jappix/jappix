@@ -8,22 +8,16 @@ This is the favorites CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
-
-#favorites .fedit-head-select {
-	min-width: 190px;
-}
 
 #favorites .content {
 	padding: 10px 0 10px 0;
 }
 
-#favorites .content p {
-	margin: 5px 10px 5px 10px;
-	text-align: justify;
-	font-size: 12px;
+#favorites .fedit-head-select {
+	min-width: 190px;
 }
 
 #favorites .switch-fav {
@@ -40,7 +34,7 @@ Last revision: 07/11/10
 	border-bottom: 1px #a9bbbf solid;
 	float: left;
 	padding: 10px 6px;
-	font-size: 13px;
+	font-size: 0.9em;
 }
 
 #favorites .room-switcher:hover {
@@ -93,7 +87,7 @@ Last revision: 07/11/10
 
 #favorites .fedit-line {
 	height: 30px;
-	font-size: 13px;
+	font-size: 0.9em;
 	padding: 10px 0 4px 4px;
 	border-bottom: 1px #b0b0b0 solid;
 }
@@ -110,6 +104,7 @@ Last revision: 07/11/10
 #favorites input {
 	height: 18px;
 	width: 186px;
+	margin-top: 0;
 	padding: 2px;
 }
 
@@ -118,32 +113,46 @@ Last revision: 07/11/10
 }
 
 #favorites .fedit-actions {
+	margin: 10px 0 0;
+	font-size: 0.9em;
 	float: right;
-	margin: 10px 0 10px 0;
 }
 
 #favorites input[type=checkbox] {
 	margin-top: 5px;
 }
 
-#favorites .fedit-actions a:hover {
-	text-decoration: underline;
-	cursor: pointer;
+#favorites .fedit-terminate {
+	float: right;
 }
 
 #favorites .fedit-add {
-	float: right;
+	display: block;
 }
 
 #favorites .fedit-edit {
-	float: right;
-	display: none;
+	background-position: 2px -1240px;
 }
 
 #favorites .fedit-remove {
-	float: right;
-	display: none;
 	margin: 0 8px 0 0;
+}
+
+#favorites .add {
+	background-position: 3px -1177px;
+}
+
+#favorites .remove {
+	background-position: 3px -1196px;
+}
+
+#favorites .join {
+	background-position: 3px -1701px;
+}
+
+#favorites .one-button {
+	padding-left: 20px;
+	font-size: 0.98em;
 }
 
 #favorites .fsearch-results {
@@ -151,13 +160,13 @@ Last revision: 07/11/10
 }
 
 #favorites .room-name {
-	margin: 4px 2px;
+	margin: 4px 2px 5px;
 	max-width: 210px;
 	float: left;
 }
 
 #favorites .fsearch-noresults {
 	display: none;
-	font-size: 15px;
+	font-size: 0.9em;
 	font-weight: bold;
 }

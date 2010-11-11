@@ -8,17 +8,9 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 11/11/10
 
 */
-
-// Switches between the options tabs
-function switchOptions(id) {
-	$('#options .one-lap').hide();
-	$('#options #conf' + id).show();
-	$('#options .tab a').removeClass('tab-active');
-	$('#options .tab .tab' + id).addClass('tab-active');
-}
 
 // Opens the options popup
 function optionsOpen() {
@@ -149,59 +141,25 @@ function optionsOpen() {
 	// Create the popup
 	createPopup('options', html);
 	
+	// Apply the features
+	applyFeatures('options');
+	
 	// Associate the events
 	launchOptions();
-	
-	var enabled_archives_pref = enabledArchives('pref');
-	var enabled_pubsub = enabledPubSub();
-	var enabled_pep = enabledPEP();
-	var sWait = $('#options .content');
-	
-	// Show the waiting items if necessary
-	if(enabled_archives_pref || (enabled_pep && enabled_pubsub)) {
-		$('#options .wait').show();
-		$('#options .finish:first').addClass('disabled');
-	}
-	
-	// We get the archiving configuration
-	if(enabled_archives_pref) {
-		sWait.addClass('archives');
-		getConfigArchives();
-	}
-	
-	// We get the microblog configuration
-	if(enabled_pubsub && enabled_pep) {
-		sWait.addClass('microblog');
-		getConfigMicroblog();
-	}
-	
-	// We show the "privacy" form if something is visible into it
-	if(enabled_archives_pref || enabled_pep)
-		$('#options fieldset.privacy').show();
-	
-	// We get the values of the forms for the sounds
-	if(getDB('options', 'sounds') == '0')
-		$('#sounds').attr('checked', false);
-	else
-		$('#sounds').attr('checked', true);
-	
-	// We get the values of the forms for the geolocation
-	if(getDB('options', 'geolocation') == '1')
-		$('#geolocation').attr('checked', true);
-	else
-		$('#geolocation').attr('checked', false);
-	
-	// We get the values of the forms for the roster show all
-	if(getDB('options', 'roster-showall') == '1')
-		$('#showall').attr('checked', true);
-	else
-		$('#showall').attr('checked', false);
 }
 
 // Closes the options popup
 function closeOptions() {
 	// Destroy the popup
 	destroyPopup('options');
+}
+
+// Switches between the options tabs
+function switchOptions(id) {
+	$('#options .one-lap').hide();
+	$('#options #conf' + id).show();
+	$('#options .tab a').removeClass('tab-active');
+	$('#options .tab .tab' + id).addClass('tab-active');
 }
 
 // Manages the options wait item
@@ -259,9 +217,6 @@ function saveOptions() {
 	if($('#options .finish:first').hasClass('disabled'))
 		return;
 	
-	// Close the options
-	closeOptions();
-	
 	// We apply the sounds
 	var sounds = '0';
 	
@@ -318,6 +273,9 @@ function saveOptions() {
 	
 	// We send the options to the database
 	storeOptions();
+	
+	// Close the options
+	closeOptions();
 }
 
 // Handles the password changing
@@ -466,6 +424,55 @@ function deleteMyAccount() {
 	}
 }
 
+// Loads the user options
+function loadOptions() {
+	// Process the good stuffs, depending of the server features
+	var enabled_archives_pref = enabledArchives('pref');
+	var enabled_pubsub = enabledPubSub();
+	var enabled_pep = enabledPEP();
+	var sWait = $('#options .content');
+	
+	// Show the waiting items if necessary
+	if(enabled_archives_pref || (enabled_pep && enabled_pubsub)) {
+		$('#options .wait').show();
+		$('#options .finish:first').addClass('disabled');
+	}
+	
+	// We get the archiving configuration
+	if(enabled_archives_pref) {
+		sWait.addClass('archives');
+		getConfigArchives();
+	}
+	
+	// We get the microblog configuration
+	if(enabled_pubsub && enabled_pep) {
+		sWait.addClass('microblog');
+		getConfigMicroblog();
+	}
+	
+	// We show the "privacy" form if something is visible into it
+	if(enabled_archives_pref || enabled_pep)
+		$('#options fieldset.privacy').show();
+	
+	// We get the values of the forms for the sounds
+	if(getDB('options', 'sounds') == '0')
+		$('#sounds').attr('checked', false);
+	else
+		$('#sounds').attr('checked', true);
+	
+	// We get the values of the forms for the geolocation
+	if(getDB('options', 'geolocation') == '1')
+		$('#geolocation').attr('checked', true);
+	else
+		$('#geolocation').attr('checked', false);
+	
+	// We get the values of the forms for the roster show all
+	if(getDB('options', 'roster-showall') == '1')
+		$('#showall').attr('checked', true);
+	else
+		$('#showall').attr('checked', false);
+}
+
 // Plugin launcher
 function launchOptions() {
 	// The click events on the links
@@ -516,4 +523,7 @@ function launchOptions() {
 				deleteMyAccount();
 		}
 	});
+	
+	// Load the options
+	loadOptions();
 }
