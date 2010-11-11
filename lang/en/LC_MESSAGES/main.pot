@@ -770,9 +770,6 @@ msgstr ""
 msgid "Geolocation"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 msgid "Empty"
 msgstr ""
 

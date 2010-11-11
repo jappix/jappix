@@ -142,16 +142,19 @@ Last revision: 11/11/10
 	background-position: 3px -1177px;
 }
 
-#favorites .remove {
+#favorites .remove,
+#inbox .remove {
 	background-position: 3px -1196px;
 }
 
-#favorites .join {
+#favorites .join,
+#inbox .reply {
 	background-position: 3px -1701px;
 }
 
-#favorites .one-button {
-	padding-left: 20px;
+#favorites .one-button,
+#inbox .one-button {
+	padding-left: 20px !important;
 	font-size: 0.98em;
 }
 

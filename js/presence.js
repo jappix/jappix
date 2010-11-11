@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
 
@@ -347,8 +347,8 @@ function filterStatus(xid, status, cut) {
 		status = '';
 	
 	else {
-		if((status.length > 50) && cut)
-			dStatus = status.substr(0, 50) + '...';
+		if(cut)
+			dStatus = truncate(status, 50);
 		else
 			dStatus = status;
 		

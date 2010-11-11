@@ -8,30 +8,37 @@ These are the notification JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 09/10/10
+Last revision: 11/10/10
 
 */
 
 // Resets the notifications alert if no one remaining
 function closeEmptyNotifications() {
-	if($('.one-notification').length == 0)
+	if(!$('.one-notification').size())
 		closeBubbles();
 }
 
 // Checks if there are pending notifications
 function checkNotifications() {
-	var notif = $('#top-content .notifications');
-	var nothing = $('.notifications-content .nothing');
+	// Define the selectors
+	var notif = '#top-content .notifications';
+	var nothing = '.notifications-content .nothing';
 	
-	if($('.one-notification').size()) {
-		notif.addClass('actived');
-		nothing.hide();
+	// Get the notifications number
+	var number = $('.one-notification').size();
+	
+	// Remove the red notify bubble
+	$(notif + ' .notify').remove();
+	
+	// Any notification?
+	if(number) {
+		$(notif).prepend('<div class="notify">' + number + '</div>');
+		$(nothing).hide();
 	}
 	
-	else {
-		notif.removeClass('actived');
-		nothing.show();
-	}
+	// No notification!
+	else
+		$(nothing).show();
 }
 
 // Creates a new notification
@@ -47,8 +54,9 @@ function newNotification(type, from, xid, body) {
 	// We generate the text to be displayed
 	var text, action, code;
 	
-	// We grab the buddy XID without any resource
+	// User things
 	from = cutResource(from);
+	var hash = hex_md5(from);
 	
 	switch(type) {
 		case 'subscribe':
@@ -71,15 +79,22 @@ function newNotification(type, from, xid, body) {
 	action = '<a class="yes">' + _e("Yes") + '</a><a class="no">' + _e("No") + '</a>';
 	
 	if(text) {
-		// We create the html markup depending of the notification type
-		code = '<div class="one-notification ' + id + '" title="' + body + '">';
-		code += '<p class="notification-text">' + text + '</p>';
-		code += '<p class="notification-actions">' + action + '</p>';
-		code += '</div>';
-		
 		// We display the notification
 		if(!exists('.notifications-content .' + id)) {
+			// We create the html markup depending of the notification type
+			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + body + '">' + 
+					'<div class="avatar-container">' + 
+						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'</div>' + 
+					
+					'<p class="notification-text">' + text + '</p>' + 
+					'<p class="notification-actions">' + action + '</p>' + 
+			       '</div>';
+			
+			// Add the HTML code
 			$('.notifications-content .tools-content-subitem').prepend(code);
+			
+			// Play a sound to alert the user
 			soundPlay(2);
 			
 			// The yes onclick function
@@ -91,6 +106,9 @@ function newNotification(type, from, xid, body) {
 			$('.' + id + ' a.no').click(function() {
 				actionNotification(type, xid, 'no', id);
 			});
+			
+			// Get the user avatar
+			getAvatar(from, 'cache', 'true', 'forget');
 		}
 	}
 	

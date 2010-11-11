@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 11/11/10
 
 */
 
@@ -91,7 +91,7 @@ function handleMessage(message) {
 			displayChatState('gone', hash);
 	}
 	
-	// If this is an invite message
+	// Invite message
 	if(message.getChild('x', NS_MUC_USER)) {
 		// We get the needed values
 		var iFrom = $(node).find('x invite').attr('from');
@@ -107,7 +107,7 @@ function handleMessage(message) {
 		return false;
 	}
 	
-	// If this is a request message
+	// Request message
 	if(message.getChild('confirm', NS_HTTP_AUTH)) {
 		// Open a new notification
 		newNotification('request', xid, message, body);
@@ -116,87 +116,114 @@ function handleMessage(message) {
 	}
 	
 	// Normal messages
-	if(type == 'normal' && body) {
-		var messageID = hex_md5(xid + subject + time);
-		var messageDate = getXMPPTime('utc');
+	if((type == 'normal') && body) {
+		// Message date
+		var messageDate = stamp;
 		
-		// We display the received message
-		displayInboxMessage(xid, subject, body, 'unread', messageID, 'fresh', messageDate);
+		// No message date?
+		if(!messageDate)
+			messageDate = getXMPPTime('utc');
+		
+		// Message ID
+		var messageID = hex_md5(xid + subject + messageDate);
+		
+		// We store the received message
+		storeInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+		
+		// Display the inbox message
+		if(exists('#inbox'))
+			displayInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+		
+		// Check new messages
+		checkInboxMessages();
+		
+		// Send it to the server
+		storeInbox();
 		
 		return false;
 	}
 	
-	// Headline messages
-	if((type == 'headline') || ($(node).find('event').attr('xmlns') == NS_PUBSUB_EVENT)) {
+	// PubSub event
+	if($(node).find('event').attr('xmlns') == NS_PUBSUB_EVENT) {
 		// We get the needed values
 		var iParse = $(node).find('event items');
 		var iNode = iParse.attr('node');
 		
 		// Turn around the different result cases
 		if(iNode) {
-			if(iNode == NS_MOOD) {
-				// Retrieve the values
-				var iMood = iParse.find('mood');
-				var fValue = '';
-				var tText = '';
+			switch(iNode) {
+				// Mood
+				case NS_MOOD:
+					// Retrieve the values
+					var iMood = iParse.find('mood');
+					var fValue = '';
+					var tText = '';
+					
+					// There's something
+					if(iMood.children().size()) {
+						fValue = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName;
+						tText = iMood.find('text').text();
+					}
+					
+					// Store the PEP event (and display it)
+					storePEP(xid, 'mood', fValue, tText);
+					
+					break;
 				
-				// There's something
-				if(iMood.children().size()) {
-					fValue = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName;
-					tText = iMood.find('text').text();
-				}
+				// Activity
+				case NS_ACTIVITY:
+					// Retrieve the values
+					var iActivity = iParse.find('activity');
+					var fValue = '';
+					var tText = '';
+					
+					// There's something
+					if(iActivity.children().size()) {
+						fValue = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName;
+						var sValue = node.getElementsByTagName(fValue).item(0).childNodes.item(0).nodeName;
+						
+						if(sValue && fValue)
+							fValue = fValue + '/' + sValue;
+						
+						tText = iActivity.find('text').text();
+						
+						if(!fValue)
+							fValue = '';
+					}
+					
+					// Store the PEP event (and display it)
+					storePEP(xid, 'activity', fValue, tText);
+					
+					break;
 				
-				// Store the PEP event (and display it)
-				storePEP(xid, 'mood', fValue, tText);
+				case NS_TUNE:
+					// Retrieve the values
+					var iTune = iParse.find('tune');
+					var tArtist = iTune.find('artist').text();
+					var tSource = iTune.find('source').text();
+					var tTitle = iTune.find('title').text();
+					
+					// Store the PEP event (and display it)
+					storePEP(xid, 'tune', tArtist, tTitle, tSource);
+					
+					break;
+				
+				case NS_GEOLOC:
+					// Retrieve the values
+					var iGeoloc = iParse.find('geoloc');
+					var tLat = iGeoloc.find('lat').text();
+					var tLon = iGeoloc.find('lon').text();
+					
+					// Store the PEP event (and display it)
+					storePEP(xid, 'geoloc', tLat, tLon);
+					
+					break;
+				
+				case NS_URN_MBLOG:
+					displayMicroblog(message, xid, hash, 'mixed');
+					
+					break;
 			}
-			
-			else if(iNode == NS_ACTIVITY) {
-				// Retrieve the values
-				var iActivity = iParse.find('activity');
-				var fValue = '';
-				var tText = '';
-				
-				// There's something
-				if(iActivity.children().size()) {
-					fValue = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName;
-					var sValue = node.getElementsByTagName(fValue).item(0).childNodes.item(0).nodeName;
-				
-					if(sValue && fValue)
-						fValue = fValue + '/' + sValue;
-				
-					tText = iActivity.find('text').text();
-				
-					if(!fValue)
-						fValue = '';
-				}
-				
-				// Store the PEP event (and display it)
-				storePEP(xid, 'activity', fValue, tText);
-			}
-			
-			else if(iNode == NS_TUNE) {
-				// Retrieve the values
-				var iTune = iParse.find('tune');
-				var tArtist = iTune.find('artist').text();
-				var tSource = iTune.find('source').text();
-				var tTitle = iTune.find('title').text();
-				
-				// Store the PEP event (and display it)
-				storePEP(xid, 'tune', tArtist, tTitle, tSource);
-			}
-			
-			else if(iNode == NS_GEOLOC) {
-				// Retrieve the values
-				var iGeoloc = iParse.find('geoloc');
-				var tLat = iGeoloc.find('lat').text();
-				var tLon = iGeoloc.find('lon').text();
-				
-				// Store the PEP event (and display it)
-				storePEP(xid, 'geoloc', tLat, tLon);
-			}
-			
-			else if(iNode == NS_URN_MBLOG)
-				displayMicroblog(message, xid, hash, 'mixed');
 		}
 		
 		return false;

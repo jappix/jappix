@@ -25,7 +25,7 @@ var NS_BOOKMARKS =    NS_STORAGE + 'bookmarks';
 var NS_ROSTERNOTES =  NS_STORAGE + 'rosternotes';
 
 var NS_JAPPIX =       'jappix:';
-var NS_MESSAGES =     NS_JAPPIX + 'messages';
+var NS_INBOX =        NS_JAPPIX + 'inbox';
 var NS_OPTIONS =      NS_JAPPIX + 'options';
 
 var NS_DISCO_ITEMS =  NS_PROTOCOL + 'disco#items';
@@ -136,6 +136,9 @@ var HOST_STATIC = null;
 // Anonymous mode
 var ANONYMOUS_ROOM = null;
 var ANONYMOUS_NICK = null;
+
+// Node ID
+var JAPPIX_ID = hex_md5(JAPPIX_LOCATION);
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {

@@ -8,7 +8,7 @@ This is the inbox CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 11/11/10
 
 */
 
@@ -19,10 +19,10 @@ Last revision: 06/11/10
 #inbox .content p {
 	margin: 5px 10px 5px 10px;
 	text-align: justify;
-	font-size: 12px;
+	font-size: 0.9em;
 }
 
-#inbox .messages-results {
+#inbox .inbox-results {
 	height: 310px;
 	width: 620px;
 	margin: -5px 0 0 10px;
@@ -34,89 +34,104 @@ Last revision: 06/11/10
 	background-color: #ccd8dc;
 }
 
-#inbox .message-reading {
-	background-color: #dde8ea;
+#inbox .one-message {
+	font-size: 0.9em;
+	border-bottom: 1px #b2c7cb solid;
 }
 
-#inbox .one-message {
-	height: 20px;
-	font-size: 13px;
-	padding: 3px 0 4px 4px;
-	border-bottom: 1px #b2c7cb solid;
+#inbox .message-head {
+	padding: 6px 0 7px 4px;
 	overflow: hidden;
 }
 
-#inbox .one-message:hover {
-	background: #dae4e7;
+#inbox .message-head:hover {
+	background-color: #dae4e7;
+	cursor: pointer;
+}
+
+#inbox .message-head:active {
+	background-color: #d6dee1;
+}
+
+#inbox .one-message.message-reading,
+#inbox .one-message.message-reading .message-head {
+	background-color: #dde8ea;
+}
+
+#inbox .avatar-container {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-right: 7px;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+
+#inbox .avatar {
+	max-width: 40px;
+	max-height: 40px;
+}
+
+#inbox .message-jid,
+#inbox .message-subject {
+	float: left;
+	margin: 0 2px;
+	overflow: hidden;
 }
 
 #inbox .message-jid {
-	float: left;
-	width: 200px;
+	width: 165px;
 	font-weight: bold;
-	margin: 2px;
 }
 
 #inbox .message-subject {
-	float: left;
-	width: 320px;
-	margin: 2px;
+	width: 355px;
 }
 
-.message-jid, .message-subject:hover {
-	cursor: pointer;
-}
-
-#inbox .message-remove {
-	float: right;
-	margin: 2px 5px 2px 2px;
-}
-
-#inbox .message-remove:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-#inbox .one-message-body {
-	background-color: #dde8ea;
-	display: none;
-}
-
-#inbox .one-message-body:hover {
-	background-color: #dae4e7;
+#inbox .message-truncated {
+	color: #42646b;
+	font-size: 0.8em;
+	margin: 23px 0 0 49px;
 }
 
 #inbox .message-body {
 	padding: 8px 5px 5px 5px;
-	font-size: 13px;
+}
+
+#inbox .message-body a {
+	text-decoration: underline;
 }
 
 #inbox .message-meta {
-	margin: 4px 5px 0 5px;
-	height: 26px;
+	margin-top: 6px;
+	padding: 3px 4px;
 	border-top: 1px #b2c7cb dotted;
+}
+
+#inbox .message-meta span.date {
+	color: #28474e;
+	font-size: 0.8em;
+	margin: 10px 0 0 4px;
+	float: left;
 }
 
 #inbox .message-meta a {
 	font-size: 0.85em;
 	margin: 5px;
 	float: right;
+	display: block;
 }
 
-#inbox .message-meta a:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-#inbox .messages-noresults {
+#inbox .inbox-noresults {
 	font-weight: bold;
+	display: none;
 }
 
 #inbox .a-show-messages {
 	display: none;
 }
 
-#inbox .messages-new {
+#inbox .inbox-new {
 	display: none;
 	height: 300px;
 	width: 620px;
@@ -124,30 +139,30 @@ Last revision: 06/11/10
 	padding: 16px 0 0 0;
 }
 
-#inbox .messages-new-block {
+#inbox .inbox-new-block {
 	border-top: 1px #686868 dotted;
 	padding: 10px 0 10px 0;
 	min-height: 25px;
 	clear: both;
 }
 
-#inbox .messages-new-text {
+#inbox .inbox-new-text {
 	float: left;
 	width: 100px;
 }
 
-#inbox .messages-new-textarea {
+#inbox .inbox-new-textarea {
 	width: 460px;
 	height: 142px;
 	margin-bottom: 10px;
 	float: left;
 }
 
-#inbox .messages-new input {
+#inbox .inbox-new input {
 	float: left;
 }
 
-#inbox .messages-new-to ul {
+#inbox .inbox-new-to ul {
 	width: 264px;
 	max-height: 168px;
 	font-size: 0.9em;
@@ -155,20 +170,20 @@ Last revision: 06/11/10
 	top: 32px;
 }
 
-#inbox .messages-new-to-input {
+#inbox .inbox-new-to-input {
 	width: 260px;
 }
 
-#inbox .messages-new-subject-input {
+#inbox .inbox-new-subject-input {
 	width: 380px;
 }
 
-#inbox .messages-new-send a {
+#inbox .inbox-new-send a {
 	margin-right: 35px;
 	float: right;
 }
 
-#inbox .messages-new-send a:hover {
+#inbox .inbox-new-send a:hover {
 	text-decoration: underline;
 	cursor: pointer;
 }

@@ -8,7 +8,7 @@ This is the tools CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 11/11/10
 
 */
 
@@ -76,11 +76,21 @@ Last revision: 02/11/10
 #top-content .actived,
 #top-content .actived:hover,
 #top-content .actived:active {
-	background-color: rgba(232,241,243,1) !important;
+	background-color: rgba(232,241,243,0.9) !important;
 }
 
-#top-content .inbox-notify {
-	display: none;
+#top-content .notify {
+	background-color: #c60505;
+	color: white;
+	font-size: 0.7em;
+	font-weight: bold;
+	margin-left: -10px;
+	padding: 1px 4px;
+	position: absolute;
+	bottom: -2px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 #top-content .tools-content {
@@ -206,7 +216,7 @@ Last revision: 02/11/10
 
 .notifications-content .one-notification {
 	padding: 8px 4px;
-	font-size: 0.9em;
+	font-size: 0.85em;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
@@ -220,13 +230,34 @@ Last revision: 02/11/10
 	background-color: rgba(255,255,255,0.2);
 }
 
-.notification-actions {
-	margin: 2px 6px;
+.notifications-content .avatar-container {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 0 8px 8px 0;
+	text-align: center;
+	background-repeat: no-repeat;
 }
 
-.notification-actions a {
-	margin-right: 10px;
+.notifications-content .avatar {
+	max-width: 40px;
+	max-height: 40px;
+}
+
+.notifications-content .notification-text,
+.notifications-content .notification-actions {
+	width: 152px;
+	margin-left: 48px;
+	overflow: hidden;
+}
+
+.notifications-content .notification-actions {
+	margin-top: 3px;
+}
+
+.notifications-content .notification-actions a {
+	margin-right: 8px;
 	font-weight: bold;
 	font-size: 0.9em;
-	color: white !important;
+	color: white;
 }

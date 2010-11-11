@@ -8,7 +8,7 @@ These are the storage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 11/11/10
 
 */
 
@@ -32,7 +32,7 @@ function handleStorage(iq) {
 	
 	// Define some vars
 	var options = $(handleXML).find('storage[xmlns=' + NS_OPTIONS + ']');
-	var messages = $(handleXML).find('storage[xmlns=' + NS_MESSAGES + ']');
+	var inbox = $(handleXML).find('storage[xmlns=' + NS_INBOX + ']');
 	var bookmarks = $(handleXML).find('storage[xmlns=' + NS_BOOKMARKS + ']');
 	var rosternotes = $(handleXML).find('storage[xmlns=' + NS_ROSTERNOTES + ']');
 	
@@ -54,8 +54,8 @@ function handleStorage(iq) {
 			showAllBuddies();
 	});
 	
-	// Parse the messages xml
-	messages.find('message').each(function() {
+	// Parse the inbox xml
+	inbox.find('message').each(function() {
 		// We retrieve the informations
 		var from = $(this).attr('from');
 		var subject = $(this).attr('subject');
@@ -65,7 +65,7 @@ function handleStorage(iq) {
 		var date = $(this).attr('date');
 		
 		// We display the message
-		displayInboxMessage(from, subject, content, status, id, 'old', date)
+		storeInboxMessage(from, subject, content, status, id, date);
 	});
 	
 	// Parse the bookmarks xml
@@ -102,11 +102,14 @@ function handleStorage(iq) {
 		$('.options-hidable').show();
 	}
 	
-	// Messages received
-	else if(messages.size()) {
-		logThis('Messages received.');
+	// Inbox received
+	else if(inbox.size()) {
+		logThis('Inbox received.');
 		
-		$('.messages-hidable').show();
+		// Check we have new messages
+		checkInboxMessages();
+		
+		$('.inbox-hidable').show();
 	}
 	
 	// Bookmarks received (for logger)

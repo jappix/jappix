@@ -8,7 +8,7 @@ This is the others CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 11/11/10
 
 */
 
@@ -83,7 +83,7 @@ Last revision: 10/11/10
 	-webkit-box-shadow: 0 0 2px #000;
 }
 
-.messages-hidable,
+.inbox-hidable,
 .options-hidable,
 .pep-hidable,
 .pubsub-hidable,

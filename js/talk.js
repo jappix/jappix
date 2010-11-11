@@ -40,7 +40,7 @@ function createTalkPage() {
 			'<div class="tools tools-all">';
 				
 				if(!anonymous) html += 
-				'<a onclick="messagesOpen();" class="messages-hidable">' + _e("Messages") +  '<span class="inbox-notify"></span></a>' + 
+				'<a onclick="openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
 				'<a onclick="openVCard();">' + _e("Profile") +  '</a>' + 
 				'<a onclick="optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
 				'<a onclick="normalQuit();">' + _e("Disconnect") +  '</a>';

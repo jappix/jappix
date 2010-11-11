@@ -75,6 +75,20 @@ function printf(string, value) {
 	return string.replace('%s', value);
 }
 
+// Truncates a string
+function truncate(string, limit) {
+	// Must truncate the string
+	if(string.length > limit)
+		string = string.substr(0, limit) + '...';
+	
+	return string;
+}
+
+// Removes the new lines
+function noLines(string) {
+	return string.replace(/\n/g, ' ');
+}
+
 // Properly explodes a string with a given character
 function explodeThis(toEx, toStr, i) {
 	// Get the index of our char to explode
@@ -305,11 +319,11 @@ function relativeDate(to_parse) {
 
 // Reverses the HTML encoding of a string
 String.prototype.revertHtmlEnc = function() {
-	var str = this.replace(/&amp;/g,'&');
-	str = str.replace(/&lt;/g,'<');
-	str = str.replace(/&gt;/g,'>');
-	str = str.replace(/&quot;/g,'\"');
-	str = str.replace(/<br>/g,'\n');
+	var str = this.replace(/&amp;/gi,'&');
+	str = str.replace(/&lt;/gi,'<');
+	str = str.replace(/&gt;/gi,'>');
+	str = str.replace(/&quot;/gi,'\"');
+	str = str.replace(/<br( )?(\/)?>/gi,'\n');
 	
 	return str;
 }
