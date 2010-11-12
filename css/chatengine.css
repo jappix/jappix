@@ -8,7 +8,7 @@ This is the chat-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 12/11/10
 
 */
 
@@ -104,28 +104,22 @@ Last revision: 06/11/10
 	cursor: pointer;
 }
 
-#chat-engine .chatstate {
-	display: none;
+#chat-engine .one-chatstate {
 	background-color: rgba(234,234,234,0.8);
-	padding: 2px;
+	color: #3f3f3f;
+	padding: 3px 2px 2px 8px;
 	position: absolute;
 	bottom: 104px;
 	left: 4px;
 	right: 4px;
 	z-index: 30;
-	font-size: 0.7em;
+	font-size: 0.75em;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-bottom-right-radius: 4px;
-}
-
-#chat-engine .one-chatstate {
-	display: none;
-	margin: 1px 0 0 6px;
-	color: #3f3f3f;
 }
 
 #chat-engine .content {

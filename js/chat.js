@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 12/11/10
 
 */
 
@@ -99,15 +99,7 @@ function generateChat(type, id, xid, nick) {
 		specialAttributes = '';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
-		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>' + 
-			      '<div class="chatstate">' + 
-			      		'<div class="active one-chatstate">' + _e("Your friend is paying attention to the conversation.") + '</div>' + 
-			      		'<div class="composing one-chatstate">' + _e("Your friend is writing a message...") + '</div>' + 
-			      		'<div class="paused one-chatstate">' + _e("Your friend stopped writing a message.") + '</div>' + 
-			      		'<div class="inactive one-chatstate">' + _e("Your friend is doing something else.") + '</div>' + 
-			      		'<div class="gone one-chatstate">' + _e("Your friend closed the chat.") + '</div>' + 
-			      '</div>';
-		
+		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>';
 		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '" onclick="openUserInfos(\'' + xid + '\');"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';

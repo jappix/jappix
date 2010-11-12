@@ -8,7 +8,7 @@ These are the chatstate JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/09/10
+Last revision: 12/11/10
 
 */
 
@@ -31,12 +31,52 @@ function chatStateSend(state, xid, hash, type) {
 
 // Displays a given chatstate in a given chat
 function displayChatState(state, hash) {
-	// We reset the previous state
-	$('#' + hash + ' .one-chatstate').hide();
-	
 	// We change the buddy name color in the chat-switch
-	$('#chat-switch .' + hash + ' .name').attr('class', 'name ' + state);
+	$('#chat-switch .' + hash + ' .name').removeClass('active')
+					     .removeClass('composing')
+					     .removeClass('paused')
+					     .removeClass('inactive')
+					     .removeClass('gone')
+					     .addClass(state);
 	
-	// We display the chatstate in the chat
-	$('#' + hash + ' .' + state + ', #' + hash + ' .chatstate').show();
+	// We generate the chatstate text
+	var text = '';
+	
+	switch(state) {
+		// Active
+		case 'active':
+			text = _e("Your friend is paying attention to the conversation.");
+			
+			break;
+		
+		// Composing
+		case 'composing':
+			text = _e("Your friend is writing a message...");
+			
+			break;
+		
+		// Paused
+		case 'paused':
+			text = _e("Your friend stopped writing a message.");
+			
+			break;
+		
+		// Inactive
+		case 'inactive':
+			text = _e("Your friend is doing something else.");
+			
+			break;
+		
+		// Gone
+		case 'gone':
+			text = _e("Your friend closed the chat.");
+			
+			break;
+	}
+	
+	// We reset the previous state
+	$('#' + hash + ' .one-chatstate').remove();
+	
+	// We create the chatstate
+	$('#' + hash + ' .content').after('<div class="' + state + ' one-chatstate">' + text + '</div>');
 }
