@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -134,8 +134,9 @@ function handleMessage(message) {
 		if(exists('#inbox'))
 			displayInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
 		
-		// Check new messages
-		checkInboxMessages();
+		// Check we have new messages (play a sound if any unread messages)
+		if(checkInboxMessages())
+			soundPlay(2);
 		
 		// Send it to the server
 		storeInbox();

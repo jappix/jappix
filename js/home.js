@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 12/11/10
 
 */
 
@@ -326,6 +326,12 @@ function launchHome() {
 		$(locale).append(html);
 	}, function() {
 		$(locale + ' .list').remove();
+	});
+	
+	// Disables the browser HTTP-requests stopper
+	$(document).keydown(function(e) {
+		if((e.keyCode == 27) && !isDeveloper())
+			return false;
 	});
 	
 	logThis('Welcome to Jappix! Happy coding in developer mode!');

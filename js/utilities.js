@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -328,6 +328,14 @@ String.prototype.revertHtmlEnc = function() {
 	return str;
 }
 
+// Checks if we are in developer mode
+function isDeveloper() {
+	if(DEVELOPER == 'on')
+		return true;
+	
+	return false;
+}
+
 // Gets the full XID of the user
 function getXID() {
 	// Return the XID of the user
@@ -432,7 +440,7 @@ function getStanzaFrom(stanza) {
 // Logs a given data in the console
 function logThis(data) {
 	// A console is available
-	if((DEVELOPER == 'on') && (typeof(console) != 'undefined'))
+	if(isDeveloper() && (typeof(console) != 'undefined'))
 		console.log(data);
 }
 

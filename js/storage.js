@@ -8,7 +8,7 @@ These are the storage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -106,8 +106,9 @@ function handleStorage(iq) {
 	else if(inbox.size()) {
 		logThis('Inbox received.');
 		
-		// Check we have new messages
-		checkInboxMessages();
+		// Check we have new messages (play a sound if any unread messages)
+		if(checkInboxMessages())
+			soundPlay(2);
 		
 		$('.inbox-hidable').show();
 	}
