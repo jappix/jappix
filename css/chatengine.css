@@ -293,7 +293,7 @@ Last revision: 12/11/10
 	float: left;
 }
 
-#chat-engine .text .first {
+#chat-engine .text .chat-tools-smileys {
 	margin-left: 4px;
 }
 
@@ -387,7 +387,6 @@ Last revision: 12/11/10
 }
 
 #chat-engine .tooltip {
-	display: none;
 	position: absolute;
 	bottom: 90px;
 	margin-left: -13px;
@@ -444,11 +443,7 @@ Last revision: 12/11/10
 	width: 100px;
 }
 
-.tooltip .tooltip-right-dchat:hover, .tooltip-right-fchat:hover {
+.tooltip .tooltip-actionlog:hover {
 	cursor: pointer;
 	text-decoration: underline;
-}
-
-.tooltip .tooltip-right-fchat {
-	display: none;
 }

@@ -141,7 +141,7 @@ function isAnonymous() {
 
 // Checks if this is a private chat user
 function isPrivate(xid) {
-	if(exists('[data-xid=' + xid + '][data-type=groupchat]'))
+	if(exists('[data-xid=' + escape(xid) + '][data-type=groupchat]'))
 		return true;
 	
 	return false;
@@ -355,7 +355,7 @@ function getMUCNick(id) {
 
 // Gets a MUC user XID
 function getMUCUserXID(room, nick) {
-	return $('#' + hex_md5(room) + ' div[data-nick=' + nick + ']').attr('data-xid');
+	return unescape($('#' + hex_md5(room) + ' div[data-nick=' + nick + ']').attr('data-xid'));
 }
 
 // Gets a MUC user read XID
@@ -419,11 +419,6 @@ function getBuddyName(xid) {
 // Escapes a string for a regex usage
 function escapeRegex(query) {
 	return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-}
-
-// Escapes a string for an onEvent usage
-function escapeOnEvent(str) {
-	return str.replace(/['"]/g, '\\$&');
 }
 
 // Gets the from attribute of a stanza (overrides some servers like Prosody missing from attributes)

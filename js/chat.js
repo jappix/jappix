@@ -72,15 +72,16 @@ function checkChatCreate(xid, type, nickname, password, title) {
 
 // Generates the chat DOM elements
 function generateChat(type, id, xid, nick) {
-	// Filter the XID for special chars
-	xid = escapeOnEvent(xid);
+	// Generate some stuffs
+	var path = '#' + id + ' .';
+	var escaped_xid = escape(xid);
 	
 	// Special code
 	var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle;
 	
 	// Groupchat special code
 	if(type == 'groupchat') {
-		specialAttributes = ' data-type="groupchat" data-xid="' + xid + '"';
+		specialAttributes = ' data-type="groupchat" data-xid="' + escaped_xid + '"';
 		specialAvatar = '';
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
 		specialCode = '<div class="content groupchat-content" id="chatContentFor' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
@@ -100,7 +101,7 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
 		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>';
-		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '" onclick="openUserInfos(\'' + xid + '\');"></a>';
+		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -117,8 +118,9 @@ function generateChat(type, id, xid, nick) {
 		specialLink += '<a class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
 	}
 	
+	// Append the chat HTML code
 	$('#chat-engine').append(
-		'<div id="' + id + '" class="chat-engine-chan"' + specialAttributes + ' data-xid="' + xid + '">' + 
+		'<div id="' + id + '" class="chat-engine-chan"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
 			'<div class="top">' + 
 				specialAvatar + 
 				
@@ -132,84 +134,45 @@ function generateChat(type, id, xid, nick) {
 			
 			'<div class="text">' + 
 				'<div class="tools">' + 
-					'<div class="chat-tools-content first">' + 
+					'<div class="chat-tools-content chat-tools-smileys">' + 
 						'<a class="tools-smileys tools-tooltip talk-images"></a>' + 
-						
-						'<div class="tooltip bubble-smileys">' + 
-							'<div class="tooltip-subitem">' + 
-								'<p class="tooltip-right-top tooltip-insert-smiley">' + _e("Smiley insertion") + '</p>' + 
-								smileyLinks(id) + 
-							'</div>' + 
-							
-							'<div class="tooltip-subarrow talk-images"></div>' + 
-						'</div>' + 
 					'</div>' + 
 					
-					'<div class="chat-tools-content"' + specialStyle + '>' + 
+					'<div class="chat-tools-content chat-tools-style"' + specialStyle + '>' + 
 						'<a class="tools-style tools-tooltip talk-images"></a>' + 
-						
-						'<div class="tooltip bubble-style">' + 
-							'<div class="tooltip-subitem">' + 
-								'<p class="tooltip-right-top">' + _e("Change style") + '</p>' + 
-								'<label class="bold">' + _e("Text in bold") + '</label><input type="checkbox" class="bold" />' + 
-								'<label class="italic">' + _e("Text in italic") + '</label><input type="checkbox" class="italic" />' + 
-								'<label class="underline">' + _e("Underlined text") + '</label><input type="checkbox" class="underline" />' + 
-								'<a class="color" style="background-color: #b10808; clear: both;" data-color="b10808"></a>' + 
-								'<a class="color" style="background-color: #e5860c;" data-color="e5860c"></a>' + 
-								'<a class="color" style="background-color: #f0f30e;" data-color="f0f30e"></a>' + 
-								'<a class="color" style="background-color: #009a04;" data-color="009a04"></a>' + 
-								'<a class="color" style="background-color: #0ba9a0;" data-color="0ba9a0"></a>' + 
-								'<a class="color" style="background-color: #04228f;" data-color="04228f"></a>' + 
-								'<a class="color" style="background-color: #9d0ab7;" data-color="9d0ab7"></a>' + 
-								'<a class="color" style="background-color: #8a8a8a;" data-color="8a8a8a"></a>' + 
-							'</div>' + 
-							
-							'<div class="tooltip-subarrow talk-images"></div>' + 
-						'</div>' + 
 					'</div>' + 
 					
-					'<div class="chat-tools-content">' + 
+					'<div class="chat-tools-content chat-tools-save">' + 
 						'<a class="tools-save tools-tooltip talk-images"></a>' + 
-						
-						'<div class="tooltip bubble-save">' + 
-							'<div class="tooltip-subitem">' + 
-								'<p class="tooltip-right-top">' + _e("Save chat") + '</p>' + 
-								'<p style="margin-bottom: 8px;">' + _e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>' + 
-								'<a class="tooltip-right-dchat" onclick="downloadChat(\'' + xid + '\');">' + _e("Generate file!") + '</a>' + 
-								'<a class="tooltip-right-fchat" target="_blank">' + _e("Download file!") + '</a>' + 
-							'</div>' + 
-							
-							'<div class="tooltip-subarrow talk-images"></div>' + 
-						'</div>' + 
 					'</div>' + 
 					
-					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '" onclick="cleanChat(\'' + id + '\');"></a>' + 
+					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '"></a>' + 
 					
 					specialLink + 
 				'</div>' + 
 				
-				'<textarea class="message-area" ' + specialDisabled + ' data-to="' + xid + '" /></textarea>' + 
+				'<textarea class="message-area" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
 			'</div>' + 
 		'</div>'
 	);
 	
-	// Click events
-	var path = '#' + id + ' .';
-	var generate_chat = $(path + 'tooltip-right-dchat');
-	var download_chat = $(path + 'tooltip-right-fchat');
-	
-	generate_chat.click(function() {
-		downloadChat(xid);
+	// Click event: chat cleaner
+	$(path + 'tools-clear').click(function() {
+		cleanChat(id);
 	});
 	
-	download_chat.click(function() {
-		generate_chat.show();
-		download_chat.hide();
+	// Click event: user-infos
+	$(path + 'tools-infos').click(function() {
+		openUserInfos(xid);
 	});
 }
 
 // Generates the chat switch elements
 function generateSwitch(type, id, xid, nick) {
+	// Paths to the elements
+	var chat_switch = '#chat-switch .';
+	var path = chat_switch + id;
+	
 	// Special code
 	var specialClass = ' unavailable';
 	var show_close = true;
@@ -222,20 +185,30 @@ function generateSwitch(type, id, xid, nick) {
 	}
 	
 	// Generate the HTML code
-	var html = '<div class="' + id + ' switcher chan" onclick="switchChan(\'' + id + '\');">' + 
+	var html = '<div class="' + id + ' switcher chan">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
 			
 			'<div class="name">' + nick + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
 	if(show_close)
-		html += '<div class="exit" onclick="quitThisChat(\'' + escapeOnEvent(xid) + '\', \'' + id + '\', \'' + type + '\');" title="' + _e("Close this tab") + '">x</div>';
+		html += '<div class="exit" title="' + _e("Close this tab") + '">x</div>';
 	
 	// Close the HTML
 	html += '</div>';
 	
 	// Append the HTML code
-	$('#chat-switch .chans, #chat-switch .more-content').append(html);
+	$(chat_switch + 'chans, ' + chat_switch + 'more-content').append(html);
+	
+	// Click event: switch to this chan
+	$(path).click(function() {
+		switchChan(id);
+	});
+	
+	// Click event: quit this chan
+	$(path + ' .exit').click(function() {
+		quitThisChat(xid, id, type);
+	});
 }
 
 // Cleans given the chat lines
@@ -270,7 +243,7 @@ function chatCreate(hash, xid, nick, type) {
 	getUserInfos(hash, xid, nick, type);
 	
 	// The icons-hover functions
-	tooltipIcons(hash);
+	tooltipIcons(xid, hash);
 	
 	// The event handlers
 	var inputDetect = $('#chat-engine #' + hash + ' .message-area');

@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -83,52 +83,6 @@ function switchChan(id) {
 	}
 }
 
-// Applies the chat-engine tooltips hover event
-function hoverTooltip(id, type) {
-	$('#' + id + ' .tools-' + type + ', #' + id + ' .bubble-' + type).hover(function() {
-		$('#' + id + ' .bubble-' + type).show();
-	}, function() {
-		$('#' + id + ' .bubble-' + type).hide();
-	});
-}
-
-// Applies the hoverTooltip function to the needed things
-function tooltipIcons(id) {
-	// Apply the hover event on each bubble icon
-	hoverTooltip(id, 'smileys');
-	hoverTooltip(id, 'style');
-	hoverTooltip(id, 'save');
-	
-	// Apply the click event on each style color
-	var id_path = '#' + id;
-	var message_area = id_path + ' .message-area';
-	var bubble_style = id_path + ' .bubble-style ';
-	var checkboxes = bubble_style + 'input:checkbox';
-	var colors = bubble_style + 'a.color';
-	
-	$(colors).click(function() {
-		// The clicked color is yet selected
-		if($(this).hasClass('selected'))
-			$(this).removeClass('selected');
-		
-		else {
-			$(colors).removeClass('selected');
-			$(this).addClass('selected');
-		}
-	});
-	
-	// Update the textarea style when it is changed
-	$(checkboxes + ', ' + colors).click(function() {
-		var style = generateStyle(id);
-		
-		// Any style to apply?
-		if(style)
-			$(message_area).attr('style', style);
-		else
-			$(message_area).removeAttr('style');
-	});
-}
-
 // Puts the selected smiley in the good chat-engine input
 function insertSmiley(smiley, hash) {
 	// We define the variables
@@ -188,10 +142,9 @@ function quitThisChat(xid, hash, type) {
 	chanCleanNotify(hash);
 }
 
-// Download the chat logs
-function downloadChat(xid) {
+// Generates the chat logs
+function generateChatLog(xid, hash) {
 	// Get the main values
-	var hash = hex_md5(xid);
 	var path = '#' + hash + ' ';
 	var content = $(path + '#chatContentFor' + hash).clone().contents();
 	var avatar = $(path + '.top .avatar-container:first').html();
@@ -215,8 +168,8 @@ function downloadChat(xid) {
 	
 	// POST the values to the server
 	$.post('./php/generate-chat.php', { content: content, xid: xid, nick: nick, avatar: avatar, date: date }, function(data) {
-		$(path + '.tooltip-right-dchat').hide();
-		$(path + '.tooltip-right-fchat').attr('href', './php/download-chat.php?id=' + data).show();
+		// Handled!
+		$(path + '.tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
 	});
 }
 

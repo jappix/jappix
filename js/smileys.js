@@ -8,13 +8,13 @@ These are the smileys JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/11/10
+Last revision: 12/11/10
 
 */
 
 // Generates the correct HTML code for an emoticon insertion tool
 function emoteLink(smiley, image, hash) {
-	return '<div onclick="insertSmiley(\'' + smiley + '\', \'' + hash + '\');" class="emoticon emoticon-' + image + ' smileys-images"></div>';
+	return '<div class="emoticon emoticon-' + image + ' smileys-images" data-smiley="' + smiley + '"></div>';
 }
 
 // Emoticon links arrays

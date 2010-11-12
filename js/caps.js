@@ -248,18 +248,22 @@ function displayDiscoInfos(from, xml) {
 	
 	// Apply xHTML-IM
 	var path = $('#' + hash);
-	var style = path.find('.bubble-style').parent();
+	var style = path.find('.chat-tools-style');
 	
 	if(xhtml_im)
 		style.show();
 	
 	else {
+		// Remove the tooltip elements
 		style.hide();
+		style.find('.bubble-style').remove();
 		
 		// Reset the markers
-		path.find('.message-area').removeAttr('style');
-		style.find('input[type=checkbox]').attr('checked', false);
-		style.find('a.color').removeClass('selected');
+		path.find('.message-area').removeAttr('style')
+					  .removeAttr('data-color')
+					  .removeAttr('data-bold')
+					  .removeAttr('data-italic')
+					  .removeAttr('data-underline');
 	}
 }
 

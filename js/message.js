@@ -348,7 +348,7 @@ function sendMessage(id, type) {
 	// Get the values
 	var message_area = $('#' + id + ' .message-area');
 	var body = message_area.val();
-	var xid = message_area.attr('data-to');
+	var xid = unescape(message_area.attr('data-to'));
 	
 	// If the user didn't entered any message, stop
 	if(!body || !xid)
@@ -564,7 +564,7 @@ function sendMessage(id, type) {
 	}
 }
 
-// Generates the correct message style
+// Generates the correct message area style
 function generateStyle(id) {
 	// Initialize the vars
 	var styles = '#' + id + ' div.bubble-style';
@@ -608,7 +608,7 @@ function generateMessage(aMsg, body, id) {
 	aMsg.setBody(body);
 	
 	// Get the style
-	var style = generateStyle(id);
+	var style = $('#' + id + ' .message-area').attr('style');
 	
 	// A message style is choosen
 	if(style) {

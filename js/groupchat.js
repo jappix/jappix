@@ -187,7 +187,7 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	generateSwitch('groupchat', hash, room, chan);
 	
 	// The icons-hover functions
-	tooltipIcons(hash);
+	tooltipIcons(room, hash);
 	
 	// We add a click event on the add button
 	if(!existDB('favorites', room)) {
