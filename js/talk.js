@@ -511,7 +511,7 @@ function createTalkPage() {
 				'<div id="chat-engine">';
 					if(!anonymous) html += 
 					'<div id="channel" class="chat-engine-chan" style="display: block;">' + 
-						'<div class="channel-header mixed ' + hex_md5(getXID()) + '">' + 
+						'<div class="top channel-header mixed ' + hex_md5(getXID()) + '">' + 
 							'<div class="avatar-container">' + 
 								'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 							'</div>' + 
@@ -541,9 +541,9 @@ function createTalkPage() {
 							'</div>' + 
 						'</div>' + 
 						
-						'<div class="channel-content mixed"></div>' + 
+						'<div class="content channel-content mixed"></div>' + 
 						
-						'<div class="channel-footer">' + 
+						'<div class="footer channel-footer">' + 
 							'<div class="sync talk-images">' + _e("You are synchronized with your network.") +  '</div>' + 
 							
 							'<div class="unsync talk-images">' + _e("Cannot send anything: you can only receive notices!") +  '</div>' + 

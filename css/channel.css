@@ -8,43 +8,9 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 12/11/10
 
 */
-
-#channel {
-	background-color: #f4f4f4 !important;
-}
-
-#channel .channel-header {
-	background-color: #e0e7e8;
-	border-bottom: 1px solid #c8c8c8;
-	color: black;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 6px;
-	height: 80px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
-}
-
-#channel .channel-header .avatar-container {
-	text-align: center;
-	margin: 2px 0 0 10px;
-	height: 76px;
-	width: 76px;
-}
-
-#channel .channel-header img {
-	max-height: 76px;
-	max-width: 76px;
-}
 
 #channel .channel-header div.update {
 	position: absolute;
@@ -144,21 +110,11 @@ Last revision: 03/11/10
 	float: left;
 }
 
-#channel .channel-content {
-	position: absolute;
-	top: 93px;
-	left: 0;
-	right: 0;
-	bottom: 29px;
-	overflow: auto;
-}
-
 #channel .one-update {
-	margin: 14px;
+	margin-bottom: 14px;
 	padding: 6px;
 	border-bottom: 1px dotted #d0d0d0;
 	min-height: 50px;
-	font-size: 0.9em;
 	color: black;
 	position: relative;
 }
@@ -285,15 +241,7 @@ Last revision: 03/11/10
 }
 
 #channel .channel-footer {
-	background-color: #e0e7e8;
-	border-top: 1px solid #c8c8c8;
-	color: black;
-	position: absolute;
 	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 6px;
-	height: 16px;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;

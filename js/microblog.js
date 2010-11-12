@@ -222,13 +222,13 @@ function getMicroblog(xid, hash) {
 		
 		// Create a new individual channel
 		$('.channel-content.mixed').after(
-				'<div class="channel-content individual microblog-' + hash + '">' + 
+				'<div class="content channel-content individual microblog-' + hash + '">' + 
 					'<a class="more" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
 					   .before(
-				'<div class="channel-header individual ' + hash + '">' + 
+				'<div class="top channel-header individual ' + hash + '">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 

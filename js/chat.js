@@ -120,7 +120,7 @@ function generateChat(type, id, xid, nick) {
 	
 	// Append the chat HTML code
 	$('#chat-engine').append(
-		'<div id="' + id + '" class="chat-engine-chan"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
+		'<div id="' + id + '" class="chat-engine-chan chat"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
 			'<div class="top">' + 
 				specialAvatar + 
 				
@@ -133,7 +133,7 @@ function generateChat(type, id, xid, nick) {
 			specialCode + 
 			
 			'<div class="text">' + 
-				'<div class="tools">' + 
+				'<div class="footer">' + 
 					'<div class="chat-tools-content chat-tools-smileys">' + 
 						'<a class="tools-smileys tools-tooltip talk-images"></a>' + 
 					'</div>' + 

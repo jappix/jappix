@@ -13,53 +13,47 @@ Last revision: 12/11/10
 */
 
 #chat-engine {
+	background-color: #f4f4f4;
 	position: absolute;
 	top: 40px;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 8;
-}
-
-#chat-engine .chat-engine-chan {
-	display: none;
-	background-color: #e0e7e8;
-	color: #5e5e5e;
-	position: absolute;
-	left: 6px;
-	right: 6px;
-	top: 0;
 	bottom: 6px;
+	right: 6px;
+	left: 6px;
+	z-index: 8;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
 
 #chat-engine .top {
-	border: 1px solid #cdc432;
-	background: #ffec6c;
-	color: #3d3d3d;
-	margin: 3px;
+	background-color: #e0e7e8;
+	border-bottom: 1px solid #c8c8c8;
+	color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 6px;
 	height: 80px;
-	display: block;
-	overflow: hidden;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
 }
 
 #chat-engine .top .avatar-container {
-	float: left;
-	width: 70px;
-	height: 70px;
-	margin: 5px 5px 5px 9px;
 	text-align: center;
-	background-repeat: no-repeat;
+	margin: 2px 0 0 10px;
+	height: 76px;
+	width: 76px;
+	float: left;
 }
 
 #chat-engine .top .avatar {
-	max-width: 70px;
-	max-height: 70px;
+	max-height: 76px;
+	max-width: 76px;
 }
 
 #chat-engine .top .name {
@@ -109,9 +103,9 @@ Last revision: 12/11/10
 	color: #3f3f3f;
 	padding: 3px 2px 2px 8px;
 	position: absolute;
-	bottom: 104px;
-	left: 4px;
-	right: 4px;
+	bottom: 93px;
+	left: 0;
+	right: 0;
 	z-index: 30;
 	font-size: 0.75em;
 	border-bottom-left-radius: 4px;
@@ -124,14 +118,17 @@ Last revision: 12/11/10
 
 #chat-engine .content {
 	color: #353535;
-	margin: 3px 3px 2px 3px;
-	display: block;
-	padding: 12px 10px 22px;
 	font-size: 0.9em;
-	top: 85px;
-	right: 0;
+	padding: 12px 14px 0;
+	position: absolute;
+	top: 93px;
 	left: 0;
-	bottom: 101px;
+	right: 0;
+	bottom: 29px;
+	overflow: auto;
+	box-shadow: 0 3px 10px #e8e8e8 inset;
+	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
+	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
 }
 
 #chat-engine .content a {
@@ -157,18 +154,14 @@ Last revision: 12/11/10
 	bottom: 100px;
 }
 
-#chat-engine .content,
-#chat-engine .list {
-	border: 1px solid #808080;
-	background: #f9f9f9;
+#chat-engine .chat .content,
+#chat-engine .chat .list {
 	overflow: auto;
-	position: absolute;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	box-shadow: 0 3px 10px #e8e8e8 inset;
-	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
-	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
+	bottom: 101px;
+}
+
+#chat-engine .chat .content {
+	padding-bottom: 12px;
 }
 
 #chat-engine .list .role {
@@ -221,6 +214,10 @@ Last revision: 12/11/10
 	max-width: 32px;
 }
 
+#chat-engine .chat-engine-chan {
+	display: none;
+}
+
 #chat-engine .one-line .me {
 	color: #1e4a70;
 }
@@ -252,29 +249,26 @@ Last revision: 12/11/10
 }
 
 #chat-engine .text {
-	color: #919191;
-	margin: 2px;
-	height: 97px;
-	display: block;
-	padding-right: 12px;
 	position: absolute;
-	bottom: 1px;
-	left: 1px;
-	right: 1px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
-#chat-engine .text .tools {
-	background: white;
-	border: 1px solid #636363;
-	padding: 5px;
-	height: 18px;
-	width: 100%;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+#chat-engine .footer {
+	background-color: #e0e7e8;
+	border-top: 1px solid #c8c8c8;
+	color: black;
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: 6px;
+	height: 16px;
+}
+
+#chat-engine .chat .footer {
+	bottom: 63px;
+	border-bottom: 1px solid #c8c8c8;
 }
 
 #chat-engine .chat-tools-content {
@@ -360,7 +354,7 @@ Last revision: 12/11/10
 }
 
 #chat-engine .text textarea {
-	padding: 5px;
+	padding: 5px 0;
 	margin-top: 3px;
 	height: 52px;
 	width: 100%;
@@ -388,7 +382,7 @@ Last revision: 12/11/10
 
 #chat-engine .tooltip {
 	position: absolute;
-	bottom: 90px;
+	bottom: 20px;
 	margin-left: -13px;
 	z-index: 40;
 	font-size: 0.8em;
