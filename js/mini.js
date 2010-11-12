@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/11/10
+Last revision: 12/11/10
 
 */
 
@@ -541,6 +541,7 @@ function handleRoster(iq) {
 // Disconnects when the user quit
 $(window).bind('unload', disconnect);
 
+// Loads a given page
 function loadPage(path, element) {
 	// First change the page URL
 	window.location.hash = path;
@@ -554,6 +555,7 @@ function loadPage(path, element) {
 	return false;
 }
 
+// Replace page links
 function replaceLinks(element) {
 	$(element + ' a').each(function() {
 		var link = $(this).attr('href');
@@ -566,7 +568,17 @@ function replaceLinks(element) {
 	});
 }
 
-// Append the CSS stylesheet
-$(document).ready(function() {
+// Plugin launcher
+function launchMini() {
+	// Append the mini stylesheet
 	$('head').append('<link rel="stylesheet" href="' + JAPPIX_LOCATION + 'php/get.php?h=none&t=css&g=mini.xml" type="text/css" media="all" />');
-});
+	
+	// Disables the browser HTTP-requests stopper
+	$(document).keydown(function(e) {
+		if((e.keyCode == 27) && !isDeveloper())
+			return false;
+	});
+}
+
+// Append the CSS stylesheet
+$(document).ready(launchMini);
