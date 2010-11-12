@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -55,7 +55,7 @@ function openArchives() {
 	// Get all the buddies in our roster
 	var buddies = getAllBuddies();
 	
-	for(var i = 0; i < buddies.length; i++) {
+	for(i in buddies) {
 		var current = buddies[i];
 		
 		// Create a new DOM element
@@ -167,7 +167,7 @@ function configArchives(enabled) {
 	
 	var pref = iq.appendNode('pref', {'xmlns': NS_URN_ARCHIVE});
 	
-	for(var i = 0; i < mType.length; i++)
+	for(i in mType)
 		pref.appendChild(iq.appendNode('method', {'xmlns': NS_URN_ARCHIVE, 'type': mType[i], 'use': mUse[i]}));
 	
 	con.send(iq);

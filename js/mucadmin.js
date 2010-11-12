@@ -8,7 +8,7 @@ These are the muc-admin JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -305,9 +305,9 @@ function sendMucAdminIQ(xid, rights, form) {
 	
 	else if(form == 'aut') {
 		// We define the values array
-		var types = ['member', 'owner', 'admin', 'outcast'];
+		var types = new Array('member', 'owner', 'admin', 'outcast');
 		
-		for(var i=0; i<=3; i++) {
+		for(i in types) {
 			// We get the current type
 			var tType = types[i];
 			

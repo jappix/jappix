@@ -208,7 +208,7 @@ function handleIQ(iq) {
 			NS_ROSTER
 		);
 		
-		for(var i = 0; i < fArray.length; i++)
+		for(i in fArray)
 			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
 		
 		con.send(iqResponse);

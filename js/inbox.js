@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -173,7 +173,7 @@ function checkInboxMessage() {
 		else
 			xid = to.split(', ');
 		
-		for(var i = 0; i < xid.length; i++) {
+		for(i in xid) {
 			var current = xid[i];
 			
 			if(current) {

@@ -8,7 +8,7 @@ These are the music JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -190,7 +190,7 @@ function publishMusic(title, artist, source, duration, uri) {
 				     );
 			
 			// Create the children nodes
-			for(var i = 0; i < nodes.length; i++) {
+			for(i in nodes) {
 				if(values[i])
 					tune.appendChild(iq.buildNode(nodes[i], {'xmlns': NS_TUNE}, values[i]));
 			}

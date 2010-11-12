@@ -109,7 +109,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 	// Other request
 	else {
 		// For each group this buddy has
-		for(var i = 0; i < dGroup.length; i++) {
+		for(i in dGroup) {
 			var cGroup = dGroup[i];
 			
 			if(cGroup) {
@@ -482,7 +482,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	var all_groups = getAllGroups();
 	var all_groups_dom = '';
 	
-	for(var a = 0; a < all_groups.length; a++) {
+	for(a in all_groups) {
 		// Current group
 		var all_groups_current = all_groups[a];
 		
@@ -521,7 +521,7 @@ function updateRosterItem(xid, rename, group) {
 		item.setAttribute('name', rename);
 	
 	if(group.length)
-		for(var i = 0; i < group.length; i++)
+		for(i in group)
 			item.appendChild(iq.buildNode('group', {'xmlns': NS_ROSTER}, group[i]));
 	
 	con.send(iq);

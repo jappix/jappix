@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/11/10
+Last revision: 12/11/10
 
 */
 
@@ -255,7 +255,7 @@ function handleIQ(iq) {
 			NS_VERSION
 		);
 		
-		for(var i = 0; i < fArray.length; i++)
+		for(i in fArray)
 			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
 		
 		con.send(iqResponse);
@@ -314,7 +314,7 @@ function handleDisconnected() {
 }
 
 function handleRoster(iq) {
-	if (!iq || iq.getType() != 'result')
+	if(!iq || (iq.getType() != 'result'))
 		return;
   	
   	// Define some pre-vars
@@ -324,10 +324,10 @@ function handleRoster(iq) {
   	
 	// Get roster items
 	var iqNode = iq.getNode();
-	var bLength = iqNode.getElementsByTagName('item').length;
+	var bItems = iqNode.getElementsByTagName('item');
 	
 	// Display each elements from the roster
-	for(i; i < bLength; i++) {
+	for(i in bItems) {
 		// Get the values
 		current = iqNode.getElementsByTagName('item').item(i);
 		xid = current.getAttribute('jid').htmlEnc();
@@ -512,9 +512,8 @@ function chatSwitch(hash) {
 	
 	// Hide the other chats
 	var divs = document.getElementsByTagName('div');
-	var current, i;
 	
-	for(i = 0; i < divs.length; i++)
+	for(i in divs)
 		if(divs.item(i).getAttribute('class') == 'one-chat')
 			divs.item(i).style.display = 'none';
 	

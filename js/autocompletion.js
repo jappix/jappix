@@ -8,7 +8,7 @@ These are the autocompletion tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 12/11/10
 
 */
 
@@ -34,13 +34,13 @@ function processAutocompletion(query, id) {
 	var results = new Array();
 	
 	// Search in the roster
-	for(var i = 0; i < $('#' + id + ' .user').size(); i++) {
-		var nick = $('#' + id + ' .user .name').eq(i).text();
+	$('#' + id + ' .user').each(function() {
+		var nick = $(this).find('.name').text();
 		var regex = new RegExp('(^)' + query, 'gi');
 		
 		if(nick.match(regex))
 			results.push(nick);
-	}
+	});
 	
 	// Sort the array
 	results = results.sort(caseInsensitiveSort);

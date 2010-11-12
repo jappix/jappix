@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -124,6 +124,9 @@ function openVCard() {
 	
 	// Create the popup
 	createPopup('vcard', html);
+	
+	// Associate the events
+	launchVCard();
 	
 	// We get the VCard informations
 	getVCard(getXID(), 'user');
@@ -473,7 +476,7 @@ function sendVCard() {
 		);
 		
 		// Generate the XML
-		for(var i = 0; i < read.length; i++) {
+		for(i in read) {
 			if((i == 0) || (i == 1 && read[i]) || (i == 2)) {
 				var iq = new JSJaCIQ();
 				iq.setType('set');
@@ -507,4 +510,14 @@ function sendVCard() {
 	getAvatar(getXID(), 'force', 'true', 'forget');
 	
 	logThis('vCard sent.');
+}
+
+// Plugin launcher
+function launchVCard() {
+	// Keyboard events
+	$('#vcard input').keyup(function(e) {
+		// Enter pressed: send the vCard
+		if(e.keyCode == 13)
+			return sendVCard();
+	});
 }

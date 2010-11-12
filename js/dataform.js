@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 12/11/10
 
 */
 
@@ -625,7 +625,7 @@ function handleThisBrowse(iq) {
 		// Get the features that this entity supports
 		var findFeature = $(handleXML).find('feature');
 		
-		for(var i = 0; i < findFeature.length; i++) {
+		for(i in findFeature) {
 			var current = findFeature.eq(i).attr('var');
 			
 			switch(current) {
@@ -661,7 +661,7 @@ function handleThisBrowse(iq) {
 		var aTools = Array('search', 'join', 'subscribe', 'command', 'browse');
 		var bTools = Array(_e("Search"), _e("Join"), _e("Subscribe"), _e("Command"), _e("Browse"));
 		
-		for(var i = 0; i < buttons.length; i++) {
+		for(i in buttons) {
 			if(buttons[i])
 				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="dataForm(\'' + from + '\', \'' + aTools[i] + '\', \'\', \'\', \'' + target + '\');" title="' + bTools[i] + '"></a>';
 		}

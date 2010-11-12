@@ -34,7 +34,7 @@ function processBuddySearch(query) {
 	// Search in the roster
 	var buddies = getAllBuddies();
 	
-	for(var i = 0; i < buddies.length; i++) {
+	for(i in buddies) {
 		var xid = buddies[i];
 		var nick = getBuddyName(xid);
 		
@@ -86,13 +86,9 @@ function createBuddySearch(destination) {
 	
 	// Get the result array
 	var entered = processBuddySearch(value);
-	var total = 0;
-	
-	if(entered)
-		total = entered.length;
 	
 	// Display each result (if any)
-	if(total && entered) {
+	if(entered && entered.length) {
 		// Set a special class to the search input
 		$(destination + ' input').addClass('suggested');
 		
@@ -102,7 +98,7 @@ function createBuddySearch(destination) {
 		// Initialize the code generation
 		var code = '<ul>';
 		
-		for(var i = 0; i < total; i++) {
+		for(i in entered) {
 			// Get some values from the XID
 			var current = getBuddyName(entered[i]).htmlEnc();
 			current = current.replace(regex, '<b>$&</b>');
@@ -201,13 +197,12 @@ function goFilterBuddySearch(vFilter) {
 	
 	// Show the buddies that match the search string
 	var rFilter = processBuddySearch(vFilter);
-	var tFilter = rFilter.length;
 	
 	// Hide all the buddies
 	$('#buddy-list .buddy').hide();
 	
 	// Only show the buddies which match the search
-	for(var i = 0; i < tFilter; i++) {
+	for(i in rFilter) {
 		// Choose the correct selector for this search
 		if(!BLIST_ALL)
 			$('#buddy-list .buddy[data-xid=' + rFilter[i] + ']:not(.hidden-buddy)').show();

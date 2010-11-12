@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -98,6 +98,9 @@ function openWelcome() {
 	// Create the popup
 	createPopup('welcome', html);
 	
+	// Apply the features
+	applyFeatures('welcome');
+	
 	// Associate the events
 	launchWelcome();
 	
@@ -153,7 +156,7 @@ function sendWelcome(array) {
 	var tags = new Array('sounds', 'geolocation', '', '', 'roster-showall');
 	
 	// Build the XML with the array
-	for(var i = 0; i < array.length; i++) {
+	for(i in array) {
 		var value = array[i];
 		var tag = tags[i];
 		

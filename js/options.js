@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 12/11/10
 
 */
 
@@ -195,7 +195,7 @@ function storeOptions() {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_OPTIONS}));
 	
 	// Loop the array
-	for(var i = 0; i < oType.length; i++)
+	for(i in oType)
 		storage.appendChild(iq.buildNode('option', {'type': oType[i], 'xmlns': NS_OPTIONS}, oContent[i]));
 	
 	con.send(iq, handleStoreOptions);

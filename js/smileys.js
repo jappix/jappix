@@ -107,7 +107,7 @@ function smileyLinks(hash) {
 		'moon'
 	);
 	
-	for(var i=0; i<sArray.length; i++)
+	for(i in sArray)
 		links += emoteLink(sArray[i], cArray[i], hash);
 	
 	return links;

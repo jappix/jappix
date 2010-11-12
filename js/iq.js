@@ -8,7 +8,7 @@ These are the IQ JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/11/10
+Last revision: 12/11/10
 
 */
 
@@ -88,7 +88,7 @@ function handleIQ(iq) {
 		// We set all the supported features
 		var fArray = myDiscoInfos();
 		
-		for(var i = 0; i < fArray.length; i++)
+		for(i in fArray)
 			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
 		
 		con.send(iqResponse);

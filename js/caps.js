@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 12/11/10
 
 */
 
@@ -164,7 +164,7 @@ function handleDiscoInfos(iq) {
 		sortVar = sortVar.sort();
 		
 		// Loop this sorted var attributes
-		for(var i = 0; i < sortVar.length; i++) {
+		for(i in sortVar) {
 			// Initialize the value sorting
 			var sortVal = new Array();
 			
@@ -183,7 +183,7 @@ function handleDiscoInfos(iq) {
 			sortVal = sortVal.sort();
 			
 			// Append the values to the string
-			for(var j = 0; j < sortVal.length; j++)
+			for(j in sortVal)
 				pString += sortVal[j] + '<';
 		}
 		
@@ -278,15 +278,15 @@ function processCaps(cIdentities, cFeatures, cDataForms) {
 	cDataForms = cDataForms.sort();
 	
 	// Process the sorted identity string
-	for(var a = 0; a < cIdentities.length; a++)
+	for(a in cIdentities)
 		cString += cIdentities[a] + '<';
 	
 	// Process the sorted feature string
-	for(var b = 0; b < cFeatures.length; b++)
+	for(b in cFeatures)
 		cString += cFeatures[b] + '<';
 	
 	// Process the sorted data-form string
-	for(var c = 0; c < cDataForms.length; c++)
+	for(c in cDataForms)
 		cString += cDataForms[c] + '<';
 	
 	// Process the SHA-1 hash
