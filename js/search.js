@@ -8,7 +8,7 @@ These are the seach tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 12/11/10
 
 */
 
@@ -244,7 +244,7 @@ function funnelFilterBuddySearch(keycode) {
 	$('#buddy-list .group span').text('-');
 	
 	// Nothing is entered, or escape pressed
-	if(!value || keycode == 27) {
+	if(!value || (keycode == 27)) {
 		if(keycode == 27)
 			input.val('');
 		

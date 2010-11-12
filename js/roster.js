@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 12/11/10
 
 */
 
@@ -141,6 +141,9 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 						if(group_toggle.hasClass('minus')) {
 							group.hide();
 							group_toggle.removeClass('minus').addClass('plus');
+							
+							// Remove the group opened buddy-info
+							$(groupContent + ' .buddy .buddy-infos').remove();
 						}
 						
 						// We must show the buddies
@@ -298,7 +301,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 	// Apply the hover event
 	$(bPath).hover(function() {
 		if(!exists('#buddy-list .buddy .buddy-infos')) {
-			$(bPath).oneTime(700, function() {
+			$(bPath).oneTime(800, function() {
 				// Create the buddy infos DOM element
 				$(bPath).append(
 					'<div class="buddy-infos">' + 

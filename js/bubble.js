@@ -8,15 +8,17 @@ These are the bubble JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/08/10
+Last revision: 12/11/10
 
 */
 
 // Closes all the opened bubbles
 function closeBubbles() {
+	// Destroy all the elements
 	$('.bubble:visible').hide();
-	
 	$('#talk').die('click');
+	
+	return true;
 }
 
 // Click function when a bubble is opened
@@ -24,7 +26,8 @@ function showBubble(selector) {
 	// This bubble is yet displayed? So abort!
 	if($(selector).is(':visible')) {
 		closeBubbles();
-		return;
+		
+		return false;
 	}
 	
 	// First close all opened bubbles
@@ -41,4 +44,6 @@ function showBubble(selector) {
 		if(!$(target).parents('.ibubble').size())
 			closeBubbles();
 	});
+	
+	return true;
 }
