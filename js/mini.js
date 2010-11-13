@@ -13,7 +13,7 @@ Last revision: 13/11/10
 */
 
 // Connects the user with the given logins
-function connect(user, domain, password, resource) {
+function connect(user, domain, password, resource, anonymous) {
 	// Create the Jappix Mini initial DOM content
 	var oldDOM = getDB('jmini', user + '@' + domain);
 	
@@ -102,11 +102,19 @@ function connect(user, domain, password, resource) {
 		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
-		oArgs.username = user;
-		oArgs.domain = domain;
-		oArgs.resource = resource;
-		oArgs.pass = password;
 		oArgs.secure = true;
+		oArgs.resource = resource;
+		oArgs.domain = domain;
+		
+		// Anonymous login?
+		if(anonymous)
+			oArgs.authtype = 'saslanon';
+		
+		// Normal login
+		else {
+			oArgs.username = user;
+			oArgs.pass = password;
+		}
 		
 		// We connect !
 		con.connect(oArgs);
