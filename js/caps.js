@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
@@ -173,10 +173,7 @@ function handleDiscoInfos(iq) {
 			
 			// Add each value to the array
 			$(this).find('field[var=' + sortVar[i] + '] value').each(function() {
-				var cVal = $(this).text();
-				
-				if(cVal)
-					sortVal.push(cVal);
+				sortVal.push($(this).text());
 			});
 			
 			// Sort the values
