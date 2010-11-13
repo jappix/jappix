@@ -84,7 +84,7 @@ function generateChat(type, id, xid, nick) {
 		specialAttributes = ' data-type="groupchat" data-xid="' + escaped_xid + '"';
 		specialAvatar = '';
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
-		specialCode = '<div class="content groupchat-content" id="chatContentFor' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
+		specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
 		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
 		specialStyle = '';
 		
@@ -100,7 +100,7 @@ function generateChat(type, id, xid, nick) {
 		specialAttributes = '';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
-		specialCode = '<div class="content" id="chatContentFor' + id + '"></div>';
+		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
 		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';

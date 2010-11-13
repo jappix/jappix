@@ -66,7 +66,7 @@ function createTooltip(xid, hash, type) {
 	var html = 
 		'<div class="tooltip bubble-' + type + '">' + 
 			'<div class="tooltip-subitem">' + 
-				'<p class="tooltip-right-top">' + title + '</p>' + 
+				'<p class="tooltip-top">' + title + '</p>' + 
 				content + 
 			'</div>' + 
 			

@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
@@ -145,10 +145,10 @@ function quitThisChat(xid, hash, type) {
 // Generates the chat logs
 function generateChatLog(xid, hash) {
 	// Get the main values
-	var path = '#' + hash + ' ';
-	var content = $(path + '#chatContentFor' + hash).clone().contents();
-	var avatar = $(path + '.top .avatar-container:first').html();
-	var nick = $(path + '.top .bc-name').text();
+	var path = '#' + hash + ' .';
+	var content = $(path + 'content').clone().contents();
+	var avatar = $(path + 'top .avatar-container:first').html();
+	var nick = $(path + 'top .bc-name').text();
 	var date = getXMPPTime('local');
 	
 	// Filter the content smileys
@@ -169,7 +169,7 @@ function generateChatLog(xid, hash) {
 	// POST the values to the server
 	$.post('./php/generate-chat.php', { content: content, xid: xid, nick: nick, avatar: avatar, date: date }, function(data) {
 		// Handled!
-		$(path + '.tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
+		$(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
 	});
 }
 
@@ -206,7 +206,7 @@ function chanCleanNotify(hash) {
 // Scrolls to the last chat message
 function autoScroll(hash) {
 	if(exists('#' + hash)) {
-		var objDiv = document.getElementById('chatContentFor' + hash);
+		var objDiv = document.getElementById('chat-content-' + hash);
 		
 		objDiv.scrollTop = objDiv.scrollHeight;
 	}

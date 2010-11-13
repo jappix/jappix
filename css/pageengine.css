@@ -63,7 +63,7 @@ Last revision: 13/11/10
 
 #page-engine p.bc-name {
 	font-size: 2.3em;
-	margin-bottom: 3px;
+	margin-bottom: 5px;
 }
 
 #page-engine p.bc-infos {
@@ -125,7 +125,7 @@ Last revision: 13/11/10
 }
 
 #page-engine .groupchat-content {
-	right: 185px !important;
+	right: 191px !important;
 }
 
 #page-engine .chat .content,
@@ -139,43 +139,45 @@ Last revision: 13/11/10
 
 #page-engine .list {
 	border-left: 1px solid #c8c8c8;
-	padding: 10px;
-	width: 164px;
+	padding: 8px 0 0;
+	width: 190px;
 	right: 0;
 }
 
 #page-engine .list .role {
 	display: none;
+	margin-bottom: 10px;
 }
 
 #page-engine .list .title {
 	font-weight: bold;
-	color: #464646;
-	padding: 0;
+	color: #383838;
+	margin-left: 8px;
 }
 
 #page-engine .list .user {
-	border-top: 1px solid #969696;
-	border-bottom: 1px solid #969696;
-	background: #f8f8f8;
-	color: #444444;
-	margin: 0 -10px 4px -10px;
+	background-color: #eff2f2;
+	border-color: #c8c8c8;
+	border-width: 1px 0;
+	border-style: solid;
+	color: #383838;
+	margin-bottom: 4px;
 	height: 32px;
 	overflow: hidden;
 }
 
 #page-engine .list .user:hover {
-	background: #f4f4f4;
+	background: #e9ecec;
 	cursor: pointer;
 }
 
 #page-engine .list .user:active {
-	background: #f1f1f1;
+	background: #e3e7e7;
 }
 
 #page-engine .list .user .name {
 	float: left;
-	width: 105px;
+	width: 110px;
 	height: 18px;
 	overflow: hidden;
 	margin: 7px 0 5px 3px;
@@ -207,7 +209,7 @@ Last revision: 13/11/10
 }
 
 #page-engine .system-message {
-	color: #094209;
+	color: #053805;
 	margin-bottom: 3px;
 }
 
@@ -234,12 +236,6 @@ Last revision: 13/11/10
 	right: 0;
 	z-index: 30;
 	font-size: 0.75em;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
 }
 
 #page-engine .text {
@@ -251,7 +247,9 @@ Last revision: 13/11/10
 
 #page-engine .footer {
 	background-color: #e0e7e8;
-	border-top: 1px solid #c8c8c8;
+	border-color: #c8c8c8;
+	border-width: 1px 0 0;
+	border-style: solid;
 	color: black;
 	position: absolute;
 	left: 0;
@@ -262,7 +260,7 @@ Last revision: 13/11/10
 
 #page-engine .chat .footer {
 	bottom: 63px;
-	border-bottom: 1px solid #c8c8c8;
+	border-width: 1px 0;
 	z-index: 1;
 }
 
@@ -329,7 +327,9 @@ Last revision: 13/11/10
 #page-engine .bubble-style a.color {
 	height: 18px;
 	width: 18px;
-	border: 1px solid white;
+	border-color: white;
+	border-width: 1px;
+	border-style: solid;
 	margin: 6px 5px 0 0;
 	float: left;
 	opacity: 0.6;
@@ -344,10 +344,11 @@ Last revision: 13/11/10
 
 #page-engine .bubble-style a.color.selected {
 	opacity: 1;
-	border: 1px solid #ffb20d;
+	border-color: #ffb20d;
 }
 
-#page-engine .text .compose {
+#page-engine .text .compose,
+#page-engine .muc-ask {
 	position: absolute;
 	left: 0;
 	right: 12px;
@@ -360,6 +361,9 @@ Last revision: 13/11/10
 	height: 52px;
 	width: 100%;
 	font-size: 1.2em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
 	-moz-border-radius-topright: 0;
@@ -369,10 +373,17 @@ Last revision: 13/11/10
 }
 
 #page-engine .muc-ask {
-	background-color: #d7e3e5;
-	border: 1px solid #a7bdc1;
-	height: 63px;
+	background-color: #e0e7e8;
+	height: 64px;
 	font-size: 0.9em;
+	right: 0;
+	z-index: 2;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
 }
 
 #page-engine .muc-ask label {
@@ -419,7 +430,7 @@ Last revision: 13/11/10
 	margin-left: 12px;
 }
 
-#page-engine .tooltip .tooltip-right-top {
+#page-engine .tooltip .tooltip-top {
 	margin-bottom: 8px;
 	font-weight: bold;
 }
