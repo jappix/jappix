@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 13/11/10
 
 */
 
@@ -390,9 +390,14 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		if(BLIST_ALL)
 			buddy.show();
 		
-		// Get the buddy avatar (only if a chat is opened)
-		if(exists('#' + hash))
+		// Chat stuffs
+		if(exists('#' + hash)) {
+			// Remove the chatstate notification
+			$('#' + hash + ' .one-chatstate').remove();
+			
+			// Get the buddy avatar (only if a chat is opened)
 			getAvatar(xid, 'cache', 'true', 'forget');
+		}
 	}
 	
 	// If the buddy is online
