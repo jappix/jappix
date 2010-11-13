@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 13/11/10
 
 */
 
@@ -156,9 +156,9 @@ Last revision: 10/11/10
 	width: 300px;
 	height: 34px;
 	text-decoration: none;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 }
 
 #home .right a.button:hover {
