@@ -8,14 +8,14 @@ These are the chatstate JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
 // Sends a given chatstate to a given entity
 function chatStateSend(state, xid, hash, type) {
 	// If the friend client supports chatstates and is online
-	if($('#' + hash + ' .message-area').hasClass('chatstates') && !exists('#chat-switch .' + hash + ' .unavailable')) {
+	if($('#' + hash + ' .message-area').hasClass('chatstates') && !exists('#page-switch .' + hash + ' .unavailable')) {
 		// New message stanza
 		var aMsg = new JSJaCMessage();
 		aMsg.setTo(xid);
@@ -31,8 +31,8 @@ function chatStateSend(state, xid, hash, type) {
 
 // Displays a given chatstate in a given chat
 function displayChatState(state, hash) {
-	// We change the buddy name color in the chat-switch
-	$('#chat-switch .' + hash + ' .name').removeClass('active')
+	// We change the buddy name color in the page-switch
+	$('#page-switch .' + hash + ' .name').removeClass('active')
 					     .removeClass('composing')
 					     .removeClass('paused')
 					     .removeClass('inactive')

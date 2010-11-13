@@ -161,7 +161,7 @@ function destroyTooltip(hash, type) {
 	$('#' + hash + ' .chat-tools-content .bubble-' + type).remove();
 }
 
-// Applies the chat-engine tooltips hover event
+// Applies the page-engine tooltips hover event
 function hoverTooltip(xid, hash, type) {
 	$('#' + hash + ' .chat-tools-' + type).hover(function() {
 		createTooltip(xid, hash, type);

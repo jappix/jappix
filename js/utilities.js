@@ -377,7 +377,7 @@ function getPassword() {
 
 // Quotes the nick of an user
 function quoteMyNick(hash, nick) {
-	$('#chat-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+	$('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
 }
 
 // Checks if the XID is a gateway

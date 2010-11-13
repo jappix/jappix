@@ -372,7 +372,7 @@ function getUserInfos(hash, xid, nick, type) {
 		// Display the buddy name
 		if(nick) {
 			$('#' + hash + ' .top .name .bc-name').text(nick);
-			$('#chat-switch .' + hash + ' .name').text(nick);
+			$('#page-switch .' + hash + ' .name').text(nick);
 		}
 		
 		// Get the buddy PEP informations

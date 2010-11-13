@@ -27,7 +27,7 @@ Last revision: 10/11/10
 #home .main,
 #buddy-list,
 #my-infos,
-#chat-engine,
+#page-engine,
 #install,
 #install-top .step,
 #install-buttons input,
@@ -83,6 +83,6 @@ Last revision: 10/11/10
 	background-color: #ffef68 !important;
 }
 
-#chat-engine .chatstate {
+#page-engine .chatstate {
 	background-color: #eaeaea !important;
 }

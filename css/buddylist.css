@@ -157,32 +157,32 @@ Last revision: 07/11/10
 }
 
 #buddy-list .unavailable,
-#chat-switch .unavailable {
+#page-switch .unavailable {
 	background-position: 0 -153px;
 }
 
 #buddy-list .available,
-#chat-engine .list .available,
-#chat-engine .list .chat,
-#chat-switch .available {
+#page-engine .list .available,
+#page-engine .list .chat,
+#page-switch .available {
 	background-position: 0 -169px;
 }
 
 #buddy-list .away,
-#chat-engine .list .away,
-#chat-switch .away {
+#page-engine .list .away,
+#page-switch .away {
 	background-position: 0 -185px;
 }
 
 #buddy-list .busy,
-#chat-engine .list .xa,
-#chat-engine .list .dnd,
-#chat-switch .busy {
+#page-engine .list .xa,
+#page-engine .list .dnd,
+#page-switch .busy {
 	background-position: 0 -201px;
 }
 
 #buddy-list .error,
-#chat-switch .error {
+#page-switch .error {
 	background-position: 0 -217px;
 }
 
@@ -375,7 +375,7 @@ Last revision: 07/11/10
 }
 
 #buddy-list .add,
-#chat-engine .text .tools-add {
+#page-engine .text .tools-add {
 	background-position: 0 -1047px;
 }
 
@@ -384,7 +384,7 @@ Last revision: 07/11/10
 }
 
 #buddy-list .groupchat,
-#chat-switch .groupchat-default {
+#page-switch .groupchat-default {
 	background-position: 0 -1082px;
 }
 

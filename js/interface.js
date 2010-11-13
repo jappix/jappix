@@ -65,25 +65,25 @@ function removeGeneralWait() {
 // Switches to the given chan
 function switchChan(id) {
 	if(exists('#' + id)) {
-		// We show the chat-engine content
-		$('.chat-engine-chan').hide();
+		// We show the page-engine content
+		$('.page-engine-chan').hide();
 		$('#' + id).show();
 		
 		// We edit the tab switcher
-		$('#chat-switch .switcher').removeClass('activechan').addClass('chan');
-		$('#chat-switch .' + id).addClass('activechan').removeClass('chan');
+		$('#page-switch .switcher').removeClass('activechan').addClass('chan');
+		$('#page-switch .' + id).addClass('activechan').removeClass('chan');
 		
 		if(id != 'channel') {
 			// We scroll down to the last message
 			autoScroll(id);
 			
 			// We put the focus on the target chat input
-			$('#chat-engine #' + id + ' .text .message-area').focus();
+			$('#page-engine #' + id + ' .text .message-area').focus();
 		}
 	}
 }
 
-// Puts the selected smiley in the good chat-engine input
+// Puts the selected smiley in the good page-engine input
 function insertSmiley(smiley, hash) {
 	// We define the variables
 	var selector = $('#' + hash + ' .message-area');
@@ -96,7 +96,7 @@ function insertSmiley(smiley, hash) {
 
 // Deletes all the associated elements of the chat we want to remove
 function deleteThisChat(hash) {
-	$('#' + hash + ', #chat-switch .' + hash).remove();
+	$('#' + hash + ', #page-switch .' + hash).remove();
 }
 
 // Closes the given chat
@@ -176,7 +176,7 @@ function generateChatLog(xid, hash) {
 // Notifies the user from a new incoming message
 function messageNotify(hash, type) {
 	// We notify the user if he has not the focus on the chat
-	var chat_switch = '#chat-switch .';
+	var chat_switch = '#page-switch .';
 	var tested = $(chat_switch + hash);
 	
 	if(!tested.hasClass('activechan') || !document.hasFocus()) {
@@ -193,7 +193,7 @@ function messageNotify(hash, type) {
 // Cleans the given chat notifications
 function chanCleanNotify(hash) {
 	// We remove the class that tell the user of a new message
-	var chat_switch = '#chat-switch .';
+	var chat_switch = '#page-switch .';
 	$(chat_switch + hash).removeClass('chan-newmessage chan-unread');
 	
 	// We reset the global notifications if no more unread messages

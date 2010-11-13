@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 13/11/10
 
 */
 
@@ -480,7 +480,7 @@ function createTalkPage() {
 			'</div>' + 
 			
 			'<div id="right-content">' + 
-				'<div id="chat-switch">' + 
+				'<div id="page-switch">' + 
 					'<div class="chans">';
 						if(!anonymous) html += 
 						'<div class="channel switcher activechan" onclick="switchChan(\'channel\');">' + 
@@ -493,7 +493,7 @@ function createTalkPage() {
 					'</div>' + 
 					
 					'<div class="more ibubble">' + 
-						'<div class="more-button talk-images" onclick="showBubble(\'#chat-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
+						'<div class="more-button talk-images" onclick="showBubble(\'#page-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
 						
 						'<div class="more-content bubble">';
 							if(!anonymous) html += 
@@ -508,10 +508,10 @@ function createTalkPage() {
 					'</div>' + 
 				'</div>' + 
 				
-				'<div id="chat-engine">';
+				'<div id="page-engine">';
 					if(!anonymous) html += 
-					'<div id="channel" class="chat-engine-chan" style="display: block;">' + 
-						'<div class="top channel-header mixed ' + hex_md5(getXID()) + '">' + 
+					'<div id="channel" class="page-engine-chan" style="display: block;">' + 
+						'<div class="top mixed ' + hex_md5(getXID()) + '">' + 
 							'<div class="avatar-container">' + 
 								'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 							'</div>' + 
@@ -541,9 +541,9 @@ function createTalkPage() {
 							'</div>' + 
 						'</div>' + 
 						
-						'<div class="content channel-content mixed"></div>' + 
+						'<div class="content mixed"></div>' + 
 						
-						'<div class="footer channel-footer">' + 
+						'<div class="footer">' + 
 							'<div class="sync talk-images">' + _e("You are synchronized with your network.") +  '</div>' + 
 							
 							'<div class="unsync talk-images">' + _e("Cannot send anything: you can only receive notices!") +  '</div>' + 

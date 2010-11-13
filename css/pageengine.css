@@ -1,18 +1,18 @@
 /*
 
 Jappix - An open social platform
-This is the chat-engine CSS stylesheet for Jappix
+This is the page-engine CSS stylesheet for Jappix
 
 -------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
-#chat-engine {
+#page-engine {
 	background-color: #f4f4f4;
 	position: absolute;
 	top: 40px;
@@ -25,7 +25,7 @@ Last revision: 12/11/10
 	-webkit-border-radius: 4px;
 }
 
-#chat-engine .top {
+#page-engine .top {
 	background-color: #e0e7e8;
 	border-bottom: 1px solid #c8c8c8;
 	color: black;
@@ -43,7 +43,7 @@ Last revision: 12/11/10
 	-webkit-border-top-left-radius: 4px;
 }
 
-#chat-engine .top .avatar-container {
+#page-engine .top .avatar-container {
 	text-align: center;
 	margin: 2px 0 0 10px;
 	height: 76px;
@@ -51,54 +51,180 @@ Last revision: 12/11/10
 	float: left;
 }
 
-#chat-engine .top .avatar {
+#page-engine .top .avatar {
 	max-height: 76px;
 	max-width: 76px;
 }
 
-#chat-engine .top .name {
+#page-engine .top .name {
 	text-align: right;
 	padding: 7px;
 }
 
-#chat-engine p.bc-name {
+#page-engine p.bc-name {
 	font-size: 2.3em;
 	margin-bottom: 3px;
 }
 
-#chat-engine p.bc-infos {
+#page-engine p.bc-infos {
 	font-size: 0.85em;
 	height: 16px;
 	overflow: hidden;
 	float: right;
 }
 
-#chat-engine p.bc-infos a {
+#page-engine p.bc-infos a {
 	color: #3d3d3d;
 	text-decoration: underline;
 }
 
-#chat-engine div.bc-pep {
+#page-engine div.bc-pep {
 	float: right;
 	margin-left: 6px;
 }
 
-#chat-engine div.bc-pep a {
+#page-engine div.bc-pep a {
 	height: 16px;
 	width: 16px;
 	margin-left: 4px;
 	float: left;
 }
 
-#chat-engine div.bc-pep a:hover {
+#page-engine div.bc-pep a:hover {
 	cursor: default;
 }
 
-#chat-engine div.bc-pep a[href]:hover {
+#page-engine div.bc-pep a[href]:hover {
 	cursor: pointer;
 }
 
-#chat-engine .one-chatstate {
+#page-engine .content,
+#page-engine .list {
+	font-size: 0.9em;
+	position: absolute;
+	top: 93px;
+	right: 0;
+	bottom: 29px;
+	overflow: auto;
+	box-shadow: 0 3px 10px #e8e8e8 inset;
+	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
+	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
+}
+
+#page-engine .content {
+	left: 0;
+	padding: 12px 14px 0;
+}
+
+#page-engine .content a {
+	text-decoration: underline;
+}
+
+#page-engine .page-engine-chan {
+	display: none;
+}
+
+#page-engine .groupchat-content {
+	right: 185px !important;
+}
+
+#page-engine .chat .content,
+#page-engine .chat .list {
+	bottom: 93px;
+}
+
+#page-engine .chat .content {
+	padding-bottom: 12px;
+}
+
+#page-engine .list {
+	border-left: 1px solid #c8c8c8;
+	padding: 10px;
+	width: 164px;
+	right: 0;
+}
+
+#page-engine .list .role {
+	display: none;
+}
+
+#page-engine .list .title {
+	font-weight: bold;
+	color: #464646;
+	padding: 0;
+}
+
+#page-engine .list .user {
+	border-top: 1px solid #969696;
+	border-bottom: 1px solid #969696;
+	background: #f8f8f8;
+	color: #444444;
+	margin: 0 -10px 4px -10px;
+	height: 32px;
+	overflow: hidden;
+}
+
+#page-engine .list .user:hover {
+	background: #f4f4f4;
+	cursor: pointer;
+}
+
+#page-engine .list .user:active {
+	background: #f1f1f1;
+}
+
+#page-engine .list .user .name {
+	float: left;
+	width: 105px;
+	height: 18px;
+	overflow: hidden;
+	margin: 7px 0 5px 3px;
+	padding-left: 18px;
+}
+
+#page-engine .list .user .avatar-container {
+	text-align: center;
+	float: right;
+	height: 32px;
+	width: 32px;
+}
+
+#page-engine .list .user .avatar {
+	max-height: 32px;
+	max-width: 32px;
+}
+
+#page-engine .one-line .me {
+	color: #1e4a70;
+}
+
+#page-engine .one-line .him {
+	color: #801e1e;
+}
+
+#page-engine .user-message {
+	margin-bottom: 3px;
+}
+
+#page-engine .system-message {
+	color: #094209;
+	margin-bottom: 3px;
+}
+
+#page-engine .system-message a {
+	color: #094209;
+}
+
+#page-engine .my-nick {
+	font-weight: bold;
+}
+
+#page-engine .old-message {
+	font-size: 11px;
+	margin-bottom: 1px;
+}
+
+#page-engine .one-chatstate {
 	background-color: rgba(234,234,234,0.8);
 	color: #3f3f3f;
 	padding: 3px 2px 2px 8px;
@@ -116,146 +242,14 @@ Last revision: 12/11/10
 	-webkit-border-bottom-right-radius: 4px;
 }
 
-#chat-engine .content {
-	color: #353535;
-	font-size: 0.9em;
-	padding: 12px 14px 0;
-	position: absolute;
-	top: 93px;
-	left: 0;
-	right: 0;
-	bottom: 29px;
-	overflow: auto;
-	box-shadow: 0 3px 10px #e8e8e8 inset;
-	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
-	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
-}
-
-#chat-engine .content a {
-	color: #353535;
-	text-decoration: underline;
-}
-
-#chat-engine .groupchat-content {
-	right: 185px !important;
-}
-
-#chat-engine .list {
-	color: #919191;
-	margin: 3px;
-	display: block;
-	padding: 10px;
-	font-size: 13px;
-	float: right;
-	width: 160px;
-	margin-top: 0;
-	top: 88px;
-	right: 0;
-	bottom: 100px;
-}
-
-#chat-engine .chat .content,
-#chat-engine .chat .list {
-	overflow: auto;
-	bottom: 101px;
-}
-
-#chat-engine .chat .content {
-	padding-bottom: 12px;
-}
-
-#chat-engine .list .role {
-	display: none;
-}
-
-#chat-engine .list .title {
-	font-weight: bold;
-	color: #464646;
-	padding: 0;
-}
-
-#chat-engine .list .user {
-	border-top: 1px solid #969696;
-	border-bottom: 1px solid #969696;
-	background: #f8f8f8;
-	color: #444444;
-	margin: 0 -10px 4px -10px;
-	height: 32px;
-	overflow: hidden;
-}
-
-#chat-engine .list .user:hover {
-	background: #f4f4f4;
-	cursor: pointer;
-}
-
-#chat-engine .list .user:active {
-	background: #f1f1f1;
-}
-
-#chat-engine .list .user .name {
-	float: left;
-	width: 105px;
-	height: 18px;
-	overflow: hidden;
-	margin: 7px 0 5px 3px;
-	padding-left: 18px;
-}
-
-#chat-engine .list .user .avatar-container {
-	text-align: center;
-	float: right;
-	height: 32px;
-	width: 32px;
-}
-
-#chat-engine .list .user img {
-	max-height: 32px;
-	max-width: 32px;
-}
-
-#chat-engine .chat-engine-chan {
-	display: none;
-}
-
-#chat-engine .one-line .me {
-	color: #1e4a70;
-}
-
-#chat-engine .one-line .him {
-	color: #801e1e;
-}
-
-#chat-engine .user-message {
-	margin-bottom: 3px;
-}
-
-#chat-engine .system-message {
-	color: #094209;
-	margin-bottom: 3px;
-}
-
-#chat-engine .system-message a {
-	color: #094209;
-}
-
-#chat-engine .my-nick {
-	font-weight: bold;
-}
-
-#chat-engine .old-message {
-	font-size: 11px;
-	margin-bottom: 1px;
-}
-
-#chat-engine .text {
+#page-engine .text {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
 }
 
-#chat-engine .footer {
+#page-engine .footer {
 	background-color: #e0e7e8;
 	border-top: 1px solid #c8c8c8;
 	color: black;
@@ -266,73 +260,73 @@ Last revision: 12/11/10
 	height: 16px;
 }
 
-#chat-engine .chat .footer {
+#page-engine .chat .footer {
 	bottom: 63px;
 	border-bottom: 1px solid #c8c8c8;
+	z-index: 1;
 }
 
-#chat-engine .chat-tools-content {
+#page-engine .chat-tools-content {
 	height: 16px;
 	width: 16px;
 	margin-right: 6px;
 	float: left;
 }
 
-#chat-engine .tools-tooltip {
+#page-engine .tools-tooltip {
 	display: block;
 	height: 16px;
 	width: 16px;
-	margin-top: 1px;
 	overflow: hidden;
 	float: left;
 }
 
-#chat-engine .text .chat-tools-smileys {
+#page-engine .text .chat-tools-smileys {
 	margin-left: 4px;
 }
 
-#chat-engine .text .tools-smileys {
+#page-engine .text .tools-smileys {
 	background-position: 0 -388px;
 }
 
-#chat-engine .text .tools-style {
+#page-engine .text .tools-style {
 	background-position: 0 -700px;
 }
 
-#chat-engine .text .tools-save {
+#page-engine .text .tools-save {
 	background-position: 0 -719px;
 }
 
-#chat-engine .text .tools-clear {
+#page-engine .text .tools-clear {
 	background-position: 0 -739px;
 }
 
-#chat-engine .text .tools-infos {
+#page-engine .text .tools-infos {
 	background-position: 0 -758px;
 }
 
-#chat-engine .text .tools-add {
+#page-engine .text .tools-add {
 	display: none;
 }
 
-#chat-engine .text .tools-mucadmin {
+#page-engine .text .tools-mucadmin {
 	background-position: 0 -777px;
 	display: none;
 }
 
-#chat-engine .bubble-style label.bold {
+#page-engine .bubble-style label.bold {
 	font-weight: bold;
 }
 
-#chat-engine .bubble-style label.italic {
+#page-engine .bubble-style label.italic {
 	font-style: italic;
 }
 
-#chat-engine .bubble-style label.underline {
+#page-engine .bubble-style label.underline {
 	text-decoration: underline;
 }
 
-#chat-engine .bubble-style a.color {
+#page-engine .bubble-style a.color {
 	height: 18px;
 	width: 18px;
 	border: 1px solid white;
@@ -344,57 +338,70 @@ Last revision: 12/11/10
 	-webkit-border-radius: 3px;
 }
 
-#chat-engine .bubble-style a.color:hover {
+#page-engine .bubble-style a.color:hover {
 	opacity: 0.7;
 }
 
-#chat-engine .bubble-style a.color.selected {
+#page-engine .bubble-style a.color.selected {
 	opacity: 1;
 	border: 1px solid #ffb20d;
 }
 
-#chat-engine .text textarea {
-	padding: 5px 0;
-	margin-top: 3px;
+#page-engine .text .compose {
+	position: absolute;
+	left: 0;
+	right: 12px;
+	bottom: 0;
+}
+
+#page-engine .text textarea {
+	border: 1px solid #c8c8c8;
+	padding: 5px;
 	height: 52px;
 	width: 100%;
 	font-size: 1.2em;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-top-left-radius: 0;
 }
 
-#chat-engine .muc-ask {
+#page-engine .muc-ask {
 	background-color: #d7e3e5;
 	border: 1px solid #a7bdc1;
 	height: 63px;
 	font-size: 0.9em;
 }
 
-#chat-engine .muc-ask label {
+#page-engine .muc-ask label {
 	color: #224249;
 	margin: 23px 10px 0 16px;
 	font-weight: bold;
 }
 
-#chat-engine .muc-ask input {
+#page-engine .muc-ask input {
 	width: 200px;
 	margin: 19px 10px 0 10px;
 	padding: 3px;
 }
 
-#chat-engine .tooltip {
+#page-engine .tooltip {
 	position: absolute;
-	bottom: 20px;
+	bottom: 21px;
 	margin-left: -13px;
 	z-index: 40;
 	font-size: 0.8em;
 	color: white;
 }
 
-#chat-engine .tooltip a {
+#page-engine .tooltip a {
 	color: white;
 	text-decoration: underline;
 }
 
-.tooltip-subitem {
+#page-engine .tooltip-subitem {
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
 	width: 200px;
@@ -404,7 +411,7 @@ Last revision: 12/11/10
 	-webkit-border-radius: 6px;
 }
 
-.tooltip-subarrow {
+#page-engine .tooltip-subarrow {
 	background-position: 0 -251px;
 	opacity: 0.8;
 	height: 10px;
@@ -412,32 +419,32 @@ Last revision: 12/11/10
 	margin-left: 12px;
 }
 
-.tooltip .tooltip-right-top {
+#page-engine .tooltip .tooltip-right-top {
 	margin-bottom: 8px;
 	font-weight: bold;
 }
 
-.tooltip label {
+#page-engine .tooltip label {
 	width: 105px;
 	float: left;
 	clear: both;
 	margin-bottom: 4px;
 }
 
-.tooltip label.select {
+#page-engine .tooltip label.select {
 	margin-top: 5px;
 }
 
-.tooltip input,
-.tooltip select {
+#page-engine .tooltip input,
+#page-engine .tooltip select {
 	float: left;
 }
 
-.tooltip select {
+#page-engine .tooltip select {
 	width: 100px;
 }
 
-.tooltip .tooltip-actionlog:hover {
+#page-engine .tooltip .tooltip-actionlog:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }

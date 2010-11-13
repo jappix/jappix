@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/11/10
+Last revision: 13/11/10
 
 */
 
@@ -91,10 +91,10 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Mixed mode
 		if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
-			$('.channel-content.mixed').prepend(html);
+			$('#channel .content.mixed').prepend(html);
 			
 			// Remove the old notices to make the DOM lighter
-			var oneUpdate = '.channel-content.mixed .one-update';
+			var oneUpdate = '#channel .content.mixed .one-update';
 			
 			if($(oneUpdate).size() > 40)
 				$(oneUpdate + ':last').remove();
@@ -106,7 +106,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		}
 		
 		// Individual mode
-		tIndividual = '.channel-content.individual.microblog-' + hash;
+		tIndividual = '#channel .content.individual.microblog-' + hash;
 		
 		if(exists(tIndividual) && !exists('.individual .' + tHash)) {
 			if(mode == 'mixed')
@@ -157,7 +157,7 @@ function handleMicroblog(iq) {
 	logThis('Microblog got: ' + from);
 	
 	// Define the selector path
-	var selector = '.channel-header.individual input[name=';
+	var selector = '#channel .top.individual input[name=';
 	
 	// Get the XID of the current buddy
 	var xid = $(selector + 'jid]').val();
@@ -221,14 +221,14 @@ function getMicroblog(xid, hash) {
 			cTitle = _e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
 		
 		// Create a new individual channel
-		$('.channel-content.mixed').after(
-				'<div class="content channel-content individual microblog-' + hash + '">' + 
+		$('#channel .content.mixed').after(
+				'<div class="content individual microblog-' + hash + '">' + 
 					'<a class="more" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
 					   .before(
-				'<div class="top channel-header individual ' + hash + '">' + 
+				'<div class="top individual ' + hash + '">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 
@@ -248,7 +248,7 @@ function getMicroblog(xid, hash) {
 	}
 	
 	// Get the number of items to retrieve
-	var items = $('.channel-header.individual input[name=counter]').val();
+	var items = $('#channel .top.individual input[name=counter]').val();
 	
 	// Ask the server the user's microblog 
 	var iq = new JSJaCIQ();
@@ -264,13 +264,13 @@ function getMicroblog(xid, hash) {
 // Show a given microblog waiting status
 function waitMicroblog(type) {
 	// First hide all the infos elements
-	$('.channel-footer div').hide();
+	$('#channel .footer div').hide();
 	
 	// Display the good one
-	$('.channel-footer div.' + type).show();
+	$('#channel .footer div.' + type).show();
 	
 	// Depending on the type, disable/enable certain tools
-	var selector = $('.channel-header input[name=microblog_body]');
+	var selector = $('#channel .top input[name=microblog_body]');
 	
 	if(type == 'unsync')
 		selector.attr('disabled', true);
@@ -396,7 +396,7 @@ function configMicroblog(persist, maximum) {
 // Handles the user's microblog
 function handleMyMicroblog(packet) {
 	// Reset the entire form
-	$('.channel-header input[name=microblog_body]').removeAttr('disabled').val('');
+	$('#channel .top input[name=microblog_body]').removeAttr('disabled').val('');
 	unattachMicroblog();
 	
 	// Check for errors
@@ -416,7 +416,7 @@ function sendMicroblog(aForm) {
 		// Sufficient parameters
 		if(body) {
 			// Disable & blur our input
-			$('.channel-header input[name=microblog_body]').attr('disabled', true).blur();
+			$('#channel .top input[name=microblog_body]').attr('disabled', true).blur();
 			
 			// Send the message on the XMPP network
 			publishMicroblog(
@@ -550,7 +550,7 @@ function attachMicroblog() {
 					}
 					
 					// Focus on the text input
-					$('.channel-header input[name=microblog_body]').focus();
+					$('#channel .top input[name=microblog_body]').focus();
 				});
 				
 				// Reset the upload input

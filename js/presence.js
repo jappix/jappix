@@ -201,7 +201,7 @@ function handlePresence(presence) {
 // Displays a MUC presence
 function displayMucPresence(from, roomHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, initial) {
 	// Generate the values
-	var thisUser = '#chat-engine #' + roomHash + ' .list .' + hash;
+	var thisUser = '#page-engine #' + roomHash + ' .list .' + hash;
 	var thisPrivate = $('#' + hash + ' .message-area');
 	var write = '<div class="one-line system-message"><em>(' + messageTime + ') </em>' + nick.htmlEnc() + ' ';
 	var real_xid = '';
@@ -432,8 +432,8 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	}
 	
 	// Display the presence in the switcher
-	if(exists('#chat-switch .' + hash))
-		$('#chat-switch .' + hash + ' .icon').removeClass('available unavailable error away busy').addClass(type);
+	if(exists('#page-switch .' + hash))
+		$('#page-switch .' + hash + ' .icon').removeClass('available unavailable error away busy').addClass(type);
 	
 	// Update roster groups
 	if(!SEARCH_FILTERED)
@@ -686,7 +686,7 @@ function presenceSend(checksum, autoidle) {
 	}
 	
 	// We send the presence to our active MUC
-	$('.chat-engine-chan[data-type=groupchat]').each(function() {
+	$('.page-engine-chan[data-type=groupchat]').each(function() {
 		// Not disabled?
 		if(!$(this).find('.message-area').attr('disabled'))
 			sendPresence($(this).attr('data-xid') + '/' + $(this).attr('data-nick'), '', show, status);

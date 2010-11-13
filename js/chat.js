@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
@@ -119,8 +119,8 @@ function generateChat(type, id, xid, nick) {
 	}
 	
 	// Append the chat HTML code
-	$('#chat-engine').append(
-		'<div id="' + id + '" class="chat-engine-chan chat"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
+	$('#page-engine').append(
+		'<div id="' + id + '" class="page-engine-chan chat"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
 			'<div class="top">' + 
 				specialAvatar + 
 				
@@ -151,7 +151,9 @@ function generateChat(type, id, xid, nick) {
 					specialLink + 
 				'</div>' + 
 				
-				'<textarea class="message-area" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
+				'<div class="compose">' + 
+					'<textarea class="message-area" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
+				'</div>' + 
 			'</div>' + 
 		'</div>'
 	);
@@ -170,7 +172,7 @@ function generateChat(type, id, xid, nick) {
 // Generates the chat switch elements
 function generateSwitch(type, id, xid, nick) {
 	// Paths to the elements
-	var chat_switch = '#chat-switch .';
+	var chat_switch = '#page-switch .';
 	var path = chat_switch + id;
 	
 	// Special code
@@ -213,8 +215,8 @@ function generateSwitch(type, id, xid, nick) {
 
 // Cleans given the chat lines
 function cleanChat(chat) {
-	$('#chat-engine #' + chat + ' .content .one-line').remove();
-	$('#chat-engine #' + chat + ' .text .message-area').focus();
+	$('#page-engine #' + chat + ' .content .one-line').remove();
+	$('#page-engine #' + chat + ' .text .message-area').focus();
 }
 
 // Creates a new chat
@@ -246,7 +248,7 @@ function chatCreate(hash, xid, nick, type) {
 	tooltipIcons(xid, hash);
 	
 	// The event handlers
-	var inputDetect = $('#chat-engine #' + hash + ' .message-area');
+	var inputDetect = $('#page-engine #' + hash + ' .message-area');
 	
 	inputDetect.keypress(function(e) {
 		// Enter key

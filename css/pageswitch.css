@@ -1,7 +1,7 @@
 /*
 
 Jappix - An open social platform
-This is the chat-switch CSS stylesheet for Jappix
+This is the page-switch CSS stylesheet for Jappix
 
 -------------------------------------------------
 
@@ -12,7 +12,7 @@ Last revision: 07/11/10
 
 */
 
-#chat-switch {
+#page-switch {
 	position: absolute;
 	top: 15px;
 	left: 10px;
@@ -20,7 +20,7 @@ Last revision: 07/11/10
 	z-index: 9;
 }
 
-#chat-switch .chans {
+#page-switch .chans {
 	position: absolute;
 	left: 0;
 	right: 40px;
@@ -29,13 +29,13 @@ Last revision: 07/11/10
 	overflow: hidden;
 }
 
-#chat-switch .more {
+#page-switch .more {
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 
-#chat-switch .more-button {
+#page-switch .more-button {
 	background-position: 6px -1372px;
 	background-color: #d6dfe0;
 	width: 7px;
@@ -48,7 +48,7 @@ Last revision: 07/11/10
 	-webkit-border-radius: 2px;
 }
 
-#chat-switch .more-content {
+#page-switch .more-content {
 	background-color: #d6dfe0;
 	display: none;
 	width: 200px;
@@ -69,7 +69,7 @@ Last revision: 07/11/10
 	-webkit-border-bottom-right-radius: 4px;
 }
 
-#chat-switch .switcher {
+#page-switch .switcher {
 	background-color: #d4ddde;
 	color: #17353b;
 	height: 15px;
@@ -85,7 +85,7 @@ Last revision: 07/11/10
 	-webkit-border-top-left-radius: 4px;
 }
 
-#chat-switch .more-content .switcher {
+#page-switch .more-content .switcher {
 	background-color: #d6dfe0;
 	float: none;
 	margin: 0;
@@ -95,34 +95,34 @@ Last revision: 07/11/10
 	-webkit-border-radius: 0;
 }
 
-#chat-switch .more-button:hover,
-#chat-switch .switcher:hover,
-#chat-switch .more-content .switcher:hover {
+#page-switch .more-button:hover,
+#page-switch .switcher:hover,
+#page-switch .more-content .switcher:hover {
 	background-color: #cdd6d7;
 	cursor: pointer;
 }
 
-#chat-switch .more-button:active,
-#chat-switch .switcher:active,
-#chat-switch .more-content .switcher:active {
+#page-switch .more-button:active,
+#page-switch .switcher:active,
+#page-switch .more-content .switcher:active {
 	background-color: #c4cecf;
 }
 
-#chat-switch .switcher.activechan {
+#page-switch .switcher.activechan {
 	background-color: #e0e7e8;
 }
 
-#chat-switch .more-content .switcher.activechan {
+#page-switch .more-content .switcher.activechan {
 	background-color: #cad6d7;
 }
 
-#chat-switch .icon {
+#page-switch .icon {
 	height: 16px;
 	width: 16px;
 	float: left;
 }
 
-#chat-switch .name {
+#page-switch .name {
 	float: left;
 	margin-left: 4px;
 	max-height: 16px;
@@ -130,7 +130,7 @@ Last revision: 07/11/10
 	overflow: hidden;
 }
 
-#chat-switch .exit {
+#page-switch .exit {
 	display: none;
 	background-color: #b0ced2;
 	border: 1px solid #6a9298;
@@ -147,52 +147,52 @@ Last revision: 07/11/10
 	-webkit-border-radius: 2px;
 }
 
-#chat-switch .exit:hover {
+#page-switch .exit:hover {
 	background-color: #9fc0c4;
 }
 
-#chat-switch .exit:active {
+#page-switch .exit:active {
 	background-color: #8db3b7;
 }
 
-#chat-switch .activechan .exit {
+#page-switch .activechan .exit {
 	display: block;
 	float: right;
 }
 
-#chat-switch .chan-newmessage {
+#page-switch .chan-newmessage {
 	background-color: #f6edc3 !important;
 }
 
-#chat-switch .chan-newmessage:hover {
+#page-switch .chan-newmessage:hover {
 	background-color: #f1eac0 !important;
 }
 
-#chat-switch .chan-newmessage:active {
+#page-switch .chan-newmessage:active {
 	background-color: #ede4b8 !important;
 }
 
-#chat-switch .composing {
+#page-switch .composing {
 	color: #217021 !important;
 }
 
-#chat-switch .paused,
-#chat-switch .chan-unread .name {
+#page-switch .paused,
+#page-switch .chan-unread .name {
 	color: #2431ac !important;
 }
 
-#chat-switch .active {
+#page-switch .active {
 	color: #353535 !important;
 }
 
-#chat-switch .inactive {
+#page-switch .inactive {
 	color: #585858 !important;
 }
 
-#chat-switch .gone {
+#page-switch .gone {
 	color: #851313 !important;
 }
 
-#chat-switch .channel .icon {
+#page-switch .channel .icon {
 	background-position: 0 -55px;
 }
