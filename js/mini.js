@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 13/11/10
 
 */
 
@@ -53,7 +53,9 @@ function connect(user, domain, password, resource) {
 				'<div class="conversations"></div>' + 
 				
 				'<div class="starter">' + 
-					'<div class="roster"></div>' + 
+					'<div class="roster">' + 
+						'<div class="logo mini-images"></div>' + 
+					'</div>' + 
 					
 					'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
 				'</div>' + 

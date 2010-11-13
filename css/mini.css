@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/10/10
+Last revision: 13/11/10
 
 */
 
@@ -32,7 +32,7 @@ Last revision: 25/10/10
 
 #jmini a.pane {
 	background-color: #f4f4f4;
-	background-position: 0 -64px;
+	background-position: 0 -84px;
 	background-repeat: repeat-x;
 	border-color: #999999;
 	border-style: solid;
@@ -95,6 +95,7 @@ Last revision: 25/10/10
 	bottom: 25px;
 }
 
+#jmini div.logo,
 #jmini div.manage-messages {
 	height: 14px;
 	border-bottom: 1px solid #19445f;
@@ -162,8 +163,13 @@ Last revision: 25/10/10
 	border: 1px solid #999999;
 	max-height: 350px;
 	min-width: 160px;
-	padding: 5px 0 5px 0;
+	padding-bottom: 5px;
 	overflow: auto;
+}
+
+#jmini div.logo {
+	background-position: 43px 2px;
+	margin-bottom: 5px;
 }
 
 #jmini a.friend {
@@ -201,7 +207,7 @@ Last revision: 25/10/10
 	display: block;
 	min-height: 16px;
 	padding-left: 25px;
-	background-position: 0 -268px;
+	background-position: 0 -288px;
 }
 
 #jmini span.presence {
@@ -214,20 +220,20 @@ Last revision: 25/10/10
 
 #jmini .available,
 #jmini .chat {
-	background-position: 0 0;
+	background-position: 0 -20px;
 }
 
 #jmini .away {
-	background-position: 0 -16px;
+	background-position: 0 -36px;
 }
 
 #jmini .xa,
 #jmini .dnd {
-	background-position: 0 -32px;
+	background-position: 0 -52px;
 }
 
 #jmini .unavailable {
-	background-position: 0 -48px;
+	background-position: 0 -68px;
 }
 
 #jmini span.smiley {
@@ -237,37 +243,37 @@ Last revision: 25/10/10
 }
 
 #jmini .smiley-wink {
-	background-position: 0 -112px;
+	background-position: 0 -132px;
 }
 
 #jmini .smiley-waii {
-	background-position: 0 -128px;
+	background-position: 0 -148px;
 }
 
 #jmini .smiley-unhappy {
-	background-position: 0 -144px;
+	background-position: 0 -164px;
 }
 
 #jmini .smiley-tongue {
-	background-position: 0 -160px;
+	background-position: 0 -180px;
 }
 
 #jmini .smiley-surprised {
-	background-position: 0 -176px;
+	background-position: 0 -206px;
 }
 
 #jmini .smiley-smile {
-	background-position: 0 -192px;
+	background-position: 0 -212px;
 }
 
 #jmini .smiley-happy {
-	background-position: 0 -208px;
+	background-position: 0 -228px;
 }
 
 #jmini .smiley-grin {
-	background-position: 0 -224px;
+	background-position: 0 -244px;
 }
 
 #jmini .smiley-evilgrin {
-	background-position: 0 -240px;
+	background-position: 0 -260px;
 }

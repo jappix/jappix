@@ -8,7 +8,7 @@ These are the notification JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/10/10
+Last revision: 13/10/10
 
 */
 
@@ -97,12 +97,12 @@ function newNotification(type, from, xid, body) {
 			// Play a sound to alert the user
 			soundPlay(2);
 			
-			// The yes onclick function
+			// The yes click function
 			$('.' + id + ' a.yes').click(function() {
 				actionNotification(type, xid, 'yes', id);
 			});
 			
-			// The no onclick function
+			// The no click function
 			$('.' + id + ' a.no').click(function() {
 				actionNotification(type, xid, 'no', id);
 			});
