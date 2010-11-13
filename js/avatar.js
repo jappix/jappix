@@ -28,7 +28,7 @@ function getAvatar(xid, mode, enabled, photo) {
 	if(!photo && !forced && (enabled == 'true')) {
 		resetAvatar(xid, hex_md5(xid));
 		
-		logThis('No avatar for: ' + xid);
+		logThis('No avatar for: ' + xid, 2);
 	}
 	
 	// Try to catch the avatar
@@ -47,7 +47,7 @@ function getAvatar(xid, mode, enabled, photo) {
 		if((mode == 'cache') && type && binval && checksum && updated) {
 			displayAvatar(hex_md5(xid), type, binval);
 			
-			logThis('Read avatar from cache: ' + xid);
+			logThis('Read avatar from cache: ' + xid, 3);
 		}
 		
 		// Else if the request has not yet been fired, we get it
@@ -55,7 +55,7 @@ function getAvatar(xid, mode, enabled, photo) {
 			// Put an indicator in our database to avoid multiple useless vCard request
 			setDB('avatar', xid, true);
 			
-			logThis('Get avatar from server: ' + xid);
+			logThis('Get avatar from server: ' + xid, 3);
 			
 			// Get the latest avatar
 			var iq = new JSJaCIQ();
@@ -112,7 +112,7 @@ function handleAvatar(iq) {
 		// Store the avatar
 		setPersistent('avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
 		
-		logThis('Avatar retrieved from server: ' + handleFrom);
+		logThis('Avatar retrieved from server: ' + handleFrom, 3);
 	}
 	
 	// vCard is empty

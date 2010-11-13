@@ -186,7 +186,7 @@ function checkInboxMessage() {
 				// We clean the inputs
 				cleanNewInboxMessage();
 				
-				logThis('Inbox message sent: ' + current);
+				logThis('Inbox message sent: ' + current, 3);
 			}
 		}
 		

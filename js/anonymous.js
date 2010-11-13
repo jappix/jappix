@@ -14,7 +14,7 @@ Last revision: 07/11/10
 
 // Connected to an anonymous session
 function anonymousConnected(con) {
-	logThis('Jappix (anonymous) is now connected.');
+	logThis('Jappix (anonymous) is now connected.', 3);
 	
 	// Create the app
 	createTalkPage();
@@ -44,7 +44,7 @@ function anonymousConnected(con) {
 
 // Disconnected from an anonymous session
 function anonymousDisconnected() {
-	logThis('Jappix (anonymous) is now disconnected.');
+	logThis('Jappix (anonymous) is now disconnected.', 3);
 	
 	// Reset the anonymous tools
 	$('.removable').remove();
@@ -88,7 +88,7 @@ function anonymousLogin(server) {
 
 // Plugin launcher
 function launchAnonymous() {
-	logThis('Anonymous mode detected, connecting...');
+	logThis('Anonymous mode detected, connecting...', 3);
 	
 	// We add the login wait div
 	showGeneralWait();

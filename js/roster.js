@@ -392,7 +392,7 @@ function sendRoster(xid, subscription) {
 
 // Adds a given contact to our roster
 function addThisContact(xid) {
-	logThis('Add this contact: ' + xid);
+	logThis('Add this contact: ' + xid, 3);
 	
 	// Cut the resource of this XID
 	xid = cutResource(xid);
@@ -424,7 +424,7 @@ function getAllGroups() {
 
 // Edits buddy informations
 function buddyEdit(xid, nick, subscription, groups) {
-	logThis('Buddy edit: ' + xid);
+	logThis('Buddy edit: ' + xid, 3);
 	
 	// Initialize
 	var path = '#buddy-list .buddy[data-xid=' + xid + '] .';

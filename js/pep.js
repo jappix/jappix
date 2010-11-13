@@ -401,7 +401,7 @@ function sendMood(value, text) {
 	// We close everything opened
 	$('#my-infos-text-second').hide();
 	
-	logThis('New mood sent: ' + value);
+	logThis('New mood sent: ' + value, 3);
 }
 
 // Sends the user's activity
@@ -435,7 +435,7 @@ function sendActivity(value, text) {
 	// We close everything opened
 	$('#my-infos-text-third').hide();
 	
-	logThis('New activity sent: ' + value);
+	logThis('New activity sent: ' + value, 3);
 }
 
 // Sends the user's geographic position
@@ -473,7 +473,7 @@ function sendPosition(vLat, vLon, vAlt) {
 		// Process the buddy-list height again
 		adaptRoster();
 		
-		logThis('Geolocated.');
+		logThis('Geolocated.', 3);
 	}
 	
 	else {
@@ -484,7 +484,7 @@ function sendPosition(vLat, vLon, vAlt) {
 		// Process the buddy-list height again
 		adaptRoster();
 		
-		logThis('Not geolocated.');
+		logThis('Not geolocated.', 2);
 	}
 }
 
@@ -507,14 +507,14 @@ function geolocate() {
 		if((getDB('options', 'geolocation') == '1') && enabledPEP() && navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(getPosition, {maximumAge: 3600000});
 			
-			logThis('Geolocating...');
+			logThis('Geolocating...', 3);
 		}
 		
 		else if(!navigator.geolocation)
-			logThis('Not geolocated: browser does not support it.');
+			logThis('Not geolocated: browser does not support it.', 1);
 		
 		else
-			logThis('Not geolocated.');
+			logThis('Not geolocated.', 2);
 	});
 }
 

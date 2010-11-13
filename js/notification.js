@@ -46,7 +46,7 @@ function newNotification(type, from, xid, body) {
 	if(!type || !from)
 		return;
 	
-	logThis('New notification: ' + from);
+	logThis('New notification: ' + from, 3);
 	
 	// We generate an id hash
 	var id = hex_md5(type + xid + from + getCompleteTime());

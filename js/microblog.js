@@ -154,7 +154,7 @@ function handleMicroblog(iq) {
 	// Get the from attribute of this IQ
 	var from = getStanzaFrom(iq);
 	
-	logThis('Microblog got: ' + from);
+	logThis('Microblog got: ' + from, 3);
 	
 	// Define the selector path
 	var selector = '#channel .top.individual input[name=';
@@ -200,7 +200,7 @@ function resetMicroblog() {
 function getMicroblog(xid, hash) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve */
 	
-	logThis('Get the microblog: ' + xid);
+	logThis('Get the microblog: ' + xid, 3);
 	
 	// Fire the wait event
 	waitMicroblog('fetch');
@@ -405,7 +405,7 @@ function handleMyMicroblog(packet) {
 
 // Performs the microblog sender checks
 function sendMicroblog(aForm) {
-	logThis('Send a new microblog item');
+	logThis('Send a new microblog item', 3);
 	
 	// Avoid nasty errors
 	try {
@@ -498,7 +498,7 @@ function attachMicroblog() {
 			// Reset the upload input
 			$('#attach input').val('');
 			
-			logThis('File to attach too big.');
+			logThis('File to attach too big.', 1);
 		}
 		
 		// All is okay, we can upload it
@@ -522,7 +522,7 @@ function attachMicroblog() {
 					if(!data) {
 						openThisError(4);
 						
-						logThis('No attached file data received.');
+						logThis('No attached file data received.', 1);
 					}
 					
 					else {
@@ -546,7 +546,7 @@ function attachMicroblog() {
 						$('.postit.attach').hide();
 						$('.postit.unattach').css('display', 'block');
 						
-						logThis('File attached.');
+						logThis('File attached.', 3);
 					}
 					
 					// Focus on the text input
@@ -564,7 +564,7 @@ function attachMicroblog() {
 	else {
 		openThisInfo(7);
 		
-		logThis('Browser does not support FileReader().');
+		logThis('Browser does not support FileReader().', 2);
 	}
 }
 

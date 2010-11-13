@@ -78,14 +78,14 @@ function handleFeatures(xml) {
 		// Enable microblogging send tools
 		waitMicroblog('sync');
 		
-		logThis('XMPP server supports PEP.');
+		logThis('XMPP server supports PEP.', 3);
 	}
 	
 	// Disable microblogging send tools (no PEP!)
 	else {
 		waitMicroblog('unsync');
 		
-		logThis('XMPP server does not support PEP.');
+		logThis('XMPP server does not support PEP.', 2);
 	}
 	
 	// Active the pubsub features if available

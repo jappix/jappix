@@ -200,15 +200,15 @@ function storeOptions() {
 	
 	con.send(iq, handleStoreOptions);
 	
-	logThis('Storing options...');
+	logThis('Storing options...', 3);
 }
 
 // Handles the option storing
 function handleStoreOptions(iq) {
 	if(!iq || (iq.getType() != 'result'))
-		logThis('Options not stored.');
+		logThis('Options not stored.', 2);
 	else
-		logThis('Options stored.');
+		logThis('Options stored.', 3);
 }
 
 // Saves the user options
@@ -286,11 +286,11 @@ function handlePwdChange(iq) {
 		quit();
 		openThisInfo(1);
 		
-		logThis('Password changed.');
+		logThis('Password changed.', 3);
 	}
 	
 	else
-		logThis('Password not changed.');
+		logThis('Password not changed.', 2);
 }
 
 // Sends the new account password
@@ -315,7 +315,7 @@ function sendNewPassword() {
 		
 		con.send(iq, handlePwdChange);
 		
-		logThis('Password change sent.');
+		logThis('Password change sent.', 3);
 	}
 	
 	else {
@@ -342,11 +342,11 @@ function handleAccDeletion(iq) {
 		openThisInfo(2);
 		logout();
 		
-		logThis('Account deleted.');
+		logThis('Account deleted.', 3);
 	}
 	
 	else
-		logThis('Account not deleted.');
+		logThis('Account not deleted.', 2);
 }
 
 // Purge the user's microblog items
@@ -368,7 +368,7 @@ function purgeMyMicroblog() {
 		// Hide the tool
 		$('#options .sub-ask').hide();
 		
-		logThis('Microblog purge sent.');
+		logThis('Microblog purge sent.', 3);
 	}
 	
 	else {
@@ -388,11 +388,11 @@ function handleMicroblogPurge(iq) {
 		// Remove the microblog items
 		$('.one-update.' + hex_md5(getXID())).remove();
 		
-		logThis('Microblog purged.');
+		logThis('Microblog purged.', 3);
 	}
 	
 	else
-		logThis('Microblog not purged.');
+		logThis('Microblog not purged.', 2);
 }
 
 // Deletes the user's account
@@ -411,7 +411,7 @@ function deleteMyAccount() {
 		
 		con.send(iq, handleAccDeletion);
 		
-		logThis('Delete account sent.');
+		logThis('Delete account sent.', 3);
 	}
 	
 	else {

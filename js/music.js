@@ -198,7 +198,7 @@ function publishMusic(title, artist, source, duration, uri) {
 		
 		con.send(iq);
 		
-		logThis('New tune sent: ' + title);
+		logThis('New tune sent: ' + title, 3);
 	}
 }
 

@@ -63,7 +63,7 @@ function myDiscoInfos() {
 function getDiscoInfos(to, caps) {
 	// No CAPS
 	if(!caps) {
-		logThis('No CAPS: ' + to);
+		logThis('No CAPS: ' + to, 2);
 		
 		displayDiscoInfos(to, '');
 		
@@ -75,14 +75,14 @@ function getDiscoInfos(to, caps) {
 	
 	// Yet stored
 	if(xml) {
-		logThis('CAPS from cache: ' + to);
+		logThis('CAPS from cache: ' + to, 3);
 		
 		displayDiscoInfos(to, xml);
 		
 		return true;
 	}
 	
-	logThis('CAPS from the network: ' + to);
+	logThis('CAPS from the network: ' + to, 3);
 	
 	// Not stored: get the disco#infos
 	var iq = new JSJaCIQ();
@@ -212,14 +212,14 @@ function handleDiscoInfos(iq) {
 		// Handle the features
 		handleFeatures(xml);
 		
-		logThis('Got our server CAPS');
+		logThis('Got our server CAPS', 3);
 	}
 	
 	else {
 		// Display the disco infos
 		displayDiscoInfos(from, xml);
 		
-		logThis('Got CAPS: ' + from);
+		logThis('Got CAPS: ' + from, 3);
 	}
 }
 

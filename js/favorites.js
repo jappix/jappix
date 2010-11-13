@@ -268,7 +268,7 @@ function terminateThisFavorite(type) {
 	// Publish the new favorites
 	favoritePublish();
 	
-	logThis('Action on this bookmark: ' + room + '@' + server + ' / ' + type);
+	logThis('Action on this bookmark: ' + room + '@' + server + ' / ' + type, 3);
 }
 
 // Removes a favorite
@@ -311,7 +311,7 @@ function favoritePublish() {
 			if(password)
 				item.appendChild(iq.buildNode('password', {xmlns: NS_BOOKMARKS}, password));
 			
-			logThis('Bookmark sent: ' + xid);
+			logThis('Bookmark sent: ' + xid, 3);
 		}
 	}
 	
@@ -347,7 +347,7 @@ function handleGCList(iq) {
 		
 		$(path + 'wait').hide();
 		
-		logThis('Error while retrieving the rooms: ' + from);
+		logThis('Error while retrieving the rooms: ' + from, 1);
 	}
 	
 	else {
@@ -385,7 +385,7 @@ function handleGCList(iq) {
 		else
 			$(path + 'fsearch-noresults').show();
 		
-		logThis('Rooms retrieved: ' + from);
+		logThis('Rooms retrieved: ' + from, 3);
 	}
 	
 	$(path + 'wait').hide();

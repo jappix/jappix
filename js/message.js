@@ -558,7 +558,7 @@ function sendMessage(id, type) {
 	}
 	
 	finally {
-		logThis('Message sent to: ' + xid + ' / ' + type);
+		logThis('Message sent to: ' + xid + ' / ' + type, 3);
 		
 		return false;
 	}

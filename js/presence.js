@@ -16,7 +16,7 @@ Last revision: 11/11/10
 var FIRST_PRESENCE_SENT = false;
 
 function firstPresence(checksum) {
-	logThis('First presence sent.');
+	logThis('First presence sent.', 3);
 	
 	// Anonymous check
 	var is_anonymous = isAnonymous();
@@ -654,7 +654,7 @@ function sendPresence(to, type, show, status, checksum, password, handle) {
 	if(!type)
 		type = 'available';
 	
-	logThis('Presence sent: ' + type);
+	logThis('Presence sent: ' + type, 3);
 }
 
 // Performs all the actions to get the presence data
@@ -763,7 +763,7 @@ function autoIdle() {
 		// Then send the xa presence
 		presenceSend('', true);
 		
-		logThis('Auto-idle presence sent: ' + idle_presence);
+		logThis('Auto-idle presence sent: ' + idle_presence, 3);
 	}
 }
 
@@ -785,7 +785,7 @@ function eventIdle() {
 		if(!show)
 			show = 'available';
 		
-		logThis('Presence restored: ' + show);
+		logThis('Presence restored: ' + show, 3);
 	}
 	
 	// Apply some values

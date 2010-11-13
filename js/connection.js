@@ -58,12 +58,12 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, lRetry)
 		// We connect !
 		con.connect(oArgs);
 		
-		logThis('Jappix is connecting...');
+		logThis('Jappix is connecting...', 3);
 	}
 	
 	catch(e) {
 		// Logs errors
-		logThis('Error while logging in: ' + e);
+		logThis('Error while logging in: ' + e, 1);
 		
 		// We should try to re-login with an empty database
 		if(!lRetry) {
@@ -73,7 +73,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, lRetry)
 			// Try to login again
 			doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, true);
 			
-			logThis('Retrying to login with an empty database...');
+			logThis('Retrying to login with an empty database...', 3);
 		}
 		
 		// Reset Jappix
@@ -92,7 +92,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, lRetry)
 
 // Handles the user registration
 function handleRegistered() {
-	logThis('A new account has been registered.');
+	logThis('A new account has been registered.', 3);
 	
 	// We remove the waiting image
 	removeGeneralWait();
@@ -106,7 +106,7 @@ function handleRegistered() {
 
 // Does the user registration
 function doRegister(username, domain, pass) {
-	logThis('Trying to register an account...');
+	logThis('Trying to register an account...', 3);
 	
 	try {
 		// We define the http binding parameters
@@ -142,7 +142,7 @@ function doRegister(username, domain, pass) {
 	
 	catch(e) {
 		// Logs errors
-		logThis(e);
+		logThis(e, 1);
 	}
 	
 	finally {
@@ -152,7 +152,7 @@ function doRegister(username, domain, pass) {
 
 // Does the user anonymous login
 function doAnonymous() {
-	logThis('Trying to login anonymously...');
+	logThis('Trying to login anonymously...', 3);
 	
 	var aPath = '#home .anonymouser ';
 	var room = $(aPath + '.room').val();
@@ -184,7 +184,7 @@ function doAnonymous() {
 var CONNECTED = false;
 
 function handleConnected() {
-	logThis('Jappix is now connected.');
+	logThis('Jappix is now connected.', 3);
 	
 	// Connected marker
 	CONNECTED = true;
@@ -222,7 +222,7 @@ function handleConnected() {
 
 // Handles the user disconnected event
 function handleDisconnected() {
-	logThis('Jappix is now disconnected.');
+	logThis('Jappix is now disconnected.', 3);
 	
 	// Reset everything
 	destroyTalkPage();
@@ -284,7 +284,7 @@ function quit() {
 
 // Creates the reconnect pane
 function createReconnect(mode) {
-	logThis('This is not a normal disconnection, show the reconnect pane...');
+	logThis('This is not a normal disconnection, show the reconnect pane...', 1);
 	
 	// Reconnect pane not yet displayed?
 	if(!exists('#reconnect')) {
@@ -306,7 +306,7 @@ function createReconnect(mode) {
 
 // Reconnects the user if he was disconnected (network issue)
 function acceptReconnect(mode) {
-	logThis('Trying to reconnect the user...');
+	logThis('Trying to reconnect the user...', 3);
 	
 	// Show waiting item
 	showGeneralWait();
@@ -325,7 +325,7 @@ function acceptReconnect(mode) {
 
 // Cancel the reconnection of user account (network issue)
 function cancelReconnect() {
-	logThis('User has canceled automatic reconnection...');
+	logThis('User has canceled automatic reconnection...', 3);
 	
 	// Remove the reconnect pane
 	$('#reconnect').remove();
@@ -392,7 +392,7 @@ function launchConnection() {
 	var session = getPersistent('session', 1);
 	
 	if(!isAnonymous() && ($(session).find('stored').text() == 'true')) {
-		logThis('Saved session found, resuming it...');
+		logThis('Saved session found, resuming it...', 3);
 		
 		// Hide the homepage
 		$('#home').hide();
@@ -411,7 +411,7 @@ function launchConnection() {
 		
 		// Show the login tool
 		if(parent.location.hash != '#OK' && link) {
-			logThis('A XMPP link is set, switch to login page.');
+			logThis('A XMPP link is set, switch to login page.', 3);
 			switchHome('loginer');
 		}
 	}

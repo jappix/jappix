@@ -263,7 +263,7 @@ function sendMucAdminTopic(xid) {
 		m.setSubject(topic);
 		con.send(m);
 		
-		logThis('MUC admin topic sent: ' + topic);
+		logThis('MUC admin topic sent: ' + topic, 3);
 	}
 }
 
@@ -334,7 +334,7 @@ function sendMucAdminIQ(xid, rights, form) {
 	// We send the iq !
 	con.send(iq, handleErrorReply);
 	
-	logThis('MUC admin ' + form + ' sent: ' + xid);
+	logThis('MUC admin ' + form + ' sent: ' + xid, 3);
 }
 
 // Checks if the MUC room was destroyed
@@ -355,7 +355,7 @@ function handleDestroyMucAdminIQ(iq) {
 		if(existDB('favorites', room))
 			removeThisFavorite(room, explodeThis('@', room, 0));
 		
-		logThis('MUC admin destroyed: ' + room);
+		logThis('MUC admin destroyed: ' + room, 3);
 	}
 	
 	// We hide the wait icon
@@ -374,7 +374,7 @@ function destroyMucAdminIQ(xid) {
 	
 	con.send(iq, handleDestroyMucAdminIQ);
 	
-	logThis('MUC admin destroy sent: ' + xid);
+	logThis('MUC admin destroy sent: ' + xid, 3);
 }
 
 // Performs the MUC room destroy functions

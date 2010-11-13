@@ -38,5 +38,5 @@ function requestReply(value, xml) {
 	// We send the message
 	con.send(aMsg, handleErrorReply);
 	
-	logThis('Replying HTTP auth request: ' + from);
+	logThis('Replying HTTP auth request: ' + from, 3);
 }

@@ -221,7 +221,7 @@ function cleanChat(chat) {
 
 // Creates a new chat
 function chatCreate(hash, xid, nick, type) {
-	logThis('New chat: ' + xid);
+	logThis('New chat: ' + xid, 3);
 	
 	// Create the chat content
 	generateChat(type, hash, xid, nick);

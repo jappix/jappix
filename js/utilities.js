@@ -433,10 +433,45 @@ function getStanzaFrom(stanza) {
 }
 
 // Logs a given data in the console
-function logThis(data) {
-	// A console is available
-	if(isDeveloper() && (typeof(console) != 'undefined'))
-		console.log(data);
+function logThis(data, level) {
+	// Console not available
+	if(!isDeveloper() || (typeof(console) == 'undefined'))
+		return false;
+	
+	// Switch the log level
+	switch(level) {
+		// Debug
+		case 0:
+			console.debug(data);
+			
+			break;
+		
+		// Error
+		case 1:
+			console.error(data);
+			
+			break;
+		
+		// Warning
+		case 2:
+			console.warn(data);
+			
+			break;
+		
+		// Information
+		case 3:
+			console.info(data);
+			
+			break;
+		
+		// Default log level
+		default:
+			console.log(data);
+			
+			break;
+	}
+	
+	return true;
 }
 
 // Gets all the buddies in our roster

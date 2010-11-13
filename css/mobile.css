@@ -8,7 +8,7 @@ This is the Jappix Mobile CSS stylesheet
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 13/11/10
 
 */
 
@@ -22,6 +22,7 @@ Last revision: 06/11/10
 body {
 	font: 0.9em helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
 	background-color: #dcdcdc;
+	margin: 0 auto;
 	text-align: center;
 	min-width: 200px;
 	min-height: 260px;

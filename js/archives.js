@@ -173,15 +173,15 @@ function configArchives(enabled) {
 	con.send(iq);
 	
 	// Logger
-	logThis('Configuring archives...');
+	logThis('Configuring archives...', 3);
 }
 
 // Handles the archives configuration
 function handleConfigArchives(iq) {
 	if(!iq || (iq.getType() != 'result'))
-		logThis('Archives not configured.');
+		logThis('Archives not configured.', 2);
 	else
-		logThis('Archives configured.');
+		logThis('Archives configured.', 3);
 }
 
 // Plugin launcher

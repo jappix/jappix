@@ -89,7 +89,7 @@ function handleError(packet) {
 		// Show the homepage (security)
 		$('#home').show();
 		
-		logThis('First level error received.');
+		logThis('First level error received.', 1);
 	}
 	
 	// Second level error (another error)
@@ -98,7 +98,7 @@ function handleError(packet) {
 		reason = node.find('error text').text();
 		condition = packet.getElementsByTagName('error').item(0).childNodes.item(0).nodeName.replace(/-/g, ' ');
 		
-		logThis('Second level error received.');
+		logThis('Second level error received.', 1);
 	}
 	
 	// No error

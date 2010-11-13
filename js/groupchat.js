@@ -78,7 +78,7 @@ function handleMUC(presence) {
 	var nickname = thisResource(from);
 	var hash = hex_md5(room);
 	
-	logThis('First MUC presence: ' + from);
+	logThis('First MUC presence: ' + from, 3);
 	
 	// Catch the errors
 	if(!handleError(xml)) {
@@ -178,7 +178,7 @@ function generateColor(xid) {
 function groupchatCreate(hash, room, chan, nickname, password) {
 	/* REF: http://xmpp.org/extensions/xep-0045.html */
 	
-	logThis('New groupchat: ' + room);
+	logThis('New groupchat: ' + room, 3);
 	
 	// Create the chat content
 	generateChat('groupchat', hash, room, chan);
