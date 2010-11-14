@@ -460,19 +460,19 @@ function humanShow(show, type) {
 			case 'chat':
 				show = _e("Talkative");
 				break;
-		
+			
 			case 'away':
 				show = _e("Away");
 				break;
-		
+			
 			case 'xa':
-				show = _e("Busy");
-				break;
-		
-			case 'dnd':
 				show = _e("Not available");
 				break;
-		
+			
+			case 'dnd':
+				show = _e("Busy");
+				break;
+			
 			default:
 				show = _e("Available");
 				break;
