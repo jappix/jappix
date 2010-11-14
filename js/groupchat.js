@@ -78,6 +78,10 @@ function handleMUC(presence) {
 	var nickname = thisResource(from);
 	var hash = hex_md5(room);
 	
+	// No ID: must fix M-Link bug
+	if(presence.getID() == null)
+		presence.setID(1);
+	
 	logThis('First MUC presence: ' + from, 3);
 	
 	// Catch the errors

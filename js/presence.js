@@ -128,11 +128,20 @@ function handlePresence(presence) {
 		
 		// If one user is joining
 		else {
-			displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, notInitial);
+			// Fixes M-Link first presence bug (missing ID!)
+			if((nick == getMUCNick(xidHash)) && (presence.getID() == null) && !exists('#page-engine #' + xidHash + ' .list .' + hash)) {
+				handleMUC(presence);
+				
+				logThis('Passed M-Link MUC first presence handling.', 2);
+			}
 			
-			var xml = '<presence from="' + from + '"><priority>' + priority + '</priority><show>' + show + '</show><type>' + type + '</type><status>' + status + '</status><avatar>' + hasPhoto + '</avatar><checksum>' + checksum + '</checksum><caps>' + caps + '</caps></presence>';
-			
-			setDB('presence', from, xml);
+			else {
+				displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, notInitial);
+				
+				var xml = '<presence from="' + from + '"><priority>' + priority + '</priority><show>' + show + '</show><type>' + type + '</type><status>' + status + '</status><avatar>' + hasPhoto + '</avatar><checksum>' + checksum + '</checksum><caps>' + caps + '</caps></presence>';
+				
+				setDB('presence', from, xml);
+			}
 		}
 		
 		// Scroll to the last presence message

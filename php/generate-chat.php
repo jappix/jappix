@@ -153,7 +153,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		
 		#content .one-line .avatar-container {
 			text-align: center;
-			margin: 4px 0 0 -41px;
+			margin: 4px 0 0 -42px;
 			height: 30px;
 			width: 30px;
 			float: left;
