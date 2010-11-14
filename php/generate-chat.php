@@ -177,6 +177,10 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		#content .system-message a {
 			color: #053805;
 		}
+		
+		.hidden {
+			display: none !important;
+		}
 	</style>
 </head>
 
