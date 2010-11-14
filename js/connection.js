@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -241,6 +241,8 @@ function logout() {
 	
 	// Disconnect from the XMPP server
 	con.disconnect();
+	
+	logThis('Jappix is disconnecting...', 3);
 }
 
 // Terminates a session

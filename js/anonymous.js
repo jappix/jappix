@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 14/11/10
 
 */
 
@@ -59,31 +59,48 @@ function anonymousDisconnected() {
 
 // Logins to a anonymous account
 function anonymousLogin(server) {
-	// We define the http binding parameters
-	oArgs = new Object();
-	oArgs.httpbase = HOST_BOSH;
-	oArgs.timerval = 2000;
+	try {
+		// We define the http binding parameters
+		oArgs = new Object();
+		oArgs.httpbase = HOST_BOSH;
+		oArgs.timerval = 2000;
+		
+		// We create the new http-binding connection
+		con = new JSJaCHttpBindingConnection(oArgs);
+		
+		// And we handle everything that happen
+		con.registerHandler('message', handleMessage);
+		con.registerHandler('presence', handlePresence);
+		con.registerHandler('iq', handleIQ);
+		con.registerHandler('onconnect', anonymousConnected);
+		con.registerHandler('onerror', handleError);
+		con.registerHandler('ondisconnect', anonymousDisconnected);
+		
+		// We set the anonymous connection parameters
+		oArgs = new Object();
+		oArgs.domain = server;
+		oArgs.authtype = 'saslanon';
+		oArgs.resource = JAPPIX_RESOURCE + ' Anonymous';
+		oArgs.secure = true;
+		
+		// We connect !
+		con.connect(oArgs);
+	}
 	
-	// We create the new http-binding connection
-	con = new JSJaCHttpBindingConnection(oArgs);
+	catch(e) {
+		// Logs errors
+		logThis('Error while anonymous loggin in: ' + e, 1);
+		
+		// Reset Jappix
+		anonymousDisconnected();
+		
+		// Open an unknown error
+		openThisError(2);
+	}
 	
-	// And we handle everything that happen
-	con.registerHandler('message', handleMessage);
-	con.registerHandler('presence', handlePresence);
-	con.registerHandler('iq', handleIQ);
-	con.registerHandler('onconnect', anonymousConnected);
-	con.registerHandler('onerror', handleError);
-	con.registerHandler('ondisconnect', anonymousDisconnected);
-	
-	// We set the anonymous connection parameters
-	oArgs = new Object();
-	oArgs.domain = server;
-	oArgs.authtype = 'saslanon';
-	oArgs.resource = JAPPIX_RESOURCE + ' Anonymous';
-	oArgs.secure = true;
-	
-	// We connect !
-	con.connect(oArgs);
+	finally {
+		return false;
+	}
 }
 
 // Plugin launcher

@@ -10,7 +10,7 @@ These are the PHP functions for Jappix Get API
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 14/11/10
 
 */
 
@@ -131,8 +131,9 @@ function setConfiguration($string, $locale, $version) {
 		      	'LOCK_HOST'		=> LOCK_HOST,
 		      	'ANONYMOUS'		=> ANONYMOUS,
 		      	'REGISTRATION'		=> REGISTRATION,
-		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
 		      	'ENCRYPTION'		=> ENCRYPTION,
+		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
+		      	'HTTPS_FORCE'		=> HTTPS_FORCE,
 		      	'COMPRESSION'		=> COMPRESSION,
 		      	'DEVELOPER'		=> DEVELOPER,
 		      	

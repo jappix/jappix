@@ -8,7 +8,7 @@ These are the chatstate JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -75,8 +75,8 @@ function displayChatState(state, hash) {
 	}
 	
 	// We reset the previous state
-	$('#' + hash + ' .one-chatstate').remove();
+	$('#' + hash + ' .chatstate').remove();
 	
 	// We create the chatstate
-	$('#' + hash + ' .content').after('<div class="' + state + ' one-chatstate">' + text + '</div>');
+	$('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
 }

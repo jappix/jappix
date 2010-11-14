@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -45,9 +45,11 @@ function connect(user, domain, password, resource, anonymous) {
 				chat(xid, nick, hash);
 			});
 		});
+		
+		logThis('Old DOM restored.');
 	}
 	
-	else
+	else {
 		$('body').append(
 			'<div id="jmini">' + 
 				'<div class="conversations"></div>' + 
@@ -61,6 +63,9 @@ function connect(user, domain, password, resource, anonymous) {
 				'</div>' + 
 			'</div>'
 		);
+		
+		logThis('New DOM created.');
+	}
 	
 	// The clic events
 	$('#jmini a.button').click(function() {
@@ -90,6 +95,7 @@ function connect(user, domain, password, resource, anonymous) {
 		con.registerHandler('message', handleMessage);
 		con.registerHandler('presence', handlePresence);
 		con.registerHandler('iq', handleIQ);
+		con.registerHandler('onconnect', connected);
 		con.registerHandler('ondisconnect', disconnected);
 		
 		// The roster was yet retrieved
@@ -118,6 +124,16 @@ function connect(user, domain, password, resource, anonymous) {
 		
 		// We connect !
 		con.connect(oArgs);
+		
+		logThis('Jappix Mini is connecting...', 3);
+	}
+	
+	catch(e) {
+		// Logs errors
+		logThis('Error while logging in: ' + e, 1);
+		
+		// Reset Jappix Mini
+		disconnected();
 	}
 	
 	finally {
@@ -125,14 +141,24 @@ function connect(user, domain, password, resource, anonymous) {
 	}
 }
 
+// When the user is connected
+function connected() {
+	logThis('Jappix Mini is now connected.', 3);
+}
+
 // When the user disconnects
 function disconnect() {
 	if(typeof con != 'undefined' && con && con.connected()) {
 		// Save the actual Jappix Mini DOM
 		setDB('jmini', con.username + '@' + con.domain, $('#jmini').html());
-	
+		
+		// Send unavailable presence
+		presence('unavailable');
+		
 		// Disconnect
 		con.disconnect();
+		
+		logThis('Jappix Mini is disconnecting...', 3);
 	}
 }
 
@@ -140,13 +166,15 @@ function disconnect() {
 function disconnected() {
 	// Remove Jappix Mini when disconnected
 	$('#jmini').remove();
+	
+	logThis('Jappix Mini is now disconnected.', 3);
 }
 
 // Handles the incoming messages
 function handleMessage(msg) {
 	var type = msg.getType();
 	
-	if(type == 'chat' || type == 'normal') {
+	if((type == 'chat') || (type == 'normal')) {
 		// Get the body
 		var body = msg.getBody();
 		
@@ -171,6 +199,8 @@ function handleMessage(msg) {
 			
 			if(!notify.hasClass('clicked'))
 				notify.addClass('unread');
+			
+			logThis('Message received from: ' + xid);
 		}
 	}
 }
@@ -197,6 +227,8 @@ function handleIQ(iq) {
 		handleRoster(iq);
 		
 		con.send(iqResponse);
+		
+		logThis('Received a roster push.');
 	}
 	
 	else if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
@@ -222,6 +254,8 @@ function handleIQ(iq) {
 			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
 		
 		con.send(iqResponse);
+		
+		logThis('Received a disco#infos query.');
 	}
 }
 
@@ -286,6 +320,8 @@ function handlePresence(pr) {
 		$('#jmini div.roster').hide();
 		$('#jmini a.button').removeClass('clicked');
 	}
+	
+	logThis('Presence received from: ' + xid);
 }
 
 // Updates the user presence
@@ -304,6 +340,12 @@ function presence(type, show, priority, status, to) {
 		pr.setStatus(status);
 	
 	con.send(pr);
+	
+	// No type?
+	if(!type)
+		type = 'available';
+	
+	logThis('Presence sent: ' + type, 3);
 }
 
 function sendRoster(xid, subscription) {
@@ -509,6 +551,8 @@ function getRoster() {
 	iq.setType('get');
 	iq.setQuery(NS_ROSTER);
 	con.send(iq, handleRoster);
+	
+	logThis('Getting roster...', 3);
 }
 
 // Handles the user's roster
@@ -546,6 +590,8 @@ function handleRoster(iq) {
 	});
 	
 	initialize();
+	
+	logThis('Roster got.', 3);
 }
 
 // Disconnects when the user quit
@@ -576,6 +622,8 @@ function replaceLinks(element) {
 				return loadPage(link, element);
 			});
 	});
+	
+	logThis('Page links have been replaced.');
 }
 
 // Plugin launcher
@@ -588,6 +636,8 @@ function launchMini() {
 		if((e.keyCode == 27) && !isDeveloper())
 			return false;
 	});
+	
+	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }
 
 // Append the CSS stylesheet

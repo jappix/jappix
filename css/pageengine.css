@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -74,7 +74,6 @@ Last revision: 13/11/10
 }
 
 #page-engine p.bc-infos a {
-	color: #3d3d3d;
 	text-decoration: underline;
 }
 
@@ -124,17 +123,18 @@ Last revision: 13/11/10
 	display: none;
 }
 
-#page-engine .groupchat-content {
-	right: 191px !important;
-}
-
 #page-engine .chat .content,
 #page-engine .chat .list {
 	bottom: 93px;
 }
 
 #page-engine .chat .content {
-	padding-bottom: 12px;
+	padding-bottom: 24px;
+}
+
+#page-engine .groupchat-content {
+	padding-bottom: 16px !important;
+	right: 191px !important;
 }
 
 #page-engine .list {
@@ -214,7 +214,7 @@ Last revision: 13/11/10
 }
 
 #page-engine .system-message a {
-	color: #094209;
+	color: #053805;
 }
 
 #page-engine .my-nick {
@@ -226,15 +226,14 @@ Last revision: 13/11/10
 	margin-bottom: 1px;
 }
 
-#page-engine .one-chatstate {
+#page-engine .chatstate {
 	background-color: rgba(234,234,234,0.8);
-	color: #3f3f3f;
+	color: #2c2c2c;
 	padding: 3px 2px 2px 8px;
 	position: absolute;
 	bottom: 93px;
 	left: 0;
 	right: 0;
-	z-index: 30;
 	font-size: 0.75em;
 }
 

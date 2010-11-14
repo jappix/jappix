@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 14/11/10
 
 */
 
@@ -80,6 +80,11 @@ function doLogin(aForm) {
 		// Not enough parameters
 		else
 			showThis('error');
+	}
+	
+	catch(e) {
+		// An error happened
+		resetPanel('error');
 	}
 	
 	finally {

@@ -300,7 +300,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 	
 	// Apply the hover event
 	$(bPath).hover(function() {
-		if(!exists('#buddy-list .buddy .buddy-infos')) {
+		if(!exists('#buddy-list .buddy-infos')) {
 			$(bPath).oneTime(800, function() {
 				// Create the buddy infos DOM element
 				$(bPath).append(

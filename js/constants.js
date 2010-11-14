@@ -8,7 +8,7 @@ These are the constants JS scripts for Jappix
 License: AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 14/11/10
 
 */
 
@@ -120,8 +120,9 @@ var JAPPIX_RESOURCE = null;
 var LOCK_HOST = null;
 var ANONYMOUS = null;
 var REGISTRATION = null;
-var HTTPS_STORAGE = null;
 var ENCRYPTION = null;
+var HTTPS_STORAGE = null;
+var HTTPS_FORCE = null;
 var COMPRESSION = null;
 var DEVELOPER = null;
 

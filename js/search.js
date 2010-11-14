@@ -231,8 +231,8 @@ function resetFilterBuddySearch() {
 function funnelFilterBuddySearch(keycode) {
 	// Get the input value
 	var input = $('#buddy-list .filter input');
-	var value = $('#buddy-list .filter input').val();
 	var cancel = $('#buddy-list .filter a');
+	var value = input.val();
 	
 	// Security: reset all the groups, empty or not, deployed or not
 	$('#buddy-list .one-group, #buddy-list .group-buddies').show();

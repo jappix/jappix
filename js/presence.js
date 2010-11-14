@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -393,7 +393,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		// Chat stuffs
 		if(exists('#' + hash)) {
 			// Remove the chatstate notification
-			$('#' + hash + ' .one-chatstate').remove();
+			$('#' + hash + ' .chatstate').remove();
 			
 			// Get the buddy avatar (only if a chat is opened)
 			getAvatar(xid, 'cache', 'true', 'forget');
@@ -739,15 +739,16 @@ function autoIdle() {
 	var idle_presence;
 	var activity_limit;
 	
-	// Can we extend to auto extended away mode?
+	// Can we extend to auto extended away mode (10 minutes)?
 	if(AUTO_IDLE && (last_presence == 'away')) {
 		idle_presence = 'xa';
-		activity_limit = 1200;
+		activity_limit = 600;
 	}
 	
+	// We must set the user to auto-away (5 minutes)
 	else {
 		idle_presence = 'away';
-		activity_limit = 600;
+		activity_limit = 300;
 	}
 	
 	// The user is really inactive and has set another presence than extended away
