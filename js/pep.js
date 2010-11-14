@@ -79,7 +79,7 @@ function displayPEP(xid, type) {
 				if(type == 'mood')
 					fValue = moodIcon(pepValue);
 				else if(type == 'activity')
-					fValue = activityIcon(cutResource(pepValue));
+					fValue = activityIcon(bareXID(pepValue));
 				if(!pepText)
 					fText = _e("unknown");
 				else

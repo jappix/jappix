@@ -223,7 +223,7 @@ function handleDiscoInfos(iq) {
 // Displays the disco#infos everywhere needed for an entity
 function displayDiscoInfos(from, xml) {
 	// Generate the chat path
-	var xid = cutResource(from);
+	var xid = bareXID(from);
 	
 	// This comes from a private groupchat chat?
 	if(isPrivate(xid))

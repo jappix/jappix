@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 14/11/10
 
 */
 
@@ -223,7 +223,7 @@ function handleDataFormContent(iq, type) {
 	var splitted = sID.split('-');
 	var target = splitted[0];
 	var sessionID = target + '-' + splitted[1];
-	var from = iq.getFrom();
+	var from = getStanzaFrom(iq);
 	var pathID = '#' + target + ' .' + sessionID;
 	
 	// If an error occured
@@ -602,7 +602,7 @@ function handleThisBrowse(iq) {
 	var splitted = id.split('-');
 	var target = splitted[0];
 	var sessionID = target + '-' + splitted[1];
-	var from = iq.getFrom();
+	var from = getStanzaFrom(iq);
 	var hash = hex_md5(from);
 	var handleXML = iq.getQuery();
 	var pathID = '#' + target + ' .' + sessionID;

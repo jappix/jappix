@@ -29,7 +29,7 @@ function checkChatCreate(xid, type, nickname, password, title) {
 		
 		// XMPP-ID
 		else if(xid.indexOf('@') != -1)
-			name = getBuddyName(cutResource(xid));
+			name = getBuddyName(xid);
 		
 		// Gateway
 		else

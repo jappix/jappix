@@ -57,10 +57,10 @@ function firstPresence(checksum) {
 // Handles incoming presence packets
 function handlePresence(presence) {
 	// We define everything needed here
-	var from = presence.getFrom();
+	var from = getStanzaFrom(presence);
 	var hash = hex_md5(from);
 	var node = presence.getNode();
-	var xid = cutResource(from);
+	var xid = bareXID(from);
 	var xidHash = hex_md5(xid);
 	
 	// We get the priority content
@@ -214,7 +214,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	// Any XID submitted?
 	if(iXID) {
 		real_xid = ' data-realxid="' + iXID + '"';
-		iXID = cutResource(iXID);
+		iXID = bareXID(iXID);
 		write += ' (<a onclick="return checkChatCreate(\'' + iXID + '\', \'chat\');" href="xmpp:' + iXID + '">' + iXID + '</a>) ';
 	}
 	
@@ -542,7 +542,7 @@ function highestPriority(xid) {
 			// If the pointer is on a stored presence
 			if(explodeThis('_', current, 0) == 'presence') {
 				// Get the current XID
-				var now = cutResource(explodeThis('_', current, 1));
+				var now = bareXID(explodeThis('_', current, 1));
 				
 				// If the current XID equals the asked XID
 				if(now == xid) {

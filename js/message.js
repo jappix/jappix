@@ -26,7 +26,7 @@ function handleMessage(message) {
 	var subject = message.getSubject();
 	
 	// We generate some values
-	var xid = cutResource(from);
+	var xid = bareXID(from);
 	var resource = thisResource(from);
 	var hash = hex_md5(xid);
 	var xHTML = $(node).find('html body').size();

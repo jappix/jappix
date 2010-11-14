@@ -112,7 +112,7 @@ function quitThisChat(xid, hash, type) {
 			var cXID = explodeThis('_', current, 1);
 			
 			// If the pointer is on a presence from this groupchat
-			if((explodeThis('_', current, 0) == 'presence') && (cutResource(cXID) == xid)) {
+			if((explodeThis('_', current, 0) == 'presence') && (bareXID(cXID) == xid)) {
 				// Generate the hash for the current XID
 				var cHash = hex_md5(cXID);
 				

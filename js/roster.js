@@ -395,7 +395,7 @@ function addThisContact(xid) {
 	logThis('Add this contact: ' + xid, 3);
 	
 	// Cut the resource of this XID
-	xid = cutResource(xid);
+	xid = bareXID(xid);
 	
 	// If the form is complete
 	if(xid) {

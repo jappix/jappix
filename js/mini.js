@@ -180,7 +180,7 @@ function handleMessage(msg) {
 		
 		if(body) {
 			// Get the values
-			var xid = cutResource(msg.getFrom());
+			var xid = bareXID(getStanzaFrom(msg));
 			var hash = hex_md5(xid);
 			var nick = $('#jmini a#friend-' + hash).text();
 			
@@ -208,7 +208,7 @@ function handleMessage(msg) {
 // Handles the incoming IQs
 function handleIQ(iq) {
 	// Define some variables
-	var iqFrom = iq.getFrom();
+	var iqFrom = getStanzaFrom(iq);
 	var iqID = iq.getID();
 	var iqQueryXMLNS = iq.getQueryXMLNS();
 	var iqType = iq.getType();
@@ -262,7 +262,7 @@ function handleIQ(iq) {
 // Handles the incoming presences
 function handlePresence(pr) {
 	// Get the values
-	var xid = cutResource(pr.getFrom());
+	var xid = bareXID(getStanzaFrom(pr));
 	var hash = hex_md5(xid);
 	var type = pr.getType();
 	var show = pr.getShow();

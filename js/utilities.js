@@ -121,6 +121,17 @@ function thisResource(aXID) {
 	return '';
 }
 
+// Get a bare XID
+function bareXID(xid) {
+	// Cut the resource
+	xid = cutResource(xid);
+	
+	// Normalize the XID
+	xid = xid.toLowerCase();
+	
+	return xid;
+}
+
 // Gets the nick from a XID
 function getXIDNick(aXID) {
 	return explodeThis('@', aXID, 0);
@@ -394,7 +405,7 @@ function getBuddyName(xid) {
 	var cname, bname;
 	
 	// Cut the XID resource
-	xid = cutResource(xid);
+	xid = bareXID(xid);
 	
 	// This is me?
 	if(xid == getXID())

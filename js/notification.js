@@ -55,7 +55,7 @@ function newNotification(type, from, xid, body) {
 	var text, action, code;
 	
 	// User things
-	from = cutResource(from);
+	from = bareXID(from);
 	var hash = hex_md5(from);
 	
 	switch(type) {
