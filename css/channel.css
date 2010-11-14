@@ -8,13 +8,13 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
 #channel .top div.update {
 	position: absolute;
-	top: 11px;
+	top: 12px;
 	left: 115px;
 	right: 15px;
 	bottom: 15px;
