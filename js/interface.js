@@ -156,6 +156,12 @@ function generateChatLog(xid, hash) {
 		$(this).replaceWith($(this).attr('data-text'));
 	});
 	
+	// Filter the content avatars
+	$(content).find('.avatar-container .avatar').each(function() {
+		if(!$(this).attr('src').match(/data:/))
+			$(this).remove();
+	});
+	
 	// Remove the content click events
 	$(content).find('a').removeAttr('onclick');
 	

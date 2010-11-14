@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -316,9 +316,8 @@ function launchHome() {
 		var html = '<div class="list">';
 		
 		// Generate each locale HTML code
-		$.each(LOCALES_AVAILABLE_ID, function(i) {
+		for(i in LOCALES_AVAILABLE_ID)
 			html += '<a href="./?l=' + LOCALES_AVAILABLE_ID[i] + keepget + '">' + LOCALES_AVAILABLE_NAMES[i].htmlEnc() + '</a>';
-		});
 		
 		html += '</div>';
 		

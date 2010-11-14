@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 14/11/10
 
 */
 
@@ -232,15 +232,18 @@ function handleMessage(message) {
 	
 	// If this is a room topic message
 	if(subject && (type == 'groupchat')) {
-		// Filter the received subject
+		// Filter the vars
 		var filteredSubject = filterThisMessage(subject, resource, true);
+		var filteredName = resource.htmlEnc();
 		
 		// Display the new subject at the top
 		$('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith('<span class="muc-topic" title="' + subject + '">' + filteredSubject + '</span>');
 		
 		// Display the new subject as a system message
-		if(resource)
-			$('#' + hash + ' .content').append('<div class="one-line system-message"><em>(' + time + ') </em>' + resource.htmlEnc() + ' ' + _e("changed the subject to:") + ' ' + filteredSubject + '</div>');
+		if(resource) {
+			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filteredSubject;
+			displayMessage(type, from, hash, filteredName, topic_body, time, 'system-message', false);
+		}
 		
 		// Scroll to this subject
 		autoScroll(hash);
@@ -297,7 +300,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(type, hash, resource.htmlEnc(), body, time, message_type, notXHTML, nickQuote);
+			displayMessage(type, from, hash, resource.htmlEnc(), body, time, message_type, notXHTML, nickQuote);
 			
 			// Scroll to the last message
 			autoScroll(hash);
@@ -328,7 +331,7 @@ function handleMessage(message) {
 				soundPlay(1);
 			
 			// Display the received message
-			displayMessage(type, hash, fromName.htmlEnc(), body, time, 'user-message', notXHTML, '', 'him');
+			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, 'user-message', notXHTML, '', 'him');
 			
 			// We notify the user
 			messageNotify(hash, 'personnal');
@@ -415,7 +418,7 @@ function sendMessage(id, type) {
 			con.send(aMsg, handleErrorReply);
 			
 			// Finally we display the message we just sent
-			displayMessage('chat', id, _e("You").htmlEnc(), body, getCompleteTime(), 'user-message', notXHTML, '', 'me');
+			displayMessage('chat', getXID(), id, _e("You").htmlEnc(), body, getCompleteTime(), 'user-message', notXHTML, '', 'me');
 			
 			// Scroll to the last message
 			autoScroll(id);
@@ -640,41 +643,69 @@ function generateMessage(aMsg, body, id) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(type, hash, name, body, time, message_type, is_xhtml, nick_quote, mode) {
-	// Override some stuffs
+function displayMessage(type, xid, hash, name, body, time, message_type, is_xhtml, nick_quote, mode) {
+	// Generate some stuffs
+	var has_avatar = false;
+	var xid_hash = '';
+	var escaped_name = escape(name);
+	
 	if(!nick_quote)
 		nick_quote = '';
+	
+	if(message_type != 'system-message') {
+		has_avatar = true;
+		xid_hash = hex_md5(xid);
+	}
 	
 	// Filter the message
 	var filteredMessage = filterThisMessage(body, name, is_xhtml);
 	
 	// Display the received message in the room
-	var messageCode = '<div class="one-line ' + message_type + nick_quote + '"><em>(' + time + ')</em> ';
+	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '">';
 	
-	// Special attribute
-	var attribute = '';
-	
-	// Groupchat color generation
+	// Name color attribute
 	if(type == 'groupchat')
-		attribute = ' style="color: ' + generateColor(name) + ';"';
+		attribute = ' style="color: ' + generateColor(name) + ';" class="name';
 	else
-		attribute = ' class="' + mode + '"';
+		attribute = ' class="name ' + mode;
+	
+	// Close the class attribute
+	if(message_type == 'system-message')
+		attribute += ' hidden"';
+	else
+		attribute += '"';
+	
+	// Filter the previous displayed message
+	var one_line = '#' + hash + ' .one-line';
+	var last = $(one_line + ':last');
+	var last_name = $(one_line + ' b:last').attr('data-name');
+	var last_type = last.attr('data-type');
+	
+	if((last_name == escaped_name) && (message_type == last_type)) {
+		last.removeClass('last');
+		
+		// No need to get the avatar
+		has_avatar = false;
+	}
+	
+	else {
+		// Any avatar to add?
+		if(has_avatar)
+			messageCode += '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
+		
+		messageCode += '<span class="date">' + time + '</span><b data-name="' + escaped_name + '" ' + attribute + '>' + name + '</b>';
+	}
 	
 	// Is it a /me command?
 	if(body.match(/(^|>)(\/me )([^<]+)/))
-		messageCode += '<i' + attribute + '>' + filteredMessage + '</i>';
+		filteredMessage == '<i' + attribute + '>' + filteredMessage + '</i>';
 	
-	else {
-		// Any name to display?
-		if(name)
-			messageCode += '<b' + attribute + '>' + name + ' :</b> ';
-		
-		messageCode += filteredMessage;
-	}
-	
-	// Close the message code
-	messageCode += '</div>';
+	messageCode += filteredMessage + '</div>';
 	
 	// Write the code in the DOM
 	$('#' + hash + ' .content').append(messageCode);
+	
+	// Must get the avatar?
+	if(has_avatar)
+		getAvatar(xid, 'cache', 'true', 'forget');
 }

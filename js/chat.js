@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -121,7 +121,7 @@ function generateChat(type, id, xid, nick) {
 	// Append the chat HTML code
 	$('#page-engine').append(
 		'<div id="' + id + '" class="page-engine-chan chat"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
-			'<div class="top">' + 
+			'<div class="top ' + id + '">' + 
 				specialAvatar + 
 				
 				'<div class="name">' + 

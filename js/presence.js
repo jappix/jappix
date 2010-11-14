@@ -186,7 +186,10 @@ function handlePresence(presence) {
 				if(dStatus)
 					dStatus = ' (' + dStatus + ')';
 				
-				$('#' + xidHash + ' .content').append('<div class="one-line system-message"><em>(' + getCompleteTime() + ') </em>' + getBuddyName(from).htmlEnc() + ' (' + from + ') ' + _e("is now") + ' ' + humanShow(show, type) + dStatus + '</div>');
+				// Generate the presence-in-chat code
+				var dName = getBuddyName(from).htmlEnc();
+				var dBody = dName + ' (' + from + ') ' + _e("is now") + ' ' + humanShow(show, type) + dStatus;
+				displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), 'system-message', false);
 			}
 		}
 	}
@@ -203,8 +206,9 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	// Generate the values
 	var thisUser = '#page-engine #' + roomHash + ' .list .' + hash;
 	var thisPrivate = $('#' + hash + ' .message-area');
-	var write = '<div class="one-line system-message"><em>(' + messageTime + ') </em>' + nick.htmlEnc() + ' ';
+	var nick_html = nick.htmlEnc();
 	var real_xid = '';
+	var write = nick_html + ' ';
 	var notify = false;
 	
 	// Any XID submitted?
@@ -218,8 +222,8 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	if(!exists(thisUser) && (!type || (type == 'available'))) {
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
-			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + nick.htmlEnc() + '"' + real_xid + '>' + 
-				'<div class="name talk-images available">' + nick.htmlEnc() + '</div>' + 
+			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + nick_html + '"' + real_xid + '>' + 
+				'<div class="name talk-images available">' + nick_html + '</div>' + 
 				
 				'<div class="avatar-container">' + 
 					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
@@ -240,7 +244,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 			
 			// Any status?
 			if(status)
-				write += ' (' + filterThisMessage(status, nick.htmlEnc(), true) + ')';
+				write += ' (' + filterThisMessage(status, nick_html, true) + ')';
 			else
 				write += ' (' + _e("no status") + ')';
 		}
@@ -275,7 +279,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 			
 			// Any reason?
 			if(reason)
-				write += ' (' + filterThisMessage(reason, nick.htmlEnc(), true) + ')';
+				write += ' (' + filterThisMessage(reason, nick_html, true) + ')';
 			else
 				write += ' (' + _e("no reason") + ')';
 		}
@@ -287,7 +291,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 			
 			// Any status?
 			if(status)
-				write += ' (' + filterThisMessage(status, nick.htmlEnc(), true) + ')';
+				write += ' (' + filterThisMessage(status, nick_html, true) + ')';
 			else
 				write += ' (' + _e("no status") + ')';
 		}
@@ -299,7 +303,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	write += '</div>';
 	
 	if(notify)
-		$('#' + roomHash + ' .content').append(write);
+		displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, 'system-message', false);
 	
 	// Set the good status show icon
 	// The switch is a security to clients like Poezio which send "None" show content :)

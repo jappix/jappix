@@ -196,12 +196,45 @@ Last revision: 14/11/10
 	max-width: 32px;
 }
 
-#page-engine .one-line .me {
+#page-engine .one-line {
+	padding-left: 48px;
+}
+
+#page-engine .one-line.last {
+	border-bottom: 1px dotted #d0d0d0;
+	padding-bottom: 8px;
+	margin-bottom: 10px;
+}
+
+#page-engine .one-line b.name {
+	display: block;
+	margin-bottom: 4px;
+}
+
+#page-engine .one-line b.me {
 	color: #1e4a70;
 }
 
-#page-engine .one-line .him {
+#page-engine .one-line b.him {
 	color: #801e1e;
+}
+
+#page-engine .one-line span.date {
+	float: right;
+	font-size: 0.9em;
+}
+
+#page-engine .one-line .avatar-container {
+	text-align: center;
+	margin: 4px 0 0 -41px;
+	height: 30px;
+	width: 30px;
+	float: left;
+}
+
+#page-engine .one-line .avatar {
+	max-height: 30px;
+	max-width: 30px;
 }
 
 #page-engine .user-message {
@@ -211,6 +244,7 @@ Last revision: 14/11/10
 #page-engine .system-message {
 	color: #053805;
 	margin-bottom: 3px;
+	padding-left: 0 !important;
 }
 
 #page-engine .system-message a {

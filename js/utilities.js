@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 14/11/10
 
 */
 
@@ -535,4 +535,18 @@ function xmlToString(xmlData) {
 // Registers Jappix as the default XMPP links handler
 function xmppLinksHandler() {
 	navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
+}
+
+// Removes a value from an array
+function removeArrayValue(array, value) {
+	for(i in array) {
+		// It matches, remove it!
+		if(array[i] == value) {
+			array.splice(i, 1);
+			
+			return true;
+		}
+	}
+	
+	return false;
 }

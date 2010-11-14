@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 14/11/10
 
 */
 
@@ -583,6 +583,7 @@ function destroyTalkPage() {
 	BLIST_ALL = false;
 	FIRST_PRESENCE_SENT = false;
 	SEARCH_FILTERED = false;
+	AVATAR_PENDING = new Array();
 	
 	// Kill all timers, exept the board ones
 	$('*:not(#board .one-board)').stopTime();

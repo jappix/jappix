@@ -10,7 +10,7 @@ This is the PHP script used to generate a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/10/10
+Last revision: 14/11/10
 
 */
 
@@ -123,12 +123,45 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 			color: black;
 		}
 		
-		#content b.me {
+		#content .one-line {
+			padding-left: 48px;
+		}
+		
+		#content .one-line.last {
+			border-bottom: 1px dotted #d0d0d0;
+			padding-bottom: 8px;
+			margin-bottom: 10px;
+		}
+		
+		#content .one-line b.name {
+			display: block;
+			margin-bottom: 4px;
+		}
+		
+		#content .one-line b.me {
 			color: #1e4a70;
 		}
 		
-		#content b.him {
+		#content .one-line b.him {
 			color: #801e1e;
+		}
+		
+		#content .one-line span.date {
+			float: right;
+			font-size: 0.9em;
+		}
+		
+		#content .one-line .avatar-container {
+			text-align: center;
+			margin: 4px 0 0 -41px;
+			height: 30px;
+			width: 30px;
+			float: left;
+		}
+		
+		#content .one-line .avatar {
+			max-height: 30px;
+			max-width: 30px;
 		}
 		
 		#content .user-message {
@@ -136,16 +169,13 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		}
 		
 		#content .system-message {
-			color: #094209;
+			color: #053805;
 			margin-bottom: 3px;
+			padding-left: 0 !important;
 		}
 		
 		#content .system-message a {
-			color: #094209;
-		}
-		
-		#content .one-line {
-			margin: 5px 0;
+			color: #053805;
 		}
 	</style>
 </head>

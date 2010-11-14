@@ -8,13 +8,24 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 14/11/10
 
 */
 
 // Requests the avatar of a given user
+var AVATAR_PENDING = new Array();
+
 function getAvatar(xid, mode, enabled, photo) {
 	/* REF: http://xmpp.org/extensions/xep-0153.html */
+	
+	// No need to get the avatar, another process is yet running
+	if(AVATAR_PENDING.indexOf(xid) != -1) {
+		logThis(xid + ' -> yet pending...');
+		return false;
+	}
+	
+	// Push the current request to the pending array
+	AVATAR_PENDING.push(xid);
 	
 	// Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
 	var xml = getPersistent('avatar', xid);
@@ -45,7 +56,7 @@ function getAvatar(xid, mode, enabled, photo) {
 		
 		// If the avatar is yet stored and a new retrieving is not needed
 		if((mode == 'cache') && type && binval && checksum && updated) {
-			displayAvatar(hex_md5(xid), type, binval);
+			displayAvatar(xid, hex_md5(xid), type, binval);
 			
 			logThis('Read avatar from cache: ' + xid, 3);
 		}
@@ -67,6 +78,8 @@ function getAvatar(xid, mode, enabled, photo) {
 			con.send(iq, handleAvatar);
 		}
 	}
+	
+	return true;
 }
 
 // Handles the avatar
@@ -107,7 +120,7 @@ function handleAvatar(iq) {
 		}
 		
 		// We display the user avatar
-		displayAvatar(hash, aType, aBinval);
+		displayAvatar(handleFrom, hash, aType, aBinval);
 		
 		// Store the avatar
 		setPersistent('avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
@@ -144,11 +157,11 @@ function resetAvatar(xid, hash) {
 	setPersistent('avatar', xid, '<avatar><type>none</type><binval>none</binval><checksum>none</checksum><forced>false</forced></avatar>');
 	
 	// Display the empty avatar
-	displayAvatar(hash, 'none', 'none');
+	displayAvatar(xid, hash, 'none', 'none');
 }
 
 // Displays the avatar of an user
-function displayAvatar(hash, type, binval) {
+function displayAvatar(xid, hash, type, binval) {
 	// Initialize the vars
 	var container = hash + ' .avatar-container';
 	var code = '<img class="avatar" src="';
@@ -162,5 +175,8 @@ function displayAvatar(hash, type, binval) {
 	code += '" alt="" />';
 	
 	// Replace with the new avatar (in the roster and in the chat)
-	$('.' + container + ', #' + container).html(code);
+	$('.' + container).html(code);
+	
+	// We can remove the pending marker
+	removeArrayValue(AVATAR_PENDING, xid);
 }
