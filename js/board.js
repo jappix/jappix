@@ -8,7 +8,7 @@ These are the notification board JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 14/11/10
 
 */
 
@@ -146,3 +146,14 @@ function closeThisBoard(board) {
 		$(this).remove();
 	});
 }
+
+// Plugin launcher
+function launchBoard() {
+	// Visible boards
+	$('#board .one-board.visible').click(function() {
+		closeThisBoard(this);
+	});
+}
+
+// Launch this plugin!
+$(document).ready(launchBoard);
