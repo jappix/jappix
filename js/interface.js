@@ -175,18 +175,24 @@ function generateChatLog(xid, hash) {
 
 // Notifies the user from a new incoming message
 function messageNotify(hash, type) {
-	// We notify the user if he has not the focus on the chat
+	// Initialize the vars
 	var chat_switch = '#page-switch .';
-	var tested = $(chat_switch + hash);
+	var tested = chat_switch + hash;
+	var active = $(tested).hasClass('activechan');
 	
-	if(!tested.hasClass('activechan') || !document.hasFocus()) {
+	// We notify the user if he has not the focus on the chat
+	if(!active || !document.hasFocus()) {
 		if(type == 'personnal') {
-			$(chat_switch + hash + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
+			// Tab not focused?
+			if(!active)
+				$(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
+			
+			// In all cases, notify with the title
 			pageTitle('new');
 		}
 		
 		else
-			tested.addClass('chan-unread');
+			$(tested).addClass('chan-unread');
 	}
 }
 
