@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 15/11/10
 
 */
 
@@ -67,17 +67,25 @@ function connect(user, domain, password, resource, anonymous) {
 		logThis('New DOM created.');
 	}
 	
-	// The clic events
+	// The click events
 	$('#jmini a.button').click(function() {
-		if(!$(this).hasClass('clicked') && ($(this).find('span').text() != '0')) {
-			switchPane('roster');
-			$('#jmini div.roster').show();
-			$(this).addClass('clicked');
-		}
-		
-		else {
-			$('#jmini div.roster').hide();
-			$(this).removeClass('clicked');
+		if(!$(this).hasClass('clicked') && ($(this).find('span').text() != '0'))
+			showRoster();
+		else
+			hideRoster();
+	});
+	
+	// Hides the roster when clicking away of Jappix Mini
+	$(document).click(function(evt) {
+		if(!$(evt.target).parents('#jmini').size())
+			hideRoster();
+	});
+	
+	// Hides everything when double clicking away of Jappix Mini
+	$(document).dblclick(function(evt) {
+		if(!$(evt.target).parents('#jmini').size()) {
+			hideRoster();
+			switchPane();
 		}
 	});
 	
@@ -443,7 +451,7 @@ function switchPane(element) {
 	$('#jmini .roster, #jmini .chat-content').hide();
 	
 	// Show the asked element
-	if(element != 'roster') {
+	if(element && (element != 'roster')) {
 		var current = '#jmini #' + element;
 		
 		$(current + ' a.pane').addClass('clicked');
@@ -479,8 +487,7 @@ function chat(xid, nick, hash) {
 				'<div class="chat-content">' + 
 					'<div class="manage-messages">' + 
 						nick + 
-						'<a class="close">x</a>' + 
-						'<a class="reduce">_</a>' + 
+						'<a class="close" title="' + _e("Close") + '">x</a>' + 
 					'</div>' + 
 					
 					'<div class="received-messages" id="received-' + hash + '"></div>' + 
@@ -530,10 +537,19 @@ function chatClick(hash) {
 	$(current + ' a.close').click(function() {
 		$(current).remove();
 	});
-	
-	$(current + ' a.reduce').click(function() {
-		switchPane('roster');
-	});
+}
+
+// Shows the roster
+function showRoster() {
+	switchPane('roster');
+	$('#jmini div.roster').show();
+	$('#jmini a.button').addClass('clicked');
+}
+
+// Hides the roster
+function hideRoster() {
+	$('#jmini div.roster').hide();
+	$('#jmini a.button').removeClass('clicked');
 }
 
 // Initializes Jappix Mini
@@ -594,9 +610,6 @@ function handleRoster(iq) {
 	logThis('Roster got.', 3);
 }
 
-// Disconnects when the user quit
-$(window).bind('unload', disconnect);
-
 // Loads a given page
 function loadPage(path, element) {
 	// First change the page URL
@@ -639,6 +652,9 @@ function launchMini() {
 	
 	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }
+
+// Disconnects when the user quit
+$(window).bind('unload', disconnect);
 
 // Append the CSS stylesheet
 $(document).ready(launchMini);
