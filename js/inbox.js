@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 15/11/10
 
 */
 
@@ -228,6 +228,10 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 	var inbox = '#inbox .';
 	var one_message = inbox + 'one-message.' + id;
 	
+	// Message yet displayed!
+	if(exists(one_message))
+		return false;
+	
 	// Get the buddy name
 	var name = getBuddyName(from).htmlEnc();
 	
@@ -258,6 +262,8 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 	
 	// Get the user avatar
 	getAvatar(from, 'cache', 'true', 'forget');
+	
+	return true;
 }
 
 // Stores an inbox message
