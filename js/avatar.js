@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -19,10 +19,8 @@ function getAvatar(xid, mode, enabled, photo) {
 	/* REF: http://xmpp.org/extensions/xep-0153.html */
 	
 	// No need to get the avatar, another process is yet running
-	if(AVATAR_PENDING.indexOf(xid) != -1) {
-		logThis(xid + ' -> yet pending...');
+	if(AVATAR_PENDING.indexOf(xid) != -1)
 		return false;
-	}
 	
 	// Push the current request to the pending array
 	AVATAR_PENDING.push(xid);
@@ -86,7 +84,7 @@ function getAvatar(xid, mode, enabled, photo) {
 function handleAvatar(iq) {
 	// Extract the XML values
 	var handleXML = iq.getNode();
-	var handleFrom = getStanzaFrom(iq);
+	var handleFrom = fullXID(getStanzaFrom(iq));
 	var hash = hex_md5(handleFrom);
 	var find = $(handleXML).find('vCard');
 	var aChecksum = 'none';

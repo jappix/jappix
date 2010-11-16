@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 16/11/10
 
 */
 
@@ -206,6 +206,7 @@ else
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="none" />
 	<title><?php _e("Jappix manager"); ?> &bull; <?php echo($page_name); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=manager.xml" type="text/css" media="all" />

@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -283,7 +283,7 @@ function handeBVCard(iq) {
 function handleVCard(iq, type) {
 	// Extract the data
 	var iqID = iq.getID();
-	var iqFrom = getStanzaFrom(iq);
+	var iqFrom = fullXID(getStanzaFrom(iq));
 	var iqNode = iq.getNode();
 	
 	// Define some paths

@@ -8,14 +8,14 @@ These are the http-auth JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/10/10
+Last revision: 16/11/10
 
 */
 
 // Replies to a HTTP request
 function requestReply(value, xml) {
 	// We parse the xml content
-	var from = getStanzaFrom(xml);
+	var from = fullXID(getStanzaFrom(xml));
 	var confirm = $(xml.getNode()).find('confirm');
 	var xmlns = confirm.attr('xmlns');
 	var id = confirm.attr('id');

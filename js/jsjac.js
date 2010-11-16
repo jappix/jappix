@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 16/11/10
 
 */
 
@@ -2572,9 +2572,8 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
     packet.setID(genID());
   
   // apply the xml:lang attribute
-  // FIXME: commented because of a Jappix official BOSH service bug!
-  //if (!packet.getXMLLang())
-  //  packet.setXMLLang(XML_LANG);
+  if (!packet.getXMLLang())
+    packet.setXMLLang(XML_LANG);
   
   // register callback with id
   if(cb)

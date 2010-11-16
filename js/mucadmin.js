@@ -8,7 +8,7 @@ These are the muc-admin JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 16/11/10
 
 */
 
@@ -190,7 +190,7 @@ function addInputMucAdmin(xid, affiliation) {
 // Handles the MUC admin form
 function handleMucAdmin(iq) {
 	var handleXML = iq.getQuery();
-	var handleFrom = getStanzaFrom(iq);
+	var handleFrom = fullXID(getStanzaFrom(iq));
 	
 	// If we got the form results
 	if($(handleXML).find('x').attr('xmlns')) {
@@ -341,7 +341,7 @@ function sendMucAdminIQ(xid, rights, form) {
 function handleDestroyMucAdminIQ(iq) {
 	if(!handleErrorReply(iq)) {
 		// We close the groupchat
-		var room = getStanzaFrom(iq);
+		var room = fullXID(getStanzaFrom(iq));
 		var hash = hex_md5(room);
 		quitThisChat(room, hash, 'groupchat');
 		

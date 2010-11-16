@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 16/11/10
 
 */
 
@@ -189,7 +189,7 @@ function lastActivityUserInfos(iq) {
 	
 	if(iq && (iq.getType() == 'result')) {
 		// Get the values
-		var from = getStanzaFrom(iq);
+		var from = fullXID(getStanzaFrom(iq));
 		var seconds = $(iq.getNode()).find('query').attr('seconds');
 		
 		// Any seconds?
@@ -258,7 +258,7 @@ function versionUserInfos(iq) {
 		if(os)
 			$(path + ' #BUDDY-SYSTEM').text(os);
 		
-		logThis('Software version received: ' + getStanzaFrom(iq));
+		logThis('Software version received: ' + fullXID(getStanzaFrom(iq)));
 	}
 	
 	$('#userinfos .content').removeClass('version');
@@ -294,7 +294,7 @@ function localTimeUserInfos(iq) {
 			$(path + ' #BUDDY-TIME').text(local_string);
 		}
 		
-		logThis('Local time received: ' + getStanzaFrom(iq));
+		logThis('Local time received: ' + fullXID(getStanzaFrom(iq)));
 	}
 	
 	$('#userinfos .content').removeClass('time');

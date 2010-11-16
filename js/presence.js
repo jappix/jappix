@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -57,7 +57,7 @@ function firstPresence(checksum) {
 // Handles incoming presence packets
 function handlePresence(presence) {
 	// We define everything needed here
-	var from = getStanzaFrom(presence);
+	var from = fullXID(getStanzaFrom(presence));
 	var hash = hex_md5(from);
 	var node = presence.getNode();
 	var xid = bareXID(from);
@@ -198,7 +198,7 @@ function handlePresence(presence) {
 				// Generate the presence-in-chat code
 				var dName = getBuddyName(from).htmlEnc();
 				var dBody = dName + ' (' + from + ') ' + _e("is now") + ' ' + humanShow(show, type) + dStatus;
-				displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), 'system-message', false);
+				displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
 			}
 		}
 	}
@@ -312,7 +312,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	write += '</div>';
 	
 	if(notify)
-		displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, 'system-message', false);
+		displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, getTimeStamp(), 'system-message', false);
 	
 	// Set the good status show icon
 	// The switch is a security to clients like Poezio which send "None" show content :)

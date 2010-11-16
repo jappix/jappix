@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -121,7 +121,7 @@ function thisResource(aXID) {
 	return '';
 }
 
-// Get a bare XID
+// Gets the bare XID from a XID
 function bareXID(xid) {
 	// Cut the resource
 	xid = cutResource(xid);
@@ -130,6 +130,19 @@ function bareXID(xid) {
 	xid = xid.toLowerCase();
 	
 	return xid;
+}
+
+// Gets the full XID from a XID
+function fullXID(xid) {
+	// Normalizes the XID
+	var full = bareXID(xid);
+	var resource = thisResource(xid);
+	
+	// Any resource?
+	if(resource)
+		full += '/' + resource;
+	
+	return full;
 }
 
 // Gets the nick from a XID
@@ -184,9 +197,14 @@ function padZero(i) {
 	return i;
 }
 
-// Gets the timestamp
+// Gets a stamp from a date
+function extractStamp(date) {
+	return Math.round(date.getTime() / 1000);
+}
+
+// Gets the actual date stamp
 function getTimeStamp() {
-	return Math.round(new Date().getTime() / 1000);
+	return extractStamp(new Date());
 }
 
 // Gets the last user activity in seconds

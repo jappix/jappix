@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 16/11/10
 
 */
 
@@ -340,7 +340,7 @@ function getGCList() {
 // Handles the MUC items list
 function handleGCList(iq) {
 	var path = '#favorites .';
-	var from = getStanzaFrom(iq);
+	var from = fullXID(getStanzaFrom(iq));
 	
 	if (!iq || (iq.getType() != 'result')) {
 		openThisError(3);

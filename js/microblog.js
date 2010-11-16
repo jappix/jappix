@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -152,7 +152,7 @@ function removeMicroblog(id, hash) {
 // Handles the microblog of an user
 function handleMicroblog(iq) {
 	// Get the from attribute of this IQ
-	var from = getStanzaFrom(iq);
+	var from = fullXID(getStanzaFrom(iq));
 	
 	logThis('Microblog got: ' + from, 3);
 	

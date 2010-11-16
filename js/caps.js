@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -102,7 +102,7 @@ function handleDiscoInfos(iq) {
 		return;
 	
 	// IQ received, get some values
-	var from = getStanzaFrom(iq);
+	var from = fullXID(getStanzaFrom(iq));
 	var query = iq.getQuery();
 	
 	// Generate the CAPS-processing values

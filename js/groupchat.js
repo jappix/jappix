@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -73,7 +73,7 @@ function getMUC(room, nickname, password) {
 function handleMUC(presence) {
 	// We get the xml content
 	var xml = presence.getNode();
-	var from = getStanzaFrom(presence);
+	var from = fullXID(getStanzaFrom(presence));
 	var room = bareXID(from);
 	var nickname = thisResource(from);
 	var hash = hex_md5(room);

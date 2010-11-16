@@ -8,7 +8,7 @@ These are the IQ JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 16/11/10
 
 */
 
@@ -16,7 +16,7 @@ Last revision: 12/11/10
 function handleIQ(iq) {
 	// Gets the IQ content
 	var iqContent = iq.getDoc();
-	var iqFrom = getStanzaFrom(iq);
+	var iqFrom = fullXID(getStanzaFrom(iq));
 	var iqID = iq.getID();
 	var iqQueryXMLNS = iq.getQueryXMLNS();
 	var iqQuery = iq.getQuery();

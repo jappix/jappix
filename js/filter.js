@@ -8,7 +8,7 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -204,7 +204,6 @@ function filterThisXHTML(code) {
 	});
 	
 	// Filter some other elements
-	$(code).find('p:first').css('display', 'inline');
 	$(code).find('a').attr('target', '_blank');
 	
 	return $(code).find('html body').html();

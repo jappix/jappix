@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 16/11/10
 
 */
 
@@ -19,7 +19,7 @@ function handleMessage(message) {
 		return;
 	
 	// We get the message items
-	var from = getStanzaFrom(message);
+	var from = fullXID(getStanzaFrom(message));
 	var type = message.getType();
 	var body = message.getBody();
 	var node = message.getNode();
@@ -40,29 +40,36 @@ function handleMessage(message) {
 	}
 	
 	// Get message date
-	var time, stamp;
-	var d_stamp = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
+	var time, delay, d_delay, stamp, d_stamp;
+	d_delay = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
 	
-	// New stamp (valid XEP)
-	if(d_stamp)
-		stamp = d_stamp;
+	// New delay (valid XEP)
+	if(d_delay)
+		delay = d_delay;
 	
-	// Old stamp (obsolete XEP!)
+	// Old delay (obsolete XEP!)
 	else {
-		// Try to read the old-school stamp
-		var x_stamp = $(node).find('x[xmlns=' + NS_DELAY + ']:first').attr('stamp');
+		// Try to read the old-school delay
+		var x_delay = $(node).find('x[xmlns=' + NS_DELAY + ']:first').attr('stamp');
 		
-		if(x_stamp)
-			stamp = x_stamp.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');
+		if(x_delay)
+			delay = x_delay.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');
 	}
 	
-	// Any stamp?
-	if(stamp)
-		time = relativeDate(stamp);
+	// Any delay?
+	if(delay) {
+		time = relativeDate(delay);
+		d_stamp = Date.jab2date(delay);
+	}
 	
-	// No stamp
-	else
+	// No delay: get actual time
+	else {
 		time = getCompleteTime();
+		d_stamp = new Date();
+	}
+	
+	// Get the date stamp
+	stamp = extractStamp(d_stamp);
 	
 	// Chatstate message
 	if(node && ((type == 'chat') || !type)) {
@@ -118,7 +125,7 @@ function handleMessage(message) {
 	// Normal messages
 	if((type == 'normal') && body) {
 		// Message date
-		var messageDate = stamp;
+		var messageDate = delay;
 		
 		// No message date?
 		if(!messageDate)
@@ -242,7 +249,7 @@ function handleMessage(message) {
 		// Display the new subject as a system message
 		if(resource) {
 			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filteredSubject;
-			displayMessage(type, from, hash, filteredName, topic_body, time, 'system-message', false);
+			displayMessage(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
 		}
 		
 		// Scroll to this subject
@@ -270,7 +277,7 @@ function handleMessage(message) {
 			var message_type = 'user-message';
 			
 			// This is an old message
-			if(stamp && resource)
+			if(delay && resource)
 				message_type = 'old-message';
 			
 			// This is a system message
@@ -300,7 +307,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(type, from, hash, resource.htmlEnc(), body, time, message_type, notXHTML, nickQuote);
+			displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, notXHTML, nickQuote);
 			
 			// Scroll to the last message
 			autoScroll(hash);
@@ -331,7 +338,7 @@ function handleMessage(message) {
 				soundPlay(1);
 			
 			// Display the received message
-			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, 'user-message', notXHTML, '', 'him');
+			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', notXHTML, '', 'him');
 			
 			// We notify the user
 			messageNotify(hash, 'personnal');
@@ -418,7 +425,7 @@ function sendMessage(id, type) {
 			con.send(aMsg, handleErrorReply);
 			
 			// Finally we display the message we just sent
-			displayMessage('chat', getXID(), id, _e("You").htmlEnc(), body, getCompleteTime(), 'user-message', notXHTML, '', 'me');
+			displayMessage('chat', getXID(), id, _e("You").htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');
 			
 			// Scroll to the last message
 			autoScroll(id);
@@ -643,7 +650,7 @@ function generateMessage(aMsg, body, id) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(type, xid, hash, name, body, time, message_type, is_xhtml, nick_quote, mode) {
+function displayMessage(type, xid, hash, name, body, time, stamp, message_type, is_xhtml, nick_quote, mode) {
 	// Generate some stuffs
 	var has_avatar = false;
 	var xid_hash = '';
@@ -661,7 +668,7 @@ function displayMessage(type, xid, hash, name, body, time, message_type, is_xhtm
 	var filteredMessage = filterThisMessage(body, name, is_xhtml);
 	
 	// Display the received message in the room
-	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '">';
+	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '" data-stamp="' + stamp + '">';
 	
 	// Name color attribute
 	if(type == 'groupchat')
@@ -680,8 +687,9 @@ function displayMessage(type, xid, hash, name, body, time, message_type, is_xhtm
 	var last = $(one_line + ':last');
 	var last_name = $(one_line + ' b:last').attr('data-name');
 	var last_type = last.attr('data-type');
+	var last_stamp = parseInt(last.attr('data-stamp'));
 	
-	if((last_name == escaped_name) && (message_type == last_type)) {
+	if((last_name == escaped_name) && (message_type == last_type) && ((stamp - last_stamp) <= 1800)) {
 		last.removeClass('last');
 		
 		// No need to get the avatar
@@ -698,7 +706,7 @@ function displayMessage(type, xid, hash, name, body, time, message_type, is_xhtm
 	
 	// Is it a /me command?
 	if(body.match(/(^|>)(\/me )([^<]+)/))
-		filteredMessage == '<i' + attribute + '>' + filteredMessage + '</i>';
+		filteredMessage = '<i>' + filteredMessage + '</i>';
 	
 	messageCode += filteredMessage + '</div>';
 	

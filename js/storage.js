@@ -8,7 +8,7 @@ These are the storage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 16/11/10
 
 */
 
@@ -28,7 +28,7 @@ function getStorage(type) {
 // Handles the storage items
 function handleStorage(iq) {
 	var handleXML = iq.getQuery();
-	var handleFrom = getStanzaFrom(iq);
+	var handleFrom = fullXID(getStanzaFrom(iq));
 	
 	// Define some vars
 	var options = $(handleXML).find('storage[xmlns=' + NS_OPTIONS + ']');

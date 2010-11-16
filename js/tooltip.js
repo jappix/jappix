@@ -8,7 +8,7 @@ These are the tooltip JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 16/11/10
 
 */
 
@@ -133,6 +133,9 @@ function createTooltip(xid, hash, type) {
 					$(message_area).attr('style', style);
 				else
 					$(message_area).removeAttr('style');
+				
+				// Focus again on the message textarea
+				$(message_area).focus();
 			});
 			
 			// Load current style

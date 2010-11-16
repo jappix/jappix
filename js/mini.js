@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/11/10
+Last revision: 16/11/10
 
 */
 
@@ -216,7 +216,7 @@ function handleMessage(msg) {
 // Handles the incoming IQs
 function handleIQ(iq) {
 	// Define some variables
-	var iqFrom = getStanzaFrom(iq);
+	var iqFrom = fullXID(getStanzaFrom(iq));
 	var iqID = iq.getID();
 	var iqQueryXMLNS = iq.getQueryXMLNS();
 	var iqType = iq.getType();
