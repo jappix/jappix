@@ -635,7 +635,7 @@ function generateMessage(aMsg, body, id) {
 		// Use the exploded body array to create one <p> tag per entry
 		for(i in new_lines) {
 			// Blank line, we put a <br />
-			if((new_lines[i].match(/(^)(\s+)($)/)) || !new_lines[i])
+			if(new_lines[i].match(/(^)(\s+)($)/) || !new_lines[i])
 				aBody.appendChild(aMsg.buildNode('br', {'xmlns': NS_XHTML}));
 			
 			// Line with content, we put a <p />
