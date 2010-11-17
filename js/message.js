@@ -643,14 +643,11 @@ function generateMessage(aMsg, body, id) {
 			
 			// Line with content, we put a <p />
 			else {
-				// Append the <p /> element
-				var aLine = aBody.appendChild(aMsg.buildNode('p', {'style': style, 'xmlns': NS_XHTML}));
-				
 				// Filter the links
 				cLine = cLine.replace(/(https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" style="' + style + '">$&</a>');
 				
 				// Append the filtered line
-				$(aLine).append($(cLine));
+				$(aBody).append($('<p style="' + style + '">' + cLine + '</p>'));
 			}
 		}
 		
