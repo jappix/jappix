@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 17/11/10
 
 */
 
@@ -73,13 +73,12 @@ function switchChan(id) {
 		$('#page-switch .switcher').removeClass('activechan').addClass('chan');
 		$('#page-switch .' + id).addClass('activechan').removeClass('chan');
 		
-		if(id != 'channel') {
-			// We scroll down to the last message
+		// Scroll down to the last message
+		if(id != 'channel')
 			autoScroll(id);
-			
-			// We put the focus on the target chat input
-			$('#page-engine #' + id + ' .text .message-area').focus();
-		}
+		
+		// Manage input focus
+		inputFocus();
 	}
 }
 
@@ -281,3 +280,19 @@ function showOnlineBuddies(from) {
 		storeOptions();
 	}
 }
+
+// Focuses on the right input
+function inputFocus() {
+	// No popup shown
+	if(!exists('.popup'))
+		$('.focusable:visible:first').focus();
+}
+
+// Plugin launcher
+function launchInterface() {
+	// Focus on the first visible input
+	$(window).focus(inputFocus);
+}
+
+// Launch this plugin!
+$(document).ready(launchInterface);

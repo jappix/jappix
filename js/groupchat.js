@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
@@ -39,6 +39,7 @@ function getMUC(room, nickname, password) {
 	
 	// Reset the elements
 	$('#' + hash + ' .muc-ask').remove();
+	$('#' + hash + ' .compose').show();
 	
 	// No nickname?
 	if(!nickname) {
@@ -131,10 +132,12 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 	}
 	
 	// Create the HTML markup
+	$('#' + hash + ' .compose').hide();
+	
 	$('#' + hash).append(
 		'<div class="muc-ask text">' + 
 			'<label>' + label_text + '</label>' + 
-			'<input type="text" />' + 
+			'<input class="focusable" type="text" />' + 
 		'</div>'
 	);
 	

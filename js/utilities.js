@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
@@ -121,12 +121,28 @@ function thisResource(aXID) {
 	return '';
 }
 
+// Does stringprep on a string
+function stringPrep(string) {
+	// Replacement array
+	var invalid = new Array('Š', 'š', 'Đ', 'đ', 'Ž', 'ž', 'Č', 'č', 'Ć', 'ć', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ý', 'þ', 'ÿ', 'Ŕ', 'ŕ');
+	var valid   = new Array('S', 's', 'Dj', 'dj', 'Z', 'z', 'C', 'c', 'C', 'c', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 'B', 'Ss', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'b', 'y', 'R', 'r');
+	
+	// Compute a new string
+	for(i in invalid)
+		string = string.replace(invalid[i], valid[i]);
+	
+	return string;
+}
+
 // Gets the bare XID from a XID
 function bareXID(xid) {
 	// Cut the resource
 	xid = cutResource(xid);
 	
-	// Normalize the XID
+	// Launch the stringprep
+	xid = stringPrep(xid);
+	
+	// Set the XID to lower case
 	xid = xid.toLowerCase();
 	
 	return xid;
@@ -365,10 +381,21 @@ function isDeveloper() {
 	return false;
 }
 
+// Checks if host is locked
+function lockHost() {
+	if(LOCK_HOST == 'on')
+		return true;
+	
+	return false;
+}
+
 // Gets the full XID of the user
 function getXID() {
 	// Return the XID of the user
-	return con.username + '@' + con.domain;
+	if(con.username && con.domain)
+		return con.username + '@' + con.domain;
+	
+	return '';
 }
 
 // Gets the nickname of the user

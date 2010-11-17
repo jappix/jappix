@@ -8,14 +8,14 @@ These are the IQ JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
 // Handles an incoming IQ packet
 function handleIQ(iq) {
 	// Gets the IQ content
-	var iqContent = iq.getDoc();
+	var iqNode = iq.getNode();
 	var iqFrom = fullXID(getStanzaFrom(iq));
 	var iqID = iq.getID();
 	var iqQueryXMLNS = iq.getQueryXMLNS();
@@ -97,7 +97,7 @@ function handleIQ(iq) {
 	}
 	
 	// User time query
-	else if($(iqContent).find('time').size() && (iqType == 'get')) {
+	else if($(iqNode).find('time').size() && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0202.html */
 		
 		var iqTime = iqResponse.appendNode('time', {'xmlns': NS_URN_TIME});
@@ -110,7 +110,7 @@ function handleIQ(iq) {
 	}
 	
 	// Ping
-	else if($(iqContent).find('ping').size() && (iqType == 'get')) {
+	else if($(iqNode).find('ping').size() && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0199.html */
 		
 		con.send(iqResponse);

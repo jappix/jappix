@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 17/11/10
 
 */
 
@@ -152,7 +152,7 @@ function generateChat(type, id, xid, nick) {
 				'</div>' + 
 				
 				'<div class="compose">' + 
-					'<textarea class="message-area" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
+					'<textarea class="message-area focusable" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
 				'</div>' + 
 			'</div>' + 
 		'</div>'

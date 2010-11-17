@@ -17,7 +17,7 @@ function openWelcome() {
 	// Blacklisted XMPP servers?
 	var server = getServer();
 	
-	if((server == 'gmail.com') || (server == 'chat.facebook.com'))
+	if((server == 'gmail.com') || (server == 'googlemail.com') || (server == 'chat.facebook.com'))
 		return;
 	
 	// Popup HTML content

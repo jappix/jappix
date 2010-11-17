@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 17/11/10
 
 */
 
@@ -521,7 +521,7 @@ function createTalkPage() {
 								
 								'<form action="#" method="post" onsubmit="return sendMicroblog(this);">' + 
 									'<div class="microblog-body">' + 
-										'<input type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
+										'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
 									'</div>' + 
 									
 									'<div class="one-microblog-icon ibubble">' + 

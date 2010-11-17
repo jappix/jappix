@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
@@ -644,23 +644,13 @@ function generateMessage(aMsg, body, id) {
 			// Line with content, we put a <p />
 			else {
 				// Append the <p /> element
-				var aLine = aBody.appendChild(aMsg.buildNode('p', {'xmlns': NS_XHTML}));
+				var aLine = aBody.appendChild(aMsg.buildNode('p', {'style': style, 'xmlns': NS_XHTML}));
 				
-				while(cLine.match(/(.+)?((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+))(.+)?/i)) {
-					// Any pre-value?
-					if(RegExp.$1)
-						aLine.appendChild(aMsg.buildNode('span', {'style': style, 'xmlns': NS_XHTML}, RegExp.$1));
-					
-					// Append the current link
-					aLine.appendChild(aMsg.buildNode('a', {'href': RegExp.$2, 'style': style, 'xmlns': NS_XHTML}, RegExp.$2));
-					
-					// Change the line value
-					cLine = RegExp.$6;
-				}
+				// Filter the links
+				cLine = cLine.replace(/(https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" style="' + style + '">$&</a>');
 				
-				// Any post-value?
-				if(cLine)
-					aLine.appendChild(aMsg.buildNode('span', {'style': style, 'xmlns': NS_XHTML}, cLine));
+				// Append the filtered line
+				$(aLine).append($(cLine));
 			}
 		}
 		
@@ -735,6 +725,6 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	$('#' + hash + ' .content').append(messageCode);
 	
 	// Must get the avatar?
-	if(has_avatar)
+	if(has_avatar && xid)
 		getAvatar(xid, 'cache', 'true', 'forget');
 }

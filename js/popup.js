@@ -8,7 +8,7 @@ These are the popup JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 17/11/10
 
 */
 
@@ -33,4 +33,7 @@ function createPopup(id, content) {
 // Destroys a popup code
 function destroyPopup(id) {
 	$('#' + id).remove();
+	
+	// Manage input focus
+	inputFocus();
 }
