@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 17/11/10
 
 */
 
@@ -300,7 +300,7 @@ Last revision: 14/11/10
 #page-engine .chat-tools-content {
 	height: 16px;
 	width: 16px;
-	margin-right: 6px;
+	margin-right: 8px;
 	float: left;
 }
 
