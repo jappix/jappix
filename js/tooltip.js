@@ -55,9 +55,13 @@ function createTooltip(xid, hash, type) {
 		// Chat log
 		case 'save':
 			title = _e("Save chat");
-			content = 
-				'<p style="margin-bottom: 8px;">' + _e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>' + 
-				'<a class="tooltip-actionlog">' + _e("Generate file!") + '</a>';
+			content = '<p style="margin-bottom: 8px;">' + _e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>';
+			
+			// Possible to generate any log?
+			if($(path + ' .one-line').size())
+				content += '<a class="tooltip-actionlog">' + _e("Generate file!") + '</a>';
+			else
+				content += '<span class="tooltip-nolog">' + _e("This chat is empty!") + '</span>';
 			
 			break;
 	}

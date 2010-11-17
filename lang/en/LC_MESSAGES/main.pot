@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 11/11/10
+# Last revision: 17/11/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -858,6 +858,9 @@ msgid "Save chat"
 msgstr ""
 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
+msgstr ""
+
+msgid "This chat is empty!"
 msgstr ""
 
 msgid "Generate file!"

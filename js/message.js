@@ -622,7 +622,7 @@ function generateMessage(aMsg, body, id) {
 	
 	// A message style is choosen
 	if(style) {
-		// Explode the message body new lines (to create one <p> element by line)
+		// Explode the message body new lines (to create one <p /> element by line)
 		var new_lines = new Array(body);
 		
 		if(body.match(/\n/))
@@ -632,15 +632,36 @@ function generateMessage(aMsg, body, id) {
 		var aHtml = aMsg.appendNode('html', {'xmlns': NS_XHTML_IM});
 		var aBody = aHtml.appendChild(aMsg.buildNode('body', {'xmlns': NS_XHTML}));
 		
-		// Use the exploded body array to create one <p> tag per entry
+		// Use the exploded body array to create one element per entry
 		for(i in new_lines) {
+			// Current line
+			var cLine = new_lines[i];
+			
 			// Blank line, we put a <br />
-			if(new_lines[i].match(/(^)(\s+)($)/) || !new_lines[i])
+			if(cLine.match(/(^)(\s+)($)/) || !cLine)
 				aBody.appendChild(aMsg.buildNode('br', {'xmlns': NS_XHTML}));
 			
 			// Line with content, we put a <p />
-			else
-				aBody.appendChild(aMsg.buildNode('p', {'style': style, 'xmlns': NS_XHTML}, new_lines[i]));
+			else {
+				// Append the <p /> element
+				var aLine = aBody.appendChild(aMsg.buildNode('p', {'xmlns': NS_XHTML}));
+				
+				while(cLine.match(/(.+)?((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+))(.+)?/i)) {
+					// Any pre-value?
+					if(RegExp.$1)
+						aLine.appendChild(aMsg.buildNode('span', {'style': style, 'xmlns': NS_XHTML}, RegExp.$1));
+					
+					// Append the current link
+					aLine.appendChild(aMsg.buildNode('a', {'href': RegExp.$2, 'style': style, 'xmlns': NS_XHTML}, RegExp.$2));
+					
+					// Change the line value
+					cLine = RegExp.$6;
+				}
+				
+				// Any post-value?
+				if(cLine)
+					aLine.appendChild(aMsg.buildNode('span', {'style': style, 'xmlns': NS_XHTML}, cLine));
+			}
 		}
 		
 		return 'XHTML';

@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
@@ -339,7 +339,7 @@ function sendBuddyComments() {
 			var value = sessionStorage.getItem(current);
 			
 			if(xid && value)
-				storage.appendChild(iq.buildNode('note', {'jid': xid, 'xmlns': NS_ROSTERNOTES})).appendChild(iq.getDoc().createTextNode(value));
+				storage.appendChild(iq.buildNode('note', {'jid': xid, 'xmlns': NS_ROSTERNOTES}, value));
 		}
 	}
 	

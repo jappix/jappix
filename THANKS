@@ -6,7 +6,7 @@ These are the special thanks for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 17/11/10
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
@@ -27,6 +27,7 @@ Furthermore, we are glad to use all these tools, coming from other projects:
 
 # PROJECTS
 	- Base64		http://rumkin.com
+	- DrawSVGChart		http://codingteam.net/project/codingteam
 	- JSJaC			http://blog.jwchat.org/jsjac/
 	- jQuery		http://jquery.com/
 	- jQuery Timers		http://plugins.jquery.com/project/timers
