@@ -81,12 +81,10 @@ function connect(user, domain, password, resource, anonymous) {
 			hideRoster();
 	});
 	
-	// Hides everything when double clicking away of Jappix Mini
+	// Hides all panes double clicking away of Jappix Mini
 	$(document).dblclick(function(evt) {
-		if(!$(evt.target).parents('#jmini').size()) {
-			hideRoster();
+		if(!$(evt.target).parents('#jmini').size())
 			switchPane();
-		}
 	});
 	
 	// The connection
@@ -440,7 +438,6 @@ function displayMessage(xid, body, nick, hash) {
 	
 	// Filter the message
 	body = body.htmlEnc()
-	       .replace(/(https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" target="_blank">$&</a>')
 	       .replace(/(;\)|;-\))(\s|$)/gi, smiley('wink'))
 	       .replace(/(:3|:-3)(\s|$)/gi, smiley('waii'))
 	       .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy'))
@@ -449,7 +446,10 @@ function displayMessage(xid, body, nick, hash) {
 	       .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile'))
 	       .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy'))
 	       .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'))
-	       .replace(/(>:-\))(\s|$)/gi, smiley('evilgrin'))
+	       .replace(/(>:-\))(\s|$)/gi, smiley('evilgrin'));
+	
+	// Filter the links
+	body = filterLinks(body, 'mini');
 	
 	// Display the message
 	$('#jmini #chat-' + hash + ' div.received-messages').append('<p class="group">' + header + body + '</p>');

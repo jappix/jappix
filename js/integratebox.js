@@ -8,7 +8,7 @@ These are the integratebox JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 17/11/10
 
 */
 
@@ -81,9 +81,9 @@ function codeIntegrateBox(serv, url) {
 }
 
 // Applies a given integratebox element
-function applyIntegrateBox(url, serv) {
+function applyIntegrateBox(url, service) {
 	// Apply the HTML code
-	var dom_code = codeIntegrateBox(serv, url);
+	var dom_code = codeIntegrateBox(service, url);
 	
 	// Any code: apply it!
 	if(dom_code) {
@@ -94,7 +94,7 @@ function applyIntegrateBox(url, serv) {
 		$('#integratebox .content').prepend('<div class="one-media">' + dom_code + '</div>');
 		
 		// Image waiting icon
-		if(serv == 'image') {
+		if(service == 'image') {
 			var waitItem = $('#integratebox .wait');
 			
 			// Show it while it is loading
@@ -111,4 +111,77 @@ function applyIntegrateBox(url, serv) {
 	
 	// Nothing: return true to be able to open the URL in a new tab
 	return true;
+}
+
+// Applies the integratebox from an escaped link
+function escapedIntegrateBox(url, service) {
+	return applyIntegrateBox(unescape(url), unescape(service));
+}
+
+// Filters a string to apply the integratebox links
+function filterIntegrateBox(string) {
+	// Encapsulates the string into two <div /> elements
+	string = $('<div><div>' + string + '</div></div>').contents();
+	
+	// Loop the <a /> elements
+	$(string).find('a').each(function() {
+		// Initialize this element
+		var href = $(this).attr('href');
+		var to, url, service, event;
+		
+		// XMPP ID
+		if(href.match(/^xmpp:(.+)/i))
+			to = RegExp.$1;
+		
+		// YouTube video box
+		else if(href.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))(\S+)((&amp;\S)|(&\S)|\s|$)/gim)) {
+			url = RegExp.$8;
+			service = 'youtube';
+		}
+		
+		// Dailymotion video box
+		else if(href.match(/(\w{3,5})(:)(\S+)\.dailymotion\.com\/video\/([\w\-]+)((\#[\w\-]+)|\s|$)/gim)) {
+			url = RegExp.$4;
+			service = 'dailymotion';
+		}
+		
+		// Vimeo video box
+		else if(href.match(/((\w{3,5})(:)(\S+)(vimeo|www\.vimeo)\.com\/([\w\-]+))/gim)) {
+			url = RegExp.$1;
+			service = 'vimeo';
+		}
+		
+		// Theora video box
+		else if(href.match(/((\w{3,5})(:)(\S+)(\.)(ogv|ogg))/gim)) {
+			url = RegExp.$1;
+			service = 'theora';
+		}
+		
+		// Vorbis audio box
+		else if(href.match(/((\w{3,5})(:)(\S+)(\.oga))/gim)) {
+			url = RegExp.$1;
+			service = 'vorbis';
+		}
+		
+		// Image box
+		else if(href.match(/((\w{3,5})(:)(\S+)(\.)(jpg|jpeg|png|gif|tif|bmp))/gim)) {
+			url = RegExp.$1;
+			service = 'image';
+		}
+		
+		// Define the good event
+		if(to)
+			event = 'checkChatCreate(\'' + to + '\', \'chat\')';
+		else if(url && service)
+			event = 'escapedIntegrateBox(\'' + escape(url) + '\', \'' + escape(service) + '\')';
+		
+		// Any click event to apply?
+		if(event)
+			$(this).attr('onclick', 'return ' + event + ';');
+	});
+	
+	// Regenerate the HTML code (include string into a div to be readable)
+	string = $(string).html();
+	
+	return string;
 }

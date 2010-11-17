@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <jappix xmlns="jappix:file:get">
 	<css>mini.css~images.css</css>
-	<js>jsjac.js~constants.js~datastore.js~utilities.js~mini.js</js>
+	<js>jsjac.js~constants.js~datastore.js~utilities.js~filter.js~mini.js</js>
 </jappix>

@@ -8,13 +8,39 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 17/11/10
 
 */
 
 // Generates a given emoticon HTML code
 function emoteImage(image, text, after) {
 	return ' <span class="emoticon emoticon-' + image + ' smileys-images" data-text="' + text + '"></span> ' + after;
+}
+
+// Filters links in a string
+function filterLinks(string, mode, style) {
+	// Special stuffs
+	var style, target;
+	
+	// Links style
+	if(!style)
+		style = '';
+	else
+		style = ' style="' + style + '"';
+	
+	// Open in new tabs
+	if(mode != 'xhtml-im')
+		target = ' target="_blank"';
+	else
+		target = '';
+	
+	// Mail address
+	string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z0-9\._-]+))(\s|$)/gi, '$1<a href="xmpp:$2"' + style + '>$2</a>$6');
+	
+	// Simple link
+	string = string.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+))/gim, '$1<a href="$2"' + target + style + '>$2</a>');
+	
+	return string;
 }
 
 // Filters a given message
@@ -79,32 +105,12 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	// Underlined text
 	.replace(/(^|\s|>)((_)([^<>'"]+)(_))($|\s|<)/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
 	
-	// This is not yet a xHTML message (to avoid generating a link over another one)
-	if(html_encode) {
-		// Mail address
-		filteredMessage = filteredMessage.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z0-9\._-]+))(\s|$)/gi, '$1<a href="xmpp:$2" onclick="return checkChatCreate(\'$2\', \'chat\');">$2</a>$6')
-		
-		// YouTube video box
-		.replace(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))(\S+)((&amp;\S)|(&\S)|\s|$)/gim, '<a onclick="return applyIntegrateBox(\'$8\', \'youtube\');" href="$&" target="_blank">$&</a> ')
-		
-		// Dailymotion video box
-		.replace(/(\w{3,5})(:)(\S+)\.dailymotion\.com\/video\/([\w\-]+)((\#[\w\-]+)|\s|$)/gim, '<a onclick="return applyIntegrateBox(\'$4\', \'dailymotion\');" href="$&" target="_blank">$&</a> ')
-		
-		// Vimeo video box
-		.replace(/(\w{3,5})(:)(\S+)(vimeo|www\.vimeo)\.com\/([\w\-]+)/gim, '<a onclick="return applyIntegrateBox(\'$5\', \'vimeo\');" href="$&" target="_blank">$&</a> ')
-		
-		// Theora video box
-		.replace(/(\w{3,5})(:)(\S+)(\.)(ogv|ogg)/gim, '<a onclick="return applyIntegrateBox(\'$&\', \'theora\');" href="$&" target="_blank">$&</a>')
-		
-		// Vorbis audio box
-		.replace(/(\w{3,5})(:)(\S+)(\.oga)/gim, '<a onclick="return applyIntegrateBox(\'$&\', \'vorbis\');">$&</a>')
-		
-		// Image box
-		.replace(/(\w{3,5})(:)(\S+)(\.)(jpg|jpeg|png|gif|tif|bmp)/gim, '<a onclick="return applyIntegrateBox(\'$&\', \'image\');" href="$&" target="_blank">$&</a>')
-		
-		// Simple link
-		.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+))/gim, '$1<a href="$2" target="_blank">$2</a>');
-	}
+	// Add the links
+	if(html_encode)
+		filteredMessage = filterLinks(filteredMessage, 'desktop');
+	
+	// Filter integratebox links
+	filteredMessage = filterIntegrateBox(filteredMessage);
 	
 	return filteredMessage;
 }

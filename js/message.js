@@ -644,7 +644,7 @@ function generateMessage(aMsg, body, id) {
 			// Line with content, we put a <p />
 			else {
 				// Filter the links
-				cLine = cLine.replace(/(https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s]+)/gim, '<a href="$&" style="' + style + '">$&</a>');
+				cLine = filterLinks(cLine, 'xhtml-im', style);
 				
 				// Append the filtered line
 				$(aBody).append($('<p style="' + style + '">' + cLine + '</p>'));
