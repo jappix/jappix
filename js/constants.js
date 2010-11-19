@@ -8,7 +8,7 @@ These are the constants JS scripts for Jappix
 License: AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 19/11/10
 
 */
 
@@ -110,7 +110,7 @@ var LOCALES_AVAILABLE_NAMES = new Array();
 var XML_LANG = null;
 
 // Jappix parameters
-var JAPPIX_LOCATION = null;
+var JAPPIX_STATIC = null;
 var JAPPIX_VERSION = null;
 
 // Jappix main configuration
@@ -138,7 +138,8 @@ var HOST_STATIC = null;
 var ANONYMOUS_ROOM = null;
 var ANONYMOUS_NICK = null;
 
-// Node ID
+// Node parameters
+var JAPPIX_LOCATION = getJappixLocation();
 var JAPPIX_ID = hex_md5(JAPPIX_LOCATION);
 
 // XMPP error stanzas

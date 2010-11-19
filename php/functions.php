@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 19/11/10
 
 */
 
@@ -476,10 +476,18 @@ function hideErrors() {
 		ini_set('display_errors','off');
 }
 
-// The function to check GZip is available
-function hasGZip() {
+// The function to check compression is enabled
+function hasCompression() {
+	if(COMPRESSION == 'on')
+		return true;
+	
+	return false;
+}
+
+// The function to check compression is available with the current client
+function canCompress() {
 	// Compression allowed by admin & browser?
-	if((COMPRESSION == 'on') && (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')))
+	if(hasCompression() && (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')))
 		return true;
 	
 	return false;
@@ -510,8 +518,8 @@ function useHttps() {
 }
 
 // The function to compress the output pages
-function gzipThis() {
-	if(hasGZip() && !isDeveloper())
+function compressThis() {
+	if(canCompress() && !isDeveloper())
 		ob_start('ob_gzhandler');
 }
 
@@ -549,8 +557,8 @@ function sslLink() {
 	return $link;
 }
 
-// The function to get the Jappix full URL
-function jappixURL() {
+// The function to get the Jappix static URL
+function staticURL() {
 	// Check for HTTPS
 	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 	
@@ -561,9 +569,9 @@ function jappixURL() {
 }
 
 // The function to get the Jappix location (only from Get API!)
-function jappixLocation() {
+function staticLocation() {
 	// Filter the URL
-	return preg_replace('/((.+)\/)php\/get\.php(\S)+$/', '$1', jappixURL());
+	return preg_replace('/((.+)\/)php\/get\.php(\S)+$/', '$1', staticURL());
 }
 
 // The function to include a translation file

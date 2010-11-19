@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 19/11/10
 
 */
 
@@ -48,11 +48,11 @@ if(isset($_POST['login'])) {
 	
 	// Extract the user name
 	if(isset($_POST['admin_name']) && !empty($_POST['admin_name']))
-		$user = $_POST['admin_name'];
+		$user = trim($_POST['admin_name']);
 	
 	if($user && (isset($_POST['admin_password']) && !empty($_POST['admin_password']))) {
 		// Get the password values
-		$password = genStrongHash($_POST['admin_password']);
+		$password = genStrongHash(trim($_POST['admin_password']));
 		
 		// Write the session
 		$_SESSION['jappix_user'] = $user;

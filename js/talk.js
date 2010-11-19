@@ -8,13 +8,14 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
 // Creates the talkpage events
 function eventsTalkPage() {
 	// Launch all associated plugins
+	launchMicroblog();
 	launchRoster();
 	launchPresence();
 	launchPEP();
@@ -519,25 +520,23 @@ function createTalkPage() {
 							'<div class="update">' + 
 								'<p>' + _e("What\'s up with you?") +  '</p>' + 
 								
-								'<form action="#" method="post" onsubmit="return sendMicroblog(this);">' + 
-									'<div class="microblog-body">' + 
-										'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
-									'</div>' + 
-									
-									'<div class="one-microblog-icon ibubble">' + 
-										'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
-										'<a onclick="unattachMicroblog();" title="' + _e("Unattach the file") +  '" class="postit unattach talk-images"></a>' + 
+								'<div class="microblog-body">' + 
+									'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
+								'</div>' + 
+								
+								'<div class="one-microblog-icon ibubble">' + 
+									'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
+									'<a onclick="unattachMicroblog();" title="' + _e("Unattach the file") +  '" class="postit unattach talk-images"></a>' + 
 										
-										'<div id="attach" class="bubble">' + 
-											'<div class="attach-subarrow talk-images"></div>' + 
-											
-											'<div class="attach-subitem">' + 
-												'<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
-												'<input type="file" id="microblog-attach" onchange="attachMicroblog()" />' + 
-											'</div>' + 
+									'<div id="attach" class="bubble">' + 
+										'<div class="attach-subarrow talk-images"></div>' + 
+										
+										'<div class="attach-subitem">' + 
+											'<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
+											'<input type="file" id="microblog-attach" onchange="attachMicroblog()" />' + 
 										'</div>' + 
 									'</div>' + 
-								'</form>' + 
+								'</div>' + 
 							'</div>' + 
 						'</div>' + 
 						

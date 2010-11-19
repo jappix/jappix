@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 19/11/10
 
 */
 
@@ -404,19 +404,19 @@ function handleMyMicroblog(packet) {
 }
 
 // Performs the microblog sender checks
-function sendMicroblog(aForm) {
+function sendMicroblog() {
 	logThis('Send a new microblog item', 3);
 	
 	// Avoid nasty errors
 	try {
-		// Get the form values
-		var selector = $(aForm).find('input[name=microblog_body]');
+		// Get the values
+		var selector = $('#channel .top input[name=microblog_body]');
 		var body = selector.val();
 		
 		// Sufficient parameters
 		if(body) {
 			// Disable & blur our input
-			$('#channel .top input[name=microblog_body]').attr('disabled', true).blur();
+			selector.attr('disabled', true).blur();
 			
 			// Send the message on the XMPP network
 			publishMicroblog(
@@ -588,4 +588,13 @@ function fromInfosMicroblog(xid, hash) {
 	
 	// Get the microblog
 	getMicroblog(xid, hash);
+}
+
+// Plugin launcher
+function launchMicroblog() {
+	$('#channel .top input[name=microblog_body]').keyup(function(e) {
+		// Enter pressed: send the microblog notice
+		if(e.keyCode == 13)
+			return sendMicroblog();
+	});
 }

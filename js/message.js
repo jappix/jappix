@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
@@ -415,14 +415,17 @@ function sendMessage(id, type) {
 			
 			// Generates the correct message depending of the choosen style
 			var notXHTML = true;
+			var genMsg = generateMessage(aMsg, body, id);
 			
-			if(generateMessage(aMsg, body, id) == 'XHTML') {
-				body = filterThisXHTML(aMsg.getNode());
+			if(genMsg == 'XHTML')
 				notXHTML = false;
-			}
 			
 			aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
 			con.send(aMsg, handleErrorReply);
+			
+			// Filter the xHTML message (for us!)
+			if(!notXHTML)
+				body = filterThisXHTML(aMsg.getNode());
 			
 			// Finally we display the message we just sent
 			displayMessage('chat', getXID(), id, _e("You").htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');

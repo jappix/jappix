@@ -10,7 +10,7 @@ The SVG loader for Jappix statistics
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 19/11/10
 
 */
 
@@ -29,7 +29,7 @@ require_once('./gettext.php');
 
 // Optimize the page rendering
 hideErrors();
-gzipThis();
+compressThis();
 
 // Start the session
 session_start();

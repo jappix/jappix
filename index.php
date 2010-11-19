@@ -10,7 +10,7 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 19/11/10
 
 */
 
@@ -27,7 +27,7 @@ require_once('./php/gettext.php');
 
 // Optimize the page rendering
 hideErrors();
-gzipThis();
+compressThis();
 
 // Include the good language file
 $locale = checkLanguage();

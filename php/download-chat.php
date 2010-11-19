@@ -10,7 +10,7 @@ This is the PHP script used to download a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/10/10
+Last revision: 19/11/10
 
 */
 
@@ -19,8 +19,9 @@ define('PHP_BASE', '..');
 require_once('./functions.php');
 require_once('./read-main.php');
 
-// Hide PHP errors
+// Optimize the page rendering
 hideErrors();
+compressThis();
 
 // Send the HTML file to be downloaded
 if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {

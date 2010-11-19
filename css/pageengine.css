@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
@@ -197,7 +197,7 @@ Last revision: 17/11/10
 }
 
 #page-engine .one-line {
-	padding-left: 48px;
+	padding-left: 50px;
 }
 
 #page-engine .one-line.last {
@@ -226,7 +226,7 @@ Last revision: 17/11/10
 
 #page-engine .one-line .avatar-container {
 	text-align: center;
-	margin: 4px 0 0 -42px;
+	margin: 4px 0 0 -44px;
 	height: 30px;
 	width: 30px;
 	float: left;

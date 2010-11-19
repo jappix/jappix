@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
@@ -25,6 +25,9 @@ function connect(user, domain, password, resource, anonymous) {
 			'</div>'
 		);
 		
+		// Adapt roster height
+		adaptRoster();
+		
 		// Restore the chat click events
 		$('#jmini .conversation').each(function() {
 			// Get the hash of the current chat
@@ -37,7 +40,7 @@ function connect(user, domain, password, resource, anonymous) {
 		// Restore the roster click events
 		$('#jmini .roster .friend').each(function() {
 			// Get the values of the current friend
-			var xid = $(this).attr('name');
+			var xid = unescape($(this).attr('name'));
 			var nick = $(this).text();
 			var hash = explodeThis('-', $(this).attr('id'), 1);
 			
@@ -56,13 +59,17 @@ function connect(user, domain, password, resource, anonymous) {
 				
 				'<div class="starter">' + 
 					'<div class="roster">' + 
-						'<div class="logo mini-images"></div>' + 
+						'<a class="logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
+						'<div class="buddies"></div>' + 
 					'</div>' + 
 					
 					'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
 				'</div>' + 
 			'</div>'
 		);
+		
+		// Adapt roster height
+		adaptRoster();
 		
 		logThis('New DOM created.');
 	}
@@ -607,7 +614,8 @@ function handleRoster(iq) {
 			
 			// Display the current buddy
 			if(!exists(element) && subscription != 'remove') {
-				$('#jmini div.roster').append('<a class="friend offline" id="friend-' + hash + '" name="' + xid + '"><span class="presence mini-images unavailable"></span> ' + nick + '</a>');
+				// Append this buddy content
+				$('#jmini div.roster div.buddies').append('<a class="friend offline" id="friend-' + hash + '" name="' + escape(xid) + '"><span class="presence mini-images unavailable"></span> ' + nick + '</a>');
 				
 				// Click event on this buddy
 				$(element).click(function() {
@@ -623,6 +631,15 @@ function handleRoster(iq) {
 	initialize();
 	
 	logThis('Roster got.', 3);
+}
+
+// Adapts the roster height to the window
+function adaptRoster() {
+	// Process the new height
+	var height = $(window).height() - 70;
+	
+	// Apply the new height
+	$('#jmini div.roster div.buddies').css('max-height', height);
 }
 
 // Loads a given page
@@ -657,7 +674,7 @@ function replaceLinks(element) {
 // Plugin launcher
 function launchMini() {
 	// Append the mini stylesheet
-	$('head').append('<link rel="stylesheet" href="' + JAPPIX_LOCATION + 'php/get.php?h=none&t=css&g=mini.xml" type="text/css" media="all" />');
+	$('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&t=css&g=mini.xml" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	$(document).keydown(function(e) {
@@ -665,11 +682,14 @@ function launchMini() {
 			return false;
 	});
 	
+	// Sets the good roster max-height
+	$(window).resize(adaptRoster);
+	
+	// Disconnects when the user quit
+	$(window).bind('unload', disconnect);
+	
 	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }
-
-// Disconnects when the user quit
-$(window).bind('unload', disconnect);
 
 // Append the CSS stylesheet
 $(document).ready(launchMini);

@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/11/10
+Last revision: 19/11/10
 
 */
 
@@ -95,11 +95,11 @@ Last revision: 15/11/10
 	bottom: 25px;
 }
 
-#jmini div.logo,
+#jmini a.logo,
 #jmini div.manage-messages {
-	height: 14px;
-	border-bottom: 1px solid #19445f;
 	background-color: #6d84b4;
+	border-bottom: 1px solid #19445f;
+	height: 14px;
 	padding: 4px 6px;
 	color: white;
 	font-weight: bold;
@@ -155,21 +155,32 @@ Last revision: 15/11/10
 }
 
 #jmini div.roster {
-	display: none;
+	background-color: white;
+	border: 1px solid #999999;
+	min-width: 160px;
 	position: absolute;
 	right: 0;
 	bottom: 25px;
-	background-color: white;
-	border: 1px solid #999999;
-	max-height: 350px;
-	min-width: 160px;
-	padding-bottom: 5px;
+	display: none;
+}
+
+#jmini div.roster div.buddies {
+	max-height: 300px;
+	padding: 5px 0;
 	overflow: auto;
 }
 
-#jmini div.logo {
+#jmini a.logo {
 	background-position: 43px 2px;
-	margin-bottom: 5px;
+	display: block;
+}
+
+#jmini a.logo:hover {
+	background-color: #788fbf;
+}
+
+#jmini a.logo:active {
+	background-color: #8097c4;
 }
 
 #jmini a.friend {
@@ -188,6 +199,10 @@ Last revision: 15/11/10
 #jmini a.friend:hover {
 	background-color: #e6eaf8;
 	border-color: #a6afd0;
+}
+
+#jmini a.friend:active {
+	background-color: #dce1f4;
 }
 
 #jmini a.button {

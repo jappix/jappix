@@ -10,7 +10,7 @@ These are the PHP functions for Jappix Get API
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 19/11/10
 
 */
 
@@ -121,7 +121,7 @@ function setConfiguration($string, $locale, $version) {
 		      	'XML_LANG'		=> $locale,
 		      	
 		      	// Jappix parameters
-		      	'JAPPIX_LOCATION'	=> jappixLocation(),
+		      	'JAPPIX_STATIC'		=> staticLocation(),
 		      	'JAPPIX_VERSION'	=> $version,
 		      	
 		      	// Main configuration

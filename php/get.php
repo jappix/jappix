@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 19/11/10
 
 */
 
@@ -24,8 +24,9 @@ require_once('./read-hosts.php');
 // Hide PHP errors
 hideErrors();
 
-// If we run developer mode, disable any browser caching
+// Get some parameters
 $is_developer = isDeveloper();
+$has_compression = hasCompression();
 
 if($is_developer) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
@@ -114,14 +115,21 @@ if($file && $type) {
 	
 	// JS and CSS special stuffs
 	if(($type == 'css') || ($type == 'js')) {
+		// Compression var
+		if($has_compression)
+			$cache_encoding = 'deflate';
+		else
+			$cache_encoding = 'plain';
+		
+		// Get the vars
 		$version = getVersion();
 		$hash = genHash($version);
-		$cache_hash = md5($path.$hash.jappixLocation());
+		$cache_hash = md5($path.$hash.staticLocation()).'_'.$cache_encoding;
 		
 		// Check if the browser supports DEFLATE
 		$deflate_support = false;
 		
-		if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasGZip() && !$is_developer)
+		if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasCompression() && !$is_developer)
 			$deflate_support = true;
 		
 		// Internationalization
@@ -214,7 +222,7 @@ if($file && $type) {
 			if(hasCache($cache_lang) && !$is_developer) {
 				$cache_read = readCache($cache_lang);
 				
-				if($deflate_support)
+				if($deflate_support || !$has_compression)
 					echo $cache_read;
 				else
 					echo gzinflate($cache_read);
@@ -223,8 +231,16 @@ if($file && $type) {
 			// Else, we generate the cache
 			else {
 				// First try to read the cache reference
-				if(hasCache($cache_hash) && !$is_developer)
-					$output = gzinflate(readCache($cache_hash));
+				if(hasCache($cache_hash) && !$is_developer) {
+					// Read the reference
+					$cache_reference = readCache($cache_hash);
+					
+					// Filter the cache reference
+					if($has_compression)
+						$output = gzinflate($cache_reference);
+					else
+						$output = $cache_reference;
+				}
 				
 				// No cache reference, we should generate it
 				else {
@@ -260,7 +276,12 @@ if($file && $type) {
 						$output = $looped;
 					
 					// Generate the reference cache
-					$final = gzdeflate($output, 9);
+					if($has_compression)
+						$final = gzdeflate($output, 9);
+					else
+						$final = $output;
+					
+					// Write it!
 					genCache($final, $is_developer, $cache_hash);
 				}
 				
@@ -281,12 +302,17 @@ if($file && $type) {
 					$output = setTranslation($output);
 					
 					// Generate the cache
-					$final = gzdeflate($output, 9);
+					if($has_compression)
+						$final = gzdeflate($output, 9);
+					else
+						$final = $output;
+					
+					// Write it!
 					genCache($final, $is_developer, $cache_lang);
 				}
 				
 				// Output a well-encoded string
-				if($deflate_support)
+				if($deflate_support || !$has_compression)
 					echo $final;
 				else
 					echo gzinflate($final);

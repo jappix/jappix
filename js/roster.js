@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
@@ -540,8 +540,6 @@ function adaptRoster() {
 	$('#buddy-list .content').css('height', new_height);
 }
 
-
-
 // Define a global var for buddy list all buddies displayed
 var BLIST_ALL = false;
 
@@ -600,7 +598,7 @@ function launchRoster() {
 	$('#buddy-conf-add input').keyup(function(e) {
 		// Enter : continue
 		if(e.keyCode == 13) {
-		// Get the values
+			// Get the values
 			var xid = generateXID($('.add-contact-jid').val(), 'chat');
 			
 			// Submit the form
@@ -608,6 +606,8 @@ function launchRoster() {
 				addThisContact(xid);
 			else
 				$('.add-contact-jid').addClass('please-complete').focus();
+			
+			return false;
 		}
 		
 		// Escape : quit
@@ -659,9 +659,11 @@ function launchRoster() {
 				else
 					$('.join-jid').addClass('please-complete');
 			}
+			
+			return false;
 		}
 		
-		// Escape : quit
+		// Escape: quit
 		else if(e.keyCode == 27)
 			closeBubbles();
 		

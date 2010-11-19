@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 */
 
@@ -586,6 +586,19 @@ function xmlToString(xmlData) {
 	
 	// For Mozilla, Firefox, Opera, etc.
 	return (new XMLSerializer()).serializeToString(xmlData);
+}
+
+// Gets the current Jappix app. location
+function getJappixLocation() {
+	var url = window.location.href;
+	
+	// If the URL has variables, remove them
+	if(url.indexOf('?') != -1)
+		url = url.split('?')[0];
+	if(url.indexOf('#') != -1)
+		url = url.split('#')[0];
+	
+	return url;
 }
 
 // Registers Jappix as the default XMPP links handler
