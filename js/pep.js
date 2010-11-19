@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 19/11/10
 
 */
 
@@ -505,7 +505,7 @@ function geolocate() {
 	$('#my-infos .f-geoloc').stopTime().oneTime('4s', function() {
 		// We publish the user location if allowed (maximum cache age of 1 hour)
 		if((getDB('options', 'geolocation') == '1') && enabledPEP() && navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(getPosition, {maximumAge: 3600000});
+			navigator.geolocation.getCurrentPosition(getPosition);
 			
 			logThis('Geolocating...', 3);
 		}
