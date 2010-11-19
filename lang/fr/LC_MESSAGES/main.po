@@ -1,10 +1,10 @@
 # French translations for Jappix package.
 # This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <https://codingteam.net/>.
+# This file was translated from CodingTeam at <http://codingteam.net/>.
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-14 12:41:49\n"
+"PO-Revision-Date: 2010-11-19 22:45:09\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2568,4 +2568,8 @@ msgstr "Dernièrement vu(e) : %s"
 #: 
 msgid "Inactive since: %s"
 msgstr "Inactif depuis : %s"
+
+#: 
+msgid "This chat is empty!"
+msgstr "Cette discussion est vide !"
 
