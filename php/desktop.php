@@ -32,17 +32,24 @@ Last revision: 10/11/10
 		<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=anonymous.xml" type="text/css" media="all" />
 		
 		<script type="text/javascript">
-			<?php
-			
-				// Anonymous room
-				if(isset($_GET['r']) && !empty($_GET['r']))
-					echo('ANONYMOUS_ROOM = \''.$_GET['r'].'\';');
+			var params = (function() {
+				var vars = [], hash;
+				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 				
-				// Anonymous nickname
-				if(isset($_GET['n']) && !empty($_GET['n']))
-					echo('ANONYMOUS_NICK = \''.$_GET['n'].'\';');
+				for(var i = 0; i < hashes.length; i++) {
+					var hash = hashes[i].split('=');
+					vars.push(hash[0]);
+					vars[hash[0]] = hash[1];
+				}
+				
+				return vars;
+			})();
 			
-			?>
+			if (params['r'] && params['n'] !== '')
+				ANONYMOUS_ROOM = params['r'];
+			
+			if (params['n'] && params['n'] !== '')
+				ANONYMOUS_NICK = params['n'];
 		</script>
 		<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=anonymous.xml"></script>
 	<?php } ?>
