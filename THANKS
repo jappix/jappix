@@ -6,7 +6,7 @@ These are the special thanks for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 19/11/10
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
@@ -30,6 +30,7 @@ Furthermore, we are glad to use all these tools, coming from other projects:
 	- DrawSVGChart		http://codingteam.net/project/codingteam
 	- JSJaC			http://blog.jwchat.org/jsjac/
 	- jQuery		http://jquery.com/
+	- jQuery Form		http://jquery.malsup.com/form/
 	- jQuery Timers		http://plugins.jquery.com/project/timers
 	- Mobile Detect		http://code.google.com/p/php-mobile-detect/
 	- JSMin			http://github.com/rgrove/jsmin-php/
