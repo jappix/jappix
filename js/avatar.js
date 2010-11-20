@@ -18,9 +18,6 @@ var AVATAR_PENDING = new Array();
 function getAvatar(xid, mode, enabled, photo) {
 	/* REF: http://xmpp.org/extensions/xep-0153.html */
 	
-	if(xid != getXID())
-		return false;
-	
 	// No need to get the avatar, another process is yet running
 	if(existArrayValue(AVATAR_PENDING, xid))
 		return false;
