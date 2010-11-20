@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 20/11/10
 
 */
 
@@ -45,25 +45,25 @@ function openFavorites() {
 					'<div class="fedit-line">' + 
 						'<label>' + _e("Name") + '</label>' + 
 						
-						'<input class="fedit-title fedit-required" type="text" />' + 
+						'<input class="fedit-title" type="text" required="" />' + 
 					'</div>' + 
 					
 					'<div class="fedit-line">' + 
 						'<label>' + _e("Nickname") + '</label>' + 
 						
-						'<input class="fedit-nick fedit-required" type="text" />' + 
+						'<input class="fedit-nick" type="text" required="" />' + 
 					'</div>' + 
 					
 					'<div class="fedit-line">' + 
 						'<label>' + _e("Room") + '</label>' + 
 						
-						'<input class="fedit-chan fedit-required" type="text" />' + 
+						'<input class="fedit-chan" type="text" required="" />' + 
 					'</div>' + 
 					
 					'<div class="fedit-line">' + 
 						'<label>' + _e("Server") + '</label>' + 
 						
-						'<input class="fedit-server fedit-required" type="text" value="' + HOST_MUC + '" />' + 
+						'<input class="fedit-server" type="text" value="' + HOST_MUC + '" required="" />' + 
 					'</div>' + 
 					
 					'<div class="fedit-line">' + 
@@ -217,20 +217,20 @@ function addFavorite() {
 // Terminate a favorite editing
 function terminateThisFavorite(type) {
 	// Path to favorites
-	var favorites = '#favorites .';
+	var favorites = '#favorites ';
 	
 	// We get the values of the current edited groupchat
-	var old_xid = $(favorites + 'fedit-head-select').val();
+	var old_xid = $(favorites + '.fedit-head-select').val();
 	
-	var title = $(favorites + 'fedit-title').val();
-	var nick = $(favorites + 'fedit-nick').val();
-	var room = $(favorites + 'fedit-chan').val();
-	var server = $(favorites + 'fedit-server').val();
+	var title = $(favorites + '.fedit-title').val();
+	var nick = $(favorites + '.fedit-nick').val();
+	var room = $(favorites + '.fedit-chan').val();
+	var server = $(favorites + '.fedit-server').val();
 	var xid = room + '@' + server;
-	var password = $(favorites + 'fedit-password').val();
+	var password = $(favorites + '.fedit-password').val();
 	var autojoin = '0';
 	
-	if($(favorites + 'fedit-autojoin').is(':checked'))
+	if($(favorites + '.fedit-autojoin').is(':checked'))
 		autojoin = '1';
 	
 	// We check the missing values and send this if okay
@@ -248,7 +248,7 @@ function terminateThisFavorite(type) {
 		}
 		
 		else {
-			$(favorites + 'fedit-required').each(function() {
+			$(favorites + 'input[required]').each(function() {
 				if(!$(this).val())
 					$(this).addClass('please-complete');
 				else

@@ -97,9 +97,6 @@ function doLogout() {
 	if(!con.connected())
 		return false;
 	
-	// Send unavailable presence
-	sendPresence('unavailable');
-	
 	con.disconnect();
 }
 

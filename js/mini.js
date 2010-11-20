@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -176,12 +176,9 @@ function connected() {
 
 // When the user disconnects
 function disconnect() {
-	if(typeof con != 'undefined' && con && con.connected()) {
+	if((typeof con != 'undefined') && con && con.connected()) {
 		// Save the actual Jappix Mini DOM
 		setDB('jmini', con.username + '@' + con.domain, $('#jmini').html());
-		
-		// Send unavailable presence
-		presence('unavailable');
 		
 		// Disconnect
 		con.disconnect();

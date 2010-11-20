@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/11/10
+Last revision: 20/11/10
 
 */
 
@@ -39,19 +39,19 @@ function openInbox() {
 			'<div class="inbox-new-to inbox-new-block search">' + 
 				'<p class="inbox-new-text">' + _e("To") + '</p>' + 
 				
-				'<input name="inbox-new-to-input" class="inbox-new-input inbox-new-to-input" type="text" />' + 
+				'<input name="inbox-new-to-input" class="inbox-new-input inbox-new-to-input" type="text" required="" />' + 
 			'</div>' + 
 			
 			'<div class="inbox-new-topic inbox-new-block">' + 
 				'<p class="inbox-new-text">' + _e("Subject") + '</p>' + 
 				
-				'<input name="inbox-new-subject-input" class="inbox-new-input inbox-new-subject-input" type="text" />' + 
+				'<input name="inbox-new-subject-input" class="inbox-new-input inbox-new-subject-input" type="text" required="" />' + 
 			'</div>' + 
 			
 			'<div class="inbox-new-body inbox-new-block">' + 
 				'<p class="inbox-new-text">' + _e("Content") + '</p>' + 
 				
-				'<textarea class="inbox-new-textarea" rows="8" cols="60"></textarea>' + 
+				'<textarea class="inbox-new-textarea" rows="8" cols="60" required=""></textarea>' + 
 			'</div>' + 
 			
 			'<div class="inbox-new-send inbox-new-block">' + 

@@ -110,7 +110,7 @@ function createTalkPage() {
 								
 								'<div class="buddy-conf-subitem">' + 
 									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Add a friend") +  '</p>' + 
-									'<input type="text" class="buddy-conf-input add-contact-jid" />' + 
+									'<input type="text" class="buddy-conf-input add-contact-jid" required="" />' + 
 								'</div>' + 
 							'</div>' + 
 						'</div>' + 
@@ -123,7 +123,7 @@ function createTalkPage() {
 								
 								'<div class="buddy-conf-subitem search">' + 
 									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Join a chat") +  '</p>' + 
-									'<input type="text" class="buddy-conf-input join-jid" />' + 
+									'<input type="text" class="buddy-conf-input join-jid" required="" />' + 
 									'<select class="buddy-conf-select buddy-conf-join-select join-type">' + 
 										'<option value="chat">' + _e("Chat") +  '</option>' + 
 										'<option value="groupchat">' + _e("Groupchat") +  '</option>' + 

@@ -240,10 +240,7 @@ function setupCon(con) {
 function logout() {
 	// We are not connected
 	if(!con.connected())
-		return;
-	
-	// Send unavailable presence
-	sendPresence('', 'unavailable');
+		return false;
 	
 	// Disconnect from the XMPP server
 	con.disconnect();

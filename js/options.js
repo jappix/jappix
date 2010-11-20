@@ -79,7 +79,7 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Password") + '</label>' + 
-					'<input type="password" class="purge-microblog check-empty" />' + 
+					'<input type="password" class="purge-microblog check-empty" required="" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom">' + _e("Empty") + ' &raquo;</a>' + 
@@ -105,11 +105,11 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Old") + '</label>' + 
-					'<input type="password" class="password-change old" />' + 
+					'<input type="password" class="password-change old" required="" />' + 
 					
 					'<label>' + _e("New (2 times)") + '</label>' + 
-					'<input type="password" class="password-change new1" />' + 
-					'<input type="password" class="password-change new2" />' + 
+					'<input type="password" class="password-change new1" required="" />' + 
+					'<input type="password" class="password-change new2" required="" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom">' + _e("Continue") + ' &raquo;</a>' + 
@@ -123,7 +123,7 @@ function optionsOpen() {
 				
 				'<div class="sub-ask-content">' + 
 					'<label>' + _e("Password") + '</label>' + 
-					'<input type="password" class="delete-account check-password" />' + 
+					'<input type="password" class="delete-account check-password" required="" />' + 
 				'</div>' + 
 				
 				'<a class="sub-ask-bottom">' + _e("Delete") + ' &raquo;</a>' + 
