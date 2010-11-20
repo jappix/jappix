@@ -68,6 +68,7 @@ body {
 }
 
 #install input[type=text],
+#install input[type=url],
 #install input[type=password] {
 	margin-top: -2px;
 	padding: 3px;

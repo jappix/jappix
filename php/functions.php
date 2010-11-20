@@ -545,7 +545,7 @@ function getFiles($h, $l, $t, $g, $f) {
 		if ($f)
 			$values[] = 'f='.$f;
 		
-		return array(HOST_STATIC.'/php/get.php?'.implode('&amp;', $values));
+		return HOST_STATIC.'/php/get.php?'.implode('&amp;', $values);
 	}
 	
 	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('xml/'.$g)) {
@@ -574,6 +574,9 @@ function getFiles($h, $l, $t, $g, $f) {
 	foreach($array as $file)
 		$a[] = HOST_STATIC.'/'.$t.'/'.$file;
 
+	if (count($a) == 1)
+		return $a[0];
+
 	return $a;
 }
 
@@ -585,13 +588,17 @@ function echoGetFiles($h, $l, $t, $g, $f) {
 	
 	$files = getFiles($h, $l, $t, $g, $f);
 
-	$c = count($files)-1;
-	for($i=0; $i<=$c; $i++) {
-		if ($i)
-			echo '	';
-		printf($pattern, $files[$i]);
-		if ($i != $c)
-			echo "\n";
+	if (is_string($files))
+		printf($pattern, $files);
+	else {
+		$c = count($files)-1;
+		for($i=0; $i<=$c; $i++) {
+			if ($i)
+				echo '	';
+			printf($pattern, $files[$i]);
+			if ($i != $c)
+				echo "\n";
+		}
 	}
 }
 
@@ -860,7 +867,7 @@ function escapeRegex($string) {
 
 // Generates the security HTML code
 function securityHTML() {
-	return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	return '<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>

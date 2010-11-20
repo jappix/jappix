@@ -61,11 +61,11 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="lnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick" id="lnick" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + '/>' + 
+						'<input type="text" class="nick" id="lnick" pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + ' pattern="[^@/]+" required="" />' + 
 						'<label for="lpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password" id="lpassword" />' + 
+						'<input type="password" class="password" id="lpassword" required="" />' + 
 						'<label for="lremember">' + _e("Remember me") + '</label>' + 
-						'<input type="checkbox" class="remember" id="lremember" />' + 
+						'<input type="checkbox" class="remember" id="lremember" required="" />' + 
 					'</fieldset>' + 
 					
 					'<a class="advanced home-images">' + _e("Advanced") + '</a>' + 
@@ -98,10 +98,10 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label>' + _e("Room") + '</label>' + 
-						'<input type="text" class="room"' + disable_form + ' />' + 
+						'<input type="text" class="room"' + disable_form + ' pattern="[^/]+" required="" />' + 
 						
 						'<label>' + _e("Nickname") + '</label>' + 
-						'<input type="text" class="nick"' + disable_form + ' />' + 
+						'<input type="text" class="nick"' + disable_form + ' required="" />' + 
 					'</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '"' + disable_form + ' />' + 
@@ -127,10 +127,10 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="rnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick" id="rnick" ' + disable_form + '/><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + '/>' + 
+						'<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" />' + 
 						'<label for="rpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password" id="rpassword" ' + disable_form + '/>' + 
-						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword" id="spassword" ' + disable_form + '/>' + 
+						'<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" />' + 
+						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" />' + 
 					'</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 

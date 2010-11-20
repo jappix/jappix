@@ -51,8 +51,8 @@ Last revision: 06/11/10
 			<?php _e("Login"); ?>
 			
 			<form action="#" method="post" onsubmit="return doLogin(this);">
-				<input class="xid mobile-images" type="text" name="xid" />
-				<input class="password mobile-images" type="password" id="pwd" name="pwd" />
+				<input class="xid mobile-images" type="email" name="xid" required="" />
+				<input class="password mobile-images" type="password" id="pwd" name="pwd" required="" />
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
 		</div>

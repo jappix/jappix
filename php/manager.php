@@ -456,7 +456,7 @@ else
 					
 					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" class="icon manager-images" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
 					
-					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" />
+					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" accept="audio/*" />
 				</fieldset>
 				
 				<fieldset>
@@ -549,7 +549,7 @@ else
 						
 						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt" value="<?php echo($background_image_adapt); ?>" />
 						
-						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" class="icon manager-images" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
+						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" class="icon manager-images" type="color" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
 						
 						<div class="clear"></div>
 					</div>
@@ -560,7 +560,7 @@ else
 				<div class="sub">
 					<p><?php _e("Type the hexadecimal color value you want to use as a background."); ?></p>
 					
-					<label for="background_color_color"><?php _e("Color"); ?></label><input id="background_color_color" class="icon manager-images" type="text" name="background_color_color" value="<?php echo(htmlspecialchars($background['color_color'])); ?>" />
+					<label for="background_color_color"><?php _e("Color"); ?></label><input id="background_color_color" class="icon manager-images" type="color" name="background_color_color" value="<?php echo(htmlspecialchars($background['color_color'])); ?>" />
 					
 					<div class="clear"></div>
 				</div>
@@ -574,7 +574,7 @@ else
 				<div class="sub">
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 					
-					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" />
+					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" accept="image/*" />
 					
 					<div class="clear"></div>
 				</div>
@@ -757,9 +757,9 @@ else
 				<fieldset>
 					<legend><?php _e("Credentials"); ?></legend>
 					
-					<label for="admin_name"><?php _e("User"); ?></label><input id="admin_name" class="icon manager-images" type="text" name="admin_name" value="<?php echo(htmlspecialchars($user)); ?>" />
+					<label for="admin_name"><?php _e("User"); ?></label><input id="admin_name" class="icon manager-images" type="text" name="admin_name" value="<?php echo(htmlspecialchars($user)); ?>" required="" />
 					
-					<label for="admin_password"><?php _e("Password"); ?></label><input id="admin_password" class="icon manager-images" type="password" name="admin_password" />
+					<label for="admin_password"><?php _e("Password"); ?></label><input id="admin_password" class="icon manager-images" type="password" name="admin_password" required="" />
 				</fieldset>
 				
 				<?php

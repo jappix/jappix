@@ -76,6 +76,7 @@ Last revision: 05/11/10
 }
 
 #manager input[type=text],
+#manager input[type=url],
 #manager input[type=password],
 #manager select {
 	margin-top: -2px;
@@ -83,6 +84,7 @@ Last revision: 05/11/10
 }
 
 #manager input[type=text],
+#manager input[type=url],
 #manager input[type=password] {
 	padding: 3px;
 	min-width: 220px;

@@ -72,7 +72,10 @@ input[type=checkbox] {
 	margin-top: 2px;
 }
 
-.please-complete, .please-complete:hover, .please-complete:focus {
+.please-complete,
+.please-complete:hover,
+.please-complete:focus,
+input:invalid {
 	border: 1px #ac2525 solid !important;
 	box-shadow: 0 3px 10px #f39c9c inset !important;
 	-moz-box-shadow: 0 3px 10px #f39c9c inset !important;
