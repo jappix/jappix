@@ -136,6 +136,7 @@ function setConfiguration($string, $locale, $version) {
 		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
 		      	'HTTPS_FORCE'		=> HTTPS_FORCE,
 		      	'COMPRESSION'		=> COMPRESSION,
+		      	'MULTI_FILES'		=> MULTI_FILES,
 		      	'DEVELOPER'		=> DEVELOPER,
 		      	
 		      	// Hosts configuration

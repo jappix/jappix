@@ -125,6 +125,7 @@ var ENCRYPTION = null;
 var HTTPS_STORAGE = null;
 var HTTPS_FORCE = null;
 var COMPRESSION = null;
+var MULTI_FILES = null;
 var DEVELOPER = null;
 
 // Jappix hosts configuration

@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 20/11/10
 
 */
 
@@ -74,6 +74,12 @@ if(isset($_POST['compression']) && !empty($_POST['compression']))
 else
 	$compression = 'off';
 
+// Multiple resources
+if(isset($_POST['multi_files']) && !empty($_POST['multi_files']))
+	$multi_files = 'on';
+else
+	$multi_files = 'off';
+
 // Developer mode
 if(isset($_POST['developer']) && ($_POST['developer'] == 'on'))
 	$developer = 'on';
@@ -92,6 +98,7 @@ $conf_xml =
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>
 	<compression>'.$compression.'</compression>
+	<multi_files>'.$multi_files.'</multi_files>
 	<developer>'.$developer.'</developer>'
 ;
 
