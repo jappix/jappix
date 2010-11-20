@@ -289,6 +289,36 @@ function showOnlineBuddies(from) {
 	}
 }
 
+// Shows the roster gateways
+function showGateways(from) {
+	// We switch the two modes
+	$('.buddy-conf-more-display-gateways').hide();
+	$('.buddy-conf-more-hide-gateways').show();
+	
+	// Store this in the options
+	if(from == 'roster') {
+		setDB('options', 'roster-showgateways', '1');
+		storeOptions();
+	}
+	
+	logThis('Gateways displayed.', 3);
+}
+
+// Hides the roster gateways
+function hideGateways(from) {
+	// We switch the two modes
+	$('.buddy-conf-more-hide-gateways').hide();
+	$('.buddy-conf-more-display-gateways').show();
+	
+	// Store this in the options
+	if(from == 'roster') {
+		setDB('options', 'roster-showgateways', '0');
+		storeOptions();
+	}
+	
+	logThis('Gateways hidden.', 3);
+}
+
 // Focuses on the right input
 function inputFocus() {
 	// No popup shown

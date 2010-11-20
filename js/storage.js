@@ -52,6 +52,10 @@ function handleStorage(iq) {
 		// If this is the buddy list show status
 		if((type == 'roster-showall') && (value == '1'))
 			showAllBuddies();
+		
+		// If this is the gateways hidding
+		if((type == 'roster-showgateways') && (value == '0'))
+			hideGateways();
 	});
 	
 	// Parse the inbox xml

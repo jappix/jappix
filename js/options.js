@@ -45,6 +45,9 @@ function optionsOpen() {
 				'<label for="showall">' + _e("Show all friends") + '</label>' + 
 				'<input id="showall" type="checkbox" />' + 
 				
+				'<label for="showgateways">' + _e("Show gateways") + '</label>' + 
+				'<input id="showgateways" type="checkbox" />' + 
+				
 				'<label>' + _e("XMPP links") + '</label>' + 
 				'<a class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
 			'</fieldset>' + 
@@ -186,10 +189,11 @@ function storeOptions() {
 	var sounds = getDB('options', 'sounds');
 	var geolocation = getDB('options', 'geolocation');
 	var showall = getDB('options', 'roster-showall');
+	var showgateways = getDB('options', 'roster-showgateways');
 	
 	// Create an array to be looped
-	var oType = new Array('sounds', 'geolocation', 'roster-showall');
-	var oContent = new Array(sounds, geolocation, showall);
+	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'roster-showgateways');
+	var oContent = new Array(sounds, geolocation, showall, showgateways);
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -249,6 +253,17 @@ function saveOptions() {
 	else {
 		setDB('options', 'roster-showall', '0');
 		showOnlineBuddies('options');
+	}
+	
+	// We apply the gateway show
+	if($('#showgateways').is(':checked')) {
+		setDB('options', 'roster-showgateways', '1');
+		showGateways();
+	}
+	
+	else {
+		setDB('options', 'roster-showgateways', '0');
+		hideGateways();
 	}
 	
 	// We apply the message archiving
@@ -479,6 +494,12 @@ function loadOptions() {
 		$('#showall').attr('checked', true);
 	else
 		$('#showall').attr('checked', false);
+	
+	// We get the values of the forms for the gateways show
+	if(getDB('options', 'roster-showgateways') == '1')
+		$('#showgateways').attr('checked', true);
+	else
+		$('#showgateways').attr('checked', false);
 }
 
 // Plugin launcher

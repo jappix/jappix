@@ -122,6 +122,12 @@ msgstr ""
 msgid "Only show connected friends"
 msgstr ""
 
+msgid "Show gateways"
+msgstr ""
+
+msgid "Hide gateways"
+msgstr ""
+
 msgid "Map of friends"
 msgstr ""
 

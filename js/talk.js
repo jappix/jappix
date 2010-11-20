@@ -167,6 +167,11 @@ function createTalkPage() {
 									'</p>' + 
 									
 									'<p class="buddy-conf-text">' + 
+										'- <a class="buddy-conf-more-display-gateways">' + _e("Show gateways") +  '</a>' + 
+										'<a class="buddy-conf-more-hide-gateways">' + _e("Hide gateways") +  '</a>' + 
+									'</p>' + 
+									
+									'<p class="buddy-conf-text">' + 
 										'- <a class="buddy-conf-more-map">' + _e("Map of friends") +  '</a>' + 
 									'</p>' + 
 									

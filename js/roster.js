@@ -729,6 +729,12 @@ function launchRoster() {
 		showOnlineBuddies('roster');
 	});
 	
+	// When the user wants to display the gateways
+	$('.buddy-conf-more-display-gateways').click(showGateways);
+	
+	// When the user wants to hide the gateways
+	$('.buddy-conf-more-hide-gateways').click(hideGateways);
+	
 	// When the user click on the map of friends link
 	$('.buddy-conf-more-map').click(function() {
 		openMap();

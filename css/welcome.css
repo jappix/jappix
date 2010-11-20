@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 20/11/10
 
 */
 
@@ -66,7 +66,6 @@ Last revision: 06/11/10
 }
 
 #welcome a.box span.image {
-	background-position: -784px -724px;
 	height: 16px;
 	width: 16px;
 	margin: -30px 12px 0 0;

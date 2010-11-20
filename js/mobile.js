@@ -158,6 +158,18 @@ function _e(string) {
 	return string;
 }
 
+function getJappixLocation() {
+	var url = window.location.href;
+	
+	// If the URL has variables, remove them
+	if(url.indexOf('?') != -1)
+		url = url.split('?')[0];
+	if(url.indexOf('#') != -1)
+		url = url.split('#')[0];
+	
+	return url;
+}
+
 /* END SYSTEM FUNCTIONS */
 
 /* BEGIN HANDLING FUNCTIONS */
