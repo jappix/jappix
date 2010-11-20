@@ -19,7 +19,7 @@ function displayMicroblog(packet, from, hash, mode) {
 	
 	iParse.each(function() {
 		// Initialize
-		var tTitle, tFiltered, tTime, tDate, tBody, tName, tID, tHash, tIndividual, tFile, tFURL, tFName, tFType, tFExt, tFTClass, tFEClick;
+		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFile, tFURL, tFName, tFType, tFExt, tFTClass, tFEClick;
 		
 		// Get the values
 		tDate = $(this).find('published').text();
@@ -33,11 +33,16 @@ function displayMicroblog(packet, from, hash, mode) {
 		tName = getBuddyName(from);
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
 		
-		// Get the time
-		if(tDate)
+		// Get the stamp & time
+		if(tDate) {
+			tStamp = extractStamp(Date.jab2date(tDate));
 			tTime = parseDate(tDate);
-		else
+		}
+		
+		else {
+			tStamp = getTimeStamp();
 			tTime = '';
+		}
 		
 		// Retrieve the message body
 		if(tBody)
@@ -49,7 +54,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
 		
 		// Display the received message
-		var html = '<div class="one-update ' + hash + ' ' + tHash + '">' + 
+		var html = '<div class="one-update ' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
 				'<div class="avatar-container">' + 
 					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 				'</div>' + 
@@ -91,7 +96,14 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Mixed mode
 		if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
-			$('#channel .content.mixed').prepend(html);
+			// Get the nearest element
+			var nearest = sortMicroblog(tStamp);
+			
+			// Append the content at the right position (date relative)
+			if(nearest == 0)
+				$('#channel .content.mixed').append(html);
+			else
+				$('#channel .one-update[data-stamp=' + nearest + ']').before(html);
 			
 			// Remove the old notices to make the DOM lighter
 			var oneUpdate = '#channel .content.mixed .one-update';
@@ -129,6 +141,33 @@ function displayMicroblog(packet, from, hash, mode) {
 	
 	// Display the avatar of this buddy
 	getAvatar(from, 'cache', 'true', 'forget');
+}
+
+// Returns the element which has a lower stamp than the current one
+function sortMicroblog(stamp) {
+	var array = new Array();
+	var i = 0;
+	var nearest = 0;
+	
+	// Add the stamp values to the array
+	$('#channel .mixed .one-update').each(function() {
+		var current_stamp = parseInt($(this).attr('data-stamp'));
+		
+		// Push it!
+		array.push(current_stamp);
+	});
+	
+	// Sort the array
+	array.sort();
+	
+	// Get the nearest stamp value
+	while(stamp > array[i]) {
+		nearest = array[i];
+		
+		i++;
+	}
+	
+	return nearest;
 }
 
 // Removes a given microblog item

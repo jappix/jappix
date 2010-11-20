@@ -8,34 +8,18 @@ These are the collections functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 20/11/10
 
 */
 
 // Opens the collections tools
 function openCollections() {
-	// Popup HTML content
-	var html =
-	'<div class="top">' + _e("Collections") + '</div>' + 
-	
-	'<div class="content"></div>' + 
-	
-	'<div class="bottom">' + 
-		'<div class="wait wait-medium"></div>' + 
-		
-		'<a class="finish" onclick="return closeCollections();">' + _e("Close") + '</a>' + 
-	'</div>';
-	
-	// Create the popup
-	createPopup('collections', html);
+	// TODO
 }
 
 // Closes the collections tools
 function closeCollections() {
-	// Destroy the popup
-	destroyPopup('collections');
-	
-	return false;
+	// TODO
 }
 
 // Retrieve the collections of an entity
