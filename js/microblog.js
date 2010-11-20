@@ -494,7 +494,7 @@ function attachMicroblog() {
 	
 	// Upload form submit event
 	$('#attach').submit(function() {
-		if(!exists('#attach .wait'))
+		if(!exists('#attach .wait') && $('#attach input[type=file]').val())
 			$(this).ajaxSubmit(attach_options);
 		
 		return false;
@@ -502,7 +502,7 @@ function attachMicroblog() {
 	
 	// Upload input change event
 	$('#attach input[type=file]').change(function() {
-		if(!exists('#attach .wait'))
+		if(!exists('#attach .wait') && $(this).val())
 			$('#attach').ajaxSubmit(attach_options);
 		
 		return false;

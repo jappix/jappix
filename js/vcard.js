@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 20/11/10
 
 */
 
@@ -19,9 +19,9 @@ function openVCard() {
 	'<div class="top">' + _e("Your profile") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab1 tab-active" onclick="switchVCard(1);">' + _e("Identity") + '</a>' + 
-		'<a class="tab2" onclick="switchVCard(2);">' + _e("Profile image") + '</a>' + 
-		'<a class="tab3" onclick="switchVCard(3);">' + _e("Others") + '</a>' + 
+		'<a class="tab-active" data-key="1">' + _e("Identity") + '</a>' + 
+		'<a data-key="2">' + _e("Profile image") + '</a>' + 
+		'<a data-key="3">' + _e("Others") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -61,11 +61,15 @@ function openVCard() {
 		
 		'<div id="lap2" class="one-lap forms">' + 
 			'<fieldset>' + 
-				'<legend>' + _e("Upload") + '</legend>' + 
+				'<legend>' + _e("New") + '</legend>' + 
 				
 				'<input type="hidden" id="USER-PHOTO-TYPE" class="vcard-item" />' + 
 				'<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
-				'<input style="margin-left: 15px;" type="file" name="vCardAvatar" id="vCardAvatar" onchange="sendThisAvatar()" />' + 
+				
+				'<form id="vcard-avatar" action="#" method="post">' + 
+					'<input style="margin-left: 15px;" type="file" id="vcard-avatar-file" />' + 
+					'<input type="submit" value="' + _e("Send") + '" />' + 
+				'</form>' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
@@ -73,7 +77,7 @@ function openVCard() {
 				
 				'<div class="avatar-container"></div>' + 
 				
-				'<a class="one-button avatar-delete talk-images" onclick="deleteAvatar();">' + _e("Delete") + '</a>' + 
+				'<a class="one-button avatar-delete talk-images">' + _e("Delete") + '</a>' + 
 				'<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
 			'</fieldset>' + 
 			
@@ -118,8 +122,8 @@ function openVCard() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish disabled" onclick="return sendVCard();">' + _e("Save") + '</a>' + 
-		'<a class="finish" onclick="return closeVCard();">' + _e("Cancel") + '</a>' + 
+		'<a class="finish save disabled">' + _e("Save") + '</a>' + 
+		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -136,6 +140,8 @@ function openVCard() {
 function closeVCard() {
 	// Destroy the popup
 	destroyPopup('vcard');
+	
+	return false;
 }
 
 // Switches the vCard popup tabs
@@ -143,7 +149,9 @@ function switchVCard(id) {
 	$('#vcard .one-lap').removeClass('lap-active');
 	$('#vcard #lap' + id).addClass('lap-active');
 	$('#vcard .tab a').removeClass('tab-active');
-	$('#vcard .tab .tab' + id).addClass('tab-active');
+	$('#vcard .tab a[data-key=' + id + ']').addClass('tab-active');
+	
+	return false;
 }
 
 // Encodes the user's avatar in base64
@@ -152,7 +160,7 @@ function sendThisAvatar() {
 	$('#vcard .avatar-info').hide().stopTime();
 	
 	// Get the input file
-	var fInput = document.getElementById('vCardAvatar');
+	var fInput = document.getElementById('vcard-avatar-file');
 	var fFile = fInput.files[0];
 	
 	// If there's a file
@@ -206,7 +214,9 @@ function sendThisAvatar() {
 		openThisInfo(7);
 	
 	// Reset the file input
-	$('#vCardAvatar').val('');
+	$('#vcard-avatar-file').val('');
+	
+	return false;
 }
 
 // Deletes the encoded avatar of an user
@@ -221,6 +231,8 @@ function deleteAvatar() {
 	
 	// We show the avatar-uploading request
 	$('#vcard .no-avatar').show();
+	
+	return false;
 }
 
 // Creates a special vCard input
@@ -425,7 +437,7 @@ function handleVCard(iq, type) {
 function sendVCard() {
 	// Not yet retrieved?
 	if($('#vcard .finish:first').hasClass('disabled'))
-		return;
+		return false;
 	
 	// Initialize the IQ
 	var iq = new JSJaCIQ();
@@ -510,6 +522,8 @@ function sendVCard() {
 	getAvatar(getXID(), 'force', 'true', 'forget');
 	
 	logThis('vCard sent.');
+	
+	return false;
 }
 
 // Plugin launcher
@@ -522,5 +536,44 @@ function launchVCard() {
 		// Enter pressed: send the vCard
 		if(e.keyCode == 13)
 			return sendVCard();
+	});
+	
+	// Click events
+	$('#vcard .tab a').click(function() {
+		// Yet active?
+		if($(this).hasClass('tab-active'))
+			return false;
+		
+		// Switch to the good tab
+		var key = parseInt($(this).attr('data-key'));
+		
+		return switchVCard(key);
+	});
+	
+	$('#vcard .avatar-delete').click(function() {
+		return deleteAvatar();
+	});
+	
+	$('#vcard .bottom .finish').click(function() {
+		if($(this).is('.cancel'))
+			return closeVCard();
+		if($(this).is('.save'))
+			return sendVCard();
+	});
+	
+	// Change events
+	$('#vcard-avatar-file').change(function() {
+		if($(this).val())
+			return sendThisAvatar();
+		
+		return false;
+	});
+	
+	// Submit events
+	$('#vcard-avatar').submit(function() {
+		if($('#vcard-avatar-file').val())
+			return sendThisAvatar();
+		
+		return false;
 	});
 }

@@ -19,36 +19,26 @@ define('PHP_BASE', '..');
 require_once('./functions.php');
 require_once('./read-main.php');
 
-// Hide PHP errors
+// Optimize the page rendering
 hideErrors();
+compressThis();
 
 // Set a special XML header
 header('content-type: text/xml; charset=utf-8');
 
-// Initialize some values
-$user = '';
-$filename = '';
-$ext = '';
-$new_name = '';
-
-// Treat the username
-if(isset($_POST['user']))
+// Everything is okay
+if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user']))) {
+	// Get the user name
 	$user = $_POST['user'];
-
-// Treat the uploaded file
-if(isset($_FILES['file'])) {
+	
+	// Get the file name
 	$tmp_filename = $_FILES['file']['tmp_name'];
 	$filename = $_FILES['file']['name'];
-}
-
-// Treat the filename
-if($filename) {
+	
+	// Get the file new name
 	$ext = getFileExt($filename);
 	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
-}
-
-// Everything is okay
-if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && isSafe($filename)) {
+	
 	// Define some vars
 	$content_dir = '../store/share/'.$user;
 	$security_file = $content_dir.'/index.html';
@@ -66,7 +56,7 @@ if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && isSafe($fil
 		file_put_contents($security_file, securityHTML());
 	
 	// File upload error?
-	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+	if(!isSafe($filename) || !is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
 		exit(
 '<jappix xmlns=\'jappix:file:post\'>
 	<error>move-error</error>
