@@ -85,6 +85,9 @@ function anonymousLogin(server) {
 		
 		// We connect !
 		con.connect(oArgs);
+		
+		// Change the page title
+		pageTitle('wait');
 	}
 	
 	catch(e) {

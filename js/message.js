@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -646,6 +646,9 @@ function generateMessage(aMsg, body, id) {
 			
 			// Line with content, we put a <p />
 			else {
+				// HTML encode the line
+				cLine = cLine.htmlEnc();
+				
 				// Filter the links
 				cLine = filterLinks(cLine, 'xhtml-im', style);
 				

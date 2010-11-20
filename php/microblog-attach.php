@@ -10,7 +10,7 @@ This is the Jappix microblog file attaching script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/10/10
+Last revision: 20/11/10
 
 */
 
@@ -22,24 +22,31 @@ require_once('./read-main.php');
 // Hide PHP errors
 hideErrors();
 
+// Set a special XML header
+header('content-type: text/xml; charset=utf-8');
+
 // Initialize some values
+$user = '';
 $filename = '';
 $ext = '';
 $new_name = '';
 
-// Get the sent values
-if(isset($_POST['filename']) && !empty($_POST['filename'])) {
-	$filename = $_POST['filename'];
+// Treat the username
+if(isset($_POST['user']))
+	$user = $_POST['user'];
+
+// Treat the uploaded file
+$tmp_filename = $_FILES['file']['tmp_name'];
+$filename = $_FILES['file']['name'];
+
+// Treat the filename
+if($filename) {
 	$ext = getFileExt($filename);
 	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
 }
 
 // Everything is okay
-if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['data']) && !empty($_POST['data'])) && isSafe($filename)) {
-	// Get some POST vars
-	$user = $_POST['user'];
-	$data = $_POST['data'];
-	
+if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && isSafe($filename)) {
 	// Define some vars
 	$content_dir = '../store/share/'.$user;
 	$security_file = $content_dir.'/index.html';
@@ -56,13 +63,13 @@ if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_PO
 	if(!file_exists($security_file))	
 		file_put_contents($security_file, securityHTML());
 	
-	// Write the file
-	file_put_contents($path, base64_decode($data));
-	
-	// Security: remove the file and stop the script if too big (+6MiB)
-	if(filesize($path) > 6000000) {
-		unlink($path);
-		exit;
+	// File upload error?
+	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+		exit(
+'<jappix xmlns=\'jappix:file:post\'>
+	<error>move-error</error>
+</jappix>'
+		);
 	}
 	
 	// Resize and compress if this is a JPEG file and if GD is available
@@ -110,11 +117,22 @@ if($filename && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_PO
 	// File type?
 	$file_type = getFileType($ext);
 	
-	// Set a special XML header
-	header('content-type: text/xml; charset=utf-8');
-	
 	// Return the path to the file
-	exit('<jappix xmlns=\'jappix:social:attach\'><url>store/share/'.$user.'/'.$name.'</url><name>'.$new_name.'</name><type>'.$file_type.'</type><ext>'.$ext.'</ext></jappix>');
+	exit(
+'<jappix xmlns=\'jappix:file:post\'>
+	<url>'.htmlspecialchars('store/share/'.$user.'/'.$name).'</url>
+	<name>'.htmlspecialchars($new_name).'</name>
+	<type>'.htmlspecialchars($file_type).'</type>
+	<ext>'.htmlspecialchars($ext).'</ext>
+</jappix>'
+	);
 }
+
+// Bad request error!
+exit(
+'<jappix xmlns=\'jappix:file:post\'>
+	<error>bad-request</error>
+</jappix>'
+);
 
 ?>

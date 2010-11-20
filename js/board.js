@@ -8,7 +8,7 @@ These are the notification board JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -87,7 +87,7 @@ function createBoard(type, id) {
 			
 			// Attaching error
 			case 4:
-				text = _e("An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!");
+				text = printf(_e("An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"), JAPPIX_MAX_UPLOAD);
 				
 				break;
 		}

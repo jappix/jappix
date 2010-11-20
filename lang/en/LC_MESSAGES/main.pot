@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 17/11/10
+# Last revision: 20/11/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -1307,7 +1307,7 @@ msgstr ""
 msgid "Unattach the file"
 msgstr ""
 
-msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
+msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
 msgstr ""
 
 msgid "Authorization failed"

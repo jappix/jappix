@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -57,6 +57,9 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		
 		// We connect !
 		con.connect(oArgs);
+		
+		// Change the page title
+		pageTitle('wait');
 		
 		logThis('Jappix is connecting...', 3);
 	}
@@ -125,6 +128,9 @@ function doRegister(username, domain, pass) {
 		
 		// And here we go : we connect !
 		con.connect(oArgs);
+		
+		// Change the page title
+		pageTitle('wait');
 	}
 	
 	catch(e) {
@@ -255,6 +261,9 @@ function terminate() {
 		// Show the waiting item (useful if BOSH is sloooow)
 		showGeneralWait();
 		
+		// Change the page title
+		pageTitle('wait');
+		
 		// Disconnect from the XMPP server
 		logout();
 	}
@@ -265,6 +274,9 @@ function quit() {
 	if(con.connected()) {
 		// We show the waiting image
 		showGeneralWait();
+		
+		// Change the page title
+		pageTitle('wait');
 		
 		// We disconnect from the XMPP server
 		logout();

@@ -8,7 +8,7 @@ These are the error functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 20/11/10
 
 */
 
@@ -88,6 +88,7 @@ function handleError(packet) {
 		
 		// Show the homepage (security)
 		$('#home').show();
+		pageTitle('home');
 		
 		logThis('First level error received.', 1);
 	}

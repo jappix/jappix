@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 20/11/10
 
 */
 
@@ -27,14 +27,22 @@ function pageTitle(title) {
 	switch(title) {
 		case 'home':
 			$(select).html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
+			
 			break;
 		
 		case 'talk':
 			$(select).html('Jappix &bull; ' + xid);
+			
 			break;
 		
 		case 'new':
 			$(select).html('[*] Jappix &bull; ' + xid);
+			
+			break;
+		
+		case 'wait':
+			$(select).html('Jappix &bull; ' + _e("Please wait..."));
+			
 			break;
 	}
 }

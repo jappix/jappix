@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -485,87 +485,25 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 
 // Attaches a file to a microblog post
 function attachMicroblog() {
-	// Get some values
-	var fInput = document.getElementById('microblog-attach');
-	var fFile = fInput.files[0];
+	// File upload vars
+	var attach_options = {
+		beforeSubmit:	waitMicroblogAttach,
+		success:	handleMicroblogAttach
+	};
 	
-	// The file is defined
-	if(fFile && functionExists(FileReader)) {
-		// Maximum file size of 6MiB
-		if(fFile.size > 6000000) {
-			openThisError(4);
-			
-			// Reset the upload input
-			$('#attach input').val('');
-			
-			logThis('File to attach too big.', 1);
-		}
+	// Upload form submit event
+	$('#attach form').submit(function() {
+		$(this).ajaxSubmit(attach_options);
 		
-		// All is okay, we can upload it
-		else {
-			// Disable the input
-			$('#microblog-attach').attr('disabled', true);
-			
-			// Initialize the file reader
-			var fReader = new FileReader();
-			
-			fReader.onload = function(e) {
-				var fResult = explodeThis(',', e.target.result, 1);
-				var fName = fFile.fileName;
-				
-				// Send the file to the server
-				$.post('./php/microblog-attach.php', { user: getXID(), filename: fName, data: fResult }, function(data) {
-					// Enable the input
-					$('#microblog-attach').removeAttr('disabled');
-					
-					// Process the returned data
-					if(!data) {
-						openThisError(4);
-						
-						logThis('No attached file data received.', 1);
-					}
-					
-					else {
-						// Hide our bubble
-						closeBubbles();
-						
-						// Get the values
-						var dData = $(data).find('jappix');
-						var dURL = dData.find('url').text();
-						var dName = dData.find('name').text();
-						var dType = dData.find('type').text();
-						var dExt = dData.find('ext').text();
-						
-						// Set values to the form
-						$('input[name=microblog_body]').attr('data-attachedname', dName)
-									       .attr('data-attachedtype', dType)
-									       .attr('data-attachedext', dExt)
-									       .attr('data-attachedurl', generateURL(JAPPIX_LOCATION) + dURL);
-						
-						// Hide the attach link, show the unattach one
-						$('.postit.attach').hide();
-						$('.postit.unattach').css('display', 'block');
-						
-						logThis('File attached.', 3);
-					}
-					
-					// Focus on the text input
-					$('#channel .top input[name=microblog_body]').focus();
-				});
-				
-				// Reset the upload input
-				$('#attach input').val('');
-			}
-			
-			fReader.readAsDataURL(fFile);
-		}
-	}
+		return false;
+	});
 	
-	else {
-		openThisInfo(7);
+	// Upload input change event
+	$('#attach form input[type=file]').change(function() {
+		$('#attach').ajaxSubmit(attach_options);
 		
-		logThis('Browser does not support FileReader().', 2);
-	}
+		return false;
+	});
 }
 
 // Unattaches a microblog file
@@ -576,6 +514,47 @@ function unattachMicroblog() {
 	// Hide the unattach link, show the attach one
 	$('.postit.unattach').hide();
 	$('.postit.attach').show();
+}
+
+// Wait event for file attaching
+function waitMicroblogAttach() {
+	// FIXME
+}
+
+// Success event for file attaching
+function handleMicroblogAttach(responseText) {
+	// Data selector
+	var dData = $(responseText).find('jappix');
+	
+	// Process the returned data
+	if(dData.find('error').size()) {
+		openThisError(4);
+		
+		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
+	}
+	
+	else {
+		// Hide our bubble
+		closeBubbles();
+		
+		// Set values to the form
+		$('#channel input[name=microblog_body]').attr('data-attachedname', dData.find('name').text())
+							.attr('data-attachedtype', dData.find('type').text())
+							.attr('data-attachedext',  dData.find('ext').text())
+							.attr('data-attachedurl',  generateURL(JAPPIX_LOCATION) + dData.find('url').text());
+		
+		// Hide the attach link, show the unattach one
+		$('#channel .postit.attach').hide();
+		$('#channel .postit.unattach').css('display', 'block');
+		
+		logThis('File attached.', 3);
+	}
+	
+	// Reset the upload input
+	$('#attach input[type=file]').val('');
+	
+	// Focus on the text input
+	$('#channel .top input[name=microblog_body]').focus();
 }
 
 // Shows the microblog of an user from his infos
@@ -592,9 +571,13 @@ function fromInfosMicroblog(xid, hash) {
 
 // Plugin launcher
 function launchMicroblog() {
+	// Keyboard event
 	$('#channel .top input[name=microblog_body]').keyup(function(e) {
 		// Enter pressed: send the microblog notice
 		if(e.keyCode == 13)
 			return sendMicroblog();
 	});
+	
+	// Microblog file attacher
+	attachMicroblog();
 }

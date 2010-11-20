@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-19 22:45:09\n"
+"PO-Revision-Date: 2010-11-20 12:17:35\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1738,8 +1738,8 @@ msgid "Unattach the file"
 msgstr "Détacher le fichier"
 
 #: 
-msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
-msgstr "Une erreur est survenue lors de l'attachement du fichier : il peut être trop gros (6Mio maximum) ou interdit !"
+#~ msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
+#~ msgstr "Une erreur est survenue lors de l'attachement du fichier : il peut être trop gros (6Mio maximum) ou interdit !"
 
 #: 
 msgid "Authorization failed"
@@ -2572,4 +2572,12 @@ msgstr "Inactif depuis : %s"
 #: 
 msgid "This chat is empty!"
 msgstr "Cette discussion est vide !"
+
+#: 
+#~ msgid "An error occured while attaching your file: maybe it is too big (%s maximum) or forbidden!"
+#~ msgstr ""
+
+#: 
+msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
+msgstr "Une erreur est survenue en envoyant votre fichier : il peut être trop gros (%s maximum) ou interdit !"
 

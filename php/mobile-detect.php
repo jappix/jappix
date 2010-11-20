@@ -9,9 +9,9 @@
 
 /**
  * MODIFIED FOR THE JAPPIX PROJECT
- * Last revision: 10/11/10
+ * Last revision: 20/11/10
  *
- * Thanks to Link Mauve for his patch!
+ * Thanks to Emmanuel Gil Peyrot for his patch!
  */
 
 class Mobile_Detect {

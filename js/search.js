@@ -8,7 +8,7 @@ These are the seach tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -98,13 +98,13 @@ function createBuddySearch(destination) {
 		// Initialize the code generation
 		var code = '<ul>';
 		
-		for(i in entered) {
+		for(b in entered) {
 			// Get some values from the XID
-			var current = getBuddyName(entered[i]).htmlEnc();
+			var current = getBuddyName(entered[b]).htmlEnc();
 			current = current.replace(regex, '<b>$&</b>');
 			
 			// Add the current element to the global code
-			code += '<li onclick="addBuddySearch(\'' + destination + '\', \'' + entered[i] + '\');" data-xid="' + entered[i] + '">' + current + '</li>';
+			code += '<li onclick="addBuddySearch(\'' + destination + '\', \'' + entered[b] + '\');" data-xid="' + entered[b] + '">' + current + '</li>';
 		}
 		
 		// Finish the code generation

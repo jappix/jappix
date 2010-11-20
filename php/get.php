@@ -10,7 +10,7 @@ This is the file get script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -37,10 +37,10 @@ if($is_developer) {
 
 // Else, we put a far away cache date (1 year)
 else {
-	$expires = 60*60*24*365;
+	$expires = 31536000;
 	header('Pragma: public');
 	header('Cache-Control: maxage='.$expires);
-	header('Expires: '.gmdate('D, d M Y H:i:s', time()+$expires).' GMT');
+	header('Expires: '.gmdate('D, d M Y H:i:s', (time() + $expires)).' GMT');
 }
 
 // Initialize the vars
@@ -261,19 +261,24 @@ if($file && $type) {
 					}
 					
 					// Optimize the code rendering
-					if(($type == 'css') && !$is_developer)
-						$output = compressCSS($looped);
-					
-					else if(($type == 'css') && $is_developer)
-						$output = $looped;
-					
-					else if(($type == 'js') && !$is_developer) {
-						require_once('./jsmin.php');
-						$output = JSMin::minify($looped);
+					if($type == 'css') {
+						// Can minify the CSS
+						if($has_compression && !$is_developer)
+							$output = compressCSS($looped);
+						else
+							$output = $looped;
 					}
 					
-					else if(($type == 'js') && $is_developer)
-						$output = $looped;
+					else {
+						// Can minify the JS (sloooooow!)
+						if($has_compression && !$is_developer) {
+							require_once('./jsmin.php');
+							$output = JSMin::minify($looped);
+						}
+						
+						else
+							$output = $looped;
+					}
 					
 					// Generate the reference cache
 					if($has_compression)
