@@ -435,10 +435,6 @@ function handleVCard(iq, type) {
 
 // Sends the vCard of the user
 function sendVCard() {
-	// Not yet retrieved?
-	if($('#vcard .finish:first').hasClass('disabled'))
-		return false;
-	
 	// Initialize the IQ
 	var iq = new JSJaCIQ();
 	iq.setType('set');
@@ -534,7 +530,7 @@ function launchVCard() {
 	// Keyboard events
 	$('#vcard input').keyup(function(e) {
 		// Enter pressed: send the vCard
-		if(e.keyCode == 13)
+		if((e.keyCode == 13) && !$('#vcard .finish.save').hasClass('disabled'))
 			return sendVCard();
 	});
 	
@@ -557,7 +553,7 @@ function launchVCard() {
 	$('#vcard .bottom .finish').click(function() {
 		if($(this).is('.cancel'))
 			return closeVCard();
-		if($(this).is('.save'))
+		if($(this).is('.save') && !$(this).hasClass('disabled'))
 			return sendVCard();
 	});
 	

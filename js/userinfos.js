@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 20/11/10
 
 */
 
@@ -19,9 +19,9 @@ function openUserInfos(xid) {
 	'<div class="top">' + _e("User profile") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab1 tab-active" onclick="switchUInfos(1);">' + _e("General") + '</a>' + 
-		'<a class="tab2" onclick="switchUInfos(2);">' + _e("Advanced") + '</a>' + 
-		'<a class="tab3" onclick="switchUInfos(3);">' + _e("Comments") + '</a>' + 
+		'<a class="tab-active" data-key="1">' + _e("General") + '</a>' + 
+		'<a data-key="2">' + _e("Advanced") + '</a>' + 
+		'<a data-key="3">' + _e("Comments") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -79,14 +79,28 @@ function openUserInfos(xid) {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return closeUserInfos();">' + _e("Close") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
 	createPopup('userinfos', html);
 	
+	// Associate the events
+	launchUserInfos();
+	
 	// We retrieve the user's vcard
 	retrieveUserInfos(xid);
+}
+
+// Closes the user-infos popup
+function closeUserInfos() {
+	// Send the buddy comments
+	sendBuddyComments();
+	
+	// Destroy the popup
+	destroyPopup('userinfos');
+	
+	return false;
 }
 
 // Gets the user-infos
@@ -351,16 +365,7 @@ function switchUInfos(id) {
 	$('#userinfos .content .one-lap').hide();
 	$('#userinfos .content .info' + id).show();
 	$('#userinfos .tab a').removeClass('tab-active');
-	$('#userinfos .tab .tab' + id).addClass('tab-active');
-}
-
-// Closes the user-infos popup
-function closeUserInfos() {
-	// Send the buddy comments
-	sendBuddyComments();
-	
-	// Destroy the popup
-	destroyPopup('userinfos');
+	$('#userinfos .tab a[data-key=' + id + ']').addClass('tab-active');
 	
 	return false;
 }
@@ -381,4 +386,23 @@ function getUserInfos(hash, xid, nick, type) {
 	
 	// Display the buddy presence
 	presenceFunnel(xid, hash);
+}
+
+// Plugin launcher
+function launchUserInfos() {
+	// Click events
+	$('#userinfos .tab a').click(function() {
+		// Yet active?
+		if($(this).hasClass('tab-active'))
+			return false;
+		
+		// Switch to the good tab
+		var key = parseInt($(this).attr('data-key'));
+		
+		return switchUInfos(key);
+	});
+	
+	$('#userinfos .bottom .finish').click(function() {
+		return closeUserInfos();
+	});
 }

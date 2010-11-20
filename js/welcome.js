@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 20/11/10
 
 */
 
@@ -25,9 +25,9 @@ function openWelcome() {
 	'<div class="top">' + _e("Welcome!") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab1 tab-active" onclick="switchWelcome(1);" data-step="1">' + _e("Options") + '</a>' + 
-		'<a class="tab2 tab-missing" onclick="switchWelcome(2);" data-step="2">' + _e("Friends") + '</a>' + 
-		'<a class="tab3 tab-missing" onclick="switchWelcome(3);" data-step="3">' + _e("Profile") + '</a>' + 
+		'<a class="tab-active" data-step="1">' + _e("Options") + '</a>' + 
+		'<a class="tab-missing" data-step="2">' + _e("Friends") + '</a>' + 
+		'<a class="tab-missing" data-step="3">' + _e("Profile") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -91,8 +91,8 @@ function openWelcome() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish next" onclick="return nextWelcome();">' + _e("Next") + ' »</a>' + 
-		'<a class="finish save" onclick="return saveWelcome();">' + _e("Save") + '</a>' + 
+		'<a class="finish next">' + _e("Next") + ' »</a>' + 
+		'<a class="finish save">' + _e("Save") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -111,6 +111,8 @@ function openWelcome() {
 function closeWelcome() {
 	// Destroy the popup
 	destroyPopup('welcome');
+	
+	return false;
 }
 
 // Switches the welcome tabs
@@ -124,7 +126,7 @@ function switchWelcome(id) {
 	$(content + 'one-lap').hide();
 	$(content + 'welcome' + id).show();
 	$(tab + 'a').removeClass('tab-active');
-	$(tab + '.tab' + id).addClass('tab-active').removeClass('tab-missing');
+	$(tab + 'a[data-step=' + id + ']').addClass('tab-active').removeClass('tab-missing');
 	
 	// Update the "save" button if all is okay
 	if(!exists(tab + '.tab-missing')) {
@@ -141,6 +143,8 @@ function switchWelcome(id) {
 	
 	else
 		wait.hide();
+	
+	return false;
 }
 
 // Sends the welcome options
@@ -240,10 +244,29 @@ function nextWelcome() {
 
 // Plugin launcher
 function launchWelcome() {
+	// Click events
+	$('#welcome .tab a').click(function() {
+		// Yet active?
+		if($(this).hasClass('tab-active'))
+			return false;
+		
+		// Switch to the good tab
+		var key = parseInt($(this).attr('data-step'));
+		
+		return switchWelcome(key);
+	});
+	
 	$('#welcome a.box').click(function() {
 		if($(this).hasClass('enabled'))
 			$(this).removeClass('enabled').attr('title', _e("Click to enable"));
 		else
 			$(this).addClass('enabled').attr('title', _e("Click to disable"));
+	});
+	
+	$('#welcome .bottom .finish').click(function() {
+		if($(this).is('.next'))
+			return nextWelcome();
+		if($(this).is('.save'))
+			return saveWelcome();
 	});
 }

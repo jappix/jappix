@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 20/11/10
 
 */
 
@@ -19,9 +19,9 @@ function optionsOpen() {
 	'<div class="top">' + _e("Edit options") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab1 tab-active" onclick="switchOptions(1);">' + _e("General") + '</a>' + 
-		'<a class="tab2 pubsub-hidable" onclick="switchOptions(2);">' + _e("Channel") + '</a>' + 
-		'<a class="tab3" onclick="switchOptions(3);">' + _e("Account") + '</a>' + 
+		'<a class="tab-active" data-key="1">' + _e("General") + '</a>' + 
+		'<a class="pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
+		'<a data-key="3">' + _e("Account") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -82,7 +82,7 @@ function optionsOpen() {
 					'<input type="password" class="purge-microblog check-empty" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom" onclick="purgeMyMicroblog();">' + _e("Empty") + ' &raquo;</a>' + 
+				'<a class="sub-ask-bottom">' + _e("Empty") + ' &raquo;</a>' + 
 			'</div>' + 
 		'</div>' + 
 		
@@ -112,7 +112,7 @@ function optionsOpen() {
 					'<input type="password" class="password-change new2" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom" onclick="sendNewPassword();">' + _e("Continue") + ' &raquo;</a>' + 
+				'<a class="sub-ask-bottom">' + _e("Continue") + ' &raquo;</a>' + 
 			'</div>' + 
 			
 			'<div class="sub-ask sub-ask-delete sub-ask-element">' + 
@@ -126,7 +126,7 @@ function optionsOpen() {
 					'<input type="password" class="delete-account check-password" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom" onclick="deleteMyAccount();">' + _e("Delete") + ' &raquo;</a>' + 
+				'<a class="sub-ask-bottom">' + _e("Delete") + ' &raquo;</a>' + 
 			'</div>' + 
 		'</div>' + 
 	'</div>' + 
@@ -134,8 +134,8 @@ function optionsOpen() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return saveOptions();">' + _e("Save") + '</a>' + 
-		'<a class="finish" onclick="return closeOptions();">' + _e("Cancel") + '</a>' + 
+		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -152,6 +152,8 @@ function optionsOpen() {
 function closeOptions() {
 	// Destroy the popup
 	destroyPopup('options');
+	
+	return false;
 }
 
 // Switches between the options tabs
@@ -159,7 +161,9 @@ function switchOptions(id) {
 	$('#options .one-lap').hide();
 	$('#options #conf' + id).show();
 	$('#options .tab a').removeClass('tab-active');
-	$('#options .tab .tab' + id).addClass('tab-active');
+	$('#options .tab a[data-key=' + id + ']').addClass('tab-active');
+	
+	return false;
 }
 
 // Manages the options wait item
@@ -213,10 +217,6 @@ function handleStoreOptions(iq) {
 
 // Saves the user options
 function saveOptions() {
-	// Not yet retrieved?
-	if($('#options .finish:first').hasClass('disabled'))
-		return;
-	
 	// We apply the sounds
 	var sounds = '0';
 	
@@ -276,6 +276,8 @@ function saveOptions() {
 	
 	// Close the options
 	closeOptions();
+	
+	return false;
 }
 
 // Handles the password changing
@@ -331,6 +333,8 @@ function sendNewPassword() {
 		if(password1 != password2)
 			$('#options .new1, #options .new2').addClass('please-complete');
 	}
+	
+	return false;
 }
 
 // Handles the account deletion request
@@ -379,6 +383,8 @@ function purgeMyMicroblog() {
 		else
 			selector.removeClass('please-complete');
 	}
+	
+	return false;
 }
 
 // Handles the microblog purge
@@ -422,6 +428,8 @@ function deleteMyAccount() {
 		else
 			selector.removeClass('please-complete');
 	}
+	
+	return false;
 }
 
 // Loads the user options
@@ -475,7 +483,18 @@ function loadOptions() {
 
 // Plugin launcher
 function launchOptions() {
-	// The click events on the links
+	// Click events
+	$('#options .tab a').click(function() {
+		// Yet active?
+		if($(this).hasClass('tab-active'))
+			return false;
+		
+		// Switch to the good tab
+		var key = parseInt($(this).attr('data-key'));
+		
+		return switchOptions(key);
+	});
+	
 	$('#options .linked').click(function() {
 		$('#options .sub-ask').hide();
 	});
@@ -503,8 +522,27 @@ function launchOptions() {
 		$(selector + ' input').focus();
 	});
 	
+	$('#options .sub-ask-pass .sub-ask-bottom').click(function() {
+		return sendNewPassword();
+	});
+	
+	$('#options .sub-ask-empty .sub-ask-bottom').click(function() {
+		return purgeMyMicroblog();
+	});
+	
+	$('#options .sub-ask-delete .sub-ask-bottom').click(function() {
+		return deleteMyAccount();
+	});
+	
 	$('#options .sub-ask-close').click(function() {
 		$('#options .sub-ask').hide();
+	});
+	
+	$('#options .bottom .finish').click(function() {
+		if($(this).is('.save') && !$(this).hasClass('disabled'))
+			return saveOptions();
+		if($(this).is('.cancel'))
+			return closeOptions();
 	});
 	
 	// The keyup events
@@ -512,15 +550,15 @@ function launchOptions() {
 		if(e.keyCode == 13) {
 			// Microblog purge
 			if($(this).is('.purge-microblog'))
-				purgeMyMicroblog();
+				return purgeMyMicroblog();
 			
 			// Password change
 			else if($(this).is('.password-change'))
-				sendNewPassword();
+				return sendNewPassword();
 			
 			// Account deletion
 			else if($(this).is('.delete-account'))
-				deleteMyAccount();
+				return deleteMyAccount();
 		}
 	});
 	
