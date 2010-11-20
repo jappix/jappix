@@ -532,6 +532,12 @@ function multiFiles() {
 }
 
 function getFiles($h, $l, $t, $g, $f) {
+	// Define the good path to the Get API
+	if(HOST_STATIC != '.')
+		$path_to = HOST_STATIC.'/';
+	else
+		$path_to = PHP_BASE.'/';
+		
 	if(!multiFiles()) {
 		$values = array();
 		if ($h)
@@ -545,13 +551,7 @@ function getFiles($h, $l, $t, $g, $f) {
 		if ($f)
 			$values[] = 'f='.$f;
 		
-		// Define the good path to the Get API
-		if(HOST_STATIC != '.')
-			$path_to = HOST_STATIC;
-		else
-			$path_to = PHP_BASE;
-		
-		return $path_to.'/php/get.php?'.implode('&amp;', $values);
+		return $path_to.'php/get.php?'.implode('&amp;', $values);
 	}
 	
 	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('xml/'.$g)) {
@@ -578,7 +578,7 @@ function getFiles($h, $l, $t, $g, $f) {
 	
 	$a = array();
 	foreach($array as $file)
-		$a[] = HOST_STATIC.'/'.$t.'/'.$file;
+		$a[] = $path_to.$t.'/'.$file;
 
 	if (count($a) == 1)
 		return $a[0];
