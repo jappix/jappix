@@ -547,7 +547,7 @@ else
 							<option value="bottom"<?php echo($background_image_vertical_bottom); ?>><?php _e("Bottom"); ?></option>
 						</select>
 						
-						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt"<?php echo($background_image_adapt); ?>" />
+						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt" value="<?php echo($background_image_adapt); ?>" />
 						
 						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" class="icon manager-images" type="text" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
 						
