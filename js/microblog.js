@@ -494,14 +494,16 @@ function attachMicroblog() {
 	
 	// Upload form submit event
 	$('#attach').submit(function() {
-		$(this).ajaxSubmit(attach_options);
+		if(!exists('#attach .wait'))
+			$(this).ajaxSubmit(attach_options);
 		
 		return false;
 	});
 	
 	// Upload input change event
 	$('#attach input[type=file]').change(function() {
-		$('#attach').ajaxSubmit(attach_options);
+		if(!exists('#attach .wait'))
+			$('#attach').ajaxSubmit(attach_options);
 		
 		return false;
 	});
@@ -519,7 +521,8 @@ function unattachMicroblog() {
 
 // Wait event for file attaching
 function waitMicroblogAttach() {
-	// FIXME
+	// Append the wait icon
+	$('#attach .attach-subitem').append('<div class="wait wait-medium"></div>');
 }
 
 // Success event for file attaching
@@ -551,8 +554,9 @@ function handleMicroblogAttach(responseXML) {
 		logThis('File attached.', 3);
 	}
 	
-	// Reset the upload input
+	// Reset the attach bubble
 	$('#attach input[type=file]').val('');
+	$('#attach .wait').remove();
 	
 	// Focus on the text input
 	$('#channel .top input[name=microblog_body]').focus();

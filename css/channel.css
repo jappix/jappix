@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -87,6 +87,15 @@ Last revision: 14/11/10
 	margin-bottom: 6px !important;
 }
 
+#attach input[type=submit] {
+	margin-top: 8px;
+}
+
+#attach .wait {
+	float: right;
+	margin: 7px 5px;
+}
+
 .attach-subarrow {
 	background-position: 0 -241px;
 	opacity: 0.8;
@@ -98,7 +107,6 @@ Last revision: 14/11/10
 .attach-subitem {
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
-	height: 48px;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;

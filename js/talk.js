@@ -533,8 +533,9 @@ function createTalkPage() {
 										
 										'<div class="attach-subitem">' + 
 											'<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
-											'<input type="file" name="file" />' + 
+											'<input type="hidden" name="MAX_FILE_SIZE" value="' + JAPPIX_MAX_FILE_SIZE + '">' + 
 											'<input type="hidden" name="user" value="' + getXID() + '" />' + 
+											'<input type="file" name="file" />' + 
 											'<input type="submit" value="' + _e("Send") + '" />' + 
 										'</div>' + 
 									'</form>' + 

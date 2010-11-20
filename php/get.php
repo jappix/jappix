@@ -296,7 +296,7 @@ if($file && $type) {
 					$output = setLocales($output, $locale);
 					
 					// Set the JS configuration
-					$output = setConfiguration($output, $locale, $version);
+					$output = setConfiguration($output, $locale, $version, uploadMaxSize());
 					
 					// Set the Get API paths
 					$output = setPath($output, $hash, HOST_STATIC, $type, $locale);

@@ -112,6 +112,7 @@ var XML_LANG = null;
 // Jappix parameters
 var JAPPIX_STATIC = null;
 var JAPPIX_VERSION = null;
+var JAPPIX_MAX_FILE_SIZE = null;
 var JAPPIX_MAX_UPLOAD = null;
 
 // Jappix main configuration

@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -448,6 +448,8 @@ else
 				<fieldset>
 					<legend><?php _e("New"); ?></legend>
 					
+					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
+					
 					<label for="music_title"><?php _e("Title"); ?></label><input id="music_title" class="icon manager-images" type="text" name="music_title" value="<?php echo(htmlspecialchars($music_title)); ?>" />
 					
 					<label for="music_artist"><?php _e("Artist"); ?></label><input id="music_artist" class="icon manager-images" type="text" name="music_artist" value="<?php echo(htmlspecialchars($music_artist)); ?>" />
@@ -455,8 +457,6 @@ else
 					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" class="icon manager-images" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
 					
 					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" />
-					
-					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 				</fieldset>
 				
 				<fieldset>
@@ -572,9 +572,9 @@ else
 				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
 				
 				<div class="sub">
-					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" />
-					
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
+					
+					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" />
 					
 					<div class="clear"></div>
 				</div>

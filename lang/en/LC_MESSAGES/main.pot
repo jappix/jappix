@@ -1304,6 +1304,9 @@ msgstr ""
 msgid "Attach a file"
 msgstr ""
 
+msgid "Send"
+msgstr ""
+
 msgid "Unattach the file"
 msgstr ""
 

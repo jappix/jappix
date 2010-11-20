@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 20/11/10
 
 */
 
@@ -101,7 +101,7 @@ Last revision: 11/11/10
 
 .popup .content {
 	background-color: #e8f1f3;
-	color: #224249;
+	color: #1b393f;
 	height: 358px;
 	position: absolute;
 	left: 10px;

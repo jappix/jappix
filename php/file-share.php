@@ -36,8 +36,10 @@ if(isset($_POST['user']))
 	$user = $_POST['user'];
 
 // Treat the uploaded file
-$tmp_filename = $_FILES['file']['tmp_name'];
-$filename = $_FILES['file']['name'];
+if(isset($_FILES['file'])) {
+	$tmp_filename = $_FILES['file']['tmp_name'];
+	$filename = $_FILES['file']['name'];
+}
 
 // Treat the filename
 if($filename) {

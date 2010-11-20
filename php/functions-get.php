@@ -114,7 +114,7 @@ function setLocales($string, $locale) {
 }
 
 // The function to set the good configuration to a JS file
-function setConfiguration($string, $locale, $version) {
+function setConfiguration($string, $locale, $version, $max_upload) {
 	// Configuration array
 	$array = array(
 		      	// xml:lang
@@ -123,7 +123,8 @@ function setConfiguration($string, $locale, $version) {
 		      	// Jappix parameters
 		      	'JAPPIX_STATIC'		=> staticLocation(),
 		      	'JAPPIX_VERSION'	=> $version,
-		      	'JAPPIX_MAX_UPLOAD'	=> formatBytes(uploadMaxSize()),
+		      	'JAPPIX_MAX_FILE_SIZE'	=> $max_upload,
+		      	'JAPPIX_MAX_UPLOAD'	=> formatBytes($max_upload),
 		      	
 		      	// Main configuration
 		      	'SERVICE_NAME'		=> SERVICE_NAME,
