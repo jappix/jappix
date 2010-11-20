@@ -8,7 +8,7 @@ These are the PHP functions for Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Authors: Valérian Saliou, Mathieui, Olivier M.
+Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
 Last revision: 20/11/10
 
@@ -545,7 +545,13 @@ function getFiles($h, $l, $t, $g, $f) {
 		if ($f)
 			$values[] = 'f='.$f;
 		
-		return HOST_STATIC.'/php/get.php?'.implode('&amp;', $values);
+		// Define the good path to the Get API
+		if(HOST_STATIC != '.')
+			$path_to = HOST_STATIC;
+		else
+			$path_to = PHP_BASE;
+		
+		return $path_to.'/php/get.php?'.implode('&amp;', $values);
 	}
 	
 	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('xml/'.$g)) {

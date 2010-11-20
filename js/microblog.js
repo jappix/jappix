@@ -126,10 +126,11 @@ function displayMicroblog(packet, from, hash, mode) {
 			else
 				$(tIndividual + ' a.more').css('visibility', 'visible').before(html);
 			
-			// Click event on name
-			$('.individual .' + tHash + ' .body b').click(function() {
-				checkChatCreate(from, 'chat');
-			});
+			// Click event on name (if not me!)
+			if(from != getXID())
+				$('.individual .' + tHash + ' .body b').click(function() {
+					checkChatCreate(from, 'chat');
+				});
 		}
 		
 		// Apply the click events

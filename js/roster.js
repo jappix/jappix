@@ -645,15 +645,21 @@ function launchRoster() {
 				var type = $('.buddy-conf-join-select').val();
 				
 				if(xid && type) {
-					// Update some things
-					$('.join-jid').removeClass('please-complete');
-					closeBubbles();
-					
 					// Generate a correct XID
 					xid = generateXID(xid, type);
 					
-					// Create a new chat
-					checkChatCreate(xid, type);
+					// Not me
+					if(xid != getXID()) {
+						// Update some things
+						$('.join-jid').removeClass('please-complete');
+						closeBubbles();
+						
+						// Create a new chat
+						checkChatCreate(xid, type);
+					}
+					
+					else
+						$('.join-jid').addClass('please-complete');
 				}
 				
 				else

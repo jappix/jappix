@@ -8,9 +8,13 @@ This is the SVG stats CSS stylesheet for Jappix
 License: AGPL
 Author: Erwan Briand, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/10/10
+Last revision: 20/11/10
 
 */
+
+svg {
+	background-color: #e8f1f3;
+}
 
 .refline {
     stroke: #596171;

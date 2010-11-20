@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-20 17:50:14\n"
+"PO-Revision-Date: 2010-11-20 21:01:10\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1147,11 +1147,11 @@ msgstr ""
 
 #: 
 msgid "Generate file!"
-msgstr ""
+msgstr "Generi dosieron!"
 
 #: 
 msgid "Download file!"
-msgstr ""
+msgstr "Elŝuti dosieron!"
 
 #: 
 msgid "Clean current chat"
@@ -1159,7 +1159,7 @@ msgstr ""
 
 #: 
 msgid "Show user profile"
-msgstr ""
+msgstr "Montri uzatan profilon"
 
 #: 
 msgid "Add this contact to your friends"
@@ -1171,11 +1171,11 @@ msgstr ""
 
 #: 
 msgid "All tabs"
-msgstr ""
+msgstr "Tutaj folioj"
 
 #: 
 msgid "Close this tab"
-msgstr ""
+msgstr "Fermi tion folion"
 
 #: 
 msgid "no subject defined for this room."
@@ -1207,7 +1207,7 @@ msgstr ""
 
 #: 
 msgid "Search a room"
-msgstr ""
+msgstr "Serĉi babilejon"
 
 #: 
 msgid "Select a favorite"
@@ -1231,7 +1231,7 @@ msgstr "Modifi"
 
 #: 
 msgid "Search a room on"
-msgstr ""
+msgstr "Serĉi babilejon sur"
 
 #: 
 msgid "No room found on this server."
@@ -1319,11 +1319,11 @@ msgstr ""
 
 #: 
 msgid "Clean"
-msgstr ""
+msgstr "Purigi"
 
 #: 
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: 
 msgid "Received"
@@ -1331,15 +1331,15 @@ msgstr ""
 
 #: 
 msgid "Subject"
-msgstr ""
+msgstr "Temo"
 
 #: 
 msgid "Content"
-msgstr ""
+msgstr "Enhavo"
 
 #: 
 msgid "Send message"
-msgstr ""
+msgstr "Sendi mesaĝon"
 
 #: 
 msgid "Your inbox is empty."
@@ -1419,7 +1419,7 @@ msgstr ""
 
 #: 
 msgid "Loading"
-msgstr ""
+msgstr "Ŝargi"
 
 #: 
 msgid "joined the chat room"
@@ -1431,7 +1431,7 @@ msgstr "foriris la babilejo"
 
 #: 
 msgid "no status"
-msgstr ""
+msgstr "neniu stato"
 
 #: 
 msgid "has been kicked"
@@ -1443,7 +1443,7 @@ msgstr ""
 
 #: 
 msgid "no reason"
-msgstr ""
+msgstr "neniu motivo"
 
 #: 
 msgid "Communicate with the entire world!"
@@ -1483,15 +1483,15 @@ msgstr ""
 
 #: 
 msgid "General"
-msgstr ""
+msgstr "Ĝenerala"
 
 #: 
 msgid "Advanced"
-msgstr ""
+msgstr "Krome"
 
 #: 
 msgid "Resource"
-msgstr ""
+msgstr "Risurco"
 
 #: 
 msgid "Priority"
@@ -1535,7 +1535,7 @@ msgstr ""
 
 #: 
 msgid "Manager"
-msgstr ""
+msgstr "Administrilo"
 
 #: 
 msgid "Project"
@@ -1579,27 +1579,27 @@ msgstr ""
 
 #: 
 msgid "Command"
-msgstr ""
+msgstr "Komando"
 
 #: 
 msgid "Subscribe"
-msgstr ""
+msgstr "Aboni"
 
 #: 
 msgid "Join"
-msgstr ""
+msgstr "Aliĝi"
 
 #: 
 msgid "Automatic"
-msgstr ""
+msgstr "Aŭtomata"
 
 #: 
 msgid "Search"
-msgstr ""
+msgstr "Serĉi"
 
 #: 
 msgid "No result!"
-msgstr ""
+msgstr "Neniu trafo!"
 
 #: 
 msgid "No notifications."
@@ -1635,7 +1635,7 @@ msgstr ""
 
 #: 
 msgid "Client"
-msgstr ""
+msgstr "Kliento"
 
 #: 
 msgid "System"
@@ -1647,7 +1647,7 @@ msgstr ""
 
 #: 
 msgid "Comments"
-msgstr ""
+msgstr "Komentoj"
 
 #: 
 msgid "User profile"
@@ -1659,7 +1659,7 @@ msgstr ""
 
 #: 
 msgid "Confirm"
-msgstr ""
+msgstr "Konfirmi"
 
 #: 
 msgid "anonymous mode"
@@ -1667,7 +1667,7 @@ msgstr ""
 
 #: 
 msgid "Groups"
-msgstr ""
+msgstr "Grupoj"
 
 #: 
 msgid "Unclassified"
@@ -1719,11 +1719,11 @@ msgstr ""
 
 #: 
 msgid "Your channel"
-msgstr ""
+msgstr "Via kanalo"
 
 #: 
 msgid "Channel of"
-msgstr ""
+msgstr "Kanalo da"
 
 #: 
 msgid "More notices..."
@@ -1779,11 +1779,11 @@ msgstr ""
 
 #: 
 msgid "Welcome!"
-msgstr ""
+msgstr "Bonvenon!"
 
 #: 
 msgid "Friends"
-msgstr ""
+msgstr "Amikoj"
 
 #: 
 msgid "Welcome on Jappix, your own social cloud!"
@@ -1823,11 +1823,11 @@ msgstr ""
 
 #: 
 msgid "Unknown name"
-msgstr ""
+msgstr "Nekonata nomo"
 
 #: 
 msgid "Unknown country"
-msgstr ""
+msgstr "Nekonata lando"
 
 #: 
 msgid "Click to enable"
@@ -2019,11 +2019,11 @@ msgstr ""
 
 #: 
 msgid "Next"
-msgstr ""
+msgstr "Laŭ"
 
 #: 
 msgid "Finish"
-msgstr ""
+msgstr "Fini"
 
 #: 
 msgid "Check again"
@@ -2079,27 +2079,27 @@ msgstr ""
 
 #: 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontala"
 
 #: 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikala"
 
 #: 
 msgid "Center"
-msgstr ""
+msgstr "Centre"
 
 #: 
 msgid "Left"
-msgstr ""
+msgstr "Maldekstre"
 
 #: 
 msgid "Right"
-msgstr ""
+msgstr "Dekstre"
 
 #: 
 msgid "Top"
-msgstr ""
+msgstr "Supre"
 
 #: 
 msgid "Bottom"
@@ -2279,7 +2279,7 @@ msgstr ""
 
 #: 
 msgid "Notice"
-msgstr ""
+msgstr "Avizo"
 
 #: 
 msgid "Your design preferences have been saved!"
@@ -2331,7 +2331,7 @@ msgstr ""
 
 #: 
 msgid "Simple notice"
-msgstr ""
+msgstr "Simple avizo"
 
 #: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
@@ -2339,7 +2339,7 @@ msgstr ""
 
 #: 
 msgid "Advanced notice"
-msgstr ""
+msgstr "Kroma avizo"
 
 #: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
@@ -2419,23 +2419,23 @@ msgstr ""
 
 #: 
 msgid "Visits"
-msgstr ""
+msgstr "Vizitoj"
 
 #: 
 msgid "Daily"
-msgstr ""
+msgstr "Ĉiutaga"
 
 #: 
 msgid "Weekly"
-msgstr ""
+msgstr "Ĉiusemajna"
 
 #: 
 msgid "Monthly"
-msgstr ""
+msgstr "Ĉiumonata"
 
 #: 
 msgid "Yearly"
-msgstr ""
+msgstr "Ĉiujara"
 
 #: 
 msgid "Size"
@@ -2479,15 +2479,15 @@ msgstr ""
 
 #: 
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: 
 msgid "Artist"
-msgstr ""
+msgstr "Artisto"
 
 #: 
 msgid "Album"
-msgstr ""
+msgstr "Albumo"
 
 #: 
 msgid "File"
@@ -2495,11 +2495,11 @@ msgstr "Dosiero"
 
 #: 
 msgid "Upload"
-msgstr ""
+msgstr "Alŝuti"
 
 #: 
 msgid "The folder is empty."
-msgstr ""
+msgstr "La dosieraro estas malplena."
 
 #: 
 msgid "The music could not be received, please retry!"
@@ -2531,7 +2531,7 @@ msgstr ""
 
 #: 
 msgid "List"
-msgstr ""
+msgstr "Listo"
 
 #: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
@@ -2571,7 +2571,7 @@ msgstr ""
 
 #: 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Tio babilejo estas malplena!"
 
 #: 
 #~ msgid "An error occured while attaching your file: maybe it is too big (%s maximum) or forbidden!"
@@ -2587,5 +2587,5 @@ msgstr ""
 
 #: 
 msgid "Send"
-msgstr ""
+msgstr "Sendi"
 

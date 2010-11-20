@@ -6,9 +6,9 @@ These are the homepage JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -65,7 +65,7 @@ function switchHome(div) {
 						'<label for="lpassword">' + _e("Password") + '</label>' + 
 						'<input type="password" class="password" id="lpassword" required="" />' + 
 						'<label for="lremember">' + _e("Remember me") + '</label>' + 
-						'<input type="checkbox" class="remember" id="lremember" required="" />' + 
+						'<input type="checkbox" class="remember" id="lremember" />' + 
 					'</fieldset>' + 
 					
 					'<a class="advanced home-images">' + _e("Advanced") + '</a>' + 
