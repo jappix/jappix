@@ -528,7 +528,7 @@ function createTalkPage() {
 									'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
 									'<a onclick="unattachMicroblog();" title="' + _e("Unattach the file") +  '" class="postit unattach talk-images"></a>' + 
 									
-									'<form id="attach" class="bubble" action="./php/microblog-attach.php" method="post" enctype="multipart/form-data">' + 
+									'<form id="attach" class="bubble" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
 										'<div class="attach-subarrow talk-images"></div>' + 
 										
 										'<div class="attach-subitem">' + 

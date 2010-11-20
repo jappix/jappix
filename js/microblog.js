@@ -487,19 +487,20 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 function attachMicroblog() {
 	// File upload vars
 	var attach_options = {
+		dataType:	'xml',
 		beforeSubmit:	waitMicroblogAttach,
 		success:	handleMicroblogAttach
 	};
 	
 	// Upload form submit event
-	$('#attach form').submit(function() {
+	$('#attach').submit(function() {
 		$(this).ajaxSubmit(attach_options);
 		
 		return false;
 	});
 	
 	// Upload input change event
-	$('#attach form input[type=file]').change(function() {
+	$('#attach input[type=file]').change(function() {
 		$('#attach').ajaxSubmit(attach_options);
 		
 		return false;
@@ -522,9 +523,9 @@ function waitMicroblogAttach() {
 }
 
 // Success event for file attaching
-function handleMicroblogAttach(responseText) {
+function handleMicroblogAttach(responseXML) {
 	// Data selector
-	var dData = $(responseText).find('jappix');
+	var dData = $(responseXML).find('jappix');
 	
 	// Process the returned data
 	if(dData.find('error').size()) {
