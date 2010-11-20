@@ -98,8 +98,8 @@ else
 	<meta name="robots" content="none" />
 	<title><?php _e("Jappix installation"); ?> &bull; <?php echo($names[$step - 1]); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=install.xml" type="text/css" media="all" />
-	<!--[if lt IE 9]><link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=ie.css" type="text/css" media="all" /><![endif]-->
+	<?php echoGetFiles($hash, '', 'css', 'install.xml', ''); echo "\n"; ?>
+	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
 </head>
 
 <body class="body-images">

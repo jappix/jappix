@@ -209,8 +209,8 @@ else
 	<meta name="robots" content="none" />
 	<title><?php _e("Jappix manager"); ?> &bull; <?php echo($page_name); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=manager.xml" type="text/css" media="all" />
-	<!--[if lt IE 9]><link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=ie.css" type="text/css" media="all" /><![endif]-->
+	<?php echoGetFiles($hash, '', 'css', 'manager.xml', ''); echo "\n"; ?>
+	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
 </head>
 
 <body class="body-images">

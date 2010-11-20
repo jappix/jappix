@@ -26,6 +26,7 @@ $main_conf = array(
 	     	'https_storage'	=> 'off',
 	     	'https_force'	=> 'off',
 	     	'compression'	=> 'on',
+	     	'multi_files'	=> 'off',
 	     	'developer'	=> 'off'
 	     );
 
@@ -61,6 +62,7 @@ define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);
 define('COMPRESSION', $main_conf['compression']);
+define('MULTI_FILES', $main_conf['multi_files']);
 define('DEVELOPER', $main_conf['developer']);
 
 ?>

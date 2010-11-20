@@ -23,16 +23,18 @@ Last revision: 20/11/10
 	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php _e("An open social network"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=desktop.xml" type="text/css" media="all" />
-	<!--[if lt IE 9]><link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;f=ie.css" type="text/css" media="all" /><![endif]-->
+	<?php echoGetFiles($hash, '', 'css', 'desktop.xml', ''); echo "\n"; ?>
+	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
 	
-	<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=desktop.xml"></script>
+	<?php echoGetFiles($hash, $locale, 'js', 'desktop.xml', ''); echo "\n";
 	
-	<?php if(anonymousMode()) { ?>
-		<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=anonymous.xml" type="text/css" media="all" />
-		
-		<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=anonymous.xml"></script>
-	<?php } ?>
+	if(anonymousMode()) {
+		echo "\n\t";
+		echoGetFiles($hash, '', 'css', 'anonymous.xml', '');
+		echo "\n\t";
+		echoGetFiles($hash, $locale, 'js', 'anonymous.xml', '');
+		echo "\n";
+	} ?>
 </head>
 
 <body class="body-images">

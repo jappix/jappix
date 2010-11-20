@@ -102,7 +102,7 @@ class DrawSVGChart {
 	
         // Add the stylesheet
         $style = $this->xml_object->createProcessingInstruction("xml-stylesheet",
-                 "type='text/css' href='".$static_prefix."/get.php?h=".genHash(getVersion())."&amp;t=css&amp;f=stats-svg.css'");
+                 "type='text/css' href='".getFiles(genHash(getVersion()), '', 'css', '', 'stats-svg.css')."'");
         $this->xml_object->appendChild($style);
 
         // Create the root SVG element

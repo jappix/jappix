@@ -23,8 +23,8 @@ Last revision: 06/11/10
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
 	<title><?php _e("Jappix Mobile"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
-	<link rel="stylesheet" href="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;t=css&amp;g=mobile.xml" type="text/css" media="all" />
-	<script type="text/javascript" src="<?php echo HOST_STATIC; ?>/php/get.php?h=<?php echo $hash; ?>&amp;l=<?php echo $locale; ?>&amp;t=js&amp;g=mobile.xml"></script>
+	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
+	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
 </head>
 
 <body>

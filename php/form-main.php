@@ -59,6 +59,12 @@ if($compression == 'on')
 else
 	$check_compression = '';
 
+// Multiple resources
+if($multi_files == 'on')
+	$check_multi_files = $checked;
+else
+	$check_multi_files = '';
+
 ?>
 
 <fieldset>
@@ -91,6 +97,8 @@ else
 	<label for="https_force"><?php _e("Force HTTPS"); ?></label><input id="https_force" type="checkbox" name="https_force"<?php echo $check_https_force; ?> />
 	
 	<label for="compression"><?php _e("Compression"); ?></label><input id="compression" type="checkbox" name="compression"<?php echo $check_compression; ?> />
+	
+	<label for="multi_files"><?php _e("Multiple resources"); ?></label><input id="multi_files" type="checkbox" name="multi_files"<?php echo $check_multi_files; ?> />
 			
 	<input type="hidden" name="developer" value="<?php echo $developer; ?>" />
 </fieldset>

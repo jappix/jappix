@@ -523,6 +523,78 @@ function compressThis() {
 		ob_start('ob_gzhandler');
 }
 
+// The function to choose one file get with get.php or a liste of resources
+function multiFiles() {
+	if(MULTI_FILES == 'on')
+		return true;
+	
+	return false;
+}
+
+function getFiles($h, $l, $t, $g, $f) {
+	if(!multiFiles()) {
+		$values = array();
+		if ($h)
+			$values[] = 'h='.$h;
+		if ($l)
+			$values[] = 'l='.$l;
+		if ($t)
+			$values[] = 't='.$t;
+		if ($g)
+			$values[] = 'g='.$g;
+		if ($f)
+			$values[] = 'f='.$f;
+		
+		return array(HOST_STATIC.'/php/get.php?'.implode('&amp;', $values));
+	}
+	
+	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('xml/'.$g)) {
+		$xml_data = file_get_contents('xml/'.$g);
+		
+		// Any data?
+		if($xml_data) {
+			$xml_read = new SimpleXMLElement($xml_data);
+			$xml_parse = $xml_read->$t;
+			
+			// Files were added to the list before (with file var)?
+			if($f)
+				$f .= '~'.$xml_parse;
+			else
+				$f = $xml_parse;
+		}
+	}
+	
+	// Explode the f string
+	if(strpos($f, '~') != false)
+		$array = explode('~', $f);
+	else
+		$array = array($f);
+	
+	$a = array();
+	foreach($array as $file)
+		$a[] = HOST_STATIC.'/'.$t.'/'.$file;
+
+	return $a;
+}
+
+function echoGetFiles($h, $l, $t, $g, $f) {
+	if ($t == 'css')
+		$pattern = '<link rel="stylesheet" href="%s" type="text/css" media="all" />';
+	else if ($t == 'js')
+		$pattern = '<script type="text/javascript" src="%s"></script>';
+	
+	$files = getFiles($h, $l, $t, $g, $f);
+
+	$c = count($files)-1;
+	for($i=0; $i<=$c; $i++) {
+		if ($i)
+			echo '	';
+		printf($pattern, $files[$i]);
+		if ($i != $c)
+			echo "\n";
+	}
+}
+
 // The function to check if anonymous mode is authorized
 function anonymousMode() {
 	if(isset($_GET['r']) && !empty($_GET['r']) && HOST_ANONYMOUS && (ANONYMOUS == 'on'))
