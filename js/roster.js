@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -370,7 +370,7 @@ function thisBuddyGroups(xid) {
 	// Entered input value (and not yet in the array)
 	var value = $(path + 'p.bm-group input').val();
 	
-	if(value && (array.indexOf(value) == -1))
+	if(value && !existArrayValue(array, value))
 		array.push(value);
 	
 	return array;
@@ -489,7 +489,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 		// Is the current group checked?
 		var checked = '';
 		
-		if(groups.indexOf(all_groups_current) != -1)
+		if(existArrayValue(groups, all_groups_current))
 			checked = ' checked="true"';
 		
 		// Add the current group HTML

@@ -182,9 +182,9 @@ Last revision: 20/11/10
 .popup label {
 	color: #333333;
 	width: 150px;
+	margin: 0 0 10px 12px;
 	clear: both;
 	float: left;
-	margin: 0 0 10px 12px;
 }
 
 .popup input,

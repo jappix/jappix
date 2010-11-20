@@ -8,7 +8,7 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 20/11/10
 
 */
 
@@ -186,7 +186,7 @@ function filterThisXHTML(code) {
 	// Remove forbidden elements
 	$(code).find('*').each(function() {
 		// This element is not authorized
-		if(elements.indexOf((this).nodeName) == -1)
+		if(!existArrayValue(elements, (this).nodeName))
 			$(this).remove();
 	});
 	
@@ -204,7 +204,7 @@ function filterThisXHTML(code) {
 			var cVal = cAttr.value;
 			
 			// This attribute is not authorized, or contains JS code
-			if((attributes.indexOf(cName) == -1) || (cVal.match(/(^|"|')javascript:/)))
+			if(!existArrayValue(attributes, cName) || (cVal.match(/(^|"|')javascript:/)))
 				cSelector.removeAttr(cName);
 		});
 	});

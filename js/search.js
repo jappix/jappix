@@ -39,7 +39,7 @@ function processBuddySearch(query) {
 		var nick = getBuddyName(xid);
 		
 		// Buddy match our search, and not yet in the array
-		if(nick.match(regex) && (results.indexOf(xid) == -1))
+		if(nick.match(regex) && !existArrayValue(results, xid))
 			results.push(xid);
 	}
 	

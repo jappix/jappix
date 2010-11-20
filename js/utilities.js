@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 20/11/10
 
 */
 
@@ -191,10 +191,10 @@ function isPrivate(xid) {
 function osDetect() {
 	var platform = navigator.platform;
 	
-	if(platform.indexOf('Win') != -1) platform = 'Windows';
-	else if(platform.indexOf('Linux') != -1) platform = 'Linux';
-	else if(platform.indexOf('Mac') != -1) platform = 'MacOS';
-	else if(platform.indexOf('X11') != -1) platform = 'UNIX';
+	if	(platform.indexOf('Win') != -1) platform = 'Windows';
+	else if	(platform.indexOf('Linux') != -1) platform = 'Linux';
+	else if	(platform.indexOf('Mac') != -1) platform = 'MacOS';
+	else if	(platform.indexOf('X11') != -1) platform = 'UNIX';
 	
 	return platform;
 }
@@ -604,6 +604,14 @@ function getJappixLocation() {
 // Registers Jappix as the default XMPP links handler
 function xmppLinksHandler() {
 	navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
+}
+
+// Checks if a value exists in an array
+function existArrayValue(array, value) {
+	if(array.indexOf(value) != -1)
+		return true;
+	
+	return false;
 }
 
 // Removes a value from an array

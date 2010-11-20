@@ -99,9 +99,9 @@ function handleMessage(message) {
 	}
 	
 	// Invite message
-	if(message.getChild('x', NS_MUC_USER)) {
+	if($(node).find('x[xmlns=' + NS_MUC_USER + '] invite').size()) {
 		// We get the needed values
-		var iFrom = $(node).find('x invite').attr('from');
+		var iFrom = $(node).find('x[xmlns=' + NS_MUC_USER + '] invite').attr('from');
 		var iRoom = $(node).find('x[xmlns=' + NS_XCONFERENCE + ']').attr('jid');
 		
 		// Old invite method?
@@ -287,7 +287,7 @@ function handleMessage(message) {
 			var nickQuote = '';
 			
 			// If this is not an old message
-			if((message_type != 'old-message') && resource) {
+			if(message_type != 'old-message') {
 				var myNick = getMUCNick(hash);
 				
 				// If an user quoted our nick (with some checks)
@@ -455,7 +455,7 @@ function sendMessage(id, type) {
 				var status = $('.textPresence').val();
 				
 				// Send a new presence
-				sendPresence(xid + '/' + nick, '', show, status, '', '', handleErrorReply);
+				sendPresence(xid + '/' + nick, '', show, status, '', false, false, handleErrorReply);
 				
 				// Change the stored nickname
 				$('#' + hex_md5(xid)).attr('data-nick', nick);

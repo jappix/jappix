@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 20/11/10
 
 */
 
@@ -110,10 +110,16 @@ function handlePresence(presence) {
 		var role = item.attr('role');
 		var reason = item.find('reason').text();
 		var iXID = item.attr('jid');
-		var status_code = x_muc.find('status').attr('code');
 		var nick = thisResource(from);
 		var messageTime = getCompleteTime();
 		var notInitial = true;
+		
+		// Read the status code
+		var status_code = new Array();
+		
+		x_muc.find('status').each(function() {
+			status_code.push(parseInt($(this).attr('code')));
+		});
 		
 		// If this is an initial presence (when user join the room)
 		if(exists('#' + xidHash + '[data-initial=true]'))
@@ -275,15 +281,15 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		}
 		
 		// Someone has been kicked or banned?
-		if((status_code == '301') || (status_code == '307')) {
+		if(existArrayValue(status_code, 301) || existArrayValue(status_code, 307)) {
 			notify = true;
 			
 			// Kicked?
-			if(status_code == '307')
+			if(existArrayValue(status_code, 307))
 				write += _e("has been kicked");
 			
 			// Banned?
-			if(status_code == '301')
+			if(existArrayValue(status_code, 301))
 				write += _e("has been banned");
 			
 			// Any reason?
@@ -311,11 +317,11 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	
 	write += '</div>';
 	
+	// Must notify something
 	if(notify)
 		displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, getTimeStamp(), 'system-message', false);
 	
 	// Set the good status show icon
-	// The switch is a security to clients like Poezio which send "None" show content :)
 	switch(show) {
 		case 'chat':
 		case 'away':
@@ -607,7 +613,7 @@ function presenceFunnel(xid, hash) {
 }
 
 // Sends a defined presence packet
-function sendPresence(to, type, show, status, checksum, password, handle) {
+function sendPresence(to, type, show, status, checksum, limit_history, password, handle) {
 	// Get some stuffs
 	var priority = getDB('priority', 1);
 	
@@ -643,10 +649,17 @@ function sendPresence(to, type, show, status, checksum, password, handle) {
 	var x = presence.appendNode('x', {'xmlns': NS_VCARD_P});
 	x.appendChild(presence.buildNode('photo', {'xmlns': NS_VCARD_P}, checksum));
 	
-	// Password
-	if(password) {
+	// MUC X data
+	if(limit_history || password) {
 		var xMUC = presence.appendNode('x', {'xmlns': NS_MUC});
-		xMUC.appendChild(presence.buildNode('password', {'xmlns': NS_MUC}, password));
+		
+		// Max messages age (for MUC)
+		if(limit_history)
+			xMUC.appendChild(presence.buildNode('history', {'maxstanzas': 20, 'seconds': 86400, 'xmlns': NS_MUC}));
+		
+		// Room password
+		if(password)
+			xMUC.appendChild(presence.buildNode('password', {'xmlns': NS_MUC}, password));
 	}
 	
 	// If away, send a last activity time
