@@ -6,9 +6,9 @@ These are the anonymous mode JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/11/10
 
 */
 
@@ -116,3 +116,22 @@ function launchAnonymous() {
 
 // Launch this plugin!
 $(document).ready(launchAnonymous);
+
+var anon_params = (function() {
+	var vars = [], hash;
+	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	
+	for(var i = 0; i < hashes.length; i++) {
+		var hash = hashes[i].split('=');
+		vars.push(hash[0]);
+		vars[hash[0]] = hash[1];
+	}
+	
+	return vars;
+})();
+
+if(anon_params['r'] && anon_params['n'] !== '')
+	ANONYMOUS_ROOM = anon_params['r'];
+
+if(anon_params['n'] && anon_params['n'] !== '')
+	ANONYMOUS_NICK = anon_params['n'];
