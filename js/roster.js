@@ -298,58 +298,64 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 	
 	// Apply the hover event
 	$(bPath).hover(function() {
-		if(!exists('#buddy-list .buddy-infos')) {
-			$(bPath).oneTime(200, function() {
-				// Create the buddy infos DOM element
-				$(bPath).append(
-					'<div class="buddy-infos bubble removable">' + 
-						'<div class="buddy-infos-subarrow talk-images"></div>' + 
-						'<div class="buddy-infos-subitem">' + 
-							'<div class="pep-infos">' + 
-								'<p class="bi-status talk-images status-unavailable">' + _e("unknown") + '</p>' + 
-								'<p class="bi-mood talk-images mood-four">' + _e("unknown") + '</p>' + 
-								'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
-								'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
-								'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-								'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="collections">' + _e("Collections") + '</a></p>' + 
-								'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
-							'</div>' + 
+		// Another bubble exist
+		if(exists('#buddy-list .buddy-infos'))
+			return false;
+		
+		$(bPath).oneTime(200, function() {
+			// Another bubble exist
+			if(exists('#buddy-list .buddy-infos'))
+				return false;
+			
+			// Add this bubble!
+			showBubble(iPath);
+			
+			// Create the buddy infos DOM element
+			$(bPath).append(
+				'<div class="buddy-infos bubble removable">' + 
+					'<div class="buddy-infos-subarrow talk-images"></div>' + 
+					'<div class="buddy-infos-subitem">' + 
+						'<div class="pep-infos">' + 
+							'<p class="bi-status talk-images status-unavailable">' + _e("unknown") + '</p>' + 
+							'<p class="bi-mood talk-images mood-four">' + _e("unknown") + '</p>' + 
+							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
+							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
+							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
+							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="collections">' + _e("Collections") + '</a></p>' + 
+							'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
-					'</div>'
-				);
+					'</div>' + 
+				'</div>'
+			);
+			
+			// Get the presence
+			presenceFunnel(xid, hash);
+			
+			// Get the PEP infos
+			displayAllPEP(xid);
+			
+			// Click events
+			$(bPath + ' .bi-view a').click(function() {
+				// Renitialize the buddy infos
+				closeBubbles();
 				
-				// Get the presence
-				presenceFunnel(xid, hash);
+				// Profile
+				if($(this).is('.profile'))
+					openUserInfos(xid);
 				
-				// Get the PEP infos
-				displayAllPEP(xid);
+				// Channel
+				else if($(this).is('.channel'))
+					fromInfosMicroblog(xid, hash);
 				
-				// Click events
-				$(bPath + ' .bi-view a').click(function() {
-					// Renitialize the buddy infos
-					closeBubbles();
-					
-					// Profile
-					if($(this).is('.profile'))
-						openUserInfos(xid);
-					
-					// Channel
-					else if($(this).is('.channel'))
-						fromInfosMicroblog(xid, hash);
-					
-					// Collections
-					else
-						retrieveCollections(xid);
-				});
-				
-				$(bPath + ' .bi-edit a').click(function() {
-					buddyEdit(xid, nick, subscription, groups);
-				});
-				
-				// Show this bubble!
-				showBubble(iPath);
+				// Collections
+				else
+					retrieveCollections(xid);
 			});
-		}
+			
+			$(bPath + ' .bi-edit a').click(function() {
+				buddyEdit(xid, nick, subscription, groups);
+			});
+		});
 	}, function() {
 		if(!exists(iPath + ' .manage-infos'))
 			closeBubbles();

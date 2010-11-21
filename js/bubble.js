@@ -37,6 +37,16 @@ function showBubble(selector) {
 		$(selector).show();
 	}
 	
+	// Removable bubbles special things
+	if($(selector).is('.removable')) {
+		// This bubble yet exists? So abort!
+		if(exists(selector))
+			return closeBubbles();
+		
+		// Close all the bubbles
+		closeBubbles();
+	}
+	
 	// Creates a new click event to close the bubble
 	$('#talk').live('click', function(evt) {
 		var target = evt.target;
