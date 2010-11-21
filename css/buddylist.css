@@ -245,12 +245,15 @@ Last revision: 21/11/10
 .manage-infos div.bm-choose label {
 	float: left;
 	clear: both;
-	width: 140px;
 	margin-bottom: 1px;
 }
 
 .manage-infos div.bm-choose input {
 	float: left;
+}
+
+.manage-infos div.bm-choose input[type=checkbox] {
+	margin: 1px 6px 0 0;
 }
 
 .manage-infos div.bm-choose div {

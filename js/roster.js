@@ -160,7 +160,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
 					var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
 					
-					var html = '<div class="hidden-buddy buddy ' + dXIDHash + gateway + '" data-xid="' + dXID + '">' + 
+					var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + '" data-xid="' + dXID + '">' + 
 							'<div class="buddy-click" onclick="checkChatCreate(\'' + dXID + '\', \'chat\');">';
 					
 					// Display avatar if not gateway
@@ -241,14 +241,14 @@ function applyBuddyInput(xid) {
 			// Check if the group yet exists
 			var group_exists = false;
 			
-			$(bm_choose + ' label').each(function() {
+			$(bm_choose + ' label span').each(function() {
 				if($(this).text() == this_value)
 					group_exists = true;
 			});
 			
 			// Create a new checked checkbox
 			if(!group_exists)
-				$(bm_choose).prepend('<label>' + this_value.htmlEnc() + '</label><input type="checkbox" data-group="' + escaped_value + '" />');
+				$(bm_choose).prepend('<label><input type="checkbox" data-group="' + escaped_value + '" /><span>' + this_value.htmlEnc() + '</span></label>');
 			
 			// Check the checkbox
 			$(bm_choose + ' input[data-group=' + escaped_value + ']').attr('checked', true);
@@ -304,7 +304,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 			$(bPath).oneTime(200, function() {
 				// Create the buddy infos DOM element
 				$(bPath).append(
-					'<div class="buddy-infos">' + 
+					'<div class="buddy-infos bubble removable">' + 
 						'<div class="buddy-infos-subarrow talk-images"></div>' + 
 						'<div class="buddy-infos-subitem">' + 
 							'<div class="pep-infos">' + 
@@ -347,11 +347,14 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				$(bPath + ' .bi-edit a').click(function() {
 					buddyEdit(xid, nick, subscription, groups);
 				});
+				
+				// Show this bubble!
+				showBubble(iPath);
 			});
 		}
 	}, function() {
 		if(!exists(iPath + ' .manage-infos'))
-			$(iPath).remove();
+			closeBubbles();
 		
 		$(bPath).stopTime();
 	});
@@ -493,7 +496,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 			checked = ' checked="true"';
 		
 		// Add the current group HTML
-		all_groups_dom += '<label>' + all_groups_current.htmlEnc() + '</label><input type="checkbox" data-group="' + escape(all_groups_current) + '"' + checked + ' />';
+		all_groups_dom += '<label><input type="checkbox" data-group="' + escape(all_groups_current) + '"' + checked + ' /><span>' + all_groups_current.htmlEnc() + '</span></label>';
 	}
 	
 	// Prepend this in the DOM

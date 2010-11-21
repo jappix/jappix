@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 21/11/10
 
 */
 
@@ -469,10 +469,14 @@ Last revision: 19/11/10
 }
 
 #page-engine .tooltip label {
-	width: 105px;
+	margin-bottom: 4px;
 	float: left;
 	clear: both;
-	margin-bottom: 4px;
+}
+
+#page-engine .tooltip label input[type=checkbox] {
+	margin: 0 6px 0 0;
+	float: left;
 }
 
 #page-engine .tooltip label.select {

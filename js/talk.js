@@ -56,7 +56,7 @@ function createTalkPage() {
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools music talk-images" onclick="openMusic();"></div>' + 
 				
-				'<div class="music-content tools-content bubble">' + 
+				'<div class="music-content tools-content bubble hidable">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
@@ -78,7 +78,7 @@ function createTalkPage() {
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools notifications talk-images" onclick="showBubble(\'.notifications-content\');"></div>' + 
 				
-				'<div class="notifications-content tools-content bubble">' + 
+				'<div class="notifications-content tools-content bubble hidable">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
@@ -105,7 +105,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
 							
-							'<div id="buddy-conf-add" class="buddy-conf-item bubble">' + 
+							'<div id="buddy-conf-add" class="buddy-conf-item bubble hidable">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
@@ -118,7 +118,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
 							
-							'<div id="buddy-conf-join" class="buddy-conf-item bubble">' + 
+							'<div id="buddy-conf-join" class="buddy-conf-item bubble hidable">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem search">' + 
@@ -135,7 +135,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
 							
-							'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble">' + 
+							'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
@@ -155,7 +155,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon">' + 
 							'<a class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
 							
-							'<div id="buddy-conf-more" class="buddy-conf-item bubble">' + 
+							'<div id="buddy-conf-more" class="buddy-conf-item bubble hidable">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
@@ -192,7 +192,7 @@ function createTalkPage() {
 						'<div class="buddy-list-icon alone">' + 
 							'<a class="involve talk-images" title="' + _e("Get involved!") +  '"></a>' + 
 							
-							'<div id="buddy-conf-involve" class="buddy-conf-item bubble">' + 
+							'<div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">' + 
 								'<div class="buddy-conf-subarrow talk-images"></div>' + 
 								
 								'<div class="buddy-conf-subitem">' + 
@@ -496,7 +496,7 @@ function createTalkPage() {
 					'<div class="more ibubble">' + 
 						'<div class="more-button talk-images" onclick="showBubble(\'#page-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
 						
-						'<div class="more-content bubble">';
+						'<div class="more-content bubble hidable">';
 							if(!anonymous) html += 
 							'<div class="channel switcher activechan" onclick="switchChan(\'channel\');">' + 
 								'<div class="icon talk-images"></div>' + 
@@ -528,7 +528,7 @@ function createTalkPage() {
 									'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
 									'<a onclick="unattachMicroblog();" class="postit unattach talk-images"></a>' + 
 									
-									'<form id="attach" class="bubble" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
+									'<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
 										'<div class="attach-subarrow talk-images"></div>' + 
 										
 										'<div class="attach-subitem">' + 

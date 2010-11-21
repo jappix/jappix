@@ -38,9 +38,9 @@ function createTooltip(xid, hash, type) {
 		case 'style':
 			title = _e("Change style");
 			content = 
-				'<label class="bold" for="' + hash + '_style_bold">' + _e("Text in bold") + '</label><input id="' + hash + '_style_bold" type="checkbox" class="bold" />' + 
-				'<label class="italic" for="' + hash + '_style_italic">' + _e("Text in italic") + '</label><input id="' + hash + '_style_italic" type="checkbox" class="italic" />' + 
-				'<label class="underline" for="' + hash + '_style_underline">' + _e("Underlined text") + '</label><input id="' + hash + '_style_underline" type="checkbox" class="underline" />' + 
+				'<label class="bold"><input type="checkbox" class="bold" />' + _e("Text in bold") + '</label>' + 
+				'<label class="italic"><input type="checkbox" class="italic" />' + _e("Text in italic") + '</label>' + 
+				'<label class="underline"><input type="checkbox" class="underline" />' + _e("Underlined text") + '</label>' + 
 				'<a class="color" style="background-color: #b10808; clear: both;" data-color="b10808"></a>' + 
 				'<a class="color" style="background-color: #e5860c;" data-color="e5860c"></a>' + 
 				'<a class="color" style="background-color: #f0f30e;" data-color="f0f30e"></a>' + 
