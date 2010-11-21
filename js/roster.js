@@ -143,7 +143,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 							group_toggle.removeClass('minus').addClass('plus');
 							
 							// Remove the group opened buddy-info
-							$(groupContent + ' .buddy .buddy-infos').remove();
+							closeBubbles();
 						}
 						
 						// We must show the buddies
@@ -261,25 +261,23 @@ function applyBuddyInput(xid) {
 	});
 	
 	// Click events
-	var buddy_infos = $('#buddy-list .buddy[data-xid=' + xid + '] .buddy-infos');
-	
 	$(manage_infos + ' p.bm-authorize a.to').click(function() {
-		buddy_infos.remove();
+		closeBubbles();
 		sendSubscribe(xid, 'subscribed');
 	});
 	
 	$(manage_infos + ' p.bm-authorize a.from').click(function() {
-		buddy_infos.remove();
+		closeBubbles();
 		sendSubscribe(xid, 'subscribe');
 	});
 	
 	$(manage_infos + ' p.bm-remove a.remove').click(function() {
-		buddy_infos.remove();
+		closeBubbles();
 		sendRoster(xid, 'remove');
 	});
 	
 	$(manage_infos + ' p.bm-remove a.prohibit').click(function() {
-		buddy_infos.remove();
+		closeBubbles();
 		sendSubscribe(xid, 'unsubscribed');
 	});
 	
@@ -329,7 +327,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Click events
 				$(bPath + ' .bi-view a').click(function() {
 					// Renitialize the buddy infos
-					$('#buddy-list .buddy[data-xid=' + xid + '] .buddy-infos').remove();
+					closeBubbles();
 					
 					// Profile
 					if($(this).is('.profile'))
@@ -511,7 +509,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 // Updates the roster items
 function updateRosterItem(xid, rename, group) {
 	// Remove the buddy editor
-	$('#buddy-list .buddy[data-xid=' + xid + '] .buddy-infos').remove();
+	closeBubbles();
 	
 	// We send the new buddy name
 	var iq = new JSJaCIQ();
