@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -728,12 +728,6 @@ function launchRoster() {
 	$('.buddy-conf-more-display-available').click(function() {
 		showOnlineBuddies('roster');
 	});
-	
-	// When the user wants to display the gateways
-	$('.buddy-conf-more-display-gateways').click(showGateways);
-	
-	// When the user wants to hide the gateways
-	$('.buddy-conf-more-hide-gateways').click(hideGateways);
 	
 	// When the user click on the map of friends link
 	$('.buddy-conf-more-map').click(function() {

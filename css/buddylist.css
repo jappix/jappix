@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -78,8 +78,7 @@ Last revision: 20/11/10
 
 #buddy-list .hidden-buddy,
 #buddy-list .foot-edit-finish,
-.buddy-conf-more-display-available,
-.buddy-conf-more-display-gateways {
+.buddy-conf-more-display-available {
 	display: none;
 }
 

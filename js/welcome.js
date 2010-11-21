@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -65,12 +65,6 @@ function openWelcome() {
 				'<span class="option">' + _e("Offline friends") + '</span>' + 
 				'<span class="description">' + _e("Don\'t hide offline friends") + '</span>' + 
 				'<span class="image offline talk-images"></span>' + 
-			'</a>' + 
-			
-			'<a class="box enabled" title="' + _e("Click to disable") + '">' + 
-				'<span class="option">' + _e("Gateways") + '</span>' + 
-				'<span class="description">' + _e("Show gateways") + '</span>' + 
-				'<span class="image gateway talk-images"></span>' + 
 			'</a>' + 
 		'</div>' + 
 		
@@ -163,7 +157,7 @@ function sendWelcome(array) {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_OPTIONS}));
 	
 	// Value array
-	var tags = new Array('sounds', 'geolocation', '', '', 'roster-showall', 'roster-showgateways');
+	var tags = new Array('sounds', 'geolocation', '', '', 'roster-showall');
 	
 	// Build the XML with the array
 	for(i in array) {
@@ -204,10 +198,6 @@ function saveWelcome() {
 	// If offline buddies showing is enabled
 	if(array[4] == '1')
 		showAllBuddies('welcome');
-	
-	// If gateways hidding is enabled
-	if(array[5] == '0')
-		hideGateways();
 	
 	// If archiving is supported by the server
 	if(enabledArchives('pref')) {
