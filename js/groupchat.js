@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -98,7 +98,9 @@ function handleMUC(presence) {
 		displayMucAdmin(affiliation, hash, room, statuscode);
 		
 		// Tell the MUC we can notify the incoming presences
-		$('#' + hash).attr('data-initial', 'true');
+		$(document).oneTime('5s', function() {
+			$('#' + hash).attr('data-initial', 'true');
+		});
 		
 		// Enable the chatting input
 		$('#' + hash + ' .message-area').removeAttr('disabled').focus();

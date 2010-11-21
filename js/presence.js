@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -17,6 +17,9 @@ var FIRST_PRESENCE_SENT = false;
 
 function firstPresence(checksum) {
 	logThis('First presence sent.', 3);
+	
+	// Jappix is now ready: change the title
+	pageTitle('talk');
 	
 	// Anonymous check
 	var is_anonymous = isAnonymous();
@@ -235,6 +238,10 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	
 	// User does not exists yet
 	if(!exists(thisUser) && (!type || (type == 'available'))) {
+		// Is it me?
+		if(nick == getMUCNick(roomHash))
+			$('#' + roomHash + ' .message-area').removeAttr('disabled');
+		
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
 			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + nick_html + '"' + real_xid + '>' + 
@@ -720,7 +727,7 @@ function presenceSend(checksum, autoidle) {
 	$('.page-engine-chan[data-type=groupchat]').each(function() {
 		// Not disabled?
 		if(!$(this).find('.message-area').attr('disabled'))
-			sendPresence($(this).attr('data-xid') + '/' + $(this).attr('data-nick'), '', show, status);
+			sendPresence($(this).attr('data-xid') + '/' + $(this).attr('data-nick'), '', show, status, '', true);
 	});
 }
 
@@ -735,7 +742,7 @@ function sendSubscribe(to, type) {
 	var status = '';
 	
 	if(type == 'subscribe')
-		status = _e("I would like to add you as a friend.");
+		status = printf(_e("Hi, I am %s, I would like to add you as my friend."), getName());
 	
 	sendPresence(to, type, '', status);
 }

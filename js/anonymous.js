@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -16,27 +16,35 @@ Last revision: 20/11/10
 function anonymousConnected(con) {
 	logThis('Jappix (anonymous) is now connected.', 3);
 	
-	// Create the app
-	createTalkPage();
-	
 	// Connected marker
 	CURRENT_SESSION = true;
 	
-	// Send our first presence
-	firstPresence('');
+	// Not resumed?
+	if(!RESUME) {
+		// Create the app
+		createTalkPage();
+		
+		// Send our first presence
+		firstPresence('');
+		
+		// If no domain is defined, we assume this must be ours
+		if(ANONYMOUS_ROOM.indexOf('@') == -1)
+			ANONYMOUS_ROOM = ANONYMOUS_ROOM + '@' + HOST_MUC;
+		
+		// Create the new groupchat
+		checkChatCreate(ANONYMOUS_ROOM, 'groupchat');
+		
+		// Remove some nasty elements for the anonymous mode
+		$('.tools-mucadmin, .tools-add').remove();
+	}
 	
-	// If no domain is defined, we assume this must be ours
-	if(ANONYMOUS_ROOM.indexOf('@') == -1)
-		ANONYMOUS_ROOM = ANONYMOUS_ROOM + '@' + HOST_MUC;
-	
-	// Create the new groupchat
-	checkChatCreate(ANONYMOUS_ROOM, 'groupchat');
-	
-	// We change the title of the page
-	pageTitle('talk');
-	
-	// Remove some nasty elements for the anonymous mode
-	$('.tools-mucadmin, .tools-add').remove();
+	// Resumed
+	else {
+		presenceSend();
+		
+		// Change the title
+		pageTitle('talk');
+	}
 	
 	// Remove the waiting icon
 	removeGeneralWait();
@@ -45,12 +53,6 @@ function anonymousConnected(con) {
 // Disconnected from an anonymous session
 function anonymousDisconnected() {
 	logThis('Jappix (anonymous) is now disconnected.', 3);
-	
-	// Reset the anonymous tools
-	$('.removable').remove();
-	
-	// Kill the auto idle functions
-	dieIdle();
 	
 	// Reconnect pane
 	if(CURRENT_SESSION)

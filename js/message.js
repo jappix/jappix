@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -428,7 +428,9 @@ function sendMessage(id, type) {
 				body = filterThisXHTML(aMsg.getNode());
 			
 			// Finally we display the message we just sent
-			displayMessage('chat', getXID(), id, _e("You").htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');
+			var my_xid = getXID();
+			
+			displayMessage('chat', my_xid, id, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');
 			
 			// Scroll to the last message
 			autoScroll(id);

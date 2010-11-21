@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -166,6 +166,10 @@ function getJappixLocation() {
 		url = url.split('?')[0];
 	if(url.indexOf('#') != -1)
 		url = url.split('#')[0];
+	
+	// No "/" at the end
+	if(!url.match(/(.+)\/$/))
+		url += '/';
 	
 	return url;
 }

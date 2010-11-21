@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -103,7 +103,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			if(nearest == 0)
 				$('#channel .content.mixed').append(html);
 			else
-				$('#channel .one-update[data-stamp=' + nearest + ']').before(html);
+				$('#channel .one-update[data-stamp=' + nearest + ']:first').before(html);
 			
 			// Remove the old notices to make the DOM lighter
 			var oneUpdate = '#channel .content.mixed .one-update';
@@ -458,14 +458,22 @@ function sendMicroblog() {
 			// Disable & blur our input
 			selector.attr('disabled', true).blur();
 			
+			// Get the file values
+			var fName = selector.attr('data-attachedname');
+			var fType = selector.attr('data-attachedurl');
+			var fExt = selector.attr('data-attachedtype');
+			var fURL = selector.attr('data-attachedext');
+			
+			// Unescape the values
+			if(fName && fType && fExt && fURL) {
+				fName = unescape(fName);
+				fType = unescape(fType);
+				fExt = unescape(fExt);
+				fURL = unescape(fURL);
+			}
+			
 			// Send the message on the XMPP network
-			publishMicroblog(
-					 body,
-					 selector.attr('data-attachedname'),
-					 selector.attr('data-attachedurl'),
-					 selector.attr('data-attachedtype'),
-					 selector.attr('data-attachedext')
-			);
+			publishMicroblog(body, fName, fType, fExt, fURL);
 		}
 	}
 	
@@ -516,7 +524,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}));
 	
 	// Create the attached file node
-	if(attachedname && attachedurl)
+	if(attachedname && attachedurl && attachedtype && attachedext)
 		entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname, 'url': attachedurl, 'type': attachedtype, 'ext': attachedext}));
 	
 	// Send the IQ
@@ -555,7 +563,7 @@ function unattachMicroblog() {
 	$('input[name=microblog_body]').removeAttr('data-attachedname').removeAttr('data-attachedtype').removeAttr('data-attachedext').removeAttr('data-attachedurl');
 	
 	// Hide the unattach link, show the attach one
-	$('.postit.unattach').hide();
+	$('.postit.unattach').hide().removeAttr('title');
 	$('.postit.attach').show();
 }
 
@@ -581,15 +589,21 @@ function handleMicroblogAttach(responseXML) {
 		// Hide our bubble
 		closeBubbles();
 		
+		// Get the file values
+		var fName = dData.find('name').text();
+		var fType = dData.find('type').text();
+		var fExt = dData.find('ext').text();
+		var fURL = dData.find('url').text();
+		
 		// Set values to the form
-		$('#channel input[name=microblog_body]').attr('data-attachedname', dData.find('name').text())
-							.attr('data-attachedtype', dData.find('type').text())
-							.attr('data-attachedext',  dData.find('ext').text())
-							.attr('data-attachedurl',  generateURL(JAPPIX_LOCATION) + dData.find('url').text());
+		$('#channel input[name=microblog_body]').attr('data-attachedname', escape(fName))
+							.attr('data-attachedtype', escape(fType))
+							.attr('data-attachedext',  escape(fExt))
+							.attr('data-attachedurl',  escape(fURL));
 		
 		// Hide the attach link, show the unattach one
 		$('#channel .postit.attach').hide();
-		$('#channel .postit.unattach').css('display', 'block');
+		$('#channel .postit.unattach').attr('title', _e("Unattach the file") + ' (' + fName + '.' + fExt + ')').css('display', 'block');
 		
 		logThis('File attached.', 3);
 	}

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-20 22:08:44\n"
+"PO-Revision-Date: 2010-11-21 11:25:34\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1114,8 +1114,8 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: 
-msgid "I would like to add you as a friend."
-msgstr "Je souhaiterai vous ajouter comme ami."
+#~ msgid "I would like to add you as a friend."
+#~ msgstr "Je souhaiterai vous ajouter comme ami."
 
 #: 
 msgid "Smiley insertion"
@@ -2596,4 +2596,8 @@ msgstr "Afficher les passerelles"
 #: 
 msgid "Hide gateways"
 msgstr "Masquer les passerelles"
+
+#: 
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr "Salut, je suis %s, je souhaiterai vous ajouter comme ami."
 

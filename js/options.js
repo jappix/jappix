@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -327,7 +327,7 @@ function sendNewPassword() {
 		
 		var iqQuery = iq.setQuery(NS_REGISTER);
 		
-		iqQuery.appendChild(iq.buildNode('username', {'xmlns': NS_REGISTER}, getNick()));
+		iqQuery.appendChild(iq.buildNode('username', {'xmlns': NS_REGISTER}, con.username));
 		iqQuery.appendChild(iq.buildNode('password', {'xmlns': NS_REGISTER}, password1));
 		
 		con.send(iq, handlePwdChange);

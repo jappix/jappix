@@ -10,7 +10,7 @@ This is the Jappix microblog file attaching script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -27,13 +27,25 @@ compressThis();
 header('content-type: text/xml; charset=utf-8');
 
 // Everything is okay
-if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user']))) {
+if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
 	// Get the user name
 	$user = $_POST['user'];
 	
 	// Get the file name
 	$tmp_filename = $_FILES['file']['tmp_name'];
 	$filename = $_FILES['file']['name'];
+	
+	// Get the location
+	$location = $_POST['location'];
+	
+	// Forbidden file?
+	if(!isSafe($filename)) {
+		exit(
+'<jappix xmlns=\'jappix:file:post\'>
+	<error>fobidden-type</error>
+</jappix>'
+		);
+	}
 	
 	// Get the file new name
 	$ext = getFileExt($filename);
@@ -56,7 +68,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 		file_put_contents($security_file, securityHTML());
 	
 	// File upload error?
-	if(!isSafe($filename) || !is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
 		exit(
 '<jappix xmlns=\'jappix:file:post\'>
 	<error>move-error</error>
@@ -112,7 +124,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	// Return the path to the file
 	exit(
 '<jappix xmlns=\'jappix:file:post\'>
-	<url>'.htmlspecialchars('store/share/'.$user.'/'.$name).'</url>
+	<url>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name).'</url>
 	<name>'.htmlspecialchars($new_name).'</name>
 	<type>'.htmlspecialchars($file_type).'</type>
 	<ext>'.htmlspecialchars($ext).'</ext>

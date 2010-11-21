@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -67,7 +67,7 @@ function openVCard() {
 				'<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
 				
 				'<form id="vcard-avatar" action="#" method="post">' + 
-					'<input style="margin-left: 15px;" type="file" id="vcard-avatar-file" />' + 
+					'<input style="margin-left: 15px;" type="file" id="vcard-avatar-file" required="" />' + 
 					'<input type="submit" value="' + _e("Send") + '" />' + 
 				'</form>' + 
 			'</fieldset>' + 

@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -96,6 +96,34 @@ function handleAvatar(iq) {
 	
 	// vCard not empty?
 	if(find.size()) {
+		// We get our profile details
+		if(handleFrom == getXID()) {
+			// Get the full name & the nickname
+			var pFull = find.find('FN:first').text();
+			var pNick = find.find('NICKNAME:first').text();
+			
+			// No full name?
+			if(!pFull) {
+				// Get the given name
+				var pN = find.find('N:first');
+				var pGiven = pN.find('GIVEN:first').text();
+				
+				if(pGiven) {
+					pFull = pGiven;
+					
+					// Get the family name (optional)
+					var pFamily = pN.find('FAMILY:first').text();
+					
+					if(pFamily)
+						pFull += ' ' + pFamily;
+				}
+			}
+			
+			// Write the values to the database
+			setDB('profile', 'name', pFull);
+			setDB('profile', 'nick', pNick);
+		}
+		
 		// We get the avatar
 		var aType = find.find('TYPE:first').text();
 		var aBinval = find.find('BINVAL:first').text();

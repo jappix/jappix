@@ -8,40 +8,40 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
 // Changes the title of the document
 function pageTitle(title) {
 	// Title DOM element selector
-	var select = 'head title';
+	var select = $('head title');
 	
 	// Anonymous mode?
-	var xid = getXID();
+	var head_name = getName();
 	
 	if(isAnonymous())
-		xid = ANONYMOUS_ROOM + ' (' + _e("anonymous mode") + ')';
+		head_name = ANONYMOUS_ROOM + ' (' + _e("anonymous mode") + ')';
 	
-	// We change the title of the page so that it will give the user's XID when he's logged in
+	// We change the title to give essential informations
 	switch(title) {
 		case 'home':
-			$(select).html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
+			select.html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
 			
 			break;
 		
 		case 'talk':
-			$(select).html('Jappix &bull; ' + xid);
+			select.html('Jappix &bull; ' + head_name);
 			
 			break;
 		
 		case 'new':
-			$(select).html('[*] Jappix &bull; ' + xid);
+			select.html('[*] Jappix &bull; ' + head_name);
 			
 			break;
 		
 		case 'wait':
-			$(select).html('Jappix &bull; ' + _e("Please wait..."));
+			select.html('Jappix &bull; ' + _e("Please wait..."));
 			
 			break;
 	}
@@ -163,11 +163,11 @@ function generateChatLog(xid, hash) {
 		$(this).replaceWith($(this).attr('data-text'));
 	});
 	
-	// Filter the content avatars
-	$(content).find('.avatar-container .avatar').each(function() {
-		if(!$(this).attr('src').match(/data:/))
-			$(this).remove();
-	});
+	// Remove the useless attributes
+	$(content).removeAttr('data-type').removeAttr('data-stamp');
+	
+	// Remove the content avatars
+	$(content).find('.avatar-container').remove();
 	
 	// Remove the content click events
 	$(content).find('a').removeAttr('onclick');

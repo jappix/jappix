@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -184,45 +184,54 @@ function handleConnected() {
 	
 	// We hide the home page
 	$('#home').hide();
-	removeGeneralWait();
 	
-	// We show the chatting app.
-	createTalkPage();
-	
-	// We reset the homepage
-	switchHome('default');
-	
-	// We change the title of the page
-	pageTitle('talk');
-	
-	// We get all the other things
-	getEverything();
-	
-	// Set last activity stamp
-	LAST_ACTIVITY = getTimeStamp();
-	
-	// We open a new chat if a XMPP link was submitted
-	var link = getVar('x');
-	
-	if(parent.location.hash != '#OK' && link) {
-		// A link is submitted in the URL
-		xmppLink(link);
+	// Not resumed?
+	if(!RESUME) {
+		// We show the chatting app.
+		createTalkPage();
 		
-		// Set a OK status
-		parent.location.hash = 'OK';
+		// We reset the homepage
+		switchHome('default');
+		
+		// We get all the other things
+		getEverything();
+		
+		// Set last activity stamp
+		LAST_ACTIVITY = getTimeStamp();
+		
+		// We open a new chat if a XMPP link was submitted
+		var link = getVar('x');
+		
+		if(parent.location.hash != '#OK' && link) {
+			// A link is submitted in the URL
+			xmppLink(link);
+		
+			// Set a OK status
+			parent.location.hash = 'OK';
+		}
 	}
+	
+	// Resumed
+	else {
+		presenceSend();
+		
+		// Change the title
+		pageTitle('talk');
+	}
+	
+	// Remove the waiting item
+	removeGeneralWait();
 }
 
 // Handles the user disconnected event
 function handleDisconnected() {
 	logThis('Jappix is now disconnected.', 3);
 	
-	// Reset everything
-	destroyTalkPage();
-	
 	// Is it a undesired disconnection?
 	if(CURRENT_SESSION && CONNECTED)
 		createReconnect('normal');
+	else
+		destroyTalkPage();
 }
 
 // Setups the normal connection
@@ -254,6 +263,7 @@ function terminate() {
 		// Clear temporary session storage
 		CURRENT_SESSION = false;
 		CONNECTED = false;
+		RESUME = false;
 		
 		// Show the waiting item (useful if BOSH is sloooow)
 		showGeneralWait();
@@ -303,11 +313,22 @@ function createReconnect(mode) {
 }
 
 // Reconnects the user if he was disconnected (network issue)
+var RESUME = false;
+
 function acceptReconnect(mode) {
 	logThis('Trying to reconnect the user...', 3);
 	
+	// Resume marker
+	RESUME = true;
+	
 	// Show waiting item
 	showGeneralWait();
+	
+	// Reset some special stuffs
+	var groupchats = '#page-engine .page-engine-chan[data-type=groupchat]';
+	$(groupchats + ' .list .role').hide();
+	$(groupchats + ' .one-line, ' + groupchats + ' .list .user').remove();
+	$(groupchats).attr('data-initial', 'false');
 	
 	// Remove the reconnect pane
 	$('#reconnect').remove();
@@ -328,9 +349,13 @@ function cancelReconnect() {
 	// Remove the reconnect pane
 	$('#reconnect').remove();
 	
+	// Destroy the talk page
+	destroyTalkPage();
+	
 	// Renitialize the previous session parameters
 	CURRENT_SESSION = false;
 	CONNECTED = false;
+	RESUME = false;
 	
 	return false;
 }
