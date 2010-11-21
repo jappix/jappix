@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
-msgid "Multiple resources"
+msgid "Files not grouped"
 msgstr ""
 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
