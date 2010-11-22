@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 22/11/10
 
 */
 
@@ -71,7 +71,7 @@ function writeXML($type, $xmlns, $xml) {
 	// Write the installed marker
 	$gen_xml = '<?xml version="1.0" encoding="utf-8" ?>
 <jappix xmlns="jappix:'.$type.':'.$xmlns.'">
-	'.$xml.'
+	'.trim($xml).'
 </jappix>';
 	
 	file_put_contents($conf_file, $gen_xml);
