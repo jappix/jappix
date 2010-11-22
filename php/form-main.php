@@ -10,7 +10,7 @@ This is the main configuration form (install & manager)
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 22/11/10
 
 */
 
@@ -59,12 +59,6 @@ if($compression == 'on')
 else
 	$check_compression = '';
 
-// Multiple resources
-if($multi_files == 'on')
-	$check_multi_files = $checked;
-else
-	$check_multi_files = '';
-
 ?>
 
 <fieldset>
@@ -98,7 +92,7 @@ else
 	
 	<label for="compression"><?php _e("Compression"); ?></label><input id="compression" type="checkbox" name="compression"<?php echo $check_compression; ?> />
 	
-	<label for="multi_files"><?php _e("Files not grouped"); ?></label><input id="multi_files" type="checkbox" name="multi_files"<?php echo $check_multi_files; ?> />
+	<input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 	
 	<input type="hidden" name="developer" value="<?php echo $developer; ?>" />
 </fieldset>

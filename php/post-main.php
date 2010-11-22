@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 22/11/10
 
 */
 
@@ -75,7 +75,7 @@ else
 	$compression = 'off';
 
 // Multiple resources
-if(isset($_POST['multi_files']) && !empty($_POST['multi_files']))
+if(isset($_POST['multi_files']) && ($_POST['multi_files'] == 'on'))
 	$multi_files = 'on';
 else
 	$multi_files = 'off';
