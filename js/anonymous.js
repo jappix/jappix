@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 22/11/10
 
 */
 
@@ -136,7 +136,7 @@ var anon_params = (function() {
 })();
 
 if(anon_params['r'] && anon_params['n'] !== '')
-	ANONYMOUS_ROOM = anon_params['r'];
+	ANONYMOUS_ROOM = unescape(anon_params['r']);
 
 if(anon_params['n'] && anon_params['n'] !== '')
-	ANONYMOUS_NICK = anon_params['n'];
+	ANONYMOUS_NICK = unescape(anon_params['n']);
