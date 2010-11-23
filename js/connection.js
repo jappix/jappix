@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 23/11/10
 
 */
 
@@ -200,11 +200,9 @@ function handleConnected() {
 		LAST_ACTIVITY = getTimeStamp();
 		
 		// We open a new chat if a XMPP link was submitted
-		var link = getVar('x');
-		
-		if(parent.location.hash != '#OK' && link) {
+		if((parent.location.hash != '#OK') && link_vars['x']) {
 			// A link is submitted in the URL
-			xmppLink(link);
+			xmppLink(link_vars['x']);
 		
 			// Set a OK status
 			parent.location.hash = 'OK';
@@ -427,15 +425,10 @@ function launchConnection() {
 	}
 	
 	// Not connected, maybe a XMPP link is submitted?
-	else {
-		// We open a new chat if a XMPP link was submitted
-		var link = getVar('x');
+	else if((parent.location.hash != '#OK') && link_vars['x']) {
+		switchHome('loginer');
 		
-		// Show the login tool
-		if(parent.location.hash != '#OK' && link) {
-			logThis('A XMPP link is set, switch to login page.', 3);
-			switchHome('loginer');
-		}
+		logThis('A XMPP link is set, switch to login page.', 3);
 	}
 }
 
