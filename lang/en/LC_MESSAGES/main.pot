@@ -47,6 +47,12 @@ msgstr ""
 msgid "Please enter the group chat address to join."
 msgstr ""
 
+msgid "This room (%s) is protected with a password."
+msgstr ""
+
+msgid "Please enter a different nickname, the previous one is not available on %s."
+msgstr ""
+
 msgid "Login"
 msgstr ""
 

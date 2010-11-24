@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 24/11/10
 
 */
 
@@ -51,7 +51,7 @@ function openFavorites() {
 					'<div class="fedit-line">' + 
 						'<label>' + _e("Nickname") + '</label>' + 
 						
-						'<input class="fedit-nick" type="text" required="" />' + 
+						'<input class="fedit-nick" type="text" value="' + getNick() + '" required="" />' + 
 					'</div>' + 
 					
 					'<div class="fedit-line">' + 
@@ -125,6 +125,7 @@ function resetFavorites() {
 	$(path + '.fsearch-oneresult').remove();
 	$(path + 'input').val('');
 	$(path + '.please-complete').removeClass('please-complete');
+	$(path + '.fedit-nick').val(getNick());
 	$(path + '.fsearch-head-server, ' + path + '.fedit-server').val(HOST_MUC);
 	$(path + '.fedit-autojoin').attr('checked', false);
 }

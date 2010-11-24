@@ -21,6 +21,10 @@ Last revision: 24/11/10
 	right: 20px;
 }
 
+#jappix_mini * {
+	font-size: 11px;
+}
+
 #jappix_mini a {
 	text-decoration: none;
 	outline-style: none;
@@ -40,7 +44,6 @@ Last revision: 24/11/10
 	font-weight: bold;
 	color: #333333;
 	display: block;
-	font-size: 11px;
 	padding: 6px;
 	height: 13px;
 }
@@ -81,8 +84,16 @@ Last revision: 24/11/10
 	overflow: hidden;
 }
 
-#jappix_mini a.chat-tab.unread {
-	background: #fffb80;
+#jappix_mini a.chat-tab span.notify {
+	background-color: #c60505;
+	color: white;
+	font-size: 0.85em;
+	margin: -1px 0 0 8px;
+	padding: 1px 5px;
+	float: right;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 #jappix_mini div.conversation[data-type=groupchat] a.chat-tab {
@@ -96,8 +107,8 @@ Last revision: 24/11/10
 #jappix_mini div.chat-content {
 	background-color: white;
 	border: 1px solid #999999;
-	height: 274px;
-	width: 230px;
+	height: 290px;
+	width: 250px;
 	position: absolute;
 	right: -1px;
 	bottom: 25px;
@@ -154,7 +165,7 @@ Last revision: 24/11/10
 
 #jappix_mini div.received-messages {
 	padding: 5px 0;
-	height: 216px;
+	height: 232px;
 	overflow: auto;
 }
 
@@ -200,8 +211,8 @@ Last revision: 24/11/10
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 230px;
-	font-size: 11px;
+	width: 100%;
+	height: 25px;
 }
 
 #jappix_mini div.roster {
@@ -218,6 +229,18 @@ Last revision: 24/11/10
 	max-height: 300px;
 	padding: 5px 0;
 	overflow: auto;
+}
+
+#jappix_mini div.roster div.group {
+	border-top: 1px solid #eaeaea;
+	margin: 6px 0 0;
+	padding: 4px 0 0;
+}
+
+#jappix_mini div.roster div.group div.name {
+	margin-bottom: 2px;
+	padding: 4px 8px 0;
+	font-weight: bold;
 }
 
 #jappix_mini a.friend {
