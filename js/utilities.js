@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 24/11/10
 
 */
 
@@ -123,8 +123,9 @@ function thisResource(aXID) {
 
 // Does stringprep on a string
 function stringPrep(string) {
-	// Replacement array
+	// Replacement arrays
 	var invalid = new Array('Š', 'š', 'Đ', 'đ', 'Ž', 'ž', 'Č', 'č', 'Ć', 'ć', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ý', 'þ', 'ÿ', 'Ŕ', 'ŕ');
+	
 	var valid   = new Array('S', 's', 'Dj', 'dj', 'Z', 'z', 'C', 'c', 'C', 'c', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 'B', 'Ss', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'b', 'y', 'R', 'r');
 	
 	// Compute a new string
@@ -447,6 +448,27 @@ function getServer() {
 function getPassword() {
 	// Return the password of the user
 	return con.pass;
+}
+
+// Generates the colors for a given user XID
+function generateColor(xid) {
+	var colors = new Array(
+			'ac0000',
+			'a66200',
+			'007703',
+			'00705f',
+			'00236b',
+			'4e005c'
+		     );
+	
+	var number = 0;
+	
+	for(var i = 0; i < xid.length; i++)
+		number += xid.charCodeAt(i);
+	
+	var color = '#' + colors[number % (colors.length)];
+	
+	return color;
 }
 
 // Quotes the nick of an user

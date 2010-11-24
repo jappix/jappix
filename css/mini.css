@@ -8,11 +8,11 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 24/11/10
 
 */
 
-#jmini {
+#jappix_mini {
 	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
 	display: none;
 	position: fixed;
@@ -21,16 +21,16 @@ Last revision: 19/11/10
 	right: 20px;
 }
 
-#jmini a {
+#jappix_mini a {
 	text-decoration: none;
 	outline-style: none;
 }
 
-#jmini a:hover {
+#jappix_mini a:hover {
 	cursor: pointer;
 }
 
-#jmini a.pane {
+#jappix_mini a.pane {
 	background-color: #f4f4f4;
 	background-position: 0 -84px;
 	background-repeat: repeat-x;
@@ -45,33 +45,33 @@ Last revision: 19/11/10
 	height: 13px;
 }
 
-#jmini a.pane:hover {
+#jappix_mini a.pane:hover {
 	border-color: #666666;
 }
 
-#jmini div.conversations {
+#jappix_mini div.conversations {
 	position: relative;
 	float: left;
 }
 
-#jmini div.starter {
+#jappix_mini div.starter {
 	position: relative;
 	float: left;
 }
 
-#jmini div.conversation {
+#jappix_mini div.conversation {
 	float: left;
 	position: relative;
 }
 
-#jmini a.chat-tab {
+#jappix_mini a.chat-tab {
 	padding: 6px 14px 6px 6px;
 	border-width: 1px 0 0 1px;
 	float: right;
 	overflow: hidden;
 }
 
-#jmini a.chat-tab.clicked {
+#jappix_mini a.chat-tab.clicked {
 	background: white;
 	position: relative;
 	border-top: none;
@@ -81,11 +81,19 @@ Last revision: 19/11/10
 	overflow: hidden;
 }
 
-#jmini a.chat-tab.unread {
+#jappix_mini a.chat-tab.unread {
 	background: #fffb80;
 }
 
-#jmini div.chat-content {
+#jappix_mini div.conversation[data-type=groupchat] a.chat-tab {
+	padding-left: 14px;
+}
+
+#jappix_mini div.conversation[data-type=groupchat] span.presence {
+	display: none;
+}
+
+#jappix_mini div.chat-content {
 	background-color: white;
 	border: 1px solid #999999;
 	height: 274px;
@@ -95,9 +103,8 @@ Last revision: 19/11/10
 	bottom: 25px;
 }
 
-#jmini a.logo,
-#jmini div.manage-messages {
-	background-color: #6d84b4;
+#jappix_mini div.actions {
+	background-color: #565d5e;
 	border-bottom: 1px solid #19445f;
 	height: 14px;
 	padding: 4px 6px;
@@ -105,46 +112,89 @@ Last revision: 19/11/10
 	font-weight: bold;
 }
 
-#jmini div.manage-messages a {
+#jappix_mini div.actions a.one-action {
+	background-color: #727879;
+	margin: 0 -2px 0 5px;
+	height: 15px;
+	width: 15px;
 	float: right;
-	margin: -1px 2px 0 5px;
 }
 
-#jmini div.received-messages {
+#jappix_mini div.actions a.one-action:hover {
+	background-color: #7f8788;
+}
+
+#jappix_mini div.actions a.one-action:active {
+	background-color: #8c9293;
+}
+
+#jappix_mini div.actions a.logo {
+	background-position: 7px 2px;
+	width: 86px;
+	height: 22px;
+	margin: -4px 0 0 -2px;
+	float: left;
+}
+
+#jappix_mini div.actions a.logo:hover {
+	background-color: #636a6b;
+}
+
+#jappix_mini div.actions a.logo:active {
+	background-color: #707677;
+}
+
+#jappix_mini div.actions a.close {
+	background-position: 1px -325px;
+}
+
+#jappix_mini div.actions a.join {
+	background-position: 0 -311px;
+}
+
+#jappix_mini div.received-messages {
 	padding: 5px 0;
 	height: 216px;
 	overflow: auto;
 }
 
-#jmini div.received-messages p {
-	margin: 4px 6px;
+#jappix_mini div.received-messages p {
+	margin: 2px 6px;
 }
 
-#jmini div.received-messages p.group {
-	margin: 4px 6px 9px 6px;
+#jappix_mini div.received-messages p.group {
+	margin: 2px 6px 9px 6px;
 	padding-bottom: 8px;
 	border-bottom: 1px solid #eaeaea;
 }
 
-#jmini div.received-messages p a {
+#jappix_mini div.received-messages p[data-type=system-message] {
+	color: #053805;
+}
+
+#jappix_mini div.received-messages p a {
 	color: black;
 	text-decoration: underline;
 }
 
-#jmini div.received-messages b {
+#jappix_mini div.received-messages p[data-type=system-message] a {
+	color: #053805;
+}
+
+#jappix_mini div.received-messages b {
 	margin-bottom: 3px;
 	display: block;
 }
 
-#jmini div.received-messages b.me {
+#jappix_mini div.received-messages b.me {
 	color: #1c405e;
 }
 
-#jmini div.received-messages b.him {
+#jappix_mini div.received-messages b.him {
 	color: #801e1e;
 }
 
-#jmini input.send-messages {
+#jappix_mini input.send-messages {
 	background-color: white;
 	border-color: #999999;
 	border-style: solid;
@@ -154,7 +204,7 @@ Last revision: 19/11/10
 	font-size: 11px;
 }
 
-#jmini div.roster {
+#jappix_mini div.roster {
 	background-color: white;
 	border: 1px solid #999999;
 	min-width: 160px;
@@ -164,26 +214,13 @@ Last revision: 19/11/10
 	display: none;
 }
 
-#jmini div.roster div.buddies {
+#jappix_mini div.roster div.buddies {
 	max-height: 300px;
 	padding: 5px 0;
 	overflow: auto;
 }
 
-#jmini a.logo {
-	background-position: 43px 2px;
-	display: block;
-}
-
-#jmini a.logo:hover {
-	background-color: #788fbf;
-}
-
-#jmini a.logo:active {
-	background-color: #8097c4;
-}
-
-#jmini a.friend {
+#jappix_mini a.friend {
 	display: block;
 	padding: 6px;
 	color: black;
@@ -192,24 +229,25 @@ Last revision: 19/11/10
 	border-width: 1px 0;
 }
 
-#jmini a.friend.offline {
+#jappix_mini a.friend.offline {
 	display: none;
 }
 
-#jmini a.friend:hover {
-	background-color: #e6eaf8;
-	border-color: #a6afd0;
+#jappix_mini a.friend:hover {
+	background-color: #eff3f4;
+	border-color: #d8dfe0;
 }
 
-#jmini a.friend:active {
-	background-color: #dce1f4;
+#jappix_mini a.friend:active {
+	background-color: #e7eced;
+	border-color: #bdc5c6;
 }
 
-#jmini a.button {
+#jappix_mini a.button {
 	padding: 6px 10px;
 }
 
-#jmini a.button.clicked {
+#jappix_mini a.button.clicked {
 	position: relative;
 	background: white;
 	border-top: none;
@@ -218,14 +256,14 @@ Last revision: 19/11/10
 	padding: 7px 10px 6px 10px;
 }
 
-#jmini span.counter {
+#jappix_mini span.counter {
 	display: block;
 	min-height: 16px;
 	padding-left: 25px;
 	background-position: 0 -288px;
 }
 
-#jmini span.presence {
+#jappix_mini span.presence {
 	display: block;
 	height: 16px;
 	width: 16px;
@@ -233,62 +271,62 @@ Last revision: 19/11/10
 	float: left;
 }
 
-#jmini .available,
-#jmini .chat {
+#jappix_mini .available,
+#jappix_mini .chat {
 	background-position: 0 -20px;
 }
 
-#jmini .away {
+#jappix_mini .away {
 	background-position: 0 -36px;
 }
 
-#jmini .xa,
-#jmini .dnd {
+#jappix_mini .xa,
+#jappix_mini .dnd {
 	background-position: 0 -52px;
 }
 
-#jmini .unavailable {
+#jappix_mini .unavailable {
 	background-position: 0 -68px;
 }
 
-#jmini span.smiley {
+#jappix_mini span.smiley {
 	font-size: 13px;
 	padding: 0 0 0 16px;
 	margin: 0 2px;
 }
 
-#jmini .smiley-wink {
+#jappix_mini .smiley-wink {
 	background-position: 0 -132px;
 }
 
-#jmini .smiley-waii {
+#jappix_mini .smiley-waii {
 	background-position: 0 -148px;
 }
 
-#jmini .smiley-unhappy {
+#jappix_mini .smiley-unhappy {
 	background-position: 0 -164px;
 }
 
-#jmini .smiley-tongue {
+#jappix_mini .smiley-tongue {
 	background-position: 0 -180px;
 }
 
-#jmini .smiley-surprised {
+#jappix_mini .smiley-surprised {
 	background-position: 0 -206px;
 }
 
-#jmini .smiley-smile {
+#jappix_mini .smiley-smile {
 	background-position: 0 -212px;
 }
 
-#jmini .smiley-happy {
+#jappix_mini .smiley-happy {
 	background-position: 0 -228px;
 }
 
-#jmini .smiley-grin {
+#jappix_mini .smiley-grin {
 	background-position: 0 -244px;
 }
 
-#jmini .smiley-evilgrin {
+#jappix_mini .smiley-evilgrin {
 	background-position: 0 -260px;
 }

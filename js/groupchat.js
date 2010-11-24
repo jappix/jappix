@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 24/11/10
 
 */
 
@@ -160,27 +160,6 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 	
 	// Focus on the input
 	.focus();
-}
-
-// Generates the colors for a given user XID
-function generateColor(xid) {
-	var colors = Array(
-			'ac0000',
-			'a66200',
-			'007703',
-			'00705f',
-			'00236b',
-			'4e005c'
-			 );
-	
-	var number = 0;
-	
-	for(var i = 0; i < xid.length; i++)
-		number += xid.charCodeAt(i);
-	
-	var color = '#' + colors[number%(colors.length)];
-	
-	return color;
 }
 
 // Creates a new groupchat

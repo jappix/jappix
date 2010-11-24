@@ -8,7 +8,7 @@ These are the bubble JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 24/11/10
 
 */
 
@@ -17,7 +17,7 @@ function closeBubbles() {
 	// Destroy all the elements
 	$('.bubble.hidable:visible').hide();
 	$('.bubble.removable:visible').remove();
-	$('#talk').die('click');
+	$('body').die('click');
 	
 	return true;
 }
@@ -48,7 +48,7 @@ function showBubble(selector) {
 	}
 	
 	// Creates a new click event to close the bubble
-	$('#talk').live('click', function(evt) {
+	$('body').live('click', function(evt) {
 		var target = evt.target;
 		
 		// If this is a click away from a bubble

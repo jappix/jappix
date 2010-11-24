@@ -8,89 +8,69 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 24/11/10
 
 */
+
+// Jappix Mini vars
+var MINI_INITIALIZED = false;
+var MINI_ANONYMOUS = false;
 
 // Connects the user with the given logins
 function connect(user, domain, password, resource, anonymous) {
 	// Create the Jappix Mini initial DOM content
-	var oldDOM = getDB('jmini', user + '@' + domain);
-	
-	if(oldDOM) {
-		// Restore the HTML markup
-		$('body').append(
-			'<div id="jmini">' + 
-				oldDOM + 
-			'</div>'
-		);
-		
-		// Adapt roster height
-		adaptRoster();
-		
-		// Restore the chat click events
-		$('#jmini .conversation').each(function() {
-			// Get the hash of the current chat
-			var hash = explodeThis('-', $(this).attr('id'), 1);
+	$('body').append(
+		'<div id="jappix_mini">' + 
+			'<div class="conversations"></div>' + 
 			
-			// Attach the click events
-			chatClick(hash);
-		});
-		
-		// Restore the roster click events
-		$('#jmini .roster .friend').each(function() {
-			// Get the values of the current friend
-			var xid = unescape($(this).attr('name'));
-			var nick = $(this).text();
-			var hash = explodeThis('-', $(this).attr('id'), 1);
-			
-			$('#jmini a.friend#friend-' + hash).click(function() {
-				chat(xid, nick, hash);
-			});
-		});
-		
-		logThis('Old DOM restored.');
-	}
-	
-	else {
-		$('body').append(
-			'<div id="jmini">' + 
-				'<div class="conversations"></div>' + 
-				
-				'<div class="starter">' + 
-					'<div class="roster">' + 
+			'<div class="starter">' + 
+				'<div class="roster">' + 
+					'<div class="actions">' + 
 						'<a class="logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
-						'<div class="buddies"></div>' + 
+						'<a class="one-action join mini-images" title="' + _e("Join a chat") + '"></a>' + 
 					'</div>' + 
 					
-					'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
+					'<div class="buddies"></div>' + 
 				'</div>' + 
-			'</div>'
-		);
-		
-		// Adapt roster height
-		adaptRoster();
-		
-		logThis('New DOM created.');
-	}
+				
+				'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
+			'</div>' + 
+		'</div>'
+	);
+	
+	// Adapt roster height
+	adaptRoster();
 	
 	// The click events
-	$('#jmini a.button').click(function() {
-		if(!$(this).hasClass('clicked') && ($(this).find('span').text() != '0'))
+	$('#jappix_mini a.button').click(function() {
+		if(!$(this).hasClass('clicked'))
 			showRoster();
 		else
 			hideRoster();
 	});
 	
+	$('#jappix_mini div.actions a.join').click(function() {
+		var join_this = prompt(_e("Please enter the group chat address to join."));
+		
+		// Any submitted chat to join?
+		if(join_this) {
+			// Get the chat room to join
+			chat_room = bareXID(generateXID(join_this, 'groupchat'));
+			
+			// Create a new groupchat
+			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+		}
+	});
+	
 	// Hides the roster when clicking away of Jappix Mini
 	$(document).click(function(evt) {
-		if(!$(evt.target).parents('#jmini').size())
+		if(!$(evt.target).parents('#jappix_mini').size())
 			hideRoster();
 	});
 	
 	// Hides all panes double clicking away of Jappix Mini
 	$(document).dblclick(function(evt) {
-		if(!$(evt.target).parents('#jmini').size())
+		if(!$(evt.target).parents('#jappix_mini').size())
 			switchPane();
 	});
 	
@@ -111,11 +91,9 @@ function connect(user, domain, password, resource, anonymous) {
 		con.registerHandler('onconnect', connected);
 		con.registerHandler('ondisconnect', disconnected);
 		
-		// The roster was yet retrieved
-		if(oldDOM)
+		// Special anonymous stuff
+		if(anonymous)
 			con.registerHandler('onconnect', initialize);
-		
-		// Not yet retrieved
 		else
 			con.registerHandler('onconnect', getRoster);
 		
@@ -127,6 +105,9 @@ function connect(user, domain, password, resource, anonymous) {
 		
 		// Anonymous login?
 		if(anonymous) {
+			// Update the marker
+			MINI_ANONYMOUS = true;
+			
 			// Bad domain?
 			if(lockHost() && (domain != HOST_ANONYMOUS)) {
 				logThis('Not allowed to connect to this anonymous domain: ' + domain, 2);
@@ -177,9 +158,6 @@ function connected() {
 // When the user disconnects
 function disconnect() {
 	if((typeof con != 'undefined') && con && con.connected()) {
-		// Save the actual Jappix Mini DOM
-		setDB('jmini', con.username + '@' + con.domain, $('#jmini').html());
-		
 		// Disconnect
 		con.disconnect();
 		
@@ -190,7 +168,7 @@ function disconnect() {
 // When the user is disconnected
 function disconnected() {
 	// Remove Jappix Mini when disconnected
-	$('#jmini').remove();
+	$('#jappix_mini').remove();
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -199,25 +177,46 @@ function disconnected() {
 function handleMessage(msg) {
 	var type = msg.getType();
 	
-	if((type == 'chat') || (type == 'normal')) {
+	// This is a message Jappix can handle
+	if((type == 'chat') || (type == 'normal') || (type == 'groupchat') || !type) {
 		// Get the body
 		var body = msg.getBody();
 		
 		if(body) {
 			// Get the values
-			var xid = bareXID(getStanzaFrom(msg));
+			var from = fullXID(getStanzaFrom(msg));
+			var xid = bareXID(from);
 			var hash = hex_md5(xid);
-			var nick = $('#jmini a#friend-' + hash).text();
+			var nick = thisResource(from);
+			
+			// Message type
+			var message_type = 'user-message';
+			
+			// Grouphat values
+			if(type == 'groupchat') {
+				// System message?
+				if(!nick)
+					message_type = 'system-message';
+			}
+			
+			// Chat values
+			else {
+				nick = $('#jappix_mini a#friend-' + hash).text();
+				
+				// No nickname?
+				if(!nick)
+					nick = getXIDNick(xid);
+			}
 			
 			// Define the target div
-			var target = '#jmini #chat-' + hash;
+			var target = '#jappix_mini #chat-' + hash;
 			
 			// Create the chat if it does not exist
 			if(!exists(target))
-				chat(xid, nick, hash);
+				chat(type, xid, nick, hash);
 			
 			// Display the message
-			displayMessage(xid, body, nick, hash);
+			displayMessage(type, body, nick, hash, message_type);
 			
 			// Notify the user if not focused
 			var notify = $(target + ' a.chat-tab');
@@ -225,7 +224,7 @@ function handleMessage(msg) {
 			if(!notify.hasClass('clicked'))
 				notify.addClass('unread');
 			
-			logThis('Message received from: ' + xid);
+			logThis('Message received from: ' + from);
 		}
 	}
 }
@@ -237,17 +236,32 @@ function handleIQ(iq) {
 	var iqID = iq.getID();
 	var iqQueryXMLNS = iq.getQueryXMLNS();
 	var iqType = iq.getType();
+	var iqNode = iq.getNode();
 	
-	// Create the response
-	if((iqType == 'get') && ((iqQueryXMLNS == NS_ROSTER) || (iqQueryXMLNS == NS_DISCO_INFO))) {
-		var iqResponse = new JSJaCIQ();
-		iqResponse.setID(iqID);
-		iqResponse.setTo(iqFrom);
-		iqResponse.setType('result');
+	// Build the response
+	var iqResponse = new JSJaCIQ();
+	
+	iqResponse.setID(iqID);
+	iqResponse.setTo(iqFrom);
+	iqResponse.setType('result');
+	
+	// Software version query
+	if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
+		/* REF: http://xmpp.org/extensions/xep-0092.html */
+		
+		var iqQuery = iqResponse.setQuery(NS_VERSION);
+		
+		iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix Mini'));
+		iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
+		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, osDetect()));
+		
+		con.send(iqResponse);
+		
+		logThis('Received software version query: ' + iqFrom);
 	}
 	
 	// Roster push
-	if((iqQueryXMLNS == NS_ROSTER) && (iqType == 'set')) {
+	else if((iqQueryXMLNS == NS_ROSTER) && (iqType == 'set')) {
 		// Display the friend
 		handleRoster(iq);
 		
@@ -256,6 +270,7 @@ function handleIQ(iq) {
 		logThis('Received a roster push.');
 	}
 	
+	// Disco info query
 	else if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0030.html */
 		
@@ -282,34 +297,32 @@ function handleIQ(iq) {
 		
 		logThis('Received a disco#infos query.');
 	}
+	
+	// User time query
+	else if($(iqNode).find('time').size() && (iqType == 'get')) {
+		/* REF: http://xmpp.org/extensions/xep-0202.html */
+		
+		var iqTime = iqResponse.appendNode('time', {'xmlns': NS_URN_TIME});
+		iqTime.appendChild(iq.buildNode('tzo', {'xmlns': NS_URN_TIME}, getDateTZO()));
+		iqTime.appendChild(iq.buildNode('utc', {'xmlns': NS_URN_TIME}, getXMPPTime('utc')));
+		
+		con.send(iqResponse);
+		
+		logThis('Received local time query: ' + iqFrom);
+	}
 }
 
 // Handles the incoming presences
 function handlePresence(pr) {
 	// Get the values
-	var xid = bareXID(getStanzaFrom(pr));
+	var from = fullXID(getStanzaFrom(pr));
+	var xid = bareXID(from);
 	var hash = hex_md5(xid);
 	var type = pr.getType();
 	var show = pr.getShow();
-	var friend = '#jmini a#friend-' + hash;
+	var friend = '#jappix_mini a#friend-' + hash;
 	
-	// Process the presence
-	if(type == 'subscribe') {
-		// Automatically accept presence subscription (for integration with big websites systems)
-		// Note that you can remove this!
-		presence('subscribed', '', '', '', xid);
-		presence('subscribe', '', '', '', xid);
-	}
-	
-	else if(type == 'unsubscribe') {
-		// Automatically remove friends who unsubscribe (for integration with big websites systems)
-		// Note that you can remove this!
-		sendRoster(xid, 'remove');
-		presence('unsubscribed', '', '', '', xid);
-		presence('unsubscribe', '', '', '', xid);
-	}
-	
-	else if(type == 'error' || type == 'unavailable')
+	if((type == 'error') || (type == 'unavailable'))
 		show = 'unavailable';
 	
 	else {
@@ -334,25 +347,19 @@ function handlePresence(pr) {
 	
 	// Change the show presence of this buddy
 	$(friend + ' span.presence').attr('class', 'presence mini-images ' + show);
-	$('#jmini #chat-' + hash + ' span.presence').attr('class', 'presence mini-images ' + show);
+	$('#jappix_mini #chat-' + hash + ' span.presence').attr('class', 'presence mini-images ' + show);
 	
 	// Update the presence counter
-	var online_buddies = $('#jmini a.online').size();
-	$('#jmini a.button span.counter').text(online_buddies);
+	$('#jappix_mini a.button span.counter').text($('#jappix_mini a.online').size());
 	
-	// Hide the roster if no online buddies
-	if(online_buddies == 0) {
-		$('#jmini div.roster').hide();
-		$('#jmini a.button').removeClass('clicked');
-	}
-	
-	logThis('Presence received from: ' + xid);
+	logThis('Presence received from: ' + from);
 }
 
 // Updates the user presence
-function presence(type, show, priority, status, to) {
+function presence(type, show, priority, status, to, limit_history) {
 	var pr = new JSJaCPresence();
 	
+	// Add the attributes
 	if(to)
 		pr.setTo(to);
 	if(type)
@@ -364,6 +371,12 @@ function presence(type, show, priority, status, to) {
 	if(status)
 		pr.setStatus(status);
 	
+	// Message history limit?
+	if(limit_history) {
+		var x = pr.appendNode('x', {'xmlns': NS_MUC});
+		x.appendChild(pr.buildNode('history', {'maxstanzas': 10, 'seconds': 86400, 'xmlns': NS_MUC}));
+	}
+	
 	con.send(pr);
 	
 	// No type?
@@ -373,39 +386,32 @@ function presence(type, show, priority, status, to) {
 	logThis('Presence sent: ' + type, 3);
 }
 
-function sendRoster(xid, subscription) {
-	var iq = new JSJaCIQ();
-	iq.setType('set');
-	
-	var iqQuery = iq.setQuery(NS_ROSTER);
-	var item = iqQuery.appendChild(iq.buildNode('item', {'xmlns': NS_ROSTER, 'jid': xid}));
-	
-	if(subscription)
-		item.setAttribute('subscription', subscription);
-	
-	con.send(iq);
-}
-
 // Sends a given message
 function sendMessage(aForm) {
 	try {
 		var body = aForm.body.value;
 		var xid = aForm.xid.value;
+		var type = aForm.type.value;
 		var hash = hex_md5(xid);
 		
 		if(body && xid) {
 			// Send the message
 			var aMsg = new JSJaCMessage();
+			
 			aMsg.setTo(xid);
-			aMsg.setType('chat');
+			aMsg.setType(type);
 			aMsg.setBody(body);
+			
 			con.send(aMsg);
 			
-			// Clear our input
+			// Clear the input
 			aForm.body.value = '';
 			
 			// Display the message we sent
-			displayMessage(xid, body, 'me', hash);
+			if(type != 'groupchat')
+				displayMessage(type, body, 'me', hash, 'user-message');
+			
+			logThis('Message (' + type + ') sent to: ' + xid);
 		}
 	}
 	
@@ -420,24 +426,29 @@ function smiley(image) {
 }
 
 // Displays a given message
-function displayMessage(xid, body, nick, hash) {
-	// Get the path
+function displayMessage(type, body, nick, hash, message_type) {
+	// Generate some stuffs
 	var path = '#chat-' + hash;
+	var escaped_nick = escape(nick);
 	
 	// Remove the previous message border if needed
 	var last = $(path + ' p:last');
 	var last_b = $(path + ' b:last');
+	var last_nick = last_b.attr('data-nick');
+	var last_type = last.attr('data-type');
 	var header = '';
 	
-	if(((last_b.hasClass('him')) && (nick != 'me')) || ((last_b.hasClass('me')) && (nick == 'me')))
+	if((last_nick == escaped_nick) && (message_type == last_type))
 		last.removeClass('group');
 	
 	else {
 		// Write the buddy name at the top of the message group
-		if(nick == 'me')
-			header = '<b class="me">' + _e("You") + '</b>';
+		if(type == 'groupchat')
+			header = '<b style="color: ' + generateColor(nick) + ';" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
+		else if(nick == 'me')
+			header = '<b class="me" data-nick="' + escaped_nick + '">' + _e("You") + '</b>';
 		else
-			header = '<b class="him">' + nick + '</b>';
+			header = '<b class="him" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
 	}
 	
 	// Filter the message
@@ -456,7 +467,7 @@ function displayMessage(xid, body, nick, hash) {
 	body = filterLinks(body, 'mini');
 	
 	// Display the message
-	$('#jmini #chat-' + hash + ' div.received-messages').append('<p class="group">' + header + body + '</p>');
+	$('#jappix_mini #chat-' + hash + ' div.received-messages').append('<p class="group" data-type="' + message_type + '">' + header + body + '</p>');
 	
 	// Scroll to the last element
 	var id = document.getElementById('received-' + hash);
@@ -466,12 +477,12 @@ function displayMessage(xid, body, nick, hash) {
 // Switches to a given point
 function switchPane(element) {
 	// Hide every item
-	$('#jmini a.pane').removeClass('clicked');
-	$('#jmini .roster, #jmini .chat-content').hide();
+	$('#jappix_mini a.pane').removeClass('clicked');
+	$('#jappix_mini .roster, #jappix_mini .chat-content').hide();
 	
 	// Show the asked element
 	if(element && (element != 'roster')) {
-		var current = '#jmini #' + element;
+		var current = '#jappix_mini #' + element;
 		
 		$(current + ' a.pane').addClass('clicked');
 		$(current + ' .chat-content').show();
@@ -480,33 +491,36 @@ function switchPane(element) {
 }
 
 // Manages and creates a chat
-function chat(xid, nick, hash) {
-	var current = '#jmini #chat-' + hash;
+function chat(type, xid, nick, hash) {
+	var current = '#jappix_mini #chat-' + hash;
 	
 	if(!exists(current)) {
-		// Get the presence of this friend
-		var selector = $('#jmini a#friend-' + hash + ' span.presence');
+		// Get the icon to show
+		var show = 'available';
 		
-		if(selector.hasClass('available'))
-			show = 'available';
-		else if(selector.hasClass('chat'))
-			show = 'chat';
-		else if(selector.hasClass('away'))
-			show = 'away';
-		else if(selector.hasClass('xa'))
-			show = 'xa';
-		else if(selector.hasClass('dnd'))
-			show = 'dnd';
-		else
-			show = 'unavailable';
+		// Get the presence of this friend
+		if(type != 'groupchat') {
+			var selector = $('#jappix_mini a#friend-' + hash + ' span.presence');
+			
+			if(selector.hasClass('unavailable'))
+				show = 'unavailable';
+			else if(selector.hasClass('chat'))
+				show = 'chat';
+			else if(selector.hasClass('away'))
+				show = 'away';
+			else if(selector.hasClass('xa'))
+				show = 'xa';
+			else if(selector.hasClass('dnd'))
+				show = 'dnd';
+		}
 		
 		// Create the HTML markup
-		$('#jmini .conversations').append(
-			'<div class="conversation" id="chat-' + hash + '">' + 
+		$('#jappix_mini .conversations').append(
+			'<div class="conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '">' + 
 				'<div class="chat-content">' + 
-					'<div class="manage-messages">' + 
+					'<div class="actions">' + 
 						nick + 
-						'<a class="close" title="' + _e("Close") + '">x</a>' + 
+						'<a class="one-action close mini-images" title="' + _e("Close") + '"></a>' + 
 					'</div>' + 
 					
 					'<div class="received-messages" id="received-' + hash + '"></div>' + 
@@ -514,6 +528,7 @@ function chat(xid, nick, hash) {
 					'<form action="#" method="post" onsubmit="return sendMessage(this);">' + 
 						'<input type="text" class="send-messages" name="body" />' + 
 						'<input type="hidden" name="xid" value="' + xid + '" />' + 
+						'<input type="hidden" name="type" value="' + type + '" />' + 
 					'</form>' + 
 				'</div>' + 
 				
@@ -522,7 +537,16 @@ function chat(xid, nick, hash) {
 		);
 		
 		// The click events
-		chatClick(hash);
+		chatClick(type, xid, hash);
+		
+		// Join the groupchat
+		if(type == 'groupchat') {
+			// Add the nickname value
+			$(current).attr('data-nick', con.username);
+			
+			// Send the first groupchat presence
+			presence('', '', '', '', xid + '/' + con.username, true);
+		}
 	}
 	
 	// Focus on our pane
@@ -530,10 +554,10 @@ function chat(xid, nick, hash) {
 }
 
 // Click events on the chat tool
-function chatClick(hash) {
-	var current = '#jmini #chat-' + hash;
+function chatClick(type, xid, hash) {
+	var current = '#jappix_mini #chat-' + hash;
 	
-	// The clic events
+	// Click on the tab
 	$(current + ' .chat-tab').click(function() {
 		// Not yet opened: open it!
 		if(!$(this).hasClass('clicked')) {
@@ -553,31 +577,39 @@ function chatClick(hash) {
 		}
 	});
 	
+	// Click on the close button
 	$(current + ' a.close').click(function() {
 		$(current).remove();
+		
+		// Quit the groupchat?
+		if(type == 'groupchat')
+			presence('unavailable', '', '', '', xid + '/' + $(current).attr('data-nick'));
 	});
 }
 
 // Shows the roster
 function showRoster() {
 	switchPane('roster');
-	$('#jmini div.roster').show();
-	$('#jmini a.button').addClass('clicked');
+	$('#jappix_mini div.roster').show();
+	$('#jappix_mini a.button').addClass('clicked');
 }
 
 // Hides the roster
 function hideRoster() {
-	$('#jmini div.roster').hide();
-	$('#jmini a.button').removeClass('clicked');
+	$('#jappix_mini div.roster').hide();
+	$('#jappix_mini a.button').removeClass('clicked');
 }
 
 // Initializes Jappix Mini
 function initialize() {
+	// Update the marker
+	MINI_INITIALIZED = true;
+	
 	// Send the initial presence
 	presence();
 	
 	// Show Jappix Mini
-	$('#jmini').show();
+	$('#jappix_mini').show();
 }
 
 // Gets the user's roster
@@ -603,7 +635,7 @@ function handleRoster(iq) {
 		if(!isGateway(xid)) {
 			var nick = current.attr('name');
 			var hash = hex_md5(xid);
-			var element = '#jmini a.friend#friend-' + hash;
+			var element = '#jappix_mini a.friend#friend-' + hash;
 			
 			// No name is defined?
 			if(!nick)
@@ -612,11 +644,11 @@ function handleRoster(iq) {
 			// Display the current buddy
 			if(!exists(element) && subscription != 'remove') {
 				// Append this buddy content
-				$('#jmini div.roster div.buddies').append('<a class="friend offline" id="friend-' + hash + '" name="' + escape(xid) + '"><span class="presence mini-images unavailable"></span> ' + nick + '</a>');
+				$('#jappix_mini div.roster div.buddies').append('<a class="friend offline" id="friend-' + hash + '" name="' + escape(xid) + '"><span class="presence mini-images unavailable"></span> ' + nick + '</a>');
 				
 				// Click event on this buddy
 				$(element).click(function() {
-					chat(xid, nick, hash);
+					chat('chat', xid, nick, hash);
 				});
 			}
 			
@@ -625,7 +657,9 @@ function handleRoster(iq) {
 		}
 	});
 	
-	initialize();
+	// Not yet initialized
+	if(!MINI_INITIALIZED)
+		initialize();
 	
 	logThis('Roster got.', 3);
 }
@@ -636,7 +670,7 @@ function adaptRoster() {
 	var height = $(window).height() - 70;
 	
 	// Apply the new height
-	$('#jmini div.roster div.buddies').css('max-height', height);
+	$('#jappix_mini div.roster div.buddies').css('max-height', height);
 }
 
 // Loads a given page
@@ -646,7 +680,7 @@ function loadPage(path, element) {
 	
 	// Then, load the page
 	$(element).load(path + ' ' + element, function() {
-		replaceLinks(element)
+		replaceLinks(element);
 	});
 	
 	// Do not quit this page!
