@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 24/11/10
+# Last revision: 26/11/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -45,6 +45,9 @@ msgid "The user that you want to reach is not present in the room."
 msgstr ""
 
 msgid "Please enter the group chat address to join."
+msgstr ""
+
+msgid "Please enter your nickname to join %s."
 msgstr ""
 
 msgid "This room (%s) is protected with a password."

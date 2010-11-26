@@ -8,16 +8,18 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 24/11/10
+Last revision: 26/11/10
 
 */
 
 // Jappix Mini vars
 var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
+var MINI_NICKNAME = null;
+var MINI_GROUPCHATS = null;
 
 // Connects the user with the given logins
-function connect(user, domain, password, resource, anonymous) {
+function connect(domain, user, password) {
 	// Create the Jappix Mini initial DOM content
 	$('body').append(
 		'<div id="jappix_mini">' + 
@@ -91,20 +93,14 @@ function connect(user, domain, password, resource, anonymous) {
 		con.registerHandler('onconnect', connected);
 		con.registerHandler('ondisconnect', disconnected);
 		
-		// Special anonymous stuff
-		if(anonymous)
-			con.registerHandler('onconnect', initialize);
-		else
-			con.registerHandler('onconnect', getRoster);
-		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.secure = true;
-		oArgs.resource = resource;
+		oArgs.resource = JAPPIX_RESOURCE + ' Mini';
 		oArgs.domain = domain;
 		
 		// Anonymous login?
-		if(anonymous) {
+		if(!user || !password) {
 			// Update the marker
 			MINI_ANONYMOUS = true;
 			
@@ -126,6 +122,10 @@ function connect(user, domain, password, resource, anonymous) {
 				
 				return false;
 			}
+			
+			// No nickname?
+			if(!MINI_NICKNAME)
+				MINI_NICKNAME = user;
 			
 			oArgs.username = user;
 			oArgs.pass = password;
@@ -152,6 +152,24 @@ function connect(user, domain, password, resource, anonymous) {
 
 // When the user is connected
 function connected() {
+	// Do not get the roster if anonymous
+	if(MINI_ANONYMOUS)
+		initialize();
+	else
+		getRoster();
+	
+	// Join the groupchats
+	if(MINI_GROUPCHATS) {
+		// Open each defined groupchats
+		for(i in MINI_GROUPCHATS) {
+			// Current chat room
+			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
+			
+			// Open the current chat
+			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+		}
+	}
+	
 	logThis('Jappix Mini is now connected.', 3);
 }
 
@@ -226,7 +244,7 @@ function handleMessage(msg) {
 			displayMessage(type, body, nick, hash, message_type);
 			
 			// Notify the user if not focused
-			if(!$(target + ' a.chat-tab').hasClass('clicked'))
+			if(!$(target + ' a.chat-tab').hasClass('clicked') || !document.hasFocus())
 				notifyMessage(hash);
 			
 			logThis('Message received from: ' + from);
@@ -345,22 +363,32 @@ function handlePresence(pr) {
 		}
 	}
 	
-	// Is this a groupchat presence & not me?
+	// Is this a groupchat presence?
 	var groupchat_path = '#jappix_mini #chat-' + hash + '[data-type=groupchat]';
 	
-	if(exists(groupchat_path) && (resource != $(groupchat_path).attr('data-nick'))) {
-		// Regenerate some stuffs
-		var groupchat = xid;
-		xid = from;
-		hash = hex_md5(xid);
+	if(exists(groupchat_path)) {
+		// Is it my groupchat presence?
+		if(resource == unescape($(groupchat_path).attr('data-nick'))) {
+			// Remove this groupchat
+			if(show == 'unavailable')
+				removeGroupchat(xid);
+		}
 		
-		// Remove this from the roster
-		if(show == 'unavailable')
-			removeBuddy(hash);
-		
-		// Add this to the roster
-		else
-			addBuddy(xid, hash, resource, groupchat);
+		// Groupchat buddy presence
+		else {
+			// Regenerate some stuffs
+			var groupchat = xid;
+			xid = from;
+			hash = hex_md5(xid);
+			
+			// Remove this from the roster
+			if(show == 'unavailable')
+				removeBuddy(hash);
+			
+			// Add this to the roster
+			else
+				addBuddy(xid, hash, resource, groupchat);
+		}
 	}
 	
 	// Friend path
@@ -388,11 +416,11 @@ function handleMUC(pr) {
 	var xml = pr.getNode();
 	var from = fullXID(getStanzaFrom(pr));
 	var room = bareXID(from);
-	var hash = hex_md5(room);
+	var resource = thisResource(from);
 	
 	// Password required?
 	if($(xml).find('error[type=auth] not-authorized').size()) {
-		var password = prompt(printf(_e("This room (%s) is protected with a password."), room));
+		var password = prompt(printf(_e("This room (%s) is protected with a password."), room), '');
 		
 		// Any password?
 		if(password)
@@ -401,11 +429,15 @@ function handleMUC(pr) {
 	
 	// Nickname conflict?
 	else if($(xml).find('error[type=cancel] conflict').size()) {
-		var nickname = prompt(printf(_e("Please enter a different nickname, the previous one is not available on %s."), room));
+		var nickname = prompt(printf(_e("Please enter a different nickname, the previous one is not available on %s."), room), resource + '_');
 		
 		// Any nickname?
-		if(nickname)
+		if(nickname) {
 			presence('', '', '', '', room + '/' + nickname, '', true, handleMUC);
+			
+			// Update the nickname marker
+			$('#jappix_mini #chat-' + hex_md5(room)).attr('data-nick', escape(nickname));
+		}
 	}
 }
 
@@ -503,6 +535,46 @@ function notifyMessage(hash) {
 	// Increment the notification number
 	var number = parseInt($(notify).text());
 	$(notify).text(number + 1);
+	
+	// Change the page title
+	notifyTitle();
+}
+
+// Updates the page title with the new notifications
+var PAGE_TITLE = null;
+
+function notifyTitle() {
+	// No saved title? Abort!
+	if(PAGE_TITLE == null)
+		return false;
+	
+	// Page title code
+	var title = PAGE_TITLE;
+	
+	// Count the number of notifications
+	var number = 0;
+	
+	$('#jappix_mini span.notify').each(function() {
+		number = number + parseInt($(this).text());
+	});
+	
+	// No new stuffs? Reset the title!
+	if(number)
+		title = '[' + number + '] ' + title;
+	
+	// Apply the title
+	$('head title').html(title);
+	
+	return true;
+}
+
+// Clears the notifications
+function clearNotifications(hash) {
+	// Remove the notifications counter
+	$('#jappix_mini #chat-' + hash + ' span.notify').remove();
+	
+	// Update the page title
+	notifyTitle();
 }
 
 // Updates the roster counter
@@ -631,28 +703,44 @@ function chat(type, xid, nick, hash) {
 		);
 		
 		// The click events
-		chatClick(type, xid, hash);
+		chatEvents(type, xid, hash);
 		
 		// Join the groupchat
 		if(type == 'groupchat') {
+			var nickname = MINI_NICKNAME;
+			
+			// No nickname?
+			if(!nickname) {
+				nickname = prompt(printf(_e("Please enter your nickname to join %s."), xid), '');
+				
+				// No nickname submitted?!
+				if(!nickname)
+					return false;
+				
+				// Update the stored one
+				MINI_NICKNAME = nickname;
+			}
+			
 			// Add the nickname value
-			$(current).attr('data-nick', con.username);
+			$(current).attr('data-nick', escape(nickname));
 			
 			// Send the first groupchat presence
-			presence('', '', '', '', xid + '/' + con.username, '', true, handleMUC);
+			presence('', '', '', '', xid + '/' + nickname, '', true, handleMUC);
 		}
 	}
 	
 	// Focus on our pane
 	switchPane('chat-' + hash, hash);
+	
+	return true;
 }
 
-// Click events on the chat tool
-function chatClick(type, xid, hash) {
+// Events on the chat tool
+function chatEvents(type, xid, hash) {
 	var current = '#jappix_mini #chat-' + hash;
 	
 	// Click on the tab
-	$(current + ' .chat-tab').click(function() {
+	$(current + ' a.chat-tab').click(function() {
 		// Not yet opened: open it!
 		if(!$(this).hasClass('clicked')) {
 			// The routine to show it
@@ -661,7 +749,7 @@ function chatClick(type, xid, hash) {
 			switchPane('chat-' + hash, hash);
 			
 			// Clear the eventual notifications
-			$(this).find('span.notify').remove();
+			clearNotifications(hash);
 		}
 		
 		// Yet opened: close it!
@@ -678,19 +766,22 @@ function chatClick(type, xid, hash) {
 		// Quit the groupchat?
 		if(type == 'groupchat') {
 			// Send an unavailable presence
-			presence('unavailable', '', '', '', xid + '/' + $(current).attr('data-nick'));
+			presence('unavailable', '', '', '', xid + '/' + unescape($(current).attr('data-nick')));
 			
-			// Remove the groupchat private chats & the groupchat buddies from the roster
-			$('#jappix_mini div.conversation[data-origin=' + escape(cutResource(xid)) + '], #jappix_mini div.roster div.group[data-xid=' + escape(xid) + ']').remove();
-			
-			// Update the presence counter
-			updateRoster();
+			// Remove this groupchat!
+			removeGroupchat(xid);
 		}
 	});
 	
 	// Click on the chat content
 	$(current + ' div.received-messages').click(function() {
 		$(current + ' input.send-messages').focus();
+	});
+	
+	// Focus on the chat input
+	$(current + ' input.send-messages').focus(function() {
+		// Clear the eventual notifications
+		clearNotifications(hash);
 	});
 }
 
@@ -705,6 +796,15 @@ function showRoster() {
 function hideRoster() {
 	$('#jappix_mini div.roster').hide();
 	$('#jappix_mini a.button').removeClass('clicked');
+}
+
+// Removes a groupchat from DOM
+function removeGroupchat(xid) {
+	// Remove the groupchat private chats & the groupchat buddies from the roster
+	$('#jappix_mini div.conversation[data-origin=' + escape(cutResource(xid)) + '], #jappix_mini div.roster div.group[data-xid=' + escape(xid) + ']').remove();
+	
+	// Update the presence counter
+	updateRoster();
 }
 
 // Initializes Jappix Mini
@@ -828,7 +928,14 @@ function loadPage(path, element) {
 	
 	// Then, load the page
 	$(element).load(path + ' ' + element, function() {
+		// Replace the links
 		replaceLinks(element);
+		
+		// Update the stored page title
+		pageTitle(element);
+		
+		// Update the displayed page title
+		notifyTitle();
 	});
 	
 	// Do not quit this page!
@@ -850,6 +957,14 @@ function replaceLinks(element) {
 	logThis('Page links have been replaced.');
 }
 
+// Get new page title
+function pageTitle(element) {
+	if($(element).find('head title').size())
+		PAGE_TITLE = $(element).find('head title:first').html();
+	else
+		PAGE_TITLE = null;
+}
+
 // Plugin launcher
 function launchMini() {
 	// Append the mini stylesheet
@@ -860,6 +975,10 @@ function launchMini() {
 		if((e.keyCode == 27) && !isDeveloper())
 			return false;
 	});
+	
+	// Save the page title
+	if($('head title').size())
+		PAGE_TITLE = $('head title:first').html();
 	
 	// Sets the good roster max-height
 	$(window).resize(adaptRoster);
