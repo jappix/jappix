@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 24/11/10
+Last revision: 26/11/10
 
 */
 
@@ -32,7 +32,7 @@ function displayMucAdmin(affiliation, id, xid, statuscode) {
 	});
 }
 
-// Initializes a connexion with a MUC groupchat
+// Initializes a connection with a MUC groupchat
 function getMUC(room, nickname, password) {
 	// Room hash
 	var hash = hex_md5(room);

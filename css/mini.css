@@ -14,11 +14,15 @@ Last revision: 26/11/10
 
 #jappix_mini {
 	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
-	display: none;
+	margin-left: 216px;
 	position: fixed;
 	z-index: 99;
 	bottom: 0;
 	right: 20px;
+}
+
+#jappix_mini.hidden {
+	display: none;
 }
 
 #jappix_mini * {
@@ -141,7 +145,7 @@ Last revision: 26/11/10
 
 #jappix_mini div.actions a.logo {
 	background-position: 7px 2px;
-	width: 86px;
+	width: 87px;
 	height: 22px;
 	margin: -4px 0 0 -2px;
 	float: left;
@@ -232,9 +236,7 @@ Last revision: 26/11/10
 }
 
 #jappix_mini div.roster div.group {
-	border-top: 1px solid #eaeaea;
-	margin: 6px 0 0;
-	padding: 4px 0 0;
+	margin: 2px 0;
 }
 
 #jappix_mini div.roster div.group div.name {

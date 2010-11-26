@@ -20,63 +20,6 @@ var MINI_GROUPCHATS = null;
 
 // Connects the user with the given logins
 function connect(domain, user, password) {
-	// Create the Jappix Mini initial DOM content
-	$('body').append(
-		'<div id="jappix_mini">' + 
-			'<div class="conversations"></div>' + 
-			
-			'<div class="starter">' + 
-				'<div class="roster">' + 
-					'<div class="actions">' + 
-						'<a class="logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
-						'<a class="one-action join mini-images" title="' + _e("Join a chat") + '"></a>' + 
-					'</div>' + 
-					
-					'<div class="buddies"></div>' + 
-				'</div>' + 
-				
-				'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
-			'</div>' + 
-		'</div>'
-	);
-	
-	// Adapt roster height
-	adaptRoster();
-	
-	// The click events
-	$('#jappix_mini a.button').click(function() {
-		if(!$(this).hasClass('clicked'))
-			showRoster();
-		else
-			hideRoster();
-	});
-	
-	$('#jappix_mini div.actions a.join').click(function() {
-		var join_this = prompt(_e("Please enter the group chat address to join."));
-		
-		// Any submitted chat to join?
-		if(join_this) {
-			// Get the chat room to join
-			chat_room = bareXID(generateXID(join_this, 'groupchat'));
-			
-			// Create a new groupchat
-			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
-		}
-	});
-	
-	// Hides the roster when clicking away of Jappix Mini
-	$(document).click(function(evt) {
-		if(!$(evt.target).parents('#jappix_mini').size())
-			hideRoster();
-	});
-	
-	// Hides all panes double clicking away of Jappix Mini
-	$(document).dblclick(function(evt) {
-		if(!$(evt.target).parents('#jappix_mini').size())
-			switchPane();
-	});
-	
-	// The connection
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
@@ -100,10 +43,7 @@ function connect(domain, user, password) {
 		oArgs.domain = domain;
 		
 		// Anonymous login?
-		if(!user || !password) {
-			// Update the marker
-			MINI_ANONYMOUS = true;
-			
+		if(MINI_ANONYMOUS) {
 			// Bad domain?
 			if(lockHost() && (domain != HOST_ANONYMOUS)) {
 				logThis('Not allowed to connect to this anonymous domain: ' + domain, 2);
@@ -582,6 +522,90 @@ function updateRoster() {
 	$('#jappix_mini a.button span.counter').text($('#jappix_mini a.online').size());
 }
 
+// Creates the Jappix Mini DOM content
+function createMini(domain, user, password) {
+	// Create the Jappix Mini initial DOM content
+	$('body').append(
+		'<div id="jappix_mini" class="hidden">' + 
+			'<div class="conversations"></div>' + 
+			
+			'<div class="starter">' + 
+				'<div class="roster">' + 
+					'<div class="actions">' + 
+						'<a class="logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
+						'<a class="one-action join mini-images" title="' + _e("Join a chat") + '"></a>' + 
+					'</div>' + 
+					
+					'<div class="buddies"></div>' + 
+				'</div>' + 
+				
+				'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
+			'</div>' + 
+		'</div>'
+	);
+	
+	// Adapt roster height
+	adaptRoster();
+	
+	// The click events
+	$('#jappix_mini a.button').click(function() {
+		// Anonymous connection?
+		if(MINI_ANONYMOUS && (typeof con == 'undefined')) {
+			// Show a waiting icon
+			$('#jappix_mini a.pane.button span.counter').text(_e("Please wait..."));
+			
+			// Launch the connection
+			return connect(domain, user, password);
+		}
+		
+		if(!$(this).hasClass('clicked'))
+			showRoster();
+		else
+			hideRoster();
+		
+		return false;
+	});
+	
+	$('#jappix_mini div.actions a.join').click(function() {
+		var join_this = prompt(_e("Please enter the group chat address to join."));
+		
+		// Any submitted chat to join?
+		if(join_this) {
+			// Get the chat room to join
+			chat_room = bareXID(generateXID(join_this, 'groupchat'));
+			
+			// Create a new groupchat
+			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+		}
+		
+		return false;
+	});
+	
+	// Hides the roster when clicking away of Jappix Mini
+	$(document).click(function(evt) {
+		if(!$(evt.target).parents('#jappix_mini').size())
+			hideRoster();
+	});
+	
+	// Hides all panes double clicking away of Jappix Mini
+	$(document).dblclick(function(evt) {
+		if(!$(evt.target).parents('#jappix_mini').size())
+			switchPane();
+	});
+	
+	// Connect if not anonymous
+	if(MINI_ANONYMOUS) {
+		// Hide the buddy number
+		$('#jappix_mini a.pane.button span.counter').text(_e("Chat"));
+		
+		// Show Jappix Mini!
+		$('#jappix_mini').removeClass('hidden');
+	}
+	
+	else
+		connect(domain, user, password);
+}
+
 // Displays a given message
 function displayMessage(type, body, nick, hash, message_type) {
 	// Generate some stuffs
@@ -714,8 +738,12 @@ function chat(type, xid, nick, hash) {
 				nickname = prompt(printf(_e("Please enter your nickname to join %s."), xid), '');
 				
 				// No nickname submitted?!
-				if(!nickname)
+				if(!nickname) {
+					// Remove the groupchat
+					removeGroupchat(xid);
+					
 					return false;
+				}
 				
 				// Update the stored one
 				MINI_NICKNAME = nickname;
@@ -732,7 +760,7 @@ function chat(type, xid, nick, hash) {
 	// Focus on our pane
 	switchPane('chat-' + hash, hash);
 	
-	return true;
+	return false;
 }
 
 // Events on the chat tool
@@ -757,6 +785,8 @@ function chatEvents(type, xid, hash) {
 			$(current + ' .chat-content').hide();
 			$(this).removeClass('clicked');
 		}
+		
+		return false;
 	});
 	
 	// Click on the close button
@@ -771,11 +801,15 @@ function chatEvents(type, xid, hash) {
 			// Remove this groupchat!
 			removeGroupchat(xid);
 		}
+		
+		return false;
 	});
 	
 	// Click on the chat content
 	$(current + ' div.received-messages').click(function() {
 		$(current + ' input.send-messages').focus();
+		
+		return false;
 	});
 	
 	// Focus on the chat input
@@ -812,11 +846,17 @@ function initialize() {
 	// Update the marker
 	MINI_INITIALIZED = true;
 	
+	// Must show the roster?
+	if(MINI_ANONYMOUS) {
+		$('#jappix_mini a.pane.button span.counter').text('0');
+		showRoster();
+	}
+	
 	// Send the initial presence
 	presence();
 	
 	// Show Jappix Mini
-	$('#jappix_mini').show();
+	$('#jappix_mini').removeClass('hidden');
 }
 
 // Displays a roster buddy
@@ -856,7 +896,7 @@ function addBuddy(xid, hash, nick, groupchat) {
 	
 	// Click event on this buddy
 	$(element).click(function() {
-		chat('chat', xid, nick, hash);
+		return chat('chat', xid, nick, hash);
 	});
 	
 	return true;
@@ -922,20 +962,41 @@ function adaptRoster() {
 }
 
 // Loads a given page
-function loadPage(path, element) {
+function loadPage(path) {
 	// First change the page URL
 	window.location.hash = path;
 	
+	// Change the page title
+	$('head title').html(_e("Please wait..."));
+	
 	// Then, load the page
-	$(element).load(path + ' ' + element, function() {
+	$.get(path, function(data) {
+		// No received data?!
+		if(!data)
+			return false;
+		
+		// Convert this into an XML document
+		data = '<jappix xmlns="jappix:get:page">' + data + '<jappix>';
+		
+		// Empty the DOM
+		$('head *:not(#jappix_mini_js, #jappix_mini_conf, #jappix_mini_css)').remove();
+		$('body *:not(#jappix_mini)').remove();
+		
+		// Filter the data content
+		$(data).find('#jappix_mini, #jappix_mini_js, #jappix_mini_conf, #jappix_mini_css').remove();
+		
+		// Create the new DOM
+		$('head').prepend($(data).find('head').html());
+		$('body').prepend($(data).find('body').html());
+		
 		// Replace the links
-		replaceLinks(element);
+		/* replaceLinks();
 		
 		// Update the stored page title
-		pageTitle(element);
+		pageTitle();
 		
 		// Update the displayed page title
-		notifyTitle();
+		notifyTitle(); */
 	});
 	
 	// Do not quit this page!
@@ -943,14 +1004,14 @@ function loadPage(path, element) {
 }
 
 // Replace page links
-function replaceLinks(element) {
-	$(element + ' a').each(function() {
+function replaceLinks() {
+	$('a').each(function() {
 		var link = $(this).attr('href');
-		var regex = new RegExp(window.location.hostname, 'gi');
+		var regex = new RegExp('^(https?:\/\/)' + window.location.hostname, 'gi');
 		
-		if(link && link.match(regex))
+		if(link && (link.match(regex) || !link.match('^(https?:\/\/)')))
 			$(this).click(function() {
-				return loadPage(link, element);
+				return loadPage(link);
 			});
 	});
 	
@@ -958,17 +1019,21 @@ function replaceLinks(element) {
 }
 
 // Get new page title
-function pageTitle(element) {
-	if($(element).find('head title').size())
-		PAGE_TITLE = $(element).find('head title:first').html();
+function pageTitle() {
+	if($('head title').size())
+		PAGE_TITLE = $('head title:first').html();
 	else
 		PAGE_TITLE = null;
 }
 
 // Plugin launcher
-function launchMini() {
+function launchMini(domain, user, password) {
+	// Anonymous mode?
+	if(!user || !password)
+		MINI_ANONYMOUS = true;
+	
 	// Append the mini stylesheet
-	$('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&t=css&g=mini.xml" type="text/css" media="all" />');
+	$('head').append('<link id="jappix_mini_css" rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&amp;t=css&amp;g=mini.xml" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	$(document).keydown(function(e) {
@@ -986,8 +1051,11 @@ function launchMini() {
 	// Disconnects when the user quit
 	$(window).bind('unload', disconnect);
 	
+	// Create the Jappix Mini DOM content
+	createMini(domain, user, password);
+	
+	// Check for a page to load
+	//$.history.init(pageload);
+	
 	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }
-
-// Append the CSS stylesheet
-$(document).ready(launchMini);
