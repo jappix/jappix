@@ -685,7 +685,25 @@ function messageScroll(hash) {
 function chat(type, xid, nick, hash) {
 	var current = '#jappix_mini #chat-' + hash;
 	
+	// Not yet added?
 	if(!exists(current)) {
+		// Groupchat nickname
+		if(type == 'groupchat') {
+			var nickname = MINI_NICKNAME;
+			
+			// No nickname?
+			if(!nickname) {
+				nickname = prompt(printf(_e("Please enter your nickname to join %s."), xid), '');
+				
+				// No nickname submitted?!
+				if(!nickname)
+					return false;
+				
+				// Update the stored one
+				MINI_NICKNAME = nickname;
+			}
+		}
+		
 		// Get the icon to show
 		var show = 'available';
 		
@@ -732,24 +750,6 @@ function chat(type, xid, nick, hash) {
 		
 		// Join the groupchat
 		if(type == 'groupchat') {
-			var nickname = MINI_NICKNAME;
-			
-			// No nickname?
-			if(!nickname) {
-				nickname = prompt(printf(_e("Please enter your nickname to join %s."), xid), '');
-				
-				// No nickname submitted?!
-				if(!nickname) {
-					// Remove the groupchat
-					removeGroupchat(xid);
-					
-					return false;
-				}
-				
-				// Update the stored one
-				MINI_NICKNAME = nickname;
-			}
-			
 			// Add the nickname value
 			$(current).attr('data-nick', escape(nickname));
 			
@@ -967,6 +967,36 @@ function adaptRoster() {
 	$('#jappix_mini div.roster div.buddies').css('max-height', height);
 }
 
+// Handles a given page content
+function handlePage(data) {
+	// No received data?!
+	if(!data || !MINI_CONTENT)
+		return false;
+	
+	// Data to XML
+	var xml = $('<jappix xmlns="jappix:get:page">' + data + '</jappix>');
+	
+	// Get the data
+	var title = xml.find('title').html();
+	var content = xml.find(MINI_CONTENT).html();
+	
+	// Apply the new values
+	$('head title').html(title);
+	$(MINI_CONTENT).html(content);
+	
+	// Replace the links
+	replaceLinks();
+	
+	// AJAX form sender
+	replaceForms();
+	
+	// Update the stored page title
+	pageTitle();
+	
+	// Update the displayed page title
+	notifyTitle();
+}
+
 // Loads a given page
 function loadPage(path) {
 	// No path?
@@ -974,34 +1004,15 @@ function loadPage(path) {
 		return false;
 	
 	// Get the page
-	$.get(path, function(data) {
-		// No received data?!
-		if(!data || !MINI_CONTENT)
-			return false;
-		
-		// Data to XML
-		var xml = $('<jappix xmlns="jappix:get:page">' + data + '</jappix>');
-		
-		// Get the data
-		var title = xml.find('title').html();
-		var content = xml.find(MINI_CONTENT).html();
-		
-		// Apply the new values
-		$('head title').html(title);
-		$(MINI_CONTENT).html(content);
-		
-		// Replace the links
-		replaceLinks();
-		
-		// Update the stored page title
-		pageTitle();
-		
-		// Update the displayed page title
-		notifyTitle();
-	});
+	$.get(path, handlePage);
 	
 	// Do not quit this page!
 	return false;
+}
+
+// Displays the waiting title
+function waitTitle() {
+	$('head title').html(_e("Please wait..."));
 }
 
 // Replace page links
@@ -1013,7 +1024,7 @@ function replaceLinks() {
 		if(link && (link.match(regex) || !link.match('^(https?:\/\/)')))
 			$(this).click(function() {
 				// Change the page title
-				$('head title').html(_e("Please wait..."));
+				waitTitle();
 				
 				// Load the page
 				$.history.load(link);
@@ -1023,6 +1034,22 @@ function replaceLinks() {
 	});
 	
 	logThis('Page links have been replaced.');
+}
+
+// Replace form actions
+function replaceForms() {
+	// Forms options
+	var attach_options = {
+		beforeSubmit:	waitTitle,
+		success:	handlePage
+	};
+	
+	// Submit event on the forms
+	$('form').submit(function() {
+		$(this).ajaxSubmit(attach_options);
+		
+		return false;
+	});
 }
 
 // Get new page title
@@ -1057,6 +1084,9 @@ function launchMini(domain, user, password) {
 	
 	// Disconnects when the user quit
 	$(window).bind('unload', disconnect);
+	
+	// Replace the forms events
+	replaceForms();
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);

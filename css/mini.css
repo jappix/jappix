@@ -27,6 +27,7 @@ Last revision: 27/11/10
 
 #jappix_mini * {
 	font-size: 11px;
+	color: black;
 }
 
 #jappix_mini a {
@@ -45,8 +46,8 @@ Last revision: 27/11/10
 	border-color: #999999;
 	border-style: solid;
 	border-width: 1px 1px 0 1px;
-	font-weight: bold;
 	color: #333333;
+	font-weight: bold;
 	display: block;
 	padding: 6px;
 	height: 13px;
@@ -188,7 +189,6 @@ Last revision: 27/11/10
 }
 
 #jappix_mini div.received-messages p a {
-	color: black;
 	text-decoration: underline;
 }
 
@@ -248,7 +248,6 @@ Last revision: 27/11/10
 #jappix_mini a.friend {
 	display: block;
 	padding: 6px;
-	color: black;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px 0;
@@ -282,10 +281,11 @@ Last revision: 27/11/10
 }
 
 #jappix_mini span.counter {
-	display: block;
+	background-position: 0 -288px;
+	color: #333333;
 	min-height: 16px;
 	padding-left: 25px;
-	background-position: 0 -288px;
+	display: block;
 }
 
 #jappix_mini span.presence {
