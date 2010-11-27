@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/11/10
+Last revision: 27/11/10
 
 */
 
@@ -17,6 +17,7 @@ var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
 var MINI_GROUPCHATS = null;
+var MINI_CONTENT = null;
 
 // Connects the user with the given logins
 function connect(domain, user, password) {
@@ -715,7 +716,7 @@ function chat(type, xid, nick, hash) {
 					
 					'<div class="received-messages" id="received-' + hash + '"></div>' + 
 					
-					'<form action="#" method="post" onsubmit="return sendMessage(this);">' + 
+					'<form action="#" method="post">' + 
 						'<input type="text" class="send-messages" name="body" />' + 
 						'<input type="hidden" name="xid" value="' + xid + '" />' + 
 						'<input type="hidden" name="type" value="' + type + '" />' + 
@@ -766,6 +767,11 @@ function chat(type, xid, nick, hash) {
 // Events on the chat tool
 function chatEvents(type, xid, hash) {
 	var current = '#jappix_mini #chat-' + hash;
+	
+	// Submit the form
+	$(current + ' form').submit(function() {
+		return sendMessage(this);
+	});
 	
 	// Click on the tab
 	$(current + ' a.chat-tab').click(function() {
@@ -963,40 +969,35 @@ function adaptRoster() {
 
 // Loads a given page
 function loadPage(path) {
-	// First change the page URL
-	window.location.hash = path;
+	// No path?
+	if(!path)
+		return false;
 	
-	// Change the page title
-	$('head title').html(_e("Please wait..."));
-	
-	// Then, load the page
+	// Get the page
 	$.get(path, function(data) {
 		// No received data?!
-		if(!data)
+		if(!data || !MINI_CONTENT)
 			return false;
 		
-		// Convert this into an XML document
-		data = '<jappix xmlns="jappix:get:page">' + data + '<jappix>';
+		// Data to XML
+		var xml = $('<jappix xmlns="jappix:get:page">' + data + '</jappix>');
 		
-		// Empty the DOM
-		$('head *:not(#jappix_mini_js, #jappix_mini_conf, #jappix_mini_css)').remove();
-		$('body *:not(#jappix_mini)').remove();
+		// Get the data
+		var title = xml.find('title').html();
+		var content = xml.find(MINI_CONTENT).html();
 		
-		// Filter the data content
-		$(data).find('#jappix_mini, #jappix_mini_js, #jappix_mini_conf, #jappix_mini_css').remove();
-		
-		// Create the new DOM
-		$('head').prepend($(data).find('head').html());
-		$('body').prepend($(data).find('body').html());
+		// Apply the new values
+		$('head title').html(title);
+		$(MINI_CONTENT).html(content);
 		
 		// Replace the links
-		/* replaceLinks();
+		replaceLinks();
 		
 		// Update the stored page title
 		pageTitle();
 		
 		// Update the displayed page title
-		notifyTitle(); */
+		notifyTitle();
 	});
 	
 	// Do not quit this page!
@@ -1011,7 +1012,13 @@ function replaceLinks() {
 		
 		if(link && (link.match(regex) || !link.match('^(https?:\/\/)')))
 			$(this).click(function() {
-				return loadPage(link);
+				// Change the page title
+				$('head title').html(_e("Please wait..."));
+				
+				// Load the page
+				$.history.load(link);
+				
+				return false;
 			});
 	});
 	
@@ -1055,7 +1062,7 @@ function launchMini(domain, user, password) {
 	createMini(domain, user, password);
 	
 	// Check for a page to load
-	//$.history.init(pageload);
+	$.history.init(loadPage);
 	
 	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }
