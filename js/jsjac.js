@@ -1029,7 +1029,7 @@ JSJACHBC_MAX_WAIT = 300;        // default 'wait' param - how long an idle conne
 JSJACHBC_BOSH_VERSION  = "1.6";
 JSJACHBC_USE_BOSH_VER  = true;
 
-JSJACHBC_MAXPAUSE = 120;        // how long a suspend/resume cycle may take
+JSJACHBC_MAXPAUSE = 30;        // how long a suspend/resume cycle may take
 
 /*** END CONFIG ***/
 
