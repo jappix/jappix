@@ -21,13 +21,12 @@ Last revision: 28/11/10
 	right: 20px;
 }
 
-#jappix_mini.hidden {
-	display: none;
-}
-
 #jappix_mini * {
-	font-size: 11px;
+	border: none;
 	color: black;
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
 }
 
 #jappix_mini a {

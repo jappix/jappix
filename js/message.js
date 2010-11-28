@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 28/11/10
 
 */
 
@@ -287,7 +287,7 @@ function handleMessage(message) {
 			var nickQuote = '';
 			
 			// If this is not an old message
-			if(message_type != 'old-message') {
+			if(message_type == 'user-message') {
 				var myNick = getMUCNick(hash);
 				
 				// If an user quoted our nick (with some checks)

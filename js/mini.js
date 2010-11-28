@@ -13,7 +13,9 @@ Last revision: 28/11/10
 */
 
 // Jappix Mini vars
-var MINI_CONNECTOR = false;
+var MINI_CONNECTING = false;
+var MINI_AUTOCONNECT = false;
+var MINI_SHOWPANE = false;
 var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
@@ -31,7 +33,7 @@ function setupCon(con) {
 // Connects the user with the given logins
 function connect(domain, user, password) {
 	// Update the marker
-	MINI_CONNECTOR = false;
+	MINI_CONNECTING = true;
 	
 	try {
 		// We define the http binding parameters
@@ -101,6 +103,13 @@ function connect(domain, user, password) {
 
 // When the user is connected
 function connected() {
+	// Update the roster
+	$('#jappix_mini a.pane.button span.counter').text('0');
+	
+	// Must show the roster?
+	if(!MINI_AUTOCONNECT)
+		showRoster();
+	
 	// Do not get the roster if anonymous
 	if(MINI_ANONYMOUS)
 		initialize();
@@ -111,6 +120,10 @@ function connected() {
 	if(MINI_GROUPCHATS) {
 		// Open each defined groupchats
 		for(i in MINI_GROUPCHATS) {
+			// Empty value?
+			if(!MINI_GROUPCHATS[i])
+				continue;
+			
 			// Current chat room
 			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
 			
@@ -118,6 +131,10 @@ function connected() {
 			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
 		}
 	}
+	
+	// Must hide all panes?
+	if(!MINI_SHOWPANE)
+		switchPane();
 	
 	logThis('Jappix Mini is now connected.', 3);
 }
@@ -127,6 +144,7 @@ function saveSession() {
 	if((typeof con != 'undefined') && con && con.connected()) {
 		// Save the actual Jappix Mini DOM
                 setDB('jappix-mini', 'dom', $('#jappix_mini').html());
+		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
 		
 		// Suspend connection
 		con.suspend();
@@ -142,6 +160,7 @@ function disconnected() {
 	
 	// Remove the stored DOM
 	removeDB('jappix-mini', 'dom');
+	removeDB('jappix-mini', 'nickname');
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -174,6 +193,10 @@ function handleMessage(msg) {
 			
 			// Grouphat values
 			if(type == 'groupchat') {
+				// Old message
+				if(msg.getChild('delay', NS_URN_DELAY) || msg.getChild('x', NS_DELAY))
+					message_type = 'old-message';
+				
 				// System message?
 				if(!nick)
 					message_type = 'system-message';
@@ -192,14 +215,14 @@ function handleMessage(msg) {
 			var target = '#jappix_mini #chat-' + hash;
 			
 			// Create the chat if it does not exist
-			if(!exists(target))
+			if(!exists(target) && (type != 'groupchat'))
 				chat(type, xid, nick, hash);
 			
 			// Display the message
 			displayMessage(type, body, nick, hash, message_type);
 			
-			// Notify the user if not focused
-			if(!$(target + ' a.chat-tab').hasClass('clicked') || !document.hasFocus())
+			// Notify the user if not focused & the message is not a groupchat old one
+			if((!$(target + ' a.chat-tab').hasClass('clicked') || !document.hasFocus()) && (message_type == 'user-message'))
 				notifyMessage(hash);
 			
 			logThis('Message received from: ' + from);
@@ -265,7 +288,10 @@ function handleIQ(iq) {
 		var fArray = new Array(
 			NS_DISCO_INFO,
 			NS_VERSION,
-			NS_ROSTER
+			NS_ROSTER,
+			NS_MUC,
+			NS_VERSION,
+			NS_URN_TIME
 		);
 		
 		for(i in fArray)
@@ -322,15 +348,8 @@ function handlePresence(pr) {
 	var groupchat_path = '#jappix_mini #chat-' + hash + '[data-type=groupchat]';
 	
 	if(exists(groupchat_path)) {
-		// Is it my groupchat presence?
-		if(resource == unescape($(groupchat_path).attr('data-nick'))) {
-			// Remove this groupchat
-			if(show == 'unavailable')
-				removeGroupchat(xid);
-		}
-		
-		// Groupchat buddy presence
-		else {
+		// Groupchat buddy presence (not me)
+		if(resource != unescape($(groupchat_path).attr('data-nick'))) {
 			// Regenerate some stuffs
 			var groupchat = xid;
 			xid = from;
@@ -543,7 +562,7 @@ function createMini(domain, user, password) {
         var dom = getDB('jappix-mini', 'dom');
 	var suspended = true;
 	
-	// New DOM
+	// New DOM?
 	if(!dom) {
 		dom = 
 			'<div class="conversations"></div>' + 
@@ -558,29 +577,40 @@ function createMini(domain, user, password) {
 					'<div class="buddies"></div>' + 
 				'</div>' + 
 				
-				'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
+				'<a class="pane button mini-images"><span class="counter mini-images">' + _e("Please wait...") + '</span></a>' + 
 			'</div>';
 		
 		suspended = false;
 	}
 	
+	// Old DOM?
+	else
+		MINI_NICKNAME = getDB('jappix-mini', 'nickname');
+	
 	// Create the DOM
-	$('body').append('<div id="jappix_mini" class="hidden">' + dom + '</div>');
+	$('body').append('<div id="jappix_mini">' + dom + '</div>');
 	
 	// Adapt roster height
 	adaptRoster();
 	
 	// The click events
 	$('#jappix_mini a.button').click(function() {
-		// Anonymous connection?
-		if(MINI_CONNECTOR) {
-			// Show a waiting icon
-			$('#jappix_mini a.pane.button span.counter').text(_e("Please wait..."));
+		var counter = '#jappix_mini a.pane.button span.counter';
+		
+		// Cannot open the roster?
+		if($(counter).text() == _e("Please wait..."))
+			return false;
+		
+		// Not yet connected?
+		if(!MINI_CONNECTING && !MINI_AUTOCONNECT) {
+			// Add a waiting marker
+			$(counter).text(_e("Please wait..."));
 			
-			// Launch the connection
+			// Launch the connection!
 			return connect(domain, user, password);
 		}
 		
+		// Normal actions
 		if(!$(this).hasClass('clicked'))
 			showRoster();
 		else
@@ -631,32 +661,24 @@ function createMini(domain, user, password) {
 			chatEvents($(this).attr('data-type'), unescape($(this).attr('data-xid')), $(this).attr('data-hash'));
 		});
 		
-		// Show Jappix Mini!
-		$('#jappix_mini').removeClass('hidden');
-		
 		// Scroll down to the last message
-		// FIXME: not working because of a lag time
 		var scroll_hash = $('#jappix_mini div.conversation:has(a.pane.clicked)').attr('data-hash');
 		
-		if(scroll_hash)
-			messageScroll(scroll_hash);
+		if(scroll_hash) {
+			// Use a timer to override the DOM lag issue
+			$(document).oneTime(10, function() {
+				messageScroll(scroll_hash);
+			})
+		}
 	}
 	
-	// Anonymous: do not connect
-	else if(MINI_ANONYMOUS) {
-		// Marker
-		MINI_CONNECTOR = true;
-		
-		// Hide the buddy number
-		$('#jappix_mini a.pane.button span.counter').text(_e("Chat"));
-		
-		// Show Jappix Mini!
-		$('#jappix_mini').removeClass('hidden');
-	}
-	
-	// Connect if not anonymous
-	else
+	// Can auto-connect?
+	else if(MINI_AUTOCONNECT)
 		connect(domain, user, password);
+	
+	// Cannot auto-connect?
+	else
+		$('#jappix_mini a.pane.button span.counter').text(_e("Chat"));
 }
 
 // Displays a given message
@@ -904,17 +926,9 @@ function initialize() {
 	// Update the marker
 	MINI_INITIALIZED = true;
 	
-	// Must show the roster?
-	if(MINI_ANONYMOUS) {
-		$('#jappix_mini a.pane.button span.counter').text('0');
-		showRoster();
-	}
-	
 	// Send the initial presence
-	presence();
-	
-	// Show Jappix Mini
-	$('#jappix_mini').removeClass('hidden');
+	if(!MINI_ANONYMOUS)
+		presence();
 }
 
 // Displays a roster buddy
@@ -1027,10 +1041,18 @@ function adaptRoster() {
 }
 
 // Plugin launcher
-function launchMini(domain, user, password) {
+function launchMini(autoconnect, show_pane, domain, user, password) {
 	// Anonymous mode?
 	if(!user || !password)
 		MINI_ANONYMOUS = true;
+	
+	// Autoconnect?
+	if(autoconnect)
+		MINI_AUTOCONNECT = true;
+	
+	// Show pane?
+	if(show_pane)
+		MINI_SHOWPANE = true;
 	
 	// Append the mini stylesheet
 	$('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&amp;t=css&amp;g=mini.xml" type="text/css" media="all" />');
