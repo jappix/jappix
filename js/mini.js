@@ -620,7 +620,7 @@ function createMini(domain, user, password) {
 	});
 	
 	$('#jappix_mini div.actions a.join').click(function() {
-		var join_this = prompt(_e("Please enter the group chat address to join."));
+		var join_this = prompt(_e("Please enter the group chat address to join."), '');
 		
 		// Any submitted chat to join?
 		if(join_this) {
