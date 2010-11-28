@@ -8,19 +8,31 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/11/10
+Last revision: 28/11/10
 
 */
 
 // Jappix Mini vars
+var MINI_CONNECTOR = false;
 var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
 var MINI_GROUPCHATS = null;
-var MINI_CONTENT = null;
+
+// Setups connection handlers
+function setupCon(con) {
+	con.registerHandler('message', handleMessage);
+	con.registerHandler('presence', handlePresence);
+	con.registerHandler('iq', handleIQ);
+	con.registerHandler('onconnect', connected);
+	con.registerHandler('ondisconnect', disconnected);
+}
 
 // Connects the user with the given logins
 function connect(domain, user, password) {
+	// Update the marker
+	MINI_CONNECTOR = false;
+	
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
@@ -31,11 +43,7 @@ function connect(domain, user, password) {
 		con = new JSJaCHttpBindingConnection(oArgs);
 		
 		// And we handle everything that happen
-		con.registerHandler('message', handleMessage);
-		con.registerHandler('presence', handlePresence);
-		con.registerHandler('iq', handleIQ);
-		con.registerHandler('onconnect', connected);
-		con.registerHandler('ondisconnect', disconnected);
+		setupCon(con);
 		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
@@ -115,12 +123,15 @@ function connected() {
 }
 
 // When the user disconnects
-function disconnect() {
+function saveSession() {
 	if((typeof con != 'undefined') && con && con.connected()) {
-		// Disconnect
-		con.disconnect();
+		// Save the actual Jappix Mini DOM
+                setDB('jappix-mini', con.domain, $('#jappix_mini').html());
 		
-		logThis('Jappix Mini is disconnecting...', 3);
+		// Suspend connection
+		con.suspend();
+		
+		logThis('Jappix Mini session saved...', 3);
 	}
 }
 
@@ -324,7 +335,7 @@ function handlePresence(pr) {
 			
 			// Remove this from the roster
 			if(show == 'unavailable')
-				removeBuddy(hash);
+				removeBuddy(hash, groupchat);
 			
 			// Add this to the roster
 			else
@@ -525,9 +536,13 @@ function updateRoster() {
 
 // Creates the Jappix Mini DOM content
 function createMini(domain, user, password) {
-	// Create the Jappix Mini initial DOM content
-	$('body').append(
-		'<div id="jappix_mini" class="hidden">' + 
+	// Try to restore the DOM
+        var dom = getDB('jappix-mini', domain);
+	var suspended = true;
+	
+	// New DOM
+	if(!dom) {
+		dom = 
 			'<div class="conversations"></div>' + 
 			
 			'<div class="starter">' + 
@@ -541,9 +556,13 @@ function createMini(domain, user, password) {
 				'</div>' + 
 				
 				'<a class="pane button mini-images"><span class="counter mini-images">0</span></a>' + 
-			'</div>' + 
-		'</div>'
-	);
+			'</div>';
+		
+		suspended = false;
+	}
+	
+	// Create the DOM
+	$('body').append('<div id="jappix_mini" class="hidden">' + dom + '</div>');
 	
 	// Adapt roster height
 	adaptRoster();
@@ -551,7 +570,7 @@ function createMini(domain, user, password) {
 	// The click events
 	$('#jappix_mini a.button').click(function() {
 		// Anonymous connection?
-		if(MINI_ANONYMOUS && (typeof con == 'undefined')) {
+		if(MINI_CONNECTOR) {
 			// Show a waiting icon
 			$('#jappix_mini a.pane.button span.counter').text(_e("Please wait..."));
 			
@@ -594,8 +613,37 @@ function createMini(domain, user, password) {
 			switchPane();
 	});
 	
-	// Connect if not anonymous
-	if(MINI_ANONYMOUS) {
+	// Can resume a session?
+	con = new JSJaCHttpBindingConnection();
+	setupCon(con);
+	
+	if(suspended && con.resume()) {
+		// Restore buddy click events
+		$('#jappix_mini a.friend').click(function() {
+			return chat('chat', unescape($(this).attr('data-xid')), unescape($(this).attr('data-nick')), $(this).attr('data-hash'));
+		});
+		
+		// Restore chat click events
+		$('#jappix_mini div.conversation').each(function() {
+			chatEvents($(this).attr('data-type'), unescape($(this).attr('data-xid')), $(this).attr('data-hash'));
+		});
+		
+		// Show Jappix Mini!
+		$('#jappix_mini').removeClass('hidden');
+		
+		// Scroll down to the last message
+		// FIXME: not working because of a lag time
+		var scroll_hash = $('#jappix_mini div.conversation:has(a.pane.clicked)').attr('data-hash');
+		
+		if(scroll_hash)
+			messageScroll(scroll_hash);
+	}
+	
+	// Anonymous: do not connect
+	else if(MINI_ANONYMOUS) {
+		// Marker
+		MINI_CONNECTOR = true;
+		
 		// Hide the buddy number
 		$('#jappix_mini a.pane.button span.counter').text(_e("Chat"));
 		
@@ -603,6 +651,7 @@ function createMini(domain, user, password) {
 		$('#jappix_mini').removeClass('hidden');
 	}
 	
+	// Connect if not anonymous
 	else
 		connect(domain, user, password);
 }
@@ -725,7 +774,7 @@ function chat(type, xid, nick, hash) {
 		
 		// Create the HTML markup
 		$('#jappix_mini div.conversations').append(
-			'<div class="conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-origin="' + escape(cutResource(xid)) + '">' + 
+			'<div class="conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="chat-content">' + 
 					'<div class="actions">' + 
 						nick + 
@@ -893,7 +942,7 @@ function addBuddy(xid, hash, nick, groupchat) {
 	}
 	
 	// Append this buddy content
-	var code = '<a class="friend offline" id="friend-' + hash + '"><span class="presence mini-images unavailable"></span> ' + nick.htmlEnc() + '</a>';
+	var code = '<a class="friend offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '"><span class="presence mini-images unavailable"></span> ' + nick.htmlEnc() + '</a>';
 	
 	if(groupchat)
 		$(path).append(code);
@@ -909,8 +958,15 @@ function addBuddy(xid, hash, nick, groupchat) {
 }
 
 // Removes a roster buddy
-function removeBuddy(hash) {
+function removeBuddy(hash, groupchat) {
+	// Remove the buddy from the roster
 	$('#jappix_mini a.friend#friend-' + hash).remove();
+	
+	// Empty group?
+	var group = '#jappix_mini div.roster div.group[data-xid=' + escape(groupchat) + ']';
+	
+	if(groupchat && !$(group + ' a.friend').size())
+		$(group).remove();
 	
 	return true;
 }
@@ -967,99 +1023,6 @@ function adaptRoster() {
 	$('#jappix_mini div.roster div.buddies').css('max-height', height);
 }
 
-// Handles a given page content
-function handlePage(data) {
-	// No received data?!
-	if(!data || !MINI_CONTENT)
-		return false;
-	
-	// Data to XML
-	var xml = $('<jappix xmlns="jappix:get:page">' + data + '</jappix>');
-	
-	// Get the data
-	var title = xml.find('title').html();
-	var content = xml.find(MINI_CONTENT).html();
-	
-	// Apply the new values
-	$('head title').html(title);
-	$(MINI_CONTENT).html(content);
-	
-	// Replace the links
-	replaceLinks();
-	
-	// AJAX form sender
-	replaceForms();
-	
-	// Update the stored page title
-	pageTitle();
-	
-	// Update the displayed page title
-	notifyTitle();
-}
-
-// Loads a given page
-function loadPage(path) {
-	// No path?
-	if(!path)
-		return false;
-	
-	// Get the page
-	$.get(path, handlePage);
-	
-	// Do not quit this page!
-	return false;
-}
-
-// Displays the waiting title
-function waitTitle() {
-	$('head title').html(_e("Please wait..."));
-}
-
-// Replace page links
-function replaceLinks() {
-	$('a').each(function() {
-		var link = $(this).attr('href');
-		var regex = new RegExp('^(https?:\/\/)' + window.location.hostname, 'gi');
-		
-		if(link && (link.match(regex) || !link.match('^(https?:\/\/)')))
-			$(this).click(function() {
-				// Change the page title
-				waitTitle();
-				
-				// Load the page
-				$.history.load(link);
-				
-				return false;
-			});
-	});
-	
-	logThis('Page links have been replaced.');
-}
-
-// Replace form actions
-function replaceForms() {
-	// Forms options
-	var attach_options = {
-		beforeSubmit:	waitTitle,
-		success:	handlePage
-	};
-	
-	// Submit event on the forms
-	$('form').submit(function() {
-		$(this).ajaxSubmit(attach_options);
-		
-		return false;
-	});
-}
-
-// Get new page title
-function pageTitle() {
-	if($('head title').size())
-		PAGE_TITLE = $('head title:first').html();
-	else
-		PAGE_TITLE = null;
-}
-
 // Plugin launcher
 function launchMini(domain, user, password) {
 	// Anonymous mode?
@@ -1083,16 +1046,10 @@ function launchMini(domain, user, password) {
 	$(window).resize(adaptRoster);
 	
 	// Disconnects when the user quit
-	$(window).bind('unload', disconnect);
-	
-	// Replace the forms events
-	replaceForms();
+	$(window).bind('unload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);
-	
-	// Check for a page to load
-	$.history.init(loadPage);
 	
 	logThis('Welcome to Jappix Mini! Happy coding in developer mode!');
 }

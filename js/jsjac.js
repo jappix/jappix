@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 28/11/10
 
 */
 
@@ -295,19 +295,16 @@ String.prototype.htmlEnc = function() {
  * @type Date
  */
 Date.jab2date = function(ts) {
-  // Get the UTC date
   var date = new Date(Date.UTC(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2)));
-  
   if (ts.substr(ts.length-6,1) != 'Z') { // there's an offset
-    var date_offset = date.getTimezoneOffset() * 60 * 1000;
     var offset = new Date();
     offset.setTime(0);
     offset.setUTCHours(ts.substr(ts.length-5,2));
     offset.setUTCMinutes(ts.substr(ts.length-2,2));
     if (ts.substr(ts.length-6,1) == '+')
-      date.setTime(date.getTime() + offset.getTime() + date_offset);
+      date.setTime(date.getTime() - offset.getTime());
     else if (ts.substr(ts.length-6,1) == '-')
-      date.setTime(date.getTime() - offset.getTime() + date_offset);
+      date.setTime(date.getTime() + offset.getTime());
   }
   return date;
 };
@@ -1024,7 +1021,7 @@ JSJAC_CHECKINQUEUEINTERVAL = 1; // msecs to poll incoming queue
 JSJAC_TIMERVAL = 2000;          // default polling interval
 
 // Options specific to HTTP Binding (BOSH)
-JSJACHBC_MAX_HOLD = 1;          // default for number of connctions held by 
+JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
                                     // connection maanger 
 JSJACHBC_MAX_WAIT = 300;        // default 'wait' param - how long an idle connection
                                     // should be held by connection manager
@@ -1035,6 +1032,357 @@ JSJACHBC_USE_BOSH_VER  = true;
 JSJACHBC_MAXPAUSE = 120;        // how long a suspend/resume cycle may take
 
 /*** END CONFIG ***/
+
+/* Copyright 2003-2006 Peter-Paul Koch
+ *           2006-2008 Stefan Strigler
+ */
+
+/**
+ * @fileoverview OO interface to handle cookies.
+ * Taken from {@link http://www.quirksmode.org/js/cookies.html
+ * http://www.quirksmode.org/js/cookies.html}
+ * Regarding licensing of this code the author states:
+ *
+ * "You may copy, tweak, rewrite, sell or lease any code example on
+ * this site, with one single exception."
+ *
+ * @author Stefan Strigler
+ * @version $Revision$
+ */
+
+/**
+ * Creates a new Cookie
+ * @class Class representing browser cookies for storing small amounts of data
+ * @constructor
+ * @param {String} name   The name of the value to store
+ * @param {String} value  The value to store
+ * @param {int}    secs   Number of seconds until cookie expires (may be empty)
+ * @param {String} domain The domain for the cookie
+ * @param {String} path   The path of cookie
+ */
+function JSJaCCookie(name,value,secs,domain,path)
+{
+  if (window == this)
+    return new JSJaCCookie(name, value, secs, domain, path);
+
+  /**
+   * This cookie's name
+   * @type String
+   */
+  this.name = name;
+  /**
+   * This cookie's value
+   * @type String
+   */
+  this.value = value;
+  /**
+   * Time in seconds when cookie expires (thus being delete by
+   * browser). A value of -1 denotes a session cookie which means that
+   * stored data gets lost when browser is being closed. 
+   * @type int
+   */
+  this.secs = secs;
+
+  /**
+   * The cookie's domain
+   * @type string
+   */
+  this.domain = domain;
+
+  /**
+   * The cookie's path
+   * @type string
+   */
+  this.path = path;
+
+  /**
+   * Stores this cookie
+   */
+  this.write = function() {
+    if (this.secs) {
+      var date = new Date();
+      date.setTime(date.getTime()+(this.secs*1000));
+      var expires = "; expires="+date.toGMTString();
+    } else
+      var expires = "";
+    var domain = this.domain?"; domain="+this.domain:"";
+    var path = this.path?"; path="+this.path:"; path=/";
+    document.cookie = this.getName()+"="+JSJaCCookie._escape(this.getValue())+
+      expires+
+      domain+
+      path;
+  };
+  /**
+   * Deletes this cookie
+   */
+  this.erase = function() {
+    var c = new JSJaCCookie(this.getName(),"",-1);
+    c.write();
+  };
+
+  /**
+   * Gets the name of this cookie
+   * @return The name
+   * @type String
+   */
+  this.getName = function() {
+    return this.name;
+  };
+ 
+  /**
+   * Sets the name of this cookie
+   * @param {String} name The name for this cookie
+   * @return This cookie
+   * @type Cookie
+   */
+  this.setName = function(name) {
+    this.name = name;
+    return this;
+  };
+
+  /**
+   * Gets the value of this cookie
+   * @return The value
+   * @type String
+   */
+  this.getValue = function() {
+    return this.value;
+  };
+ 
+  /**
+   * Sets the value of this cookie
+   * @param {String} value The value for this cookie
+   * @return This cookie
+   * @type Cookie
+   */
+  this.setValue = function(value) {
+    this.value = value;
+    return this;
+  };
+
+  /**
+   * Sets the domain of this cookie
+   * @param {String} domain The value for the domain of the cookie
+   * @return This cookie
+   * @type Cookie
+   */
+  this.setDomain = function(domain) {
+    this.domain = domain;
+    return this;
+  };
+
+  /**
+   * Sets the path of this cookie
+   * @param {String} path The value of the path of the cookie
+   * @return This cookie
+   * @type Cookie
+   */
+  this.setPath = function(path) {
+    this.path = path;
+    return this;
+  };
+}
+
+/**
+ * Reads the value for given <code>name</code> from cookies and return new
+ * <code>Cookie</code> object
+ * @param {String} name The name of the cookie to read
+ * @return A cookie object of the given name
+ * @type Cookie
+ * @throws CookieException when cookie with given name could not be found
+ */
+JSJaCCookie.read = function(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) 
+      return new JSJaCCookie(
+        name, 
+        JSJaCCookie._unescape(c.substring(nameEQ.length,c.length)));
+  }
+  throw new JSJaCCookieException("Cookie not found");
+};
+
+/**
+ * Reads the value for given <code>name</code> from cookies and returns
+ * its valued new
+ * @param {String} name The name of the cookie to read
+ * @return The value of the cookie read
+ * @type String
+ * @throws CookieException when cookie with given name could not be found
+ */
+JSJaCCookie.get = function(name) {
+  return JSJaCCookie.read(name).getValue();
+};
+
+/**
+ * Deletes cookie with given <code>name</code>
+ * @param {String} name The name of the cookie to delete
+ * @throws CookieException when cookie with given name could not be found
+ */
+JSJaCCookie.remove = function(name) {
+  JSJaCCookie.read(name).erase();
+};
+
+/**
+ * @private
+ */
+JSJaCCookie._escape = function(str) {
+  return str.replace(/;/g, "%3AB");
+}
+
+/**
+ * @private
+ */
+JSJaCCookie._unescape = function(str) {
+  return str.replace(/%3AB/g, ";");
+}
+
+/**
+ * Some exception denoted to dealing with cookies
+ * @constructor
+ * @param {String} msg The message to pass to the exception
+ */
+function JSJaCCookieException(msg) {
+  this.message = msg;
+  this.name = "CookieException";
+}
+
+/* Copyright (c) 2005-2007 Sam Stephenson
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use, copy,
+ * modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+/*
+  json.js
+  taken from prototype.js, made static
+*/
+function JSJaCJSON() {}
+JSJaCJSON.toString = function (obj) {
+  var m = {
+    '\b': '\\b',
+    '\t': '\\t',
+    '\n': '\\n',
+    '\f': '\\f',
+    '\r': '\\r',
+    '"' : '\\"',
+    '\\': '\\\\'
+  },
+  s = {
+    array: function (x) {
+      var a = ['['], b, f, i, l = x.length, v;
+      for (i = 0; i < l; i += 1) {
+        v = x[i];
+        f = s[typeof v];
+        if (f) {
+	  try {
+            v = f(v);
+            if (typeof v == 'string') {
+              if (b) {
+                a[a.length] = ',';
+              }
+              a[a.length] = v;
+              b = true;
+            }
+	  } catch(e) { 
+	  }
+        }
+      }
+      a[a.length] = ']';
+      return a.join('');
+    },
+    'boolean': function (x) {
+      return String(x);
+    },
+    'null': function (x) {
+      return "null";
+    },
+    number: function (x) {
+      return isFinite(x) ? String(x) : 'null';
+    },
+    object: function (x) {
+      if (x) {
+        if (x instanceof Array) {
+          return s.array(x);
+        }
+        var a = ['{'], b, f, i, v;
+        for (i in x) {
+          if (x.hasOwnProperty(i)) {
+            v = x[i];
+            f = s[typeof v];
+            if (f) {
+	      try {
+                v = f(v);
+                if (typeof v == 'string') {
+                  if (b) {
+                    a[a.length] = ',';
+                  }
+                  a.push(s.string(i), ':', v);
+                  b = true;
+                }
+	      } catch(e) {
+	      }
+            }
+          }
+        }
+         
+        a[a.length] = '}';
+        return a.join('');
+      }
+      return 'null';
+    },
+    string: function (x) {
+      if (/["\\\x00-\x1f]/.test(x)) {
+                    x = x.replace(/([\x00-\x1f\\"])/g, function(a, b) {
+          var c = m[b];
+          if (c) {
+            return c;
+          }
+          c = b.charCodeAt();
+          return '\\u00' +
+          Math.floor(c / 16).toString(16) +
+          (c % 16).toString(16);
+        });
+  }
+  return '"' + x + '"';
+}
+  };
+
+switch (typeof(obj)) {
+ case 'object':
+   return s.object(obj);
+ case 'array':
+   return s.array(obj);
+   
+ }
+};
+
+JSJaCJSON.parse = function (str) {
+  try {
+    return !(/[^,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]/.test(
+                                                       str.replace(/"(\\.|[^"\\])*"/g, ''))) &&
+            eval('(' + str + ')');
+    } catch (e) {
+        return false;
+    }
+};
 
 /**
  * @fileoverview This file contains all things that make life easier when
@@ -2210,6 +2558,10 @@ function JSJaCConnection(oArg) {
   /**
    * @private
    */
+  this._ID = 0;
+  /**
+   * @private
+   */
   this._inQ = new Array();
   /**
    * @private
@@ -2337,6 +2689,10 @@ JSJaCConnection.prototype.disconnect = function() {
 
   this.oDbg.log("Disconnecting: " + request,4);
   this._req[slot].r.send(request);
+
+  try {
+    JSJaCCookie.read(this._cookie_prefix+'JSJaC_State').erase();
+  } catch (e) {}
 
   this.oDbg.log("Disconnected: "+this._req[slot].r.responseText,2);
   this._handleEvent('ondisconnect');
@@ -2506,6 +2862,22 @@ JSJaCConnection.prototype.registerIQSet =
 };
 
 /**
+ * Resumes this connection from saved state (cookie)
+ * @return Whether resume was successful
+ * @type boolean
+ */
+JSJaCConnection.prototype.resume = function() {
+  try {
+    var json = JSJaCCookie.read(this._cookie_prefix+'JSJaC_State').getValue(); 
+    this.oDbg.log('read cookie: '+json,2);
+    JSJaCCookie.read(this._cookie_prefix+'JSJaC_State').erase();
+
+    return this.resumeFromData(JSJaCJSON.parse(json));
+  } catch (e) {}
+  return false; // sth went wrong
+};
+
+/**
  * Resumes BOSH connection from data  
  * @param {Object} serialized jsjac state information
  * @return Whether resume was successful
@@ -2667,6 +3039,70 @@ JSJaCConnection.prototype.setPollInterval = function(timerval) {
 JSJaCConnection.prototype.status = function() { return this._status; };
 
 /**
+ * Suspends this connection (saving state for later resume)
+ * Saves state to cookie
+ * @return Whether suspend (saving to cookie) was successful
+ * @type boolean
+ */
+JSJaCConnection.prototype.suspend = function() {
+  var data = this.suspendToData();
+  
+  try {
+    var c = new JSJaCCookie(this._cookie_prefix+'JSJaC_State', JSJaCJSON.toString(data));
+    this.oDbg.log("writing cookie: "+c.getValue()+"\n"+
+                  "(length:"+c.getValue().length+")",2);
+    c.write();
+
+    var c2 = JSJaCCookie.get(this._cookie_prefix+'JSJaC_State');
+    if (c.getValue() != c2) {
+      this.oDbg.log("Suspend failed writing cookie.\nread: " + c2, 1);
+      c.erase();
+      return false;
+    }
+    return true;
+  } catch (e) {
+    this.oDbg.log("Failed creating cookie '"+this._cookie_prefix+
+                  "JSJaC_State': "+e.message,1);
+  }
+  return false;
+};
+
+/**
+ * Suspend connection and return serialized JSJaC connection state
+ * @return JSJaC connection state object
+ * @type Object
+ */
+JSJaCConnection.prototype.suspendToData = function() {
+  
+  // remove timers
+  clearTimeout(this._timeout);
+  clearInterval(this._interval);
+  clearInterval(this._inQto);
+
+  this._suspend();
+
+  var u = ('_connected,_keys,_ID,_inQ,_pQueue,_regIDs,_errcnt,_inactivity,domain,username,resource,jid,fulljid,_sid,_httpbase,_timerval,_is_polling').split(',');
+  u = u.concat(this._getSuspendVars());
+  var s = new Object();
+
+  for (var i=0; i<u.length; i++) {
+    if (!this[u[i]]) continue; // hu? skip these!
+    if (this[u[i]]._getSuspendVars) {
+      var uo = this[u[i]]._getSuspendVars();
+      var o = new Object();
+      for (var j=0; j<uo.length; j++)
+        o[uo[j]] = this[u[i]][uo[j]];
+    } else
+      var o = this[u[i]];
+
+    s[u[i]] = o;
+  }
+  this._connected = false;
+  this._setStatus('suspending');
+  return s;
+};
+
+/**
  * @private
  */
 JSJaCConnection.prototype._abort = function() {
@@ -2778,7 +3214,7 @@ JSJaCConnection.prototype._doLegacyAuth = function() {
    * Non-SASL Authentication as described in JEP-0078
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(null,'get','auth1');
+  iq.setIQ(this.server,'get','auth1');
   iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                 [['username', this.username]]);
 
@@ -2803,7 +3239,7 @@ JSJaCConnection.prototype._doLegacyAuth2 = function(iq) {
    * Send authentication
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(null,'set','auth2');
+  iq.setIQ(this.server,'set','auth2');
 
   query = iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                         [['username', this.username],
@@ -2985,7 +3421,7 @@ JSJaCConnection.prototype._doSASLAuthDone = function (el) {
  */
 JSJaCConnection.prototype._doStreamBind = function() {
   var iq = new JSJaCIQ();
-  iq.setIQ(null,'set','bind_1');
+  iq.setIQ(this.domain,'set','bind_1');
   iq.appendNode("bind", {xmlns: "urn:ietf:params:xml:ns:xmpp-bind"},
                 [["resource", this.resource]]);
   this.oDbg.log(iq.xml());
@@ -3007,7 +3443,7 @@ JSJaCConnection.prototype._doXMPPSess = function(iq) {
   this.jid = this.fulljid.substring(0,this.fulljid.lastIndexOf('/'));
  
   iq = new JSJaCIQ();
-  iq.setIQ(null,'set','sess_1');
+  iq.setIQ(this.domain,'set','sess_1');
   iq.appendNode("session", {xmlns: "urn:ietf:params:xml:ns:xmpp-session"},
                 []);
   this.oDbg.log(iq.xml());
@@ -3544,6 +3980,8 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
   var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
+  if (this.host || this.port)
+    reqstr += " route='xmpp:"+this.host+":"+this.port+"'";
   if (this.secure)
     reqstr += " secure='"+this.secure+"'";
   if (JSJAC_HAVEKEYS) {
