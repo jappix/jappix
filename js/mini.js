@@ -126,7 +126,7 @@ function connected() {
 function saveSession() {
 	if((typeof con != 'undefined') && con && con.connected()) {
 		// Save the actual Jappix Mini DOM
-                setDB('jappix-mini', con.domain, $('#jappix_mini').html());
+                setDB('jappix-mini', 'dom', $('#jappix_mini').html());
 		
 		// Suspend connection
 		con.suspend();
@@ -139,6 +139,9 @@ function saveSession() {
 function disconnected() {
 	// Remove Jappix Mini when disconnected
 	$('#jappix_mini').remove();
+	
+	// Remove the stored DOM
+	removeDB('jappix-mini', 'dom');
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -537,7 +540,7 @@ function updateRoster() {
 // Creates the Jappix Mini DOM content
 function createMini(domain, user, password) {
 	// Try to restore the DOM
-        var dom = getDB('jappix-mini', domain);
+        var dom = getDB('jappix-mini', 'dom');
 	var suspended = true;
 	
 	// New DOM
@@ -1030,7 +1033,7 @@ function launchMini(domain, user, password) {
 		MINI_ANONYMOUS = true;
 	
 	// Append the mini stylesheet
-	$('head').append('<link id="jappix_mini_css" rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&amp;t=css&amp;g=mini.xml" type="text/css" media="all" />');
+	$('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&amp;t=css&amp;g=mini.xml" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	$(document).keydown(function(e) {
