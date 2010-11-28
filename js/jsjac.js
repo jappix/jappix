@@ -295,16 +295,19 @@ String.prototype.htmlEnc = function() {
  * @type Date
  */
 Date.jab2date = function(ts) {
+  // Get the UTC date
   var date = new Date(Date.UTC(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2)));
+  
   if (ts.substr(ts.length-6,1) != 'Z') { // there's an offset
+    var date_offset = date.getTimezoneOffset() * 60 * 1000;
     var offset = new Date();
     offset.setTime(0);
     offset.setUTCHours(ts.substr(ts.length-5,2));
     offset.setUTCMinutes(ts.substr(ts.length-2,2));
     if (ts.substr(ts.length-6,1) == '+')
-      date.setTime(date.getTime() - offset.getTime());
+      date.setTime(date.getTime() + offset.getTime() + date_offset);
     else if (ts.substr(ts.length-6,1) == '-')
-      date.setTime(date.getTime() + offset.getTime());
+      date.setTime(date.getTime() - offset.getTime() + date_offset);
   }
   return date;
 };
@@ -3214,7 +3217,7 @@ JSJaCConnection.prototype._doLegacyAuth = function() {
    * Non-SASL Authentication as described in JEP-0078
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(this.server,'get','auth1');
+  iq.setIQ(null,'get','auth1');
   iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                 [['username', this.username]]);
 
@@ -3239,7 +3242,7 @@ JSJaCConnection.prototype._doLegacyAuth2 = function(iq) {
    * Send authentication
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(this.server,'set','auth2');
+  iq.setIQ(null,'set','auth2');
 
   query = iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                         [['username', this.username],
@@ -3421,7 +3424,7 @@ JSJaCConnection.prototype._doSASLAuthDone = function (el) {
  */
 JSJaCConnection.prototype._doStreamBind = function() {
   var iq = new JSJaCIQ();
-  iq.setIQ(this.domain,'set','bind_1');
+  iq.setIQ(null,'set','bind_1');
   iq.appendNode("bind", {xmlns: "urn:ietf:params:xml:ns:xmpp-bind"},
                 [["resource", this.resource]]);
   this.oDbg.log(iq.xml());
@@ -3443,7 +3446,7 @@ JSJaCConnection.prototype._doXMPPSess = function(iq) {
   this.jid = this.fulljid.substring(0,this.fulljid.lastIndexOf('/'));
  
   iq = new JSJaCIQ();
-  iq.setIQ(this.domain,'set','sess_1');
+  iq.setIQ(null,'set','sess_1');
   iq.appendNode("session", {xmlns: "urn:ietf:params:xml:ns:xmpp-session"},
                 []);
   this.oDbg.log(iq.xml());
@@ -3980,8 +3983,6 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
   var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
-  if (this.host || this.port)
-    reqstr += " route='xmpp:"+this.host+":"+this.port+"'";
   if (this.secure)
     reqstr += " secure='"+this.secure+"'";
   if (JSJAC_HAVEKEYS) {
