@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 29/11/10
 
 */
 
@@ -37,7 +37,8 @@ function firstPresence(checksum) {
 		status = '';
 	
 	// We tell the world that we are online
-	sendPresence('', '', '', status, checksum);
+	if(!is_anonymous)
+		sendPresence('', '', '', status, checksum);
 	
 	// Change the title of the presence input
 	$('#my-infos .f-presence').attr('title', status);
@@ -702,7 +703,8 @@ function presenceSend(checksum, autoidle) {
 	var status = $('.textPresence').val();
 	
 	// Send the presence
-	sendPresence('', '', show, status, checksum);
+	if(!isAnonymous())
+		sendPresence('', '', show, status, checksum);
 	
 	// We set the good icon
 	presenceIcon(show);
