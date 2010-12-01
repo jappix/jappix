@@ -8,7 +8,7 @@ This is the manager CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/11/10
+Last revision: 01/12/10
 
 */
 
@@ -72,7 +72,7 @@ Last revision: 05/11/10
 }
 
 #manager input[type=radio] {
-	margin-top: 1px;
+	margin: 2px 8px 5px 0;
 }
 
 #manager input[type=text],

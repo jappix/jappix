@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 29/11/10
+Last revision: 01/12/10
 
 */
 
@@ -43,7 +43,7 @@ function anonymousConnected(con) {
 		presenceSend();
 		
 		// Change the title
-		pageTitle('talk');
+		updateTitle();
 	}
 	
 	// Remove the waiting icon

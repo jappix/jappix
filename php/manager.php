@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 01/12/10
 
 */
 
@@ -500,10 +500,10 @@ else
 				
 				<p><?php _e("Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"); ?></p>
 				
-				<label class="master" for="background_default"><?php _e("Use default background"); ?></label><input id="background_default" type="radio" name="background_type" value="default"<?php echo($background_default); ?> />
+				<label class="master" for="background_default"><input id="background_default" type="radio" name="background_type" value="default"<?php echo($background_default); ?> /><?php _e("Use default background"); ?></label>
 				
 				<?php if($backgrounds_number) { ?>
-					<label class="master" for="background_image"><?php _e("Use your own image"); ?></label><input id="background_image" type="radio" name="background_type" value="image"<?php echo($background_image); ?> />
+					<label class="master" for="background_image"><input id="background_image" type="radio" name="background_type" value="image"<?php echo($background_image); ?> /><?php _e("Use your own image"); ?></label>
 				
 					<div class="sub">
 						<p><?php _e("Select a background to use and change the display options."); ?></p>
@@ -555,7 +555,7 @@ else
 					</div>
 				<?php } ?>
 				
-				<label class="master" for="background_color"><?php _e("Use your own color"); ?></label><input id="background_color" type="radio" name="background_type" value="color"<?php echo($background_color); ?> />
+				<label class="master" for="background_color"><input id="background_color" type="radio" name="background_type" value="color"<?php echo($background_color); ?> /><?php _e("Use your own color"); ?></label>
 				
 				<div class="sub">
 					<p><?php _e("Type the hexadecimal color value you want to use as a background."); ?></p>
@@ -598,15 +598,15 @@ else
 				
 				<p><?php _e("Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."); ?></p>
 				
-				<label class="master" for="notice_none"><?php _e("None"); ?></label><input id="notice_none" type="radio" name="notice_type" value="none"<?php echo($notice_none); ?> />
+				<label class="master" for="notice_none"><input id="notice_none" type="radio" name="notice_type" value="none"<?php echo($notice_none); ?> /><?php _e("None"); ?></label>
 				
-				<label class="master" for="notice_simple"><?php _e("Simple notice"); ?></label><input id="notice_simple" type="radio" name="notice_type" value="simple"<?php echo($notice_simple); ?> />
+				<label class="master" for="notice_simple"><input id="notice_simple" type="radio" name="notice_type" value="simple"<?php echo($notice_simple); ?> /><?php _e("Simple notice"); ?></label>
 				
 				<div class="sub">
 					<p><?php _e("This notice only needs simple text to be displayed, but no code is allowed!"); ?></p>
 				</div>
 				
-				<label class="master" for="notice_advanced"><?php _e("Advanced notice"); ?></label><input id="notice_advanced" type="radio" name="notice_type" value="advanced"<?php echo($notice_advanced); ?> />
+				<label class="master" for="notice_advanced"><input id="notice_advanced" type="radio" name="notice_type" value="advanced"<?php echo($notice_advanced); ?> /><?php _e("Advanced notice"); ?></label>
 				
 				<div class="sub">
 					<p><?php _e("You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."); ?></p>

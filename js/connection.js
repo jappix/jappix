@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/11/10
+Last revision: 01/12/10
 
 */
 
@@ -214,7 +214,7 @@ function handleConnected() {
 		presenceSend();
 		
 		// Change the title
-		pageTitle('talk');
+		updateTitle();
 	}
 	
 	// Remove the waiting item

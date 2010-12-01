@@ -32,13 +32,16 @@ function checkNotifications() {
 	
 	// Any notification?
 	if(number) {
-		$(notif).prepend('<div class="notify">' + number + '</div>');
+		$(notif).prepend('<div class="notify one-counter" data-counter="' + number + '">' + number + '</div>');
 		$(nothing).hide();
 	}
 	
 	// No notification!
 	else
 		$(nothing).show();
+	
+	// Update the page title
+	updateTitle();
 }
 
 // Creates a new notification

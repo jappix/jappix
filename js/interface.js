@@ -36,7 +36,7 @@ function pageTitle(title) {
 			break;
 		
 		case 'new':
-			select.html('[*] Jappix &bull; ' + head_name);
+			select.html('[' + pendingEvents() + '] Jappix &bull; ' + head_name);
 			
 			break;
 		
@@ -195,18 +195,43 @@ function messageNotify(hash, type) {
 	
 	// We notify the user if he has not the focus on the chat
 	if(!active || !document.hasFocus()) {
-		if(type == 'personnal') {
-			// Tab not focused?
-			if(!active)
-				$(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
-			
-			// In all cases, notify with the title
-			pageTitle('new');
-		}
-		
+		if((type == 'personnal') && !active)
+			$(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
 		else
 			$(tested).addClass('chan-unread');
+		
+		// Count the number of pending messages
+		var pending = 1;
+		
+		if(exists('#' + hash + '[data-counter]'))
+			pending = parseInt($('#' + hash).attr('data-counter')) + 1;
+		
+		$('#' + hash).attr('data-counter', pending);
 	}
+	
+	// Update the page title
+	updateTitle();
+}
+
+// Returns the number of pending events
+function pendingEvents() {
+	// Count the number of notifications
+	var number = 0;
+	
+	$('.one-counter[data-counter]').each(function() {
+		number = number + parseInt($(this).attr('data-counter'));
+	});
+	
+	return number;
+}
+
+// Updates the page title
+function updateTitle() {
+	// Any pending events?
+	if(exists('.one-counter[data-counter]'))
+		pageTitle('new');
+	else
+		pageTitle('talk');
 }
 
 // Cleans the given chat notifications
@@ -216,10 +241,14 @@ function chanCleanNotify(hash) {
 	$(chat_switch + hash).removeClass('chan-newmessage chan-unread');
 	
 	// We reset the global notifications if no more unread messages
-	if(!$(chat_switch + 'chans .chan-newmessage').size()) {
+	if(!$(chat_switch + 'chans .chan-newmessage').size())
 		$(chat_switch + 'more-button').removeClass('chan-newmessage');
-		pageTitle('talk');
-	}
+	
+	// We reset the chat counter
+	$('#' + hash).removeAttr('data-counter');
+	
+	// Update the page title
+	updateTitle();
 }
 
 // Scrolls to the last chat message
