@@ -406,12 +406,14 @@ function getEverything() {
 
 // Plugin launcher
 function launchConnection() {
+	// Nothing to do when anonymous!
+	if(isAnonymous())
+		return;
+	
 	// Try to resume a stored session, if not anonymous
 	var session = getPersistent('session', 1);
 	
-	if(!isAnonymous() && ($(session).find('stored').text() == 'true')) {
-		logThis('Saved session found, resuming it...', 3);
-		
+	if($(session).find('stored').text() == 'true') {
 		// Hide the homepage
 		$('#home').hide();
 		
@@ -420,6 +422,8 @@ function launchConnection() {
 		
 		// Login!
 		loginFromSession(session);
+		
+		logThis('Saved session found, resuming it...', 3);
 	}
 	
 	// Not connected, maybe a XMPP link is submitted?
