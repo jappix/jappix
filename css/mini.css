@@ -32,6 +32,7 @@ Last revision: 01/12/10
 #jappix_mini a {
 	text-decoration: none;
 	outline-style: none;
+	cursor: pointer;
 }
 
 #jappix_mini a:hover {
@@ -45,7 +46,6 @@ Last revision: 01/12/10
 	border-color: #999999;
 	border-style: solid;
 	border-width: 1px 1px 0 1px;
-	color: #333333;
 	font-weight: bold;
 	display: block;
 	padding: 6px;
@@ -57,18 +57,19 @@ Last revision: 01/12/10
 }
 
 #jappix_mini div.jm_starter,
-#jappix_mini div.jm_conversations {
-	float: left;
-}
-
+#jappix_mini div.jm_conversations,
 #jappix_mini div.jm_conversation {
 	float: left;
 	position: relative;
 }
 
+#jappix_mini div.jm_conversation {
+	width: 140px;
+}
+
 #jappix_mini a.jm_chat-tab {
-	padding: 6px 14px 6px 6px;
 	border-width: 1px 0 0 1px;
+	width: 127px;
 	float: right;
 	overflow: hidden;
 }
@@ -78,7 +79,7 @@ Last revision: 01/12/10
 	position: relative;
 	border-top: none;
 	border-left: 1px solid #999999;
-	padding: 7px 14px 6px 6px;
+	padding-top: 7px;
 	max-width: 210px;
 	overflow: hidden;
 }
@@ -87,20 +88,17 @@ Last revision: 01/12/10
 	background-color: #c60505;
 	color: white;
 	font-size: 0.85em;
-	margin: -1px 0 0 8px;
 	padding: 1px 5px;
-	float: right;
+	position: absolute;
+	top: 6px;
+	right: 9px;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
 
-#jappix_mini div.jm_conversation[data-type=groupchat] a.jm_chat-tab {
-	padding-left: 14px;
-}
-
-#jappix_mini div.jm_conversation[data-type=groupchat] span.jm_presence {
-	display: none;
+#jappix_mini div.jm_conversation[data-type=groupchat] span.jm_name {
+	margin-left: 4px;
 }
 
 #jappix_mini div.jm_chat-content {
@@ -228,6 +226,7 @@ Last revision: 01/12/10
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
+	width: 100%;
 	max-height: 300px;
 	padding: 5px 0;
 	overflow: auto;
@@ -247,7 +246,6 @@ Last revision: 01/12/10
 	border-color: white;
 	border-style: solid;
 	border-width: 1px 0;
-	width: 148px;
 	padding: 6px;
 	display: block;
 }
@@ -268,10 +266,11 @@ Last revision: 01/12/10
 
 #jappix_mini a.jm_button {
 	padding: 6px 10px;
+	position: relative;
+	z-index: 1;
 }
 
 #jappix_mini a.jm_button.jm_clicked {
-	position: relative;
 	background: white;
 	border-top: none;
 	border-left: 1px solid #999999;
@@ -292,6 +291,14 @@ Last revision: 01/12/10
 	height: 16px;
 	width: 16px;
 	margin-right: 4px;
+	float: left;
+}
+
+#jappix_mini span.jm_name {
+	color: #333333;
+	height: 14px;
+	width: 105px;
+	overflow: hidden;
 	float: left;
 }
 

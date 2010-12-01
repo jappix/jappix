@@ -123,11 +123,16 @@ function connected() {
 			if(!MINI_GROUPCHATS[i])
 				continue;
 			
-			// Current chat room
-			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
+			// Using a try/catch override IE issues
+			try {
+				// Current chat room
+				var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
+				
+				// Open the current chat
+				chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+			}
 			
-			// Open the current chat
-			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+			catch(e) {}
 		}
 	}
 	
@@ -594,45 +599,59 @@ function createMini(domain, user, password) {
 	
 	// The click events
 	$('#jappix_mini a.jm_button').click(function() {
-		var counter = '#jappix_mini a.jm_pane.jm_button span.jm_counter';
-		
-		// Cannot open the roster?
-		if($(counter).text() == _e("Please wait..."))
-			return false;
-		
-		// Not yet connected?
-		if(!MINI_CONNECTING && !MINI_AUTOCONNECT) {
-			// Add a waiting marker
-			$(counter).text(_e("Please wait..."));
+		// Using a try/catch override IE issues
+		try {
+			var counter = '#jappix_mini a.jm_pane.jm_button span.jm_counter';
 			
-			// Launch the connection!
-			connect(domain, user, password);
+			// Cannot open the roster?
+			if($(counter).text() == _e("Please wait..."))
+				return false;
 			
-			return false;
+			// Not yet connected?
+			if(!MINI_CONNECTING && !MINI_AUTOCONNECT) {
+				// Add a waiting marker
+				$(counter).text(_e("Please wait..."));
+				
+				// Launch the connection!
+				connect(domain, user, password);
+				
+				return false;
+			}
+			
+			// Normal actions
+			if(!$(this).hasClass('jm_clicked'))
+				showRoster();
+			else
+				hideRoster();
 		}
 		
-		// Normal actions
-		if(!$(this).hasClass('jm_clicked'))
-			showRoster();
-		else
-			hideRoster();
+		catch(e) {}
 		
-		return false;
+		finally {
+			return false;
+		}
 	});
 	
 	$('#jappix_mini div.jm_actions a.jm_join').click(function() {
-		var join_this = prompt(_e("Please enter the group chat address to join."), '');
-		
-		// Any submitted chat to join?
-		if(join_this) {
-			// Get the chat room to join
-			chat_room = bareXID(generateXID(join_this, 'groupchat'));
+		// Using a try/catch override IE issues
+		try {
+			var join_this = prompt(_e("Please enter the group chat address to join."), '');
 			
-			// Create a new groupchat
-			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+			// Any submitted chat to join?
+			if(join_this) {
+				// Get the chat room to join
+				chat_room = bareXID(generateXID(join_this, 'groupchat'));
+				
+				// Create a new groupchat
+				chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+			}
 		}
 		
-		return false;
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
 	});
 	
 	// Hides the roster when clicking away of Jappix Mini
@@ -654,9 +673,16 @@ function createMini(domain, user, password) {
 	if(suspended && con.resume()) {
 		// Restore buddy click events
 		$('#jappix_mini a.jm_friend').click(function() {
-			chat('chat', unescape($(this).attr('data-xid')), unescape($(this).attr('data-nick')), $(this).attr('data-hash'));
+			// Using a try/catch override IE issues
+			try {
+				chat('chat', unescape($(this).attr('data-xid')), unescape($(this).attr('data-nick')), $(this).attr('data-hash'));
+			}
 			
-			return false;
+			catch(e) {}
+			
+			finally {
+				return false;
+			}
 		});
 		
 		// Restore chat click events
@@ -736,14 +762,14 @@ function displayMessage(type, body, nick, hash, message_type) {
 function switchPane(element, hash) {
 	// Hide every item
 	$('#jappix_mini a.jm_pane').removeClass('jm_clicked');
-	$('#jappix_mini div.jm_roster, #jappix_mini .jm_chat-content').hide();
+	$('#jappix_mini div.jm_roster, #jappix_mini div.jm_chat-content').hide();
 	
 	// Show the asked element
 	if(element && (element != 'roster')) {
 		var current = '#jappix_mini #' + element;
 		
 		$(current + ' a.jm_pane').addClass('jm_clicked');
-		$(current + ' .jm_chat-content').show();
+		$(current + ' div.jm_chat-content').show();
 		$(current + ' input.jm_send-messages').focus();
 		
 		// Scroll to the last message
@@ -781,25 +807,6 @@ function chat(type, xid, nick, hash) {
 			}
 		}
 		
-		// Get the icon to show
-		var show = 'available';
-		
-		// Get the presence of this friend
-		if(type != 'groupchat') {
-			var selector = $('#jappix_mini a#friend-' + hash + ' span.jm_presence');
-			
-			if(selector.hasClass('jm_unavailable'))
-				show = 'unavailable';
-			else if(selector.hasClass('jm_chat'))
-				show = 'chat';
-			else if(selector.hasClass('jm_away'))
-				show = 'away';
-			else if(selector.hasClass('jm_xa'))
-				show = 'xa';
-			else if(selector.hasClass('jm_dnd'))
-				show = 'dnd';
-		}
-		
 		// Create the HTML markup
 		$('#jappix_mini div.jm_conversations').append(
 			'<div class="jm_conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
@@ -818,9 +825,34 @@ function chat(type, xid, nick, hash) {
 					'</form>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_chat-tab mini-images" href="#"><span class="jm_presence mini-images jm_' + show + '"></span> ' + nick.htmlEnc() + '</a>' + 
+				'<a class="jm_pane jm_chat-tab mini-images" href="#">' + 
+					'<span class="jm_name">' + nick.htmlEnc() + '</span>' + 
+				'</a>' + 
 			'</div>'
 		);
+		
+		// Get the presence of this friend
+		if(type != 'groupchat') {
+			var selector = $('#jappix_mini a#friend-' + hash + ' span.jm_presence');
+			
+			// Default presence
+			var show = 'available';
+			
+			// Read the presence
+			if(selector.hasClass('jm_unavailable'))
+				show = 'unavailable';
+			else if(selector.hasClass('jm_chat'))
+				show = 'chat';
+			else if(selector.hasClass('jm_away'))
+				show = 'away';
+			else if(selector.hasClass('jm_xa'))
+				show = 'xa';
+			else if(selector.hasClass('jm_dnd'))
+				show = 'dnd';
+			
+			// Create the presence marker
+			$(current + ' a.jm_chat-tab').prepend('<span class="jm_presence mini-images jm_' + show + '"></span>');
+		}
 		
 		// The click events
 		chatEvents(type, xid, hash);
@@ -852,47 +884,64 @@ function chatEvents(type, xid, hash) {
 	
 	// Click on the tab
 	$(current + ' a.jm_chat-tab').click(function() {
-		// Not yet opened: open it!
-		if(!$(this).hasClass('jm_clicked')) {
-			// Show it!
-			$(current + ' .jm_chat-content').show();
-			$(this).addClass('jm_clicked');
-			switchPane('chat-' + hash, hash);
+		// Using a try/catch override IE issues
+		try {
+			// Not yet opened: open it!
+			if(!$(this).hasClass('jm_clicked')) {
+				// Show it!
+				switchPane('chat-' + hash, hash);
+				
+				// Clear the eventual notifications
+				clearNotifications(hash);
+			}
 			
-			// Clear the eventual notifications
-			clearNotifications(hash);
+			// Yet opened: close it!
+			else
+				switchPane();
 		}
 		
-		// Yet opened: close it!
-		else {
-			$(current + ' .jm_chat-content').hide();
-			$(this).removeClass('jm_clicked');
-		}
+		catch(e) {}
 		
-		return false;
+		finally {
+			return false;
+		}
 	});
 	
 	// Click on the close button
 	$(current + ' a.jm_close').click(function() {
-		$(current).remove();
-		
-		// Quit the groupchat?
-		if(type == 'groupchat') {
-			// Send an unavailable presence
-			presence('unavailable', '', '', '', xid + '/' + unescape($(current).attr('data-nick')));
+		// Using a try/catch override IE issues
+		try {
+			$(current).remove();
 			
-			// Remove this groupchat!
-			removeGroupchat(xid);
+			// Quit the groupchat?
+			if(type == 'groupchat') {
+				// Send an unavailable presence
+				presence('unavailable', '', '', '', xid + '/' + unescape($(current).attr('data-nick')));
+				
+				// Remove this groupchat!
+				removeGroupchat(xid);
+			}
 		}
 		
-		return false;
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
 	});
 	
 	// Click on the chat content
 	$(current + ' div.jm_received-messages').click(function() {
-		$(current + ' input.jm_send-messages').focus();
+		// Using a try/catch override IE issues
+		try {
+			$(current + ' input.jm_send-messages').focus();
+		}
 		
-		return false;
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
 	});
 	
 	// Focus on the chat input
@@ -911,8 +960,7 @@ function showRoster() {
 
 // Hides the roster
 function hideRoster() {
-	$('#jappix_mini div.jm_roster').hide();
-	$('#jappix_mini a.jm_button').removeClass('jm_clicked');
+	switchPane();
 }
 
 // Removes a groupchat from DOM
@@ -962,7 +1010,7 @@ function addBuddy(xid, hash, nick, groupchat) {
 	}
 	
 	// Append this buddy content
-	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence mini-images jm_unavailable"></span> ' + nick.htmlEnc() + '</a>';
+	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence mini-images jm_unavailable"></span>' + nick.htmlEnc() + '</a>';
 	
 	if(groupchat)
 		$(path).append(code);
@@ -971,9 +1019,16 @@ function addBuddy(xid, hash, nick, groupchat) {
 	
 	// Click event on this buddy
 	$(element).click(function() {
-		chat('chat', xid, nick, hash);
+		// Using a try/catch override IE issues
+		try {
+			chat('chat', xid, nick, hash);
+		}
 		
-		return false;
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
 	});
 	
 	return true;
@@ -1047,7 +1102,7 @@ function adaptRoster() {
 
 // Plugin launcher
 function launchMini(autoconnect, show_pane, domain, user, password) {
-	// Browser not taken in charge?
+	// Browser not taken in charge (IE6 and lower)?
 	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
 		logThis('This browser is not taken in charge (' + BrowserDetect.browser + ' ' + BrowserDetect.version + ').', 2);
 		
