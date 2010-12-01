@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/11/10
+Last revision: 01/12/10
 
 */
 
@@ -39,7 +39,6 @@ function connect(domain, user, password) {
 		// We define the http binding parameters
 		oArgs = new Object();
 		oArgs.httpbase = HOST_BOSH;
-		oArgs.timerval = 2000;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);
@@ -370,9 +369,9 @@ function handlePresence(pr) {
 	
 	// Is this friend online?
 	if(show == 'unavailable')
-		$(friend).addClass('jm_offline').removeClass('online');
+		$(friend).addClass('jm_offline').removeClass('jm_online');
 	else
-		$(friend).removeClass('jm_offline').addClass('online');
+		$(friend).removeClass('jm_offline').addClass('jm_online');
 	
 	// Change the show presence of this buddy
 	$(friend + ' span.jm_presence').attr('class', 'jm_presence mini-images jm_' + show);
@@ -553,7 +552,7 @@ function clearNotifications(hash) {
 
 // Updates the roster counter
 function updateRoster() {
-	$('#jappix_mini a.jm_button span.jm_counter').text($('#jappix_mini a.online').size());
+	$('#jappix_mini a.jm_button span.jm_counter').text($('#jappix_mini a.jm_online').size());
 }
 
 // Creates the Jappix Mini DOM content

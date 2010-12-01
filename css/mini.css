@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/11/10
+Last revision: 01/12/10
 
 */
 
@@ -174,7 +174,7 @@ Last revision: 30/11/10
 }
 
 #jappix_mini div.jm_received-messages p {
-	margin: 2px 6px;
+	margin: 3px 6px;
 }
 
 #jappix_mini div.jm_received-messages p.jm_group {

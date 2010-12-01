@@ -26,7 +26,6 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		// We define the http binding parameters
 		oArgs = new Object();
 		oArgs.httpbase = HOST_BOSH;
-		oArgs.timerval = 2000;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);
@@ -102,7 +101,6 @@ function doRegister(username, domain, pass) {
 		// We define the http binding parameters
 		oArgs = new Object();
 		oArgs.httpbase = HOST_BOSH;
-		oArgs.timerval = 2000;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);

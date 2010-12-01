@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/11/10
+Last revision: 01/12/10
 
 */
 
@@ -1026,7 +1026,7 @@ JSJAC_TIMERVAL = 2000;          // default polling interval
 // Options specific to HTTP Binding (BOSH)
 JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
                                     // connection maanger 
-JSJACHBC_MAX_WAIT = 300;        // default 'wait' param - how long an idle connection
+JSJACHBC_MAX_WAIT = 60;        // default 'wait' param - how long an idle connection
                                     // should be held by connection manager
 
 JSJACHBC_BOSH_VERSION  = "1.6";
@@ -3982,6 +3982,7 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  * @private
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
+  // build the request string
   var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
   if (this.secure)
     reqstr += " secure='"+this.secure+"'";
