@@ -960,7 +960,8 @@ function showRoster() {
 
 // Hides the roster
 function hideRoster() {
-	switchPane();
+	$('#jappix_mini div.jm_roster').hide();
+	$('#jappix_mini a.jm_button').removeClass('jm_clicked');
 }
 
 // Removes a groupchat from DOM
