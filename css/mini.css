@@ -56,13 +56,8 @@ Last revision: 01/12/10
 	border-color: #666666;
 }
 
+#jappix_mini div.jm_starter,
 #jappix_mini div.jm_conversations {
-	position: relative;
-	float: left;
-}
-
-#jappix_mini div.jm_starter {
-	position: relative;
 	float: left;
 }
 
@@ -123,8 +118,12 @@ Last revision: 01/12/10
 	border-bottom: 1px solid #19445f;
 	height: 14px;
 	padding: 4px 6px;
-	color: white;
 	font-weight: bold;
+}
+
+#jappix_mini div.jm_actions span.jm_nick {
+	float: left;
+	color: white;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action {
@@ -168,7 +167,7 @@ Last revision: 01/12/10
 }
 
 #jappix_mini div.jm_received-messages {
-	padding: 5px 0;
+	padding: 5px 0 4px;
 	height: 232px;
 	overflow: auto;
 }
@@ -245,11 +244,12 @@ Last revision: 01/12/10
 }
 
 #jappix_mini a.jm_friend {
-	display: block;
-	padding: 6px;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px 0;
+	width: 148px;
+	padding: 6px;
+	display: block;
 }
 
 #jappix_mini a.jm_friend.jm_offline {

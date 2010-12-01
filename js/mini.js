@@ -253,7 +253,7 @@ function handleIQ(iq) {
 		
 		iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix Mini'));
 		iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
-		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, osDetect()));
+		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
 		
 		con.send(iqResponse);
 		
@@ -570,13 +570,13 @@ function createMini(domain, user, password) {
 				'<div class="jm_roster">' + 
 					'<div class="jm_actions">' + 
 						'<a class="jm_logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
-						'<a class="jm_one-action jm_join mini-images" title="' + _e("Join a chat") + '"></a>' + 
+						'<a class="jm_one-action jm_join mini-images" title="' + _e("Join a chat") + '" href="#"></a>' + 
 					'</div>' + 
 					
 					'<div class="jm_buddies"></div>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_button mini-images"><span class="jm_counter mini-images">' + _e("Please wait...") + '</span></a>' + 
+				'<a class="jm_pane jm_button mini-images" href="#"><span class="jm_counter mini-images">' + _e("Please wait...") + '</span></a>' + 
 			'</div>';
 		
 		suspended = false;
@@ -606,7 +606,9 @@ function createMini(domain, user, password) {
 			$(counter).text(_e("Please wait..."));
 			
 			// Launch the connection!
-			return connect(domain, user, password);
+			connect(domain, user, password);
+			
+			return false;
 		}
 		
 		// Normal actions
@@ -652,7 +654,9 @@ function createMini(domain, user, password) {
 	if(suspended && con.resume()) {
 		// Restore buddy click events
 		$('#jappix_mini a.jm_friend').click(function() {
-			return chat('chat', unescape($(this).attr('data-xid')), unescape($(this).attr('data-nick')), $(this).attr('data-hash'));
+			chat('chat', unescape($(this).attr('data-xid')), unescape($(this).attr('data-nick')), $(this).attr('data-hash'));
+			
+			return false;
 		});
 		
 		// Restore chat click events
@@ -801,8 +805,8 @@ function chat(type, xid, nick, hash) {
 			'<div class="jm_conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 
-						nick + 
-						'<a class="jm_one-action jm_close mini-images" title="' + _e("Close") + '"></a>' + 
+						'<span class="jm_nick">' + nick + '</span>' + 
+						'<a class="jm_one-action jm_close mini-images" title="' + _e("Close") + '" href="#"></a>' + 
 					'</div>' + 
 					
 					'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
@@ -814,7 +818,7 @@ function chat(type, xid, nick, hash) {
 					'</form>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_chat-tab mini-images"><span class="jm_presence mini-images jm_' + show + '"></span> ' + nick.htmlEnc() + '</a>' + 
+				'<a class="jm_pane jm_chat-tab mini-images" href="#"><span class="jm_presence mini-images jm_' + show + '"></span> ' + nick.htmlEnc() + '</a>' + 
 			'</div>'
 		);
 		
@@ -850,7 +854,7 @@ function chatEvents(type, xid, hash) {
 	$(current + ' a.jm_chat-tab').click(function() {
 		// Not yet opened: open it!
 		if(!$(this).hasClass('jm_clicked')) {
-			// The routine to show it
+			// Show it!
 			$(current + ' .jm_chat-content').show();
 			$(this).addClass('jm_clicked');
 			switchPane('chat-' + hash, hash);
@@ -958,7 +962,7 @@ function addBuddy(xid, hash, nick, groupchat) {
 	}
 	
 	// Append this buddy content
-	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '"><span class="jm_presence mini-images jm_unavailable"></span> ' + nick.htmlEnc() + '</a>';
+	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence mini-images jm_unavailable"></span> ' + nick.htmlEnc() + '</a>';
 	
 	if(groupchat)
 		$(path).append(code);
@@ -967,7 +971,9 @@ function addBuddy(xid, hash, nick, groupchat) {
 	
 	// Click event on this buddy
 	$(element).click(function() {
-		return chat('chat', xid, nick, hash);
+		chat('chat', xid, nick, hash);
+		
+		return false;
 	});
 	
 	return true;
@@ -1041,6 +1047,13 @@ function adaptRoster() {
 
 // Plugin launcher
 function launchMini(autoconnect, show_pane, domain, user, password) {
+	// Browser not taken in charge?
+	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
+		logThis('This browser is not taken in charge (' + BrowserDetect.browser + ' ' + BrowserDetect.version + ').', 2);
+		
+		return false;
+	}
+	
 	// Anonymous mode?
 	if(!user || !password)
 		MINI_ANONYMOUS = true;

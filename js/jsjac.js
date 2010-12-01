@@ -3982,7 +3982,6 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  * @private
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
-  // build the request string
   var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
   if (this.secure)
     reqstr += " secure='"+this.secure+"'";

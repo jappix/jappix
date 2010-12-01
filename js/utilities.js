@@ -188,18 +188,6 @@ function isPrivate(xid) {
 	return false;
 }
 
-// Gets the OS of the user
-function osDetect() {
-	var platform = navigator.platform;
-	
-	if	(platform.indexOf('Win') != -1) platform = 'Windows';
-	else if	(platform.indexOf('Linux') != -1) platform = 'Linux';
-	else if	(platform.indexOf('Mac') != -1) platform = 'MacOS';
-	else if	(platform.indexOf('X11') != -1) platform = 'UNIX';
-	
-	return platform;
-}
-
 // Adds a zero to a date when needed
 function padZero(i) {
 	// Negative number (without first 0)

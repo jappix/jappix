@@ -8,7 +8,7 @@ These are the IQ JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 01/12/10
 
 */
 
@@ -37,7 +37,7 @@ function handleIQ(iq) {
 		
 		iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix'));
 		iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
-		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, osDetect()));
+		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
 		
 		con.send(iqResponse);
 		

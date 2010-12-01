@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 01/12/10
 
 */
 
@@ -134,17 +134,6 @@ function resetDOM() {
 /* END SHOW/HIDE FUNCTIONS */
 
 /* BEGIN SYSTEM FUNCTIONS */
-
-function osDetect() {
-	var platform = navigator.platform;
-	
-	if(platform.indexOf('Win') != -1) platform = 'Windows';
-	else if(platform.indexOf('Linux') != -1) platform = 'Linux';
-	else if(platform.indexOf('Mac') != -1) platform = 'MacOS';
-	else if(platform.indexOf('X11') != -1) platform = 'UNIX';
-	
-	return platform;
-}
 
 function exists(id) {
 	if(!document.getElementById(id))
@@ -285,7 +274,7 @@ function handleIQ(iq) {
 		
 		iqQuery.appendChild(iq.buildNode('name', 'Jappix Mobile'));
 		iqQuery.appendChild(iq.buildNode('version', JAPPIX_VERSION));
-		iqQuery.appendChild(iq.buildNode('os', osDetect()));
+		iqQuery.appendChild(iq.buildNode('os', BrowserDetect.OS));
 		
 		con.send(iqResponse);
 	}
