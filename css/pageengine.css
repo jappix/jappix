@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 03/12/10
 
 */
 
@@ -105,9 +105,9 @@ Last revision: 21/11/10
 	right: 0;
 	bottom: 29px;
 	overflow: auto;
-	box-shadow: 0 3px 10px #e8e8e8 inset;
-	-moz-box-shadow: 0 3px 10px #e8e8e8 inset;
-	-webkit-box-shadow: 0 3px 10px #e8e8e8 inset;
+	box-shadow: inset 0 3px 10px #e8e8e8;
+	-moz-box-shadow: inset 0 3px 10px #e8e8e8;
+	-webkit-box-shadow: inset 0 3px 10px #e8e8e8;
 }
 
 #page-engine .content {

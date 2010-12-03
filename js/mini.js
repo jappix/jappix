@@ -758,8 +758,7 @@ function displayMessage(type, body, nick, hash, time, message_type) {
 	       .replace(/(:O|:-O)(\s|$)/gi, smiley('surprised'))
 	       .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile'))
 	       .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy'))
-	       .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'))
-	       .replace(/(>:-\))(\s|$)/gi, smiley('evilgrin'));
+	       .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'));
 	
 	// Filter the links
 	body = '<p>' + filterLinks(body, 'mini') + '</p>';

@@ -157,11 +157,11 @@ Last revision: 03/12/10
 }
 
 #jappix_mini div.jm_actions a.jm_close {
-	background-position: 1px -325px;
+	background-position: 1px -309px;
 }
 
 #jappix_mini div.jm_actions a.jm_join {
-	background-position: 0 -311px;
+	background-position: 0 -295px;
 }
 
 #jappix_mini div.jm_received-messages {
@@ -289,7 +289,7 @@ Last revision: 03/12/10
 }
 
 #jappix_mini span.jm_counter {
-	background-position: 0 -288px;
+	background-position: 0 -272px;
 	color: #333333;
 	min-height: 16px;
 	padding-left: 25px;
@@ -353,7 +353,7 @@ Last revision: 03/12/10
 }
 
 #jappix_mini .jm_smiley-surprised {
-	background-position: 0 -206px;
+	background-position: 0 -196px;
 }
 
 #jappix_mini .jm_smiley-smile {
@@ -366,8 +366,4 @@ Last revision: 03/12/10
 
 #jappix_mini .jm_smiley-grin {
 	background-position: 0 -244px;
-}
-
-#jappix_mini .jm_smiley-evilgrin {
-	background-position: 0 -260px;
 }

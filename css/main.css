@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 03/12/10
 
 */
 
@@ -45,9 +45,9 @@ textarea {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	box-shadow: 0 3px 10px #dcdcdc inset;
-	-moz-box-shadow: 0 3px 10px #dcdcdc inset;
-	-webkit-box-shadow: 0 3px 10px #dcdcdc inset;
+	box-shadow: inset 0 3px 10px #dcdcdc;
+	-moz-box-shadow: inset 0 3px 10px #dcdcdc;
+	-webkit-box-shadow: inset 0 3px 10px #dcdcdc;
 }
 
 textarea {
@@ -57,9 +57,9 @@ textarea {
 input:focus,
 textarea:focus {
 	border: 1px solid #e1a014;
-	box-shadow: 0 3px 10px #edd9bc inset;
-	-moz-box-shadow: 0 3px 10px #edd9bc inset;
-	-webkit-box-shadow: 0 3px 10px #edd9bc inset;
+	box-shadow: inset 0 3px 10px #edd9bc;
+	-moz-box-shadow: inset 0 3px 10px #edd9bc;
+	-webkit-box-shadow: inset 0 3px 10px #edd9bc;
 }
 
 input[disabled],
@@ -76,9 +76,9 @@ input[type=checkbox] {
 .please-complete:hover,
 .please-complete:focus {
 	border: 1px #ac2525 solid !important;
-	box-shadow: 0 3px 10px #f39c9c inset !important;
-	-moz-box-shadow: 0 3px 10px #f39c9c inset !important;
-	-webkit-box-shadow: 0 3px 10px #f39c9c inset !important;
+	box-shadow: inset 0 3px 10px #f39c9c !important;
+	-moz-box-shadow: inset 0 3px 10px #f39c9c !important;
+	-webkit-box-shadow: inset 0 3px 10px #f39c9c !important;
 }
 
 .hidden {
