@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 03/12/10
 
 */
 
@@ -263,7 +263,7 @@ function getMicroblog(xid, hash) {
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
 				'<div class="content individual microblog-' + hash + '">' + 
-					'<a class="more" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
+					'<a class="more home-images" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
