@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 03/12/10
 
 */
 
@@ -185,6 +185,14 @@ function handleMessage(msg) {
 			var hash = hex_md5(xid);
 			var nick = thisResource(from);
 			
+			// Read the delay
+			var delay = readMessageDelay(msg.getNode());
+			
+			if(delay)
+				time = relativeDate(delay);
+			else
+				time = getCompleteTime();
+			
 			// Is this a groupchat private message?
 			if(exists('#jappix_mini #chat-' + hash + '[data-type=groupchat]') && ((type == 'chat') || !type)) {
 				// Regenerate some stuffs
@@ -223,7 +231,7 @@ function handleMessage(msg) {
 				chat(type, xid, nick, hash);
 			
 			// Display the message
-			displayMessage(type, body, nick, hash, message_type);
+			displayMessage(type, body, nick, hash, time, message_type);
 			
 			// Notify the user if not focused & the message is not a groupchat old one
 			if((!$(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !document.hasFocus()) && (message_type == 'user-message'))
@@ -484,7 +492,7 @@ function sendMessage(aForm) {
 			
 			// Display the message we sent
 			if(type != 'groupchat')
-				displayMessage(type, body, 'me', hash, 'user-message');
+				displayMessage(type, body, 'me', hash, getCompleteTime(), 'user-message');
 			
 			logThis('Message (' + type + ') sent to: ' + xid);
 		}
@@ -711,29 +719,34 @@ function createMini(domain, user, password) {
 }
 
 // Displays a given message
-function displayMessage(type, body, nick, hash, message_type) {
+function displayMessage(type, body, nick, hash, time, message_type) {
 	// Generate some stuffs
 	var path = '#chat-' + hash;
 	var escaped_nick = escape(nick);
 	
 	// Remove the previous message border if needed
-	var last = $(path + ' p:last');
+	var last = $(path + ' div.jm_group:last');
 	var last_b = $(path + ' b:last');
 	var last_nick = last_b.attr('data-nick');
 	var last_type = last.attr('data-type');
+	var grouped = false;
 	var header = '';
 	
 	if((last_nick == escaped_nick) && (message_type == last_type))
-		last.removeClass('jm_group');
+		grouped = true;
 	
 	else {
+		// Write the message date
+		if(nick)
+			header += '<span class="jm_date">' + time + '</span>';
+		
 		// Write the buddy name at the top of the message group
 		if(type == 'groupchat')
-			header = '<b style="color: ' + generateColor(nick) + ';" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
+			header += '<b style="color: ' + generateColor(nick) + ';" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
 		else if(nick == 'me')
-			header = '<b class="jm_me" data-nick="' + escaped_nick + '">' + _e("You") + '</b>';
+			header += '<b class="jm_me" data-nick="' + escaped_nick + '">' + _e("You") + '</b>';
 		else
-			header = '<b class="jm_him" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
+			header += '<b class="jm_him" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
 	}
 	
 	// Filter the message
@@ -749,10 +762,13 @@ function displayMessage(type, body, nick, hash, message_type) {
 	       .replace(/(>:-\))(\s|$)/gi, smiley('evilgrin'));
 	
 	// Filter the links
-	body = filterLinks(body, 'mini');
+	body = '<p>' + filterLinks(body, 'mini') + '</p>';
 	
-	// Display the message
-	$('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<p class="jm_group" data-type="' + message_type + '">' + header + body + '</p>');
+	// Create the message
+	if(grouped)
+		$('#jappix_mini #chat-' + hash + ' div.jm_received-messages div.jm_group:last').append(body);
+	else
+		$('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group" data-type="' + message_type + '">' + header + body + '</div>');
 	
 	// Scroll to the last element
 	messageScroll(hash);
@@ -808,7 +824,7 @@ function chat(type, xid, nick, hash) {
 		}
 		
 		// Create the HTML markup
-		$('#jappix_mini div.jm_conversations').append(
+		$('#jappix_mini div.jm_conversations').prepend(
 			'<div class="jm_conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 

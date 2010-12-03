@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 03/12/10
 
 */
 
@@ -171,16 +171,16 @@ Last revision: 01/12/10
 }
 
 #jappix_mini div.jm_received-messages p {
-	margin: 3px 6px;
+	margin: 3px 0;
 }
 
-#jappix_mini div.jm_received-messages p.jm_group {
+#jappix_mini div.jm_received-messages div.jm_group {
 	margin: 2px 6px 9px 6px;
 	padding-bottom: 8px;
 	border-bottom: 1px solid #eaeaea;
 }
 
-#jappix_mini div.jm_received-messages p[data-type=system-message] {
+#jappix_mini div.jm_received-messages div[data-type=system-message] p {
 	color: #053805;
 }
 
@@ -188,7 +188,7 @@ Last revision: 01/12/10
 	text-decoration: underline;
 }
 
-#jappix_mini div.jm_received-messages p[data-type=system-message] a {
+#jappix_mini div.jm_received-messages div[data-type=system-message] a {
 	color: #053805;
 }
 
@@ -203,6 +203,16 @@ Last revision: 01/12/10
 
 #jappix_mini div.jm_received-messages b.jm_him {
 	color: #801e1e;
+}
+
+#jappix_mini div.jm_received-messages span.jm_date {
+	font-size: 0.8em;
+	float: right;
+	display: none;
+}
+
+#jappix_mini div.jm_received-messages div.jm_group:hover span.jm_date {
+	display: block;
 }
 
 #jappix_mini input.jm_send-messages {
