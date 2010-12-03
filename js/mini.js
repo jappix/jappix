@@ -948,16 +948,7 @@ function chatEvents(type, xid, hash) {
 	
 	// Click on the chat content
 	$(current + ' div.jm_received-messages').click(function() {
-		// Using a try/catch override IE issues
-		try {
-			$(current + ' input.jm_send-messages').focus();
-		}
-		
-		catch(e) {}
-		
-		finally {
-			return false;
-		}
+		$(current + ' input.jm_send-messages').focus();
 	});
 	
 	// Focus on the chat input
