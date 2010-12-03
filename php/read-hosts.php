@@ -10,7 +10,7 @@ This is the hosts configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 03/12/10
 
 */
 
@@ -26,7 +26,7 @@ $hosts_conf = array(
 	      	'muc'		=> 'muc.jappix.com',
 	      	'vjud'		=> 'vjud.jappix.com',
 	      	'anonymous'	=> 'anonymous.jappix.com',
-	      	'bosh'		=> 'http://bind.jappix.com/',
+	      	'bosh'		=> 'https://bind.jappix.com/',
 	      	'static'	=> '.'
 	      );
 
