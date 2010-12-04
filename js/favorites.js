@@ -386,8 +386,8 @@ function handleGCList(iq) {
 				
 				if(roomXID && roomName) {
 					// Escaped values
-					var escaped_xid = jsEscape(encodeQuotes(roomXID));
-					var escaped_name = jsEscape(encodeQuotes(roomName));
+					var escaped_xid = encodeOnclick(roomXID);
+					var escaped_name = encodeOnclick(roomName);
 					
 					// Initialize the room HTML
 					html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 

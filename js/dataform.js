@@ -170,7 +170,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	var buttonsCode = '<div class="oneresult ' + target + '-oneresult ' + target + '-formtools">';
 	
 	if(action == 'submit') {
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + jsEscape(encodeQuotes(type)) + '\', \'submit\', \'' + jsEscape(encodeQuotes(id)) + '\', \'' + jsEscape(encodeQuotes(xid)) + '\', \'' + jsEscape(encodeQuotes(node)) + '\', \'' + jsEscape(encodeQuotes(sessionid)) + '\', \'' + jsEscape(encodeQuotes(status)) + '\', \'' + jsEscape(encodeQuotes(target)) + '\');">' + _e("Submit") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 		
 		// When keyup on one text input
 		$(pathID + ' input[type=text]').keyup(function(e) {
@@ -180,7 +180,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	}
 	
 	if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + jsEscape(encodeQuotes(type)) + '\', \'cancel\', \'' + jsEscape(encodeQuotes(id)) + '\', \'' + jsEscape(encodeQuotes(xid)) + '\', \'' + jsEscape(encodeQuotes(node)) + '\', \'' + jsEscape(encodeQuotes(sessionid)) + '\', \'' + jsEscape(encodeQuotes(status)) + '\', \'' + jsEscape(encodeQuotes(target)) + '\');">' + _e("Cancel") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
 		buttonsCode += '<a class="back" onclick="return openDiscovery();">' + _e("Close") + '</a>';
@@ -250,7 +250,7 @@ function handleDataFormContent(iq, type) {
 					// Special node
 					if(itemNode)
 						$(pathID).append(
-							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + jsEscape(encodeQuotes(itemHost)) + '\', \'browse\', \'' + jsEscape(encodeQuotes(itemNode)) + '\', \'' + jsEscape(encodeQuotes(target)) + '\');">' + 
+							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'' + encodeOnclick(target) + '\');">' + 
 								'<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
 							'</div>'
 						);
@@ -418,7 +418,7 @@ function handleDataFormContent(iq, type) {
 					
 					// We display the waiting element
 					$(pathID).prepend(
-						'<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return dataForm(\'' + jsEscape(encodeQuotes(itemHost)) + '\', \'command\', \'' + jsEscape(encodeQuotes(itemNode)) + '\', \'execute\', \'' + jsEscape(encodeQuotes(target)) + '\');">' + 
+						'<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'command\', \'' + encodeOnclick(itemNode) + '\', \'execute\', \'' + encodeOnclick(target) + '\');">' + 
 							'<div class="one-name">' + itemName + '</div>' + 
 							'<div class="one-next">»</div>' + 
 						'</div>'
@@ -667,7 +667,7 @@ function handleThisBrowse(iq) {
 		
 		for(i in buttons) {
 			if(buttons[i])
-				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + jsEscape(encodeQuotes(from)) + '\', \'' + jsEscape(encodeQuotes(aTools[i])) + '\', \'\', \'\', \'' + jsEscape(encodeQuotes(target)) + '\');" title="' + jsEscape(encodeQuotes(bTools[i])) + '"></a>';
+				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
 		}
 		
 		// As defined in the ref, we detect the type of each category to put an icon

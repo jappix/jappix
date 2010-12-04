@@ -145,6 +145,11 @@ function encodeQuotes(str) {
 	return str.replace(/"/g, '&quot;');
 }
 
+// Encodes a string for onclick attribute
+function encodeOnclick(str) {
+	return jsEscape(encodeQuotes(str));
+}
+
 // Gets the bare XID from a XID
 function bareXID(xid) {
 	// Cut the resource
