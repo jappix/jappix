@@ -8,7 +8,7 @@ These are the notification JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 

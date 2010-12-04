@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 22/11/10
+Last revision: 04/12/10
 
 */
 
@@ -868,7 +868,7 @@ function keepGet($current, $no_get) {
 
 // Escapes regex special characters for in-regex usage
 function escapeRegex($string) {
-	return preg_replace('/[-[\]{}()*+?.,\\^$|#\s]/', '\\$&', $string);
+	return preg_replace('/[-[\]{}()*+?.,\\^$|#]/', '\\$&', $string);
 }
 
 // Generates the security HTML code
