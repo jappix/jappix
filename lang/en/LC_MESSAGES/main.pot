@@ -920,7 +920,7 @@ msgstr ""
 msgid "Select a favorite"
 msgstr ""
 
-msgid "Adress"
+msgid "Getting the name..."
 msgstr ""
 
 msgid "Gateway"

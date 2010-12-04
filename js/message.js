@@ -98,7 +98,7 @@ function handleMessage(message) {
 			iRoom = from;
 		
 		// We display the notification
-		newNotification('invite/room', iFrom, iRoom, body);
+		newNotification('invite/room', iFrom, [iRoom], body);
 		
 		return false;
 	}
@@ -106,7 +106,7 @@ function handleMessage(message) {
 	// Request message
 	if(message.getChild('confirm', NS_HTTP_AUTH)) {
 		// Open a new notification
-		newNotification('request', xid, message, body);
+		newNotification('request', xid, [message], body);
 		
 		return false;
 	}

@@ -110,7 +110,7 @@ function createTalkPage() {
 								
 								'<div class="buddy-conf-subitem">' + 
 									'<p class="buddy-conf-p">' + _e("Add a friend") +  '</p>' + 
-									'<label><span>' + _e("Adress") +  '</span><input type="text" class="buddy-conf-input add-contact-jid" required="" /></label>' + 
+									'<label><span>' + _e("Address") +  '</span><input type="text" class="buddy-conf-input add-contact-jid" required="" /></label>' + 
 									'<label><span>' + _e("Name") +  '</span><input type="text" class="buddy-conf-input add-contact-name" /></label>' +  
 									'<label>' + 
 										'<span>' + _e("Gateway") +  '</span>' + 
@@ -118,7 +118,7 @@ function createTalkPage() {
 											'<option value="none" selected="">' + _e("None") +  '</option>' + 
 										'</select>' + 
 									'</label>' +  
-									'<span class="add-contact-name-get">' + _e("Getting the user name...") + '</span>' + 
+									'<span class="add-contact-name-get">' + _e("Getting the name...") + '</span>' + 
 								'</div>' + 
 							'</div>' + 
 						'</div>' + 

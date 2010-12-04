@@ -88,7 +88,7 @@ function handlePresence(presence) {
 		status = '';
 	
 	// We get the photo content
-	var photo = $(node).find('x[xmlns=' + NS_VCARD_P + '] photo');
+	var photo = $(node).find('x[xmlns=' + NS_VCARD_P + ']:first photo');
 	var checksum = photo.text();
 	var hasPhoto = photo.size();
 	
@@ -98,7 +98,7 @@ function handlePresence(presence) {
 		hasPhoto = 'false';
 	
 	// We get the CAPS content
-	var caps = $(node).find('c[xmlns=' + NS_CAPS + ']').attr('ver');
+	var caps = $(node).find('c[xmlns=' + NS_CAPS + ']:first').attr('ver');
 	if(!caps)
 		caps = '';
 	
@@ -108,7 +108,7 @@ function handlePresence(presence) {
 	
 	// This presence comes from a groupchat
 	if(isPrivate(xid)) {
-		var x_muc = $(node).find('x[xmlns=' + NS_MUC_USER + ']');
+		var x_muc = $(node).find('x[xmlns=' + NS_MUC_USER + ']:first');
 		var item = x_muc.find('item');
 		var affiliation = item.attr('affiliation');
 		var role = item.attr('role');
@@ -163,7 +163,7 @@ function handlePresence(presence) {
 	
 	// This presence comes from an user or a gateway
 	else {
-		// Subscribed & Unubscribed stanzas
+		// Subscribed & unsubscribed stanzas
 		if((type == 'subscribed') || (type == 'unsubscribed'))
 			return;
 		
@@ -173,9 +173,14 @@ function handlePresence(presence) {
 			if(exists('#buddy-list .buddy[data-xid=' + xid + ']'))
 				acceptSubscribe(xid);
 			
-			// We do not this entity, we'd be better ask the user
-			else
-				newNotification('subscribe', xid, xid, status);
+			// We do not know this entity, we'd be better ask the user
+			else {
+				// Get the nickname
+				var nickname = $(node).find('nick[xmlns=' + NS_NICK + ']:first').text();
+				
+				// New notification
+				newNotification('subscribe', xid, [xid, nickname], status);
+			}
 		}
 		
 		// Unsubscribe stanza
@@ -653,6 +658,12 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	// CAPS (entity capabilities)
 	presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'http://www.jappix.com/', 'ver': myCaps()});
 	
+	// Nickname
+	var nickname = getNick();
+	
+	if(nickname)
+		presence.appendNode('nick', {'xmlns': NS_NICK}, nickname);
+	
 	// vcard-temp:x:update node
 	var x = presence.appendNode('x', {'xmlns': NS_VCARD_P});
 	x.appendChild(presence.buildNode('photo', {'xmlns': NS_VCARD_P}, checksum));
@@ -743,6 +754,7 @@ function presenceIcon(value) {
 function sendSubscribe(to, type) {
 	var status = '';
 	
+	// Subscribe request?
 	if(type == 'subscribe')
 		status = printf(_e("Hi, I am %s, I would like to add you as my friend."), getName());
 	
@@ -750,15 +762,19 @@ function sendSubscribe(to, type) {
 }
 
 // Accepts the subscription from another entity
-function acceptSubscribe(to) {
+function acceptSubscribe(xid, name) {
 	// We update our chat
-	$('#' + hex_md5(to) + ' .tools-add').hide();
+	$('#' + hex_md5(xid) + ' .tools-add').hide();
 	
 	// We send a subsribed presence (to confirm)
-	sendSubscribe(to, 'subscribed');
+	sendSubscribe(xid, 'subscribed');
 	
 	// We send a subscription request (subscribe both sides)
-	sendSubscribe(to, 'subscribe');
+	sendSubscribe(xid, 'subscribe');
+	
+	// Specify the buddy name (if any)
+	if(name)
+		sendRoster(xid, '', name)
 }
 
 // Sends automatic away presence

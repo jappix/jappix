@@ -223,7 +223,11 @@ function applyBuddyInput(xid) {
 	// Keyup events
 	$(rename).keyup(function(e) {
 		if(e.keyCode == 13) {
-			updateRosterItem(xid, $(rename).val(), thisBuddyGroups(xid));
+			// Send the item
+			sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+			
+			// Remove the buddy editor
+			closeBubbles();
 			
 			return false;
 		}
@@ -233,7 +237,11 @@ function applyBuddyInput(xid) {
 		if(e.keyCode == 13) {
 			// Empty input?
 			if(!$(this).val()) {
-				updateRosterItem(xid, $(rename).val(), thisBuddyGroups(xid));
+				// Send the item
+				sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+				
+				// Remove the buddy editor
+				closeBubbles();
 				
 				return false;
 			}
@@ -300,7 +308,11 @@ function applyBuddyInput(xid) {
 	}); */
 	
 	$(manage_infos + ' a.save').click(function() {
-		updateRosterItem(xid, $(rename).val(), thisBuddyGroups(xid));
+		// Send the item
+		sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+		
+		// Remove the buddy editor
+		closeBubbles();
 		
 		return false;
 	});
@@ -399,23 +411,9 @@ function thisBuddyGroups(xid) {
 	return array;
 }
 
-// Sends a defined roster item
-function sendRoster(xid, subscription) {
-	var iq = new JSJaCIQ();
-	iq.setType('set');
-	
-	var iqQuery = iq.setQuery(NS_ROSTER);
-	var item = iqQuery.appendChild(iq.buildNode('item', {'xmlns': NS_ROSTER, 'jid': xid}));
-	
-	if(subscription)
-		item.setAttribute('subscription', subscription);
-	
-	con.send(iq);
-}
-
 // Adds a given contact to our roster
-function addThisContact(xid) {
-	logThis('Add this contact: ' + xid, 3);
+function addThisContact(xid, name) {
+	logThis('Add this contact: ' + xid + ', as ' + name, 3);
 	
 	// Cut the resource of this XID
 	xid = bareXID(xid);
@@ -424,7 +422,7 @@ function addThisContact(xid) {
 	if(xid) {
 		// We send the subscription
 		sendSubscribe(xid, 'subscribe');
-		sendRoster(xid);
+		sendRoster(xid, '', name);
 		
 		// We hide the bubble
 		closeBubbles();
@@ -529,10 +527,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 }
 
 // Updates the roster items
-function updateRosterItem(xid, rename, group) {
-	// Remove the buddy editor
-	closeBubbles();
-	
+function sendRoster(xid, subscription, name, group) {
 	// We send the new buddy name
 	var iq = new JSJaCIQ();
 	iq.setType('set');
@@ -540,14 +535,23 @@ function updateRosterItem(xid, rename, group) {
 	var iqQuery = iq.setQuery(NS_ROSTER);
 	var item = iqQuery.appendChild(iq.buildNode('item', {'xmlns': NS_ROSTER, 'jid': xid}));
 	
-	if(rename)
-		item.setAttribute('name', rename);
+	// Any subscription?
+	if(subscription)
+		item.setAttribute('subscription', subscription);
 	
-	if(group.length)
+	// Any name?
+	if(name)
+		item.setAttribute('name', name);
+	
+	// Any group?
+	if(group && group.length) {
 		for(i in group)
 			item.appendChild(iq.buildNode('group', {'xmlns': NS_ROSTER}, group[i]));
+	}
 	
 	con.send(iq);
+	
+	logThis('Roster item sent: ' + xid, 3);
 }
 
 // Adapts the roster height, depending of the window size
@@ -688,6 +692,7 @@ function launchRoster() {
 		if(e.keyCode == 13) {
 			// Get the values
 			var xid = $('.add-contact-jid').val();
+			var name = $('.add-contact-name').val();
 			var gateway = unescape($('.add-contact-gateway').val());
 			
 			// Generate the XID to add
@@ -698,7 +703,7 @@ function launchRoster() {
 			
 			// Submit the form
 			if(xid && (xid != getXID()))
-				addThisContact(xid);
+				addThisContact(xid, name);
 			else
 				$('.add-contact-jid').addClass('please-complete').focus();
 			

@@ -44,7 +44,7 @@ function generateXID(xid, type) {
 		return xid;
 	}
 	
-	// Nothing special (yet full XID)
+	// Nothing special (yet bare XID)
 	return xid;
 }
 

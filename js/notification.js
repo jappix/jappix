@@ -45,16 +45,16 @@ function checkNotifications() {
 }
 
 // Creates a new notification
-function newNotification(type, from, xid, body) {
+function newNotification(type, from, data, body) {
 	if(!type || !from)
 		return;
 	
 	logThis('New notification: ' + from, 3);
 	
-	// We generate an id hash
-	var id = hex_md5(type + xid + from + getCompleteTime());
+	// Generate an ID hash
+	var id = hex_md5(type + data[0] + from + getCompleteTime());
 	
-	// We generate the text to be displayed
+	// Generate the text to be displayed
 	var text, action, code;
 	
 	// User things
@@ -63,12 +63,18 @@ function newNotification(type, from, xid, body) {
 	
 	switch(type) {
 		case 'subscribe':
-			text = xid + ' ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
+			// Get the name to display
+			var display_name = data[1];
+			
+			if(!display_name)
+				display_name = data[0];
+			
+			text = display_name + ' ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
 			
 			break;
 		
 		case 'invite/room':
-			text = getBuddyName(from).htmlEnc() + ' ' + _e("would like you to join this chatroom:") + ' ' + xid + ' ' + _e("Do you accept?");
+			text = getBuddyName(from).htmlEnc() + ' ' + _e("would like you to join this chatroom:") + ' ' + data[0] + ' ' + _e("Do you accept?");
 			break;
 		
 		case 'request':
@@ -102,12 +108,12 @@ function newNotification(type, from, xid, body) {
 			
 			// The yes click function
 			$('.' + id + ' a.yes').click(function() {
-				actionNotification(type, xid, 'yes', id);
+				actionNotification(type, data, 'yes', id);
 			});
 			
 			// The no click function
 			$('.' + id + ' a.no').click(function() {
-				actionNotification(type, xid, 'no', id);
+				actionNotification(type, data, 'no', id);
 			});
 			
 			// Get the user avatar
@@ -122,17 +128,17 @@ function newNotification(type, from, xid, body) {
 // Performs an action on a given notification
 function actionNotification(type, data, value, id) {
 	// We launch a function depending of the type
-	if(type == 'subscribe' && value == 'yes')
-		acceptSubscribe(data);
+	if((type == 'subscribe') && (value == 'yes'))
+		acceptSubscribe(data[0], data[1]);
 	
-	else if(type == 'subscribe' && value == 'no')
-		sendSubscribe(data, 'unsubscribed');
+	else if((type == 'subscribe') && (value == 'no'))
+		sendSubscribe(data[0], 'unsubscribed');
 	
-	else if(type == 'invite/room' && value == 'yes')
-		checkChatCreate(data, 'groupchat');
+	else if((type == 'invite/room') && (value == 'yes'))
+		checkChatCreate(data[0], 'groupchat');
 	
 	else if(type == 'request')
-		requestReply(value, data);
+		requestReply(value, data[0]);
 	
 	// We remove the notification
 	$('.notifications-content .' + id).remove();
