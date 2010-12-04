@@ -442,17 +442,17 @@ function getName() {
 
 // Gets the MUC nickname of the user
 function getMUCNick(id) {
-	return $('#' + id).attr('data-nick');
+	return unescape($('#' + id).attr('data-nick'));
 }
 
 // Gets a MUC user XID
 function getMUCUserXID(room, nick) {
-	return unescape($('#' + hex_md5(room) + ' div[data-nick=' + nick + ']').attr('data-xid'));
+	return unescape($('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid'));
 }
 
 // Gets a MUC user read XID
 function getMUCUserRealXID(room, nick) {
-	return $('#' + hex_md5(room) + ' div[data-nick=' + nick + ']').attr('data-realxid');
+	return $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-realxid');
 }
 
 // Gets the server of the user

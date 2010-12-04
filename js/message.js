@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 04/12/10
 
 */
 
@@ -449,7 +449,7 @@ function sendMessage(id, type) {
 				sendPresence(xid + '/' + nick, '', show, status, '', false, false, handleErrorReply);
 				
 				// Change the stored nickname
-				$('#' + hex_md5(xid)).attr('data-nick', nick);
+				$('#' + hex_md5(xid)).attr('data-nick', escape(nick));
 			}
 			
 			// /msg shortcut

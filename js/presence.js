@@ -245,7 +245,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
-			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + nick_html + '"' + real_xid + '>' + 
+			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
 				'<div class="name talk-images available">' + nick_html + '</div>' + 
 				
 				'<div class="avatar-container">' + 
@@ -729,7 +729,7 @@ function presenceSend(checksum, autoidle) {
 	$('.page-engine-chan[data-type=groupchat]').each(function() {
 		// Not disabled?
 		if(!$(this).find('.message-area').attr('disabled'))
-			sendPresence($(this).attr('data-xid') + '/' + $(this).attr('data-nick'), '', show, status, '', true);
+			sendPresence($(this).attr('data-xid') + '/' + unescape($(this).attr('data-nick')), '', show, status, '', true);
 	});
 }
 
