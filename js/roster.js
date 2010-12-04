@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 
@@ -759,8 +759,4 @@ function launchRoster() {
 }
 
 // Window resize event handler
-$(window).resize(function() {
-	// Adapt the buddy-list size
-	if((typeof con != 'undefined') && con && con.connected())
-		adaptRoster();
-});
+$(window).resize(adaptRoster);
