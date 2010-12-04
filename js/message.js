@@ -193,6 +193,7 @@ function handleMessage(message) {
 					
 					break;
 				
+				// Tune
 				case NS_TUNE:
 					// Retrieve the values
 					var iTune = iParse.find('tune');
@@ -205,17 +206,32 @@ function handleMessage(message) {
 					
 					break;
 				
+				// Geolocation
 				case NS_GEOLOC:
 					// Retrieve the values
 					var iGeoloc = iParse.find('geoloc');
 					var tLat = iGeoloc.find('lat').text();
 					var tLon = iGeoloc.find('lon').text();
 					
+					// Any extra-values?
+					var tLocality = iGeoloc.find('locality').text();
+					var tCountry = iGeoloc.find('country').text();
+					var tHuman = '';
+					
+					// Build an human-readable location string
+					if(tLocality && tCountry)
+						tHuman = tLocality + ' (' + tCountry + ')';
+					else if(tLocality && !tCountry)
+						tHuman = tLocality;
+					else if(tCountry && !tLocality)
+						tHuman = tCountry;
+					
 					// Store the PEP event (and display it)
-					storePEP(xid, 'geoloc', tLat, tLon);
+					storePEP(xid, 'geoloc', tLat, tLon, tHuman);
 					
 					break;
 				
+				// Microblog
 				case NS_URN_MBLOG:
 					displayMicroblog(message, xid, hash, 'mixed');
 					

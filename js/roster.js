@@ -283,9 +283,9 @@ function applyBuddyInput(xid) {
 		sendSubscribe(xid, 'unsubscribed');
 	});
 	
-	$(manage_infos + ' p.bm-remove a.block').click(function() {
-		alert('[FEATURE NOT IMPLEMENTED]');
-	});
+	/* $(manage_infos + ' p.bm-remove a.block').click(function() {
+		// TODO
+	}); */
 	
 	$(manage_infos + ' a.save').click(function() {
 		updateRosterItem(xid, $(rename).val(), thisBuddyGroups(xid));
@@ -323,7 +323,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="collections">' + _e("Collections") + '</a></p>' + 
+							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a></p>' + 
 							'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
 					'</div>' + 
@@ -348,10 +348,6 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Channel
 				else if($(this).is('.channel'))
 					fromInfosMicroblog(xid, hash);
-				
-				// Collections
-				else
-					retrieveCollections(xid);
 			});
 			
 			$(bPath + ' .bi-edit a').click(function() {
@@ -467,7 +463,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 		html += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
 	
 	// Complete the HTML code
-	html += ' / <a class="block">' + _e("Block") + '</a>';
+	// html += ' / <a class="block">' + _e("Block") + '</a>';
 	
 	// Complete the HTML code
 	html += '</p>' + 
@@ -736,17 +732,6 @@ function launchRoster() {
 	// When the user wants to display only online buddies
 	$('.buddy-conf-more-display-available').click(function() {
 		showOnlineBuddies('roster');
-	});
-	
-	// When the user click on the map of friends link
-	$('.buddy-conf-more-map').click(function() {
-		openMap();
-		closeBubbles();
-	});
-	
-	// When the user click on the collections link
-	$('.buddy-conf-more-collections').click(function() {
-		openCollections();
 	});
 	
 	// When the user click on the archives link

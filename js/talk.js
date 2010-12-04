@@ -166,14 +166,6 @@ function createTalkPage() {
 										'<a class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
 									'</p>' + 
 									
-									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-more-map">' + _e("Map of friends") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-more-collections">' + _e("Your collections") +  '</a>' + 
-									'</p>' + 
-									
 									'<p class="buddy-conf-text archives-hidable">' + 
 										'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
 									'</p>' + 

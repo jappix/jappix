@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 04/12/10
 
 */
 
@@ -31,7 +31,7 @@ function storePEP(xid, type, value1, value2, value3) {
 		if(type == 'tune')
 			xml += '<artist>' + value1 + '</artist><title>' + value2 + '</title><album>' + value3 + '</album>';
 		else if(type == 'geoloc')
-			xml += '<lat>' + value1 + '</lat><lon>' + value2 + '</lon>';
+			xml += '<lat>' + value1 + '</lat><lon>' + value2 + '</lon><human>' + value3 + '</human>';
 		else
 			xml += '<value>' + value1 + '</value><text>' + value2 + '</text>';
 		
@@ -163,11 +163,16 @@ function displayPEP(xid, type) {
 				// Parse the geoloc XML
 				var tLat = value.find('lat').text();
 				var tLon = value.find('lon').text();
+				var tHuman = value.find('human').text();
+				
+				// No human location?
+				if(!tHuman)
+					tHuman = _e("See his/her position on the globe");
 				
 				// Generate the text to be displayed
 				if(tLat && tLon) {
 					aLink = ' href="http://www.openstreetmap.org/?mlat=' + tLat + '&amp;mlon=' + tLon + '&amp;zoom=14" target="_blank"';
-					fText = '<a' + aLink + '>' + _e("See his/her position on the globe") + '</a>';
+					fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
 					dText = tLat + '; ' + tLon;
 				}
 				
