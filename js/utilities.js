@@ -589,54 +589,6 @@ function logThis(data, level) {
 	return true;
 }
 
-// Gets all the buddies in our roster
-function getAllBuddies() {
-	var buddies = new Array();
-	
-	$('#buddy-list .buddy').each(function() {
-		var xid = $(this).attr('data-xid');
-		
-		if(xid)
-			buddies.push(xid);
-	});
-	
-	return buddies;
-}
-
-// Enables a feature
-function enableFeature(feature) {
-	setDB('feature', feature, 'true');
-}
-
-// Checks if a feature is enabled
-function enabledFeature(feature) {
-	if(getDB('feature', feature) == 'true')
-		return true;
-	else
-		return false;
-}
-
-// Returns the XMPP server PEP support
-function enabledPEP() {
-	return enabledFeature('pep');
-}
-
-// Returns the XMPP server PubSub support
-function enabledPubSub() {
-	return enabledFeature(NS_PUBSUB);
-}
-
-// Returns the XMPP server archives support
-function enabledArchives(sub) {
-	var xmlns = NS_URN_ARCHIVE;
-	
-	// Any sub element sent?
-	if(sub)
-		xmlns += ':' + sub;
-	
-	return enabledFeature(xmlns);
-}
-
 // Converts a XML document into a string
 function xmlToString(xmlData) {
 	// For Internet Explorer

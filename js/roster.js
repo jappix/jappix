@@ -545,6 +545,35 @@ function adaptRoster() {
 	$('#buddy-list .content').css('height', new_height);
 }
 
+// Gets all the buddies in our roster
+function getAllBuddies() {
+	var buddies = new Array();
+	
+	$('#buddy-list .buddy').each(function() {
+		var xid = $(this).attr('data-xid');
+		
+		if(xid)
+			buddies.push(xid);
+	});
+	
+	return buddies;
+}
+
+// Gets the user gateways
+function getGateways() {
+	// New array
+	var gateways = new Array();
+	var buddies = getAllBuddies();
+	
+	// Get the gateways
+	for(c in buddies) {
+		if(isGateway(buddies[c]))
+			gateways.push(buddies[c]);
+	}
+	
+	return gateways;
+}
+
 // Define a global var for buddy list all buddies displayed
 var BLIST_ALL = false;
 
@@ -592,6 +621,20 @@ function launchRoster() {
 	
 	// When the user click on the add button, show the contact adding tool
 	$('#buddy-list .foot .add').click(function() {
+		// Reset the stuffs
+		$('.add-contact-name-get').hide().removeAttr('data-ok');
+		$('.add-contact-name').val('');
+		$('.add-contact-gateway').val('none');
+		
+		// Remove the gateways
+		$('.add-contact-gateway option:not([value=none])').remove();
+		
+		// Add the gateways
+		var gateways = getGateways();
+		
+		for(i in gateways)
+			$('.add-contact-gateway').append('<option value="' + escape(gateways[i]) + '">' + gateways[i].htmlEnc() +  '</option>');
+		
 		// We show the requested div
 		showBubble('#buddy-conf-add');
 		
@@ -599,12 +642,36 @@ function launchRoster() {
 		$('.add-contact-jid').removeClass('please-complete').val('').focus();
 	});
 	
+	// Blur event on the add contact input
+	$('.add-contact-jid').blur(function() {
+		// Read the value
+		var value = $(this).val();
+		
+		// Try to catch the buddy name
+		if(value && !$('.add-contact-name').val()) {
+			// Defined XID
+			var xid = generateXID(value, 'chat');
+			
+			// Notice for the user
+			$('.add-contact-name-get').show();
+			
+			// Request the user vCard
+		}
+	});
+	
 	// When a key is pressed...
-	$('#buddy-conf-add input').keyup(function(e) {
+	$('#buddy-conf-add input, #buddy-conf-add select').keyup(function(e) {
 		// Enter : continue
 		if(e.keyCode == 13) {
 			// Get the values
-			var xid = generateXID($('.add-contact-jid').val(), 'chat');
+			var xid = $('.add-contact-jid').val();
+			var gateway = unescape($('.add-contact-gateway').val());
+			
+			// Generate the XID to add
+			if((gateway != 'none') && xid)
+				xid = xid.replace(/@/g, '%') + '@' + gateway;
+			else
+				xid = generateXID(xid, 'chat');
 			
 			// Submit the form
 			if(xid && (xid != getXID()))

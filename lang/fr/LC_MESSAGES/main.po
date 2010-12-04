@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-11-26 20:41:20\n"
+"PO-Revision-Date: 2010-12-04 19:18:23\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +27,7 @@ msgstr "Jappix a été interrompu par un problème réseau, un bug ou de mauvais
 
 #: 
 msgid "The element list on this server could not be obtained!"
-msgstr "La liste des éléments n'a pas pû être obtenue du serveur."
+msgstr "La liste des éléments n'a pas pu être obtenue du serveur."
 
 #: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
@@ -162,16 +162,16 @@ msgid "Only show connected friends"
 msgstr "N'afficher que les amis en ligne"
 
 #: 
-msgid "Map of friends"
-msgstr "Carte des amis"
+#~ msgid "Map of friends"
+#~ msgstr "Carte des amis"
 
 #: 
-msgid "Your collections"
-msgstr "Vos collections"
+#~ msgid "Your collections"
+#~ msgstr "Vos collections"
 
 #: 
-msgid "Collections"
-msgstr "Collections"
+#~ msgid "Collections"
+#~ msgstr "Collections"
 
 #: 
 msgid "Message archives"
@@ -2624,4 +2624,12 @@ msgstr "Veuillez entrer un pseudonyme différent, le précédent n'est pas dispo
 #: 
 msgid "Please enter your nickname to join %s."
 msgstr "Veuillez entrer votre pseudonyme pour rejoindre %s."
+
+#: 
+msgid "Adress"
+msgstr "Adresse"
+
+#: 
+msgid "Gateway"
+msgstr "Passerelle"
 

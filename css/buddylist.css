@@ -477,10 +477,33 @@ Last revision: 21/11/10
 	height: 22px;
 }
 
-.add-contact-jid,
 .join-jid {
 	width: 220px;
 	margin-top: 5px;
+}
+
+.add-contact-jid,
+.add-contact-name,
+.add-contact-gateway {
+	width: 156px;
+	margin-bottom: 4px;
+}
+
+.add-contact-name-get {
+	font-size: 0.8em;
+	display: none;
+}
+
+.buddy-conf-subitem label {
+	clear: both;
+}
+
+.buddy-conf-subitem label span {
+	width: 76px;
+	height: 14px;
+	margin-top: 3px;
+	overflow: hidden;
+	float: left;
 }
 
 #buddy-conf-join ul {

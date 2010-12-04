@@ -140,3 +140,37 @@ function applyFeatures(id) {
 			$(path + 'archives-hidable.pref').show();
 	}
 }
+
+// Enables a feature
+function enableFeature(feature) {
+	setDB('feature', feature, 'true');
+}
+
+// Checks if a feature is enabled
+function enabledFeature(feature) {
+	if(getDB('feature', feature) == 'true')
+		return true;
+	else
+		return false;
+}
+
+// Returns the XMPP server PEP support
+function enabledPEP() {
+	return enabledFeature('pep');
+}
+
+// Returns the XMPP server PubSub support
+function enabledPubSub() {
+	return enabledFeature(NS_PUBSUB);
+}
+
+// Returns the XMPP server archives support
+function enabledArchives(sub) {
+	var xmlns = NS_URN_ARCHIVE;
+	
+	// Any sub element sent?
+	if(sub)
+		xmlns += ':' + sub;
+	
+	return enabledFeature(xmlns);
+}

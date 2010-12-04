@@ -920,6 +920,12 @@ msgstr ""
 msgid "Select a favorite"
 msgstr ""
 
+msgid "Adress"
+msgstr ""
+
+msgid "Gateway"
+msgstr ""
+
 msgid "Name"
 msgstr ""
 
