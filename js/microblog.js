@@ -97,7 +97,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		// Mixed mode
 		if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
 			// Get the nearest element
-			var nearest = sortMicroblog(tStamp);
+			var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
 			
 			// Append the content at the right position (date relative)
 			if(nearest == 0)
@@ -142,33 +142,6 @@ function displayMicroblog(packet, from, hash, mode) {
 	
 	// Display the avatar of this buddy
 	getAvatar(from, 'cache', 'true', 'forget');
-}
-
-// Returns the element which has a lower stamp than the current one
-function sortMicroblog(stamp) {
-	var array = new Array();
-	var i = 0;
-	var nearest = 0;
-	
-	// Add the stamp values to the array
-	$('#channel .mixed .one-update').each(function() {
-		var current_stamp = parseInt($(this).attr('data-stamp'));
-		
-		// Push it!
-		array.push(current_stamp);
-	});
-	
-	// Sort the array
-	array.sort();
-	
-	// Get the nearest stamp value
-	while(stamp > array[i]) {
-		nearest = array[i];
-		
-		i++;
-	}
-	
-	return nearest;
 }
 
 // Removes a given microblog item

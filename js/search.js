@@ -258,3 +258,30 @@ function funnelFilterBuddySearch(keycode) {
 	// Update the groups
 	updateGroups();
 }
+
+// Searches for the nearest element (with a lower stamp than the current one)
+function sortElementByStamp(stamp, element) {
+	var array = new Array();
+	var i = 0;
+	var nearest = 0;
+	
+	// Add the stamp values to the array
+	$(element).each(function() {
+		var current_stamp = parseInt($(this).attr('data-stamp'));
+		
+		// Push it!
+		array.push(current_stamp);
+	});
+	
+	// Sort the array
+	array.sort();
+	
+	// Get the nearest stamp value
+	while(stamp > array[i]) {
+		nearest = array[i];
+		
+		i++;
+	}
+	
+	return nearest;
+}

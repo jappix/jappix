@@ -234,11 +234,15 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 	if(exists(one_message))
 		return false;
 	
+	// Get the nearest element
+	var stamp = extractStamp(Date.jab2date(date));
+	var nearest = sortElementByStamp(stamp, '#inbox .one-message');
+	
 	// Get the buddy name
 	var name = getBuddyName(from).htmlEnc();
 	
 	// We generate the html code
-	var nContent = '<div class="one-message message-' + status + ' ' + id + ' ' + hex_md5(from) + '">' + 
+	var nContent = '<div class="one-message message-' + status + ' ' + id + ' ' + hex_md5(from) + '" data-stamp="' + stamp + '">' + 
 				'<div class="message-head">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
@@ -252,7 +256,10 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 			'</div>';
 	
 	// Display the message
-	$(inbox + 'inbox-results .inbox').prepend(nContent);
+	if(nearest == 0)
+		$(inbox + 'inbox-results .inbox').append(nContent);
+	else
+		$('#inbox .one-message[data-stamp=' + nearest + ']:first').before(nContent);
 	
 	// Click events
 	$(one_message + ' .message-head').click(function() {
