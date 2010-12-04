@@ -84,13 +84,19 @@ function getAvatar(xid, mode, enabled, photo) {
 function handleAvatar(iq) {
 	// Extract the XML values
 	var handleXML = iq.getNode();
-	var handleFrom = bareXID(getStanzaFrom(iq));
+	var handleFrom = fullXID(getStanzaFrom(iq));
+	
+	// Is this me? Remove the resource!
+	if(bareXID(handleFrom) == getXID())
+		handleFrom = bareXID(handleFrom);
+	
+	// Get some other values
 	var hash = hex_md5(handleFrom);
 	var find = $(handleXML).find('vCard');
 	var aChecksum = 'none';
 	var oChecksum = false;
 	
-	// This is me?
+	// Is this me?
 	if(handleFrom == getXID())
 		oChecksum = getDB('checksum', 1);
 	
