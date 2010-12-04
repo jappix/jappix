@@ -355,10 +355,17 @@ function checkInboxMessages() {
 	
 	// Any unread message?
 	if(unread) {
-		$(inbox_link).prepend('<div class="notify">' + unread + '</div>');
+		// Notify the user
+		$(inbox_link).prepend('<div class="notify one-counter" data-counter="' + unread + '">' + unread + '</div>');
+		
+		// Update the title
+		updateTitle();
 		
 		return true;
 	}
+	
+	// Anyway, update the title
+	updateTitle();
 	
 	return false;
 }
