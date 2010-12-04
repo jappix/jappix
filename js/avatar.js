@@ -98,30 +98,12 @@ function handleAvatar(iq) {
 	if(find.size()) {
 		// We get our profile details
 		if(handleFrom == getXID()) {
-			// Get the full name & the nickname
-			var pFull = find.find('FN:first').text();
-			var pNick = find.find('NICKNAME:first').text();
-			
-			// No full name?
-			if(!pFull) {
-				// Get the given name
-				var pN = find.find('N:first');
-				var pGiven = pN.find('GIVEN:first').text();
-				
-				if(pGiven) {
-					pFull = pGiven;
-					
-					// Get the family name (optional)
-					var pFamily = pN.find('FAMILY:first').text();
-					
-					if(pFamily)
-						pFull += ' ' + pFamily;
-				}
-			}
+			// Get the names
+			var names = generateBuddyName(iq);
 			
 			// Write the values to the database
-			setDB('profile', 'name', pFull);
-			setDB('profile', 'nick', pNick);
+			setDB('profile', 'name', names[0]);
+			setDB('profile', 'nick', names[1]);
 		}
 		
 		// We get the avatar

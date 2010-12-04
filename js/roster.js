@@ -151,6 +151,8 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 							group_toggle.removeClass('plus').addClass('minus');
 							group.show();
 						}
+						
+						return false;
 					});
 				}
 				
@@ -266,29 +268,41 @@ function applyBuddyInput(xid) {
 	$(manage_infos + ' p.bm-authorize a.to').click(function() {
 		closeBubbles();
 		sendSubscribe(xid, 'subscribed');
+		
+		return false;
 	});
 	
 	$(manage_infos + ' p.bm-authorize a.from').click(function() {
 		closeBubbles();
 		sendSubscribe(xid, 'subscribe');
+		
+		return false;
 	});
 	
 	$(manage_infos + ' p.bm-remove a.remove').click(function() {
 		closeBubbles();
 		sendRoster(xid, 'remove');
+		
+		return false;
 	});
 	
 	$(manage_infos + ' p.bm-remove a.prohibit').click(function() {
 		closeBubbles();
 		sendSubscribe(xid, 'unsubscribed');
+		
+		return false;
 	});
 	
 	/* $(manage_infos + ' p.bm-remove a.block').click(function() {
 		// TODO
+		
+		return false;
 	}); */
 	
 	$(manage_infos + ' a.save').click(function() {
 		updateRosterItem(xid, $(rename).val(), thisBuddyGroups(xid));
+		
+		return false;
 	});
 }
 
@@ -348,10 +362,14 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Channel
 				else if($(this).is('.channel'))
 					fromInfosMicroblog(xid, hash);
+				
+				return false;
 			});
 			
 			$(bPath + ' .bi-edit a').click(function() {
 				buddyEdit(xid, nick, subscription, groups);
+				
+				return false;
 			});
 		});
 	}, function() {
@@ -617,12 +635,14 @@ function launchRoster() {
 		
 		// Resets the filtering tool
 		resetFilterBuddySearch();
+		
+		return false;
 	});
 	
 	// When the user click on the add button, show the contact adding tool
 	$('#buddy-list .foot .add').click(function() {
 		// Reset the stuffs
-		$('.add-contact-name-get').hide().removeAttr('data-ok');
+		$('.add-contact-name-get').hide().removeAttr('data-for');
 		$('.add-contact-name').val('');
 		$('.add-contact-gateway').val('none');
 		
@@ -640,6 +660,8 @@ function launchRoster() {
 		
 		// We reset the input and focus on it
 		$('.add-contact-jid').removeClass('please-complete').val('').focus();
+		
+		return false;
 	});
 	
 	// Blur event on the add contact input
@@ -648,14 +670,15 @@ function launchRoster() {
 		var value = $(this).val();
 		
 		// Try to catch the buddy name
-		if(value && !$('.add-contact-name').val()) {
-			// Defined XID
+		if(value && !$('.add-contact-name').val() && ($('.add-contact-gateway').val() == 'none')) {
+			// User XID
 			var xid = generateXID(value, 'chat');
 			
 			// Notice for the user
-			$('.add-contact-name-get').show();
+			$('.add-contact-name-get').attr('data-for', escape(xid)).show();
 			
 			// Request the user vCard
+			getAddUserName(xid);
 		}
 	});
 	
@@ -701,6 +724,8 @@ function launchRoster() {
 		// We reset the input and focus on it
 		$('#buddy-conf-join .join-jid').removeClass('please-complete').val('').focus();
 		$('#buddy-conf-join .join-type').val('chat');
+		
+		return false;
 	});
 	
 	// When a key is pressed...
@@ -766,49 +791,67 @@ function launchRoster() {
 	$('#buddy-list .foot .groupchat').click(function() {
 		// We show the requested div
 		showBubble('#buddy-conf-groupchat');
+		
+		return false;
 	});
 	
 	// When the user wants to edit his groupchat favorites
 	$('.buddy-conf-groupchat-edit').click(function() {
 		openFavorites();
 		closeBubbles();
+		
+		return false;
 	});
 	
 	// When the user click on the more button, show the more menu
 	$('#buddy-list .foot .more').click(function() {
 		// We show the target bubble
 		showBubble('#buddy-conf-more');
+		
+		return false;
 	});
 	
 	// When the user click on the involve button, show the involve menu
 	$('#buddy-list .foot .involve').click(function() {
 		// We show the target bubble
 		showBubble('#buddy-conf-involve');
+		
+		return false;
 	});
 	
 	// When the user clicks on a link that fire the close bubble event
 	$('#buddy-conf-more .buddy-conf-text a, #buddy-conf-involve .buddy-conf-text a').click(function() {
 		closeBubbles();
+		
+		return false;
 	});
 	
 	// When the user wants to display all his buddies
 	$('.buddy-conf-more-display-unavailable').click(function() {
 		showAllBuddies('roster');
+		
+		return false;
 	});
 	
 	// When the user wants to display only online buddies
 	$('.buddy-conf-more-display-available').click(function() {
 		showOnlineBuddies('roster');
+		
+		return false;
 	});
 	
 	// When the user click on the archives link
 	$('.buddy-conf-more-archives').click(function() {
 		openArchives();
+		
+		return false;
 	});
 	
 	// When the user click on the service discovery link
 	$('.buddy-conf-more-service-disco').click(function() {
 		openDiscovery();
+		
+		return false;
 	});
 }
 

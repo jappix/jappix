@@ -6,9 +6,9 @@ This is the JSJaC library for Jappix (from trunk)
 -------------------------------------------------
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
-Author: Stefan Strigler, Valérian Saliou
+Authors: Stefan Strigler, Valérian Saliou, Zash
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 
@@ -285,6 +285,21 @@ String.prototype.htmlEnc = function() {
   str = str.replace(/\n/g,"<br />");
   return str;
 };
+
+/**
+ * Convert HTML entities to special chars
+ * @addon
+ * @return The normal string
+ * @type String
+ */
+String.prototype.revertHtmlEnc = function() {
+  var str = this.replace(/&amp;/gi,'&');
+  str = str.replace(/&lt;/gi,'<');
+  str = str.replace(/&gt;/gi,'>');
+  str = str.replace(/&quot;/gi,'\"');
+  str = str.replace(/<br( )?(\/)?>/gi,'\n');
+  return str;
+}
 
 /**
  * Converts from jabber timestamps to JavaScript Date objects
