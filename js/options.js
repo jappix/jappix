@@ -146,6 +146,8 @@ function optionsOpen() {
 	
 	// Associate the events
 	launchOptions();
+	
+	return false;
 }
 
 // Closes the options popup

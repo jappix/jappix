@@ -8,7 +8,7 @@ These are the bubble JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 24/11/10
+Last revision: 04/12/10
 
 */
 
@@ -19,7 +19,7 @@ function closeBubbles() {
 	$('.bubble.removable:visible').remove();
 	$('body').die('click');
 	
-	return true;
+	return false;
 }
 
 // Click function when a bubble is opened
@@ -56,5 +56,5 @@ function showBubble(selector) {
 			closeBubbles();
 	});
 	
-	return true;
+	return false;
 }

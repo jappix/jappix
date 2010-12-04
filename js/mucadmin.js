@@ -8,7 +8,7 @@ These are the muc-admin JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 04/12/10
 
 */
 
@@ -49,22 +49,22 @@ function openMucAdmin(xid) {
 					
 					'<label>' + _e("Member list") + '</label>' + 
 					'<div class="aut-member aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Owner list") + '</label>' + 
 					'<div class="aut-owner aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Administrator list") + '</label>' + 
 					'<div class="aut-admin aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Outcast list") + '</label>' + 
 					'<div class="aut-outcast aut-group">' + 
-						'<a class="aut-add" onclick="addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 				'</fieldset>' + 
 			'</div>' + 
@@ -74,7 +74,7 @@ function openMucAdmin(xid) {
 					'<legend>' + _e("Others") + '</legend>' + 
 					
 					'<label>' + _e("Destroy this MUC") + '</label>' + 
-					'<a onclick="destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
+					'<a onclick="return destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
 				'</fieldset>' + 
 			'</div>' + 
 		'</div>' + 
@@ -83,12 +83,15 @@ function openMucAdmin(xid) {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return saveMucAdmin();">' + _e("Save") + '</a>' + 
-		'<a class="finish" onclick="return closeMucAdmin();">' + _e("Cancel") + '</a>' + 
+		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
 	createPopup('muc-admin', html);
+	
+	// Associate the events
+	launchMucAdmin();
 	
 	// We query the room to edit
 	queryMucAdmin(xid, 'options');
@@ -185,6 +188,8 @@ function addInputMucAdmin(xid, affiliation) {
 	$('#muc-admin .' + hash + ' .aut-remove').click(function() {
 		removeInputMucAdmin(hash);
 	});
+	
+	return false;
 }
 
 // Handles the MUC admin form
@@ -375,6 +380,8 @@ function destroyMucAdminIQ(xid) {
 	con.send(iq, handleDestroyMucAdminIQ);
 	
 	logThis('MUC admin destroy sent: ' + xid, 3);
+	
+	return false;
 }
 
 // Performs the MUC room destroy functions
@@ -409,4 +416,16 @@ function saveMucAdmin() {
 	
 	// And we quit the popup
 	return closeMucAdmin();
+}
+
+// Plugin launcher
+function launchMucAdmin() {
+	// Click events
+	$('#muc-admin .bottom .finish.save').click(function() {
+		return saveMucAdmin();
+	});
+	
+	$('#muc-admin .bottom .finish.cancel').click(function() {
+		return closeMucAdmin();
+	});
 }

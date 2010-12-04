@@ -302,12 +302,23 @@ function createReconnect(mode) {
 		
 		// Can we cancel reconnection?
 		if(mode == 'normal')
-			html += '<a class="finish" onclick="return cancelReconnect();">' + _e("Cancel") + '</a>';
+			html += '<a class="finish cancel">' + _e("Cancel") + '</a>';
 		
-		html += '<a class="finish" onclick="return acceptReconnect(\'' + mode + '\');">' + _e("Reconnect") + '</a>' + 
+		html += '<a class="finish reconnect">' + _e("Reconnect") + '</a>' + 
 			'</div></div>';
 		
+		// Append the code
 		$('body').append(html);
+		
+		// Click events
+		if(mode == 'normal')
+			$('#reconnect a.finish.cancel').click(function() {
+				return cancelReconnect();
+			});
+		
+		$('#reconnect a.finish.reconnect').click(function() {
+			return acceptReconnect(mode);
+		});
 	}
 }
 
@@ -396,6 +407,8 @@ function normalQuit() {
 	
 	// We show an info
 	openThisInfo(3);
+	
+	return false;
 }
 
 // Gets all the users stuffs

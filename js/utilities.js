@@ -135,6 +135,11 @@ function stringPrep(string) {
 	return string;
 }
 
+// Escapes ' and " chars in a string
+function jsEscape(str) {
+	return str.replace(/'/g, '\\$&').replace(/"/g, '&quot;');
+}
+
 // Gets the bare XID from a XID
 function bareXID(xid) {
 	// Cut the resource

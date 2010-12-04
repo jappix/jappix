@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 
@@ -144,6 +144,10 @@ function exists(id) {
 
 function _e(string) {
 	return string;
+}
+
+function jsEscape(str) {
+	return str.replace(/'/g, '\\$&').replace(/"/g, '&quot;');
 }
 
 function getJappixLocation() {
@@ -344,18 +348,13 @@ function handleRoster(iq) {
 		if(!nick)
 			nick = getDirectNick(xid);
 		
-		// Escape the nick
-		nick = nick.replace(/'/,'’')
-			   .replace(/"/,'”')
-			   .htmlEnc();
-		
 		// Display the values
 		oneBuddy = document.createElement('a');
 		oneID = 'buddy-' + hash;
 		oneBuddy.setAttribute('id', oneID);
 		oneBuddy.setAttribute('class', 'one-buddy');
-		oneBuddy.setAttribute('onclick', 'chat(\'' + xid + '\', \'' + nick + '\');');
-		oneBuddy.innerHTML = nick;
+		oneBuddy.setAttribute('onclick', 'return chat(\'' + jsEscape(xid) + '\', \'' + jsEscape(nick) + '\');');
+		oneBuddy.innerHTML = nick.htmlEnc();
 		roster.appendChild(oneBuddy);
 	}
 	
@@ -555,6 +554,8 @@ function chat(xid, nick) {
 	
 	// Switch to the chat
 	chatSwitch('chat-' + hash);
+	
+	return false;
 }
 
 /* END CHAT FUNCTIONS */

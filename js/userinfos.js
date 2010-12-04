@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 04/12/10
 
 */
 
@@ -90,6 +90,8 @@ function openUserInfos(xid) {
 	
 	// We retrieve the user's vcard
 	retrieveUserInfos(xid);
+	
+	return false;
 }
 
 // Closes the user-infos popup

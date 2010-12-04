@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 24/11/10
+Last revision: 04/12/10
 
 */
 
@@ -79,9 +79,9 @@ function openFavorites() {
 					'</div>' + 
 					
 					'<div class="fedit-actions">' + 
-						'<a class="fedit-terminate fedit-add add one-button talk-images" onclick="terminateThisFavorite(\'add\');">' + _e("Add") + '</a>' + 
-						'<a class="fedit-terminate fedit-edit one-button talk-images" onclick="terminateThisFavorite(\'edit\');">' + _e("Edit") + '</a>' + 
-						'<a class="fedit-terminate fedit-remove remove one-button talk-images" onclick="terminateThisFavorite(\'remove\');">' + _e("Remove") + '</a>' + 
+						'<a class="fedit-terminate fedit-add add one-button talk-images">' + _e("Add") + '</a>' + 
+						'<a class="fedit-terminate fedit-edit one-button talk-images">' + _e("Edit") + '</a>' + 
+						'<a class="fedit-terminate fedit-remove remove one-button talk-images">' + _e("Remove") + '</a>' + 
 					'</div>' + 
 				'</div>' + 
 			'</div>' + 
@@ -103,7 +103,7 @@ function openFavorites() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return quitFavorites();">' + _e("Close") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -140,8 +140,16 @@ function quitFavorites() {
 
 // Adds a room to the favorites
 function addThisFavorite(roomXID, roomName) {
+	// Button path
+	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
+	
 	// Add a remove button instead of the add one
-	$('#favorites .fsearch-results div[data-xid=' + roomXID + '] a.one-button.add').replaceWith('<a class="one-button remove talk-images" onclick="removeThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Remove") + '</a>');
+	$(button + '.add').replaceWith('<a class="one-button remove talk-images">' + _e("Remove") + '</a>');
+	
+	// Click event
+	$(button + '.remove').click(function() {
+		return removeThisFavorite(roomXID, roomName);
+	});
 	
 	// Hide the add button in the (opened?) groupchat
 	$('#' + hex_md5(roomXID) + ' .tools-add').hide();
@@ -151,12 +159,22 @@ function addThisFavorite(roomXID, roomName) {
 	
 	// Publish the favorites
 	favoritePublish();
+	
+	return false;
 }
 
 // Removes a room from the favorites
 function removeThisFavorite(roomXID, roomName) {
+	// Button path
+	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
+	
 	// Add a remove button instead of the add one
-	$('#favorites .fsearch-results div[data-xid=' + roomXID + '] a.one-button.remove').replaceWith('<a class="one-button add talk-images" onclick="addThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Add") + '</a>');
+	$(button + '.remove').replaceWith('<a class="one-button add talk-images">' + _e("Add") + '</a>');
+	
+	// Click event
+	$(button + '.add').click(function() {
+		return addThisFavorite(roomXID, roomName);
+	});
 	
 	// Show the add button in the (opened?) groupchat
 	$('#' + hex_md5(roomXID) + ' .tools-add').show();
@@ -166,6 +184,8 @@ function removeThisFavorite(roomXID, roomName) {
 	
 	// Publish the favorites
 	favoritePublish();
+	
+	return false;
 }
 
 // Edits a favorite
@@ -270,6 +290,8 @@ function terminateThisFavorite(type) {
 	favoritePublish();
 	
 	logThis('Action on this bookmark: ' + room + '@' + server + ' / ' + type, 3);
+	
+	return false;
 }
 
 // Removes a favorite
@@ -363,16 +385,20 @@ function handleGCList(iq) {
 				var roomName = $(this).attr('name');
 				
 				if(roomXID && roomName) {
+					// Escaped values
+					var escaped_xid = jsEscape(roomXID);
+					var escaped_name = jsEscape(roomName);
+					
 					// Initialize the room HTML
-					html += '<div class="oneresult fsearch-oneresult" data-xid="' + roomXID + '">' + 
-							'<div class="room-name">' + roomName + '</div>' + 
-							'<a class="one-button join talk-images" onclick="return joinFavorite(\'' + roomXID + '\');">' + _e("Join") + '</a>';
+					html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 
+							'<div class="room-name">' + roomName.htmlEnc() + '</div>' + 
+							'<a class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + _e("Join") + '</a>';
 					
 					// This room is yet a favorite
 					if(existDB('favorites', roomXID))
-						html += '<a class="one-button remove talk-images" onclick="removeThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Remove") + '</a>';
+						html += '<a class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Remove") + '</a>';
 					else
-						html += '<a class="one-button add talk-images" onclick="addThisFavorite(\'' + roomXID + '\', \'' + roomName + '\');">' + _e("Add") + '</a>';
+						html += '<a class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Add") + '</a>';
 					
 					// Close the room HTML
 					html += '</div>';
@@ -495,6 +521,22 @@ function launchFavorites(container) {
 		$(path + 'room-search').click(function() {
 			$(path + 'favorites-search').show();
 			getGCList();
+		});
+		
+		$(path + 'fedit-add').click(function() {
+			return terminateThisFavorite('add');
+		});
+		
+		$(path + 'fedit-edit').click(function() {
+			return terminateThisFavorite('edit');
+		});
+		
+		$(path + 'fedit-remove').click(function() {
+			return terminateThisFavorite('remove');
+		});
+		
+		$(path + 'bottom .finish').click(function() {
+			return quitFavorites();
 		});
 	}
 }

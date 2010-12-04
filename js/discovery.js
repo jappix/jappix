@@ -8,7 +8,7 @@ These are the discovery JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/11/10
+Last revision: 04/12/10
 
 */
 
@@ -101,7 +101,7 @@ function openDiscovery() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return quitDiscovery();">' + _e("Close") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -112,6 +112,8 @@ function openDiscovery() {
 	
 	// We request a disco to the default server
 	startDiscovery();
+	
+	return false;
 }
 
 // Quits the discovery popup
@@ -149,7 +151,12 @@ function cleanDiscovery() {
 
 // Plugin launcher
 function launchDiscovery() {
-	// We activate the form
+	// Click event
+	$('#discovery .bottom .finish').click(function() {
+		return quitDiscovery();
+	});
+	
+	// Keyboard event
 	$('#discovery .disco-server-input').keyup(function(e) {
 		if(e.keyCode == 13) {
 			startDiscovery();

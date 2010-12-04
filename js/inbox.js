@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 04/12/10
 
 */
 
@@ -72,6 +72,8 @@ function openInbox() {
 	
 	// Load the messages
 	loadInbox();
+	
+	return false;
 }
 
 // Closes the inbox popup

@@ -8,7 +8,7 @@ These are the music JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/11/10
+Last revision: 04/12/10
 
 */
 
@@ -19,6 +19,8 @@ function openMusic() {
 	// Show the music bubble
 	showBubble(path);
 	$(path + ' input').focus();
+	
+	return false;
 }
 
 // Parses the music search XML
@@ -153,6 +155,8 @@ function actionMusic(action) {
 		
 		logThis('Music is now stopped.');
 	}
+	
+	return false;
 }
 
 // Publishes the current title over PEP

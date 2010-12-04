@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 04/12/10
 
 */
 
@@ -134,6 +134,8 @@ function openVCard() {
 	
 	// We get the VCard informations
 	getVCard(getXID(), 'user');
+	
+	return false;
 }
 
 // Closes the vCard popup

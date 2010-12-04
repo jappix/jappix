@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 04/12/10
 
 */
 
@@ -41,10 +41,10 @@ function createTalkPage() {
 			'<div class="tools tools-all">';
 				
 				if(!anonymous) html += 
-				'<a onclick="openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
-				'<a onclick="openVCard();">' + _e("Profile") +  '</a>' + 
-				'<a onclick="optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
-				'<a onclick="normalQuit();">' + _e("Disconnect") +  '</a>';
+				'<a onclick="return openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
+				'<a onclick="return openVCard();">' + _e("Profile") +  '</a>' + 
+				'<a onclick="return optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
+				'<a onclick="return normalQuit();">' + _e("Disconnect") +  '</a>';
 				
 				else html +=
 				'<a href="./">' + _e("Disconnect") +  '</a>';
@@ -54,14 +54,14 @@ function createTalkPage() {
 			
 			if(!anonymous) html += 
 			'<div class="tools-all ibubble">' + 
-				'<div class="tools music talk-images" onclick="openMusic();"></div>' + 
+				'<div class="tools music talk-images" onclick="return openMusic();"></div>' + 
 				
 				'<div class="music-content tools-content bubble hidable">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
 						'<div class="player">' + 
-							'<a class="stop talk-images" onclick="actionMusic(\'stop\');"></a>' + 
+							'<a class="stop talk-images" onclick="return actionMusic(\'stop\');"></a>' + 
 						'</div>' + 
 						
 						'<div class="list">' + 
@@ -76,7 +76,7 @@ function createTalkPage() {
 			'</div>' + 
 			
 			'<div class="tools-all ibubble">' + 
-				'<div class="tools notifications talk-images" onclick="showBubble(\'.notifications-content\');"></div>' + 
+				'<div class="tools notifications talk-images" onclick="return showBubble(\'.notifications-content\');"></div>' + 
 				
 				'<div class="notifications-content tools-content bubble hidable">' + 
 					'<div class="tools-content-subarrow talk-images"></div>' + 
@@ -484,7 +484,7 @@ function createTalkPage() {
 				'<div id="page-switch">' + 
 					'<div class="chans">';
 						if(!anonymous) html += 
-						'<div class="channel switcher activechan" onclick="switchChan(\'channel\');">' + 
+						'<div class="channel switcher activechan" onclick="return switchChan(\'channel\');">' + 
 							'<div class="icon talk-images"></div>' + 
 						
 							'<div class="name">' + _e("Channel") +  '</div>' + 
@@ -494,11 +494,11 @@ function createTalkPage() {
 					'</div>' + 
 					
 					'<div class="more ibubble">' + 
-						'<div class="more-button talk-images" onclick="showBubble(\'#page-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
+						'<div class="more-button talk-images" onclick="return showBubble(\'#page-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
 						
 						'<div class="more-content bubble hidable">';
 							if(!anonymous) html += 
-							'<div class="channel switcher activechan" onclick="switchChan(\'channel\');">' + 
+							'<div class="channel switcher activechan" onclick="return switchChan(\'channel\');">' + 
 								'<div class="icon talk-images"></div>' + 
 								
 								'<div class="name">' + _e("Channel") +  '</div>' + 
@@ -525,8 +525,8 @@ function createTalkPage() {
 								'</div>' + 
 								
 								'<div class="one-microblog-icon ibubble">' + 
-									'<a onclick="showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
-									'<a onclick="unattachMicroblog();" class="postit unattach talk-images"></a>' + 
+									'<a onclick="return showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
+									'<a onclick="return unattachMicroblog();" class="postit unattach talk-images"></a>' + 
 									
 									'<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
 										'<div class="attach-subarrow talk-images"></div>' + 

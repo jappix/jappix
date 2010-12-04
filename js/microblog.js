@@ -71,7 +71,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Supported image/video/sound
 		if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
-			tFEClick = 'onclick="return applyIntegrateBox(\'' + tFURL + '\', \'' + tFType + '\');" ';
+			tFEClick = 'onclick="return applyIntegrateBox(\'' + jsEscape(tFURL) + '\', \'' + jsEscape(tFType) + '\');" ';
 		else
 			tFEClick = '';
 		
@@ -80,12 +80,12 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// It's my own notice, we can remove it!
 		if(from == getXID())
-			html += '<a onclick="removeMicroblog(\'' + tID + '\', \'' + tHash + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+			html += '<a onclick="return removeMicroblog(\'' + jsEscape(tID) + '\', \'' + jsEscape(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 		
 		// Notice from another user
 		else {
 			// User profile
-			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="openUserInfos(\'' + from + '\');"></a>';
+			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + jsEscape(from) + '\');"></a>';
 			
 			// If PEP is enabled
 			if(enabledPEP())
@@ -187,6 +187,8 @@ function removeMicroblog(id, hash) {
 	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq, handleErrorReply);
+	
+	return false;
 }
 
 // Handles the microblog of an user
@@ -234,6 +236,8 @@ function resetMicroblog() {
 		waitMicroblog('sync');
 	else
 		waitMicroblog('unsync');
+	
+	return false;
 }
 
 // Gets the microblog of an user
@@ -263,7 +267,7 @@ function getMicroblog(xid, hash) {
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
 				'<div class="content individual microblog-' + hash + '">' + 
-					'<a class="more home-images" onclick="getMicroblog(\'' + xid + '\', \'' + hash + '\');">' + _e("More notices...") + '</a>' + 
+					'<a class="more home-images" onclick="return getMicroblog(\'' + jsEscape(xid) + '\', \'' + jsEscape(hash) + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
@@ -275,7 +279,7 @@ function getMicroblog(xid, hash) {
 					
 					'<div class="update">' + 
 						'<h2>' + cTitle + '</h2>' + 
-						'<a onclick="resetMicroblog();">« ' + _e("Previous") + '</a>' + 
+						'<a onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
 					'</div>' + 
 					
 					'<input type="hidden" name="jid" value="' + xid + '" />' + 
@@ -299,6 +303,8 @@ function getMicroblog(xid, hash) {
 	pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'max_items': items, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq, handleMicroblog);
+	
+	return false;
 }
 
 // Show a given microblog waiting status
@@ -565,6 +571,8 @@ function unattachMicroblog() {
 	// Hide the unattach link, show the attach one
 	$('.postit.unattach').hide().removeAttr('title');
 	$('.postit.attach').css('display', 'block');
+	
+	return false;
 }
 
 // Wait event for file attaching

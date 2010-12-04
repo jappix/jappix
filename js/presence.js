@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/11/10
+Last revision: 04/12/10
 
 */
 
@@ -234,7 +234,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	if(iXID) {
 		real_xid = ' data-realxid="' + iXID + '"';
 		iXID = bareXID(iXID);
-		write += ' (<a onclick="return checkChatCreate(\'' + iXID + '\', \'chat\');" href="xmpp:' + iXID + '">' + iXID + '</a>) ';
+		write += ' (<a onclick="return checkChatCreate(\'' + jsEscape(iXID) + '\', \'chat\');" href="xmpp:' + jsEscape(iXID) + '">' + iXID + '</a>) ';
 	}
 	
 	// User does not exists yet

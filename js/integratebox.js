@@ -8,7 +8,7 @@ These are the integratebox JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/11/10
+Last revision: 04/12/10
 
 */
 
@@ -23,11 +23,14 @@ function openIntegrateBox() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return closeIntegrateBox();">' + _e("Close") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
 	createPopup('integratebox', html);
+	
+	// Associate the events
+	launchIntegratebox();
 }
 
 // Closes the integratebox popup
@@ -113,11 +116,6 @@ function applyIntegrateBox(url, service) {
 	return true;
 }
 
-// Applies the integratebox from an escaped link
-function escapedIntegrateBox(url, service) {
-	return applyIntegrateBox(unescape(url), unescape(service));
-}
-
 // Filters a string to apply the integratebox links
 function filterIntegrateBox(string) {
 	// Encapsulates the string into two <div /> elements
@@ -171,9 +169,9 @@ function filterIntegrateBox(string) {
 		
 		// Define the good event
 		if(to)
-			event = 'checkChatCreate(\'' + to + '\', \'chat\')';
+			event = 'checkChatCreate(\'' + jsEscape(to) + '\', \'chat\')';
 		else if(url && service)
-			event = 'escapedIntegrateBox(\'' + escape(url) + '\', \'' + escape(service) + '\')';
+			event = 'applyIntegrateBox(\'' + jsEscape(url) + '\', \'' + jsEscape(service) + '\')';
 		
 		// Any click event to apply?
 		if(event)
@@ -184,4 +182,12 @@ function filterIntegrateBox(string) {
 	string = $(string).html();
 	
 	return string;
+}
+
+// Plugin launcher
+function launchIntegratebox() {
+	// Click event
+	$('#integratebox .bottom .finish').click(function() {
+		return closeIntegrateBox();
+	});
 }

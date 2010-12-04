@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 04/12/10
 
 */
 
@@ -79,6 +79,8 @@ function dataForm(host, type, node, action, target) {
 			checkChatCreate(host, 'groupchat');
 		}
 	}
+	
+	return false;
 }
 
 // Sends a given dataform
@@ -146,6 +148,8 @@ function sendDataForm(type, action, id, xid, node, sessionid, status, target) {
 		con.send(iq, handleDataFormSearch);
 	else if(type == 'command')
 		con.send(iq, handleDataFormCommand);
+	
+	return false;
 }
 
 // Displays the good dataform buttons
@@ -166,7 +170,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	var buttonsCode = '<div class="oneresult ' + target + '-oneresult ' + target + '-formtools">';
 	
 	if(action == 'submit') {
-		buttonsCode += '<a class="submit" onclick="sendDataForm(\'' + type + '\', \'submit\', \'' + id + '\', \'' + xid + '\', \'' + node + '\', \'' + sessionid + '\', \'' + status + '\', \'' + target + '\');">' + _e("Submit") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + jsEscape(type) + '\', \'submit\', \'' + jsEscape(id) + '\', \'' + jsEscape(xid) + '\', \'' + jsEscape(node) + '\', \'' + jsEscape(sessionid) + '\', \'' + jsEscape(status) + '\', \'' + jsEscape(target) + '\');">' + _e("Submit") + '</a>';
 		
 		// When keyup on one text input
 		$(pathID + ' input[type=text]').keyup(function(e) {
@@ -176,13 +180,13 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	}
 	
 	if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-		buttonsCode += '<a class="submit" onclick="sendDataForm(\'' + type + '\', \'cancel\', \'' + id + '\', \'' + xid + '\', \'' + node + '\', \'' + sessionid + '\', \'' + status + '\', \'' + target + '\');">' + _e("Cancel") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + jsEscape(type) + '\', \'cancel\', \'' + jsEscape(id) + '\', \'' + jsEscape(xid) + '\', \'' + jsEscape(node) + '\', \'' + jsEscape(sessionid) + '\', \'' + jsEscape(status) + '\', \'' + jsEscape(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
-		buttonsCode += '<a class="back" onclick="openDiscovery();">' + _e("Close") + '</a>';
+		buttonsCode += '<a class="back" onclick="return openDiscovery();">' + _e("Close") + '</a>';
 	
 	if((action == 'back') && (target == 'welcome'))
-		buttonsCode += '<a class="back" onclick="dataForm(HOST_VJUD, \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
+		buttonsCode += '<a class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
 	
 	buttonsCode += '</div>';
 	
@@ -246,7 +250,7 @@ function handleDataFormContent(iq, type) {
 					// Special node
 					if(itemNode)
 						$(pathID).append(
-							'<div class="oneresult ' + target + '-oneresult" onclick="dataForm(\'' + itemHost + '\', \'browse\', \'' + itemNode + '\', \'' + target + '\');">' + 
+							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + jsEscape(itemHost) + '\', \'browse\', \'' + jsEscape(itemNode) + '\', \'' + jsEscape(target) + '\');">' + 
 								'<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
 							'</div>'
 						);
@@ -414,7 +418,7 @@ function handleDataFormContent(iq, type) {
 					
 					// We display the waiting element
 					$(pathID).prepend(
-						'<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="dataForm(\'' + itemHost + '\', \'command\', \'' + itemNode + '\', \'execute\', \'' + target + '\');">' + 
+						'<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return dataForm(\'' + jsEscape(itemHost) + '\', \'command\', \'' + jsEscape(itemNode) + '\', \'execute\', \'' + jsEscape(target) + '\');">' + 
 							'<div class="one-name">' + itemName + '</div>' + 
 							'<div class="one-next">»</div>' + 
 						'</div>'
@@ -663,7 +667,7 @@ function handleThisBrowse(iq) {
 		
 		for(i in buttons) {
 			if(buttons[i])
-				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="dataForm(\'' + from + '\', \'' + aTools[i] + '\', \'\', \'\', \'' + target + '\');" title="' + bTools[i] + '"></a>';
+				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + jsEscape(from) + '\', \'' + jsEscape(aTools[i]) + '\', \'\', \'\', \'' + jsEscape(target) + '\');" title="' + jsEscape(bTools[i]) + '"></a>';
 		}
 		
 		// As defined in the ref, we detect the type of each category to put an icon

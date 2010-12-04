@@ -154,42 +154,44 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					});
 				}
 				
-				// Buddy not yet displayed in this group
-				if(!exists(groupContent + ' .' + dXIDHash)) {
-					// Initialize the HTML code
-					var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
-					var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
-					
-					var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + '" data-xid="' + dXID + '">' + 
-							'<div class="buddy-click" onclick="checkChatCreate(\'' + dXID + '\', \'chat\');">';
-					
-					// Display avatar if not gateway
-					if(!is_gateway)
-						html += '<div class="avatar-container">' + 
-								'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
-							'</div>';
-					
-					html += '<div class="name">';
-					
-					// Special gateway code
-					if(is_gateway)
-						html += presence_code +
-							name_code;
-					
-					else
-						html += name_code + 
-							presence_code;
-					
-					html += '</div></div></div>';
-					
-					// Create the DOM element for this buddy
-					$(groupBuddies).append(html);
-					
-					// Apply the hover event
-					applyBuddyHover(dXID, dXIDHash, dName, dSubscription, dGroup, groupHash);
-				}
+				// Initialize the HTML code
+				var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
+				var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
+				
+				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + '" data-xid="' + dXID + '">' + 
+						'<div class="buddy-click">';
+				
+				// Display avatar if not gateway
+				if(!is_gateway)
+					html += '<div class="avatar-container">' + 
+							'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+						'</div>';
+				
+				html += '<div class="name">';
+				
+				// Special gateway code
+				if(is_gateway)
+					html += presence_code +
+						name_code;
+				
+				else
+					html += name_code + 
+						presence_code;
+				
+				html += '</div></div></div>';
+				
+				// Create the DOM element for this buddy
+				$(groupBuddies).append(html);
+				
+				// Apply the hover event
+				applyBuddyHover(dXID, dXIDHash, dName, dSubscription, dGroup, groupHash);
 			}
 		}
+		
+		// Click event on this buddy
+		$('#buddy-list .' + dXIDHash + ' .buddy-click').click(function() {
+			return checkChatCreate(dXID, 'chat');
+		});
 		
 		// We get the user presence if necessary
 		if(dMode == 'presence')

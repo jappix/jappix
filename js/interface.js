@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 
@@ -88,6 +88,8 @@ function switchChan(id) {
 		// Manage input focus
 		inputFocus();
 	}
+	
+	return false;
 }
 
 // Puts the selected smiley in the good page-engine input

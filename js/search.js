@@ -8,7 +8,7 @@ These are the seach tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 04/12/10
 
 */
 
@@ -70,6 +70,8 @@ function addBuddySearch(destination, xid) {
 	
 	// Add the XID to the "to" input and focus on it
 	input.val(old + xid).focus();
+	
+	return false;
 }
 
 // Creates the appropriate markup for the search results
@@ -104,7 +106,7 @@ function createBuddySearch(destination) {
 			current = current.replace(regex, '<b>$&</b>');
 			
 			// Add the current element to the global code
-			code += '<li onclick="addBuddySearch(\'' + destination + '\', \'' + entered[b] + '\');" data-xid="' + entered[b] + '">' + current + '</li>';
+			code += '<li onclick="return addBuddySearch(\'' + jsEscape(destination) + '\', \'' + jsEscape(entered[b]) + '\');" data-xid="' + jsEscape(entered[b]) + '">' + current + '</li>';
 		}
 		
 		// Finish the code generation

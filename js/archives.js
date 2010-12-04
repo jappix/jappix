@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 04/12/10
 
 */
 
@@ -43,7 +43,7 @@ function openArchives() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish" onclick="return closeArchives();">' + _e("Close") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -186,6 +186,12 @@ function handleConfigArchives(iq) {
 
 // Plugin launcher
 function launchArchives() {
+	// Click event
+	$('#archives .bottom .finish').click(function() {
+		return closeArchives();
+	});
+	
+	// Change event
 	$('#archives .filter .friend select').change(function() {
 		getArchives($(this).val());
 	});
