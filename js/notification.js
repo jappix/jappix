@@ -69,7 +69,7 @@ function newNotification(type, from, data, body) {
 			if(!display_name)
 				display_name = data[0];
 			
-			text = display_name + ' ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
+			text = display_name.htmlEnc() + ' ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
 			
 			break;
 		
