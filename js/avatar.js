@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 04/12/10
 
 */
 
@@ -84,7 +84,7 @@ function getAvatar(xid, mode, enabled, photo) {
 function handleAvatar(iq) {
 	// Extract the XML values
 	var handleXML = iq.getNode();
-	var handleFrom = fullXID(getStanzaFrom(iq));
+	var handleFrom = bareXID(getStanzaFrom(iq));
 	var hash = hex_md5(handleFrom);
 	var find = $(handleXML).find('vCard');
 	var aChecksum = 'none';

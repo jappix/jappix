@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 04/12/10
 
 */
 
@@ -35,8 +35,8 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
-		oArgs.domain = lServer;
-		oArgs.username = lNick;
+		oArgs.domain = trim(lServer);
+		oArgs.username = trim(lNick);
 		oArgs.resource = lResource;
 		oArgs.pass = lPass;
 		oArgs.secure = true;
@@ -86,6 +86,9 @@ function handleRegistered() {
 	// We remove the waiting image
 	removeGeneralWait();
 	
+	// Reset the title
+	pageTitle('home');
+	
 	// We show the success information
 	$('#home .registerer .success').fadeIn('fast');
 	
@@ -111,8 +114,8 @@ function doRegister(username, domain, pass) {
 		
 		// We retrieve what the user typed in the register inputs
 		oArgs = new Object();
-		oArgs.domain = domain;
-		oArgs.username = username;
+		oArgs.domain = trim(domain);
+		oArgs.username = trim(username);
 		oArgs.resource = JAPPIX_RESOURCE + ' Register';
 		oArgs.pass = pass;
 		oArgs.register = true;

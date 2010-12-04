@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 04/12/10
 
 */
 
@@ -65,6 +65,7 @@ Last revision: 03/12/10
 
 #channel div.update .attach {
 	background-position: 0 -1663px;
+	display: none;
 }
 
 #channel div.update .unattach {

@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 04/12/10
 
 */
 
@@ -564,7 +564,7 @@ function unattachMicroblog() {
 	
 	// Hide the unattach link, show the attach one
 	$('.postit.unattach').hide().removeAttr('title');
-	$('.postit.attach').show();
+	$('.postit.attach').css('display', 'block');
 }
 
 // Wait event for file attaching

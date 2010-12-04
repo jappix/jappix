@@ -8,7 +8,7 @@ This is the server features JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/11/10
+Last revision: 04/12/10
 
 */
 
@@ -77,6 +77,7 @@ function handleFeatures(xml) {
 		
 		// Enable microblogging send tools
 		waitMicroblog('sync');
+		$('.postit.attach').css('display', 'block');
 		
 		logThis('XMPP server supports PEP.', 3);
 	}
