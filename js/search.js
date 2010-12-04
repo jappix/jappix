@@ -106,7 +106,7 @@ function createBuddySearch(destination) {
 			current = current.replace(regex, '<b>$&</b>');
 			
 			// Add the current element to the global code
-			code += '<li onclick="return addBuddySearch(\'' + jsEscape(destination) + '\', \'' + jsEscape(entered[b]) + '\');" data-xid="' + jsEscape(entered[b]) + '">' + current + '</li>';
+			code += '<li onclick="return addBuddySearch(\'' + jsEscape(encodeQuotes(destination)) + '\', \'' + jsEscape(encodeQuotes(entered[b])) + '\');" data-xid="' + encodeQuotes(entered[b]) + '">' + current + '</li>';
 		}
 		
 		// Finish the code generation

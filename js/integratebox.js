@@ -169,9 +169,9 @@ function filterIntegrateBox(string) {
 		
 		// Define the good event
 		if(to)
-			event = 'checkChatCreate(\'' + jsEscape(to) + '\', \'chat\')';
+			event = 'checkChatCreate(\'' + jsEscape(encodeQuotes(to)) + '\', \'chat\')';
 		else if(url && service)
-			event = 'applyIntegrateBox(\'' + jsEscape(url) + '\', \'' + jsEscape(service) + '\')';
+			event = 'applyIntegrateBox(\'' + jsEscape(encodeQuotes(url)) + '\', \'' + jsEscape(encodeQuotes(service)) + '\')';
 		
 		// Any click event to apply?
 		if(event)

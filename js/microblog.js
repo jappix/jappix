@@ -71,7 +71,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Supported image/video/sound
 		if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
-			tFEClick = 'onclick="return applyIntegrateBox(\'' + jsEscape(tFURL) + '\', \'' + jsEscape(tFType) + '\');" ';
+			tFEClick = 'onclick="return applyIntegrateBox(\'' + jsEscape(encodeQuotes(tFURL)) + '\', \'' + jsEscape(encodeQuotes(tFType)) + '\');" ';
 		else
 			tFEClick = '';
 		
@@ -80,12 +80,12 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// It's my own notice, we can remove it!
 		if(from == getXID())
-			html += '<a onclick="return removeMicroblog(\'' + jsEscape(tID) + '\', \'' + jsEscape(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+			html += '<a onclick="return removeMicroblog(\'' + jsEscape(encodeQuotes(tID)) + '\', \'' + jsEscape(encodeQuotes(tHash)) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 		
 		// Notice from another user
 		else {
 			// User profile
-			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + jsEscape(from) + '\');"></a>';
+			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + jsEscape(encodeQuotes(from)) + '\');"></a>';
 			
 			// If PEP is enabled
 			if(enabledPEP())
@@ -267,7 +267,7 @@ function getMicroblog(xid, hash) {
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
 				'<div class="content individual microblog-' + hash + '">' + 
-					'<a class="more home-images" onclick="return getMicroblog(\'' + jsEscape(xid) + '\', \'' + jsEscape(hash) + '\');">' + _e("More notices...") + '</a>' + 
+					'<a class="more home-images" onclick="return getMicroblog(\'' + jsEscape(encodeQuotes(xid)) + '\', \'' + jsEscape(encodeQuotes(hash)) + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   

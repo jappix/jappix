@@ -146,7 +146,7 @@ function _e(string) {
 	return string;
 }
 
-function jsEscape(str) {
+function quoteEscape(str) {
 	return str.replace(/'/g, '\\$&').replace(/"/g, '&quot;');
 }
 
@@ -353,7 +353,7 @@ function handleRoster(iq) {
 		oneID = 'buddy-' + hash;
 		oneBuddy.setAttribute('id', oneID);
 		oneBuddy.setAttribute('class', 'one-buddy');
-		oneBuddy.setAttribute('onclick', 'return chat(\'' + jsEscape(xid) + '\', \'' + jsEscape(nick) + '\');');
+		oneBuddy.setAttribute('onclick', 'return chat(\'' + quoteEscape(xid) + '\', \'' + quoteEscape(nick) + '\');');
 		oneBuddy.innerHTML = nick.htmlEnc();
 		roster.appendChild(oneBuddy);
 	}

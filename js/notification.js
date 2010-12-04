@@ -91,7 +91,7 @@ function newNotification(type, from, data, body) {
 		// We display the notification
 		if(!exists('.notifications-content .' + id)) {
 			// We create the html markup depending of the notification type
-			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + body + '">' + 
+			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + '">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 

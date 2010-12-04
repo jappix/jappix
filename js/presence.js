@@ -239,7 +239,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	if(iXID) {
 		real_xid = ' data-realxid="' + iXID + '"';
 		iXID = bareXID(iXID);
-		write += ' (<a onclick="return checkChatCreate(\'' + jsEscape(iXID) + '\', \'chat\');" href="xmpp:' + jsEscape(iXID) + '">' + iXID + '</a>) ';
+		write += ' (<a onclick="return checkChatCreate(\'' + jsEscape(encodeQuotes(iXID)) + '\', \'chat\');" href="xmpp:' + encodeQuotes(iXID) + '">' + iXID + '</a>) ';
 	}
 	
 	// User does not exists yet

@@ -135,9 +135,14 @@ function stringPrep(string) {
 	return string;
 }
 
-// Escapes ' and " chars in a string
+// Escapes special JS chars in a string
 function jsEscape(str) {
-	return str.replace(/'/g, '\\$&').replace(/"/g, '&quot;');
+	return str.replace(/'/g, '\\$&');
+}
+
+// Encodes quotes in a string
+function encodeQuotes(str) {
+	return str.replace(/"/g, '&quot;');
 }
 
 // Gets the bare XID from a XID
