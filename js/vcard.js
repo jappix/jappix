@@ -8,7 +8,7 @@ These are the vCard JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -530,7 +530,7 @@ function launchVCard() {
 	$('#vcard input:first').focus();
 	
 	// Keyboard events
-	$('#vcard input').keyup(function(e) {
+	$('#vcard input[type=text]').keyup(function(e) {
 		// Enter pressed: send the vCard
 		if((e.keyCode == 13) && !$('#vcard .finish.save').hasClass('disabled'))
 			return sendVCard();

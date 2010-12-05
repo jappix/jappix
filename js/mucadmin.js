@@ -8,7 +8,7 @@ These are the muc-admin JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -421,11 +421,10 @@ function saveMucAdmin() {
 // Plugin launcher
 function launchMucAdmin() {
 	// Click events
-	$('#muc-admin .bottom .finish.save').click(function() {
-		return saveMucAdmin();
-	});
-	
-	$('#muc-admin .bottom .finish.cancel').click(function() {
-		return closeMucAdmin();
+	$('#muc-admin .bottom .finish').click(function() {
+		if($(this).is('.cancel'))
+			return closeMucAdmin();
+		if($(this).is('.save'))
+			return saveMucAdmin();
 	});
 }

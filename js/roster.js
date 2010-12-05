@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -656,8 +656,19 @@ function launchRoster() {
 		// Add the gateways
 		var gateways = getGateways();
 		
-		for(i in gateways)
-			$('.add-contact-gateway').append('<option value="' + escape(gateways[i]) + '">' + gateways[i].htmlEnc() +  '</option>');
+		// Any gateway?
+		if(gateways.length) {
+			// Append the gateways
+			for(i in gateways)
+				$('.add-contact-gateway').append('<option value="' + escape(gateways[i]) + '">' + gateways[i].htmlEnc() +  '</option>');
+			
+			// Show the gateway selector
+			$('.add-contact-gateway').parent().show();
+		}
+		
+		// No gateway?
+		else
+			$('.add-contact-gateway').parent().hide();
 		
 		// We show the requested div
 		showBubble('#buddy-conf-add');

@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 05/12/10
 
 */
 
@@ -187,11 +187,21 @@ function handleMessage(msg) {
 			
 			// Read the delay
 			var delay = readMessageDelay(msg.getNode());
+			var d_stamp;
 			
-			if(delay)
+			// Manage this delay
+			if(delay) {
 				time = relativeDate(delay);
-			else
+				d_stamp = Date.jab2date(delay);
+			}
+			
+			else {
 				time = getCompleteTime();
+				d_stamp = new Date();
+			}
+			
+			// Get the stamp
+			var stamp = extractStamp(d_stamp);
 			
 			// Is this a groupchat private message?
 			if(exists('#jappix_mini #chat-' + hash + '[data-type=groupchat]') && ((type == 'chat') || !type)) {
@@ -231,7 +241,7 @@ function handleMessage(msg) {
 				chat(type, xid, nick, hash);
 			
 			// Display the message
-			displayMessage(type, body, nick, hash, time, message_type);
+			displayMessage(type, body, nick, hash, time, stamp, message_type);
 			
 			// Notify the user if not focused & the message is not a groupchat old one
 			if((!$(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !document.hasFocus()) && (message_type == 'user-message'))
@@ -492,7 +502,7 @@ function sendMessage(aForm) {
 			
 			// Display the message we sent
 			if(type != 'groupchat')
-				displayMessage(type, body, 'me', hash, getCompleteTime(), 'user-message');
+				displayMessage(type, body, 'me', hash, getCompleteTime(), getTimeStamp(), 'user-message');
 			
 			logThis('Message (' + type + ') sent to: ' + xid);
 		}
@@ -719,20 +729,21 @@ function createMini(domain, user, password) {
 }
 
 // Displays a given message
-function displayMessage(type, body, nick, hash, time, message_type) {
+function displayMessage(type, body, nick, hash, time, stamp, message_type) {
 	// Generate some stuffs
 	var path = '#chat-' + hash;
 	var escaped_nick = escape(nick);
 	
 	// Remove the previous message border if needed
 	var last = $(path + ' div.jm_group:last');
+	var last_stamp = parseInt(last.attr('data-stamp'));
 	var last_b = $(path + ' b:last');
 	var last_nick = last_b.attr('data-nick');
 	var last_type = last.attr('data-type');
 	var grouped = false;
 	var header = '';
 	
-	if((last_nick == escaped_nick) && (message_type == last_type))
+	if((last_nick == escaped_nick) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
 		grouped = true;
 	
 	else {
@@ -767,7 +778,7 @@ function displayMessage(type, body, nick, hash, time, message_type) {
 	if(grouped)
 		$('#jappix_mini #chat-' + hash + ' div.jm_received-messages div.jm_group:last').append(body);
 	else
-		$('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group" data-type="' + message_type + '">' + header + body + '</div>');
+		$('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group" data-type="' + message_type + '" data-stamp="' + stamp + '">' + header + body + '</div>');
 	
 	// Scroll to the last element
 	messageScroll(hash);

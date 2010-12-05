@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -706,9 +706,10 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	// Filter the previous displayed message
 	var one_line = '#' + hash + ' .one-line';
 	var last = $(one_line + ':last');
+	var first_last = $(one_line + ':has(b.name):last');
 	var last_name = $(one_line + ' b:last').attr('data-name');
-	var last_type = last.attr('data-type');
-	var last_stamp = parseInt(last.attr('data-stamp'));
+	var last_type = first_last.attr('data-type');
+	var last_stamp = parseInt(first_last.attr('data-stamp'));
 	
 	if((last_name == escaped_name) && (message_type == last_type) && ((stamp - last_stamp) <= 1800)) {
 		last.removeClass('last');
