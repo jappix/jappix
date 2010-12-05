@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -208,11 +208,11 @@ function editFavorite() {
 	// If this is not the default room
 	if(xid != 'none') {
 		// We apply the values
-		$(favorites + 'fedit-title').val($(data).find('name').text());
-		$(favorites + 'fedit-nick').val($(data).find('nick').text());
+		$(favorites + 'fedit-title').val($(data).find('name').text().revertHtmlEnc());
+		$(favorites + 'fedit-nick').val($(data).find('nick').text().revertHtmlEnc());
 		$(favorites + 'fedit-chan').val(getXIDNick(xid));
 		$(favorites + 'fedit-server').val(getXIDHost(xid));
-		$(favorites + 'fedit-password').val($(data).find('password').text());
+		$(favorites + 'fedit-password').val($(data).find('password').text().revertHtmlEnc());
 		
 		if($(data).find('autojoin').text() == '1')
 			$(favorites + 'fedit-autojoin').attr('checked', true);
@@ -429,7 +429,7 @@ function joinFavorite(room) {
 // Displays a given favorite
 function displayFavorites(xid, name, nick, autojoin, password) {
 	// Generate the HTML code
-	var html = '<option value="' + xid + '">' + name + '</option>';
+	var html = '<option value="' + encodeQuotes(xid) + '">' + name.htmlEnc() + '</option>';
 	
 	// Remove the existing favorite
 	removeFavorite(xid, false);
@@ -438,7 +438,7 @@ function displayFavorites(xid, name, nick, autojoin, password) {
 	$('#buddy-list .gc-join-first-option, #favorites .fedit-head-select-first-option').after(html);
 	
 	// We store the informations
-	var value = '<groupchat><xid>' + xid + '</xid><name>' + name + '</name><nick>' + nick + '</nick><autojoin>' + autojoin + '</autojoin><password>' + password + '</password></groupchat>';
+	var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
 	setDB('favorites', xid, value);
 }
 

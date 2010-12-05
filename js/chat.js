@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 05/12/10
 
 */
 
@@ -47,9 +47,9 @@ function checkChatCreate(xid, type, nickname, password, title) {
 			if(!isAnonymous() && (!nickname || !password || !title)) {
 				// Catch the room data
 				var fData = $(getDB('favorites', xid));
-				var fNick = fData.find('nick').text();
-				var fPwd = fData.find('password').text();
-				var fName = fData.find('name').text();
+				var fNick = fData.find('nick').text().revertHtmlEnc();
+				var fPwd = fData.find('password').text().revertHtmlEnc();
+				var fName = fData.find('name').text().revertHtmlEnc();
 				
 				// Apply the room data
 				if(!nickname && fNick)

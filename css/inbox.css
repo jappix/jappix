@@ -150,7 +150,7 @@ Last revision: 05/12/10
 #inbox .inbox-new-block {
 	border-top: 1px #686868 dotted;
 	padding-top: 9px;
-	min-height: 22px;
+	min-height: 32px;
 	clear: both;
 }
 

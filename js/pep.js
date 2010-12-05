@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -29,11 +29,11 @@ function storePEP(xid, type, value1, value2, value3) {
 		
 		// Generate the correct XML
 		if(type == 'tune')
-			xml += '<artist>' + value1 + '</artist><title>' + value2 + '</title><album>' + value3 + '</album>';
+			xml += '<artist>' + value1.htmlEnc() + '</artist><title>' + value2.htmlEnc() + '</title><album>' + value3.htmlEnc() + '</album>';
 		else if(type == 'geoloc')
-			xml += '<lat>' + value1 + '</lat><lon>' + value2 + '</lon><human>' + value3 + '</human>';
+			xml += '<lat>' + value1.htmlEnc() + '</lat><lon>' + value2.htmlEnc() + '</lon><human>' + value3.htmlEnc() + '</human>';
 		else
-			xml += '<value>' + value1 + '</value><text>' + value2 + '</text>';
+			xml += '<value>' + value1.htmlEnc() + '</value><text>' + value2.htmlEnc() + '</text>';
 		
 		// End the XML node
 		xml += '</pep>';
@@ -68,8 +68,8 @@ function displayPEP(xid, type) {
 		// Parse the XML for mood and activity
 		if((type == 'mood') || (type == 'activity')) {
 			if(value) {
-				var pepValue = value.find('value').text();
-				var pepText = value.find('text').text();
+				var pepValue = value.find('value').text().revertHtmlEnc();
+				var pepText = value.find('text').text().revertHtmlEnc();
 				
 				// No value?
 				if(!pepValue)
@@ -104,10 +104,10 @@ function displayPEP(xid, type) {
 			
 			if(value) {
 				// Parse the tune XML
-				var tArtist = value.find('artist').text();
-				var tTitle = value.find('title').text();
-				var tAlbum = value.find('album').text();
-				var tURI = value.find('uri').text();
+				var tArtist = value.find('artist').text().revertHtmlEnc();
+				var tTitle = value.find('title').text().revertHtmlEnc();
+				var tAlbum = value.find('album').text().revertHtmlEnc();
+				var tURI = value.find('uri').text().revertHtmlEnc();
 				var fArtist, fTitle, fAlbum, fURI;
 				
 				// Apply the good values
@@ -161,9 +161,9 @@ function displayPEP(xid, type) {
 			
 			if(value) {
 				// Parse the geoloc XML
-				var tLat = value.find('lat').text();
-				var tLon = value.find('lon').text();
-				var tHuman = value.find('human').text();
+				var tLat = value.find('lat').text().revertHtmlEnc();
+				var tLon = value.find('lon').text().revertHtmlEnc();
+				var tHuman = value.find('human').text().revertHtmlEnc();
 				
 				// No human location?
 				if(!tHuman)

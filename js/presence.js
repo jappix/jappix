@@ -144,7 +144,7 @@ function handlePresence(presence) {
 			else {
 				displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, notInitial);
 				
-				var xml = '<presence from="' + from + '"><priority>' + priority + '</priority><show>' + show + '</show><type>' + type + '</type><status>' + status + '</status><avatar>' + hasPhoto + '</avatar><checksum>' + checksum + '</checksum><caps>' + caps + '</caps></presence>';
+				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 				
 				setDB('presence', from, xml);
 			}
@@ -191,7 +191,7 @@ function handlePresence(presence) {
 			
 			// Other presence (available, error, subscribe...)
 			else {
-				var xml = '<presence from="' + from + '"><priority>' + priority + '</priority><show>' + show + '</show><type>' + type + '</type><status>' + status + '</status><avatar>' + hasPhoto + '</avatar><checksum>' + checksum + '</checksum><caps>' + caps + '</caps></presence>';
+				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 				
 				setDB('presence', from, xml);
 			}
@@ -594,10 +594,10 @@ function highestPriority(xid) {
 function getHighestResource(xid) {
 	var xml = $(highestPriority(xid));
 	var highest = xml.attr('from');
-	var type = xml.find('type').text();
+	var type = xml.find('type').text().revertHtmlEnc();
 	
 	// If the use is online, we can return its highest resource
-	if(!type || type == 'available' || type == 'null')
+	if(!type || (type == 'available') || (type == 'null'))
 		return highest;
 	else
 		return false;
@@ -607,12 +607,12 @@ function getHighestResource(xid) {
 function presenceFunnel(xid, hash) {
 	// Get the highest priority presence value
 	var xml = $(highestPriority(xid));
-	var type = xml.find('type').text();
-	var show = xml.find('show').text();
-	var status = xml.find('status').text();
-	var avatar = xml.find('avatar').text();
-	var checksum = xml.find('checksum').text();
-	var caps = xml.find('caps').text();
+	var type = xml.find('type').text().revertHtmlEnc();
+	var show = xml.find('show').text().revertHtmlEnc();
+	var status = xml.find('status').text().revertHtmlEnc();
+	var avatar = xml.find('avatar').text().revertHtmlEnc();
+	var checksum = xml.find('checksum').text().revertHtmlEnc();
+	var caps = xml.find('caps').text().revertHtmlEnc();
 	
 	// Display the presence with that stored value
 	if(!type && !show)
