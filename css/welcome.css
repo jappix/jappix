@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 05/12/10
 
 */
 
@@ -100,9 +100,9 @@ Last revision: 20/11/10
 }
 
 #welcome div.logo {
-	margin: 22px auto;
-	width: 198px;
-	height: 220px;
+	margin: 26px auto;
+	width: 190px;
+	height: 214px;
 }
 
 #welcome .bottom .finish.save {

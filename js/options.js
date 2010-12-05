@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -188,10 +188,11 @@ function storeOptions() {
 	var sounds = getDB('options', 'sounds');
 	var geolocation = getDB('options', 'geolocation');
 	var showall = getDB('options', 'roster-showall');
+	var status = getDB('options', 'presence-status');
 	
 	// Create an array to be looped
-	var oType = new Array('sounds', 'geolocation', 'roster-showall');
-	var oContent = new Array(sounds, geolocation, showall);
+	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'presence-status');
+	var oContent = new Array(sounds, geolocation, showall, status);
 	
 	// New IQ
 	var iq = new JSJaCIQ();

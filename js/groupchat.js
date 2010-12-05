@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -58,7 +58,7 @@ function getMUC(room, nickname, password) {
 	if(nickname) {
 		// Get our general presence
 		var show = getDB('presence-show', 1);
-		var status = getDB('presence-status', 1);
+		var status = getDB('options', 'presence-status');
 	
 		// Set my nick
 		$('#' + hash).attr('data-nick', escape(nickname));

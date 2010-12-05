@@ -8,7 +8,7 @@ These are the storage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 05/12/10
 
 */
 
@@ -98,6 +98,9 @@ function handleStorage(iq) {
 	// Options received
 	if(options.size()) {
 		logThis('Options received.');
+		
+		// Send the first presence!
+		firstPresence(getDB('checksum', 1));
 		
 		$('.options-hidable').show();
 	}

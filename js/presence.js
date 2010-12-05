@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -28,10 +28,7 @@ function firstPresence(checksum) {
 	FIRST_PRESENCE_SENT = true;
 	
 	// Try to use the last status message
-	var status = '';
-	
-	if(!is_anonymous)
-		status = getPersistent('old-status', getXID());
+	var status = getDB('options', 'presence-status');
 	
 	if(!status)
 		status = '';
@@ -48,7 +45,6 @@ function firstPresence(checksum) {
 	
 	// We store our presence
 	setDB('presence-show', 1, '');
-	setDB('presence-status', 1, status);
 	
 	// Finally, enable the presence selector
 	$('#my-infos .f-presence select').removeAttr('disabled');
@@ -728,12 +724,20 @@ function presenceSend(checksum, autoidle) {
 	
 	// We store our presence
 	if(!autoidle) {
-		// Store our old status
+		// Store our show presence
 		setDB('presence-show', 1, show);
-		setDB('presence-status', 1, status);
 		
-		// Update our stored status message
-		setPersistent('old-status', getXID(), status);
+		// Store our status
+		var old_status = getDB('options', 'presence-status');
+		
+		// Must update our options?
+		if(status != old_status) {
+			// Update the local stored status
+			setDB('options', 'presence-status', status);
+			
+			// Update the server stored status
+			storeOptions();
+		}
 	}
 	
 	// We send the presence to our active MUC
@@ -808,7 +812,7 @@ function autoIdle() {
 		AUTO_IDLE = true;
 		
 		// Get the old status message
-		var status = getDB('presence-status', 1);
+		var status = getDB('options', 'presence-status');
 		
 		if(!status)
 			status = '';
@@ -830,7 +834,7 @@ function eventIdle() {
 	if(AUTO_IDLE) {
 		// Get the values
 		var show = getDB('presence-show', 1);
-		var status = getDB('presence-status', 1);
+		var status = getDB('options', 'presence-status');
 		
 		// Change the presence input
 		$('.change-presence').val(show);
@@ -891,7 +895,7 @@ function launchPresence() {
 		$('#my-infos-text-first .textPresence').focus();
 		
 		// Get the old status message
-		var status = getPersistent('old-status', getXID());
+		var status = getDB('options', 'presence-status');
 		
 		if(!status)
 			status = '';

@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -154,14 +154,14 @@ function handleAvatar(iq) {
 		if(pChecksum == 'none')
 			pChecksum = '';
 		
+		// Update our temp. checksum
+		setDB('checksum', 1, pChecksum);
+		
 		// Send the stanza
 		if(FIRST_PRESENCE_SENT)
 			presenceSend(pChecksum);
 		else
-			firstPresence(pChecksum);
-		
-		// Update our temp. checksum
-		setDB('checksum', 1, pChecksum);
+			getStorage(NS_OPTIONS);
 	}
 }
 

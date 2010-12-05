@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -415,7 +415,6 @@ function normalQuit() {
 function getEverything() {
 	getFeatures();
 	getRoster();
-	getStorage(NS_OPTIONS);
 	getStorage(NS_INBOX);
 	getStorage(NS_ROSTERNOTES);
 }

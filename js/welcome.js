@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 05/12/10
 
 */
 
@@ -246,10 +246,6 @@ function nextWelcome() {
 function launchWelcome() {
 	// Click events
 	$('#welcome .tab a').click(function() {
-		// Yet active?
-		if($(this).hasClass('tab-active'))
-			return false;
-		
 		// Switch to the good tab
 		var key = parseInt($(this).attr('data-step'));
 		
