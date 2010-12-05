@@ -192,7 +192,7 @@ function displayPEP(xid, type) {
 		var this_buddy = '#buddy-list .buddy[data-xid=' + xid + ']';
 		
 		if(exists(this_buddy))
-			$(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + dText + '">' + fText + '</p>');
+			$(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '">' + fText + '</p>');
 		
 		// Apply the text to the buddy chat
 		if(exists('#' + hash)) {
@@ -202,7 +202,7 @@ function displayPEP(xid, type) {
 			// If the new PEP item is not null, create a new one
 			if(fText != _e("unknown"))
 				$('#' + hash + ' .bc-pep').prepend(
-					'<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + dText + '"></a>'
+					'<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '"></a>'
 				);
 		}
 		
