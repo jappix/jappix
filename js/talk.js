@@ -97,7 +97,7 @@ function createTalkPage() {
 					'<div class="content"></div>' + 
 					
 					'<div class="filter">' + 
-						'<input type="text" value="' + _e("Filter") +  '" placeholder="' + _e("Filter") +  '" />' + 
+						'<input type="text" placeholder="' + _e("Filter") +  '" />' + 
 						'<a>x</a>' + 
 					'</div>' + 
 					

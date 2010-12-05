@@ -604,26 +604,15 @@ function launchRoster() {
 	// Filtering tool
 	var iFilter = $('#buddy-list .filter input');
 	var aFilter = $('#buddy-list .filter a');
-	var pFilter = iFilter.attr('placeholder');
 	
-	iFilter.focus(function() {
-		// Put a blank value
-		if($(this).val() == pFilter)
-			$(this).val('');
-	})
+	iFilter.placeholder()
 	
 	.blur(function() {
 		// Nothing is entered, put the placeholder instead
-		if(!$(this).val()) {
-			$(this).val(pFilter);
+		if(!$(this).val())
 			aFilter.hide();
-		}
-		
-		else if($(this).val() != pFilter)
-			aFilter.show();
-		
 		else
-			aFilter.hide();
+			aFilter.show();
 	})
 	
 	.keyup(function(e) {
@@ -631,13 +620,14 @@ function launchRoster() {
 	});
 	
 	aFilter.click(function() {
-		iFilter.val(pFilter);
+		// Reset the input
 		$(this).hide();
+		iFilter.focus().val('').blur();
 		
 		// Security: show all the groups, empty or not
 		$('#buddy-list .one-group').show();
 		
-		// Resets the filtering tool
+		// Reset the filtering tool
 		resetFilterBuddySearch();
 		
 		return false;
