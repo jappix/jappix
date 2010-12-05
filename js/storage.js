@@ -56,16 +56,20 @@ function handleStorage(iq) {
 	
 	// Parse the inbox xml
 	inbox.find('message').each(function() {
-		// We retrieve the informations
-		var from = $(this).attr('from');
-		var subject = $(this).attr('subject');
-		var content = $(this).text();
-		var status = $(this).attr('status');
-		var id = $(this).attr('id');
-		var date = $(this).attr('date');
-		
-		// We display the message
-		storeInboxMessage(from, subject, content, status, id, date);
+		storeInboxMessage(
+				  $(this).attr('from'),
+				  $(this).attr('subject'),
+				  $(this).text(),
+				  $(this).attr('status'),
+				  $(this).attr('id'),
+				  $(this).attr('date'),
+				  [
+				   $(this).attr('file_name'),
+				   $(this).attr('file_url'),
+				   $(this).attr('file_type'),
+				   $(this).attr('file_ext')
+				  ]
+				 );
 	});
 	
 	// Parse the bookmarks xml
@@ -87,20 +91,15 @@ function handleStorage(iq) {
 	
 	// Parse the roster notes xml
 	rosternotes.find('note').each(function() {
-		// We retrieve the informations
-		var xid = $(this).attr('jid');
-		var value = $(this).text();
-		
-		// We display the storage
-		setDB('rosternotes', xid, value);
+		setDB('rosternotes', $(this).attr('jid'), $(this).text());
 	});
 	
 	// Options received
 	if(options.size()) {
 		logThis('Options received.');
 		
-		// Send the first presence!
-		firstPresence(getDB('checksum', 1));
+		// Now, get the inbox
+		getStorage(NS_INBOX);
 		
 		$('.options-hidable').show();
 	}
@@ -108,6 +107,9 @@ function handleStorage(iq) {
 	// Inbox received
 	else if(inbox.size()) {
 		logThis('Inbox received.');
+		
+		// Send the first presence!
+		firstPresence(getDB('checksum', 1));
 		
 		// Check we have new messages (play a sound if any unread messages)
 		if(checkInboxMessages())

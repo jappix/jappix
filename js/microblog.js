@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -19,7 +19,7 @@ function displayMicroblog(packet, from, hash, mode) {
 	
 	iParse.each(function() {
 		// Initialize
-		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFile, tFURL, tFName, tFType, tFExt, tFTClass, tFEClick;
+		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFile, tFURL, tFName, tFType, tFExt, tFEClick;
 		
 		// Get the values
 		tDate = $(this).find('published').text();
@@ -63,12 +63,6 @@ function displayMicroblog(packet, from, hash, mode) {
 					'<p><b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 					'<p class="infos">' + tTime + '</p>';
 		
-		// We can set an icon
-		if(tFType && ((tFType == 'image') || (tFType == 'video') || (tFType == 'audio') || (tFType == 'document') || (tFType == 'package')))
-			tFTClass = tFType;
-		else
-			tFTClass = 'other';
-		
 		// Supported image/video/sound
 		if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
 			tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL) + '\', \'' + encodeOnclick(tFType) + '\');" ';
@@ -76,7 +70,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFEClick = '';
 		
 		if(tFName && tFURL)
-			html += '<p class="file"><a class="talk-images ' + tFTClass + '" ' + tFEClick + 'href="' + tFURL + '" target="_blank">' + tFName + '</a></p>';
+			html += '<p class="file"><a class="' + encodeQuotes(tFType) + ' talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a></p>';
 		
 		// It's my own notice, we can remove it!
 		if(from == getXID())

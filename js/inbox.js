@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -54,13 +54,21 @@ function openInbox() {
 				'<textarea class="inbox-new-textarea" rows="8" cols="60" required=""></textarea>' + 
 			'</div>' + 
 			
+			'<form class="inbox-new-file inbox-new-block" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
+				'<p class="inbox-new-text">' + _e("File") + '</p>' + 
+				
+				generateFileShare() + 
+			'</form>' + 
+			
 			'<div class="inbox-new-send inbox-new-block">' + 
-				'<a>' + _e("Send message") + '</a>' + 
+				'<a class="send one-button talk-images">' + _e("Send message") + '</a>' + 
 			'</div>' + 
 		'</div>' + 
 	'</div>' + 
 	
 	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
 		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
@@ -95,15 +103,26 @@ function storeInbox() {
 		
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox') {
+			// Get the values
 			var value = $(sessionStorage.getItem(current));
-			var messageID = value.find('id').text();
-			var messageFrom = value.find('from').text().revertHtmlEnc();
-			var messageSubject = value.find('subject').text().revertHtmlEnc();
-			var messageStatus = value.find('status').text();
-			var messageContent = value.find('content').html().revertHtmlEnc();
-			var messageDate = value.find('date').text().revertHtmlEnc();
+			var file = value.find('file');
 			
-			storage.appendChild(iq.buildNode('message', {'id': messageID, 'from': messageFrom, 'subject': messageSubject, 'status': messageStatus, 'date': messageDate, 'xmlns': NS_INBOX}, messageContent));
+			// Create the storage node
+			storage.appendChild(iq.buildNode('message', {
+								     'id': value.find('id').text(),
+								     'from': value.find('from').text().revertHtmlEnc(),
+								     'subject': value.find('subject').text().revertHtmlEnc(),
+								     'status': value.find('status').text(),
+								     'date': value.find('date').text().revertHtmlEnc(),
+								     'file_name': file.find('name').text().revertHtmlEnc(),
+								     'file_url': file.find('url').text().revertHtmlEnc(),
+								     'file_type': file.find('type').text().revertHtmlEnc(),
+								     'file_ext': file.find('ext').text().revertHtmlEnc(),
+								     'xmlns': NS_INBOX
+								    },
+								    
+								    value.find('content').html().revertHtmlEnc()
+							));
 		}
 	}
 	
@@ -135,7 +154,9 @@ function cleanNewInboxMessage() {
 	var mPath = '#inbox .';
 	
 	// We reset the forms
-	$(mPath + 'inbox-new input, ' + mPath + 'inbox-new textarea').val('').removeClass('please-complete');
+	$(mPath + 'inbox-new-block:not(form) input, ' + mPath + 'inbox-new textarea').val('').removeClass('please-complete');
+	$(mPath + 'inbox-new-file a').remove();
+	$(mPath + 'inbox-new-file input').show();
 	
 	// We close an eventual opened message
 	$(mPath + 'message-content').remove();
@@ -147,10 +168,28 @@ function sendInboxMessage(to, subject, body) {
 	// We send the message
 	var mess = new JSJaCMessage();
 	
+	// General stuffs
 	mess.setTo(to);
 	mess.setSubject(subject);
 	mess.setBody(body);
 	mess.setType('normal');
+	
+	// Any file to attach?
+	var attached = '#inbox .inbox-new-file a.file';
+	
+	if(exists(attached)) {
+		// New X node
+		var x = mess.appendNode('x', {'xmlns': NS_X_ATTACH});
+		
+		// Build the file vars
+		x.appendChild(mess.buildNode('file', {
+							'name': unescape($(attached).attr('data-attachedname')),
+							'url': unescape($(attached).attr('data-attachedurl')),
+							'type': unescape($(attached).attr('data-attachedtype')),
+							'ext': unescape($(attached).attr('data-attachedext')),
+							'xmlns': NS_X_ATTACH
+						     }));
+	}
 	
 	con.send(mess, handleErrorReply);
 }
@@ -225,7 +264,7 @@ function showInboxMessages() {
 }
 
 // Displays a normal message
-function displayInboxMessage(from, subject, content, status, id, date) {
+function displayInboxMessage(from, subject, content, status, id, date, msg_file_arr) {
 	// Generate some paths
 	var inbox = '#inbox .';
 	var one_message = inbox + 'one-message.' + id;
@@ -264,7 +303,7 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 	// Click events
 	$(one_message + ' .message-head').click(function() {
 		if(!exists(one_message + ' .message-content'))
-			revealInboxMessage(id, from, subject, content, name, date, status);
+			revealInboxMessage(id, from, subject, content, name, date, status, msg_file_arr);
 		else
 			hideInboxMessage(id);
 	});
@@ -276,10 +315,18 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 }
 
 // Stores an inbox message
-function storeInboxMessage(from, subject, content, status, id, date) {
-	// Generate the XML data
-	var xml = '<message><id>' + id.htmlEnc() + '</id><date>' + date.htmlEnc() + '</date><from>' + from.htmlEnc() + '</from><subject>' + subject.htmlEnc() + '</subject><status>' + status.htmlEnc() + '</status><content>' + content.htmlEnc() + '</content></message>';
+function storeInboxMessage(from, subject, content, status, id, date, file_arr) {
+	// Initialize the XML data
+	var xml = '<message><id>' + id.htmlEnc() + '</id><date>' + date.htmlEnc() + '</date><from>' + from.htmlEnc() + '</from><subject>' + subject.htmlEnc() + '</subject><status>' + status.htmlEnc() + '</status><content>' + content.htmlEnc() + '</content>';
 	
+	// Any attached file?
+	if(file_arr[0])
+		xml += '<file><name>' + file_arr[0].htmlEnc() + '</name><url>' + file_arr[1].htmlEnc() + '</url><type>' + file_arr[2].htmlEnc() + '</type><ext>' + file_arr[3].htmlEnc() + '</ext></file>';
+	
+	// End the XML data
+	xml += '</message>';
+	
+	// Store this message!
 	setDB('inbox', id, xml);
 }
 
@@ -378,31 +425,41 @@ function checkInboxMessages() {
 }
 
 // Reveal a normal message content
-function revealInboxMessage(id, from, subject, content, name, date, status) {
+function revealInboxMessage(id, from, subject, content, name, date, status, msg_file_arr) {
 	// Message path
 	var all_message = '#inbox .one-message';
-	var all_content = one_message + ' .message-content';
 	var one_message = all_message + '.' + id;
 	var one_content = one_message + ' .message-content';
 	
 	// We reset all the other messages
-	$(all_content).remove();
+	$(all_message + ' .message-content').remove();
 	$(all_message).removeClass('message-reading');
 	
-	// We show the message
-	var html = 
-			'<div class="message-content">' + 
-				'<div class="message-body">' + filterThisMessage(content, name, true) + '</div>' + 
-				
-				'<div class="message-meta">' + 
-					'<span class="date">' + parseDate(date) + '</span>' + 
-					
-					'<a class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
-					'<a class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
-					
-					'<div class="clear"></div>' + 
-				'</div>' + 
-			'</div>';
+	// Message content
+	var html = '<div class="message-content">';
+	
+	// Message body
+	html += '<div class="message-body">' + filterThisMessage(content, name, true) + '</div>';
+	
+	// Message file
+	if(msg_file_arr[0]) {
+		html+= '<div class="message-file">' + 
+				'<a class="' + msg_file_arr[2] + ' talk-images" href="' + msg_file_arr[1] + '" target="_blank">' + msg_file_arr[0] + '</a>' + 
+		       '</div>';
+	}
+	
+	// Message meta
+	html += '<div class="message-meta">' + 
+			'<span class="date">' + parseDate(date) + '</span>' + 
+			
+			'<a class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
+			'<a class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
+			
+			'<div class="clear"></div>' + 
+		'</div>';
+	
+	// Message content
+	html += '</div>';
 	
 	$(one_message).append(html).addClass('message-reading');
 	
@@ -477,15 +534,63 @@ function loadInbox() {
 						value.find('from').text().revertHtmlEnc(),
 						value.find('subject').text().revertHtmlEnc(),
 						value.find('content').html().revertHtmlEnc(),
-						value.find('status').text(),
-						value.find('id').text(),
-						value.find('date').text().revertHtmlEnc()
+						value.find('status').text().revertHtmlEnc(),
+						value.find('id').text().revertHtmlEnc(),
+						value.find('date').text().revertHtmlEnc(),
+						[
+						 value.find('name').text().revertHtmlEnc(),
+						 value.find('url').text().revertHtmlEnc(),
+						 value.find('type').text().revertHtmlEnc(),
+						 value.find('ext').text().revertHtmlEnc()
+						]
 					   );
 		}
 	}
 	
 	// Check new messages
 	checkInboxMessages();
+}
+
+// Wait event for file attaching
+function waitInboxAttach() {
+	$('#inbox .wait').show();
+}
+
+// Success event for file attaching
+function handleInboxAttach(responseXML) {
+	// Data selector
+	var dData = $(responseXML).find('jappix');
+	
+	// Process the returned data
+	if(dData.find('error').size()) {
+		openThisError(4);
+		
+		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
+	}
+	
+	else {
+		// Get the file values
+		var fName = dData.find('name').text();
+		var fType = dData.find('type').text();
+		var fExt = dData.find('ext').text();
+		var fURL = dData.find('url').text();
+		
+		// Hide the attach link, show the unattach one
+		$('#inbox .inbox-new-file input').hide();
+		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fType) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a class="remove one-button talk-images">' + _e("Remove") + '</a>');
+		
+		// Set values to the file link
+		$('#inbox .inbox-new-file a.file').attr('data-attachedname', escape(fName))
+						  .attr('data-attachedtype', escape(fType))
+						  .attr('data-attachedext',  escape(fExt))
+						  .attr('data-attachedurl',  escape(fURL));
+		
+		logThis('File attached.', 3);
+	}
+	
+	// Reset the attach bubble
+	$('#inbox .inbox-new-file input[type=file]').val('');
+	$('#inbox .wait').hide();
 }
 
 // Plugin launcher
@@ -542,5 +647,28 @@ function launchInbox() {
 	
 	$(inbox + 'bottom .finish').click(function() {
 		return closeInbox();
+	});
+	
+	// File upload
+	var attach_options = {
+		dataType:	'xml',
+		beforeSubmit:	waitInboxAttach,
+		success:	handleInboxAttach
+	};
+	
+	// Upload form submit event
+	$('#inbox .inbox-new-file').submit(function() {
+		if($('#inbox .wait').is(':hidden') && $('#inbox .inbox-new-file input[type=file]').val())
+			$(this).ajaxSubmit(attach_options);
+		
+		return false;
+	});
+	
+	// Upload input change event
+	$('#inbox .inbox-new-file input[type=file]').change(function() {
+		if($('#inbox .wait').is(':hidden') && $(this).val())
+			$('#inbox .inbox-new-file').ajaxSubmit(attach_options);
+		
+		return false;
 	});
 }

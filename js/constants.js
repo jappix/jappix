@@ -8,7 +8,7 @@ These are the constants JS scripts for Jappix
 License: AGPL
 Author: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 05/12/10
 
 */
 
@@ -27,6 +27,8 @@ var NS_ROSTERNOTES =  NS_STORAGE + 'rosternotes';
 var NS_JAPPIX =       'jappix:';
 var NS_INBOX =        NS_JAPPIX + 'inbox';
 var NS_OPTIONS =      NS_JAPPIX + 'options';
+
+var NS_X_ATTACH =     NS_JAPPIX + ':x:attach';
 
 var NS_DISCO_ITEMS =  NS_PROTOCOL + 'disco#items';
 var NS_DISCO_INFO =   NS_PROTOCOL + 'disco#info';

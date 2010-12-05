@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -171,38 +171,49 @@ Last revision: 04/12/10
 	margin: 6px 0 5px 75px;
 }
 
-#channel .one-update p.file a {
+#channel .one-update p.file a,
+#inbox .message-file a,
+#inbox .inbox-new-file a.file {
 	min-height: 16px;
 	padding-left: 22px;
+	text-decoration: underline;
 	display: block;
 }
 
-#channel p.file a.audio {
+#channel p.file a.audio,
+#inbox .message-file a.audio,
+#inbox .inbox-new-file a.file.audio {
 	background-position: 0 -899px;
 }
 
-#channel p.file a.image {
+#channel p.file a.image,
+#inbox .message-file a.image,
+#inbox .inbox-new-file a.file.image {
 	background-position: 0 -917px;
 }
 
-#channel p.file a.video {
+#channel p.file a.video,
+#inbox .message-file a.video,
+#inbox .inbox-new-file a.file.video {
 	background-position: 0 -935px;
 }
 
-#channel p.file a.document {
+#channel p.file a.document,
+#inbox .message-file a.document,
+#inbox .inbox-new-file a.file.document {
 	background-position: 0 -953px;
 }
 
-#channel p.file a.package {
+#channel p.file a.package,
+#inbox .message-file a.package,
+#inbox .inbox-new-file a.file.package {
 	background-position: 0 -971px;
 }
 
-#channel p.file a.other {
+#channel p.file a.other,
+#inbox .message-file a.other,
+#inbox .inbox-new-file a.file.other {
 	background-position: 0 -989px;
-}
-
-#channel .one-update p.file a {
-	text-decoration: underline;
 }
 
 #channel a.more {

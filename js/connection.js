@@ -415,7 +415,6 @@ function normalQuit() {
 function getEverything() {
 	getFeatures();
 	getRoster();
-	getStorage(NS_INBOX);
 	getStorage(NS_ROSTERNOTES);
 }
 

@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 05/12/10
 
 */
 
@@ -533,11 +533,7 @@ function createTalkPage() {
 										
 										'<div class="attach-subitem">' + 
 											'<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
-											'<input type="hidden" name="MAX_FILE_SIZE" value="' + JAPPIX_MAX_FILE_SIZE + '">' + 
-											'<input type="hidden" name="user" value="' + getXID() + '" />' + 
-											'<input type="hidden" name="location" value="' + generateURL(JAPPIX_LOCATION) + '" />' + 
-											'<input type="file" name="file" required="" />' + 
-											'<input type="submit" value="' + _e("Send") + '" />' + 
+											generateFileShare() + 
 										'</div>' + 
 									'</form>' + 
 								'</div>' + 

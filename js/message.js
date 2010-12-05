@@ -123,12 +123,21 @@ function handleMessage(message) {
 		// Message ID
 		var messageID = hex_md5(xid + subject + messageDate);
 		
+		// Attached message file
+		var msg_file = $(node).find('x[xmlns=' + NS_X_ATTACH + '] file:first');
+		var msg_file_arr = [
+				    msg_file.attr('name'),
+				    msg_file.attr('url'),
+				    msg_file.attr('type'),
+				    msg_file.attr('ext')
+				   ];
+		
 		// We store the received message
-		storeInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+		storeInboxMessage(xid, subject, body, 'unread', messageID, messageDate, msg_file_arr);
 		
 		// Display the inbox message
 		if(exists('#inbox'))
-			displayInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+			displayInboxMessage(xid, subject, body, 'unread', messageID, messageDate, msg_file_arr);
 		
 		// Check we have new messages (play a sound if any unread messages)
 		if(checkInboxMessages())
