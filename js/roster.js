@@ -838,8 +838,6 @@ function launchRoster() {
 	// When the user clicks on a link that fire the close bubble event
 	$('#buddy-conf-more .buddy-conf-text a, #buddy-conf-involve .buddy-conf-text a').click(function() {
 		closeBubbles();
-		
-		return false;
 	});
 	
 	// When the user wants to display all his buddies
