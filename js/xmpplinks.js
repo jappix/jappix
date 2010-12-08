@@ -8,7 +8,7 @@ These are the XMPP links handling JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/11/10
+Last revision: 08/12/10
 
 */
 
@@ -32,31 +32,41 @@ function xmppLink(link) {
 		var action = explodeThis('?', link, 1);
 		
 		switch(action) {
+			// Groupchat
 			case 'join':
 				checkChatCreate(xid, 'groupchat');
+				
 				break;
 			
+			// Profile
 			case 'vcard':
 				openUserInfos(xid);
+				
 				break;
 			
+			// Subscription
 			case 'subscribe':
 				addThisContact(xid);
+				
 				break;
 			
+			// Unsubscription
 			case 'unsubscribe':
 				sendRoster(xid, 'remove');
+				
 				break;
 			
+			// Private chat
 			default:
 				checkChatCreate(xid, 'chat');
+				
 				break;
 		}
 	}
 }
 
-// Gets the link parameters
-var link_vars = (function() {
+// Gets the links vars (get parameters in URL)
+var LINK_VARS = (function() {
 	var vars = [], hash;
 	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 	

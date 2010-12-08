@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 04/12/10
+# Last revision: 08/12/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -51,9 +51,6 @@ msgid "Please enter your nickname to join %s."
 msgstr ""
 
 msgid "This room (%s) is protected with a password."
-msgstr ""
-
-msgid "Please enter a different nickname, the previous one is not available on %s."
 msgstr ""
 
 msgid "Login"

@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 08/12/10
 
 */
 
@@ -19,7 +19,8 @@ var MINI_SHOWPANE = false;
 var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
-var MINI_GROUPCHATS = null;
+var MINI_GROUPCHATS = [];
+var MINI_PASSWORDS = [];
 
 // Setups connection handlers
 function setupCon(con) {
@@ -116,24 +117,21 @@ function connected() {
 		getRoster();
 	
 	// Join the groupchats
-	if(MINI_GROUPCHATS) {
-		// Open each defined groupchats
-		for(i in MINI_GROUPCHATS) {
-			// Empty value?
-			if(!MINI_GROUPCHATS[i])
-				continue;
+	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
+		// Empty value?
+		if(!MINI_GROUPCHATS[i])
+			continue;
+		
+		// Using a try/catch override IE issues
+		try {
+			// Current chat room
+			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
 			
-			// Using a try/catch override IE issues
-			try {
-				// Current chat room
-				var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
-				
-				// Open the current chat
-				chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
-			}
-			
-			catch(e) {}
+			// Open the current chat
+			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room), MINI_PASSWORDS[i]);
 		}
+		
+		catch(e) {}
 	}
 	
 	// Must hide all panes?
@@ -145,7 +143,7 @@ function connected() {
 
 // When the user disconnects
 function saveSession() {
-	if((typeof con != 'undefined') && con && con.connected()) {
+	if(MINI_INITIALIZED) {
 		// Save the actual Jappix Mini DOM
                 setDB('jappix-mini', 'dom', $('#jappix_mini').html());
 		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
@@ -153,12 +151,15 @@ function saveSession() {
 		// Suspend connection
 		con.suspend();
 		
-		logThis('Jappix Mini session saved...', 3);
+		logThis('Jappix Mini session saved.', 3);
 	}
 }
 
 // When the user is disconnected
 function disconnected() {
+	// Reset initialized marker
+	MINI_INITIALIZED = false;
+	
 	// Remove Jappix Mini when disconnected
 	$('#jappix_mini').remove();
 	
@@ -425,15 +426,14 @@ function handleMUC(pr) {
 	
 	// Nickname conflict?
 	else if($(xml).find('error[type=cancel] conflict').size()) {
-		var nickname = prompt(printf(_e("Please enter a different nickname, the previous one is not available on %s."), room), resource + '_');
+		// New nickname
+		var nickname = resource + '_';
 		
-		// Any nickname?
-		if(nickname) {
-			presence('', '', '', '', room + '/' + nickname, '', true, handleMUC);
-			
-			// Update the nickname marker
-			$('#jappix_mini #chat-' + hex_md5(room)).attr('data-nick', escape(nickname));
-		}
+		// Send the new presence
+		presence('', '', '', '', room + '/' + nickname, '', true, handleMUC);
+		
+		// Update the nickname marker
+		$('#jappix_mini #chat-' + hex_md5(room)).attr('data-nick', escape(nickname));
 	}
 }
 
@@ -689,6 +689,9 @@ function createMini(domain, user, password) {
 	setupCon(con);
 	
 	if(suspended && con.resume()) {
+		// Initialized marker
+		MINI_INITIALIZED = true;
+		
 		// Restore buddy click events
 		$('#jappix_mini a.jm_friend').click(function() {
 			// Using a try/catch override IE issues
@@ -811,7 +814,7 @@ function messageScroll(hash) {
 }
 
 // Manages and creates a chat
-function chat(type, xid, nick, hash) {
+function chat(type, xid, nick, hash, pwd) {
 	var current = '#jappix_mini #chat-' + hash;
 	
 	// Not yet added?
@@ -889,7 +892,7 @@ function chat(type, xid, nick, hash) {
 			$(current).attr('data-nick', escape(nickname));
 			
 			// Send the first groupchat presence
-			presence('', '', '', '', xid + '/' + nickname, '', true, handleMUC);
+			presence('', '', '', '', xid + '/' + nickname, pwd, true, handleMUC);
 		}
 	}
 	

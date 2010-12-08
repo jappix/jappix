@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 08/12/10
 
 */
 
@@ -115,11 +115,11 @@ function launchAnonymous() {
 	showGeneralWait();
 	
 	// Get the vars
-	if(link_vars['r'] && (link_vars['n'] !== ''))
-		ANONYMOUS_ROOM = link_vars['r'];
+	if(LINK_VARS['r'] && (LINK_VARS['n'] !== ''))
+		ANONYMOUS_ROOM = LINK_VARS['r'];
 	
-	if(link_vars['n'] && (link_vars['n'] !== ''))
-		ANONYMOUS_NICK = link_vars['n'];
+	if(LINK_VARS['n'] && (LINK_VARS['n'] !== ''))
+		ANONYMOUS_NICK = LINK_VARS['n'];
 	
 	// Fire the login action
 	anonymousLogin(HOST_ANONYMOUS);
