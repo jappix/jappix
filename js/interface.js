@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 08/12/10
 
 */
 
@@ -273,6 +273,10 @@ function autoScroll(hash) {
 
 // Shows all the buddies in the buddy-list
 function showAllBuddies(from) {
+	// Options not yet loaded?
+	if(!loadedOptions())
+		return false;
+	
 	// Put a marker
 	BLIST_ALL = true;
 	
@@ -302,6 +306,10 @@ function showAllBuddies(from) {
 
 // Shows only the online buddies in the buddy-list
 function showOnlineBuddies(from) {
+	// Options not yet loaded?
+	if(!loadedOptions())
+		return false;
+	
 	// Remove the marker
 	BLIST_ALL = false;
 	

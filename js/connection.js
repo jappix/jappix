@@ -375,6 +375,7 @@ function clearLastSession() {
 	// Clear temporary storage
 	CURRENT_SESSION = false;
 	CONNECTED = false;
+	RESUME = false;
 	
 	// Clear persistent storage
 	if($(getPersistent('session', 1)).find('stored').text() == 'true')
@@ -420,6 +421,12 @@ function getEverything() {
 
 // Plugin launcher
 function launchConnection() {
+	// Logouts when Jappix is closed
+	if(BrowserDetect.browser == 'Opera')
+		$(window).bind('unload', terminate);
+	else
+		$(window).bind('beforeunload', terminate);
+	
 	// Nothing to do when anonymous!
 	if(isAnonymous())
 		return;
@@ -447,9 +454,6 @@ function launchConnection() {
 		logThis('A XMPP link is set, switch to login page.', 3);
 	}
 }
-
-// Logouts when the application is closed
-$(window).bind('beforeunload', terminate);
 
 // Launch this plugin!
 $(document).ready(launchConnection);

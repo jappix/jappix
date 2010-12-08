@@ -8,7 +8,7 @@ These are the user-infos JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 08/12/10
 
 */
 
@@ -332,8 +332,10 @@ function sendBuddyComments() {
 	var xid = $('#userinfos .buddy-xid').text();
 	
 	// Necessary to update?
-	if(getDB('rosternotes', xid) == value)
-		return;
+	var old_value = getDB('rosternotes', xid);
+	
+	if((old_value == value) || (!old_value && !value))
+		return false;
 	
 	// Update the database
 	setDB('rosternotes', xid, value);
@@ -360,6 +362,8 @@ function sendBuddyComments() {
 	}
 	
 	con.send(iq);
+	
+	return false;
 }
 
 // Switches the user-infos tabs

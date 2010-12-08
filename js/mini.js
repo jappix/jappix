@@ -1159,7 +1159,10 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	$(window).resize(adaptRoster);
 	
 	// Disconnects when the user quit
-	$(window).bind('unload', saveSession);
+	if(BrowserDetect.browser == 'Opera')
+		$(window).bind('unload', saveSession);
+	else
+		$(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);

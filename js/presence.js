@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 08/12/10
 
 */
 
@@ -64,9 +64,9 @@ function handlePresence(presence) {
 	var xidHash = hex_md5(xid);
 	
 	// We get the priority content
-	var priority = presence.getPriority();
+	var priority = presence.getPriority() + '';
 	if(!priority)
-		priority = 0;
+		priority = '0';
 	
 	// We get the show content
 	var show = presence.getShow();
@@ -420,8 +420,9 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		
 		// Chat stuffs
 		if(exists('#' + hash)) {
-			// Remove the chatstate notification
+			// Remove the chatstate stuffs
 			$('#' + hash + ' .chatstate').remove();
+			$('#' + hash + ' .message-area').removeAttr('data-chatstates');
 			
 			// Get the buddy avatar (only if a chat is opened)
 			getAvatar(xid, 'cache', 'true', 'forget');
@@ -510,7 +511,7 @@ function humanShow(show, type) {
 	return show;
 }
 
-// Sort of "artificial intelligence" (LOL) to make the presence data go in the right way
+// Makes the presence data go in the right way
 function presenceIA(type, show, status, hash, xid, avatar, checksum, caps) {
 	// Is there a status defined?
 	if(!status)
@@ -554,7 +555,7 @@ function highestPriority(xid) {
 	var selector, priority, type, highest;
 	
 	// This is a groupchat presence
-	if(xid.match(/\//))
+	if(xid.indexOf('/') != -1)
 		highest = getDB('presence', xid);
 	
 	// This is a "normal" presence: get the highest priority resource

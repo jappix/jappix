@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 08/12/10
 
 */
 
@@ -69,7 +69,7 @@ function handleMessage(message) {
 			displayChatState('active', hash);
 			
 			// Tell Jappix the entity supports chatstates
-			$('#' + hash + ' .message-area').addClass('chatstates');
+			$('#' + hash + ' .message-area').attr('data-chatstates', 'true');
 			
 			logThis('Active chatstate received from: ' + from);
 		}

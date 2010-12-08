@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 08/12/10
 
 */
 
@@ -154,6 +154,14 @@ function optionsOpen() {
 function closeOptions() {
 	// Destroy the popup
 	destroyPopup('options');
+	
+	return false;
+}
+
+// Checks whether the options are loaded or not
+function loadedOptions() {
+	if($('.options-hidable').is(':visible'))
+		return true;
 	
 	return false;
 }
