@@ -317,7 +317,8 @@ function handleMessage(message) {
 				}
 				
 				// We notify the user there's a new unread muc message
-				messageNotify(hash, 'unread');
+				else
+					messageNotify(hash, 'unread');
 			}
 			
 			// Display the received message
