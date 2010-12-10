@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 10/12/10
 
 */
 
@@ -149,9 +149,6 @@ function handlePresence(presence) {
 				setDB('presence', from, xml);
 			}
 		}
-		
-		// Scroll to the last presence message
-		autoScroll(xidHash);
 		
 		// Manage the presence
 		presenceFunnel(from, hash);
@@ -421,6 +418,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		// Chat stuffs
 		if(exists('#' + hash)) {
 			// Remove the chatstate stuffs
+			resetChatState(hash);
 			$('#' + hash + ' .chatstate').remove();
 			$('#' + hash + ' .message-area').removeAttr('data-chatstates');
 			

@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 10/12/10
 
 */
 
@@ -61,7 +61,7 @@ function handleMessage(message) {
 	stamp = extractStamp(d_stamp);
 	
 	// Chatstate message
-	if(node && ((type == 'chat') || !type)) {
+	if(node && ((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) {
 		/* REF: http://xmpp.org/extensions/xep-0085.html */
 		
 		// Do something depending of the received state
@@ -265,9 +265,6 @@ function handleMessage(message) {
 			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filteredSubject;
 			displayMessage(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
 		}
-		
-		// Scroll to this subject
-		autoScroll(hash);
 	}
 	
 	// If the message has a content
@@ -323,9 +320,6 @@ function handleMessage(message) {
 			
 			// Display the received message
 			displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, notXHTML, nickQuote);
-			
-			// Scroll to the last message
-			autoScroll(hash);
 		}
 		
 		// Chat message
@@ -357,9 +351,6 @@ function handleMessage(message) {
 			
 			// We notify the user
 			messageNotify(hash, 'personnal');
-			
-			// Scroll to the last message
-			autoScroll(hash);
 		}
 		
 		return false;
@@ -446,9 +437,6 @@ function sendMessage(id, type) {
 			var my_xid = getXID();
 			
 			displayMessage('chat', my_xid, id, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');
-			
-			// Scroll to the last message
-			autoScroll(id);
 		}
 		
 		// Groupchat message type
@@ -744,6 +732,9 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	
 	// Write the code in the DOM
 	$('#' + hash + ' .content').append(messageCode);
+	
+	// Scroll to this message
+	autoScroll(hash);
 	
 	// Must get the avatar?
 	if(has_avatar && xid)

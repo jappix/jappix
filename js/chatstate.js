@@ -8,7 +8,7 @@ These are the chatstate JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 10/12/10
 
 */
 
@@ -32,12 +32,8 @@ function chatStateSend(state, xid, hash, type) {
 // Displays a given chatstate in a given chat
 function displayChatState(state, hash) {
 	// We change the buddy name color in the page-switch
-	$('#page-switch .' + hash + ' .name').removeClass('active')
-					     .removeClass('composing')
-					     .removeClass('paused')
-					     .removeClass('inactive')
-					     .removeClass('gone')
-					     .addClass(state);
+	resetChatState(hash);
+	$('#page-switch .' + hash + ' .name').addClass(state);
 	
 	// We generate the chatstate text
 	var text = '';
@@ -79,4 +75,13 @@ function displayChatState(state, hash) {
 	
 	// We create the chatstate
 	$('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
+}
+
+// Resets the chatstate switcher marker
+function resetChatState(hash) {
+	$('#page-switch .' + hash + ' .name').removeClass('active')
+					     .removeClass('composing')
+					     .removeClass('paused')
+					     .removeClass('inactive')
+					     .removeClass('gone');
 }
