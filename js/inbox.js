@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 11/12/10
 
 */
 
@@ -204,31 +204,30 @@ function checkInboxMessage() {
 	
 	if(to && body && subject) {
 		// New array of XID
-		var xid;
-		
-		// Only one value
-		if(!to.match(/, /))
-			xid = new Array(to);
+		var xid = new Array(to);
 		
 		// More than one XID
-		else
-			xid = to.split(', ');
+		if(to.indexOf(',') != -1)
+			xid = to.split(',');
 		
 		for(i in xid) {
 			var current = xid[i];
 			
-			if(current) {
-				// Edit the XID if needed
-				current = generateXID(current, 'chat');
-				
-				// We send the message
-				sendInboxMessage(current, subject, body);
-				
-				// We clean the inputs
-				cleanNewInboxMessage();
-				
-				logThis('Inbox message sent: ' + current, 3);
-			}
+			// No current value?
+			if(!current || current.match(/^(\s+)$/))
+				continue;
+			
+			// Edit the XID if needed
+			current = current.replace(/ /g, '');
+			current = generateXID(current, 'chat');
+			
+			// We send the message
+			sendInboxMessage(current, subject, body);
+			
+			// We clean the inputs
+			cleanNewInboxMessage();
+			
+			logThis('Inbox message sent: ' + current, 3);
 		}
 		
 		// Close the inbox
@@ -238,7 +237,7 @@ function checkInboxMessage() {
 	else {
 		$(mPath + 'input[type=text], ' + mPath + 'textarea').each(function() {
 			if(!$(this).val())
-				$(this).addClass('please-complete');
+				$(this).addClass('please-complete').focus();
 			else
 				$(this).removeClass('please-complete');	
 		});
@@ -635,7 +634,7 @@ function launchInbox() {
 		var value = $(this).val();
 		
 		// Add a comma at the end
-		if(value && !value.match(/(^)(.+)((,)(\s))($)/))
+		if(value && !value.match(/^(.+)((,)(\s)?)$/))
 			$(this).val(value + ', ');
 	});
 	

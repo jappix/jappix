@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 11/12/10
 
 */
 
@@ -271,7 +271,7 @@ function terminateThisFavorite(type) {
 		else {
 			$(favorites + 'input[required]').each(function() {
 				if(!$(this).val())
-					$(this).addClass('please-complete');
+					$(this).addClass('please-complete').focus();
 				else
 					$(this).removeClass('please-complete');	
 			});

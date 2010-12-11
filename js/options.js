@@ -8,7 +8,7 @@ These are the options JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 11/12/10
 
 */
 
@@ -334,15 +334,15 @@ function sendNewPassword() {
 	else {
 		$('.sub-ask-pass input').each(function() {
 			if(!$(this).val())
-				$(this).addClass('please-complete');
+				$(this).addClass('please-complete').focus();
 			else
 				$(this).removeClass('please-complete');	
 		});
 		
 		if(password0 != getPassword())
-			$('#options .old').addClass('please-complete');
+			$('#options .old').addClass('please-complete').focus();
 		if(password1 != password2)
-			$('#options .new1, #options .new2').addClass('please-complete');
+			$('#options .new1, #options .new2').addClass('please-complete').focus();
 	}
 	
 	return false;
@@ -390,7 +390,7 @@ function purgeMyMicroblog() {
 		var selector = $('#options .check-empty');
 		
 		if(password != getPassword())
-			selector.addClass('please-complete');
+			selector.addClass('please-complete').focus();
 		else
 			selector.removeClass('please-complete');
 	}
@@ -435,7 +435,7 @@ function deleteMyAccount() {
 		var selector = $('#options .check-password');
 		
 		if(password != getPassword())
-			selector.addClass('please-complete');
+			selector.addClass('please-complete').focus();
 		else
 			selector.removeClass('please-complete');
 	}

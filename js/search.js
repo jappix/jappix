@@ -8,7 +8,7 @@ These are the seach tools JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 11/12/10
 
 */
 
@@ -65,8 +65,8 @@ function addBuddySearch(destination, xid) {
 	// Get the old value (if there's another value)
 	var old = '';
 	
-	if(value.match(/((^)(.+)(,)(\s))(\w+)($)/))
-		old = value.replace(/((^)(.+)(,)(\s))(\w+)($)/gi, '$1');
+	if(value.match(/(^(.+)(,)(\s)?)(\w+)$/))
+		old = RegExp.$1;
 	
 	// Add the XID to the "to" input and focus on it
 	input.val(old + xid).focus();
@@ -83,8 +83,8 @@ function createBuddySearch(destination) {
 	var value = $(destination + ' input').val();
 	
 	// Separation with a comma?
-	if(value.match(/(^)(.+)((,)(\s))(\w+)($)/))
-		value = value.replace(/(^)(.+)((,)(\s))(\w+)($)/gi, '$6');
+	if(value.match(/^(.+)((,)(\s)?)(\w+)$/))
+		value = RegExp.$5;
 	
 	// Get the result array
 	var entered = processBuddySearch(value);

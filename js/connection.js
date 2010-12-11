@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 11/12/10
 
 */
 
@@ -165,7 +165,7 @@ function doAnonymous() {
 	else {
 		$(aPath + 'input[type=text]').each(function() {
 			if(!$(this).val())
-				$(this).addClass('please-complete');
+				$(this).addClass('please-complete').focus();
 			else
 				$(this).removeClass('please-complete');	
 		});

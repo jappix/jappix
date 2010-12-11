@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 11/12/10
 
 */
 
@@ -247,7 +247,7 @@ function loginForm() {
 	else {
 		$(lPath + 'input[type=text], ' + lPath + 'input[type=password]').each(function() {
 			if(!$(this).val())
-				$(this).addClass('please-complete');
+				$(this).addClass('please-complete').focus();
 			else
 				$(this).removeClass('please-complete');	
 		});
@@ -282,7 +282,7 @@ function registerForm() {
 	else {
 		$(rPath + 'input[type=text], ' + rPath + 'input[type=password]').each(function() {
 			if(!$(this).val() || ($(this).is('#spassword') && pass && (pass != spass)))
-				$(this).addClass('please-complete');
+				$(this).addClass('please-complete').focus();
 			else
 				$(this).removeClass('please-complete');	
 		});
