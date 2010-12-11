@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 11/12/10
 
 */
 
@@ -331,11 +331,11 @@ function handleDataFormContent(iq, type) {
 					
 					// The buddy is not in our buddy list?
 					if(!exists('#buddy-list .buddy[data-xid=' + bXID + ']'))
-						bHTML += '<a class="one-add one-vjud one-button">' + _e("Add") + '</a>';
+						bHTML += '<a class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
 					
 					// Chat button, if not in welcome mode
 					if(target == 'discovery')
-						bHTML += '<a class="one-chat one-vjud one-button">' + _e("Chat") + '</a>';
+						bHTML += '<a class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
 					
 					// Close the HTML element
 					bHTML += '</div></div>';

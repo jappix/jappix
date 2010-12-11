@@ -293,6 +293,9 @@ function saveOptions() {
 
 // Handles the password changing
 function handlePwdChange(iq) {
+	// Remove the general wait item
+	removeGeneralWait();
+	
 	// If no errors
 	if(!handleErrorReply(iq)) {
 		clearLastSession();
@@ -315,6 +318,9 @@ function sendNewPassword() {
 	var password2 = $('#options .new2').val();
 	
 	if ((password1 == password2) && (password0 == getPassword())) {
+		// We show the waiting image
+		showGeneralWait();
+		
 		// We send the IQ
 		var iq = new JSJaCIQ();
 		
@@ -350,6 +356,9 @@ function sendNewPassword() {
 
 // Handles the account deletion request
 function handleAccDeletion(iq) {
+	// Remove the general wait item
+	removeGeneralWait();
+	
 	// If no errors
 	if(!handleErrorReply(iq)) {
 		clearLastSession();
@@ -419,6 +428,9 @@ function deleteMyAccount() {
 	var password = $('#options .check-password').val();
 	
 	if(password == getPassword()) {
+		// We show the waiting image
+		showGeneralWait();
+		
 		// We send the IQ
 		var iq = new JSJaCIQ();
 		iq.setType('set');

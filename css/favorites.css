@@ -8,7 +8,7 @@ This is the favorites CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 11/12/10
 
 */
 
@@ -139,7 +139,8 @@ Last revision: 05/12/10
 	margin: 0 8px 0 0;
 }
 
-#favorites .add {
+#favorites .add,
+.popup .results .one-button.one-add {
 	background-position: 3px -1177px;
 }
 
@@ -150,12 +151,14 @@ Last revision: 05/12/10
 
 #favorites .join,
 #inbox .reply,
-#inbox .send {
+#inbox .send,
+.popup .results .one-button.one-chat {
 	background-position: 3px -1701px;
 }
 
 #favorites .one-button,
-#inbox .one-button {
+#inbox .one-button,
+.popup .results .one-button {
 	padding-left: 20px !important;
 	font-size: 0.98em;
 }
