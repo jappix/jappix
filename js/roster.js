@@ -622,7 +622,7 @@ function launchRoster() {
 	aFilter.click(function() {
 		// Reset the input
 		$(this).hide();
-		iFilter.focus().val('').blur();
+		iFilter.val('').placeholder();
 		
 		// Security: show all the groups, empty or not
 		$('#buddy-list .one-group').show();

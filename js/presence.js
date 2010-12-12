@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/12/10
+Last revision: 11/12/10
 
 */
 
@@ -37,17 +37,19 @@ function firstPresence(checksum) {
 	if(!is_anonymous)
 		sendPresence('', '', '', status, checksum);
 	
-	// Change the title of the presence input
-	$('#my-infos .f-presence').attr('title', status);
+	// Any status to apply?
+	if(status)
+		$('#presence-status').val(status);
+	
+	// Enable the presence picker
+	$('#presence-status').removeAttr('disabled');
+	$('#my-infos .f-presence a.picker').removeClass('disabled');
 	
 	// We set the last activity stamp
 	PRESENCE_LAST_ACTIVITY = getTimeStamp();
 	
 	// We store our presence
-	setDB('presence-show', 1, '');
-	
-	// Finally, enable the presence selector
-	$('#my-infos .f-presence select').removeAttr('disabled');
+	setDB('presence-show', 1, 'available');
 	
 	// We get the stored bookmarks (because of the photo hash and some other stuffs, we must get it later)
 	if(!is_anonymous)
@@ -400,7 +402,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	else
 		biStatus = value;
 	
-	$(path + ' .bi-status').replaceWith('<p class="bi-status talk-images status-' + type + '" title="' + status + '">' + biStatus + '</p>');
+	$(path + ' .bi-status').replaceWith('<p class="bi-status talk-images ' + type + '" title="' + status + '">' + biStatus + '</p>');
 	
 	// When the buddy disconnect himself, we hide him
 	if((type == 'unavailable') || (type == 'error')) {
@@ -627,9 +629,12 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	
 	if(!priority)
 		priority = '1';
-	
 	if(!checksum)
 		checksum = getDB('checksum', 1);
+	if(show == 'available')
+		show = '';
+	if(type == 'available')
+		type = '';
 	
 	// New presence
 	var presence = new JSJaCPresence();
@@ -705,8 +710,8 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 // Performs all the actions to get the presence data
 function presenceSend(checksum, autoidle) {
 	// We get the values of the inputs
-	var show = $('.change-presence').val();
-	var status = $('.textPresence').val();
+	var show = getUserShow();
+	var status = getUserStatus();
 	
 	// Send the presence
 	if(!isAnonymous())
@@ -715,29 +720,9 @@ function presenceSend(checksum, autoidle) {
 	// We set the good icon
 	presenceIcon(show);
 	
-	// We hide the form
-	$('#my-infos-text-first').hide();
-	
-	// We change the title of the presence element
-	$('#my-infos .f-presence').attr('title', status);
-	
 	// We store our presence
-	if(!autoidle) {
-		// Store our show presence
+	if(!autoidle)
 		setDB('presence-show', 1, show);
-		
-		// Store our status
-		var old_status = getDB('options', 'presence-status');
-		
-		// Must update our options?
-		if(status != old_status) {
-			// Update the local stored status
-			setDB('options', 'presence-status', status);
-			
-			// Update the server stored status
-			storeOptions();
-		}
-	}
 	
 	// We send the presence to our active MUC
 	$('.page-engine-chan[data-type=groupchat]').each(function() {
@@ -749,8 +734,7 @@ function presenceSend(checksum, autoidle) {
 
 // Changes the presence icon
 function presenceIcon(value) {
-	$('#my-infos .icon-status').hide();
-	$('#my-infos .f-presence .icon').attr('class', 'icon talk-images status-' + value);
+	$('#my-infos .f-presence a.picker').attr('data-value', value);
 }
 
 // Sends a subscribe stanza
@@ -785,7 +769,7 @@ var AUTO_IDLE = false;
 
 function autoIdle() {
 	// Stop if an away presence was set manually
-	var last_presence = $('.change-presence').val();
+	var last_presence = getUserShow();
 	
 	if(!AUTO_IDLE && ((last_presence == 'away') || (last_presence == 'xa')))
 		return;
@@ -817,8 +801,8 @@ function autoIdle() {
 			status = '';
 		
 		// Change the presence input
-		$('.change-presence').val(idle_presence);
-		$('.textPresence').val(status);
+		$('#my-infos .f-presence a.picker').attr('data-value', idle_presence);
+		$('#presence-status').val(status);
 		
 		// Then send the xa presence
 		presenceSend('', true);
@@ -836,8 +820,8 @@ function eventIdle() {
 		var status = getDB('options', 'presence-status');
 		
 		// Change the presence input
-		$('.change-presence').val(show);
-		$('.textPresence').val(status);
+		$('#my-infos .f-presence a.picker').attr('data-value', show);
+		$('#presence-status').val(status);
 		
 		// Then restore the old presence
 		presenceSend('', true);
@@ -873,33 +857,100 @@ function dieIdle() {
 		 .die('keydown', eventIdle);
 }
 
+// Gets the user presence show
+function getUserShow() {
+	return $('#my-infos .f-presence a.picker').attr('data-value');
+}
+
+// Gets the user presence status
+function getUserStatus() {
+	return $('#presence-status').val();
+}
+
 // Plugin launcher
 function launchPresence() {
-	// When a key is pressed...
-	$('.textPresence').keyup(function(e) {
-		// Enter : continue
-		if((e.keyCode == 13) | (e.keyCode == 27)) {
-			presenceSend();
+	// Click event for user presence show
+	$('#my-infos .f-presence a.picker').click(function() {
+		// Initialize some vars
+		var path = '#my-infos .f-presence div.bubble';
+		var show_id = ['available', 'away', 'xa'];
+		var show_lang = [_e("Available"), _e("Away"), _e("Not available")];
+		var show_val = getUserShow();
+		
+		// Yet displayed?
+		var can_append = true;
+		
+		if(exists(path))
+			can_append = false;
+		
+		// Add this bubble!
+		showBubble(path);
+		
+		if(!can_append)
+			return false;
+		
+		// Generate the HTML code
+		var html = '<div class="bubble removable">';
+		
+		for(i in show_id) {
+			// Yet in use: no need to display it!
+			if(show_id[i] == show_val)
+				continue;
+			
+			html += '<a class="talk-images" data-value="' + show_id[i] + '" title="' + show_lang[i] + '"></a>';
+		}
+		
+		html += '</div>';
+		
+		// Append the HTML code
+		$('#my-infos .f-presence').append(html);
+		
+		// Click event
+		$(path + ' a').click(function() {
+			// Update the presence show marker
+			$('#my-infos .f-presence a.picker').attr('data-value', $(this).attr('data-value'));
+			
+			// Close the bubble
+			closeBubbles();
+			
+			// Focus on the status input
+			$('#presence-status').focus();
+		});
+		
+		return false;
+	});
+	
+	// Submit events for user presence status
+	$('#presence-status').placeholder()
+	
+	.keyup(function(e) {
+		if(e.keyCode == 13) {
+			$(this).blur();
 			
 			return false;
 		}
-	});
+	})
 	
-	// When the user wants to change his presence...
-	$('.change-presence').change(function() {
-		// Show the target element
-		$('#my-infos-text-first').show();
+	.blur(function() {
+		// Read the parameters
+		var show = getUserShow();
+		var status = getUserStatus();
 		
-		// We put the focus on the aimed input
-		$('#my-infos-text-first .textPresence').focus();
-		
-		// Get the old status message
-		var status = getDB('options', 'presence-status');
-		
-		if(!status)
-			status = '';
-		
-		// Then we reset the presence input
-		$('.textPresence').val(status);
+		// Must send the presence?
+		if((show != getDB('presence-show', 1)) || (status != getDB('options', 'presence-status'))) {
+			// Update the local stored status
+			setDB('options', 'presence-status', status);
+			
+			// Update the server stored status
+			storeOptions();
+			
+			// Send the presence
+			presenceSend();
+		}
+	})
+	
+	// Input focus handler
+	.focus(function() {
+		closeBubbles();
 	});
 }

@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/12/10
+Last revision: 11/12/10
 
 */
 
@@ -164,20 +164,23 @@ Last revision: 06/12/10
 #buddy-list .available,
 #page-engine .list .available,
 #page-engine .list .chat,
-#page-switch .available {
+#page-switch .available,
+#my-infos .f-presence a[data-value=available] span {
 	background-position: 0 -169px;
 }
 
 #buddy-list .away,
 #page-engine .list .away,
-#page-switch .away {
+#page-switch .away,
+#my-infos .f-presence a[data-value=away] span {
 	background-position: 0 -185px;
 }
 
 #buddy-list .busy,
 #page-engine .list .xa,
 #page-engine .list .dnd,
-#page-switch .busy {
+#page-switch .busy,
+#my-infos .f-presence a[data-value=xa] span {
 	background-position: 0 -201px;
 }
 
@@ -324,7 +327,7 @@ Last revision: 06/12/10
 #buddy-list .filter input {
 	border: none;
 	color: #273a3f;
-	width: 205px;
+	width: 208px;
 	padding: 0;
 	box-shadow: none;
 	-moz-box-shadow: none;
@@ -436,7 +439,7 @@ Last revision: 06/12/10
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;
-	margin-left: 12px;
+	margin-left: 15px;
 }
 
 .buddy-conf-subitem {

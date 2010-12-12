@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 10/12/10
+Last revision: 11/12/10
 
 */
 
@@ -209,9 +209,10 @@ function handleMessage(message) {
 					var tArtist = iTune.find('artist').text();
 					var tSource = iTune.find('source').text();
 					var tTitle = iTune.find('title').text();
+					var tURI = iTune.find('uri').text();
 					
 					// Store the PEP event (and display it)
-					storePEP(xid, 'tune', tArtist, tTitle, tSource);
+					storePEP(xid, 'tune', tArtist, tTitle, tSource, tURI);
 					
 					break;
 				
@@ -455,12 +456,8 @@ function sendMessage(id, type) {
 			else if(body.match(/^\/nick (.+)/)) {
 				var nick = body.replace(/^\/nick (.+)/, '$1');
 				
-				// Get our old presence status
-				var show = $('.change-presence').val();
-				var status = $('.textPresence').val();
-				
 				// Send a new presence
-				sendPresence(xid + '/' + nick, '', show, status, '', false, false, handleErrorReply);
+				sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, handleErrorReply);
 				
 				// Change the stored nickname
 				$('#' + hex_md5(xid)).attr('data-nick', escape(nick));

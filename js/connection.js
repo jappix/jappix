@@ -334,7 +334,7 @@ function acceptReconnect(mode) {
 	// Show waiting item
 	showGeneralWait();
 	
-	// Reset some special stuffs
+	// Reset some various stuffs
 	var groupchats = '#page-engine .page-engine-chan[data-type=groupchat]';
 	$(groupchats + ' .list .role').hide();
 	$(groupchats + ' .one-line, ' + groupchats + ' .list .user').remove();

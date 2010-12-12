@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 08/12/10
+# Last revision: 11/12/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Join a chat"
 msgstr ""
 
-msgid "Availability"
+msgid "Status"
 msgstr ""
 
 msgid "Available"
@@ -173,487 +173,73 @@ msgstr ""
 msgid "Busy"
 msgstr ""
 
+msgid "Mood"
+msgstr ""
+
 msgid "None"
-msgstr ""
-
-msgid "Afraid"
-msgstr ""
-
-msgid "Amazed"
-msgstr ""
-
-msgid "Amorous"
-msgstr ""
-
-msgid "Angry"
-msgstr ""
-
-msgid "Annoyed"
-msgstr ""
-
-msgid "Anxious"
-msgstr ""
-
-msgid "Aroused"
-msgstr ""
-
-msgid "Ashamed"
-msgstr ""
-
-msgid "Bored"
-msgstr ""
-
-msgid "Brave"
-msgstr ""
-
-msgid "Calm"
-msgstr ""
-
-msgid "Cautious"
-msgstr ""
-
-msgid "Cold"
-msgstr ""
-
-msgid "Confident"
-msgstr ""
-
-msgid "Confused"
-msgstr ""
-
-msgid "Contemplative"
-msgstr ""
-
-msgid "Contented"
-msgstr ""
-
-msgid "Cranky"
 msgstr ""
 
 msgid "Crazy"
 msgstr ""
 
-msgid "Creative"
-msgstr ""
-
-msgid "Curious"
-msgstr ""
-
-msgid "Dejected"
-msgstr ""
-
-msgid "Depressed"
-msgstr ""
-
-msgid "Disappointed"
-msgstr ""
-
-msgid "Disgusted"
-msgstr ""
-
-msgid "Dismayed"
-msgstr ""
-
-msgid "Distracted"
-msgstr ""
-
-msgid "Embarrassed"
-msgstr ""
-
-msgid "Envious"
-msgstr ""
-
 msgid "Excited"
-msgstr ""
-
-msgid "Flirtatious"
-msgstr ""
-
-msgid "Frustrated"
-msgstr ""
-
-msgid "Grateful"
-msgstr ""
-
-msgid "Grieving"
-msgstr ""
-
-msgid "Grumpy"
-msgstr ""
-
-msgid "Guilty"
-msgstr ""
-
-msgid "Happy"
-msgstr ""
-
-msgid "Hopeful"
-msgstr ""
-
-msgid "Hot"
-msgstr ""
-
-msgid "Humbled"
-msgstr ""
-
-msgid "Humiliated"
-msgstr ""
-
-msgid "Hungry"
-msgstr ""
-
-msgid "Hurt"
-msgstr ""
-
-msgid "Impressed"
-msgstr ""
-
-msgid "In awe"
-msgstr ""
-
-msgid "In love"
-msgstr ""
-
-msgid "Indignant"
-msgstr ""
-
-msgid "Interested"
-msgstr ""
-
-msgid "Intoxicated"
-msgstr ""
-
-msgid "Invincible"
-msgstr ""
-
-msgid "Jealous"
-msgstr ""
-
-msgid "Lonely"
-msgstr ""
-
-msgid "Lost"
-msgstr ""
-
-msgid "Lucky"
-msgstr ""
-
-msgid "Mean"
-msgstr ""
-
-msgid "Moody"
-msgstr ""
-
-msgid "Nervous"
-msgstr ""
-
-msgid "Neutral"
-msgstr ""
-
-msgid "Offended"
-msgstr ""
-
-msgid "Outraged"
 msgstr ""
 
 msgid "Playful"
 msgstr ""
 
-msgid "Proud"
-msgstr ""
-
-msgid "Relaxed"
-msgstr ""
-
-msgid "Relieved"
-msgstr ""
-
-msgid "Remorseful"
-msgstr ""
-
-msgid "Restless"
-msgstr ""
-
-msgid "Sad"
-msgstr ""
-
-msgid "Sarcastic"
-msgstr ""
-
-msgid "Satisfied"
-msgstr ""
-
-msgid "Serious"
+msgid "Happy"
 msgstr ""
 
 msgid "Shocked"
 msgstr ""
 
-msgid "Shy"
+msgid "Hot"
 msgstr ""
 
-msgid "Sick"
+msgid "Sad"
 msgstr ""
 
-msgid "Sleepy"
+msgid "Amorous"
 msgstr ""
 
-msgid "Spontaneous"
+msgid "Confident"
 msgstr ""
 
-msgid "Stressed"
-msgstr ""
-
-msgid "Strong"
-msgstr ""
-
-msgid "Surprised"
-msgstr ""
-
-msgid "Thankful"
-msgstr ""
-
-msgid "Thirsty"
-msgstr ""
-
-msgid "Tired"
-msgstr ""
-
-msgid "Undefined"
-msgstr ""
-
-msgid "Weak"
-msgstr ""
-
-msgid "Worried"
+msgid "Activity"
 msgstr ""
 
 msgid "Chores"
 msgstr ""
 
-msgid "Groceries"
-msgstr ""
-
-msgid "Cleaning"
-msgstr ""
-
-msgid "Cooking"
-msgstr ""
-
-msgid "Maintenance"
-msgstr ""
-
-msgid "Dishes"
-msgstr ""
-
-msgid "Laundry"
-msgstr ""
-
-msgid "Gardening"
-msgstr ""
-
-msgid "Errand"
-msgstr ""
-
-msgid "Dog"
-msgstr ""
-
 msgid "Drinking"
-msgstr ""
-
-msgid "Beer"
-msgstr ""
-
-msgid "Coffee"
-msgstr ""
-
-msgid "Tea"
 msgstr ""
 
 msgid "Eating"
 msgstr ""
 
-msgid "Snack"
-msgstr ""
-
-msgid "Breakfast"
-msgstr ""
-
-msgid "Dinner"
-msgstr ""
-
-msgid "Lunch"
-msgstr ""
-
 msgid "Exercising"
-msgstr ""
-
-msgid "Dancing"
-msgstr ""
-
-msgid "Hiking"
-msgstr ""
-
-msgid "Jogging"
-msgstr ""
-
-msgid "Sport"
-msgstr ""
-
-msgid "Running"
-msgstr ""
-
-msgid "Skiing"
-msgstr ""
-
-msgid "Swimming"
-msgstr ""
-
-msgid "Working out"
 msgstr ""
 
 msgid "Grooming"
 msgstr ""
 
-msgid "Spa"
-msgstr ""
-
-msgid "Teeth"
-msgstr ""
-
-msgid "Haircut"
-msgstr ""
-
-msgid "Shaving"
-msgstr ""
-
-msgid "Bath"
-msgstr ""
-
-msgid "Shower"
-msgstr ""
-
 msgid "Appointment"
 msgstr ""
 
-msgid "Day off"
-msgstr ""
-
-msgid "Hanging out"
-msgstr ""
-
-msgid "Hiding"
-msgstr ""
-
-msgid "Vacation"
-msgstr ""
-
-msgid "Praying"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Sleeping"
-msgstr ""
-
-msgid "Thinking"
+msgid "Inactive"
 msgstr ""
 
 msgid "Relaxing"
 msgstr ""
 
-msgid "Fishing"
-msgstr ""
-
-msgid "Gaming"
-msgstr ""
-
-msgid "Going out"
-msgstr ""
-
-msgid "Partying"
-msgstr ""
-
-msgid "Reading"
-msgstr ""
-
-msgid "Rehearsing"
-msgstr ""
-
-msgid "Shopping"
-msgstr ""
-
-msgid "Smoking"
-msgstr ""
-
-msgid "Socializing"
-msgstr ""
-
-msgid "Sunbathing"
-msgstr ""
-
-msgid "TV"
-msgstr ""
-
-msgid "Movie"
-msgstr ""
-
 msgid "Talking"
-msgstr ""
-
-msgid "Real life"
-msgstr ""
-
-msgid "Phone"
-msgstr ""
-
-msgid "Video phone"
 msgstr ""
 
 msgid "Traveling"
 msgstr ""
 
-msgid "Commuting"
-msgstr ""
-
-msgid "Cycling"
-msgstr ""
-
-msgid "Driving"
-msgstr ""
-
-msgid "In a car"
-msgstr ""
-
-msgid "On a bus"
-msgstr ""
-
-msgid "On a plane"
-msgstr ""
-
-msgid "On a train"
-msgstr ""
-
-msgid "On a trip"
-msgstr ""
-
-msgid "Walking"
-msgstr ""
-
 msgid "Working"
-msgstr ""
-
-msgid "Coding"
-msgstr ""
-
-msgid "Meeting"
-msgstr ""
-
-msgid "Studying"
-msgstr ""
-
-msgid "Writing"
 msgstr ""
 
 msgid "View profile"

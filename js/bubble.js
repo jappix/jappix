@@ -8,7 +8,7 @@ These are the bubble JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 11/12/10
 
 */
 
@@ -16,7 +16,7 @@ Last revision: 04/12/10
 function closeBubbles() {
 	// Destroy all the elements
 	$('.bubble.hidable:visible').hide();
-	$('.bubble.removable:visible').remove();
+	$('.bubble.removable').remove();
 	$('body').die('click');
 	
 	return false;
@@ -38,8 +38,8 @@ function showBubble(selector) {
 	}
 	
 	// Removable bubbles special things
-	if($(selector).is('.removable')) {
-		// This bubble yet exists? So abort!
+	else {
+		// This bubble is yet added? So abort!
 		if(exists(selector))
 			return closeBubbles();
 		

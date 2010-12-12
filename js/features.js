@@ -8,7 +8,7 @@ This is the server features JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 11/12/10
 
 */
 
@@ -124,8 +124,14 @@ function applyFeatures(id) {
 	var path = '#' + id + ' .';
 	
 	// PEP features
-	if(enabledPEP())
+	if(enabledPEP()) {
+		// My infos pickers
+		$('#my-infos .f-mood input, #my-infos .f-activity input').removeAttr('disabled');
+		$('#my-infos .f-mood a, #my-infos .f-activity a').removeClass('disabled');
+		
+		// General PEP stuffs
 		$(path + 'pep-hidable').show();
+	}
 	
 	// PubSub features
 	if(enabledPubSub())

@@ -13,7 +13,7 @@ Last revision: 11/12/10
 */
 
 // Requests the avatar of a given user
-var AVATAR_PENDING = new Array();
+var AVATAR_PENDING = [];
 
 function getAvatar(xid, mode, enabled, photo) {
 	/* REF: http://xmpp.org/extensions/xep-0153.html */

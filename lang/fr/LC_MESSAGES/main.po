@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-04 21:19:04\n"
+"PO-Revision-Date: 2010-12-12 01:31:17\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,6 +56,18 @@ msgstr "Le salon a été supprimé avec succès, maintenant quelqu'un d'autre po
 #: 
 msgid "The user that you want to reach is not present in the room."
 msgstr "L'utilisateur que vous souhaitez atteindre n'est pas présent dans le salon."
+
+#: 
+msgid "Please enter the group chat address to join."
+msgstr "Veuillez entrer l'adresse du salon à rejoindre."
+
+#: 
+msgid "Please enter your nickname to join %s."
+msgstr "Veuillez entrer votre pseudonyme pour rejoindre %s."
+
+#: 
+msgid "This room (%s) is protected with a password."
+msgstr "Ce salon (%s) est protégé par un mot de passe."
 
 #: 
 msgid "Login"
@@ -162,18 +174,6 @@ msgid "Only show connected friends"
 msgstr "N'afficher que les amis en ligne"
 
 #: 
-#~ msgid "Map of friends"
-#~ msgstr "Carte des amis"
-
-#: 
-#~ msgid "Your collections"
-#~ msgstr "Vos collections"
-
-#: 
-#~ msgid "Collections"
-#~ msgstr "Collections"
-
-#: 
 msgid "Message archives"
 msgstr "Archives des messages"
 
@@ -206,6 +206,10 @@ msgid "Join a chat"
 msgstr "Rejoindre une discussion"
 
 #: 
+msgid "Status"
+msgstr "Statut"
+
+#: 
 msgid "Available"
 msgstr "Disponible"
 
@@ -226,648 +230,96 @@ msgid "Busy"
 msgstr "Occupé(e)"
 
 #: 
+msgid "Mood"
+msgstr "Humeur"
+
+#: 
 msgid "None"
 msgstr "Aucun(e)"
-
-#: 
-msgid "Afraid"
-msgstr "Effrayé(e)"
-
-#: 
-msgid "Amazed"
-msgstr "Épaté(e)"
-
-#: 
-msgid "Amorous"
-msgstr "Amoureux(se)"
-
-#: 
-msgid "Angry"
-msgstr "En colère"
-
-#: 
-msgid "Annoyed"
-msgstr "Agacé(e)"
-
-#: 
-msgid "Anxious"
-msgstr "Anxieux(se)"
-
-#: 
-msgid "Aroused"
-msgstr "Excité(e)"
-
-#: 
-msgid "Ashamed"
-msgstr "Honteux(se)"
-
-#: 
-msgid "Bored"
-msgstr "Ennuyé(e)"
-
-#: 
-msgid "Brave"
-msgstr "Courageux(se)"
-
-#: 
-msgid "Calm"
-msgstr "Calme"
-
-#: 
-msgid "Cautious"
-msgstr "Prudent(e)"
-
-#: 
-msgid "Cold"
-msgstr "Froid(e)"
-
-#: 
-msgid "Confident"
-msgstr "Confiant(e)"
-
-#: 
-msgid "Confused"
-msgstr "Confus(e)"
-
-#: 
-msgid "Contemplative"
-msgstr "Contemplatif(ve)"
-
-#: 
-msgid "Contented"
-msgstr "Satisfait(e)"
-
-#: 
-msgid "Cranky"
-msgstr "Grincheux(se)"
 
 #: 
 msgid "Crazy"
 msgstr "Cinglé(e)"
 
 #: 
-msgid "Creative"
-msgstr "Créatif(ve)"
-
-#: 
-msgid "Curious"
-msgstr "Curieux(se)"
-
-#: 
-msgid "Dejected"
-msgstr "Découragé(e)"
-
-#: 
-msgid "Depressed"
-msgstr "Déprimé(e)"
-
-#: 
-msgid "Disappointed"
-msgstr "Déçu(e)"
-
-#: 
-msgid "Disgusted"
-msgstr "Écœuré(e)"
-
-#: 
-msgid "Dismayed"
-msgstr "Estomaqué(e)"
-
-#: 
-msgid "Distracted"
-msgstr "Distrait(e)"
-
-#: 
-msgid "Embarrassed"
-msgstr "Embarrassé(e)"
-
-#: 
-msgid "Envious"
-msgstr "Envieux(se)"
-
-#: 
 msgid "Excited"
 msgstr "Excité(e)"
-
-#: 
-msgid "Flirtatious"
-msgstr "Dragueur(se)"
-
-#: 
-msgid "Frustrated"
-msgstr "Frustré(e)"
-
-#: 
-msgid "Grateful"
-msgstr "Reconnaissant(e)"
-
-#: 
-msgid "Grieving"
-msgstr "En deuil"
-
-#: 
-msgid "Grumpy"
-msgstr "Grognon(ne)"
-
-#: 
-msgid "Guilty"
-msgstr "Coupable"
-
-#: 
-msgid "Happy"
-msgstr "Heureux(se)"
-
-#: 
-msgid "Hopeful"
-msgstr "Optimiste"
-
-#: 
-msgid "Hot"
-msgstr "Bouillant(e)"
-
-#: 
-msgid "Humbled"
-msgstr "Humble"
-
-#: 
-msgid "Humiliated"
-msgstr "Humilié(e)"
-
-#: 
-msgid "Hungry"
-msgstr "Affamé(e)"
-
-#: 
-msgid "Hurt"
-msgstr "Blessé(e)"
-
-#: 
-msgid "Impressed"
-msgstr "Impressionné(e)"
-
-#: 
-msgid "In awe"
-msgstr "Craintif(ve)"
-
-#: 
-msgid "In love"
-msgstr "Amoureux(se)"
-
-#: 
-msgid "Indignant"
-msgstr "Indigné(e)"
-
-#: 
-msgid "Interested"
-msgstr "Intéressé(e)"
-
-#: 
-msgid "Intoxicated"
-msgstr "Intoxiqué(e)"
-
-#: 
-msgid "Invincible"
-msgstr "Invincible"
-
-#: 
-msgid "Jealous"
-msgstr "Jaloux(se)"
-
-#: 
-msgid "Lonely"
-msgstr "Solitaire"
-
-#: 
-msgid "Lost"
-msgstr "Perdu(e)"
-
-#: 
-msgid "Lucky"
-msgstr "Chanceux(se)"
-
-#: 
-msgid "Mean"
-msgstr "Méchant(e)"
-
-#: 
-msgid "Moody"
-msgstr "Morose"
-
-#: 
-msgid "Nervous"
-msgstr "Nerveux(se)"
-
-#: 
-msgid "Neutral"
-msgstr "Neutre"
-
-#: 
-msgid "Offended"
-msgstr "Outré(e)"
-
-#: 
-msgid "Outraged"
-msgstr "Scandalisé(e)"
 
 #: 
 msgid "Playful"
 msgstr "Enjoué(e)"
 
 #: 
-msgid "Proud"
-msgstr "Fier(e)"
-
-#: 
-msgid "Relaxed"
-msgstr "Détendu(e)"
-
-#: 
-msgid "Relieved"
-msgstr "Soulagé(e)"
-
-#: 
-msgid "Remorseful"
-msgstr "Remords"
-
-#: 
-msgid "Restless"
-msgstr "Impatient(e)"
-
-#: 
-msgid "Sad"
-msgstr "Triste"
-
-#: 
-msgid "Sarcastic"
-msgstr "Sarcastique"
-
-#: 
-msgid "Satisfied"
-msgstr "Satisfait(e)"
-
-#: 
-msgid "Serious"
-msgstr "Concentré(e)"
+msgid "Happy"
+msgstr "Heureux(se)"
 
 #: 
 msgid "Shocked"
 msgstr "Choqué(e)"
 
 #: 
-msgid "Shy"
-msgstr "Timide"
+msgid "Hot"
+msgstr "Bouillant(e)"
 
 #: 
-msgid "Sick"
-msgstr "Malade"
+msgid "Sad"
+msgstr "Triste"
 
 #: 
-msgid "Sleepy"
-msgstr "Endormi(e)"
+msgid "Amorous"
+msgstr "Amoureux(se)"
 
 #: 
-msgid "Spontaneous"
-msgstr "Spontané(e)"
+msgid "Confident"
+msgstr "Confiant(e)"
 
 #: 
-msgid "Stressed"
-msgstr "Stressé(e)"
-
-#: 
-msgid "Strong"
-msgstr "Fort(e)"
-
-#: 
-msgid "Surprised"
-msgstr "Surpris(e)"
-
-#: 
-msgid "Thankful"
-msgstr "Reconnaissant(e)"
-
-#: 
-msgid "Thirsty"
-msgstr "Assoiffé(e)"
-
-#: 
-msgid "Tired"
-msgstr "Fatigué(e)"
-
-#: 
-msgid "Undefined"
-msgstr "Indéfini"
-
-#: 
-msgid "Weak"
-msgstr "Faible"
-
-#: 
-msgid "Worried"
-msgstr "Inquiet(e)"
+msgid "Activity"
+msgstr "Activité"
 
 #: 
 msgid "Chores"
 msgstr "Corvées"
 
 #: 
-msgid "Groceries"
-msgstr "Au magasin"
-
-#: 
-msgid "Cleaning"
-msgstr "Ménage"
-
-#: 
-msgid "Cooking"
-msgstr "Cuisine"
-
-#: 
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#: 
-msgid "Dishes"
-msgstr "Vaisselle"
-
-#: 
-msgid "Laundry"
-msgstr "Linge"
-
-#: 
-msgid "Gardening"
-msgstr "Jardine"
-
-#: 
-msgid "Errand"
-msgstr "Course"
-
-#: 
-msgid "Dog"
-msgstr "Chien"
-
-#: 
 msgid "Drinking"
 msgstr "Boit"
-
-#: 
-msgid "Beer"
-msgstr "Bière"
-
-#: 
-msgid "Coffee"
-msgstr "Café"
-
-#: 
-msgid "Tea"
-msgstr "Thé"
 
 #: 
 msgid "Eating"
 msgstr "Mange"
 
 #: 
-msgid "Snack"
-msgstr "Snack"
-
-#: 
-msgid "Breakfast"
-msgstr "Petit déjeuner"
-
-#: 
-msgid "Dinner"
-msgstr "Soupe"
-
-#: 
-msgid "Lunch"
-msgstr "Dîne"
-
-#: 
 msgid "Exercising"
 msgstr "Exercice"
-
-#: 
-msgid "Dancing"
-msgstr "Danse"
-
-#: 
-msgid "Hiking"
-msgstr "Randonnée"
-
-#: 
-msgid "Jogging"
-msgstr "Jogging"
-
-#: 
-msgid "Sport"
-msgstr "Sport"
-
-#: 
-msgid "Running"
-msgstr "Court"
-
-#: 
-msgid "Skiing"
-msgstr "Skie"
-
-#: 
-msgid "Swimming"
-msgstr "Nage"
-
-#: 
-msgid "Working out"
-msgstr "S'entraine"
 
 #: 
 msgid "Grooming"
 msgstr "Toilette"
 
 #: 
-msgid "Spa"
-msgstr "Station thermale"
-
-#: 
-msgid "Teeth"
-msgstr "Brosse les dents"
-
-#: 
-msgid "Haircut"
-msgstr "Se coupe les cheveux"
-
-#: 
-msgid "Shaving"
-msgstr "Se rase"
-
-#: 
-msgid "Bath"
-msgstr "Prend un bain"
-
-#: 
-msgid "Shower"
-msgstr "Prend une douche"
-
-#: 
 msgid "Appointment"
 msgstr "Rendez-vous"
 
 #: 
-msgid "Day off"
-msgstr "En congé"
-
-#: 
-msgid "Hanging out"
-msgstr "Traîne"
-
-#: 
-msgid "Hiding"
-msgstr "Se cache"
-
-#: 
-msgid "Vacation"
-msgstr "En vacances"
-
-#: 
-msgid "Praying"
-msgstr "Prie"
-
-#: 
-msgid "Holiday"
-msgstr "En voyage"
-
-#: 
-msgid "Sleeping"
-msgstr "Dort"
-
-#: 
-msgid "Thinking"
-msgstr "Réfléchit"
+msgid "Inactive"
+msgstr "Inactif"
 
 #: 
 msgid "Relaxing"
 msgstr "Se relaxe"
 
 #: 
-msgid "Fishing"
-msgstr "Pêche"
-
-#: 
-msgid "Gaming"
-msgstr "Joue"
-
-#: 
-msgid "Going out"
-msgstr "Sort"
-
-#: 
-msgid "Partying"
-msgstr "Fait la fête"
-
-#: 
-msgid "Reading"
-msgstr "Lit"
-
-#: 
-msgid "Rehearsing"
-msgstr "Se prépare"
-
-#: 
-msgid "Shopping"
-msgstr "Magasins"
-
-#: 
-msgid "Smoking"
-msgstr "Fume"
-
-#: 
-msgid "Socializing"
-msgstr "Se socialise"
-
-#: 
-msgid "Sunbathing"
-msgstr "Bain de soleil"
-
-#: 
-msgid "TV"
-msgstr "Télé"
-
-#: 
-msgid "Movie"
-msgstr "Film"
-
-#: 
 msgid "Talking"
 msgstr "Discute"
-
-#: 
-msgid "Real life"
-msgstr "Vraie vie"
-
-#: 
-msgid "Phone"
-msgstr "Téléphone"
-
-#: 
-msgid "Video phone"
-msgstr "Visioconférence"
 
 #: 
 msgid "Traveling"
 msgstr "En voyage"
 
 #: 
-msgid "Commuting"
-msgstr "Navette"
-
-#: 
-msgid "Cycling"
-msgstr "Vélo"
-
-#: 
-msgid "Driving"
-msgstr "Conduit"
-
-#: 
-msgid "In a car"
-msgstr "En voiture"
-
-#: 
-msgid "On a bus"
-msgstr "En bus"
-
-#: 
-msgid "On a plane"
-msgstr "En avion"
-
-#: 
-msgid "On a train"
-msgstr "En train"
-
-#: 
-msgid "On a trip"
-msgstr "En séjour"
-
-#: 
-msgid "Walking"
-msgstr "Marche"
-
-#: 
 msgid "Working"
 msgstr "Travaille"
-
-#: 
-msgid "Coding"
-msgstr "Code"
-
-#: 
-msgid "Meeting"
-msgstr "En réunion"
-
-#: 
-msgid "Studying"
-msgstr "Étudie"
-
-#: 
-msgid "Writing"
-msgstr "Écrit"
 
 #: 
 msgid "View profile"
@@ -1006,10 +458,6 @@ msgid "Sounds"
 msgstr "Sons"
 
 #: 
-msgid "Inactive"
-msgstr "Inactif"
-
-#: 
 msgid "Privacy"
 msgstr "Vie privée"
 
@@ -1114,8 +562,8 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: 
-#~ msgid "I would like to add you as a friend."
-#~ msgstr "Je souhaiterai vous ajouter comme ami."
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr "Salut, je suis %s, je souhaiterai vous ajouter comme ami."
 
 #: 
 msgid "Smiley insertion"
@@ -1144,6 +592,10 @@ msgstr "Enregistrer la discussion"
 #: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
 msgstr "Cliquez sur le lien suivant pour obtenir l'historique de la discussion. Cliquez à nouveau pour le récupérer."
+
+#: 
+msgid "This chat is empty!"
+msgstr "Cette discussion est vide !"
 
 #: 
 msgid "Generate file!"
@@ -1212,6 +664,14 @@ msgstr "Chercher un salon"
 #: 
 msgid "Select a favorite"
 msgstr "Sélectionnez un favori"
+
+#: 
+msgid "Getting the name..."
+msgstr "Obtention du nom..."
+
+#: 
+msgid "Gateway"
+msgstr "Passerelle"
 
 #: 
 msgid "Name"
@@ -1734,12 +1194,16 @@ msgid "Attach a file"
 msgstr "Attacher un fichier"
 
 #: 
+msgid "Send"
+msgstr "Envoyer"
+
+#: 
 msgid "Unattach the file"
 msgstr "Détacher le fichier"
 
 #: 
-#~ msgid "An error occured while attaching your file: maybe it is too big (6Mio maximum) or forbidden!"
-#~ msgstr "Une erreur est survenue lors de l'attachement du fichier : il peut être trop gros (6Mio maximum) ou interdit !"
+msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
+msgstr "Une erreur est survenue en envoyant votre fichier : il peut être trop gros (%s maximum) ou interdit !"
 
 #: 
 msgid "Authorization failed"
@@ -2568,76 +2032,4 @@ msgstr "Dernièrement vu(e) : %s"
 #: 
 msgid "Inactive since: %s"
 msgstr "Inactif depuis : %s"
-
-#: 
-msgid "This chat is empty!"
-msgstr "Cette discussion est vide !"
-
-#: 
-#~ msgid "An error occured while attaching your file: maybe it is too big (%s maximum) or forbidden!"
-#~ msgstr ""
-
-#: 
-msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr "Une erreur est survenue en envoyant votre fichier : il peut être trop gros (%s maximum) ou interdit !"
-
-#: 
-#~ msgid "Multiple resources"
-#~ msgstr "Ressources multiples"
-
-#: 
-msgid "Send"
-msgstr "Envoyer"
-
-#: 
-#~ msgid "Show gateways"
-#~ msgstr "Afficher les passerelles"
-
-#: 
-#~ msgid "Hide gateways"
-#~ msgstr "Masquer les passerelles"
-
-#: 
-msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Salut, je suis %s, je souhaiterai vous ajouter comme ami."
-
-#: 
-#~ msgid "Files not grouped"
-#~ msgstr "Fichiers non groupés"
-
-#: 
-msgid "Availability"
-msgstr "Disponibilité"
-
-#: 
-msgid "Please enter the group chat address to join."
-msgstr "Veuillez entrer l'adresse du salon à rejoindre."
-
-#: 
-msgid "This room (%s) is protected with a password."
-msgstr "Ce salon (%s) est protégé par un mot de passe."
-
-#: 
-msgid "Please enter a different nickname, the previous one is not available on %s."
-msgstr "Veuillez entrer un pseudonyme différent, le précédent n'est pas disponible sur %s."
-
-#: 
-msgid "Please enter your nickname to join %s."
-msgstr "Veuillez entrer votre pseudonyme pour rejoindre %s."
-
-#: 
-#~ msgid "Adress"
-#~ msgstr "Adresse"
-
-#: 
-msgid "Gateway"
-msgstr "Passerelle"
-
-#: 
-#~ msgid "Getting the user name..."
-#~ msgstr ""
-
-#: 
-msgid "Getting the name..."
-msgstr "Obtention du nom..."
 

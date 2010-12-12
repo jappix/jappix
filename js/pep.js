@@ -8,12 +8,12 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 11/12/10
 
 */
 
 // Stores the PEP items
-function storePEP(xid, type, value1, value2, value3) {
+function storePEP(xid, type, value1, value2, value3, value4) {
 	// Handle the correct values
 	if(!value1)
 		value1 = '';
@@ -21,15 +21,17 @@ function storePEP(xid, type, value1, value2, value3) {
 		value2 = '';
 	if(!value3)
 		value3 = '';
+	if(!value4)
+		value4 = '';
 	
 	// If one value
-	if(value1 || value2 || value3) {
+	if(value1 || value2 || value3 || value4) {
 		// Define the XML variable
 		var xml = '<pep type="' + type + '">';
 		
 		// Generate the correct XML
 		if(type == 'tune')
-			xml += '<artist>' + value1.htmlEnc() + '</artist><title>' + value2.htmlEnc() + '</title><album>' + value3.htmlEnc() + '</album>';
+			xml += '<artist>' + value1.htmlEnc() + '</artist><title>' + value2.htmlEnc() + '</title><album>' + value3.htmlEnc() + '</album><uri>' + value4.htmlEnc() + '</uri>';
 		else if(type == 'geoloc')
 			xml += '<lat>' + value1.htmlEnc() + '</lat><lon>' + value2.htmlEnc() + '</lon><human>' + value3.htmlEnc() + '</human>';
 		else
@@ -79,7 +81,7 @@ function displayPEP(xid, type) {
 				if(type == 'mood')
 					fValue = moodIcon(pepValue);
 				else if(type == 'activity')
-					fValue = activityIcon(bareXID(pepValue));
+					fValue = activityIcon(explodeThis('/', pepValue, 0));
 				if(!pepText)
 					fText = _e("unknown");
 				else
@@ -208,17 +210,76 @@ function displayPEP(xid, type) {
 		
 		// If this is the PEP values of the logged in user
 		if(xid == getXID()) {
-			// Define some vars
-			var miTarget = '#my-infos .f-' + type;
-			
-			// Change the title of the target element
-			$(miTarget).attr('title', dText);
-			
 			// Change the icon/value of the target element
 			if((type == 'mood') || (type == 'activity')) {
-				$('#my-infos .icon-' + type).hide();
-				$('#my-infos .' + fValue).show();
-				$('#my-infos .change-' + type).val(pepValue);
+				// Change the input value
+				var dVal = '';
+				var dAttr = pepValue;
+				
+				// Must apply default values?
+				if(pepValue == 'none') {
+					if(type == 'mood')
+						dAttr = 'happy';
+					else
+						dAttr = 'exercising';
+				}
+				
+				// Get the activity category
+				if(type == 'activity')
+					dAttr = explodeThis('/', dAttr, 0);
+				
+				// No text?
+				if(dText != _e("unknown"))
+					dVal = dText;
+				
+				// Apply this PEP event
+				$('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
+				$('#my-infos .f-' + type + ' input').val(dVal).placeholder();
+				
+				// Store this user event in our database
+				setDB(type + '-value', 1, dAttr);
+				setDB(type + '-text', 1, dVal);
+			}
+			
+			else if((type == 'tune') || (type == 'geoloc')) {
+				// Reset the values
+				$('#my-infos .f-others a.' + type).remove();
+				
+				// Not empty?
+				if(dText != _e("unknown")) {
+					// Specific stuffs
+					var href, title, icon_class;
+					
+					if(type == 'tune') {
+						href = fURI;
+						title = dText;
+						icon_class = 'tune-note';
+					}
+					
+					else {
+						href = 'http://www.openstreetmap.org/?mlat=' + tLat + '&amp;mlon=' + tLon + '&amp;zoom=14';
+						title = _e("Where are you?");
+						icon_class = 'location-world';
+					}
+					
+					// Must create the container?
+					if(!exists('#my-infos .f-others'))
+						$('#my-infos .content').append('<div class="element f-others"></div>');
+					
+					// Create the element
+					$('#my-infos .f-others').prepend(
+						'<a class="icon ' + type + '" href="' + encodeQuotes(href) + '" target="_blank" title="' + encodeQuotes(title) +  '">' + 
+							'<span class="talk-images ' + icon_class + '"></span>' + 
+						'</a>'
+					);
+				}
+				
+				// Empty?
+				else if(!exists('#my-infos .f-others a.icon'))
+					$('#my-infos .f-others').remove();
+				
+				// Process the buddy-list height again
+				adaptRoster();
 			}
 		}
 	}
@@ -400,12 +461,6 @@ function sendMood(value, text) {
 	// And finally we send the mood that is set
 	con.send(iq);
 	
-	// We set the good icon
-	$('#my-infos .f-mood .icon').attr('class', 'icon talk-images ' + moodIcon(value));
-	
-	// We close everything opened
-	$('#my-infos-text-second').hide();
-	
 	logThis('New mood sent: ' + value, 3);
 }
 
@@ -433,12 +488,6 @@ function sendActivity(value, text) {
 	
 	// And finally we send the mood that is set
 	con.send(iq);
-	
-	// We set the good icon
-	$('#my-infos .f-activity .icon').attr('class', 'icon talk-images ' + activityIcon(valueActivityMainType));
-	
-	// We close everything opened
-	$('#my-infos-text-third').hide();
 	
 	logThis('New activity sent: ' + value, 3);
 }
@@ -469,28 +518,11 @@ function sendPosition(vLat, vLon, vAlt) {
 	// And finally we send the XML
 	con.send(iq);
 	
-	// Then, we display the user position link
-	if(vLat && vLon) {
-		// Apply the values
-		$('#my-infos .f-geoloc a').attr('href','http://www.openstreetmap.org/?mlat=' + vLat + '&amp;mlon=' + vLon + '&amp;zoom=14');
-		$('#my-infos .f-geoloc').show();
-		
-		// Process the buddy-list height again
-		adaptRoster();
-		
+	// For logger
+	if(vLat && vLon)
 		logThis('Geolocated.', 3);
-	}
-	
-	else {
-		// Reset the values
-		$('#my-infos .f-geoloc a').attr('href','http://www.openstreetmap.org/');
-		$('#my-infos .f-geoloc').hide();
-		
-		// Process the buddy-list height again
-		adaptRoster();
-		
+	else
 		logThis('Not geolocated.', 2);
-	}
 }
 
 // Gets the user's geographic position
@@ -507,7 +539,7 @@ function getPosition(position) {
 // Geolocates the user
 function geolocate() {
 	// We wait a bit...
-	$('#my-infos .f-geoloc').stopTime().oneTime('4s', function() {
+	$('#my-infos').stopTime().oneTime('4s', function() {
 		// We publish the user location if allowed (maximum cache age of 1 hour)
 		if((getDB('options', 'geolocation') == '1') && enabledPEP() && navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(getPosition);
@@ -533,76 +565,166 @@ function displayAllPEP(xid) {
 
 // Plugin launcher
 function launchPEP() {
-	// We detect if the user pressed a key
-	$('#my-infos-text-second').keyup(function(e) {
-		// We catch the inputs values
-		var valueMood = $('.change-mood').val();
-		var valueTextMood = $('.textMood').val();
-		
-		// Enter : send
-		if(e.keyCode == 13)
-			sendMood(valueMood, valueTextMood);
-		// Escape : quit
-		if(e.keyCode == 27)
-			sendMood(valueMood, valueTextMood);
-	});
+	// Apply empty values to the PEP database
+	setDB('mood-value', 1, '');
+	setDB('mood-text', 1, '');
+	setDB('activity-value', 1, '');
+	setDB('activity-text', 1, '');
 	
-	// When the user wants to change his mood
-	$('.change-mood').change(function() {
-		/* REF: http://xmpp.org/extensions/xep-0107.html */
+	// Click event for user mood
+	$('#my-infos .f-mood a.picker').click(function() {
+		// Initialize some vars
+		var path = '#my-infos .f-mood div.bubble';
+		var mood_id = ['crazy', 'excited', 'playful', 'happy', 'shocked', 'hot', 'sad', 'amorous', 'confident'];
+		var mood_lang = [_e("Crazy"), _e("Excited"), _e("Playful"), _e("Happy"), _e("Shocked"), _e("Hot"), _e("Sad"), _e("Amorous"), _e("Confident")];
+		var mood_val = $('#my-infos .f-mood a.picker').attr('data-value');
 		
-		// We reset the input to avoid problems
-		$('.textMood').val('');
+		// Yet displayed?
+		var can_append = true;
 		
-		// We catch the input value
-		var valueMood = $('.change-mood').val();
+		if(exists(path))
+			can_append = false;
 		
-		if(valueMood != 'none') {
-			// Show the target element
-			$('#my-infos-text-second').show();
+		// Add this bubble!
+		showBubble(path);
+		
+		if(!can_append)
+			return false;
+		
+		// Generate the HTML code
+		var html = '<div class="bubble removable">';
+		
+		for(i in mood_id) {
+			// Yet in use: no need to display it!
+			if(mood_id[i] == mood_val)
+				continue;
 			
-			// We put the focus on the aimed input
-			$('#my-infos-text-second .textMood').focus();
+			html += '<a class="talk-images" data-value="' + mood_id[i] + '" title="' + mood_lang[i] + '"></a>';
 		}
 		
-		// If no mood has been defined
-		else
-			sendMood(valueMood, '');
-	});
-	
-	// We detect if the user pressed a key
-	$('.textActivity').keyup(function(e) {
-		var valueActivity = $('.change-activity').val();
-		var valueTextActivity = $('.textActivity').val();
+		html += '</div>';
 		
-		// Enter : send
-		if(e.keyCode == 13)
-			sendActivity(valueActivity, valueTextActivity);
-		// Escape : quit
-		if(e.keyCode == 27)
-			sendActivity(valueActivity, valueTextActivity);
-	});
-	
-	// When the user wants to change his activity
-	$('.change-activity').change(function() {
-		/* REF: http://xmpp.org/extensions/xep-0108.html */
+		// Append the HTML code
+		$('#my-infos .f-mood').append(html);
 		
-		// We reset the input to avoid problems
-		$('.textActivity').val('');
-		
-		// We get the input values
-		var valueActivity = $('.change-activity').val();
-		
-		if(valueActivity != 'none') {
-			// Show the target element
-			$('#my-infos-text-third').show();
+		// Click event
+		$(path + ' a').click(function() {
+			// Update the mood marker
+			$('#my-infos .f-mood a.picker').attr('data-value', $(this).attr('data-value'));
 			
-			// We put the focus on the aimed input
-			$('#my-infos-text-third .textActivity').focus();
+			// Close the bubble
+			closeBubbles();
+			
+			// Focus on the status input
+			$('#mood-text').focus();
+		});
+		
+		return false;
+	});
+	
+	// Click event for user activity
+	$('#my-infos .f-activity a.picker').click(function() {
+		// Initialize some vars
+		var path = '#my-infos .f-activity div.bubble';
+		var activity_id = ['chores', 'drinking', 'eating', 'exercising', 'grooming', 'appointment', 'inactive', 'relaxing', 'talking', 'traveling', 'working'];
+		var activity_lang = [_e("Chores"), _e("Drinking"), _e("Eating"), _e("Exercising"), _e("Grooming"), _e("Appointment"), _e("Inactive"), _e("Relaxing"), _e("Talking"), _e("Traveling"), _e("Working")];
+		var activity_val = $('#my-infos .f-activity a.picker').attr('data-value');
+		
+		// Yet displayed?
+		var can_append = true;
+		
+		if(exists(path))
+			can_append = false;
+		
+		// Add this bubble!
+		showBubble(path);
+		
+		if(!can_append)
+			return false;
+		
+		// Generate the HTML code
+		var html = '<div class="bubble removable">';
+		
+		for(i in activity_id) {
+			// Yet in use: no need to display it!
+			if(activity_id[i] == activity_val)
+				continue;
+			
+			html += '<a class="talk-images" data-value="' + activity_id[i] + '" title="' + activity_lang[i] + '"></a>';
 		}
 		
-		// If no activity has been defined
-		else
-			sendActivity(valueActivity, '');
+		html += '</div>';
+		
+		// Append the HTML code
+		$('#my-infos .f-activity').append(html);
+		
+		// Click event
+		$(path + ' a').click(function() {
+			// Update the activity marker
+			$('#my-infos .f-activity a.picker').attr('data-value', $(this).attr('data-value'));
+			
+			// Close the bubble
+			closeBubbles();
+			
+			// Focus on the status input
+			$('#activity-text').focus();
+		});
+		
+		return false;
+	});
+	
+	// Submit events for PEP inputs
+	$('#mood-text, #activity-text').placeholder()
+	
+	.keyup(function(e) {
+		if(e.keyCode == 13) {
+			$(this).blur();
+			
+			return false;
+		}
+	});
+	
+	// Input blur handler
+	$('#mood-text').blur(function() {
+		// Read the parameters
+		var value = $('#my-infos .f-mood a.picker').attr('data-value');
+		var text = $(this).val();
+		
+		// Must send the mood?
+		if((value != getDB('mood-value', 1)) || (text != getDB('mood-text', 1))) {
+			// Update the local stored values
+			setDB('mood-value', 1, value);
+			setDB('mood-text', 1, text);
+			
+			// Send it!
+			sendMood(value, text);
+		}
+	})
+	
+	// Input focus handler
+	.focus(function() {
+		closeBubbles();
+	});
+	
+	// Input blur handler
+	$('#activity-text').blur(function() {
+		// Read the parameters
+		var value = $('#my-infos .f-activity a.picker').attr('data-value');
+		var text = $(this).val();
+		
+		// Must send the activity?
+		if((value != getDB('activity-value', 1)) || (text != getDB('activity-text', 1))) {
+			// Update the local stored values
+			setDB('activity-value', 1, value);
+			setDB('activity-text', 1, text);
+			
+			// Send it!
+			sendActivity(value, text);
+		}
+	})
+	
+	// Input focus handler
+	.focus(function() {
+		closeBubbles();
 	});
 }
