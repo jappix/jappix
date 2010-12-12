@@ -239,13 +239,20 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	
 	// User does not exists yet
 	if(!exists(thisUser) && (!type || (type == 'available'))) {
+		var myself = '';
+		
 		// Is it me?
-		if(nick == getMUCNick(roomHash))
+		if(nick == getMUCNick(roomHash)) {
+			// Enable the room
 			$('#' + roomHash + ' .message-area').removeAttr('disabled');
+			
+			// Marker
+			myself = ' myself';
+		}
 		
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
-			'<div class="user ' + hash + '" data-xid="' + from + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
+			'<div class="user ' + hash + myself + '" data-xid="' + from + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
 				'<div class="name talk-images available">' + nick_html + '</div>' + 
 				
 				'<div class="avatar-container">' + 
@@ -255,10 +262,10 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		);
 		
 		// Click event
-		$('#' + roomHash + ' .user.' + hash).click(function() {
-			if(nick != getMUCNick(roomHash))
+		if(nick != getMUCNick(roomHash))
+			$('#' + roomHash + ' .user.' + hash).click(function() {
 				checkChatCreate(from, 'private');
-		});
+			});
 		
 		// We tell the user that someone entered the room
 		if(!initial) {

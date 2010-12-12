@@ -175,6 +175,11 @@ Last revision: 12/12/10
 	background: #e3e7e7;
 }
 
+#page-engine .list .user.myself {
+	background-color: #eff2f2;
+	cursor: default;
+}
+
 #page-engine .list .user .name {
 	float: left;
 	width: 110px;
