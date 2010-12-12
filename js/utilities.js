@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Author: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 12/12/10
 
 */
 
@@ -60,7 +60,7 @@ function generateURL(url) {
 // Disables an input if needed
 function disableInput(value, condition) {
 	if(value == condition)
-		return ' disabled="disabled"';
+		return ' disabled=""';
 	
 	return '';
 }

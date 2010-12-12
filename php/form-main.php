@@ -10,12 +10,12 @@ This is the main configuration form (install & manager)
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 22/11/10
+Last revision: 12/12/10
 
 */
 
 // Checks the checkboxes which are set "on"
-$checked = ' checked="checked"';
+$checked = ' checked=""';
 
 // Host locking
 if($lock_host == 'on')

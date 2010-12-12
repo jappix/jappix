@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -445,7 +445,7 @@ function displayFavorites(xid, name, nick, autojoin, password) {
 // Loads the favorites for the popup
 function loadFavorites() {
 	// Initialize the HTML code
-	var html = '<option value="none" class="fedit-head-select-first-option" selected="selected">' + _e("Select a favorite") + '</option>';
+	var html = '<option value="none" class="fedit-head-select-first-option" selected="">' + _e("Select a favorite") + '</option>';
 	
 	// Read the database
 	for(var i = 0; i < sessionStorage.length; i++) {

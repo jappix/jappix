@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 01/12/10
+Last revision: 12/12/10
 
 */
 
@@ -515,7 +515,7 @@ else
 								foreach($backgrounds as $backgrounds_current) {
 									// Check this is the selected background
 									if($backgrounds_current == $background['image_file'])
-										$backgrounds_selected = ' selected="selected"';
+										$backgrounds_selected = ' selected=""';
 									else
 										$backgrounds_selected = '';
 									

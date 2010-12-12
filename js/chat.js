@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 12/12/10
 
 */
 
@@ -92,7 +92,7 @@ function generateChat(type, id, xid, nick) {
 		if(xid.match(/%/))
 			specialDisabled = '';
 		else
-			specialDisabled = ' disabled="disabled"';
+			specialDisabled = ' disabled=""';
 	}
 	
 	// Chat (or other things?!) special code

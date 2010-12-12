@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -78,7 +78,7 @@ function switchHome(div) {
 						'<label for="lpriority">' + _e("Priority") + '</label>' + 
 						'<select class="priority" id="lpriority">' + 
 							'<option value="1">' + _e("Low") + '</option>' + 
-							'<option value="10" selected="selected">' + _e("Medium") + '</option>' + 
+							'<option value="10" selected="">' + _e("Medium") + '</option>' + 
 							'<option value="100">' + _e("High") + '</option>' + 
 						'</select>' + 
 					'</fieldset>' + 

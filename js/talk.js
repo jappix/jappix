@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -150,7 +150,7 @@ function createTalkPage() {
 									'<p class="buddy-conf-p">' + _e("Your groupchats") +  '</p>' + 
 									
 									'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select">' + 
-										'<option value="none" class="gc-join-first-option" selected="selected">' + _e("Select a favorite") +  '</option>' + 
+										'<option value="none" class="gc-join-first-option" selected="">' + _e("Select a favorite") +  '</option>' + 
 									'</select>' + 
 									
 									'<p class="buddy-conf-text">' + 
@@ -238,19 +238,19 @@ function createTalkPage() {
 						
 						if(!anonymous) html += 
 						'<div class="element f-mood pep-hidable ibubble">' + 
-							'<a class="icon picker disabled" data-value="happy">' + 
+							'<a class="icon picker" data-value="happy">' + 
 								'<span class="talk-images"></span>' + 
 							'</a>' + 
 							
-							'<input id="mood-text" type="text" placeholder="' + _e("Mood") + '" disabled="" />' + 
+							'<input id="mood-text" type="text" placeholder="' + _e("Mood") + '" />' + 
 						'</div>' + 
 						
 						'<div class="element f-activity pep-hidable ibubble">' + 
-							'<a class="icon picker disabled" data-value="exercising">' + 
+							'<a class="icon picker" data-value="exercising">' + 
 								'<span class="talk-images activity-exercising"></span>' + 
 							'</a>' + 
 							
-							'<input id="activity-text" type="text" placeholder="' + _e("Activity") + '" disabled="" />' + 
+							'<input id="activity-text" type="text" placeholder="' + _e("Activity") + '" />' + 
 						'</div>';
 					
 					html +=
@@ -299,7 +299,7 @@ function createTalkPage() {
 								'<p>' + _e("What\'s up with you?") +  '</p>' + 
 								
 								'<div class="microblog-body">' + 
-									'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="disabled" />' + 
+									'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="" />' + 
 								'</div>' + 
 								
 								'<div class="one-microblog-icon ibubble">' + 

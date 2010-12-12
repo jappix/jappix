@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -300,6 +300,10 @@ Last revision: 11/12/10
 
 .tune-note {
 	background-position: 0 -676px;
+}
+
+.location-world {
+	background-position: 0 -658px;
 }
 
 .view-individual {

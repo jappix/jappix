@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -329,8 +329,4 @@ Last revision: 11/12/10
 
 #my-infos .element input.placeholder {
 	color: #67787c;
-}
-
-.location-world {
-	background-position: 0 -658px;
 }

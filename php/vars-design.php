@@ -10,28 +10,28 @@ These are the design configuration variables
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 12/12/10
 
 */
 
 // Define initial background form values
-$background_default = ' checked="checked"';
+$background_default = ' checked=""';
 $background_image = '';
 $background_color = '';
 $background_image_repeat_no = '';
 $background_image_repeat_all = '';
-$background_image_repeat_x = ' selected="selected"';
+$background_image_repeat_x = ' selected=""';
 $background_image_repeat_y = '';
-$background_image_horizontal_center = ' selected="selected"';
+$background_image_horizontal_center = ' selected=""';
 $background_image_horizontal_left = '';
 $background_image_horizontal_right = '';
-$background_image_vertical_center = ' selected="selected"';
+$background_image_vertical_center = ' selected=""';
 $background_image_vertical_top = '';
 $background_image_vertical_bottom = '';
 $background_image_adapt = '';
 
 // Define initial notice form values
-$notice_none = ' checked="checked"';
+$notice_none = ' checked=""';
 $notice_simple = '';
 $notice_advanced = '';
 $notice_text = '';

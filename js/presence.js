@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -871,6 +871,10 @@ function getUserStatus() {
 function launchPresence() {
 	// Click event for user presence show
 	$('#my-infos .f-presence a.picker').click(function() {
+		// Disabled?
+		if($(this).hasClass('disabled'))
+			return false;
+		
 		// Initialize some vars
 		var path = '#my-infos .f-presence div.bubble';
 		var show_id = ['available', 'away', 'xa'];
