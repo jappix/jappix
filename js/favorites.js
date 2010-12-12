@@ -489,8 +489,14 @@ function launchFavorites(container) {
 		
 		// Keyboard events
 		$(path + 'fsearch-head-server').keyup(function(e) {
-			if(e.keyCode == 13)
+			if(e.keyCode == 13) {
+				// No value?
+				if(!$(this).val())
+					$(this).val(HOST_MUC);
+				
+				// Get the list
 				getGCList();
+			}
 		});
 		
 		$(path + 'fedit-line input').keyup(function(e) {
