@@ -8,7 +8,7 @@ This is the archives CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 11/12/10
 
 */
 
@@ -19,7 +19,7 @@ Last revision: 06/11/10
 #archives .filter {
 	background-color: #d3dee1;
 	border-right: 1px solid #a9bbbf;
-	width: 204px;
+	width: 180px;
 	padding: 12px;
 	position: absolute;
 	top: 0;
@@ -41,16 +41,17 @@ Last revision: 06/11/10
 
 #archives .filter input,
 #archives .filter select {
+	width: 180px;
 	margin-top: 2px;
 	float: none;
 }
 
-#archives .filter select {
-	width: 205px;
-}
-
 #archives .filter .friend select {
 	height: 195px;
+}
+
+#archives .filter .search input {
+	width: 174px;
 }
 
 #archives .logs {
@@ -60,5 +61,5 @@ Last revision: 06/11/10
 	top: 0;
 	bottom: 0;
 	right: 0;
-	left: 235px;
+	left: 207px;
 }
