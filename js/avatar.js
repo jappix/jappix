@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 12/12/10
 
 */
 
@@ -94,11 +94,16 @@ function handleAvatar(iq) {
 	var hash = hex_md5(handleFrom);
 	var find = $(handleXML).find('vCard');
 	var aChecksum = 'none';
-	var oChecksum = false;
+	var oChecksum = null;
 	
-	// Is this me?
-	if(handleFrom == getXID())
+	// Read our own checksum
+	if(handleFrom == getXID()) {
 		oChecksum = getDB('checksum', 1);
+		
+		// Avoid the "null" value
+		if(!oChecksum)
+			oChecksum = '';
+	}
 	
 	// vCard not empty?
 	if(find.size()) {
@@ -147,7 +152,7 @@ function handleAvatar(iq) {
 		resetAvatar(handleFrom);
 	
 	// We got a new checksum for us?
-	if(((oChecksum != false) || (oChecksum == '')) && (oChecksum != aChecksum)) {
+	if((oChecksum != null) && (oChecksum != aChecksum)) {
 		// Define a proper checksum
 		var pChecksum = aChecksum;
 		
