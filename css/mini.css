@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 12/12/10
 
 */
 
@@ -198,7 +198,7 @@ Last revision: 03/12/10
 }
 
 #jappix_mini div.jm_received-messages b.jm_me {
-	color: #1c405e;
+	color: #123a5c;
 }
 
 #jappix_mini div.jm_received-messages b.jm_him {

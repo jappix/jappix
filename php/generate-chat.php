@@ -10,7 +10,7 @@ This is the PHP script used to generate a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 12/12/10
 
 */
 
@@ -142,7 +142,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		}
 		
 		#content .one-line b.me {
-			color: #1e4a70;
+			color: #123a5c;
 		}
 		
 		#content .one-line b.him {

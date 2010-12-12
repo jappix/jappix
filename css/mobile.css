@@ -8,7 +8,7 @@ This is the Jappix Mobile CSS stylesheet
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 12/12/10
 
 */
 
@@ -239,11 +239,11 @@ a {
 }
 
 #chat .one-chat b.me {
-	color: #2a5172;
+	color: #123a5c;
 }
 
 #chat .one-chat b.him {
-	color: #6b2525;
+	color: #801e1e;
 }
 
 #chat .one-chat input {
