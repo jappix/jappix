@@ -733,7 +733,7 @@ function presenceSend(checksum, autoidle) {
 	
 	// We send the presence to our active MUC
 	$('.page-engine-chan[data-type=groupchat]').each(function() {
-		var room = $(this).attr('data-xid');
+		var room = unescape($(this).attr('data-xid'));
 		var nick = unescape($(this).attr('data-nick'));
 		
 		// Must re-initialize?
