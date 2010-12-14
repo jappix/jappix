@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 14/12/10
 
 */
 
@@ -40,6 +40,7 @@ function anonymousConnected(con) {
 	
 	// Resumed
 	else {
+		// Send again our presence
 		presenceSend();
 		
 		// Change the title
