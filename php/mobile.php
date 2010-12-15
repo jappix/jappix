@@ -10,7 +10,7 @@ This is the Jappix Mobile lightweight PHP code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 15/12/10
 
 */
 
