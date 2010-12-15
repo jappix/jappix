@@ -1,3 +1,17 @@
+/*
+
+Jappix - An open social platform
+This is the datepicker CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 15/11/10
+
+*/
+
 div.datepicker {
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
@@ -10,76 +24,7 @@ div.datepicker {
 	left: 0;
 	display: none;
 }
-.datepickerContainer {
-	background: #121212;
-	position: absolute;
-	top: 10px;
-	left: 10px;
-}
-.datepickerBorderT {
-	position: absolute;
-	left: 10px;
-	top: 0;
-	right: 10px;
-	height: 10px;
-	background: url(../images/datepicker_t.png);
-}
-.datepickerBorderB {
-	position: absolute;
-	left: 10px;
-	bottom: 0;
-	right: 10px;
-	height: 10px;
-	background: url(../images/datepicker_b.png);
-}
-.datepickerBorderL {
-	position: absolute;
-	left: 0;
-	bottom: 10px;
-	top: 10px;
-	width: 10px;
-	background: url(../images/datepicker_l.png);
-}
-.datepickerBorderR {
-	position: absolute;
-	right: 0;
-	bottom: 10px;
-	top: 10px;
-	width: 10px;
-	background: url(../images/datepicker_r.png);
-}
-.datepickerBorderTL {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 10px;
-	height: 10px;
-	background: url(../images/datepicker_tl.png);
-}
-.datepickerBorderTR {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 10px;
-	height: 10px;
-	background: url(../images/datepicker_tr.png);
-}
-.datepickerBorderBL {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 10px;
-	height: 10px;
-	background: url(../images/datepicker_bl.png);
-}
-.datepickerBorderBR {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 10px;
-	height: 10px;
-	background: url(../images/datepicker_br.png);
-}
+
 .datepickerHidden {
 	display: none;
 }
