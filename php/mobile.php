@@ -17,7 +17,7 @@ Last revision: 06/11/10
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo($locale); ?>" lang="<?php echo($locale); ?>">
 
 <head>
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -51,8 +51,8 @@ Last revision: 06/11/10
 			<?php _e("Login"); ?>
 			
 			<form action="#" method="post" onsubmit="return doLogin(this);">
-				<input class="xid mobile-images" type="email" name="xid" required="" />
-				<input class="password mobile-images" type="password" id="pwd" name="pwd" required="" />
+				<input class="xid mobile-images" type="text" name="xid" />
+				<input class="password mobile-images" type="password" id="pwd" name="pwd" />
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
 		</div>

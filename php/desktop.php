@@ -16,7 +16,7 @@ Last revision: 20/11/10
 
 ?>
 <!DOCTYPE html>
-<html>
+<html xml:lang="<?php echo($locale); ?>" lang="<?php echo($locale); ?>">
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
