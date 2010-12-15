@@ -8,7 +8,7 @@ This is the archives CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 15/12/10
 
 */
 
@@ -34,24 +34,16 @@ Last revision: 11/12/10
 	-webkit-border-bottom-left-radius: 4px;
 }
 
-#archives .filter .search,
+#archives .filter .current,
 #archives .filter .friend {
 	margin-bottom: 12px;
 }
 
-#archives .filter input,
-#archives .filter select {
+#archives .filter .friend select {
+	height: 180px;
 	width: 180px;
 	margin-top: 2px;
 	float: none;
-}
-
-#archives .filter .friend select {
-	height: 195px;
-}
-
-#archives .filter .search input {
-	width: 174px;
 }
 
 #archives .logs {

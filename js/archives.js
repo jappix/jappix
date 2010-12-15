@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 15/12/10
 
 */
 
@@ -20,21 +20,16 @@ function openArchives() {
 	
 	'<div class="content">' + 
 		'<div class="filter">' + 
-			'<div class="search">' + 
-				_e("Search") + 
+			'<div class="current">' + 
 				'<input type="text" />' + 
 			'</div>' + 
 			
 			'<div class="friend">' + 
-				_e("Friend") + 
-				'<select multiple="multiple">' + 
+				'<select multiple="">' + 
 				'</select>' + 
 			'</div>' + 
 			
-			'<div class="date">' + 
-				_e("Date") + 
-				'<select></select>' + 
-			'</div>' + 
+			'<div class="date"></div>' + 
 		'</div>' + 
 		
 		'<div class="logs"></div>' + 
@@ -186,6 +181,15 @@ function handleConfigArchives(iq) {
 
 // Plugin launcher
 function launchArchives() {
+	// Datepicker
+	$('#archives .filter .date').DatePicker({
+		flat: true,
+		date: '2008-07-31',
+		current: '2008-07-31',
+		calendars: 1,
+		starts: 1
+	});
+	
 	// Click event
 	$('#archives .bottom .finish').click(function() {
 		return closeArchives();

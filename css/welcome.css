@@ -32,7 +32,6 @@ Last revision: 15/12/10
 	width: 270px;
 	text-decoration: none;
 	float: left;
-	position: relative;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -98,11 +97,9 @@ Last revision: 15/12/10
 	background-position: 0 -1661px;
 	height: 16px;
 	width: 16px;
-	margin: -60px 100px 0 0;
+	margin: -52px -15px 0 0;
 	display: none;
-	position: relative;
-	top: 6px;
-	right: -268px;
+	float: right;
 }
 
 #welcome a.box.enabled span.tick {

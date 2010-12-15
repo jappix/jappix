@@ -134,9 +134,6 @@ msgstr ""
 msgid "Message archives"
 msgstr ""
 
-msgid "Friend"
-msgstr ""
-
 msgid "Date"
 msgstr ""
 
