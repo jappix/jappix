@@ -166,7 +166,7 @@ Last revision: 12/12/10
 	background-position: 0 -442px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=chores] {
+#my-infos .f-activity div.bubble a[data-value=doing_chores] {
 	background-position: 4px -458px;
 }
 
@@ -186,7 +186,7 @@ Last revision: 12/12/10
 	background-position: 4px -548px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=appointment] {
+#my-infos .f-activity div.bubble a[data-value=having_appointment] {
 	background-position: 4px -566px;
 }
 
@@ -214,8 +214,8 @@ Last revision: 12/12/10
 	background-position: 0 -514px;
 }
 
-#my-infos .f-activity a[data-value=chores] span,
-.activity-chores {
+#my-infos .f-activity a[data-value=doing_chores] span,
+.activity-doing_chores {
 	background-position: 0 -460px;
 }
 
@@ -239,8 +239,8 @@ Last revision: 12/12/10
 	background-position: 0 -550px;
 }
 
-#my-infos .f-activity a[data-value=appointment] span,
-.activity-appointment {
+#my-infos .f-activity a[data-value=having_appointment] span,
+.activity-having_appointment {
 	background-position: 0 -568px;
 }
 

@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 15/12/10
 
 */
 
@@ -32,6 +32,7 @@ Last revision: 05/12/10
 	width: 270px;
 	text-decoration: none;
 	float: left;
+	position: relative;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -90,6 +91,21 @@ Last revision: 05/12/10
 
 #welcome a.box span.image.offline {
 	background-position: 0 -80px;
+}
+
+#welcome a.box span.tick {
+	background-position: 0 -1661px;
+	height: 16px;
+	width: 16px;
+	margin: -60px 100px 0 0;
+	display: none;
+	position: relative;
+	top: 6px;
+	right: -268px;
+}
+
+#welcome a.box.enabled span.tick {
+	display: block;
 }
 
 #welcome div.results {

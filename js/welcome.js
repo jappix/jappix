@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 15/12/10
 
 */
 
@@ -41,30 +41,35 @@ function openWelcome() {
 				'<span class="option">' + _e("Sounds") + '</span>' + 
 				'<span class="description">' + _e("Enable notification sounds") + '</span>' + 
 				'<span class="image sound talk-images"></span>' + 
+				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
 			'<a class="box enabled pep-hidable" title="' + _e("Click to disable") + '">' + 
 				'<span class="option">' + _e("Geolocation") + '</span>' + 
 				'<span class="description">' + _e("Share your position on the globe") + '</span>' + 
 				'<span class="image geolocation talk-images"></span>' + 
+				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
 			'<a class="box" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("XMPP links") + '</span>' + 
 				'<span class="description">' + _e("Open XMPP links with Jappix") + '</span>' + 
 				'<span class="image xmpp talk-images"></span>' + 
+				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
 			'<a class="box enabled archives-hidable pref" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Message archiving") + '</span>' + 
 				'<span class="description">' + _e("Store a history of your chats") + '</span>' + 
 				'<span class="image archives talk-images"></span>' + 
+				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
 			'<a class="box" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Offline friends") + '</span>' + 
 				'<span class="description">' + _e("Don\'t hide offline friends") + '</span>' + 
 				'<span class="image offline talk-images"></span>' + 
+				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 		'</div>' + 
 		

@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 15/12/10
 
 */
 
@@ -392,7 +392,7 @@ function activityIcon(value) {
 	// Switch the values
 	switch(value) {
 		case 'doing_chores':
-			icon = 'activity-chores';
+			icon = 'activity-doing_chores';
 			break;
 		
 		case 'drinking':
@@ -408,7 +408,7 @@ function activityIcon(value) {
 			break;
 		
 		case 'having_appointment':
-			icon = 'activity-appointment';
+			icon = 'activity-having_appointment';
 			break;
 		
 		case 'inactive':
@@ -461,15 +461,11 @@ function sendMood(value, text) {
 	// And finally we send the mood that is set
 	con.send(iq);
 	
-	logThis('New mood sent: ' + value, 3);
+	logThis('New mood sent: ' + value + ' (' + text + ')', 3);
 }
 
 // Sends the user's activity
-function sendActivity(value, text) {
-	// We retrieve all the needed values
-	var valueActivityMainType = explodeThis('/', value, 0);
-	var valueActivitySubType = explodeThis('/', value, 1);
-	
+function sendActivity(main, sub, text) {
 	// We propagate the mood on the xmpp network
 	var iq = new JSJaCIQ();
 	iq.setType('set');
@@ -480,16 +476,20 @@ function sendActivity(value, text) {
 	var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
 	var activity = item.appendChild(iq.buildNode('activity', {'xmlns': NS_ACTIVITY}));
 	
-	if(value != 'none') {
-		var mainType = activity.appendChild(iq.buildNode(valueActivityMainType, {'xmlns': NS_ACTIVITY}));
-		mainType.appendChild(iq.buildNode(valueActivitySubType, {'xmlns': NS_ACTIVITY}));
-		activity.appendChild(iq.buildNode('text', {'xmlns': NS_ACTIVITY}, text));
+	if(main != 'none') {
+		var mainType = activity.appendChild(iq.buildNode(main, {'xmlns': NS_ACTIVITY}));
+		
+		// Child nodes
+		if(sub)
+			mainType.appendChild(iq.buildNode(sub, {'xmlns': NS_ACTIVITY}));
+		if(text)
+			activity.appendChild(iq.buildNode('text', {'xmlns': NS_ACTIVITY}, text));
 	}
 	
 	// And finally we send the mood that is set
 	con.send(iq);
 	
-	logThis('New activity sent: ' + value, 3);
+	logThis('New activity sent: ' + main + ' (' + text + ')', 3);
 }
 
 // Sends the user's geographic position
@@ -626,7 +626,7 @@ function launchPEP() {
 	$('#my-infos .f-activity a.picker').click(function() {
 		// Initialize some vars
 		var path = '#my-infos .f-activity div.bubble';
-		var activity_id = ['chores', 'drinking', 'eating', 'exercising', 'grooming', 'appointment', 'inactive', 'relaxing', 'talking', 'traveling', 'working'];
+		var activity_id = ['doing_chores', 'drinking', 'eating', 'exercising', 'grooming', 'having_appointment', 'inactive', 'relaxing', 'talking', 'traveling', 'working'];
 		var activity_lang = [_e("Chores"), _e("Drinking"), _e("Eating"), _e("Exercising"), _e("Grooming"), _e("Appointment"), _e("Inactive"), _e("Relaxing"), _e("Talking"), _e("Traveling"), _e("Working")];
 		var activity_val = $('#my-infos .f-activity a.picker').attr('data-value');
 		
@@ -719,7 +719,7 @@ function launchPEP() {
 			setDB('activity-text', 1, text);
 			
 			// Send it!
-			sendActivity(value, text);
+			sendActivity(value, '', text);
 		}
 	})
 	
