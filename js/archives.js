@@ -20,16 +20,15 @@ function openArchives() {
 	
 	'<div class="content">' + 
 		'<div class="filter">' + 
-			'<div class="current">' + 
-				'<input type="text" />' + 
-			'</div>' + 
-			
-			'<div class="friend">' + 
-				'<select multiple="">' + 
-				'</select>' + 
-			'</div>' + 
+			'<select class="friend" multiple=""></select>' + 
 			
 			'<div class="date"></div>' + 
+		'</div>' + 
+		
+		'<div class="current">' + 
+			'[AVATAR]' + 
+			'[NAME]' + 
+			'[DATE]' + 
 		'</div>' + 
 		
 		'<div class="logs"></div>' + 

@@ -34,24 +34,34 @@ Last revision: 15/12/10
 	-webkit-border-bottom-left-radius: 4px;
 }
 
-#archives .filter .current,
 #archives .filter .friend {
 	margin-bottom: 12px;
 }
 
-#archives .filter .friend select {
-	height: 180px;
+#archives .filter .friend {
+	height: 200px;
 	width: 180px;
-	margin-top: 2px;
 	float: none;
+}
+
+#archives .current,
+#archives .logs {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 205px;
+}
+
+#archives .current {
+	background-color: blue;
+	border-bottom: 1px solid black;
+	height: 24px;
+	top: 0;
 }
 
 #archives .logs {
 	overflow: auto;
 	float: left;
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 207px;
+	top: 25px;
 }
