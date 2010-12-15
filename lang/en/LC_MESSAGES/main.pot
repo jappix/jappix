@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 11/12/10
+# Last revision: 15/12/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -459,6 +459,9 @@ msgid "Download file!"
 msgstr ""
 
 msgid "Clean current chat"
+msgstr ""
+
+msgid "View chat history"
 msgstr ""
 
 msgid "Show user profile"

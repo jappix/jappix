@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 15/12/10
 
 */
 
@@ -341,7 +341,8 @@ Last revision: 12/12/10
 	background-position: 0 -758px;
 }
 
-#page-engine .text .tools-add {
+#page-engine .text .tools-add,
+#page-engine .text .tools-archives {
 	display: none;
 }
 

@@ -85,7 +85,8 @@ Last revision: 15/12/10
 	background-position: 0 -990px;
 }
 
-#welcome a.box span.image.archives {
+#welcome a.box span.image.archives,
+#page-engine .text .tools-archives {
 	background-position: 0 -1025px;
 }
 

@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 15/12/10
 
 */
 
@@ -177,16 +177,18 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	// The icons-hover functions
 	tooltipIcons(room, hash);
 	
-	// We add a click event on the add button
-	if(!existDB('favorites', room)) {
-		$('#' + hash + ' .tools-add').click(function() {
-			// Hide the icon (to tell the user all is okay)
-			$(this).hide();
-			
-			// Add the groupchat to the user favorites
-			addThisFavorite(room, chan);
-		}).show();
-	}
+	// Click event on the add tool
+	$('#' + hash + ' .tools-add').click(function() {
+		// Hide the icon (to tell the user all is okay)
+		$(this).hide();
+		
+		// Add the groupchat to the user favorites
+		addThisFavorite(room, chan);
+	});
+	
+	// Must show the add button?
+	if(!existDB('favorites', room))
+		$('#' + hash + ' .tools-add').show();
 	
 	// Focus event
 	$('#' + hash + ' .message-area').focus(function() {

@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 15/12/10
 
 */
 
@@ -101,7 +101,7 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
-		specialLink = '<a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
+		specialLink = '<a class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -230,15 +230,26 @@ function chatCreate(hash, xid, nick, type) {
 	generateSwitch(type, hash, xid, nick);
 	
 	// If the user is not in our buddy-list
-	if((type == 'chat') && !exists('#buddy-list .buddy[data-xid=' + xid + ']')) {
-		// We add a click event on the add button
-		$('#' + hash + ' .tools-add').click(function() {
-			// Hide the icon (to tell the user all is okay)
-			$(this).hide();
-			
-			// Send the subscribe request
-			addThisContact(xid);
-		}).show();
+	if(type == 'chat') {
+		// Add button
+		if(!exists('#buddy-list .buddy[data-xid=' + xid + ']'))
+			$('#' + hash + ' .tools-add').click(function() {
+				// Hide the icon (to tell the user all is okay)
+				$(this).hide();
+				
+				// Send the subscribe request
+				addThisContact(xid);
+			}).show();
+		
+		// Archives button
+		else if(enabledArchives())
+			$('#' + hash + ' .tools-archives').click(function() {
+				// Open the archives popup
+				openArchives();
+				
+				// Get the archives for this user
+				$('#archives .filter .friend select').val(xid);
+			}).show();
 	}
 	
 	// We catch the user's informations (like this avatar, vcard, and so on...)

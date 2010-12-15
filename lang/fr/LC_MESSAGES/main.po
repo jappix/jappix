@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-12 01:31:17\n"
+"PO-Revision-Date: 2010-12-15 16:12:01\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2032,4 +2032,8 @@ msgstr "Dernièrement vu(e) : %s"
 #: 
 msgid "Inactive since: %s"
 msgstr "Inactif depuis : %s"
+
+#: 
+msgid "View chat history"
+msgstr "Voir l'historique de discussion"
 
