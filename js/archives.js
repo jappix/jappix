@@ -26,9 +26,8 @@ function openArchives() {
 		'</div>' + 
 		
 		'<div class="current">' + 
-			'[AVATAR]' + 
-			'[NAME]' + 
-			'[DATE]' + 
+			'<span class="name"></span>' + 
+			'<span class="time"></span>' + 
 		'</div>' + 
 		
 		'<div class="logs"></div>' + 
@@ -48,13 +47,18 @@ function openArchives() {
 	
 	// Get all the buddies in our roster
 	var buddies = getAllBuddies();
+	var options = '';
 	
 	for(i in buddies) {
 		var current = buddies[i];
 		
-		// Create a new DOM element
-		$('#archives .friend select').append('<option value="' + current + '">' + getBuddyName(current).htmlEnc() + '</option>');
+		// Add the current buddy
+		options += '<option value="' + encodeQuotes(current) + '">' + getBuddyName(current).htmlEnc() + '</option>';
 	}
+	
+	// Can append the buddy HTML code?
+	if(options)
+		$('#archives .filter .friend').append(options);
 }
 
 // Closes the archive tools
@@ -66,7 +70,7 @@ function closeArchives() {
 }
 
 // Gets the archives for a buddy
-function getArchives(xid) {
+function getArchives(xid, date) {
 	// Show the waiting icon
 	$('#archives .wait').show();
 	
@@ -195,7 +199,20 @@ function launchArchives() {
 	});
 	
 	// Change event
-	$('#archives .filter .friend select').change(function() {
-		getArchives($(this).val());
+	$('#archives .filter .friend').change(function() {
+		// Read the values
+		var xid = $(this).val() + '';
+		var date = $('#archives .filter .date').DatePickerGetDate(true) + '';
+		
+		// No XID?
+		if(!xid)
+			return;
+		
+		// Apply the current marker
+		$('#archives .current .name').text(getBuddyName(xid));
+		$('#archives .current .time').text(parseDate(date));
+		
+		// Get the archives
+		getArchives(xid, date);
 	});
 }

@@ -39,7 +39,7 @@ Last revision: 15/12/10
 }
 
 #archives .filter .friend {
-	height: 200px;
+	height: 210px;
 	width: 180px;
 	float: none;
 }
@@ -49,14 +49,27 @@ Last revision: 15/12/10
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	left: 205px;
+	left: 204px;
 }
 
 #archives .current {
-	background-color: blue;
-	border-bottom: 1px solid black;
-	height: 24px;
+	background-color: #d3dee1;
+	border-bottom: 1px solid #a9bbbf;
+	font-size: 0.9em;
+	height: 18px;
+	padding: 6px;
 	top: 0;
+}
+
+#archives .current .name {
+	font-weight: bold;
+	float: left;
+}
+
+#archives .current .time {
+	color: #59757b;
+	font-size: 0.9em;
+	float: right;
 }
 
 #archives .logs {

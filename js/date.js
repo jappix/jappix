@@ -8,7 +8,7 @@ These are the date related JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 15/12/10
 
 */
 
@@ -50,13 +50,13 @@ function getXMPPTime(location) {
 	
 	// Initialize
 	var jInit = new Date();
-	var year, month, date, hours, minutes, seconds;
+	var year, month, day, hours, minutes, seconds;
 	
 	// Gets the UTC date
 	if(location == 'utc') {
 		year = jInit.getUTCFullYear();
 		month = jInit.getUTCMonth();
-		date = jInit.getUTCDate();
+		day = jInit.getUTCDate();
 		hours = jInit.getUTCHours();
 		minutes = jInit.getUTCMinutes();
 		seconds = jInit.getUTCSeconds();
@@ -66,7 +66,7 @@ function getXMPPTime(location) {
 	else {
 		year = jInit.getFullYear();
 		month = jInit.getMonth();
-		date = jInit.getDate();
+		day = jInit.getDate();
 		hours = jInit.getHours();
 		minutes = jInit.getMinutes();
 		seconds = jInit.getSeconds();
@@ -75,7 +75,7 @@ function getXMPPTime(location) {
 	// Generates the date string
 	var jDate = year + '-';
 	jDate += padZero(month + 1) + '-';
-	jDate += padZero(date) + 'T';
+	jDate += padZero(day) + 'T';
 	jDate += padZero(hours) + ':';
 	jDate += padZero(minutes) + ':';
 	jDate += padZero(seconds) + 'Z';
