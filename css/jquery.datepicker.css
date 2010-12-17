@@ -8,7 +8,7 @@ This is the datepicker CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/11/10
+Last revision: 17/11/10
 
 */
 
@@ -34,7 +34,6 @@ div.datepicker table {
 }
 
 div.datepicker a {
-	color: #eee;
 	text-decoration: none;
 	cursor: default;
 	outline: none;
@@ -48,7 +47,7 @@ div.datepicker table td {
 
 div.datepicker th {
 	text-align: center;
-	color: #999;
+	color: #47646a;
 	font-weight: normal;
 }
 
@@ -68,37 +67,28 @@ div.datepicker tbody a {
 }
 
 .datepickerYears a,
-.datepickerMonths a{
+.datepickerMonths a {
 	width: 44px;
 	line-height: 36px;
 	height: 36px;
 	text-align: center;
 }
 
-td.datepickerNotInMonth a {
-	color: #666;
+td.datepickerNotInMonth {
+	background: #c7d1d4;
 }
 
-tbody.datepickerDays td.datepickerSelected{
-	background: #136A9F;
-}
-
-tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
-	background: #17384d;
+tbody.datepickerDays td.datepickerSelected {
+	background: #b0bdc1;
 }
 
 tbody.datepickerYears td.datepickerSelected,
 tbody.datepickerMonths td.datepickerSelected {
-	background: #17384d;
+	background: #9daaae;
 }
 
-div.datepicker a:hover,
 div.datepicker a:hover {
-	color: #88c5eb;
-}
-
-div.datepicker td.datepickerNotInMonth a:hover {
-	color: #999;
+	color: #3d7682;
 }
 
 div.datepicker tbody th {
@@ -145,11 +135,7 @@ table.datepickerViewYears tr.datepickerDoW {
 }
 
 td.datepickerDisabled a,
-td.datepickerDisabled.datepickerNotInMonth a{
-	color: #333;
-}
-
-td.datepickerDisabled a:hover {
+td.datepickerDisabled.datepickerNotInMonth a {
 	color: #333;
 }
 

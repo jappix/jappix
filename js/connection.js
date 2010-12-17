@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 17/12/10
 
 */
 
@@ -42,7 +42,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		oArgs.secure = true;
 		
 		// Generate a session XML to be stored
-		session_xml = '<session><stored>true</stored><domain>' + lServer + '</domain><username>' + lNick + '</username><resource>' + lResource + '</resource><password>' + lPass + '</password><priority>' + lPriority + '</priority></session>';
+		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
 		
 		// Save the session parameters (for reconnect if network issue)
 		CURRENT_SESSION = session_xml;
@@ -389,11 +389,11 @@ function loginFromSession(data) {
 	
 	// Fire the login event
 	doLogin(
-		session.find('username').text(),
-		session.find('domain').text(),
-		session.find('password').text(),
-		session.find('resource').text(),
-		session.find('priority').text(),
+		session.find('username').text().revertHtmlEnc(),
+		session.find('domain').text().revertHtmlEnc(),
+		session.find('password').text().revertHtmlEnc(),
+		session.find('resource').text().revertHtmlEnc(),
+		session.find('priority').text().revertHtmlEnc(),
 		false
 	);
 }

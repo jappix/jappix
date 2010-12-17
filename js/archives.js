@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 17/12/10
 
 */
 

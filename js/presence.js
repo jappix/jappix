@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/12/10
+Last revision: 17/12/10
 
 */
 
@@ -666,7 +666,7 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'http://www.jappix.com/', 'ver': myCaps()});
 	
 	// Nickname
-	var nickname = getNick();
+	var nickname = getName();
 	
 	if(nickname)
 		presence.appendNode('nick', {'xmlns': NS_NICK}, nickname);
