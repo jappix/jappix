@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/12/10
+Last revision: 18/12/10
 
 */
 
@@ -55,8 +55,15 @@ function connect(domain, user, password) {
 		
 		// Anonymous login?
 		if(MINI_ANONYMOUS) {
+			// Anonymous mode disabled?
+			if(!allowedAnonymous()) {
+				logThis('Not allowed to use anonymous mode.', 2);
+				
+				return false;
+			}
+			
 			// Bad domain?
-			if(lockHost() && (domain != HOST_ANONYMOUS)) {
+			else if(lockHost() && (domain != HOST_ANONYMOUS)) {
 				logThis('Not allowed to connect to this anonymous domain: ' + domain, 2);
 				
 				return false;
