@@ -10,9 +10,13 @@ This is the store configuration GET handler (manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Purge requested
 if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(updates))$/', $_GET['p'])) {

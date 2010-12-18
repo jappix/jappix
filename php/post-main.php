@@ -10,9 +10,13 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/11/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Service name
 if(isset($_POST['service_name']) && !empty($_POST['service_name']))

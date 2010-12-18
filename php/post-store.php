@@ -10,9 +10,13 @@ This is the store configuration POST handler (manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Music upload?
 if(isset($_POST['upload'])) {

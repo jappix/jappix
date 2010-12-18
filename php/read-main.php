@@ -10,9 +10,13 @@ This is the main configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Define the default main configuration values
 $main_conf = array(

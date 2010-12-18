@@ -10,9 +10,13 @@ These are the main configuration variables
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Define the vars with the main configuration constants
 $service_name = htmlspecialchars(SERVICE_NAME);

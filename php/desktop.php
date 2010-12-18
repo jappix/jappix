@@ -10,9 +10,13 @@ This is the Jappix desktop html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 ?>
 <!DOCTYPE html>

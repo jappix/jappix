@@ -10,9 +10,13 @@ These are the hosts configuration variables
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 31/10/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Define the vars with the hosts configuration constants
 $host_main = htmlspecialchars(HOST_MAIN);

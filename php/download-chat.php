@@ -10,12 +10,14 @@ This is the PHP script used to download a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 18/12/10
 
 */
 
-// Get the needed files
+// PHP base
 define('PHP_BASE', '..');
+
+// Get the needed files
 require_once('./functions.php');
 require_once('./read-main.php');
 

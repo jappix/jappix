@@ -10,9 +10,13 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Get the manager functions
 require_once(PHP_BASE.'/php/functions-manager.php');

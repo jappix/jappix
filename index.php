@@ -10,15 +10,17 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 18/12/10
 
 */
+
+// PHP base
+define('PHP_BASE', '.');
 
 // Get the function files
 require_once('./php/functions.php');
 
 // Get the configuration
-define('PHP_BASE', '.');
 require_once('./php/read-main.php');
 require_once('./php/read-hosts.php');
 

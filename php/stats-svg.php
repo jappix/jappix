@@ -10,16 +10,18 @@ The SVG loader for Jappix statistics
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 18/12/10
 
 */
+
+// PHP base
+define('PHP_BASE', '..');
 
 // Get the functions
 require_once('./functions.php');
 require_once('./functions-manager.php');
 
 // Get the configuration
-define('PHP_BASE', '..');
 require_once('./read-main.php');
 require_once('./read-hosts.php');
 

@@ -10,9 +10,13 @@ This is the hosts configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Get the protocol we use
 if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))

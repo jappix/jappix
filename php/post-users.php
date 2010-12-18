@@ -10,9 +10,13 @@ This is the user add POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Marker
 $valid_user = true;

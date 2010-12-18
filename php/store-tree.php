@@ -10,9 +10,13 @@ This script (re)generates the store sub-folders (after an update)
 License: AGPL
 Authors: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/10/10
+Last revision: 18/12/10
 
 */
+
+// Someone is trying to hack us?
+if(!defined('PHP_BASE'))
+	exit;
 
 // Array of the sub-folders to create
 $store_folders = array(
