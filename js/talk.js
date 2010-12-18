@@ -19,7 +19,6 @@ function eventsTalkPage() {
 	launchRoster();
 	launchPresence();
 	launchPEP();
-	launchFavorites('talk');
 	launchMusic();
 }
 
@@ -102,123 +101,24 @@ function createTalkPage() {
 					'</div>' + 
 					
 					'<div class="foot ibubble">' + 
-						'<div class="buddy-list-icon">' + 
+						'<div class="buddy-list-add buddy-list-icon">' + 
 							'<a class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
-							
-							'<div id="buddy-conf-add" class="buddy-conf-item bubble hidable">' + 
-								'<div class="buddy-conf-subarrow talk-images"></div>' + 
-								
-								'<div class="buddy-conf-subitem">' + 
-									'<p class="buddy-conf-p">' + _e("Add a friend") +  '</p>' + 
-									'<label><span>' + _e("Address") +  '</span><input type="text" class="buddy-conf-input add-contact-jid" required="" /></label>' + 
-									'<label><span>' + _e("Name") +  '</span><input type="text" class="buddy-conf-input add-contact-name" /></label>' +  
-									'<label>' + 
-										'<span>' + _e("Gateway") +  '</span>' + 
-										'<select class="buddy-conf-select add-contact-gateway">' + 
-											'<option value="none" selected="">' + _e("None") +  '</option>' + 
-										'</select>' + 
-									'</label>' +  
-									'<span class="add-contact-name-get">' + _e("Getting the name...") + '</span>' + 
-								'</div>' + 
-							'</div>' + 
 						'</div>' + 
 						
-						'<div class="buddy-list-icon">' + 
+						'<div class="buddy-list-join buddy-list-icon">' + 
 							'<a class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
-							
-							'<div id="buddy-conf-join" class="buddy-conf-item bubble hidable">' + 
-								'<div class="buddy-conf-subarrow talk-images"></div>' + 
-								
-								'<div class="buddy-conf-subitem search">' + 
-									'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Join a chat") +  '</p>' + 
-									'<input type="text" class="buddy-conf-input join-jid" required="" />' + 
-									'<select class="buddy-conf-select buddy-conf-join-select join-type">' + 
-										'<option value="chat">' + _e("Chat") +  '</option>' + 
-										'<option value="groupchat">' + _e("Groupchat") +  '</option>' + 
-									'</select>' + 
-								'</div>' + 
-							'</div>' + 
 						'</div>' + 
 						
-						'<div class="buddy-list-icon">' + 
+						'<div class="buddy-list-groupchat buddy-list-icon">' + 
 							'<a class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
-							
-							'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble hidable">' + 
-								'<div class="buddy-conf-subarrow talk-images"></div>' + 
-								
-								'<div class="buddy-conf-subitem">' + 
-									'<p class="buddy-conf-p">' + _e("Your groupchats") +  '</p>' + 
-									
-									'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select">' + 
-										'<option value="none" class="gc-join-first-option" selected="">' + _e("Select a favorite") +  '</option>' + 
-									'</select>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-groupchat-edit">' + _e("Manage your favorite groupchats") +  '</a>' + 
-									'</p>' + 
-								'</div>' + 
-							'</div>' + 
 						'</div>' + 
 						
-						'<div class="buddy-list-icon">' + 
+						'<div class="buddy-list-more buddy-list-icon">' + 
 							'<a class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
-							
-							'<div id="buddy-conf-more" class="buddy-conf-item bubble hidable">' + 
-								'<div class="buddy-conf-subarrow talk-images"></div>' + 
-								
-								'<div class="buddy-conf-subitem">' + 
-									'<p class="buddy-conf-p">' + _e("More stuff") +  '</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-more-display-unavailable">' + _e("Show all friends") +  '</a>' + 
-										'<a class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text archives-hidable">' + 
-										'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://project.jappix.com/about" target="_blank">' + _e("About Jappix") +  '</a>' + 
-									'</p>' + 
-								'</div>' + 
-							'</div>' + 
 						'</div>' + 
 						
-						'<div class="buddy-list-icon alone">' + 
+						'<div class="buddy-list-involve buddy-list-icon alone">' + 
 							'<a class="involve talk-images" title="' + _e("Get involved!") +  '"></a>' + 
-							
-							'<div id="buddy-conf-involve" class="buddy-conf-item bubble hidable">' + 
-								'<div class="buddy-conf-subarrow talk-images"></div>' + 
-								
-								'<div class="buddy-conf-subitem">' + 
-									'<p class="buddy-conf-p">' + _e("Get involved!") +  '</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://codingteam.net/project/jappix/browse" target="_blank">' + _e("Write code") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://codingteam.net/project/jappix/i18n" target="_blank">' + _e("Translate") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank">' + _e("Report a bug") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://codingteam.net/project/jappix/doc" target="_blank">' + _e("Write documentation") +  '</a>' + 
-									'</p>' + 
-									
-									'<p class="buddy-conf-text">' + 
-										'- <a href="http://project.jappix.com/donate" target="_blank">' + _e("Donate") +  '</a>' + 
-									'</p>' + 
-								'</div>' + 
-							'</div>' + 
 						'</div>' + 
 						
 						'<div style="clear: both;"></div>' + 

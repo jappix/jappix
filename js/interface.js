@@ -103,16 +103,12 @@ function switchChan(id) {
 
 // Loads the complete chat switcher
 function loadChatSwitch() {
-	// Yet displayed?
+	// Path
 	var more_content = '#page-switch .more-content';
 	
-	if(exists(more_content)) {
-		// Destroy everything
-		$(more_content).remove();
-		closeBubbles();
-		
-		return false;
-	}
+	// Yet displayed?
+	if(exists(more_content))
+		return closeBubbles();
 	
 	// Add the bubble
 	showBubble(more_content);

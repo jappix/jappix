@@ -8,7 +8,7 @@ These are the favorites JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 18/12/10
 
 */
 
@@ -113,7 +113,7 @@ function openFavorites() {
 	loadFavorites();
 	
 	// Associate the events
-	launchFavorites('popup');
+	launchFavorites();
 }
 
 // Resets the favorites elements
@@ -445,7 +445,7 @@ function displayFavorites(xid, name, nick, autojoin, password) {
 // Loads the favorites for the popup
 function loadFavorites() {
 	// Initialize the HTML code
-	var html = '<option value="none" class="fedit-head-select-first-option" selected="">' + _e("Select a favorite") + '</option>';
+	var html = '';
 	
 	// Read the database
 	for(var i = 0; i < sessionStorage.length; i++) {
@@ -457,92 +457,78 @@ function loadFavorites() {
 			var data = sessionStorage.getItem(current);
 			
 			// Add the current favorite to the HTML code
-			html += '<option value="' + $(data).find('xid').text() + '">' + $(data).find('name').text() + '</option>';
+			html += '<option value="' + encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';
 		}
 	}
 	
+	// Generate specific HTML code
+	var favorites_bubble = '<option value="none" class="gc-join-first-option" selected="">' + _e("Select a favorite") +  '</option>' + html;
+	var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + _e("Select a favorite") + '</option>' + html;
+	
 	// Append the HTML code
-	$('#favorites .fedit-head-select').html(html);
+	$('#buddy-list .buddy-conf-groupchat-select').html(favorites_bubble);
+	$('#favorites .fedit-head-select').html(favorites_popup);
 }
 
 // Plugin launcher
-function launchFavorites(container) {
-	if(container == 'talk') {
-		$('.buddy-conf-groupchat-select').change(function() {
-			var groupchat = $(this).val();
-			
-			if(groupchat != 'none') {
-				// We hide the bubble
-				closeBubbles();
-				
-				// Create the chat
-				checkChatCreate(groupchat, 'groupchat');
-				
-				// We reset the select value
-				$(this).val('none');
-			}
-		});
-	}
+function launchFavorites() {
+	var path = '#favorites .';
 	
-	else if(container == 'popup') {
-		var path = '#favorites .';
-		
-		// Keyboard events
-		$(path + 'fsearch-head-server').keyup(function(e) {
-			if(e.keyCode == 13) {
-				// No value?
-				if(!$(this).val())
-					$(this).val(HOST_MUC);
-				
-				// Get the list
-				getGCList();
-			}
-		});
-		
-		$(path + 'fedit-line input').keyup(function(e) {
-			if(e.keyCode == 13) {
-				// Edit a favorite
-				if($(path + 'fedit-edit').is(':visible'))
-					terminateThisFavorite('edit');
-				
-				// Add a favorite
-				else
-					terminateThisFavorite('add');
-			}
-		});
-		
-		// Change events
-		$('.fedit-head-select').change(editFavorite);
-		
-		// Click events
-		$(path + 'room-switcher').click(function() {
-			$(path + 'favorites-content').hide();
-			resetFavorites();
-		});
-		
-		$(path + 'room-list').click(function() {
-			$(path + 'favorites-edit').show();
-		});
-		
-		$(path + 'room-search').click(function() {
-			$(path + 'favorites-search').show();
+	// Keyboard events
+	$(path + 'fsearch-head-server').keyup(function(e) {
+		if(e.keyCode == 13) {
+			// No value?
+			if(!$(this).val())
+				$(this).val(HOST_MUC);
+			
+			// Get the list
 			getGCList();
-		});
-		
-		$(path + 'fedit-add').click(function() {
-			return terminateThisFavorite('add');
-		});
-		
-		$(path + 'fedit-edit').click(function() {
-			return terminateThisFavorite('edit');
-		});
-		
-		$(path + 'fedit-remove').click(function() {
-			return terminateThisFavorite('remove');
-		});
-		
-		$(path + 'bottom .finish').click(function() {
-			return quitFavorites();
-		});
-	}
+		}
+	});
+	
+	$(path + 'fedit-line input').keyup(function(e) {
+		if(e.keyCode == 13) {
+			// Edit a favorite
+			if($(path + 'fedit-edit').is(':visible'))
+				terminateThisFavorite('edit');
+			
+			// Add a favorite
+			else
+				terminateThisFavorite('add');
+		}
+	});
+	
+	// Change events
+	$('.fedit-head-select').change(editFavorite);
+	
+	// Click events
+	$(path + 'room-switcher').click(function() {
+		$(path + 'favorites-content').hide();
+		resetFavorites();
+	});
+	
+	$(path + 'room-list').click(function() {
+		$(path + 'favorites-edit').show();
+	});
+	
+	$(path + 'room-search').click(function() {
+		$(path + 'favorites-search').show();
+		getGCList();
+	});
+	
+	$(path + 'fedit-add').click(function() {
+		return terminateThisFavorite('add');
+	});
+	
+	$(path + 'fedit-edit').click(function() {
+		return terminateThisFavorite('edit');
+	});
+	
+	$(path + 'fedit-remove').click(function() {
+		return terminateThisFavorite('remove');
+	});
+	
+	$(path + 'bottom .finish').click(function() {
+		return quitFavorites();
+	});
 }

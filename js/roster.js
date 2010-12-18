@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 18/12/10
 
 */
 
@@ -635,13 +635,33 @@ function launchRoster() {
 	
 	// When the user click on the add button, show the contact adding tool
 	$('#buddy-list .foot .add').click(function() {
-		// Reset the stuffs
-		$('.add-contact-name-get').hide().removeAttr('data-for');
-		$('.add-contact-name').val('');
-		$('.add-contact-gateway').val('none');
+		// Yet displayed?
+		if(exists('#buddy-conf-add'))
+			return closeBubbles();
 		
-		// Remove the gateways
-		$('.add-contact-gateway option:not([value=none])').remove();
+		// Add the bubble
+		showBubble('#buddy-conf-add');
+		
+		// Append the content
+		$('#buddy-list .buddy-list-add').append(
+			'<div id="buddy-conf-add" class="buddy-conf-item bubble removable">' + 
+				'<div class="buddy-conf-subarrow talk-images"></div>' + 
+				
+				'<div class="buddy-conf-subitem">' + 
+					'<p class="buddy-conf-p">' + _e("Add a friend") +  '</p>' + 
+					
+					'<label><span>' + _e("Address") +  '</span><input type="text" class="buddy-conf-input add-contact-jid" required="" /></label>' + 
+					'<label><span>' + _e("Name") +  '</span><input type="text" class="buddy-conf-input add-contact-name" /></label>' +  
+					'<label>' + 
+						'<span>' + _e("Gateway") +  '</span>' + 
+						'<select class="buddy-conf-select add-contact-gateway">' + 
+							'<option value="none" selected="">' + _e("None") +  '</option>' + 
+						'</select>' + 
+					'</label>' +  
+					'<span class="add-contact-name-get">' + _e("Getting the name...") + '</span>' + 
+				'</div>' + 
+			'</div>'
+		);
 		
 		// Add the gateways
 		var gateways = getGateways();
@@ -660,200 +680,336 @@ function launchRoster() {
 		else
 			$('.add-contact-gateway').parent().hide();
 		
-		// We show the requested div
-		showBubble('#buddy-conf-add');
+		// Blur event on the add contact input
+		$('.add-contact-jid').blur(function() {
+			// Read the value
+			var value = $(this).val();
+			
+			// Try to catch the buddy name
+			if(value && !$('.add-contact-name').val() && ($('.add-contact-gateway').val() == 'none')) {
+				// User XID
+				var xid = generateXID(value, 'chat');
+				
+				// Notice for the user
+				$('.add-contact-name-get').attr('data-for', escape(xid)).show();
+				
+				// Request the user vCard
+				getAddUserName(xid);
+			}
+		});
 		
-		// We reset the input and focus on it
-		$('.add-contact-jid').removeClass('please-complete').val('').focus();
+		// When a key is pressed...
+		$('#buddy-conf-add input, #buddy-conf-add select').keyup(function(e) {
+			// Enter : continue
+			if(e.keyCode == 13) {
+				// Get the values
+				var xid = $('.add-contact-jid').val();
+				var name = $('.add-contact-name').val();
+				var gateway = unescape($('.add-contact-gateway').val());
+				
+				// Generate the XID to add
+				if((gateway != 'none') && xid)
+					xid = xid.replace(/@/g, '%') + '@' + gateway;
+				else
+					xid = generateXID(xid, 'chat');
+				
+				// Submit the form
+				if(xid && (xid != getXID()))
+					addThisContact(xid, name);
+				else
+					$('.add-contact-jid').addClass('please-complete').focus();
+				
+				return false;
+			}
+			
+			// Escape : quit
+			if(e.keyCode == 27)
+				closeBubbles();
+		});
+		
+		// Focus on the input
+		$('.add-contact-jid').focus();
 		
 		return false;
-	});
-	
-	// Blur event on the add contact input
-	$('.add-contact-jid').blur(function() {
-		// Read the value
-		var value = $(this).val();
-		
-		// Try to catch the buddy name
-		if(value && !$('.add-contact-name').val() && ($('.add-contact-gateway').val() == 'none')) {
-			// User XID
-			var xid = generateXID(value, 'chat');
-			
-			// Notice for the user
-			$('.add-contact-name-get').attr('data-for', escape(xid)).show();
-			
-			// Request the user vCard
-			getAddUserName(xid);
-		}
-	});
-	
-	// When a key is pressed...
-	$('#buddy-conf-add input, #buddy-conf-add select').keyup(function(e) {
-		// Enter : continue
-		if(e.keyCode == 13) {
-			// Get the values
-			var xid = $('.add-contact-jid').val();
-			var name = $('.add-contact-name').val();
-			var gateway = unescape($('.add-contact-gateway').val());
-			
-			// Generate the XID to add
-			if((gateway != 'none') && xid)
-				xid = xid.replace(/@/g, '%') + '@' + gateway;
-			else
-				xid = generateXID(xid, 'chat');
-			
-			// Submit the form
-			if(xid && (xid != getXID()))
-				addThisContact(xid, name);
-			else
-				$('.add-contact-jid').addClass('please-complete').focus();
-			
-			return false;
-		}
-		
-		// Escape : quit
-		if(e.keyCode == 27)
-			closeBubbles();
 	});
 	
 	// When the user click on the join button, show the chat joining tool
-	var destination = '#buddy-conf-join .search';
-	var dHovered = destination + ' ul li.hovered:first';
-	
 	$('#buddy-list .foot .join').click(function() {
-		// We reset the previous search (security)
-		resetBuddySearch(destination);
+		// Yet displayed?
+		if(exists('#buddy-conf-join'))
+			return closeBubbles();
 		
-		// We show the requested div
+		// Add the bubble
 		showBubble('#buddy-conf-join');
 		
-		// We reset the input and focus on it
-		$('#buddy-conf-join .join-jid').removeClass('please-complete').val('').focus();
-		$('#buddy-conf-join .join-type').val('chat');
-		
-		return false;
-	});
-	
-	// When a key is pressed...
-	$('#buddy-conf-join input').keyup(function(e) {
-		// Enter : continue
-		if(e.keyCode == 13) {
-			// Select something from the search
-			if(exists(dHovered))
-				addBuddySearch(destination, $(dHovered).attr('data-xid'));
-			
-			// Join something
-			else {
-				var xid = $('.join-jid').val();
-				var type = $('.buddy-conf-join-select').val();
+		// Append the content
+		$('#buddy-list .buddy-list-join').append(
+			'<div id="buddy-conf-join" class="buddy-conf-item bubble removable">' + 
+				'<div class="buddy-conf-subarrow talk-images"></div>' + 
 				
-				if(xid && type) {
-					// Generate a correct XID
-					xid = generateXID(xid, type);
+				'<div class="buddy-conf-subitem search">' + 
+					'<p class="buddy-conf-p" style="margin-bottom: 0;">' + _e("Join a chat") +  '</p>' + 
 					
-					// Not me
-					if(xid != getXID()) {
-						// Update some things
-						$('.join-jid').removeClass('please-complete');
-						closeBubbles();
+					'<input type="text" class="buddy-conf-input join-jid" required="" />' + 
+					'<select class="buddy-conf-select buddy-conf-join-select join-type">' + 
+						'<option value="chat" selected="">' + _e("Chat") +  '</option>' + 
+						'<option value="groupchat">' + _e("Groupchat") +  '</option>' + 
+					'</select>' + 
+				'</div>' + 
+			'</div>'
+		);
+		
+		// Input vars
+		var destination = '#buddy-conf-join .search';
+		var dHovered = destination + ' ul li.hovered:first';
+		
+		// When a key is pressed...
+		$('#buddy-conf-join input').keyup(function(e) {
+			// Enter: continue
+			if(e.keyCode == 13) {
+				// Select something from the search
+				if(exists(dHovered))
+					addBuddySearch(destination, $(dHovered).attr('data-xid'));
+				
+				// Join something
+				else {
+					var xid = $('.join-jid').val();
+					var type = $('.buddy-conf-join-select').val();
+					
+					if(xid && type) {
+						// Generate a correct XID
+						xid = generateXID(xid, type);
 						
-						// Create a new chat
-						checkChatCreate(xid, type);
+						// Not me
+						if(xid != getXID()) {
+							// Update some things
+							$('.join-jid').removeClass('please-complete');
+							closeBubbles();
+							
+							// Create a new chat
+							checkChatCreate(xid, type);
+						}
+						
+						else
+							$('.join-jid').addClass('please-complete');
 					}
 					
 					else
 						$('.join-jid').addClass('please-complete');
 				}
 				
-				else
-					$('.join-jid').addClass('please-complete');
+				return false;
 			}
 			
-			return false;
-		}
-		
-		// Escape: quit
-		else if(e.keyCode == 27)
-			closeBubbles();
-		
-		// Buddy search?
-		else if($('.buddy-conf-join-select').val() == 'chat') {
-			// New buddy search
-			if((e.keyCode != 40) && (e.keyCode != 38))
-				createBuddySearch(destination);
+			// Escape: quit
+			else if(e.keyCode == 27)
+				closeBubbles();
 			
-			// Navigating with keyboard in the results
-			arrowsBuddySearch(e, destination);
-		}
-	})
-	
-	// Buddy search lost focus
-	.blur(function() {
-		if(!$(destination + ' ul').attr('mouse-hover'))
-			resetBuddySearch(destination);
-	});
-	
-	// When the user click on the groupchat button, show the groupchat menu
-	$('#buddy-list .foot .groupchat').click(function() {
-		// We show the requested div
-		showBubble('#buddy-conf-groupchat');
+			// Buddy search?
+			else if($('.buddy-conf-join-select').val() == 'chat') {
+				// New buddy search
+				if((e.keyCode != 40) && (e.keyCode != 38))
+					createBuddySearch(destination);
+				
+				// Navigating with keyboard in the results
+				arrowsBuddySearch(e, destination);
+			}
+		})
+		
+		// Buddy search lost focus
+		.blur(function() {
+			if(!$(destination + ' ul').attr('mouse-hover'))
+				resetBuddySearch(destination);
+		});
+		
+		// We focus on the input
+		$('#buddy-conf-join .join-jid').focus();
 		
 		return false;
 	});
 	
-	// When the user wants to edit his groupchat favorites
-	$('.buddy-conf-groupchat-edit').click(function() {
-		openFavorites();
-		closeBubbles();
+	// When the user click on the groupchat button, show the groupchat menu
+	$('#buddy-list .foot .groupchat').click(function() {
+		// Yet displayed?
+		if(exists('#buddy-conf-groupchat'))
+			return closeBubbles();
+		
+		// Add the bubble
+		showBubble('#buddy-conf-groupchat');
+		
+		// Append the content
+		$('#buddy-list .buddy-list-groupchat').append(
+			'<div id="buddy-conf-groupchat" class="buddy-conf-item bubble removable">' + 
+				'<div class="buddy-conf-subarrow talk-images"></div>' + 
+				
+				'<div class="buddy-conf-subitem">' + 
+					'<p class="buddy-conf-p">' + _e("Your groupchats") +  '</p>' + 
+					
+					'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select"></select>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a class="buddy-conf-groupchat-edit">' + _e("Manage your favorite groupchats") +  '</a>' + 
+					'</p>' + 
+				'</div>' + 
+			'</div>'
+		);
+		
+		// When the user wants to edit his groupchat favorites
+		$('.buddy-conf-groupchat-edit').click(function() {
+			openFavorites();
+			closeBubbles();
+			
+			return false;
+		});
+		
+		// Change event
+		$('.buddy-conf-groupchat-select').change(function() {
+			var groupchat = $(this).val();
+			
+			if(groupchat != 'none') {
+				// We hide the bubble
+				closeBubbles();
+				
+				// Create the chat
+				checkChatCreate(groupchat, 'groupchat');
+				
+				// We reset the select value
+				$(this).val('none');
+			}
+		});
+		
+		// Load the favorites
+		loadFavorites();
 		
 		return false;
 	});
 	
 	// When the user click on the more button, show the more menu
 	$('#buddy-list .foot .more').click(function() {
-		// We show the target bubble
+		// Yet displayed?
+		if(exists('#buddy-conf-more'))
+			return closeBubbles();
+		
+		// Add the bubble
 		showBubble('#buddy-conf-more');
+		
+		// Append the content
+		$('#buddy-list .buddy-list-more').append(
+			'<div id="buddy-conf-more" class="buddy-conf-item bubble removable">' + 
+				'<div class="buddy-conf-subarrow talk-images"></div>' + 
+				
+				'<div class="buddy-conf-subitem">' + 
+					'<p class="buddy-conf-p">' + _e("More stuff") +  '</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a class="buddy-conf-more-display-unavailable">' + _e("Show all friends") +  '</a>' + 
+						'<a class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text archives-hidable">' + 
+						'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://project.jappix.com/about" target="_blank">' + _e("About Jappix") +  '</a>' + 
+					'</p>' + 
+				'</div>' + 
+			'</div>'
+		);
+		
+		// When the user wants to display all his buddies
+		$('.buddy-conf-more-display-unavailable').click(function() {
+			showAllBuddies('roster');
+			
+			return false;
+		});
+		
+		// When the user wants to display only online buddies
+		$('.buddy-conf-more-display-available').click(function() {
+			showOnlineBuddies('roster');
+			
+			return false;
+		});
+		
+		// When the user click on the archives link
+		$('.buddy-conf-more-archives').click(function() {
+			openArchives();
+			
+			return false;
+		});
+		
+		// When the user click on the service discovery link
+		$('.buddy-conf-more-service-disco').click(function() {
+			openDiscovery();
+			
+			return false;
+		});
+		
+		// Close it when clicked
+		$('#buddy-conf-more a').click(function() {
+			closeBubbles();
+		});
+		
+		// Manage the displayed links
+		if(BLIST_ALL) {
+			$('.buddy-conf-more-display-unavailable').hide();
+			$('.buddy-conf-more-display-available').show();
+		}
+		
+		if(enabledArchives())
+			$('.buddy-conf-more-archives').parent().show();
 		
 		return false;
 	});
 	
 	// When the user click on the involve button, show the involve menu
 	$('#buddy-list .foot .involve').click(function() {
-		// We show the target bubble
+		// Yet displayed?
+		if(exists('#buddy-conf-involve'))
+			return closeBubbles();
+		
+		// Add the bubble
 		showBubble('#buddy-conf-involve');
 		
-		return false;
-	});
-	
-	// When the user clicks on a link that fire the close bubble event
-	$('#buddy-conf-more .buddy-conf-text a, #buddy-conf-involve .buddy-conf-text a').click(function() {
-		closeBubbles();
-	});
-	
-	// When the user wants to display all his buddies
-	$('.buddy-conf-more-display-unavailable').click(function() {
-		showAllBuddies('roster');
+		// Append the content
+		$('#buddy-list .buddy-list-involve').append(
+			'<div id="buddy-conf-involve" class="buddy-conf-item bubble removable">' + 
+				'<div class="buddy-conf-subarrow talk-images"></div>' + 
+				
+				'<div class="buddy-conf-subitem">' + 
+					'<p class="buddy-conf-p">' + _e("Get involved!") +  '</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://codingteam.net/project/jappix/browse" target="_blank">' + _e("Write code") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://codingteam.net/project/jappix/i18n" target="_blank">' + _e("Translate") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank">' + _e("Report a bug") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://codingteam.net/project/jappix/doc" target="_blank">' + _e("Write documentation") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'- <a href="http://project.jappix.com/donate" target="_blank">' + _e("Donate") +  '</a>' + 
+					'</p>' + 
+				'</div>' + 
+			'</div>'
+		);
 		
-		return false;
-	});
-	
-	// When the user wants to display only online buddies
-	$('.buddy-conf-more-display-available').click(function() {
-		showOnlineBuddies('roster');
-		
-		return false;
-	});
-	
-	// When the user click on the archives link
-	$('.buddy-conf-more-archives').click(function() {
-		openArchives();
-		
-		return false;
-	});
-	
-	// When the user click on the service discovery link
-	$('.buddy-conf-more-service-disco').click(function() {
-		openDiscovery();
+		// Close it when clicked
+		$('#buddy-conf-involve a').click(function() {
+			closeBubbles();
+		});
 		
 		return false;
 	});
