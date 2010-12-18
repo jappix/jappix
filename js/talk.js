@@ -8,7 +8,7 @@ These are the talkpage JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 18/12/10
 
 */
 
@@ -272,18 +272,7 @@ function createTalkPage() {
 					'</div>' + 
 					
 					'<div class="more ibubble">' + 
-						'<div class="more-button talk-images" onclick="return showBubble(\'#page-switch .more-content\');" title="' + _e("All tabs") +  '"></div>' + 
-						
-						'<div class="more-content bubble hidable">';
-							if(!anonymous) html += 
-							'<div class="channel switcher activechan" onclick="return switchChan(\'channel\');">' + 
-								'<div class="icon talk-images"></div>' + 
-								
-								'<div class="name">' + _e("Channel") +  '</div>' + 
-							'</div>';
-						
-						html +=
-						'</div>' + 
+						'<div class="more-button talk-images" onclick="return loadChatSwitch();" title="' + _e("All tabs") +  '"></div>' + 
 					'</div>' + 
 				'</div>' + 
 				

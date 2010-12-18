@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 18/12/10
 
 */
 
@@ -171,9 +171,8 @@ function generateChat(type, id, xid, nick) {
 
 // Generates the chat switch elements
 function generateSwitch(type, id, xid, nick) {
-	// Paths to the elements
+	// Path to the element
 	var chat_switch = '#page-switch .';
-	var path = chat_switch + id;
 	
 	// Special code
 	var specialClass = ' unavailable';
@@ -187,30 +186,20 @@ function generateSwitch(type, id, xid, nick) {
 	}
 	
 	// Generate the HTML code
-	var html = '<div class="' + id + ' switcher chan">' + 
+	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeQuotes(id) + '\')">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
 			
 			'<div class="name">' + nick + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
 	if(show_close)
-		html += '<div class="exit" title="' + _e("Close this tab") + '">x</div>';
+		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\')">x</div>';
 	
 	// Close the HTML
 	html += '</div>';
 	
 	// Append the HTML code
 	$(chat_switch + 'chans, ' + chat_switch + 'more-content').append(html);
-	
-	// Click event: switch to this chan
-	$(path).click(function() {
-		switchChan(id);
-	});
-	
-	// Click event: quit this chan
-	$(path + ' .exit').click(function() {
-		quitThisChat(xid, id, type);
-	});
 }
 
 // Cleans given the chat lines

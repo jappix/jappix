@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 18/12/10
 
 */
 
@@ -101,6 +101,32 @@ function switchChan(id) {
 	return false;
 }
 
+// Loads the complete chat switcher
+function loadChatSwitch() {
+	// Yet displayed?
+	var more_content = '#page-switch .more-content';
+	
+	if(exists(more_content)) {
+		// Destroy everything
+		$(more_content).remove();
+		closeBubbles();
+		
+		return false;
+	}
+	
+	// Add the bubble
+	showBubble(more_content);
+	
+	// Append the content
+	$('#page-switch .more').append(
+		'<div class="more-content bubble removable">' + 
+			$('#page-switch .chans').html() + 
+		'</div>'
+	);
+	
+	return false;
+}
+
 // Puts the selected smiley in the good page-engine input
 function insertSmiley(smiley, hash) {
 	// We define the variables
@@ -158,6 +184,8 @@ function quitThisChat(xid, hash, type) {
 	
 	// Reset the notifications
 	chanCleanNotify(hash);
+	
+	return false;
 }
 
 // Generates the chat logs
