@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 19/12/10
 
 */
 
@@ -727,13 +727,20 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	
 	messageCode += filteredMessage + '</div>';
 	
-	// Write the code in the DOM
-	$('#' + hash + ' .content').append(messageCode);
+	// Archive message
+	if(hash == 'archives')
+		$('#archives .logs').append(messageCode);
+	
+	// Instant message
+	else {
+		// Write the code in the DOM
+		$('#' + hash + ' .content').append(messageCode);
+		
+		// Must get the avatar?
+		if(has_avatar && xid)
+			getAvatar(xid, 'cache', 'true', 'forget');
+	}
 	
 	// Scroll to this message
 	autoScroll(hash);
-	
-	// Must get the avatar?
-	if(has_avatar && xid)
-		getAvatar(xid, 'cache', 'true', 'forget');
 }

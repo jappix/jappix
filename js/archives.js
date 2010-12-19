@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/12/10
+Last revision: 19/12/10
 
 */
 
@@ -27,10 +27,10 @@ function openArchives() {
 		
 		'<div class="current">' + 
 			'<span class="name"></span>' + 
-			'<span class="time"></span>' + 
+			'<span class="time">' + _e("Please select a friend to view the chat history.") + '</span>' + 
 		'</div>' + 
 		
-		'<div class="logs"></div>' + 
+		'<div class="logs" id="chat-content-archives"></div>' + 
 	'</div>' + 
 	
 	'<div class="bottom">' + 
@@ -69,33 +69,186 @@ function closeArchives() {
 	return false;
 }
 
-// Gets the archives for a buddy
-function getArchives(xid, date) {
+// Gets the archives list for a buddy
+function getListArchives(xid) {
+	// Reset the archives viewer
+	$('#archives .logs').empty();
+	
 	// Show the waiting icon
 	$('#archives .wait').show();
+	
+	// Apply the ID
+	var id = genID();
+	$('#archives').attr('data-session', id);
 	
 	// New IQ
 	var iq = new JSJaCIQ();
 	iq.setType('get');
+	iq.setID(id);
 	
 	var list = iq.appendNode('list', {'xmlns': NS_URN_ARCHIVE, 'with': xid});
 	var set = list.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
-	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, 30));
+	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, '0'));
 	
-	con.send(iq, handleArchives);
+	con.send(iq, handleListArchives);
+	
+	logThis('Getting archives list for: ' + xid + '...');
 }
 
-// Handles the archives for a buddy
-function handleArchives(iq) {
+// Handles the archives list for a buddy
+function handleListArchives(iq) {
 	// Hide the waiting icon
 	$('#archives .wait').hide();
 	
 	// Any error?
-	if(handleErrorReply(iq))
-		return false;
+	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+		return;
 	
-	// Get the results
-	var selector = $(iq.getNode()).find('list');
+	// Get the last archive date
+	var last = $(iq.getNode()).find('list set changed').text();
+	
+	// Any last archive?
+	if(last) {
+		// Read the date
+		var date = Date.jab2date(last);
+		
+		// Change the datepicker value
+		$('#archives .filter .date').DatePickerSetDate(date, true);
+		
+		// Retrieve the archives
+		checkChangeArchives();
+	}
+	
+	logThis('Got archives list.', 2);
+}
+
+// Gets the archives for a day
+function getDayArchives(xid, date) {
+	// Reset the archives viewer
+	$('#archives .logs').empty();
+	
+	// Show the waiting icon
+	$('#archives .wait').show();
+	
+	// Apply the ID
+	var id = genID();
+	$('#archives').attr('data-session', id);
+	
+	// New IQ
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	iq.setID(id);
+	
+	var list = iq.appendNode('list', {'xmlns': NS_URN_ARCHIVE, 'with': xid, 'start': date + 'T00:00:00Z', 'end': date + 'T23:59:59Z'});
+	var set = list.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
+	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, 1));
+	// TODO: sort day archives by thread groups
+	
+	con.send(iq, handleDayArchives);
+	
+	logThis('Getting day archives (' + date + ') for: ' + xid + '...');
+}
+
+// Handles the archives for a day
+function handleDayArchives(iq) {
+	// Hide the waiting icon
+	$('#archives .wait').hide();
+	
+	// Any error?
+	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+		return;
+	
+	// Get the first collection
+	var chat = $(iq.getNode()).find('chat:first');
+	var xid = chat.attr('with');
+	var start = chat.attr('start');
+	
+	// Text to display
+	var date = $('#archives .filter .date').DatePickerGetDate(true) + 'T00:00:00Z' + getDateTZO();
+	
+	// Retrieve the first collection
+	if(xid && start) {
+		retrieveArchives(xid, start);
+		
+		// Parse the date
+		date = parseDay(date);
+	}
+	
+	else
+		date = printf(_e("Nothing found for: %s"), parseDay(date));
+	
+	// Display the date
+	$('#archives .current .time').text(date);
+	
+	logThis('Got day archives.', 2);
+}
+
+// Retrieves a specified archive collection
+function retrieveArchives(xid, start) {
+	// Show the waiting icon
+	$('#archives .wait').show();
+	
+	// Apply the ID
+	var id = genID();
+	$('#archives').attr('data-session', id);
+	
+	// New IQ
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	iq.setID(id);
+	
+	var list = iq.appendNode('retrieve', {'xmlns': NS_URN_ARCHIVE, 'with': xid, 'start': start});
+	var set = list.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
+	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, 100));
+	// TODO: "more messages" button
+	
+	con.send(iq, handleRetrieveArchives);
+	
+	logThis('Retrieving archives (start: ' + start + ') for: ' + xid + '...');
+}
+
+// Handles a specified archive collection
+function handleRetrieveArchives(iq) {
+	// Hide the waiting icon
+	$('#archives .wait').hide();
+	
+	// Any error?
+	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+		return;
+	
+	// Get the node
+	var chat = $(iq.getNode()).find('chat:first');
+	
+	// Get the buddy XID
+	var xid = bareXID(chat.attr('with'));
+	
+	// Get the start date & stamp
+	var start_date = Date.jab2date(chat.attr('start'));
+	var start_stamp = extractStamp(start_date);
+	
+	// Parse the result chat
+	chat.find('to, from').each(function() {
+		var node = (this).nodeName;
+		var stamp = start_stamp + parseInt($(this).attr('secs'));
+		var date = extractTime(new Date(stamp * 1000));
+		var body = $(this).find('body').text();
+		
+		// Is it my message?
+		if((node == 'to') && body)
+			displayMessage('chat', getXID(), 'archives', getBuddyName(getXID()).htmlEnc(), body, date, start_stamp, 'user-message', true, '', 'me');
+		
+		// Is it a buddy message?
+		else if((node == 'from') && body)
+			displayMessage('chat', xid, 'archives', getBuddyName(xid).htmlEnc(), body, date, start_stamp, 'user-message', true, '', 'him');
+	});
+	
+	// Get the avatars
+	if(chat.find('to').size())
+		getAvatar(getXID(), 'cache', 'true', 'forget');
+	if(chat.find('from').size())
+		getAvatar(xid, 'cache', 'true', 'forget');
+	
+	logThis('Got archives.', 2);
 }
 
 // Gets the archiving configuration
@@ -182,37 +335,53 @@ function handleConfigArchives(iq) {
 		logThis('Archives configured.', 3);
 }
 
+// Checks if the datepicker has changed
+function checkChangeArchives() {
+	var xid = $('#archives .filter .friend').val();
+	var date = $('#archives .filter .date').DatePickerGetDate(true);
+	
+	if(xid)
+		getDayArchives(xid, date);
+}
+
+// Update the archives with the selected XID
+function updateArchives() {
+	// Read the values
+	var xid = $('#archives .filter .friend').val() + '';
+	var date = $('#archives .filter .date').DatePickerGetDate(true);
+	
+	// No XID?
+	if(!xid)
+		return;
+	
+	// Apply the current marker
+	$('#archives .current .name').text(getBuddyName(xid));
+	$('#archives .current .time').text('');
+	
+	// Get the archives
+	getListArchives(xid, date);
+}
+
 // Plugin launcher
 function launchArchives() {
+	// Current date
+	var current_date = explodeThis('T', getXMPPTime(), 0);
+	
 	// Datepicker
 	$('#archives .filter .date').DatePicker({
 		flat: true,
-		date: '2008-07-31',
-		current: '2008-07-31',
+		date: current_date,
+		current: current_date,
 		calendars: 1,
-		starts: 1
+		starts: 1,
+		onChange: checkChangeArchives
 	});
 	
-	// Click event
+	// Click events
 	$('#archives .bottom .finish').click(function() {
 		return closeArchives();
 	});
 	
 	// Change event
-	$('#archives .filter .friend').change(function() {
-		// Read the values
-		var xid = $(this).val() + '';
-		var date = $('#archives .filter .date').DatePickerGetDate(true) + '';
-		
-		// No XID?
-		if(!xid)
-			return;
-		
-		// Apply the current marker
-		$('#archives .current .name').text(getBuddyName(xid));
-		$('#archives .current .time').text(parseDate(date));
-		
-		// Get the archives
-		getArchives(xid, date);
-	});
+	$('#archives .filter .friend').change(updateArchives);
 }

@@ -1,11 +1,17 @@
-/**
- *
- * Date picker
- * Author: Stefan Petre www.eyecon.ro
- * 
- * Dual licensed under the MIT and GPL licenses
- * 
- */
+/*
+
+Jappix - An open social platform
+These are the datepicker JS script
+
+-------------------------------------------------
+
+Licenses: MIT, GPL, AGPL
+Authors: Stefan Petre, Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 19/12/10
+
+*/
+
 (function ($) {
 	var DatePicker = function () {
 		var	ids = {},
@@ -144,12 +150,12 @@
 				onBeforeShow: function(){return true;},
 				onHide: function(){return true;},
 				locale: {
-					days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-					daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-					daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-					months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-					monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					weekMin: 'wk'
+					days: [_e("Sunday"), _e("Monday"), _e("Tuesday"), _e("Wednesday"), _e("Thursday"), _e("Friday"), _e("Saturday"), _e("Sunday")],
+					daysShort: [cut(_e("Sunday"), 3), cut(_e("Monday"), 3), cut(_e("Tuesday"), 3), cut(_e("Wednesday"), 3), cut(_e("Thursday"), 3), cut(_e("Friday"), 3), cut(_e("Saturday"), 3), cut(_e("Sunday"), 3)],
+					daysMin: [cut(_e("Sunday"), 2), cut(_e("Monday"), 2), cut(_e("Tuesday"), 2), cut(_e("Wednesday"), 2), cut(_e("Thursday"), 2), cut(_e("Friday"), 2), cut(_e("Saturday"), 2), cut(_e("Sunday"), 2)],
+					months: [_e("January"), _e("February"), _e("March"), _e("April"), _e("May"), _e("June"), _e("July"), _e("August"), _e("September"), _e("October"), _e("November"), _e("December")],
+					monthsShort: [cut(_e("January"), 3), cut(_e("February"), 3), cut(_e("March"), 3), cut(_e("April"), 3), cut(_e("May"), 3), cut(_e("June"), 3), cut(_e("July"), 3), cut(_e("August"), 3), cut(_e("September"), 3), cut(_e("October"), 3), cut(_e("November"), 3), cut(_e("December"), 3)],
+					weekMin: ''
 				}
 			},
 			fill = function(el) {

@@ -6,9 +6,9 @@ These are the utilities JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou, Olivier M.
+Authors: Valérian Saliou, Olivier M.
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 19/12/10
 
 */
 
@@ -73,6 +73,11 @@ function _e(string) {
 // Replaces '%s' to a given value for a translated string
 function printf(string, value) {
 	return string.replace('%s', value);
+}
+
+// Cuts a string
+function cut(string, limit) {
+	return string.substr(0, limit);
 }
 
 // Truncates a string

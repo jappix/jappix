@@ -237,7 +237,8 @@ function chatCreate(hash, xid, nick, type) {
 				openArchives();
 				
 				// Get the archives for this user
-				$('#archives .filter .friend select').val(xid);
+				$('#archives .filter .friend').val(xid);
+				updateArchives();
 			}).show();
 	}
 	

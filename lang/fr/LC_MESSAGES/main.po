@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-15 16:12:01\n"
+"PO-Revision-Date: 2010-12-19 18:19:23\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -178,8 +178,8 @@ msgid "Message archives"
 msgstr "Archives des messages"
 
 #: 
-msgid "Friend"
-msgstr "Ami"
+#~ msgid "Friend"
+#~ msgstr "Ami"
 
 #: 
 msgid "Date"
@@ -2036,4 +2036,40 @@ msgstr "Inactif depuis : %s"
 #: 
 msgid "View chat history"
 msgstr "Voir l'historique de discussion"
+
+#: 
+msgid "Monday"
+msgstr "Lundi"
+
+#: 
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: 
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: 
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: 
+msgid "Friday"
+msgstr "Vendredi"
+
+#: 
+msgid "Saturday"
+msgstr "Samedi"
+
+#: 
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: 
+msgid "Nothing found for: %s"
+msgstr "Rien de trouvé pour : %s"
+
+#: 
+msgid "Please select a friend to view the chat history."
+msgstr "Sélectionnez un ami pour voir l'historique de discussion."
 

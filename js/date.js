@@ -8,13 +8,18 @@ These are the date related JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 19/12/10
 
 */
 
 // Gets a stamp from a date
 function extractStamp(date) {
 	return Math.round(date.getTime() / 1000);
+}
+
+// Gets the time from a date
+function extractTime(date) {
+	return date.toLocaleTimeString();
 }
 
 // Gets the actual date stamp
@@ -123,10 +128,26 @@ function getDateTZO() {
 	return tzo;
 }
 
-// Parses a XMPP date into an human-readable one
+// Parses a XMPP date (yyyy-mm-dd, hh-mm-ss) into an human-readable one
 function parseDate(to_parse) {
 	var date = Date.jab2date(to_parse);
 	var parsed = date.toLocaleDateString() + ' (' + date.toLocaleTimeString() + ')';
+	
+	return parsed; 
+}
+
+// Parses a XMPP date (yyyy-mm-dd) into an human-readable one
+function parseDay(to_parse) {
+	var date = Date.jab2date(to_parse);
+	var parsed = date.toLocaleDateString();
+	
+	return parsed; 
+}
+
+// Parses a XMPP date (hh-mm-ss) into an human-readable one
+function parseTime(to_parse) {
+	var date = Date.jab2date(to_parse);
+	var parsed = date.toLocaleTimeString();
 	
 	return parsed; 
 }

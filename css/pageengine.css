@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 19/12/10
 
 */
 
@@ -201,35 +201,42 @@ Last revision: 15/12/10
 	max-width: 32px;
 }
 
-#page-engine .one-line {
+#page-engine .one-line,
+#archives .one-line {
 	padding-left: 50px;
 }
 
-#page-engine .one-line.last {
+#page-engine .one-line.last,
+#archives .one-line.last {
 	border-bottom: 1px dotted #d0d0d0;
 	padding-bottom: 8px;
 	margin-bottom: 10px;
 }
 
-#page-engine .one-line b.name {
+#page-engine .one-line b.name,
+#archives .one-line b.name {
 	display: block;
 	margin-bottom: 4px;
 }
 
-#page-engine .one-line b.me {
+#page-engine .one-line b.me,
+#archives .one-line b.me {
 	color: #123a5c;
 }
 
-#page-engine .one-line b.him {
+#page-engine .one-line b.him,
+#archives .one-line b.him {
 	color: #801e1e;
 }
 
-#page-engine .one-line span.date {
+#page-engine .one-line span.date,
+#archives .one-line span.date {
 	float: right;
 	font-size: 0.9em;
 }
 
-#page-engine .one-line .avatar-container {
+#page-engine .one-line .avatar-container,
+#archives .one-line .avatar-container {
 	text-align: center;
 	margin: 4px 0 0 -44px;
 	height: 30px;
@@ -237,12 +244,14 @@ Last revision: 15/12/10
 	float: left;
 }
 
-#page-engine .one-line .avatar {
+#page-engine .one-line .avatar,
+#archives .one-line .avatar {
 	max-height: 30px;
 	max-width: 30px;
 }
 
-#page-engine .user-message {
+#page-engine .user-message,
+#archives .user-message {
 	margin-bottom: 3px;
 }
 

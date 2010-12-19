@@ -8,7 +8,7 @@ This is the archives CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/12/10
+Last revision: 19/12/10
 
 */
 
@@ -56,25 +56,38 @@ Last revision: 17/12/10
 	background-color: #d3dee1;
 	border-bottom: 1px solid #a9bbbf;
 	font-size: 0.9em;
-	height: 17px;
+	height: 16px;
 	padding: 6px;
 	top: 0;
 }
 
+#archives .current span {
+	height: 16px;
+	overflow: hidden;
+}
+
 #archives .current .name {
+	max-width: 160px;
 	font-weight: bold;
 	float: left;
 }
 
 #archives .current .time {
 	color: #47646a;
-	font-size: 0.9em;
+	font-size: 0.95em;
 	float: right;
 }
 
 #archives .logs {
+	color: black;
+	font-size: 0.9em;
 	overflow: auto;
+	padding: 8px 10px 0;
 	float: left;
 	position: absolute;
-	top: 25px;
+	top: 29px;
+}
+
+#archives .logs a {
+	color: black;
 }
