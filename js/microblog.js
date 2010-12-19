@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/12/10
+Last revision: 19/12/10
 
 */
 
@@ -492,7 +492,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	entry.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('link', {
 			'rel': 'alternate',
-			'href': 'xmpp:' + xid + '?;node=urn%3Axmpp%3Atmp%3Amicroblog;item=' + id,
+			'href': 'xmpp:' + xid + '?;node=urn%3Axmpp%3Amicroblog%3A0;item=' + id,
 			'xmlns': NS_ATOM
 	}));
 	

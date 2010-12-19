@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 17/12/10
+Last revision: 19/12/10
 
 */
 
@@ -663,7 +663,7 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	presence.setPriority(priority);
 	
 	// CAPS (entity capabilities)
-	presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'http://www.jappix.com/', 'ver': myCaps()});
+	presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'https://www.jappix.com/', 'ver': myCaps()});
 	
 	// Nickname
 	var nickname = getName();
