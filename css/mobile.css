@@ -8,7 +8,7 @@ This is the Jappix Mobile CSS stylesheet
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 19/12/10
 
 */
 
@@ -57,7 +57,7 @@ a {
 #home .header div {
 	background-position: 0 0;
 	margin: 0 auto;
-	width: 117px;
+	width: 120px;
 	height: 30px;
 }
 
