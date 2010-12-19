@@ -139,10 +139,7 @@ function getDayArchives(xid, date) {
 	iq.setType('get');
 	iq.setID(id);
 	
-	var list = iq.appendNode('list', {'xmlns': NS_URN_ARCHIVE, 'with': xid, 'start': date + 'T00:00:00Z', 'end': date + 'T23:59:59Z'});
-	var set = list.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
-	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, 1));
-	// TODO: sort day archives by thread groups
+	iq.appendNode('list', {'xmlns': NS_URN_ARCHIVE, 'with': xid, 'start': date + 'T00:00:00Z', 'end': date + 'T23:59:59Z'});
 	
 	con.send(iq, handleDayArchives);
 	
@@ -158,26 +155,30 @@ function handleDayArchives(iq) {
 	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
 		return;
 	
-	// Get the first collection
-	var chat = $(iq.getNode()).find('chat:first');
-	var xid = chat.attr('with');
-	var start = chat.attr('start');
-	
-	// Text to display
-	var date = $('#archives .filter .date').DatePickerGetDate(true) + 'T00:00:00Z' + getDateTZO();
-	
-	// Retrieve the first collection
-	if(xid && start) {
-		retrieveArchives(xid, start);
+	// Get each archive thread
+	$(iq.getNode()).find('chat').each(function() {
+		// Current values
+		var xid = $(this).attr('with');
+		var start = $(this).attr('start');
 		
-		// Parse the date
-		date = parseDay(date);
+		if(xid && start)
+			$('#archives .logs').append('<input class="archives-pending" type="hidden" data-xid="' + encodeQuotes(bareXID(xid)) + '" data-with="' + encodeQuotes(xid) + '" data-start="' + encodeQuotes(start) + '" />');
+	});
+	
+	// Display the day
+	var date = parseDay($('#archives .filter .date').DatePickerGetDate(true) + 'T00:00:00Z' + getDateTZO());
+	
+	// Try to get the first thread
+	var pending = '#archives input.archives-pending:first';
+	
+	if(!exists(pending))
+		date = printf(_e("Nothing found for: %s"), date);
+	
+	else {
+		retrieveArchives($(pending).attr('data-with'), $(pending).attr('data-start'));
+		$(pending).remove();
 	}
 	
-	else
-		date = printf(_e("Nothing found for: %s"), parseDay(date));
-	
-	// Display the date
 	$('#archives .current .time').text(date);
 	
 	logThis('Got day archives.', 2);
@@ -198,9 +199,6 @@ function retrieveArchives(xid, start) {
 	iq.setID(id);
 	
 	var list = iq.appendNode('retrieve', {'xmlns': NS_URN_ARCHIVE, 'with': xid, 'start': start});
-	var set = list.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
-	set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, 100));
-	// TODO: "more messages" button
 	
 	con.send(iq, handleRetrieveArchives);
 	
@@ -242,11 +240,19 @@ function handleRetrieveArchives(iq) {
 			displayMessage('chat', xid, 'archives', getBuddyName(xid).htmlEnc(), body, date, start_stamp, 'user-message', true, '', 'him');
 	});
 	
-	// Get the avatars
-	if(chat.find('to').size())
+	// Not the latest thread?
+	var pending = '#archives input.archives-pending:first';
+	
+	if(exists(pending)) {
+		retrieveArchives($(pending).attr('data-with'), $(pending).attr('data-start'));
+		$(pending).remove();
+	}
+	
+	// Everything has been retrieved, get the avatars
+	else {
 		getAvatar(getXID(), 'cache', 'true', 'forget');
-	if(chat.find('from').size())
 		getAvatar(xid, 'cache', 'true', 'forget');
+	}
 	
 	logThis('Got archives.', 2);
 }
@@ -356,7 +362,7 @@ function updateArchives() {
 	
 	// Apply the current marker
 	$('#archives .current .name').text(getBuddyName(xid));
-	$('#archives .current .time').text('');
+	$('#archives .current .time').text(parseDay(date + 'T00:00:00Z' + getDateTZO()));
 	
 	// Get the archives
 	getListArchives(xid, date);
