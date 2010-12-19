@@ -8,7 +8,7 @@ These are the filtering JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 19/12/10
 
 */
 
@@ -38,7 +38,7 @@ function filterLinks(string, mode, style) {
 	string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z0-9\._-]+))(\s|$)/gi, '$1<a href="xmpp:$2"' + style + '>$2</a>$6');
 	
 	// Simple link
-	string = string.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet)(:)([^<>'"\s\)]+))/gim, '$1<a href="$2"' + target + style + '>$2</a>');
+	string = string.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet|spotify)(:)([^<>'"\s\)]+))/gim, '$1<a href="$2"' + target + style + '>$2</a>');
 	
 	return string;
 }
