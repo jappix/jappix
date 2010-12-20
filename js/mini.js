@@ -355,7 +355,7 @@ function handleError(err) {
 	 *
 	 * Do this only if first level error:
 	 *	Show "Connect" button
-	 *	Show "Connection error, click here to fix it" if cross-domain error
+	 *	Show "Connection error, click here to fix it" if cross-domain error (on disconnected?)
 	 *	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
 	 *
 	 */
