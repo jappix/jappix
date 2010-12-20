@@ -60,12 +60,18 @@ function connect(domain, user, password) {
 			if(!allowedAnonymous()) {
 				logThis('Not allowed to use anonymous mode.', 2);
 				
+				// Notify this error
+				notifyError();
+				
 				return false;
 			}
 			
 			// Bad domain?
 			else if(lockHost() && (domain != HOST_ANONYMOUS)) {
 				logThis('Not allowed to connect to this anonymous domain: ' + domain, 2);
+				
+				// Notify this error
+				notifyError();
 				
 				return false;
 			}
@@ -78,6 +84,9 @@ function connect(domain, user, password) {
 			// Bad domain?
 			if(lockHost() && (domain != HOST_MAIN)) {
 				logThis('Not allowed to connect to this main domain: ' + domain, 2);
+				
+				// Notify this error
+				notifyError();
 				
 				return false;
 			}
@@ -349,18 +358,13 @@ function handleIQ(iq) {
 
 // Handles the incoming errors
 function handleError(err) {
-	// TODO
-	
-	/* 
-	 *
-	 * Do this only if first level error:
-	 *	Show "Connect" button
-	 *	Show "Connection error, click here to fix it" if cross-domain error (on disconnected?)
-	 *	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
-	 *
-	 */
-	
-	notifyError();
+	// First level error (connection error)
+	if($(err).is('error')) {
+		// Notify this error
+		notifyError();
+		
+		logThis('First level error received.', 1);
+	}
 }
 
 // Handles the incoming presences
@@ -562,14 +566,14 @@ function notifyMessage(hash) {
 
 // Notifies the user from a session error
 function notifyError() {
-	// Add the error page
-	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues')
-				     .attr('target', '_blank')
-				     .attr('title', _e("Click here to solve the error"));
-	
-	// Add the error marker
-	$('#jappix_mini span.jm_counter').addClass('jm_error')
-					 .text(_e("Error"));
+	// Replace the Jappix Mini DOM content
+	$('#jappix_mini').html(
+		'<div class="jm_starter">' + 
+			'<a class="jm_pane jm_button mini-images" href="http://mini.jappix.com/issues" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
+				'<span class="jm_counter jm_error mini-images">' + _e("Error") + '</span>' + 
+			'</a>' + 
+		'</div>'
+	);
 }
 
 // Updates the page title with the new notifications
@@ -635,7 +639,9 @@ function createMini(domain, user, password) {
 					'<div class="jm_buddies"></div>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_button mini-images" href="#"><span class="jm_counter mini-images">' + _e("Please wait...") + '</span></a>' + 
+				'<a class="jm_pane jm_button mini-images" href="#">' + 
+					'<span class="jm_counter mini-images">' + _e("Please wait...") + '</span>' + 
+				'</a>' + 
 			'</div>';
 		
 		suspended = false;
@@ -655,10 +661,6 @@ function createMini(domain, user, password) {
 	$('#jappix_mini a.jm_button').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			// Button with an external link?
-			if($(this).attr('href') != '#')
-				return true;
-			
 			// Presence counter
 			var counter = '#jappix_mini a.jm_pane.jm_button span.jm_counter';
 			
@@ -682,15 +684,13 @@ function createMini(domain, user, password) {
 				showRoster();
 			else
 				hideRoster();
-			
-			return false;
 		}
 		
-		catch(e) {
+		catch(e) {}
+		
+		finally {
 			return false;
 		}
-		
-		finally {}
 	});
 	
 	$('#jappix_mini div.jm_actions a.jm_join').click(function() {
