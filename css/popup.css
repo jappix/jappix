@@ -216,8 +216,13 @@ Last revision: 11/12/10
 	margin: 6px 4px 4px 4px;
 }
 
-.popup .results input {
+.popup .results input,
+.popup .results textarea {
 	margin: 4px;
+}
+
+.popup .results textarea {
+	width: 380px;
 }
 
 .popup .results .avatar-container {

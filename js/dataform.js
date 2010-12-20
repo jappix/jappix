@@ -84,7 +84,7 @@ function dataForm(host, type, node, action, target) {
 }
 
 // Sends a given dataform
-function sendDataForm(type, action, id, xid, node, sessionid, status, target) {
+function sendDataForm(type, action, x_type, id, xid, node, sessionid, status, target) {
 	// New IS
 	var iq = new JSJaCIQ();
 	iq.setTo(xid);
@@ -114,7 +114,7 @@ function sendDataForm(type, action, id, xid, node, sessionid, status, target) {
 		
 		// Can create the X node
 		else {
-			var iqX = iqQuery.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': action}));
+			var iqX = iqQuery.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': x_type}));
 			
 			// Each input
 			$('.' + id + ' .oneresult input, .' + id + ' .oneresult textarea, .' + id + ' .oneresult select').each(function() {
@@ -178,20 +178,35 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	var buttonsCode = '<div class="oneresult ' + target + '-oneresult ' + target + '-formtools">';
 	
 	if(action == 'submit') {
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+		if((target == 'adhoc') && (type == 'command')) {
+			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			
+			// When keyup on one text input
+			$(pathID + ' input').keyup(function(e) {
+				if(e.keyCode == 13) {
+					sendDataForm(type, 'execute', 'submit', id, xid, node, sessionid, '', target);
+					
+					return false;
+				}
+			});
+		}
 		
-		// When keyup on one text input
-		$(pathID + ' input').keyup(function(e) {
-			if(e.keyCode == 13) {
-				sendDataForm(type, 'submit', id, xid, node, sessionid, status, target);
-				
-				return false;
-			}
-		});
+		else {
+			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			
+			// When keyup on one text input
+			$(pathID + ' input').keyup(function(e) {
+				if(e.keyCode == 13) {
+					sendDataForm(type, 'submit', 'submit', id, xid, node, sessionid, status, target);
+					
+					return false;
+				}
+			});
+		}
 	}
 	
 	if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
 		buttonsCode += '<a class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
