@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 20/12/10
 
 */
 
@@ -157,11 +157,11 @@ Last revision: 12/12/10
 }
 
 #jappix_mini div.jm_actions a.jm_close {
-	background-position: 1px -309px;
+	background-position: 1px -325px;
 }
 
 #jappix_mini div.jm_actions a.jm_join {
-	background-position: 0 -295px;
+	background-position: 0 -311px;
 }
 
 #jappix_mini div.jm_received-messages {
@@ -291,9 +291,13 @@ Last revision: 12/12/10
 #jappix_mini span.jm_counter {
 	background-position: 0 -272px;
 	color: #333333;
-	min-height: 16px;
+	height: 16px;
 	padding-left: 25px;
 	display: block;
+}
+
+#jappix_mini span.jm_counter.jm_error {
+	background-position: 0 -289px;
 }
 
 #jappix_mini span.jm_presence {

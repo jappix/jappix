@@ -165,11 +165,11 @@ function saveSession() {
 
 // When the user is disconnected
 function disconnected() {
+	// Browser error?
+	notifyError();
+	
 	// Reset initialized marker
 	MINI_INITIALIZED = false;
-	
-	// Remove Jappix Mini when disconnected
-	$('#jappix_mini').remove();
 	
 	// Remove the stored DOM
 	removeDB('jappix-mini', 'dom');
@@ -359,6 +359,8 @@ function handleError(err) {
 	 *	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
 	 *
 	 */
+	
+	notifyError();
 }
 
 // Handles the incoming presences
@@ -558,6 +560,18 @@ function notifyMessage(hash) {
 	notifyTitle();
 }
 
+// Notifies the user from a session error
+function notifyError() {
+	// Add the error page
+	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues')
+				     .attr('target', '_blank')
+				     .attr('title', _e("Click here to solve the error"));
+	
+	// Add the error marker
+	$('#jappix_mini span.jm_counter').addClass('jm_error')
+					 .text(_e("Error"));
+}
+
 // Updates the page title with the new notifications
 var PAGE_TITLE = null;
 
@@ -668,13 +682,15 @@ function createMini(domain, user, password) {
 				showRoster();
 			else
 				hideRoster();
-		}
-		
-		catch(e) {}
-		
-		finally {
+			
 			return false;
 		}
+		
+		catch(e) {
+			return false;
+		}
+		
+		finally {}
 	});
 	
 	$('#jappix_mini div.jm_actions a.jm_join').click(function() {
