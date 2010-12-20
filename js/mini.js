@@ -350,9 +350,15 @@ function handleIQ(iq) {
 // Handles the incoming errors
 function handleError(err) {
 	// TODO
-	// Show "Connect" button
-	// Show "Connection error, click here to fix it" if cross-domain error
-	// $('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
+	
+	/* 
+	 *
+	 * Do this only if first level error:
+	 *	Show "Connect" button
+	 *	Show "Connection error, click here to fix it" if cross-domain error
+	 *	$('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
+	 *
+	 */
 }
 
 // Handles the incoming presences
