@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 20/12/10
 
 */
 
@@ -227,7 +227,7 @@ function chatCreate(hash, xid, nick, type) {
 				$(this).hide();
 				
 				// Send the subscribe request
-				addThisContact(xid);
+				addThisContact(xid, nick);
 			}).show();
 		
 		// Archives button

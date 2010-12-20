@@ -8,7 +8,7 @@ This is the others CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 14/11/10
+Last revision: 20/12/10
 
 */
 
@@ -87,7 +87,8 @@ Last revision: 14/11/10
 .options-hidable,
 .pep-hidable,
 .pubsub-hidable,
-.archives-hidable {
+.archives-hidable,
+.commands-hidable {
 	display: none;
 }
 

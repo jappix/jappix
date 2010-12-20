@@ -48,24 +48,30 @@ function getFeatures() {
 
 // Handles the features of a server
 function handleFeatures(xml) {
+	// Selector
+	var selector = $(xml);
+	
 	// Markers
 	var pep = false;
 	var pubsub = false;
 	var archive = false;
 	var archive_auto = false;
 	var archive_pref = false;
+	var commands = false;
 	
 	// Scan the features
-	if($(xml).find('identity[category=pubsub]').attr('type') == 'pep')
+	if(selector.find('identity[category=pubsub]').attr('type') == 'pep')
 		pep = true;
-	if($(xml).find('feature[var=' + NS_PUBSUB + ']').size())
+	if(selector.find('feature[var=' + NS_PUBSUB + ']').size())
 		pubsub = true;
-	if($(xml).find('feature[var=' + NS_URN_ARCHIVE + ']').size())
+	if(selector.find('feature[var=' + NS_URN_ARCHIVE + ']').size())
 		archive = true;
-	if($(xml).find('feature[var=' + NS_URN_AR_AUTO + ']').size())
+	if(selector.find('feature[var=' + NS_URN_AR_AUTO + ']').size())
 		archive_auto = true;
-	if($(xml).find('feature[var=' + NS_URN_AR_PREF + ']').size())
+	if(selector.find('feature[var=' + NS_URN_AR_PREF + ']').size())
 		archive_pref = true;
+	if(selector.find('feature[var=' + NS_COMMANDS + ']').size())
+		commands = true;
 	
 	// Active the pep elements if available
 	if(pep) {
@@ -104,6 +110,10 @@ function handleFeatures(xml) {
 			enableFeature(NS_URN_AR_AUTO);
 	}
 	
+	// Active the commands features if available
+	if(commands)
+		enableFeature(NS_COMMANDS);
+	
 	// Hide the private life fieldset if nothing to show
 	if(!pep && !archive_pref)
 		$('#options fieldset.privacy').hide();
@@ -139,6 +149,10 @@ function applyFeatures(id) {
 		if(enabledArchives('pref') && enabledArchives('auto'))
 			$(path + 'archives-hidable.pref').show();
 	}
+	
+	// Commands features
+	if(enabledCommands())
+		$(path + 'commands-hidable').show();
 }
 
 // Enables a feature
@@ -173,4 +187,9 @@ function enabledArchives(sub) {
 		xmlns += ':' + sub;
 	
 	return enabledFeature(xmlns);
+}
+
+// Returns the XMPP server commands support
+function enabledCommands() {
+	return enabledFeature(NS_COMMANDS);
 }

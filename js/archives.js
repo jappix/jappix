@@ -59,6 +59,8 @@ function openArchives() {
 	// Can append the buddy HTML code?
 	if(options)
 		$('#archives .filter .friend').append(options);
+	
+	return false;
 }
 
 // Closes the archive tools

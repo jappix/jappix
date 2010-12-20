@@ -349,7 +349,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a></p>' + 
+							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="commands">' + _e("Commands") + '</a></p>' + 
 							'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
 					'</div>' + 
@@ -374,6 +374,10 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Channel
 				else if($(this).is('.channel'))
 					fromInfosMicroblog(xid, hash);
+				
+				// Command
+				else if($(this).is('.commands'))
+					retrieveAdHoc(xid);
 				
 				return false;
 			});
@@ -914,6 +918,10 @@ function launchRoster() {
 						'- <a class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
 					'</p>' + 
 					
+					'<p class="buddy-conf-text commands-hidable"">' + 
+						'- <a class="buddy-conf-more-commands">' + _e("Commands") +  '</a>' + 
+					'</p>' + 
+					
 					'<p class="buddy-conf-text">' + 
 						'- <a href="http://project.jappix.com/about" target="_blank">' + _e("About Jappix") +  '</a>' + 
 					'</p>' + 
@@ -936,15 +944,14 @@ function launchRoster() {
 		});
 		
 		// When the user click on the archives link
-		$('.buddy-conf-more-archives').click(function() {
-			openArchives();
-			
-			return false;
-		});
+		$('.buddy-conf-more-archives').click(openArchives);
 		
 		// When the user click on the service discovery link
-		$('.buddy-conf-more-service-disco').click(function() {
-			openDiscovery();
+		$('.buddy-conf-more-service-disco').click(openDiscovery);
+		
+		// When the user click on the command link
+		$('.buddy-conf-more-commands').click(function() {
+			serverAdHoc(con.domain);
 			
 			return false;
 		});
@@ -962,6 +969,9 @@ function launchRoster() {
 		
 		if(enabledArchives())
 			$('.buddy-conf-more-archives').parent().show();
+		
+		if(enabledCommands())
+			$('.buddy-conf-more-commands').parent().show();
 		
 		return false;
 	});

@@ -290,6 +290,9 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
+msgid "Phone"
+msgstr ""
+
 msgid "Website"
 msgstr ""
 
@@ -342,6 +345,9 @@ msgid "Edit options"
 msgstr ""
 
 msgid "Channel"
+msgstr ""
+
+msgid "Commands"
 msgstr ""
 
 msgid "Sounds"

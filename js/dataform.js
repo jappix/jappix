@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 20/12/10
 
 */
 
@@ -74,7 +74,7 @@ function dataForm(host, type, node, action, target) {
 		
 		if(type == 'join') {
 			if(target == 'discovery')
-				quitDiscovery();
+				closeDiscovery();
 			
 			checkChatCreate(host, 'groupchat');
 		}
@@ -122,6 +122,14 @@ function sendDataForm(type, action, id, xid, node, sessionid, status, target) {
 				var iVar = $(this).attr('name');
 				var iType = $(this).attr('data-type');
 				var iValue = $(this).val();
+				
+				// Checkbox input?
+				if($(this).is('input[type=checkbox]')) {
+					if($(this).is(':checked'))
+						iValue = '1';
+					else
+						iValue = '0';
+				}
 				
 				// Build a new XML node
 				var field = iqX.appendChild(iq.buildNode('field', {'var': iVar, 'type': iType, 'xmlns': NS_XDATA}));
@@ -173,9 +181,12 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 		
 		// When keyup on one text input
-		$(pathID + ' input[type=text]').keyup(function(e) {
-			if(e.keyCode == 13)
+		$(pathID + ' input').keyup(function(e) {
+			if(e.keyCode == 13) {
 				sendDataForm(type, 'submit', id, xid, node, sessionid, status, target);
+				
+				return false;
+			}
 		});
 	}
 	
@@ -183,10 +194,13 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
-		buttonsCode += '<a class="back" onclick="return openDiscovery();">' + _e("Close") + '</a>';
+		buttonsCode += '<a class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
 	
 	if((action == 'back') && (target == 'welcome'))
 		buttonsCode += '<a class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
+	
+	if((action == 'back') && (target == 'adhoc'))
+		buttonsCode += '<a class="back" onclick="return dataForm(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + _e("Previous") + '</a>';
 	
 	buttonsCode += '</div>';
 	
@@ -263,7 +277,7 @@ function handleDataFormContent(iq, type) {
 							'</div>'
 						);
 					
-					// Classical item
+					// Classic item
 					else {
 						// We display the waiting element
 						$(pathID + ' .disco-wait .disco-category-title').after(
@@ -276,7 +290,7 @@ function handleDataFormContent(iq, type) {
 						
 						// We display the category
 						$('#' + target + ' .disco-wait').show();
-					
+						
 						// We ask the server what's the service type
 						getDataFormType(itemHost, itemNode, sessionID);
 					}
@@ -288,7 +302,7 @@ function handleDataFormContent(iq, type) {
 				noResultDataForm(pathID);
 		}
 		
-		else if(type == 'search' || type == 'subscribe' || (type == 'command' && $(handleXML).find('command').attr('xmlns'))) {
+		else if((type == 'search') || (type == 'subscribe') || ((type == 'command') && $(handleXML).find('command').attr('xmlns'))) {
 			// Get some values
 			var xCommand = $(handleXML).find('command');
 			var bNode = xCommand.attr('node');
@@ -348,13 +362,13 @@ function handleDataFormContent(iq, type) {
 						if($(this).is('.one-add')) {
 							$(this).hide();
 							
-							addThisContact(bXID);
+							addThisContact(bXID, dName);
 						}
 						
 						// Buddy chat
 						if($(this).is('.one-chat')) {
 							if(target == 'discovery')
-								quitDiscovery();
+								closeDiscovery();
 							
 							checkChatCreate(bXID , 'chat', '', '', dName);
 						}
@@ -374,7 +388,7 @@ function handleDataFormContent(iq, type) {
 			}
 			
 			// Command to complete
-			else if(xElement.attr('xmlns') || (type == 'subscribe' && xRegister)) {
+			else if(xElement.attr('xmlns') || ((type == 'subscribe') && xRegister)) {
 				// We display the elements
 				fillDataForm(handleXML, sessionID);
 				
@@ -386,7 +400,7 @@ function handleDataFormContent(iq, type) {
 			}
 			
 			// Command completed or subscription done
-			else if((bStatus == 'completed' && type == 'command') || (!xRegister && type == 'subscribe')) {
+			else if(((bStatus == 'completed') && (type == 'command')) || (!xRegister && (type == 'subscribe'))) {
 				// Tell the user all was okay
 				$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
 				
@@ -398,10 +412,14 @@ function handleDataFormContent(iq, type) {
 			}
 			
 			// Command canceled
-			else if(bStatus == 'canceled' && type == 'command')
-				openDiscovery();
+			else if((bStatus == 'canceled') && (type == 'command')) {
+				if(target == 'discovery')
+					startDiscovery();
+				else if(target == 'adhoc')
+					dataForm(from, 'command', '', '', 'adhoc');
+			}
 			
-			// Else, there are no items for this query
+			// No items for this query
 			else
 				noResultDataForm(pathID);
 		}
@@ -440,8 +458,12 @@ function handleDataFormContent(iq, type) {
 }
 
 // Appends the correct dataform elements
-function appendDataForm(selector, id, target, label, type) {
-	selector.find(type).each(function() {
+function appendDataForm(xml, id, target, label, type) {
+	// Useless?
+	if($(xml).find('x[xmlns=' + NS_XDATA + ']').size())
+		return false;
+	
+	$(xml).find(type).each(function() {
 		$('.' + id).append(
 			'<div class="oneresult ' + target + '-oneresult">' + 
 				'<label>' + label + '</label>' + 
@@ -455,7 +477,7 @@ function appendDataForm(selector, id, target, label, type) {
 function fillDataForm(xml, id) {
 	/* REF: http://xmpp.org/extensions/xep-0004.html */
 	
-	var selector = $(xml);
+	var selector = $(xml).find('x[xmlns=' + NS_XDATA + ']');
 	var target = id.split('-')[0];
 	
 	// Form title
@@ -473,13 +495,13 @@ function fillDataForm(xml, id) {
 	});
 	
 	// Form username
-	appendDataForm(selector, id, target, _e("Nickname"), 'username');
+	appendDataForm(xml, id, target, _e("Nickname"), 'username');
 	
 	// Form password
-	appendDataForm(selector, id, target, _e("Password"), 'password');
+	appendDataForm(xml, id, target, _e("Password"), 'password');
 	
 	// Form email
-	appendDataForm(selector, id, target, _e("E-mail"), 'email');
+	appendDataForm(xml, id, target, _e("E-mail"), 'email');
 	
 	// Form fields
 	selector.find('field').each(function() {
@@ -721,7 +743,7 @@ function handleThisBrowse(iq) {
 	}
 	
 	// We hide the waiting stuffs if there's no remaining loading items
-	if(!$(pathID + ' .disco-wait .' + target + '-oneresult').length)
+	if(!$(pathID + ' .disco-wait .' + target + '-oneresult').size())
 		$(pathID + ' .disco-wait, #' + target + ' .wait').hide();
 }
 
@@ -729,8 +751,8 @@ function handleThisBrowse(iq) {
 function cleanDataForm(target) {
 	if(target == 'discovery')
 		cleanDiscovery();
-	else if(target == 'welcome')
-		$('#welcome div.results').empty();
+	else
+		$('#' + target + ' div.results').empty();
 }
 
 // Displays the no result indicator

@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 20/12/10
 
 */
 
@@ -281,11 +281,11 @@ else
 				?>
 				
 				<ul class="stats">
-					<li class="total"><b><?php _e("Total"); ?></b> <?php echo $visits['total']; ?></li>
-					<li><b><?php _e("Daily"); ?></b> <?php echo $visits['daily']; ?></li>
-					<li><b><?php _e("Weekly"); ?></b> <?php echo $visits['weekly']; ?></li>
-					<li><b><?php _e("Monthly"); ?></b> <?php echo $visits['monthly']; ?></li>
-					<li><b><?php _e("Yearly"); ?></b> <?php echo $visits['yearly']; ?></li>
+					<li class="total"><b><?php _e("Total"); ?></b><span><?php echo $visits['total']; ?></span></li>
+					<li><b><?php _e("Daily"); ?></b><span><?php echo $visits['daily']; ?></span></li>
+					<li><b><?php _e("Weekly"); ?></b><span><?php echo $visits['weekly']; ?></span></li>
+					<li><b><?php _e("Monthly"); ?></b><span><?php echo $visits['monthly']; ?></span></li>
+					<li><b><?php _e("Yearly"); ?></b><span><?php echo $visits['yearly']; ?></span></li>
 				</ul>
 				
 				<object class="stats" type="image/svg+xml" data="./php/stats-svg.php?l=<?php echo $locale; ?>&amp;g=access"></object>
@@ -306,7 +306,7 @@ else
 						$share_users = largestShare($share_stats, 8);
 						
 						foreach($share_users as $current_user => $current_value)
-							echo('<li><b><a href="xmpp:'.$current_user.'">'.$current_user.'</a></b> '.formatBytes($current_value).'</li>');
+							echo('<li><b><a href="xmpp:'.$current_user.'">'.$current_user.'</a></b><span>'.formatBytes($current_value).'</span></li>');
 						
 						?>
 					</ol>
@@ -317,7 +317,7 @@ else
 				<h4><?php _e("Other statistics"); ?></h4>
 				
 				<ul class="stats">
-					<li class="total"><b><?php _e("Total"); ?></b> <?php echo formatBytes(sizeDir(PHP_BASE.'/store/')); ?></li>
+					<li class="total"><b><?php _e("Total"); ?></b><span><?php echo formatBytes(sizeDir(PHP_BASE.'/store/')); ?></span></li>
 					
 					<?php
 					
@@ -325,7 +325,7 @@ else
 					$others_stats = otherStats();
 					
 					foreach($others_stats as $others_name => $others_value)
-						echo('<li><b>'.$others_name.'</b> '.formatBytes($others_value).'</li>');
+						echo('<li><b>'.$others_name.'</b><span>'.formatBytes($others_value).'</span></li>');
 					
 					?>
 				</ul>

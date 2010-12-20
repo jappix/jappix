@@ -8,7 +8,7 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 10/11/10
+Last revision: 20/11/10
 
 */
 
@@ -55,8 +55,4 @@ Last revision: 10/11/10
 #discovery .disco-category-title {
 	font-size: 15px;
 	font-weight: bold;
-}
-
-#discovery .discovery-forms {
-	display: none;
 }
