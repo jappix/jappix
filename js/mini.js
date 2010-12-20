@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 20/12/10
 
 */
 
@@ -27,6 +27,7 @@ function setupCon(con) {
 	con.registerHandler('message', handleMessage);
 	con.registerHandler('presence', handlePresence);
 	con.registerHandler('iq', handleIQ);
+	con.registerHandler('onerror', handleError);
 	con.registerHandler('onconnect', connected);
 	con.registerHandler('ondisconnect', disconnected);
 }
@@ -346,6 +347,14 @@ function handleIQ(iq) {
 	}
 }
 
+// Handles the incoming errors
+function handleError(err) {
+	// TODO
+	// Show "Connect" button
+	// Show "Connection error, click here to fix it" if cross-domain error
+	// $('#jappix_mini a.jm_button').attr('href', 'http://mini.jappix.com/issues');
+}
+
 // Handles the incoming presences
 function handlePresence(pr) {
 	// Get the values
@@ -626,6 +635,11 @@ function createMini(domain, user, password) {
 	$('#jappix_mini a.jm_button').click(function() {
 		// Using a try/catch override IE issues
 		try {
+			// Button with an external link?
+			if($(this).attr('href') != '#')
+				return true;
+			
+			// Presence counter
 			var counter = '#jappix_mini a.jm_pane.jm_button span.jm_counter';
 			
 			// Cannot open the roster?
