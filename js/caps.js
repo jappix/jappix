@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/11/10
+Last revision: 20/12/10
 
 */
 
@@ -53,7 +53,9 @@ function myDiscoInfos() {
 		NS_XDATA,
 		NS_VCARD,
 		NS_URN_TIME,
-		NS_URN_PING
+		NS_URN_PING,
+		NS_URN_ARCHIVE,
+		NS_URN_AR_PREF
 	);
 	
 	return fArray;

@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 20/12/10
 
 */
 
@@ -162,7 +162,7 @@ function handleDayArchives(iq) {
 		var start = $(this).attr('start');
 		
 		if(xid && start)
-			$('#archives .logs').append('<input class="archives-pending" type="hidden" data-xid="' + encodeQuotes(bareXID(xid)) + '" data-with="' + encodeQuotes(xid) + '" data-start="' + encodeQuotes(start) + '" />');
+			$('#archives .logs').append('<input class="archives-pending" type="hidden" data-with="' + encodeQuotes(xid) + '" data-start="' + encodeQuotes(start) + '" />');
 	});
 	
 	// Display the day
