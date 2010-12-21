@@ -8,7 +8,7 @@ These are the archives functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 21/12/10
 
 */
 
@@ -348,19 +348,43 @@ function checkChangeArchives() {
 	var xid = $('#archives .filter .friend').val();
 	var date = $('#archives .filter .date').DatePickerGetDate(true);
 	
-	if(xid)
-		getDayArchives(xid, date);
+	// No XID?
+	if(!xid || !xid.length)
+		return;
+	
+	// Too many value?
+	if(xid.length > 1) {
+		$('#archives .filter .friend').val(xid[0]);
+		
+		return;
+	}
+	
+	// Get the first XID
+	xid = xid[0];
+	
+	// Get the archives
+	getDayArchives(xid, date);
 }
 
 // Update the archives with the selected XID
 function updateArchives() {
 	// Read the values
-	var xid = $('#archives .filter .friend').val() + '';
+	var xid = $('#archives .filter .friend').val();
 	var date = $('#archives .filter .date').DatePickerGetDate(true);
 	
 	// No XID?
-	if(!xid)
+	if(!xid || !xid.length)
 		return;
+	
+	// Too many value?
+	if(xid.length > 1) {
+		$('#archives .filter .friend').val(xid[0]);
+		
+		return;
+	}
+	
+	// Get the first XID
+	xid = xid[0];
 	
 	// Apply the current marker
 	$('#archives .current .name').text(getBuddyName(xid));

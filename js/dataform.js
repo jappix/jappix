@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 21/12/10
 
 */
 
@@ -84,7 +84,7 @@ function dataForm(host, type, node, action, target) {
 }
 
 // Sends a given dataform
-function sendDataForm(type, action, x_type, id, xid, node, sessionid, status, target) {
+function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 	// New IS
 	var iq = new JSJaCIQ();
 	iq.setTo(xid);
@@ -98,7 +98,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, status, ta
 	else if(type == 'search')
 		iqQuery = iq.setQuery(NS_SEARCH);
 	else if(type == 'command')
-		iqQuery = iq.appendNode('command', {'xmlns': NS_COMMANDS, 'node': node, 'sessionid': sessionid, 'status': status, 'action': action});
+		iqQuery = iq.appendNode('command', {'xmlns': NS_COMMANDS, 'node': node, 'sessionid': sessionid, 'action': action});
 	
 	// Build the XML document
 	if(action != 'cancel') {
@@ -123,17 +123,55 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, status, ta
 				var iType = $(this).attr('data-type');
 				var iValue = $(this).val();
 				
-				// Checkbox input?
-				if($(this).is('input[type=checkbox]')) {
+				// Build a new field node
+				var field = iqX.appendChild(iq.buildNode('field', {'var': iVar, 'type': iType, 'xmlns': NS_XDATA}));
+				
+				// Boolean input?
+				if(iType == 'boolean') {
 					if($(this).is(':checked'))
 						iValue = '1';
 					else
 						iValue = '0';
 				}
 				
-				// Build a new XML node
-				var field = iqX.appendChild(iq.buildNode('field', {'var': iVar, 'type': iType, 'xmlns': NS_XDATA}));
-				field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue));
+				// JID-multi input?
+				else if(iType == 'jid-multi') {
+					// Values array
+					var xid_arr = new Array(iValue);
+					
+					// Try to split it
+					if(iValue.indexOf(',') != -1)
+						xid_arr = iValue.split(',');
+					
+					// Append each value to the XML document
+					for(i in muc_arr) {
+						// Get the current value
+						xid_current = xid_arr[i];
+						
+						// No current value?
+						if(!xid_current || xid_current.match(/^(\s+)$/))
+							continue;
+						
+						// Filter the current value
+						xid_current = xid_current.replace(/ /g, '');
+						
+						// Add the current value
+						field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, xid_current));
+					}
+				}
+				
+				// List-multi selector?
+				else if(iType == 'list-multi') {
+					// Any value?
+					if(iValue && iValue.length) {
+						for(i in iValue)
+							field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue[i]));
+					}
+				}
+				
+				// Other inputs?
+				else
+					field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue));
 			});
 		}
 	}
@@ -161,7 +199,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, status, ta
 }
 
 // Displays the good dataform buttons
-function buttonsDataForm(type, action, id, xid, node, sessionid, status, target, pathID) {
+function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID) {
 	// Override the "undefined" output
 	if(!id)
 		id = '';
@@ -171,8 +209,6 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 		node = '';
 	if(!sessionid)
 		sessionid = '';
-	if(!status)
-		status = '';
 	
 	// We generate the buttons code
 	var buttonsCode = '<div class="oneresult ' + target + '-oneresult ' + target + '-formtools">';
@@ -184,7 +220,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 			// When keyup on one text input
 			$(pathID + ' input').keyup(function(e) {
 				if(e.keyCode == 13) {
-					sendDataForm(type, 'execute', 'submit', id, xid, node, sessionid, '', target);
+					sendDataForm(type, 'execute', 'submit', id, xid, node, sessionid, target);
 					
 					return false;
 				}
@@ -192,12 +228,12 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 		}
 		
 		else {
-			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 			
 			// When keyup on one text input
 			$(pathID + ' input').keyup(function(e) {
 				if(e.keyCode == 13) {
-					sendDataForm(type, 'submit', 'submit', id, xid, node, sessionid, status, target);
+					sendDataForm(type, 'submit', 'submit', id, xid, node, sessionid, target);
 					
 					return false;
 				}
@@ -206,7 +242,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, status, target,
 	}
 	
 	if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(status) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
+		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
 		buttonsCode += '<a class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
@@ -399,7 +435,7 @@ function handleDataFormContent(iq, type) {
 					noResultDataForm(pathID);
 				
 				// Previous button
-				buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, bStatus, target, pathID);
+				buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, target, pathID);
 			}
 			
 			// Command to complete
@@ -409,9 +445,9 @@ function handleDataFormContent(iq, type) {
 				
 				// We display the buttons
 				if(bStatus != 'completed')
-					buttonsDataForm(type, 'submit', sessionID, from, bNode, bSession, bStatus, target, pathID);
+					buttonsDataForm(type, 'submit', sessionID, from, bNode, bSession, target, pathID);
 				else
-					buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, bStatus, target, pathID);
+					buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, target, pathID);
 			}
 			
 			// Command completed or subscription done
@@ -419,7 +455,7 @@ function handleDataFormContent(iq, type) {
 				// Tell the user all was okay
 				$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
 				
-				buttonsDataForm(type, 'back', sessionID, from, '', '', '', target, pathID);
+				buttonsDataForm(type, 'back', sessionID, from, '', '', target, pathID);
 				
 				// Add the gateway to our roster if subscribed
 				if(type == 'subscribe')
@@ -525,6 +561,12 @@ function fillDataForm(xml, id) {
 		var label = $(this).attr('label');
 		var field = $(this).attr('var');
 		var value = $(this).find('value:first').text();
+		var xid_pattern = '/^(?:([^@\/<>\'\\"]+)@)?([^@\/<>\'\\"]+)(?:\/([^<>\'\\"]*))?$/';
+		var required = '';
+		
+		// Required input?
+		if($(this).find('required').size())
+			required = ' required=""';
 		
 		// Compatibility fix
 		if(!label)
@@ -546,7 +588,7 @@ function fillDataForm(xml, id) {
 			if(type == 'hidden')
 				hideThis = ' style="display: none;"';
 			
-			// Boolean checkbox field
+			// Boolean field
 			else if(type == 'boolean') {
 				var checked;
 				
@@ -555,29 +597,22 @@ function fillDataForm(xml, id) {
 				else
 					checked = '';
 				
-				input = '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox" ' + checked + ' />';
+				input = '<input name="' + encodeQuotes(field) + '" type="checkbox" data-type="' + encodeQuotes(type) + '" class="dataform-i df-checkbox" ' + checked + required + ' />';
 			}
 			
-			// List-multi checkboxes field
-			else if(type == 'list-multi') {
-				$(this).find('option').each(function() {
-					var nLabel = $(this).attr('label');
-					var nValue = $(this).find('value').text();
-					
-					if(nValue == '1')
-						nChecked = 'checked';
-					else
-						nChecked = '';
-					
-					input += '<input name="' + field + '" type="checkbox" data-type="' + type + '" class="dataform-i df-checkbox" ' + nChecked + ' />';
-				});
-			}
-			
-			// We check if the value comes from a radio input
-			else if(type == 'list-single') {
-				input = '<select name="' + field + '" data-type="' + type + '" class="dataform-i">';
+			// List-single/list-multi field
+			else if((type == 'list-single') || (type == 'list-multi')) {
+				var multiple = '';
+				
+				// Multiple options?
+				if(type == 'list-multi')
+					multiple = ' multiple=""';
+				
+				// Append the select field
+				input = '<select name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" class="dataform-i"' + required + multiple + '>';
 				var selected;
 				
+				// Append the available options
 				$(this).find('option').each(function() {
 					var nLabel = $(this).attr('label');
 					var nValue = $(this).find('value').text();
@@ -588,7 +623,7 @@ function fillDataForm(xml, id) {
 					else
 						selected = '';
 					
-					input += '<option ' + selected + ' value="' + nValue + '">' + nLabel + '</option>';
+					input += '<option ' + selected + ' value="' + encodeQuotes(nValue) + '">' + nLabel.htmlEnc() + '</option>';
 				});
 				
 				input += '</select>';
@@ -596,23 +631,61 @@ function fillDataForm(xml, id) {
 			
 			// Text-multi field
 			else if(type == 'text-multi')
-				input = '<textarea rows="8" cols="60" data-type="' + type + '" name="' + field + '" type="' + iType + '" class="dataform-i">' + value + '</textarea>';
+				input = '<textarea rows="8" cols="60" data-type="' + encodeQuotes(type) + '" name="' + encodeQuotes(field) + '" type="' + iType + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
+			
+			// JID-single field
+			else if(type == 'jid-single')
+				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" class="dataform-i" pattern="' + encodeQuotes(xid_pattern) + '" value="' + encodeQuotes(value) + '"' + required + ' />';
+			
+			// JID-multi field
+			else if(type == 'jid-multi') {
+				// Put the XID into an array
+				var xid_arr = [];
+				
+				$(this).find('value').each(function() {
+					var cValue = $(this).text();
+					
+					if(!existArrayValue(xid_arr, cValue))
+						xid_arr.push(cValue);
+				});
+				
+				// Sort the array
+				xid_arr.sort();
+				
+				// Create the array content
+				if(xid_arr.length) {
+					var xid_value = '';
+					
+					for(i in xid_arr) {
+						// Any pre-value
+						if(xid_value)
+							xid_value += ', ';
+						
+						// Add the current XID
+						xid_value += xid_arr[i];
+					}
+					
+					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" class="dataform-i" pattern="' + encodeQuotes(xid_pattern) + '" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
+				}
+			}
 			
 			// Other stuffs that are similar
 			else {
-				// We change the type of the input
+				// Text-private field
 				if(type == 'text-private')
 					iType = 'password';
+				
+				// Text-single field
 				else
 					iType = 'text';
 				
-				input = '<input name="' + field + '" data-type="' + type + '" type="' + iType + '" class="dataform-i" value="' + value + '" />';
+				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + encodeQuotes(value) + '"' + required + ' />';
 			}
 			
 			// Append the HTML markup for this field
 			$('.' + id).append(
 				'<div class="oneresult ' + target + '-oneresult"' + hideThis + '>' + 
-					'<label>' + label + '</label>' + 
+					'<label>' + label.htmlEnc() + '</label>' + 
 					input + 
 				'</div>'
 			);
