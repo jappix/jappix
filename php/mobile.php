@@ -10,7 +10,7 @@ This is the Jappix Mobile lightweight PHP code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 21/12/10
 
 */
 
@@ -20,11 +20,11 @@ if(!defined('PHP_BASE'))
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo($locale); ?>" lang="<?php echo($locale); ?>">
+<!DOCTYPE html>
+<html xml:lang="<?php echo($locale); ?>" lang="<?php echo($locale); ?>">
 
 <head>
-	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php _e("Jappix Mobile"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>

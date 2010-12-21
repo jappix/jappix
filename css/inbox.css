@@ -8,7 +8,7 @@ This is the inbox CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 21/12/10
 
 */
 
@@ -175,7 +175,7 @@ Last revision: 11/12/10
 	max-height: 168px;
 	font-size: 0.9em;
 	left: 120px;
-	top: 32px;
+	top: 31px;
 }
 
 #inbox .inbox-new-to-input {

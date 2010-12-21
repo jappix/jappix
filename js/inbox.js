@@ -8,7 +8,7 @@ These are the inbox JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 11/12/10
+Last revision: 21/12/10
 
 */
 
@@ -356,14 +356,17 @@ function purgeInbox() {
 			removeDB('inbox', explodeThis('_', current, 1));
 	}
 	
-	// Store the new inbox
-	storeInbox();
-	
-	// Remove all the messages from the inbox
-	$('#inbox .one-message').remove();
-	
-	// Reload the inbox
-	loadInbox();
+	// Prevent the database lag
+	$(document).oneTime(100, function() {
+		// Store the new inbox
+		storeInbox();
+		
+		// Remove all the messages from the inbox
+		$('#inbox .one-message').remove();
+		
+		// Reload the inbox
+		loadInbox();
+	});
 }
 
 // Checks if there are new messages to be notified
