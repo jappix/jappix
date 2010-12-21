@@ -1,35 +1,35 @@
 /*
 
 Jappix - An open social platform
-This is the muc-admin CSS stylesheet for Jappix
+This is the mucadmin CSS stylesheet for Jappix
 
 -------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 21/12/10
 
 */
 
-#muc-admin .content {
+#mucadmin .content {
 	padding: 10px 0 10px 0;
 }
 
-#muc-admin .content p {
+#mucadmin .content p {
 	margin: 5px 10px 5px 10px;
 	text-align: justify;
 	font-size: 12px;
 }
 
-#muc-admin .muc-admin-head-jid {
+#mucadmin .mucadmin-head-jid {
 	font-size: 14px;
 	text-decoration: underline;
 	float: right;
 	margin: 1px 4px 1px 1px;
 }
 
-#muc-admin .muc-admin-results {
+#mucadmin .mucadmin-forms {
 	height: 310px;
 	width: 620px;
 	margin: -5px 0 0 10px;
@@ -37,61 +37,50 @@ Last revision: 06/11/10
 	overflow: auto;
 }
 
-#muc-admin .muc-admin-results label {
+#mucadmin .mucadmin-forms label {
 	width: 260px;
-	clear: both;
 }
 
-#muc-admin .muc-admin-results input {
-	margin: 0 10px 10px 0;
-	width: 200px;
-	float: left;
-}
-
-#muc-admin .muc-admin-results select {
-	margin: 0 10px 10px 0;
-	min-width: 150px;
-	float: left;
-}
-
-#muc-admin .muc-admin-results textarea {
+#mucadmin .mucadmin-forms textarea {
 	height: 60px;
 	width: 300px;
 	margin: 5px 12px 10px 0;
-	float: left;
 }
 
-#muc-admin .muc-checkbox:hover {
-	cursor: pointer;
+#mucadmin .results {
+	height: auto;
+	width: auto;
+	overflow: visible;
+	margin: 5px;
 }
 
-#muc-admin .aut-group {
+#mucadmin .aut-group {
 	float: left;
 	padding-bottom: 4px;
 }
 
-#muc-admin .one-aut {
+#mucadmin .one-aut {
 	clear: both;
 	margin: 0 10px 5px 0;
 }
 
-#muc-admin .aut-add {
+#mucadmin .aut-add {
 	clear: both;
 	float: left;
 	margin-bottom: 5px;
 	font-size: 0.9em;
 }
 
-#muc-admin .aut-remove {
+#mucadmin .aut-remove {
 	float: left;
 }
 
-#muc-admin .aut-remove:hover {
+#mucadmin .aut-remove:hover {
 	font-weight: bold;
 	text-decoration: none;
 }
 
-#muc-admin .muc-admin-others a {
+#mucadmin .mucadmin-others a {
 	float: left;
 	font-size: 0.9em;
 }

@@ -1,14 +1,14 @@
 /*
 
 Jappix - An open social platform
-These are the muc-admin JS scripts for Jappix
+These are the mucadmin JS scripts for Jappix
 
 -------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 21/12/10
 
 */
 
@@ -19,14 +19,14 @@ function openMucAdmin(xid) {
 	'<div class="top">' + _e("MUC administration") + '</div>' + 
 	
 	'<div class="content">' + 
-		'<div class="head muc-admin-head">' + 
-			'<div class="head-text muc-admin-head-text">' + _e("You administrate this room") + '</div>' + 
+		'<div class="head mucadmin-head">' + 
+			'<div class="head-text mucadmin-head-text">' + _e("You administrate this room") + '</div>' + 
 			
-			'<div class="muc-admin-head-jid">' + xid + '</div>' + 
+			'<div class="mucadmin-head-jid">' + xid + '</div>' + 
 		'</div>' + 
 		
-		'<div class="muc-admin-results">' + 
-			'<div class="muc-admin-topic">' + 
+		'<div class="mucadmin-forms">' + 
+			'<div class="mucadmin-topic">' + 
 				'<fieldset>' + 
 					'<legend>' + _e("Subject") + '</legend>' + 
 					
@@ -35,15 +35,15 @@ function openMucAdmin(xid) {
 				'</fieldset>' + 
 			'</div>' + 
 			
-			'<div class="muc-admin-conf">' + 
+			'<div class="mucadmin-conf">' + 
 				'<fieldset>' + 
 					'<legend>' + _e("Configuration") + '</legend>' + 
 					
-					'<div class="last-element"></div>' + 
+					'<div class="results mucadmin-results"></div>' + 
 				'</fieldset>' + 
 			'</div>' + 
 			
-			'<div class="muc-admin-aut">' + 
+			'<div class="mucadmin-aut">' + 
 				'<fieldset>' + 
 					'<legend>' + _e("Authorizations") + '</legend>' + 
 					
@@ -69,7 +69,7 @@ function openMucAdmin(xid) {
 				'</fieldset>' + 
 			'</div>' + 
 			
-			'<div class="muc-admin-others">' + 
+			'<div class="mucadmin-others">' + 
 				'<fieldset>' + 
 					'<legend>' + _e("Others") + '</legend>' + 
 					
@@ -88,13 +88,13 @@ function openMucAdmin(xid) {
 	'</div>';
 	
 	// Create the popup
-	createPopup('muc-admin', html);
+	createPopup('mucadmin', html);
 	
 	// Associate the events
 	launchMucAdmin();
 	
 	// We query the room to edit
-	queryMucAdmin(xid, 'options');
+	dataForm(xid, 'muc', '', '', 'mucadmin');
 	
 	// We get the affiliated user's privileges
 	queryMucAdmin(xid, 'member');
@@ -106,137 +106,68 @@ function openMucAdmin(xid) {
 // Closes the MUC admin popup
 function closeMucAdmin() {
 	// Destroy the popup
-	destroyPopup('muc-admin');
+	destroyPopup('mucadmin');
 	
 	return false;
 }
 
-// Fills the MUC admin fields
-function fillMucAdmin(field, type, label, value, node) {
-	var hash = hex_md5(type);
-	var input;
-	
-	// We check the checkboxes with boolean values
-	if(type == 'boolean') {
-		var checked;
-		
-		if(value == '1')
-			checked = ' checked';
-		else
-			checked = '';
-		
-		input = '<input id="' + hash + '" name="' + field + '" type="checkbox" class="muc-admin-i muc-checkbox"' + checked + ' />';
-	}
-	
-	// We check if the value comes from a radio input
-	else if(type == 'list-single') {
-		input = '<select id="' + hash + '" name="' + field + '" class="muc-admin-i">';
-		var selected;
-		
-		$(node).find('option').each(function() {
-			var nLabel = $(this).attr('label');
-			var nValue = $(this).find('value').text();
-			
-			// If this is the selected value
-			if(nValue == value)
-				selected = 'selected';
-			else
-				selected = '';
-			
-			input += '<option ' + selected + ' value="' + nValue + '">' + nLabel + '</option>';
-		});
-		
-		input += '</select>';
-	}
-	
-	// We fill the blank inputs with the text values
-	else {
-		// We change the type of the input
-		if(type == 'text-private')
-			iType = 'password';
-		else
-			iType = 'text';
-		
-		input = '<input id="' + hash + '" name="' + field + '" type="' + iType + '" class="muc-admin-i" value="' + value + '" />';
-	}
-	
-	$('.muc-admin-conf .last-element').before('<label for="' + hash + '">' + label + '</label>' + input);
-}
-
 // Removes a MUC admin input
-function removeInputMucAdmin(hash) {
-	var path = '#muc-admin .aut-group .' + hash;
+function removeInputMucAdmin(element) {
+	var path = $(element).parent();
 	
 	// We first hide the container of the input
-	$(path).hide();
+	path.hide();
 	
 	// Then, we add a special class to the input
-	$(path + ' input').addClass('aut-dustbin');
+	path.find('input').addClass('aut-dustbin');
 }
 
 // Adds a MUC admin input
 function addInputMucAdmin(xid, affiliation) {
 	var hash = hex_md5(xid + affiliation);
 	
-	$('#muc-admin .aut-' + affiliation + ' .aut-add').after(
+	// Add the HTML code
+	$('#mucadmin .aut-' + affiliation + ' .aut-add').after(
 		'<div class="one-aut ' + hash + '">' + 
-			'<input id="aut-' + affiliation + '" name="' + affiliation + '" type="text" class="muc-admin-i" value="' + xid + '" />' + 
+			'<input id="aut-' + affiliation + '" name="' + affiliation + '" type="text" class="mucadmin-i" value="' + xid + '" />' + 
 			'<a class="aut-remove">[-]</a>' + 
 		'</div>'
 	);
 	
-	$('#muc-admin .' + hash + ' .aut-remove').click(function() {
-		removeInputMucAdmin(hash);
+	// Click event
+	$('#mucadmin .' + hash + ' .aut-remove').click(function() {
+		removeInputMucAdmin(this);
 	});
+	
+	// Focus on the input we added
+	if(!xid)
+		$('#mucadmin .' + hash + ' input').focus();
 	
 	return false;
 }
 
 // Handles the MUC admin form
-function handleMucAdmin(iq) {
-	var handleXML = iq.getQuery();
-	var handleFrom = fullXID(getStanzaFrom(iq));
-	
-	// If we got the form results
-	if($(handleXML).find('x').attr('xmlns')) {
-		$(handleXML).find('field').each(function() {
-			// We parse the received xml
-			var field = $(this).attr('var');
-			var type = $(this).attr('type');
-			var label = $(this).attr('label');
-			var value = $(this).find('value:first').text();
-			var node = this;
-			
-			// If we have correct data to be exploited
-			if(field != undefined && type != undefined && label != undefined && value != undefined )
-				fillMucAdmin(field, type, label, value, node);
-		});
+function handleMucAdminAuth(iq) {
+	// We got the authorizations results
+	$(iq.getQuery()).find('item').each(function() {
+		// We parse the received xml
+		var xid = $(this).attr('jid');
+		var affiliation = $(this).attr('affiliation');
 		
-		logThis('MUC admin form received: ' + handleFrom);
-	}
+		// We create one input for one XID
+		addInputMucAdmin(xid, affiliation);
+	});
 	
-	// If we got the authorizations results
-	else if($(handleXML).find('item').attr('jid')) {
-		$(handleXML).find('item').each(function() {
-			// We parse the received xml
-			var xid = $(this).attr('jid');
-			var affiliation = $(this).attr('affiliation');
-			
-			// We create one input for one XID
-			addInputMucAdmin(xid, affiliation);
-		});
-		
-		logThis('MUC admin items received: ' + handleFrom);
-	}
+	// Hide the wait icon
+	$('#mucadmin .wait').hide();
 	
-	// We hide the wait icon
-	$('#muc-admin .wait').hide();
+	logThis('MUC admin items received: ' + fullXID(getStanzaFrom(iq)));
 }
 
 // Queries the MUC admin form
 function queryMucAdmin(xid, type) {
 	// Show the wait icon
-	$('#muc-admin .wait').show();
+	$('#mucadmin .wait').show();
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -244,21 +175,16 @@ function queryMucAdmin(xid, type) {
 	iq.setTo(xid);
 	iq.setType('get');
 	
-	if(type == 'options')
-		iq.setQuery(NS_MUC_OWNER);
+	var iqQuery = iq.setQuery(NS_MUC_ADMIN);
+	iqQuery.appendChild(iq.buildNode('item', {'affiliation': type, 'xmlns': NS_MUC_ADMIN}));
 	
-	else {
-		var iqQuery = iq.setQuery(NS_MUC_ADMIN);
-		iqQuery.appendChild(iq.buildNode('item', {'affiliation': type, 'xmlns': NS_MUC_ADMIN}));
-	}
-	
-	con.send(iq, handleMucAdmin);
+	con.send(iq, handleMucAdminAuth);
 }
 
 // Sends the new chat-room topic
 function sendMucAdminTopic(xid) {
 	// We get the new topic
-	var topic = $('.muc-admin-topic textarea').val();
+	var topic = $('.mucadmin-topic textarea').val();
 	
 	// We send the new topic if not blank
 	if(topic) {
@@ -272,74 +198,45 @@ function sendMucAdminTopic(xid) {
 	}
 }
 
-// Sends the MUC admin form
-function sendMucAdminIQ(xid, rights, form) {
+// Sends the MUC admin auth form
+function sendMucAdminAuth(xid) {
 	// We set the iq headers
 	var iq = new JSJaCIQ();
 	iq.setTo(xid);
 	iq.setType('set');
 	
-	var xmlns = NS_MUC + '#' + rights + '';
-	var iqQuery = iq.setQuery(xmlns);
+	var iqQuery = iq.setQuery(NS_MUC_ADMIN);
 	
-	if(form == 'form') {
-		var x = iqQuery.appendChild(iq.buildNode('x', {'type': 'submit', 'xmlns': NS_XDATA}));
+	// We define the values array
+	var types = new Array('member', 'owner', 'admin', 'outcast');
+	
+	for(i in types) {
+		// We get the current type
+		var tType = types[i];
 		
 		// We loop for all the elements
-		$('.muc-admin-conf input, .muc-admin-conf select').each(function() {
+		$('.mucadmin-aut .aut-' + tType + ' input').each(function() {
 			// We get the needed values
-			var type = $(this).attr('name');
+			var value = $(this).val();
 			
-			// If the input is a checkbox
-			if($(this).is(':checkbox')) {
-				if($(this).is(':checked'))
-					var value = '1';
-				else
-					var value = '0';
-			}
+			// If there's a value
+			if(value)
+				var item = iqQuery.appendChild(iq.buildNode('item', {'jid': value, 'xmlns': NS_MUC_ADMIN}));
 			
-			// Else, the input is a text field
-			else
-				var value = $(this).val();
+			// It the user had removed the XID
+			if($(this).hasClass('aut-dustbin') && value)
+				item.setAttribute('affiliation', 'none');
 			
-			// We add a node to the xml
-			var field = x.appendChild(iq.buildNode('field', {'var': type, 'xmlns': NS_XDATA}));
-			field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, value));
+			// If the value is not blank and okay
+			else if(value)
+				item.setAttribute('affiliation', tType);
 		});
-	}
-	
-	else if(form == 'aut') {
-		// We define the values array
-		var types = new Array('member', 'owner', 'admin', 'outcast');
-		
-		for(i in types) {
-			// We get the current type
-			var tType = types[i];
-			
-			// We loop for all the elements
-			$('.muc-admin-aut .aut-' + tType + ' input').each(function() {
-				// We get the needed values
-				var value = $(this).val();
-				
-				// If there's a value
-				if(value)
-					var item = iqQuery.appendChild(iq.buildNode('item', {'jid': value, 'xmlns': xmlns}));
-				
-				// It the user had removed the XID
-				if($(this).hasClass('aut-dustbin') && value)
-					item.setAttribute('affiliation', 'none');
-				
-				// If the value is not blank and okay
-				else if(value)
-					item.setAttribute('affiliation', tType);
-			});
-		}
 	}
 	
 	// We send the iq !
 	con.send(iq, handleErrorReply);
 	
-	logThis('MUC admin ' + form + ' sent: ' + xid, 3);
+	logThis('MUC admin authorizations form sent: ' + xid, 3);
 }
 
 // Checks if the MUC room was destroyed
@@ -364,7 +261,7 @@ function handleDestroyMucAdminIQ(iq) {
 	}
 	
 	// We hide the wait icon
-	$('#muc-admin .wait').hide();
+	$('#mucadmin .wait').hide();
 }
 
 // Destroys a MUC room
@@ -387,10 +284,10 @@ function destroyMucAdminIQ(xid) {
 // Performs the MUC room destroy functions
 function destroyMucAdmin() {
 	// We get the XID of the current room
-	var xid = $('#muc-admin .muc-admin-head-jid').text();
+	var xid = $('#mucadmin .mucadmin-head-jid').text();
 	
 	// We show the wait icon
-	$('#muc-admin .wait').show();
+	$('#mucadmin .wait').show();
 	
 	// We send the iq
 	destroyMucAdminIQ(xid);
@@ -399,14 +296,14 @@ function destroyMucAdmin() {
 // Sends all the MUC admin stuffs
 function sendMucAdmin() {
 	// We get the XID of the current room
-	var xid = $('#muc-admin .muc-admin-head-jid').text();
+	var xid = $('#mucadmin .mucadmin-head-jid').text();
 	
 	// We change the room topic
 	sendMucAdminTopic(xid);
 	
 	// We send the needed queries
-	sendMucAdminIQ(xid, 'owner', 'form');
-	sendMucAdminIQ(xid, 'admin', 'aut');
+	sendDataForm('x', 'submit', 'submit', $('#mucadmin .mucadmin-results').attr('data-session'), xid, '', '', 'mucadmin');
+	sendMucAdminAuth(xid);
 }
 
 // Saves the MUC admin elements
@@ -421,7 +318,7 @@ function saveMucAdmin() {
 // Plugin launcher
 function launchMucAdmin() {
 	// Click events
-	$('#muc-admin .bottom .finish').click(function() {
+	$('#mucadmin .bottom .finish').click(function() {
 		if($(this).is('.cancel'))
 			return closeMucAdmin();
 		if($(this).is('.save'))

@@ -8,7 +8,7 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/11/10
+Last revision: 21/11/10
 
 */
 
@@ -19,7 +19,7 @@ Last revision: 20/11/10
 #discovery .content p {
 	margin: 5px 10px 5px 10px;
 	text-align: justify;
-	font-size: 12px;
+	font-size: 0.85em;
 }
 
 #discovery .discovery-head {
@@ -33,7 +33,7 @@ Last revision: 20/11/10
 
 #discovery .disco-server-text {
 	float: left;
-	font-size: 14px;
+	font-size: 0.9em;
 	margin: 3px;
 }
 
@@ -53,6 +53,5 @@ Last revision: 20/11/10
 }
 
 #discovery .disco-category-title {
-	font-size: 15px;
 	font-weight: bold;
 }

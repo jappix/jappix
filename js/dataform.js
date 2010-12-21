@@ -22,19 +22,25 @@ function dataForm(host, type, node, action, target) {
 	
 	// If we have enough data
 	if(host && type) {
-		// Generate a session ID (taken from JSJaC)
+		// Generate a session ID
 		var sessionID = Math.round(100000.5 + (((900000.49999) - (100000.5)) * Math.random()));
 		var id = target + '-' + sessionID + '-' + genID();
-		$('.' + target + '-results').attr('class', 'results ' + target + '-results ' + target + '-' + sessionID);
+		$('.' + target + '-results').attr('data-session', target + '-' + sessionID);
 		
-		// We request the service the form
+		// We request the service item
 		var iq = new JSJaCIQ();
 		iq.setID(id);
 		iq.setTo(host);
 		iq.setType('get');
 		
-		// We create the appropriate XML nodes
-		if(type == 'browse') {
+		// MUC admin query
+		if(type == 'muc') {
+			iq.setQuery(NS_MUC_OWNER);
+			con.send(iq, handleDataFormMuc);
+		}
+		
+		// Browse query
+		else if(type == 'browse') {
 			var iqQuery = iq.setQuery(NS_DISCO_ITEMS);
 			
 			if(node)
@@ -43,7 +49,8 @@ function dataForm(host, type, node, action, target) {
 			con.send(iq, handleDataFormBrowse);
 		}
 		
-		if(type == 'command') {
+		// Command
+		else if(type == 'command') {
 			var items;
 			
 			if(node)
@@ -62,17 +69,20 @@ function dataForm(host, type, node, action, target) {
 			con.send(iq, handleDataFormCommand);
 		}
 		
-		if(type == 'search') {
+		// Search query
+		else if(type == 'search') {
 			iq.setQuery(NS_SEARCH);
 			con.send(iq, handleDataFormSearch);
 		}
 		
-		if(type == 'subscribe') {
+		// Subscribe query
+		else if(type == 'subscribe') {
 			iq.setQuery(NS_REGISTER);
 			con.send(iq, handleDataFormSubscribe);
 		}
 		
-		if(type == 'join') {
+		// Join
+		else if(type == 'join') {
 			if(target == 'discovery')
 				closeDiscovery();
 			
@@ -85,7 +95,10 @@ function dataForm(host, type, node, action, target) {
 
 // Sends a given dataform
 function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
-	// New IS
+	// Path
+	var pathID = '#' + target + ' .results[data-session=' + id + ']';
+	
+	// New IQ
 	var iq = new JSJaCIQ();
 	iq.setTo(xid);
 	iq.setType('set');
@@ -99,11 +112,13 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 		iqQuery = iq.setQuery(NS_SEARCH);
 	else if(type == 'command')
 		iqQuery = iq.appendNode('command', {'xmlns': NS_COMMANDS, 'node': node, 'sessionid': sessionid, 'action': action});
+	else if(type == 'x')
+		iqQuery = iq.setQuery(NS_MUC_OWNER);
 	
 	// Build the XML document
 	if(action != 'cancel') {
 		// No X node
-		if(exists('input.register-special') && type == 'subscribe') {
+		if(exists('input.register-special') && (type == 'subscribe')) {
 			$('input.register-special').each(function() {
 				var iName = $(this).attr('name');
 				var iValue = $(this).val();
@@ -117,7 +132,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 			var iqX = iqQuery.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': x_type}));
 			
 			// Each input
-			$('.' + id + ' .oneresult input, .' + id + ' .oneresult textarea, .' + id + ' .oneresult select').each(function() {
+			$(pathID + ' .oneresult input, ' + pathID + ' .oneresult textarea, ' + pathID + ' .oneresult select').each(function() {
 				// Get the current input value
 				var iVar = $(this).attr('name');
 				var iType = $(this).attr('data-type');
@@ -135,7 +150,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 				}
 				
 				// JID-multi input?
-				else if(iType == 'jid-multi') {
+				if(iType == 'jid-multi') {
 					// Values array
 					var xid_arr = new Array(iValue);
 					
@@ -184,7 +199,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 	
 	// Change the ID of the current discovered item
 	var iqID = target + '-' + genID();
-	$('.' + target + '-results').attr('class', 'results ' + target + '-results ' + iqID);
+	$('#' + target + ' .' + target + '-results').attr('data-session', iqID);
 	iq.setID(iqID);
 	
 	// Send the IQ
@@ -194,12 +209,18 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 		con.send(iq, handleDataFormSearch);
 	else if(type == 'command')
 		con.send(iq, handleDataFormCommand);
+	else
+		con.send(iq);
 	
 	return false;
 }
 
 // Displays the good dataform buttons
 function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID) {
+	// No need to use buttons?
+	if(type == 'muc')
+		return;
+	
 	// Override the "undefined" output
 	if(!id)
 		id = '';
@@ -215,7 +236,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	
 	if(action == 'submit') {
 		if((target == 'adhoc') && (type == 'command')) {
-			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 			
 			// When keyup on one text input
 			$(pathID + ' input').keyup(function(e) {
@@ -259,6 +280,12 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	$(pathID).append(buttonsCode);
 }
 
+// Handles the MUC dataform
+function handleDataFormMuc(iq) {
+	handleErrorReply(iq);
+	handleDataFormContent(iq, 'muc');
+}
+
 // Handles the browse dataform
 function handleDataFormBrowse(iq) {
 	handleErrorReply(iq);
@@ -293,10 +320,10 @@ function handleDataFormContent(iq, type) {
 	var target = splitted[0];
 	var sessionID = target + '-' + splitted[1];
 	var from = fullXID(getStanzaFrom(iq));
-	var pathID = '#' + target + ' .' + sessionID;
+	var pathID = '#' + target + ' .results[data-session=' + sessionID + ']';
 	
 	// If an error occured
-	if(!iq || iq.getType() != 'result')
+	if(!iq || (iq.getType() != 'result'))
 		noResultDataForm(pathID);
 	
 	// If we got something okay
@@ -315,16 +342,8 @@ function handleDataFormContent(iq, type) {
 					// Special node
 					if(itemNode)
 						$(pathID).append(
-							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'' + encodeOnclick(target) + '\');">' + 
+							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + 
 								'<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
-							'</div>'
-						);
-					
-					// Special item
-					else if(itemName)
-						$(pathID).append(
-							'<div class="oneresult ' + target + '-oneresult">' + 
-								'<div class="one-name">' + itemName.htmlEnc() + '</div>' + 
 							'</div>'
 						);
 					
@@ -353,7 +372,7 @@ function handleDataFormContent(iq, type) {
 				noResultDataForm(pathID);
 		}
 		
-		else if((type == 'search') || (type == 'subscribe') || ((type == 'command') && $(handleXML).find('command').attr('xmlns'))) {
+		else if((type == 'muc') || (type == 'search') || (type == 'subscribe') || ((type == 'command') && $(handleXML).find('command').attr('xmlns'))) {
 			// Get some values
 			var xCommand = $(handleXML).find('command');
 			var bNode = xCommand.attr('node');
@@ -508,60 +527,69 @@ function handleDataFormContent(iq, type) {
 	$('#' + target + ' .wait').hide();
 }
 
-// Appends the correct dataform elements
-function appendDataForm(xml, id, target, label, type) {
-	// Useless?
-	if($(xml).find('x[xmlns=' + NS_XDATA + ']').size())
-		return false;
-	
-	$(xml).find(type).each(function() {
-		$('.' + id).append(
-			'<div class="oneresult ' + target + '-oneresult">' + 
-				'<label>' + label + '</label>' + 
-				'<input name="' + type + '" type="text" class="register-special dataform-i" />' + 
-			'</div>'
-		);
-	});
-}
-
 // Fills the dataform elements
 function fillDataForm(xml, id) {
 	/* REF: http://xmpp.org/extensions/xep-0004.html */
-	
-	var selector = $(xml).find('x[xmlns=' + NS_XDATA + ']');
+	try {
+	// Initialize new vars
 	var target = id.split('-')[0];
+	var pathID = '#' + target + ' .results[data-session=' + id + ']';
+	var selector, is_dataform;
+	
+	// Is it a dataform?
+	if($(xml).find('x[xmlns=' + NS_XDATA + ']').size())
+		is_dataform = true;
+	else
+		is_dataform = false;
+	
+	// Determines the good selector to use
+	if(is_dataform)
+		selector = $(xml).find('x[xmlns=' + NS_XDATA + ']');
+	else
+		selector = $(xml);
 	
 	// Form title
 	selector.find('title').each(function() {
-		$('.' + id).append(
+		$(pathID).append(
 			'<div class="onetitle ' + target + '-oneresult">' + $(this).text() + '</div>'
 		);
 	});
 	
 	// Form instructions
 	selector.find('instructions').each(function() {
-		$('.' + id).append(
+		$(pathID).append(
 			'<div class="oneinstructions ' + target + '-oneresult">' + $(this).text() + '</div>'
 		);
 	});
 	
-	// Form username
-	appendDataForm(xml, id, target, _e("Nickname"), 'username');
+	// Register?
+	if(!is_dataform) {
+		// Items to detect
+		var reg_names = [_e("Nickname"), _e("Name"), _e("Password"), _e("E-mail")];
+		var reg_ids = ['username', 'name', 'password', 'email'];
+		
+		// Append these inputs
+		for(a in reg_names) {
+			selector.find(reg_ids[a]).each(function() {
+				$(pathID).append(
+					'<div class="oneresult ' + target + '-oneresult">' + 
+						'<label>' + reg_names[a] + '</label>' + 
+						'<input name="' + reg_ids[a] + '" type="text" class="register-special dataform-i" />' + 
+					'</div>'
+				);
+			});
+		}
+		
+		return false;
+	}
 	
-	// Form password
-	appendDataForm(xml, id, target, _e("Password"), 'password');
-	
-	// Form email
-	appendDataForm(xml, id, target, _e("E-mail"), 'email');
-	
-	// Form fields
+	// Dataform?
 	selector.find('field').each(function() {
 		// We parse the received xml
 		var type = $(this).attr('type');
 		var label = $(this).attr('label');
 		var field = $(this).attr('var');
 		var value = $(this).find('value:first').text();
-		var xid_pattern = '/^(?:([^@\/<>\'\\"]+)@)?([^@\/<>\'\\"]+)(?:\/([^<>\'\\"]*))?$/';
 		var required = '';
 		
 		// Required input?
@@ -581,7 +609,7 @@ function fillDataForm(xml, id) {
 		
 		// Fixed field
 		if(type == 'fixed')
-			$('.' + id).append('<div class="oneinstructions">' + value.htmlEnc() + '</div>');
+			$(pathID).append('<div class="oneinstructions">' + value.htmlEnc() + '</div>');
 		
 		else {
 			// Hidden field
@@ -617,6 +645,10 @@ function fillDataForm(xml, id) {
 					var nLabel = $(this).attr('label');
 					var nValue = $(this).find('value').text();
 					
+					// No label?
+					if(!nLabel)
+						nLabel = nValue;
+					
 					// If this is the selected value
 					if(nValue == value)
 						selected = 'selected';
@@ -631,11 +663,7 @@ function fillDataForm(xml, id) {
 			
 			// Text-multi field
 			else if(type == 'text-multi')
-				input = '<textarea rows="8" cols="60" data-type="' + encodeQuotes(type) + '" name="' + encodeQuotes(field) + '" type="' + iType + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
-			
-			// JID-single field
-			else if(type == 'jid-single')
-				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" class="dataform-i" pattern="' + encodeQuotes(xid_pattern) + '" value="' + encodeQuotes(value) + '"' + required + ' />';
+				input = '<textarea rows="8" cols="60" data-type="' + encodeQuotes(type) + '" name="' + encodeQuotes(field) + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
 			
 			// JID-multi field
 			else if(type == 'jid-multi') {
@@ -665,25 +693,24 @@ function fillDataForm(xml, id) {
 						xid_value += xid_arr[i];
 					}
 					
-					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" class="dataform-i" pattern="' + encodeQuotes(xid_pattern) + '" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
+					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="text" class="dataform-i" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
 				}
 			}
 			
 			// Other stuffs that are similar
 			else {
+				// Text-single/JID-single field
+				var iType = 'text';
+				
 				// Text-private field
 				if(type == 'text-private')
 					iType = 'password';
-				
-				// Text-single field
-				else
-					iType = 'text';
 				
 				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + encodeQuotes(value) + '"' + required + ' />';
 			}
 			
 			// Append the HTML markup for this field
-			$('.' + id).append(
+			$(pathID).append(
 				'<div class="oneresult ' + target + '-oneresult"' + hideThis + '>' + 
 					'<label>' + label.htmlEnc() + '</label>' + 
 					input + 
@@ -691,6 +718,10 @@ function fillDataForm(xml, id) {
 			);
 		}
 	});
+	}
+	catch(e) { alert(e); }
+	
+	return false;
 }
 
 // Gets the dataform type
@@ -719,7 +750,7 @@ function handleThisBrowse(iq) {
 	var from = fullXID(getStanzaFrom(iq));
 	var hash = hex_md5(from);
 	var handleXML = iq.getQuery();
-	var pathID = '#' + target + ' .' + sessionID;
+	var pathID = '#' + target + ' .results[data-session=' + sessionID + ']';
 	
 	// We first remove the waiting element
 	$(pathID + ' .disco-wait .' + hash).remove();

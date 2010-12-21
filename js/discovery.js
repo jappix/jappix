@@ -8,7 +8,7 @@ These are the discovery JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 21/12/10
 
 */
 

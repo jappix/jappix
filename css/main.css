@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 03/12/10
+Last revision: 21/12/10
 
 */
 
@@ -55,21 +55,32 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+input[type=submit]:hover {
 	border: 1px solid #e1a014;
 	box-shadow: inset 0 3px 10px #edd9bc;
 	-moz-box-shadow: inset 0 3px 10px #edd9bc;
 	-webkit-box-shadow: inset 0 3px 10px #edd9bc;
 }
 
-input[disabled],
-textarea[disabled] {
-	background-color: #f3f3f3;
-	border: 1px solid #989898;
+input[type=submit] {
+	cursor: pointer;
+}
+
+input[type=submit]:active {
+	box-shadow: inset 0 3px 15px #e1a753;
+	-moz-box-shadow: inset 0 3px 15px #e1a753;
+	-webkit-box-shadow: inset 0 3px 15px #e1a753;
 }
 
 input[type=checkbox] {
 	margin-top: 2px;
+}
+
+input[disabled],
+textarea[disabled] {
+	background-color: #f3f3f3;
+	border: 1px solid #989898;
 }
 
 .please-complete,
