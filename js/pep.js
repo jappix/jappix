@@ -8,7 +8,7 @@ These are the PEP JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 22/12/10
 
 */
 
@@ -81,7 +81,7 @@ function displayPEP(xid, type) {
 				if(type == 'mood')
 					fValue = moodIcon(pepValue);
 				else if(type == 'activity')
-					fValue = activityIcon(explodeThis('/', pepValue, 0));
+					fValue = activityIcon(pepValue);
 				if(!pepText)
 					fText = _e("unknown");
 				else
@@ -223,10 +223,6 @@ function displayPEP(xid, type) {
 					else
 						dAttr = 'exercising';
 				}
-				
-				// Get the activity category
-				if(type == 'activity')
-					dAttr = explodeThis('/', dAttr, 0);
 				
 				// No text?
 				if(dText != _e("unknown"))

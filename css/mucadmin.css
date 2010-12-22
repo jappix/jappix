@@ -8,7 +8,7 @@ This is the mucadmin CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/12/10
+Last revision: 22/12/10
 
 */
 
@@ -39,6 +39,12 @@ Last revision: 21/12/10
 
 #mucadmin .mucadmin-forms label {
 	width: 260px;
+}
+
+#mucadmin .mucadmin-topic label,
+#mucadmin .mucadmin-aut label,
+#mucadmin .mucadmin-others label {
+	font-size: 0.9em;
 }
 
 #mucadmin .mucadmin-forms textarea {

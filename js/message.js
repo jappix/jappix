@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 22/12/10
 
 */
 
@@ -167,8 +167,15 @@ function handleMessage(message) {
 					
 					// There's something
 					if(iMood.children().size()) {
+						// Read the value
 						fValue = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName;
+						
+						// Read the text
 						tText = iMood.find('text').text();
+						
+						// Avoid errors
+						if(!fValue)
+							fValue = '';
 					}
 					
 					// Store the PEP event (and display it)
@@ -180,19 +187,18 @@ function handleMessage(message) {
 				case NS_ACTIVITY:
 					// Retrieve the values
 					var iActivity = iParse.find('activity');
-					var fValue = '';
+					var sValue = '';
 					var tText = '';
 					
 					// There's something
 					if(iActivity.children().size()) {
+						// Read the value
 						fValue = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName;
-						var sValue = node.getElementsByTagName(fValue).item(0).childNodes.item(0).nodeName;
 						
-						if(sValue && fValue)
-							fValue = fValue + '/' + sValue;
-						
+						// Read the text
 						tText = iActivity.find('text').text();
 						
+						// Avoid errors
 						if(!fValue)
 							fValue = '';
 					}

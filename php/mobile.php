@@ -10,7 +10,7 @@ This is the Jappix Mobile lightweight PHP code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/12/10
+Last revision: 22/12/10
 
 */
 
@@ -55,7 +55,7 @@ if(!defined('PHP_BASE'))
 			<?php _e("Login"); ?>
 			
 			<form action="#" method="post" onsubmit="return doLogin(this);">
-				<input class="xid mobile-images" type="email" name="xid" required="" />
+				<input class="xid mobile-images" type="text" name="xid" required="" />
 				<input class="password mobile-images" type="password" id="pwd" name="pwd" required="" />
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
