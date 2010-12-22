@@ -669,7 +669,7 @@ function createMini(domain, user, password) {
 				return false;
 			
 			// Not yet connected?
-			if(!MINI_CONNECTING && !MINI_AUTOCONNECT && ($(counter).text() == _e("Chat"))) {
+			if($(counter).text() == _e("Chat")) {
 				// Add a waiting marker
 				$(counter).text(_e("Please wait..."));
 				
