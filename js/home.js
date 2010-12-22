@@ -294,9 +294,9 @@ function registerForm() {
 // Plugin launcher
 function launchHome() {
 	// Define the vars
-	var home = '#home .';
+	var home = '#home ';
 	var button = home + 'button';
-	var locale = home + 'locale';
+	var locale = home + '.locale';
 	
 	// Allows the user to switch the home page
 	$(button).click(function() {

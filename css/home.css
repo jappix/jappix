@@ -149,30 +149,30 @@ Last revision: 12/12/10
 	text-decoration: none;
 }
 
-#home .right a.button {
+#home .right button {
 	display: block;
 	margin-left: 22px;
-	padding: 15px 20px 13px 20px;
-	width: 300px;
-	height: 34px;
+	padding: 12px 20px 13px 17px;
+	width: 342px;
+	height: 64px;
 	text-decoration: none;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
 
-#home .right a.button:hover {
+#home .right button:hover {
 	cursor: pointer;
 }
 
-#home .right a.button span {
+#home .right button span {
 	height: 16px;
 	width: 16px;
 	margin: 7px;
 	float: left;
 }
 
-#home .right a.button p {
+#home .right button p {
 	padding: 1px 0 0 20px;
 	font-size: 23px;
 	float: left;

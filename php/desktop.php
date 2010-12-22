@@ -65,15 +65,15 @@ if(!anonymousMode()) { ?>
 					
 					<p><?php _e("Login to your existing XMPP account or create a new one for free!"); ?></p>
 					
-					<a class="button login buttons-images">
+					<button class="login buttons-images">
 						<span class="home-images"></span>
 						<p><?php _e("Login"); ?></p>
-					</a>
+					</button>
 					
-					<a class="button register buttons-images">
+					<button class="register buttons-images">
 						<span class="home-images"></span>
 						<p><?php _e("Register"); ?></p>
-					</a>
+					</button>
 					
 					<p class="notice"><?php echo str_replace("PostPro", "<a href='http://www.post-pro.fr/'>PostPro</a>", T_("Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help.")); ?></p>
 				</div>
