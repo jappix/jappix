@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 22/12/10
 
 */
 
@@ -222,7 +222,7 @@ Last revision: 20/12/10
 	border-width: 1px 0 0 0;
 	padding: 5px;
 	width: 240px;
-	height: 14px;
+	min-height: 14px;
 }
 
 #jappix_mini div.jm_roster {
