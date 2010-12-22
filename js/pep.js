@@ -228,13 +228,13 @@ function displayPEP(xid, type) {
 				if(dText != _e("unknown"))
 					dVal = dText;
 				
-				// Apply this PEP event
-				$('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
-				$('#my-infos .f-' + type + ' input').val(dVal).placeholder();
-				
 				// Store this user event in our database
 				setDB(type + '-value', 1, dAttr);
 				setDB(type + '-text', 1, dVal);
+				
+				// Apply this PEP event
+				$('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
+				$('#my-infos .f-' + type + ' input').val(dVal).placeholder();
 			}
 			
 			else if((type == 'tune') || (type == 'geoloc')) {
