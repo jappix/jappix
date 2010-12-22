@@ -143,7 +143,7 @@ function checkLanguage() {
 	}
 	
 	// No cookie defined (or an unsupported value), naturally, we check the browser language
-	if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+	if(!isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		return 'en';
 	
 	// We get the language of the browser
