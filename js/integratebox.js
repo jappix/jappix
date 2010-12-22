@@ -48,7 +48,7 @@ function codeIntegrateBox(serv, url) {
 	// Switch to get the good DOM code
 	switch(serv) {
 		case 'youtube':
-			code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + url + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
+			code = '<object width="640" height="385" data="http://www.youtube.com/embed/' + url + '" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
 			
 			break;
 		
