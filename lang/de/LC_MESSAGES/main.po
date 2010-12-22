@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-15 13:46:21\n"
+"PO-Revision-Date: 2010-12-22 14:23:45\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -178,8 +178,8 @@ msgid "Message archives"
 msgstr "Nachrichtenarchiv"
 
 #: 
-msgid "Friend"
-msgstr "Freund"
+#~ msgid "Friend"
+#~ msgstr "Freund"
 
 #: 
 msgid "Date"
@@ -706,8 +706,8 @@ msgid "Server to query"
 msgstr "Server zur Abfrage"
 
 #: 
-msgid "Sorry, but the server didn't return any result!"
-msgstr "Entschuldigung, der Server hat keine Ergebnisse geliefert."
+#~ msgid "Sorry, but the server didn't return any result!"
+#~ msgstr "Entschuldigung, der Server hat keine Ergebnisse geliefert."
 
 #: 
 msgid "Accounts"
@@ -2032,4 +2032,60 @@ msgstr "Zuletzt gesehen: %s"
 #: 
 msgid "Inactive since: %s"
 msgstr "Inaktiv seit: %s"
+
+#: 
+msgid "View chat history"
+msgstr "Gesprächsverlauf anzeigen"
+
+#: 
+msgid "Monday"
+msgstr "Montag"
+
+#: 
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: 
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: 
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: 
+msgid "Friday"
+msgstr "Freitag"
+
+#: 
+msgid "Saturday"
+msgstr "Samstag"
+
+#: 
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: 
+msgid "Nothing found for: %s"
+msgstr "Nichts gefunden für: %s"
+
+#: 
+msgid "Please select a friend to view the chat history."
+msgstr "Wähle einen Freund, um den Gesprächsverlauf anzusehen."
+
+#: 
+msgid "Click here to solve the error"
+msgstr "Klicke hier, um den Fehler zu beheben"
+
+#: 
+msgid "Phone"
+msgstr "Telefon"
+
+#: 
+msgid "Commands"
+msgstr "Befehle"
+
+#: 
+msgid "Sorry, but the entity didn't return any result!"
+msgstr ""
 

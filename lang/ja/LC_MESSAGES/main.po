@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-15 13:46:17\n"
+"PO-Revision-Date: 2010-12-22 14:24:13\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -178,8 +178,8 @@ msgid "Message archives"
 msgstr "メッセージアーカイブ"
 
 #: 
-msgid "Friend"
-msgstr "友達"
+#~ msgid "Friend"
+#~ msgstr "友達"
 
 #: 
 msgid "Date"
@@ -706,8 +706,8 @@ msgid "Server to query"
 msgstr "サーバーに問い合わせ"
 
 #: 
-msgid "Sorry, but the server didn't return any result!"
-msgstr "ごめんなさい、サーバーがレスポンスを返しませんでした!"
+#~ msgid "Sorry, but the server didn't return any result!"
+#~ msgstr "ごめんなさい、サーバーがレスポンスを返しませんでした!"
 
 #: 
 msgid "Accounts"
@@ -2031,5 +2031,61 @@ msgstr ""
 
 #: 
 msgid "Inactive since: %s"
+msgstr ""
+
+#: 
+msgid "View chat history"
+msgstr ""
+
+#: 
+msgid "Monday"
+msgstr ""
+
+#: 
+msgid "Tuesday"
+msgstr ""
+
+#: 
+msgid "Wednesday"
+msgstr ""
+
+#: 
+msgid "Thursday"
+msgstr ""
+
+#: 
+msgid "Friday"
+msgstr ""
+
+#: 
+msgid "Saturday"
+msgstr ""
+
+#: 
+msgid "Sunday"
+msgstr ""
+
+#: 
+msgid "Nothing found for: %s"
+msgstr ""
+
+#: 
+msgid "Please select a friend to view the chat history."
+msgstr ""
+
+#: 
+msgid "Click here to solve the error"
+msgstr ""
+
+#: 
+msgid "Phone"
+msgstr ""
+
+#: 
+msgid "Commands"
+msgstr ""
+
+#: 
+msgid "Sorry, but the entity didn't return any result!"
 msgstr ""
 
