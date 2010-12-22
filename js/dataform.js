@@ -707,18 +707,22 @@ function fillDataForm(xml, id) {
 						xid_value += xid_arr[i];
 					}
 					
-					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="text" class="dataform-i" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
+					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" multiple="" class="dataform-i" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
 				}
 			}
 			
 			// Other stuffs that are similar
 			else {
-				// Text-single/JID-single field
+				// Text-single field
 				var iType = 'text';
 				
 				// Text-private field
 				if(type == 'text-private')
 					iType = 'password';
+				
+				// JID-single field
+				else if(type == 'jid-single')
+					iType = 'email';
 				
 				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + encodeQuotes(value) + '"' + required + ' />';
 			}

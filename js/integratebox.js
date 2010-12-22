@@ -8,7 +8,7 @@ These are the integratebox JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 22/12/10
 
 */
 
@@ -132,7 +132,7 @@ function filterIntegrateBox(string) {
 			to = RegExp.$1;
 		
 		// YouTube video box
-		else if(href.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))(\S+)((&amp;\S)|(&\S)|\s|$)/gim)) {
+		else if(href.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
 			url = RegExp.$8;
 			service = 'youtube';
 		}
