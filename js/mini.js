@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 22/12/10
 
 */
 
@@ -669,7 +669,7 @@ function createMini(domain, user, password) {
 				return false;
 			
 			// Not yet connected?
-			if(!MINI_CONNECTING && !MINI_AUTOCONNECT) {
+			if(!MINI_CONNECTING && !MINI_AUTOCONNECT && ($(counter).text() == _e("Chat"))) {
 				// Add a waiting marker
 				$(counter).text(_e("Please wait..."));
 				
