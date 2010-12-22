@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 22/12/10
 
 */
 
@@ -152,7 +152,7 @@ function handleAvatar(iq) {
 		resetAvatar(handleFrom);
 	
 	// We got a new checksum for us?
-	if((oChecksum != null) && (oChecksum != aChecksum)) {
+	if(((oChecksum != null) && (oChecksum != aChecksum)) || !FIRST_PRESENCE_SENT) {
 		// Define a proper checksum
 		var pChecksum = aChecksum;
 		

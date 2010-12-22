@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-20 22:18:29\n"
+"PO-Revision-Date: 2010-12-22 13:06:18\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -706,8 +706,8 @@ msgid "Server to query"
 msgstr "Serveur à interroger"
 
 #: 
-msgid "Sorry, but the server didn't return any result!"
-msgstr "Désolé, mais le serveur interrogé n'a retourné aucun résultat."
+#~ msgid "Sorry, but the server didn't return any result!"
+#~ msgstr "Désolé, mais le serveur interrogé n'a retourné aucun résultat."
 
 #: 
 msgid "Accounts"
@@ -2084,4 +2084,8 @@ msgstr "Téléphone"
 #: 
 msgid "Commands"
 msgstr "Commandes"
+
+#: 
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "Désolé, mais l'entité n'a pas retourné de résultat !"
 

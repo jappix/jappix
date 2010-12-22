@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 20/12/10
+# Last revision: 22/12/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -548,7 +548,7 @@ msgstr ""
 msgid "Server to query"
 msgstr ""
 
-msgid "Sorry, but the server didn't return any result!"
+msgid "Sorry, but the entity didn't return any result!"
 msgstr ""
 
 msgid "Accounts"

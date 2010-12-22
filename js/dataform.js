@@ -8,7 +8,7 @@ These are the dataform JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/12/10
+Last revision: 22/12/10
 
 */
 
@@ -471,9 +471,23 @@ function handleDataFormContent(iq, type) {
 			
 			// Command completed or subscription done
 			else if(((bStatus == 'completed') && (type == 'command')) || (!xRegister && (type == 'subscribe'))) {
-				// Tell the user all was okay
-				$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
+				// Display the good text
+				var cNote = $(xCommand).find('note');
 				
+				// Any note?
+				if(cNote.size()) {
+					cNote.each(function() {
+						$(pathID).append(
+							'<div class="onetitle ' + target + '-oneresult">' + $(this).text().htmlEnc() + '</div>'
+						);
+					});
+				}
+				
+				// Default text
+				else
+					$(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
+				
+				// Display the back button
 				buttonsDataForm(type, 'back', sessionID, from, '', '', target, pathID);
 				
 				// Add the gateway to our roster if subscribed
@@ -530,7 +544,7 @@ function handleDataFormContent(iq, type) {
 // Fills the dataform elements
 function fillDataForm(xml, id) {
 	/* REF: http://xmpp.org/extensions/xep-0004.html */
-	try {
+	
 	// Initialize new vars
 	var target = id.split('-')[0];
 	var pathID = '#' + target + ' .results[data-session=' + id + ']';
@@ -551,14 +565,14 @@ function fillDataForm(xml, id) {
 	// Form title
 	selector.find('title').each(function() {
 		$(pathID).append(
-			'<div class="onetitle ' + target + '-oneresult">' + $(this).text() + '</div>'
+			'<div class="onetitle ' + target + '-oneresult">' + $(this).text().htmlEnc() + '</div>'
 		);
 	});
 	
 	// Form instructions
 	selector.find('instructions').each(function() {
 		$(pathID).append(
-			'<div class="oneinstructions ' + target + '-oneresult">' + $(this).text() + '</div>'
+			'<div class="oneinstructions ' + target + '-oneresult">' + $(this).text().htmlEnc() + '</div>'
 		);
 	});
 	
@@ -718,8 +732,6 @@ function fillDataForm(xml, id) {
 			);
 		}
 	});
-	}
-	catch(e) { alert(e); }
 	
 	return false;
 }
@@ -876,5 +888,5 @@ function cleanDataForm(target) {
 
 // Displays the no result indicator
 function noResultDataForm(path) {
-	$(path).prepend('<p class="no-results">' + _e("Sorry, but the server didn't return any result!") + '</p>');
+	$(path).prepend('<p class="no-results">' + _e("Sorry, but the entity didn't return any result!") + '</p>');
 }
