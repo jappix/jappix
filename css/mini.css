@@ -27,6 +27,8 @@ Last revision: 22/12/10
 	margin: 0;
 	padding: 0;
 	font-size: 11px;
+	text-align: left;
+	text-transform: none;
 }
 
 #jappix_mini a {

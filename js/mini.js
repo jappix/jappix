@@ -891,7 +891,7 @@ function chat(type, xid, nick, hash, pwd) {
 					'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
 					
 					'<form action="#" method="post">' + 
-						'<input type="text" class="jm_send-messages" name="body" />' + 
+						'<input type="text" class="jm_send-messages" name="body" autocomplete="off" />' + 
 						'<input type="hidden" name="xid" value="' + xid + '" />' + 
 						'<input type="hidden" name="type" value="' + type + '" />' + 
 					'</form>' + 
