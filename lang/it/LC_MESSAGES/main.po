@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-22 14:24:09\n"
+"PO-Revision-Date: 2010-12-22 23:04:04\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -207,7 +207,7 @@ msgstr "Unisciti a una chat"
 
 #: 
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: 
 msgid "Available"
@@ -231,7 +231,7 @@ msgstr "Occupato"
 
 #: 
 msgid "Mood"
-msgstr ""
+msgstr "Umore"
 
 #: 
 msgid "None"
@@ -275,7 +275,7 @@ msgstr "Fiducioso"
 
 #: 
 msgid "Activity"
-msgstr ""
+msgstr "Attività"
 
 #: 
 msgid "Chores"
@@ -2035,57 +2035,57 @@ msgstr "Inattivo da: %s"
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "Visualizza la cronologia della chat"
 
 #: 
 msgid "Monday"
-msgstr ""
+msgstr "Lunedì"
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "Martedì"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercoledì"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "Giovedì"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "Venerdì"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "Sabato"
 
 #: 
 msgid "Sunday"
-msgstr ""
+msgstr "Domenica"
 
 #: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "Nessun risultato per: %s"
 
 #: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "Selezionare un amico per visualizzare la cronologia della chat"
 
 #: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Clicca qui per risolvere l'errore"
 
 #: 
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
 #: 
 msgid "Commands"
-msgstr ""
+msgstr "Comandi"
 
 #: 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
+msgstr "Ci dispiace, ma l'entità non ha dato nessun risultato!"
 
