@@ -122,74 +122,62 @@ function checkLanguage() {
 		$lang_found = file_exists($lang_file);
 		
 		// We check if the asked translation exists
-		if($lang_found)
+		if($lang_found) {
 			$lang = $defined_lang;
-		else
-			$lang = 'en';
-		
-		// Write a cookie
-		setcookie('jappix_locale', $lang, (time() + 31536000));
+			
+			// Write a cookie
+			setcookie('jappix_locale', $lang, (time() + 31536000));
+			
+			return $lang;
+		}
 	}
 	
 	// No language has been defined
-	else {
-		// A cookie is stored, read it!
-		if(isset($_COOKIE['jappix_locale'])) {
-			$check_cookie = $_COOKIE['jappix_locale'];
-			
-			// The cookie has a value, check this value
-			if($check_cookie && file_exists(PHP_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo'))
-				$lang = $check_cookie;
-			else
-				$lang = 'en';
-		}
+	// A cookie is stored, read it!
+	if(isset($_COOKIE['jappix_locale'])) {
+		$check_cookie = $_COOKIE['jappix_locale'];
 		
-		// No cookie defined, naturally, we check the browser language
-		else {
-			// We get the language of the browser
-			$nav_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-			$check_en = strtolower($nav_langs[0]);
-			
-			// We check if this is not english
-			if($check_en == 'en')
-				$lang = 'en';
-			
-			else {
-				$order = array();
-				
-				foreach($nav_langs as $entry) {
-					$indice = explode('=', $entry);
-					$lang = strtolower(substr(trim($indice[0]), 0, 2));
-					
-					if(!isset($indice[1]) || !$indice[1])
-						$indice = 1;
-					else
-						$indice = $indice[1];
-					
-					$order[$lang] = $indice;
-				}
-				
-				arsort($order);
-				$lang_found = false;
-				
-				foreach($order as $nav_lang => $val) {
-					$lang_file = PHP_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo';
-					
-					if(!$lang_found) {
-						$lang_found = file_exists($lang_file);
-						if ($lang_found)
-							$lang = $nav_lang;
-					}
-				}
-				
-				// If Jappix doen't know that language, we include the english translation
-				if(!$lang_found)
-					$lang = 'en';
-			}
-		}
+		// The cookie has a value, check this value
+		if($check_cookie && file_exists(PHP_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo'))
+			return $check_cookie;
 	}
 	
-	return $lang;
+	// No cookie defined (or an unsupported value), naturally, we check the browser language
+	if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+		return 'en';
+	
+	// We get the language of the browser
+	$nav_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$check_en = strtolower($nav_langs[0]);
+	
+	// We check if this is not english
+	if($check_en == 'en')
+		return 'en';
+	
+	$order = array();
+	
+	foreach($nav_langs as $entry) {
+		$indice = explode('=', $entry);
+		$lang = strtolower(substr(trim($indice[0]), 0, 2));
+		
+		if(!isset($indice[1]) || !$indice[1])
+			$indice = 1;
+		else
+			$indice = $indice[1];
+		
+		$order[$lang] = $indice;
+	}
+	
+	arsort($order);
+	
+	foreach($order as $nav_lang => $val) {
+		$lang_found = file_exists(PHP_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo');
+		if ($lang_found)
+			return $nav_lang;
+	}
+	
+	// If Jappix doen't know that language, we include the english translation
+	return 'en';
 }
 
 // The function to convert a ISO language code to its full name
