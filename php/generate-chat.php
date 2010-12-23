@@ -10,7 +10,7 @@ This is the PHP script used to generate a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 23/12/10
 
 */
 
@@ -26,13 +26,20 @@ hideErrors();
 compressThis();
 
 // Create the HTML file to be downloaded
-if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && isset($_POST['nick']) && !empty($_POST['nick']) && isset($_POST['avatar']) && !empty($_POST['avatar']) && isset($_POST['date']) && !empty($_POST['date'])) {
+if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && isset($_POST['nick']) && !empty($_POST['nick']) && isset($_POST['avatar']) && !empty($_POST['avatar']) && isset($_POST['date']) && !empty($_POST['date']) && isset($_POST['type']) && !empty($_POST['type'])) {
 	// Get the POST vars
 	$original = $_POST['content'];
 	$xid = $_POST['xid'];
 	$nick = $_POST['nick'];
 	$avatar = $_POST['avatar'];
 	$date = $_POST['date'];
+	$type = $_POST['type'];
+	
+	// Generate the XID link
+	$xid_link = 'xmpp:'.$xid;
+	
+	if($type == 'groupchat')
+		$xid_link .= '?join';
 	
 	// Generates the avatar code
 	if($avatar != 'none')
@@ -181,7 +188,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		'.$avatar.'
 		
 		<h1>'.$nick.'</h1>
-		<h3><a href="xmpp:'.$xid.'">'.$xid.'</a></h3>
+		<h3><a href="'.$xid_link.'">'.$xid.'</a></h3>
 		<h5>'.$date.'</h5>
 	</div>
 	

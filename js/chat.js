@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 23/12/10
 
 */
 
@@ -81,7 +81,7 @@ function generateChat(type, id, xid, nick) {
 	
 	// Groupchat special code
 	if(type == 'groupchat') {
-		specialAttributes = ' data-type="groupchat" data-xid="' + escaped_xid + '"';
+		specialAttributes = ' data-type="groupchat"';
 		specialAvatar = '';
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
 		specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
@@ -97,7 +97,7 @@ function generateChat(type, id, xid, nick) {
 	
 	// Chat (or other things?!) special code
 	else {
-		specialAttributes = '';
+		specialAttributes = ' data-type="chat"';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';

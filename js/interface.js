@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 23/12/10
 
 */
 
@@ -192,6 +192,7 @@ function generateChatLog(xid, hash) {
 	var avatar = $(path + 'top .avatar-container:first').html();
 	var nick = $(path + 'top .bc-name').text();
 	var date = getXMPPTime('local');
+	var type = $('#' + hash).attr('data-type');
 	
 	// Filter the content smileys
 	$(content).find('span.emoticon').each(function() {
@@ -215,7 +216,7 @@ function generateChatLog(xid, hash) {
 		avatar = 'none';
 	
 	// POST the values to the server
-	$.post('./php/generate-chat.php', { content: content, xid: xid, nick: nick, avatar: avatar, date: date }, function(data) {
+	$.post('./php/generate-chat.php', { content: content, xid: xid, nick: nick, avatar: avatar, date: date, type: type }, function(data) {
 		// Handled!
 		$(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
 	});
