@@ -8,7 +8,7 @@ These are the presence JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 23/12/10
 
 */
 
@@ -954,13 +954,18 @@ function launchPresence() {
 		var show = getUserShow();
 		var status = getUserStatus();
 		
+		// Read the old parameters
+		var old_show = getDB('presence-show', 1);
+		var old_status = getDB('options', 'presence-status');
+		
 		// Must send the presence?
-		if((show != getDB('presence-show', 1)) || (status != getDB('options', 'presence-status'))) {
+		if((show != old_show) || (status != old_status)) {
 			// Update the local stored status
 			setDB('options', 'presence-status', status);
 			
 			// Update the server stored status
-			storeOptions();
+			if(status != old_status)
+				storeOptions();
 			
 			// Send the presence
 			presenceSend();
