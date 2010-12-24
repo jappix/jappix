@@ -8,7 +8,7 @@ These are the temporary/persistent data store functions
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 13/11/10
+Last revision: 24/12/10
 
 */
 
@@ -83,7 +83,7 @@ function resetDB() {
 // Persistent: used to read a database entry
 function getPersistent(type, id) {
 	try {
-		return localStorage.getItem(JAPPIX_ID + '~' + type + '_' + id);
+		return localStorage.getItem(type + '_' + id);
 	}
 	
 	catch(e) {
@@ -94,7 +94,7 @@ function getPersistent(type, id) {
 // Persistent: used to update a database entry
 function setPersistent(type, id, value) {
 	try {
-		localStorage.setItem(JAPPIX_ID + '~' + type + '_' + id, value);
+		localStorage.setItem(type + '_' + id, value);
 		
 		return true;
 	}
@@ -108,7 +108,7 @@ function setPersistent(type, id, value) {
 		
 		// Set the item again
 		try {
-			localStorage.setItem(JAPPIX_ID + '~' + type + '_' + id, value);
+			localStorage.setItem(type + '_' + id, value);
 			
 			return true;
 		}
@@ -125,7 +125,7 @@ function setPersistent(type, id, value) {
 // Persistent: used to remove a database entry
 function removePersistent(type, id) {
 	try {
-		localStorage.removeItem(JAPPIX_ID + '~' + type + '_' + id);
+		localStorage.removeItem(type + '_' + id);
 		
 		return true;
 	}
