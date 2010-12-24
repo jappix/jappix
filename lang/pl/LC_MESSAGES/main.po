@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-22 14:24:36\n"
+"PO-Revision-Date: 2010-12-24 11:38:58\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -55,19 +55,19 @@ msgstr "Pokój rozmów został usunięty, teraz ktoś inny będzie mógł go stw
 
 #: 
 msgid "The user that you want to reach is not present in the room."
-msgstr ""
+msgstr "Użytkownik z którym chciałeś się skontaktować nie jest obecny w pokoju."
 
 #: 
 msgid "Please enter the group chat address to join."
-msgstr ""
+msgstr "Wprowadź adres pokoju czatowego aby do niego dołączyć."
 
 #: 
 msgid "Please enter your nickname to join %s."
-msgstr ""
+msgstr "Wprowadź swój nick aby dołączyć do %s."
 
 #: 
 msgid "This room (%s) is protected with a password."
-msgstr ""
+msgstr "Ten pokój (%s) jest chroniony hasłem."
 
 #: 
 msgid "Login"
@@ -95,7 +95,7 @@ msgstr "Zapamiętaj mnie"
 
 #: 
 msgid "This tool has been disabled, you cannot use it!"
-msgstr ""
+msgstr "To narzędzie zostało wyłączone, nie możesz z niego skorzystać!"
 
 #: 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -207,7 +207,7 @@ msgstr "Dołącz do rozmowy"
 
 #: 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: 
 msgid "Available"
@@ -231,7 +231,7 @@ msgstr "Zajęty"
 
 #: 
 msgid "Mood"
-msgstr ""
+msgstr "Nastrój"
 
 #: 
 msgid "None"
@@ -275,7 +275,7 @@ msgstr "Pewny siebie"
 
 #: 
 msgid "Activity"
-msgstr ""
+msgstr "Aktywność"
 
 #: 
 msgid "Chores"
@@ -563,7 +563,7 @@ msgstr "Zmień nazwę"
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Cześć, jestem %s, chciałbym abyś dodał mnie do swoich znajomych."
 
 #: 
 msgid "Smiley insertion"
@@ -595,7 +595,7 @@ msgstr "Kliknij poniższy link aby utworzyć zapis rozmowy i poczekaj. Później
 
 #: 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Ten czat jest pusty!"
 
 #: 
 msgid "Generate file!"
@@ -667,11 +667,11 @@ msgstr "Wybierz ulubiony"
 
 #: 
 msgid "Getting the name..."
-msgstr ""
+msgstr "Pobieranie nazwy..."
 
 #: 
 msgid "Gateway"
-msgstr ""
+msgstr "Brama"
 
 #: 
 msgid "Name"
@@ -935,7 +935,7 @@ msgstr "Jappix to projekt open-source od PostPro - organizacja non-profit która
 
 #: 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
-msgstr ""
+msgstr "Zaloguj się do twojego istniejącego konta XMPP. Możesz również użyć %s aby dołączyć do pokojów czatowych."
 
 #: 
 msgid "Previous"
@@ -1195,7 +1195,7 @@ msgstr "Załącz plik"
 
 #: 
 msgid "Send"
-msgstr ""
+msgstr "Wyślij"
 
 #: 
 msgid "Unattach the file"
@@ -1203,7 +1203,7 @@ msgstr "Odłącz plik"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr ""
+msgstr "Wystąpił błąd podczas wysyłania pliku: możliwe że jest zbyt duży (maksymalnie %s) bądź zablokowany!"
 
 #: 
 msgid "Authorization failed"
@@ -1419,7 +1419,7 @@ msgstr "Tryb anonimowy"
 
 #: 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Rejestracja włączona"
 
 #: 
 msgid "Encryption"
@@ -1431,7 +1431,7 @@ msgstr "Magazyn HTTPS"
 
 #: 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "Wymuś HTTPS"
 
 #: 
 msgid "Compression"
@@ -1475,7 +1475,7 @@ msgstr "Aby to wykonać, musisz mieć dostęp do shella na swoim serwerze i być
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "Po skonfigurowaniu, Jappix wygeneruje pliki cache. Może to długo potrwać, poczekaj aż aplikacja będzie pokazana i nie wciskaj żadnego klawisza."
 
 #: 
 msgid "Thanks for using Jappix!"
@@ -1519,7 +1519,7 @@ msgstr "Menedżer Jappix"
 
 #: 
 msgid "Manager access"
-msgstr ""
+msgstr "Dostęp menadżera"
 
 #: 
 msgid "Statistics"
@@ -2015,75 +2015,75 @@ msgstr "Musisz wybrać jednego lub kilku użytkowników do usunięcia!"
 
 #: 
 msgid "Yesterday"
-msgstr ""
+msgstr "Wczoraj"
 
 #: 
 msgid "%s days ago"
-msgstr ""
+msgstr "%s dni temu"
 
 #: 
 msgid "User currently active"
-msgstr ""
+msgstr "User jest aktualnie aktywny"
 
 #: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Ostatnio widziany: %s"
 
 #: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Nieaktywny od: %s"
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "Zobacz historię rozmów"
 
 #: 
 msgid "Monday"
-msgstr ""
+msgstr "Poniedziałek"
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "Wtorek"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "Środa"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "Czwartek"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "Piątek"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "Sobota"
 
 #: 
 msgid "Sunday"
-msgstr ""
+msgstr "Niedziela"
 
 #: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "Nieznaleziono niczego dla: %s"
 
 #: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "Wybierz znajomego aby zobaczyć archiwum."
 
 #: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Kliknij tutaj aby rozwiązać problem"
 
 #: 
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: 
 msgid "Commands"
-msgstr ""
+msgstr "Komendy"
 
 #: 
 msgid "Sorry, but the entity didn't return any result!"

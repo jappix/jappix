@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-15 13:46:06\n"
+"PO-Revision-Date: 2010-12-24 11:38:53\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -131,611 +131,611 @@ msgstr "أضف صديق."
 
 #: 
 msgid "Your groupchats"
-msgstr ""
+msgstr "غرفة الدردشة الخاصة بك"
 
 #: 
 msgid "Manage your favorite groupchats"
-msgstr ""
+msgstr "تحكم بغرف الدردشة المفضلة لديك"
 
 #: 
 msgid "More stuff"
-msgstr ""
+msgstr "خيارات أكثر"
 
 #: 
 msgid "Get involved!"
-msgstr ""
+msgstr "إنضم!"
 
 #: 
 msgid "Write code"
-msgstr ""
+msgstr "إكتب شفرة"
 
 #: 
 msgid "Translate"
-msgstr ""
+msgstr "ترجم"
 
 #: 
 msgid "Report a bug"
-msgstr ""
+msgstr "تقرير عن خلل"
 
 #: 
 msgid "Write documentation"
-msgstr ""
+msgstr "كتابة وثائق"
 
 #: 
 msgid "Donate"
-msgstr ""
+msgstr "التبرع"
 
 #: 
 msgid "Show all friends"
-msgstr ""
+msgstr "أعرض جميع الأصدقاء"
 
 #: 
 msgid "Only show connected friends"
-msgstr ""
+msgstr "أعرض فقط الأصدقاء المتصلين"
 
 #: 
 msgid "Message archives"
-msgstr ""
+msgstr "أرشفة الرسائل"
 
 #: 
-msgid "Friend"
-msgstr ""
+#~ msgid "Friend"
+#~ msgstr ""
 
 #: 
 msgid "Date"
-msgstr ""
+msgstr "التاريخ"
 
 #: 
 msgid "About Jappix"
-msgstr ""
+msgstr "حول Jappix"
 
 #: 
 msgid "A short message?"
-msgstr ""
+msgstr "رسالة قصيرة؟"
 
 #: 
 msgid "How are you?"
-msgstr ""
+msgstr "كيف حالك؟"
 
 #: 
 msgid "What are you doing?"
-msgstr ""
+msgstr "ماذا تفعل؟"
 
 #: 
 msgid "Join a chat"
-msgstr ""
+msgstr "دخول الدردشة"
 
 #: 
 msgid "Status"
-msgstr ""
+msgstr "حالة"
 
 #: 
 msgid "Available"
-msgstr ""
+msgstr "متاح"
 
 #: 
 msgid "Talkative"
-msgstr ""
+msgstr "ثرثرة"
 
 #: 
 msgid "Away"
-msgstr ""
+msgstr "بالخارج"
 
 #: 
 msgid "Not available"
-msgstr ""
+msgstr "غير متصل"
 
 #: 
 msgid "Busy"
-msgstr ""
+msgstr "مشغول"
 
 #: 
 msgid "Mood"
-msgstr ""
+msgstr "مزاجي"
 
 #: 
 msgid "None"
-msgstr ""
+msgstr "لا شيء"
 
 #: 
 msgid "Crazy"
-msgstr ""
+msgstr "مجنون"
 
 #: 
 msgid "Excited"
-msgstr ""
+msgstr "متحمس"
 
 #: 
 msgid "Playful"
-msgstr ""
+msgstr "لعوب"
 
 #: 
 msgid "Happy"
-msgstr ""
+msgstr "سعيد"
 
 #: 
 msgid "Shocked"
-msgstr ""
+msgstr "مصدوم"
 
 #: 
 msgid "Hot"
-msgstr ""
+msgstr "حر!"
 
 #: 
 msgid "Sad"
-msgstr ""
+msgstr "حزين"
 
 #: 
 msgid "Amorous"
-msgstr ""
+msgstr "مغرم"
 
 #: 
 msgid "Confident"
-msgstr ""
+msgstr "واثق"
 
 #: 
 msgid "Activity"
-msgstr ""
+msgstr "نشيط"
 
 #: 
 msgid "Chores"
-msgstr ""
+msgstr "أعمال منزلية"
 
 #: 
 msgid "Drinking"
-msgstr ""
+msgstr "يشرب"
 
 #: 
 msgid "Eating"
-msgstr ""
+msgstr "يأكل"
 
 #: 
 msgid "Exercising"
-msgstr ""
+msgstr "يمارس التمارين"
 
 #: 
 msgid "Grooming"
-msgstr ""
+msgstr "تبرج"
 
 #: 
 msgid "Appointment"
-msgstr ""
+msgstr "تجهيز"
 
 #: 
 msgid "Inactive"
-msgstr ""
+msgstr "غير نشط"
 
 #: 
 msgid "Relaxing"
-msgstr ""
+msgstr "مسترخي"
 
 #: 
 msgid "Talking"
-msgstr ""
+msgstr "يتحدث"
 
 #: 
 msgid "Traveling"
-msgstr ""
+msgstr "مسافر"
 
 #: 
 msgid "Working"
-msgstr ""
+msgstr "يعمل"
 
 #: 
 msgid "View profile"
-msgstr ""
+msgstr "مشاهدة الملف الشخصي"
 
 #: 
 msgid "Repeat this notice"
-msgstr ""
+msgstr "كرّر هذه الملاحظة"
 
 #: 
 msgid "Remove this notice"
-msgstr ""
+msgstr "أحذف هذه الملاحظة"
 
 #: 
 msgid "Your profile"
-msgstr ""
+msgstr "ملفك الشخصي"
 
 #: 
 msgid "Identity"
-msgstr ""
+msgstr "الهوية"
 
 #: 
 msgid "Profile image"
-msgstr ""
+msgstr "صورة الملف الشخصي"
 
 #: 
 msgid "Others"
-msgstr ""
+msgstr "آخرين"
 
 #: 
 msgid "Personal"
-msgstr ""
+msgstr "شخصي"
 
 #: 
 msgid "Complete name"
-msgstr ""
+msgstr "الإسم كامل"
 
 #: 
 msgid "Nickname"
-msgstr ""
+msgstr "الإسم المستعار"
 
 #: 
 msgid "First name"
-msgstr ""
+msgstr "الإسم الأول"
 
 #: 
 msgid "Last name"
-msgstr ""
+msgstr "الإسم الأخير"
 
 #: 
 msgid "Date of birth"
-msgstr ""
+msgstr "تاريخ عيد الميلاد"
 
 #: 
 msgid "Contact"
-msgstr ""
+msgstr "إتصل"
 
 #: 
 msgid "E-mail"
-msgstr ""
+msgstr "البريد الإلكتروني"
 
 #: 
 msgid "Website"
-msgstr ""
+msgstr "الموقع الشخصي"
 
 #: 
 msgid "Current"
-msgstr ""
+msgstr "الحالي"
 
 #: 
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr ""
+msgstr "كم مثير للشفقة! لا توجد صورة للملف الشخصي في هويتك!"
 
 #: 
 msgid "Address"
-msgstr ""
+msgstr "العنوان"
 
 #: 
 msgid "Street"
-msgstr ""
+msgstr "الشارع"
 
 #: 
 msgid "City"
-msgstr ""
+msgstr "المدينة"
 
 #: 
 msgid "Postal code"
-msgstr ""
+msgstr "الرمز البريدي"
 
 #: 
 msgid "Country"
-msgstr ""
+msgstr "الدولة"
 
 #: 
 msgid "Biography"
-msgstr ""
+msgstr "نبذة شخصية"
 
 #: 
 msgid "Important notice"
-msgstr ""
+msgstr "ملاحظة هامة"
 
 #: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
-msgstr ""
+msgstr "كن حذرًا عند وضع معلوماتك في ملفك الشخصي، بإمكان الجميع الوصول إليها (حتى الأشخاص الذين لا تود أن يصلون إليها)."
 
 #: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
-msgstr ""
+msgstr "لا يوجد شي خاص على XMPP; هذه واحدة من الأمور، ملفك الشخصي عام (vCard)."
 
 #: 
 msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr ""
+msgstr "الحد الأقصى إلى رفع صورة للملف الشخصي هو (25ك) صورة خاصة بك حتى يسهل التعرف عليك من قبل إصدقاءك."
 
 #: 
 msgid "Save"
-msgstr ""
+msgstr "إحفظ"
 
 #: 
 msgid "Cancel"
-msgstr ""
+msgstr "إلغاء"
 
 #: 
 msgid "Edit options"
-msgstr ""
+msgstr "تحرير الخيارات"
 
 #: 
 msgid "Channel"
-msgstr ""
+msgstr "القناة"
 
 #: 
 msgid "Sounds"
-msgstr ""
+msgstr "الأصوات"
 
 #: 
 msgid "Privacy"
-msgstr ""
+msgstr "الخصوصية"
 
 #: 
 msgid "Message archiving"
-msgstr ""
+msgstr "أرشفة الرسالة"
 
 #: 
 msgid "Store a history of your chats"
-msgstr ""
+msgstr "خزن رسائل الدردشة"
 
 #: 
 msgid "Geolocation"
-msgstr ""
+msgstr "تحديد الموقع الجغرافي"
 
 #: 
 msgid "Empty"
-msgstr ""
+msgstr "خالي"
 
 #: 
 msgid "Empty channel"
-msgstr ""
+msgstr "قناة خالية"
 
 #: 
 msgid "Persistent"
-msgstr ""
+msgstr "مستمر"
 
 #: 
 msgid "Maximum notices"
-msgstr ""
+msgstr "الحد الأقصى للملاحظات"
 
 #: 
 msgid "Account"
-msgstr ""
+msgstr "الحساب"
 
 #: 
 msgid "Change password"
-msgstr ""
+msgstr "تغيير كلمة السر"
 
 #: 
 msgid "Delete account"
-msgstr ""
+msgstr "حذف الحساب"
 
 #: 
 msgid "Old"
-msgstr ""
+msgstr "العمر"
 
 #: 
 msgid "New (2 times)"
-msgstr ""
+msgstr "جديد (عنصرين)"
 
 #: 
 msgid "Continue"
-msgstr ""
+msgstr "إستمرار"
 
 #: 
 msgid "To"
-msgstr ""
+msgstr "إلى"
 
 #: 
 msgid "Close"
-msgstr ""
+msgstr "أغلق"
 
 #: 
 msgid "unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: 
 msgid "Unavailable"
-msgstr ""
+msgstr "غير متاح"
 
 #: 
 msgid "is now"
-msgstr ""
+msgstr "الآن"
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
-msgstr ""
+msgstr "إنها هنا! صورة ملف شخصي جديدة."
 
 #: 
 msgid "The image file is not supported or has a bad size."
-msgstr ""
+msgstr "ملف الصورة لا يدعم أو الحجم لا يتناسب."
 
 #: 
 msgid "Reply"
-msgstr ""
+msgstr "الرد"
 
 #: 
 msgid "Error"
-msgstr ""
+msgstr "خطأ"
 
 #: 
 msgid "You"
-msgstr ""
+msgstr "أنت"
 
 #: 
 msgid "Remove"
-msgstr ""
+msgstr "حذف"
 
 #: 
 msgid "Rename"
-msgstr ""
+msgstr "إعادة الإسم"
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "مرحبا، أنا %s، أرغب بإضافتك كصديق لدي."
 
 #: 
 msgid "Smiley insertion"
-msgstr ""
+msgstr "إضافة رمز"
 
 #: 
 msgid "Change style"
-msgstr ""
+msgstr "التنسيق"
 
 #: 
 msgid "Text in bold"
-msgstr ""
+msgstr "نص عريض"
 
 #: 
 msgid "Text in italic"
-msgstr ""
+msgstr "نص مائل"
 
 #: 
 msgid "Underlined text"
-msgstr ""
+msgstr "نص أسفله خط"
 
 #: 
 msgid "Save chat"
-msgstr ""
+msgstr "حفظ الدردشة"
 
 #: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
-msgstr ""
+msgstr "إضغط على الوصلة التالية للحصول على سجل الدردشة وإنتظر. ومن ثم إضغط مجددًا للحصول على الملف."
 
 #: 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "هذه دردشة خالية!"
 
 #: 
 msgid "Generate file!"
-msgstr ""
+msgstr "إنشاء ملف!"
 
 #: 
 msgid "Download file!"
-msgstr ""
+msgstr "تحميل الملف"
 
 #: 
 msgid "Clean current chat"
-msgstr ""
+msgstr "مسح الدردشة الحالية"
 
 #: 
 msgid "Show user profile"
-msgstr ""
+msgstr "إظهار ملف العضو الشخصي"
 
 #: 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "قم بإضافة هذا الحساب إلى أصدقائك"
 
 #: 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "قم بإضافة مجموعة الدردشة هذه إلى المفضلة"
 
 #: 
 msgid "All tabs"
-msgstr ""
+msgstr "جميع التبويب"
 
 #: 
 msgid "Close this tab"
-msgstr ""
+msgstr "أغلق هذا التبويب"
 
 #: 
 msgid "no subject defined for this room."
-msgstr ""
+msgstr "لا يوجد عنوان إلى هذه الغرفة"
 
 #: 
 msgid "Administration panel for this room"
-msgstr ""
+msgstr "لوحة التحكم إلى هذه الغرفة"
 
 #: 
 msgid "Moderators"
-msgstr ""
+msgstr "المدراء"
 
 #: 
 msgid "Participants"
-msgstr ""
+msgstr "المشاركون"
 
 #: 
 msgid "Visitors"
-msgstr ""
+msgstr "الزوار"
 
 #: 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr "التحكم بالغرف المفضلة"
 
 #: 
 msgid "Change favorites"
-msgstr ""
+msgstr "تغيير المفضلة"
 
 #: 
 msgid "Search a room"
-msgstr ""
+msgstr "إختر غرفة"
 
 #: 
 msgid "Select a favorite"
-msgstr ""
+msgstr "إختر مفضلة"
 
 #: 
 msgid "Getting the name..."
-msgstr ""
+msgstr "الحصول على إسم"
 
 #: 
 msgid "Gateway"
-msgstr ""
+msgstr "بوابة"
 
 #: 
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 #: 
 msgid "Room"
-msgstr ""
+msgstr "غرفة"
 
 #: 
 msgid "Add"
-msgstr ""
+msgstr "إضافة"
 
 #: 
 msgid "Edit"
-msgstr ""
+msgstr "تحرير"
 
 #: 
 msgid "Search a room on"
-msgstr ""
+msgstr "يبحث عن غرفة"
 
 #: 
 msgid "No room found on this server."
-msgstr ""
+msgstr "لا توجد غرفة على هذا الخادم."
 
 #: 
 msgid "Service discovery"
-msgstr ""
+msgstr "استكشاف الخدمة"
 
 #: 
 msgid "Server to query"
-msgstr ""
+msgstr "خادم للإستعلام"
 
 #: 
-msgid "Sorry, but the server didn't return any result!"
-msgstr ""
+#~ msgid "Sorry, but the server didn't return any result!"
+#~ msgstr ""
 
 #: 
 msgid "Accounts"
-msgstr ""
+msgstr "حسابات"
 
 #: 
 msgid "Authentications"
-msgstr ""
+msgstr "مصادقة"
 
 #: 
 msgid "Automation"
-msgstr ""
+msgstr "تشغيل آلي"
 
 #: 
 msgid "Clients"
-msgstr ""
+msgstr "عملاء"
 
 #: 
 msgid "Collaboration"
-msgstr ""
+msgstr "إشتراك"
 
 #: 
 msgid "Components"
-msgstr ""
+msgstr "محتويات"
 
 #: 
 msgid "Rooms"
-msgstr ""
+msgstr "غرف"
 
 #: 
 msgid "Directories"
@@ -2031,5 +2031,61 @@ msgstr ""
 
 #: 
 msgid "Inactive since: %s"
+msgstr ""
+
+#: 
+msgid "View chat history"
+msgstr ""
+
+#: 
+msgid "Monday"
+msgstr ""
+
+#: 
+msgid "Tuesday"
+msgstr ""
+
+#: 
+msgid "Wednesday"
+msgstr ""
+
+#: 
+msgid "Thursday"
+msgstr ""
+
+#: 
+msgid "Friday"
+msgstr ""
+
+#: 
+msgid "Saturday"
+msgstr ""
+
+#: 
+msgid "Sunday"
+msgstr ""
+
+#: 
+msgid "Nothing found for: %s"
+msgstr ""
+
+#: 
+msgid "Please select a friend to view the chat history."
+msgstr ""
+
+#: 
+msgid "Click here to solve the error"
+msgstr ""
+
+#: 
+msgid "Phone"
+msgstr ""
+
+#: 
+msgid "Commands"
+msgstr ""
+
+#: 
+msgid "Sorry, but the entity didn't return any result!"
 msgstr ""
 
