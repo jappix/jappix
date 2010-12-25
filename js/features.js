@@ -8,7 +8,7 @@ This is the server features JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 25/12/10
 
 */
 
@@ -73,7 +73,7 @@ function handleFeatures(xml) {
 	if(selector.find('feature[var=' + NS_COMMANDS + ']').size())
 		commands = true;
 	
-	// Active the pep elements if available
+	// Enable the pep elements if available
 	if(pep) {
 		// Update our database
 		enableFeature('pep');
@@ -95,22 +95,22 @@ function handleFeatures(xml) {
 		logThis('XMPP server does not support PEP.', 2);
 	}
 	
-	// Active the pubsub features if available
+	// Enable the pubsub features if available
 	if(pubsub)
 		enableFeature(NS_PUBSUB);
 	
-	// Active the archiving features if available
+	// Enable the archiving features if available
 	if(archive) {
 		enableFeature(NS_URN_ARCHIVE);
 		
-		// Active the archiving sub-features if available
+		// Enable the archiving sub-features if available
 		if(archive_pref)
 			enableFeature(NS_URN_AR_PREF);
 		if(archive_auto)
 			enableFeature(NS_URN_AR_AUTO);
 	}
 	
-	// Active the commands features if available
+	// Enable the commands features if available
 	if(commands)
 		enableFeature(NS_COMMANDS);
 	

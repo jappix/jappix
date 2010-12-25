@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 25/12/10
 
 */
 
@@ -301,11 +301,12 @@ function applyBuddyInput(xid) {
 		return false;
 	});
 	
-	/* $(manage_infos + ' p.bm-remove a.block').click(function() {
-		// TODO
+	$(manage_infos + ' p.bm-remove a.block').click(function() {
+		closeBubbles();
+		updatePrivacy(xid, 'block');
 		
 		return false;
-	}); */
+	});
 	
 	$(manage_infos + ' a.save').click(function() {
 		// Send the item
@@ -483,7 +484,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 		html += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
 	
 	// Complete the HTML code
-	// html += ' / <a class="block">' + _e("Block") + '</a>';
+	html += ' / <a class="block">' + _e("Block") + '</a>';
 	
 	// Complete the HTML code
 	html += '</p>' + 
@@ -915,6 +916,10 @@ function launchRoster() {
 					'</p>' + 
 					
 					'<p class="buddy-conf-text">' + 
+						'- <a class="buddy-conf-more-privacy">' + _e("Privacy") +  '</a>' + 
+					'</p>' + 
+					
+					'<p class="buddy-conf-text">' + 
 						'- <a class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
 					'</p>' + 
 					
@@ -945,6 +950,9 @@ function launchRoster() {
 		
 		// When the user click on the archives link
 		$('.buddy-conf-more-archives').click(openArchives);
+		
+		// When the user click on the privacy link
+		$('.buddy-conf-more-privacy').click(openPrivacy);
 		
 		// When the user click on the service discovery link
 		$('.buddy-conf-more-service-disco').click(openDiscovery);

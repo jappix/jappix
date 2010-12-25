@@ -8,7 +8,7 @@ These are the temporary/persistent data store functions
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 24/12/10
+Last revision: 25/12/10
 
 */
 
@@ -172,10 +172,10 @@ function flushPersistent() {
 			// Get the pointer value
 			var current = localStorage.key(i);
 			var type = explodeThis('_', current, 0);
-			var id = explodeThis('~', explodeThis('_', current, 1), 1);
+			var id = explodeThis('_', current, 1);
 			
 			// Remove the entry if not important
-			if(!type.match(/^(session)$/i))
+			if(type != 'session')
 				removePersistent(type, id);
 		}
 		
