@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 25/12/10
 
 */
 
@@ -166,16 +166,18 @@ Last revision: 12/12/10
 }
 
 #home .right button span {
-	height: 16px;
-	width: 16px;
-	margin: 7px;
 	float: left;
 }
 
-#home .right button p {
-	padding: 1px 0 0 20px;
-	font-size: 23px;
-	float: left;
+#home .right button span.home-images {
+	height: 16px;
+	width: 16px;
+	margin: 6px 7px 7px 7px;
+}
+
+#home .right button span.text {
+	padding-left: 20px;
+	font-size: 1.5em;
 }
 
 #home .right .login {
@@ -194,12 +196,12 @@ Last revision: 12/12/10
 	background-position: 0 -80px;
 }
 
-#home .right .login p {
+#home .right .login span.text {
 	color: #2d612d;
 	text-shadow: 1px 1px 1px #5cb55c;
 }
 
-#home .right .login span {
+#home .right .login span.home-images {
 	background-position: 0 -230px;
 }
 
@@ -219,12 +221,12 @@ Last revision: 12/12/10
 	background-position: 0 -240px;
 }
 
-#home .right .register p {
+#home .right .register span.text {
 	color: #6d6813;
 	text-shadow: 1px 1px 1px #dbd56e;
 }
 
-#home .right .register span {
+#home .right .register span.home-images {
 	background-position: 0 -204px;
 }
 

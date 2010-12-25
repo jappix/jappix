@@ -67,12 +67,12 @@ if(!anonymousMode()) { ?>
 					
 					<button class="login buttons-images">
 						<span class="home-images"></span>
-						<p><?php _e("Login"); ?></p>
+						<span class="text"><?php _e("Login"); ?></span>
 					</button>
 					
 					<button class="register buttons-images">
 						<span class="home-images"></span>
-						<p><?php _e("Register"); ?></p>
+						<span class="text"><?php _e("Register"); ?></span>
 					</button>
 					
 					<p class="notice"><?php echo str_replace("PostPro", "<a href='http://www.post-pro.fr/'>PostPro</a>", T_("Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help.")); ?></p>
