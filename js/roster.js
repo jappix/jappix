@@ -485,6 +485,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Complete the HTML code
 	html += ' / <a class="block">' + _e("Block") + '</a>';
+	// TODO: unblock link if blocked
 	
 	// Complete the HTML code
 	html += '</p>' + 

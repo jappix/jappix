@@ -23,7 +23,7 @@ function openPrivacy() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a class="finish save disabled">' + _e("Save") + '</a>' + 
 		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
@@ -59,6 +59,10 @@ function updatePrivacy(xid, action) {
 // Plugin launcher
 function launchPrivacy() {
 	// Click events
-	$('#privacy .bottom .finish.save').click(savePrivacy);
-	$('#privacy .bottom .finish.cancel').click(closePrivacy);
+	$('#privacy .bottom .finish').click(function() {
+		if($(this).is('.cancel'))
+			return closePrivacy();
+		if($(this).is('.save') && !$(this).hasClass('disabled'))
+			return savePrivacy();
+	});
 }
