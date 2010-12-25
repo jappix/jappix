@@ -8,9 +8,9 @@ These are the PHP functions for Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier M.
+Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 25/12/10
 
 */
 
@@ -377,6 +377,45 @@ function getLanguageName($code) {
 	return null;
 }
 
+// The function to know if a language is right-to-left
+function isRTL($code) {
+	switch($code) {
+		// RTL language
+		case 'ar':
+		case 'he':
+		case 'dv':
+		case 'ur':
+			$is_rtl = true;
+			
+			break;
+		
+		// LTR language
+		default:
+			$is_rtl = false;
+			
+			break;
+	}
+	
+	return $is_rtl;
+}
+
+// The function to set the good localized <html /> tag
+function htmlTag($locale) {
+	// Initialize the tag
+	$html = '<html xml:lang="'.$locale.'" lang="'.$locale.'" dir="';
+	
+	// Set the good text direction
+	if(isRTL($locale))
+		$html .= 'rtl';
+	else
+		$html .= 'ltr';
+	
+	// Close the tag
+	$html .= '">';
+	
+	echo($html);
+}
+
 // The function which generates the available locales list
 function availableLocales($active_locale) {
 	// Initialize
@@ -690,6 +729,7 @@ function getFileType($ext) {
 		case 'psp':
 		case 'xcf':
 			$file_type = 'image';
+			
 			break;
 		
 		// Videos
@@ -712,6 +752,7 @@ function getFileType($ext) {
 		case '3gp':
 		case 'avc':
 			$file_type = 'video';
+			
 			break;
 		
 		// Sounds
@@ -739,6 +780,7 @@ function getFileType($ext) {
 		case 'snd':
 		case 'voc':
 			$file_type = 'audio';
+			
 			break;
 		
 		// Documents
@@ -779,6 +821,7 @@ function getFileType($ext) {
 		case 'dhtml':
 		case 'mshtml':
 			$file_type = 'document';
+			
 			break;
 		
 		// Packages
@@ -805,11 +848,13 @@ function getFileType($ext) {
 		case 'arj':
 		case 'msi':
 			$file_type = 'package';
+			
 			break;
 		
 		// Others
 		default:
 			$file_type = 'other';
+			
 			break;
 	}
 	

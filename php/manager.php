@@ -10,7 +10,7 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 25/12/10
 
 */
 
@@ -206,7 +206,7 @@ else
 
 ?>
 <!DOCTYPE html>
-<html>
+<?php htmlTag($locale); ?>
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />

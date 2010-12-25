@@ -10,7 +10,7 @@ This is the Jappix desktop html markup
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 25/12/10
 
 */
 
@@ -20,7 +20,7 @@ if(!defined('PHP_BASE'))
 
 ?>
 <!DOCTYPE html>
-<html xml:lang="<?php echo($locale); ?>" lang="<?php echo($locale); ?>">
+<?php htmlTag($locale); ?>
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
