@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 25/12/10
 
 */
 
@@ -248,6 +248,11 @@ Last revision: 19/12/10
 #archives .one-line .avatar {
 	max-height: 30px;
 	max-width: 30px;
+}
+
+#page-engine b.name.me[data-lost] {
+	background-position: 0 -1679px;
+	padding-left: 18px;
 }
 
 #page-engine .user-message,

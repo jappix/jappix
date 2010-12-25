@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 22/12/10
+Last revision: 25/12/10
 
 */
 
@@ -20,6 +20,7 @@ function handleMessage(message) {
 	
 	// We get the message items
 	var from = fullXID(getStanzaFrom(message));
+	var id = message.getID();
 	var type = message.getType();
 	var body = message.getBody();
 	var node = message.getNode();
@@ -59,6 +60,10 @@ function handleMessage(message) {
 	
 	// Get the date stamp
 	stamp = extractStamp(d_stamp);
+	
+	// Received message
+	if(hasReceived(message))
+		return messageReceived(hash, id);
 	
 	// Chatstate message
 	if(node && ((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) {
@@ -335,6 +340,10 @@ function handleMessage(message) {
 			var fromName = resource;
 			var chatType = 'chat';
 			
+			// Must send a receipt notification?
+			if(hasReceipt(message) && (id != null))
+				sendReceived(type, from, id);
+			
 			// It does not come from a groupchat user, get the full name
 			if(!GCUser)
 				fromName = getBuddyName(xid).htmlEnc();
@@ -367,9 +376,9 @@ function handleMessage(message) {
 }
 
 // Sends a given message
-function sendMessage(id, type) {
+function sendMessage(hash, type) {
 	// Get the values
-	var message_area = $('#' + id + ' .message-area');
+	var message_area = $('#' + hash + ' .message-area');
 	var body = message_area.val();
 	var xid = unescape(message_area.attr('data-to'));
 	
@@ -381,6 +390,10 @@ function sendMessage(id, type) {
 		// We send the message through the XMPP network
 		var aMsg = new JSJaCMessage();
 		aMsg.setTo(xid);
+		
+		// Set an ID
+		var id = genID();
+		aMsg.setID(id);
 		
 		// /clear shortcut
 		if(body.match(/^\/clear/))
@@ -428,12 +441,21 @@ function sendMessage(id, type) {
 			
 			// Generates the correct message depending of the choosen style
 			var notXHTML = true;
-			var genMsg = generateMessage(aMsg, body, id);
+			var genMsg = generateMessage(aMsg, body, hash);
 			
 			if(genMsg == 'XHTML')
 				notXHTML = false;
 			
+			// Receipt request
+			var receipt_request = receiptRequest(hash);
+			
+			if(receipt_request)
+				aMsg.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
+			
+			// Chatstate
 			aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
+			
+			// Send it!
 			con.send(aMsg, handleErrorReply);
 			
 			// Filter the xHTML message (for us!)
@@ -443,7 +465,11 @@ function sendMessage(id, type) {
 			// Finally we display the message we just sent
 			var my_xid = getXID();
 			
-			displayMessage('chat', my_xid, id, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me');
+			displayMessage('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me', id);
+			
+			// Receipt timer
+			if(receipt_request)
+				checkReceived(hash, id);
 		}
 		
 		// Groupchat message type
@@ -453,7 +479,7 @@ function sendMessage(id, type) {
 				body = body.replace(/^\/say (.+)/, '$1');
 				
 				aMsg.setType('groupchat');
-				generateMessage(aMsg, body, id);
+				generateMessage(aMsg, body, hash);
 				
 				con.send(aMsg, handleErrorReply);
 			}
@@ -483,7 +509,7 @@ function sendMessage(id, type) {
 				else if(body) {
 					aMsg.setType('chat');
 					aMsg.setTo(xid);
-					generateMessage(aMsg, body, id);
+					generateMessage(aMsg, body, hash);
 					
 					con.send(aMsg, handleErrorReply);
 				}
@@ -568,14 +594,14 @@ function sendMessage(id, type) {
 			// No shortcut, this is a message
 			else {
 				aMsg.setType('groupchat');
-				generateMessage(aMsg, body, id);
+				generateMessage(aMsg, body, hash);
 				
 				con.send(aMsg, handleMessageError);
 			}
 		}
 		
 		// We reset the message input
-		$('#' + id + ' .message-area').val('');
+		$('#' + hash + ' .message-area').val('');
 	}
 	
 	finally {
@@ -586,9 +612,9 @@ function sendMessage(id, type) {
 }
 
 // Generates the correct message area style
-function generateStyle(id) {
+function generateStyle(hash) {
 	// Initialize the vars
-	var styles = '#' + id + ' div.bubble-style';
+	var styles = '#' + hash + ' div.bubble-style';
 	var checkbox = styles + ' input[type=checkbox]:checked';
 	var color = styles + ' a.color.selected';
 	var style = '';
@@ -624,12 +650,12 @@ function generateStyle(id) {
 }
 
 // Generates the correct message code
-function generateMessage(aMsg, body, id) {
+function generateMessage(aMsg, body, hash) {
 	// Create the classical body
 	aMsg.setBody(body);
 	
 	// Get the style
-	var style = $('#' + id + ' .message-area').attr('style');
+	var style = $('#' + hash + ' .message-area').attr('style');
 	
 	// A message style is choosen
 	if(style) {
@@ -672,7 +698,7 @@ function generateMessage(aMsg, body, id) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(type, xid, hash, name, body, time, stamp, message_type, is_xhtml, nick_quote, mode) {
+function displayMessage(type, xid, hash, name, body, time, stamp, message_type, is_xhtml, nick_quote, mode, id) {
 	// Generate some stuffs
 	var has_avatar = false;
 	var xid_hash = '';
@@ -686,11 +712,15 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		xid_hash = hex_md5(xid);
 	}
 	
+	// No ID?
+	if(!id)
+		id = '';
+	
 	// Filter the message
 	var filteredMessage = filterThisMessage(body, name, is_xhtml);
 	
 	// Display the received message in the room
-	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '" data-stamp="' + stamp + '">';
+	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '" data-stamp="' + stamp + '" data-id="' + id + '">';
 	
 	// Name color attribute
 	if(type == 'groupchat')

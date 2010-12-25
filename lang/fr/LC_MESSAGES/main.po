@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-22 14:23:59\n"
+"PO-Revision-Date: 2010-12-25 22:01:55\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2088,4 +2088,8 @@ msgstr "Commandes"
 #: 
 msgid "Sorry, but the entity didn't return any result!"
 msgstr "Désolé, mais l'entité n'a pas retourné de résultat !"
+
+#: 
+msgid "Your friend seems not to have received your message(s)!"
+msgstr "Votre ami(e) n'a pas l'air d'avoir reçu(e) votre/vos messages(s) !"
 

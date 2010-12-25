@@ -74,6 +74,7 @@ var NS_URN_ARCHIVE =  NS_XMPP + 'archive';
 var NS_URN_AR_PREF =  NS_URN_ARCHIVE + ':pref';
 var NS_URN_AR_AUTO =  NS_URN_ARCHIVE + ':auto';
 var NS_URN_DELAY =    NS_XMPP + 'delay';
+var NS_URN_RECEIPTS = NS_XMPP + 'receipts';
 var NS_RSM =          NS_PROTOCOL + 'rsm';
 var NS_IPV6 =         'ipv6';
 var NS_XHTML =        'http://www.w3.org/1999/xhtml';

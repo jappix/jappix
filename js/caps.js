@@ -8,7 +8,7 @@ These are the CAPS JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 25/12/10
 
 */
 
@@ -55,7 +55,8 @@ function myDiscoInfos() {
 		NS_URN_TIME,
 		NS_URN_PING,
 		NS_URN_ARCHIVE,
-		NS_URN_AR_PREF
+		NS_URN_AR_PREF,
+		NS_URN_RECEIPTS
 	);
 	
 	return fArray;
@@ -235,6 +236,7 @@ function displayDiscoInfos(from, xml) {
 	
 	// xHTML-IM indicator
 	var xhtml_im = false;
+	var receipts = false;
 	
 	// Display the supported features
 	$(xml).find('feature').each(function() {
@@ -243,12 +245,18 @@ function displayDiscoInfos(from, xml) {
 		// xHTML-IM
 		if(current == NS_XHTML_IM)
 			xhtml_im = true;
+		
+		// Receipts
+		else if(current == NS_URN_RECEIPTS)
+			receipts = true;
 	});
 	
-	// Apply xHTML-IM
+	// Paths
 	var path = $('#' + hash);
+	var message_area = path.find('.message-area');
 	var style = path.find('.chat-tools-style');
 	
+	// Apply xHTML-IM
 	if(xhtml_im)
 		style.show();
 	
@@ -258,12 +266,18 @@ function displayDiscoInfos(from, xml) {
 		style.find('.bubble-style').remove();
 		
 		// Reset the markers
-		path.find('.message-area').removeAttr('style')
-					  .removeAttr('data-color')
-					  .removeAttr('data-bold')
-					  .removeAttr('data-italic')
-					  .removeAttr('data-underline');
+		message_area.removeAttr('style')
+			    .removeAttr('data-color')
+			    .removeAttr('data-bold')
+			    .removeAttr('data-italic')
+			    .removeAttr('data-underline');
 	}
+	
+	// Apply receipts
+	if(receipts)
+		message_area.attr('data-receipts', 'true');
+	else
+		message_area.removeAttr('data-receipts');
 }
 
 // Generates the CAPS hash
