@@ -1,0 +1,88 @@
+/*
+
+Jappix - An open social platform
+This is the vCard CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Contact: http://project.jappix.com/contact
+Last revision: 06/11/10
+
+*/
+
+#vcard .avatar-container {
+	float: left;
+	text-align: center;
+	margin: 20px 0 35px 35px;
+	max-width: 96px;
+	max-height: 96px;
+}
+
+#vcard .avatar {
+	max-width: 96px;
+	max-height: 96px;
+}
+
+#vcard .avatar-delete {
+	background-position: 3px -1195px;
+	margin: 12px 25px 0 025px;
+	padding-left: 20px;
+	font-size: 0.9em;
+	float: right;
+}
+
+#vcard .no-avatar {
+	width: 300px;
+	color: #9d3c3c;
+	padding: 10px;
+	margin: 15px 0 20px 40px;
+	background: #ffd9d9;
+	border: 1px #d99898 solid;
+	font-size: 0.8em;
+}
+
+#vcard .forms textarea {
+	height: 111px;
+	width: 358px;
+	margin: 5px 12px 10px 12px;
+}
+
+#vcard .forms .avatar-info {
+	border-width: 1px;
+	border-style: solid;
+	display: none;
+	width: 370px;
+	height: 15px;
+	font-size: 0.85em;
+	padding: 10px;
+}
+
+#vcard .forms .avatar-ok {
+	background-color: #c4ed9b;
+	color: #40661c;
+	border-color: #578030;
+}
+
+#vcard .forms .avatar-error {
+	background-color: #e79595;
+	color: #7c1010;
+	border-color: #7c1010;
+}
+
+#vcard .infos {
+	width: 179px;
+	height: 328px;
+	margin: 15px 15px 15px 0;
+	padding: 0 8px;
+	float: right;
+}
+
+#vcard .send {
+	float: right;
+}
+
+#vcard .send:hover {
+	cursor: pointer;
+}
