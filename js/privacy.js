@@ -88,6 +88,8 @@ function handlePrivacy(iq) {
 			setDB('privacy', $(this).attr('value'), $(this).attr('action'));
 	});
 	
+	// TODO: support for all kind of "type" attributes: groups and so on
+	
 	logThis('Got privacy list(s).', 3);
 }
 
