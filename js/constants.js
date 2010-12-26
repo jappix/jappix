@@ -6,9 +6,9 @@ These are the constants JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Stefan Strigler, Valérian Saliou
+Authors: Stefan Strigler, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 26/12/10
 
 */
 
@@ -70,6 +70,7 @@ var NS_URN_PING =     NS_XMPP + 'ping';
 var NS_URN_ADATA =    NS_XMPP + 'avatar:data';
 var NS_URN_AMETA =    NS_XMPP + 'avatar:metadata';
 var NS_URN_MBLOG =    NS_XMPP + 'microblog:0';
+var NS_URN_ALBUMS =    NS_XMPP + 'albums';
 var NS_URN_ARCHIVE =  NS_XMPP + 'archive';
 var NS_URN_AR_PREF =  NS_URN_ARCHIVE + ':pref';
 var NS_URN_AR_AUTO =  NS_URN_ARCHIVE + ':auto';

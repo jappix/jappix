@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-22 14:24:26\n"
+"PO-Revision-Date: 2010-12-26 10:41:39\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -991,15 +991,15 @@ msgstr "Verplicht"
 
 #: 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "Je bent geregistreerd, hier is je XMPP adres:"
 
 #: 
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 #: 
 msgid "Project"
-msgstr ""
+msgstr "Project"
 
 #: 
 msgid "Encrypted"
@@ -1007,11 +1007,11 @@ msgstr "Versleuteld"
 
 #: 
 msgid "Uncrypted"
-msgstr ""
+msgstr "Niet ge-encrypt"
 
 #: 
 msgid "Where are you?"
-msgstr ""
+msgstr "Waar ben je?"
 
 #: 
 msgid "What's up with you?"
@@ -1019,15 +1019,15 @@ msgstr "Hoe gaat het met je?"
 
 #: 
 msgid "Fetching the social channel..."
-msgstr ""
+msgstr "Binnenhalen van het kanaal..."
 
 #: 
 msgid "You are synchronized with your network."
-msgstr ""
+msgstr "Je bent gesynchroniseerd met het netwerk"
 
 #: 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr ""
+msgstr "Kan niets verzenden: je kunt alleen berichten ontvangen!"
 
 #: 
 msgid "Media viewer"
@@ -1039,19 +1039,19 @@ msgstr "Blader"
 
 #: 
 msgid "Command"
-msgstr ""
+msgstr "Commando"
 
 #: 
 msgid "Subscribe"
-msgstr ""
+msgstr "Inschrijven"
 
 #: 
 msgid "Join"
-msgstr ""
+msgstr "Aanmelden"
 
 #: 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: 
 msgid "Search"
@@ -1063,15 +1063,15 @@ msgstr "Geen resultaat!"
 
 #: 
 msgid "No notifications."
-msgstr ""
+msgstr "Geen meldingen"
 
 #: 
 msgid "would like to add you as a friend."
-msgstr ""
+msgstr "zou je graag als vriend toevoegen."
 
 #: 
 msgid "would like you to join this chatroom:"
-msgstr ""
+msgstr "wil naar je chatroom komen."
 
 #: 
 msgid "Do you accept?"
@@ -1087,7 +1087,7 @@ msgstr "Nee"
 
 #: 
 msgid "would like to get authorization."
-msgstr ""
+msgstr "wil geauthoriseerd worden."
 
 #: 
 msgid "Submit"
@@ -1095,11 +1095,11 @@ msgstr "Verzend"
 
 #: 
 msgid "Client"
-msgstr ""
+msgstr "Client"
 
 #: 
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #: 
 msgid "Local time"
@@ -1111,7 +1111,7 @@ msgstr "Commentaar"
 
 #: 
 msgid "User profile"
-msgstr ""
+msgstr "Gebruikers profiel"
 
 #: 
 msgid "See his/her position on the globe"
@@ -1131,23 +1131,23 @@ msgstr "Groepen"
 
 #: 
 msgid "Unclassified"
-msgstr ""
+msgstr "Ongeklassificeerd"
 
 #: 
 msgid "Authorize"
-msgstr ""
+msgstr "Autoriseer"
 
 #: 
 msgid "Ask for authorization"
-msgstr ""
+msgstr "Vraag om een authorisatie"
 
 #: 
 msgid "Prohibit"
-msgstr ""
+msgstr "Toegestaan"
 
 #: 
 msgid "Block"
-msgstr ""
+msgstr "Blokkeren"
 
 #: 
 msgid "Chat"
@@ -1163,7 +1163,7 @@ msgstr "Jappix Mobiel"
 
 #: 
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: 
 msgid "Mobile"
@@ -1179,11 +1179,11 @@ msgstr "Activeer Javascript"
 
 #: 
 msgid "Your channel"
-msgstr ""
+msgstr "Jouw kanaal"
 
 #: 
 msgid "Channel of"
-msgstr ""
+msgstr "Kanaal van"
 
 #: 
 msgid "More notices..."
@@ -1191,11 +1191,11 @@ msgstr "Meer mededelingen..."
 
 #: 
 msgid "Attach a file"
-msgstr ""
+msgstr "Toevoegen van bestand"
 
 #: 
 msgid "Send"
-msgstr ""
+msgstr "Verzenden"
 
 #: 
 msgid "Unattach the file"
@@ -2087,5 +2087,9 @@ msgstr ""
 
 #: 
 msgid "Sorry, but the entity didn't return any result!"
+msgstr ""
+
+#: 
+msgid "Your friend seems not to have received your message(s)!"
 msgstr ""
 
