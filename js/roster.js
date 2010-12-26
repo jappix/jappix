@@ -489,7 +489,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Complete the HTML code
 	html += '</p>' + 
-		'<p class="bm-rename talk-images"><label>' + _e("Rename") + '</label> <input type="text" value="' + nick + '" /></p>';
+		'<p class="bm-rename talk-images"><label>' + _e("Rename") + '</label> <input type="text" value="' + encodeQuotes(nick) + '" /></p>';
 	
 	// Only show group tool if not a gateway
 	if(!isGateway(xid))

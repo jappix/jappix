@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 26/12/10
 
 */
 
@@ -346,7 +346,7 @@ function handleMessage(message) {
 			
 			// It does not come from a groupchat user, get the full name
 			if(!GCUser)
-				fromName = getBuddyName(xid).htmlEnc();
+				fromName = getBuddyName(xid);
 			else
 				chatType = 'private';
 			
@@ -712,15 +712,17 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		xid_hash = hex_md5(xid);
 	}
 	
-	// No ID?
-	if(!id)
-		id = '';
+	// Any ID?
+	var data_id = '';
+	
+	if(id)
+		data_id = ' data-id="' + id + '"';
 	
 	// Filter the message
 	var filteredMessage = filterThisMessage(body, name, is_xhtml);
 	
 	// Display the received message in the room
-	var messageCode = '<div class="one-line last ' + xid_hash + ' ' + message_type + nick_quote + '" data-type="' + message_type + '" data-stamp="' + stamp + '" data-id="' + id + '">';
+	var messageCode = '<div class="one-line ' + message_type + nick_quote + '"' + data_id + '>';
 	
 	// Name color attribute
 	if(type == 'groupchat')
@@ -735,27 +737,15 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		attribute += '"';
 	
 	// Filter the previous displayed message
-	var one_line = '#' + hash + ' .one-line';
-	var last = $(one_line + ':last');
-	var first_last = $(one_line + ':has(b.name):last');
-	var last_name = $(one_line + ' b:last').attr('data-name');
-	var last_type = first_last.attr('data-type');
-	var last_stamp = parseInt(first_last.attr('data-stamp'));
+	var last = $('#' + hash + ' .one-group:last');
+	var last_name = last.find('b.name').attr('data-name');
+	var last_type = last.attr('data-type');
+	var last_stamp = parseInt(last.attr('data-stamp'));
+	var grouped = false;
 	
-	if((last_name == escaped_name) && (message_type == last_type) && ((stamp - last_stamp) <= 1800)) {
-		last.removeClass('last');
-		
-		// No need to get the avatar
-		has_avatar = false;
-	}
-	
-	else {
-		// Any avatar to add?
-		if(has_avatar)
-			messageCode += '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
-		
-		messageCode += '<span class="date">' + time + '</span><b data-name="' + escaped_name + '" ' + attribute + '>' + name + '</b>';
-	}
+	// We can group it with another previous message
+	if((last_name == escaped_name) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
+		grouped = true;
 	
 	// Is it a /me command?
 	if(body.match(/(^|>)(\/me )([^<]+)/))
@@ -763,14 +753,33 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	
 	messageCode += filteredMessage + '</div>';
 	
+	// Must group it?
+	var group_path = ' .one-group:last';
+	
+	if(!grouped) {
+		// Generate message headers
+		var message_head = '';
+		
+		// Any avatar to add?
+		if(has_avatar)
+			message_head += '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
+		
+		// Add the date & the name
+		message_head += '<span class="date">' + time + '</span><b data-name="' + escaped_name + '" ' + attribute + '>' + name + '</b>';
+		
+		// Generate message code
+		group_path = '';
+		messageCode = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + messageCode + '</div>';
+	}
+	
 	// Archive message
 	if(hash == 'archives')
-		$('#archives .logs').append(messageCode);
+		$('#archives .logs' + group_path).append(messageCode);
 	
 	// Instant message
 	else {
 		// Write the code in the DOM
-		$('#' + hash + ' .content').append(messageCode);
+		$('#' + hash + ' .content' + group_path).append(messageCode);
 		
 		// Must get the avatar?
 		if(has_avatar && xid)

@@ -8,7 +8,7 @@ These are the receipts JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 26/12/10
 
 */
 
@@ -59,44 +59,37 @@ function sendReceived(type, to, id) {
 
 // Tells the message has been received
 function messageReceived(hash, id) {
+	// Line selector
 	var path = $('#' + hash + ' .one-line[data-id=' + id + ']');
 	
 	// Add a received marker
-	path.attr('data-received', 'true');
+	path.attr('data-received', 'true')
+	    .removeAttr('data-lost');
 	
-	// Select the last buddy name
-	var buddy_name;
-	
-	if(path.find('b.name.me').size())
-		buddy_name = path.find('b.name.me');
-	else
-		buddy_name = path.prev('.one-line:has(b.name.me)');
-	
-	// TODO: sort messages by group
-	// TODO: remove the lost marker if all the group messages are okay
-	// TODO: update generate-chat.php CSS
+	// Group selector
+	var group = path.parent();
 	
 	// Remove the group marker
-	buddy_name.removeClass('talk-images')
-		  .removeAttr('data-lost')
-		  .removeAttr('title');
+	if(!group.find('.one-line[data-lost]').size()) {
+		group.find('b.name').removeClass('talk-images')
+				    .removeAttr('title');
+	}
 	
 	return false;
 }
 
 // Checks if the message has been received
 function checkReceived(hash, id) {
-	// Paths
-	var path = $('#' + hash);
-	var last_name = path.find('b.name.me:last');
-	
-	path.find('.one-line[data-id=' + id + ']').oneTime('5s', function() {
+	// Fire a check 10 seconds later
+	$('#' + hash + ' .one-line[data-id=' + id + ']').oneTime('10s', function() {
 		// Not received?
 		if($(this).attr('data-received') != 'true') {
 			// Add a "lost" marker
-			last_name.addClass('talk-images')
-				 .attr('data-lost', 'true')
-				 .attr('title', _e("Your friend seems not to have received your message(s)!"));
+			$(this).attr('data-lost', 'true');
+			
+			// Add a warn on the buddy-name
+			$(this).parent().find('b.name').addClass('talk-images')
+						       .attr('title', _e("Your friend seems not to have received your message(s)!"));
 		}
 	});
 }

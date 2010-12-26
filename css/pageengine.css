@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 26/12/10
 
 */
 
@@ -201,58 +201,60 @@ Last revision: 25/12/10
 	max-width: 32px;
 }
 
-#page-engine .one-line,
-#archives .one-line {
-	padding-left: 50px;
-}
-
-#page-engine .one-line.last,
-#archives .one-line.last {
+#page-engine .one-group,
+#archives .one-group {
 	border-bottom: 1px dotted #d0d0d0;
 	padding-bottom: 8px;
 	margin-bottom: 10px;
 }
 
-#page-engine .one-line b.name,
-#archives .one-line b.name {
+#page-engine .one-line,
+#archives .one-line,
+#page-engine .one-group b.name,
+#archives .one-group b.name {
+	padding-left: 50px;
+}
+
+#page-engine .one-group b.name,
+#archives .one-group b.name {
 	display: block;
 	margin-bottom: 4px;
 }
 
-#page-engine .one-line b.me,
-#archives .one-line b.me {
+#page-engine .one-group b.name.me,
+#archives .one-group b.name.me {
 	color: #123a5c;
 }
 
-#page-engine .one-line b.him,
-#archives .one-line b.him {
+#page-engine .one-group b.name.him,
+#archives .one-group b.name.him {
 	color: #801e1e;
 }
 
-#page-engine .one-line span.date,
-#archives .one-line span.date {
+#page-engine .one-group span.date,
+#archives .one-group span.date {
 	float: right;
 	font-size: 0.9em;
 }
 
-#page-engine .one-line .avatar-container,
-#archives .one-line .avatar-container {
+#page-engine .one-group .avatar-container,
+#archives .one-group .avatar-container {
 	text-align: center;
-	margin: 4px 0 0 -44px;
+	margin: 4px 0 0 6px;
 	height: 30px;
 	width: 30px;
 	float: left;
 }
 
-#page-engine .one-line .avatar,
-#archives .one-line .avatar {
+#page-engine .one-group .avatar,
+#archives .one-group .avatar {
 	max-height: 30px;
 	max-width: 30px;
 }
 
-#page-engine b.name.me[data-lost] {
-	background-position: 0 -1679px;
-	padding-left: 18px;
+#page-engine b.name.talk-images {
+	background-position: 50px -1679px;
+	padding-left: 68px;
 }
 
 #page-engine .user-message,
