@@ -54,6 +54,41 @@ function savePrivacy() {
 // Does something for privacy on a given XID
 function updatePrivacy(xid, action) {	
 	// TODO
+	
+	// Update the marker
+	setDB('privacy', xid, action);
+}
+
+// Gets privacy lists
+function getPrivacy(lists) {
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	
+	// Privacy query
+	var iqQuery = iq.setQuery(NS_PRIVACY);
+	
+	// Lists
+	if(lists && lists.length) {
+		for(i in lists)
+			iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': lists[i]}));
+	}
+	
+	con.send(iq, handlePrivacy);
+	
+	logThis('Getting privacy list(s): ' + lists);
+}
+
+// Handles privacy lists
+function handlePrivacy(iq) {
+	var iqQuery = iq.getQuery();
+	
+	// Store markers for each item
+	$(iqQuery).find('item').each(function() {
+		if($(this).attr('type') == 'jid')
+			setDB('privacy', $(this).attr('value'), $(this).attr('action'));
+	});
+	
+	logThis('Got privacy list(s).', 3);
 }
 
 // Plugin launcher

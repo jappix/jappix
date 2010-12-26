@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 25/12/10
+# Last revision: 26/12/10
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -873,6 +873,9 @@ msgid "Authorize"
 msgstr ""
 
 msgid "Ask for authorization"
+msgstr ""
+
+msgid "Unblock"
 msgstr ""
 
 msgid "Prohibit"

@@ -416,6 +416,7 @@ function normalQuit() {
 function getEverything() {
 	getFeatures();
 	getRoster();
+	getPrivacy(['block']);
 	getStorage(NS_ROSTERNOTES);
 }
 

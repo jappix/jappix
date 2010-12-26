@@ -287,6 +287,13 @@ function applyBuddyInput(xid) {
 		return false;
 	});
 	
+	$(manage_infos + ' p.bm-authorize a.unblock').click(function() {
+		closeBubbles();
+		updatePrivacy(xid, 'allow');
+		
+		return false;
+	});
+	
 	$(manage_infos + ' p.bm-remove a.remove').click(function() {
 		closeBubbles();
 		sendRoster(xid, 'remove');
@@ -303,7 +310,7 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-remove a.block').click(function() {
 		closeBubbles();
-		updatePrivacy(xid, 'block');
+		updatePrivacy(xid, 'deny');
 		
 		return false;
 	});
@@ -456,39 +463,57 @@ function buddyEdit(xid, nick, subscription, groups) {
 	var path = '#buddy-list .buddy[data-xid=' + xid + '] .';
 	var html = '<div class="manage-infos">';
 	
+	// Get the privacy state
+	var privacy_state = getDB('privacy', xid);
+	
 	// The subscription with this buddy is not full
-	if(subscription != 'both') {
-		var links = '';
+	if((subscription != 'both') || (privacy_state == 'deny')) {
+		var authorize_links = '';
 		html += '<p class="bm-authorize talk-images">';
 		
 		// Link to allow to see our status
 		if((subscription == 'to') || (subscription == 'none'))
-			links += '<a class="to">' + _e("Authorize") + '</a>';
+			authorize_links += '<a class="to">' + _e("Authorize") + '</a>';
 		
 		// Link to ask to see his/her status
 		if((subscription == 'from') || (subscription == 'none')) {
-			if(links)
-				links += ' / ';
+			if(authorize_links)
+				authorize_links += ' / ';
 			
-			links += '<a class="from">' + _e("Ask for authorization") + '</a>';
+			authorize_links += '<a class="from">' + _e("Ask for authorization") + '</a>';
 		}
 		
-		html += links + '</p>';
+		// Link to unblock this buddy
+		if(privacy_state == 'deny') {
+			if(authorize_links)
+				authorize_links += ' / ';
+			
+			html += '<a class="unblock">' + _e("Unblock") + '</a>';
+		}
+		
+		html += authorize_links + '</p>';
 	}
 	
 	// Complete the HTML code
-	html += '<p class="bm-remove talk-images"><a class="remove">' + _e("Remove") + '</a>';
+	var remove_links = '';
+	html += '<p class="bm-remove talk-images">';
+	remove_links = '<a class="remove">' + _e("Remove") + '</a>';
 	
 	// This buddy is allowed to see our presence, we can show a "prohibit" link
 	if((subscription == 'both') || (subscription == 'from'))
-		html += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
+		remove_links += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
 	
 	// Complete the HTML code
-	html += ' / <a class="block">' + _e("Block") + '</a>';
-	// TODO: unblock link if blocked
+	if(privacy_state != 'deny') {
+		if(remove_links)
+			remove_links += ' / ';
+		
+		remove_links += '<a class="block">' + _e("Block") + '</a>';
+	}
 	
 	// Complete the HTML code
-	html += '</p>' + 
+	html += remove_links + 
+		'</p>' + 
 		'<p class="bm-rename talk-images"><label>' + _e("Rename") + '</label> <input type="text" value="' + encodeQuotes(nick) + '" /></p>';
 	
 	// Only show group tool if not a gateway
