@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 27/12/10
 
 */
 
@@ -18,10 +18,10 @@ function pageTitle(title) {
 	var select = $('head title');
 	
 	// Anonymous mode?
-	var head_name = getName().htmlEnc();
+	var head_name = getName();
 	
 	if(isAnonymous())
-		head_name = ANONYMOUS_ROOM.htmlEnc() + ' (' + _e("anonymous mode") + ')';
+		head_name = ANONYMOUS_ROOM + ' (' + _e("anonymous mode") + ')';
 	
 	// We change the title to give essential informations
 	switch(title) {
@@ -31,12 +31,12 @@ function pageTitle(title) {
 			break;
 		
 		case 'talk':
-			select.html('Jappix &bull; ' + head_name);
+			select.html('Jappix &bull; ' + head_name.htmlEnc());
 			
 			break;
 		
 		case 'new':
-			select.html('[' + pendingEvents() + '] Jappix &bull; ' + head_name);
+			select.html('[' + pendingEvents() + '] Jappix &bull; ' + head_name.htmlEnc());
 			
 			break;
 		

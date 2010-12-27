@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 27/12/10
 
 */
 
@@ -702,7 +702,6 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	// Generate some stuffs
 	var has_avatar = false;
 	var xid_hash = '';
-	var escaped_name = escape(name);
 	
 	if(!nick_quote)
 		nick_quote = '';
@@ -738,13 +737,13 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	
 	// Filter the previous displayed message
 	var last = $('#' + hash + ' .one-group:last');
-	var last_name = last.find('b.name').attr('data-name');
+	var last_name = last.find('b.name').attr('data-xid');
 	var last_type = last.attr('data-type');
 	var last_stamp = parseInt(last.attr('data-stamp'));
 	var grouped = false;
 	
 	// We can group it with another previous message
-	if((last_name == escaped_name) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
+	if((last_name == xid) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
 		grouped = true;
 	
 	// Is it a /me command?
@@ -765,7 +764,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 			message_head += '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		
 		// Add the date & the name
-		message_head += '<span class="date">' + time + '</span><b data-name="' + escaped_name + '" ' + attribute + '>' + name + '</b>';
+		message_head += '<span class="date">' + time + '</span><b data-xid="' + encodeQuotes(xid) + '" ' + attribute + '>' + name + '</b>';
 		
 		// Generate message code
 		group_path = '';

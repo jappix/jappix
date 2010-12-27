@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 27/12/10
 
 */
 
@@ -200,6 +200,7 @@ function handleMessage(msg) {
 			// Get the values
 			var from = fullXID(getStanzaFrom(msg));
 			var xid = bareXID(from);
+			var use_xid = xid;
 			var hash = hex_md5(xid);
 			var nick = thisResource(from);
 			
@@ -222,10 +223,16 @@ function handleMessage(msg) {
 			var stamp = extractStamp(d_stamp);
 			
 			// Is this a groupchat private message?
-			if(exists('#jappix_mini #chat-' + hash + '[data-type=groupchat]') && ((type == 'chat') || !type)) {
+			if(exists('#jappix_mini #chat-' + hash + '[data-type=groupchat]')) {
 				// Regenerate some stuffs
-				xid = from;
-				hash = hex_md5(xid);
+				if((type == 'chat') || !type) {
+					xid = from;
+					hash = hex_md5(xid);
+				}
+				
+				// XID to use for a groupchat
+				else
+					use_xid = from;
 			}
 			
 			// Message type
@@ -259,7 +266,7 @@ function handleMessage(msg) {
 				chat(type, xid, nick, hash);
 			
 			// Display the message
-			displayMessage(type, body, nick, hash, time, stamp, message_type);
+			displayMessage(type, body, use_xid, nick, hash, time, stamp, message_type);
 			
 			// Notify the user if not focused & the message is not a groupchat old one
 			if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !document.hasFocus()) && (message_type == 'user-message'))
@@ -530,7 +537,7 @@ function sendMessage(aForm) {
 			
 			// Display the message we sent
 			if(type != 'groupchat')
-				displayMessage(type, body, 'me', hash, getCompleteTime(), getTimeStamp(), 'user-message');
+				displayMessage(type, body, getXID(), 'me', hash, getCompleteTime(), getTimeStamp(), 'user-message');
 			
 			logThis('Message (' + type + ') sent to: ' + xid);
 		}
@@ -775,21 +782,20 @@ function createMini(domain, user, password) {
 }
 
 // Displays a given message
-function displayMessage(type, body, nick, hash, time, stamp, message_type) {
-	// Generate some stuffs
+function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) {
+	// Generate path
 	var path = '#chat-' + hash;
-	var escaped_nick = escape(nick);
 	
 	// Remove the previous message border if needed
 	var last = jQuery(path + ' div.jm_group:last');
 	var last_stamp = parseInt(last.attr('data-stamp'));
 	var last_b = jQuery(path + ' b:last');
-	var last_nick = last_b.attr('data-nick');
+	var last_xid = last_b.attr('data-xid');
 	var last_type = last.attr('data-type');
 	var grouped = false;
 	var header = '';
 	
-	if((last_nick == escaped_nick) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
+	if((last_xid == xid) && (message_type == last_type) && ((stamp - last_stamp) <= 1800))
 		grouped = true;
 	
 	else {
@@ -799,11 +805,11 @@ function displayMessage(type, body, nick, hash, time, stamp, message_type) {
 		
 		// Write the buddy name at the top of the message group
 		if(type == 'groupchat')
-			header += '<b style="color: ' + generateColor(nick) + ';" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
+			header += '<b style="color: ' + generateColor(nick) + ';" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
 		else if(nick == 'me')
-			header += '<b class="jm_me" data-nick="' + escaped_nick + '">' + _e("You") + '</b>';
+			header += '<b class="jm_me" data-xid="' + encodeQuotes(xid) + '">' + _e("You") + '</b>';
 		else
-			header += '<b class="jm_him" data-nick="' + escaped_nick + '">' + nick.htmlEnc() + '</b>';
+			header += '<b class="jm_him" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
 	}
 	
 	// Filter the message
