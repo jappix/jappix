@@ -8,7 +8,7 @@ This is the manager CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 28/12/10
 
 */
 
@@ -138,7 +138,7 @@ Last revision: 20/12/10
 
 #manager-top .logo {
 	background-position: 0 0;
-	width: 205px;
+	min-width: 87px;
 	height: 42px;
 	padding: 26px 0 0 67px;
 	font-size: 32px;
@@ -174,7 +174,8 @@ Last revision: 20/12/10
 	-webkit-border-radius: 3px;
 }
 
-#manager-top .meta a:hover {
+#manager-top .meta a:hover,
+#manager-top .meta a:focus {
 	border: 1px solid #95b1b7;
 }
 
@@ -213,7 +214,8 @@ Last revision: 20/12/10
 	-webkit-border-top-left-radius: 4px;
 }
 
-#manager-tabs a:hover {
+#manager-tabs a:hover,
+#manager-tabs a:focus {
 	background-color: #cedee1;
 	text-decoration: none;
 }
@@ -353,7 +355,8 @@ Last revision: 20/12/10
 	border-color: #b3ad4f;
 }
 
-#manager-content a.info.neutral:hover {
+#manager-content a.info.neutral:hover,
+#manager-content a.info.neutral:focus {
 	background-color: #eced96;
 }
 
@@ -366,7 +369,8 @@ Last revision: 20/12/10
 	border-color: #5e9f5f;
 }
 
-#manager-content a.info.success:hover {
+#manager-content a.info.success:hover,
+#manager-content a.info.success:focus {
 	background-color: #a0d5a1;
 }
 
@@ -379,7 +383,8 @@ Last revision: 20/12/10
 	border-color: #b34f4f;
 }
 
-#manager-content a.info.fail:hover {
+#manager-content a.info.fail:hover,
+#manager-content a.info.fail:focus {
 	background-color: #ea9595;
 }
 
@@ -496,7 +501,8 @@ Last revision: 20/12/10
 	-webkit-box-shadow: none;
 }
 
-#manager-buttons input:hover {
+#manager-buttons input:hover,
+#manager-buttons input:focus {
 	cursor: pointer;
 	background-color: rgba(255,255,255,0.2);
 }

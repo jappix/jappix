@@ -10,12 +10,12 @@ This is the hosts configuration form (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 ?>

@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
@@ -57,7 +57,8 @@ Last revision: 25/12/10
 	display: block;
 }
 
-#home .locale .list a:hover {
+#home .locale .list a:hover,
+#home .locale .list a:focus {
 	background-color: rgba(255,255,255,0.1);
 	cursor: pointer;
 }
@@ -89,14 +90,14 @@ Last revision: 25/12/10
 	width: 350px;
 	height: 370px;
 	margin: 15px 0 15px 15px;
-	color: #d9d9d9;
+	color: #efefef;
 	text-align: center;
 }
 
 #home .left .logo {
 	background-position: 0 0;
 	float: left;
-	margin: 52px 38px 38px 38px;
+	margin: 52px 39px 38px;
 	width: 272px;
 	height: 68px;
 }
@@ -144,7 +145,8 @@ Last revision: 25/12/10
 	border-color: black;
 }
 
-#home .right p a:hover {
+#home .right p a:hover,
+#home .right p a:focus {
 	border-style: solid;
 	text-decoration: none;
 }
@@ -187,7 +189,8 @@ Last revision: 25/12/10
 	margin-top: 22px;
 }
 
-#home .right .login:hover {
+#home .right .login:hover,
+#home .right .login:focus {
 	border: 1px solid #419141;
 }
 
@@ -212,7 +215,8 @@ Last revision: 25/12/10
 	margin-top: 15px;
 }
 
-#home .right .register:hover {
+#home .right .register:hover,
+#home .right .register:focus {
 	border: 1px solid #d2c93f;
 }
 
@@ -256,7 +260,8 @@ Last revision: 25/12/10
 	float: right;
 }
 
-#home .right .navigation a:hover {
+#home .right .navigation a:hover,
+#home .right .navigation a:focus {
 	text-decoration: underline;
 }
 

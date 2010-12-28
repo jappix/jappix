@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/12/10
+Last revision: 28/12/10
 
 */
 
@@ -77,7 +77,8 @@ Last revision: 22/12/10
 	-webkit-border-top-left-radius: 4px;
 }
 
-.popup .tab a:hover {
+.popup .tab a:hover,
+.popup .tab a:focus {
 	background-color: #cedee1;
 	text-decoration: none;
 }
@@ -352,7 +353,8 @@ Last revision: 22/12/10
 	-webkit-border-radius: 3px;
 }
 
-.popup a.one-button:hover {
+.popup a.one-button:hover,
+.popup a.one-button:focus {
 	border: 1px solid #95b1b7;
 }
 
@@ -506,7 +508,8 @@ a.finish {
 	-webkit-border-radius: 4px;
 }
 
-a.finish:hover {
+a.finish:hover,
+a.finish:focus {
 	cursor: pointer;
 	background-color: rgba(255,255,255,0.2);
 }
@@ -520,6 +523,7 @@ a.finish.disabled {
 }
 
 a.finish.disabled:hover,
+a.finish.disabled:focus,
 a.finish.disabled:active {
 	cursor: default;
 	background-color: rgba(255,255,255,0.1);

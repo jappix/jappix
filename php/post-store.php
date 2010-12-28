@@ -10,12 +10,12 @@ This is the store configuration POST handler (manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Music upload?
@@ -61,7 +61,7 @@ if(isset($_POST['upload'])) {
 	}
 	
 	// Music path with new name
-	$path_music = PHP_BASE.'/store/music/'.$name_music;
+	$path_music = JAPPIX_BASE.'/store/music/'.$name_music;
 	
 	// An error occured?
 	if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>

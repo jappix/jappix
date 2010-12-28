@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/12/10
+Last revision: 28/12/10
 
 */
 
@@ -31,7 +31,8 @@ a {
 	outline-style: none;
 }
 
-a:hover {
+a:hover,
+a:focus {
 	cursor: pointer;
 	text-decoration: underline;
 }

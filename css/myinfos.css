@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 28/12/10
 
 */
 
@@ -60,7 +60,9 @@ Last revision: 12/12/10
 }
 
 #my-infos .element .icon:hover,
-#my-infos .element div.bubble a:hover {
+#my-infos .element div.bubble a:hover,
+#my-infos .element .icon:focus,
+#my-infos .element div.bubble a:focus {
 	background-color: #f4f4f4;
 }
 

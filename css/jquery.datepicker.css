@@ -8,7 +8,7 @@ This is the datepicker CSS stylesheet
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/11/10
+Last revision: 28/12/10
 
 */
 
@@ -87,7 +87,8 @@ tbody.datepickerMonths td.datepickerSelected {
 	background: #9daaae;
 }
 
-div.datepicker a:hover {
+div.datepicker a:hover,
+div.datepicker a:focus {
 	color: #3d7682;
 }
 

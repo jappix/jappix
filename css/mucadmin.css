@@ -8,7 +8,7 @@ This is the mucadmin CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/12/10
+Last revision: 28/12/10
 
 */
 
@@ -81,7 +81,8 @@ Last revision: 22/12/10
 	float: left;
 }
 
-#mucadmin .aut-remove:hover {
+#mucadmin .aut-remove:hover,
+#mucadmin .aut-remove:focus {
 	font-weight: bold;
 	text-decoration: none;
 }

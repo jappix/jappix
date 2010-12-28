@@ -10,13 +10,13 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
 // The function to check if Jappix is already installed
 function isInstalled() {
-	if(!file_exists(PHP_BASE.'/store/conf/installed.xml'))
+	if(!file_exists(JAPPIX_BASE.'/store/conf/installed.xml'))
 		return false;
 	
 	return true;
@@ -24,7 +24,7 @@ function isInstalled() {
 
 // The function to get the users.xml file hashed name
 function usersConfName() {
-	$conf_dir = PHP_BASE.'/store/conf';
+	$conf_dir = JAPPIX_BASE.'/store/conf';
 	
 	// No conf folder?
 	if(!is_dir($conf_dir))
@@ -50,7 +50,7 @@ function usersConfName() {
 // The function to write a XML file
 function writeXML($type, $xmlns, $xml) {
 	// Generate the file path
-	$conf_path = PHP_BASE.'/store/'.$type.'/';
+	$conf_path = JAPPIX_BASE.'/store/'.$type.'/';
 	$conf_name = $xmlns.'.xml';
 	
 	// Secured stored file?
@@ -82,7 +82,7 @@ function writeXML($type, $xmlns, $xml) {
 // The function to read a XML file
 function readXML($type, $xmlns) {
 	// Generate the file path
-	$conf_path = PHP_BASE.'/store/'.$type.'/';
+	$conf_path = JAPPIX_BASE.'/store/'.$type.'/';
 	$conf_name = $xmlns.'.xml';
 	
 	// Secured stored file?
@@ -106,7 +106,7 @@ function readXML($type, $xmlns) {
 
 // The function to get the Jappix app. current version
 function getVersion() {
-	$file = file_get_contents(PHP_BASE.'/VERSION');
+	$file = file_get_contents(JAPPIX_BASE.'/VERSION');
 	$version = trim($file);
 	
 	return $version;
@@ -118,8 +118,12 @@ function checkLanguage() {
 	if(isset($_GET['l']) && !empty($_GET['l'])) {
 		// We define some stuffs
 		$defined_lang = strtolower($_GET['l']);
-		$lang_file = PHP_BASE.'/lang/'.$defined_lang.'/LC_MESSAGES/main.mo';
-		$lang_found = file_exists($lang_file);
+		$lang_file = JAPPIX_BASE.'/lang/'.$defined_lang.'/LC_MESSAGES/main.mo';
+		
+		if($defined_lang == 'en')
+			$lang_found = true;
+		else
+			$lang_found = file_exists($lang_file);
 		
 		// We check if the asked translation exists
 		if($lang_found) {
@@ -132,13 +136,12 @@ function checkLanguage() {
 		}
 	}
 	
-	// No language has been defined
-	// A cookie is stored, read it!
+	// No language has been defined, but a cookie is stored
 	if(isset($_COOKIE['jappix_locale'])) {
 		$check_cookie = $_COOKIE['jappix_locale'];
 		
 		// The cookie has a value, check this value
-		if($check_cookie && file_exists(PHP_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo'))
+		if($check_cookie && (file_exists(JAPPIX_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo') || ($check_cookie == 'en')))
 			return $check_cookie;
 	}
 	
@@ -171,8 +174,9 @@ function checkLanguage() {
 	arsort($order);
 	
 	foreach($order as $nav_lang => $val) {
-		$lang_found = file_exists(PHP_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo');
-		if ($lang_found)
+		$lang_found = file_exists(JAPPIX_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo');
+		
+		if($lang_found)
 			return $nav_lang;
 	}
 	
@@ -419,7 +423,7 @@ function htmlTag($locale) {
 // The function which generates the available locales list
 function availableLocales($active_locale) {
 	// Initialize
-	$scan = scandir(PHP_BASE.'/lang/');
+	$scan = scandir(JAPPIX_BASE.'/lang/');
 	$list = array();
 	
 	// Loop the available languages
@@ -471,7 +475,7 @@ function genStrongHash($string) {
 // The function to generate the version hash
 function genHash($version) {
 	// Get the configuration files path
-	$conf_path = PHP_BASE.'/store/conf/';
+	$conf_path = JAPPIX_BASE.'/store/conf/';
 	$conf_main = $conf_path.'main.xml';
 	$conf_hosts = $conf_path.'hosts.xml';
 	$conf_background = $conf_path.'background.xml';
@@ -563,7 +567,7 @@ function getFiles($h, $l, $t, $g, $f) {
 	if(HOST_STATIC != '.')
 		$path_to = HOST_STATIC.'/';
 	else
-		$path_to = PHP_BASE.'/';
+		$path_to = JAPPIX_BASE.'/';
 		
 	if(!multiFiles()) {
 		$values = array();
@@ -689,14 +693,14 @@ function staticLocation() {
 // The function to include a translation file
 function includeTranslation($locale, $domain) {
 	T_setlocale(LC_MESSAGES, $locale);
-	T_bindtextdomain($domain, PHP_BASE.'/lang');
+	T_bindtextdomain($domain, JAPPIX_BASE.'/lang');
 	T_bind_textdomain_codeset($domain, 'UTF-8');
 	T_textdomain($domain);
 }
 
 // The function to check the cache presence
 function hasCache($hash) {
-	if(file_exists(PHP_BASE.'/store/cache/'.$hash.'.cache'))
+	if(file_exists(JAPPIX_BASE.'/store/cache/'.$hash.'.cache'))
 		return true;
 	else
 		return false;

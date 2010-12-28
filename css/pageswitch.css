@@ -8,7 +8,7 @@ This is the page-switch CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
@@ -95,8 +95,11 @@ Last revision: 18/12/10
 }
 
 #page-switch .more-button:hover,
+#page-switch .more-button:focus,
 #page-switch .switcher:hover,
-#page-switch .more-content .switcher:hover {
+#page-switch .switcher:focus,
+#page-switch .more-content .switcher:hover,
+#page-switch .more-content .switcher:focus {
 	background-color: #cdd6d7;
 	cursor: pointer;
 }
@@ -146,7 +149,8 @@ Last revision: 18/12/10
 	-webkit-border-radius: 2px;
 }
 
-#page-switch .exit:hover {
+#page-switch .exit:hover,
+#page-switch .exit:focus {
 	background-color: #9fc0c4;
 }
 
@@ -163,7 +167,8 @@ Last revision: 18/12/10
 	background-color: #f6edc3 !important;
 }
 
-#page-switch .chan-newmessage:hover {
+#page-switch .chan-newmessage:hover,
+#page-switch .chan-newmessage:focus {
 	background-color: #f1eac0 !important;
 }
 

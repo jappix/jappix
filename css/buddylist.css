@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 28/12/10
 
 */
 
@@ -65,17 +65,6 @@ Last revision: 19/12/10
 	cursor: pointer;
 }
 
-#buddy-list .invite-friend-click {
-	color: #7e93a7;
-	font-weight: bold;
-}
-
-#buddy-list .invite-friend-click:hover {
-	color: #697e91;
-	font-weight: bold;
-	cursor: pointer;
-}
-
 #buddy-list .hidden-buddy,
 #buddy-list .foot-edit-finish,
 .buddy-conf-more-display-available {
@@ -98,7 +87,8 @@ Last revision: 19/12/10
 	-webkit-border-radius: 4px;
 }
 
-#buddy-list .buddy-click:hover {
+#buddy-list .buddy-click:hover,
+#buddy-list .buddy-click:focus {
 	background: #d2dee0;
 	cursor: pointer;
 }
@@ -358,7 +348,8 @@ Last revision: 19/12/10
 	-webkit-border-radius: 2px;
 }
 
-#buddy-list .filter a:hover {
+#buddy-list .filter a:hover,
+#buddy-list .filter a:focus {
 	background-color: #8c2121;
 }
 
@@ -418,7 +409,8 @@ Last revision: 19/12/10
 	display: block;
 }
 
-#buddy-list .foot-edit-finish a:hover {
+#buddy-list .foot-edit-finish a:hover,
+#buddy-list .foot-edit-finish a:focus {
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -474,7 +466,8 @@ Last revision: 19/12/10
 	color: white;
 }
 
-.buddy-conf-text a:hover {
+.buddy-conf-text a:hover,
+.buddy-conf-text a:focus {
 	cursor: pointer;
 	text-decoration: underline;
 }

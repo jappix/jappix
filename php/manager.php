@@ -10,16 +10,16 @@ This is the Jappix manager tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Get the manager functions
-require_once(PHP_BASE.'/php/functions-manager.php');
+require_once(JAPPIX_BASE.'/php/functions-manager.php');
 
 // Session manager
 $id = 0;
@@ -317,7 +317,7 @@ else
 				<h4><?php _e("Other statistics"); ?></h4>
 				
 				<ul class="stats">
-					<li class="total"><b><?php _e("Total"); ?></b><span><?php echo formatBytes(sizeDir(PHP_BASE.'/store/')); ?></span></li>
+					<li class="total"><b><?php _e("Total"); ?></b><span><?php echo formatBytes(sizeDir(JAPPIX_BASE.'/store/')); ?></span></li>
 					
 					<?php
 					
@@ -344,11 +344,11 @@ else
 				<?php
 				
 				// Define the main configuration variables
-				include(PHP_BASE.'/php/vars-main.php');
+				include(JAPPIX_BASE.'/php/vars-main.php');
 				
 				// Read the main configuration POST
 				if(isset($_POST['save'])) {
-					include(PHP_BASE.'/php/post-main.php');
+					include(JAPPIX_BASE.'/php/post-main.php');
 					
 					// Show a success alert
 					?>
@@ -357,7 +357,7 @@ else
 				}
 				
 				// Include the main configuration form
-				include(PHP_BASE.'/php/form-main.php');
+				include(JAPPIX_BASE.'/php/form-main.php');
 			}
 			
 			// Authorized and hosts page requested
@@ -373,11 +373,11 @@ else
 				<?php
 				
 				// Define the hosts configuration variables
-				include(PHP_BASE.'/php/vars-hosts.php');
+				include(JAPPIX_BASE.'/php/vars-hosts.php');
 				
 				// Read the hosts configuration POST
 				if(isset($_POST['save'])) {
-					include(PHP_BASE.'/php/post-hosts.php');
+					include(JAPPIX_BASE.'/php/post-hosts.php');
 					
 					// Show a success alert
 					?>
@@ -386,7 +386,7 @@ else
 				}
 				
 				// Include the hosts configuration form
-				include(PHP_BASE.'/php/form-hosts.php');
+				include(JAPPIX_BASE.'/php/form-hosts.php');
 			}
 			
 			// Authorized and storage page requested
@@ -398,13 +398,13 @@ else
 				<?php
 				
 					// Include the store configuration vars
-					include(PHP_BASE.'/php/vars-store.php');
+					include(JAPPIX_BASE.'/php/vars-store.php');
 					
 					// Include the store configuration POST handler
-					include(PHP_BASE.'/php/post-store.php');
+					include(JAPPIX_BASE.'/php/post-store.php');
 					
 					// Include the store configuration GET handler
-					include(PHP_BASE.'/php/get-store.php');
+					include(JAPPIX_BASE.'/php/get-store.php');
 					
 				?>
 				
@@ -486,13 +486,13 @@ else
 				<?php
 				
 					// Include the design configuration vars
-					include(PHP_BASE.'/php/vars-design.php');
+					include(JAPPIX_BASE.'/php/vars-design.php');
 					
 					// Include the design configuration POST handler
-					include(PHP_BASE.'/php/post-design.php');
+					include(JAPPIX_BASE.'/php/post-design.php');
 					
 					// Include the design configuration reader
-					include(PHP_BASE.'/php/read-design.php');
+					include(JAPPIX_BASE.'/php/read-design.php');
 					
 					// Folder view?
 					if(isset($_GET['b']) && isset($_GET['s']) && ($_GET['b'] == 'backgrounds'))
@@ -573,9 +573,9 @@ else
 				
 				<p><?php _e("You can add a new background to the list with this tool. Please send a valid image."); ?></p>
 				
-				<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
-				
 				<div class="sub">
+					<p><?php printf(T_("The file you want to upload must be smaller than %s."), formatBytes(uploadMaxSize()).''); ?></p>
+					
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 					
 					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" accept="image/*" />
@@ -632,7 +632,7 @@ else
 				// Add an user?
 				if(isset($_POST['add'])) {
 					// Include the users POST handler
-					include(PHP_BASE.'/php/post-users.php');
+					include(JAPPIX_BASE.'/php/post-users.php');
 					
 					if($valid_user) { ?>
 						<p class="info smallspace success"><?php _e("The user has been added!"); ?></p>
@@ -684,7 +684,7 @@ else
 				<?php
 				
 				// Include the user add form
-				include(PHP_BASE.'/php/form-users.php');
+				include(JAPPIX_BASE.'/php/form-users.php');
 				
 				?>
 				

@@ -10,16 +10,16 @@ This is the Jappix installation tool
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Define the configuration folder
-$conf_folder = PHP_BASE.'/store/conf';
+$conf_folder = JAPPIX_BASE.'/store/conf';
 
 // Initialize the step
 $step = 1;
@@ -36,17 +36,17 @@ if(isset($_POST['step']) && !empty($_POST['step'])) {
 	switch($step) {
 		// Administrator account configuration submitted
 		case 3:
-			include(PHP_BASE.'/php/post-users.php');
+			include(JAPPIX_BASE.'/php/post-users.php');
 			break;
 		
 		// Main configuration submitted
 		case 4:
-			include(PHP_BASE.'/php/post-main.php');
+			include(JAPPIX_BASE.'/php/post-main.php');
 			break;
 		
 		// Hosts configuration submitted
 		case 5:
-			include(PHP_BASE.'/php/post-hosts.php');
+			include(JAPPIX_BASE.'/php/post-hosts.php');
 			break;
 	}
 }
@@ -146,9 +146,9 @@ else
 				
 				<p><?php printf(T_("Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."), '<em>777</em>', '<em>www-data</em>'); ?></p>
 				
-				<?php if(is_writable(PHP_BASE.'/store')) {
+				<?php if(is_writable(JAPPIX_BASE.'/store')) {
 					// Create the store tree
-					include(PHP_BASE.'/php/store-tree.php');
+					include(JAPPIX_BASE.'/php/store-tree.php');
 				?>
 					<p class="info bigspace success"><?php _e("The folder is writable, you can continue!"); ?></p>
 				<?php }
@@ -171,7 +171,7 @@ else
 				<?php
 				
 				// Include the user add form
-				include(PHP_BASE.'/php/form-users.php');
+				include(JAPPIX_BASE.'/php/form-users.php');
 				
 				if(!$valid_user) { ?>
 					<p class="info bigspace fail"><?php _e("Oops, you missed something or the two passwords do not match!"); ?></p>
@@ -189,10 +189,10 @@ else
 				<?php
 				
 				// Define the main configuration variables
-				include(PHP_BASE.'/php/vars-main.php');
+				include(JAPPIX_BASE.'/php/vars-main.php');
 				
 				// Include the main configuration form
-				include(PHP_BASE.'/php/form-main.php');
+				include(JAPPIX_BASE.'/php/form-main.php');
 			}
 			
 			// Fifth step: hosts configuration
@@ -208,10 +208,10 @@ else
 				<?php
 				
 				// Define the hosts configuration variables
-				include(PHP_BASE.'/php/vars-hosts.php');
+				include(JAPPIX_BASE.'/php/vars-hosts.php');
 				
 				// Include the hosts configuration form
-				include(PHP_BASE.'/php/form-hosts.php');
+				include(JAPPIX_BASE.'/php/form-hosts.php');
 			}
 			
 			// Last step: services installation

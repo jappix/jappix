@@ -8,7 +8,7 @@ This is the tools CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/12/10
+Last revision: 28/12/10
 
 */
 
@@ -31,7 +31,8 @@ Last revision: 20/12/10
 	margin: 0 1.5px;
 }
 
-#top-content .tools a:hover {
+#top-content .tools a:hover,
+#top-content .tools a:focus {
 	cursor: pointer;
 	text-decoration: underline;
 }
@@ -64,7 +65,9 @@ Last revision: 20/12/10
 }
 
 #top-content .music:hover,
-#top-content .notifications:hover {
+#top-content .notifications:hover,
+#top-content .music:focus,
+#top-content .notifications:focus {
 	background-color: rgba(232,241,243,0.7);
 }
 
@@ -75,6 +78,7 @@ Last revision: 20/12/10
 
 #top-content .actived,
 #top-content .actived:hover,
+#top-content .actived:focus,
 #top-content .actived:active {
 	background-color: rgba(232,241,243,0.9) !important;
 }
@@ -148,7 +152,8 @@ Last revision: 20/12/10
 	float: left;
 }
 
-.music-content .player a:hover {
+.music-content .player a:hover,
+.music-content .player a:focus {
 	opacity: 0.8;
 }
 
@@ -222,7 +227,8 @@ Last revision: 20/12/10
 	-webkit-border-radius: 2px;
 }
 
-.notifications-content .one-notification:hover {
+.notifications-content .one-notification:hover,
+.notifications-content .one-notification:focus {
 	background-color: rgba(255,255,255,0.1);
 }
 

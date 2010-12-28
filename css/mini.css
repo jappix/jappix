@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/12/10
+Last revision: 28/12/10
 
 */
 
@@ -54,7 +54,8 @@ Last revision: 22/12/10
 	height: 13px;
 }
 
-#jappix_mini a.jm_pane:hover {
+#jappix_mini a.jm_pane:hover,
+#jappix_mini a.jm_pane:focus {
 	border-color: #666666;
 }
 
@@ -134,7 +135,8 @@ Last revision: 22/12/10
 	float: right;
 }
 
-#jappix_mini div.jm_actions a.jm_one-action:hover {
+#jappix_mini div.jm_actions a.jm_one-action:hover,
+#jappix_mini div.jm_actions a.jm_one-action:focus {
 	background-color: #7f8788;
 }
 
@@ -150,7 +152,8 @@ Last revision: 22/12/10
 	float: left;
 }
 
-#jappix_mini div.jm_actions a.jm_logo:hover {
+#jappix_mini div.jm_actions a.jm_logo:hover,
+#jappix_mini div.jm_actions a.jm_logo:focus {
 	background-color: #636a6b;
 }
 
@@ -266,7 +269,8 @@ Last revision: 22/12/10
 	display: none;
 }
 
-#jappix_mini a.jm_friend:hover {
+#jappix_mini a.jm_friend:hover,
+#jappix_mini a.jm_friend:focus {
 	background-color: #eff3f4;
 	border-color: #d8dfe0;
 }

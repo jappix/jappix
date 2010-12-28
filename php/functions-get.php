@@ -10,19 +10,19 @@ These are the PHP functions for Jappix Get API
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
 // The function to get the cached content
 function readCache($hash) {
-	return file_get_contents(PHP_BASE.'/store/cache/'.$hash.'.cache');
+	return file_get_contents(JAPPIX_BASE.'/store/cache/'.$hash.'.cache');
 }
 
 // The function to generate a cached file
 function genCache($string, $mode, $cache) {
 	if(!$mode) {
-		$cache_dir = PHP_BASE.'/store/cache';
+		$cache_dir = JAPPIX_BASE.'/store/cache';
 		$file_put = $cache_dir.'/'.$cache.'.cache';
 		
 		// Cache not yet wrote
@@ -191,7 +191,6 @@ function setBackground($string) {
 			if($array['image_adapt'] == 'on')
 				$css .= 
 	'	background-attachment: fixed;
-	background-size: cover;
 	background-size: cover;
 	-moz-background-size: cover;
 	-webkit-background-size: cover;';

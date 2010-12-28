@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 28/12/10
 
 */
 
@@ -227,7 +227,8 @@ Last revision: 12/12/10
 	visibility: hidden;
 }
 
-#channel a.more:hover {
+#channel a.more:hover,
+#channel a.more:focus {
 	text-decoration: underline;
 }
 
@@ -243,7 +244,8 @@ Last revision: 12/12/10
 	display: block;
 }
 
-#channel a.mbtool:hover {
+#channel a.mbtool:hover,
+#channel a.mbtool:focus {
 	text-decoration: none;
 }
 

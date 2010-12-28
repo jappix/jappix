@@ -10,12 +10,12 @@ This script (re)generates the store sub-folders (after an update)
 License: AGPL
 Authors: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Array of the sub-folders to create
@@ -32,7 +32,7 @@ $store_folders = array(
 
 // Creates the sub-folders
 for($i = 0; $i < count($store_folders); $i++) {
-	$current = PHP_BASE.'/store/'.$store_folders[$i];
+	$current = JAPPIX_BASE.'/store/'.$store_folders[$i];
 	
 	// Create the folder itself
 	if(!is_dir($current))

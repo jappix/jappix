@@ -10,7 +10,7 @@ These are the PHP functions for Jappix manager
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 28/12/10
 
 */
 
@@ -49,7 +49,7 @@ function currentTab($current, $page) {
 // Checks all the storage folders are writable
 function storageWritable() {
 	// Read the directory content
-	$dir = PHP_BASE.'/store/';
+	$dir = JAPPIX_BASE.'/store/';
 	$scan = scandir($dir);
 	
 	// Writable marker
@@ -182,7 +182,7 @@ function versionNumber($id) {
 
 // Checks for new Jappix updates
 function newUpdates($force) {
-	$cache_path = PHP_BASE.'/store/updates/version.xml';
+	$cache_path = JAPPIX_BASE.'/store/updates/version.xml';
 	
 	// No cache, obsolete one or refresh forced
 	if(!file_exists($cache_path) || (file_exists($cache_path) && (time() - (filemtime($cache_path)) >= 86400)) || $force) {
@@ -221,7 +221,7 @@ function newUpdates($force) {
 // Gets the Jappix update informations
 function updateInformations() {
 	// Get the XML file content
-	$data = file_get_contents(PHP_BASE.'/store/updates/version.xml');
+	$data = file_get_contents(JAPPIX_BASE.'/store/updates/version.xml');
 	
 	// Transform the XML content into an array
 	$array = array();
@@ -250,9 +250,9 @@ function processUpdate($url) {
 	// Archive path
 	$name = md5($url).'.zip';
 	$update_dir = $dir_base.'store/updates/';
-	$path = PHP_BASE.'/store/updates/'.$name;
+	$path = JAPPIX_BASE.'/store/updates/'.$name;
 	$extract_to = $update_dir.'jappix/';
-	$store_tree = PHP_BASE.'/php/store-tree.php';
+	$store_tree = JAPPIX_BASE.'/php/store-tree.php';
 	
 	// We must get the archive from the server
 	if(!file_exists($path)) {
@@ -328,7 +328,7 @@ function processUpdate($url) {
 	echo('<p>» '.T_("Removing current Jappix system files...").'</p>');
 	
 	// Open the general directory
-	$dir_base = PHP_BASE.'/';
+	$dir_base = JAPPIX_BASE.'/';
 	$scan = scandir($dir_base);
 	
 	// Filter the scan array
@@ -392,7 +392,7 @@ function processUpdate($url) {
 // Returns an array with the biggest share folders
 function shareStats() {
 	// Define some stuffs
-	$path = PHP_BASE.'/store/share/';
+	$path = JAPPIX_BASE.'/store/share/';
 	$array = array();
 	
 	// Open the directory
@@ -410,7 +410,7 @@ function shareStats() {
 // Returns the largest share folders
 function largestShare($array, $number) {
 	// Define some stuffs
-	$path = PHP_BASE.'/store/share/';
+	$path = JAPPIX_BASE.'/store/share/';
 	$size_array = array();
 	
 	// Push the results in an array
@@ -430,13 +430,13 @@ function largestShare($array, $number) {
 function otherStats() {
 	// Fill the array with the values
 	$others_stats = array(
-			     	T_("Backgrounds") => sizeDir(PHP_BASE.'/store/backgrounds/'),
-			     	T_("Cache") => sizeDir(PHP_BASE.'/store/cache/'),
-			     	T_("Configuration") => sizeDir(PHP_BASE.'/store/conf/'),
-			     	T_("Logs") => sizeDir(PHP_BASE.'/store/logs/'),
-			     	T_("Music") => sizeDir(PHP_BASE.'/store/music/'),
-			     	T_("Share") => sizeDir(PHP_BASE.'/store/share/'),
-			     	T_("Updates") => sizeDir(PHP_BASE.'/store/updates/')
+			     	T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
+			     	T_("Cache") => sizeDir(JAPPIX_BASE.'/store/cache/'),
+			     	T_("Configuration") => sizeDir(JAPPIX_BASE.'/store/conf/'),
+			     	T_("Logs") => sizeDir(JAPPIX_BASE.'/store/logs/'),
+			     	T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
+			     	T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
+			     	T_("Updates") => sizeDir(JAPPIX_BASE.'/store/updates/')
 			     );
 	
 	// Sort this array
@@ -533,7 +533,7 @@ function purgeFolder($folder) {
 	// All right, now we can empty it!
 	foreach($array as $current_folder) {
 		// Scan the current directory
-		$directory = PHP_BASE.'/store/'.$current_folder.'/';
+		$directory = JAPPIX_BASE.'/store/'.$current_folder.'/';
 		$scan = scandir($directory);
 	   	$scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
 	   	
@@ -555,7 +555,7 @@ function purgeFolder($folder) {
 // Returns folder browsing informations
 function browseFolder($folder, $mode) {
 	// Scan the target directory
-	$directory = PHP_BASE.'/store/'.$folder;
+	$directory = JAPPIX_BASE.'/store/'.$folder;
 	$scan = scandir($directory);
 	$scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
 	$keep_get = keepGet('(s|b)', false);
@@ -624,7 +624,7 @@ function removeElements() {
 			$elements_removed = true;
 			
 			// Get the real path
-			$post_element = PHP_BASE.'/store/'.$post_value;
+			$post_element = JAPPIX_BASE.'/store/'.$post_value;
 			
 			// Remove the current element
 			if(is_dir($post_element))
@@ -713,7 +713,7 @@ function getBackgrounds() {
 	$array = array();
 	
 	// Scan the background directory
-	$scan = scandir(PHP_BASE.'/store/backgrounds/');
+	$scan = scandir(JAPPIX_BASE.'/store/backgrounds/');
 	
 	foreach($scan as $current) {
 		if(isImage($current))

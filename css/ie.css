@@ -8,7 +8,7 @@ These are all the IE compliant CSS classes
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 28/12/10
 
 */
 
@@ -37,13 +37,17 @@ Last revision: 15/12/10
 }
 
 #home .locale li a:hover,
+#home .locale li a:focus,
 .finish:hover,
+.finish:focus,
 .finish:active,
 .notifications-content .one-notification:hover,
 .notifications-content .one-notification:active,
 #install-buttons input:hover,
+#install-buttons input:focus,
 #install-buttons input:active,
 #manager-buttons input:hover,
+#manager-buttons input:focus,
 #manager-buttons input:active {
 	background-color: #333333 !important;
 }
@@ -54,14 +58,18 @@ Last revision: 15/12/10
 }
 
 #top-content .music:hover,
-#top-content .notifications:hover {
+#top-content .notifications:hover,
+#top-content .music:focus,
+#top-content .notifications:focus {
 	background-color: #ebf2f4 !important;
 }
 
 #top-content .tools,
 #top-content .actived,
 #top-content .actived:hover,
-#top-content .actived:active {
+#top-content .actived:active,
+#top-content .actived:focus,
+#top-content .actived:focus {
 	background-color: #e8f1f3 !important;
 }
 

@@ -10,12 +10,12 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
 // PHP base
-define('PHP_BASE', '.');
+define('JAPPIX_BASE', '.');
 
 // Get the function files
 require_once('./php/functions.php');

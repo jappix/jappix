@@ -8,7 +8,7 @@ This is the install CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 28/12/10
 
 */
 
@@ -100,7 +100,7 @@ body {
 
 #install-top .logo {
 	background-position: 0 0;
-	width: 205px;
+	min-width: 87px;
 	height: 39px;
 	padding: 29px 0 0 67px;
 	font-size: 32px;
@@ -235,7 +235,8 @@ body {
 	-webkit-box-shadow: none;
 }
 
-#install-buttons input:hover {
+#install-buttons input:hover,
+#install-buttons input:focus {
 	cursor: pointer;
 	background-color: rgba(255,255,255,0.2);
 }

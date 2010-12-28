@@ -10,12 +10,12 @@ This is the design configuration POST handler (manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 18/12/10
+Last revision: 28/12/10
 
 */
 
 // Someone is trying to hack us?
-if(!defined('PHP_BASE'))
+if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Handle the remove POST
@@ -27,7 +27,7 @@ else if(isset($_POST['upload'])) {
 	// Get the file path
 	$name_background_image = $_FILES['background_image_upload']['name'];
 	$temp_background_image = $_FILES['background_image_upload']['tmp_name'];
-	$path_background_image = PHP_BASE.'/store/backgrounds/'.$name_background_image;
+	$path_background_image = JAPPIX_BASE.'/store/backgrounds/'.$name_background_image;
 	
 	// An error occured?
 	if(!isSafe($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>

@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 28/12/10
 
 */
 
@@ -393,7 +393,8 @@ Last revision: 26/12/10
 	-webkit-border-radius: 3px;
 }
 
-#page-engine .bubble-style a.color:hover {
+#page-engine .bubble-style a.color:hover,
+#page-engine .bubble-style a.color:focus {
 	opacity: 0.7;
 }
 
@@ -514,7 +515,8 @@ Last revision: 26/12/10
 	width: 100px;
 }
 
-#page-engine .tooltip .tooltip-actionlog:hover {
+#page-engine .tooltip .tooltip-actionlog:hover,
+#page-engine .tooltip .tooltip-actionlog:focus {
 	cursor: pointer;
 	text-decoration: underline;
 }

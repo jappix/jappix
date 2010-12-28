@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 28/12/10
 
 */
 
@@ -37,7 +37,8 @@ Last revision: 15/12/10
 	-webkit-border-radius: 6px;
 }
 
-#welcome a.box:hover {
+#welcome a.box:hover,
+#welcome a.box:focus {
 	border: 1px solid #afc9d0;
 }
 
