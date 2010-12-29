@@ -1579,3 +1579,6 @@ msgstr ""
 
 msgid "Albums of %s"
 msgstr ""
+
+msgid "Shared albums of this user"
+msgstr ""

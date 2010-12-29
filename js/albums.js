@@ -24,6 +24,7 @@ function openAlbums(xid) {
 			
 			'<div class="update">' + 
 				'<h2>' + printf(_e("Albums of %s"), getBuddyName(xid).htmlEnc()) + '</h2>' + 
+				'<p>' + _e("Shared albums of this user") + '</p>' + 
 			'</div>' + 
 		'</div>' + 
 		

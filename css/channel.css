@@ -12,7 +12,8 @@ Last revision: 29/12/10
 
 */
 
-#channel .top div.update {
+#channel .top div.update,
+#albums .top div.update {
 	position: absolute;
 	top: 12px;
 	left: 115px;
@@ -28,13 +29,15 @@ Last revision: 29/12/10
 	margin-bottom: 10px;
 }
 
-#channel .top h2 {
+#channel .top h2,
+#albums .top h2 {
 	font-size: 1.6em;
 	margin-bottom: 10px;
 	color: #232323;
 }
 
-#channel .top a {
+#channel .top a,
+#albums .top p {
 	font-size: 0.9em;
 	color: #232323;
 }
