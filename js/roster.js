@@ -357,7 +357,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="commands">' + _e("Commands") + '</a></p>' + 
+							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="albums">' + _e("Albums") + '</a> / <a class="commands">' + _e("Commands") + '</a></p>' + 
 							'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
 					'</div>' + 
@@ -382,6 +382,10 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Channel
 				else if($(this).is('.channel'))
 					fromInfosMicroblog(xid, hash);
+				
+				// Albums
+				else if($(this).is('.albums'))
+					openAlbums(xid);
 				
 				// Command
 				else if($(this).is('.commands'))

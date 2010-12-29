@@ -200,3 +200,7 @@ Last revision: 28/12/10
 #page-switch .channel .icon {
 	background-position: 0 -55px;
 }
+
+#page-switch .albums .icon {
+	background-position: 0 -1701px;
+}

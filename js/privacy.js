@@ -8,7 +8,7 @@ These are the privacy JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 29/12/10
 
 */
 
@@ -18,7 +18,9 @@ function openPrivacy() {
 	var html = 
 	'<div class="top">' + _e("Privacy") + '</div>' + 
 	
-	'<div class="content"></div>' + 
+	'<div class="content">' + 
+		'[FEATURE NOT IMPLEMENTED]' + 
+	'</div>' + 
 	
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 

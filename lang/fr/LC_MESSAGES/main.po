@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-26 11:51:19\n"
+"PO-Revision-Date: 2010-12-29 16:25:16\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2096,4 +2096,12 @@ msgstr "Votre ami(e) n'a pas l'air d'avoir reçu(e) votre/vos messages(s) !"
 #: 
 msgid "Unblock"
 msgstr "Débloquer"
+
+#: 
+msgid "Albums"
+msgstr "Albums"
+
+#: 
+msgid "Albums of %s"
+msgstr "Albums de %s"
 

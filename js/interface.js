@@ -91,7 +91,7 @@ function switchChan(id) {
 		$('#page-switch .' + id).addClass('activechan').removeClass('chan');
 		
 		// Scroll down to the last message
-		if(id != 'channel')
+		if((id != 'channel') && (id != 'albums'))
 			autoScroll(id);
 		
 		// Manage input focus

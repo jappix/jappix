@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 29/12/10
 
 */
 
@@ -267,7 +267,8 @@ Last revision: 28/12/10
 	bottom: 6px;
 }
 
-#channel .footer {
+#channel .footer,
+#albums .footer {
 	bottom: 0;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;

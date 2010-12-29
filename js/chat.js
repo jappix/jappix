@@ -178,12 +178,17 @@ function generateSwitch(type, id, xid, nick) {
 	var specialClass = ' unavailable';
 	var show_close = true;
 	
+	// Groupchat
 	if(type == 'groupchat') {
 		specialClass = ' groupchat-default';
 		
 		if(isAnonymous())
 			show_close = false;
 	}
+	
+	// Albums
+	else if(type == 'albums')
+		specialClass = ' albums';
 	
 	// Generate the HTML code
 	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeQuotes(id) + '\')">' + 
@@ -192,8 +197,18 @@ function generateSwitch(type, id, xid, nick) {
 			'<div class="name">' + nick + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
-	if(show_close)
-		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\')">x</div>';
+	if(show_close) {
+		// Event to fire on click
+		var exitEvent;
+		
+		// Albums
+		if(type == 'albums')
+			exitEvent = 'closeAlbums()';
+		else
+			exitEvent = 'quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\')';
+		
+		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return ' + exitEvent + ';">x</div>';
+	}
 	
 	// Close the HTML
 	html += '</div>';
