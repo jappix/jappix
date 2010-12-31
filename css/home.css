@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 31/12/10
 
 */
 
@@ -92,6 +92,7 @@ Last revision: 28/12/10
 	margin: 15px 0 15px 15px;
 	color: #efefef;
 	text-align: center;
+	text-shadow: 0 1px 1px black;
 }
 
 #home .left .logo {
