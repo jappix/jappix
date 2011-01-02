@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/12/10
+Last revision: 02/01/11
 
 */
 
@@ -162,8 +162,8 @@ function connected() {
 function saveSession() {
 	if(MINI_INITIALIZED) {
 		// Save the actual Jappix Mini DOM
-                setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
-		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
+                setDB(window.location.hostname + '~jappix-mini', 'dom', jQuery('#jappix_mini').html());
+		setDB(window.location.hostname + '~jappix-mini', 'nickname', MINI_NICKNAME);
 		
 		// Suspend connection
 		con.suspend();
@@ -628,7 +628,7 @@ function updateRoster() {
 // Creates the Jappix Mini DOM content
 function createMini(domain, user, password) {
 	// Try to restore the DOM
-        var dom = getDB('jappix-mini', 'dom');
+        var dom = getDB(window.location.hostname + '~jappix-mini', 'dom');
 	var suspended = true;
 	
 	// New DOM?
@@ -656,7 +656,7 @@ function createMini(domain, user, password) {
 	
 	// Old DOM?
 	else
-		MINI_NICKNAME = getDB('jappix-mini', 'nickname');
+		MINI_NICKNAME = getDB(window.location.hostname + '~jappix-mini', 'nickname');
 	
 	// Create the DOM
 	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
