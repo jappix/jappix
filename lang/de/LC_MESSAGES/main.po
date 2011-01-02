@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-24 11:38:49\n"
+"PO-Revision-Date: 2011-01-02 19:33:48\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2088,4 +2088,24 @@ msgstr "Befehle"
 #: 
 msgid "Sorry, but the entity didn't return any result!"
 msgstr "Es wurde kein Ergebnis gefunden."
+
+#: 
+msgid "Your friend seems not to have received your message(s)!"
+msgstr "Dein Freund hat deine Nachricht anscheinend nicht erhalten!"
+
+#: 
+msgid "Unblock"
+msgstr "Freischalten"
+
+#: 
+msgid "Albums"
+msgstr "Alben"
+
+#: 
+msgid "Albums of %s"
+msgstr "Alben von %s"
+
+#: 
+msgid "Shared albums of this user"
+msgstr "Von diesem Nutzer geteilte Alben"
 
