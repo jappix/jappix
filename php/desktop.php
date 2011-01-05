@@ -3,14 +3,14 @@
 /*
 
 Jappix - An open social platform
-This is the Jappix desktop html markup
+This is the Jappix Desktop PHP/HTML code
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -61,7 +61,7 @@ if(!anonymousMode()) { ?>
 				<h1 class="top default"><?php _e("Hi there!"); ?></h1>
 				
 				<div class="default homediv">
-					<p><?php printf(T_("Welcome on %1s, « %2s »."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
+					<p><?php printf(T_("Welcome on %1s, “%2s”."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
 					
 					<p><?php _e("Login to your existing XMPP account or create a new one for free!"); ?></p>
 					

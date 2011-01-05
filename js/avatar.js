@@ -8,7 +8,7 @@ These are the avatar JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/12/10
+Last revision: 05/01/11
 
 */
 
@@ -22,9 +22,6 @@ function getAvatar(xid, mode, enabled, photo) {
 	if(existArrayValue(AVATAR_PENDING, xid))
 		return false;
 	
-	// Push the current request to the pending array
-	AVATAR_PENDING.push(xid);
-	
 	// Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
 	var xml = getPersistent('avatar', xid);
 	var forced = false;
@@ -35,6 +32,10 @@ function getAvatar(xid, mode, enabled, photo) {
 	
 	// No avatar in presence
 	if(!photo && !forced && (enabled == 'true')) {
+		// Pending marker
+		AVATAR_PENDING.push(xid);
+		
+		// Reset the avatar
 		resetAvatar(xid, hex_md5(xid));
 		
 		logThis('No avatar for: ' + xid, 2);
@@ -54,17 +55,19 @@ function getAvatar(xid, mode, enabled, photo) {
 		
 		// If the avatar is yet stored and a new retrieving is not needed
 		if((mode == 'cache') && type && binval && checksum && updated) {
+			// Pending marker
+			AVATAR_PENDING.push(xid);
+			
+			// Display the cache avatar
 			displayAvatar(xid, hex_md5(xid), type, binval);
 			
 			logThis('Read avatar from cache: ' + xid, 3);
 		}
 		
 		// Else if the request has not yet been fired, we get it
-		else if(((!getDB('avatar', xid) && !updated) || (mode == 'cache' && !updated) || (mode == 'force') || (photo = 'forget')) && (enabled != 'false')) {
-			// Put an indicator in our database to avoid multiple useless vCard request
-			setDB('avatar', xid, true);
-			
-			logThis('Get avatar from server: ' + xid, 3);
+		else if((!updated || (mode == 'cache' && !updated) || (mode == 'force') || (photo = 'forget')) && (enabled != 'false')) {
+			// Pending marker
+			AVATAR_PENDING.push(xid);
 			
 			// Get the latest avatar
 			var iq = new JSJaCIQ();
@@ -74,6 +77,8 @@ function getAvatar(xid, mode, enabled, photo) {
 			iq.appendNode('vCard', {'xmlns': NS_VCARD});
 			
 			con.send(iq, handleAvatar);
+			
+			logThis('Get avatar from server: ' + xid, 3);
 		}
 	}
 	

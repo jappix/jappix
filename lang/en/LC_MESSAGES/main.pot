@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 29/12/10
+# Last revision: 05/01/11
 
 msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
 msgstr ""
@@ -710,7 +710,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr ""
 
-msgid "Welcome on %1s, « %2s »."
+msgid "Welcome on %1s, “%2s”."
 msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
