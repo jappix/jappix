@@ -10,7 +10,7 @@ This is the Jappix microblog file attaching script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -20,10 +20,15 @@ define('JAPPIX_BASE', '..');
 // Get the needed files
 require_once('./functions.php');
 require_once('./read-main.php');
+require_once('./read-hosts.php');
 
 // Optimize the page rendering
 hideErrors();
 compressThis();
+
+// Not allowed for a static node
+if(isStatic())
+	exit;
 
 // Set a special XML header
 header('content-type: text/xml; charset=utf-8');

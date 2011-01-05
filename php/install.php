@@ -269,4 +269,4 @@ else
 
 </html>
 
-<!-- Jappix installation <?php echo $version; ?> - An open social platform -->
+<!-- Jappix Install <?php echo $version; ?> - An open social platform -->

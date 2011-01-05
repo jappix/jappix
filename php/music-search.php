@@ -10,7 +10,7 @@ This is the Jappix music search script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -20,9 +20,14 @@ define('JAPPIX_BASE', '..');
 // Get the needed files
 require_once('./functions.php');
 require_once('./read-main.php');
+require_once('./read-hosts.php');
 
 // Hide PHP errors
 hideErrors();
+
+// Not allowed for a static node
+if(isStatic())
+	exit;
 
 // If valid data was sent
 if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET['location']) && !empty($_GET['location']))) {

@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -20,6 +20,14 @@ function isInstalled() {
 		return false;
 	
 	return true;
+}
+
+// The function to check if this is a static server
+function isStatic() {
+	if(HOST_STATIC != '.')
+		return true;
+	
+	return false;
 }
 
 // The function to get the users.xml file hashed name

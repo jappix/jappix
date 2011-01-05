@@ -10,7 +10,7 @@ This is the Jappix PHP application launcher
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -95,6 +95,10 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 		// Kill the script!
 		exit;
 	}
+	
+	// Is it a static node?
+	if(isStatic())
+		$include_app = 'static';
 	
 	// Save this visit (for the stats)
 	writeVisit();

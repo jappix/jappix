@@ -1582,3 +1582,9 @@ msgstr ""
 
 msgid "Shared albums of this user"
 msgstr ""
+
+msgid "Static content server"
+msgstr ""
+
+msgid "This is the static content server for %1s, “%2s”."
+msgstr ""

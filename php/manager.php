@@ -810,4 +810,4 @@ else
 
 </html>
 
-<!-- Jappix manager <?php echo $version; ?> - An open social platform -->
+<!-- Jappix Manager <?php echo $version; ?> - An open social platform -->

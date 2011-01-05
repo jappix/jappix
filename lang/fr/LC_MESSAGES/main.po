@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-05 12:52:14\n"
+"PO-Revision-Date: 2011-01-05 19:13:23\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2112,4 +2112,16 @@ msgstr "Albums partagés de cet utilisateur"
 #: 
 msgid "Welcome on %1s, “%2s”."
 msgstr "Bienvenue sur %1s, « %2s »."
+
+#: 
+#~ msgid "Static server"
+#~ msgstr ""
+
+#: 
+msgid "This is the static content server for %1s, “%2s”."
+msgstr "Ceci est le serveur de contenu statique pour %1s, « %2s »."
+
+#: 
+msgid "Static content server"
+msgstr "Serveur de contenu statique"
 

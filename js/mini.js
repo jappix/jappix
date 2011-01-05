@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/01/11
+Last revision: 05/01/11
 
 */
 
@@ -181,8 +181,8 @@ function disconnected() {
 	MINI_INITIALIZED = false;
 	
 	// Remove the stored DOM
-	removeDB('jappix-mini', 'dom');
-	removeDB('jappix-mini', 'nickname');
+	removeDB(window.location.hostname + '~jappix-mini', 'dom');
+	removeDB(window.location.hostname + '~jappix-mini', 'nickname');
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }

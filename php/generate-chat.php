@@ -10,7 +10,7 @@ This is the PHP script used to generate a chat log
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 05/01/11
 
 */
 
@@ -20,10 +20,15 @@ define('JAPPIX_BASE', '..');
 // Get the needed files
 require_once('./functions.php');
 require_once('./read-main.php');
+require_once('./read-hosts.php');
 
 // Optimize the page rendering
 hideErrors();
 compressThis();
+
+// Not allowed for a static node
+if(isStatic())
+	exit;
 
 // Create the HTML file to be downloaded
 if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && isset($_POST['nick']) && !empty($_POST['nick']) && isset($_POST['avatar']) && !empty($_POST['avatar']) && isset($_POST['date']) && !empty($_POST['date']) && isset($_POST['type']) && !empty($_POST['type'])) {
