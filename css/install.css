@@ -8,7 +8,7 @@ This is the install CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 07/01/11
 
 */
 
@@ -107,6 +107,7 @@ body {
 	color: #f3f3f3;
 	text-transform: lowercase;
 	float: left;
+	text-shadow: 0 1px 1px black;
 }
 
 #install-top .step {
@@ -119,6 +120,9 @@ body {
 	border-radius: 40px;
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
+	box-shadow: 0 0 10px #202020;
+	-moz-box-shadow: 0 0 10px #202020;
+	-webkit-box-shadow: 0 0 10px #202020;
 }
 
 #install-top .step span {

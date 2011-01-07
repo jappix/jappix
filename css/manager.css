@@ -8,7 +8,7 @@ This is the manager CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 07/01/11
 
 */
 
@@ -145,6 +145,7 @@ Last revision: 28/12/10
 	color: #f3f3f3;
 	text-transform: lowercase;
 	float: left;
+	text-shadow: 0 1px 1px black;
 }
 
 #manager-top .meta {
@@ -155,6 +156,9 @@ Last revision: 28/12/10
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	box-shadow: 0 0 10px #202020;
+	-moz-box-shadow: 0 0 10px #202020;
+	-webkit-box-shadow: 0 0 10px #202020;
 }
 
 #manager-top .meta span {
