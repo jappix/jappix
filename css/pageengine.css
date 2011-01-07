@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 07/01/11
 
 */
 
@@ -64,6 +64,7 @@ Last revision: 28/12/10
 #page-engine p.bc-name {
 	font-size: 2.3em;
 	margin-bottom: 5px;
+	text-shadow: 0 1px 0 white;
 }
 
 #page-engine p.bc-infos {

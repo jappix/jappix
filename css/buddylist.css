@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 07/01/11
 
 */
 
@@ -136,6 +136,7 @@ Last revision: 28/12/10
 	color: #3d585f;
 	margin: 5px 0 5px 2px;
 	overflow: hidden;
+	text-shadow: 0 1px 0 white;
 }
 
 #buddy-list .buddy-presence {
