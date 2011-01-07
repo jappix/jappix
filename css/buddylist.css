@@ -136,7 +136,6 @@ Last revision: 07/01/11
 	color: #3d585f;
 	margin: 5px 0 5px 2px;
 	overflow: hidden;
-	text-shadow: 0 1px 0 white;
 }
 
 #buddy-list .buddy-presence {
@@ -188,6 +187,7 @@ Last revision: 07/01/11
 	width: 337px;
 	color: white;
 	font-size: 0.8em;
+	text-shadow: 0 1px 1px black;
 }
 
 #buddy-list .gateway .buddy-infos {
@@ -465,6 +465,7 @@ Last revision: 07/01/11
 
 .buddy-conf-text a {
 	color: white;
+	text-shadow: 0 1px 1px black;
 }
 
 .buddy-conf-text a:hover,

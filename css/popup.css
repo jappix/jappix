@@ -51,6 +51,7 @@ Last revision: 28/12/10
 	text-transform: uppercase;
 	text-decoration: none;
 	font-weight: bold;
+	text-shadow: 0 2px 2px black;
 }
 
 .popup .tab {
