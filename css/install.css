@@ -8,7 +8,7 @@ This is the install CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/01/11
+Last revision: 08/01/11
 
 */
 
@@ -228,21 +228,25 @@ body {
 	border: 1px solid white;
 	background-color: rgba(255,255,255,0.1);
 	color: white;
-	padding: 3px 8px;
+	padding: 4px 8px;
 	margin-right: 20px;
+	text-shadow: 0 1px 1px black;
 	float: right;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
+	box-shadow: 0 0 5px #202020;
+	-moz-box-shadow: 0 0 5px #202020;
+	-webkit-box-shadow: 0 0 5px #202020;
 }
 
 #install-buttons input:hover,
 #install-buttons input:focus {
 	cursor: pointer;
 	background-color: rgba(255,255,255,0.2);
+	box-shadow: 0 0 15px #202020;
+	-moz-box-shadow: 0 0 15px #202020;
+	-webkit-box-shadow: 0 0 15px #202020;
 }
 
 #install-buttons input:active {

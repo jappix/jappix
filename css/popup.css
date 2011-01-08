@@ -8,7 +8,7 @@ This is the popup CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/01/11
+Last revision: 08/01/11
 
 */
 
@@ -509,15 +509,22 @@ a.finish {
 	font-size: 0.95em;
 	text-align: center;
 	text-decoration: none;
+	text-shadow: 0 1px 1px black;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	box-shadow: 0 0 5px black;
+	-moz-box-shadow: 0 0 5px black;
+	-webkit-box-shadow: 0 0 5px black;
 }
 
 a.finish:hover,
 a.finish:focus {
 	cursor: pointer;
 	background-color: rgba(255,255,255,0.2);
+	box-shadow: 0 0 15px black;
+	-moz-box-shadow: 0 0 15px black;
+	-webkit-box-shadow: 0 0 15px black;
 }
 
 a.finish:active {

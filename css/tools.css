@@ -8,7 +8,7 @@ This is the tools CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 08/01/11
 
 */
 
@@ -124,6 +124,7 @@ Last revision: 28/12/10
 .notifications-content .tools-content-subitem {
 	max-height: 247px;
 	color: white;
+	text-shadow: 0 1px 1px black;
 	text-align: left;
 	overflow-x: none;
 	overflow-y: auto;

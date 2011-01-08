@@ -8,7 +8,7 @@ These are all the IE compliant CSS classes
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 08/01/11
 
 */
 
@@ -77,7 +77,6 @@ Last revision: 28/12/10
 .tools-content-subitem,
 .buddy-infos-subitem,
 .buddy-conf-subitem,
-.my-infos-text-subitem,
 .tooltip-subitem,
 .attach-subitem {
 	background-color: #000000 !important;

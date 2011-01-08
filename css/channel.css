@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/12/10
+Last revision: 08/01/11
 
 */
 
@@ -111,6 +111,7 @@ Last revision: 29/12/10
 .attach-subitem {
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
+	text-shadow: 0 1px 1px black;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;

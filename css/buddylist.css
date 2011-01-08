@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 07/01/11
+Last revision: 08/01/11
 
 */
 
@@ -187,7 +187,6 @@ Last revision: 07/01/11
 	width: 337px;
 	color: white;
 	font-size: 0.8em;
-	text-shadow: 0 1px 1px black;
 }
 
 #buddy-list .gateway .buddy-infos {
@@ -207,6 +206,7 @@ Last revision: 07/01/11
 	background-color: rgba(0,0,0,0.8);
 	padding: 8px 10px;
 	width: 308px;
+	text-shadow: 0 1px 1px black;
 	float: left;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -441,6 +441,7 @@ Last revision: 07/01/11
 .buddy-conf-subitem {
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
+	text-shadow: 0 1px 1px black;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -465,7 +466,6 @@ Last revision: 07/01/11
 
 .buddy-conf-text a {
 	color: white;
-	text-shadow: 0 1px 1px black;
 }
 
 .buddy-conf-text a:hover,
