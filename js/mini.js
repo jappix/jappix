@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 09/01/11
 
 */
 
@@ -629,10 +629,23 @@ function updateRoster() {
 function createMini(domain, user, password) {
 	// Try to restore the DOM
         var dom = getDB(window.location.hostname + '~jappix-mini', 'dom');
-	var suspended = true;
+	var suspended = false;
+	
+	// Can resume a session?
+	con = new JSJaCHttpBindingConnection();
+	setupCon(con);
+	
+	// Old DOM?
+	if(dom && con.resume()) {
+		// Read the old nickname
+		MINI_NICKNAME = getDB(window.location.hostname + '~jappix-mini', 'nickname');
+		
+		// Marker
+		suspended = true;
+	}
 	
 	// New DOM?
-	if(!dom) {
+	else {
 		dom = 
 			'<div class="jm_conversations"></div>' + 
 			
@@ -650,13 +663,7 @@ function createMini(domain, user, password) {
 					'<span class="jm_counter mini-images">' + _e("Please wait...") + '</span>' + 
 				'</a>' + 
 			'</div>';
-		
-		suspended = false;
 	}
-	
-	// Old DOM?
-	else
-		MINI_NICKNAME = getDB(window.location.hostname + '~jappix-mini', 'nickname');
 	
 	// Create the DOM
 	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
@@ -734,11 +741,8 @@ function createMini(domain, user, password) {
 			switchPane();
 	});
 	
-	// Can resume a session?
-	con = new JSJaCHttpBindingConnection();
-	setupCon(con);
-	
-	if(suspended && con.resume()) {
+	// Suspended session resumed?
+	if(suspended) {
 		// Initialized marker
 		MINI_INITIALIZED = true;
 		

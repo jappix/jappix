@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 09/01/11
 
 */
 
@@ -29,6 +29,13 @@ Last revision: 28/12/10
 	font-size: 11px;
 	text-align: left;
 	text-transform: none;
+	text-shadow: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 #jappix_mini a {
