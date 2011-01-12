@@ -8,7 +8,7 @@ These are the date related JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 12/01/11
 
 */
 
@@ -106,7 +106,7 @@ function getDateTZO() {
 	var offset = date.getTimezoneOffset();
 	
 	// Default vars
-	var sign = '-';
+	var sign = '';
 	var hours = 0;
 	var minutes = 0;
 	
