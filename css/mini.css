@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 09/01/11
+Last revision: 14/01/11
 
 */
 
@@ -192,16 +192,13 @@ Last revision: 09/01/11
 	border-bottom: 1px solid #eaeaea;
 }
 
-#jappix_mini div.jm_received-messages div[data-type=system-message] p {
-	color: #053805;
+#jappix_mini div.jm_received-messages div[data-type=system-message] p,
+#jappix_mini div.jm_received-messages div[data-type=system-message] a {
+	color: #053805 !important;
 }
 
 #jappix_mini div.jm_received-messages p a {
 	text-decoration: underline;
-}
-
-#jappix_mini div.jm_received-messages div[data-type=system-message] a {
-	color: #053805;
 }
 
 #jappix_mini div.jm_received-messages b {
