@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 14/01/11
 
 */
 
@@ -416,11 +416,13 @@ function htmlTag($locale) {
 	// Initialize the tag
 	$html = '<html xml:lang="'.$locale.'" lang="'.$locale.'" dir="';
 	
-	// Set the good text direction
-	if(isRTL($locale))
+	// Set the good text direction (TODO)
+	/* if(isRTL($locale))
 		$html .= 'rtl';
 	else
-		$html .= 'ltr';
+		$html .= 'ltr'; */
+	
+	$html .= 'ltr';
 	
 	// Close the tag
 	$html .= '">';
