@@ -8,7 +8,7 @@ This is the page-engine CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/01/11
+Last revision: 15/01/11
 
 */
 
@@ -213,6 +213,8 @@ Last revision: 08/01/11
 #page-engine .one-group b.name,
 #archives .one-group b.name {
 	padding-left: 50px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 #page-engine .one-group b.name,
