@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 27/12/10
+Last revision: 16/01/11
 
 */
 
@@ -316,7 +316,7 @@ function handleMessage(message) {
 				// If an user quoted our nick (with some checks)
 				var regex = new RegExp('((^)|( )|(@))' + escapeRegex(myNick) + '(($)|(:)|(,)|( ))', 'gi');
 				
-				if(body.match(regex) && (myNick != resource) && (message_type == 'user-message') && !isAnonymous())
+				if(body.match(regex) && (myNick != resource) && (message_type == 'user-message'))
 					nickQuote = ' my-nick';
 				
 				// We notify the user if there's a new personnal message

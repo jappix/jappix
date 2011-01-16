@@ -8,7 +8,7 @@ These are the temporary/persistent data store functions
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 16/01/11
 
 */
 
@@ -167,17 +167,15 @@ function resetPersistent() {
 // Persistent: used to flush the database
 function flushPersistent() {
 	try {
-		// Don't remove important items
-		for(var i = 0; i < localStorage.length; i++) {
-			// Get the pointer value
-			var current = localStorage.key(i);
-			var type = explodeThis('_', current, 0);
-			var id = explodeThis('_', current, 1);
-			
-			// Remove the entry if not important
-			if(type != 'session')
-				removePersistent(type, id);
-		}
+		// Get the stored session entry
+		var session = getPersistent('session', 1);
+		
+		// Clear the persistent database
+		localStorage.clear();
+		
+		// Restaure the stored session entry
+		if(session)
+			setPersistent('session', 1, session);
 		
 		logThis('Persistent database flushed.', 3);
 		

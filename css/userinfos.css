@@ -8,7 +8,7 @@ This is the user-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/11/10
+Last revision: 16/01/11
 
 */
 
@@ -40,6 +40,13 @@ Last revision: 06/11/10
 #userinfos .avatar {
 	max-width: 80px;
 	max-height: 80px;
+}
+
+#userinfos h1,
+#userinfos h2,
+#userinfos h3 {
+	width: 420px;
+	overflow: hidden;
 }
 
 #userinfos h1 {

@@ -8,7 +8,7 @@ This is the Jappix Mobile CSS stylesheet
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/01/11
+Last revision: 16/01/11
 
 */
 
@@ -237,7 +237,6 @@ a {
 	display: block;
 	font-size: 0.85em;
 	margin: 4px 6px;
-	white-space: pre-wrap;
 	word-wrap: break-word;
 }
 
