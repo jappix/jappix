@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 16/01/11
 
 */
 
@@ -398,7 +398,15 @@ function getJappixLocation() {
 
 // Registers Jappix as the default XMPP links handler
 function xmppLinksHandler() {
-	navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
+	try {
+		navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
+		
+		return true;
+	}
+	
+	catch(e) {
+		return false;
+	}
 }
 
 // Removes spaces at the beginning & the end of a string

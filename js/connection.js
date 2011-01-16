@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 16/01/11
 
 */
 
@@ -121,14 +121,22 @@ function doRegister(username, domain, pass) {
 		oArgs.register = true;
 		oArgs.secure = true;
 		
-		// We show the waiting image
-		showGeneralWait();
+		con.connect(oArgs);
 		
 		// We change the registered information text
-		$('#home .registerer .success b').text(username + '@' + domain);
+		$('#home .homediv.registerer').append(
+			'<div class="info success">' + 
+				_e("You have been registered, here is your XMPP address:") + ' <b>' + con.username.htmlEnc() + '@' + con.domain.htmlEnc() + '</b> - <a>' + _e("Login") + '</a>' + 
+			'</div>'
+		);
 		
-		// And here we go : we connect !
-		con.connect(oArgs);
+		// Login link
+		$('#home .homediv.registerer .success a').click(function() {
+			return doLogin(con.username, con.domain, con.pass, con.resource, '10', false);
+		});
+		
+		// Show the waiting image
+		showGeneralWait();
 		
 		// Change the page title
 		pageTitle('wait');

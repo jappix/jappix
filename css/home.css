@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/01/11
+Last revision: 16/01/11
 
 */
 
@@ -302,6 +302,11 @@ Last revision: 02/01/11
 
 #home .anonymouser input[type=text] {
 	width: 160px;
+}
+
+#home .homediv.registerer .success a {
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #home fieldset {

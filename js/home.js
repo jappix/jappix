@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 12/12/10
+Last revision: 16/01/11
 
 */
 
@@ -134,11 +134,7 @@ function switchHome(div) {
 					'</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 
-				'</form>' + 
-				
-				'<div class="info success">' + 
-					_e("You have been registered, here is your XMPP address:") + ' <b></b>' + 
-				'</div>';
+				'</form>';
 			
 			break;
 	}
@@ -162,13 +158,9 @@ function switchHome(div) {
 					return switchHome('anonymouser');
 				});
 				
-				$(current + ' a.advanced').click(function() {
-					return showAdvanced();
-				});
+				$(current + ' a.advanced').click(showAdvanced);
 				
-				$(current + ' form').submit(function() {
-					return loginForm();
-				});
+				$(current + ' form').submit(loginForm);
 				
 				break;
 			
@@ -178,9 +170,7 @@ function switchHome(div) {
 					return switchHome('loginer');
 				});
 				
-				$(current + ' form').submit(function() {
-					return doAnonymous();
-				});
+				$(current + ' form').submit(doAnonymous);
 				
 				// Keyup event on anonymous join's room input
 				$(current + ' input.room').keyup(function() {
@@ -203,9 +193,7 @@ function switchHome(div) {
 			
 			// Register tool
 			case 'registerer':
-				$(current + ' form').submit(function() {
-					return registerForm();
-				});
+				$(current + ' form').submit(registerForm);
 				
 				break;
 		}
@@ -260,8 +248,8 @@ function loginForm() {
 function registerForm() {
 	var rPath = '#home .registerer ';
 	
-	// Fade out the old success info
-	$(rPath + '.success').hide();
+	// Remove the success info
+	$(rPath + '.success').remove();
 	
 	// Get the values
 	var username = $(rPath + '.nick').val();
