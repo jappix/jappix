@@ -27,8 +27,6 @@ Last revision: 19/01/11
 	margin: 0;
 	padding: 0;
 	font-size: 11px;
-	font-weight: normal;
-	font-style: normal;
 	text-align: left;
 	text-transform: none;
 	text-shadow: none;
@@ -39,15 +37,6 @@ Last revision: 19/01/11
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-}
-
-#jappix_mini b {
-	font-weight: bold;
-}
-
-#jappix_mini i,
-#jappix_mini em {
-	font-style: italic;
 }
 
 #jappix_mini a {
@@ -67,6 +56,7 @@ Last revision: 19/01/11
 	border-color: #999999;
 	border-style: solid;
 	border-width: 1px 1px 0 1px;
+	font-weight: bold;
 	display: block;
 	padding: 6px;
 	height: 13px;
@@ -75,10 +65,6 @@ Last revision: 19/01/11
 #jappix_mini a.jm_pane:hover,
 #jappix_mini a.jm_pane:focus {
 	border-color: #666666;
-}
-
-#jappix_mini a.jm_pane span {
-	font-weight: bold;
 }
 
 #jappix_mini div.jm_starter,
