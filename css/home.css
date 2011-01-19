@@ -452,33 +452,32 @@ Last revision: 19/01/11
 }
 
 #home .notice.simple {
-	background-color: #79a5a9;
+	background-color: rgba(20,20,20,0.6);
+	color: white;
 	font-size: 0.9em;
 	text-decoration: none;
+	text-shadow: 0 1px 0 black;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	padding: 8px 20px;
 	z-index: 100;
-	box-shadow: 0 0 25px #88b2b8;
-	-moz-box-shadow: 0 0 25px #88b2b8;
-	-webkit-box-shadow: 0 0 25px #88b2b8;
+	box-shadow: 0 0 25px #ababab;
+	-moz-box-shadow: 0 0 25px #ababab;
+	-webkit-box-shadow: 0 0 25px #ababab;
 }
 
 #home .notice.simple .title {
-	background-color: #5d8083;
+	background-color: rgba(20,20,20,0.4);
 	background-position: 8px -247px;
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
-	border-color: #3f6063;
-	color: white;
+	border-color: #141414;
 	font-weight: bold;
-	text-shadow: 1px 1px 1px #355457;
 	padding: 8px 8px 8px 30px;
 }
 
 #home .notice.simple .text {
-	color: #06292c;
 	margin-left: 20px;
 }

@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 14/01/11
+Last revision: 19/01/11
 
 */
 
@@ -1176,7 +1176,7 @@ function readNotice() {
 		
 		// Loop the notice configuration elements
 		foreach($notice_xml->children() as $notice_child)
-			$notice_conf[$notice_child->getName()] = $notice_child;
+			$notice_conf[$notice_child->getName()] = utf8_decode($notice_child);
 	}
 	
 	// Checks no value is missing in the stored configuration

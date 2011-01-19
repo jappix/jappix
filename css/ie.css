@@ -26,6 +26,8 @@ Last revision: 19/01/11
 #home .locale,
 #home .unsupported,
 #home .main,
+#home .notice.simple,
+#home .notice.simple .title,
 #buddy-list,
 #my-infos,
 #right-content,
