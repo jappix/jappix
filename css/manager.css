@@ -8,7 +8,7 @@ This is the manager CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/01/11
+Last revision: 19/01/11
 
 */
 
@@ -23,9 +23,9 @@ Last revision: 08/01/11
 	-moz-border-radius-bottomright: 6px;
 	-webkit-border-bottom-left-radius: 6px;
 	-webkit-border-bottom-right-radius: 6px;
-	box-shadow: 0 0 35px #4e4e4e;
-	-moz-box-shadow: 0 0 35px #4e4e4e;
-	-webkit-box-shadow: 0 0 35px #4e4e4e;
+	box-shadow: 0 0 35px #5c5c5c;
+	-moz-box-shadow: 0 0 35px #5c5c5c;
+	-webkit-box-shadow: 0 0 35px #5c5c5c;
 }
 
 #manager a {
