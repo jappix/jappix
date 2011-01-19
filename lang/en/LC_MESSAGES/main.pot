@@ -6,10 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 05/01/11
-
-msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
-msgstr ""
+# Last revision: 19/01/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -51,6 +48,15 @@ msgid "Please enter your nickname to join %s."
 msgstr ""
 
 msgid "This room (%s) is protected with a password."
+msgstr ""
+
+msgid "Please use a supported browser!"
+msgstr ""
+
+msgid "%s is supported"
+msgstr ""
+
+msgid "%s is not supported"
 msgstr ""
 
 msgid "Login"

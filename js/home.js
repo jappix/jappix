@@ -8,7 +8,7 @@ These are the homepage JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 16/01/11
+Last revision: 19/01/11
 
 */
 
@@ -285,6 +285,10 @@ function launchHome() {
 	var home = '#home ';
 	var button = home + 'button';
 	var locale = home + '.locale';
+	var unsupported = home + '.unsupported';
+	
+	// Removes the <noscript /> elements to lighten the DOM
+	$('noscript').remove();
 	
 	// Allows the user to switch the home page
 	$(button).click(function() {
@@ -297,7 +301,7 @@ function launchHome() {
 			return switchHome('registerer');
 	});
 	
-	// Allow the user to switch the language
+	// Allows the user to switch the language
 	$(locale).hover(function() {
 		// Initialize the HTML code
 		var keepget = $(locale).attr('data-keepget');
@@ -320,6 +324,32 @@ function launchHome() {
 		if((e.keyCode == 27) && !isDeveloper())
 			return false;
 	});
+	
+	// Warns for an unsupported browser
+	if((BrowserDetect.browser == 'Explorer') || (BrowserDetect.browser == 'Opera')) {
+		// Add the code
+		$(locale).after(
+			'<div class="unsupported">' + 
+				'<p>' + _e("Please use a supported browser!") + '</p>' + 
+				
+				'<a class="firefox browsers-images" title="' + printf(_e("%s is supported"), 'Mozilla Firefox') + '" href="http://www.mozilla.com/firefox/"></a>' + 
+				'<a class="chrome browsers-images" title="' + printf(_e("%s is supported"), 'Google Chrome') + '" href="http://www.google.com/chrome"></a>' + 
+				'<a class="safari browsers-images" title="' + printf(_e("%s is supported"), 'Safari') + '" href="http://www.apple.com/safari/"></a>' + 
+				
+				'<span class="iron-curtain"></span>' + 
+				
+				'<a class="opera browsers-images" title="' + printf(_e("%s is not supported"), 'Opera') + '" href="http://www.opera.com/"></a>' + 
+				'<a class="ie browsers-images" title="' + printf(_e("%s is not supported"), 'Internet Explorer') + '" href="http://www.microsoft.com/hk/windows/internet-explorer/"></a>' + 
+			'</div>'
+		);
+		
+		// Display it later
+		$(unsupported).oneTime('1s', function() {
+			$(this).slideDown();
+		});
+		
+		logThis('Jappix does not support this browser!', 2);
+	}
 	
 	logThis('Welcome to Jappix! Happy coding in developer mode!');
 }

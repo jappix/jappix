@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/01/11
+Last revision: 19/01/11
 
 */
 
@@ -27,15 +27,27 @@ Last revision: 16/01/11
 	margin: 0;
 	padding: 0;
 	font-size: 11px;
+	font-weight: normal;
+	font-style: normal;
 	text-align: left;
 	text-transform: none;
 	text-shadow: none;
+	opacity: 1.0;
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+}
+
+#jappix_mini b {
+	font-weight: bold;
+}
+
+#jappix_mini i,
+#jappix_mini em {
+	font-style: italic;
 }
 
 #jappix_mini a {
@@ -185,6 +197,11 @@ Last revision: 16/01/11
 #jappix_mini div.jm_received-messages p {
 	margin: 3px 0;
 	word-wrap: break-word;
+}
+
+#jappix_mini div.jm_received-messages p,
+#jappix_mini div.jm_received-messages a {
+	color: black !important;
 }
 
 #jappix_mini div.jm_received-messages div.jm_group {

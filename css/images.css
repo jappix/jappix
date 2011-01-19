@@ -8,7 +8,7 @@ This is the images CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/10/10
+Last revision: 19/01/11
 
 */
 
@@ -25,6 +25,11 @@ Last revision: 29/10/10
 
 .home-images {
 	background-image: url(../img/sprites/home.png);
+	background-repeat: no-repeat;
+}
+
+.browsers-images {
+	background-image: url(../img/sprites/browsers.png);
 	background-repeat: no-repeat;
 }
 

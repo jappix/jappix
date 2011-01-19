@@ -10,7 +10,7 @@ This is the Jappix Desktop PHP/HTML code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 19/01/11
 
 */
 
@@ -87,7 +87,7 @@ if(!anonymousMode()) { ?>
 					?>
 					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
 					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><?php _e("Manager"); ?></a>
-					<a class="home-images project" href="http://project.jappix.com"><?php _e("Project"); ?></a>
+					<a class="home-images project" href="http://project.jappix.com/"><?php _e("Project"); ?></a>
 					<?php if(sslCheck() && !httpsForce()) echo sslLink(); ?>
 				</div>
 			</div>
@@ -122,8 +122,6 @@ if(!anonymousMode()) { ?>
 <!-- BEGIN BOARD -->
 <div id="board">
 	<noscript class="one-board info visible"><?php _e("JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."); ?></noscript>
-	
-	<!--[if lt IE 9]><div class="one-board info visible"><?php _e("Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."); ?></div><![endif]-->
 </div>
 <!-- END BOARD -->
 
