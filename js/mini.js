@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/01/11
+Last revision: 19/01/11
 
 */
 
@@ -21,6 +21,7 @@ var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
 var MINI_GROUPCHATS = [];
 var MINI_PASSWORDS = [];
+var MINI_RESOURCE = JAPPIX_RESOURCE + ' Mini';
 
 // Setups connection handlers
 function setupCon(con) {
@@ -51,7 +52,7 @@ function connect(domain, user, password) {
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.secure = true;
-		oArgs.resource = JAPPIX_RESOURCE + ' Mini';
+		oArgs.resource = MINI_RESOURCE;
 		oArgs.domain = domain;
 		
 		// Anonymous login?
