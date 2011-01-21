@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/01/11
+Last revision: 21/01/11
 
 */
 
@@ -108,15 +108,15 @@ Last revision: 19/01/11
 	-webkit-border-radius: 10px;
 }
 
-#jappix_mini div.jm_conversation[data-type=groupchat] span.jm_name {
+#jappix_mini div.jm_conversation.jm_type_groupchat span.jm_name {
 	margin-left: 4px;
 }
 
 #jappix_mini div.jm_chat-content {
 	background-color: white;
 	border: 1px solid #999999;
-	height: 290px;
-	width: 250px;
+	height: 300px;
+	width: 260px;
 	position: absolute;
 	right: -1px;
 	bottom: 25px;
@@ -179,7 +179,7 @@ Last revision: 19/01/11
 
 #jappix_mini div.jm_received-messages {
 	padding: 5px 0 4px;
-	height: 232px;
+	height: 242px;
 	overflow: auto;
 }
 
@@ -199,8 +199,8 @@ Last revision: 19/01/11
 	border-bottom: 1px solid #eaeaea;
 }
 
-#jappix_mini div.jm_received-messages div[data-type=system-message] p,
-#jappix_mini div.jm_received-messages div[data-type=system-message] a {
+#jappix_mini div.jm_received-messages div.jm_system-message p,
+#jappix_mini div.jm_received-messages div.jm_system-message a {
 	color: #053805 !important;
 }
 
@@ -237,7 +237,7 @@ Last revision: 19/01/11
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 240px;
+	width: 250px;
 	min-height: 14px;
 }
 

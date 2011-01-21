@@ -8,7 +8,7 @@ These are the microblog JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 21/01/11
 
 */
 
@@ -424,7 +424,7 @@ function sendMicroblog() {
 	try {
 		// Get the values
 		var selector = $('#channel .top input[name=microblog_body]');
-		var body = selector.val();
+		var body = trim(selector.val());
 		
 		// Sufficient parameters
 		if(body) {

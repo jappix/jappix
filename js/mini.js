@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/01/11
+Last revision: 21/01/11
 
 */
 
@@ -195,7 +195,7 @@ function handleMessage(msg) {
 	// This is a message Jappix can handle
 	if((type == 'chat') || (type == 'normal') || (type == 'groupchat') || !type) {
 		// Get the body
-		var body = msg.getBody();
+		var body = trim(msg.getBody());
 		
 		if(body) {
 			// Get the values
@@ -518,7 +518,7 @@ function presence(type, show, priority, status, to, password, limit_history, han
 // Sends a given message
 function sendMessage(aForm) {
 	try {
-		var body = aForm.body.value;
+		var body = trim(aForm.body.value);
 		var xid = aForm.xid.value;
 		var type = aForm.type.value;
 		var hash = hex_md5(xid);
@@ -835,7 +835,7 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	if(grouped)
 		jQuery('#jappix_mini #chat-' + hash + ' div.jm_received-messages div.jm_group:last').append(body);
 	else
-		jQuery('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group" data-type="' + message_type + '" data-stamp="' + stamp + '">' + header + body + '</div>');
+		jQuery('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group jm_' + message_type + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + header + body + '</div>');
 	
 	// Scroll to the last element
 	messageScroll(hash);
@@ -892,7 +892,7 @@ function chat(type, xid, nick, hash, pwd) {
 		
 		// Create the HTML markup
 		jQuery('#jappix_mini div.jm_conversations').prepend(
-			'<div class="jm_conversation" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
+			'<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 
 						'<span class="jm_nick">' + nick + '</span>' + 

@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 16/01/11
+Last revision: 21/01/11
 
 */
 
@@ -22,9 +22,9 @@ function handleMessage(message) {
 	var from = fullXID(getStanzaFrom(message));
 	var id = message.getID();
 	var type = message.getType();
-	var body = message.getBody();
+	var body = trim(message.getBody());
 	var node = message.getNode();
-	var subject = message.getSubject();
+	var subject = trim(message.getSubject());
 	
 	// We generate some values
 	var xid = bareXID(from);
@@ -379,7 +379,7 @@ function handleMessage(message) {
 function sendMessage(hash, type) {
 	// Get the values
 	var message_area = $('#' + hash + ' .message-area');
-	var body = message_area.val();
+	var body = trim(message_area.val());
 	var xid = unescape(message_area.attr('data-to'));
 	
 	// If the user didn't entered any message, stop
