@@ -2626,8 +2626,8 @@ function genID() {
 
 // Can use XDomainRequest
 function hasXDomainRequest() {
-  // Support for this, and not local?
-  if(window.XDomainRequest && (XDOMAINREQUEST == 'on') && !(window.location.hostname).match(/^(localhost|192\.|127\.|10\.|255\.|::1|fe00::0)/i))
+  // Support for this, and allowed?
+  if(window.XDomainRequest && (XDOMAINREQUEST == 'on'))
   	return true;
   
   return false;
