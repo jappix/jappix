@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
 Contact: http://project.jappix.com/contact
-Last revision: 09/01/11
+Last revision: 22/01/11
 
 */
 
@@ -67,6 +67,11 @@ function XmlHttp() {}
  */
 XmlHttp.create = function () {
   try {
+    // IE8+
+    if (hasXDomainRequest()) {
+      return new XDomainRequest(); 
+    }
+    // Firefox, Chrome, Opera
     if (window.XMLHttpRequest) {
       var req = new XMLHttpRequest();
      
@@ -83,6 +88,7 @@ XmlHttp.create = function () {
      
       return req;
     }
+    // IE7-
     if (window.ActiveXObject) {
       return new ActiveXObject(XmlHttp.getPrefix() + ".XmlHttp");
     }
@@ -2615,7 +2621,16 @@ function JSJaCConnection(oArg) {
 var STANZA_ID = 1;
 
 function genID() {
-	return STANZA_ID++;
+  return STANZA_ID++;
+}
+
+// Can use XDomainRequest
+function hasXDomainRequest() {
+  // Support for this, and not local?
+  if(window.XDomainRequest && (XDOMAINREQUEST == 'on') && !(window.location.hostname).match(/^(localhost|192\.|127\.|10\.|255\.|::1|fe00::0)/i))
+  	return true;
+  
+  return false;
 }
 
 JSJaCConnection.prototype.connect = function(oArg) {
@@ -4293,7 +4308,10 @@ JSJaCHttpBindingConnection.prototype._setupRequest = function(async) {
   var r = XmlHttp.create();
   try {
     r.open("POST",this._httpbase,async);
-    r.setRequestHeader('Content-Type','text/xml; charset=utf-8');
+    
+    // Can set a header without breaking everything?
+    if(!hasXDomainRequest())
+      r.setRequestHeader('Content-Type','text/xml; charset=utf-8');
   } catch(e) { this.oDbg.log(e,1); }
   req.r = r;
   this._rid++;

@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 19/01/11
+# Last revision: 22/01/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1086,6 +1086,9 @@ msgid "Connection"
 msgstr ""
 
 msgid "Lock the host"
+msgstr ""
+
+msgid "Cross-domain for IE"
 msgstr ""
 
 msgid "Anonymous mode"

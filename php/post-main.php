@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 22/01/11
 
 */
 
@@ -41,6 +41,12 @@ if(isset($_POST['lock_host']) && !empty($_POST['lock_host']))
 	$lock_host = 'on';
 else
 	$lock_host = 'off';
+
+// XDomainRequest (for IE8+)
+if(isset($_POST['xdomainrequest']) && !empty($_POST['xdomainrequest']))
+	$xdomainrequest = 'on';
+else
+	$xdomainrequest = 'off';
 
 // Anonymous mode
 if(isset($_POST['anonymous_mode']) && !empty($_POST['anonymous_mode']))
@@ -96,6 +102,7 @@ $conf_xml =
 	<desc>'.$service_desc.'</desc>
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
+	<xdomainrequest>'.$xdomainrequest.'</xdomainrequest>
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<registration>'.$registration.'</registration>
 	<encryption>'.$encryption.'</encryption>
