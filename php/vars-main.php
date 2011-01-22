@@ -23,7 +23,6 @@ $service_name = htmlspecialchars(SERVICE_NAME);
 $service_desc = htmlspecialchars(SERVICE_DESC);
 $jappix_resource = htmlspecialchars(JAPPIX_RESOURCE);
 $lock_host = htmlspecialchars(LOCK_HOST);
-$xdomainrequest = htmlspecialchars(XDOMAINREQUEST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);
 $registration = htmlspecialchars(REGISTRATION);
 $encryption = htmlspecialchars(ENCRYPTION);

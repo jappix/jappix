@@ -1088,9 +1088,6 @@ msgstr ""
 msgid "Lock the host"
 msgstr ""
 
-msgid "Cross-domain for IE"
-msgstr ""
-
 msgid "Anonymous mode"
 msgstr ""
 

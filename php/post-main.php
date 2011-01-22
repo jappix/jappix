@@ -42,12 +42,6 @@ if(isset($_POST['lock_host']) && !empty($_POST['lock_host']))
 else
 	$lock_host = 'off';
 
-// XDomainRequest (for IE8+)
-if(isset($_POST['xdomainrequest']) && !empty($_POST['xdomainrequest']))
-	$xdomainrequest = 'on';
-else
-	$xdomainrequest = 'off';
-
 // Anonymous mode
 if(isset($_POST['anonymous_mode']) && !empty($_POST['anonymous_mode']))
 	$anonymous_mode = 'on';
@@ -102,7 +96,6 @@ $conf_xml =
 	<desc>'.$service_desc.'</desc>
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
-	<xdomainrequest>'.$xdomainrequest.'</xdomainrequest>
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<registration>'.$registration.'</registration>
 	<encryption>'.$encryption.'</encryption>

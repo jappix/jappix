@@ -67,14 +67,9 @@ function XmlHttp() {}
  */
 XmlHttp.create = function () {
   try {
-    // IE8+
-    if (hasXDomainRequest()) {
-      return new XDomainRequest(); 
-    }
-    // Firefox, Chrome, Opera
     if (window.XMLHttpRequest) {
       var req = new XMLHttpRequest();
-     
+      
       // some versions of Moz do not support the readyState property
       // and the onreadystate event so we patch it!
       if (req.readyState == null) {
@@ -85,10 +80,9 @@ XmlHttp.create = function () {
 				 req.onreadystatechange();
 			     }, false);
       }
-     
+      
       return req;
     }
-    // IE7-
     if (window.ActiveXObject) {
       return new ActiveXObject(XmlHttp.getPrefix() + ".XmlHttp");
     }
@@ -2624,15 +2618,6 @@ function genID() {
   return STANZA_ID++;
 }
 
-// Can use XDomainRequest
-function hasXDomainRequest() {
-  // Support for this, and allowed?
-  if(window.XDomainRequest && (XDOMAINREQUEST == 'on'))
-  	return true;
-  
-  return false;
-}
-
 JSJaCConnection.prototype.connect = function(oArg) {
   this._setStatus('connecting');
 
@@ -4308,10 +4293,7 @@ JSJaCHttpBindingConnection.prototype._setupRequest = function(async) {
   var r = XmlHttp.create();
   try {
     r.open("POST",this._httpbase,async);
-    
-    // Can set a header without breaking everything?
-    if(!hasXDomainRequest())
-      r.setRequestHeader('Content-Type','text/xml; charset=utf-8');
+    r.setRequestHeader('Content-Type','text/xml; charset=utf-8');
   } catch(e) { this.oDbg.log(e,1); }
   req.r = r;
   this._rid++;

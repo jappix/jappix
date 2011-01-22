@@ -24,7 +24,6 @@ $main_conf = array(
 	     	'desc'		=> 'a free social network',
 	     	'resource'	=> 'Jappix',
 	     	'lock'		=> 'off',
-	     	'xdomainrequest'=> 'on',
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
 	     	'encryption'	=> 'on',
@@ -61,7 +60,6 @@ define('SERVICE_NAME', $main_conf['name']);
 define('SERVICE_DESC', $main_conf['desc']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
-define('XDOMAINREQUEST', $main_conf['xdomainrequest']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('REGISTRATION', $main_conf['registration']);
 define('ENCRYPTION', $main_conf['encryption']);

@@ -27,12 +27,6 @@ if($lock_host == 'on')
 else
 	$check_lock_host = '';
 
-// XDomainRequest (for IE8+)
-if($xdomainrequest == 'on')
-	$check_xdomainrequest = $checked;
-else
-	$check_xdomainrequest = '';
-
 // Anonymous mode
 if($anonymous_mode == 'on')
 	$check_anonymous_mode = $checked;
@@ -85,8 +79,6 @@ else
 	<label for="jappix_resource"><?php _e("Resource"); ?></label><input id="jappix_resource" type="text" name="jappix_resource" value="<?php echo $jappix_resource; ?>" maxlength="1023" />
 	
 	<label for="lock_host"><?php _e("Lock the host"); ?></label><input id="lock_host" type="checkbox" name="lock_host"<?php echo $check_lock_host; ?> />
-	
-	<label for="xdomainrequest"><?php _e("Cross-domain for IE"); ?></label><input id="xdomainrequest" type="checkbox" name="xdomainrequest"<?php echo $check_xdomainrequest; ?> />
 	
 	<label for="anonymous_mode"><?php _e("Anonymous mode"); ?></label><input id="anonymous_mode" type="checkbox" name="anonymous_mode"<?php echo $check_anonymous_mode; ?> />
 	

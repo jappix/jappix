@@ -124,7 +124,6 @@ var SERVICE_NAME = null;
 var SERVICE_DESC = null;
 var JAPPIX_RESOURCE = null;
 var LOCK_HOST = null;
-var XDOMAINREQUEST = null;
 var ANONYMOUS = null;
 var REGISTRATION = null;
 var ENCRYPTION = null;
