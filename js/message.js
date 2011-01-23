@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 21/01/11
+Last revision: 23/01/11
 
 */
 
@@ -711,6 +711,13 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		xid_hash = hex_md5(xid);
 	}
 	
+	// Can scroll?
+	var cont_scroll = document.getElementById('chat-content-' + hash);
+	var can_scroll = false;
+	
+	if(!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight))
+		can_scroll = true;
+	
 	// Any ID?
 	var data_id = '';
 	
@@ -786,5 +793,6 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	}
 	
 	// Scroll to this message
-	autoScroll(hash);
+	if(can_scroll)
+		autoScroll(hash);
 }

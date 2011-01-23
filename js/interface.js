@@ -8,7 +8,7 @@ These are the interface JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 27/12/10
+Last revision: 23/01/11
 
 */
 
@@ -289,10 +289,12 @@ function chanCleanNotify(hash) {
 
 // Scrolls to the last chat message
 function autoScroll(hash) {
+	// Avoid a JS error
 	if(exists('#' + hash)) {
-		var objDiv = document.getElementById('chat-content-' + hash);
+		var container = document.getElementById('chat-content-' + hash);
 		
-		objDiv.scrollTop = objDiv.scrollHeight;
+		// Scroll down!
+		container.scrollTop = container.scrollHeight;
 	}
 }
 

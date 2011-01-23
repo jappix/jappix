@@ -8,7 +8,7 @@ These are the groupchat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 23/01/11
 
 */
 
@@ -23,7 +23,7 @@ function displayMucAdmin(affiliation, id, xid, statuscode) {
 		$('#' + id + ' .tools-mucadmin').show();
 	
 	// We check if the room hasn't been yet created
-	if(statuscode == '201')
+	if(statuscode == 201)
 		openThisInfo(4);
 	
 	// We add the click event
@@ -88,8 +88,9 @@ function handleMUC(presence) {
 	// Catch the errors
 	if(!handleError(xml)) {
 		// Define some stuffs
-		var affiliation = $(xml).find('item').attr('affiliation');
-                var statuscode = $(xml).find('status').attr('code');
+		var muc_user = $(xml).find('x[xmlns=' + NS_MUC_USER + ']');
+		var affiliation = muc_user.find('item').attr('affiliation');
+                var statuscode = parseInt(muc_user.find('status').attr('code'));
 		
 		// Handle my presence
 		handlePresence(presence);

@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/12/10
+Last revision: 23/01/11
 
 */
 
@@ -799,7 +799,7 @@ function launchRoster() {
 		var dHovered = destination + ' ul li.hovered:first';
 		
 		// When a key is pressed...
-		$('#buddy-conf-join input').keyup(function(e) {
+		$('#buddy-conf-join input, #buddy-conf-join select').keyup(function(e) {
 			// Enter: continue
 			if(e.keyCode == 13) {
 				// Select something from the search
@@ -849,12 +849,17 @@ function launchRoster() {
 				// Navigating with keyboard in the results
 				arrowsBuddySearch(e, destination);
 			}
-		})
+		});
 		
 		// Buddy search lost focus
-		.blur(function() {
+		$('#buddy-conf-join input').blur(function() {
 			if(!$(destination + ' ul').attr('mouse-hover'))
 				resetBuddySearch(destination);
+		});
+		
+		// Re-focus on the text input
+		$('#buddy-conf-join select').change(function() {
+			$('#buddy-conf-join input').focus();
 		});
 		
 		// We focus on the input
