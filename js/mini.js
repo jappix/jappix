@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/01/11
+Last revision: 23/01/11
 
 */
 
@@ -791,6 +791,13 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	// Generate path
 	var path = '#chat-' + hash;
 	
+	// Can scroll?
+	var cont_scroll = document.getElementById('received-' + hash);
+	var can_scroll = false;
+	
+	if((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)
+		can_scroll = true;
+	
 	// Remove the previous message border if needed
 	var last = jQuery(path + ' div.jm_group:last');
 	var last_stamp = parseInt(last.attr('data-stamp'));
@@ -837,8 +844,9 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	else
 		jQuery('#jappix_mini #chat-' + hash + ' div.jm_received-messages').append('<div class="jm_group jm_' + message_type + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + header + body + '</div>');
 	
-	// Scroll to the last element
-	messageScroll(hash);
+	// Scroll to this message
+	if(can_scroll)
+		messageScroll(hash);
 }
 
 // Switches to a given point

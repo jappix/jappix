@@ -715,7 +715,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	var cont_scroll = document.getElementById('chat-content-' + hash);
 	var can_scroll = false;
 	
-	if(!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight))
+	if((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)
 		can_scroll = true;
 	
 	// Any ID?
