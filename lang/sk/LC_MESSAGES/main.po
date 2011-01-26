@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-26 13:13:47\n"
+"PO-Revision-Date: 2011-01-26 20:46:07\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1107,243 +1107,243 @@ msgstr "Lokálny čas"
 
 #: 
 msgid "Comments"
-msgstr ""
+msgstr "Komentáre"
 
 #: 
 msgid "User profile"
-msgstr ""
+msgstr "Užívateľov profil"
 
 #: 
 msgid "See his/her position on the globe"
-msgstr ""
+msgstr "Zobraz jeho/jej pozíciu na zemeguli"
 
 #: 
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdiť"
 
 #: 
 msgid "anonymous mode"
-msgstr ""
+msgstr "anonymný mód"
 
 #: 
 msgid "Groups"
-msgstr ""
+msgstr "Skupiny"
 
 #: 
 msgid "Unclassified"
-msgstr ""
+msgstr "Nezaradené"
 
 #: 
 msgid "Authorize"
-msgstr ""
+msgstr "Povoliť"
 
 #: 
 msgid "Ask for authorization"
-msgstr ""
+msgstr "Požiadaj o povolenie"
 
 #: 
 msgid "Prohibit"
-msgstr ""
+msgstr "Zakázať"
 
 #: 
 msgid "Block"
-msgstr ""
+msgstr "Blokovať"
 
 #: 
 msgid "Chat"
-msgstr ""
+msgstr "Rozhovor"
 
 #: 
 msgid "Groupchat"
-msgstr ""
+msgstr "Skupinový rozhovor"
 
 #: 
 msgid "Jappix Mobile"
-msgstr ""
+msgstr "Jappix Mobile"
 
 #: 
 msgid "Desktop"
-msgstr ""
+msgstr "Počítač"
 
 #: 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: 
 msgid "Please wait..."
-msgstr ""
+msgstr "Čakajte prosím..."
 
 #: 
 msgid "Please enable JavaScript"
-msgstr ""
+msgstr "Povoľte JavaScript prosím"
 
 #: 
 msgid "Your channel"
-msgstr ""
+msgstr "Váš kanál"
 
 #: 
 msgid "Channel of"
-msgstr ""
+msgstr "Kanál užívateľa"
 
 #: 
 msgid "More notices..."
-msgstr ""
+msgstr "Ďaľšie upozornenia..."
 
 #: 
 msgid "Attach a file"
-msgstr ""
+msgstr "Pripojiť súbor"
 
 #: 
 msgid "Send"
-msgstr ""
+msgstr "Odoslať"
 
 #: 
 msgid "Unattach the file"
-msgstr ""
+msgstr "Odpojiť súbor"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr ""
+msgstr "Stala sa chyba počas nahrávania vášho súboru: možno je príliš veľký ($s maximum) alebo zakázaný!"
 
 #: 
 msgid "Authorization failed"
-msgstr ""
+msgstr "Overenie zlyhalo"
 
 #: 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "Registrácia zlyhala, zvoľte prosím iné užívateľské meno"
 
 #: 
 msgid "Service unavailable"
-msgstr ""
+msgstr "Služba je nedostupná"
 
 #: 
 msgid "Internal server error, try later"
-msgstr ""
+msgstr "Internal server error, skúste neskôr"
 
 #: 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Váš formulár bol odoslaný"
 
 #: 
 msgid "Application"
-msgstr ""
+msgstr "Aplikácia"
 
 #: 
 msgid "XMPP links"
-msgstr ""
+msgstr "XMPP odkaz"
 
 #: 
 msgid "Open XMPP links with Jappix"
-msgstr ""
+msgstr "Otvoriť XMPP odkazy pomocou Jappix"
 
 #: 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "zmenil predmet na"
 
 #: 
 msgid "Welcome!"
-msgstr ""
+msgstr "Vitajte!"
 
 #: 
 msgid "Friends"
-msgstr ""
+msgstr "Priatelia"
 
 #: 
 msgid "Welcome on Jappix, your own social cloud!"
-msgstr ""
+msgstr "Vitajte na Jappix, vašej vlastnej sociálnej sieti!"
 
 #: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
-msgstr ""
+msgstr "Skôr než ju začnete používať, mali by ste zmeniť niektoré nastavenia, vyhľadať priateľov a vyplniť svoj profil."
 
 #: 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "Povoliť zvuk upozornení"
 
 #: 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "Zdieľať svoju polohu na zemeguli"
 
 #: 
 msgid "Offline friends"
-msgstr ""
+msgstr "Odpojení priatelia"
 
 #: 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Neskrývať odpojených priateľov"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
-msgstr ""
+msgstr "Použite tento nástroj na vyhľadanie vašich priateľov na serveri, ktorý používate, alebo ich pridajte neskôr."
 
 #: 
 msgid "Great work! When you will press the save button, the profile editor will be opened."
-msgstr ""
+msgstr "Výborne! Keď kliknete na tlačidlo Uložiť, otvorí sa editor profilu"
 
 #: 
 msgid "Thanks from the Jappix team for your interest. Happy socializing!"
-msgstr ""
+msgstr "Jappix tím vám ďakuje za váš záujem. Happy socializing! "
 
 #: 
 msgid "Unknown name"
-msgstr ""
+msgstr "Neznáme meno"
 
 #: 
 msgid "Unknown country"
-msgstr ""
+msgstr "Neznáma krajina"
 
 #: 
 msgid "Click to enable"
-msgstr ""
+msgstr "Klikni pre zapnutie"
 
 #: 
 msgid "Click to disable"
-msgstr ""
+msgstr "Klikni pre vypnutie"
 
 #: 
 msgid "Installation"
-msgstr ""
+msgstr "Inštalácia"
 
 #: 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Jappix inštalácia"
 
 #: 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Vitajte v Jappix inštalácii"
 
 #: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr ""
+msgstr "Tento nástroj vám pomôže rýchlo nainštalovať Jappix, prvú plnohodnotnú sociálnu platformu založenú na XMPP, na váš server. Nebudete dokonca potrebovať žiadne technické znalosti.( takmer :) ))"
 
 #: 
 msgid "Let's have a look at the installation steps:"
-msgstr ""
+msgstr "Poďme sa pozrieť na inštalačné kroky:"
 
 #: 
 msgid "Welcome"
-msgstr ""
+msgstr "Vitajte"
 
 #: 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Nastavenie úložiska"
 
 #: 
 msgid "Administrator account"
-msgstr ""
+msgstr "Administračný účet"
 
 #: 
 msgid "Main configuration"
-msgstr ""
+msgstr "Hlavná konfigurácia"
 
 #: 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "Hosts configuration"
 
 #: 
 msgid "Services installation"
-msgstr ""
+msgstr "Inštalácia služieb"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
@@ -1351,239 +1351,239 @@ msgstr ""
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
-msgstr ""
+msgstr "Pokiaľ potrebujete pomoc ohľadom inštalácie a konfigurácie Jappix, môžete použiť dokumentáciu, dostupnú na:"
 
 #: 
 msgid "It's time to build your own social cloud: just go to the next step!"
-msgstr ""
+msgstr "Nastal čas vybudovať vašu vlastnú socialnu sieť: stačí prejsť do daľšieho kroku!"
 
 #: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr ""
+msgstr "Jappix ukladá natrvalo dáta (ako sú zdieľané súbory,vaša vlastná hudba a svoju konfiguráciu) do jedinej zabezpečenej zložky"
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
-msgstr ""
+msgstr "Jappix musí mať právo zapisovať v tejto zložke pre vytvorenie svojich podzložiek. Ak nie, musíte nastaviť oprávnenia na %1s alebo zmeniť vlastníka zložky na %2s (závisí od vašej konfigurácie))"
 
 #: 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "Do zložky je možné zapisovať, môžete pokračovať!"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr ""
+msgstr "Jappix vám ponúka možnosť spravovať vaše konfiguráciu, inštalovať nové pluginy alebo vyhľadať aktualizácie. Preto si musíte vytvoriť administračný účet pre prístup k Správcovi."
 
 #: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
-msgstr ""
+msgstr "Po nainštalovaní Jappix, stačí kliknúť na odkaz Správca na domovskej stránke pre prístup."
 
 #: 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr ""
+msgstr "Ups, niečo ste prehliadli alebo heslá nesúhlasia!"
 
 #: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr ""
+msgstr "Jappix vyžaduje nastavenie niekoľkých hodnôt. Prosím, upravte nasledujúce hodnoty (alebo ponechajte predvolené, ktoré vyhovujú väčšine užívatelov). )"
 
 #: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
-msgstr ""
+msgstr "Ak nenastavíte povinné údaje, budú nastavené na predvolené hodnoty"
 
 #: 
 msgid "User"
-msgstr ""
+msgstr "Užívateľ"
 
 #: 
 msgid "Service"
-msgstr ""
+msgstr "Služba"
 
 #: 
 msgid "Service name"
-msgstr ""
+msgstr "Meno služby"
 
 #: 
 msgid "Service description"
-msgstr ""
+msgstr "Popis služby"
 
 #: 
 msgid "Connection"
-msgstr ""
+msgstr "Pripojenie"
 
 #: 
 msgid "Lock the host"
-msgstr ""
+msgstr "Uzamknúť host"
 
 #: 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Anonymný mód"
 
 #: 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Registrácia povolená"
 
 #: 
 msgid "Encryption"
-msgstr ""
+msgstr "Šifrovanie"
 
 #: 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "HTTPS úložisko"
 
 #: 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "Vynútiť HTTPS"
 
 #: 
 msgid "Compression"
-msgstr ""
+msgstr "Kompresia"
 
 #: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
-msgstr ""
+msgstr "Táto stránka vám pomôže nastaviť predvoleného Hostiteľa. Použite predvolené ak chcete využívať oficialnu službu Hostiteľa"
 
 #: 
 msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
-msgstr ""
+msgstr "BOSH server je v podstate spojenie medzi Jappix klientom a XMPP serverom, ktoré je nevyhnutné z dôvodu technických obmedzení"
 
 #: 
 msgid "Main host"
-msgstr ""
+msgstr "Hlavný hostiteľ (Main host)"
 
 #: 
 msgid "Groupchat host"
-msgstr ""
+msgstr "Hostiteľ Skupinových rozhovorov (Groupchat host)"
 
 #: 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Anonymous host"
 
 #: 
 msgid "Directory host"
-msgstr ""
+msgstr "Directory host"
 
 #: 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH host"
 
 #: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-msgstr ""
+msgstr "Môžete nainštalovať doplnky pre rozšírenie funkcionality Jappix. Niektoré môžete dodatočne upraviť, najmä z dôvodu bezpečnostných obmedzení, ktoré sú nastavené ako predvolené."
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
-msgstr ""
+msgstr "Pre vykonanie musíte mať prístup k terminálu serveru a byť prihlásený ako root. Jappix bude pracovať aj bez týchto modulov ale niektoré z funkcii budú nedostupné"
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "Keď skončíte nastavovanie, Jappix vygeneruje cache súbory. Môže to chvíľu trvať, počkajte pokiaľ sa nezobrazí aplikácia a nestláčajte žiadne tlačidlo."
 
 #: 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "Ďakujeme za používanie Jappix-u!"
 
 #: 
 msgid "Next"
-msgstr ""
+msgstr "Ďalej"
 
 #: 
 msgid "Finish"
-msgstr ""
+msgstr "Dokončiť"
 
 #: 
 msgid "Check again"
-msgstr ""
+msgstr "Opakovať"
 
 #: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
-msgstr ""
+msgstr "V zložke sa nedá zapisovať, nastavte práva pre zložku %s."
 
 #: 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s je nainštalovaný vo vašom systéme"
 
 #: 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s nie je nainštalovaný vo vašom systéme, nainštalujte %2s."
 
 #: 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr ""
+msgstr "PHP maximum upload size je dostatočná (%s)"
 
 #: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr ""
+msgstr "PHP maximum upload size nie je dostatočná (%1s), mali by ste ju nastaviť na%2s v %3s."
 
 #: 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix správca"
 
 #: 
 msgid "Manager access"
-msgstr ""
+msgstr "Administrácia"
 
 #: 
 msgid "Statistics"
-msgstr ""
+msgstr "Štatistika"
 
 #: 
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 #: 
 msgid "Design"
-msgstr ""
+msgstr "Dizajn"
 
 #: 
 msgid "Repeat"
-msgstr ""
+msgstr "Opakovať"
 
 #: 
 msgid "All"
-msgstr ""
+msgstr "Všetko"
 
 #: 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontálne"
 
 #: 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikálne"
 
 #: 
 msgid "Center"
-msgstr ""
+msgstr "Stred"
 
 #: 
 msgid "Left"
-msgstr ""
+msgstr "Vľavo"
 
 #: 
 msgid "Right"
-msgstr ""
+msgstr "Vpravo"
 
 #: 
 msgid "Top"
-msgstr ""
+msgstr "Hore"
 
 #: 
 msgid "Bottom"
-msgstr ""
+msgstr "Dole"
 
 #: 
 msgid "Adapt"
-msgstr ""
+msgstr "Prispôsobiť"
 
 #: 
 msgid "Color"
-msgstr ""
+msgstr "Farba"
 
 #: 
 msgid "Users"
-msgstr ""
+msgstr "Užívatelia"
 
 #: 
 msgid "Updates"
-msgstr ""
+msgstr "Aktualizácie"
 
 #: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
