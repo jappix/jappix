@@ -19,6 +19,7 @@ var MINI_SHOWPANE = false;
 var MINI_INITIALIZED = false;
 var MINI_ANONYMOUS = false;
 var MINI_NICKNAME = null;
+var MINI_TITLE = null;
 var MINI_GROUPCHATS = [];
 var MINI_PASSWORDS = [];
 var MINI_RESOURCE = JAPPIX_RESOURCE + ' Mini';
@@ -554,6 +555,8 @@ function sendMessage(aForm) {
 		}
 	}
 	
+	catch(e) {}
+	
 	finally {
 		return false;
 	}
@@ -595,15 +598,13 @@ function notifyError() {
 }
 
 // Updates the page title with the new notifications
-var PAGE_TITLE = null;
-
 function notifyTitle() {
 	// No saved title? Abort!
-	if(PAGE_TITLE == null)
+	if(MINI_TITLE == null)
 		return false;
 	
 	// Page title code
-	var title = PAGE_TITLE;
+	var title = MINI_TITLE;
 	
 	// Count the number of notifications
 	var number = 0;
@@ -617,7 +618,7 @@ function notifyTitle() {
 		title = '[' + number + '] ' + title;
 	
 	// Apply the title
-	jQuery('head title').html(title);
+	document.title = title;
 	
 	return true;
 }
@@ -786,10 +787,13 @@ function createMini(domain, user, password) {
 		
 		if(scroll_hash) {
 			// Use a timer to override the DOM lag issue
-			jQuery(document).oneTime(20, function() {
+			jQuery(document).oneTime(10, function() {
 				messageScroll(scroll_hash, scroll_position);
 			})
 		}
+		
+		// Update title notifications
+		notifyTitle();
 	}
 	
 	// Can auto-connect?
@@ -876,7 +880,11 @@ function switchPane(element, hash) {
 		
 		jQuery(current + ' a.jm_pane').addClass('jm_clicked');
 		jQuery(current + ' div.jm_chat-content').show();
-		jQuery(current + ' input.jm_send-messages').focus();
+		
+		// Use a timer to override the DOM lag issue
+		jQuery(document).oneTime(10, function() {
+			jQuery(current + ' input.jm_send-messages').focus();
+		})
 		
 		// Scroll to the last message
 		if(hash)
@@ -1043,12 +1051,17 @@ function chatEvents(type, xid, hash) {
 	
 	// Click on the chat content
 	jQuery(current + ' div.jm_received-messages').click(function() {
-		jQuery(current + ' input.jm_send-messages').focus();
+		try {
+			jQuery(document).oneTime(10, function() {
+				jQuery(current + ' input.jm_send-messages').focus();
+			})
+		}
+		
+		catch(e) {}
 	});
 	
 	// Focus on the chat input
 	jQuery(current + ' input.jm_send-messages').focus(function() {
-		// Clear the eventual notifications
 		clearNotifications(hash);
 	});
 }
@@ -1235,7 +1248,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	
 	// Save the page title
 	if(jQuery('head title').size())
-		PAGE_TITLE = jQuery('head title:first').html();
+		MINI_TITLE = jQuery('head title:first').text();
 	
 	// Sets the good roster max-height
 	jQuery(window).resize(adaptRoster);
