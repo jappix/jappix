@@ -460,15 +460,38 @@ function handleMUC(pr) {
 	var xml = pr.getNode();
 	var from = fullXID(getStanzaFrom(pr));
 	var room = bareXID(from);
+	var hash = hex_md5(room);
 	var resource = thisResource(from);
 	
 	// Password required?
 	if(jQuery(xml).find('error[type=auth] not-authorized').size()) {
-		var password = prompt(printf(_e("This room (%s) is protected with a password."), room), '');
+		// Create a new prompt
+		openPrompt(printf(_e("This room (%s) is protected with a password."), room));
 		
-		// Any password?
-		if(password)
-			presence('', '', '', '', from, password, true, handleMUC);
+		// When prompt submitted
+		jQuery('#jappix_popup div.jm_prompt form').submit(function() {
+			try {
+				// Read the value
+				var password = closePrompt();
+				
+				// Any submitted chat to join?
+				if(password) {
+					// Send the password
+					presence('', '', '', '', from, password, true, handleMUC);
+					
+					// Focus on the pane again
+					switchPane('chat-' + hash, hash);
+				}
+			}
+			
+			catch(e) {}
+			
+			finally {
+				return false;
+			}
+		});
+		
+		return;
 	}
 	
 	// Nickname conflict?
@@ -480,7 +503,7 @@ function handleMUC(pr) {
 		presence('', '', '', '', room + '/' + nickname, '', true, handleMUC);
 		
 		// Update the nickname marker
-		jQuery('#jappix_mini #chat-' + hex_md5(room)).attr('data-nick', escape(nickname));
+		jQuery('#jappix_mini #chat-' + hash).attr('data-nick', escape(nickname));
 	}
 }
 
@@ -722,16 +745,31 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini div.jm_actions a.jm_join').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			var join_this = prompt(_e("Please enter the group chat address to join."), '');
+			// Create a new prompt
+			openPrompt(_e("Please enter the group chat address to join."));
 			
-			// Any submitted chat to join?
-			if(join_this) {
-				// Get the chat room to join
-				chat_room = bareXID(generateXID(join_this, 'groupchat'));
+			// When prompt submitted
+			jQuery('#jappix_popup div.jm_prompt form').submit(function() {
+				try {
+					// Read the value
+					var join_this = closePrompt();
+					
+					// Any submitted chat to join?
+					if(join_this) {
+						// Get the chat room to join
+						chat_room = bareXID(generateXID(join_this, 'groupchat'));
+						
+						// Create a new groupchat
+						chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+					}
+				}
 				
-				// Create a new groupchat
-				chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
-			}
+				catch(e) {}
+				
+				finally {
+					return false;
+				}
+			});
 		}
 		
 		catch(e) {}
@@ -789,7 +827,7 @@ function createMini(domain, user, password) {
 			// Use a timer to override the DOM lag issue
 			jQuery(document).oneTime(10, function() {
 				messageScroll(scroll_hash, scroll_position);
-			})
+			});
 		}
 		
 		// Update title notifications
@@ -884,7 +922,7 @@ function switchPane(element, hash) {
 		// Use a timer to override the DOM lag issue
 		jQuery(document).oneTime(10, function() {
 			jQuery(current + ' input.jm_send-messages').focus();
-		})
+		});
 		
 		// Scroll to the last message
 		if(hash)
@@ -903,6 +941,64 @@ function messageScroll(hash, position) {
 	id.scrollTop = position;
 }
 
+// Prompts the user with a given text
+function openPrompt(text, value) {
+	// Initialize
+	var input = '#jappix_popup div.jm_prompt form input';
+	var value_input = input + '[type=text]';
+	
+	// Remove the existing prompt
+	closePrompt();
+	
+	// Add the prompt
+	jQuery('body').append(
+		'<div id="jappix_popup">' + 
+			'<div class="jm_prompt">' + 
+				'<form>' + 
+					text + 
+					'<input class="jm_text" type="text" value="" />' + 
+					'<input class="jm_submit" type="submit" value="' + _e("Submit") + '" />' + 
+					'<input class="jm_submit" type="reset" value="' + _e("Cancel") + '" />' + 
+					'<div class="jm_clear"></div>' + 
+				'</form>' + 
+			'</div>' + 
+		'</div>'
+	);
+	
+	// Apply the value?
+	if(value)
+		jQuery(value_input).val(value);
+	
+	// Focus on the input
+	jQuery(document).oneTime(10, function() {
+		jQuery(value_input).focus();
+	});
+	
+	// Cancel event
+	jQuery(input + '[type=reset]').click(function() {
+		try {
+			closePrompt();
+		}
+		
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
+	});
+}
+
+// Returns the prompt value
+function closePrompt() {
+	// Read the value
+	var value = jQuery('#jappix_popup div.jm_prompt form input').val();
+	
+	// Remove the popup
+	jQuery('#jappix_popup').remove();
+	
+	return value;
+}
+
 // Manages and creates a chat
 function chat(type, xid, nick, hash, pwd) {
 	var current = '#jappix_mini #chat-' + hash;
@@ -915,14 +1011,31 @@ function chat(type, xid, nick, hash, pwd) {
 			
 			// No nickname?
 			if(!nickname) {
-				nickname = prompt(printf(_e("Please enter your nickname to join %s."), xid), '');
+				// Create a new prompt
+				openPrompt(printf(_e("Please enter your nickname to join %s."), xid));
 				
-				// No nickname submitted?!
-				if(!nickname)
-					return false;
+				// When prompt submitted
+				jQuery('#jappix_popup div.jm_prompt form').submit(function() {
+					try {
+						// Read the value
+						var nickname = closePrompt();
+						
+						// Update the stored one
+						if(nickname)
+							MINI_NICKNAME = nickname;
+						
+						// Launch it again!
+						chat(type, xid, nick, hash, pwd);
+					}
+					
+					catch(e) {}
+					
+					finally {
+						return false;
+					}
+				});
 				
-				// Update the stored one
-				MINI_NICKNAME = nickname;
+				return;
 			}
 		}
 		
@@ -1054,7 +1167,7 @@ function chatEvents(type, xid, hash) {
 		try {
 			jQuery(document).oneTime(10, function() {
 				jQuery(current + ' input.jm_send-messages').focus();
-			})
+			});
 		}
 		
 		catch(e) {}

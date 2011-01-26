@@ -12,13 +12,17 @@ Last revision: 26/01/11
 
 */
 
-#jappix_mini {
+#jappix_mini,
+#jappix_popup {
 	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+#jappix_mini {
 	margin-left: 130px;
 	position: fixed;
-	z-index: 99;
 	bottom: 0;
 	right: 20px;
+	z-index: 999;
 }
 
 #jappix_mini * {
@@ -124,7 +128,7 @@ Last revision: 26/01/11
 
 #jappix_mini div.jm_actions {
 	background-color: #565d5e;
-	border-bottom: 1px solid #19445f;
+	border-bottom: 1px solid #3a3a3a;
 	height: 14px;
 	padding: 4px 6px;
 	font-weight: bold;
@@ -387,4 +391,70 @@ Last revision: 26/01/11
 
 #jappix_mini .jm_smiley-grin {
 	background-position: 0 -244px;
+}
+
+#jappix_popup {
+	background-color: rgba(20,20,20,0.1);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+#jappix_popup div.jm_prompt {
+	background-color: #565d5e;
+	border: 1px solid #999999;
+	width: 346px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -175px;
+	padding: 16px 2px 2px 2px;
+}
+
+#jappix_popup div.jm_prompt form {
+	background-color: white;
+	border: 1px solid #3a3a3a;
+	width: 332px;
+	padding: 6px;
+}
+
+#jappix_popup div.jm_prompt form input {
+	background-color: #f9f9f9;
+	border: 1px solid #999999;
+	font-size: 1.2em;
+	padding: 1px 2px;
+}
+
+#jappix_popup div.jm_prompt form input:hover,
+#jappix_popup div.jm_prompt form input:focus {
+	border: 1px solid #666666;
+}
+
+#jappix_popup div.jm_prompt form input.jm_text {
+	width: 326px;
+	margin: 6px 0;
+	display: block;
+}
+
+#jappix_popup div.jm_prompt form input.jm_submit {
+	margin-left: 3px;
+	float: right;
+}
+
+#jappix_popup div.jm_prompt form input.jm_submit:hover,
+#jappix_popup div.jm_prompt form input.jm_submit:focus {
+	background-color: #f3f3f3;
+	cursor: pointer;
+}
+
+#jappix_popup div.jm_prompt form input.jm_submit:active {
+	background-color: #e8e8e8;
+}
+
+#jappix_popup div.jm_prompt div.jm_clear {
+	clear: both;
 }
