@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/01/11
+Last revision: 26/01/11
 
 */
 
@@ -166,6 +166,15 @@ function saveSession() {
                 setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
 		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
 		
+		// Save the scrollbar position
+		var scroll_position = '';
+		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
+		
+		if(scroll_hash)
+			scroll_position = document.getElementById('received-' + scroll_hash).scrollTop + '';
+		
+		setDB('jappix-mini', 'scroll', scroll_position);
+		
 		// Suspend connection
 		con.suspend();
 		
@@ -181,9 +190,10 @@ function disconnected() {
 	// Reset initialized marker
 	MINI_INITIALIZED = false;
 	
-	// Remove the stored DOM
+	// Remove the stored items
 	removeDB('jappix-mini', 'dom');
 	removeDB('jappix-mini', 'nickname');
+	removeDB('jappix-mini', 'scroll');
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -768,11 +778,16 @@ function createMini(domain, user, password) {
 		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
+		var scroll_position = getDB('jappix-mini', 'scroll');
+		
+		// Any scroll position?
+		if(scroll_position)
+			scroll_position = parseInt(scroll_position);
 		
 		if(scroll_hash) {
 			// Use a timer to override the DOM lag issue
-			jQuery(document).oneTime(10, function() {
-				messageScroll(scroll_hash);
+			jQuery(document).oneTime(20, function() {
+				messageScroll(scroll_hash, scroll_position);
 			})
 		}
 	}
@@ -870,9 +885,14 @@ function switchPane(element, hash) {
 }
 
 // Scrolls to the last chat message
-function messageScroll(hash) {
+function messageScroll(hash, position) {
 	var id = document.getElementById('received-' + hash);
-	id.scrollTop = id.scrollHeight;
+	
+	// No defined position?
+	if(!position)
+		position = id.scrollHeight;
+	
+	id.scrollTop = position;
 }
 
 // Manages and creates a chat
