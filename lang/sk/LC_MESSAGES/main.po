@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-26 20:46:07\n"
+"PO-Revision-Date: 2011-01-28 19:15:30\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,23 +147,23 @@ msgstr "Zapojte sa!"
 
 #: 
 msgid "Write code"
-msgstr ""
+msgstr "Programujte"
 
 #: 
 msgid "Translate"
-msgstr "Prekladať"
+msgstr "Prekladajte"
 
 #: 
 msgid "Report a bug"
-msgstr "Nahlásiť chybu"
+msgstr "Nahláste chybu"
 
 #: 
 msgid "Write documentation"
-msgstr "Písať dokumentáciu"
+msgstr "Píšte dokumentáciu"
 
 #: 
 msgid "Donate"
-msgstr "Prispieť"
+msgstr "Prispejte"
 
 #: 
 msgid "Show all friends"
@@ -387,7 +387,7 @@ msgstr "Webstránka"
 
 #: 
 msgid "Current"
-msgstr "Current"
+msgstr "Momentálne"
 
 #: 
 msgid "Delete"
@@ -427,7 +427,7 @@ msgstr "Dôležitý oznam"
 
 #: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
-msgstr "Buďte opatrní, informácie ktoré vyplníte v profile sú prístupné každému (aj niekomu, koho si neželáte) "
+msgstr "Buďte opatrní, informácie ktoré vyplníte v profile sú prístupné každému (aj niekomu, koho si neželáte)."
 
 #: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
@@ -475,15 +475,15 @@ msgstr "Geolokácia"
 
 #: 
 msgid "Empty"
-msgstr "Prázdne"
+msgstr "Vymazanie"
 
 #: 
 msgid "Empty channel"
-msgstr "Prázdny kanál"
+msgstr "Vymazať kanál"
 
 #: 
 msgid "Persistent"
-msgstr "Trvalé"
+msgstr "Natrvalo"
 
 #: 
 msgid "Maximum notices"
@@ -563,7 +563,7 @@ msgstr "Premenovať"
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Ahoj, Ja som %, chcem si ťa pridať ako priateľa"
+msgstr "Ahoj, Ja som %s, chcem si ťa pridať ako priateľa"
 
 #: 
 msgid "Smiley insertion"
@@ -663,7 +663,7 @@ msgstr "Prehľadať miestnosť"
 
 #: 
 msgid "Select a favorite"
-msgstr "Vzber obľúbené"
+msgstr "Vyber obľúbené"
 
 #: 
 msgid "Getting the name..."
@@ -783,7 +783,7 @@ msgstr "Vyčistiť"
 
 #: 
 msgid "New"
-msgstr "Nové"
+msgstr "Nová"
 
 #: 
 msgid "Received"
@@ -1587,479 +1587,479 @@ msgstr "Aktualizácie"
 
 #: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
-msgstr ""
+msgstr "Iba autorizovaní užívatelia môžu spravovať tento Jappix uzol. "
 
 #: 
 msgid "Please use the form below to login to the administration panel."
-msgstr ""
+msgstr "Použite nasledujúci formulár pre prihlásenie do Administračnej sekcie."
 
 #: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
-msgstr ""
+msgstr "Pre zvýšenie bezpečnosti je prihlásenie časovo obmedzené a po zatvorení prehliadača budete odhlásený."
 
 #: 
 msgid "Credentials"
-msgstr ""
+msgstr "Overenie"
 
 #: 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "Boli ste odhlásený, Dovidenia!"
 
 #: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
-msgstr ""
+msgstr "Ups, neboli ste rozpoznaný ako administrátor. Skontrolujte prihlasovacie údaje!"
 
 #: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
-msgstr ""
+msgstr "Štatistiky aplikácie Jappix"
 
 #: 
 msgid "Change your Jappix node configuration with this tool."
-msgstr ""
+msgstr "Zmena konfigurácie uzla Jappix"
 
 #: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr ""
+msgstr "Zmena nastavení XMPP hostiteľov pre tento Jappix uzol"
 
 #: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
-msgstr ""
+msgstr "Všetky súbory na tomto Jappix uzle môžete spravovať pomocou tohto nástroja: vyberte podzložku a môžete editovať jej obsah."
 
 #: 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappix je plne prispôsobiteľný: jeho dizajn môžete zmeniť práve tu."
 
 #: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr ""
+msgstr "Toto nie je platný obrázok, použite PNG,GIF alebo JPG "
 
 #: 
 msgid "The image could not be received, would you mind retry?"
-msgstr ""
+msgstr "Obrázok nebol prijatý, prajete si zopakovať?"
 
 #: 
 msgid "Your image was added to the list!"
-msgstr ""
+msgstr "Váš obrázok bol pridaný do zoznamu!"
 
 #: 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Zmeny uložené!"
 
 #: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
-msgstr ""
+msgstr "Na tomto Jappix uzli môžte definovať viac ako jedného administrátora. Taktiež môžte zmeniť heslo."
 
 #: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
-msgstr ""
+msgstr "Aktualizuj Jappix uzol alebo skontroluj či je dostupná nová verzia. Zobrazia sa informácie o poslednej verzii (v angličtine)"
 
 #: 
 msgid "Access statistics"
-msgstr ""
+msgstr "Štatistiky prístupu"
 
 #: 
 msgid "Share statistics"
-msgstr ""
+msgstr "Štatistiky zdieľania"
 
 #: 
 msgid "Other statistics"
-msgstr ""
+msgstr "Ostatné štatistiky"
 
 #: 
 msgid "January"
-msgstr ""
+msgstr "Január"
 
 #: 
 msgid "February"
-msgstr ""
+msgstr "Február"
 
 #: 
 msgid "March"
-msgstr ""
+msgstr "Marec"
 
 #: 
 msgid "April"
-msgstr ""
+msgstr "Apríl"
 
 #: 
 msgid "May"
-msgstr ""
+msgstr "Máj"
 
 #: 
 msgid "June"
-msgstr ""
+msgstr "Jún"
 
 #: 
 msgid "July"
-msgstr ""
+msgstr "Júl"
 
 #: 
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: 
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: 
 msgid "October"
-msgstr ""
+msgstr "Október"
 
 #: 
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: 
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: 
 msgid "Total"
-msgstr ""
+msgstr "Celkom"
 
 #: 
 msgid "Cache"
-msgstr ""
+msgstr "Cache"
 
 #: 
 msgid "Logs"
-msgstr ""
+msgstr "Logy"
 
 #: 
 msgid "Music"
-msgstr ""
+msgstr "Hudba"
 
 #: 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Pozadia"
 
 #: 
 msgid "Share"
-msgstr ""
+msgstr "Zdieľanie"
 
 #: 
 msgid "Background"
-msgstr ""
+msgstr "Pozadie"
 
 #: 
 msgid "Notice"
-msgstr ""
+msgstr "Upozornenie"
 
 #: 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "Vaše nastavenie dizajnu bolo uložené"
 
 #: 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "Skontrolujte údaje, niečo chýba!"
 
 #: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
-msgstr ""
+msgstr "Zmeňte pozadie vášho JAppix uzla.môžte si zvoliť farbu alebo uložený obrázok.Let your creativity flow!"
 
 #: 
 msgid "Use default background"
-msgstr ""
+msgstr "Použit predvolené pozadie"
 
 #: 
 msgid "Use your own image"
-msgstr ""
+msgstr "Použiť vlastný obrázok"
 
 #: 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "Vyberte pozadie ktoré bude použité a meňte nastavenia zobrazenia"
 
 #: 
 msgid "Use your own color"
-msgstr ""
+msgstr "Použiť vlastnú farbu"
 
 #: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr ""
+msgstr "Zadajte hexadecimálnu farbu pre vaše pozadie"
 
 #: 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "Spravovať pozadia"
 
 #: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
-msgstr ""
+msgstr "Pridajte nové pozadie to zoznamu. Pošlite platný obrázok"
 
 #: 
 msgid "If you want to remove some backgrounds, use the browser below."
-msgstr ""
+msgstr "Ak chcete odobrať neaké pozadia, použite nasledujúci prehliadač "
 
 #: 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
-msgstr ""
+msgstr "Nastavte upozornenie domovskej stránky pre všetkých užívateľov, napríklad varovanie, dôležitý oznam alebo reklamu."
 
 #: 
 msgid "Simple notice"
-msgstr ""
+msgstr "Jednoduché upozornenie"
 
 #: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
-msgstr ""
+msgstr "Toto oznámenie vyžaduje iba jednoduchý text, a žiaden kód nie je povolený"
 
 #: 
 msgid "Advanced notice"
-msgstr ""
+msgstr "Pokročilé oznámenie"
 
 #: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
-msgstr ""
+msgstr "Vaše upozornenie môžete upraviť pomocou embedded HTML, CSS a JavaScriptom, ale musíte nakódovať stýl."
 
 #: 
 msgid "Available updates"
-msgstr ""
+msgstr "Dostupné aktualizácie"
 
 #: 
 msgid "What's new?"
-msgstr ""
+msgstr "Čo je nové?"
 
 #: 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr ""
+msgstr "Vaša zložka na ukladanie nemá povolený zápis, upravte oprávnenia"
 
 #: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
-msgstr ""
+msgstr "Dostupná nová verzia Jappix! Skontrolujte čo je nové a spustite update!"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr ""
+msgstr "Vaša verzia je neaktuálna. Aktualizujte ju na %s kliknutím sem!"
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
-msgstr ""
+msgstr "Vaša verzia sa zdá byť aktuálna, ale môžete skontrolovať aktualizácie kliknutím sem."
 
 #: 
 msgid "Update in progress"
-msgstr ""
+msgstr "Prebieha aktualizácia"
 
 #: 
 msgid "Jappix has been updated: you are now running the latest version. Have fun!"
-msgstr ""
+msgstr "Jappix bol aktualizovaný: práve používate najnovšiu verziu. Bavte sa!"
 
 #: 
 msgid "The update has failed! Please try again later."
-msgstr ""
+msgstr "Aktualizácia zlyhala! Skúste to neskôr prosím."
 
 #: 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Preberanie balíku.."
 
 #: 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Odstraňovanie súčastných systémových súborov Jappixu.."
 
 #: 
 msgid "Extracting package..."
-msgstr ""
+msgstr "Rozbaľovanie balíku..."
 
 #: 
 msgid "Regenerating storage folder tree..."
-msgstr ""
+msgstr "Regenerovanie storage folder tree..."
 
 #: 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix je aktualizovaný!"
 
 #: 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "Prerušené: socket error!"
 
 #: 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "Prerušené: buffer error!"
 
 #: 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "Prerušené: everything is not writable!"
 
 #: 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "Prerušené: nedá sa rozbaliť balík!"
 
 #: 
 msgid "Visits"
-msgstr ""
+msgstr "Návštevnosť"
 
 #: 
 msgid "Daily"
-msgstr ""
+msgstr "Denne"
 
 #: 
 msgid "Weekly"
-msgstr ""
+msgstr "Týždenne"
 
 #: 
 msgid "Monthly"
-msgstr ""
+msgstr "Mesačne"
 
 #: 
 msgid "Yearly"
-msgstr ""
+msgstr "Ročne"
 
 #: 
 msgid "Size"
-msgstr ""
+msgstr "Veľkosť"
 
 #: 
 msgid "Clean everything"
-msgstr ""
+msgstr "Vyčisti všetko"
 
 #: 
 msgid "Purge cache"
-msgstr ""
+msgstr "Zbaviť sa cache"
 
 #: 
 msgid "Purge logs"
-msgstr ""
+msgstr "Zbaviť sa logov"
 
 #: 
 msgid "Purge updates"
-msgstr ""
+msgstr "Zbaviť sa aktualizácii"
 
 #: 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "Odkladací priestor, ktorý ste chceli vyčistiť je teraz prázdny!"
 
 #: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
-msgstr ""
+msgstr "Udržujte váš Jappix uzol čerstvý a rýchly, čistite pravidelne odkladací priestor!"
 
 #: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
-msgstr ""
+msgstr "Nahrajte svoju hudbu (Ogg Vorbis, MP3 alebo WAV) a môžte ju počúvať v Jappixe!"
 
 #: 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "Súbor, ktorý chcete nahrať musí byť menší ako %s."
 
 #: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
-msgstr ""
+msgstr "Zostaňte v obraze o tom čo vaši užívatelia ukladajú na váš server a odstráňte neželaný obsah pomocou tohto nástroja"
 
 #: 
 msgid "Title"
-msgstr ""
+msgstr "Titul"
 
 #: 
 msgid "Artist"
-msgstr ""
+msgstr "Umelec"
 
 #: 
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: 
 msgid "File"
-msgstr ""
+msgstr "Súbor"
 
 #: 
 msgid "Upload"
-msgstr ""
+msgstr "Nahrať"
 
 #: 
 msgid "The folder is empty."
-msgstr ""
+msgstr "Zložka je prázdna"
 
 #: 
 msgid "The music could not be received, please retry!"
-msgstr ""
+msgstr "Hudbu sa nepodarilo prevziať, prosím skúste znova!"
 
 #: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
-msgstr ""
+msgstr "Toto nie je platný hudobný súbor. konvertujte ho na Ogg Vorbis, MP3 alebo WAV!"
 
 #: 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Vaša hudba bola pridaná!"
 
 #: 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "Vybrané položky budú odstránené."
 
 #: 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "Musíte vybrať položky na odstránenie!"
 
 #: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
-msgstr ""
+msgstr "Pridaj užívateľa alebo zmeň heslo (zadaj existujuce užívateľské meno). Zvoľte silné heslo!"
 
 #: 
 msgid "Manage"
-msgstr ""
+msgstr "Spravovať"
 
 #: 
 msgid "List"
-msgstr ""
+msgstr "Zoznam"
 
 #: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
-msgstr ""
+msgstr "Odstráň užívateľa, Pamätajte že nemôžete odstrániť užívateľa ak je posledný."
 
 #: 
 msgid "The user has been added!"
-msgstr ""
+msgstr "Užívateľ bol pridaný"
 
 #: 
 msgid "The chosen users have been removed."
-msgstr ""
+msgstr "Vybraný užívateľ bol odstránený."
 
 #: 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "Musíte vybrať jedného alebo viacerých užívateľov pre odstránenie!"
 
 #: 
 msgid "Yesterday"
-msgstr ""
+msgstr "Včera"
 
 #: 
 msgid "%s days ago"
-msgstr ""
+msgstr "Pred %s dňami"
 
 #: 
 msgid "User currently active"
-msgstr ""
+msgstr "Užívateľ je aktívny"
 
 #: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Naposledy videný: %s"
 
 #: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Neaktívny od: %s"
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "Ukáž históriu rozhovoru"
 
 #: 
 msgid "Monday"
-msgstr ""
+msgstr "Pondelok"
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "Utorok"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "Streda"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "Štvrtok"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "Piatok"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "Sobota"
 
 #: 
 msgid "Sunday"

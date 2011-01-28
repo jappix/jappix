@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 26/01/11
+Last revision: 28/01/11
 
 */
 
@@ -781,13 +781,13 @@ function createMini(domain, user, password) {
 	
 	// Hides the roster when clicking away of Jappix Mini
 	jQuery(document).click(function(evt) {
-		if(!jQuery(evt.target).parents('#jappix_mini').size())
+		if(!jQuery(evt.target).parents('#jappix_mini').size() && !exists('#jappix_popup'))
 			hideRoster();
 	});
 	
 	// Hides all panes double clicking away of Jappix Mini
 	jQuery(document).dblclick(function(evt) {
-		if(!jQuery(evt.target).parents('#jappix_mini').size())
+		if(!jQuery(evt.target).parents('#jappix_mini').size() && !exists('#jappix_popup'))
 			switchPane();
 	});
 	
@@ -944,7 +944,8 @@ function messageScroll(hash, position) {
 // Prompts the user with a given text
 function openPrompt(text, value) {
 	// Initialize
-	var input = '#jappix_popup div.jm_prompt form input';
+	var prompt = '#jappix_popup div.jm_prompt';
+	var input = prompt + ' form input';
 	var value_input = input + '[type=text]';
 	
 	// Remove the existing prompt
@@ -964,6 +965,10 @@ function openPrompt(text, value) {
 			'</div>' + 
 		'</div>'
 	);
+	
+	// Vertical center
+	var vert_pos = '-' + ((jQuery(prompt).height() / 2) + 10) + 'px';
+	jQuery(prompt).css('margin-top', vert_pos);
 	
 	// Apply the value?
 	if(value)
@@ -1360,8 +1365,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	});
 	
 	// Save the page title
-	if(jQuery('head title').size())
-		MINI_TITLE = jQuery('head title:first').text();
+	MINI_TITLE = document.title;
 	
 	// Sets the good roster max-height
 	jQuery(window).resize(adaptRoster);
