@@ -595,14 +595,21 @@ function notifyMessage(hash) {
 	// Define the paths
 	var tab = '#jappix_mini #chat-' + hash + ' a.jm_chat-tab';
 	var notify = tab + ' span.jm_notify';
+	var notify_middle = notify + ' span.jm_notify_middle';
 	
 	// Notification box not yet added
 	if(!exists(notify))
-		jQuery(tab).append('<span class="jm_notify">0</span>');
+		jQuery(tab).append(
+			'<span class="jm_notify">' + 
+				'<span class="jm_notify_left mini-images"></span>' + 
+				'<span class="jm_notify_middle">0</span>' + 
+				'<span class="jm_notify_right mini-images"></span>' + 
+			'</span>'
+		);
 	
 	// Increment the notification number
-	var number = parseInt(jQuery(notify).text());
-	jQuery(notify).text(number + 1);
+	var number = parseInt(jQuery(notify_middle).text());
+	jQuery(notify_middle).text(number + 1);
 	
 	// Change the page title
 	notifyTitle();
@@ -632,7 +639,7 @@ function notifyTitle() {
 	// Count the number of notifications
 	var number = 0;
 	
-	jQuery('#jappix_mini span.jm_notify').each(function() {
+	jQuery('#jappix_mini span.jm_notify span.jm_notify_middle').each(function() {
 		number = number + parseInt(jQuery(this).text());
 	});
 	
