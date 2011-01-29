@@ -39,7 +39,7 @@ if(!BOSHProxy()) {
 }
 
 // No data?
-if(!isset($_GET['data']) || $_GET['data'] == '' || !isset($_GET['callback'])) {
+if(!isset($_GET['data']) || ($_GET['data'] == '') || !isset($_GET['callback'])) {
 	header('HTTP/1.0 400 Bad Request');
 	exit('HTTP/1.0 400 Bad Request');
 }
@@ -52,21 +52,25 @@ curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 $header = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_VERBOSE, 0);
-curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 60 );
-curl_setopt( $ch, CURLOPT_TIMEOUT, 60 );
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 $output = '';
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $output = curl_exec($ch);
 
-if($output == '')
-	print $_GET['callback'] . '({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
+$json_output = json_encode($output);
+
+if(($output == '') || ($json_output == 'null'))
+	print $_GET['callback'].'({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
 else if($output == false)
-	print $_GET['callback'] . '({"reply":' . json_encode('<parsererror/>') . '});';
+	print $_GET['callback'].'({"reply":'.json_encode('<parsererror/>').'});';
 else
-	print $_GET['callback'] . '({"reply":' . json_encode($output) . '});';
+	print $_GET['callback'].'({"reply":'.$json_output.'});';
 
 curl_close($ch);
 
