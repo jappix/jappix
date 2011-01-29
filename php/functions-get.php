@@ -115,6 +115,12 @@ function setLocales($string, $locale) {
 
 // The function to set the good configuration to a JS file
 function setConfiguration($string, $locale, $version, $max_upload) {
+	// Special BOSH URL if BOSH proxy enabled
+	if(BOSHProxy())
+		$bosh_special = staticLocation().'php/bosh.php';
+	else
+		$bosh_special = HOST_BOSH;
+	
 	// Configuration array
 	$array = array(
 		      	// xml:lang
@@ -146,7 +152,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'HOST_MUC'		=> HOST_MUC,
 		      	'HOST_VJUD'		=> HOST_VJUD,
 		      	'HOST_ANONYMOUS'	=> HOST_ANONYMOUS,
-		      	'HOST_BOSH'		=> HOST_BOSH,
+		      	'HOST_BOSH'		=> $bosh_special,
 		      	'HOST_STATIC'		=> HOST_STATIC
 		      );
 	
