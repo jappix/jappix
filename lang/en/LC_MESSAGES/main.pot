@@ -1421,6 +1421,9 @@ msgstr ""
 msgid "In order to work, the proxy requires CURL. Please install it!"
 msgstr ""
 
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr ""
+
 msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
 

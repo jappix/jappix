@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-29 11:57:08\n"
+"PO-Revision-Date: 2011-01-29 13:56:36\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2148,4 +2148,8 @@ msgstr "Utiliser un proxy"
 #: 
 msgid "In order to work, the proxy requires CURL. Please install it!"
 msgstr "Pour fonctionner, le proxy requiert CURL. Veuillez l'installer !"
+
+#: 
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr "%1s pourrait causer des problèmes au proxy, veuillez augmenter la valeur de %2s à %3s !"
 
