@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 16/01/11
+Last revision: 29/01/11
 
 */
 
@@ -345,7 +345,7 @@ function acceptReconnect(mode) {
 	// Reset some various stuffs
 	var groupchats = '#page-engine .page-engine-chan[data-type=groupchat]';
 	$(groupchats + ' .list .role').hide();
-	$(groupchats + ' .one-line, ' + groupchats + ' .list .user').remove();
+	$(groupchats + ' .one-group, ' + groupchats + ' .list .user').remove();
 	$(groupchats).attr('data-initial', 'false');
 	
 	// Remove the reconnect pane
