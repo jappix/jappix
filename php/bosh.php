@@ -33,7 +33,7 @@ if(!function_exists('curl_init')) {
 }
 
 // Not allowed?
-if(BOSHProxy()) {
+if(!BOSHProxy()) {
 	header('HTTP/1.0 403 Forbidden');
 	exit('HTTP/1.0 403 Forbidden');
 }
