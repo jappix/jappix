@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 19/01/11
+Last revision: 29/01/11
 
 */
 
@@ -515,6 +515,14 @@ function genHash($version) {
 function hideErrors() {
 	if(!isDeveloper())
 		ini_set('display_errors','off');
+}
+
+// The function to check BOSH proxy is enabled
+function BOSHProxy() {
+	if(BOSH_PROXY == 'on')
+		return true;
+	
+	return false;
 }
 
 // The function to check compression is enabled

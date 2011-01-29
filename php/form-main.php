@@ -10,7 +10,7 @@ This is the main configuration form (install & manager)
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 22/01/11
+Last revision: 29/01/11
 
 */
 
@@ -38,6 +38,12 @@ if($registration == 'on')
 	$check_registration = $checked;
 else
 	$check_registration = '';
+
+// BOSH proxy
+if($bosh_proxy == 'on')
+	$check_bosh_proxy = $checked;
+else
+	$check_bosh_proxy = '';
 
 // Encryption
 if($encryption == 'on')
@@ -83,6 +89,8 @@ else
 	<label for="anonymous_mode"><?php _e("Anonymous mode"); ?></label><input id="anonymous_mode" type="checkbox" name="anonymous_mode"<?php echo $check_anonymous_mode; ?> />
 	
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
+	
+	<label for="bosh_proxy"><?php _e("Use a proxy"); ?></label><input id="bosh_proxy" type="checkbox" name="bosh_proxy"<?php echo $check_bosh_proxy; ?> />
 </fieldset>
 
 <fieldset>

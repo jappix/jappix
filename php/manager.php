@@ -10,7 +10,7 @@ This is the Jappix Manager PHP/HTML code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 29/01/11
 
 */
 
@@ -258,6 +258,10 @@ else
 			if($id != 0) {
 				if(!storageWritable()) { ?>
 					<p class="info bottomspace fail"><?php _e("Your storage folders are not writable, please apply the good rights!"); ?></p>
+				<?php }
+				
+				if(BOSHProxy() && !function_exists('curl_init')) { ?>
+					<p class="info bottomspace fail"><?php _e("In order to work, the proxy requires CURL. Please install it!"); ?></p>
 				<?php }
 				
 				if(newUpdates($check_updates)) { ?>

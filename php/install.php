@@ -10,7 +10,7 @@ This is the Jappix Install PHP/HTML code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 29/01/11
 
 */
 
@@ -226,14 +226,28 @@ else
 				// Write the installed marker
 				writeXML('conf', 'installed', '<installed>true</installed>');
 				
-				// Checks GD is installed
-				if(function_exists('gd_info')) { ?>
-					<p class="info smallspace first success"><?php printf(T_("%s is installed on your system."), "GD"); ?></p>
-				<?php }
+				// Checks some services are installed
+				$services_functions = array('gd_info', 'curl_init');
+				$services_names = array('GD', 'CURL');
+				$services_packages = array('php5-gd', 'php5-curl');
 				
-				else { ?>
-					<p class="info smallspace first fail"><?php printf(T_("%1s is not installed on your system, you should install %2s."), 'GD', '<em>php5-gd</em>'); ?></p>
-				<?php }
+				for($i = 0; $i < count($services_names); $i++) {
+					$service_class = 'info smallspace';
+					
+					// First info?
+					if($i == 0)
+						$service_class .= ' first';
+					
+					// Service installed?
+					if(function_exists($services_functions[$i])) { ?>
+						<p class="<?php echo($service_class) ?> success"><?php printf(T_("%s is installed on your system."), $services_names[$i]); ?></p>
+					<?php }
+					
+					// Missing service!
+					else { ?>
+						<p class="<?php echo($service_class) ?> fail"><?php printf(T_("%1s is not installed on your system, you should install %2s."), $services_names[$i], '<em>'.$services_packages[$i].'</em>'); ?></p>
+					<?php }
+				}
 				
 				// Checks the upload size limit
 				$upload_max = uploadMaxSize();

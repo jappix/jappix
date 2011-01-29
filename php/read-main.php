@@ -10,7 +10,7 @@ This is the main configuration reader
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/01/11
+Last revision: 29/01/11
 
 */
 
@@ -26,6 +26,7 @@ $main_conf = array(
 	     	'lock'		=> 'off',
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
+	     	'bosh_proxy'	=> 'off',
 	     	'encryption'	=> 'on',
 	     	'https_storage'	=> 'off',
 	     	'https_force'	=> 'off',
@@ -62,6 +63,7 @@ define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('REGISTRATION', $main_conf['registration']);
+define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);

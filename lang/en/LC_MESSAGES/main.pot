@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 22/01/11
+# Last revision: 29/01/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1094,6 +1094,9 @@ msgstr ""
 msgid "Registration allowed"
 msgstr ""
 
+msgid "Use a proxy"
+msgstr ""
+
 msgid "Encryption"
 msgstr ""
 
@@ -1413,6 +1416,9 @@ msgid "What's new?"
 msgstr ""
 
 msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr ""
+
+msgid "In order to work, the proxy requires CURL. Please install it!"
 msgstr ""
 
 msgid "A new Jappix version is available! Check what is new and launch the update!"

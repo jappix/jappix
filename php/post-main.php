@@ -10,7 +10,7 @@ This is the main configuration POST handler (install & manager)
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 22/01/11
+Last revision: 29/01/11
 
 */
 
@@ -53,6 +53,12 @@ if(isset($_POST['registration']) && !empty($_POST['registration']))
 	$registration = 'on';
 else
 	$registration = 'off';
+
+// BOSH proxy
+if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy']))
+	$bosh_proxy = 'on';
+else
+	$bosh_proxy = 'off';
 
 // Encryption
 if(isset($_POST['encryption']) && !empty($_POST['encryption']))
@@ -98,6 +104,7 @@ $conf_xml =
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<registration>'.$registration.'</registration>
+	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
 	<encryption>'.$encryption.'</encryption>
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>
