@@ -8,7 +8,7 @@ These are the chat JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/12/10
+Last revision: 29/01/11
 
 */
 
@@ -219,7 +219,7 @@ function generateSwitch(type, id, xid, nick) {
 
 // Cleans given the chat lines
 function cleanChat(chat) {
-	$('#page-engine #' + chat + ' .content .one-line').remove();
+	$('#page-engine #' + chat + ' .content .one-group').remove();
 	$('#page-engine #' + chat + ' .text .message-area').focus();
 }
 
