@@ -157,34 +157,26 @@ function connected() {
 	if(!MINI_SHOWPANE)
 		switchPane();
 	
-	// Session saver
-	saveSession();
-	
 	logThis('Jappix Mini is now connected.', 3);
 }
 
 // When the user disconnects
 function saveSession() {
-	// Save the DOM
-	jQuery('#jappix_mini').everyTime(500, function() {
-		// Save the actual Jappix Mini DOM
-		setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
-		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
-		
-		// Save the scrollbar position
-		var scroll_position = '';
-		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
-		
-		if(scroll_hash)
-			scroll_position = document.getElementById('received-' + scroll_hash).scrollTop + '';
-		
-		setDB('jappix-mini', 'scroll', scroll_position);
-	});
+	// Save the actual Jappix Mini DOM
+	setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
+	setDB('jappix-mini', 'nickname', MINI_NICKNAME);
 	
-	// Save connection (hack: after a while)
-	jQuery('#jappix_mini').oneTime(500, function() {
-		con.save();
-	});
+	// Save the scrollbar position
+	var scroll_position = '';
+	var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
+	
+	if(scroll_hash)
+		scroll_position = document.getElementById('received-' + scroll_hash).scrollTop + '';
+	
+	setDB('jappix-mini', 'scroll', scroll_position);
+	
+	// Save connection
+	con.save();
 	
 	logThis('Jappix Mini session save tool launched.', 3);
 }
@@ -848,9 +840,6 @@ function createMini(domain, user, password) {
 		
 		// Update title notifications
 		notifyTitle();
-		
-		// Session saver
-		saveSession();
 	}
 	
 	// Can auto-connect?
@@ -1388,6 +1377,12 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	
 	// Sets the good roster max-height
 	jQuery(window).resize(adaptRoster);
+	
+	// Logouts when Jappix is closed
+	if(BrowserDetect.browser == 'Opera')
+		$(window).bind('unload', saveSession);
+	else
+		$(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);
