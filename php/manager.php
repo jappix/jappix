@@ -10,7 +10,7 @@ This is the Jappix Manager PHP/HTML code
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/01/11
+Last revision: 30/01/11
 
 */
 
@@ -265,8 +265,8 @@ else
 						<p class="info bottomspace fail"><?php _e("In order to work, the proxy requires CURL. Please install it!"); ?></p>
 					<?php }
 					
-					if(extension_loaded('suhosin') && (ini_get('suhosin.get.max_value_length') < 50000)) { ?>
-						<p class="info bottomspace neutral"><?php printf(T_("%1s may cause problems to the proxy, please increase %2s value up to %3s!"), 'Suhosin', '<em>suhosin.get.max_value_length</em>', '50000'); ?></p>
+					if(extension_loaded('suhosin') && (ini_get('suhosin.get.max_value_length') < 1000000)) { ?>
+						<p class="info bottomspace neutral"><?php printf(T_("%1s may cause problems to the proxy, please increase %2s value up to %3s!"), 'Suhosin', '<em>suhosin.get.max_value_length</em>', '1000000'); ?></p>
 					<?php }
 				}
 				

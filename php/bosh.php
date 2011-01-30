@@ -10,7 +10,7 @@ This is a BOSH proxy for cross-domain
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/01/11
+Last revision: 30/01/11
 
 */
 
@@ -54,7 +54,7 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 $header = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_VERBOSE, 0);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);

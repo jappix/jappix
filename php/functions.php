@@ -10,7 +10,7 @@ These are the PHP functions for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 29/01/11
+Last revision: 30/01/11
 
 */
 
@@ -24,7 +24,7 @@ function isInstalled() {
 
 // The function to check if this is a static server
 function isStatic() {
-	if(HOST_STATIC != '.')
+	if(parse_url(HOST_STATIC, PHP_URL_HOST) == $_SERVER['HTTP_HOST'])
 		return true;
 	
 	return false;
