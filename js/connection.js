@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/01/11
+Last revision: 30/01/11
 
 */
 
@@ -431,10 +431,10 @@ function getEverything() {
 // Plugin launcher
 function launchConnection() {
 	// Logouts when Jappix is closed
-	if(BrowserDetect.browser == 'Opera')
-		$(window).bind('unload', terminate);
-	else
+	if(window.onbeforeunload)
 		$(window).bind('beforeunload', terminate);
+	else
+		$(window).bind('unload', terminate);
 	
 	// Nothing to do when anonymous!
 	if(isAnonymous())

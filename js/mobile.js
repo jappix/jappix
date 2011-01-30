@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/12/10
+Last revision: 30/01/11
 
 */
 
@@ -570,6 +570,6 @@ function displayPresence(hash, show) {
 
 /* BEGIN DOCUMENT EVENTS FUNCTIONS */
 
-onunload = doLogout;
+onbeforeunload = doLogout;
 
 /* END DOCUMENT EVENTS FUNCTIONS */
