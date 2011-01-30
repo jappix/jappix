@@ -570,6 +570,9 @@ function displayPresence(hash, show) {
 
 /* BEGIN DOCUMENT EVENTS FUNCTIONS */
 
-onbeforeunload = doLogout;
+if(BrowserDetect.browser == 'Opera')
+	onunload = doLogout;
+else
+	onbeforeunload = doLogout;
 
 /* END DOCUMENT EVENTS FUNCTIONS */
