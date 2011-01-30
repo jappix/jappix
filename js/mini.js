@@ -833,7 +833,7 @@ function createMini(domain, user, password) {
 		
 		if(scroll_hash) {
 			// Use a timer to override the DOM lag issue
-			jQuery(document).oneTime(10, function() {
+			jQuery(document).oneTime(100, function() {
 				messageScroll(scroll_hash, scroll_position);
 			});
 		}
@@ -860,7 +860,7 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	var cont_scroll = document.getElementById('received-' + hash);
 	var can_scroll = false;
 	
-	if((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)
+	if(!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight))
 		can_scroll = true;
 	
 	// Remove the previous message border if needed
@@ -1379,10 +1379,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	jQuery(window).resize(adaptRoster);
 	
 	// Logouts when Jappix is closed
-	if(BrowserDetect.browser == 'Opera')
-		$(window).bind('unload', saveSession);
-	else
-		$(window).bind('beforeunload', saveSession);
+	$(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);

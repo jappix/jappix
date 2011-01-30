@@ -431,10 +431,7 @@ function getEverything() {
 // Plugin launcher
 function launchConnection() {
 	// Logouts when Jappix is closed
-	if(BrowserDetect.browser == 'Opera')
-		$(window).bind('unload', terminate);
-	else
-		$(window).bind('beforeunload', terminate);
+	$(window).bind('beforeunload', terminate);
 	
 	// Nothing to do when anonymous!
 	if(isAnonymous())
