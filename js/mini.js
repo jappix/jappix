@@ -157,14 +157,18 @@ function connected() {
 	if(!MINI_SHOWPANE)
 		switchPane();
 	
+	// Session saver
+	saveSession();
+	
 	logThis('Jappix Mini is now connected.', 3);
 }
 
 // When the user disconnects
 function saveSession() {
-	if(MINI_INITIALIZED) {
+	// Save the DOM
+	jQuery('#jappix_mini').everyTime(500, function() {
 		// Save the actual Jappix Mini DOM
-                setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
+		setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
 		setDB('jappix-mini', 'nickname', MINI_NICKNAME);
 		
 		// Save the scrollbar position
@@ -175,18 +179,23 @@ function saveSession() {
 			scroll_position = document.getElementById('received-' + scroll_hash).scrollTop + '';
 		
 		setDB('jappix-mini', 'scroll', scroll_position);
-		
-		// Suspend connection
-		con.suspend();
-		
-		logThis('Jappix Mini session saved.', 3);
-	}
+	});
+	
+	// Save connection (hack: after a while)
+	jQuery('#jappix_mini').oneTime(500, function() {
+		con.save();
+	});
+	
+	logThis('Jappix Mini session save tool launched.', 3);
 }
 
 // When the user is disconnected
 function disconnected() {
 	// Browser error?
 	notifyError();
+	
+	// Stop the save session timer
+	jQuery('#jappix_mini').stopTime();
 	
 	// Reset initialized marker
 	MINI_INITIALIZED = false;
@@ -839,6 +848,9 @@ function createMini(domain, user, password) {
 		
 		// Update title notifications
 		notifyTitle();
+		
+		// Session saver
+		saveSession();
 	}
 	
 	// Can auto-connect?
@@ -1376,12 +1388,6 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	
 	// Sets the good roster max-height
 	jQuery(window).resize(adaptRoster);
-	
-	// Disconnects when the user quit
-	if(BrowserDetect.browser == 'Opera')
-		jQuery(window).bind('unload', saveSession);
-	else
-		jQuery(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);

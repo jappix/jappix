@@ -8,7 +8,7 @@ This is the JSJaC library for Jappix (from trunk)
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
 Contact: http://project.jappix.com/contact
-Last revision: 29/01/11
+Last revision: 30/01/11
 
 */
 
@@ -3065,7 +3065,7 @@ JSJaCConnection.prototype.status = function() { return this._status; };
  * @return Whether suspend (saving to cookie) was successful
  * @type boolean
  */
-JSJaCConnection.prototype.suspend = function() {
+/* JSJaCConnection.prototype.suspend = function() {
   var data = this.suspendToData();
   
   try {
@@ -3086,14 +3086,14 @@ JSJaCConnection.prototype.suspend = function() {
                   "JSJaC_State': "+e.message,1);
   }
   return false;
-};
+}; */
 
 /**
  * Suspend connection and return serialized JSJaC connection state
  * @return JSJaC connection state object
  * @type Object
  */
-JSJaCConnection.prototype.suspendToData = function() {
+/* JSJaCConnection.prototype.suspendToData = function() {
   
   // remove timers
   clearTimeout(this._timeout);
@@ -3119,6 +3119,61 @@ JSJaCConnection.prototype.suspendToData = function() {
     s[u[i]] = o;
   }
   this._connected = false;
+  this._setStatus('suspending');
+  return s;
+}; */
+
+/**
+ * Save this connection
+ * Saves state to cookie
+ * @return Whether suspend (saving to cookie) was successful
+ * @type boolean
+ */
+JSJaCConnection.prototype.save = function() {
+  var data = this.saveToData();
+  
+  try {
+    var c = new JSJaCCookie(this._cookie_prefix+'JSJaC_State', JSJaCJSON.toString(data));
+    this.oDbg.log("writing cookie: "+c.getValue()+"\n"+
+                  "(length:"+c.getValue().length+")",2);
+    c.write();
+
+    var c2 = JSJaCCookie.get(this._cookie_prefix+'JSJaC_State');
+    if (c.getValue() != c2) {
+      this.oDbg.log("Suspend failed writing cookie.\nread: " + c2, 1);
+      c.erase();
+      return false;
+    }
+    return true;
+  } catch (e) {
+    this.oDbg.log("Failed creating cookie '"+this._cookie_prefix+
+                  "JSJaC_State': "+e.message,1);
+  }
+  return false;
+};
+
+/**
+ * Save connection and return serialized JSJaC connection state
+ * @return JSJaC connection state object
+ * @type Object
+ */
+JSJaCConnection.prototype.saveToData = function() {
+  var u = ('_connected,_keys,_ID,_inQ,_pQueue,_regIDs,_errcnt,_inactivity,domain,username,resource,jid,fulljid,_sid,_httpbase,_timerval,_is_polling').split(',');
+  u = u.concat(this._getSuspendVars());
+  var s = new Object();
+
+  for (var i=0; i<u.length; i++) {
+    if (!this[u[i]]) continue; // hu? skip these!
+    if (this[u[i]]._getSuspendVars) {
+      var uo = this[u[i]]._getSuspendVars();
+      var o = new Object();
+      for (var j=0; j<uo.length; j++)
+        o[uo[j]] = this[u[i]][uo[j]];
+    } else
+      var o = this[u[i]];
+
+    s[u[i]] = o;
+  }
   this._setStatus('suspending');
   return s;
 };
