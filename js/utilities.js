@@ -28,6 +28,14 @@ function functionExists(func) {
 	return false;
 }
 
+// Checks if Jappix is connected
+function isConnected() {
+	if((typeof con != 'undefined') && con && con.connected())
+		return true;
+	
+	return false;
+}
+
 // Generates the good XID
 function generateXID(xid, type) {
 	// XID needs to be transformed

@@ -162,6 +162,10 @@ function connected() {
 
 // When the user disconnects
 function saveSession() {
+	// Not connected?
+	if(!isConnected())
+		return;
+	
 	// Save the actual Jappix Mini DOM
 	setDB('jappix-mini', 'dom', jQuery('#jappix_mini').html());
 	setDB('jappix-mini', 'nickname', MINI_NICKNAME);
@@ -178,7 +182,7 @@ function saveSession() {
 	// Can pause connection?
 	var has_pause = true;
 	
-	if(BOSH_PROXY == 'on')
+	if((BOSH_PROXY == 'on') || (BrowserDetect.browser == 'Opera'))
 		has_pause = false;
 	
 	// Suspend connection
@@ -1414,8 +1418,11 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	jQuery(window).resize(adaptRoster);
 	
 	// Logouts when Jappix is closed
-	if(BrowserDetect.browser == 'Opera')
-		jQuery(window).bind('unload', saveSession);
+	if(BrowserDetect.browser == 'Opera') {
+		// Dirty hack for Opera (onbeforeunload missing!)
+		jQuery(document).everyTime(500, saveSession);
+	}
+	
 	else
 		jQuery(window).bind('beforeunload', saveSession);
 	

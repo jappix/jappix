@@ -258,7 +258,7 @@ function setupCon(con) {
 // Logouts from the server
 function logout() {
 	// We are not connected
-	if(!con.connected())
+	if(!isConnected())
 		return false;
 	
 	// Disconnect from the XMPP server
@@ -269,33 +269,35 @@ function logout() {
 
 // Terminates a session
 function terminate() {
-	if((typeof con != 'undefined') && con && con.connected()) {
-		// Clear temporary session storage
-		resetConMarkers();
-		
-		// Show the waiting item (useful if BOSH is sloooow)
-		showGeneralWait();
-		
-		// Change the page title
-		pageTitle('wait');
-		
-		// Disconnect from the XMPP server
-		logout();
-	}
+	if(!isConnected())
+		return;
+	
+	// Clear temporary session storage
+	resetConMarkers();
+	
+	// Show the waiting item (useful if BOSH is sloooow)
+	showGeneralWait();
+	
+	// Change the page title
+	pageTitle('wait');
+	
+	// Disconnect from the XMPP server
+	logout();
 }
 
 // Quitss a session
 function quit() {
-	if(con.connected()) {
-		// We show the waiting image
-		showGeneralWait();
-		
-		// Change the page title
-		pageTitle('wait');
-		
-		// We disconnect from the XMPP server
-		logout();
-	}
+	if(!isConnected())
+		return;
+	
+	// We show the waiting image
+	showGeneralWait();
+	
+	// Change the page title
+	pageTitle('wait');
+	
+	// We disconnect from the XMPP server
+	logout();
 }
 
 // Creates the reconnect pane
