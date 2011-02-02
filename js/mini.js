@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/01/11
+Last revision: 02/02/11
 
 */
 
@@ -175,8 +175,14 @@ function saveSession() {
 	
 	setDB('jappix-mini', 'scroll', scroll_position);
 	
-	// Save connection
-	con.save();
+	// Can pause connection?
+	var has_pause = true;
+	
+	if(BOSH_PROXY == 'on')
+		has_pause = false;
+	
+	// Suspend connection
+	con.suspend(has_pause);
 	
 	logThis('Jappix Mini session save tool launched.', 3);
 }
@@ -437,17 +443,29 @@ function handlePresence(pr) {
 	}
 	
 	// Friend path
+	var chat = '#jappix_mini #chat-' + hash;
 	var friend = '#jappix_mini a#friend-' + hash;
+	var send_input = chat + ' input.jm_send-messages';
 	
 	// Is this friend online?
-	if(show == 'unavailable')
+	if(show == 'unavailable') {
+		// Offline marker
 		jQuery(friend).addClass('jm_offline').removeClass('jm_online');
-	else
+		
+		// Disable the chat input
+		jQuery(send_input).addClass('jm_disabled').attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
+	}
+	
+	else {
+		// Online marker
 		jQuery(friend).removeClass('jm_offline').addClass('jm_online');
+		
+		// Enable the chat input
+		jQuery(send_input).removeClass('jm_disabled').removeAttr('disabled').val('');
+	}
 	
 	// Change the show presence of this buddy
-	jQuery(friend + ' span.jm_presence').attr('class', 'jm_presence mini-images jm_' + show);
-	jQuery('#jappix_mini #chat-' + hash + ' span.jm_presence').attr('class', 'jm_presence mini-images jm_' + show);
+	jQuery(friend + ' span.jm_presence, ' + chat + ' span.jm_presence').attr('class', 'jm_presence mini-images jm_' + show);
 	
 	// Update the presence counter
 	updateRoster();
@@ -803,6 +821,14 @@ function createMini(domain, user, password) {
 	if(suspended) {
 		// Initialized marker
 		MINI_INITIALIZED = true;
+		
+		// Restore chat input values
+		jQuery('#jappix_mini div.jm_conversation input.jm_send-messages').each(function() {
+			var chat_value = jQuery(this).attr('data-value');
+			
+			if(chat_value)
+				jQuery(this).val(chat_value);
+		});
 		
 		// Restore buddy click events
 		jQuery('#jappix_mini a.jm_friend').click(function() {
@@ -1189,6 +1215,11 @@ function chatEvents(type, xid, hash) {
 	// Focus on the chat input
 	jQuery(current + ' input.jm_send-messages').focus(function() {
 		clearNotifications(hash);
+	})
+	
+	// Change on the chat input
+	.keyup(function() {
+		jQuery(this).attr('data-value', jQuery(this).val());
 	});
 }
 
@@ -1379,7 +1410,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	jQuery(window).resize(adaptRoster);
 	
 	// Logouts when Jappix is closed
-	$(window).bind('beforeunload', saveSession);
+	jQuery(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);
