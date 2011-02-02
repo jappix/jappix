@@ -8,13 +8,13 @@ These are the utilities JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 16/01/11
+Last revision: 02/02/11
 
 */
 
 // Checks if an element exists in the DOM
 function exists(selector) {
-	if($(selector).size() > 0)
+	if(jQuery(selector).size() > 0)
 		return true;
 	else
 		return false;

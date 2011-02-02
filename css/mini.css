@@ -44,6 +44,11 @@ Last revision: 02/02/11
 	-webkit-box-shadow: none;
 }
 
+#jappix_mini .jm_images {
+	background-image: url(../img/sprites/mini.png);
+	background-repeat: no-repeat;
+}
+
 #jappix_mini a {
 	text-decoration: none;
 	outline-style: none;

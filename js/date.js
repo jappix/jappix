@@ -8,7 +8,7 @@ These are the date related JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 12/01/11
+Last revision: 02/02/11
 
 */
 
@@ -188,7 +188,7 @@ function readMessageDelay(node) {
 	var delay, d_delay;
 	
 	// Read the delay
-	d_delay = $(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
+	d_delay = jQuery(node).find('delay[xmlns=' + NS_URN_DELAY + ']:first').attr('stamp');
 	
 	// New delay (valid XEP)
 	if(d_delay)
@@ -197,7 +197,7 @@ function readMessageDelay(node) {
 	// Old delay (obsolete XEP!)
 	else {
 		// Try to read the old-school delay
-		var x_delay = $(node).find('x[xmlns=' + NS_DELAY + ']:first').attr('stamp');
+		var x_delay = jQuery(node).find('x[xmlns=' + NS_DELAY + ']:first').attr('stamp');
 		
 		if(x_delay)
 			delay = x_delay.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');

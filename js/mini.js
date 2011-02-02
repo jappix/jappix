@@ -465,7 +465,7 @@ function handlePresence(pr) {
 	}
 	
 	// Change the show presence of this buddy
-	jQuery(friend + ' span.jm_presence, ' + chat + ' span.jm_presence').attr('class', 'jm_presence mini-images jm_' + show);
+	jQuery(friend + ' span.jm_presence, ' + chat + ' span.jm_presence').attr('class', 'jm_presence jm_images jm_' + show);
 	
 	// Update the presence counter
 	updateRoster();
@@ -606,7 +606,7 @@ function sendMessage(aForm) {
 
 // Generates the asked smiley image
 function smiley(image) {
-	return ' <span class="jm_smiley jm_smiley-' + image + ' mini-images"></span> ';
+	return ' <span class="jm_smiley jm_smiley-' + image + ' jm_images"></span> ';
 }
 
 // Notifies incoming chat messages
@@ -620,9 +620,9 @@ function notifyMessage(hash) {
 	if(!exists(notify))
 		jQuery(tab).append(
 			'<span class="jm_notify">' + 
-				'<span class="jm_notify_left mini-images"></span>' + 
+				'<span class="jm_notify_left jm_images"></span>' + 
 				'<span class="jm_notify_middle">0</span>' + 
-				'<span class="jm_notify_right mini-images"></span>' + 
+				'<span class="jm_notify_right jm_images"></span>' + 
 			'</span>'
 		);
 	
@@ -639,8 +639,8 @@ function notifyError() {
 	// Replace the Jappix Mini DOM content
 	jQuery('#jappix_mini').html(
 		'<div class="jm_starter">' + 
-			'<a class="jm_pane jm_button mini-images" href="http://mini.jappix.com/issues" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
-				'<span class="jm_counter jm_error mini-images">' + _e("Error") + '</span>' + 
+			'<a class="jm_pane jm_button jm_images" href="http://mini.jappix.com/issues" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
+				'<span class="jm_counter jm_error jm_images">' + _e("Error") + '</span>' + 
 			'</a>' + 
 		'</div>'
 	);
@@ -713,15 +713,15 @@ function createMini(domain, user, password) {
 			'<div class="jm_starter">' + 
 				'<div class="jm_roster">' + 
 					'<div class="jm_actions">' + 
-						'<a class="jm_logo mini-images" href="http://mini.jappix.com/" target="_blank"></a>' + 
-						'<a class="jm_one-action jm_join mini-images" title="' + _e("Join a chat") + '" href="#"></a>' + 
+						'<a class="jm_logo jm_images" href="http://mini.jappix.com/" target="_blank"></a>' + 
+						'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
 					'</div>' + 
 					
 					'<div class="jm_buddies"></div>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_button mini-images" href="#">' + 
-					'<span class="jm_counter mini-images">' + _e("Please wait...") + '</span>' + 
+				'<a class="jm_pane jm_button jm_images" href="#">' + 
+					'<span class="jm_counter jm_images">' + _e("Please wait...") + '</span>' + 
 				'</a>' + 
 			'</div>';
 	}
@@ -1084,7 +1084,7 @@ function chat(type, xid, nick, hash, pwd) {
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 
 						'<span class="jm_nick">' + nick + '</span>' + 
-						'<a class="jm_one-action jm_close mini-images" title="' + _e("Close") + '" href="#"></a>' + 
+						'<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>' + 
 					'</div>' + 
 					
 					'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
@@ -1096,7 +1096,7 @@ function chat(type, xid, nick, hash, pwd) {
 					'</form>' + 
 				'</div>' + 
 				
-				'<a class="jm_pane jm_chat-tab mini-images" href="#">' + 
+				'<a class="jm_pane jm_chat-tab jm_images" href="#">' + 
 					'<span class="jm_name">' + nick.htmlEnc() + '</span>' + 
 				'</a>' + 
 			'</div>'
@@ -1122,7 +1122,7 @@ function chat(type, xid, nick, hash, pwd) {
 				show = 'dnd';
 			
 			// Create the presence marker
-			jQuery(current + ' a.jm_chat-tab').prepend('<span class="jm_presence mini-images jm_' + show + '"></span>');
+			jQuery(current + ' a.jm_chat-tab').prepend('<span class="jm_presence jm_images jm_' + show + '"></span>');
 		}
 		
 		// The click events
@@ -1283,7 +1283,7 @@ function addBuddy(xid, hash, nick, groupchat) {
 	}
 	
 	// Append this buddy content
-	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence mini-images jm_unavailable"></span>' + nick.htmlEnc() + '</a>';
+	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence jm_images jm_unavailable"></span>' + nick.htmlEnc() + '</a>';
 	
 	if(groupchat)
 		jQuery(path).append(code);
