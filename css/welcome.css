@@ -8,7 +8,7 @@ This is the welcome tool CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 02/02/11
 
 */
 
@@ -37,6 +37,21 @@ Last revision: 28/12/10
 	-webkit-border-radius: 6px;
 }
 
+#welcome a.box.share {
+	width: 350px;
+	margin: 4px 130px;
+	padding: 4px 10px;
+	clear: both;
+}
+
+#welcome a.box.share.first {
+	margin-top: 0;
+}
+
+#welcome a.box.share:hover span.go {
+	display: block;
+}
+
 #welcome a.box:hover,
 #welcome a.box:focus {
 	border: 1px solid #afc9d0;
@@ -56,7 +71,31 @@ Last revision: 28/12/10
 	display: block;
 }
 
-#welcome a.box span.option {
+#welcome a.box span.logo {
+	height: 35px;
+	width: 35px;
+	margin-right: 15px;
+	float: left;
+}
+
+#welcome a.box span.logo.facebook {
+	background-position: 0 0;
+}
+
+#welcome a.box span.logo.twitter {
+	background-position: -35px 0;
+}
+
+#welcome a.box span.logo.buzz {
+	background-position: -70px 0;
+}
+
+#welcome a.box span.logo.identica {
+	background-position: -105px 0;
+}
+
+#welcome a.box span.option,
+#welcome a.box span.name {
 	font-size: 0.9em;
 	font-weight: bold;
 }
@@ -64,6 +103,10 @@ Last revision: 28/12/10
 #welcome a.box span.description {
 	font-size: 0.7em;
 	margin-top: 7px;
+}
+
+#welcome a.box.share span.description {
+	margin-top: 4px;
 }
 
 #welcome a.box span.image {
@@ -94,13 +137,22 @@ Last revision: 28/12/10
 	background-position: 0 -80px;
 }
 
-#welcome a.box span.tick {
-	background-position: 0 -1661px;
+#welcome a.box span.tick,
+#welcome a.box span.go {
 	height: 16px;
 	width: 16px;
-	margin: -52px -15px 0 0;
 	display: none;
 	float: right;
+}
+
+#welcome a.box span.tick {
+	background-position: 0 -1661px;
+	margin: -52px -15px 0 0;
+}
+
+#welcome a.box span.go {
+	background-position: 0 -1723px;
+	margin: -29px 5px 0 0;
 }
 
 #welcome a.box.enabled span.tick {
@@ -112,12 +164,6 @@ Last revision: 28/12/10
 	padding: 0;
 	height: 272px;
 	overflow: auto;
-}
-
-#welcome div.logo {
-	margin: 26px auto;
-	width: 190px;
-	height: 214px;
 }
 
 #welcome .bottom .finish.save {

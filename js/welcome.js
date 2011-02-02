@@ -8,7 +8,7 @@ These are the welcome tool functions for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 15/12/10
+Last revision: 02/02/11
 
 */
 
@@ -20,6 +20,9 @@ function openWelcome() {
 	if((server == 'gmail.com') || (server == 'googlemail.com') || (server == 'chat.facebook.com'))
 		return;
 	
+	// Share message
+	var share_msg = printf(_e("Using Jappix, an open social platform. I am %s!"), getXID());
+	
 	// Popup HTML content
 	var html = 
 	'<div class="top">' + _e("Welcome!") + '</div>' + 
@@ -27,7 +30,7 @@ function openWelcome() {
 	'<div class="tab">' + 
 		'<a class="tab-active" data-step="1">' + _e("Options") + '</a>' + 
 		'<a class="tab-missing" data-step="2">' + _e("Friends") + '</a>' + 
-		'<a class="tab-missing" data-step="3">' + _e("Profile") + '</a>' + 
+		'<a class="tab-missing" data-step="3">' + _e("Share") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -84,12 +87,38 @@ function openWelcome() {
 		
 		'<div class="one-lap welcome3">' + 
 			'<div class="infos">' + 
-				'<p class="infos-title">' + _e("Profile") + '</p>' + 
-				'<p>' + _e("Great work! When you will press the save button, the profile editor will be opened.") + '</p>' + 
-				'<p>' + _e("Thanks from the Jappix team for your interest. Happy socializing!") + '</p>' + 
+				'<p class="infos-title">' + _e("Share") + '</p>' + 
+				'<p>' + _e("Great work! Now, you can share Jappix with your friends!") + '</p>' + 
+				'<p>' + _e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
 			'</div>' + 
 			
-			'<div class="logo welcome-images"></div>' + 
+			'<a class="box share first" href="http://www.facebook.com/sharer.php?u=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+				'<span class="logo facebook welcome-images"></span>' + 
+				'<span class="name">Facebook</span>' + 
+				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Facebook') + '</span>' + 
+				'<span class="go talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box share" href="http://twitter.com/home?status=' + encodeQuotes(share_msg) + ' ' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+				'<span class="logo twitter welcome-images"></span>' + 
+				'<span class="name">Twitter</span>' + 
+				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Twitter') + '</span>' + 
+				'<span class="go talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box share" href="http://www.google.com/buzz/post?message=' + encodeQuotes(share_msg) + '&amp;url=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+				'<span class="logo buzz welcome-images"></span>' + 
+				'<span class="name">Google Buzz</span>' + 
+				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Google Buzz') + '</span>' + 
+				'<span class="go talk-images"></span>' + 
+			'</a>' + 
+			
+			'<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + encodeQuotes(share_msg) + ' ' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+				'<span class="logo identica welcome-images"></span>' + 
+				'<span class="name">Identi.ca</span>' + 
+				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Identi.ca') + '</span>' + 
+				'<span class="go talk-images"></span>' + 
+			'</a>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -257,7 +286,7 @@ function launchWelcome() {
 		return switchWelcome(key);
 	});
 	
-	$('#welcome a.box').click(function() {
+	$('#welcome a.box:not(.share)').click(function() {
 		if($(this).hasClass('enabled'))
 			$(this).removeClass('enabled').attr('title', _e("Click to enable"));
 		else

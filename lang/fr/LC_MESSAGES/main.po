@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-29 13:56:36\n"
+"PO-Revision-Date: 2011-02-02 14:00:35\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1278,12 +1278,12 @@ msgid "Use this tool to find your friends on the server you are using right now,
 msgstr "Utilisez cet outil pour retrouver vos amis sur le serveur que vous utilisez, ou ajoutez-les plus tard."
 
 #: 
-msgid "Great work! When you will press the save button, the profile editor will be opened."
-msgstr "Super boulot ! Quand vous cliquerez sur le bouton d'enregistrement, l'éditeur de profil sera ouvert."
+#~ msgid "Great work! When you will press the save button, the profile editor will be opened."
+#~ msgstr "Super boulot ! Quand vous cliquerez sur le bouton d'enregistrement, l'éditeur de profil sera ouvert."
 
 #: 
-msgid "Thanks from the Jappix team for your interest. Happy socializing!"
-msgstr "L'équipe derrière Jappix vous remercie pour votre intérêt. Bonne socialisation !"
+#~ msgid "Thanks from the Jappix team for your interest. Happy socializing!"
+#~ msgstr "L'équipe derrière Jappix vous remercie pour votre intérêt. Bonne socialisation !"
 
 #: 
 msgid "Unknown name"
@@ -2152,4 +2152,20 @@ msgstr "Pour fonctionner, le proxy requiert CURL. Veuillez l'installer !"
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr "%1s pourrait causer des problèmes au proxy, veuillez augmenter la valeur de %2s à %3s !"
+
+#: 
+msgid "Great work! Now, you can share Jappix with your friends!"
+msgstr "Super boulot ! Maintenant, vous pouvez partager Jappix avec vos amis !"
+
+#: 
+msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
+msgstr "Quand vous cliquerez sur le bouton d'enregistrement, l'éditeur de profil sera ouvert. Bonne socialisation !"
+
+#: 
+msgid "Share Jappix on %s"
+msgstr "Partagez Jappix sur %s"
+
+#: 
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr "Utilise Jappix, une plateforme sociale ouverte. Je suis %s !"
 
