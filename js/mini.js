@@ -859,7 +859,7 @@ function createMini(domain, user, password) {
 		
 		if(scroll_hash) {
 			// Use a timer to override the DOM lag issue
-			jQuery(document).oneTime(100, function() {
+			jQuery(document).oneTime(200, function() {
 				messageScroll(scroll_hash, scroll_position);
 			});
 		}

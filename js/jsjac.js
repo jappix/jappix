@@ -1044,7 +1044,7 @@ JSJAC_TIMERVAL = 2000;          // default polling interval
 // Options specific to HTTP Binding (BOSH)
 JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
                                     // connection maanger 
-JSJACHBC_MAX_WAIT = 30;        // default 'wait' param - how long an idle connection
+JSJACHBC_MAX_WAIT = 25;        // default 'wait' param - how long an idle connection
                                     // should be held by connection manager
 
 JSJACHBC_BOSH_VERSION  = "1.6";
