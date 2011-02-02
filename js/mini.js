@@ -916,15 +916,19 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	}
 	
 	// Filter the message
-	body = body.htmlEnc()
-	       .replace(/(;\)|;-\))(\s|$)/gi, smiley('wink'))
-	       .replace(/(:3|:-3)(\s|$)/gi, smiley('waii'))
-	       .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy'))
-	       .replace(/(:P|:-P)(\s|$)/gi, smiley('tongue'))
-	       .replace(/(:O|:-O)(\s|$)/gi, smiley('surprised'))
-	       .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile'))
-	       .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy'))
-	       .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'));
+	body = body.htmlEnc();
+	
+	// Apply the smileys (display bug with Opera)
+	if(BrowserDetect.browser != 'Opera') {
+		body = body.replace(/(;\)|;-\))(\s|$)/gi, smiley('wink'))
+		           .replace(/(:3|:-3)(\s|$)/gi, smiley('waii'))
+		           .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy'))
+		           .replace(/(:P|:-P)(\s|$)/gi, smiley('tongue'))
+		           .replace(/(:O|:-O)(\s|$)/gi, smiley('surprised'))
+		           .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile'))
+		           .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy'))
+		           .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'));
+	}
 	
 	// Filter the links
 	body = '<p>' + filterLinks(body, 'mini') + '</p>';
@@ -1410,7 +1414,10 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	jQuery(window).resize(adaptRoster);
 	
 	// Logouts when Jappix is closed
-	jQuery(window).bind('beforeunload', saveSession);
+	if(BrowserDetect.browser == 'Opera')
+		jQuery(window).bind('unload', saveSession);
+	else
+		jQuery(window).bind('beforeunload', saveSession);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);

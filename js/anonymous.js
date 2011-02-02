@@ -8,7 +8,7 @@ These are the anonymous mode JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
-Last revision: 14/12/10
+Last revision: 02/02/11
 
 */
 
@@ -18,6 +18,8 @@ function anonymousConnected(con) {
 	
 	// Connected marker
 	CURRENT_SESSION = true;
+	RECONNECT_TRY = 0;
+	RECONNECT_TIMER = 0;
 	
 	// Not resumed?
 	if(!RESUME) {

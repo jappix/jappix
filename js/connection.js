@@ -8,7 +8,7 @@ These are the connection JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/01/11
+Last revision: 02/02/11
 
 */
 
@@ -188,8 +188,10 @@ var CONNECTED = false;
 function handleConnected() {
 	logThis('Jappix is now connected.', 3);
 	
-	// Connected marker
+	// Connection markers
 	CONNECTED = true;
+	RECONNECT_TRY = 0;
+	RECONNECT_TIMER = 0;
 	
 	// We hide the home page
 	$('#home').hide();
@@ -220,6 +222,7 @@ function handleConnected() {
 	
 	// Resumed
 	else {
+		// Send our presence
 		presenceSend();
 		
 		// Change the title
@@ -268,9 +271,7 @@ function logout() {
 function terminate() {
 	if((typeof con != 'undefined') && con && con.connected()) {
 		// Clear temporary session storage
-		CURRENT_SESSION = false;
-		CONNECTED = false;
-		RESUME = false;
+		resetConMarkers();
 		
 		// Show the waiting item (useful if BOSH is sloooow)
 		showGeneralWait();
@@ -298,6 +299,9 @@ function quit() {
 }
 
 // Creates the reconnect pane
+var RECONNECT_TRY = 0;
+var RECONNECT_TIMER = 0;
+
 function createReconnect(mode) {
 	logThis('This is not a normal disconnection, show the reconnect pane...', 1);
 	
@@ -327,6 +331,32 @@ function createReconnect(mode) {
 		$('#reconnect a.finish.reconnect').click(function() {
 			return acceptReconnect(mode);
 		});
+		
+		// Try to reconnect automatically after a while
+		if(RECONNECT_TRY < 5)
+			RECONNECT_TIMER = 5 + (5 * RECONNECT_TRY);
+		else
+			RECONNECT_TIMER = 120;
+		
+		// Change the try number
+		RECONNECT_TRY++;
+		
+		// Fire the event!
+		$('#reconnect a.finish.reconnect').everyTime('1s', function() {
+			// We can reconnect!
+			if(RECONNECT_TIMER == 0)
+				return acceptReconnect(mode);
+			
+			// Button text
+			if(RECONNECT_TIMER <= 10)
+				$(this).text(_e("Reconnect") + ' (' + RECONNECT_TIMER + ')');
+			
+			// Remove 1 second
+			RECONNECT_TIMER--;
+		});
+		
+		// Page title
+		updateTitle();
 	}
 }
 
@@ -348,6 +378,9 @@ function acceptReconnect(mode) {
 	$(groupchats + ' .one-group, ' + groupchats + ' .list .user').remove();
 	$(groupchats).attr('data-initial', 'false');
 	
+	// Stop the timer
+	$('#reconnect a.finish.reconnect').stopTime();
+	
 	// Remove the reconnect pane
 	$('#reconnect').remove();
 	
@@ -364,6 +397,9 @@ function acceptReconnect(mode) {
 function cancelReconnect() {
 	logThis('User has canceled automatic reconnection...', 3);
 	
+	// Stop the timer
+	$('#reconnect a.finish.reconnect').stopTime();
+	
 	// Remove the reconnect pane
 	$('#reconnect').remove();
 	
@@ -371,9 +407,7 @@ function cancelReconnect() {
 	destroyTalkPage();
 	
 	// Renitialize the previous session parameters
-	CURRENT_SESSION = false;
-	CONNECTED = false;
-	RESUME = false;
+	resetConMarkers();
 	
 	return false;
 }
@@ -381,13 +415,20 @@ function cancelReconnect() {
 // Clears session reminder database
 function clearLastSession() {
 	// Clear temporary storage
-	CURRENT_SESSION = false;
-	CONNECTED = false;
-	RESUME = false;
+	resetConMarkers();
 	
 	// Clear persistent storage
 	if($(getPersistent('session', 1)).find('stored').text() == 'true')
 		removePersistent('session', 1);
+}
+
+// Resets the connection markers
+function resetConMarkers() {
+	CURRENT_SESSION = false;
+	CONNECTED = false;
+	RESUME = false;
+	RECONNECT_TRY = 0;
+	RECONNECT_TIMER = 0;
 }
 
 // Logins from a saved session
