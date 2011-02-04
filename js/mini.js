@@ -8,7 +8,7 @@ These are the Jappix Mini JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/02/11
+Last revision: 04/02/11
 
 */
 
@@ -182,7 +182,7 @@ function saveSession() {
 	// Can pause connection?
 	var has_pause = true;
 	
-	if((BOSH_PROXY == 'on') || (BrowserDetect.browser == 'Opera'))
+	if(BOSH_PROXY == 'on')
 		has_pause = false;
 	
 	// Suspend connection
@@ -1420,7 +1420,21 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	// Logouts when Jappix is closed
 	if(BrowserDetect.browser == 'Opera') {
 		// Dirty hack for Opera (onbeforeunload missing!)
-		jQuery(document).everyTime(500, saveSession);
+		jQuery('a').click(function() {
+			// Link attributes
+			var href = jQuery(this).attr('href');
+			var target = jQuery(this).attr('target');
+			
+			// Avoid "undefined" bug
+			if(!href)
+				href = '';
+			if(!target)
+				target = '';
+			
+			// Not new window or JS link
+			if(href && !href.match(/^#/i) && !target.match(/_blank|_new/i))
+				saveSession();
+		});
 	}
 	
 	else
