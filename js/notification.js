@@ -8,7 +8,7 @@ These are the notification JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 04/02/11
 
 */
 
@@ -75,10 +75,17 @@ function newNotification(type, from, data, body) {
 		
 		case 'invite/room':
 			text = getBuddyName(from).htmlEnc() + ' ' + _e("would like you to join this chatroom:") + ' ' + data[0] + ' ' + _e("Do you accept?");
+			
 			break;
 		
 		case 'request':
 			text = from + ' ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
+			
+			break;
+		
+		case 'rosterx':
+			text = printf(_e("Do you want to see the friends %s suggests you?"), getBuddyName(from).htmlEnc());
+			
 			break;
 		
 		default:
@@ -108,12 +115,12 @@ function newNotification(type, from, data, body) {
 			
 			// The yes click function
 			$('.' + id + ' a.yes').click(function() {
-				actionNotification(type, data, 'yes', id);
+				return actionNotification(type, data, 'yes', id);
 			});
 			
 			// The no click function
 			$('.' + id + ' a.no').click(function() {
-				actionNotification(type, data, 'no', id);
+				return actionNotification(type, data, 'no', id);
 			});
 			
 			// Get the user avatar
@@ -140,10 +147,15 @@ function actionNotification(type, data, value, id) {
 	else if(type == 'request')
 		requestReply(value, data[0]);
 	
+	else if((type == 'rosterx') && (value == 'yes'))
+		openRosterX(data[0]);
+	
 	// We remove the notification
 	$('.notifications-content .' + id).remove();
 	
 	// We check if there's any other pending notification
 	closeEmptyNotifications();
 	checkNotifications();
+	
+	return false;
 }

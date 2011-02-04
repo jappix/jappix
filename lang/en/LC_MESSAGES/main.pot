@@ -6,7 +6,7 @@
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
-# Last revision: 02/02/11
+# Last revision: 04/02/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -842,6 +842,9 @@ msgstr ""
 msgid "would like to get authorization."
 msgstr ""
 
+msgid "Do you want to see the friends %s suggests you?"
+msgstr ""
+
 msgid "Submit"
 msgstr ""
 
@@ -1608,4 +1611,13 @@ msgid "Static content server"
 msgstr ""
 
 msgid "This is the static content server for %1s, “%2s”."
+msgstr ""
+
+msgid "Suggested friends"
+msgstr ""
+
+msgid "Check all"
+msgstr ""
+
+msgid "Uncheck all"
 msgstr ""

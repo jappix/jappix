@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-02 14:00:35\n"
+"PO-Revision-Date: 2011-02-04 21:23:59\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2168,4 +2168,20 @@ msgstr "Partagez Jappix sur %s"
 #: 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Utilise Jappix, une plateforme sociale ouverte. Je suis %s !"
+
+#: 
+msgid "Do you want to see the friends %s suggests you?"
+msgstr "Voulez-vous voir les amis que %s vous suggère ?"
+
+#: 
+msgid "Suggested friends"
+msgstr "Amis suggérés"
+
+#: 
+msgid "Check all"
+msgstr "Tout cocher"
+
+#: 
+msgid "Uncheck all"
+msgstr "Tout décocher"
 

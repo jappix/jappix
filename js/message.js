@@ -8,7 +8,7 @@ These are the messages JS scripts for Jappix
 License: AGPL
 Authors: Valérian Saliou, Maranda
 Contact: http://project.jappix.com/contact
-Last revision: 30/01/11
+Last revision: 04/02/11
 
 */
 
@@ -105,6 +105,8 @@ function handleMessage(message) {
 		// We display the notification
 		newNotification('invite/room', iFrom, [iRoom], body);
 		
+		logThis('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
+		
 		return false;
 	}
 	
@@ -113,10 +115,22 @@ function handleMessage(message) {
 		// Open a new notification
 		newNotification('request', xid, [message], body);
 		
+		logThis('HTTP Request from: ' + xid);
+		
 		return false;
 	}
 	
-	// Normal messages
+	// Roster Item Exchange message
+	if(message.getChild('x', NS_ROSTERX)) {
+		// Open a new notification
+		newNotification('rosterx', xid, [message], body);
+		
+		logThis('Roster Item Exchange from: ' + xid);
+		
+		return false;
+	}
+	
+	// Normal message
 	if((type == 'normal') && body) {
 		// Message date
 		var messageDate = delay;

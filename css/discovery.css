@@ -8,7 +8,7 @@ This is the discovery CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 21/11/10
+Last revision: 04/02/11
 
 */
 
@@ -22,7 +22,8 @@ Last revision: 21/11/10
 	font-size: 0.85em;
 }
 
-#discovery .discovery-head {
+#discovery .discovery-head,
+#rosterx .rosterx-head {
 	width: 606px;
 	height: 24px;
 	margin: 0 10px 10px 10px;
