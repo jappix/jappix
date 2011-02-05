@@ -8,7 +8,7 @@ These are the Roster Item Exchange JS script for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/02/11
+Last revision: 05/02/11
 
 */
 
@@ -20,15 +20,16 @@ function openRosterX(data) {
 	
 	'<div class="content">' + 
 		'<div class="rosterx-head">' + 
-			'<a class="uncheck">' + _e("Check all") + '</a>' + 
-			'<a class="check">' + _e("Uncheck all") + '</a>' + 
+			'<a class="uncheck">' + _e("Uncheck all") + '</a>' + 
+			'<a class="check">' + _e("Check all") + '</a>' + 
 		'</div>' + 
 		
 		'<div class="results"></div>' + 
 	'</div>' + 
 	
 	'<div class="bottom">' + 
-		'<a class="finish">' + _e("Finish") + '</a>' + 
+		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -45,9 +46,6 @@ function openRosterX(data) {
 
 // Closes the welcome tools
 function closeRosterX() {
-	// Save the settings
-	saveRosterX();
-	
 	// Destroy the popup
 	destroyPopup('rosterx');
 	
@@ -61,7 +59,34 @@ function parseRosterX(data) {
 	
 	// Parse data
 	x.find('item').each(function() {
-		displayRosterX($(this).attr('jid'), $(this).attr('name'), $(this).find('group').text(), $(this).attr('action'));
+		// Generate group XML
+		var group = '';
+		
+		$(this).find('group').each(function() {
+			group += '<group>' + $(this).text().htmlEnc() + '</group>';
+		});
+		
+		if(group)
+			group = '<groups>' + group + '</groups>';
+		
+		// Display it!
+		displayRosterX($(this).attr('jid'), $(this).attr('name'), group, $(this).attr('action'));
+	});
+	
+	// Click to check/uncheck
+	$('#rosterx .oneresult').click(function(evt) {
+		// No need to apply when click on input
+		if($(evt.target).is('input[type=checkbox]'))
+			return;
+		
+		// Input selector
+		var checkbox = $(this).find('input[type=checkbox]');
+		
+		// Check or uncheck?
+		if(checkbox.is(':checked'))
+			checkbox.removeAttr('checked');
+		else
+			checkbox.attr('checked', true);
 	});
 }
 
@@ -72,7 +97,7 @@ function displayRosterX(xid, nick, group, action) {
 		return false;
 	
 	// Set up a default action if no one
-	if(!action)
+	if(!action || (action != 'modify') || (action != 'delete'))
 		action = 'add';
 	
 	// Override "undefined" for nickname
@@ -81,22 +106,83 @@ function displayRosterX(xid, nick, group, action) {
 	
 	// Display it
 	$('#rosterx .results').append(
-		'<label class="one-line">' + 
-			'<input type="checkbox" />' + 
-			'<span class="action ' + action + '"></span>' + 
+		'<div class="oneresult">' + 
+			'<input type="checkbox" checked="" data-name="' + encodeQuotes(nick) + '" data-xid="' + encodeQuotes(xid) + '" data-action="' + encodeQuotes(action) + '" data-group="' + encodeQuotes(group) + '" />' + 
 			'<span class="name">' + nick.htmlEnc() + '</span>' + 
 			'<span class="xid">' + xid.htmlEnc() + '</span>' + 
-			'<span class="group">' + group.htmlEnc() + '</span>' + 
-		'</label>'
+			'<span class="action ' + action + ' talk-images"></span>' + 
+		'</div>'
 	);
 }
 
 // Saves the rosterx settings
 function saveRosterX() {
+	// Send the requests
+	$('#rosterx .results input[type=checkbox]:checked').each(function() {
+		// Read the attributes
+		var nick = $(this).attr('data-name');
+		var xid = $(this).attr('data-xid');
+		var action = $(this).attr('data-action');
+		var group = $(this).attr('data-group');
+		
+		// Parse groups XML
+		if(group) {
+			var group_arr = []
+			
+			$(group).find('group').each(function() {
+				group_arr.push($(this).text().revertHtmlEnc());
+			});
+		}
+		
+		// Process the asked action
+		var roster_item = $('#buddy-list .' + hex_md5(xid));
+		
+		switch(action) {
+			// Buddy add
+			case 'add':
+				if(!exists(roster_item)) {
+					sendSubscribe(xid, 'subscribe');
+					sendRoster(xid, '', nick, group_arr);
+				}
+				
+				break;
+			
+			// Buddy edit
+			case 'modify':
+				if(exists(roster_item))
+					sendRoster(xid, '', nick, group_arr);
+				
+				break;
+			
+			// Buddy delete
+			case 'delete':
+				if(exists(roster_item))
+					sendRoster(xid, 'remove');
+				
+				break;
+		}
+	});
 	
+	// Close the popup
+	closeRosterX();
 }
 
 // Plugin launcher
 function launchRosterX() {
-	$('#rosterx .bottom .finish').click(closeRosterX);
+	// Click events
+	$('#rosterx .bottom .finish').click(function() {
+		if($(this).is('.save'))
+			return saveRosterX();
+		if($(this).is('.cancel'))
+			return closeRosterX();
+	});
+	
+	$('#rosterx .rosterx-head a').click(function() {
+		if($(this).is('.check'))
+			$('#rosterx .results input[type=checkbox]').attr('checked', true);
+		else if($(this).is('.uncheck'))
+			$('#rosterx .results input[type=checkbox]').removeAttr('checked');
+		
+		return false;
+	});
 }

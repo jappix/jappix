@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 23/01/11
+Last revision: 05/02/11
 
 */
 
@@ -213,12 +213,17 @@ Last revision: 23/01/11
 	-webkit-border-radius: 6px;
 }
 
-.manage-infos p.bm-authorize {
+.manage-infos p.bm-authorize,
+#rosterx .oneresult span.action.add {
 	background-position: 0 -1181px;
 }
 
-.manage-infos p.bm-remove {
+.manage-infos p.bm-remove,
+#rosterx .oneresult span.action.delete {
 	background-position: 0 -1200px;
+}
+
+.manage-infos p.bm-remove {
 	margin-bottom: 18px;
 }
 
