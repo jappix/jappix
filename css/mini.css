@@ -61,7 +61,7 @@ Last revision: 05/02/11
 
 #jappix_mini a.jm_pane {
 	background-color: #f4f4f4;
-	background-position: 0 -84px;
+	background-position: 0 -100px;
 	background-repeat: repeat-x;
 	border-color: #999999;
 	border-style: solid;
@@ -120,11 +120,11 @@ Last revision: 05/02/11
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_left {
-	background-position: 0 -344px;
+	background-position: 0 -360px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_right {
-	background-position: -7px -344px;
+	background-position: -7px -360px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_left,
@@ -206,11 +206,11 @@ Last revision: 05/02/11
 }
 
 #jappix_mini div.jm_actions a.jm_close {
-	background-position: 1px -325px;
+	background-position: 1px -341px;
 }
 
 #jappix_mini div.jm_actions a.jm_join {
-	background-position: 0 -311px;
+	background-position: 0 -327px;
 }
 
 #jappix_mini div.jm_received-messages {
@@ -323,13 +323,14 @@ Last revision: 05/02/11
 
 #jappix_mini a.jm_friend:hover,
 #jappix_mini a.jm_friend:focus {
-	background-color: #eff3f4;
-	border-color: #d8dfe0;
+	background-color: #888888;
+	border-color: #494949;
+	color: white;
 }
 
-#jappix_mini a.jm_friend:active {
-	background-color: #e7eced;
-	border-color: #bdc5c6;
+#jappix_mini a.jm_friend:hover span.jm_presence,
+#jappix_mini a.jm_friend:focus span.jm_presence {
+	background-position: 0 -84px;
 }
 
 #jappix_mini a.jm_button {
@@ -347,7 +348,7 @@ Last revision: 05/02/11
 }
 
 #jappix_mini span.jm_counter {
-	background-position: 0 -272px;
+	background-position: 0 -288px;
 	color: #333333;
 	height: 16px;
 	padding-left: 25px;
@@ -355,7 +356,7 @@ Last revision: 05/02/11
 }
 
 #jappix_mini span.jm_counter.jm_error {
-	background-position: 0 -289px;
+	background-position: 0 -305px;
 }
 
 #jappix_mini span.jm_presence {
@@ -399,35 +400,35 @@ Last revision: 05/02/11
 }
 
 #jappix_mini .jm_smiley-wink {
-	background-position: 0 -132px;
-}
-
-#jappix_mini .jm_smiley-waii {
 	background-position: 0 -148px;
 }
 
-#jappix_mini .jm_smiley-unhappy {
+#jappix_mini .jm_smiley-waii {
 	background-position: 0 -164px;
 }
 
-#jappix_mini .jm_smiley-tongue {
+#jappix_mini .jm_smiley-unhappy {
 	background-position: 0 -180px;
 }
 
-#jappix_mini .jm_smiley-surprised {
+#jappix_mini .jm_smiley-tongue {
 	background-position: 0 -196px;
 }
 
-#jappix_mini .jm_smiley-smile {
+#jappix_mini .jm_smiley-surprised {
 	background-position: 0 -212px;
 }
 
-#jappix_mini .jm_smiley-happy {
+#jappix_mini .jm_smiley-smile {
 	background-position: 0 -228px;
 }
 
-#jappix_mini .jm_smiley-grin {
+#jappix_mini .jm_smiley-happy {
 	background-position: 0 -244px;
+}
+
+#jappix_mini .jm_smiley-grin {
+	background-position: 0 -260px;
 }
 
 #jappix_popup {
