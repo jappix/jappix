@@ -8,7 +8,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 02/02/11
+Last revision: 05/02/11
 
 */
 
@@ -70,6 +70,10 @@ Last revision: 02/02/11
 	display: block;
 	padding: 6px;
 	height: 13px;
+}
+
+#jappix_mini a.jm_pane:hover {
+	background: white;
 }
 
 #jappix_mini a.jm_pane:hover,
