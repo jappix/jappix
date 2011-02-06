@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 02/02/11
+Last revision: 06/02/11
 
 */
 
@@ -219,6 +219,35 @@ function isAnonymous() {
 // Checks if this is a private chat user
 function isPrivate(xid) {
 	if(exists('[data-xid=' + escape(xid) + '][data-type=groupchat]'))
+		return true;
+	
+	return false;
+}
+
+// Checks if the user browser is obsolete
+function isObsolete() {
+	// Get browser name & version
+	var browser_name = BrowserDetect.browser;
+	var browser_version = BrowserDetect.version;
+	
+	// Obsolete IE
+	if((browser_name == 'Explorer') && (browser_version < 8))
+		return true;
+	
+	// Obsolete Chrome
+	if((browser_name == 'Chrome') && (browser_version < 7))
+		return true;
+	
+	// Obsolete Safari
+	if((browser_name == 'Safari') && (browser_version < 4))
+		return true;
+	
+	// Obsolete Firefox
+	if((browser_name == 'Firefox') && (browser_version < 3.5))
+		return true;
+	
+	// Obsolete Opera
+	if((browser_name == 'Opera') && (browser_version < 10.5))
 		return true;
 	
 	return false;

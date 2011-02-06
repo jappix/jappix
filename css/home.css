@@ -8,7 +8,7 @@ This is the home CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/01/11
+Last revision: 06/02/11
 
 */
 
@@ -23,7 +23,7 @@ Last revision: 19/01/11
 }
 
 #home .locale,
-#home .unsupported {
+#home .obsolete {
 	background-color: rgba(20,20,20,0.6);
 	color: white;
 	position: absolute;
@@ -72,7 +72,7 @@ Last revision: 19/01/11
 	background-color: rgba(255,255,255,0.14);
 }
 
-#home .unsupported {
+#home .obsolete {
 	height: 60px;
 	padding: 4px 10px;
 	right: 12px;
@@ -81,49 +81,40 @@ Last revision: 19/01/11
 	display: none;
 }
 
-#home .unsupported a,
-#home .unsupported .iron-curtain {
+#home .obsolete a {
 	height: 33px;
+	width: 33px;
+	margin: 5px 2px 0 0;
 	float: left;
 }
 
-#home .unsupported a {
-	width: 33px;
-	margin: 5px 2px 0 0;
-}
-
-#home .unsupported a:hover,
-#home .unsupported a:focus {
+#home .obsolete a:hover,
+#home .obsolete a:focus {
 	opacity: 0.8;
 }
 
-#home .unsupported a:active {
+#home .obsolete a:active {
 	opacity: 0.6;
 }
 
-#home .unsupported a.firefox {
+#home .obsolete a.firefox {
 	background-position: 1px 0;
 }
 
-#home .unsupported a.chrome {
+#home .obsolete a.chrome {
 	background-position: -34px 0;
 }
 
-#home .unsupported a.safari {
+#home .obsolete a.safari {
 	background-position: -68px 0;
 }
 
-#home .unsupported a.opera {
+#home .obsolete a.opera {
 	background-position: -101px 0;
 }
 
-#home .unsupported a.ie {
+#home .obsolete a.ie {
 	background-position: -135px 0;
-}
-
-#home .unsupported .iron-curtain {
-	border-left: 1px dotted white;
-	margin: 5px 16px 0 14px;
 }
 
 #home .main {
@@ -218,6 +209,7 @@ Last revision: 19/01/11
 	width: 342px;
 	height: 64px;
 	text-decoration: none;
+	font-weight: bold;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;

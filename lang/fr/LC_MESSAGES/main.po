@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-04 21:23:59\n"
+"PO-Revision-Date: 2011-02-06 01:18:07\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2126,16 +2126,16 @@ msgid "Static content server"
 msgstr "Serveur de contenu statique"
 
 #: 
-msgid "Please use a supported browser!"
-msgstr "Veuillez utiliser un navigateur compatible !"
+#~ msgid "Please use a supported browser!"
+#~ msgstr "Veuillez utiliser un navigateur compatible !"
 
 #: 
-msgid "%s is supported"
-msgstr "%s est compatible"
+#~ msgid "%s is supported"
+#~ msgstr "%s est compatible"
 
 #: 
-msgid "%s is not supported"
-msgstr "%s n'est pas compatible"
+#~ msgid "%s is not supported"
+#~ msgstr "%s n'est pas compatible"
 
 #: 
 #~ msgid "Cross-domain for IE"
@@ -2184,4 +2184,16 @@ msgstr "Tout cocher"
 #: 
 msgid "Uncheck all"
 msgstr "Tout décocher"
+
+#: 
+#~ msgid "Sorry, your browser is out of date!"
+#~ msgstr "Désolé, votre navigateur n'est pas à jour !"
+
+#: 
+msgid "Last %s version is better!"
+msgstr "La dernière version de %s est mieux !"
+
+#: 
+msgid "Your browser is out of date!"
+msgstr "Votre navigateur n'est pas à jour !"
 
