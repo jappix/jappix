@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-06 01:18:07\n"
+"PO-Revision-Date: 2011-02-06 19:52:13\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2196,4 +2196,40 @@ msgstr "La dernière version de %s est mieux !"
 #: 
 msgid "Your browser is out of date!"
 msgstr "Votre navigateur n'est pas à jour !"
+
+#: 
+msgid "Choose"
+msgstr "Choisir"
+
+#: 
+msgid "List name"
+msgstr "Nom de liste"
+
+#: 
+msgid "You are not viewing any list at the moment."
+msgstr "Vous ne visualisez aucune liste pour le moment."
+
+#: 
+msgid "Visible"
+msgstr "Visible"
+
+#: 
+msgid "Invisible"
+msgstr "Invisible"
+
+#: 
+msgid "Manage your private life with this tool!"
+msgstr "Gérez votre vie privée avec cet outil !"
+
+#: 
+msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
+msgstr "Vous pouvez créer des règles pour bloquer l'accès à votre compte d'un utilisateur indésiré, ou gérer qui peut voir quoi."
+
+#: 
+#~ msgid "You must first choose add a new rule, then select the rule type, and define the actions to do."
+#~ msgstr ""
+
+#: 
+msgid "You must first add a new rule, then select the rule type, and define the actions to do."
+msgstr "Vous devez d'abord ajouter une nouvelle règle, puis sélectionner son type, et définir les actions à faire."
 

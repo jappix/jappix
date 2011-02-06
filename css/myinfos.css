@@ -8,7 +8,7 @@ This is the my-infos CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 19/01/11
+Last revision: 06/02/11
 
 */
 
@@ -327,8 +327,4 @@ Last revision: 19/01/11
 	-moz-border-radius-bottomleft: 0;
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-top-bottom-radius: 0;
-}
-
-#my-infos .element input.placeholder {
-	color: #67787c;
 }

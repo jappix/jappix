@@ -8,7 +8,7 @@ These are the privacy JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 29/12/10
+Last revision: 06/02/11
 
 */
 
@@ -19,14 +19,44 @@ function openPrivacy() {
 	'<div class="top">' + _e("Privacy") + '</div>' + 
 	
 	'<div class="content">' + 
-		'[FEATURE NOT IMPLEMENTED]' + 
+		'<div class="privacy-head">' + 
+			'<div class="list-left">' + 
+				'<span>' + _e("Choose") + '</span>' + 
+				'<select></select>' + 
+				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+			'</div>' + 
+			
+			'<div class="list-center"></div>' + 
+			
+			'<div class="list-right">' + 
+				'<span>' + _e("Add") + '</span>' + 
+				'<input type="text" placeholder="' + _e("List name") + '" />' + 
+				'<a class="list-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
+			'</div>' + 
+		'</div>' + 
+		
+		'<p class="privacy-current">' + _e("You are not viewing any list at the moment.") + '</p>' + 
+		
+		'<div class="privacy-first">' + 
+			'<label><input type="radio" name="type" value="visible" />' + _e("Visible") + '</label>' + 
+			'<label><input type="radio" name="type" value="invisible" />' + _e("Invisible") + '</label>' + 
+		'</div>' + 
+		
+		'<div class="privacy-second">' + 
+			
+		'</div>' + 
+		
+		'<div class="infos">' + 
+			'<p class="infos-title">' + _e("Manage your private life with this tool!") + '</p>' + 
+			'<p>' + _e("You can create rules to block access to your account for an undesired user, or manage who can see what.") + '</p>' + 
+			'<p>' + _e("You must first add a new rule, then select the rule type, and define the actions to do.") + '</p>' + 
+		'</div>' + 
 	'</div>' + 
 	
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save disabled">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -44,13 +74,6 @@ function closePrivacy() {
 	destroyPopup('privacy');
 	
 	return false;
-}
-
-// Saves the privacy settings
-function savePrivacy() {
-	// TODO
-	
-	return closePrivacy();
 }
 
 // Does something for privacy on a given XID
@@ -98,10 +121,8 @@ function handlePrivacy(iq) {
 // Plugin launcher
 function launchPrivacy() {
 	// Click events
-	$('#privacy .bottom .finish').click(function() {
-		if($(this).is('.cancel'))
-			return closePrivacy();
-		if($(this).is('.save') && !$(this).hasClass('disabled'))
-			return savePrivacy();
-	});
+	$('#privacy .bottom .finish').click(closePrivacy);
+	
+	// Placeholder events
+	$('#privacy input[placeholder]').placeholder();
 }

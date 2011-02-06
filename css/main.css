@@ -8,7 +8,7 @@ This is the main CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 06/02/11
 
 */
 
@@ -82,6 +82,16 @@ input[disabled],
 textarea[disabled] {
 	background-color: #f3f3f3;
 	border: 1px solid #989898;
+}
+
+input:placeholder,
+input:-moz-placeholder,
+input:-webkit-input-placeholder {
+	color: #67787c !important;
+}
+
+input.placeholder {
+	color: #67787c !important;
 }
 
 .please-complete,

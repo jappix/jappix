@@ -8,7 +8,7 @@ This is the buddy-list CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/02/11
+Last revision: 06/02/11
 
 */
 
@@ -332,10 +332,6 @@ Last revision: 05/02/11
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-}
-
-#buddy-list .filter input.placeholder {
-	color: #67787c;
 }
 
 #buddy-list .filter a {

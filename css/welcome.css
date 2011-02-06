@@ -16,11 +16,13 @@ Last revision: 02/02/11
 	margin: 15px;
 }
 
-#welcome .infos p {
+#welcome .infos p,
+#privacy .infos p {
 	margin-top: 6px;
 }
 
-#welcome .infos p.infos-title {
+#welcome .infos p.infos-title,
+#privacy .infos p.infos-title {
 	margin-top: 0;
 }
 

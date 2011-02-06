@@ -1618,3 +1618,27 @@ msgstr ""
 
 msgid "Uncheck all"
 msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "List name"
+msgstr ""
+
+msgid "You are not viewing any list at the moment."
+msgstr ""
+
+msgid "Visible"
+msgstr ""
+
+msgid "Invisible"
+msgstr ""
+
+msgid "Manage your private life with this tool!"
+msgstr ""
+
+msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
+msgstr ""
+
+msgid "You must first add a new rule, then select the rule type, and define the actions to do."
+msgstr ""

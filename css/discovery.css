@@ -23,7 +23,8 @@ Last revision: 04/02/11
 }
 
 #discovery .discovery-head,
-#rosterx .rosterx-head {
+#rosterx .rosterx-head,
+#privacy .privacy-head {
 	width: 606px;
 	height: 24px;
 	margin: 0 10px 10px 10px;

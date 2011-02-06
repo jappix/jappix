@@ -8,7 +8,7 @@ This is the privacy CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 25/12/10
+Last revision: 06/02/11
 
 */
 
@@ -16,4 +16,99 @@ Last revision: 25/12/10
 	padding: 10px 0 10px 0;
 }
 
-/* TODO */
+#privacy .privacy-head div.list-left,
+#privacy .privacy-head div.list-center,
+#privacy .privacy-head div.list-right,
+#privacy .privacy-first {
+	float: left;
+}
+
+#privacy .privacy-head div.list-left {
+	margin-left: 5px;
+}
+
+#privacy .privacy-head div.list-center {
+	border-right: 1px dotted #1b393f;
+	height: 24px;
+	width: 1px;
+	margin-right: 15px;
+	padding-left: 18px;
+}
+
+#privacy .privacy-head span,
+#privacy .privacy-head a {
+	float: left;
+}
+
+#privacy .privacy-head span {
+	font-size: 0.9em;
+	font-weight: bold;
+	margin: 3px 10px 0 0;
+}
+
+#privacy .privacy-head input,
+#privacy .privacy-head select {
+	width: 180px;
+}
+
+#privacy .privacy-head input {
+	margin-top: 1px;
+}
+
+#privacy .privacy-head select {
+	margin-top: -2px;
+}
+
+#privacy .privacy-head span.left-space {
+	margin-left: 16px;
+}
+
+#privacy .privacy-head a {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	display: block;
+}
+
+#privacy .privacy-head a.list-add {
+	background-position: 2px -1179px;
+}
+
+#privacy .privacy-head a.list-remove {
+	background-position: 2px -1198px;
+}
+
+#privacy .privacy-current {
+	font-weight: bold;
+	font-size: 0.9em;
+	margin-left: 10px;
+}
+
+#privacy .privacy-first,
+#privacy .privacy-second {
+	height: 195px;
+	font-size: 0.9em;
+	margin: 10px 0 0 10px;
+}
+
+#privacy .privacy-first {
+	border-right: 1px dotted #1b393f;
+	width: 125px;
+	padding-right: 14px;
+}
+
+#privacy .privacy-first label {
+	margin: 50px 0 0 15px;
+}
+
+#privacy .privacy-first label input {
+	margin-top: 2px;
+}
+
+#privacy .infos {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	clear: both;
+}
