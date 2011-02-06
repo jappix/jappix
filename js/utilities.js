@@ -8,7 +8,7 @@ These are the utilities JS script for Jappix
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 06/02/11
+Last revision: 07/02/11
 
 */
 
@@ -247,7 +247,7 @@ function isObsolete() {
 		return true;
 	
 	// Obsolete Opera
-	if((browser_name == 'Opera') && (browser_version < 10.5))
+	if((browser_name == 'Opera') && (browser_version < 9))
 		return true;
 	
 	return false;
