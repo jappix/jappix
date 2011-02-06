@@ -44,12 +44,10 @@ if(!isset($_GET['data']) || ($_GET['data'] == '') || !isset($_GET['callback'])) 
 	exit('HTTP/1.0 400 Bad Request');
 }
 
-$body = stripslashes($_GET['data']);
-
 $ch = curl_init(HOST_BOSH);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $_GET['data']);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 $header = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
