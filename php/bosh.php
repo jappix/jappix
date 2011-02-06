@@ -10,7 +10,7 @@ This is a BOSH proxy for cross-domain
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/01/11
+Last revision: 06/02/11
 
 */
 
@@ -65,10 +65,8 @@ $output = curl_exec($ch);
 
 $json_output = json_encode($output);
 
-if(($output == '') || ($json_output == 'null'))
+if(($output == false) || ($output == '') || ($json_output == 'null'))
 	print $_GET['callback'].'({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
-else if($output == false)
-	print $_GET['callback'].'({"reply":'.json_encode('<parsererror/>').'});';
 else
 	print $_GET['callback'].'({"reply":'.$json_output.'});';
 
