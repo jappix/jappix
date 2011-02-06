@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-05 21:18:28\n"
+"PO-Revision-Date: 2011-02-06 02:09:37\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -991,7 +991,7 @@ msgstr "Requerido"
 
 #: 
 msgid "You have been registered, here is your XMPP address:"
-msgstr "Ya se creó su cuenta, aquí viene su dirección de XMPP:"
+msgstr "Ya creaste tu cuenta, aquí viene tu dirección de XMPP:"
 
 #: 
 msgid "Manager"
@@ -1019,11 +1019,11 @@ msgstr "¿Que pasa contigo?"
 
 #: 
 msgid "Fetching the social channel..."
-msgstr "Obtener el canal social..."
+msgstr "Consiguiendo el canal social..."
 
 #: 
 msgid "You are synchronized with your network."
-msgstr "Estás sincronizado con tu red."
+msgstr "Estás sincronizadx con tu red."
 
 #: 
 msgid "Cannot send anything: you can only receive notices!"
@@ -1067,11 +1067,11 @@ msgstr "Ninguna notificación."
 
 #: 
 msgid "would like to add you as a friend."
-msgstr "le gustaría añadirte como amigo."
+msgstr "le gustaría añadirte como amigo/a."
 
 #: 
 msgid "would like you to join this chatroom:"
-msgstr "le gustaría unirse a esta sala:"
+msgstr "le gustaría que te unieras a esta sala:"
 
 #: 
 msgid "Do you accept?"
@@ -1087,7 +1087,7 @@ msgstr "No"
 
 #: 
 msgid "would like to get authorization."
-msgstr ""
+msgstr "quisiera tener autorización de ver tu estado."
 
 #: 
 msgid "Submit"
@@ -1111,11 +1111,11 @@ msgstr "Comentarios"
 
 #: 
 msgid "User profile"
-msgstr "Perfil de usuario"
+msgstr "Perfil de usuaria/o"
 
 #: 
 msgid "See his/her position on the globe"
-msgstr "Ver la ubicación de el/ella en el globo"
+msgstr "Ver su ubicación el el mapa mundial"
 
 #: 
 msgid "Confirm"
@@ -1143,7 +1143,7 @@ msgstr "Pedir autorización"
 
 #: 
 msgid "Prohibit"
-msgstr "Prohibit"
+msgstr "Prohibir"
 
 #: 
 msgid "Block"
@@ -1155,7 +1155,7 @@ msgstr "Chat"
 
 #: 
 msgid "Groupchat"
-msgstr "Grupo de chat"
+msgstr "Chat en grupo"
 
 #: 
 msgid "Jappix Mobile"
@@ -1179,7 +1179,7 @@ msgstr "Por favor, habilita JavaScript"
 
 #: 
 msgid "Your channel"
-msgstr "Su canal"
+msgstr "Tu canal"
 
 #: 
 msgid "Channel of"
@@ -1187,7 +1187,7 @@ msgstr "Canal de"
 
 #: 
 msgid "More notices..."
-msgstr "Mas avisos..."
+msgstr "Más avisos..."
 
 #: 
 msgid "Attach a file"
@@ -1199,11 +1199,11 @@ msgstr "Enviar"
 
 #: 
 msgid "Unattach the file"
-msgstr "Desadjuntar el archivo"
+msgstr "Ya no adjuntar el archivo"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr "Hubo un error al tratar de enviar su archivo: a lo mejor pesa demasiado (el máximo es %s), o está prohibido!"
+msgstr "Hubo un error al tratar de enviar tu archivo: a lo mejor pesa demasiado (el máximo es %s), o está prohibido!"
 
 #: 
 msgid "Authorization failed"
@@ -1223,7 +1223,7 @@ msgstr "Error interno del servidor, intentar más tarde"
 
 #: 
 msgid "Your form has been sent."
-msgstr "Su formulario ha sido enviado."
+msgstr "Ya se envió tu formulario."
 
 #: 
 msgid "Application"
@@ -1255,15 +1255,15 @@ msgstr "¡Bienvenido a Jappix, tu propia nube social!"
 
 #: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
-msgstr "Antes de que lo empieze a usar, tendrá que cambiar unos parametros, buscar a amigos, y completar su perfil."
+msgstr "Antes de que lo empiezes a usar, tendrás que cambiar unos parametros, buscar a amigxs, y completar tu perfil."
 
 #: 
 msgid "Enable notification sounds"
-msgstr "Habilitar notificación de sonidos"
+msgstr "Habilitar notificación por sonidos"
 
 #: 
 msgid "Share your position on the globe"
-msgstr "Comparta su ubicación geográfica"
+msgstr "Comparte tu ubicación geográfica"
 
 #: 
 msgid "Offline friends"
@@ -1275,7 +1275,7 @@ msgstr "Que aparezcan mis amigos no conectados"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
-msgstr "Usa esta herramienta para encontrar a tus amigos en el servidor que estás utilizando ahora mismo, o añadelos más tarde."
+msgstr "Usa esta herramienta para encontrar a tus amigos en el servidor que estás usando ahora mismo, o añádelos más tarde."
 
 #: 
 #~ msgid "Great work! When you will press the save button, the profile editor will be opened."
@@ -1347,7 +1347,7 @@ msgstr "Instalación de servicios"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr "Si el idioma actual no coincide con el tuyo (%1s), puedes hacer hablar %2s a Jappix y se guardará."
+msgstr "Si el idioma actual no coincide con el tuyo (%1s), puedes hacer que Jappix hable en %2s. Esta opción se guardará."
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
@@ -1359,7 +1359,7 @@ msgstr "Es hora de construir nuestra propia nube social: ¡solo tienes que ir al
 
 #: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr "Jappix almacena información permanente (archivos compartidos, historial de conversaciones, su música, y la configuración) dentro de una carpeta de almacenamiento segura."
+msgstr "Jappix almacena información permanente (archivos compartidos, historial de conversaciones, su música, y la configuración) dentro de una carpeta segura."
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
@@ -1371,7 +1371,7 @@ msgstr "La carpeta es escribible, ¡puedes continuar!"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr "Jappix te ofrece la posibilidad de gestionar tu configuración, instalar nuevos plugins y buscar actualizaciones. Esto es por lo que debes crear una cuenta de administradorpara acceder al gerente."
+msgstr "Jappix te ofrece la posibilidad de gestionar tu configuración, instalar nuevos plugins y buscar actualizaciones. Por eso tienes que crear una cuenta de administración para acceder al gerente."
 
 #: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
@@ -1379,11 +1379,11 @@ msgstr "Cuando Jappix esté instalado, basta con hacer clic en el enlace de gere
 
 #: 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr "Uy, se olvido algo o las dos contraseñas no coinciden!"
+msgstr "Uy, ¡se olvidó algo o las dos contraseñas no coinciden!"
 
 #: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr "Jappix necesita que especifiques algunos valores para trabajar. Por favor, corrije las siguientes entradas (o manten los valores por defecto, que son suficientes para la mayoría de la gente)."
+msgstr "Jappix necesita que especifiques algunos valores para trabajar. Por favor, corrije las siguientes entradas (o mantén los valores por defecto, que bastan para la mayoría de la gente)."
 
 #: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
@@ -1427,7 +1427,7 @@ msgstr "Cifrado"
 
 #: 
 msgid "HTTPS storage"
-msgstr "HTTPS de almacenamiento"
+msgstr "Almacenamiento con HTTPS"
 
 #: 
 msgid "Force HTTPS"
@@ -1451,7 +1451,7 @@ msgstr "Host principal"
 
 #: 
 msgid "Groupchat host"
-msgstr "Host de grupo de chat"
+msgstr "Host de chat en grupo"
 
 #: 
 msgid "Anonymous host"
@@ -1471,11 +1471,11 @@ msgstr "Puedes instalar algunos programas adicionales en tu servidor, para ampli
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
-msgstr "Para realizar esto, debes poder acceder al shell de tu servidor haber iniciado sesión como root. Recuerda que esto es facultativo, Jappix funcionará sin estos módulos, pero algunas de sus características no estarán disponibles."
+msgstr "Para realizar esto, debes poder acceder al shell de tu servidor e iniciar una sesión como root. Recuerda que esto es facultativo, Jappix funcionará sin estos módulos, pero algunas de sus características no estarán disponibles."
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr "Después de terminar la instalación, Jappix generará los archivos de cache. Puede ser lento, solo tienes que esperar hasta que se muestra la aplicación y no presiones ningún botón."
+msgstr "Después de terminar la instalación, Jappix generará los archivos de cache. Puede ser lento, sólo tienes que esperar hasta que se muestre la aplicación, sin presionar ningún botón."
 
 #: 
 msgid "Thanks for using Jappix!"
@@ -1487,7 +1487,7 @@ msgstr "Siguiente"
 
 #: 
 msgid "Finish"
-msgstr "finalizar"
+msgstr "Terminar"
 
 #: 
 msgid "Check again"
@@ -1495,7 +1495,7 @@ msgstr "Comprobar otra vez"
 
 #: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
-msgstr "La carpeta no tiene permisos de escritura, configure correctamente los permisos al directorio %s."
+msgstr "La carpeta no tiene permisos de escritura, configura correctamente los permisos al directorio %s."
 
 #: 
 msgid "%s is installed on your system."
@@ -1511,7 +1511,7 @@ msgstr "El peso máximo de envío que acepta PHP es suficiente (%s)."
 
 #: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr "El peso máximo de envío que acepta PHP no es suficiente (%1s). Le debería poner un valor de %2s en el archivo %3s."
+msgstr "El peso máximo de envío que acepta PHP no es suficiente (%1s). Le deberías indicar un valor de %2s en el archivo %3s."
 
 #: 
 msgid "Jappix manager"
@@ -1555,7 +1555,7 @@ msgstr "Centro"
 
 #: 
 msgid "Left"
-msgstr "izquierda"
+msgstr "Izquierda"
 
 #: 
 msgid "Right"
@@ -1587,11 +1587,11 @@ msgstr "Actualizaciones"
 
 #: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
-msgstr "Esta es un área restringida: sólo los usuarios autorizados pueden gestionar este nodo Jappix."
+msgstr "Ésta es un área restringida: sólo los usuarios autorizados pueden gestionar este nodo Jappix."
 
 #: 
 msgid "Please use the form below to login to the administration panel."
-msgstr "Por favor, utilice el formulario de abajo para poder acceder al panel de administración."
+msgstr "Por favor, utiliza el formulario de abajo para acceder al panel de administración."
 
 #: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
@@ -2126,16 +2126,16 @@ msgid "Static content server"
 msgstr "Servidor de contenido estático"
 
 #: 
-msgid "Please use a supported browser!"
-msgstr "Por favor, use un navegador compatible!"
+#~ msgid "Please use a supported browser!"
+#~ msgstr "Por favor, use un navegador compatible!"
 
 #: 
-msgid "%s is supported"
-msgstr "%s es compatible"
+#~ msgid "%s is supported"
+#~ msgstr "%s es compatible"
 
 #: 
-msgid "%s is not supported"
-msgstr "%s no es compatible"
+#~ msgid "%s is not supported"
+#~ msgstr "%s no es compatible"
 
 #: 
 #~ msgid "Cross-domain for IE"
@@ -2143,45 +2143,57 @@ msgstr "%s no es compatible"
 
 #: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "Use un proxy"
 
 #: 
 msgid "In order to work, the proxy requires CURL. Please install it!"
-msgstr ""
+msgstr "Por favor, instale CURL, ya que el proxy lo necesita para funcionar."
 
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
-msgstr ""
+msgstr "%1s le puede causar problemas al proxy. Por favor, suba el valor de %2s a %3s."
 
 #: 
 msgid "Great work! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "Muy bien! Ahora puede compartir Jappix con sus amigxs!"
 
 #: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
-msgstr ""
+msgstr "Cuando use el botón “Guardar”, el editor de perfil se abrirá. ¡Le deseamos buena socialización!"
 
 #: 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "Comparta Jappix en %s"
 
 #: 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr ""
+msgstr "Soy %s, y estoy usando Jappix, una plataforma social abierta."
 
 #: 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr ""
+msgstr "¿Quiere ver las amistades que %s le sugiere?"
 
 #: 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Amistades recomendadas"
 
 #: 
 msgid "Check all"
-msgstr ""
+msgstr "Comprobar todo"
 
 #: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Deactivar todo"
+
+#: 
+#~ msgid "Sorry, your browser is out of date!"
+#~ msgstr ""
+
+#: 
+msgid "Last %s version is better!"
+msgstr "¡La última versión de %s es mejor!"
+
+#: 
+msgid "Your browser is out of date!"
+msgstr "¡Necesita actualizar su navegador!"
 
