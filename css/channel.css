@@ -8,7 +8,7 @@ This is the channel CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/01/11
+Last revision: 06/02/11
 
 */
 
@@ -34,6 +34,7 @@ Last revision: 08/01/11
 	font-size: 1.6em;
 	margin-bottom: 10px;
 	color: #232323;
+	text-shadow: 0 1px 0 white;
 }
 
 #channel .top a,
