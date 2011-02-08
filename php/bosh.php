@@ -3,7 +3,7 @@
 /*
 
 Jappix - An open social platform
-This is a BOSH proxy for cross-domain
+This is a PHP BOSH proxy
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
@@ -25,12 +25,6 @@ require_once('./read-hosts.php');
 // Optimize the page rendering
 hideErrors();
 compressThis();
-
-// CURL not detected?
-if(!function_exists('curl_init')) {
-	header('HTTP/1.0 501 Not Implemented');
-	exit('HTTP/1.0 501 Not Implemented');
-}
 
 // Not allowed?
 if(!BOSHProxy()) {
@@ -57,22 +51,35 @@ else {
 	exit('HTTP/1.0 400 Bad Request');
 }
 
-$ch = curl_init(HOST_BOSH);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-$header = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_VERBOSE, 0);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+// HTTP parameters
+$parameters = array('http' => array(
+				'method' => 'POST',
+				'content' => $data
+				   )
+		   );
 
-$output = '';
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$output = curl_exec($ch);
+// HTTP headers
+$headers = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
+$parameters['http']['header'] = $headers;
+
+// Change default timeout
+ini_set('default_socket_timeout', 60);
+
+// Create the connection
+$stream = stream_context_create($parameters);
+$connection = @fopen(HOST_BOSH, 'rb', false, $stream);
+
+// Failed to connect!
+if(!$connection) {
+	header('HTTP/1.0 502 Proxy Error');
+	exit('HTTP/1.0 502 Proxy Error');
+}
+
+// Allow stream blocking to handle incoming BOSH data
+@stream_set_blocking($connection, TRUE);
+
+// Get the output content
+$output = @stream_get_contents($connection);
 
 // POST output
 if($method == 'POST') {
@@ -80,7 +87,7 @@ if($method == 'POST') {
 	header('content-type: text/xml; charset=utf-8');
 	
 	if(!$output)
-		print '<body type="terminate" xmlns="http:\\jabber.org\protocol\httpbind\/>';
+		print '<body xmlns=\'http://jabber.org/protocol/httpbind\' type=\'terminate\'/>';
 	else
 		print $output;
 }
@@ -90,11 +97,12 @@ if($method == 'GET') {
 	$json_output = json_encode($output);
 	
 	if(($output == false) || ($output == '') || ($json_output == 'null'))
-		print $_GET['callback'].'({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
+		print $_GET['callback'].'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});';
 	else
 		print $_GET['callback'].'({"reply":'.$json_output.'});';
 }
 
-curl_close($ch);
+// Close the connection
+@fclose($connection);
 
 ?>

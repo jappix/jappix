@@ -260,15 +260,9 @@ else
 					<p class="info bottomspace fail"><?php _e("Your storage folders are not writable, please apply the good rights!"); ?></p>
 				<?php }
 				
-				if(BOSHProxy()) {
-					if(!function_exists('curl_init')) { ?>
-						<p class="info bottomspace fail"><?php _e("In order to work, the proxy requires CURL. Please install it!"); ?></p>
-					<?php }
-					
-					if(extension_loaded('suhosin') && (ini_get('suhosin.get.max_value_length') < 1000000)) { ?>
-						<p class="info bottomspace neutral"><?php printf(T_("%1s may cause problems to the proxy, please increase %2s value up to %3s!"), 'Suhosin', '<em>suhosin.get.max_value_length</em>', '1000000'); ?></p>
-					<?php }
-				}
+				if(BOSHProxy() && extension_loaded('suhosin') && (ini_get('suhosin.get.max_value_length') < 1000000)) { ?>
+					<p class="info bottomspace neutral"><?php printf(T_("%1s may cause problems to the proxy, please increase %2s value up to %3s!"), 'Suhosin', '<em>suhosin.get.max_value_length</em>', '1000000'); ?></p>
+				<?php }
 				
 				if(newUpdates($check_updates)) { ?>
 					<a class="info bottomspace neutral" href="./?a=updates<?php echo $keep_get; ?>"><?php _e("A new Jappix version is available! Check what is new and launch the update!"); ?></a>

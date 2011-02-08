@@ -1424,9 +1424,6 @@ msgstr ""
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
 
-msgid "In order to work, the proxy requires CURL. Please install it!"
-msgstr ""
-
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr ""
 

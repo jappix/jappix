@@ -227,9 +227,9 @@ else
 				writeXML('conf', 'installed', '<installed>true</installed>');
 				
 				// Checks some services are installed
-				$services_functions = array('gd_info', 'curl_init');
-				$services_names = array('GD', 'CURL');
-				$services_packages = array('php5-gd', 'php5-curl');
+				$services_functions = array('gd_info');
+				$services_names = array('GD');
+				$services_packages = array('php5-gd');
 				
 				for($i = 0; $i < count($services_names); $i++) {
 					$service_class = 'info smallspace';
