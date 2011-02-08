@@ -8,7 +8,7 @@ These are the Jappix Mobile lightweight JS script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 30/01/11
+Last revision: 08/02/11
 
 */
 
@@ -92,10 +92,6 @@ function doLogin(aForm) {
 }
 
 function doLogout() {
-	// If the con has been yet aborted, end
-	if(!con.connected())
-		return false;
-	
 	con.disconnect();
 }
 

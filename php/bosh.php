@@ -38,8 +38,21 @@ if(!BOSHProxy()) {
 	exit('HTTP/1.0 403 Forbidden');
 }
 
-// No data?
-if(!isset($_GET['data']) || ($_GET['data'] == '') || !isset($_GET['callback'])) {
+// POST method?
+if(isset($HTTP_RAW_POST_DATA) && $HTTP_RAW_POST_DATA) {
+	$method = 'POST';
+	$data = $HTTP_RAW_POST_DATA;
+}
+
+// GET method?
+else if(isset($_GET['data']) && $_GET['data'] && isset($_GET['callback']) && $_GET['callback']) {
+	$method = 'GET';
+	$data = $_GET['data'];
+	$callback = $_GET['callback'];
+}
+
+// Invalid method?
+else {
 	header('HTTP/1.0 400 Bad Request');
 	exit('HTTP/1.0 400 Bad Request');
 }
@@ -47,7 +60,7 @@ if(!isset($_GET['data']) || ($_GET['data'] == '') || !isset($_GET['callback'])) 
 $ch = curl_init(HOST_BOSH);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $_GET['data']);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 $header = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -61,12 +74,26 @@ $output = '';
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $output = curl_exec($ch);
 
-$json_output = json_encode($output);
+// POST output
+if($method == 'POST') {
+	// XML header
+	header('content-type: text/xml; charset=utf-8');
+	
+	if(!$output)
+		print '<body type="terminate" xmlns="http:\\jabber.org\protocol\httpbind\/>';
+	else
+		print $output;
+}
 
-if(($output == false) || ($output == '') || ($json_output == 'null'))
-	print $_GET['callback'].'({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
-else
-	print $_GET['callback'].'({"reply":'.$json_output.'});';
+// GET output
+if($method == 'GET') {
+	$json_output = json_encode($output);
+	
+	if(($output == false) || ($output == '') || ($json_output == 'null'))
+		print $_GET['callback'].'({"reply":"<body type=\'terminate\' xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\'\/>"});';
+	else
+		print $_GET['callback'].'({"reply":'.$json_output.'});';
+}
 
 curl_close($ch);
 
