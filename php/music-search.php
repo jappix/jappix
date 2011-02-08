@@ -10,7 +10,7 @@ This is the Jappix music search script
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/01/11
+Last revision: 08/02/11
 
 */
 
@@ -22,8 +22,9 @@ require_once('./functions.php');
 require_once('./read-main.php');
 require_once('./read-hosts.php');
 
-// Hide PHP errors
+// Optimize the page rendering
 hideErrors();
+compressThis();
 
 // Not allowed for a static node
 if(isStatic())
@@ -38,7 +39,11 @@ if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET
 	$searchquery = $_GET['searchquery'];
 	$location = $_GET['location'];
 	
-	// Initialize
+	// Jamendo search?
+	if($location == 'jamendo')
+		exit(file_get_contents('http://api.jamendo.com/get2/name+id+duration+url/track/xml/?searchquery='.urlencode($searchquery).'&order=searchweight_desc'));
+	
+	// Local music search
 	$xml = '<data>';
 	$searchquery = strtolower($searchquery);
 	

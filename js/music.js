@@ -8,7 +8,7 @@ These are the music JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 04/12/10
+Last revision: 08/02/11
 
 */
 
@@ -111,7 +111,7 @@ function searchMusic() {
 	$(path + '.no-results').hide();
 	
 	// Get the Jamendo results
-	$.get('http://api.jamendo.com/get2/name+id+duration+url/track/xml/?searchquery=' + string + '&order=searchweight_desc', function(data) {
+	$.get('./php/music-search.php?searchquery=' + string + '&location=jamendo', function(data) {
 		parseMusic(data, 'jamendo');
 	});
 	

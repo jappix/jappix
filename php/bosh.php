@@ -10,7 +10,7 @@ This is a BOSH proxy for cross-domain
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/02/11
+Last revision: 08/02/11
 
 */
 
