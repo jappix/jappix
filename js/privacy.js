@@ -21,7 +21,9 @@ function openPrivacy() {
 		'<div class="privacy-head">' + 
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
-				'<select></select>' + 
+				'<select>' + 
+					'<option value="none" selected="">' + _e("None") +  '</option>' + 
+				'</select>' + 
 				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
@@ -140,6 +142,10 @@ function handleListPrivacy(iq) {
 
 // Gets privacy lists
 function getPrivacy(lists) {
+	// Waiting item
+	$('#privacy .wait').show();
+	
+	// Build query
 	var iq = new JSJaCIQ();
 	iq.setType('get');
 	
@@ -170,6 +176,9 @@ function handleGetPrivacy(iq) {
 		if($(this).attr('type') == 'jid')
 			setDB('privacy', $(this).attr('value'), $(this).attr('action'));
 	});
+	
+	// Hide waiting item
+	$('#privacy .wait').hide();
 	
 	// TODO: support for all kind of "type" attributes: groups and so on
 	
@@ -226,8 +235,12 @@ function launchPrivacy() {
 		clearFormPrivacy();
 		disableFormPrivacy();
 		
+		// Retrieve the list data
+		if($(this).val() != 'none')
+			getPrivacy([$(this).val()]);
+		
 		// Switch to the first form item
-		enableFormPrivacy('first');
+		// enableFormPrivacy('first');
 		
 		// TODO: use this only when add a list, here load data from DB!
 		// TODO: save when display another list or add a new one!
