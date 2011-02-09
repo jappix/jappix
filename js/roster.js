@@ -8,7 +8,7 @@ These are the roster JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 05/02/11
+Last revision: 09/02/11
 
 */
 
@@ -955,7 +955,7 @@ function launchRoster() {
 						'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
 					'</p>' + 
 					
-					'<p class="buddy-conf-text">' + 
+					'<p class="buddy-conf-text privacy-hidable">' + 
 						'- <a class="buddy-conf-more-privacy">' + _e("Privacy") +  '</a>' + 
 					'</p>' + 
 					
@@ -1020,6 +1020,9 @@ function launchRoster() {
 		
 		if(enabledCommands())
 			$('.buddy-conf-more-commands').parent().show();
+		
+		if(getDB('privacy-marker', 'active'))
+			$('.buddy-conf-more-privacy').parent().show();
 		
 		return false;
 	});

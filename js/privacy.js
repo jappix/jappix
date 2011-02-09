@@ -8,7 +8,7 @@ These are the privacy JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/02/11
+Last revision: 09/02/11
 
 */
 
@@ -105,6 +105,10 @@ function getPrivacy(lists) {
 
 // Handles privacy lists
 function handlePrivacy(iq) {
+	// Apply a "received" marker
+	setDB('privacy-marker', 'active', 'true');
+	$('.privacy-hidable').show();
+	
 	var iqQuery = iq.getQuery();
 	
 	// Store markers for each item
