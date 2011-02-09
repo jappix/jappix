@@ -8,14 +8,14 @@ These are the audio JS scripts for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 20/10/10
+Last revision: 09/02/11
 
 */
 
 // Plays the given sound ID
 function soundPlay(num) {
-	// If the sounds are enabled
-	if(getDB('options', 'sounds') == '1') {
+	// If browser is not Chrome (bug fix) & the sounds are enabled
+	if((BrowserDetect.browser != 'Chrome') && (getDB('options', 'sounds') == '1')) {
 		// If the audio elements aren't yet in the DOM
 		if(!exists('#audio')) {
 			$('body').append(
