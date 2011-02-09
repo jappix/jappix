@@ -214,7 +214,7 @@ function handleConnected() {
 		if((parent.location.hash != '#OK') && LINK_VARS['x']) {
 			// A link is submitted in the URL
 			xmppLink(LINK_VARS['x']);
-		
+			
 			// Set a OK status
 			parent.location.hash = 'OK';
 		}

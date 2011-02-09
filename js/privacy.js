@@ -22,7 +22,7 @@ function openPrivacy() {
 		'<div class="privacy-head">' + 
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
-				'<select></select>' + 
+				'<select><option value="1">1 ~dev</option><option value="2">2 ~dev</option></select>' + 
 				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
@@ -37,32 +37,34 @@ function openPrivacy() {
 		
 		'<p class="privacy-current">' + _e("You are not viewing any list at the moment.") + '</p>' + 
 		
-		'<div class="privacy-first">' + 
-			'<label><input type="radio" name="type" value="allow" />' + _e("Allow") + '</label>' + 
-			'<label><input type="radio" name="type" value="deny" />' + _e("Deny") + '</label>' + 
-		'</div>' + 
-		
-		'<div class="privacy-second">' + 
-			'<label><input type="radio" name="order" value="xid" />' + _e("Address") + '<input type="text" name="xid" /></label>' + 
-			'<label><input type="radio" name="order" value="group" />' + _e("Group") + '<select name="group">' + groupsToHtmlPrivacy() + '</select></label>' + 
-			'<label><input type="radio" name="order" value="subscription" />' + _e("Subscription") + 
-				'<select name="subscription">' + 
-					'<option value="none">' + _e("None") + '</option>' + 
-					'<option value="both">' + _e("Both") + '</option>' + 
-					'<option value="from">' + _e("From") + '</option>' + 
-					'<option value="to">' + _e("To") + '</option>' + 
-				'</select>' + 
-			'</label>' + 
-			'<label><input type="radio" name="order" value="everybody" />' + _e("Everybody") + '</label>' + 
-		'</div>' + 
-		
-		'<div class="privacy-third">' + 
-			'<label><input type="checkbox" name="send-messages" />' + _e("Send messages") + '</label>' + 
-			'<label><input type="checkbox" name="send-queries" />' + _e("Send queries") + '</label>' + 
-			'<label><input type="checkbox" name="see-status" />' + _e("See my status") + '</label>' + 
-			'<label><input type="checkbox" name="send-status" />' + _e("Send his/her status") + '</label>' + 
-			'<label><input type="checkbox" name="everything" />' + _e("Everything") + '</label>' + 
-		'</div>' + 
+		'<form>' + 
+			'<div class="privacy-first">' + 
+				'<label><input type="radio" name="type" value="allow" disabled="" />' + _e("Allow") + '</label>' + 
+				'<label><input type="radio" name="type" value="deny" disabled="" />' + _e("Deny") + '</label>' + 
+			'</div>' + 
+			
+			'<div class="privacy-second">' + 
+				'<label><input type="radio" name="order" value="xid" disabled="" />' + _e("Address") + '<input type="text" name="xid" disabled="" /></label>' + 
+				'<label><input type="radio" name="order" value="group" disabled="" />' + _e("Group") + '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select></label>' + 
+				'<label><input type="radio" name="order" value="subscription" disabled="" />' + _e("Subscription") + 
+					'<select name="subscription" disabled="">' + 
+						'<option value="none">' + _e("None") + '</option>' + 
+						'<option value="both">' + _e("Both") + '</option>' + 
+						'<option value="from">' + _e("From") + '</option>' + 
+						'<option value="to">' + _e("To") + '</option>' + 
+					'</select>' + 
+				'</label>' + 
+				'<label><input type="radio" name="order" value="everybody" disabled="" />' + _e("Everybody") + '</label>' + 
+			'</div>' + 
+			
+			'<div class="privacy-third">' + 
+				'<label><input type="checkbox" name="send-messages" disabled="" />' + _e("Send messages") + '</label>' + 
+				'<label><input type="checkbox" name="send-queries" disabled="" />' + _e("Send queries") + '</label>' + 
+				'<label><input type="checkbox" name="see-status" disabled="" />' + _e("See my status") + '</label>' + 
+				'<label><input type="checkbox" name="send-status" disabled="" />' + _e("Send his/her status") + '</label>' + 
+				'<label><input type="checkbox" name="everything" disabled="" />' + _e("Everything") + '</label>' + 
+			'</div>' + 
+		'</form>' + 
 		
 		'<div class="infos">' + 
 			'<p class="infos-title">' + _e("Manage your private life with this tool!") + '</p>' + 
@@ -153,6 +155,29 @@ function groupsToHtmlPrivacy() {
 	return html;
 }
 
+// Clears the privacy list form
+function clearFormPrivacy() {
+	// Uncheck checkboxes & radio inputs
+	$('#privacy form input[type=checkbox], #privacy form input[type=radio]').removeAttr('checked');
+	
+	// Reset select
+	$('#privacy form select option').removeAttr('selected');
+	$('#privacy form select option:first').attr('selected', true);
+	
+	// Reset text input
+	$('#privacy form input[type=text]').val('');
+}
+
+// Disables the privacy list form
+function disableFormPrivacy() {
+	$('#privacy form input, #privacy form select').attr('disabled', true);
+}
+
+// Enables the privacy list form
+function enableFormPrivacy(rank) {
+	$('#privacy .privacy-' + rank + ' input, #privacy .privacy-' + rank + ' select').removeAttr('disabled');
+}
+
 // Plugin launcher
 function launchPrivacy() {
 	// Click events
@@ -160,4 +185,25 @@ function launchPrivacy() {
 	
 	// Placeholder events
 	$('#privacy input[placeholder]').placeholder();
+	
+	// Form events
+	$('#privacy .privacy-head .list-left select').change(function() {
+		// Reset the form
+		clearFormPrivacy();
+		disableFormPrivacy();
+		
+		// Switch to the first form item
+		enableFormPrivacy('first');
+		
+		// TODO: use this only when add a list, here load data from DB!
+		// TODO: save when display another list or add a new one!
+	});
+	
+	$('#privacy .privacy-first input').change(function() {
+		enableFormPrivacy('second');
+	});
+	
+	$('#privacy .privacy-second input').change(function() {
+		enableFormPrivacy('third');
+	});
 }
