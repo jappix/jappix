@@ -10,7 +10,7 @@ These are the PHP functions for Jappix manager
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
 Contact: http://project.jappix.com/contact
-Last revision: 28/12/10
+Last revision: 09/02/11
 
 */
 
@@ -197,12 +197,12 @@ function newUpdates($force) {
 	else
 		$last_version = file_get_contents($cache_path);
 	
-	// No data?
-	if(!$last_version)
-		return false;
-	
 	// Parse the XML
-	$xml = new SimpleXMLElement($last_version);
+	$xml = @simplexml_load_string($last_version);
+	
+	// No data?
+	if($xml === FALSE)
+		return false;
 	
 	// Get the version numbers
 	$current_version = getVersion();

@@ -85,6 +85,9 @@ function openPrivacy() {
 	// Associate the events
 	launchPrivacy();
 	
+	// Get the available privacy lists
+	listPrivacy();
+	
 	return false;
 }
 
@@ -104,6 +107,32 @@ function updatePrivacy(xid, action) {
 	setDB('privacy', xid, action);
 }
 
+// Gets available privacy lists
+function listPrivacy() {
+	// Waiting item
+	$('#privacy .wait').show();
+	
+	// Build query
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	
+	iq.setQuery(NS_PRIVACY);
+	
+	con.send(iq, handleListPrivacy);
+	
+	logThis('Getting available privacy list(s)...');
+}
+
+// Handles available privacy lists
+function handleListPrivacy(iq) {
+	// TODO: parse XML and display it in the <select>
+	
+	// Hide waiting item
+	$('#privacy .wait').hide();
+	
+	logThis('Got available privacy list(s).', 3);
+}
+
 // Gets privacy lists
 function getPrivacy(lists) {
 	var iq = new JSJaCIQ();
@@ -118,13 +147,13 @@ function getPrivacy(lists) {
 			iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': lists[i]}));
 	}
 	
-	con.send(iq, handlePrivacy);
+	con.send(iq, handleGetPrivacy);
 	
 	logThis('Getting privacy list(s): ' + lists);
 }
 
 // Handles privacy lists
-function handlePrivacy(iq) {
+function handleGetPrivacy(iq) {
 	// Apply a "received" marker
 	setDB('privacy-marker', 'active', 'true');
 	$('.privacy-hidable').show();
