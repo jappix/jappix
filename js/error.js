@@ -7,7 +7,7 @@ These are the error functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/11/10
+Last revision: 09/02/11
 
 */
 
@@ -85,8 +85,12 @@ function handleError(packet) {
 		// Remove the general wait item (security)
 		removeGeneralWait();
 		
+		// Show reconnect pane
+		if(CURRENT_SESSION && CONNECTED)
+			createReconnect('normal');
+		
 		// Show the homepage (security)
-		if(!CURRENT_SESSION || !CONNECTED) {
+		else if(!CURRENT_SESSION || !CONNECTED) {
 			$('#home').show();
 			pageTitle('home');
 		}

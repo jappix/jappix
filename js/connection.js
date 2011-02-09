@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/02/11
+Last revision: 09/02/11
 
 */
 
@@ -236,10 +236,8 @@ function handleConnected() {
 function handleDisconnected() {
 	logThis('Jappix is now disconnected.', 3);
 	
-	// Is it a undesired disconnection?
-	if(CURRENT_SESSION && CONNECTED)
-		createReconnect('normal');
-	else
+	// Normal disconnection
+	if(!CURRENT_SESSION && !CONNECTED)
 		destroyTalkPage();
 }
 
