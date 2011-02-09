@@ -8,7 +8,7 @@ This is the privacy CSS stylesheet for Jappix
 License: AGPL
 Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 06/02/11
+Last revision: 09/02/11
 
 */
 
@@ -85,16 +85,22 @@ Last revision: 06/02/11
 }
 
 #privacy .privacy-first,
-#privacy .privacy-second {
+#privacy .privacy-second,
+#privacy .privacy-third {
 	height: 195px;
 	font-size: 0.9em;
 	margin: 10px 0 0 10px;
+	float: left;
+}
+
+#privacy .privacy-first,
+#privacy .privacy-second {
+	border-right: 1px dotted #1b393f;
+	padding-right: 14px;
 }
 
 #privacy .privacy-first {
-	border-right: 1px dotted #1b393f;
 	width: 125px;
-	padding-right: 14px;
 }
 
 #privacy .privacy-first label {
@@ -103,6 +109,32 @@ Last revision: 06/02/11
 
 #privacy .privacy-first label input {
 	margin-top: 2px;
+}
+
+#privacy .privacy-second {
+	width: 205px;
+}
+
+#privacy .privacy-second input[type=radio],
+#privacy .privacy-third input[type=checkbox] {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#privacy .privacy-second input[type=text],
+#privacy .privacy-second select {
+	width: 170px;
+	margin-bottom: 6px;
+	float: none;
+}
+
+#privacy .privacy-third label {
+	width: auto;
+	margin-top: 11px;
+}
+
+#privacy .privacy-third {
+	width: 240px;
 }
 
 #privacy .infos {

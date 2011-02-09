@@ -1625,10 +1625,40 @@ msgstr ""
 msgid "You are not viewing any list at the moment."
 msgstr ""
 
-msgid "Visible"
+msgid "Allow"
 msgstr ""
 
-msgid "Invisible"
+msgid "Deny"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "Both"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Everybody"
+msgstr ""
+
+msgid "Send messages"
+msgstr ""
+
+msgid "Send queries"
+msgstr ""
+
+msgid "See my status"
+msgstr ""
+
+msgid "Send his/her status"
+msgstr ""
+
+msgid "Everything"
 msgstr ""
 
 msgid "Manage your private life with this tool!"

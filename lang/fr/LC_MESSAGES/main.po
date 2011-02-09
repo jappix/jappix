@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-06 19:52:13\n"
+"PO-Revision-Date: 2011-02-09 15:09:26\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2146,8 +2146,8 @@ msgid "Use a proxy"
 msgstr "Utiliser un proxy"
 
 #: 
-msgid "In order to work, the proxy requires CURL. Please install it!"
-msgstr "Pour fonctionner, le proxy requiert CURL. Veuillez l'installer !"
+#~ msgid "In order to work, the proxy requires CURL. Please install it!"
+#~ msgstr "Pour fonctionner, le proxy requiert CURL. Veuillez l'installer !"
 
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
@@ -2210,12 +2210,12 @@ msgid "You are not viewing any list at the moment."
 msgstr "Vous ne visualisez aucune liste pour le moment."
 
 #: 
-msgid "Visible"
-msgstr "Visible"
+#~ msgid "Visible"
+#~ msgstr "Visible"
 
 #: 
-msgid "Invisible"
-msgstr "Invisible"
+#~ msgid "Invisible"
+#~ msgstr "Invisible"
 
 #: 
 msgid "Manage your private life with this tool!"
@@ -2232,4 +2232,52 @@ msgstr "Vous pouvez créer des règles pour bloquer l'accès à votre compte d'u
 #: 
 msgid "You must first add a new rule, then select the rule type, and define the actions to do."
 msgstr "Vous devez d'abord ajouter une nouvelle règle, puis sélectionner son type, et définir les actions à faire."
+
+#: 
+msgid "Group"
+msgstr "Groupe"
+
+#: 
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: 
+msgid "Allow"
+msgstr "Autoriser"
+
+#: 
+msgid "Deny"
+msgstr "Interdire"
+
+#: 
+msgid "Everybody"
+msgstr "Tout le monde"
+
+#: 
+msgid "Send messages"
+msgstr "Envoyer des messages"
+
+#: 
+msgid "Send queries"
+msgstr "Envoyer des requêtes"
+
+#: 
+msgid "See my status"
+msgstr "Voir mon statut"
+
+#: 
+msgid "Send his/her status"
+msgstr "Envoyer son statut"
+
+#: 
+msgid "Everything"
+msgstr "Tout"
+
+#: 
+msgid "Both"
+msgstr "Les deux"
+
+#: 
+msgid "From"
+msgstr "De"
 

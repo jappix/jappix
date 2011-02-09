@@ -38,12 +38,30 @@ function openPrivacy() {
 		'<p class="privacy-current">' + _e("You are not viewing any list at the moment.") + '</p>' + 
 		
 		'<div class="privacy-first">' + 
-			'<label><input type="radio" name="type" value="visible" />' + _e("Visible") + '</label>' + 
-			'<label><input type="radio" name="type" value="invisible" />' + _e("Invisible") + '</label>' + 
+			'<label><input type="radio" name="type" value="allow" />' + _e("Allow") + '</label>' + 
+			'<label><input type="radio" name="type" value="deny" />' + _e("Deny") + '</label>' + 
 		'</div>' + 
 		
 		'<div class="privacy-second">' + 
-			
+			'<label><input type="radio" name="order" value="xid" />' + _e("Address") + '<input type="text" name="xid" /></label>' + 
+			'<label><input type="radio" name="order" value="group" />' + _e("Group") + '<select name="group">' + groupsToHtmlPrivacy() + '</select></label>' + 
+			'<label><input type="radio" name="order" value="subscription" />' + _e("Subscription") + 
+				'<select name="subscription">' + 
+					'<option value="none">' + _e("None") + '</option>' + 
+					'<option value="both">' + _e("Both") + '</option>' + 
+					'<option value="from">' + _e("From") + '</option>' + 
+					'<option value="to">' + _e("To") + '</option>' + 
+				'</select>' + 
+			'</label>' + 
+			'<label><input type="radio" name="order" value="everybody" />' + _e("Everybody") + '</label>' + 
+		'</div>' + 
+		
+		'<div class="privacy-third">' + 
+			'<label><input type="checkbox" name="send-messages" />' + _e("Send messages") + '</label>' + 
+			'<label><input type="checkbox" name="send-queries" />' + _e("Send queries") + '</label>' + 
+			'<label><input type="checkbox" name="see-status" />' + _e("See my status") + '</label>' + 
+			'<label><input type="checkbox" name="send-status" />' + _e("Send his/her status") + '</label>' + 
+			'<label><input type="checkbox" name="everything" />' + _e("Everything") + '</label>' + 
 		'</div>' + 
 		
 		'<div class="infos">' + 
@@ -120,6 +138,19 @@ function handlePrivacy(iq) {
 	// TODO: support for all kind of "type" attributes: groups and so on
 	
 	logThis('Got privacy list(s).', 3);
+}
+
+// Converts the groups array into a <option /> string
+function groupsToHtmlPrivacy() {
+	var groups = getAllGroups();
+	var html = '';
+	
+	// Generate HTML
+	for(i in groups) {
+		html += '<option value="' + encodeQuotes(groups[i]) +'">' + groups[i].htmlEnc() + '</option>';
+	}
+	
+	return html;
 }
 
 // Plugin launcher
