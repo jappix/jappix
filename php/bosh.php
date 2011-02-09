@@ -10,7 +10,7 @@ This is a PHP BOSH proxy
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
 Contact: http://project.jappix.com/contact
-Last revision: 08/02/11
+Last revision: 09/02/11
 
 */
 
@@ -59,7 +59,7 @@ $parameters = array('http' => array(
 		   );
 
 // HTTP headers
-$headers = array('Accept-Encoding: gzip, deflate','Content-Type: text/xml; charset=utf-8');
+$headers = array('Accept-Encoding: gzip, deflate', 'Content-Type: text/xml; charset=utf-8');
 $parameters['http']['header'] = $headers;
 
 // Change default timeout
@@ -70,7 +70,7 @@ $stream = stream_context_create($parameters);
 $connection = @fopen(HOST_BOSH, 'rb', false, $stream);
 
 // Failed to connect!
-if(!$connection) {
+if($connection == FALSE) {
 	header('HTTP/1.0 502 Proxy Error');
 	exit('HTTP/1.0 502 Proxy Error');
 }
@@ -97,9 +97,9 @@ if($method == 'GET') {
 	$json_output = json_encode($output);
 	
 	if(($output == false) || ($output == '') || ($json_output == 'null'))
-		print $_GET['callback'].'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});';
+		print $callback.'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});';
 	else
-		print $_GET['callback'].'({"reply":'.$json_output.'});';
+		print $callback.'({"reply":'.$json_output.'});';
 }
 
 // Close the connection
