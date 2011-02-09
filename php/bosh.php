@@ -9,7 +9,6 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 09/02/11
 
 */

@@ -7,7 +7,6 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 09/02/11
 
 */
@@ -22,7 +21,7 @@ function openPrivacy() {
 		'<div class="privacy-head">' + 
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
-				'<select><option value="1">1 ~dev</option><option value="2">2 ~dev</option></select>' + 
+				'<select></select>' + 
 				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
@@ -125,7 +124,13 @@ function listPrivacy() {
 
 // Handles available privacy lists
 function handleListPrivacy(iq) {
-	// TODO: parse XML and display it in the <select>
+	// Parse it!
+	$(iq.getQuery()).find('list').each(function() {
+		var list_name = $(this).attr('name');
+		
+		if(list_name)
+			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
+	});
 	
 	// Hide waiting item
 	$('#privacy .wait').hide();

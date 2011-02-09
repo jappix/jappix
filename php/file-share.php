@@ -9,7 +9,6 @@ This is the Jappix microblog file attaching script
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 05/01/11
 
 */

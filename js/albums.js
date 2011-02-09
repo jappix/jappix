@@ -7,7 +7,6 @@ These are the albums JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 29/12/10
 
 */

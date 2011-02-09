@@ -9,7 +9,6 @@ This script (re)generates the store sub-folders (after an update)
 
 License: AGPL
 Authors: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 28/12/10
 
 */

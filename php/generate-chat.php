@@ -9,7 +9,6 @@ This is the PHP script used to generate a chat log
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 05/01/11
 
 */

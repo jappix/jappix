@@ -9,7 +9,6 @@ This is the main configuration form (install & manager)
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Contact: http://project.jappix.com/contact
 Last revision: 29/01/11
 
 */

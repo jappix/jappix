@@ -7,7 +7,6 @@ These are the chatstate JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 10/12/10
 
 */

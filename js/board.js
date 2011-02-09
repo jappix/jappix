@@ -7,7 +7,6 @@ These are the notification board JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 19/01/11
 
 */

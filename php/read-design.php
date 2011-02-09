@@ -9,7 +9,6 @@ This is the design configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 28/12/10
 
 */

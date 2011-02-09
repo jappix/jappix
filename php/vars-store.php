@@ -9,7 +9,6 @@ These are the store configuration variables
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 28/12/10
 
 */

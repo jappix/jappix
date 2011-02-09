@@ -9,7 +9,6 @@ This is the main configuration POST handler (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 29/01/11
 
 */

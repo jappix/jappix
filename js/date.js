@@ -7,7 +7,6 @@ These are the date related JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Contact: http://project.jappix.com/contact
 Last revision: 02/02/11
 
 */

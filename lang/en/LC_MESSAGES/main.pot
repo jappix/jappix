@@ -5,7 +5,6 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Contact: http://project.jappix.com/contact
 # Last revision: 08/02/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
