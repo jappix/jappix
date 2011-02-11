@@ -7,7 +7,7 @@ This is the page-switch CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 11/02/11
 
 */
 
@@ -198,8 +198,4 @@ Last revision: 28/12/10
 
 #page-switch .channel .icon {
 	background-position: 0 -55px;
-}
-
-#page-switch .albums .icon {
-	background-position: 0 -1701px;
 }

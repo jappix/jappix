@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/12/10
+Last revision: 11/02/11
 
 */
 
@@ -114,10 +114,6 @@ function createTalkPage() {
 						
 						'<div class="buddy-list-more buddy-list-icon">' + 
 							'<a class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
-						'</div>' + 
-						
-						'<div class="buddy-list-involve buddy-list-icon alone">' + 
-							'<a class="involve talk-images" title="' + _e("Get involved!") +  '"></a>' + 
 						'</div>' + 
 						
 						'<div style="clear: both;"></div>' + 

@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/01/11
+Last revision: 11/02/11
 
 */
 
@@ -185,10 +185,6 @@ function generateSwitch(type, id, xid, nick) {
 			show_close = false;
 	}
 	
-	// Albums
-	else if(type == 'albums')
-		specialClass = ' albums';
-	
 	// Generate the HTML code
 	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeQuotes(id) + '\')">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
@@ -196,18 +192,8 @@ function generateSwitch(type, id, xid, nick) {
 			'<div class="name">' + nick + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
-	if(show_close) {
-		// Event to fire on click
-		var exitEvent;
-		
-		// Albums
-		if(type == 'albums')
-			exitEvent = 'closeAlbums()';
-		else
-			exitEvent = 'quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\')';
-		
-		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return ' + exitEvent + ';">x</div>';
-	}
+	if(show_close)
+		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\');">x</div>';
 	
 	// Close the HTML
 	html += '</div>';

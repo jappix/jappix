@@ -7,12 +7,11 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/02/11
+Last revision: 11/02/11
 
 */
 
-#channel .top div.update,
-#albums .top div.update {
+#channel .top div.update {
 	position: absolute;
 	top: 12px;
 	left: 115px;
@@ -28,15 +27,13 @@ Last revision: 09/02/11
 	margin-bottom: 10px;
 }
 
-#channel .top h2,
-#albums .top h2 {
+#channel .top h2 {
 	font-size: 1.6em;
 	margin-bottom: 10px;
 	color: #232323;
 }
 
-#channel .top a,
-#albums .top p {
+#channel .top a {
 	font-size: 0.9em;
 	color: #232323;
 }
@@ -270,8 +267,7 @@ Last revision: 09/02/11
 	bottom: 6px;
 }
 
-#channel .footer,
-#albums .footer {
+#channel .footer {
 	bottom: 0;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;

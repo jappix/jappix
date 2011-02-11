@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/01/11
+Last revision: 11/02/11
 
 */
 
@@ -90,7 +90,7 @@ function switchChan(id) {
 		$('#page-switch .' + id).addClass('activechan').removeClass('chan');
 		
 		// Scroll down to the last message
-		if((id != 'channel') && (id != 'albums'))
+		if(id != 'channel')
 			autoScroll(id);
 		
 		// Manage input focus

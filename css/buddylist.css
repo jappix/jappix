@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/02/11
+Last revision: 11/02/11
 
 */
 
@@ -375,11 +375,6 @@ Last revision: 06/02/11
 	display: block;
 }
 
-#buddy-list .buddy-list-icon.alone {
-	float: right;
-	margin-right: 1px;
-}
-
 #buddy-list .add,
 #page-engine .text .tools-add {
 	background-position: 0 -1047px;
@@ -396,10 +391,6 @@ Last revision: 06/02/11
 
 #buddy-list .more {
 	background-position: 0 -1100px;
-}
-
-#buddy-list .involve {
-	background-position: 0 -1119px;
 }
 
 #buddy-list .foot-edit-finish a {

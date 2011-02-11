@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/01/11
+Last revision: 11/02/11
 
 */
 
@@ -25,7 +25,7 @@ $main_conf = array(
 	     	'lock'		=> 'off',
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
-	     	'bosh_proxy'	=> 'off',
+	     	'bosh_proxy'	=> 'on',
 	     	'encryption'	=> 'on',
 	     	'https_storage'	=> 'off',
 	     	'https_force'	=> 'off',

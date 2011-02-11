@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/02/11
+Last revision: 11/02/11
 
 */
 
@@ -366,8 +366,6 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				'</div>'
 			);
 			
-			// TODO: <a class="albums">' + _e("Albums") + '</a>
-			
 			// Get the presence
 			presenceFunnel(xid, hash);
 			
@@ -386,10 +384,6 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Channel
 				else if($(this).is('.channel'))
 					fromInfosMicroblog(xid, hash);
-				
-				// Albums
-				else if($(this).is('.albums'))
-					openAlbums(xid);
 				
 				// Command
 				else if($(this).is('.commands'))
@@ -1022,54 +1016,6 @@ function launchRoster() {
 		
 		if(getDB('privacy-marker', 'active'))
 			$('.buddy-conf-more-privacy').parent().show();
-		
-		return false;
-	});
-	
-	// When the user click on the involve button, show the involve menu
-	$('#buddy-list .foot .involve').click(function() {
-		// Yet displayed?
-		if(exists('#buddy-conf-involve'))
-			return closeBubbles();
-		
-		// Add the bubble
-		showBubble('#buddy-conf-involve');
-		
-		// Append the content
-		$('#buddy-list .buddy-list-involve').append(
-			'<div id="buddy-conf-involve" class="buddy-conf-item bubble removable">' + 
-				'<div class="buddy-conf-subarrow talk-images"></div>' + 
-				
-				'<div class="buddy-conf-subitem">' + 
-					'<p class="buddy-conf-p">' + _e("Get involved!") +  '</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://codingteam.net/project/jappix/browse" target="_blank">' + _e("Write code") +  '</a>' + 
-					'</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://codingteam.net/project/jappix/i18n" target="_blank">' + _e("Translate") +  '</a>' + 
-					'</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://codingteam.net/project/jappix/bugs/add" target="_blank">' + _e("Report a bug") +  '</a>' + 
-					'</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://codingteam.net/project/jappix/doc" target="_blank">' + _e("Write documentation") +  '</a>' + 
-					'</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://project.jappix.com/donate" target="_blank">' + _e("Donate") +  '</a>' + 
-					'</p>' + 
-				'</div>' + 
-			'</div>'
-		);
-		
-		// Close it when clicked
-		$('#buddy-conf-involve a').click(function() {
-			closeBubbles();
-		});
 		
 		return false;
 	});

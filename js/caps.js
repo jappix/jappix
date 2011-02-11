@@ -7,7 +7,7 @@ These are the CAPS JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/02/11
+Last revision: 11/02/11
 
 */
 
@@ -32,13 +32,11 @@ function myDiscoInfos() {
 		NS_URN_ADATA,
 		NS_URN_AMETA,
 		NS_URN_MBLOG,
-		NS_URN_ALBUMS,
 		NS_MOOD + NS_NOTIFY,
 		NS_ACTIVITY + NS_NOTIFY,
 		NS_TUNE + NS_NOTIFY,
 		NS_GEOLOC + NS_NOTIFY,
 		NS_URN_MBLOG + NS_NOTIFY,
-		NS_URN_ALBUMS + NS_NOTIFY,
 		NS_URN_DELAY,
 		NS_ROSTER,
 		NS_ROSTERX,

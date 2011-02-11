@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 08/02/11
+# Last revision: 11/02/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -107,24 +107,6 @@ msgid "Manage your favorite groupchats"
 msgstr ""
 
 msgid "More stuff"
-msgstr ""
-
-msgid "Get involved!"
-msgstr ""
-
-msgid "Write code"
-msgstr ""
-
-msgid "Translate"
-msgstr ""
-
-msgid "Report a bug"
-msgstr ""
-
-msgid "Write documentation"
-msgstr ""
-
-msgid "Donate"
 msgstr ""
 
 msgid "Show all friends"
@@ -1589,15 +1571,6 @@ msgid "Inactive since: %s"
 msgstr ""
 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
-
-msgid "Albums"
-msgstr ""
-
-msgid "Albums of %s"
-msgstr ""
-
-msgid "Shared albums of this user"
 msgstr ""
 
 msgid "Static content server"

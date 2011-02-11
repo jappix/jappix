@@ -7,7 +7,7 @@ This is the welcome tool CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/02/11
+Last revision: 11/02/11
 
 */
 
@@ -152,7 +152,7 @@ Last revision: 02/02/11
 }
 
 #welcome a.box span.go {
-	background-position: 0 -1723px;
+	background-position: 0 -1120px;
 	margin: -28px 5px 0 0;
 }
 
