@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/12/10
+Last revision: 11/02/11
 
 */
 
@@ -166,7 +166,7 @@ function sendThisAvatar() {
 	
 	// If there's a file
 	if(fFile && functionExists(FileReader)) {
-		if(!fFile.type.match(/image\/[jpg|jpeg|png|gif]/) || (fFile.size > 25000)) {
+		if(!fFile.type.match(/image\/[jpg|jpeg|png|gif|svg]/) || (fFile.size > 25000)) {
 			$('#vcard .avatar-error').show();
 			
 			// Timer

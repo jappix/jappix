@@ -7,7 +7,7 @@ These are the anonymous mode JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 02/02/11
+Last revision: 11/02/11
 
 */
 
@@ -16,6 +16,7 @@ function anonymousConnected(con) {
 	logThis('Jappix (anonymous) is now connected.', 3);
 	
 	// Connected marker
+	CONNECTED = true;
 	CURRENT_SESSION = true;
 	RECONNECT_TRY = 0;
 	RECONNECT_TIMER = 0;
@@ -55,10 +56,6 @@ function anonymousConnected(con) {
 // Disconnected from an anonymous session
 function anonymousDisconnected() {
 	logThis('Jappix (anonymous) is now disconnected.', 3);
-	
-	// Reconnect pane
-	if(CURRENT_SESSION)
-		createReconnect('anonymous');
 }
 
 // Logins to a anonymous account
