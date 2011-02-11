@@ -110,6 +110,12 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 	
 	// Other request
 	else {
+		// Is this buddy blocked?
+		var privacy_class = '';
+		
+		if(statusPrivacy('block', dXID) == 'deny')
+			privacy_class = ' blocked';
+		
 		// For each group this buddy has
 		for(i in dGroup) {
 			var cGroup = dGroup[i];
@@ -162,7 +168,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 				var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
 				var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
 				
-				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + '" data-xid="' + dXID + '">' + 
+				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + privacy_class + '" data-xid="' + dXID + '">' + 
 						'<div class="buddy-click">';
 				
 				// Display avatar if not gateway
@@ -216,10 +222,10 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 // Applies the buddy editing input events
 function applyBuddyInput(xid) {
 	// Initialize
-	var path = '#buddy-list .buddy[data-xid=' + xid + '] .';
-	var rename = path + 'bm-rename input';
-	var group = path + 'bm-group input';
-	var manage_infos = path + 'manage-infos';
+	var path = '#buddy-list .buddy[data-xid=' + xid + ']';
+	var rename = path + ' .bm-rename input';
+	var group = path + ' .bm-group input';
+	var manage_infos = path + ' .manage-infos';
 	var bm_choose = manage_infos + ' div.bm-choose';
 	
 	// Keyup events
@@ -291,7 +297,8 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-authorize a.unblock').click(function() {
 		closeBubbles();
-		updatePrivacy(xid, 'allow');
+		pushPrivacy('block', ['jid'], [xid], ['allow'], ['1'], [false], [true], [true], [true]);
+		$(path).removeClass('blocked');
 		
 		return false;
 	});
@@ -312,7 +319,8 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-remove a.block').click(function() {
 		closeBubbles();
-		updatePrivacy(xid, 'deny');
+		pushPrivacy('block', ['jid'], [xid], ['deny'], ['1'], [false], [true], [true], [true]);
+		$(path).addClass('blocked');
 		
 		return false;
 	});
@@ -466,10 +474,11 @@ function buddyEdit(xid, nick, subscription, groups) {
 	var html = '<div class="manage-infos">';
 	
 	// Get the privacy state
-	var privacy_state = getDB('privacy', xid);
+	var privacy_state = statusPrivacy('block', xid);
+	var privacy_active = getDB('privacy-marker', 'active');
 	
 	// The subscription with this buddy is not full
-	if((subscription != 'both') || (privacy_state == 'deny')) {
+	if((subscription != 'both') || ((privacy_state == 'deny') && privacy_active)) {
 		var authorize_links = '';
 		html += '<p class="bm-authorize talk-images">';
 		
@@ -486,7 +495,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 		}
 		
 		// Link to unblock this buddy
-		if(privacy_state == 'deny') {
+		if((privacy_state == 'deny') && privacy_active) {
 			if(authorize_links)
 				authorize_links += ' / ';
 			
@@ -506,7 +515,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 		remove_links += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
 	
 	// Complete the HTML code
-	if(privacy_state != 'deny') {
+	if((privacy_state != 'deny') && privacy_active) {
 		if(remove_links)
 			remove_links += ' / ';
 		

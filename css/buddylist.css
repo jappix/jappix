@@ -137,6 +137,10 @@ Last revision: 11/02/11
 	overflow: hidden;
 }
 
+#buddy-list .buddy.blocked p.buddy-name {
+	text-decoration: line-through;
+}
+
 #buddy-list .buddy-presence {
 	height: 14px;
 	font-size: 0.7em;

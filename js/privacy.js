@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/02/11
+Last revision: 11/02/11
 
 */
 
@@ -100,12 +100,60 @@ function closePrivacy() {
 	return false;
 }
 
-// Does something for privacy on a given XID
-function updatePrivacy(xid, action) {	
-	// TODO
+// Push a privacy list item to a list
+function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq) {
+	// Read the stored elements (to add them)
+	var stored = getDB('privacy', list);
 	
-	// Update the marker
-	setDB('privacy', xid, action);
+	// Serialize them to an array
+	$(stored).find('item').each(function() {
+		// Attributes
+		var c_type = $(this).attr('type');
+		var c_value = $(this).attr('value');
+		var c_action = $(this).attr('action');
+		var c_order = $(this).attr('order');
+		
+		// Don not push it twice!
+		if(c_value != value[0]) {
+			if(!c_type)
+				c_type = '';
+			if(!c_value)
+				c_value = '';
+			if(!c_action)
+				c_action = '';
+			if(!c_order)
+				c_order = '';
+			
+			type.push(c_type);
+			value.push(c_value);
+			action.push(c_action);
+			order.push(c_order);
+			
+			// Child elements
+			if($(this).find('presence-in').size())
+				presence_in.push(true);
+			else
+				presence_in.push(false);
+			
+			if($(this).find('presence-out').size())
+				presence_out.push(true);
+			else
+				presence_out.push(false);
+			
+			if($(this).find('message').size())
+				msg.push(true);
+			else
+				msg.push(false);
+			
+			if($(this).find('iq').size())
+				iq.push(true);
+			else
+				iq.push(false);
+		}
+	});
+	
+	// Send it!
+	setPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq);
 }
 
 // Gets available privacy lists
@@ -141,7 +189,7 @@ function handleListPrivacy(iq) {
 }
 
 // Gets privacy lists
-function getPrivacy(lists) {
+function getPrivacy(lists, init_hack) {
 	// Waiting item
 	$('#privacy .wait').show();
 	
@@ -158,7 +206,11 @@ function getPrivacy(lists) {
 			iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': lists[i]}));
 	}
 	
-	con.send(iq, handleGetPrivacy);
+	// Initialization hack?
+	if(init_hack)
+		con.send(iq, handleInitPrivacy);
+	else
+		con.send(iq, handleGetPrivacy);
 	
 	logThis('Getting privacy list(s): ' + lists);
 }
@@ -169,20 +221,72 @@ function handleGetPrivacy(iq) {
 	setDB('privacy-marker', 'active', 'true');
 	$('.privacy-hidable').show();
 	
-	var iqQuery = iq.getQuery();
-	
-	// Store markers for each item
-	$(iqQuery).find('item').each(function() {
-		if($(this).attr('type') == 'jid')
-			setDB('privacy', $(this).attr('value'), $(this).attr('action'));
-	});
+	// Store the data for each list
+	if(iq.getType() == 'result') {
+		$(iq.getQuery()).find('list').each(function() {
+			setDB('privacy', $(this).attr('name'), xmlToString(this));
+		});
+	}
 	
 	// Hide waiting item
 	$('#privacy .wait').hide();
 	
-	// TODO: support for all kind of "type" attributes: groups and so on
-	
 	logThis('Got privacy list(s).', 3);
+}
+
+// Handles initial privacy list (hack)
+function handleInitPrivacy(iq) {
+	// Parse the response
+	handleGetPrivacy(iq);
+	
+	// Get the roster!
+	getRoster();
+}
+
+// Sets a privacy list
+function setPrivacy(list, types, values, actions, orders, presence_in, presence_out, msg, iq) {
+	// Build query
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	// Privacy query
+	var iqQuery = iq.setQuery(NS_PRIVACY);
+	var iqList = iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': list}));
+	
+	// Build the item node
+	for(var i = 0; i < types.length; i++) {
+		// Item element
+		var iqItem = iqList.appendChild(iq.buildNode('item', {
+									'xmlns': NS_PRIVACY,
+									'type': types[i],
+									'value': values[i],
+									'action': actions[i],
+									'order': orders[i]
+								     }
+							    ));
+		
+		// Child elements
+		if(presence_in)
+			iqItem.appendChild(iq.buildNode('presence-in', {'xmlns': NS_PRIVACY}));
+		if(presence_out)
+			iqItem.appendChild(iq.buildNode('presence-out', {'xmlns': NS_PRIVACY}));
+		if(msg)
+			iqItem.appendChild(iq.buildNode('message', {'xmlns': NS_PRIVACY}));
+		if(iq)
+			iqItem.appendChild(iq.buildNode('iq', {'xmlns': NS_PRIVACY}));
+	}
+	
+	con.send(iq);
+	
+	// Update the database
+	setDB('privacy', list, xmlToString(iqList));
+	
+	logThis('Sending privacy list: ' + list);
+}
+
+// Checks the privacy status (action) of a value
+function statusPrivacy(list, value) {
+	return $(getDB('privacy', list)).find('item[value=' + value + ']').attr('action');
 }
 
 // Converts the groups array into a <option /> string
