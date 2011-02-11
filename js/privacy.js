@@ -218,7 +218,7 @@ function getPrivacy(lists, init_hack) {
 // Handles privacy lists
 function handleGetPrivacy(iq) {
 	// Apply a "received" marker
-	setDB('privacy-marker', 'active', 'true');
+	setDB('privacy-marker', 'available', 'true');
 	$('.privacy-hidable').show();
 	
 	// Store the data for each list
@@ -282,6 +282,28 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 	setDB('privacy', list, xmlToString(iqList));
 	
 	logThis('Sending privacy list: ' + list);
+}
+
+// Change a privacy list status
+function changePrivacy(list, status) {
+	// Yet sent?
+	if(getDB('privacy-marker', status) == list)
+		return;
+	
+	// Write a marker
+	setDB('privacy-marker', status, list);
+	
+	// Build query
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	// Privacy query
+	var iqQuery = iq.setQuery(NS_PRIVACY);
+	iqQuery.appendChild(iq.buildNode(status, {'xmlns': NS_PRIVACY, 'name': list}));
+	
+	con.send(iq);
+	
+	logThis('Changing privacy list status: ' + list + ' to: ' + status);
 }
 
 // Checks the privacy status (action) of a value

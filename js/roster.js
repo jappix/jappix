@@ -297,8 +297,17 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-authorize a.unblock').click(function() {
 		closeBubbles();
+		
+		// Update privacy settings
 		pushPrivacy('block', ['jid'], [xid], ['allow'], ['1'], [false], [true], [true], [true]);
 		$(path).removeClass('blocked');
+		
+		// Enable the "block" list
+		changePrivacy('block', 'active');
+		changePrivacy('block', 'default');
+		
+		// Send an available presence
+		sendPresence(xid, 'available', getUserShow(), getUserStatus());
 		
 		return false;
 	});
@@ -319,8 +328,30 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-remove a.block').click(function() {
 		closeBubbles();
+		
+		// Update privacy settings
 		pushPrivacy('block', ['jid'], [xid], ['deny'], ['1'], [false], [true], [true], [true]);
 		$(path).addClass('blocked');
+		
+		// Enable the "block" list
+		changePrivacy('block', 'active');
+		changePrivacy('block', 'default');
+		
+		// Send an unavailable presence
+		sendPresence(xid, 'unavailable');
+		
+		// Remove the user presence
+		for(var i = 0; i < sessionStorage.length; i++) {
+			// Get the pointer values
+			var current = sessionStorage.key(i);
+			
+			// If the pointer is on a stored presence
+			if((explodeThis('_', current, 0) == 'presence') && (bareXID(explodeThis('_', current, 1)) == xid))
+				sessionStorage.removeItem(current);
+		}
+		
+		// Manage his new presence
+		presenceFunnel(xid, hex_md5(xid));
 		
 		return false;
 	});
@@ -475,7 +506,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Get the privacy state
 	var privacy_state = statusPrivacy('block', xid);
-	var privacy_active = getDB('privacy-marker', 'active');
+	var privacy_active = getDB('privacy-marker', 'available');
 	
 	// The subscription with this buddy is not full
 	if((subscription != 'both') || ((privacy_state == 'deny') && privacy_active)) {
@@ -968,10 +999,6 @@ function launchRoster() {
 					'<p class="buddy-conf-text commands-hidable"">' + 
 						'- <a class="buddy-conf-more-commands">' + _e("Commands") +  '</a>' + 
 					'</p>' + 
-					
-					'<p class="buddy-conf-text">' + 
-						'- <a href="http://project.jappix.com/about" target="_blank">' + _e("About Jappix") +  '</a>' + 
-					'</p>' + 
 				'</div>' + 
 			'</div>'
 		);
@@ -1023,7 +1050,7 @@ function launchRoster() {
 		if(enabledCommands())
 			$('.buddy-conf-more-commands').parent().show();
 		
-		if(getDB('privacy-marker', 'active'))
+		if(getDB('privacy-marker', 'available'))
 			$('.buddy-conf-more-privacy').parent().show();
 		
 		return false;

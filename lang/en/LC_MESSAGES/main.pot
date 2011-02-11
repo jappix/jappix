@@ -127,9 +127,6 @@ msgstr ""
 msgid "Nothing found for: %s"
 msgstr ""
 
-msgid "About Jappix"
-msgstr ""
-
 msgid "A short message?"
 msgstr ""
 
