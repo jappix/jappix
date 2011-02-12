@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 12/02/11
 
 */
 
@@ -112,8 +112,9 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 	else {
 		// Is this buddy blocked?
 		var privacy_class = '';
+		var privacy_state = statusPrivacy('block', dXID);
 		
-		if(statusPrivacy('block', dXID) == 'deny')
+		if(privacy_state == 'deny')
 			privacy_class = ' blocked';
 		
 		// For each group this buddy has
@@ -125,6 +126,10 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 				var groupHash = 'group' + hex_md5(cGroup);
 				var groupContent = '#buddy-list .' + groupHash;
 				var groupBuddies = groupContent + ' .group-buddies';
+				
+				// Is this group blocked?
+				if((statusPrivacy('block', cGroup) == 'deny') && (privacy_state != 'allow'))
+					privacy_class = ' blocked';
 				
 				// Group not yet displayed
 				if(!exists(groupContent)) {
@@ -507,6 +512,12 @@ function buddyEdit(xid, nick, subscription, groups) {
 	// Get the privacy state
 	var privacy_state = statusPrivacy('block', xid);
 	var privacy_active = getDB('privacy-marker', 'available');
+	
+	// Get the group privacy state
+	for(g in groups) {
+		if((statusPrivacy('block', groups[g]) == 'deny') && (privacy_state != 'allow'))
+			privacy_state = 'deny';
+	}
 	
 	// The subscription with this buddy is not full
 	if((subscription != 'both') || ((privacy_state == 'deny') && privacy_active)) {

@@ -102,9 +102,6 @@ function closePrivacy() {
 
 // Gets available privacy lists
 function listPrivacy() {
-	// Waiting item
-	// $('#privacy .wait').show();
-	
 	// Build query
 	var iq = new JSJaCIQ();
 	iq.setType('get');
@@ -135,52 +132,36 @@ function handleListPrivacy(iq) {
 		// Not the default one?
 		if(!$(iqQuery).find('default[name=block]').size())
 			changePrivacy('block', 'default');
+		else
+			setDB('privacy-marker', 'default', 'block');
 		
 		// Not the active one?
 		if(!$(iqQuery).find('active[name=block]').size())
 			changePrivacy('block', 'active');
+		else
+			setDB('privacy-marker', 'active', 'block');
 	}
 	
 	// Get the privacy lists
-	if(lists.length)
-		getPrivacy(lists);
-	
-	// Parse it!
-	/* $(iq.getQuery()).find('list').each(function() {
-		var list_name = $(this).attr('name');
-		
-		if(list_name)
-			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
-	});
-	
-	// Hide waiting item
-	$('#privacy .wait').hide(); */
-	// TODO for privacy popup
+	for(l in lists)
+		getPrivacy(lists[l]);
 	
 	logThis('Got available privacy list(s).', 3);
 }
 
 // Gets privacy lists
-function getPrivacy(lists) {
-	// Waiting item
-	$('#privacy .wait').show();
-	
+function getPrivacy(list) {
 	// Build query
 	var iq = new JSJaCIQ();
 	iq.setType('get');
 	
 	// Privacy query
 	var iqQuery = iq.setQuery(NS_PRIVACY);
-	
-	// Lists
-	if(lists && lists.length) {
-		for(i in lists)
-			iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': lists[i]}));
-	}
+	iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': list}));
 	
 	con.send(iq, handleGetPrivacy);
 	
-	logThis('Getting privacy list(s): ' + lists);
+	logThis('Getting privacy list(s): ' + list);
 }
 
 // Handles privacy lists
@@ -212,9 +193,6 @@ function handleGetPrivacy(iq) {
 			}
 		});
 	}
-	
-	// Hide waiting item
-	$('#privacy .wait').hide();
 	
 	logThis('Got privacy list(s).', 3);
 }
@@ -411,4 +389,13 @@ function launchPrivacy() {
 	$('#privacy .privacy-second input').change(function() {
 		enableFormPrivacy('third');
 	});
+	
+	// Parse it!
+	// TODO
+	/* $(iq.getQuery()).find('list').each(function() {
+		var list_name = $(this).attr('name');
+		
+		if(list_name)
+			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
+	}); */
 }
