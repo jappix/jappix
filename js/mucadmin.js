@@ -6,8 +6,8 @@ These are the mucadmin JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 21/12/10
+Author: ValÃ©rian Saliou
+Last revision: 12/02/11
 
 */
 
@@ -199,22 +199,22 @@ function sendMucAdminTopic(xid) {
 
 // Sends the MUC admin auth form
 function sendMucAdminAuth(xid) {
-	// We set the iq headers
-	var iq = new JSJaCIQ();
-	iq.setTo(xid);
-	iq.setType('set');
-	
-	var iqQuery = iq.setQuery(NS_MUC_ADMIN);
-	
 	// We define the values array
 	var types = new Array('member', 'owner', 'admin', 'outcast');
-	
+
 	for(i in types) {
 		// We get the current type
 		var tType = types[i];
 		
 		// We loop for all the elements
 		$('.mucadmin-aut .aut-' + tType + ' input').each(function() {
+			// We set the iq headers
+			var iq = new JSJaCIQ();
+			iq.setTo(xid);
+			iq.setType('set');
+
+			var iqQuery = iq.setQuery(NS_MUC_ADMIN);
+	
 			// We get the needed values
 			var value = $(this).val();
 			
@@ -229,11 +229,11 @@ function sendMucAdminAuth(xid) {
 			// If the value is not blank and okay
 			else if(value)
 				item.setAttribute('affiliation', tType);
-		});
-	}
 	
-	// We send the iq !
-	con.send(iq, handleErrorReply);
+			// We send the iq !
+			con.send(iq, handleErrorReply);
+		});
+	}	
 	
 	logThis('MUC admin authorizations form sent: ' + xid, 3);
 }
@@ -324,3 +324,4 @@ function launchMucAdmin() {
 			return saveMucAdmin();
 	});
 }
+

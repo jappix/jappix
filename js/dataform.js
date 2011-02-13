@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/12/10
+Last revision: 13/02/11
 
 */
 
@@ -626,9 +626,11 @@ function fillDataForm(xml, id) {
 		
 		else {
 			// Hidden field
-			if(type == 'hidden')
+			if(type == 'hidden') {
 				hideThis = ' style="display: none;"';
-			
+				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="hidden" class="dataform-i" value="' + encodeQuotes(value) + '" ' + required + ' />';
+			}
+
 			// Boolean field
 			else if(type == 'boolean') {
 				var checked;
