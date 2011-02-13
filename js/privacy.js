@@ -36,7 +36,14 @@ function openPrivacy() {
 			'</div>' + 
 		'</div>' + 
 		
-		'<p class="privacy-current">' + _e("You are not viewing any list at the moment.") + '</p>' + 
+		'<div class="privacy-item">' + 
+			'<span>' + _e("Item") + '</span>' + 
+			'<select></select>' + 
+			'<a class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
+			'<a class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+			
+			'<div class="clear"></div>' + 
+		'</div>' + 
 		
 		'<form>' + 
 			'<div class="privacy-first">' + 
@@ -65,12 +72,17 @@ function openPrivacy() {
 				'<label><input type="checkbox" name="send-status" disabled="" />' + _e("Send his/her status") + '</label>' + 
 				'<label><input type="checkbox" name="everything" disabled="" />' + _e("Everything") + '</label>' + 
 			'</div>' + 
+			
+			'<div class="clear"></div>' + 
 		'</form>' + 
 		
-		'<div class="infos">' + 
-			'<p class="infos-title">' + _e("Manage your private life with this tool!") + '</p>' + 
-			'<p>' + _e("You can create rules to block access to your account for an undesired user, or manage who can see what.") + '</p>' + 
-			'<p>' + _e("You must first add a new rule, then select the rule type, and define the actions to do.") + '</p>' + 
+		'<div class="privacy-active">' + 
+			'<label>' + _e("Order") + '<input type="text" name="order" value="1" disabled="" /></label>' + 
+			
+			'<div class="privacy-active-elements">' + 
+				'<label><input type="checkbox" name="active" disabled="" />' + _e("Active for this session") + '</label>' + 
+				'<label><input type="checkbox" name="default" disabled="" />' + _e("Always active") + '</label>' + 
+			'</div>' + 
 		'</div>' + 
 	'</div>' + 
 	

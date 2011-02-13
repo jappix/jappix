@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-09 15:09:26\n"
+"PO-Revision-Date: 2011-02-13 17:53:42\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,28 +142,28 @@ msgid "More stuff"
 msgstr "Plus de choses"
 
 #: 
-msgid "Get involved!"
-msgstr "Participez !"
+#~ msgid "Get involved!"
+#~ msgstr "Participez !"
 
 #: 
-msgid "Write code"
-msgstr "Écrivez du code"
+#~ msgid "Write code"
+#~ msgstr "Écrivez du code"
 
 #: 
-msgid "Translate"
-msgstr "Traduisez"
+#~ msgid "Translate"
+#~ msgstr "Traduisez"
 
 #: 
-msgid "Report a bug"
-msgstr "Reportez un souci"
+#~ msgid "Report a bug"
+#~ msgstr "Reportez un souci"
 
 #: 
-msgid "Write documentation"
-msgstr "Écrivez la documentation"
+#~ msgid "Write documentation"
+#~ msgstr "Écrivez la documentation"
 
 #: 
-msgid "Donate"
-msgstr "Faites un don"
+#~ msgid "Donate"
+#~ msgstr "Faites un don"
 
 #: 
 msgid "Show all friends"
@@ -186,8 +186,8 @@ msgid "Date"
 msgstr "Date"
 
 #: 
-msgid "About Jappix"
-msgstr "À propos de Jappix"
+#~ msgid "About Jappix"
+#~ msgstr "À propos de Jappix"
 
 #: 
 msgid "A short message?"
@@ -2098,16 +2098,16 @@ msgid "Unblock"
 msgstr "Débloquer"
 
 #: 
-msgid "Albums"
-msgstr "Albums"
+#~ msgid "Albums"
+#~ msgstr "Albums"
 
 #: 
-msgid "Albums of %s"
-msgstr "Albums de %s"
+#~ msgid "Albums of %s"
+#~ msgstr "Albums de %s"
 
 #: 
-msgid "Shared albums of this user"
-msgstr "Albums partagés de cet utilisateur"
+#~ msgid "Shared albums of this user"
+#~ msgstr "Albums partagés de cet utilisateur"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
@@ -2218,20 +2218,20 @@ msgstr "Vous ne visualisez aucune liste pour le moment."
 #~ msgstr "Invisible"
 
 #: 
-msgid "Manage your private life with this tool!"
-msgstr "Gérez votre vie privée avec cet outil !"
+#~ msgid "Manage your private life with this tool!"
+#~ msgstr "Gérez votre vie privée avec cet outil !"
 
 #: 
-msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
-msgstr "Vous pouvez créer des règles pour bloquer l'accès à votre compte d'un utilisateur indésiré, ou gérer qui peut voir quoi."
+#~ msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
+#~ msgstr "Vous pouvez créer des règles pour bloquer l'accès à votre compte d'un utilisateur indésiré, ou gérer qui peut voir quoi."
 
 #: 
 #~ msgid "You must first choose add a new rule, then select the rule type, and define the actions to do."
 #~ msgstr ""
 
 #: 
-msgid "You must first add a new rule, then select the rule type, and define the actions to do."
-msgstr "Vous devez d'abord ajouter une nouvelle règle, puis sélectionner son type, et définir les actions à faire."
+#~ msgid "You must first add a new rule, then select the rule type, and define the actions to do."
+#~ msgstr "Vous devez d'abord ajouter une nouvelle règle, puis sélectionner son type, et définir les actions à faire."
 
 #: 
 msgid "Group"
@@ -2280,4 +2280,20 @@ msgstr "Les deux"
 #: 
 msgid "From"
 msgstr "De"
+
+#: 
+msgid "Item"
+msgstr "Élément"
+
+#: 
+msgid "Order"
+msgstr "Ordre"
+
+#: 
+msgid "Active for this session"
+msgstr "Actif pour cette session"
+
+#: 
+msgid "Always active"
+msgstr "Toujours actif"
 

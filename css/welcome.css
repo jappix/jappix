@@ -7,7 +7,7 @@ This is the welcome tool CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 13/02/11
 
 */
 
@@ -15,13 +15,11 @@ Last revision: 11/02/11
 	margin: 15px;
 }
 
-#welcome .infos p,
-#privacy .infos p {
+#welcome .infos p {
 	margin-top: 6px;
 }
 
-#welcome .infos p.infos-title,
-#privacy .infos p.infos-title {
+#welcome .infos p.infos-title {
 	margin-top: 0;
 }
 

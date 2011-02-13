@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 11/02/11
+# Last revision: 13/02/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1630,11 +1630,14 @@ msgstr ""
 msgid "Everything"
 msgstr ""
 
-msgid "Manage your private life with this tool!"
+msgid "Item"
 msgstr ""
 
-msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
+msgid "Order"
 msgstr ""
 
-msgid "You must first add a new rule, then select the rule type, and define the actions to do."
+msgid "Active for this session"
+msgstr ""
+
+msgid "Always active"
 msgstr ""

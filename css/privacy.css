@@ -7,7 +7,7 @@ This is the privacy CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/02/11
+Last revision: 13/02/11
 
 */
 
@@ -35,7 +35,9 @@ Last revision: 09/02/11
 }
 
 #privacy .privacy-head span,
-#privacy .privacy-head a {
+#privacy .privacy-head a,
+#privacy .privacy-item span,
+#privacy .privacy-item a {
 	float: left;
 }
 
@@ -54,7 +56,8 @@ Last revision: 09/02/11
 	margin-top: 1px;
 }
 
-#privacy .privacy-head select {
+#privacy .privacy-head select,
+#privacy .privacy-item select {
 	margin-top: -2px;
 }
 
@@ -62,25 +65,46 @@ Last revision: 09/02/11
 	margin-left: 16px;
 }
 
-#privacy .privacy-head a {
+#privacy .privacy-head a,
+#privacy .privacy-item a {
 	width: 20px;
 	height: 20px;
 	padding: 0;
 	display: block;
 }
 
-#privacy .privacy-head a.list-add {
+#privacy .privacy-head a.list-add,
+#privacy .privacy-item a.item-add {
 	background-position: 2px -1178px;
 }
 
-#privacy .privacy-head a.list-remove {
+#privacy .privacy-head a.list-remove,
+#privacy .privacy-item a.item-remove {
 	background-position: 2px -1197px;
 }
 
-#privacy .privacy-current {
-	font-weight: bold;
+#privacy .privacy-item,
+#privacy form,
+#privacy .privacy-active {
+	clear: both;
+}
+
+#privacy .privacy-item {
+	margin: 17px 12px;
 	font-size: 0.9em;
-	margin-left: 10px;
+}
+
+#privacy .privacy-item span {
+	font-weight: bold;
+}
+
+#privacy .privacy-item select {
+	width: 300px;
+	margin: -4px 30px 0 10px;
+}
+
+#privacy .privacy-item a {
+	margin: -2px 6px 0 0;
 }
 
 #privacy .privacy-first,
@@ -136,10 +160,28 @@ Last revision: 09/02/11
 	width: 240px;
 }
 
-#privacy .infos {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	clear: both;
+#privacy .privacy-active {
+	margin: 34px 16px 0 16px;
+	font-size: 0.9em;
+}
+
+#privacy .privacy-active-elements {
+	float: right;
+}
+
+#privacy .privacy-active input[type=text] {
+	width: 30px;
+	margin: 0 0 0 8px;
+	float: none;
+}
+
+#privacy .privacy-active input[type=checkbox] {
+	margin: 2px 8px 0 0;
+	float: left;
+}
+
+#privacy .privacy-active label {
+	width: auto;
+	margin: 0 15px 0 0;
+	clear: none;
 }
