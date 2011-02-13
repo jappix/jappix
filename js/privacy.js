@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/02/11
+Last revision: 13/02/11
 
 */
 
@@ -115,20 +115,14 @@ function listPrivacy() {
 
 // Handles available privacy lists
 function handleListPrivacy(iq) {
-	// Initialize
+	// Get IQ query content
 	var iqQuery = iq.getQuery();
-	var lists = [];
 	
-	// Push available lists to the array
-	$(iqQuery).find('list').each(function() {
-		var list_name = $(this).attr('name');
-		
-		if(list_name)
-			lists.push(list_name);
-	});
+	// Save the content
+	setDB('privacy-lists', 'available', xmlToString(iqQuery));
 	
-	// Must send active/default queries?
-	if(existArrayValue(lists, 'block')) {
+	// Any block list?
+	if($(iqQuery).find('list[name=block]').size()) {
 		// Not the default one?
 		if(!$(iqQuery).find('default[name=block]').size())
 			changePrivacy('block', 'default');
@@ -140,11 +134,10 @@ function handleListPrivacy(iq) {
 			changePrivacy('block', 'active');
 		else
 			setDB('privacy-marker', 'active', 'block');
+		
+		// Get the block list rules
+		getPrivacy('block');
 	}
-	
-	// Get the privacy lists
-	for(l in lists)
-		getPrivacy(lists[l]);
 	
 	logThis('Got available privacy list(s).', 3);
 }
@@ -171,28 +164,29 @@ function handleGetPrivacy(iq) {
 	$('.privacy-hidable').show();
 	
 	// Store the data for each list
-	if(iq.getType() == 'result') {
-		$(iq.getQuery()).find('list').each(function() {
-			// Read list name
-			var list_name = $(this).attr('name');
+	$(iq.getQuery()).find('list').each(function() {
+		// Read list name
+		var list_name = $(this).attr('name');
+		
+		// Store list content
+		setDB('privacy', list_name, xmlToString(this));
+		
+		// Is this a block list?
+		if(list_name == 'block') {
+			// Reset buddies
+			$('#buddy-list .buddy').removeClass('blocked');
 			
-			// Store list content
-			setDB('privacy', list_name, xmlToString(this));
+			// XID types
+			$(this).find('item[action=deny][type=jid]').each(function() {
+				$('#buddy-list .buddy[data-xid=' + $(this).attr('value') + ']').addClass('blocked');
+			});
 			
-			// Is this a block list?
-			if(list_name == 'block') {
-				// XID types
-				$(this).find('item[action=deny][type=jid]').each(function() {
-					$('#buddy-list .buddy[data-xid=' + $(this).attr('value') + ']').addClass('blocked');
-				});
-				
-				// Group types
-				$(this).find('item[action=deny][type=group]').each(function() {
-					$('#buddy-list .group' + hex_md5($(this).attr('value')) + ' .buddy').addClass('blocked');
-				});
-			}
-		});
-	}
+			// Group types
+			$(this).find('item[action=deny][type=group]').each(function() {
+				$('#buddy-list .group' + hex_md5($(this).attr('value')) + ' .buddy').addClass('blocked');
+			});
+		}
+	});
 	
 	logThis('Got privacy list(s).', 3);
 }
@@ -231,9 +225,6 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 	}
 	
 	con.send(iq);
-	
-	// Update the database
-	setDB('privacy', list, xmlToString(iqList));
 	
 	logThis('Sending privacy list: ' + list);
 }

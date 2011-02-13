@@ -7,7 +7,7 @@ These are the IQ JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/02/11
+Last revision: 13/02/11
 
 */
 
@@ -55,6 +55,21 @@ function handleIQ(iq) {
 		logThis('Received last activity query: ' + iqFrom);
 	}
 	
+	// Privacy lists push
+	else if((iqQueryXMLNS == NS_PRIVACY) && (iqType == 'set')) {
+		// REF : http://xmpp.org/extensions/xep-0016.html
+		
+		// Roster push
+		con.send(iqResponse);
+		
+		// Get the lists
+		$(iqQuery).find('list').each(function() {
+			getPrivacy($(this).attr('name'));
+		});
+		
+		logThis('Received privacy lists push: ' + iqFrom);
+	}
+	
 	// Roster push
 	else if((iqQueryXMLNS == NS_ROSTER) && (iqType == 'set')) {
 		// REF : http://xmpp.org/extensions/xep-0092.html
@@ -67,7 +82,7 @@ function handleIQ(iq) {
 			parseRoster($(this), 'presence');
 		});
 		
-		logThis('Received roster query: ' + iqFrom);
+		logThis('Received roster push: ' + iqFrom);
 	}
 	
 	// Roster Item Exchange query
