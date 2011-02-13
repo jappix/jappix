@@ -7,7 +7,7 @@ This is the discovery CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/02/11
+Last revision: 13/02/11
 
 */
 
@@ -22,6 +22,7 @@ Last revision: 04/02/11
 }
 
 #discovery .discovery-head,
+#directory .directory-head,
 #rosterx .rosterx-head,
 #privacy .privacy-head {
 	width: 606px;
@@ -32,13 +33,15 @@ Last revision: 04/02/11
 	border: 1px #a9bbbf solid;
 }
 
-#discovery .disco-server-text {
+#discovery .disco-server-text,
+#directory .directory-server-text {
 	float: left;
 	font-size: 0.9em;
 	margin: 3px;
 }
 
-#discovery .disco-server-input {
+#discovery .disco-server-input,
+#directory .directory-server-input {
 	float: right;
 	width: 200px;
 	padding: 2px;

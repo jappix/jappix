@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/02/11
+Last revision: 13/02/11
 
 */
 
@@ -743,6 +743,10 @@ function launchRoster() {
 						'</select>' + 
 					'</label>' +  
 					'<span class="add-contact-name-get">' + _e("Getting the name...") + '</span>' + 
+					
+					'<p class="buddy-conf-text">' + 
+						'<a class="buddy-conf-add-search">' + _e("Search a friend") +  '</a>' + 
+					'</p>' + 
 				'</div>' + 
 			'</div>'
 		);
@@ -809,6 +813,12 @@ function launchRoster() {
 			// Escape : quit
 			if(e.keyCode == 27)
 				closeBubbles();
+		});
+		
+		// Click event on search link
+		$('.buddy-conf-add-search').click(function() {
+			closeBubbles();
+			return openDirectory();
 		});
 		
 		// Focus on the input

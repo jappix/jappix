@@ -1641,3 +1641,9 @@ msgstr ""
 
 msgid "Always active"
 msgstr ""
+
+msgid "User directory"
+msgstr ""
+
+msgid "Search a friend"
+msgstr ""

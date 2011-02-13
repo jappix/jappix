@@ -7,7 +7,7 @@ These are the discovery JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/12/10
+Last revision: 13/02/11
 
 */
 
@@ -21,7 +21,7 @@ function openDiscovery() {
 		'<div class="discovery-head">' + 
 			'<div class="disco-server-text">' + _e("Server to query") + '</div>' + 
 			
-			'<input name="disco-server-input" class="disco-server-input" value="' + HOST_MAIN + '" />' + 
+			'<input name="disco-server-input" class="disco-server-input" value="' + encodeQuotes(HOST_MAIN) + '" />' + 
 		'</div>' + 
 		
 		'<div class="results discovery-results">' + 

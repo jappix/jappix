@@ -267,8 +267,8 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
 		buttonsCode += '<a class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
 	
-	if((action == 'back') && (target == 'welcome'))
-		buttonsCode += '<a class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'welcome\');">' + _e("Previous") + '</a>';
+	if((action == 'back') && ((target == 'welcome') || (target == 'directory')))
+		buttonsCode += '<a class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + _e("Previous") + '</a>';
 	
 	if((action == 'back') && (target == 'adhoc'))
 		buttonsCode += '<a class="back" onclick="return dataForm(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + _e("Previous") + '</a>';
@@ -416,7 +416,7 @@ function handleDataFormContent(iq, type) {
 					if(!exists('#buddy-list .buddy[data-xid=' + bXID + ']'))
 						bHTML += '<a class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
 					
-					// Chat button, if not in welcome mode
+					// Chat button, if not in welcome/directory mode
 					if(target == 'discovery')
 						bHTML += '<a class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
 					
@@ -534,7 +534,7 @@ function handleDataFormContent(iq, type) {
 	}
 	
 	// Focus on the first input
-	$(pathID + ' input:first').focus();
+	$(pathID + ' input:visible:first').focus();
 	
 	// Hide the wait icon
 	$('#' + target + ' .wait').hide();

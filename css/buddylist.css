@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 13/02/11
 
 */
 
@@ -467,6 +467,12 @@ Last revision: 11/02/11
 .buddy-conf-text a:focus {
 	cursor: pointer;
 	text-decoration: underline;
+}
+
+.buddy-conf-text a.buddy-conf-add-search {
+	text-decoration: underline;
+	margin-top: 6px;
+	display: block;
 }
 
 .buddy-conf-select {
