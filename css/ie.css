@@ -12,11 +12,15 @@ Last revision: 06/02/11
 */
 
 #board .one-board.error {
-	background-color: #f1a0a0 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f1a0a0,endColorstr=#C0f1a0a0);
+	zoom: 1;
 }
 
 #board .one-board.info {
-	background-color: #f6f4cb !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f6f4cb,endColorstr=#C0f6f4cb);
+	zoom: 1;
 }
 
 .popup,
@@ -35,7 +39,9 @@ Last revision: 06/02/11
 #install-buttons input,
 #manager,
 #manager-buttons input {
-	background-color: #141414 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0141414,endColorstr=#C0141414);
+	zoom: 1;
 }
 
 #home .locale li a:hover,
@@ -51,19 +57,25 @@ Last revision: 06/02/11
 #manager-buttons input:hover,
 #manager-buttons input:focus,
 #manager-buttons input:active {
-	background-color: #333333 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33141414,endColorstr=#33141414);
+	zoom: 1;
 }
 
 #top-content .music:active,
 #top-content .notifications:active {
-	background-color: #f1f5f6 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f1f5f6,endColorstr=#C0f1f5f6);
+	zoom: 1;
 }
 
 #top-content .music:hover,
 #top-content .notifications:hover,
 #top-content .music:focus,
 #top-content .notifications:focus {
-	background-color: #ebf2f4 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0ebf2f4,endColorstr=#C0ebf2f4);
+	zoom: 1;
 }
 
 #top-content .tools,
@@ -72,7 +84,9 @@ Last revision: 06/02/11
 #top-content .actived:active,
 #top-content .actived:focus,
 #top-content .actived:focus {
-	background-color: #e8f1f3 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0e8f1f3,endColorstr=#C0e8f1f3);
+	zoom: 1;
 }
 
 .tooltip-subitem,
@@ -81,17 +95,19 @@ Last revision: 06/02/11
 .buddy-conf-subitem,
 .tooltip-subitem,
 .attach-subitem {
-	background-color: #000000 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0000000,endColorstr=#C0000000);
+	zoom: 1;
 }
 
 .general-wait-content {
-	background-color: #ffffff !important;
-}
-
-#vcard .infos {
-	background-color: #ffef68 !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0ffffff,endColorstr=#C0ffffff);
+	zoom: 1;
 }
 
 #page-engine .chatstate {
-	background-color: #eaeaea !important;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0eaeaea,endColorstr=#C0eaeaea);
+	zoom: 1;
 }

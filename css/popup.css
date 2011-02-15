@@ -12,6 +12,7 @@ Last revision: 13/02/11
 */
 
 .lock {
+	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.6);
 	left: 0;
 	right: 0;
@@ -22,6 +23,7 @@ Last revision: 13/02/11
 }
 
 .popup {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.8);
 	margin-top: -250px;
 	margin-left: -330px;
@@ -475,6 +477,7 @@ Last revision: 13/02/11
 }
 
 .popup .infos {
+	background-color: rgb(255,239,104);
 	background-color: rgba(255,239,104,0.8);
 	border: 1px #decb2f solid;
 	color: #3f3f3f;
@@ -506,6 +509,7 @@ Last revision: 13/02/11
 
 a.finish {
 	border: 1px solid white;
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 	color: white;
 	padding: 4px 8px;
@@ -525,6 +529,7 @@ a.finish {
 a.finish:hover,
 a.finish:focus {
 	cursor: pointer;
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
 	box-shadow: 0 0 15px black;
 	-moz-box-shadow: 0 0 15px black;
@@ -532,6 +537,7 @@ a.finish:focus {
 }
 
 a.finish:active {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.3);
 }
 
@@ -543,6 +549,7 @@ a.finish.disabled:hover,
 a.finish.disabled:focus,
 a.finish.disabled:active {
 	cursor: default;
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 }
 

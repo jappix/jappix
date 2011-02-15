@@ -23,6 +23,7 @@ Last revision: 06/02/11
 
 #home .locale,
 #home .obsolete {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.6);
 	color: white;
 	position: absolute;
@@ -63,11 +64,13 @@ Last revision: 06/02/11
 
 #home .locale .list a:hover,
 #home .locale .list a:focus {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 	cursor: pointer;
 }
 
 #home .locale .list a:active {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.14);
 }
 
@@ -117,6 +120,7 @@ Last revision: 06/02/11
 }
 
 #home .main {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.8);
 	position: absolute;
 	top: 50%;
@@ -443,6 +447,7 @@ Last revision: 06/02/11
 }
 
 #home .notice.simple {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.6);
 	color: white;
 	font-size: 0.9em;
@@ -460,6 +465,7 @@ Last revision: 06/02/11
 }
 
 #home .notice.simple .title {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.4);
 	background-position: 8px -247px;
 	border-width: 0 1px 1px 1px;

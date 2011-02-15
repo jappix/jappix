@@ -12,6 +12,7 @@ Last revision: 13/02/11
 */
 
 #buddy-list {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.7);
 	color: #919191;
 	padding: 15px 6px 4px 6px;
@@ -206,6 +207,7 @@ Last revision: 13/02/11
 }
 
 .buddy-infos-subitem {
+	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.8);
 	padding: 8px 10px;
 	width: 308px;
@@ -434,6 +436,7 @@ Last revision: 13/02/11
 }
 
 .buddy-conf-subitem {
+	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
 	text-shadow: 0 1px 1px black;

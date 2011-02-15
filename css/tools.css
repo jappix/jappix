@@ -12,6 +12,7 @@ Last revision: 08/01/11
 */
 
 #top-content .tools {
+	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.6);
 	padding: 3px 8px 5px 8px;
 	min-width: 10px;
@@ -67,11 +68,13 @@ Last revision: 08/01/11
 #top-content .notifications:hover,
 #top-content .music:focus,
 #top-content .notifications:focus {
+	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.7);
 }
 
 #top-content .music:active,
 #top-content .notifications:active {
+	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.8);
 }
 
@@ -79,6 +82,7 @@ Last revision: 08/01/11
 #top-content .actived:hover,
 #top-content .actived:focus,
 #top-content .actived:active {
+	background-color: rgb(232,241,243) !important;
 	background-color: rgba(232,241,243,0.9) !important;
 }
 
@@ -113,6 +117,7 @@ Last revision: 08/01/11
 }
 
 .tools-content-subitem {
+	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.8);
 	padding: 14px 6px 6px 6px;
 	border-radius: 6px;
@@ -229,10 +234,12 @@ Last revision: 08/01/11
 
 .notifications-content .one-notification:hover,
 .notifications-content .one-notification:focus {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 }
 
 .notifications-content .one-notification:active {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
 }
 

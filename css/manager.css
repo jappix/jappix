@@ -12,6 +12,7 @@ Last revision: 19/01/11
 */
 
 #manager {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.8);
 	width: 945px;
 	margin: 0 auto 25px;
@@ -489,6 +490,7 @@ Last revision: 19/01/11
 
 #manager-buttons input {
 	border: 1px solid white;
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 	color: white;
 	padding: 4px 8px;
@@ -508,6 +510,7 @@ Last revision: 19/01/11
 #manager-buttons input:hover,
 #manager-buttons input:focus {
 	cursor: pointer;
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
 	box-shadow: 0 0 15px #202020;
 	-moz-box-shadow: 0 0 15px #202020;
@@ -515,5 +518,6 @@ Last revision: 19/01/11
 }
 
 #manager-buttons input:active {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.3);
 }

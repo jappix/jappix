@@ -35,11 +35,13 @@ Last revision: 19/01/11
 }
 
 #board .one-board.error {
+	background-color: rgb(241,160,160);
 	background-color: rgba(241,160,160,0.9);
 	color: #6b1e1e;
 }
 
 #board .one-board.info {
+	background-color: rgb(248,246,186);
 	background-color: rgba(248,246,186,0.9);
 	color: #5a5107;
 }

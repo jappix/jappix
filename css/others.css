@@ -43,6 +43,7 @@ Last revision: 09/02/11
 }
 
 #right-content {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.7);
 	position: absolute;
 	top: 0;
@@ -68,6 +69,7 @@ Last revision: 09/02/11
 }
 
 .general-wait-content {
+	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.9);
 	background-position: 8px 8px;
 	padding: 8px;
@@ -93,6 +95,7 @@ Last revision: 09/02/11
 }
 
 #reconnect .pane {
+	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.8);
 	color: white;
 	padding: 25px;

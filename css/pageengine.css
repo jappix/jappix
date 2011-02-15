@@ -282,6 +282,7 @@ Last revision: 09/02/11
 }
 
 #page-engine .chatstate {
+	background-color: rgb(234,234,234);
 	background-color: rgba(234,234,234,0.8);
 	color: #2c2c2c;
 	padding: 3px 2px 2px 8px;
@@ -472,6 +473,7 @@ Last revision: 09/02/11
 }
 
 #page-engine .tooltip-subitem {
+	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
 	width: 200px;
