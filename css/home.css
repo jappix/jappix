@@ -208,7 +208,6 @@ Last revision: 06/02/11
 #home .right button {
 	display: block;
 	margin-left: 22px;
-	padding: 12px 20px 13px 17px;
 	width: 342px;
 	height: 64px;
 	text-decoration: none;
@@ -229,7 +228,7 @@ Last revision: 06/02/11
 #home .right button span.home-images {
 	height: 16px;
 	width: 16px;
-	margin: 6px 7px 7px 7px;
+	margin: 5px 7px 7px 24px;
 }
 
 #home .right button span.text {
