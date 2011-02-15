@@ -6,8 +6,8 @@ These are the mucadmin JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: ValÃ©rian Saliou
-Last revision: 12/02/11
+Author: Valérian Saliou
+Last revision: 15/02/11
 
 */
 
