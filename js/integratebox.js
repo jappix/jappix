@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/12/10
+Last revision: 16/02/11
 
 */
 
@@ -47,7 +47,7 @@ function codeIntegrateBox(serv, url) {
 	// Switch to get the good DOM code
 	switch(serv) {
 		case 'youtube':
-			code = '<object width="640" height="385" data="http://www.youtube.com/embed/' + url + '" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
+			code = '<object width="640" height="385" data="http://www.youtube.com/embed/' + url + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
 			
 			break;
 		
