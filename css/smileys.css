@@ -7,26 +7,32 @@ This is the smileys CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 16/02/11
 
 */
 
-div.emoticon {
+.emoticon {
 	width: 16px;
 	height: 16px;
+}
+
+a.emoticon {
 	margin: 2px;
 	float: left;
 }
 
-div.emoticon:hover {
+a.emoticon:hover,
+a.emoticon:focus {
 	opacity: 0.8;
-	cursor: pointer;
 }
 
-span.emoticon {
-	font-size: 14px;
-	padding: 0 0 0 16px;
-	margin: 0 3px;
+a.emoticon:active {
+	opacity: 0.7;
+}
+
+img.emoticon {
+	border: 0 none;
+	vertical-align: bottom;
 }
 
 .emoticon-biggrin {

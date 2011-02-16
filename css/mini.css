@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/02/11
+Last revision: 16/02/11
 
 */
 
@@ -392,10 +392,11 @@ Last revision: 05/02/11
 	background-position: 0 -68px;
 }
 
-#jappix_mini span.jm_smiley {
-	font-size: 13px;
-	padding: 0 0 0 16px;
-	margin: 0 2px;
+#jappix_mini .jm_smiley {
+	border: 0 none;
+	height: 16px;
+	width: 16px;
+	vertical-align: bottom;
 }
 
 #jappix_mini .jm_smiley-wink {

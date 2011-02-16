@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/12/10
+Last revision: 16/02/11
 
 */
 
@@ -64,24 +64,24 @@ function handlePresence(presence) {
 	var xid = bareXID(from);
 	var xidHash = hex_md5(xid);
 	
-	// We get the priority content
-	var priority = presence.getPriority() + '';
-	if(!priority)
-		priority = '0';
-	
-	// We get the show content
-	var show = presence.getShow();
-	if(!show)
-		show = '';
-	
 	// We get the type content
 	var type = presence.getType();
 	if(!type)
 		type = '';
 	
+	// We get the priority content
+	var priority = presence.getPriority() + '';
+	if(!priority || (type == 'error'))
+		priority = '0';
+	
+	// We get the show content
+	var show = presence.getShow();
+	if(!show || (type == 'error'))
+		show = '';
+	
 	// We get the status content
 	var status = presence.getStatus();
-	if(!status)
+	if(!status || (type == 'error'))
 		status = '';
 	
 	// We get the photo content
@@ -89,14 +89,14 @@ function handlePresence(presence) {
 	var checksum = photo.text();
 	var hasPhoto = photo.size();
 	
-	if(hasPhoto)
+	if(hasPhoto && (type != 'error'))
 		hasPhoto = 'true';
 	else
 		hasPhoto = 'false';
 	
 	// We get the CAPS content
 	var caps = $(node).find('c[xmlns=' + NS_CAPS + ']:first').attr('ver');
-	if(!caps)
+	if(!caps || (type == 'error'))
 		caps = '';
 	
 	// This presence comes from another resource of my account with a difference avatar checksum
@@ -183,11 +183,11 @@ function handlePresence(presence) {
 		
 		// Other stanzas
 		else {
-			// Offline presence
+			// Unavailable/error presence
 			if(type == 'unavailable')
 				removeDB('presence', from);
 			
-			// Other presence (available, error, subscribe...)
+			// Other presence (available, subscribe...)
 			else {
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 				
@@ -460,7 +460,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		}
 		
 		// We show the presence value
-		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + '" title="' + status + '">' + value + dStatus + '</p>');
+		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + ' talk-images" title="' + status + '">' + value + dStatus + '</p>');
 		
 		// Get the disco#infos for this user
 		var highest = getHighestResource(xid);

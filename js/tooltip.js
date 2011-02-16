@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/11/10
+Last revision: 16/02/11
 
 */
 
@@ -83,11 +83,9 @@ function createTooltip(xid, hash, type) {
 	switch(type) {
 		// Smileys
 		case 'smileys':
-			// Apply click event on each smiley
-			$(path_tooltip + ' div.emoticon').each(function() {
-				$(this).click(function() {
-					insertSmiley($(this).attr('data-smiley'), hash);
-				});
+			// Apply click event on smiley links
+			$(path_tooltip + ' a.emoticon').click(function() {
+				insertSmiley($(this).attr('data-smiley'), hash);
 			});
 			
 			break;

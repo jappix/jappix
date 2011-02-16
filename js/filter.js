@@ -7,13 +7,13 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 19/12/10
+Last revision: 16/02/11
 
 */
 
 // Generates a given emoticon HTML code
 function emoteImage(image, text, after) {
-	return ' <span class="emoticon emoticon-' + image + ' smileys-images" data-text="' + text + '"></span> ' + after;
+	return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + encodeQuotes(text) + '" src="' + './img/others/blank.gif' + '" /> ' + after;
 }
 
 // Filters links in a string

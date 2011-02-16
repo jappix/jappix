@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 16/02/11
 
 */
 
@@ -151,11 +151,13 @@ Last revision: 13/02/11
 }
 
 #buddy-list .unavailable,
-#page-switch .unavailable {
+#page-switch .unavailable,
+#page-engine p.bc-infos.unavailable {
 	background-position: 0 -153px;
 }
 
 #buddy-list .available,
+#page-engine p.bc-infos.available,
 #page-engine .list .available,
 #page-engine .list .chat,
 #page-switch .available,
@@ -164,6 +166,7 @@ Last revision: 13/02/11
 }
 
 #buddy-list .away,
+#page-engine p.bc-infos.away,
 #page-engine .list .away,
 #page-switch .away,
 #my-infos .f-presence a[data-value=away] span {
@@ -171,6 +174,7 @@ Last revision: 13/02/11
 }
 
 #buddy-list .busy,
+#page-engine p.bc-infos.busy,
 #page-engine .list .xa,
 #page-engine .list .dnd,
 #page-switch .busy,
@@ -179,7 +183,8 @@ Last revision: 13/02/11
 }
 
 #buddy-list .error,
-#page-switch .error {
+#page-switch .error,
+#page-engine p.bc-infos.error {
 	background-position: 0 -217px;
 }
 

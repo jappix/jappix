@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 16/02/11
 
 */
 
@@ -194,8 +194,8 @@ function generateChatLog(xid, hash) {
 	var type = $('#' + hash).attr('data-type');
 	
 	// Filter the content smileys
-	$(content).find('span.emoticon').each(function() {
-		$(this).replaceWith($(this).attr('data-text'));
+	$(content).find('img.emoticon').each(function() {
+		$(this).replaceWith($(this).attr('alt'));
 	});
 	
 	// Remove the useless attributes

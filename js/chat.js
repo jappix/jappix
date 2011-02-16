@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 16/02/11
 
 */
 
@@ -82,7 +82,7 @@ function generateChat(type, id, xid, nick) {
 	if(type == 'groupchat') {
 		specialAttributes = ' data-type="groupchat"';
 		specialAvatar = '';
-		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
+		specialName = '<p class="bc-infos unavailable talk-images"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
 		specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
 		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
 		specialStyle = '';
@@ -98,7 +98,7 @@ function generateChat(type, id, xid, nick) {
 	else {
 		specialAttributes = ' data-type="chat"';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
-		specialName = '<div class="bc-pep"></div><p class="bc-infos"></p>';
+		specialName = '<div class="bc-pep"></div><p class="bc-infos unavailable talk-images"></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
 		specialLink = '<a class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';

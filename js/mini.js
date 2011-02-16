@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/02/11
+Last revision: 16/02/11
 
 */
 
@@ -608,8 +608,8 @@ function sendMessage(aForm) {
 }
 
 // Generates the asked smiley image
-function smiley(image) {
-	return ' <span class="jm_smiley jm_smiley-' + image + ' jm_images"></span> ';
+function smiley(image, text) {
+	return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'php/get.php?t=img&amp;f=others/blank.gif" /> ';
 }
 
 // Notifies incoming chat messages
@@ -921,17 +921,15 @@ function displayMessage(type, body, xid, nick, hash, time, stamp, message_type) 
 	// Filter the message
 	body = body.htmlEnc();
 	
-	// Apply the smileys (display bug with Opera)
-	if(BrowserDetect.browser != 'Opera') {
-		body = body.replace(/(;\)|;-\))(\s|$)/gi, smiley('wink'))
-		           .replace(/(:3|:-3)(\s|$)/gi, smiley('waii'))
-		           .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy'))
-		           .replace(/(:P|:-P)(\s|$)/gi, smiley('tongue'))
-		           .replace(/(:O|:-O)(\s|$)/gi, smiley('surprised'))
-		           .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile'))
-		           .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy'))
-		           .replace(/(:D|:-D)(\s|$)/gi, smiley('grin'));
-	}
+	// Apply the smileys
+	body = body.replace(/(;\)|;-\))(\s|$)/gi, smiley('wink', '$1'))
+	           .replace(/(:3|:-3)(\s|$)/gi, smiley('waii', '$1'))
+	           .replace(/(:\(|:-\()(\s|$)/gi, smiley('unhappy', '$1'))
+	           .replace(/(:P|:-P)(\s|$)/gi, smiley('tongue', '$1'))
+	           .replace(/(:O|:-O)(\s|$)/gi, smiley('surprised', '$1'))
+	           .replace(/(:\)|:-\))(\s|$)/gi, smiley('smile', '$1'))
+	           .replace(/(\^\^|\^_\^)(\s|$)/gi, smiley('happy', '$1'))
+	           .replace(/(:D|:-D)(\s|$)/gi, smiley('grin', '$1'));
 	
 	// Filter the links
 	body = '<p>' + filterLinks(body, 'mini') + '</p>';
@@ -1402,7 +1400,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 		MINI_SHOWPANE = true;
 	
 	// Append the mini stylesheet
-	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?h=none&amp;t=css&amp;g=mini.xml" type="text/css" media="all" />');
+	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;g=mini.xml" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	jQuery(document).keydown(function(e) {
