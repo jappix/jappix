@@ -30,7 +30,6 @@ function openPrivacy() {
 			'<div class="list-right">' + 
 				'<span>' + _e("Add") + '</span>' + 
 				'<input type="text" placeholder="' + _e("List name") + '" />' + 
-				'<a class="list-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
 			'</div>' + 
 		'</div>' + 
 		
@@ -50,16 +49,20 @@ function openPrivacy() {
 			'</div>' + 
 			
 			'<div class="privacy-second">' + 
-				'<label><input type="radio" name="type" value="xid" disabled="" />' + _e("Address") + '<input type="text" name="xid" disabled="" /></label>' + 
-				'<label><input type="radio" name="type" value="group" disabled="" />' + _e("Group") + '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select></label>' + 
-				'<label><input type="radio" name="type" value="subscription" disabled="" />' + _e("Subscription") + 
-					'<select name="subscription" disabled="">' + 
-						'<option value="none">' + _e("None") + '</option>' + 
-						'<option value="both">' + _e("Both") + '</option>' + 
-						'<option value="from">' + _e("From") + '</option>' + 
-						'<option value="to">' + _e("To") + '</option>' + 
-					'</select>' + 
-				'</label>' + 
+				'<label><input type="radio" name="type" value="jid" disabled="" />' + _e("Address") + '</label>' + 
+				'<input type="text" name="jid" disabled="" />' + 
+				
+				'<label><input type="radio" name="type" value="group" disabled="" />' + _e("Group") + '</label>' + 
+				'<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select>' + 
+				
+				'<label><input type="radio" name="type" value="subscription" disabled="" />' + _e("Subscription") + '</label>' + 
+				'<select name="subscription" disabled="">' + 
+					'<option value="none">' + _e("None") + '</option>' + 
+					'<option value="both">' + _e("Both") + '</option>' + 
+					'<option value="from">' + _e("From") + '</option>' + 
+					'<option value="to">' + _e("To") + '</option>' + 
+				'</select>' + 
+				
 				'<label><input type="radio" name="type" value="everybody" disabled="" />' + _e("Everybody") + '</label>' + 
 			'</div>' + 
 			
@@ -214,27 +217,29 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 	var iqQuery = iq.setQuery(NS_PRIVACY);
 	var iqList = iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': list}));
 	
-	// Build the item node
-	for(var i = 0; i < types.length; i++) {
-		// Item element
-		var iqItem = iqList.appendChild(iq.buildNode('item', {
-									'xmlns': NS_PRIVACY,
-									'type': types[i],
-									'value': values[i],
-									'action': actions[i],
-									'order': orders[i]
-								     }
-							    ));
-		
-		// Child elements
-		if(presence_in[i])
-			iqItem.appendChild(iq.buildNode('presence-in', {'xmlns': NS_PRIVACY}));
-		if(presence_out[i])
-			iqItem.appendChild(iq.buildNode('presence-out', {'xmlns': NS_PRIVACY}));
-		if(msg[i])
-			iqItem.appendChild(iq.buildNode('message', {'xmlns': NS_PRIVACY}));
-		if(iq_p[i])
-			iqItem.appendChild(iq.buildNode('iq', {'xmlns': NS_PRIVACY}));
+	// Build the item elements
+	if(types && types.length) {
+		for(var i = 0; i < types.length; i++) {
+			// Item element
+			var iqItem = iqList.appendChild(iq.buildNode('item', {
+										'xmlns': NS_PRIVACY,
+										'type': types[i],
+										'value': values[i],
+										'action': actions[i],
+										'order': orders[i]
+									     }
+								    ));
+			
+			// Child elements
+			if(presence_in[i])
+				iqItem.appendChild(iq.buildNode('presence-in', {'xmlns': NS_PRIVACY}));
+			if(presence_out[i])
+				iqItem.appendChild(iq.buildNode('presence-out', {'xmlns': NS_PRIVACY}));
+			if(msg[i])
+				iqItem.appendChild(iq.buildNode('message', {'xmlns': NS_PRIVACY}));
+			if(iq_p[i])
+				iqItem.appendChild(iq.buildNode('iq', {'xmlns': NS_PRIVACY}));
+		}
 	}
 	
 	con.send(iq);
@@ -243,9 +248,23 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 }
 
 // Push a privacy list item to a list
-function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p) {
+function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p, special_action) {
 	// Read the stored elements (to add them)
 	var stored = getDB('privacy', list);
+	
+	// Get the first value
+	var first_val = value[0];
+	
+	// Must remove the given value?
+	if(special_action == 'remove') {
+		type = [];
+		value = [];
+		action = [];
+		order = [];
+		presence_in = [];
+		presence_out = [];
+		iq_p = [];
+	}
 	
 	// Serialize them to an array
 	$(stored).find('item').each(function() {
@@ -256,7 +275,7 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 		var c_order = $(this).attr('order');
 		
 		// Don not push it twice!
-		if(c_value != value[0]) {
+		if(c_value != first_val) {
 			if(!c_type)
 				c_type = '';
 			if(!c_value)
@@ -344,7 +363,8 @@ function groupsToHtmlPrivacy() {
 
 // Displays the privacy lists
 function displayListsPrivacy() {
-	// Read the stored data
+	// Initialize
+	var code = '';
 	var data = getDB('privacy-lists', 'available');
 	
 	// Parse the XML data!
@@ -352,8 +372,11 @@ function displayListsPrivacy() {
 		var list_name = $(this).attr('name');
 		
 		if(list_name)
-			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
+			code += '<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>';
 	});
+	
+	// Apply HTML code
+	$('#privacy .privacy-head .list-left select').html(code);
 	
 	return true;
 }
@@ -361,6 +384,7 @@ function displayListsPrivacy() {
 // Displays the privacy items for a list
 function displayItemsPrivacy() {
 	// Initialize
+	var code = '';
 	var select = $('#privacy .privacy-item select');
 	var list = $('#privacy .privacy-head .list-left select').val();
 	
@@ -431,13 +455,14 @@ function displayItemsPrivacy() {
 		else
 			item_iq = 'false';
 		
-		// Append the select option
-		select.append(
-			'<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '">' + 
+		// Add the select option
+		code += '<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '">' + 
 				_e("Order") + ' - ' + item_order.htmlEnc() + ' (' + item_action.htmlEnc() + ')' + 
-			'</option>'
-		);
+			'</option>';
 	});
+	
+	// Append the code
+	select.append(code);
 	
 	// Display the first item form
 	var first_item = select.find('option:first');
@@ -457,6 +482,9 @@ function displayItemsPrivacy() {
 
 // Displays the privacy form for an item
 function displayFormPrivacy(type, value, action, order, presence_in, presence_out, message, iq) {
+	// Reset the form
+	clearFormPrivacy();
+	
 	// Apply the action
 	$('#privacy .privacy-first input[name=action][value=' + action + ']').attr('checked', true);
 	
@@ -467,8 +495,8 @@ function displayFormPrivacy(type, value, action, order, presence_in, presence_ou
 	
 	switch(type) {
 		case 'jid':
-			type_check = privacy_type + '[value=xid]';
-			value_input = privacy_second + ' input[type=text][name=xid]';
+			type_check = privacy_type + '[value=jid]';
+			value_input = privacy_second + ' input[type=text][name=jid]';
 			
 			break;
 		
@@ -532,7 +560,7 @@ function clearFormPrivacy() {
 
 // Disables the privacy list form
 function disableFormPrivacy() {
-	$('#privacy form input, #privacy form select').attr('disabled', true);
+	$('#privacy form input, #privacy form select, #privacy .privacy-active input').attr('disabled', true);
 }
 
 // Enables the privacy list form
@@ -549,19 +577,98 @@ function launchPrivacy() {
 	$('#privacy input[placeholder]').placeholder();
 	
 	// Form events
+	$('#privacy .privacy-head a.list-remove').click(function() {
+		// Get list name
+		var list = $('#privacy .privacy-head .list-left select').val();
+		
+		// Remove it from popup
+		$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+		
+		// Remove from server
+		setPrivacy(list);
+		
+		// Reset the form
+		clearFormPrivacy();
+		disableFormPrivacy();
+	});
+	
+	$('#privacy .privacy-head .list-right input').keyup(function(e) {
+		// Not enter?
+		if(e.keyCode != 13)
+			return;
+		
+		// Get list name
+		var list = $('#privacy .privacy-head .list-right input').val();
+		var select = '#privacy .privacy-head .list-left select';
+		
+		// Create the new element
+		if(!exists(select + ' option[value=' + list + ']'))
+			$(select).append('<option value="' + encodeQuotes(list) + '">' + list.htmlEnc() + '</option>');
+		
+		// Change the select value
+		$(select).val(list);
+		
+		// Reset its value
+		$(this).val('');
+		
+		// Reset the form
+		clearFormPrivacy();
+		disableFormPrivacy();
+	});
+	
 	$('#privacy .privacy-head .list-left select').change(function() {
 		// Reset the form
 		clearFormPrivacy();
 		disableFormPrivacy();
 		
-		// Retrieve the list data
-		getPrivacy([$(this).val()]);
+		// Load the form
+		displayItemsPrivacy();
+	});
+	
+	$('#privacy .privacy-item select').change(function() {
+		// Get the selected item
+		var item = $(this).find('option:selected');
 		
-		// Switch to the first form item
-		// enableFormPrivacy('first');
+		// Display the data!
+		displayFormPrivacy(
+			   item.attr('data-type'),
+			   item.attr('data-value'),
+			   item.attr('data-action'),
+			   item.attr('data-order'),
+			   item.attr('data-presence_in'),
+			   item.attr('data-presence_out'),
+			   item.attr('data-message'),
+			   item.attr('data-iq')
+			  );
+	});
+	
+	$('#privacy .privacy-item a.item-add').click(function() {
+		// Disable item select
+		$('#privacy .privacy-item select').attr('disabled', true);
 		
-		// TODO: use this only when add a list, here load data from DB!
-		// TODO: save when display another list or add a new one!
+		// Reset the form
+		clearFormPrivacy();
+		disableFormPrivacy();
+		
+		// Enable first form item
+		enableFormPrivacy('first');
+		enableFormPrivacy('active');
+	});
+	
+	$('#privacy .privacy-item a.item-remove').click(function() {
+		// Get values
+		var list = $('#privacy .privacy-head .list-left select').val();
+		var item = $('#privacy .privacy-item select option:selected').attr('data-value');
+		
+		// Remove it from popup
+		$('#privacy .privacy-item select option:selected').remove();
+		
+		// Synchronize it with server
+		pushPrivacy(list, [], [item], [], [], [], [], [], [], 'remove');
+		
+		// Reset the form
+		clearFormPrivacy();
+		disableFormPrivacy();
 	});
 	
 	$('#privacy .privacy-first input').change(function() {
@@ -570,6 +677,63 @@ function launchPrivacy() {
 	
 	$('#privacy .privacy-second input').change(function() {
 		enableFormPrivacy('third');
+	});
+	
+	$('#privacy form input, #privacy .privacy-active input[name=order]').change(function() {
+		// Canot push item?
+		if(!exists('#privacy form input:disabled') && !exists('#privacy form select:disabled'))
+			return;
+		
+		// Read the form
+		var privacy_second = '#privacy .privacy-second';
+		var item_list = $('#privacy .privacy-head .list-left select').val();
+		var item_action = $('#privacy .privacy-first input[name=action]').val();
+		var item_type = $(privacy_second + ' input[name=type]').val();
+		var item_order = $('#privacy .privacy-active input[name=order]').val();
+		var item_value = '';
+		
+		// Switch the type to get the value
+		switch(item_type) {
+			case 'jid':
+				item_value = privacy_second + ' input[type=text][name=jid]';
+				
+				break;
+			
+			case 'group':
+				item_value = privacy_second + ' select[name=group]';
+				
+				break;
+			
+			case 'subscription':
+				item_value = privacy_second + ' select[name=subscription]';
+				
+				break;
+			
+			default:
+				item_type = '';
+				
+				break;
+		}
+		
+		// Get the selected things to do
+		// TODO
+		var item_prin = '';
+		var item_prout = '';
+		var item_msg = '';
+		var item_iq = '';
+		
+		// Push item to the server!
+		pushPrivacy(
+			    item_list,
+			    [item_type],
+			    [item_value],
+			    [item_action],
+			    [item_order],
+			    [item_prin],
+			    [item_prout],
+			    [item_msg],
+			    [item_iq]
+			   );
 	});
 	
 	$('#privacy .privacy-third input[type=checkbox]').change(function() {

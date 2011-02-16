@@ -73,7 +73,6 @@ Last revision: 16/02/11
 	display: block;
 }
 
-#privacy .privacy-head a.list-add,
 #privacy .privacy-item a.item-add {
 	background-position: 2px -1178px;
 }
@@ -138,6 +137,10 @@ Last revision: 16/02/11
 	width: 205px;
 }
 
+#privacy .privacy-second label {
+	margin: 2px 0 0 12px;
+}
+
 #privacy .privacy-second input[type=radio],
 #privacy .privacy-third input[type=checkbox] {
 	margin-top: 2px;
@@ -147,7 +150,7 @@ Last revision: 16/02/11
 #privacy .privacy-second input[type=text],
 #privacy .privacy-second select {
 	width: 170px;
-	margin-bottom: 6px;
+	margin: 2px 0 11px 12px;
 	float: none;
 }
 
