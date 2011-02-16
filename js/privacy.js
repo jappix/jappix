@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 16/02/11
 
 */
 
@@ -21,9 +21,7 @@ function openPrivacy() {
 		'<div class="privacy-head">' + 
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
-				'<select>' + 
-					'<option value="none" selected="">' + _e("None") +  '</option>' + 
-				'</select>' + 
+				'<select></select>' + 
 				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
@@ -98,8 +96,11 @@ function openPrivacy() {
 	// Associate the events
 	launchPrivacy();
 	
-	// Get the available privacy lists
-	listPrivacy();
+	// Display the available privacy lists
+	displayListsPrivacy();
+	
+	// Get the first list items
+	displayItemsPrivacy();
 	
 	return false;
 }
@@ -337,6 +338,97 @@ function groupsToHtmlPrivacy() {
 	return html;
 }
 
+// Displays the privacy lists
+function displayListsPrivacy() {
+	// Read the stored data
+	var data = getDB('privacy-lists', 'available');
+	
+	// Parse the XML data!
+	$(data).find('list').each(function() {
+		var list_name = $(this).attr('name');
+		
+		if(list_name)
+			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
+	});
+	
+	return true;
+}
+
+// Displays the privacy items for a list
+function displayItemsPrivacy() {
+	// Initialize
+	var select = $('#privacy .privacy-item select');
+	var list = $('#privacy .privacy-head .list-left select').val();
+	
+	// No list?
+	if(!list)
+		return false;
+	
+	// Display the list status
+	var status = ['active', 'default'];
+	
+	for(s in status) {
+		if(getDB('privacy-marker', status[s]) == list)
+			$('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
+	}
+	
+	// Try to read the stored items
+	var items = getDB('privacy', list);
+	
+	// Must retrieve the data?
+	if(!items) {
+		// TODO: get, handle and fire this fn again
+		
+		return false;
+	}
+	
+	// Parse the XML data!
+	$(items).find('item').each(function() {
+		// Read attributes
+		var item_type = $(this).attr('type');
+		var item_value = $(this).attr('value');
+		var item_action = $(this).attr('action');
+		var item_order = $(this).attr('order');
+		
+		// Apply default values (if missing)
+		if(!item_type)
+			item_type = '';
+		if(!item_value)
+			item_value = '';
+		if(!item_action)
+			item_action = 'allow';
+		if(!item_order)
+			item_order = '1';
+		
+		// Append the select option
+		select.append(
+			'<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '">' + 
+				_e("Order") + ' - ' + item_order.htmlEnc() + ' (' + item_action.htmlEnc() + ')' + 
+			'</option>'
+		);
+	});
+	
+	// Display the first item form
+	var first_item = select.find('option:first');
+	displayFormPrivacy(
+			   first_item.attr('data-type'),
+			   first_item.attr('data-value'),
+			   first_item.attr('data-action'),
+			   first_item.attr('data-order')
+			  );
+	
+	return true;
+}
+
+// Displays the privacy form for an item
+function displayFormPrivacy(type, value, action, order) {
+	// Apply the input values
+	// TODO
+	
+	// Enable the forms
+	$('#privacy form input, #privacy form select, #privacy .privacy-active input').removeAttr('disabled');
+}
+
 // Clears the privacy list form
 function clearFormPrivacy() {
 	// Uncheck checkboxes & radio inputs
@@ -375,8 +467,7 @@ function launchPrivacy() {
 		disableFormPrivacy();
 		
 		// Retrieve the list data
-		if($(this).val() != 'none')
-			getPrivacy([$(this).val()]);
+		getPrivacy([$(this).val()]);
 		
 		// Switch to the first form item
 		// enableFormPrivacy('first');
@@ -393,12 +484,31 @@ function launchPrivacy() {
 		enableFormPrivacy('third');
 	});
 	
-	// Parse it!
-	// TODO
-	/* $(iq.getQuery()).find('list').each(function() {
-		var list_name = $(this).attr('name');
+	$('#privacy .privacy-active input[name=order]').keyup(function() {
+		// Get the value
+		var value = $(this).val();
 		
-		if(list_name)
-			$('#privacy .privacy-head .list-left select').append('<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>');
-	}); */
+		// No value?
+		if(!value)
+			return;
+		
+		// Not a number?
+		if(isNaN(value))
+			value = 1;
+		else
+			value = parseInt(value);
+		
+		// Negative?		
+		if(value < 0)
+			value = value * -1;
+		
+		// Apply the filtered value
+		$(this).val(value);
+	})
+	
+	.blur(function() {
+		// No value?
+		if(!$(this).val())
+			$(this).val('1');
+	});
 }
