@@ -45,14 +45,14 @@ function openPrivacy() {
 		
 		'<form>' + 
 			'<div class="privacy-first">' + 
-				'<label><input type="radio" name="type" value="allow" disabled="" />' + _e("Allow") + '</label>' + 
-				'<label><input type="radio" name="type" value="deny" disabled="" />' + _e("Deny") + '</label>' + 
+				'<label><input type="radio" name="action" value="allow" disabled="" />' + _e("Allow") + '</label>' + 
+				'<label><input type="radio" name="action" value="deny" disabled="" />' + _e("Deny") + '</label>' + 
 			'</div>' + 
 			
 			'<div class="privacy-second">' + 
-				'<label><input type="radio" name="order" value="xid" disabled="" />' + _e("Address") + '<input type="text" name="xid" disabled="" /></label>' + 
-				'<label><input type="radio" name="order" value="group" disabled="" />' + _e("Group") + '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select></label>' + 
-				'<label><input type="radio" name="order" value="subscription" disabled="" />' + _e("Subscription") + 
+				'<label><input type="radio" name="type" value="xid" disabled="" />' + _e("Address") + '<input type="text" name="xid" disabled="" /></label>' + 
+				'<label><input type="radio" name="type" value="group" disabled="" />' + _e("Group") + '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select></label>' + 
+				'<label><input type="radio" name="type" value="subscription" disabled="" />' + _e("Subscription") + 
 					'<select name="subscription" disabled="">' + 
 						'<option value="none">' + _e("None") + '</option>' + 
 						'<option value="both">' + _e("Both") + '</option>' + 
@@ -60,7 +60,7 @@ function openPrivacy() {
 						'<option value="to">' + _e("To") + '</option>' + 
 					'</select>' + 
 				'</label>' + 
-				'<label><input type="radio" name="order" value="everybody" disabled="" />' + _e("Everybody") + '</label>' + 
+				'<label><input type="radio" name="type" value="everybody" disabled="" />' + _e("Everybody") + '</label>' + 
 			'</div>' + 
 			
 			'<div class="privacy-third">' + 
@@ -313,7 +313,11 @@ function changePrivacy(list, status) {
 	
 	// Privacy query
 	var iqQuery = iq.setQuery(NS_PRIVACY);
-	iqQuery.appendChild(iq.buildNode(status, {'xmlns': NS_PRIVACY, 'name': list}));
+	var iqStatus = iqQuery.appendChild(iq.buildNode(status, {'xmlns': NS_PRIVACY}));
+	
+	// Can add a "name" attribute?
+	if(list)
+		iqStatus.setAttribute('name', list);
 	
 	con.send(iq);
 	
@@ -390,6 +394,12 @@ function displayItemsPrivacy() {
 		var item_action = $(this).attr('action');
 		var item_order = $(this).attr('order');
 		
+		// Read sub-elements
+		var item_presencein = $(this).find('presence-in').size();
+		var item_presenceout = $(this).find('presence-out').size();
+		var item_message = $(this).find('message').size();
+		var item_iq = $(this).find('iq').size();
+		
 		// Apply default values (if missing)
 		if(!item_type)
 			item_type = '';
@@ -400,9 +410,30 @@ function displayItemsPrivacy() {
 		if(!item_order)
 			item_order = '1';
 		
+		// Apply sub-elements values
+		if(item_presencein)
+			item_presencein = 'true';
+		else
+			item_presencein = 'false';
+		
+		if(item_presenceout)
+			item_presenceout = 'true';
+		else
+			item_presenceout = 'false';
+		
+		if(item_message)
+			item_message = 'true';
+		else
+			item_message = 'false';
+		
+		if(item_iq)
+			item_iq = 'true';
+		else
+			item_iq = 'false';
+		
 		// Append the select option
 		select.append(
-			'<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '">' + 
+			'<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '">' + 
 				_e("Order") + ' - ' + item_order.htmlEnc() + ' (' + item_action.htmlEnc() + ')' + 
 			'</option>'
 		);
@@ -414,16 +445,73 @@ function displayItemsPrivacy() {
 			   first_item.attr('data-type'),
 			   first_item.attr('data-value'),
 			   first_item.attr('data-action'),
-			   first_item.attr('data-order')
+			   first_item.attr('data-order'),
+			   first_item.attr('data-presence_in'),
+			   first_item.attr('data-presence_out'),
+			   first_item.attr('data-message'),
+			   first_item.attr('data-iq')
 			  );
 	
 	return true;
 }
 
 // Displays the privacy form for an item
-function displayFormPrivacy(type, value, action, order) {
-	// Apply the input values
-	// TODO
+function displayFormPrivacy(type, value, action, order, presence_in, presence_out, message, iq) {
+	// Apply the action
+	$('#privacy .privacy-first input[name=action][value=' + action + ']').attr('checked', true);
+	
+	// Apply the type & value
+	var privacy_second = '#privacy .privacy-second';
+	var privacy_type = privacy_second + ' input[name=type]';
+	var type_check, value_input;
+	
+	switch(type) {
+		case 'jid':
+			type_check = privacy_type + '[value=xid]';
+			value_input = privacy_second + ' input[type=text][name=xid]';
+			
+			break;
+		
+		case 'group':
+			type_check = privacy_type + '[value=group]';
+			value_input = privacy_second + ' select[name=group]';
+			
+			break;
+		
+		case 'subscription':
+			type_check = privacy_type + '[value=subscription]';
+			value_input = privacy_second + ' select[name=subscription]';
+			
+			break;
+		
+		default:
+			type_check = privacy_type + '[value=everybody]';
+	}
+	
+	// Check the target
+	$(type_check).attr('checked', true);
+	
+	// Can apply a value?
+	if(value_input)
+		$(value_input).val(value);
+	
+	// Apply the things to do
+	var privacy_do = '#privacy .privacy-third input[type=checkbox]';
+	
+	if(presence_in == 'true')
+		$(privacy_do + '[name=send-status]').attr('checked', true);
+	if(presence_out == 'true')
+		$(privacy_do + '[name=see-status]').attr('checked', true);
+	if(message == 'true')
+		$(privacy_do + '[name=send-messages]').attr('checked', true);
+	if(iq == 'true')
+		$(privacy_do + '[name=send-queries]').attr('checked', true);
+	
+	if(!exists(privacy_do + ':checked'))
+		$(privacy_do + '[name=everything]').attr('checked', true);
+	
+	// Apply the order
+	$('#privacy .privacy-active input[name=order]').val(order);
 	
 	// Enable the forms
 	$('#privacy form input, #privacy form select, #privacy .privacy-active input').removeAttr('disabled');
@@ -484,6 +572,23 @@ function launchPrivacy() {
 		enableFormPrivacy('third');
 	});
 	
+	$('#privacy .privacy-third input[type=checkbox]').change(function() {
+		// Target
+		var target = '#privacy .privacy-third input[type=checkbox]';
+		
+		// Must tick "everything" checkbox?
+		if(!exists(target + ':checked'))
+			$(target + '[name=everything]').attr('checked', true);
+		
+		// Must untick the other checkboxes?
+		else if($(this).is('[name=everything]'))
+			$(target + ':not([name=everything])').removeAttr('checked');
+		
+		// Must untick "everything" checkbox?
+		else
+			$(target + '[name=everything]').removeAttr('checked');
+	});
+	
 	$('#privacy .privacy-active input[name=order]').keyup(function() {
 		// Get the value
 		var value = $(this).val();
@@ -510,5 +615,21 @@ function launchPrivacy() {
 		// No value?
 		if(!$(this).val())
 			$(this).val('1');
+	});
+	
+	$('#privacy .privacy-active .privacy-active-elements input').change(function() {
+		// Get the values
+		var list_name = $('#privacy .privacy-head .list-left select').val();
+		var state_name = $(this).attr('name');
+		
+		// Cannot continue?
+		if(!list_name || !state_name)
+			return;
+		
+		// Change the current list status
+		if($(this).is(':checked'))
+			changePrivacy(list_name, state_name);
+		else
+			changePrivacy('', state_name);
 	});
 }

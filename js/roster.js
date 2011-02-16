@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 16/02/11
 
 */
 
@@ -1024,6 +1024,11 @@ function launchRoster() {
 			'</div>'
 		);
 		
+		// Close bubble when link clicked
+		$('#buddy-conf-more a').click(function() {
+			closeBubbles();
+		});
+		
 		// When the user wants to display all his buddies
 		$('.buddy-conf-more-display-unavailable').click(function() {
 			showAllBuddies('roster');
@@ -1052,11 +1057,6 @@ function launchRoster() {
 			serverAdHoc(con.domain);
 			
 			return false;
-		});
-		
-		// Close it when clicked
-		$('#buddy-conf-more a').click(function() {
-			closeBubbles();
 		});
 		
 		// Manage the displayed links
