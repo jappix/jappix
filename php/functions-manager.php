@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 09/02/11
+Last revision: 18/02/11
 
 */
 
@@ -186,7 +186,7 @@ function newUpdates($force) {
 	// No cache, obsolete one or refresh forced
 	if(!file_exists($cache_path) || (file_exists($cache_path) && (time() - (filemtime($cache_path)) >= 86400)) || $force) {
 		// Get the content
-		$last_version = file_get_contents('http://project.jappix.com/xml/version.xml');
+		$last_version = file_get_contents('https://project.jappix.com/xml/version.xml');
 		
 		// Write the content
 		file_put_contents($cache_path, $last_version);

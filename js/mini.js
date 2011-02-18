@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 18/02/11
 
 */
 
@@ -642,7 +642,7 @@ function notifyError() {
 	// Replace the Jappix Mini DOM content
 	jQuery('#jappix_mini').html(
 		'<div class="jm_starter">' + 
-			'<a class="jm_pane jm_button jm_images" href="http://mini.jappix.com/issues" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
+			'<a class="jm_pane jm_button jm_images" href="https://mini.jappix.com/issues" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
 				'<span class="jm_counter jm_error jm_images">' + _e("Error") + '</span>' + 
 			'</a>' + 
 		'</div>'
@@ -716,7 +716,7 @@ function createMini(domain, user, password) {
 			'<div class="jm_starter">' + 
 				'<div class="jm_roster">' + 
 					'<div class="jm_actions">' + 
-						'<a class="jm_logo jm_images" href="http://mini.jappix.com/" target="_blank"></a>' + 
+						'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
 						'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
 					'</div>' + 
 					

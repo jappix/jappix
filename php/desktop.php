@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/01/11
+Last revision: 18/02/11
 
 */
 
@@ -86,7 +86,7 @@ if(!anonymousMode()) { ?>
 					?>
 					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
 					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><?php _e("Manager"); ?></a>
-					<a class="home-images project" href="http://project.jappix.com/"><?php _e("Project"); ?></a>
+					<a class="home-images project" href="https://project.jappix.com/"><?php _e("Project"); ?></a>
 					<?php if(sslCheck() && !httpsForce()) echo sslLink(); ?>
 				</div>
 			</div>
