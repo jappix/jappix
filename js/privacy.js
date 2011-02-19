@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 19/02/11
 
 */
 
@@ -42,7 +42,7 @@ function openPrivacy() {
 			'<div class="clear"></div>' + 
 		'</div>' + 
 		
-		'<form>' + 
+		'<div class="privacy-form">' + 
 			'<div class="privacy-first">' + 
 				'<label><input type="radio" name="action" value="allow" disabled="" />' + _e("Allow") + '</label>' + 
 				'<label><input type="radio" name="action" value="deny" disabled="" />' + _e("Deny") + '</label>' + 
@@ -75,7 +75,7 @@ function openPrivacy() {
 			'</div>' + 
 			
 			'<div class="clear"></div>' + 
-		'</form>' + 
+		'</div>' + 
 		
 		'<div class="privacy-active">' + 
 			'<label>' + _e("Order") + '<input type="text" name="order" value="1" disabled="" /></label>' + 
@@ -383,10 +383,17 @@ function displayListsPrivacy() {
 
 // Displays the privacy items for a list
 function displayItemsPrivacy() {
+	// Reset the form
+	clearFormPrivacy();
+	disableFormPrivacy();
+	
 	// Initialize
 	var code = '';
 	var select = $('#privacy .privacy-item select');
 	var list = $('#privacy .privacy-head .list-left select').val();
+	
+	// Reset the item select
+	select.html('');
 	
 	// No list?
 	if(!list)
@@ -542,25 +549,25 @@ function displayFormPrivacy(type, value, action, order, presence_in, presence_ou
 	$('#privacy .privacy-active input[name=order]').val(order);
 	
 	// Enable the forms
-	$('#privacy form input, #privacy form select, #privacy .privacy-active input').removeAttr('disabled');
+	$('#privacy .privacy-form input, #privacy .privacy-form select, #privacy .privacy-active input').removeAttr('disabled');
 }
 
 // Clears the privacy list form
 function clearFormPrivacy() {
 	// Uncheck checkboxes & radio inputs
-	$('#privacy form input[type=checkbox], #privacy form input[type=radio]').removeAttr('checked');
+	$('#privacy .privacy-form input[type=checkbox], #privacy .privacy-form input[type=radio]').removeAttr('checked');
 	
 	// Reset select
-	$('#privacy form select option').removeAttr('selected');
-	$('#privacy form select option:first').attr('selected', true);
+	$('#privacy .privacy-form select option').removeAttr('selected');
+	$('#privacy .privacy-form select option:first').attr('selected', true);
 	
 	// Reset text input
-	$('#privacy form input[type=text]').val('');
+	$('#privacy .privacy-form input[type=text]').val('');
 }
 
 // Disables the privacy list form
 function disableFormPrivacy() {
-	$('#privacy form input, #privacy form select, #privacy .privacy-active input').attr('disabled', true);
+	$('#privacy .privacy-form input, #privacy .privacy-form select, #privacy .privacy-active input').attr('disabled', true);
 }
 
 // Enables the privacy list form
@@ -590,6 +597,8 @@ function launchPrivacy() {
 		// Reset the form
 		clearFormPrivacy();
 		disableFormPrivacy();
+		
+		return false;
 	});
 	
 	$('#privacy .privacy-head .list-right input').keyup(function(e) {
@@ -600,10 +609,19 @@ function launchPrivacy() {
 		// Get list name
 		var list = $('#privacy .privacy-head .list-right input').val();
 		var select = '#privacy .privacy-head .list-left select';
+		var existed = true;
 		
 		// Create the new element
-		if(!exists(select + ' option[value=' + list + ']'))
+		if(!exists(select + ' option[value=' + list + ']')) {
+			// Marker
+			existed = false;
+			
+			// Create a new option
 			$(select).append('<option value="' + encodeQuotes(list) + '">' + list.htmlEnc() + '</option>');
+			
+			// Reset the item select
+			$('#privacy .privacy-item select').attr('disabled', true).html('');
+		}
 		
 		// Change the select value
 		$(select).val(list);
@@ -614,16 +632,15 @@ function launchPrivacy() {
 		// Reset the form
 		clearFormPrivacy();
 		disableFormPrivacy();
+		
+		// Must reload the list items?
+		if(existed) {
+			displayItemsPrivacy();
+			$('#privacy .privacy-item select').removeAttr('disabled');
+		}
 	});
 	
-	$('#privacy .privacy-head .list-left select').change(function() {
-		// Reset the form
-		clearFormPrivacy();
-		disableFormPrivacy();
-		
-		// Load the form
-		displayItemsPrivacy();
-	});
+	$('#privacy .privacy-head .list-left select').change(displayItemsPrivacy);
 	
 	$('#privacy .privacy-item select').change(function() {
 		// Get the selected item
@@ -643,6 +660,10 @@ function launchPrivacy() {
 	});
 	
 	$('#privacy .privacy-item a.item-add').click(function() {
+		// Cannot add anything?
+		if(!exists('#privacy .privacy-head .list-left select option:selected'))
+			return false;
+		
 		// Disable item select
 		$('#privacy .privacy-item select').attr('disabled', true);
 		
@@ -653,9 +674,15 @@ function launchPrivacy() {
 		// Enable first form item
 		enableFormPrivacy('first');
 		enableFormPrivacy('active');
+		
+		return false;
 	});
 	
 	$('#privacy .privacy-item a.item-remove').click(function() {
+		// Cannot add anything?
+		if(!exists('#privacy .privacy-head .list-left select option:selected'))
+			return false;
+		
 		// Get values
 		var list = $('#privacy .privacy-head .list-left select').val();
 		var item = $('#privacy .privacy-item select option:selected').attr('data-value');
@@ -669,26 +696,27 @@ function launchPrivacy() {
 		// Reset the form
 		clearFormPrivacy();
 		disableFormPrivacy();
+		
+		// No more items in this list?
+		if(!exists('#privacy .privacy-item select option'))
+			$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+		
+		return false;
 	});
 	
-	$('#privacy .privacy-first input').change(function() {
-		enableFormPrivacy('second');
-	});
-	
-	$('#privacy .privacy-second input').change(function() {
-		enableFormPrivacy('third');
-	});
-	
-	$('#privacy form input, #privacy .privacy-active input[name=order]').change(function() {
+	$('#privacy .privacy-form input, #privacy .privacy-active input[name=order]').change(function() {
 		// Canot push item?
-		if(!exists('#privacy form input:disabled') && !exists('#privacy form select:disabled'))
+		if(exists('#privacy .privacy-form input:disabled'))
 			return;
+		
+		// Enable the items switcher
+		$('#privacy .privacy-item select').removeAttr('disabled');
 		
 		// Read the form
 		var privacy_second = '#privacy .privacy-second';
 		var item_list = $('#privacy .privacy-head .list-left select').val();
-		var item_action = $('#privacy .privacy-first input[name=action]').val();
-		var item_type = $(privacy_second + ' input[name=type]').val();
+		var item_action = $('#privacy .privacy-first input[name=action]:checked').val();
+		var item_type = $(privacy_second + ' input[name=type]:checked').val();
 		var item_order = $('#privacy .privacy-active input[name=order]').val();
 		var item_value = '';
 		
@@ -716,11 +744,25 @@ function launchPrivacy() {
 		}
 		
 		// Get the selected things to do
-		// TODO
-		var item_prin = '';
-		var item_prout = '';
-		var item_msg = '';
-		var item_iq = '';
+		var privacy_third_cb = '#privacy .privacy-third input[type=checkbox]';
+		var item_prin = true;
+		var item_prout = true;
+		var item_msg = true;
+		var item_iq = true;
+		
+		// Individual select?
+		if(!$(privacy_third_cb + '[name=everything]').is(':checked')) {
+			if(!$(privacy_third_cb + '[name=send-messages]').is(':checked'))
+				item_msg = false;
+			if(!$(privacy_third_cb + '[name=send-queries]').is(':checked'))
+				item_iq = false;
+			if(!$(privacy_third_cb + '[name=send-queries]').is(':checked'))
+				item_iq = false;
+			if(!$(privacy_third_cb + '[name=see-status]').is(':checked'))
+				item_prout = false;
+			if(!$(privacy_third_cb + '[name=send-status]').is(':checked'))
+				item_prin = false;
+		}
 		
 		// Push item to the server!
 		pushPrivacy(
@@ -734,6 +776,14 @@ function launchPrivacy() {
 			    [item_msg],
 			    [item_iq]
 			   );
+	});
+	
+	$('#privacy .privacy-first input').change(function() {
+		enableFormPrivacy('second');
+	});
+	
+	$('#privacy .privacy-second input').change(function() {
+		enableFormPrivacy('third');
 	});
 	
 	$('#privacy .privacy-third input[type=checkbox]').change(function() {
