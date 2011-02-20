@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/12/10
+Last revision: 20/02/11
 
 */
 
@@ -338,16 +338,24 @@ function sendNewPassword() {
 	
 	else {
 		$('.sub-ask-pass input').each(function() {
-			if(!$(this).val())
-				$(this).addClass('please-complete').focus();
+			var select = $(this);
+			
+			if(!select.val())
+				$(document).oneTime(10, function() {
+					select.addClass('please-complete').focus();
+				});
 			else
-				$(this).removeClass('please-complete');	
+				select.removeClass('please-complete');	
 		});
 		
 		if(password0 != getPassword())
-			$('#options .old').addClass('please-complete').focus();
+			$(document).oneTime(10, function() {
+				$('#options .old').addClass('please-complete').focus();
+			});
 		if(password1 != password2)
-			$('#options .new1, #options .new2').addClass('please-complete').focus();
+			$(document).oneTime(10, function() {
+				$('#options .new1, #options .new2').addClass('please-complete').focus();
+			});
 	}
 	
 	return false;
@@ -398,7 +406,9 @@ function purgeMyMicroblog() {
 		var selector = $('#options .check-empty');
 		
 		if(password != getPassword())
-			selector.addClass('please-complete').focus();
+			$(document).oneTime(10, function() {
+				selector.addClass('please-complete').focus();
+			});
 		else
 			selector.removeClass('please-complete');
 	}
@@ -446,7 +456,9 @@ function deleteMyAccount() {
 		var selector = $('#options .check-password');
 		
 		if(password != getPassword())
-			selector.addClass('please-complete').focus();
+			$(document).oneTime(10, function() {
+				selector.addClass('please-complete').focus();
+			});
 		else
 			selector.removeClass('please-complete');
 	}
@@ -527,21 +539,30 @@ function launchOptions() {
 		var selector = '#options .sub-ask-empty';
 		
 		$(selector).show();
-		$(selector + ' input').focus();
+		
+		$(document).oneTime(10, function() {
+			$(selector + ' input').focus();
+		});
 	});
 	
 	$('#options .change-password').click(function() {
 		var selector = '#options .sub-ask-pass';
 		
 		$(selector).show();
-		$(selector + ' input:first').focus();
+		
+		$(document).oneTime(10, function() {
+			$(selector + ' input:first').focus();
+		});
 	});
 	
 	$('#options .delete-account').click(function() {
 		var selector = '#options .sub-ask-delete';
 		
 		$(selector).show();
-		$(selector + ' input').focus();
+		
+		$(document).oneTime(10, function() {
+			$(selector + ' input').focus();
+		});
 	});
 	
 	$('#options .sub-ask-pass .sub-ask-bottom').click(function() {

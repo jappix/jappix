@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 20/02/11
 
 */
 
@@ -534,7 +534,9 @@ function handleDataFormContent(iq, type) {
 	}
 	
 	// Focus on the first input
-	$(pathID + ' input:visible:first').focus();
+	$(document).oneTime(10, function() {
+		$(pathID + ' input:visible:first').focus();
+	});
 	
 	// Hide the wait icon
 	$('#' + target + ' .wait').hide();

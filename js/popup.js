@@ -7,7 +7,7 @@ These are the popup JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/11/10
+Last revision: 20/02/11
 
 */
 

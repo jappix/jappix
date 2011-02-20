@@ -7,7 +7,7 @@ These are the music JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/02/11
+Last revision: 20/02/11
 
 */
 
@@ -17,7 +17,10 @@ function openMusic() {
 	
 	// Show the music bubble
 	showBubble(path);
-	$(path + ' input').focus();
+	
+	$(document).oneTime(10, function() {
+		$(path + ' input').focus();
+	});
 	
 	return false;
 }

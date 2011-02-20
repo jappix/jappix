@@ -7,7 +7,7 @@ These are the seach tools JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/12/10
+Last revision: 20/02/11
 
 */
 
@@ -68,7 +68,9 @@ function addBuddySearch(destination, xid) {
 		old = RegExp.$1;
 	
 	// Add the XID to the "to" input and focus on it
-	input.val(old + xid).focus();
+	$(document).oneTime(10, function() {
+		input.val(old + xid).focus();
+	});
 	
 	return false;
 }

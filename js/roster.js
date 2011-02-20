@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 20/02/11
 
 */
 
@@ -805,7 +805,9 @@ function launchRoster() {
 				if(xid && (xid != getXID()))
 					addThisContact(xid, name);
 				else
-					$('.add-contact-jid').addClass('please-complete').focus();
+					$(document).oneTime(10, function() {
+						$('.add-contact-jid').addClass('please-complete').focus();
+					});
 				
 				return false;
 			}
@@ -822,7 +824,9 @@ function launchRoster() {
 		});
 		
 		// Focus on the input
-		$('.add-contact-jid').focus();
+		$(document).oneTime(10, function() {
+			$('.add-contact-jid').focus();
+		});
 		
 		return false;
 	});
@@ -918,11 +922,15 @@ function launchRoster() {
 		
 		// Re-focus on the text input
 		$('#buddy-conf-join select').change(function() {
-			$('#buddy-conf-join input').focus();
+			$(document).oneTime(10, function() {
+				$('#buddy-conf-join input').focus();
+			});
 		});
 		
 		// We focus on the input
-		$('#buddy-conf-join .join-jid').focus();
+		$(document).oneTime(10, function() {
+			$('#buddy-conf-join .join-jid').focus();
+		});
 		
 		return false;
 	});

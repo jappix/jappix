@@ -7,7 +7,7 @@ These are the mucadmin JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 15/02/11
+Last revision: 20/02/11
 
 */
 
@@ -140,7 +140,9 @@ function addInputMucAdmin(xid, affiliation) {
 	
 	// Focus on the input we added
 	if(!xid)
-		$('#mucadmin .' + hash + ' input').focus();
+		$(document).oneTime(10, function() {
+			$('#mucadmin .' + hash + ' input').focus();
+		});
 	
 	return false;
 }

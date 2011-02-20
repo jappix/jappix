@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/12/10
+Last revision: 20/02/11
 
 */
 
@@ -141,7 +141,9 @@ function newInboxMessage() {
 	$(mPath + 'inbox-new, #inbox .a-show-messages').show();
 	
 	// We focus on the first input
-	$(mPath + 'inbox-new-to-input').focus();
+	$(document).oneTime(10, function() {
+		$(mPath + 'inbox-new-to-input').focus();
+	});
 	
 	// We reset some stuffs
 	cleanNewInboxMessage();
@@ -236,7 +238,9 @@ function checkInboxMessage() {
 	else {
 		$(mPath + 'input[type=text], ' + mPath + 'textarea').each(function() {
 			if(!$(this).val())
-				$(this).addClass('please-complete').focus();
+				$(document).oneTime(10, function() {
+					$(this).addClass('please-complete').focus();
+				});
 			else
 				$(this).removeClass('please-complete');	
 		});
@@ -515,7 +519,10 @@ function replyInboxMessage(id, from, subject, body) {
 	// We apply the generated values to the form
 	$(inbox + 'inbox-new-to-input').val(from);
 	$(inbox + 'inbox-new-subject-input').val(subject);
-	$(inbox + 'inbox-new-textarea').val(body).focus();
+	
+	$(document).oneTime(10, function() {
+		$(inbox + 'inbox-new-textarea').val(body).focus();
+	});
 }
 
 // Loads the inbox messages

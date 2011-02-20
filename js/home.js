@@ -7,7 +7,7 @@ These are the homepage JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 06/02/11
+Last revision: 20/02/11
 
 */
 
@@ -199,7 +199,9 @@ function switchHome(div) {
 	}
 	
 	// We focus on the first input
-	$(right + 'input:visible:first').focus();
+	$(document).oneTime(10, function() {
+		$(right + 'input:visible:first').focus();
+	});
 	
 	return false;
 }
@@ -233,10 +235,14 @@ function loginForm() {
 	// Something is missing?
 	else {
 		$(lPath + 'input[type=text], ' + lPath + 'input[type=password]').each(function() {
-			if(!$(this).val())
-				$(this).addClass('please-complete').focus();
+			var select = $(this);
+			
+			if(!select.val())
+				$(document).oneTime(10, function() {
+					select.addClass('please-complete').focus();
+				});
 			else
-				$(this).removeClass('please-complete');	
+				select.removeClass('please-complete');	
 		});
 	}
 	
@@ -268,10 +274,14 @@ function registerForm() {
 	// Something is missing?
 	else {
 		$(rPath + 'input[type=text], ' + rPath + 'input[type=password]').each(function() {
-			if(!$(this).val() || ($(this).is('#spassword') && pass && (pass != spass)))
-				$(this).addClass('please-complete').focus();
+			var select = $(this);
+			
+			if(!select.val() || (select.is('#spassword') && pass && (pass != spass)))
+				$(document).oneTime(10, function() {
+					select.addClass('please-complete').focus();
+				});
 			else
-				$(this).removeClass('please-complete');	
+				select.removeClass('please-complete');	
 		});
 	}
 	

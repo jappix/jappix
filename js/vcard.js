@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 20/02/11
 
 */
 
@@ -526,7 +526,9 @@ function sendVCard() {
 // Plugin launcher
 function launchVCard() {
 	// Focus on the first input
-	$('#vcard input:first').focus();
+	$(document).oneTime(10, function() {
+		$('#vcard input:first').focus();
+	});
 	
 	// Keyboard events
 	$('#vcard input[type=text]').keyup(function(e) {

@@ -7,15 +7,12 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 20/02/11
 
 */
 
 // Changes the title of the document
 function pageTitle(title) {
-	// Title DOM element selector
-	var select = $('head title');
-	
 	// Anonymous mode?
 	var head_name = getName();
 	
@@ -25,22 +22,22 @@ function pageTitle(title) {
 	// We change the title to give essential informations
 	switch(title) {
 		case 'home':
-			select.html(SERVICE_NAME.htmlEnc() + ' &bull; ' + _e("An open social network"));
+			document.title = SERVICE_NAME + ' • ' + _e("An open social network");
 			
 			break;
 		
 		case 'talk':
-			select.html('Jappix &bull; ' + head_name.htmlEnc());
+			document.title = 'Jappix • ' + head_name;
 			
 			break;
 		
 		case 'new':
-			select.html('[' + pendingEvents() + '] Jappix &bull; ' + head_name.htmlEnc());
+			document.title = '[' + pendingEvents() + '] Jappix • ' + head_name;
 			
 			break;
 		
 		case 'wait':
-			select.html('Jappix &bull; ' + _e("Please wait..."));
+			document.title = 'Jappix • ' + _e("Please wait...");
 			
 			break;
 	}
@@ -130,7 +127,9 @@ function insertSmiley(smiley, hash) {
 	var nValue = oValue + ' ' + smiley + ' ';
 	
 	// Put the new value and focus on it
-	selector.val(nValue).focus();
+	$(document).oneTime(10, function() {
+		selector.val(nValue).focus();
+	});
 }
 
 // Deletes all the associated elements of the chat we want to remove
@@ -359,7 +358,9 @@ function showOnlineBuddies(from) {
 function inputFocus() {
 	// No popup shown
 	if(!exists('.popup'))
-		$('.focusable:visible:first').focus();
+		$(document).oneTime(10, function() {
+			$('.focusable:visible:first').focus();
+		});
 }
 
 // Plugin launcher

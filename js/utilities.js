@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 07/02/11
+Last revision: 20/02/11
 
 */
 
@@ -336,7 +336,9 @@ function generateColor(xid) {
 
 // Quotes the nick of an user
 function quoteMyNick(hash, nick) {
-	$('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+	$(document).oneTime(10, function() {
+		$('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+	});
 }
 
 // Checks if the XID is a gateway

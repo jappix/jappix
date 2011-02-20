@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/02/11
+Last revision: 20/02/11
 
 */
 
@@ -171,10 +171,14 @@ function doAnonymous() {
 	// We check if the form is entirely completed
 	else {
 		$(aPath + 'input[type=text]').each(function() {
-			if(!$(this).val())
-				$(this).addClass('please-complete').focus();
+			var select = $(this);
+			
+			if(!select.val())
+				$(document).oneTime(10, function() {
+					select.addClass('please-complete').focus();
+				});
 			else
-				$(this).removeClass('please-complete');	
+				select.removeClass('please-complete');	
 		});
 	}
 	

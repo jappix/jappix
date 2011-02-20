@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 20/02/11
 
 */
 
@@ -611,7 +611,9 @@ function launchPEP() {
 			closeBubbles();
 			
 			// Focus on the status input
-			$('#mood-text').focus();
+			$(document).oneTime(10, function() {
+				$('#mood-text').focus();
+			});
 		});
 		
 		return false;
@@ -662,7 +664,9 @@ function launchPEP() {
 			closeBubbles();
 			
 			// Focus on the status input
-			$('#activity-text').focus();
+			$(document).oneTime(10, function() {
+				$('#activity-text').focus();
+			});
 		});
 		
 		return false;

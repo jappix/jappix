@@ -7,7 +7,7 @@ These are the groupchat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/01/11
+Last revision: 20/02/11
 
 */
 
@@ -103,7 +103,9 @@ function handleMUC(presence) {
 		});
 		
 		// Enable the chatting input
-		$('#' + hash + ' .message-area').removeAttr('disabled').focus();
+		$(document).oneTime(10, function() {
+			$('#' + hash + ' .message-area').removeAttr('disabled').focus();
+		});
 	}
 	
 	// A password is required
@@ -156,10 +158,12 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 			
 			return getMUC(room, nickname, password);
 		}
-	})
+	});
 	
 	// Focus on the input
-	.focus();
+	$(document).oneTime(10, function() {
+		$(path_to + ' input').focus();
+	});
 }
 
 // Creates a new groupchat

@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 20/02/11
 
 */
 
@@ -931,7 +931,9 @@ function launchPresence() {
 			closeBubbles();
 			
 			// Focus on the status input
-			$('#presence-status').focus();
+			$(document).oneTime(10, function() {
+				$('#presence-status').focus();
+			});
 		});
 		
 		return false;

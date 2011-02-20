@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/01/11
+Last revision: 20/02/11
 
 */
 
@@ -287,7 +287,9 @@ function waitMicroblog(type) {
 	if(type == 'unsync')
 		selector.attr('disabled', true);
 	else if(type == 'sync')
-		selector.removeAttr('disabled').focus();
+		$(document).oneTime(10, function() {
+			selector.removeAttr('disabled').focus();
+		});
 }
 
 // Handles the microblog setup
@@ -587,7 +589,9 @@ function handleMicroblogAttach(responseXML) {
 	$('#attach .wait').remove();
 	
 	// Focus on the text input
-	$('#channel .top input[name=microblog_body]').focus();
+	$(document).oneTime(10, function() {
+		$('#channel .top input[name=microblog_body]').focus();
+	});
 }
 
 // Shows the microblog of an user from his infos
