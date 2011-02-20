@@ -38,6 +38,7 @@ function openPrivacy() {
 			'<select disabled=""></select>' + 
 			'<a class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
 			'<a class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+			'<a class="item-save one-button talk-images">' + _e("Save") + '</a>' + 
 			
 			'<div class="clear"></div>' + 
 		'</div>' + 
@@ -653,6 +654,10 @@ function launchPrivacy() {
 		// Get list name
 		var list = $('#privacy .privacy-head .list-left select').val();
 		
+		// No value?
+		if(!list)
+			return false;
+		
 		// Remove it from popup
 		$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
 		
@@ -803,10 +808,10 @@ function launchPrivacy() {
 		return false;
 	});
 	
-	$('#privacy .privacy-form input, #privacy .privacy-form select, #privacy .privacy-active input[name=order]').change(function() {
+	$('#privacy .privacy-item a.item-save').click(function() {
 		// Canot push item?
 		if(exists('#privacy .privacy-form input:disabled'))
-			return;
+			return false;
 		
 		// Get the hash
 		var item_hash = '';
@@ -879,6 +884,8 @@ function launchPrivacy() {
 			    [item_iq],
 			    item_hash
 			   );
+		
+		return false;
 	});
 	
 	$('#privacy .privacy-first input').change(function() {

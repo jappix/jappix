@@ -82,6 +82,13 @@ Last revision: 16/02/11
 	background-position: 2px -1197px;
 }
 
+#privacy .privacy-item a.item-save {
+	background-position: 3px -126px;
+	width: auto;
+	height: 19px;
+	padding: 1px 7px 0 21px;
+}
+
 #privacy .privacy-item,
 #privacy form,
 #privacy .privacy-active {
