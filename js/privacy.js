@@ -116,6 +116,15 @@ function closePrivacy() {
 	return false;
 }
 
+// Sets the received state for privacy block list
+function receivedPrivacy() {
+	// Store marker
+	setDB('privacy-marker', 'available', 'true');
+	
+	// Show privacy elements
+	$('.privacy-hidable').show();
+}
+
 // Gets available privacy lists
 function listPrivacy() {
 	// Build query
@@ -155,6 +164,10 @@ function handleListPrivacy(iq) {
 		getPrivacy('block');
 	}
 	
+	// Apply the received marker here
+	else
+		receivedPrivacy();
+	
 	logThis('Got available privacy list(s).', 3);
 }
 
@@ -180,8 +193,7 @@ function getPrivacy(list) {
 // Handles privacy lists
 function handleGetPrivacy(iq) {
 	// Apply a "received" marker
-	setDB('privacy-marker', 'available', 'true');
-	$('.privacy-hidable').show();
+	receivedPrivacy();
 	
 	// Store the data for each list
 	$(iq.getQuery()).find('list').each(function() {
@@ -634,6 +646,14 @@ function launchPrivacy() {
 		// Empty the item select
 		$('#privacy .privacy-item select').attr('disabled', true).html('');
 		
+		// Disable this list before removing it
+		var status = ['active', 'default'];
+		
+		for(s in status) {
+			if(getDB('privacy-marker', status[s]) == list)
+				changePrivacy('', status[s]);
+		}
+		
 		// Remove from server
 		setPrivacy(list);
 		
@@ -735,16 +755,25 @@ function launchPrivacy() {
 		// Remove it from popup
 		$('#privacy .privacy-item select option:selected').remove();
 		
+		// No more items in this list?
+		if(!exists('#privacy .privacy-item select option')) {
+			$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+			
+			// Disable this list before removing it
+			var status = ['active', 'default'];
+			
+			for(s in status) {
+				if(getDB('privacy-marker', status[s]) == list)
+					changePrivacy('', status[s]);
+			}
+		}
+		
 		// Synchronize it with server
 		pushPrivacy(list, [], [item], [], [], [], [], [], [], hash, 'remove');
 		
 		// Reset the form
 		clearFormPrivacy();
 		disableFormPrivacy();
-		
-		// No more items in this list?
-		if(!exists('#privacy .privacy-item select option'))
-			$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
 		
 		return false;
 	});
