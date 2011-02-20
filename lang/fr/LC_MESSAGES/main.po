@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-13 18:30:06\n"
+"PO-Revision-Date: 2011-02-20 13:39:51\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2206,8 +2206,8 @@ msgid "List name"
 msgstr "Nom de liste"
 
 #: 
-msgid "You are not viewing any list at the moment."
-msgstr "Vous ne visualisez aucune liste pour le moment."
+#~ msgid "You are not viewing any list at the moment."
+#~ msgstr "Vous ne visualisez aucune liste pour le moment."
 
 #: 
 #~ msgid "Visible"
@@ -2304,4 +2304,12 @@ msgstr "Annuaire des utilisateurs"
 #: 
 msgid "Search a friend"
 msgstr "Chercher un ami"
+
+#: 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr "Vous utilisez une version de développement de Jappix. Mettez-la à jour à travers notre dépôt en exécutant : %s. "
+
+#: 
+msgid "Check for updates"
+msgstr "Rechercher des mises à jour"
 

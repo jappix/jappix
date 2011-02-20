@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 15/02/11
+# Last revision: 20/02/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1405,6 +1405,9 @@ msgstr ""
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr ""
 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr ""
+
 msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
 
@@ -1412,6 +1415,9 @@ msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr ""
 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
+msgstr ""
+
+msgid "Check for updates"
 msgstr ""
 
 msgid "Update in progress"

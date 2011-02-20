@@ -181,6 +181,10 @@ function versionNumber($id) {
 
 // Checks for new Jappix updates
 function newUpdates($force) {
+	// No need to check if developer mode
+	if(isDeveloper())
+		return false;
+	
 	$cache_path = JAPPIX_BASE.'/store/updates/version.xml';
 	
 	// No cache, obsolete one or refresh forced

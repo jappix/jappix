@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/02/11
+Last revision: 20/02/11
 
 */
 
@@ -717,8 +717,15 @@ else
 				
 				<?php
 				
+				// Using developer mode (no need to update)?
+				if(isDeveloper()) { ?>
+					<h4><?php _e("Check for updates"); ?></h4>
+					
+					<p class="info smallspace neutral"><?php printf(T_("You are using a development version of Jappix. Update it through our repository by executing: %s."), '<em>svn up</em>'); ?></p>
+				<?php }
+				
 				// New updates available?
-				if(newUpdates($check_updates)) {
+				else if(newUpdates($check_updates)) {
 					// Get the update informations
 					$update_infos = updateInformations();
 					
@@ -747,7 +754,7 @@ else
 				
 				// No new update
 				} else { ?>
-					<h4><?php _e("Available updates"); ?></h4>
+					<h4><?php _e("Check for updates"); ?></h4>
 					
 					<a class="info smallspace success" href="./?p=check<?php echo keepGet('(p|b|s)', false); ?>"><?php _e("Your version seems to be up to date, but you can check updates manually by clicking here."); ?></a>
 				<?php } ?>

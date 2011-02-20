@@ -9,7 +9,7 @@ This is the Jappix Install PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/02/11
+Last revision: 20/02/11
 
 */
 
@@ -189,6 +189,10 @@ else
 				
 				// Define the main configuration variables
 				include(JAPPIX_BASE.'/php/vars-main.php');
+				
+				// Are we using developer mode?
+				if(preg_match('/~dev/i', $version))
+					$developer = 'on';
 				
 				// Include the main configuration form
 				include(JAPPIX_BASE.'/php/form-main.php');
