@@ -413,6 +413,9 @@ function displayItemsPrivacy() {
 	if(!list)
 		return false;
 	
+	// Reset the list status
+	$('#privacy .privacy-active input[type=checkbox]').removeAttr('checked');
+	
 	// Display the list status
 	var status = ['active', 'default'];
 	
@@ -599,7 +602,7 @@ function clearFormPrivacy() {
 	$('#privacy .privacy-form select option:first').attr('selected', true);
 	
 	// Reset text input
-	$('#privacy .privacy-form input[type=text]').val('');
+	$('#privacy .privacy-form input[type=text], #privacy .privacy-active input[type=text]').val('');
 }
 
 // Disables the privacy list form
@@ -627,6 +630,9 @@ function launchPrivacy() {
 		
 		// Remove it from popup
 		$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+		
+		// Empty the item select
+		$('#privacy .privacy-item select').attr('disabled', true).html('');
 		
 		// Remove from server
 		setPrivacy(list);
@@ -748,11 +754,11 @@ function launchPrivacy() {
 		if(exists('#privacy .privacy-form input:disabled'))
 			return;
 		
-		// Enable the items switcher
-		$('#privacy .privacy-item select').removeAttr('disabled');
-		
 		// Get the hash
-		var item_hash = $('#privacy .privacy-item select option:selected').attr('data-hash');
+		var item_hash = '';
+		
+		if(!$('#privacy .privacy-item select').is(':disabled'))
+			item_hash = $('#privacy .privacy-item select option:selected').attr('data-hash');
 		
 		// Read the form
 		var privacy_second = '#privacy .privacy-second';
