@@ -21,7 +21,7 @@ function openPrivacy() {
 		'<div class="privacy-head">' + 
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
-				'<select></select>' + 
+				'<select disabled=""></select>' + 
 				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
@@ -35,7 +35,7 @@ function openPrivacy() {
 		
 		'<div class="privacy-item">' + 
 			'<span>' + _e("Item") + '</span>' + 
-			'<select></select>' + 
+			'<select disabled=""></select>' + 
 			'<a class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
 			'<a class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			
@@ -278,6 +278,9 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 	// Read the stored elements (to add them)
 	var stored = getDB('privacy', list);
 	
+	// Read the first value
+	var first_val = value[0];
+	
 	// Must remove the given value?
 	if(special_action == 'remove') {
 		type = [];
@@ -301,7 +304,7 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 		var c_hash = hex_md5(c_type + c_value + c_action + c_order);
 		
 		// Do not push it twice!
-		if(c_hash != hash) {
+		if(((c_hash != hash) && (special_action != 'roster')) || ((first_val != c_value) && (special_action == 'roster'))) {
 			if(!c_type)
 				c_type = '';
 			if(!c_value)
@@ -391,6 +394,7 @@ function groupsToHtmlPrivacy() {
 function displayListsPrivacy() {
 	// Initialize
 	var code = '';
+	var select = $('#privacy .privacy-head .list-left select');
 	var data = getDB('privacy-lists', 'available');
 	
 	// Parse the XML data!
@@ -402,7 +406,13 @@ function displayListsPrivacy() {
 	});
 	
 	// Apply HTML code
-	$('#privacy .privacy-head .list-left select').html(code);
+	select.html(code);
+	
+	// Not empty?
+	if(code)
+		select.removeAttr('disabled');
+	else
+		select.attr('disabled', true);
 	
 	return true;
 }
@@ -614,7 +624,10 @@ function clearFormPrivacy() {
 	$('#privacy .privacy-form select option:first').attr('selected', true);
 	
 	// Reset text input
-	$('#privacy .privacy-form input[type=text], #privacy .privacy-active input[type=text]').val('');
+	$('#privacy .privacy-form input[type=text]').val('');
+	
+	// Reset order input
+	$('#privacy .privacy-active input[name=order]').val('1');
 }
 
 // Disables the privacy list form
@@ -642,6 +655,10 @@ function launchPrivacy() {
 		
 		// Remove it from popup
 		$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+		
+		// Nothing remaining?
+		if(!exists('#privacy .privacy-head .list-left select option'))
+			$('#privacy .privacy-head .list-left select option').attr('disabled', true);
 		
 		// Empty the item select
 		$('#privacy .privacy-item select').attr('disabled', true).html('');
@@ -686,8 +703,8 @@ function launchPrivacy() {
 			$('#privacy .privacy-item select').attr('disabled', true).html('');
 		}
 		
-		// Change the select value
-		$(select).val(list);
+		// Change the select value & enable it
+		$(select).val(list).removeAttr('disabled');
 		
 		// Reset its value
 		$(this).val('');
@@ -757,7 +774,15 @@ function launchPrivacy() {
 		
 		// No more items in this list?
 		if(!exists('#privacy .privacy-item select option')) {
+			// Disable this select
+			$('#privacy .privacy-item select').attr('disabled', true);
+			
+			// Remove the privacy list select item
 			$('#privacy .privacy-head .list-left select option[value=' + list + ']').remove();
+			
+			// No more privacy lists?
+			if(!exists('#privacy .privacy-head .list-left select option'))
+				$('#privacy .privacy-head .list-left select').attr('disabled', true);
 			
 			// Disable this list before removing it
 			var status = ['active', 'default'];
@@ -778,7 +803,7 @@ function launchPrivacy() {
 		return false;
 	});
 	
-	$('#privacy .privacy-form input, #privacy .privacy-active input[name=order]').change(function() {
+	$('#privacy .privacy-form input, #privacy .privacy-form select, #privacy .privacy-active input[name=order]').change(function() {
 		// Canot push item?
 		if(exists('#privacy .privacy-form input:disabled'))
 			return;
@@ -822,23 +847,23 @@ function launchPrivacy() {
 		
 		// Get the selected things to do
 		var privacy_third_cb = '#privacy .privacy-third input[type=checkbox]';
-		var item_prin = true;
-		var item_prout = true;
-		var item_msg = true;
-		var item_iq = true;
+		var item_prin = false;
+		var item_prout = false;
+		var item_msg = false;
+		var item_iq = false;
 		
 		// Individual select?
 		if(!$(privacy_third_cb + '[name=everything]').is(':checked')) {
-			if(!$(privacy_third_cb + '[name=send-messages]').is(':checked'))
-				item_msg = false;
-			if(!$(privacy_third_cb + '[name=send-queries]').is(':checked'))
-				item_iq = false;
-			if(!$(privacy_third_cb + '[name=send-queries]').is(':checked'))
-				item_iq = false;
-			if(!$(privacy_third_cb + '[name=see-status]').is(':checked'))
-				item_prout = false;
-			if(!$(privacy_third_cb + '[name=send-status]').is(':checked'))
-				item_prin = false;
+			if($(privacy_third_cb + '[name=send-messages]').is(':checked'))
+				item_msg = true;
+			if($(privacy_third_cb + '[name=send-queries]').is(':checked'))
+				item_iq = true;
+			if($(privacy_third_cb + '[name=send-queries]').is(':checked'))
+				item_iq = true;
+			if($(privacy_third_cb + '[name=see-status]').is(':checked'))
+				item_prout = true;
+			if($(privacy_third_cb + '[name=send-status]').is(':checked'))
+				item_prin = true;
 		}
 		
 		// Push item to the server!
