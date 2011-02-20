@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/02/11
+Last revision: 20/02/11
 
 */
 
@@ -170,6 +170,10 @@ function getPrivacy(list) {
 	
 	con.send(iq, handleGetPrivacy);
 	
+	// Must show the wait item?
+	if(exists('#privacy'))
+		$('#privacy .wait').show();
+	
 	logThis('Getting privacy list(s): ' + list);
 }
 
@@ -204,6 +208,13 @@ function handleGetPrivacy(iq) {
 		}
 	});
 	
+	// Must display it to the popup?
+	if(exists('#privacy')) {
+		displayItemsPrivacy();
+		
+		$('#privacy .wait').hide();
+	}
+	
 	logThis('Got privacy list(s).', 3);
 }
 
@@ -221,14 +232,17 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 	if(types && types.length) {
 		for(var i = 0; i < types.length; i++) {
 			// Item element
-			var iqItem = iqList.appendChild(iq.buildNode('item', {
-										'xmlns': NS_PRIVACY,
-										'type': types[i],
-										'value': values[i],
-										'action': actions[i],
-										'order': orders[i]
-									     }
-								    ));
+			var iqItem = iqList.appendChild(iq.buildNode('item', {'xmlns': NS_PRIVACY}));
+			
+			// Item attributes
+			if(types[i])
+				iqItem.setAttribute('type', types[i]);
+			if(values[i])
+				iqItem.setAttribute('value', values[i]);
+			if(actions[i])
+				iqItem.setAttribute('action', actions[i]);
+			if(orders[i])
+				iqItem.setAttribute('order', orders[i]);
 			
 			// Child elements
 			if(presence_in[i])
@@ -248,12 +262,9 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 }
 
 // Push a privacy list item to a list
-function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p, special_action) {
+function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p, hash, special_action) {
 	// Read the stored elements (to add them)
 	var stored = getDB('privacy', list);
-	
-	// Get the first value
-	var first_val = value[0];
 	
 	// Must remove the given value?
 	if(special_action == 'remove') {
@@ -274,8 +285,11 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 		var c_action = $(this).attr('action');
 		var c_order = $(this).attr('order');
 		
-		// Don not push it twice!
-		if(c_value != first_val) {
+		// Generate hash
+		var c_hash = hex_md5(c_type + c_value + c_action + c_order);
+		
+		// Do not push it twice!
+		if(c_hash != hash) {
 			if(!c_type)
 				c_type = '';
 			if(!c_value)
@@ -412,10 +426,13 @@ function displayItemsPrivacy() {
 	
 	// Must retrieve the data?
 	if(!items) {
-		// TODO: get, handle and fire this fn again
+		select.attr('disabled', true);
 		
-		return false;
+		return getPrivacy(list);
 	}
+	
+	else
+		select.removeAttr('disabled');
 	
 	// Parse the XML data!
 	$(items).find('item').each(function() {
@@ -424,6 +441,9 @@ function displayItemsPrivacy() {
 		var item_value = $(this).attr('value');
 		var item_action = $(this).attr('action');
 		var item_order = $(this).attr('order');
+		
+		// Generate hash
+		var item_hash = hex_md5(item_type + item_value + item_action + item_order);
 		
 		// Read sub-elements
 		var item_presencein = $(this).find('presence-in').size();
@@ -462,9 +482,24 @@ function displayItemsPrivacy() {
 		else
 			item_iq = 'false';
 		
+		// Generate item description
+		var desc = '';
+		var desc_arr = [item_type, item_value, item_action, item_order];
+		
+		for(d in desc_arr) {
+			// Nothing to display?
+			if(!desc_arr[d])
+				continue;
+			
+			if(desc)
+				desc += ' - ';
+			
+			desc += desc_arr[d];
+		}
+		
 		// Add the select option
-		code += '<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '">' + 
-				_e("Order") + ' - ' + item_order.htmlEnc() + ' (' + item_action.htmlEnc() + ')' + 
+		code += '<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '" data-hash="' + encodeQuotes(item_hash) + '">' + 
+				desc + 
 			'</option>';
 	});
 	
@@ -521,6 +556,8 @@ function displayFormPrivacy(type, value, action, order, presence_in, presence_ou
 		
 		default:
 			type_check = privacy_type + '[value=everybody]';
+			
+			break;
 	}
 	
 	// Check the target
@@ -685,13 +722,15 @@ function launchPrivacy() {
 		
 		// Get values
 		var list = $('#privacy .privacy-head .list-left select').val();
-		var item = $('#privacy .privacy-item select option:selected').attr('data-value');
+		var selected = $('#privacy .privacy-item select option:selected');
+		var item = selected.attr('data-value');
+		var hash = selected.attr('data-hash');
 		
 		// Remove it from popup
 		$('#privacy .privacy-item select option:selected').remove();
 		
 		// Synchronize it with server
-		pushPrivacy(list, [], [item], [], [], [], [], [], [], 'remove');
+		pushPrivacy(list, [], [item], [], [], [], [], [], [], hash, 'remove');
 		
 		// Reset the form
 		clearFormPrivacy();
@@ -712,6 +751,9 @@ function launchPrivacy() {
 		// Enable the items switcher
 		$('#privacy .privacy-item select').removeAttr('disabled');
 		
+		// Get the hash
+		var item_hash = $('#privacy .privacy-item select option:selected').attr('data-hash');
+		
 		// Read the form
 		var privacy_second = '#privacy .privacy-second';
 		var item_list = $('#privacy .privacy-head .list-left select').val();
@@ -723,17 +765,17 @@ function launchPrivacy() {
 		// Switch the type to get the value
 		switch(item_type) {
 			case 'jid':
-				item_value = privacy_second + ' input[type=text][name=jid]';
+				item_value = $(privacy_second + ' input[type=text][name=jid]').val();
 				
 				break;
 			
 			case 'group':
-				item_value = privacy_second + ' select[name=group]';
+				item_value = $(privacy_second + ' select[name=group]').val();
 				
 				break;
 			
 			case 'subscription':
-				item_value = privacy_second + ' select[name=subscription]';
+				item_value = $(privacy_second + ' select[name=subscription]').val();
 				
 				break;
 			
@@ -774,7 +816,8 @@ function launchPrivacy() {
 			    [item_prin],
 			    [item_prout],
 			    [item_msg],
-			    [item_iq]
+			    [item_iq],
+			    item_hash
 			   );
 	});
 	
