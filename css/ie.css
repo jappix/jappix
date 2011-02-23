@@ -7,107 +7,137 @@ These are all the IE compliant CSS classes
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/02/11
+Last revision: 23/02/11
 
 */
 
-#board .one-board.error {
+/* rgba(255,255,255,0.9) */
+.search ul {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f1a0a0,endColorstr=#C0f1a0a0);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#edffffff,endColorstr=#edffffff);
 }
 
-#board .one-board.info {
+/* rgba(255,255,255,0.3) */
+a.finish:active,
+#manager-buttons input:active,
+#install-buttons input:active {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f6f4cb,endColorstr=#C0f6f4cb);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#49ffffff,endColorstr=#49ffffff);
 }
 
-.popup,
-.finish,
-#reconnect .pane,
-#home .locale,
-#home .obsolete,
-#home .main,
-#home .notice.simple,
-#home .notice.simple .title,
-#buddy-list,
-#my-infos,
-#right-content,
-#install,
-#install-top .step,
-#install-buttons input,
-#manager,
-#manager-buttons input {
-	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0141414,endColorstr=#C0141414);
-	zoom: 1;
-}
-
-#home .locale li a:hover,
-#home .locale li a:focus,
-.finish:hover,
-.finish:focus,
-.finish:active,
-.notifications-content .one-notification:hover,
-.notifications-content .one-notification:active,
-#install-buttons input:hover,
-#install-buttons input:focus,
-#install-buttons input:active,
+/* rgba(255,255,255,0.2) */
+a.finish:hover,
+a.finish:focus,
 #manager-buttons input:hover,
 #manager-buttons input:focus,
-#manager-buttons input:active {
+#install-buttons input:hover,
+#install-buttons input:focus,
+.notifications-content .one-notification:active {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33141414,endColorstr=#33141414);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33ffffff,endColorstr=#33ffffff);
 }
 
-#top-content .music:active,
-#top-content .notifications:active {
+/* rgba(255,255,255,0.14) */
+#home .locale .list a:active {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0f1f5f6,endColorstr=#C0f1f5f6);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2fffffff,endColorstr=#2fffffff);
 }
 
-#top-content .music:hover,
-#top-content .notifications:hover,
-#top-content .music:focus,
-#top-content .notifications:focus {
+/* rgba(255,255,255,0.1) */
+#home .locale .list a:hover,
+#home .locale .list a:focus,
+a.finish,
+a.finish.disabled:hover,
+a.finish.disabled:focus,
+a.finish.disabled:active,
+#manager-buttons input,
+#install-buttons input,
+.notifications-content .one-notification:hover,
+.notifications-content .one-notification:focus {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0ebf2f4,endColorstr=#C0ebf2f4);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20ffffff,endColorstr=#20ffffff);
 }
 
-#top-content .tools,
-#top-content .actived,
-#top-content .actived:hover,
-#top-content .actived:active,
-#top-content .actived:focus,
-#top-content .actived:focus {
+/* rgba(255,239,104,0.8) */
+.popup .infos {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0e8f1f3,endColorstr=#C0e8f1f3);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2ffef68,endColorstr=#d2ffef68);
 }
 
-.tooltip-subitem,
-.tools-content-subitem,
-.buddy-infos-subitem,
-.buddy-conf-subitem,
-.tooltip-subitem,
-.attach-subitem {
+/* rgba(225,160,20,0.3) */
+.search ul li.hovered {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0000000,endColorstr=#C0000000);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#46e1a014,endColorstr=#46e1a014);
 }
 
-.general-wait-content {
+/* rgba(248,246,186,0.9) */
+#board .one-board.info {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0ffffff,endColorstr=#C0ffffff);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#edf8f6ba,endColorstr=#edf8f6ba);
 }
 
+/* rgba(241,160,160,0.9) */
+#board .one-board.error {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#edf1a0a0,endColorstr=#edf1a0a0);
+}
+
+/* rgba(234,234,234,0.8) */
 #page-engine .chatstate {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0eaeaea,endColorstr=#C0eaeaea);
-	zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2eaeaea,endColorstr=#d2eaeaea);
+}
+
+/* rgba(20,20,20,0.4) */
+#home .notice.simple .title {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e141414,endColorstr=#5e141414);
+}
+
+/* rgba(20,20,20,0.6) */
+#home .locale,
+#home .obsolete,
+#home .notice.simple {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0141414,endColorstr=#a0141414);
+}
+
+/* rgba(20,20,20,0.7) */
+#my-infos,
+#right-content,
+#buddy-list {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b8141414,endColorstr=#b8141414);
+}
+
+/* rgba(20,20,20,0.8) */
+#home .main,
+#reconnect .pane,
+.popup,
+#manager,
+#install {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2141414,endColorstr=#d2141414);
+}
+
+/* rgba(0,0,0,0.2) */
+#install-top .step {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000,endColorstr=#33000000);
+}
+
+/* rgba(0,0,0,0.6) */
+.lock {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#9f000000,endColorstr=#9f000000);
+}
+
+/* rgba(0,0,0,0.8) */
+#page-engine .tooltip-subitem,
+.attach-subitem,
+.buddy-infos-subitem,
+.buddy-conf-subitem,
+.tools-content-subitem {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2000000,endColorstr=#d2000000);
 }
