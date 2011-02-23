@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/12/10
+Last revision: 23/02/11
 
 */
 
@@ -59,7 +59,7 @@ function handleFeatures(xml) {
 	var commands = false;
 	
 	// Scan the features
-	if(selector.find('identity[category=pubsub]').attr('type') == 'pep')
+	if(selector.find('identity[category=pubsub][type=pep]').size())
 		pep = true;
 	if(selector.find('feature[var=' + NS_PUBSUB + ']').size())
 		pubsub = true;

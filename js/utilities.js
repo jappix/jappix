@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 20/02/11
+Last revision: 23/02/11
 
 */
 
@@ -454,8 +454,11 @@ function trim(str) {
 
 // Checks if a value exists in an array
 function existArrayValue(array, value) {
-	if(array.indexOf(value) != -1)
-		return true;
+	// Loop in the array
+	for(i in array) {
+		if(array[i] == value)
+			return true;
+	}
 	
 	return false;
 }

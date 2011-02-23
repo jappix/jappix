@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 23/02/11
 
 */
 
@@ -23,8 +23,6 @@ function getRoster() {
 
 // Handles the roster items
 function handleRoster(iq) {
-	logThis('Roster received.');
-	
 	// Define some variables
 	var handleXML = iq.getQuery();
 	var current, xid, dName, subscription, group, xidHash, getNick, nick;
@@ -36,6 +34,8 @@ function handleRoster(iq) {
 	
 	// Update our avatar (if changed), and send our presence
 	getAvatar(getXID(), 'force', 'true', 'forget');
+	
+	logThis('Roster received.');
 }
 
 // Parses the group XML and display the roster
