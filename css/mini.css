@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 23/02/11
 
 */
 
@@ -50,7 +50,6 @@ Last revision: 16/02/11
 
 #jappix_mini a {
 	text-decoration: none;
-	outline-style: none;
 	cursor: pointer;
 }
 
@@ -88,12 +87,12 @@ Last revision: 16/02/11
 }
 
 #jappix_mini div.jm_conversation {
-	width: 140px;
+	width: 153px;
 }
 
 #jappix_mini a.jm_chat-tab {
 	border-width: 1px 0 0 1px;
-	width: 127px;
+	width: 140px;
 	float: right;
 	overflow: hidden;
 }
@@ -104,8 +103,6 @@ Last revision: 16/02/11
 	border-top: none;
 	border-left: 1px solid #999999;
 	padding-top: 7px;
-	max-width: 210px;
-	overflow: hidden;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify {
@@ -175,6 +172,7 @@ Last revision: 16/02/11
 	margin: 0 -2px 0 5px;
 	height: 15px;
 	width: 15px;
+	outline-style: none;
 	float: right;
 }
 
@@ -312,6 +310,7 @@ Last revision: 16/02/11
 	border-color: white;
 	border-style: solid;
 	border-width: 1px 0;
+	outline-style: none;
 	padding: 6px;
 	display: block;
 }
