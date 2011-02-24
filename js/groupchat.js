@@ -6,8 +6,8 @@ These are the groupchat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 20/02/11
+Authors: ValÃ©rian Sal, Marco Cirillo
+Last revision: 24/02/11
 
 */
 
@@ -17,8 +17,8 @@ function displayMucAdmin(affiliation, id, xid, statuscode) {
 	if(isAnonymous())
 		return;
 	
-	// We check if the user is the room admin to give him privileges
-	if(affiliation == 'owner')
+	// We check if the user is a room owner or administrator to give him privileges
+	if(affiliation == 'owner' || affiliation == 'admin')
 		$('#' + id + ' .tools-mucadmin').show();
 	
 	// We check if the room hasn't been yet created
@@ -27,7 +27,7 @@ function displayMucAdmin(affiliation, id, xid, statuscode) {
 	
 	// We add the click event
 	$('#' + id + ' .tools-mucadmin').click(function() {
-		openMucAdmin(xid);
+		openMucAdmin(xid, affiliation);
 	});
 }
 

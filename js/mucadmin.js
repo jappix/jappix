@@ -6,15 +6,15 @@ These are the mucadmin JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 20/02/11
+Authors: ValÃ©rian Sal, Marco Cirillo
+Last revision: 24/02/11
 
 */
 
 // Opens the MUC admin popup
-function openMucAdmin(xid) {
+function openMucAdmin(xid, aff) {
 	// Popup HTML content
-	var html = 
+	var html_full = 
 	'<div class="top">' + _e("MUC administration") + '</div>' + 
 	
 	'<div class="content">' + 
@@ -86,20 +86,63 @@ function openMucAdmin(xid) {
 		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
+	var html_partial = 
+	'<div class="top">' + _e("MUC administration") + '</div>' + 
+	
+	'<div class="content">' + 
+		'<div class="head mucadmin-head">' + 
+			'<div class="head-text mucadmin-head-text">' + _e("You administrate this room") + '</div>' + 
+			
+			'<div class="mucadmin-head-jid">' + xid + '</div>' + 
+		'</div>' + 
+		
+		'<div class="mucadmin-forms">' + 
+			'<div class="mucadmin-aut">' + 
+				'<fieldset>' + 
+					'<legend>' + _e("Authorizations") + '</legend>' + 
+					
+					'<label>' + _e("Member list") + '</label>' + 
+					'<div class="aut-member aut-group">' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+					
+					'<label>' + _e("Outcast list") + '</label>' + 
+					'<div class="aut-outcast aut-group">' + 
+						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+					'</div>' + 
+				'</fieldset>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	
+	'<div class="bottom">' + 
+		'<div class="wait wait-medium"></div>' + 
+		
+		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+	'</div>';	
+	
 	// Create the popup
-	createPopup('mucadmin', html);
+	if(aff == 'owner')
+		createPopup('mucadmin', html_full);
+	if(aff == 'admin')
+		createPopup('mucadmin', html_partial);
 	
 	// Associate the events
 	launchMucAdmin();
-	
-	// We query the room to edit
-	dataForm(xid, 'muc', '', '', 'mucadmin');
-	
+		
 	// We get the affiliated user's privileges
-	queryMucAdmin(xid, 'member');
-	queryMucAdmin(xid, 'owner');
-	queryMucAdmin(xid, 'admin');
-	queryMucAdmin(xid, 'outcast');
+	if(aff == 'owner') {
+		queryMucAdmin(xid, 'member');
+		queryMucAdmin(xid, 'owner');
+		queryMucAdmin(xid, 'admin');
+		queryMucAdmin(xid, 'outcast');
+		// We query the room to edit
+		dataForm(xid, 'muc', '', '', 'mucadmin');
+	} else if(aff == 'admin') {
+		queryMucAdmin(xid, 'member');
+		queryMucAdmin(xid, 'outcast');
+	}
 }
 
 // Closes the MUC admin popup
@@ -326,4 +369,3 @@ function launchMucAdmin() {
 			return saveMucAdmin();
 	});
 }
-
