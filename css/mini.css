@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/02/11
+Last revision: 24/02/11
 
 */
 
@@ -190,6 +190,7 @@ Last revision: 23/02/11
 	width: 87px;
 	height: 22px;
 	margin: -4px 0 0 -2px;
+	outline-style: none;
 	float: left;
 }
 
