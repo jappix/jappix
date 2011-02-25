@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/02/11
+Last revision: 25/02/11
 
 */
 
@@ -37,6 +37,8 @@ a:focus {
 }
 
 input[type=text],
+input[type=url],
+input[type=email],
 input[type=password],
 input[type=submit],
 input[type=reset],
@@ -58,6 +60,8 @@ textarea {
 }
 
 input[type=text]:focus,
+input[type=url]:focus,
+input[type=email]:focus,
 input[type=password]:focus,
 input[type=submit]:hover,
 textarea:focus {
