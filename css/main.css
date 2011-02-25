@@ -36,12 +36,7 @@ a:focus {
 	text-decoration: underline;
 }
 
-input[type=text],
-input[type=url],
-input[type=email],
-input[type=password],
-input[type=submit],
-input[type=reset],
+input,
 textarea {
 	background-color: white;
 	border: 1px solid #636363;
@@ -59,10 +54,7 @@ textarea {
 	font-size: 1.1em;
 }
 
-input[type=text]:focus,
-input[type=url]:focus,
-input[type=email]:focus,
-input[type=password]:focus,
+input:focus,
 input[type=submit]:hover,
 textarea:focus {
 	border: 1px solid #e1a014;
