@@ -9,7 +9,7 @@ This is the Jappix PHP application launcher
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/01/11
+Last revision: 28/02/11
 
 */
 
@@ -92,7 +92,7 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 		
 		// Kill the script!
-		exit;
+		exit('HTTP/1.0 301 Moved Permanently');
 	}
 	
 	// Is it a static node?
