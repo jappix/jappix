@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/02/11
+Last revision: 28/02/11
 
 */
 
@@ -178,6 +178,9 @@ function saveSession() {
 	
 	setDB('jappix-mini', 'scroll', scroll_position);
 	
+	// Save the session stamp
+	setDB('jappix-mini', 'stamp', getTimeStamp());
+	
 	// Can pause connection?
 	var has_pause = true;
 	
@@ -205,6 +208,7 @@ function disconnected() {
 	removeDB('jappix-mini', 'dom');
 	removeDB('jappix-mini', 'nickname');
 	removeDB('jappix-mini', 'scroll');
+	removeDB('jappix-mini', 'stamp');
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -693,6 +697,7 @@ function updateRoster() {
 function createMini(domain, user, password) {
 	// Try to restore the DOM
         var dom = getDB('jappix-mini', 'dom');
+        var stamp = parseInt(getDB('jappix-mini', 'stamp'));
 	var suspended = false;
 	
 	// Can resume a session?
@@ -700,7 +705,7 @@ function createMini(domain, user, password) {
 	setupCon(con);
 	
 	// Old DOM?
-	if(dom && con.resume()) {
+	if(((getTimeStamp() - stamp) < JSJACHBC_MAX_WAIT) && dom && con.resume()) {
 		// Read the old nickname
 		MINI_NICKNAME = getDB('jappix-mini', 'nickname');
 		
