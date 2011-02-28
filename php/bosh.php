@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 09/02/11
+Last revision: 28/02/11
 
 */
 
@@ -31,10 +31,12 @@ if(!BOSHProxy()) {
 	exit('HTTP/1.0 403 Forbidden');
 }
 
+// Read POST content
+$data = file_get_contents('php://input');
+
 // POST method?
-if(isset($HTTP_RAW_POST_DATA) && $HTTP_RAW_POST_DATA) {
+if($data) {
 	$method = 'POST';
-	$data = $HTTP_RAW_POST_DATA;
 }
 
 // GET method?
