@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 27/02/11
+Last revision: 28/02/11
 
 */
 
@@ -2044,11 +2044,9 @@ JSJaCIQ.prototype.setQuery = function(xmlns) {
   try {
     query = this.getDoc().createElementNS(xmlns,'query');
   } catch (e) {
-    // fallback
     query = this.getDoc().createElement('query');
-  }
-  if (query && query.getAttribute('xmlns') != xmlns) // fix opera 8.5x
     query.setAttribute('xmlns',xmlns);
+  }
   this.getNode().appendChild(query);
   return query;
 };
