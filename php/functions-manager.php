@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 18/02/11
+Last revision: 28/02/11
 
 */
 
@@ -310,7 +310,6 @@ function processUpdate($url) {
 	$zip_open = $zip->open($path);
 	
 	if($zip_open === TRUE) {
-		// $zip->extractTo($dir_base);
 		$zip->extractTo($update_dir);
 		$zip->close();
 	}
