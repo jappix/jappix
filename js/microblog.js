@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 28/02/11
 
 */
 
@@ -49,88 +49,94 @@ function displayMicroblog(packet, from, hash, mode) {
 		else
 			tTitle = $(this).find('title:last').text();
 		
-		// Apply links to message body
-		tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
+		// Trim the content
+		tTitle = trim(tTitle);
 		
-		// Display the received message
-		var html = '<div class="one-update ' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
-				'<div class="avatar-container">' + 
-					'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
-				'</div>' + 
-				
-				'<div class="body">' + 
-					'<p><b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
-					'<p class="infos">' + tTime + '</p>';
-		
-		// Supported image/video/sound
-		if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
-			tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL) + '\', \'' + encodeOnclick(tFType) + '\');" ';
-		else
-			tFEClick = '';
-		
-		if(tFName && tFURL)
-			html += '<p class="file"><a class="' + encodeQuotes(tFType) + ' talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a></p>';
-		
-		// It's my own notice, we can remove it!
-		if(from == getXID())
-			html += '<a onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
-		
-		// Notice from another user
-		else {
-			// User profile
-			html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
+		// Any content?
+		if(tTitle) {
+			// Apply links to message body
+			tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
 			
-			// If PEP is enabled
-			if(enabledPEP())
-				html += '<a title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
-		}
-		
-		html += '</div></div>';
-		
-		// Mixed mode
-		if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
-			// Get the nearest element
-			var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
+			// Display the received message
+			var html = '<div class="one-update ' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
+					'<div class="avatar-container">' + 
+						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'</div>' + 
+					
+					'<div class="body">' + 
+						'<p><b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
+						'<p class="infos">' + tTime + '</p>';
 			
-			// Append the content at the right position (date relative)
-			if(nearest == 0)
-				$('#channel .content.mixed').append(html);
+			// Supported image/video/sound
+			if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
+				tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL) + '\', \'' + encodeOnclick(tFType) + '\');" ';
 			else
-				$('#channel .one-update[data-stamp=' + nearest + ']:first').before(html);
+				tFEClick = '';
 			
-			// Remove the old notices to make the DOM lighter
-			var oneUpdate = '#channel .content.mixed .one-update';
+			if(tFName && tFURL)
+				html += '<p class="file"><a class="' + encodeQuotes(tFType) + ' talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a></p>';
 			
-			if($(oneUpdate).size() > 40)
-				$(oneUpdate + ':last').remove();
+			// It's my own notice, we can remove it!
+			if(from == getXID())
+				html += '<a onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
-			// Click event on name
-			$('.mixed .' + tHash + ' .body b').click(function() {
-				getMicroblog(from, hash);
+			// Notice from another user
+			else {
+				// User profile
+				html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
+				
+				// If PEP is enabled
+				if(enabledPEP())
+					html += '<a title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
+			}
+			
+			html += '</div></div>';
+			
+			// Mixed mode
+			if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
+				// Get the nearest element
+				var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
+				
+				// Append the content at the right position (date relative)
+				if(nearest == 0)
+					$('#channel .content.mixed').append(html);
+				else
+					$('#channel .one-update[data-stamp=' + nearest + ']:first').before(html);
+				
+				// Remove the old notices to make the DOM lighter
+				var oneUpdate = '#channel .content.mixed .one-update';
+				
+				if($(oneUpdate).size() > 40)
+					$(oneUpdate + ':last').remove();
+				
+				// Click event on name
+				$('.mixed .' + tHash + ' .body b').click(function() {
+					getMicroblog(from, hash);
+				});
+			}
+			
+			// Individual mode
+			tIndividual = '#channel .content.individual.microblog-' + hash;
+			
+			if(exists(tIndividual) && !exists('.individual .' + tHash)) {
+				if(mode == 'mixed')
+					$(tIndividual).prepend(html);
+				else
+					$(tIndividual + ' a.more').css('visibility', 'visible').before(html);
+				
+				// Click event on name (if not me!)
+				if(from != getXID())
+					$('.individual .' + tHash + ' .body b').click(function() {
+						checkChatCreate(from, 'chat');
+					});
+			}
+			
+			// Apply the click events
+			$('.' + tHash + ' a.repost').click(function() {
+				// Repeat the item
+				publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
 			});
 		}
-		
-		// Individual mode
-		tIndividual = '#channel .content.individual.microblog-' + hash;
-		
-		if(exists(tIndividual) && !exists('.individual .' + tHash)) {
-			if(mode == 'mixed')
-				$(tIndividual).prepend(html);
-			else
-				$(tIndividual + ' a.more').css('visibility', 'visible').before(html);
-			
-			// Click event on name (if not me!)
-			if(from != getXID())
-				$('.individual .' + tHash + ' .body b').click(function() {
-					checkChatCreate(from, 'chat');
-				});
-		}
-		
-		// Apply the click events
-		$('.' + tHash + ' a.repost').click(function() {
-			// Repeat the item
-			publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
-		});
 	});
 	
 	// Display the avatar of this buddy
