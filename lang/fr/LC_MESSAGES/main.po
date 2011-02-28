@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-20 13:39:51\n"
+"PO-Revision-Date: 2011-02-28 23:24:37\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1006,8 +1006,8 @@ msgid "Encrypted"
 msgstr "Chiffré"
 
 #: 
-msgid "Uncrypted"
-msgstr "Non-chiffré"
+#~ msgid "Uncrypted"
+#~ msgstr "Non-chiffré"
 
 #: 
 msgid "Where are you?"
@@ -2312,4 +2312,8 @@ msgstr "Vous utilisez une version de développement de Jappix. Mettez-la à jour
 #: 
 msgid "Check for updates"
 msgstr "Rechercher des mises à jour"
+
+#: 
+msgid "Unencrypted"
+msgstr "Non chiffré"
 

@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/02/11
+Last revision: 28/02/11
 
 */
 
@@ -319,11 +319,11 @@ Last revision: 06/02/11
 	text-decoration: underline;
 }
 
-#home .right .navigation a.crypted {
+#home .right .navigation a.encrypted {
 	background-position: 0 -100px;
 }
 
-#home .right .navigation a.uncrypted {
+#home .right .navigation a.unencrypted {
 	background-position: 0 -74px;
 }
 
