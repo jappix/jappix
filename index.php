@@ -92,7 +92,7 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 		
 		// Kill the script!
-		exit('HTTP/1.0 301 Moved Permanently');
+		exit('HTTP/1.1 301 Moved Permanently');
 	}
 	
 	// Is it a static node?
