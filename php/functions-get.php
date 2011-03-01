@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 29/01/11
+Last revision: 01/03/11
 
 */
 
@@ -28,6 +28,14 @@ function genCache($string, $mode, $cache) {
 		if(is_dir($cache_dir) && !file_exists($file_put))
 			file_put_contents($file_put, $string);
 	}
+}
+
+// The function to remove the BOM from a string
+function rmBOM($string) { 
+	if(substr($string, 0, 3) == pack('CCC', 0xef, 0xbb, 0xbf))
+		$string = substr($string, 3);
+	
+	return $string; 
 }
 
 // The function to compress the CSS

@@ -250,7 +250,7 @@ if($file && $type) {
 					
 					// Add the content of the current file
 					foreach($array as $current)
-						$looped .= file_get_contents($dir.$current)."\n";
+						$looped .= rmBOM(file_get_contents($dir.$current))."\n";
 					
 					// Filter the CSS
 					if($type == 'css') {
