@@ -12,6 +12,13 @@ Last revision: 06/02/11
 */
  
 #my-infos {
+<<<<<<< .mine
+	background-color: rgb(20,20,20);
+	background-color: rgba(20,20,20,0.7);
+	color: #919191;
+	margin-top: 12px;
+	padding: 15px 6px 6px 6px;
+=======
         background-color: rgb(20,20,20);
         background-color: rgba(20,20,20,0.7);
         color: #919191;
@@ -23,6 +30,13 @@ Last revision: 06/02/11
         box-shadow: 0 0 10px #5c5c5c;
         -moz-box-shadow: 0 0 10px #5c5c5c;
         -webkit-box-shadow: 0 0 10px #5c5c5c;
+>>>>>>> .r932
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 0 10px #5c5c5c;
+	-moz-box-shadow: 0 0 10px #5c5c5c;
+	-webkit-box-shadow: 0 0 10px #5c5c5c;
 }
  
 #my-infos .content {
