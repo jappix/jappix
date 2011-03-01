@@ -32,7 +32,7 @@ if(isStatic())
 // If valid data was sent
 if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET['location']) && !empty($_GET['location']))) {
 	// Set a XML header
-	header('content-type: text/xml; charset=utf-8');
+	header('Content-Type: text/xml; charset=utf-8');
 	
 	// Get the values
 	$searchquery = $_GET['searchquery'];

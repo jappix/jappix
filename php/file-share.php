@@ -9,7 +9,7 @@ This is the Jappix microblog file attaching script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/01/11
+Last revision: 01/03/11
 
 */
 
@@ -30,7 +30,7 @@ if(isStatic())
 	exit;
 
 // Set a special XML header
-header('content-type: text/xml; charset=utf-8');
+header('Content-Type: text/xml; charset=utf-8');
 
 // Everything is okay
 if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {

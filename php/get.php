@@ -9,7 +9,7 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 01/03/11
 
 */
 
@@ -336,12 +336,12 @@ if($file && $type) {
 	}
 	
 	// The file was not found
-	header('HTTP/1.0 404 Not Found');
-	exit('HTTP/1.0 404 Not Found');
+	header('Status: 404 Not Found', true, 404);
+	exit('HTTP/1.1 404 Not Found');
 }
 
 // The request is not correct
-header('HTTP/1.0 400 Bad Request');
-exit('HTTP/1.0 400 Bad Request');
+header('Status: 400 Bad Request', true, 400);
+exit('HTTP/1.1 400 Bad Request');
 
 ?>

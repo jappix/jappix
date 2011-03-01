@@ -9,7 +9,7 @@ This is the Jappix PHP application launcher
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/02/11
+Last revision: 01/03/11
 
 */
 
@@ -88,7 +88,7 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 	// Redirects the user to HTTPS if forced
 	if(!useHttps() && httpsForce()) {
 		// Apply some special headers
-		header('Status: 301 Moved Permanently', false, 301);
+		header('Status: 301 Moved Permanently', true, 301);
 		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 		
 		// Kill the script!

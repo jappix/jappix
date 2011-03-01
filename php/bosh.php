@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 28/02/11
+Last revision: 01/03/11
 
 */
 
@@ -27,8 +27,8 @@ compressThis();
 
 // Not allowed?
 if(!BOSHProxy()) {
-	header('HTTP/1.0 403 Forbidden');
-	exit('HTTP/1.0 403 Forbidden');
+	header('Status: 403 Forbidden', true, 403);
+	exit('HTTP/1.1 403 Forbidden');
 }
 
 // Read POST content
@@ -48,8 +48,8 @@ else if(isset($_GET['data']) && $_GET['data'] && isset($_GET['callback']) && $_G
 
 // Invalid method?
 else {
-	header('HTTP/1.0 400 Bad Request');
-	exit('HTTP/1.0 400 Bad Request');
+	header('Status: 400 Bad Request', true, 400);
+	exit('HTTP/1.1 400 Bad Request');
 }
 
 // HTTP parameters
@@ -72,8 +72,8 @@ $connection = @fopen(HOST_BOSH, 'rb', false, $stream);
 
 // Failed to connect!
 if($connection == FALSE) {
-	header('HTTP/1.0 502 Proxy Error');
-	exit('HTTP/1.0 502 Proxy Error');
+	header('Status: 502 Proxy Error', true, 502);
+	exit('HTTP/1.1 502 Proxy Error');
 }
 
 // Allow stream blocking to handle incoming BOSH data
@@ -85,7 +85,7 @@ $output = @stream_get_contents($connection);
 // POST output
 if($method == 'POST') {
 	// XML header
-	header('content-type: text/xml; charset=utf-8');
+	header('Content-Type: text/xml; charset=utf-8');
 	
 	if(!$output)
 		print '<body xmlns=\'http://jabber.org/protocol/httpbind\' type=\'terminate\'/>';
