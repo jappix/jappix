@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/02/11
+Last revision: 01/03/11
 
 */
 
@@ -700,12 +700,16 @@ function createMini(domain, user, password) {
         var stamp = parseInt(getDB('jappix-mini', 'stamp'));
 	var suspended = false;
 	
+	// Invalid stored DOM?
+	if(dom && isNaN(jQuery(dom).find('a.jm_pane.jm_button span.jm_counter').text()))
+		dom = null;
+	
 	// Can resume a session?
 	con = new JSJaCHttpBindingConnection();
 	setupCon(con);
 	
 	// Old DOM?
-	if(((getTimeStamp() - stamp) < JSJACHBC_MAX_WAIT) && dom && con.resume()) {
+	if(dom && ((getTimeStamp() - stamp) < JSJACHBC_MAX_WAIT) && con.resume()) {
 		// Read the old nickname
 		MINI_NICKNAME = getDB('jappix-mini', 'nickname');
 		
