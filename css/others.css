@@ -40,15 +40,6 @@ Last revision: 09/02/11
 	left: 0;
 	bottom: 0;
 	width: 245px;
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.7);
-	z-index: 100;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 0 0 10px #5c5c5c;
-	-moz-box-shadow: 0 0 10px #5c5c5c;
-	-webkit-box-shadow: 0 0 10px #5c5c5c;
 }
 
 #right-content {
