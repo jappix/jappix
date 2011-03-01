@@ -103,7 +103,7 @@ function storeInbox() {
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Get the values
-			var value = $(sessionStorage.getItem(current));
+			var value = $(XMLFromString(sessionStorage.getItem(current)));
 			var file = value.find('file');
 			
 			// Create the storage node
@@ -392,7 +392,7 @@ function checkInboxMessages() {
 		// Check inbox messages
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Read the current status
-			var status = $(sessionStorage.getItem(current)).find('status').text();
+			var status = $(XMLFromString(sessionStorage.getItem(current))).find('status').text();
 			
 			// Found an unread message
 			if(status == 'unread')
@@ -535,7 +535,7 @@ function loadInbox() {
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Get the current value
-			var value = $(sessionStorage.getItem(current));
+			var value = $(XMLFromString(sessionStorage.getItem(current)));
 			
 			// Display the current message
 			displayInboxMessage(

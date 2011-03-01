@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/02/11
+Last revision: 01/03/11
 
 */
 
@@ -22,7 +22,7 @@ function getFeatures() {
 	
 	// Try to get the stored data
 	if(caps)
-		xml = getPersistent('caps', caps);
+		xml = XMLFromString(getPersistent('caps', caps));
 	
 	// Any stored data?
 	if(xml) {

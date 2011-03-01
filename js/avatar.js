@@ -7,7 +7,7 @@ These are the avatar JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/01/11
+Last revision: 01/03/11
 
 */
 
@@ -22,7 +22,7 @@ function getAvatar(xid, mode, enabled, photo) {
 		return false;
 	
 	// Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
-	var xml = getPersistent('avatar', xid);
+	var xml = XMLFromString(getPersistent('avatar', xid));
 	var forced = false;
 	
 	// Retrieving forced?

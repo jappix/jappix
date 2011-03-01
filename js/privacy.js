@@ -277,7 +277,7 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 // Push a privacy list item to a list
 function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p, hash, special_action) {
 	// Read the stored elements (to add them)
-	var stored = getDB('privacy', list);
+	var stored = XMLFromString(getDB('privacy', list));
 	
 	// Read the first value
 	var first_val = value[0];
@@ -375,7 +375,7 @@ function changePrivacy(list, status) {
 
 // Checks the privacy status (action) of a value
 function statusPrivacy(list, value) {
-	return $(getDB('privacy', list)).find('item[value=' + value + ']').attr('action');
+	return $(XMLFromString(getDB('privacy', list))).find('item[value=' + value + ']').attr('action');
 }
 
 // Converts the groups array into a <option /> string
@@ -396,7 +396,7 @@ function displayListsPrivacy() {
 	// Initialize
 	var code = '';
 	var select = $('#privacy .privacy-head .list-left select');
-	var data = getDB('privacy-lists', 'available');
+	var data = XMLFromString(getDB('privacy-lists', 'available'));
 	
 	// Parse the XML data!
 	$(data).find('list').each(function() {
@@ -448,7 +448,7 @@ function displayItemsPrivacy() {
 	}
 	
 	// Try to read the stored items
-	var items = getDB('privacy', list);
+	var items = XMLFromString(getDB('privacy', list));
 	
 	// Must retrieve the data?
 	if(!items) {

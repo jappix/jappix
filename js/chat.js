@@ -45,7 +45,7 @@ function checkChatCreate(xid, type, nickname, password, title) {
 			// Try to read the room stored configuration
 			if(!isAnonymous() && (!nickname || !password || !title)) {
 				// Catch the room data
-				var fData = $(getDB('favorites', xid));
+				var fData = $(XMLFromString(getDB('favorites', xid)));
 				var fNick = fData.find('nick').text().revertHtmlEnc();
 				var fPwd = fData.find('password').text().revertHtmlEnc();
 				var fName = fData.find('name').text().revertHtmlEnc();

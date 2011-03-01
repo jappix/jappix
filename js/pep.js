@@ -53,7 +53,7 @@ function storePEP(xid, type, value1, value2, value3, value4) {
 // Displays a PEP item
 function displayPEP(xid, type) {
 	// Read the target input for values
-	var value = $(getDB('pep-' + type, xid));
+	var value = $(XMLFromString(getDB('pep-' + type, xid)));
 	var dText;
 	var aLink = ''
 	

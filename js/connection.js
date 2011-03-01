@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 01/03/11
 
 */
 
@@ -421,7 +421,7 @@ function clearLastSession() {
 	resetConMarkers();
 	
 	// Clear persistent storage
-	if($(getPersistent('session', 1)).find('stored').text() == 'true')
+	if($(XMLFromString(getPersistent('session', 1))).find('stored').text() == 'true')
 		removePersistent('session', 1);
 }
 
@@ -482,7 +482,7 @@ function launchConnection() {
 		return;
 	
 	// Try to resume a stored session, if not anonymous
-	var session = getPersistent('session', 1);
+	var session = XMLFromString(getPersistent('session', 1));
 	
 	if($(session).find('stored').text() == 'true') {
 		// Hide the homepage

@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 23/02/11
+Last revision: 01/03/11
 
 */
 
@@ -407,7 +407,7 @@ function logThis(data, level) {
 	return true;
 }
 
-// Converts a XML document into a string
+// Converts a XML document to a string
 function xmlToString(xmlData) {
 	// For Internet Explorer
 	if(window.ActiveXObject)
@@ -415,6 +415,28 @@ function xmlToString(xmlData) {
 	
 	// For Mozilla, Firefox, Opera, etc.
 	return (new XMLSerializer()).serializeToString(xmlData);
+}
+
+// Converts a string to a XML document
+function XMLFromString(sXML) {
+	// No data?
+	if(!sXML)
+		return '';
+	
+	// Add the XML tag
+	if(!sXML.match(/^<\?xml/i))
+		sXML = '<?xml version="1.0"?>' + sXML;
+	
+	// Parse it!
+	if(window.ActiveXObject) {
+		var oXML = new ActiveXObject('Microsoft.XMLDOM');
+		oXML.loadXML(sXML);
+		
+ 		return oXML;
+	}
+	
+	else
+		return (new DOMParser()).parseFromString(sXML, 'text/xml');
 }
 
 // Gets the current Jappix app. location

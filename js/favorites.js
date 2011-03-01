@@ -202,7 +202,7 @@ function editFavorite() {
 	
 	// We retrieve the values
 	var xid = $(favorites + 'fedit-head-select').val();
-	var data = getDB('favorites', xid);
+	var data = XMLFromString(getDB('favorites', xid));
 	
 	// If this is not the default room
 	if(xid != 'none') {
@@ -323,7 +323,7 @@ function favoritePublish() {
 		
 		// If the pointer is on a stored favorite
 		if(explodeThis('_', current, 0) == 'favorites') {
-			var data = sessionStorage.getItem(current);
+			var data = XMLFromString(sessionStorage.getItem(current));
 			var xid = $(data).find('xid').text();
 			var rName = $(data).find('name').text();
 			var nick = $(data).find('nick').text();
@@ -457,7 +457,7 @@ function loadFavorites() {
 		
 		// If the pointer is on a stored favorite
 		if(explodeThis('_', current, 0) == 'favorites') {
-			var data = sessionStorage.getItem(current);
+			var data = XMLFromString(sessionStorage.getItem(current));
 			
 			// Add the current favorite to the HTML code
 			html += '<option value="' + encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';

@@ -562,7 +562,7 @@ function highestPriority(xid) {
 	
 	// This is a groupchat presence
 	if(xid.indexOf('/') != -1)
-		highest = getDB('presence', xid);
+		highest = XMLFromString(getDB('presence', xid));
 	
 	// This is a "normal" presence: get the highest priority resource
 	else {
@@ -577,7 +577,7 @@ function highestPriority(xid) {
 				
 				// If the current XID equals the asked XID
 				if(now == xid) {
-					var xml = sessionStorage.getItem(current);
+					var xml = XMLFromString(sessionStorage.getItem(current));
 					var priority = parseInt($(xml).find('priority').text());
 					
 					// Higher priority
@@ -592,7 +592,7 @@ function highestPriority(xid) {
 	
 	// The user might be offline if no highest
 	if(!highest)
-		highest = '<presence><type>unavailable</type></presence>';
+		highest = XMLFromString('<presence><type>unavailable</type></presence>');
 	
 	return highest;
 }
@@ -600,7 +600,7 @@ function highestPriority(xid) {
 // Gets the resource from a XID which has the highest priority
 function getHighestResource(xid) {
 	var xml = $(highestPriority(xid));
-	var highest = xml.attr('from');
+	var highest = xml.find('presence').attr('from');
 	var type = xml.find('type').text().revertHtmlEnc();
 	
 	// If the use is online, we can return its highest resource

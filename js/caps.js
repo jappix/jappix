@@ -7,7 +7,7 @@ These are the CAPS JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 01/03/11
 
 */
 
@@ -75,7 +75,7 @@ function getDiscoInfos(to, caps) {
 	}
 	
 	// Get the stored disco infos
-	var xml = getPersistent('caps', caps);
+	var xml = XMLFromString(getPersistent('caps', caps));
 	
 	// Yet stored
 	if(xml) {
