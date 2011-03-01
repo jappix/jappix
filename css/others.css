@@ -1,89 +1,89 @@
 /*
-
+ 
 Jappix - An open social platform
 This is the others CSS stylesheet for Jappix
-
+ 
 -------------------------------------------------
-
+ 
 License: AGPL
 Author: Valérian Saliou
 Last revision: 09/02/11
-
+ 
 */
-
+ 
 #audio {
-	display: none;
+        display: none;
 }
-
+ 
 #top-content {
-	position: absolute;
-	right: 10px;
-	left: 10px;
-	top: 0;
-	min-width: 860px;
-	z-index: 50;
+        position: absolute;
+        right: 10px;
+        left: 10px;
+        top: 0;
+        min-width: 860px;
+        z-index: 50;
 }
-
+ 
 #main-content {
-	position: absolute;
-	top: 36px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	min-width: 850px;
-	min-height: 450px;
+        position: absolute;
+        top: 36px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        min-width: 850px;
+        min-height: 450px;
 }
-
+ 
 #left-content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 245px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 245px;
 }
-
+ 
 #right-content {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.7);
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 265px;
-	z-index: 10;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 0 0 10px #5c5c5c;
-	-moz-box-shadow: 0 0 10px #5c5c5c;
-	-webkit-box-shadow: 0 0 10px #5c5c5c;
+        background-color: rgb(20,20,20);
+        background-color: rgba(20,20,20,0.7);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 265px;
+        z-index: 10;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        box-shadow: 0 0 10px #5c5c5c;
+        -moz-box-shadow: 0 0 10px #5c5c5c;
+        -webkit-box-shadow: 0 0 10px #5c5c5c;
 }
-
+ 
 #general-wait {
-	z-index: 10000;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
 }
-
+ 
 .general-wait-content {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.9);
-	background-position: 8px 8px;
-	padding: 8px;
-	position: absolute;
-	right: 10px;
-	bottom: 10px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 0 0 2px #000;
-	-moz-box-shadow: 0 0 2px #000;
-	-webkit-box-shadow: 0 0 2px #000;
+        background-color: rgb(255,255,255);
+        background-color: rgba(255,255,255,0.9);
+        background-position: 8px 8px;
+        padding: 8px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        box-shadow: 0 0 2px #000;
+        -moz-box-shadow: 0 0 2px #000;
+        -webkit-box-shadow: 0 0 2px #000;
 }
-
+ 
 .inbox-hidable,
 .options-hidable,
 .pep-hidable,
@@ -91,26 +91,28 @@ Last revision: 09/02/11
 .archives-hidable,
 .commands-hidable,
 .privacy-hidable {
-	display: none;
+        display: none;
 }
-
+ 
 #reconnect .pane {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.8);
-	color: white;
-	padding: 25px;
-	z-index: 10000;
-	text-shadow: 0 1px 1px black;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	box-shadow: 0 0 35px #232323;
-	-moz-box-shadow: 0 0 35px #232323;
-	-webkit-box-shadow: 0 0 35px #232323;
+        background-color: rgb(20,20,20);
+        background-color: rgba(20,20,20,0.8);
+        color: white;
+        padding: 25px;
+        z-index: 10000;
+        text-shadow: 0 1px 1px black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        box-shadow: 0 0 35px #232323;
+        -moz-box-shadow: 0 0 35px #232323;
+        -webkit-box-shadow: 0 0 35px #232323;
 }
-
+ 
 #reconnect .pane a {
-	margin-top: -4px;
-	float: right;
+        margin-top: -4px;
+        float: right;
 }
+ 
+
