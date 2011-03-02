@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 02/03/11
 
 */
 
@@ -222,6 +222,12 @@ function handleMessage(msg) {
 		// Get the body
 		var body = trim(msg.getBody());
 		
+		// Any subject?
+		var subject = trim(msg.getSubject());
+		
+		if(subject)
+			body = subject;
+		
 		if(body) {
 			// Get the values
 			var from = fullXID(getStanzaFrom(msg));
@@ -271,8 +277,10 @@ function handleMessage(msg) {
 					message_type = 'old-message';
 				
 				// System message?
-				if(!nick)
+				if(!nick || subject) {
+					nick = '';
 					message_type = 'system-message';
+				}
 			}
 			
 			// Chat values
