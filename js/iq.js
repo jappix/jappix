@@ -7,7 +7,7 @@ These are the IQ JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 02/03/11
 
 */
 
@@ -138,5 +138,21 @@ function handleIQ(iq) {
 		con.send(iqResponse);
 		
 		logThis('Received a ping: ' + iqFrom);
+	}
+	
+	// Not implemented
+	else if(!$(iqNode).find('error').size() && (iqType != 'error')) {
+		// Append stanza content
+		for(var i = 0; i < iqNode.childNodes.length; i++)
+			iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
+		
+		// Append error content
+		var iqError = iqResponse.appendNode('error', {'xmlns': NS_CLIENT, 'code': '501', 'type': 'cancel'});
+		iqError.appendChild(iq.buildNode('feature-not-implemented', {'xmlns': NS_STANZAS}));
+		iqError.appendChild(iq.buildNode('text', {'xmlns': NS_STANZAS}, _e("The feature requested is not implemented by the recipient or server and therefore cannot be processed.")));
+		
+		con.send(iqResponse);
+		
+		logThis('Received an unsupported IQ query from: ' + iqFrom);
 	}
 }

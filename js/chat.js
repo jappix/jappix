@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 02/03/11
 
 */
 
@@ -78,6 +78,14 @@ function generateChat(type, id, xid, nick) {
 	// Special code
 	var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle;
 	
+	// IE DOM parsing bug fix
+	var specialStylePicker = '<div class="chat-tools-content chat-tools-style"' + specialStyle + '>' + 
+					'<a class="tools-style tools-tooltip talk-images"></a>' + 
+				 '</div>';
+	
+	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+		specialStylePicker = '';
+	
 	// Groupchat special code
 	if(type == 'groupchat') {
 		specialAttributes = ' data-type="groupchat"';
@@ -137,9 +145,7 @@ function generateChat(type, id, xid, nick) {
 						'<a class="tools-smileys tools-tooltip talk-images"></a>' + 
 					'</div>' + 
 					
-					'<div class="chat-tools-content chat-tools-style"' + specialStyle + '>' + 
-						'<a class="tools-style tools-tooltip talk-images"></a>' + 
-					'</div>' + 
+					specialStylePicker + 
 					
 					'<div class="chat-tools-content chat-tools-save">' + 
 						'<a class="tools-save tools-tooltip talk-images"></a>' + 

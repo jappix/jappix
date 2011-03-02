@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 16/02/11
+Last revision: 02/03/11
 
 */
 
@@ -296,6 +296,10 @@ function handleMessage(message) {
 	if(xHTML || body) {
 		var filteredMessage;
 		var notXHTML = true;
+		
+		// IE bug fix
+		if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+			xHTML = 0;
 		
 		//If this is a xHTML message
 		if(xHTML) {

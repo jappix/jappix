@@ -7,13 +7,14 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 11/02/11
+Last revision: 02/03/11
 
 */
 
 // XMPP XMLNS attributes
 var NS_PROTOCOL =     'http://jabber.org/protocol/';
 var NS_FEATURES =     'http://jabber.org/features/';
+var NS_CLIENT =       'jabber:client';
 var NS_IQ =           'jabber:iq:';
 var NS_X =            'jabber:x:';
 var NS_IETF =         'urn:ietf:params:xml:ns:xmpp-';

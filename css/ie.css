@@ -7,7 +7,7 @@ These are all the IE compliant CSS classes
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/02/11
+Last revision: 02/03/11
 
 */
 
@@ -61,7 +61,7 @@ a.finish.disabled:active,
 /* rgba(255,239,104,0.8) */
 .popup .infos {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2ffef68,endColorstr=#d2ffef68);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#deffef68,endColorstr=#deffef68);
 }
 
 /* rgba(225,160,20,0.3) */
@@ -85,7 +85,7 @@ a.finish.disabled:active,
 /* rgba(234,234,234,0.8) */
 #page-engine .chatstate {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2eaeaea,endColorstr=#d2eaeaea);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#deeaeaea,endColorstr=#deeaeaea);
 }
 
 /* rgba(20,20,20,0.4) */
@@ -117,7 +117,7 @@ a.finish.disabled:active,
 #manager,
 #install {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2141414,endColorstr=#d2141414);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#de141414,endColorstr=#de141414);
 }
 
 /* rgba(0,0,0,0.2) */
@@ -139,5 +139,12 @@ a.finish.disabled:active,
 .buddy-conf-subitem,
 .tools-content-subitem {
 	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2000000,endColorstr=#d2000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#de000000,endColorstr=#de000000);
+}
+
+/* Fix a display bug */
+input[type=checkbox],
+input[type=radio] {
+	background: transparent none !important;
+	border: 0 none !important;
 }
