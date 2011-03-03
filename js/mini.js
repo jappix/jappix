@@ -497,8 +497,14 @@ function handleMUC(pr) {
 	var hash = hex_md5(room);
 	var resource = thisResource(from);
 	
+	// Is it a valid server presence?
+	var valid = false;
+	
+	if(!resource || (resource == unescape(jQuery('#jappix_mini #chat-' + hash + '[data-type=groupchat]').attr('data-nick'))))
+		valid = true;
+	
 	// Password required?
-	if(jQuery(xml).find('error[type=auth] not-authorized').size()) {
+	if(valid && jQuery(xml).find('error[type=auth] not-authorized').size()) {
 		// Create a new prompt
 		openPrompt(printf(_e("This room (%s) is protected with a password."), room));
 		
@@ -529,7 +535,7 @@ function handleMUC(pr) {
 	}
 	
 	// Nickname conflict?
-	else if(jQuery(xml).find('error[type=cancel] conflict').size()) {
+	else if(valid && jQuery(xml).find('error[type=cancel] conflict').size()) {
 		// New nickname
 		var nickname = resource + '_';
 		
