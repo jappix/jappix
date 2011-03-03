@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/02/11
+Last revision: 03/03/11
 
 */
 
@@ -27,9 +27,9 @@ function openWelcome() {
 	'<div class="top">' + _e("Welcome!") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab-active" data-step="1">' + _e("Options") + '</a>' + 
-		'<a class="tab-missing" data-step="2">' + _e("Friends") + '</a>' + 
-		'<a class="tab-missing" data-step="3">' + _e("Share") + '</a>' + 
+		'<a href="#" class="tab-active" data-step="1">' + _e("Options") + '</a>' + 
+		'<a href="#" class="tab-missing" data-step="2">' + _e("Friends") + '</a>' + 
+		'<a href="#" class="tab-missing" data-step="3">' + _e("Share") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -39,35 +39,35 @@ function openWelcome() {
 				'<p>' + _e("Before you start using it, you will have to change some settings, search for friends and complete your profile.") + '</p>' + 
 			'</div>' + 
 			
-			'<a class="box enabled" title="' + _e("Click to disable") + '">' + 
+			'<a href="#" class="box enabled" title="' + _e("Click to disable") + '">' + 
 				'<span class="option">' + _e("Sounds") + '</span>' + 
 				'<span class="description">' + _e("Enable notification sounds") + '</span>' + 
 				'<span class="image sound talk-images"></span>' + 
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box enabled pep-hidable" title="' + _e("Click to disable") + '">' + 
+			'<a href="#" class="box enabled pep-hidable" title="' + _e("Click to disable") + '">' + 
 				'<span class="option">' + _e("Geolocation") + '</span>' + 
 				'<span class="description">' + _e("Share your position on the globe") + '</span>' + 
 				'<span class="image geolocation talk-images"></span>' + 
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box" title="' + _e("Click to enable") + '">' + 
+			'<a href="#" class="box" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("XMPP links") + '</span>' + 
 				'<span class="description">' + _e("Open XMPP links with Jappix") + '</span>' + 
 				'<span class="image xmpp talk-images"></span>' + 
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box enabled archives-hidable pref" title="' + _e("Click to enable") + '">' + 
+			'<a href="#" class="box enabled archives-hidable pref" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Message archiving") + '</span>' + 
 				'<span class="description">' + _e("Store a history of your chats") + '</span>' + 
 				'<span class="image archives talk-images"></span>' + 
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box" title="' + _e("Click to enable") + '">' + 
+			'<a href="#" class="box" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Offline friends") + '</span>' + 
 				'<span class="description">' + _e("Don\'t hide offline friends") + '</span>' + 
 				'<span class="image offline talk-images"></span>' + 
@@ -124,8 +124,8 @@ function openWelcome() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish next">' + _e("Next") + ' »</a>' + 
-		'<a class="finish save">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish next">' + _e("Next") + ' »</a>' + 
+		'<a href="#" class="finish save">' + _e("Save") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -290,6 +290,8 @@ function launchWelcome() {
 			$(this).removeClass('enabled').attr('title', _e("Click to enable"));
 		else
 			$(this).addClass('enabled').attr('title', _e("Click to disable"));
+		
+		return false;
 	});
 	
 	$('#welcome .bottom .finish').click(function() {

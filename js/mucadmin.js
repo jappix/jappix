@@ -6,8 +6,8 @@ These are the mucadmin JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: ValÃ©rian Sal, Marco Cirillo
-Last revision: 24/02/11
+Authors: Valérian Saliou, Marco Cirillo
+Last revision: 03/03/11
 
 */
 
@@ -48,22 +48,22 @@ function openMucAdmin(xid, aff) {
 					
 					'<label>' + _e("Member list") + '</label>' + 
 					'<div class="aut-member aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Owner list") + '</label>' + 
 					'<div class="aut-owner aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Administrator list") + '</label>' + 
 					'<div class="aut-admin aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Outcast list") + '</label>' + 
 					'<div class="aut-outcast aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 				'</fieldset>' + 
 			'</div>' + 
@@ -73,7 +73,7 @@ function openMucAdmin(xid, aff) {
 					'<legend>' + _e("Others") + '</legend>' + 
 					
 					'<label>' + _e("Destroy this MUC") + '</label>' + 
-					'<a onclick="return destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
+					'<a href="#" onclick="return destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
 				'</fieldset>' + 
 			'</div>' + 
 		'</div>' + 
@@ -82,8 +82,8 @@ function openMucAdmin(xid, aff) {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a href="#" class="finish save">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	var html_partial = 
@@ -103,12 +103,12 @@ function openMucAdmin(xid, aff) {
 					
 					'<label>' + _e("Member list") + '</label>' + 
 					'<div class="aut-member aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 					
 					'<label>' + _e("Outcast list") + '</label>' + 
 					'<div class="aut-outcast aut-group">' + 
-						'<a class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+						'<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
 					'</div>' + 
 				'</fieldset>' + 
 			'</div>' + 
@@ -118,8 +118,8 @@ function openMucAdmin(xid, aff) {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a href="#" class="finish save">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';	
 	
 	// Create the popup
@@ -162,6 +162,8 @@ function removeInputMucAdmin(element) {
 	
 	// Then, we add a special class to the input
 	path.find('input').addClass('aut-dustbin');
+	
+	return false;
 }
 
 // Adds a MUC admin input
@@ -172,13 +174,13 @@ function addInputMucAdmin(xid, affiliation) {
 	$('#mucadmin .aut-' + affiliation + ' .aut-add').after(
 		'<div class="one-aut ' + hash + '">' + 
 			'<input id="aut-' + affiliation + '" name="' + affiliation + '" type="text" class="mucadmin-i" value="' + xid + '" />' + 
-			'<a class="aut-remove">[-]</a>' + 
+			'<a href="#" class="aut-remove">[-]</a>' + 
 		'</div>'
 	);
 	
 	// Click event
 	$('#mucadmin .' + hash + ' .aut-remove').click(function() {
-		removeInputMucAdmin(this);
+		return removeInputMucAdmin(this);
 	});
 	
 	// Focus on the input we added

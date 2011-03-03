@@ -356,6 +356,7 @@ function handleRoster(iq) {
 		// Display the values
 		oneBuddy = document.createElement('a');
 		oneID = 'buddy-' + hash;
+		oneBuddy.setAttribute('href', '#');
 		oneBuddy.setAttribute('id', oneID);
 		oneBuddy.setAttribute('class', 'one-buddy');
 		oneBuddy.setAttribute('onclick', 'return chat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(nick) + '\');');

@@ -125,7 +125,7 @@ function doRegister(username, domain, pass) {
 		// We change the registered information text
 		$('#home .homediv.registerer').append(
 			'<div class="info success">' + 
-				_e("You have been registered, here is your XMPP address:") + ' <b>' + con.username.htmlEnc() + '@' + con.domain.htmlEnc() + '</b> - <a>' + _e("Login") + '</a>' + 
+				_e("You have been registered, here is your XMPP address:") + ' <b>' + con.username.htmlEnc() + '@' + con.domain.htmlEnc() + '</b> - <a href="#">' + _e("Login") + '</a>' + 
 			'</div>'
 		);
 		
@@ -317,9 +317,9 @@ function createReconnect(mode) {
 		
 		// Can we cancel reconnection?
 		if(mode == 'normal')
-			html += '<a class="finish cancel">' + _e("Cancel") + '</a>';
+			html += '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>';
 		
-		html += '<a class="finish reconnect">' + _e("Reconnect") + '</a>' + 
+		html += '<a href="#" class="finish reconnect">' + _e("Reconnect") + '</a>' + 
 			'</div></div>';
 		
 		// Append the code

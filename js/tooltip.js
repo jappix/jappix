@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -40,14 +40,14 @@ function createTooltip(xid, hash, type) {
 				'<label class="bold"><input type="checkbox" class="bold" />' + _e("Text in bold") + '</label>' + 
 				'<label class="italic"><input type="checkbox" class="italic" />' + _e("Text in italic") + '</label>' + 
 				'<label class="underline"><input type="checkbox" class="underline" />' + _e("Underlined text") + '</label>' + 
-				'<a class="color" style="background-color: #b10808; clear: both;" data-color="b10808"></a>' + 
-				'<a class="color" style="background-color: #e5860c;" data-color="e5860c"></a>' + 
-				'<a class="color" style="background-color: #f0f30e;" data-color="f0f30e"></a>' + 
-				'<a class="color" style="background-color: #009a04;" data-color="009a04"></a>' + 
-				'<a class="color" style="background-color: #0ba9a0;" data-color="0ba9a0"></a>' + 
-				'<a class="color" style="background-color: #04228f;" data-color="04228f"></a>' + 
-				'<a class="color" style="background-color: #9d0ab7;" data-color="9d0ab7"></a>' + 
-				'<a class="color" style="background-color: #8a8a8a;" data-color="8a8a8a"></a>';
+				'<a href="#" class="color" style="background-color: #b10808; clear: both;" data-color="b10808"></a>' + 
+				'<a href="#" class="color" style="background-color: #e5860c;" data-color="e5860c"></a>' + 
+				'<a href="#" class="color" style="background-color: #f0f30e;" data-color="f0f30e"></a>' + 
+				'<a href="#" class="color" style="background-color: #009a04;" data-color="009a04"></a>' + 
+				'<a href="#" class="color" style="background-color: #0ba9a0;" data-color="0ba9a0"></a>' + 
+				'<a href="#" class="color" style="background-color: #04228f;" data-color="04228f"></a>' + 
+				'<a href="#" class="color" style="background-color: #9d0ab7;" data-color="9d0ab7"></a>' + 
+				'<a href="#" class="color" style="background-color: #8a8a8a;" data-color="8a8a8a"></a>';
 			
 			break;
 		
@@ -58,7 +58,7 @@ function createTooltip(xid, hash, type) {
 			
 			// Possible to generate any log?
 			if($(path + ' .one-line').size())
-				content += '<a class="tooltip-actionlog">' + _e("Generate file!") + '</a>';
+				content += '<a href="#" class="tooltip-actionlog">' + _e("Generate file!") + '</a>';
 			else
 				content += '<span class="tooltip-nolog">' + _e("This chat is empty!") + '</span>';
 			
@@ -85,7 +85,7 @@ function createTooltip(xid, hash, type) {
 		case 'smileys':
 			// Apply click event on smiley links
 			$(path_tooltip + ' a.emoticon').click(function() {
-				insertSmiley($(this).attr('data-smiley'), hash);
+				return insertSmiley($(this).attr('data-smiley'), hash);
 			});
 			
 			break;
@@ -111,6 +111,8 @@ function createTooltip(xid, hash, type) {
 					$(colors).removeClass('selected');
 					$(this).addClass('selected');
 				}
+				
+				return false;
 			});
 			
 			// Change event on text style checkboxes
@@ -154,6 +156,8 @@ function createTooltip(xid, hash, type) {
 				$(this).replaceWith('<span class="tooltip-waitlog">' + _e("Please wait...") + '</span>');
 				
 				generateChatLog(xid, hash);
+				
+				return false;
 			});
 			
 			break;
@@ -178,9 +182,15 @@ function hoverTooltip(xid, hash, type) {
 
 // Applies the hoverTooltip function to the needed things
 function tooltipIcons(xid, hash) {
+	// Hover events
 	hoverTooltip(xid, hash, 'smileys');
 	hoverTooltip(xid, hash, 'style');
 	hoverTooltip(xid, hash, 'save');
+	
+	// Click events
+	$('#' + hash + ' a.chat-tools-content, #' + hash + ' .chat-tools-content a').click(function() {
+		return false;
+	});
 }
 
 // Loads the style selector options

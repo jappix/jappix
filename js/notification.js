@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/02/11
+Last revision: 03/03/11
 
 */
 
@@ -47,8 +47,6 @@ function checkNotifications() {
 function newNotification(type, from, data, body) {
 	if(!type || !from)
 		return;
-	
-	logThis('New notification: ' + from, 3);
 	
 	// Generate an ID hash
 	var id = hex_md5(type + data[0] + from + getCompleteTime());
@@ -91,7 +89,7 @@ function newNotification(type, from, data, body) {
 			break;
 	}
 	
-	action = '<a class="yes">' + _e("Yes") + '</a><a class="no">' + _e("No") + '</a>';
+	action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
 	if(text) {
 		// We display the notification
@@ -129,6 +127,8 @@ function newNotification(type, from, data, body) {
 	
 	// We tell the user he has a new pending notification
 	checkNotifications();
+	
+	logThis('New notification: ' + from, 3);
 }
 
 // Performs an action on a given notification

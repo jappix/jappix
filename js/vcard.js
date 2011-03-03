@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 03/03/11
 
 */
 
@@ -18,9 +18,9 @@ function openVCard() {
 	'<div class="top">' + _e("Your profile") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab-active" data-key="1">' + _e("Identity") + '</a>' + 
-		'<a data-key="2">' + _e("Profile image") + '</a>' + 
-		'<a data-key="3">' + _e("Others") + '</a>' + 
+		'<a href="#" class="tab-active" data-key="1">' + _e("Identity") + '</a>' + 
+		'<a href="#" data-key="2">' + _e("Profile image") + '</a>' + 
+		'<a href="#" data-key="3">' + _e("Others") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -76,7 +76,7 @@ function openVCard() {
 				
 				'<div class="avatar-container"></div>' + 
 				
-				'<a class="one-button avatar-delete talk-images">' + _e("Delete") + '</a>' + 
+				'<a href="#" class="one-button avatar-delete talk-images">' + _e("Delete") + '</a>' + 
 				'<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
 			'</fieldset>' + 
 			
@@ -121,8 +121,8 @@ function openVCard() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save disabled">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a href="#" class="finish save disabled">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

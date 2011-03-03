@@ -7,7 +7,7 @@ These are the music JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -65,7 +65,7 @@ function parseMusic(xml, type) {
 			uri = generateURL(uri);
 		
 		// Append the HTML code
-		$(path_type).append('<a class="song" data-id="' + id + '">' + title + '</a>');
+		$(path_type).append('<a href="#" class="song" data-id="' + id + '">' + title + '</a>');
 		
 		// Current playing song?
 		var current_song = $(path_type + ' a[data-id=' + id + ']');
@@ -75,7 +75,7 @@ function parseMusic(xml, type) {
 		
 		// Click event
 		current_song.click(function() {
-			addMusic(id,  title, artist, source, duration, uri, mime, type);
+			return addMusic(id,  title, artist, source, duration, uri, mime, type);
 		});
 	});
 	
@@ -234,6 +234,8 @@ function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	
 	// We publish what we listen
 	publishMusic(title, artist, source, duration, uri);
+	
+	return false;
 }
 
 // Plugin launcher

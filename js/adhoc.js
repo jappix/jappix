@@ -7,7 +7,7 @@ These are the Ad-Hoc JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/12/10
+Last revision: 03/03/11
 
 */
 
@@ -26,7 +26,7 @@ function openAdHoc() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

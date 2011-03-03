@@ -7,7 +7,7 @@ These are the directory JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/02/11
+Last revision: 03/03/11
 
 */
 
@@ -30,7 +30,7 @@ function openDirectory() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

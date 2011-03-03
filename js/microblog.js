@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/02/11
+Last revision: 03/03/11
 
 */
 
@@ -78,16 +78,16 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
 				// User profile
-				html += '<a title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
+				html += '<a href="#" title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
 				
 				// If PEP is enabled
 				if(enabledPEP())
-					html += '<a title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
+					html += '<a href="#" title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
 			}
 			
 			html += '</div></div>';
@@ -133,8 +133,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click events
 			$('.' + tHash + ' a.repost').click(function() {
-				// Repeat the item
-				publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
+				return publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
 			});
 		}
 	});
@@ -239,7 +238,7 @@ function getMicroblog(xid, hash) {
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
 				'<div class="content individual microblog-' + hash + '">' + 
-					'<a class="more home-images" onclick="return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\');">' + _e("More notices...") + '</a>' + 
+					'<a href="#" class="more home-images" onclick="return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\');">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
@@ -251,7 +250,7 @@ function getMicroblog(xid, hash) {
 					
 					'<div class="update">' + 
 						'<h2>' + cTitle + '</h2>' + 
-						'<a onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
+						'<a href="#" onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
 					'</div>' + 
 					
 					'<input type="hidden" name="jid" value="' + xid + '" />' + 
@@ -509,6 +508,8 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
+	
+	return false;
 }
 
 // Attaches a file to a microblog post

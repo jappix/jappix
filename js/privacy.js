@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -22,7 +22,7 @@ function openPrivacy() {
 			'<div class="list-left">' + 
 				'<span>' + _e("Choose") + '</span>' + 
 				'<select disabled=""></select>' + 
-				'<a class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+				'<a href="#" class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
 			'</div>' + 
 			
 			'<div class="list-center"></div>' + 
@@ -36,9 +36,9 @@ function openPrivacy() {
 		'<div class="privacy-item">' + 
 			'<span>' + _e("Item") + '</span>' + 
 			'<select disabled=""></select>' + 
-			'<a class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
-			'<a class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
-			'<a class="item-save one-button talk-images">' + _e("Save") + '</a>' + 
+			'<a href="#" class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
+			'<a href="#" class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+			'<a href="#" class="item-save one-button talk-images">' + _e("Save") + '</a>' + 
 			
 			'<div class="clear"></div>' + 
 		'</div>' + 
@@ -91,7 +91,7 @@ function openPrivacy() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

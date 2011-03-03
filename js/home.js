@@ -7,7 +7,7 @@ These are the homepage JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -37,7 +37,7 @@ function switchHome(div) {
 		case 'registerer':
 			if(!exists(right + '.top.sub')) {
 				// Append the HTML code for previous link
-				$(right + '.top.default').after('<h1 class="top sub loginer anonymouser registerer">&laquo; <a class="previous">' + _e("Previous") + '</a></h1>');
+				$(right + '.top.default').after('<h1 class="top sub loginer anonymouser registerer">&laquo; <a href="#" class="previous">' + _e("Previous") + '</a></h1>');
 				
 				// Click event on previous link
 				$(home + 'top.sub a.previous').click(function() {
@@ -53,7 +53,7 @@ function switchHome(div) {
 		// Login tool
 		case 'loginer':
 			lock_host = disableInput(LOCK_HOST, 'on');
-			code = '<p>' + printf(_e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a class="to-anonymous">' + _e("anonymous mode") + '</a>') + '</p>' + 
+			code = '<p>' + printf(_e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a href="#" class="to-anonymous">' + _e("anonymous mode") + '</a>') + '</p>' + 
 				
 				'<form action="#" method="post">' + 
 					'<fieldset>' + 
@@ -67,7 +67,7 @@ function switchHome(div) {
 						'<input type="checkbox" class="remember" id="lremember" />' + 
 					'</fieldset>' + 
 					
-					'<a class="advanced home-images">' + _e("Advanced") + '</a>' + 
+					'<a href="#" class="advanced home-images">' + _e("Advanced") + '</a>' + 
 					
 					'<fieldset class="advanced">' + 
 						'<legend>' + _e("Advanced") + '</legend>' + 
@@ -90,7 +90,7 @@ function switchHome(div) {
 		// Anonymous login tool
 		case 'anonymouser':
 			disable_form = disableInput(ANONYMOUS, 'off');
-			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a class="to-home">' + _e("login page") + '</a>') + '</p>' + 
+			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + _e("login page") + '</a>') + '</p>' + 
 				
 				'<form action="#" method="post">' + 
 					'<fieldset>' + 

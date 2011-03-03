@@ -7,7 +7,7 @@ These are the user-infos JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/12/10
+Last revision: 03/03/11
 
 */
 
@@ -18,9 +18,9 @@ function openUserInfos(xid) {
 	'<div class="top">' + _e("User profile") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab-active" data-key="1">' + _e("General") + '</a>' + 
-		'<a data-key="2">' + _e("Advanced") + '</a>' + 
-		'<a data-key="3">' + _e("Comments") + '</a>' + 
+		'<a href="#" class="tab-active" data-key="1">' + _e("General") + '</a>' + 
+		'<a href="#" data-key="2">' + _e("Advanced") + '</a>' + 
+		'<a href="#" data-key="3">' + _e("Comments") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -78,7 +78,7 @@ function openUserInfos(xid) {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

@@ -7,7 +7,7 @@ These are the archives functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/12/10
+Last revision: 03/03/11
 
 */
 
@@ -35,7 +35,7 @@ function openArchives() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

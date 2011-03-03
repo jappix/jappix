@@ -594,7 +594,7 @@ function launchPEP() {
 			if(mood_id[i] == mood_val)
 				continue;
 			
-			html += '<a class="talk-images" data-value="' + mood_id[i] + '" title="' + mood_lang[i] + '"></a>';
+			html += '<a href="#" class="talk-images" data-value="' + mood_id[i] + '" title="' + mood_lang[i] + '"></a>';
 		}
 		
 		html += '</div>';
@@ -614,6 +614,8 @@ function launchPEP() {
 			$(document).oneTime(10, function() {
 				$('#mood-text').focus();
 			});
+			
+			return false;
 		});
 		
 		return false;
@@ -647,7 +649,7 @@ function launchPEP() {
 			if(activity_id[i] == activity_val)
 				continue;
 			
-			html += '<a class="talk-images" data-value="' + activity_id[i] + '" title="' + activity_lang[i] + '"></a>';
+			html += '<a href="#" class="talk-images" data-value="' + activity_id[i] + '" title="' + activity_lang[i] + '"></a>';
 		}
 		
 		html += '</div>';
@@ -667,6 +669,8 @@ function launchPEP() {
 			$(document).oneTime(10, function() {
 				$('#activity-text').focus();
 			});
+			
+			return false;
 		});
 		
 		return false;

@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -235,7 +235,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	
 	if(action == 'submit') {
 		if((target == 'adhoc') && (type == 'command')) {
-			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 			
 			// When keyup on one text input
 			$(pathID + ' input').keyup(function(e) {
@@ -248,7 +248,7 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 		}
 		
 		else {
-			buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+			buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
 			
 			// When keyup on one text input
 			$(pathID + ' input').keyup(function(e) {
@@ -262,16 +262,16 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	}
 	
 	if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-		buttonsCode += '<a class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
+		buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
 	
 	if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
-		buttonsCode += '<a class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
+		buttonsCode += '<a href="#" class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
 	
 	if((action == 'back') && ((target == 'welcome') || (target == 'directory')))
-		buttonsCode += '<a class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + _e("Previous") + '</a>';
+		buttonsCode += '<a href="#" class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + _e("Previous") + '</a>';
 	
 	if((action == 'back') && (target == 'adhoc'))
-		buttonsCode += '<a class="back" onclick="return dataForm(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + _e("Previous") + '</a>';
+		buttonsCode += '<a href="#" class="back" onclick="return dataForm(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + _e("Previous") + '</a>';
 	
 	buttonsCode += '</div>';
 	
@@ -414,11 +414,11 @@ function handleDataFormContent(iq, type) {
 					
 					// The buddy is not in our buddy list?
 					if(!exists('#buddy-list .buddy[data-xid=' + bXID + ']'))
-						bHTML += '<a class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
+						bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
 					
 					// Chat button, if not in welcome/directory mode
 					if(target == 'discovery')
-						bHTML += '<a class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
+						bHTML += '<a href="#" class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
 					
 					// Close the HTML element
 					bHTML += '</div></div>';
@@ -441,6 +441,8 @@ function handleDataFormContent(iq, type) {
 							
 							checkChatCreate(bXID , 'chat', '', '', dName);
 						}
+						
+						return false;
 					});
 					
 					// Get the user's avatar
@@ -827,7 +829,7 @@ function handleThisBrowse(iq) {
 		
 		for(i in buttons) {
 			if(buttons[i])
-				tools += '<a class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
+				tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
 		}
 		
 		// As defined in the ref, we detect the type of each category to put an icon

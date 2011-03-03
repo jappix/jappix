@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -18,9 +18,9 @@ function optionsOpen() {
 	'<div class="top">' + _e("Edit options") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a class="tab-active" data-key="1">' + _e("General") + '</a>' + 
-		'<a class="pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
-		'<a data-key="3">' + _e("Account") + '</a>' + 
+		'<a href="#" class="tab-active" data-key="1">' + _e("General") + '</a>' + 
+		'<a href="#" class="pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
+		'<a href="#" data-key="3">' + _e("Account") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -45,7 +45,7 @@ function optionsOpen() {
 				'<input id="showall" type="checkbox" />' + 
 				
 				'<label>' + _e("XMPP links") + '</label>' + 
-				'<a class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
+				'<a href="#" class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -54,7 +54,7 @@ function optionsOpen() {
 				'<legend>' + _e("Channel") + '</legend>' + 
 				
 				'<label>' + _e("Empty") + '</label>' + 
-				'<a class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
+				'<a href="#" class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
 				
 				'<label>' + _e("Persistent") + '</label>' + 
 				'<input id="persistent" type="checkbox" />' + 
@@ -73,7 +73,7 @@ function optionsOpen() {
 			'<div class="sub-ask sub-ask-empty sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Empty channel") + '</div>' + 
-					'<a class="sub-ask-close">X</a>' + 
+					'<a href="#" class="sub-ask-close">X</a>' + 
 				'</div>' + 
 				
 				'<div class="sub-ask-content">' + 
@@ -81,7 +81,7 @@ function optionsOpen() {
 					'<input type="password" class="purge-microblog check-empty" required="" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom">' + _e("Empty") + ' &raquo;</a>' + 
+				'<a href="#" class="sub-ask-bottom">' + _e("Empty") + ' &raquo;</a>' + 
 			'</div>' + 
 		'</div>' + 
 		
@@ -90,16 +90,16 @@ function optionsOpen() {
 				'<legend>' + _e("Account") + '</legend>' + 
 				
 				'<label>' + _e("Password") + '</label>' + 
-				'<a class="linked change-password">' + _e("Change password") + '</a>' + 
+				'<a href="#" class="linked change-password">' + _e("Change password") + '</a>' + 
 				
 				'<label>' + _e("Delete") + '</label>' + 
-				'<a class="linked delete-account">' + _e("Delete account") + '</a>' + 
+				'<a href="#" class="linked delete-account">' + _e("Delete account") + '</a>' + 
 			'</fieldset>' + 
 				
 			'<div class="sub-ask sub-ask-pass sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Change password") + '</div>' + 
-					'<a class="sub-ask-close">X</a>' + 
+					'<a href="#" class="sub-ask-close">X</a>' + 
 				'</div>' + 
 				
 				'<div class="sub-ask-content">' + 
@@ -111,13 +111,13 @@ function optionsOpen() {
 					'<input type="password" class="password-change new2" required="" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom">' + _e("Continue") + ' &raquo;</a>' + 
+				'<a href="#" class="sub-ask-bottom">' + _e("Continue") + ' &raquo;</a>' + 
 			'</div>' + 
 			
 			'<div class="sub-ask sub-ask-delete sub-ask-element">' + 
 				'<div class="sub-ask-top">' + 
 					'<div class="sub-ask-title">' + _e("Delete account") + '</div>' + 
-					'<a class="sub-ask-close">X</a>' + 
+					'<a href="#" class="sub-ask-close">X</a>' + 
 				'</div>' + 
 				
 				'<div class="sub-ask-content">' + 
@@ -125,7 +125,7 @@ function optionsOpen() {
 					'<input type="password" class="delete-account check-password" required="" />' + 
 				'</div>' + 
 				
-				'<a class="sub-ask-bottom">' + _e("Delete") + ' &raquo;</a>' + 
+				'<a href="#" class="sub-ask-bottom">' + _e("Delete") + ' &raquo;</a>' + 
 			'</div>' + 
 		'</div>' + 
 	'</div>' + 
@@ -133,8 +133,8 @@ function optionsOpen() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish save">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a href="#" class="finish save">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -543,6 +543,8 @@ function launchOptions() {
 		$(document).oneTime(10, function() {
 			$(selector + ' input').focus();
 		});
+		
+		return false;
 	});
 	
 	$('#options .change-password').click(function() {
@@ -553,6 +555,8 @@ function launchOptions() {
 		$(document).oneTime(10, function() {
 			$(selector + ' input:first').focus();
 		});
+		
+		return false;
 	});
 	
 	$('#options .delete-account').click(function() {
@@ -563,6 +567,8 @@ function launchOptions() {
 		$(document).oneTime(10, function() {
 			$(selector + ' input').focus();
 		});
+		
+		return false;
 	});
 	
 	$('#options .sub-ask-pass .sub-ask-bottom').click(function() {
@@ -579,6 +585,8 @@ function launchOptions() {
 	
 	$('#options .sub-ask-close').click(function() {
 		$('#options .sub-ask').hide();
+		
+		return false;
 	});
 	
 	$('#options .bottom .finish').click(function() {

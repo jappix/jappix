@@ -915,7 +915,7 @@ function launchPresence() {
 			if(show_id[i] == show_val)
 				continue;
 			
-			html += '<a class="talk-images" data-value="' + show_id[i] + '" title="' + show_lang[i] + '"></a>';
+			html += '<a href="#" class="talk-images" data-value="' + show_id[i] + '" title="' + show_lang[i] + '"></a>';
 		}
 		
 		html += '</div>';
@@ -935,6 +935,8 @@ function launchPresence() {
 			$(document).oneTime(10, function() {
 				$('#presence-status').focus();
 			});
+			
+			return false;
 		});
 		
 		return false;

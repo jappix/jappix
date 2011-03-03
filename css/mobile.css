@@ -137,7 +137,9 @@ a {
 	background-color: #87a5ab;
 	border-bottom: 1px solid #5b8088;
 	text-shadow: 1px 1px 1px #5b8088;
+	text-decoration: none;
 	color: white;
+	outline-style: none;
 	padding: 10px 0;
 }
 

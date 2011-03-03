@@ -80,7 +80,7 @@ function generateChat(type, id, xid, nick) {
 	
 	// IE DOM parsing bug fix
 	var specialStylePicker = '<div class="chat-tools-content chat-tools-style"' + specialStyle + '>' + 
-					'<a class="tools-style tools-tooltip talk-images"></a>' + 
+					'<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
 				 '</div>';
 	
 	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
@@ -92,7 +92,7 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '';
 		specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
 		specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
-		specialLink = '<a class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
+		specialLink = '<a href="#" class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
 		specialStyle = '';
 		
 		// Is this a gateway?
@@ -108,7 +108,7 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos unavailable talk-images"></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
-		specialLink = '<a class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
+		specialLink = '<a href="#" class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -122,7 +122,7 @@ function generateChat(type, id, xid, nick) {
 		else
 			addTitle = _e("Add this groupchat to your favorites");
 		
-		specialLink += '<a class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
+		specialLink += '<a href="#" class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
 	}
 	
 	// Append the chat HTML code
@@ -142,16 +142,16 @@ function generateChat(type, id, xid, nick) {
 			'<div class="text">' + 
 				'<div class="footer">' + 
 					'<div class="chat-tools-content chat-tools-smileys">' + 
-						'<a class="tools-smileys tools-tooltip talk-images"></a>' + 
+						'<a href="#" class="tools-smileys tools-tooltip talk-images"></a>' + 
 					'</div>' + 
 					
 					specialStylePicker + 
 					
 					'<div class="chat-tools-content chat-tools-save">' + 
-						'<a class="tools-save tools-tooltip talk-images"></a>' + 
+						'<a href="#" class="tools-save tools-tooltip talk-images"></a>' + 
 					'</div>' + 
 					
-					'<a class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '"></a>' + 
+					'<a href="#" class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '"></a>' + 
 					
 					specialLink + 
 				'</div>' + 

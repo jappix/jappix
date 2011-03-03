@@ -7,7 +7,7 @@ These are the Roster Item Exchange JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/02/11
+Last revision: 03/03/11
 
 */
 
@@ -19,16 +19,16 @@ function openRosterX(data) {
 	
 	'<div class="content">' + 
 		'<div class="rosterx-head">' + 
-			'<a class="uncheck">' + _e("Uncheck all") + '</a>' + 
-			'<a class="check">' + _e("Check all") + '</a>' + 
+			'<a href="#" class="uncheck">' + _e("Uncheck all") + '</a>' + 
+			'<a href="#" class="check">' + _e("Check all") + '</a>' + 
 		'</div>' + 
 		
 		'<div class="results"></div>' + 
 	'</div>' + 
 	
 	'<div class="bottom">' + 
-		'<a class="finish save">' + _e("Save") + '</a>' + 
-		'<a class="finish cancel">' + _e("Cancel") + '</a>' + 
+		'<a href="#" class="finish save">' + _e("Save") + '</a>' + 
+		'<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
 	'</div>';
 	
 	// Create the popup

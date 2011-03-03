@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 03/03/11
 
 */
 
@@ -22,7 +22,7 @@ function openIntegrateBox() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -44,10 +44,25 @@ function closeIntegrateBox() {
 function codeIntegrateBox(serv, url) {
 	var code = '';
 	
+	// Protocol to use
+	var protocol = 'http';
+	
+	if(window.location.href && (window.location.href).match(/^https/i))
+		protocol = 'https';
+	
+	// Legacy browser
+	var legacy = false;
+	
+	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+		legacy = true;
+	
 	// Switch to get the good DOM code
 	switch(serv) {
 		case 'youtube':
-			code = '<object width="640" height="385" data="http://www.youtube.com/embed/' + url + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
+			if(legacy)
+				code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + url + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
+			else
+				code = '<object width="640" height="385" data="' + protocol + '://www.youtube.com/embed/' + url + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
 			
 			break;
 		

@@ -78,9 +78,9 @@ function openFavorites() {
 					'</div>' + 
 					
 					'<div class="fedit-actions">' + 
-						'<a class="fedit-terminate fedit-add add one-button talk-images">' + _e("Add") + '</a>' + 
-						'<a class="fedit-terminate fedit-edit one-button talk-images">' + _e("Edit") + '</a>' + 
-						'<a class="fedit-terminate fedit-remove remove one-button talk-images">' + _e("Remove") + '</a>' + 
+						'<a href="#" class="fedit-terminate fedit-add add one-button talk-images">' + _e("Add") + '</a>' + 
+						'<a href="#" class="fedit-terminate fedit-edit one-button talk-images">' + _e("Edit") + '</a>' + 
+						'<a href="#" class="fedit-terminate fedit-remove remove one-button talk-images">' + _e("Remove") + '</a>' + 
 					'</div>' + 
 				'</div>' + 
 			'</div>' + 
@@ -102,7 +102,7 @@ function openFavorites() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -143,7 +143,7 @@ function addThisFavorite(roomXID, roomName) {
 	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
 	
 	// Add a remove button instead of the add one
-	$(button + '.add').replaceWith('<a class="one-button remove talk-images">' + _e("Remove") + '</a>');
+	$(button + '.add').replaceWith('<a href="#" class="one-button remove talk-images">' + _e("Remove") + '</a>');
 	
 	// Click event
 	$(button + '.remove').click(function() {
@@ -168,7 +168,7 @@ function removeThisFavorite(roomXID, roomName) {
 	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
 	
 	// Add a remove button instead of the add one
-	$(button + '.remove').replaceWith('<a class="one-button add talk-images">' + _e("Add") + '</a>');
+	$(button + '.remove').replaceWith('<a href="#" class="one-button add talk-images">' + _e("Add") + '</a>');
 	
 	// Click event
 	$(button + '.add').click(function() {
@@ -395,13 +395,13 @@ function handleGCList(iq) {
 					// Initialize the room HTML
 					html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 
 							'<div class="room-name">' + roomName.htmlEnc() + '</div>' + 
-							'<a class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + _e("Join") + '</a>';
+							'<a href="#" class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + _e("Join") + '</a>';
 					
 					// This room is yet a favorite
 					if(existDB('favorites', roomXID))
-						html += '<a class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Remove") + '</a>';
+						html += '<a href="#" class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Remove") + '</a>';
 					else
-						html += '<a class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Add") + '</a>';
+						html += '<a href="#" class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Add") + '</a>';
 					
 					// Close the room HTML
 					html += '</div>';

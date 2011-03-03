@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 03/03/11
 
 */
 
@@ -39,10 +39,10 @@ function createTalkPage() {
 			'<div class="tools tools-all">';
 				
 				if(!anonymous) html += 
-				'<a onclick="return openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
-				'<a onclick="return openVCard();">' + _e("Profile") +  '</a>' + 
-				'<a onclick="return optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
-				'<a onclick="return normalQuit();">' + _e("Disconnect") +  '</a>';
+				'<a href="#" onclick="return openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
+				'<a href="#" onclick="return openVCard();">' + _e("Profile") +  '</a>' + 
+				'<a href="#" onclick="return optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
+				'<a href="#" onclick="return normalQuit();">' + _e("Disconnect") +  '</a>';
 				
 				else html +=
 				'<a href="./">' + _e("Disconnect") +  '</a>';
@@ -59,7 +59,7 @@ function createTalkPage() {
 					
 					'<div class="tools-content-subitem">' + 
 						'<div class="player">' + 
-							'<a class="stop talk-images" onclick="return actionMusic(\'stop\');"></a>' + 
+							'<a href="#" class="stop talk-images" onclick="return actionMusic(\'stop\');"></a>' + 
 						'</div>' + 
 						
 						'<div class="list">' + 
@@ -96,24 +96,24 @@ function createTalkPage() {
 					
 					'<div class="filter">' + 
 						'<input type="text" placeholder="' + _e("Filter") +  '" />' + 
-						'<a>x</a>' + 
+						'<a href="#">x</a>' + 
 					'</div>' + 
 					
 					'<div class="foot ibubble">' + 
 						'<div class="buddy-list-add buddy-list-icon">' + 
-							'<a class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
+							'<a href="#" class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
 						'</div>' + 
 						
 						'<div class="buddy-list-join buddy-list-icon">' + 
-							'<a class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
+							'<a href="#" class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
 						'</div>' + 
 						
 						'<div class="buddy-list-groupchat buddy-list-icon">' + 
-							'<a class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
+							'<a href="#" class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
 						'</div>' + 
 						
 						'<div class="buddy-list-more buddy-list-icon">' + 
-							'<a class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
+							'<a href="#" class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
 						'</div>' + 
 						
 						'<div style="clear: both;"></div>' + 
@@ -124,7 +124,7 @@ function createTalkPage() {
 				'<div id="my-infos">' + 
 					'<div class="content">' + 
 						'<div class="element f-presence ibubble">' + 
-							'<a class="icon picker disabled" data-value="available">' + 
+							'<a href="#" class="icon picker disabled" data-value="available">' + 
 								'<span class="talk-images"></span>' + 
 							'</a>' + 
 							
@@ -133,7 +133,7 @@ function createTalkPage() {
 						
 						if(!anonymous) html += 
 						'<div class="element f-mood pep-hidable ibubble">' + 
-							'<a class="icon picker" data-value="happy">' + 
+							'<a href="#" class="icon picker" data-value="happy">' + 
 								'<span class="talk-images"></span>' + 
 							'</a>' + 
 							
@@ -141,7 +141,7 @@ function createTalkPage() {
 						'</div>' + 
 						
 						'<div class="element f-activity pep-hidable ibubble">' + 
-							'<a class="icon picker" data-value="exercising">' + 
+							'<a href="#" class="icon picker" data-value="exercising">' + 
 								'<span class="talk-images activity-exercising"></span>' + 
 							'</a>' + 
 							
@@ -187,8 +187,8 @@ function createTalkPage() {
 								'</div>' + 
 								
 								'<div class="one-microblog-icon ibubble">' + 
-									'<a onclick="return showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
-									'<a onclick="return unattachMicroblog();" class="postit unattach talk-images"></a>' + 
+									'<a href="#" onclick="return showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
+									'<a href="#" onclick="return unattachMicroblog();" class="postit unattach talk-images"></a>' + 
 									
 									'<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
 										'<div class="attach-subarrow talk-images"></div>' + 

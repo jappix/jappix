@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/02/11
+Last revision: 03/03/11
 
 */
 
@@ -140,7 +140,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 					// Create the HTML markup of the group
 					$(groupCont).prepend(
 						'<div class="' + groupHash + ' one-group" data-group="' + escape(cGroup) + '">' + 
-							'<a class="group talk-images minus">' + cGroup.htmlEnc() + '</a>' + 
+							'<a href="#" class="group talk-images minus">' + cGroup.htmlEnc() + '</a>' + 
 							'<div class="group-buddies"></div>' + 
 						'</div>'
 					);
@@ -403,8 +403,8 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-							'<p class="bi-view talk-images view-individual"><a class="profile">' + _e("Profile") + '</a> / <a class="channel">' + _e("Channel") + '</a> / <a class="commands">' + _e("Commands") + '</a></p>' + 
-							'<p class="bi-edit talk-images edit-buddy"><a>' + _e("Edit") + '</a></p>' + 
+							'<p class="bi-view talk-images view-individual"><a href="#" class="profile">' + _e("Profile") + '</a> / <a href="#" class="channel">' + _e("Channel") + '</a> / <a href="#" class="commands">' + _e("Commands") + '</a></p>' + 
+							'<p class="bi-edit talk-images edit-buddy"><a href="#">' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
 					'</div>' + 
 				'</div>'
@@ -526,14 +526,14 @@ function buddyEdit(xid, nick, subscription, groups) {
 		
 		// Link to allow to see our status
 		if((subscription == 'to') || (subscription == 'none'))
-			authorize_links += '<a class="to">' + _e("Authorize") + '</a>';
+			authorize_links += '<a href="#" class="to">' + _e("Authorize") + '</a>';
 		
 		// Link to ask to see his/her status
 		if((subscription == 'from') || (subscription == 'none')) {
 			if(authorize_links)
 				authorize_links += ' / ';
 			
-			authorize_links += '<a class="from">' + _e("Ask for authorization") + '</a>';
+			authorize_links += '<a href="#" class="from">' + _e("Ask for authorization") + '</a>';
 		}
 		
 		// Link to unblock this buddy
@@ -541,7 +541,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 			if(authorize_links)
 				authorize_links += ' / ';
 			
-			html += '<a class="unblock">' + _e("Unblock") + '</a>';
+			html += '<a href="#" class="unblock">' + _e("Unblock") + '</a>';
 		}
 		
 		html += authorize_links + '</p>';
@@ -550,18 +550,18 @@ function buddyEdit(xid, nick, subscription, groups) {
 	// Complete the HTML code
 	var remove_links = '';
 	html += '<p class="bm-remove talk-images">';
-	remove_links = '<a class="remove">' + _e("Remove") + '</a>';
+	remove_links = '<a href="#" class="remove">' + _e("Remove") + '</a>';
 	
 	// This buddy is allowed to see our presence, we can show a "prohibit" link
 	if((subscription == 'both') || (subscription == 'from'))
-		remove_links += ' / <a class="prohibit">' + _e("Prohibit") + '</a>';
+		remove_links += ' / <a href="#" class="prohibit">' + _e("Prohibit") + '</a>';
 	
 	// Complete the HTML code
 	if((privacy_state != 'deny') && privacy_active) {
 		if(remove_links)
 			remove_links += ' / ';
 		
-		remove_links += '<a class="block">' + _e("Block") + '</a>';
+		remove_links += '<a href="#" class="block">' + _e("Block") + '</a>';
 	}
 	
 	// Complete the HTML code
@@ -577,7 +577,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 			'</div>';
 	
 	// Close the DOM element
-	html += '<a class="save">' + _e("Save") + '</a>' + 
+	html += '<a href="#" class="save">' + _e("Save") + '</a>' + 
 		'</div>';
 	
 	// We update the DOM elements
@@ -745,7 +745,7 @@ function launchRoster() {
 					'<span class="add-contact-name-get">' + _e("Getting the name...") + '</span>' + 
 					
 					'<p class="buddy-conf-text">' + 
-						'<a class="buddy-conf-add-search">' + _e("Search a friend") +  '</a>' + 
+						'<a href="#" class="buddy-conf-add-search">' + _e("Search a friend") +  '</a>' + 
 					'</p>' + 
 				'</div>' + 
 			'</div>'
@@ -955,7 +955,7 @@ function launchRoster() {
 					'<select name="groupchat-join" class="buddy-conf-select buddy-conf-groupchat-select"></select>' + 
 					
 					'<p class="buddy-conf-text">' + 
-						'- <a class="buddy-conf-groupchat-edit">' + _e("Manage your favorite groupchats") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-groupchat-edit">' + _e("Manage your favorite groupchats") +  '</a>' + 
 					'</p>' + 
 				'</div>' + 
 			'</div>'
@@ -1009,24 +1009,24 @@ function launchRoster() {
 					'<p class="buddy-conf-p">' + _e("More stuff") +  '</p>' + 
 					
 					'<p class="buddy-conf-text">' + 
-						'- <a class="buddy-conf-more-display-unavailable">' + _e("Show all friends") +  '</a>' + 
-						'<a class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-more-display-unavailable">' + _e("Show all friends") +  '</a>' + 
+						'<a href="#" class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
 					'</p>' + 
 					
 					'<p class="buddy-conf-text archives-hidable">' + 
-						'- <a class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
 					'</p>' + 
 					
 					'<p class="buddy-conf-text privacy-hidable">' + 
-						'- <a class="buddy-conf-more-privacy">' + _e("Privacy") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-more-privacy">' + _e("Privacy") +  '</a>' + 
 					'</p>' + 
 					
 					'<p class="buddy-conf-text">' + 
-						'- <a class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-more-service-disco">' + _e("Service discovery") +  '</a>' + 
 					'</p>' + 
 					
 					'<p class="buddy-conf-text commands-hidable"">' + 
-						'- <a class="buddy-conf-more-commands">' + _e("Commands") +  '</a>' + 
+						'- <a href="#" class="buddy-conf-more-commands">' + _e("Commands") +  '</a>' + 
 					'</p>' + 
 				'</div>' + 
 			'</div>'

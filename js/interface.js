@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -130,6 +130,8 @@ function insertSmiley(smiley, hash) {
 	$(document).oneTime(10, function() {
 		selector.val(nValue).focus();
 	});
+	
+	return false;
 }
 
 // Deletes all the associated elements of the chat we want to remove
@@ -218,6 +220,8 @@ function generateChatLog(xid, hash) {
 		// Handled!
 		$(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
 	});
+	
+	return false;
 }
 
 // Notifies the user from a new incoming message

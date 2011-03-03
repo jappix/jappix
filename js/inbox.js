@@ -22,9 +22,9 @@ function openInbox() {
 			'<div class="head-text inbox-head-text">' + _e("Available actions") + '</div>' + 
 			
 			'<div class="head-actions inbox-head-actions">' + 
-				'<a class="a-delete-messages">' + _e("Clean") + '</a>' + 
-				'<a class="a-new-message">' + _e("New") + '</a>' + 
-				'<a class="a-show-messages">' + _e("Received") + '</a>' + 
+				'<a href="#" class="a-delete-messages">' + _e("Clean") + '</a>' + 
+				'<a href="#" class="a-new-message">' + _e("New") + '</a>' + 
+				'<a href="#" class="a-show-messages">' + _e("Received") + '</a>' + 
 			'</div>' + 
 		'</div>' + 
 		
@@ -60,7 +60,7 @@ function openInbox() {
 			'</form>' + 
 			
 			'<div class="inbox-new-send inbox-new-block">' + 
-				'<a class="send one-button talk-images">' + _e("Send message") + '</a>' + 
+				'<a href="#" class="send one-button talk-images">' + _e("Send message") + '</a>' + 
 			'</div>' + 
 		'</div>' + 
 	'</div>' + 
@@ -68,7 +68,7 @@ function openInbox() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -87,6 +87,8 @@ function openInbox() {
 function closeInbox() {
 	// Destroy the popup
 	destroyPopup('inbox');
+	
+	return false;
 }
 
 // Stores the inbox
@@ -147,6 +149,8 @@ function newInboxMessage() {
 	
 	// We reset some stuffs
 	cleanNewInboxMessage();
+	
+	return false;
 }
 
 // Cleans the inbox
@@ -245,6 +249,8 @@ function checkInboxMessage() {
 				$(this).removeClass('please-complete');	
 		});
 	}
+	
+	return false;
 }
 
 // Shows the inbox messages
@@ -263,6 +269,8 @@ function showInboxMessages() {
 	
 	// We reset some stuffs
 	cleanNewInboxMessage();
+	
+	return false;
 }
 
 // Displays a normal message
@@ -308,6 +316,8 @@ function displayInboxMessage(from, subject, content, status, id, date, msg_file_
 			revealInboxMessage(id, from, subject, content, name, date, status, msg_file_arr);
 		else
 			hideInboxMessage(id);
+		
+		return false;
 	});
 	
 	// Get the user avatar
@@ -345,6 +355,8 @@ function deleteInboxMessage(id) {
 	
 	// Store the new inbox
 	storeInbox();
+	
+	return false;
 }
 
 // Removes all the inbox messages
@@ -370,6 +382,8 @@ function purgeInbox() {
 		// Reload the inbox
 		loadInbox();
 	});
+	
+	return false;
 }
 
 // Checks if there are new messages to be notified
@@ -457,8 +471,8 @@ function revealInboxMessage(id, from, subject, content, name, date, status, msg_
 	html += '<div class="message-meta">' + 
 			'<span class="date">' + parseDate(date) + '</span>' + 
 			
-			'<a class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
-			'<a class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
+			'<a href="#" class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
+			'<a href="#" class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
 			
 			'<div class="clear"></div>' + 
 		'</div>';
@@ -470,11 +484,11 @@ function revealInboxMessage(id, from, subject, content, name, date, status, msg_
 	
 	// Click events
 	$(one_content + ' a.reply').click(function() {
-		replyInboxMessage(id, from, subject, content);
+		return replyInboxMessage(id, from, subject, content);
 	});
 	
 	$(one_content + ' a.remove').click(function() {
-		deleteInboxMessage(id);
+		return deleteInboxMessage(id);
 	});
 	
 	// Unread message
@@ -523,6 +537,8 @@ function replyInboxMessage(id, from, subject, body) {
 	$(document).oneTime(10, function() {
 		$(inbox + 'inbox-new-textarea').val(body).focus();
 	});
+	
+	return false;
 }
 
 // Loads the inbox messages
@@ -585,7 +601,7 @@ function handleInboxAttach(responseXML) {
 		
 		// Hide the attach link, show the unattach one
 		$('#inbox .inbox-new-file input').hide();
-		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fType) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a class="remove one-button talk-images">' + _e("Remove") + '</a>');
+		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fType) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + _e("Remove") + '</a>');
 		
 		// Set values to the file link
 		$('#inbox .inbox-new-file a.file').attr('data-attachedname', escape(fName))
