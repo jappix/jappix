@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/03/11
+Last revision: 03/03/11
 
 */
 
@@ -539,6 +539,10 @@ function handleMUC(pr) {
 		// Update the nickname marker
 		jQuery('#jappix_mini #chat-' + hash).attr('data-nick', escape(nickname));
 	}
+	
+	// Handle normal presence
+	else
+		handlePresence(pr);
 }
 
 // Updates the user presence
