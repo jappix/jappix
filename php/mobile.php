@@ -9,7 +9,7 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/01/11
+Last revision: 03/03/11
 
 */
 
@@ -56,6 +56,7 @@ if(!defined('JAPPIX_BASE'))
 			<form action="#" method="post" onsubmit="return doLogin(this);">
 				<input class="xid mobile-images" type="text" name="xid" required="" />
 				<input class="password mobile-images" type="password" id="pwd" name="pwd" required="" />
+				<label><input class="register" type="checkbox" id="reg" name="reg" /><?php _e("Register"); ?></label>
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
 		</div>

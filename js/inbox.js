@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -109,18 +109,18 @@ function storeInbox() {
 			// Create the storage node
 			storage.appendChild(iq.buildNode('message', {
 								     'id': value.find('id').text(),
-								     'from': value.find('from').text().revertHtmlEnc(),
-								     'subject': value.find('subject').text().revertHtmlEnc(),
+								     'from': value.find('from').text(),
+								     'subject': value.find('subject').text(),
 								     'status': value.find('status').text(),
-								     'date': value.find('date').text().revertHtmlEnc(),
-								     'file_name': file.find('name').text().revertHtmlEnc(),
-								     'file_url': file.find('url').text().revertHtmlEnc(),
-								     'file_type': file.find('type').text().revertHtmlEnc(),
-								     'file_ext': file.find('ext').text().revertHtmlEnc(),
+								     'date': value.find('date').text(),
+								     'file_name': file.find('name').text(),
+								     'file_url': file.find('url').text(),
+								     'file_type': file.find('type').text(),
+								     'file_ext': file.find('ext').text(),
 								     'xmlns': NS_INBOX
 								    },
 								    
-								    value.find('content').html().revertHtmlEnc()
+								    value.find('content').text()
 							));
 		}
 	}
@@ -539,17 +539,17 @@ function loadInbox() {
 			
 			// Display the current message
 			displayInboxMessage(
-						value.find('from').text().revertHtmlEnc(),
-						value.find('subject').text().revertHtmlEnc(),
-						value.find('content').html().revertHtmlEnc(),
-						value.find('status').text().revertHtmlEnc(),
-						value.find('id').text().revertHtmlEnc(),
-						value.find('date').text().revertHtmlEnc(),
+						value.find('from').text(),
+						value.find('subject').text(),
+						value.find('content').text(),
+						value.find('status').text(),
+						value.find('id').text(),
+						value.find('date').text(),
 						[
-						 value.find('name').text().revertHtmlEnc(),
-						 value.find('url').text().revertHtmlEnc(),
-						 value.find('type').text().revertHtmlEnc(),
-						 value.find('ext').text().revertHtmlEnc()
+						 value.find('name').text(),
+						 value.find('url').text(),
+						 value.find('type').text(),
+						 value.find('ext').text()
 						]
 					   );
 		}

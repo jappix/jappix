@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/02/11
+Last revision: 03/03/11
 
 */
 
@@ -42,6 +42,7 @@ function doLogin(aForm) {
 		}
 		
 		var pwd = aForm.pwd.value;
+		var reg = aForm.reg.checked;
 		
 		// Enough parameters
 		if(username && domain && pwd) {
@@ -70,6 +71,10 @@ function doLogin(aForm) {
 			oArgs.resource = JAPPIX_RESOURCE + ' Mobile';
 			oArgs.pass = pwd;
 			oArgs.secure = true;
+			
+			// Register?
+			if(reg)
+				oArgs.register = true;
 			
 			// We connect !
 			con.connect(oArgs);
@@ -177,9 +182,13 @@ function handleMessage(msg) {
 			var xid = cutResource(msg.getFrom());
 			var hash = hex_md5(xid);
 			var nick = getNick(xid, hash);
+			
+			// No nickname?
+			if(!nick)
+				nick = xid;
 		
 			// Create the chat if it does not exist
-			chat(xid);
+			chat(xid, nick);
 		
 			// Display the message
 			displayMessage(xid, body, nick, hash);
@@ -266,6 +275,7 @@ function handleIQ(iq) {
 		con.send(iqResponse);
 	}
 	
+	// Software version query
 	else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0092.html */
 		
@@ -319,11 +329,11 @@ function handleDisconnected() {
 }
 
 function handleRoster(iq) {
+	// Error: send presence anyway
 	if(!iq || (iq.getType() != 'result'))
-		return;
+		return sendPresence('', 'available', 1);
   	
   	// Define some pre-vars
-  	var i = 0;
   	var current, xid, nick, oneBuddy, oneID, hash;
   	var roster = document.getElementById('roster');
   	
@@ -332,7 +342,7 @@ function handleRoster(iq) {
 	var bItems = iqNode.getElementsByTagName('item');
 	
 	// Display each elements from the roster
-	for(i in bItems) {
+	for(var i = 0; i < bItems.length; i++) {
 		// Get the values
 		current = iqNode.getElementsByTagName('item').item(i);
 		xid = current.getAttribute('jid').htmlEnc();
@@ -513,9 +523,10 @@ function chatSwitch(hash) {
 	// Hide the other chats
 	var divs = document.getElementsByTagName('div');
 	
-	for(i in divs)
+	for(var i = 0; i < divs.length; i++) {
 		if(divs.item(i).getAttribute('class') == 'one-chat')
 			divs.item(i).style.display = 'none';
+	}
 	
 	// Show the chat
 	showThis('chat');
