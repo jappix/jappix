@@ -389,7 +389,7 @@ function acceptReconnect(mode) {
 	
 	// Try to login again
 	if(mode == 'normal')
-		loginFromSession(CURRENT_SESSION);
+		loginFromSession(XMLFromString(CURRENT_SESSION));
 	else if(mode == 'anonymous')
 		anonymousLogin(HOST_ANONYMOUS);
 	
