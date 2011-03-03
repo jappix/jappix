@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/03/11
+Last revision: 03/03/11
 
 */
 
@@ -46,9 +46,9 @@ function checkChatCreate(xid, type, nickname, password, title) {
 			if(!isAnonymous() && (!nickname || !password || !title)) {
 				// Catch the room data
 				var fData = $(XMLFromString(getDB('favorites', xid)));
-				var fNick = fData.find('nick').text().revertHtmlEnc();
-				var fPwd = fData.find('password').text().revertHtmlEnc();
-				var fName = fData.find('name').text().revertHtmlEnc();
+				var fNick = fData.find('nick').text();
+				var fPwd = fData.find('password').text();
+				var fName = fData.find('name').text();
 				
 				// Apply the room data
 				if(!nickname && fNick)
@@ -132,7 +132,7 @@ function generateChat(type, id, xid, nick) {
 				specialAvatar + 
 				
 				'<div class="name">' + 
-					'<p class="bc-name bc-name-nick">' + nick + '</p>' + 
+					'<p class="bc-name bc-name-nick">' + nick.htmlEnc() + '</p>' + 
 					specialName + 
 				'</div>' + 
 			'</div>' + 
@@ -195,7 +195,7 @@ function generateSwitch(type, id, xid, nick) {
 	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeQuotes(id) + '\')">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
 			
-			'<div class="name">' + nick + '</div>';
+			'<div class="name">' + nick.htmlEnc() + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
 	if(show_close)

@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 03/03/11
 
 */
 
@@ -441,11 +441,11 @@ function loginFromSession(data) {
 	
 	// Fire the login event
 	doLogin(
-		session.find('username').text().revertHtmlEnc(),
-		session.find('domain').text().revertHtmlEnc(),
-		session.find('password').text().revertHtmlEnc(),
-		session.find('resource').text().revertHtmlEnc(),
-		session.find('priority').text().revertHtmlEnc(),
+		session.find('username').text(),
+		session.find('domain').text(),
+		session.find('password').text(),
+		session.find('resource').text(),
+		session.find('priority').text(),
 		false
 	);
 }

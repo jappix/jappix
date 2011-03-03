@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -69,8 +69,8 @@ function displayPEP(xid, type) {
 		// Parse the XML for mood and activity
 		if((type == 'mood') || (type == 'activity')) {
 			if(value) {
-				var pepValue = value.find('value').text().revertHtmlEnc();
-				var pepText = value.find('text').text().revertHtmlEnc();
+				var pepValue = value.find('value').text();
+				var pepText = value.find('text').text();
 				
 				// No value?
 				if(!pepValue)
@@ -105,10 +105,10 @@ function displayPEP(xid, type) {
 			
 			if(value) {
 				// Parse the tune XML
-				var tArtist = value.find('artist').text().revertHtmlEnc();
-				var tTitle = value.find('title').text().revertHtmlEnc();
-				var tAlbum = value.find('album').text().revertHtmlEnc();
-				var tURI = value.find('uri').text().revertHtmlEnc();
+				var tArtist = value.find('artist').text();
+				var tTitle = value.find('title').text();
+				var tAlbum = value.find('album').text();
+				var tURI = value.find('uri').text();
 				var fArtist, fTitle, fAlbum, fURI;
 				
 				// Apply the good values
@@ -162,9 +162,9 @@ function displayPEP(xid, type) {
 			
 			if(value) {
 				// Parse the geoloc XML
-				var tLat = value.find('lat').text().revertHtmlEnc();
-				var tLon = value.find('lon').text().revertHtmlEnc();
-				var tHuman = value.find('human').text().revertHtmlEnc();
+				var tLat = value.find('lat').text();
+				var tLon = value.find('lon').text();
+				var tHuman = value.find('human').text();
 				
 				// No human location?
 				if(!tHuman)

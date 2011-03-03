@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -397,6 +397,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	var path = '#buddy-list .' + hash;
 	var buddy = $('#buddy-list .content .' + hash);
 	var dStatus = filterStatus(xid, status, true);
+	var tStatus = encodeQuotes(status);
 	var biStatus;
 	
 	// The buddy presence behind his name
@@ -408,7 +409,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	else
 		biStatus = value;
 	
-	$(path + ' .bi-status').replaceWith('<p class="bi-status talk-images ' + type + '" title="' + status + '">' + biStatus + '</p>');
+	$(path + ' .bi-status').replaceWith('<p class="bi-status talk-images ' + type + '" title="' + tStatus + '">' + biStatus + '</p>');
 	
 	// When the buddy disconnect himself, we hide him
 	if((type == 'unavailable') || (type == 'error')) {
@@ -460,7 +461,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		}
 		
 		// We show the presence value
-		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + ' talk-images" title="' + status + '">' + value + dStatus + '</p>');
+		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + ' talk-images" title="' + tStatus + '">' + value + dStatus + '</p>');
 		
 		// Get the disco#infos for this user
 		var highest = getHighestResource(xid);
@@ -601,7 +602,7 @@ function highestPriority(xid) {
 function getHighestResource(xid) {
 	var xml = $(highestPriority(xid));
 	var highest = xml.find('presence').attr('from');
-	var type = xml.find('type').text().revertHtmlEnc();
+	var type = xml.find('type').text();
 	
 	// If the use is online, we can return its highest resource
 	if(!type || (type == 'available') || (type == 'null'))
@@ -614,12 +615,12 @@ function getHighestResource(xid) {
 function presenceFunnel(xid, hash) {
 	// Get the highest priority presence value
 	var xml = $(highestPriority(xid));
-	var type = xml.find('type').text().revertHtmlEnc();
-	var show = xml.find('show').text().revertHtmlEnc();
-	var status = xml.find('status').text().revertHtmlEnc();
-	var avatar = xml.find('avatar').text().revertHtmlEnc();
-	var checksum = xml.find('checksum').text().revertHtmlEnc();
-	var caps = xml.find('caps').text().revertHtmlEnc();
+	var type = xml.find('type').text();
+	var show = xml.find('show').text();
+	var status = xml.find('status').text();
+	var avatar = xml.find('avatar').text();
+	var checksum = xml.find('checksum').text();
+	var caps = xml.find('caps').text();
 	
 	// Display the presence with that stored value
 	if(!type && !show)

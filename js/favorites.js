@@ -7,7 +7,7 @@ These are the favorites JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 03/03/11
 
 */
 
@@ -207,11 +207,11 @@ function editFavorite() {
 	// If this is not the default room
 	if(xid != 'none') {
 		// We apply the values
-		$(favorites + 'fedit-title').val($(data).find('name').text().revertHtmlEnc());
-		$(favorites + 'fedit-nick').val($(data).find('nick').text().revertHtmlEnc());
+		$(favorites + 'fedit-title').val($(data).find('name').text());
+		$(favorites + 'fedit-nick').val($(data).find('nick').text());
 		$(favorites + 'fedit-chan').val(getXIDNick(xid));
 		$(favorites + 'fedit-server').val(getXIDHost(xid));
-		$(favorites + 'fedit-password').val($(data).find('password').text().revertHtmlEnc());
+		$(favorites + 'fedit-password').val($(data).find('password').text());
 		
 		if($(data).find('autojoin').text() == '1')
 			$(favorites + 'fedit-autojoin').attr('checked', true);
