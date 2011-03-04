@@ -936,6 +936,19 @@ function createMini(domain, user, password) {
 				// Add the value
 				if(value != 'none')
 					jQuery(this).html('<span class="animate_' + value + ' jm_images_animate"></span>');
+			})
+			
+			.everyTime(300, function() {
+				// Array
+				var array = ['-1', '-0.5', '0', '0.5', '1'];
+				
+				// Random values
+				var v_top = array[Math.floor(Math.random() * array.length)];
+				var v_left = array[Math.floor(Math.random() * array.length)];
+				
+				// CSS style
+				jQuery(this).css('margin-top', v_top + 'px')
+				            .css('margin-left', v_left + 'px');
 			});
 		}
 	}
