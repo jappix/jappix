@@ -152,6 +152,10 @@ function applyFeatures(id) {
 	// Commands features
 	if(enabledCommands())
 		$(path + 'commands-hidable').show();
+	
+	// XMPP links (browser feature)
+	if(navigator.registerProtocolHandler)
+		$(path + 'xmpplinks-hidable').show();
 }
 
 // Enables a feature

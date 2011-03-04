@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 04/03/11
 
 */
 
@@ -50,7 +50,7 @@ function createTalkPage() {
 			html +=
 			'</div>';
 			
-			if(!anonymous) html += 
+			if(!anonymous && document.createElement('audio').canPlayType) html += 
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools music talk-images" onclick="return openMusic();"></div>' + 
 				
@@ -71,8 +71,9 @@ function createTalkPage() {
 						'</div>' + 
 					'</div>' + 
 				'</div>' + 
-			'</div>' + 
+			'</div>';
 			
+			if(!anonymous) html += 
 			'<div class="tools-all ibubble">' + 
 				'<div class="tools notifications talk-images" onclick="return showBubble(\'.notifications-content\');"></div>' + 
 				

@@ -53,7 +53,7 @@ function openWelcome() {
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a href="#" class="box" title="' + _e("Click to enable") + '">' + 
+			'<a href="#" class="box xmpplinks-hidable" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("XMPP links") + '</span>' + 
 				'<span class="description">' + _e("Open XMPP links with Jappix") + '</span>' + 
 				'<span class="image xmpp talk-images"></span>' + 

@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 04/03/11
 
 */
 
@@ -44,8 +44,8 @@ function optionsOpen() {
 				'<label for="showall">' + _e("Show all friends") + '</label>' + 
 				'<input id="showall" type="checkbox" />' + 
 				
-				'<label>' + _e("XMPP links") + '</label>' + 
-				'<a href="#" class="linked xmpp-links">' + _e("Open XMPP links with Jappix") + '</a>' + 
+				'<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
+				'<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
 			'</fieldset>' + 
 		'</div>' + 
 		

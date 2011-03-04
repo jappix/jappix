@@ -7,7 +7,7 @@ These are the music JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 04/03/11
 
 */
 
@@ -125,40 +125,46 @@ function searchMusic() {
 
 // Performs an action on the music player
 function actionMusic(action) {
-	// Initialize
-	var playThis = document.getElementById('top-content').getElementsByTagName('audio')[0];
-	
-	// Nothing to play, exit
-	if(!playThis)
-		return;
-	
-	var stopButton = $('#top-content a.stop');
-	
-	// User play a song
-	if(action == 'play') {
-		stopButton.show();
-		playThis.load();
-		playThis.play();
-		playThis.addEventListener('ended', function() {
-			actionMusic('stop');
-		}, true);  
+	try {
+		// Initialize
+		var playThis = document.getElementById('top-content').getElementsByTagName('audio')[0];
 		
-		logThis('Music is now playing.');
+		// Nothing to play, exit
+		if(!playThis)
+			return false;
+		
+		var stopButton = $('#top-content a.stop');
+		
+		// User play a song
+		if(action == 'play') {
+			stopButton.show();
+			playThis.load();
+			playThis.play();
+			playThis.addEventListener('ended', function() {
+				actionMusic('stop');
+			}, true);  
+			
+			logThis('Music is now playing.');
+		}
+		
+		// User stop the song or the song came to its end
+		else if(action == 'stop') {
+			stopButton.hide();
+			playThis.pause();
+			$('#top-content .music').removeClass('actived');
+			$('.music-content .list a').removeClass('playing');
+			$('.music-audio').remove();
+			publishMusic();
+			
+			logThis('Music is now stopped.');
+		}
 	}
 	
-	// User stop the song or the song came to its end
-	else if(action == 'stop') {
-		stopButton.hide();
-		playThis.pause();
-		$('#top-content .music').removeClass('actived');
-		$('.music-content .list a').removeClass('playing');
-		$('.music-audio').remove();
-		publishMusic();
-		
-		logThis('Music is now stopped.');
-	}
+	catch(e) {}
 	
-	return false;
+	finally {
+		return false;
+	}
 }
 
 // Publishes the current title over PEP

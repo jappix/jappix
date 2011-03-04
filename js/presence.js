@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 04/03/11
 
 */
 
@@ -328,8 +328,6 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		// Disable the private chat input
 		thisPrivate.attr('disabled', true);
 	}
-	
-	write += '</div>';
 	
 	// Must notify something
 	if(notify)

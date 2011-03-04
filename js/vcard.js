@@ -160,64 +160,69 @@ function sendThisAvatar() {
 	// Reset the avatar info
 	$('#vcard .avatar-info').hide().stopTime();
 	
-	// Get the input file
-	var fInput = document.getElementById('vcard-avatar-file');
-	var fFile = fInput.files[0];
-	
-	// If there's a file
-	if(fFile && functionExists(FileReader)) {
-		if(!fFile.type.match(/image\/[jpg|jpeg|png|gif|svg]/) || (fFile.size > 25000)) {
-			$('#vcard .avatar-error').show();
-			
-			// Timer
-			$('#vcard .avatar-info').oneTime('10s', function() {
-				$(this).hide();
-			});
-		}
+	try {
+		// Get the input file
+		var fInput = document.getElementById('vcard-avatar-file');
+		var fFile = fInput.files[0];
 		
-		else {
-			var fReader = new FileReader();
-			
-			fReader.onload = function(e) {
-				// We get the needed values
-				var fResult = e.target.result;
-				var fReplaced = fResult.replace(/data\:(.+)/gim, '$1');
-				var fSplitted = fReplaced.split(';base64,');
-				
-				// We remove everything that isn't useful right here
-				$('#vcard .no-avatar').hide();
-				$('#vcard .avatar').remove();
-				
-				// We display the delete button
-				$('#vcard .avatar-delete').show();
-				
-				// We tell the user it's okay
-				$('#vcard .avatar-ok').show();
+		// If there's a file
+		if(fFile) {
+			if(!fFile.type.match(/image\/[jpg|jpeg|png|gif|svg]/) || (fFile.size > 25000)) {
+				$('#vcard .avatar-error').show();
 				
 				// Timer
 				$('#vcard .avatar-info').oneTime('10s', function() {
 					$(this).hide();
 				});
-				
-				// We put the base64 values in a hidden input to be sent
-				$('#USER-PHOTO-TYPE').val(fSplitted[0]);
-				$('#USER-PHOTO-BINVAL').val(fSplitted[1]);
-				
-				// We display the avatar !
-				$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
 			}
 			
-			fReader.readAsDataURL(fFile);
+			else {
+				var fReader = new FileReader();
+				
+				fReader.onload = function(e) {
+					// We get the needed values
+					var fResult = e.target.result;
+					var fReplaced = fResult.replace(/data\:(.+)/gim, '$1');
+					var fSplitted = fReplaced.split(';base64,');
+					
+					// We remove everything that isn't useful right here
+					$('#vcard .no-avatar').hide();
+					$('#vcard .avatar').remove();
+					
+					// We display the delete button
+					$('#vcard .avatar-delete').show();
+					
+					// We tell the user it's okay
+					$('#vcard .avatar-ok').show();
+					
+					// Timer
+					$('#vcard .avatar-info').oneTime('10s', function() {
+						$(this).hide();
+					});
+					
+					// We put the base64 values in a hidden input to be sent
+					$('#USER-PHOTO-TYPE').val(fSplitted[0]);
+					$('#USER-PHOTO-BINVAL').val(fSplitted[1]);
+					
+					// We display the avatar !
+					$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
+				}
+				
+				fReader.readAsDataURL(fFile);
+			}
 		}
+		
+		// Reset the file input
+		$('#vcard-avatar-file').val('');
 	}
 	
-	else
+	catch(e) {
 		openThisInfo(7);
+	}
 	
-	// Reset the file input
-	$('#vcard-avatar-file').val('');
-	
-	return false;
+	finally {
+		return false;
+	}
 }
 
 // Deletes the encoded avatar of an user
