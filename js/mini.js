@@ -7,21 +7,22 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 04/03/11
 
 */
 
 // Jappix Mini vars
-var MINI_CONNECTING = false;
-var MINI_AUTOCONNECT = false;
-var MINI_SHOWPANE = false;
-var MINI_INITIALIZED = false;
-var MINI_ANONYMOUS = false;
-var MINI_NICKNAME = null;
-var MINI_TITLE = null;
-var MINI_GROUPCHATS = [];
-var MINI_PASSWORDS = [];
-var MINI_RESOURCE = JAPPIX_RESOURCE + ' Mini';
+var MINI_CONNECTING	= false;
+var MINI_AUTOCONNECT	= false;
+var MINI_SHOWPANE	= false;
+var MINI_INITIALIZED	= false;
+var MINI_ANONYMOUS	= false;
+var MINI_ANIMATE	= false;
+var MINI_NICKNAME	= null;
+var MINI_TITLE		= null;
+var MINI_GROUPCHATS	= [];
+var MINI_PASSWORDS	= [];
+var MINI_RESOURCE	= JAPPIX_RESOURCE + ' Mini';
 
 // Setups connection handlers
 function setupCon(con) {
@@ -775,6 +776,9 @@ function createMini(domain, user, password) {
 			
 			// Not yet connected?
 			if(jQuery(counter).text() == _e("Chat")) {
+				// Remove the animated bubble
+				jQuery('#jappix_mini div.jm_starter span.jm_animate').stopTime().remove();
+				
 				// Add a waiting marker
 				jQuery(counter).text(_e("Please wait..."));
 				
@@ -903,8 +907,38 @@ function createMini(domain, user, password) {
 		connect(domain, user, password);
 	
 	// Cannot auto-connect?
-	else
+	else {
+		// Chat text
 		jQuery('#jappix_mini a.jm_pane.jm_button span.jm_counter').text(_e("Chat"));
+		
+		// Must animate?
+		if(MINI_ANIMATE) {
+			// Does not provide alpha colors support
+			if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
+				return;
+			
+			// Add content
+			jQuery('#jappix_mini div.jm_starter a.jm_pane').prepend(
+				'<span class="jm_animate jm_images_animate">' + 
+					'<span class="animate_left jm_images_animate"></span>' + 
+				'</span>'
+			);
+			
+			// Add timers
+			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime('1s', function() {
+				// Random array
+				var array = ['right', 'left', 'none'];
+				var value = array[Math.floor(Math.random() * array.length)];
+				
+				// Reset everything
+				jQuery(this).empty();
+				
+				// Add the value
+				if(value != 'none')
+					jQuery(this).html('<span class="animate_' + value + ' jm_images_animate"></span>');
+			});
+		}
+	}
 }
 
 // Displays a given message

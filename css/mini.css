@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/02/11
+Last revision: 04/03/11
 
 */
 
@@ -45,6 +45,11 @@ Last revision: 24/02/11
 
 #jappix_mini .jm_images {
 	background-image: url(../img/sprites/mini.png);
+	background-repeat: no-repeat;
+}
+
+#jappix_mini .jm_images_animate {
+	background-image: url(../img/sprites/animate.png);
 	background-repeat: no-repeat;
 }
 
@@ -344,6 +349,33 @@ Last revision: 24/02/11
 	border-left: 1px solid #999999;
 	border-right: 1px solid #999999;
 	padding: 7px 10px 6px 10px;
+}
+
+#jappix_mini span.jm_animate {
+	background-position: 0 0;
+	width: 120px;
+	height: 114px;
+	position: absolute;
+	top: -114px;
+	left: -74px;
+	z-index: 1;
+	display: block;
+}
+
+#jappix_mini span.jm_animate span.animate_right {
+	background-position: 0 -114px;
+	width: 24px;
+	height: 21px;
+	margin: 16px 0 0 42px;
+	display: block;
+}
+
+#jappix_mini span.jm_animate span.animate_left {
+	background-position: -101px -114px;
+	width: 19px;
+	height: 17px;
+	margin: 19px 0 0 51px;
+	display: block;
 }
 
 #jappix_mini span.jm_counter {
