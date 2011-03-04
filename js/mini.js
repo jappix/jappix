@@ -938,9 +938,9 @@ function createMini(domain, user, password) {
 					jQuery(this).html('<span class="animate_' + value + ' jm_images_animate"></span>');
 			})
 			
-			.everyTime(300, function() {
+			.everyTime(250, function() {
 				// Array
-				var array = ['-1', '-0.5', '0', '0.5', '1'];
+				var array = ['-1', '-0.75', '-0.5', '-0.25', '0', '0.25', '0.5', '0.75', '1'];
 				
 				// Random values
 				var v_top = array[Math.floor(Math.random() * array.length)];
