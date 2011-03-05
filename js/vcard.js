@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 05/03/11
 
 */
 
@@ -380,10 +380,10 @@ function handleVCard(iq, type) {
 	// Update the stored avatar
 	if(type == 'buddy') {
 		// Get the avatar XML
-		var xml = XMLFromString(getPersistent('avatar', iqFrom));
+		var xml = getPersistent('avatar', iqFrom);
 		
 		// If there were no stored avatar previously
-		if($(xml).find('type').text() == 'none') {
+		if($(XMLFromString(xml)).find('type').text() == 'none') {
 			xml = xml.replace(/<forced>false<\/forced>/gi, '<forced>true</forced>');
 			setPersistent('avatar', iqFrom, xml);
 		}
