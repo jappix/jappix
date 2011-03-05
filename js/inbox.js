@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 05/03/11
 
 */
 
@@ -608,6 +608,14 @@ function handleInboxAttach(responseXML) {
 						  .attr('data-attachedtype', escape(fType))
 						  .attr('data-attachedext',  escape(fExt))
 						  .attr('data-attachedurl',  escape(fURL));
+		
+		// Click events
+		$('#inbox .inbox-new-file a.remove').click(function() {
+			$('#inbox .inbox-new-file a').remove();
+			$('#inbox .inbox-new-file input').show();
+			
+			return false;
+		});
 		
 		logThis('File attached.', 3);
 	}

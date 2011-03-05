@@ -614,8 +614,8 @@ function handleMicroblogAttach(responseXML) {
 	}
 	
 	else {
-		// Hide our bubble
-		closeBubbles();
+		// Do not allow this bubble to be hidden
+		$('#attach').removeClass('bubble');
 		
 		// Get the file values
 		var fName = dData.find('name').text();
