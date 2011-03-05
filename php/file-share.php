@@ -84,16 +84,16 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	}
 	
 	// Resize and compress if this is a JPEG file
-	if(($ext == 'jpg') || ($ext == 'jpeg')) {
+	if(preg_match('/^(jpg|jpeg|png|gif)$/i', $ext)) {
 		// Resize the image
-		resizeImage($path, 1024, 1024);
+		resizeImage($path, $ext, 1024, 1024);
 		
 		// Copy the image
 		$thumb = $content_dir.'/'.$name.'_thumb.'.$ext;
 		copy($path, $thumb);
 		
 		// Create the thumbnail
-		if(resizeImage($thumb, 150, 115))
+		if(resizeImage($thumb, $ext, 150, 115))
 			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
 	}
 	

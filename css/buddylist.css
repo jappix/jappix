@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/03/11
+Last revision: 05/03/11
  
 */
  
@@ -229,7 +229,8 @@ Last revision: 02/03/11
 }
  
 .manage-infos p.bm-remove,
-#rosterx .oneresult span.action.delete {
+#rosterx .oneresult span.action.delete,
+#attach div.one-file a.remove {
         background-position: 0 -1200px;
 }
  

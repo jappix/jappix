@@ -67,11 +67,6 @@ Last revision: 05/03/11
 	display: none;
 }
 
-#channel div.update .unattach {
-	background-position: 0 -100px;
-	display: none;
-}
-
 #attach {
 	position: absolute;
 	width: 263px;
@@ -88,12 +83,32 @@ Last revision: 05/03/11
 }
 
 #attach input[type=submit] {
-	margin-top: 8px;
+	margin: 8px 0 6px 0;
 }
 
 #attach .wait {
 	float: right;
 	margin: 7px 5px;
+}
+
+#attach div.one-file {
+	height: 16px;
+	margin-top: 2px;
+}
+
+#attach div.one-file a.link {
+	color: white;
+	width: 215px;
+	height: 14px;
+	margin-left: 2px;
+	overflow: hidden;
+	float: left;
+}
+
+#attach div.one-file a.remove {
+	width: 16px;
+	height: 16px;
+	float: left;
 }
 
 .attach-subarrow {
@@ -179,6 +194,10 @@ Last revision: 05/03/11
 	padding-left: 22px;
 	text-decoration: underline;
 	display: block;
+}
+
+#channel .one-update p.file a.link {
+	margin-top: 4px;
 }
 
 #channel p.file a.audio,

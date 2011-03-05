@@ -1254,14 +1254,29 @@ function manageUsers($action, $array) {
 }
 
 // Resize an image with GD
-function resizeImage($path, $width, $height) {
+function resizeImage($path, $ext, $width, $height) {
 	// No GD?
 	if(!function_exists('gd_info'))
 		return false;
 	
 	try {
 		// Initialize GD
-		$img_resize = imagecreatefromjpeg($path);
+		switch($ext) {
+			case 'png':
+				$img_resize = imagecreatefrompng($path);
+				
+				break;
+			
+			case 'gif':
+				$img_resize = imagecreatefromgif($path);
+				
+				break;
+			
+			default:
+				$img_resize = imagecreatefromjpeg($path);
+		}
+		
+		// Get the image size
 		$img_size = getimagesize($path);
 		$img_width = $img_size[0];
 		$img_height = $img_size[1];
@@ -1289,7 +1304,19 @@ function resizeImage($path, $width, $height) {
 		}
 	
 		// Create the new image
-		$new_img = imagecreatetruecolor($new_width , $new_height) or die ('');
+		$new_img = imagecreatetruecolor($new_width, $new_height);
+		
+		// Must keep alpha pixels?
+		if(($ext == 'png') || ($ext == 'gif')){
+			imagealphablending($new_img, false);
+			imagesavealpha($new_img, true);
+			
+			// Set transparent pixels
+			$transparent = imagecolorallocatealpha($new_img, 255, 255, 255, 127);
+			imagefilledrectangle($new_img, 0, 0, $new_width, $new_height, $transparent);
+		}
+		
+		// Copy the new image
 		imagecopyresampled($new_img, $img_resize, 0, 0, 0, 0, $new_width, $new_height, $img_size[0], $img_size[1]);
 	
 		// Destroy the old data
@@ -1297,7 +1324,20 @@ function resizeImage($path, $width, $height) {
 		unlink($path);
 	
 		// Write the new image
-		imagejpeg($new_img, $path, 85);
+		switch($ext) {
+			case 'png':
+				imagepng($new_img, $path);
+				
+				break;
+			
+			case 'gif':
+				imagegif($new_img, $path);
+				
+				break;
+			
+			default:
+				imagejpeg($new_img, $path, 85);
+		}
 		
 		return true;
 	}

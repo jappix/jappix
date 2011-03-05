@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/02/11
+Last revision: 05/03/11
 
 */
 
@@ -254,7 +254,7 @@ Last revision: 16/02/11
 }
 
 #page-engine b.name.talk-images {
-	background-position: 50px -1679px;
+	background-position: 50px -99px;
 	padding-left: 68px;
 }
 

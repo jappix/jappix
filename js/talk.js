@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/03/11
+Last revision: 05/03/11
 
 */
 
@@ -189,7 +189,6 @@ function createTalkPage() {
 								
 								'<div class="one-microblog-icon ibubble">' + 
 									'<a href="#" onclick="return showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
-									'<a href="#" onclick="return unattachMicroblog();" class="postit unattach talk-images"></a>' + 
 									
 									'<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
 										'<div class="attach-subarrow talk-images"></div>' + 

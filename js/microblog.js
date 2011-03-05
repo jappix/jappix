@@ -35,8 +35,18 @@ function displayMicroblog(packet, from, hash, mode) {
 		tName = getBuddyName(from);
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
 		
-		// Read attached files
-		$(this).find('file').each(function() {
+		// Read attached files with a thumb (place them at first)
+		$(this).find('file[thumb]').each(function() {
+			tFName.push($(this).attr('name'));
+			tFURL.push($(this).attr('url'));
+			tFThumb.push($(this).attr('thumb'));
+			tFSource.push($(this).attr('source'));
+			tFType.push($(this).attr('type'));
+			tFExt.push($(this).attr('ext'));
+		});
+		
+		// Read attached files without any thumb
+		$(this).find('file:not([thumb])').each(function() {
 			tFName.push($(this).attr('name'));
 			tFURL.push($(this).attr('url'));
 			tFThumb.push($(this).attr('thumb'));
@@ -466,24 +476,25 @@ function sendMicroblog() {
 			// Disable & blur our input
 			selector.attr('disabled', true).blur();
 			
-			// Get the file values
-			var fName = selector.attr('data-attachedname');
-			var fType = selector.attr('data-attachedurl');
-			var fExt = selector.attr('data-attachedtype');
-			var fURL = selector.attr('data-attachedext');
-			var fThumb = selector.attr('data-attachedthumb');
+			// Files array
+			var fName = [];
+			var fType = [];
+			var fExt = [];
+			var fURL = [];
+			var fThumb = [];
 			
-			// Unescape the values
-			if(fName && fType && fExt && fURL) {
-				fName = unescape(fName);
-				fType = unescape(fType);
-				fExt = unescape(fExt);
-				fURL = unescape(fURL);
-				fThumb = unescape(fThumb);
-			}
+			// Read the files
+			$('#attach .one-file').each(function() {
+				// Push the values!
+				fName.push($(this).find('a.link').text());
+				fType.push($(this).attr('data-type'));
+				fExt.push($(this).attr('data-ext'));
+				fURL.push($(this).find('a.link').attr('href'));
+				fThumb.push($(this).attr('data-thumb'));
+			});
 			
 			// Send the message on the XMPP network
-			publishMicroblog(body, [fName], [fType], [fExt], [fURL], [fThumb]);
+			publishMicroblog(body, fName, fURL, fType, fExt, fThumb);
 		}
 	}
 	
@@ -584,13 +595,27 @@ function attachMicroblog() {
 }
 
 // Unattaches a microblog file
-function unattachMicroblog() {
-	// Reset the attached file input values
-	$('input[name=microblog_body]').removeAttr('data-attachedname').removeAttr('data-attachedtype').removeAttr('data-attachedext').removeAttr('data-attachedthumb').removeAttr('data-attachedurl');
+function unattachMicroblog(id) {
+	// Individual removal?
+	if(id)
+		$('#attach .one-file[data-id=' + id + ']').remove();
+	else
+		$('#attach .one-file').remove();
 	
-	// Hide the unattach link, show the attach one
-	$('.postit.unattach').hide().removeAttr('title');
-	$('.postit.attach').css('display', 'block');
+	// Must enable the popup again?
+	if(!exists('#attach .one-file')) {
+		// Restore the bubble class
+		$('#attach').addClass('bubble');
+		
+		// Enable the bubble click events
+		if(id) {
+			$('#attach').hide();
+			showBubble('#attach');
+		}
+		
+		else
+			closeBubbles();
+	}
 	
 	return false;
 }
@@ -598,7 +623,7 @@ function unattachMicroblog() {
 // Wait event for file attaching
 function waitMicroblogAttach() {
 	// Append the wait icon
-	$('#attach .attach-subitem').append('<div class="wait wait-medium"></div>');
+	$('#attach input[type=submit]').after('<div class="wait wait-medium"></div>'); 
 }
 
 // Success event for file attaching
@@ -624,16 +649,21 @@ function handleMicroblogAttach(responseXML) {
 		var fURL = dData.find('url').text();
 		var fThumb = dData.find('thumb').text();
 		
-		// Set values to the form
-		$('#channel input[name=microblog_body]').attr('data-attachedname', escape(fName))
-							.attr('data-attachedtype', escape(fType))
-							.attr('data-attachedext',  escape(fExt))
-							.attr('data-attachedurl',  escape(fURL))
-							.attr('data-attachedthumb',  escape(fThumb));
+		// Generate a file ID
+		var fID = hex_md5(fURL);
 		
-		// Hide the attach link, show the unattach one
-		$('#channel .postit.attach').hide();
-		$('#channel .postit.unattach').attr('title', _e("Unattach the file") + ' (' + fName + '.' + fExt + ')').css('display', 'block');
+		// Add this file
+		$('#attach .attach-subitem').append(
+			'<div class="one-file" data-type="' + encodeQuotes(fType) + '" data-ext="' + encodeQuotes(fExt) + '" data-thumb="' + encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
+				'<a class="remove talk-images" href="#" title="' + encodeQuotes(_e("Unattach the file")) + '"></a>' + 
+				'<a class="link" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a>' + 
+			'</div>'
+		);
+		
+		// Click event
+		$('#attach .one-file[data-id=' + fID + '] a.remove').click(function() {
+			return unattachMicroblog(fID);
+		});
 		
 		logThis('File attached.', 3);
 	}
