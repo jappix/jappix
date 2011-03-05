@@ -833,7 +833,7 @@ function eventIdle() {
 		
 		// Change the presence input
 		$('#my-infos .f-presence a.picker').attr('data-value', show);
-		$('#presence-status').val(status);
+		$('#presence-status').val(status).placeholder();
 		
 		// Then restore the old presence
 		presenceSend('', true);
