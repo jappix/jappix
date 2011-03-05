@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/03/11
+Last revision: 05/03/11
 
 */
 
@@ -814,7 +814,7 @@ function autoIdle() {
 		
 		// Change the presence input
 		$('#my-infos .f-presence a.picker').attr('data-value', idle_presence);
-		$('#presence-status').val(status);
+		$('#presence-status').val(status).placeholder();
 		
 		// Then send the xa presence
 		presenceSend('', true);

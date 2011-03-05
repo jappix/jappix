@@ -18,21 +18,32 @@ function displayMicroblog(packet, from, hash, mode) {
 	
 	iParse.each(function() {
 		// Initialize
-		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFile, tFURL, tFName, tFType, tFExt, tFEClick;
+		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFEClick;
+		
+		// Arrays
+		var tFName = [];
+		var tFURL = [];
+		var tFThumb = [];
+		var tFSource = [];
+		var tFType = [];
+		var tFExt = [];
 		
 		// Get the values
 		tDate = $(this).find('published').text();
 		tBody = $(this).find('body').text();
-		tFile = $(this).find('file:first');
-		tFName = tFile.attr('name');
-		tFURL = tFile.attr('url');
-		tFThumb = tFile.attr('thumb');
-		tFSource = tFile.attr('source');
-		tFType = tFile.attr('type');
-		tFExt = tFile.attr('ext');
 		tID = $(this).attr('id');
 		tName = getBuddyName(from);
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
+		
+		// Read attached files
+		$(this).find('file').each(function() {
+			tFName.push($(this).attr('name'));
+			tFURL.push($(this).attr('url'));
+			tFThumb.push($(this).attr('thumb'));
+			tFSource.push($(this).attr('source'));
+			tFType.push($(this).attr('type'));
+			tFExt.push($(this).attr('ext'));
+		});
 		
 		// Get the stamp & time
 		if(tDate) {
@@ -69,23 +80,30 @@ function displayMicroblog(packet, from, hash, mode) {
 						'<p><b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 						'<p class="infos">' + tTime + '</p>';
 			
-			// Supported image/video/sound
-			if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
-				tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL) + '\', \'' + encodeOnclick(tFType) + '\');" ';
-			else
-				tFEClick = '';
-			
-			if(tFName && tFURL) {
+			// Any file to display?
+			if(tFURL.length)
 				html += '<p class="file">';
+			
+			for(var f = 0; f < tFURL.length; f++) {
+				// Not enough data?
+				if(!tFName[f] || !tFURL[f] || !tFType[f])
+					continue;
+				
+				// Supported image/video/sound
+				if(tFExt[f] && ((tFExt[f] == 'jpg') || (tFExt[f] == 'jpeg') || (tFExt[f] == 'png') || (tFExt[f] == 'gif') || (tFExt[f] == 'ogg') || (tFExt[f] == 'oga') || (tFExt[f] == 'ogv')))
+					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFType[f]) + '\');" ';
+				else
+					tFEClick = '';
 				
 				// Any thumbnail?
-				if(tFThumb)
-					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank" title="' + encodeQuotes(tFName) + '"><img src="' + encodeQuotes(tFThumb) + '" alt="" /></a>';
+				if(tFThumb[f])
+					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
 				else
-					html += '<a class="' + encodeQuotes(tFType) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a>';
-				
-				html += '</p>';
+					html += '<a class="' + encodeQuotes(tFType[f]) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
 			}
+			
+			if(tFURL.length)
+				html += '</p>';
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
@@ -465,7 +483,7 @@ function sendMicroblog() {
 			}
 			
 			// Send the message on the XMPP network
-			publishMicroblog(body, fName, fType, fExt, fURL, fThumb);
+			publishMicroblog(body, [fName], [fType], [fExt], [fURL], [fThumb]);
 		}
 	}
 	
@@ -515,18 +533,22 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 			'xmlns': NS_ATOM
 	}));
 	
-	// Create the attached file node
-	if(attachedname && attachedurl && attachedtype) {
+	// Create the attached files nodes
+	for(var i = 0; i < attachedurl.length; i++) {
+		// Not enough data?
+		if(!attachedname[i] || !attachedurl[i] || !attachedtype[i])
+			continue;
+		
 		// Append a new file element
-		var file = entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname, 'url': attachedurl, 'type': attachedtype, 'source': 'web'}));
+		var file = entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname[i], 'url': attachedurl[i], 'type': attachedtype[i], 'source': 'web'}));
 		
 		// Any extension?
-		if(attachedext)
-			file.setAttribute('ext', attachedext);
+		if(attachedext[i])
+			file.setAttribute('ext', attachedext[i]);
 		
 		// Any thumbnail?
-		if(attachedthumb)
-			file.setAttribute('thumb', attachedthumb);
+		if(attachedthumb[i])
+			file.setAttribute('thumb', attachedthumb[i]);
 	}
 	
 	// Send the IQ

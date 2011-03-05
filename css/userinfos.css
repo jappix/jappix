@@ -7,7 +7,7 @@ This is the user-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/01/11
+Last revision: 05/03/11
 
 */
 
@@ -87,7 +87,7 @@ Last revision: 16/01/11
 }
 
 #userinfos textarea {
-	margin: 30px;
+	margin: 30px 0 0 30px;
 	width: 572px;
 	height: 292px;
 }
