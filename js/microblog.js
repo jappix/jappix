@@ -623,7 +623,10 @@ function unattachMicroblog(id) {
 // Wait event for file attaching
 function waitMicroblogAttach() {
 	// Append the wait icon
-	$('#attach input[type=submit]').after('<div class="wait wait-medium"></div>'); 
+	$('#attach input[type=submit]').after('<div class="wait wait-medium"></div>');
+	
+	// Lock the bubble
+	$('#attach').removeClass('bubble');
 }
 
 // Success event for file attaching
@@ -634,6 +637,14 @@ function handleMicroblogAttach(responseXML) {
 	// Process the returned data
 	if(dData.find('error').size()) {
 		openThisError(4);
+		
+		// Unlock the bubble?
+		if(!exists('#attach .one-file')) {
+			$('#attach').addClass('bubble').hide();
+			
+			// Show the bubble again!
+			showBubble('#attach');
+		}
 		
 		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
 	}
