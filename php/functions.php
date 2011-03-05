@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 28/02/11
+Last revision: 05/03/11
 
 */
 
@@ -1251,6 +1251,60 @@ function manageUsers($action, $array) {
 	
 	// Write the main configuration
 	writeXML('conf', 'users', $users_xml);
+}
+
+// Resize an image with GD
+function resizeImage($path, $width, $height) {
+	// No GD?
+	if(!function_exists('gd_info'))
+		return false;
+	
+	try {
+		// Initialize GD
+		$img_resize = imagecreatefromjpeg($path);
+		$img_size = getimagesize($path);
+		$img_width = $img_size[0];
+		$img_height = $img_size[1];
+	
+		// Necessary to change the image width
+		if($img_width > $width && ($img_width > $img_height)) {
+			// Process the new sizes
+			$new_width = $width;
+			$img_process = (($new_width * 100) / $img_width);
+			$new_height = (($img_height * $img_process) / 100);
+		}
+	
+		// Necessary to change the image height
+		else if($img_height > $height && ($img_width < $img_height)) {
+			// Process the new sizes
+			$new_height = $height;
+			$img_process = (($new_height * 100) / $img_height);
+			$new_width = (($img_width * $img_process) / 100);
+		}
+	
+		// Else, just use the old sizes
+		else {
+			$new_width = $img_width;
+			$new_height = $img_height;
+		}
+	
+		// Create the new image
+		$new_img = imagecreatetruecolor($new_width , $new_height) or die ('');
+		imagecopyresampled($new_img, $img_resize, 0, 0, 0, 0, $new_width, $new_height, $img_size[0], $img_size[1]);
+	
+		// Destroy the old data
+		imagedestroy($img_resize);
+		unlink($path);
+	
+		// Write the new image
+		imagejpeg($new_img, $path, 85);
+		
+		return true;
+	}
+	
+	catch(Exception $e) {
+		return false;
+	}
 }
 
 ?>

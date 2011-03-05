@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/03/11
+Last revision: 05/03/11
 
 */
 
@@ -136,7 +136,7 @@ Last revision: 02/03/11
 	width: 50px;
 }
 
-#channel .one-update img {
+#channel .one-update img.avatar {
 	max-height: 50px;
 	max-width: 50px;
 }
@@ -172,7 +172,7 @@ Last revision: 02/03/11
 	margin: 6px 0 5px 75px;
 }
 
-#channel .one-update p.file a,
+#channel .one-update p.file a.link,
 #inbox .message-file a,
 #inbox .inbox-new-file a.file {
 	min-height: 16px;
@@ -215,6 +215,18 @@ Last revision: 02/03/11
 #inbox .message-file a.other,
 #inbox .inbox-new-file a.file.other {
 	background-position: 0 -989px;
+}
+
+#channel .one-update p.file a.thumb img {
+	border: 1px solid #a2a2a2;
+	max-width: 150px;
+	max-height: 115px;
+	margin: 4px 10px 2px 0;
+	padding: 1px;
+}
+
+#channel .one-update p.file a.thumb img:hover {
+	border-color: #464646;
 }
 
 #channel a.more {

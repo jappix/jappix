@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 05/03/11
 
 */
 
@@ -26,6 +26,8 @@ function displayMicroblog(packet, from, hash, mode) {
 		tFile = $(this).find('file:first');
 		tFName = tFile.attr('name');
 		tFURL = tFile.attr('url');
+		tFThumb = tFile.attr('thumb');
+		tFSource = tFile.attr('source');
 		tFType = tFile.attr('type');
 		tFExt = tFile.attr('ext');
 		tID = $(this).attr('id');
@@ -73,8 +75,17 @@ function displayMicroblog(packet, from, hash, mode) {
 			else
 				tFEClick = '';
 			
-			if(tFName && tFURL)
-				html += '<p class="file"><a class="' + encodeQuotes(tFType) + ' talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a></p>';
+			if(tFName && tFURL) {
+				html += '<p class="file">';
+				
+				// Any thumbnail?
+				if(tFThumb)
+					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank" title="' + encodeQuotes(tFName) + '"><img src="' + encodeQuotes(tFThumb) + '" alt="" /></a>';
+				else
+					html += '<a class="' + encodeQuotes(tFType) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL) + '" target="_blank">' + tFName.htmlEnc() + '</a>';
+				
+				html += '</p>';
+			}
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
@@ -133,7 +144,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click events
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt);
+				return publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt, tFThumb);
 			});
 		}
 	});
@@ -442,6 +453,7 @@ function sendMicroblog() {
 			var fType = selector.attr('data-attachedurl');
 			var fExt = selector.attr('data-attachedtype');
 			var fURL = selector.attr('data-attachedext');
+			var fThumb = selector.attr('data-attachedthumb');
 			
 			// Unescape the values
 			if(fName && fType && fExt && fURL) {
@@ -449,10 +461,11 @@ function sendMicroblog() {
 				fType = unescape(fType);
 				fExt = unescape(fExt);
 				fURL = unescape(fURL);
+				fThumb = unescape(fThumb);
 			}
 			
 			// Send the message on the XMPP network
-			publishMicroblog(body, fName, fType, fExt, fURL);
+			publishMicroblog(body, fName, fType, fExt, fURL, fThumb);
 		}
 	}
 	
@@ -463,7 +476,7 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
@@ -503,8 +516,18 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}));
 	
 	// Create the attached file node
-	if(attachedname && attachedurl && attachedtype && attachedext)
-		entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname, 'url': attachedurl, 'type': attachedtype, 'ext': attachedext}));
+	if(attachedname && attachedurl && attachedtype) {
+		// Append a new file element
+		var file = entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname, 'url': attachedurl, 'type': attachedtype, 'source': 'web'}));
+		
+		// Any extension?
+		if(attachedext)
+			file.setAttribute('ext', attachedext);
+		
+		// Any thumbnail?
+		if(attachedthumb)
+			file.setAttribute('thumb', attachedthumb);
+	}
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
@@ -541,7 +564,7 @@ function attachMicroblog() {
 // Unattaches a microblog file
 function unattachMicroblog() {
 	// Reset the attached file input values
-	$('input[name=microblog_body]').removeAttr('data-attachedname').removeAttr('data-attachedtype').removeAttr('data-attachedext').removeAttr('data-attachedurl');
+	$('input[name=microblog_body]').removeAttr('data-attachedname').removeAttr('data-attachedtype').removeAttr('data-attachedext').removeAttr('data-attachedthumb').removeAttr('data-attachedurl');
 	
 	// Hide the unattach link, show the attach one
 	$('.postit.unattach').hide().removeAttr('title');
@@ -577,12 +600,14 @@ function handleMicroblogAttach(responseXML) {
 		var fType = dData.find('type').text();
 		var fExt = dData.find('ext').text();
 		var fURL = dData.find('url').text();
+		var fThumb = dData.find('thumb').text();
 		
 		// Set values to the form
 		$('#channel input[name=microblog_body]').attr('data-attachedname', escape(fName))
 							.attr('data-attachedtype', escape(fType))
 							.attr('data-attachedext',  escape(fExt))
-							.attr('data-attachedurl',  escape(fURL));
+							.attr('data-attachedurl',  escape(fURL))
+							.attr('data-attachedthumb',  escape(fThumb));
 		
 		// Hide the attach link, show the unattach one
 		$('#channel .postit.attach').hide();
