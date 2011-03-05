@@ -814,7 +814,7 @@ function autoIdle() {
 		
 		// Change the presence input
 		$('#my-infos .f-presence a.picker').attr('data-value', idle_presence);
-		$('#presence-status').val(status).placeholder();
+		$('#presence-status').val(status);
 		
 		// Then send the xa presence
 		presenceSend('', true);
