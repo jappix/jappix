@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/03/11
+Last revision: 06/03/11
 
 */
 
@@ -468,8 +468,9 @@ function handlePresence(pr) {
 		// Offline marker
 		jQuery(friend).addClass('jm_offline').removeClass('jm_online');
 		
-		// Disable the chat input
-		jQuery(send_input).addClass('jm_disabled').attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
+		// Disable the chat tools
+		jQuery(chat).addClass('jm_disabled');
+		jQuery(send_input).attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
 	}
 	
 	else {
@@ -477,7 +478,8 @@ function handlePresence(pr) {
 		jQuery(friend).removeClass('jm_offline').addClass('jm_online');
 		
 		// Enable the chat input
-		jQuery(send_input).removeClass('jm_disabled').removeAttr('disabled').val('');
+		jQuery(chat).removeClass('jm_disabled');
+		jQuery(send_input).removeAttr('disabled').val('');
 	}
 	
 	// Change the show presence of this buddy

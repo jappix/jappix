@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/03/11
+Last revision: 06/03/11
 
 */
 
@@ -70,6 +70,7 @@ Last revision: 04/03/11
 	border-style: solid;
 	border-width: 1px 1px 0 1px;
 	font-weight: bold;
+	outline-style: none;
 	display: block;
 	padding: 6px;
 	height: 13px;
@@ -217,6 +218,7 @@ Last revision: 04/03/11
 }
 
 #jappix_mini div.jm_received-messages {
+	background-color: white;
 	padding: 5px 0 4px;
 	height: 242px;
 	overflow: auto;
@@ -280,8 +282,13 @@ Last revision: 04/03/11
 	min-height: 14px;
 }
 
-#jappix_mini input.jm_send-messages.jm_disabled {
-	background-color: #f3f3f3;
+#jappix_mini div.jm_disabled div.jm_chat-content,
+#jappix_mini div.jm_disabled input.jm_send-messages,
+#jappix_mini div.jm_disabled a.jm_pane {
+	background: #f3f3f3 !important;
+}
+
+#jappix_mini div.jm_disabled input.jm_send-messages {
 	color: #9d9d9d;
 }
 
