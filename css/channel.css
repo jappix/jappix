@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 06/03/11
 
 */
 
@@ -238,8 +238,8 @@ Last revision: 05/03/11
 
 #channel .one-update p.file a.thumb img {
 	border: 1px solid #a2a2a2;
-	max-width: 150px;
-	max-height: 115px;
+	max-width: 140px;
+	max-height: 105px;
 	margin: 4px 10px 2px 0;
 	padding: 1px;
 }

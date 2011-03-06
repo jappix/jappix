@@ -9,7 +9,7 @@ This is the Jappix microblog file attaching script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 06/03/11
 
 */
 
@@ -93,7 +93,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 		copy($path, $thumb);
 		
 		// Create the thumbnail
-		if(resizeImage($thumb, $ext, 150, 115))
+		if(resizeImage($thumb, $ext, 140, 105))
 			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
 	}
 	
