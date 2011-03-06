@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 01/03/11
+Last revision: 06/03/11
 
 */
 
@@ -31,11 +31,26 @@ if(!BOSHProxy()) {
 	exit('HTTP/1.1 403 Forbidden');
 }
 
+// OPTIONS method?
+if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+	// CORS headers
+	header('Access-Control-Allow-Origin: *');
+	header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+	header('Access-Control-Allow-Headers: Content-Type');
+	header('Access-Control-Max-Age: 31536000');
+	
+	exit;
+}
+
 // Read POST content
 $data = file_get_contents('php://input');
 
 // POST method?
 if($data) {
+	// CORS headers
+	header('Access-Control-Allow-Origin: *');
+	header('Access-Control-Allow-Headers: Content-Type');
+	
 	$method = 'POST';
 }
 

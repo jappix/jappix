@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 02/03/11
+Last revision: 06/03/11
 
 */
 
@@ -147,6 +147,9 @@ var ANONYMOUS_NICK = null;
 
 // Node parameters
 var JAPPIX_LOCATION = getJappixLocation();
+
+// BOSH hack marker
+var BOSH_HACK = false;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {

@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 28/02/11
+Last revision: 06/03/11
 
 */
 
@@ -66,9 +66,20 @@ function XmlHttp() {}
  */
 XmlHttp.create = function () {
   try {
+    // Are we cross-domain?
     if((BOSH_PROXY == 'on') && (typeof jXHR == "function")) {
+        // Able to use CORS?
+        if (window.XMLHttpRequest) {
+          var req = new XMLHttpRequest();
+          
+          if (req.withCredentials !== undefined)
+            return req;
+        }
+        
+        BOSH_HACK = true;
     	return new jXHR();
     }
+    // Might be local-domain?
     if (window.XMLHttpRequest) {
       var req = new XMLHttpRequest();
       
@@ -1049,7 +1060,7 @@ JSJACHBC_MAX_WAIT = 25;        // default 'wait' param - how long an idle connec
 JSJACHBC_BOSH_VERSION  = "1.6";
 JSJACHBC_USE_BOSH_VER  = true;
 
-JSJACHBC_MAXPAUSE = 30;        // how long a suspend/resume cycle may take
+JSJACHBC_MAXPAUSE = 25;        // how long a suspend/resume cycle may take
 
 /*** END CONFIG ***/
 

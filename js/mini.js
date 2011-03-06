@@ -185,7 +185,7 @@ function saveSession() {
 	// Can pause connection?
 	var has_pause = true;
 	
-	if(BOSH_PROXY == 'on')
+	if(BOSH_HACK)
 		has_pause = false;
 	
 	// Suspend connection
