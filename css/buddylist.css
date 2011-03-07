@@ -26,9 +26,9 @@ Last revision: 07/03/11
  
 #buddy-list .content {
 	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e8f1f3, #dee8ea);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#dee8ea));
-	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e8f1f3', EndColorStr='#dee8ea', GradientType=0);
+	background: -moz-linear-gradient(top, #e8f1f3, #e4edef);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#e4edef));
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e8f1f3', EndColorStr='#e4edef', GradientType=0);
         color: #666666;
         height: 207px;
         padding: 4px 4px 0 4px;

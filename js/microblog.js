@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 07/03/11
 
 */
 
@@ -148,8 +148,8 @@ function displayMicroblog(packet, from, hash, mode) {
 				if($(oneUpdate).size() > 40)
 					$(oneUpdate + ':last').remove();
 				
-				// Click event on name
-				$('.mixed .' + tHash + ' .body b').click(function() {
+				// Click event on avatar/name
+				$('.mixed .' + tHash + ' .avatar-container, .mixed .' + tHash + ' .body b').click(function() {
 					getMicroblog(from, hash);
 				});
 			}
@@ -165,7 +165,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				
 				// Click event on name (if not me!)
 				if(from != getXID())
-					$('.individual .' + tHash + ' .body b').click(function() {
+					$('.individual .' + tHash + ' .avatar-container, .individual .' + tHash + ' .body b').click(function() {
 						checkChatCreate(from, 'chat');
 					});
 			}

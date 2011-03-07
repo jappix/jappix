@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/03/11
+Last revision: 07/03/11
 
 */
 
@@ -151,6 +151,10 @@ Last revision: 06/03/11
 	width: 50px;
 }
 
+#channel .one-update .avatar-container:hover {
+	cursor: pointer;
+}
+
 #channel .one-update img.avatar {
 	max-height: 50px;
 	max-width: 50px;
@@ -160,7 +164,7 @@ Last revision: 06/03/11
 	opacity: 0.8;
 }
 
-#channel .one-update div.body:hover {
+#channel .one-update:hover div.body {
 	opacity: 1;
 }
 
