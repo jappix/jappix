@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/02/11
+Last revision: 07/03/11
 
 */
 
@@ -167,7 +167,10 @@ Last revision: 28/02/11
 }
 
 #home .right {
-	background-color: #c4e0e3;
+	background: #c4e0e3;
+	background: -moz-linear-gradient(top, #c4e0e3, #bdd9dc);
+	background: -webkit-gradient(linear, left top, left bottom, from(#c4e0e3), to(#bdd9dc));
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#c4e0e3', EndColorStr='#bdd9dc', GradientType=0);
 	float: right;
 	width: 385px;
 	height: 350px;

@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 07/03/11
 
 */
 
@@ -25,7 +25,10 @@ Last revision: 05/03/11
 }
 
 #page-engine .top {
-	background-color: #e0e7e8;
+	background: #e0e7e8;
+	background: -moz-linear-gradient(top, #e0e7e8, #d4dfe1);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e0e7e8), to(#d4dfe1));
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e0e7e8', EndColorStr='#d4dfe1', GradientType=0);
 	border-bottom: 1px solid #c8c8c8;
 	color: black;
 	position: absolute;
@@ -264,13 +267,13 @@ Last revision: 05/03/11
 }
 
 #page-engine .system-message {
-	color: #053805;
-	margin-bottom: 3px;
+	color: #053805 !important;
+	margin-bottom: 3px !important;
 	padding-left: 0 !important;
 }
 
 #page-engine .system-message a {
-	color: #053805;
+	color: #053805 !important;
 }
 
 #page-engine .my-nick {
@@ -278,8 +281,8 @@ Last revision: 05/03/11
 }
 
 #page-engine .old-message {
-	font-size: 11px;
-	margin-bottom: 1px;
+	font-size: 11px !important;
+	margin-bottom: 1px !important;
 }
 
 #page-engine .chatstate {
@@ -302,7 +305,10 @@ Last revision: 05/03/11
 }
 
 #page-engine .footer {
-	background-color: #e0e7e8;
+	background: #e0e7e8;
+	background: -moz-linear-gradient(top, #d4dfe1, #e0e7e8);
+	background: -webkit-gradient(linear, left top, left bottom, from(#d4dfe1), to(#e0e7e8));
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#d4dfe1', EndColorStr='#e0e7e8', GradientType=0);
 	border-color: #c8c8c8;
 	border-width: 1px 0 0;
 	border-style: solid;
