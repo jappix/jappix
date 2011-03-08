@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-02-05 21:17:29\n"
+"PO-Revision-Date: 2011-03-08 15:05:43\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,28 +142,28 @@ msgid "More stuff"
 msgstr "Altro"
 
 #: 
-msgid "Get involved!"
-msgstr "Partecipa anche tu!"
+#~ msgid "Get involved!"
+#~ msgstr "Partecipa anche tu!"
 
 #: 
-msgid "Write code"
-msgstr "Scrivi del codice"
+#~ msgid "Write code"
+#~ msgstr "Scrivi del codice"
 
 #: 
-msgid "Translate"
-msgstr "Traduci"
+#~ msgid "Translate"
+#~ msgstr "Traduci"
 
 #: 
-msgid "Report a bug"
-msgstr "Riportaci un bug"
+#~ msgid "Report a bug"
+#~ msgstr "Riportaci un bug"
 
 #: 
-msgid "Write documentation"
-msgstr "Scrivi della documentazione"
+#~ msgid "Write documentation"
+#~ msgstr "Scrivi della documentazione"
 
 #: 
-msgid "Donate"
-msgstr "Dona"
+#~ msgid "Donate"
+#~ msgstr "Dona"
 
 #: 
 msgid "Show all friends"
@@ -186,8 +186,8 @@ msgid "Date"
 msgstr "Data"
 
 #: 
-msgid "About Jappix"
-msgstr "Informazioni su Jappix"
+#~ msgid "About Jappix"
+#~ msgstr "Informazioni su Jappix"
 
 #: 
 msgid "A short message?"
@@ -1006,8 +1006,8 @@ msgid "Encrypted"
 msgstr "Criptato"
 
 #: 
-msgid "Uncrypted"
-msgstr "Non-criptato"
+#~ msgid "Uncrypted"
+#~ msgstr "Non-criptato"
 
 #: 
 msgid "Where are you?"
@@ -2098,16 +2098,16 @@ msgid "Unblock"
 msgstr "Sblocca"
 
 #: 
-msgid "Albums"
-msgstr "Raccolte"
+#~ msgid "Albums"
+#~ msgstr "Raccolte"
 
 #: 
-msgid "Albums of %s"
-msgstr "Raccolte di %s"
+#~ msgid "Albums of %s"
+#~ msgstr "Raccolte di %s"
 
 #: 
-msgid "Shared albums of this user"
-msgstr "Raccolte condivise di questo utente"
+#~ msgid "Shared albums of this user"
+#~ msgstr "Raccolte condivise di questo utente"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
@@ -2126,16 +2126,16 @@ msgid "Static content server"
 msgstr "Server per il contenuto statico"
 
 #: 
-msgid "Please use a supported browser!"
-msgstr "Perpiacere utilizza un browser supportato!"
+#~ msgid "Please use a supported browser!"
+#~ msgstr "Perpiacere utilizza un browser supportato!"
 
 #: 
-msgid "%s is supported"
-msgstr "%s è supportato"
+#~ msgid "%s is supported"
+#~ msgstr "%s è supportato"
 
 #: 
-msgid "%s is not supported"
-msgstr "%s non è supportato"
+#~ msgid "%s is not supported"
+#~ msgstr "%s non è supportato"
 
 #: 
 #~ msgid "Cross-domain for IE"
@@ -2146,8 +2146,8 @@ msgid "Use a proxy"
 msgstr "Utilizza un proxy"
 
 #: 
-msgid "In order to work, the proxy requires CURL. Please install it!"
-msgstr "Per funzionare correttamente il proxy richiede che CURL sia installato!"
+#~ msgid "In order to work, the proxy requires CURL. Please install it!"
+#~ msgstr "Per funzionare correttamente il proxy richiede che CURL sia installato!"
 
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
@@ -2184,4 +2184,140 @@ msgstr "Seleziona tutte le opzioni"
 #: 
 msgid "Uncheck all"
 msgstr "Deseleziona tutte le opzioni"
+
+#: 
+#~ msgid "Sorry, your browser is out of date!"
+#~ msgstr ""
+
+#: 
+msgid "Last %s version is better!"
+msgstr "L'ultima versione (%s) è stata migliorata!"
+
+#: 
+msgid "Your browser is out of date!"
+msgstr "Il tuo browser è obsoleto!"
+
+#: 
+msgid "Choose"
+msgstr "Scegli"
+
+#: 
+msgid "List name"
+msgstr "Nome lista"
+
+#: 
+#~ msgid "You are not viewing any list at the moment."
+#~ msgstr ""
+
+#: 
+#~ msgid "Visible"
+#~ msgstr ""
+
+#: 
+#~ msgid "Invisible"
+#~ msgstr ""
+
+#: 
+#~ msgid "Manage your private life with this tool!"
+#~ msgstr ""
+
+#: 
+#~ msgid "You can create rules to block access to your account for an undesired user, or manage who can see what."
+#~ msgstr ""
+
+#: 
+#~ msgid "You must first choose add a new rule, then select the rule type, and define the actions to do."
+#~ msgstr ""
+
+#: 
+#~ msgid "You must first add a new rule, then select the rule type, and define the actions to do."
+#~ msgstr ""
+
+#: 
+msgid "Group"
+msgstr "Gruppo"
+
+#: 
+msgid "Subscription"
+msgstr "Sottoscrizione"
+
+#: 
+msgid "Allow"
+msgstr "Permetti"
+
+#: 
+msgid "Deny"
+msgstr "Rifiuta"
+
+#: 
+msgid "Everybody"
+msgstr "Tutti quanti"
+
+#: 
+msgid "Send messages"
+msgstr "Invia messaggi"
+
+#: 
+msgid "Send queries"
+msgstr "Invia richieste"
+
+#: 
+msgid "See my status"
+msgstr "Vedi il mio stato"
+
+#: 
+msgid "Send his/her status"
+msgstr "Invia il suo status"
+
+#: 
+msgid "Everything"
+msgstr "Tutto"
+
+#: 
+msgid "Both"
+msgstr "Entrambi"
+
+#: 
+msgid "From"
+msgstr "Da"
+
+#: 
+msgid "Item"
+msgstr "Oggetto"
+
+#: 
+msgid "Order"
+msgstr "Ordina"
+
+#: 
+msgid "Active for this session"
+msgstr "Attivo per questa sessione"
+
+#: 
+msgid "Always active"
+msgstr "Sempre attivo"
+
+#: 
+msgid "User directory"
+msgstr "Cartella utenti"
+
+#: 
+msgid "Search a friend"
+msgstr "Cerca un amico"
+
+#: 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr "Stai utilizzando una versione ancora non definitiva di Jappix. La puoi aggiornare tramite il nostro repositorio, eseguendo: %s."
+
+#: 
+msgid "Check for updates"
+msgstr "Controlla aggiornamenti"
+
+#: 
+msgid "Unencrypted"
+msgstr "Non criptato"
+
+#: 
+msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr "Questa caratteristica non è implementata dal client del recipiente oppure il suo server e quindi non può essere processata."
 
