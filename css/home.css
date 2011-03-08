@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 08/03/11
 
 */
 
@@ -367,7 +367,7 @@ Last revision: 07/03/11
 #home fieldset {
 	border: 1px solid black;
 	margin: 12px 0 12px 0;
-	padding: 2px 0 4px;
+	padding: 5px 0 4px 0;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -375,7 +375,7 @@ Last revision: 07/03/11
 
 #home legend {
 	font-size: 0.9em;
-	margin: 0 0 5px 15px;
+	margin: 0 0 0 15px;
 	padding: 0 2px;
 	text-transform: uppercase;
 }

@@ -7,7 +7,7 @@ This is the popup CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 08/03/11
 
 */
 
@@ -178,6 +178,7 @@ Last revision: 07/03/11
 .popup fieldset {
 	border: 1px #547177 solid;
 	margin: 0 0 15px 0;
+	padding: 8px 2px 3px 2px;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -185,7 +186,7 @@ Last revision: 07/03/11
 
 .popup legend {
 	font-size: 0.9em;
-	margin: 0 0 5px 15px;
+	margin: 0 0 0 15px;
 	padding: 0 2px;
 	text-transform: uppercase;
 }
@@ -200,8 +201,9 @@ Last revision: 07/03/11
 
 .popup input,
 .popup select {
-	float: left;
+	min-width: 174px;
 	margin: 0 10px 10px 0;
+	float: left;
 }
 
 .popup select {

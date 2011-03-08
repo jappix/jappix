@@ -7,7 +7,7 @@ This is the install CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 08/03/11
 
 */
 
@@ -41,7 +41,7 @@ body {
 #install fieldset {
 	border: 1px solid black;
 	margin: 22px 0 15px 0;
-	padding: 2px 0 6px 0;
+	padding: 7px 2px 5px 2px;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -49,7 +49,7 @@ body {
 
 #install legend {
 	font-size: 0.9em;
-	margin: 0 0 5px 15px;
+	margin: 0 0 0 15px;
 	padding: 0 2px;
 	text-transform: uppercase;
 }
