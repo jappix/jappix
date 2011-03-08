@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/03/11
+Last revision: 08/03/11
 
 */
 
@@ -20,6 +20,10 @@ var MINI_ANONYMOUS	= false;
 var MINI_ANIMATE	= false;
 var MINI_NICKNAME	= null;
 var MINI_TITLE		= null;
+var MINI_DOMAIN		= null;
+var MINI_USER		= null;
+var MINI_PASSWORD	= null;
+var MINI_RECONNECT	= 0;
 var MINI_GROUPCHATS	= [];
 var MINI_PASSWORDS	= [];
 var MINI_RESOURCE	= JAPPIX_RESOURCE + ' Mini';
@@ -31,7 +35,6 @@ function setupCon(con) {
 	con.registerHandler('iq', handleIQ);
 	con.registerHandler('onerror', handleError);
 	con.registerHandler('onconnect', connected);
-	con.registerHandler('ondisconnect', disconnected);
 }
 
 // Connects the user with the given logins
@@ -157,7 +160,14 @@ function connected() {
 	if(!MINI_SHOWPANE)
 		switchPane();
 	
-	logThis('Jappix Mini is now connected.', 3);
+	// For logger
+	if(MINI_RECONNECT)
+		logThis('Jappix Mini is now reconnected.', 3);
+	else
+		logThis('Jappix Mini is now connected.', 3);
+	
+	// Reset reconnect var
+	MINI_RECONNECT = 0;
 }
 
 // When the user disconnects
@@ -210,6 +220,26 @@ function disconnected() {
 	removeDB('jappix-mini', 'nickname');
 	removeDB('jappix-mini', 'scroll');
 	removeDB('jappix-mini', 'stamp');
+	
+	// Try to reconnect after a while
+	if(MINI_RECONNECT < 5) {
+		// Reconnect interval
+		var reconnect_interval = 10;
+		
+		if(MINI_RECONNECT)
+			reconnect_interval = (5 + (5 * MINI_RECONNECT)) * 1000;
+		
+		MINI_RECONNECT++;
+		
+		// Set timer
+		jQuery('#jappix_mini').oneTime(reconnect_interval, function() {
+			// Remove the Jappix Mini DOM
+			jQuery(this).remove();
+			
+			// Launch Jappix Mini again!
+			launchMini(MINI_AUTOCONNECT, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
+		});
+	}
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -403,7 +433,7 @@ function handleError(err) {
 	// First level error (connection error)
 	if(jQuery(err).is('error')) {
 		// Notify this error
-		notifyError();
+		disconnected();
 		
 		logThis('First level error received.', 1);
 	}
@@ -1456,6 +1486,18 @@ function adaptRoster() {
 
 // Plugin launcher
 function launchMini(autoconnect, show_pane, domain, user, password) {
+	// Save infos to reconnect
+	MINI_DOMAIN = domain;
+	MINI_USER = user;
+	MINI_PASSWORD = password;
+	
+	// Reconnect?
+	if(MINI_RECONNECT) {
+		logThis('Trying to reconnect (try: ' + MINI_RECONNECT + ')!');
+		
+		return createMini(domain, user, password);
+	}
+	
 	// Browser not taken in charge (IE6 and lower)?
 	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
 		logThis('This browser is not taken in charge (' + BrowserDetect.browser + ' ' + BrowserDetect.version + ').', 2);
