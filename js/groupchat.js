@@ -6,8 +6,8 @@ These are the groupchat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: ValÃ©rian Sal, Marco Cirillo
-Last revision: 24/02/11
+Authors: Valérian Saliou, Marco Cirillo
+Last revision: 08/03/11
 
 */
 
@@ -98,7 +98,7 @@ function handleMUC(presence) {
 		displayMucAdmin(affiliation, hash, room, statuscode);
 		
 		// Tell the MUC we can notify the incoming presences
-		$(document).oneTime('5s', function() {
+		$(document).oneTime('15s', function() {
 			$('#' + hash).attr('data-initial', 'true');
 		});
 		

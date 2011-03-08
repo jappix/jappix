@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 06/03/11
+Last revision: 08/03/11
 
 */
 
@@ -67,35 +67,67 @@ else {
 	exit('HTTP/1.1 400 Bad Request');
 }
 
-// HTTP parameters
-$parameters = array('http' => array(
-				'method' => 'POST',
-				'content' => $data
-				   )
-		   );
+// Define what to use
+if(function_exists('curl_init'))
+	$use_curl = true;
+else
+	$use_curl = false;
 
 // HTTP headers
-$headers = array('Accept-Encoding: gzip, deflate', 'Content-Type: text/xml; charset=utf-8');
-$parameters['http']['header'] = $headers;
+$headers = array('Content-Length: '.strlen($data), 'Content-Type: text/xml; charset=utf-8', 'Connection: Close');
 
-// Change default timeout
-ini_set('default_socket_timeout', 60);
-
-// Create the connection
-$stream = stream_context_create($parameters);
-$connection = @fopen(HOST_BOSH, 'rb', false, $stream);
-
-// Failed to connect!
-if($connection == FALSE) {
-	header('Status: 502 Proxy Error', true, 502);
-	exit('HTTP/1.1 502 Proxy Error');
+// cURL is available?
+if($use_curl) {
+	// Initialize a new cURL session
+	$connection = curl_init(HOST_BOSH);
+	
+	// Define the cURL parameters
+	curl_setopt($connection, CURLOPT_HEADER, 0);
+	curl_setopt($connection, CURLOPT_POST, 1);
+	curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($connection, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($connection, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($connection, CURLOPT_VERBOSE, 0);
+	curl_setopt($connection, CURLOPT_CONNECTTIMEOUT, 30);
+	curl_setopt($connection, CURLOPT_TIMEOUT, 30);
+	curl_setopt($connection, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
+	
+	// Execute the cURL request!
+	$output = curl_exec($connection);
 }
 
-// Allow stream blocking to handle incoming BOSH data
-@stream_set_blocking($connection, TRUE);
-
-// Get the output content
-$output = @stream_get_contents($connection);
+// Built-in method (can truncate POST reply if too long)
+else {
+	// HTTP parameters
+	$parameters = array('http' => array(
+					'method' => 'POST',
+					'content' => $data
+				      )
+		      );
+	
+	$parameters['http']['header'] = $headers;
+	
+	// Change default timeout
+	ini_set('default_socket_timeout', 30);
+	
+	// Create the connection
+	$stream = @stream_context_create($parameters);
+	$connection = @fopen(HOST_BOSH, 'rb', false, $stream);
+	
+	// Failed to connect!
+	if($connection == false) {
+		header('Status: 502 Proxy Error', true, 502);
+		exit('HTTP/1.1 502 Proxy Error');
+	}
+	
+	// Allow stream blocking to handle incoming BOSH data
+	@stream_set_blocking($connection, true);
+	
+	// Get the output content
+	$output = @stream_get_contents($connection);
+}
 
 // POST output
 if($method == 'POST') {
@@ -103,9 +135,9 @@ if($method == 'POST') {
 	header('Content-Type: text/xml; charset=utf-8');
 	
 	if(!$output)
-		print '<body xmlns=\'http://jabber.org/protocol/httpbind\' type=\'terminate\'/>';
+		echo('<body xmlns=\'http://jabber.org/protocol/httpbind\' type=\'terminate\'/>');
 	else
-		print $output;
+		echo($output);
 }
 
 // GET output
@@ -113,12 +145,15 @@ if($method == 'GET') {
 	$json_output = json_encode($output);
 	
 	if(($output == false) || ($output == '') || ($json_output == 'null'))
-		print $callback.'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});';
+		echo($callback.'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});');
 	else
-		print $callback.'({"reply":'.$json_output.'});';
+		echo($callback.'({"reply":'.$json_output.'});');
 }
 
 // Close the connection
-@fclose($connection);
+if($use_curl)
+	curl_close($connection);
+else
+	@fclose($connection);
 
 ?>
