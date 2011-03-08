@@ -192,7 +192,7 @@ Last revision: 08/03/11
 }
 
 .popup label {
-	color: #333333;
+	color: #1b1b1b;
 	width: 150px;
 	margin: 0 0 10px 12px;
 	clear: both;
@@ -201,9 +201,12 @@ Last revision: 08/03/11
 
 .popup input,
 .popup select {
-	min-width: 174px;
 	margin: 0 10px 10px 0;
 	float: left;
+}
+
+.popup input[type=text] {
+	min-width: 174px;
 }
 
 .popup select {
