@@ -96,17 +96,12 @@ a.finish.disabled:active,
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0141414,endColorstr=#a0141414);
 }
 
-/* rgba(20,20,20,0.7) */
-#my-infos,
-#right-content,
-#buddy-list {
-	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b8141414,endColorstr=#b8141414);
-}
-
 /* rgba(20,20,20,0.8) */
 #home .main,
 #reconnect .pane,
+#my-infos,
+#right-content,
+#buddy-list,
 .popup,
 #manager,
 #install {
