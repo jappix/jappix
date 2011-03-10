@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/03/11
+Last revision: 10/03/11
 
 */
 
@@ -1250,7 +1250,9 @@ function chat(type, xid, nick, hash, pwd) {
 	}
 	
 	// Focus on our pane
-	switchPane('chat-' + hash, hash);
+	jQuery(document).oneTime(10, function() {
+		switchPane('chat-' + hash, hash);
+	});
 	
 	return false;
 }
@@ -1498,13 +1500,6 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 		return createMini(domain, user, password);
 	}
 	
-	// Browser not taken in charge (IE6 and lower)?
-	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
-		logThis('This browser is not taken in charge (' + BrowserDetect.browser + ' ' + BrowserDetect.version + ').', 2);
-		
-		return false;
-	}
-	
 	// Anonymous mode?
 	if(!user || !password)
 		MINI_ANONYMOUS = true;
@@ -1517,8 +1512,12 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	if(show_pane)
 		MINI_SHOWPANE = true;
 	
-	// Append the mini stylesheet
+	// Append the Mini stylesheet
 	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;g=mini.xml" type="text/css" media="all" />');
+	
+	// Legacy IE stylesheet
+	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
+		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;f=mini-ie.css" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	jQuery(document).keydown(function(e) {
