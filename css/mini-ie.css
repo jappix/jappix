@@ -7,14 +7,21 @@ This is the Jappix Mini legacy IE CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/03/11
+Last revision: 11/03/11
 
 */
 
 #jappix_mini {
 	position: absolute !important;
 	bottom: auto !important;
-	top: expression(((document.documentElement.clientHeight - 26) + (ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	top: expression(((document.documentElement.clientHeight - 25) + (ignoreMiniTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	/*
+	
+	left: expression(((document.documentElement.clientWidth - 20) + (ignoreMiniLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
+	TODO: see if possible to use "right" instead of "left", because better!
+	TODO: fix the DOM creation right "ghost" margin issue
+	
+	*/
 }
 
 #jappix_mini .jm_images {
@@ -23,4 +30,32 @@ Last revision: 10/03/11
 
 #jappix_mini a.jm_button {
 	width: 1px !important;
+}
+
+#jappix_mini div.jm_roster {
+	right: -1px !important;
+	bottom: 27px !important;
+}
+
+#jappix_mini a.jm_button.jm_clicked {
+	background-image: none !important;
+}
+
+#jappix_mini div.jm_conversations a.jm_clicked {
+	border-right: none !important;
+	padding: 7px 6px 6px 6px !important;
+}
+
+#jappix_mini div.jm_chat-content {
+	right: -2px !important;
+}
+
+#jappix_popup {
+	position: absolute !important;
+}
+
+#jappix_popup div.jm_prompt {
+	position: absolute !important;
+	top: expression(((document.documentElement.clientHeight / 2) + (ignorePromptTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	left: expression(((document.documentElement.clientWidth / 2) + (ignorePromptLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }

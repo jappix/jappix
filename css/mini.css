@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/03/11
+Last revision: 11/03/11
 
 */
 
@@ -244,6 +244,7 @@ Last revision: 10/03/11
 #jappix_mini div.jm_received-messages div.jm_system-message p,
 #jappix_mini div.jm_received-messages div.jm_system-message a {
 	color: #053805 !important;
+	font-style: italic !important;
 }
 
 #jappix_mini div.jm_received-messages p a {
