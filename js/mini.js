@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/03/11
+Last revision: 11/03/11
 
 */
 
@@ -56,7 +56,7 @@ function connect(domain, user, password) {
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.secure = true;
-		oArgs.resource = MINI_RESOURCE;
+		oArgs.resource = MINI_RESOURCE + ' (' + (new Date()).getTime() + ')';
 		oArgs.domain = domain;
 		
 		// Anonymous login?
