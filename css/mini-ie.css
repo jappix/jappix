@@ -30,6 +30,10 @@ Last revision: 12/03/11
 	bottom: 27px !important;
 }
 
+#jappix_mini div.jm_roster div.jm_buddies {
+	height: expression(this.scrollHeight > (document.documentElement.clientHeight - 70) ? (document.documentElement.clientHeight - 70) + 'px' : 'auto') !important;
+}
+
 #jappix_mini a.jm_button.jm_clicked {
 	background-image: none !important;
 }

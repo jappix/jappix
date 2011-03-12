@@ -1479,18 +1479,11 @@ function handleRoster(iq) {
 
 // Adapts the roster height to the window
 function adaptRoster() {
-	// Method to use
-	var method = 'max-height';
-	
-	// Legacy?
-	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
-		method = 'height';
-	
 	// Process the new height
 	var height = jQuery(window).height() - 70;
 	
 	// Apply the new height
-	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css(method, height);
+	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', height);
 }
 
 // Plugin launcher
