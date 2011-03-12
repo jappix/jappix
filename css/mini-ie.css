@@ -48,7 +48,6 @@ Last revision: 12/03/11
 }
 
 #jappix_popup {
-	background: url(../img/others/blank.gif) repeat !important;
 	height: expression(document.documentElement.clientHeight + 'px') !important;
 	width: expression(document.documentElement.clientWidth + 'px') !important;
 	position: absolute !important;

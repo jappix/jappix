@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/03/11
+Last revision: 12/03/11
 
 */
 
@@ -473,6 +473,7 @@ Last revision: 11/03/11
 }
 
 #jappix_popup {
+	background: url(../img/others/blank.gif) repeat;
 	position: fixed;
 	top: 0;
 	bottom: 0;
