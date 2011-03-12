@@ -7,7 +7,7 @@ This is the Jappix Mini legacy IE CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/03/11
+Last revision: 12/03/11
 
 */
 
@@ -15,13 +15,6 @@ Last revision: 11/03/11
 	position: absolute !important;
 	bottom: auto !important;
 	top: expression(((document.documentElement.clientHeight - 25) + (ignoreMiniTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
-	/*
-	
-	left: expression(((document.documentElement.clientWidth - 20) + (ignoreMiniLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
-	TODO: see if possible to use "right" instead of "left", because better!
-	TODO: fix the DOM creation right "ghost" margin issue
-	
-	*/
 }
 
 #jappix_mini .jm_images {
