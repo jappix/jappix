@@ -48,11 +48,14 @@ Last revision: 12/03/11
 }
 
 #jappix_popup {
+	background: url(../img/others/blank.gif) repeat !important;
+	height: expression(document.documentElement.clientHeight + 'px') !important;
+	width: expression(document.documentElement.clientWidth + 'px') !important;
 	position: absolute !important;
+	top: expression(((ignorePopupTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	left: expression(((ignorePopupLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }
 
 #jappix_popup div.jm_prompt {
 	position: absolute !important;
-	top: expression(((document.documentElement.clientHeight / 2) + (ignorePromptTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
-	left: expression(((document.documentElement.clientWidth / 2) + (ignorePromptLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }
