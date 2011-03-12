@@ -102,11 +102,16 @@ a.finish.disabled:active,
 #my-infos,
 #right-content,
 #buddy-list,
-.popup,
 #manager,
 #install {
 	background: transparent;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#de141414,endColorstr=#de141414);
+}
+
+/* rgba(20,20,20,0.9) */
+.popup {
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed141414,endColorstr=#ed141414);
 }
 
 /* rgba(0,0,0,0.2) */

@@ -9,7 +9,7 @@ This is the Jappix microblog file attaching script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/03/11
+Last revision: 12/03/11
 
 */
 
@@ -48,7 +48,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	if(!isSafe($filename)) {
 		exit(
 '<jappix xmlns=\'jappix:file:post\'>
-	<error>fobidden-type</error>
+	<error>forbidden-type</error>
 </jappix>'
 		);
 	}
@@ -58,7 +58,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
 	
 	// Define some vars
-	$content_dir = '../store/share/'.$user;
+	$content_dir = JAPPIX_BASE.'/store/share/'.$user;
 	$security_file = $content_dir.'/index.html';
 	$name = sha1(time().$filename);
 	$path = $content_dir.'/'.$name.'.'.$ext;

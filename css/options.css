@@ -7,12 +7,13 @@ This is the options CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 12/03/11
 
 */
 
 #options label {
 	width: 190px;
+	font-size: 0.94em;
 }
 
 #options .forms {

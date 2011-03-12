@@ -9,7 +9,7 @@ This script (re)generates the store sub-folders (after an update)
 
 License: AGPL
 Authors: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 12/03/11
 
 */
 
@@ -20,6 +20,7 @@ if(!defined('JAPPIX_BASE'))
 // Array of the sub-folders to create
 $store_folders = array(
 	'access',
+	'avatars',
 	'backgrounds',
 	'cache',
 	'conf',

@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 05/03/11
+# Last revision: 12/03/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -26,9 +26,6 @@ msgid "Your XMPP account has been removed, bye!"
 msgstr ""
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr ""
-
-msgid "Your browser does not support this functionality, please try Mozilla Firefox."
 msgstr ""
 
 msgid "The room you joined seems not to exist. You should create it!"
@@ -313,7 +310,7 @@ msgstr ""
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
 msgstr ""
 
-msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
 msgstr ""
 
 msgid "Save"
@@ -392,6 +389,9 @@ msgid "Unavailable"
 msgstr ""
 
 msgid "is now"
+msgstr ""
+
+msgid "Please wait while your avatar is uploaded..."
 msgstr ""
 
 msgid "Here it is! A new beautiful profile image!"

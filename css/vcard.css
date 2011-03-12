@@ -7,9 +7,18 @@ This is the vCard CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 12/03/11
 
 */
+
+#vcard label {
+	font-size: 0.94em;
+	margin-top: 2px;
+}
+
+#vcard #vcard-avatar input[type=file] {
+	margin-left: 15px;
+}
 
 #vcard .avatar-container {
 	float: left;
@@ -34,11 +43,11 @@ Last revision: 28/12/10
 
 #vcard .no-avatar {
 	width: 300px;
-	color: #9d3c3c;
+	color: #7c2222;
 	padding: 10px;
 	margin: 15px 0 20px 40px;
-	background: #ffd9d9;
-	border: 1px #d99898 solid;
+	background: #f8cece;
+	border: 1px #ba6d6d solid;
 	font-size: 0.8em;
 }
 
@@ -58,15 +67,21 @@ Last revision: 28/12/10
 	padding: 10px;
 }
 
+#vcard .forms .avatar-wait {
+	background-color: #9bcbed;
+	color: #0a3858;
+	border-color: #306780;
+}
+
 #vcard .forms .avatar-ok {
 	background-color: #c4ed9b;
-	color: #40661c;
+	color: #325213;
 	border-color: #578030;
 }
 
 #vcard .forms .avatar-error {
 	background-color: #e79595;
-	color: #7c1010;
+	color: #6a0b0b;
 	border-color: #7c1010;
 }
 

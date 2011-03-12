@@ -7,7 +7,7 @@ These are the notification board JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/01/11
+Last revision: 12/03/11
 
 */
 
@@ -52,12 +52,6 @@ function createBoard(type, id) {
 			// Non-existant groupchat user
 			case 6:
 				text = _e("The user that you want to reach is not present in the room.");
-				
-				break;
-			
-			// Non-existant browser functionnality
-			case 7:
-				text = _e("Your browser does not support this functionality, please try Mozilla Firefox.");
 				
 				break;
 		}

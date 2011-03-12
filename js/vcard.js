@@ -65,9 +65,8 @@ function openVCard() {
 				'<input type="hidden" id="USER-PHOTO-TYPE" class="vcard-item" />' + 
 				'<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
 				
-				'<form id="vcard-avatar" action="#" method="post">' + 
-					'<input style="margin-left: 15px;" type="file" id="vcard-avatar-file" required="" />' + 
-					'<input type="submit" value="' + _e("Send") + '" />' + 
+				'<form id="vcard-avatar" action="./php/avatar-upload.php" method="post" enctype="multipart/form-data">' + 
+					generateFileShare() + 
 				'</form>' + 
 			'</fieldset>' + 
 			
@@ -80,8 +79,8 @@ function openVCard() {
 				'<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
 			'</fieldset>' + 
 			
+			'<div class="avatar-wait avatar-info">' + _e("Please wait while your avatar is uploaded...") + '</div>' + 
 			'<div class="avatar-ok avatar-info">' + _e("Here it is! A new beautiful profile image!") + '</div>' + 
-			
 			'<div class="avatar-error avatar-info">' + _e("The image file is not supported or has a bad size.") + '</div>' + 
 		'</div>' + 
 		
@@ -114,7 +113,7 @@ function openVCard() {
 			
 			'<p>' + _e("Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to).") + '</p>' + 
 			'<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
-			'<p>' + _e("It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends.") + '</p>' + 
+			'<p>' + printf(_e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -155,73 +154,61 @@ function switchVCard(id) {
 	return false;
 }
 
-// Encodes the user's avatar in base64
-function sendThisAvatar() {
+// Waits for the avatar upload reply
+function waitAvatarUpload() {
 	// Reset the avatar info
 	$('#vcard .avatar-info').hide().stopTime();
 	
-	try {
-		// Get the input file
-		var fInput = document.getElementById('vcard-avatar-file');
-		var fFile = fInput.files[0];
+	// Show the wait info
+	$('#vcard .avatar-wait').show();
+}
+
+// Handles the avatar upload reply
+function handleAvatarUpload(responseXML) {
+	// Reset the avatar info
+	$('#vcard .avatar-info').hide().stopTime();
+	
+	// Data selector
+	var dData = $(responseXML).find('jappix');
+	
+	// Process the returned data
+	if(dData.find('error').size()) {
+		$('#vcard .avatar-error').show();
 		
-		// If there's a file
-		if(fFile) {
-			if(!fFile.type.match(/image\/[jpg|jpeg|png|gif|svg]/) || (fFile.size > 25000)) {
-				$('#vcard .avatar-error').show();
-				
-				// Timer
-				$('#vcard .avatar-info').oneTime('10s', function() {
-					$(this).hide();
-				});
-			}
-			
-			else {
-				var fReader = new FileReader();
-				
-				fReader.onload = function(e) {
-					// We get the needed values
-					var fResult = e.target.result;
-					var fReplaced = fResult.replace(/data\:(.+)/gim, '$1');
-					var fSplitted = fReplaced.split(';base64,');
-					
-					// We remove everything that isn't useful right here
-					$('#vcard .no-avatar').hide();
-					$('#vcard .avatar').remove();
-					
-					// We display the delete button
-					$('#vcard .avatar-delete').show();
-					
-					// We tell the user it's okay
-					$('#vcard .avatar-ok').show();
-					
-					// Timer
-					$('#vcard .avatar-info').oneTime('10s', function() {
-						$(this).hide();
-					});
-					
-					// We put the base64 values in a hidden input to be sent
-					$('#USER-PHOTO-TYPE').val(fSplitted[0]);
-					$('#USER-PHOTO-BINVAL').val(fSplitted[1]);
-					
-					// We display the avatar !
-					$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + fSplitted[0] + ';base64,' + fSplitted[1] + '" alt="" /></div>');
-				}
-				
-				fReader.readAsDataURL(fFile);
-			}
-		}
+		// Timer
+		$('#vcard .avatar-info').oneTime('10s', function() {
+			$(this).hide();
+		});
 		
-		// Reset the file input
-		$('#vcard-avatar-file').val('');
+		logThis('Error while uploading the avatar: ' + dData.find('error').text(), 1);
 	}
 	
-	catch(e) {
-		openThisInfo(7);
-	}
-	
-	finally {
-		return false;
+	else {
+		// Read the values
+		var aType = dData.find('type').text();
+		var aBinval = dData.find('binval').text();
+		
+		// We remove everything that isn't useful right here
+		$('#vcard .no-avatar').hide();
+		$('#vcard .avatar').remove();
+		
+		// We display the delete button
+		$('#vcard .avatar-delete').show();
+		
+		// We tell the user it's okay
+		$('#vcard .avatar-ok').show();
+		
+		// Timer
+		$('#vcard .avatar-info').oneTime('10s', function() {
+			$(this).hide();
+		});
+		
+		// We put the base64 values in a hidden input to be sent
+		$('#USER-PHOTO-TYPE').val(aType);
+		$('#USER-PHOTO-BINVAL').val(aBinval);
+		
+		// We display the avatar !
+		$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
 	}
 }
 
@@ -229,7 +216,7 @@ function sendThisAvatar() {
 function deleteAvatar() {
 	// We remove the avatar displayed elements
 	$('#vcard .avatar-info').stopTime();
-	$('#vcard .avatar-info, #vcard .avatar-error, #vcard .avatar-ok, #vcard .avatar-delete').hide();
+	$('#vcard .avatar-info, #vcard .avatar-wait, #vcard .avatar-error, #vcard .avatar-ok, #vcard .avatar-delete').hide();
 	$('#vcard .avatar').remove();
 	
 	// We reset the input value
@@ -565,18 +552,25 @@ function launchVCard() {
 			return sendVCard();
 	});
 	
-	// Change events
-	$('#vcard-avatar-file').change(function() {
-		if($(this).val())
-			return sendThisAvatar();
+	// Avatar upload vars
+	var avatar_options = {
+		dataType:	'xml',
+		beforeSubmit:	waitAvatarUpload,
+		success:	handleAvatarUpload
+	};
+	
+	// Avatar upload form submit event
+	$('#vcard-avatar').submit(function() {
+		if($('#vcard .avatar-info.avatar-wait').is(':hidden') && $('#vcard-avatar input[type=file]').val())
+			$(this).ajaxSubmit(avatar_options);
 		
 		return false;
 	});
 	
-	// Submit events
-	$('#vcard-avatar').submit(function() {
-		if($('#vcard-avatar-file').val())
-			return sendThisAvatar();
+	// Avatar upload input change event
+	$('#vcard-avatar input[type=file]').change(function() {
+		if($('#vcard .avatar-info.avatar-wait').is(':hidden') && $(this).val())
+			$('#vcard-avatar').ajaxSubmit(avatar_options);
 		
 		return false;
 	});

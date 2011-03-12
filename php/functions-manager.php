@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 28/02/11
+Last revision: 12/03/11
 
 */
 
@@ -306,15 +306,27 @@ function processUpdate($url) {
 	// Then, we extract the archive
 	echo('<p>» '.T_("Extracting package...").'</p>');
 	
-	$zip = new ZipArchive;
-	$zip_open = $zip->open($path);
-	
-	if($zip_open === TRUE) {
-		$zip->extractTo($update_dir);
-		$zip->close();
+	try {
+		$zip = new ZipArchive;
+		$zip_open = $zip->open($path);
+		
+		if($zip_open === TRUE) {
+			$zip->extractTo($update_dir);
+			$zip->close();
+		}
+		
+		else {
+			echo('<p>» '.T_("Aborted: could not extract the package!").'</p>');
+			
+			// Remove the broken source folder
+			removeDir($to_remove);
+			
+			return false;
+		}
 	}
 	
-	else {
+	// PHP does not provide Zip archives support
+	catch(Exception $e) {
 		echo('<p>» '.T_("Aborted: could not extract the package!").'</p>');
 		
 		// Remove the broken source folder
