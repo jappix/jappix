@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 13/03/11
 
 */
 
@@ -298,6 +298,7 @@ Last revision: 07/03/11
 }
 
 #page-engine .text {
+	height: 93px;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -418,14 +419,23 @@ Last revision: 07/03/11
 #page-engine .muc-ask {
 	position: absolute;
 	left: 0;
+}
+
+#page-engine .text .compose {
+	top: 29px;
 	right: 12px;
+	bottom: 12px;
+}
+
+#page-engine .muc-ask {
+	right: 0;
 	bottom: 0;
 }
 
 #page-engine .text textarea {
 	border: 1px solid #c8c8c8;
 	padding: 5px;
-	height: 52px;
+	height: 100%;
 	width: 100%;
 	font-size: 1.1em;
 	border-radius: 4px;
