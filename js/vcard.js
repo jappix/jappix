@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 13/03/11
 
 */
 
@@ -165,11 +165,15 @@ function waitAvatarUpload() {
 
 // Handles the avatar upload reply
 function handleAvatarUpload(responseXML) {
-	// Reset the avatar info
-	$('#vcard .avatar-info').hide().stopTime();
-	
 	// Data selector
 	var dData = $(responseXML).find('jappix');
+	
+	// Not current upload session?
+	if(parseInt(dData.attr('id')) != parseInt($('#vcard-avatar input[name=id]').val()))
+		return;
+	
+	// Reset the avatar info
+	$('#vcard .avatar-info').hide().stopTime();
 	
 	// Process the returned data
 	if(dData.find('error').size()) {
@@ -561,7 +565,7 @@ function launchVCard() {
 	
 	// Avatar upload form submit event
 	$('#vcard-avatar').submit(function() {
-		if($('#vcard .avatar-info.avatar-wait').is(':hidden') && $('#vcard-avatar input[type=file]').val())
+		if($('#vcard .wait').is(':hidden') && $('#vcard .avatar-info.avatar-wait').is(':hidden') && $('#vcard-avatar input[type=file]').val())
 			$(this).ajaxSubmit(avatar_options);
 		
 		return false;
@@ -569,7 +573,7 @@ function launchVCard() {
 	
 	// Avatar upload input change event
 	$('#vcard-avatar input[type=file]').change(function() {
-		if($('#vcard .avatar-info.avatar-wait').is(':hidden') && $(this).val())
+		if($('#vcard .wait').is(':hidden') && $('#vcard .avatar-info.avatar-wait').is(':hidden') && $(this).val())
 			$('#vcard-avatar').ajaxSubmit(avatar_options);
 		
 		return false;

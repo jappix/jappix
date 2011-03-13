@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 13/03/11
 
 */
 
@@ -71,6 +71,7 @@ function generateFileShare() {
 	return  '<input type="hidden" name="MAX_FILE_SIZE" value="' + encodeQuotes(JAPPIX_MAX_FILE_SIZE) + '">' + 
 		'<input type="hidden" name="user" value="' + encodeQuotes(getXID()) + '" />' + 
 		'<input type="hidden" name="location" value="' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" />' + 
+		'<input type="hidden" name="id" value="' + (new Date()).getTime() + '" />' + 
 		'<input type="file" name="file" required="" />' + 
 		'<input type="submit" value="' + _e("Send") + '" />';
 }
