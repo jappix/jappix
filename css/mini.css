@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/03/11
+Last revision: 13/03/11
 
 */
 
@@ -362,28 +362,12 @@ Last revision: 12/03/11
 
 #jappix_mini span.jm_animate {
 	background-position: 0 0;
-	width: 120px;
-	height: 114px;
+	width: 111px;
+	height: 102px;
 	position: absolute;
-	top: -114px;
+	top: -102px;
 	left: -74px;
 	z-index: 1;
-	display: block;
-}
-
-#jappix_mini span.jm_animate span.animate_right {
-	background-position: 0 -114px;
-	width: 24px;
-	height: 21px;
-	margin: 16px 0 0 42px;
-	display: block;
-}
-
-#jappix_mini span.jm_animate span.animate_left {
-	background-position: -101px -114px;
-	width: 19px;
-	height: 17px;
-	margin: 19px 0 0 51px;
 	display: block;
 }
 

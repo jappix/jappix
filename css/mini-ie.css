@@ -7,7 +7,7 @@ This is the Jappix Mini legacy IE CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/03/11
+Last revision: 13/03/11
 
 */
 
@@ -19,6 +19,10 @@ Last revision: 12/03/11
 
 #jappix_mini .jm_images {
 	background-image: url(../img/sprites/mini.gif) !important;
+}
+
+#jappix_mini .jm_images_animate {
+	background-image: url(../img/sprites/animate.gif) !important;
 }
 
 #jappix_mini a.jm_button {

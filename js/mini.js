@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/03/11
+Last revision: 13/03/11
 
 */
 
@@ -945,32 +945,17 @@ function createMini(domain, user, password) {
 		
 		// Must animate?
 		if(MINI_ANIMATE) {
-			// Does not provide alpha colors support
+			// Add content
+			jQuery('#jappix_mini div.jm_starter a.jm_pane').prepend(
+				'<span class="jm_animate jm_images_animate"></span>'
+			);
+			
+			// IE6 makes the image blink when animated...
 			if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
 				return;
 			
-			// Add content
-			jQuery('#jappix_mini div.jm_starter a.jm_pane').prepend(
-				'<span class="jm_animate jm_images_animate">' + 
-					'<span class="animate_left jm_images_animate"></span>' + 
-				'</span>'
-			);
-			
 			// Add timers
-			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime('1s', function() {
-				// Random array
-				var array = ['right', 'left', 'none'];
-				var value = array[Math.floor(Math.random() * array.length)];
-				
-				// Reset everything
-				jQuery(this).empty();
-				
-				// Add the value
-				if(value != 'none')
-					jQuery(this).html('<span class="animate_' + value + ' jm_images_animate"></span>');
-			})
-			
-			.everyTime(250, function() {
+			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime(250, function() {
 				// Array
 				var array = ['-1', '-0.75', '-0.5', '-0.25', '0', '0.25', '0.5', '0.75', '1'];
 				
