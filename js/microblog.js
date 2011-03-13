@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 13/03/11
 
 */
 
@@ -706,7 +706,7 @@ function launchMicroblog() {
 	// Keyboard event
 	$('#channel .top input[name=microblog_body]').keyup(function(e) {
 		// Enter pressed: send the microblog notice
-		if(e.keyCode == 13)
+		if((e.keyCode == 13) && !exists('#attach .wait'))
 			return sendMicroblog();
 	});
 	
