@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 16/03/11
 
 */
 
@@ -128,37 +128,11 @@ function connected() {
 	// Update the roster
 	jQuery('#jappix_mini a.jm_pane.jm_button span.jm_counter').text('0');
 	
-	// Must show the roster?
-	if(!MINI_AUTOCONNECT)
-		showRoster();
-	
 	// Do not get the roster if anonymous
 	if(MINI_ANONYMOUS)
 		initialize();
 	else
 		getRoster();
-	
-	// Join the groupchats
-	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
-		// Empty value?
-		if(!MINI_GROUPCHATS[i])
-			continue;
-		
-		// Using a try/catch override IE issues
-		try {
-			// Current chat room
-			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
-			
-			// Open the current chat
-			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room), MINI_PASSWORDS[i]);
-		}
-		
-		catch(e) {}
-	}
-	
-	// Must hide all panes?
-	if(!MINI_SHOWPANE)
-		switchPane();
 	
 	// For logger
 	if(MINI_RECONNECT)
@@ -463,6 +437,7 @@ function handlePresence(pr) {
 			
 			default:
 				show = 'available';
+				
 				break;
 		}
 	}
@@ -1135,7 +1110,7 @@ function closePrompt() {
 }
 
 // Manages and creates a chat
-function chat(type, xid, nick, hash, pwd) {
+function chat(type, xid, nick, hash, pwd, show_pane) {
 	var current = '#jappix_mini #chat-' + hash;
 	
 	// Not yet added?
@@ -1235,9 +1210,10 @@ function chat(type, xid, nick, hash, pwd) {
 	}
 	
 	// Focus on our pane
-	jQuery(document).oneTime(10, function() {
-		switchPane('chat-' + hash, hash);
-	});
+	if(show_pane != false)
+		jQuery(document).oneTime(10, function() {
+			switchPane('chat-' + hash, hash);
+		});
 	
 	return false;
 }
@@ -1351,6 +1327,30 @@ function initialize() {
 	// Send the initial presence
 	if(!MINI_ANONYMOUS)
 		presence();
+	
+	// Join the groupchats
+	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
+		// Empty value?
+		if(!MINI_GROUPCHATS[i])
+			continue;
+		
+		// Using a try/catch override IE issues
+		try {
+			// Current chat room
+			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
+			
+			// Open the current chat
+			chat('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room), MINI_PASSWORDS[i], MINI_SHOWPANE);
+		}
+		
+		catch(e) {}
+	}
+	
+	// Must show the roster?
+	if(!MINI_AUTOCONNECT && !MINI_GROUPCHATS.length)
+		jQuery(document).oneTime(10, function() {
+			showRoster();
+		});
 }
 
 // Displays a roster buddy

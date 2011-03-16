@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 16/03/11
 
 */
 
@@ -155,6 +155,7 @@ Last revision: 13/03/11
 	position: absolute;
 	right: -1px;
 	bottom: 25px;
+	display: none;
 }
 
 #jappix_mini div.jm_actions {
