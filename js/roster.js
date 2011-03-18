@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 18/03/11
 
 */
 
@@ -173,7 +173,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 				var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
 				var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
 				
-				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + privacy_class + '" data-xid="' + dXID + '">' + 
+				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + privacy_class + '" data-xid="' + encodeQuotes(dXID) + '">' + 
 						'<div class="buddy-click">';
 				
 				// Display avatar if not gateway
@@ -410,6 +410,9 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				'</div>'
 			);
 			
+			// Sets the good position
+			buddyInfosPosition(xid, group_hash);
+			
 			// Get the presence
 			presenceFunnel(xid, hash);
 			
@@ -448,6 +451,20 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 		
 		$(bPath).stopTime();
 	});
+}
+
+// Sets the good buddy-infos position
+function buddyInfosPosition(xid, group_hash) {
+	// Paths
+	var group = '#buddy-list .' + group_hash;
+	var buddy = group + ' .buddy[data-xid=' + xid + ']';
+	var buddy_infos = buddy + ' .buddy-infos';
+	
+	// Process the top position
+	var top = $(buddy).position().top + 3;
+	
+	// Apply the top position
+	$(buddy_infos).css('top', top);
 }
 
 // Generates an array of the current groups of a buddy
@@ -1083,6 +1100,12 @@ function launchRoster() {
 			$('.buddy-conf-more-privacy').parent().show();
 		
 		return false;
+	});
+	
+	// When the user scrolls the buddy list
+	$('#buddy-list .content').scroll(function() {
+		// Close the opened buddy infos bubble
+		closeBubbles();
 	});
 }
 
