@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 18/03/11
 
 */
 
@@ -34,7 +34,6 @@ $user_name = '';
 $add_button = false;
 $remove_button = false;
 $save_button = false;
-$upload_button = false;
 $check_updates = false;
 
 // Start the session
@@ -120,7 +119,6 @@ if(($id != 0) && isset($_GET['a']) && !empty($_GET['a'])) {
 		// Storage request
 		case 'storage':
 			// Allowed buttons
-			$upload_button = true;
 			$remove_button = true;
 			
 			// Page ID
@@ -132,7 +130,6 @@ if(($id != 0) && isset($_GET['a']) && !empty($_GET['a'])) {
 		case 'design':
 			// Allowed buttons
 			$save_button = true;
-			$upload_button = true;
 			$remove_button = true;
 			
 			// Page ID
@@ -464,6 +461,7 @@ else
 					<label for="music_album"><?php _e("Album"); ?></label><input id="music_album" class="icon manager-images" type="text" name="music_album" value="<?php echo(htmlspecialchars($music_album)); ?>" />
 					
 					<label for="music_file"><?php _e("File"); ?></label><input id="music_file" type="file" name="music_file" accept="audio/*" />
+					<label for="music_upload"><?php _e("Upload"); ?></label><input id="music_upload" type="submit" name="upload" value="<?php _e("Upload"); ?>" />
 				</fieldset>
 				
 				<fieldset>
@@ -582,6 +580,7 @@ else
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 					
 					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" accept="image/*" />
+					<label for="background_image_upload"><?php _e("Upload"); ?></label><input id="background_image_upload" type="submit" name="upload" value="<?php _e("Upload"); ?>" />
 					
 					<div class="clear"></div>
 				</div>
@@ -806,8 +805,6 @@ else
 					<input type="submit" name="add" value="<?php _e("Add"); ?>" />
 				<?php } if($save_button) { ?>
 					<input type="submit" name="save" value="<?php _e("Save"); ?>" />
-				<?php } if($upload_button) { ?>
-					<input type="submit" name="upload" value="<?php _e("Upload"); ?>" />
 				<?php } if($remove_button) { ?>
 					<input type="submit" name="remove" value="<?php _e("Remove"); ?>" />
 			<?php } ?>
