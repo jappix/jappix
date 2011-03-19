@@ -468,7 +468,7 @@ function buddyInfosPosition(xid, group_hash) {
 	
 	// Process the position
 	var top = $(buddy).position().top + offset;
-	var left = $(buddy).width() - 12;
+	var left = $(buddy).width() - 10;
 	
 	// Apply the top position
 	$(buddy_infos).css('top', top)
