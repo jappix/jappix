@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 19/03/11
 
 */
 

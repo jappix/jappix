@@ -7,7 +7,7 @@ These are the buddy name related JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/12/10
+Last revision: 19/03/11
 
 */
 
@@ -87,7 +87,7 @@ function getBuddyName(xid) {
 	
 	// Not me!
 	else {
-		cname = $('#buddy-list .buddy[data-xid=' + xid + ']:first .buddy-name').html();
+		cname = $('#buddy-list .buddy[data-xid=' + escape(xid) + ']:first .buddy-name').html();
 		
 		// If the complete name exists
 		if(cname)

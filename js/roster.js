@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/03/11
+Last revision: 19/03/11
 
 */
 
@@ -173,7 +173,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 				var name_code = '<p class="buddy-name">' + dName.htmlEnc() + '</p>';
 				var presence_code = '<p class="buddy-presence talk-images unavailable">' + _e("Unavailable") + '</p>';
 				
-				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + privacy_class + '" data-xid="' + encodeQuotes(dXID) + '">' + 
+				var html = '<div class="hidden-buddy buddy ibubble ' + dXIDHash + gateway + privacy_class + '" data-xid="' + escape(dXID) + '">' + 
 						'<div class="buddy-click">';
 				
 				// Display avatar if not gateway
@@ -227,7 +227,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 // Applies the buddy editing input events
 function applyBuddyInput(xid) {
 	// Initialize
-	var path = '#buddy-list .buddy[data-xid=' + xid + ']';
+	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + ']';
 	var rename = path + ' .bm-rename input';
 	var group = path + ' .bm-group input';
 	var manage_infos = path + ' .manage-infos';
@@ -375,7 +375,7 @@ function applyBuddyInput(xid) {
 // Applies the buddy editing hover events
 function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 	// Generate the values
-	var bPath = '#buddy-list .' + group_hash + ' .buddy[data-xid=' + xid + ']';
+	var bPath = '#buddy-list .' + group_hash + ' .buddy[data-xid=' + escape(xid) + ']';
 	var iPath = bPath + ' .buddy-infos';
 	
 	// Apply the hover event
@@ -457,19 +457,27 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 function buddyInfosPosition(xid, group_hash) {
 	// Paths
 	var group = '#buddy-list .' + group_hash;
-	var buddy = group + ' .buddy[data-xid=' + xid + ']';
+	var buddy = group + ' .buddy[data-xid=' + escape(xid) + ']';
 	var buddy_infos = buddy + ' .buddy-infos';
 	
-	// Process the top position
-	var top = $(buddy).position().top + 3;
+	// Get the offset to define
+	var offset = 3;
+	
+	if(isGateway(xid))
+		offset = -8;
+	
+	// Process the position
+	var top = $(buddy).position().top + offset;
+	var left = $(buddy).width() - 12;
 	
 	// Apply the top position
-	$(buddy_infos).css('top', top);
+	$(buddy_infos).css('top', top)
+	              .css('left', left);
 }
 
 // Generates an array of the current groups of a buddy
 function thisBuddyGroups(xid) {
-	var path = '#buddy-list .buddy[data-xid=' + xid + '] ';
+	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + '] ';
 	var array = new Array();
 	
 	// Each checked checkboxes
@@ -523,7 +531,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	logThis('Buddy edit: ' + xid, 3);
 	
 	// Initialize
-	var path = '#buddy-list .buddy[data-xid=' + xid + '] .';
+	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + '] .';
 	var html = '<div class="manage-infos">';
 	
 	// Get the privacy state
@@ -673,7 +681,7 @@ function getAllBuddies() {
 	var buddies = new Array();
 	
 	$('#buddy-list .buddy').each(function() {
-		var xid = $(this).attr('data-xid');
+		var xid = unescape($(this).attr('data-xid'));
 		
 		if(xid)
 			buddies.push(xid);

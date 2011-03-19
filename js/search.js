@@ -7,7 +7,7 @@ These are the seach tools JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 19/03/11
 
 */
 
@@ -208,9 +208,9 @@ function goFilterBuddySearch(vFilter) {
 	for(i in rFilter) {
 		// Choose the correct selector for this search
 		if(!BLIST_ALL)
-			$('#buddy-list .buddy[data-xid=' + rFilter[i] + ']:not(.hidden-buddy)').show();
+			$('#buddy-list .buddy[data-xid=' + escape(rFilter[i]) + ']:not(.hidden-buddy)').show();
 		else
-			$('#buddy-list .buddy[data-xid=' + rFilter[i] + ']').show();
+			$('#buddy-list .buddy[data-xid=' + escape(rFilter[i]) + ']').show();
 	}
 }
 

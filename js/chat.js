@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 19/03/11
 
 */
 
@@ -230,7 +230,7 @@ function chatCreate(hash, xid, nick, type) {
 	// If the user is not in our buddy-list
 	if(type == 'chat') {
 		// Add button
-		if(!exists('#buddy-list .buddy[data-xid=' + xid + ']'))
+		if(!exists('#buddy-list .buddy[data-xid=' + escape(xid) + ']'))
 			$('#' + hash + ' .tools-add').click(function() {
 				// Hide the icon (to tell the user all is okay)
 				$(this).hide();

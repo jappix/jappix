@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 19/03/11
 
 */
 
@@ -211,7 +211,7 @@ function handleGetPrivacy(iq) {
 			
 			// XID types
 			$(this).find('item[action=deny][type=jid]').each(function() {
-				$('#buddy-list .buddy[data-xid=' + $(this).attr('value') + ']').addClass('blocked');
+				$('#buddy-list .buddy[data-xid=' + escape($(this).attr('value')) + ']').addClass('blocked');
 			});
 			
 			// Group types

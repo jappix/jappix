@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 19/03/11
 
 */
 
@@ -413,7 +413,7 @@ function handleDataFormContent(iq, type) {
 							'<div class="buttons-container">';
 					
 					// The buddy is not in our buddy list?
-					if(!exists('#buddy-list .buddy[data-xid=' + bXID + ']'))
+					if(!exists('#buddy-list .buddy[data-xid=' + escape(bXID) + ']'))
 						bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
 					
 					// Chat button, if not in welcome/directory mode

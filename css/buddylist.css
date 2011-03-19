@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/03/11
+Last revision: 19/03/11
  
 */
  
@@ -193,15 +193,10 @@ Last revision: 18/03/11
  
 #buddy-list .buddy-infos {
 	position: absolute;
-        margin-left: 200px;
         z-index: 100;
         width: 337px;
         color: white;
         font-size: 0.8em;
-}
- 
-#buddy-list .gateway .buddy-infos {
-        margin-top: -35px;
 }
  
 .buddy-infos-subarrow {

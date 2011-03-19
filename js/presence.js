@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 19/03/11
 
 */
 
@@ -164,7 +164,7 @@ function handlePresence(presence) {
 		// Subscribe stanza
 		else if(type == 'subscribe') {
 			// This is a buddy we can safely authorize, because we added him to our roster
-			if(exists('#buddy-list .buddy[data-xid=' + xid + ']'))
+			if(exists('#buddy-list .buddy[data-xid=' + escape(xid) + ']'))
 				acceptSubscribe(xid);
 			
 			// We do not know this entity, we'd be better ask the user
@@ -251,7 +251,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
-			'<div class="user ' + hash + myself + '" data-xid="' + from + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
+			'<div class="user ' + hash + myself + '" data-xid="' + encodeQuotes(from) + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
 				'<div class="name talk-images available">' + nick_html + '</div>' + 
 				
 				'<div class="avatar-container">' + 
