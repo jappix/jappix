@@ -7,14 +7,17 @@ This is the Jappix Mini legacy IE CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 20/03/11
 
 */
 
 #jappix_mini {
+	width: expression(document.documentElement.clientWidth - 150 + 'px') !important;
 	position: absolute !important;
 	bottom: auto !important;
-	top: expression(((document.documentElement.clientHeight - 25) + (ignoreMiniTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	right: auto !important;
+	top: expression(((document.documentElement.clientHeight - this.offsetHeight) + (ignoreMiniTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px') !important;
+	left: expression((150 + this.offsetWidth - (document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth) + (ignoreMiniLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }
 
 #jappix_mini .jm_images {
@@ -31,11 +34,15 @@ Last revision: 13/03/11
 
 #jappix_mini div.jm_roster {
 	right: -1px !important;
-	bottom: 27px !important;
+	bottom: 23px !important;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
 	height: expression(this.scrollHeight > (document.documentElement.clientHeight - 70) ? (document.documentElement.clientHeight - 70) + 'px' : 'auto') !important;
+}
+
+#jappix_mini a.jm_pane {
+	height: 12px !important;
 }
 
 #jappix_mini a.jm_button.jm_clicked {
@@ -48,6 +55,7 @@ Last revision: 13/03/11
 }
 
 #jappix_mini div.jm_chat-content {
+	bottom: 23px !important;
 	right: -2px !important;
 }
 

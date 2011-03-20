@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/03/11
+Last revision: 20/03/11
 
 */
 
@@ -28,8 +28,11 @@ Last revision: 16/03/11
 #jappix_popup * {
 	border: none;
 	color: black;
+	width: auto;
+	height: auto;
 	margin: 0;
 	padding: 0;
+	overflow: visible;
 	font-size: 11px;
 	text-align: left;
 	text-transform: none;
@@ -62,6 +65,10 @@ Last revision: 16/03/11
 	cursor: pointer;
 }
 
+#jappix_mini div.jm_position {
+	float: right;
+}
+
 #jappix_mini a.jm_pane {
 	background-color: #f4f4f4;
 	background-position: 0 -100px;
@@ -71,6 +78,7 @@ Last revision: 16/03/11
 	border-width: 1px 1px 0 1px;
 	font-weight: bold;
 	outline-style: none;
+	overflow-y: hidden;
 	display: block;
 	padding: 6px;
 	height: 13px;

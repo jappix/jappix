@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/03/11
+Last revision: 20/03/11
 
 */
 
@@ -745,22 +745,23 @@ function createMini(domain, user, password) {
 	
 	// New DOM?
 	else {
-		dom = 
-			'<div class="jm_conversations"></div>' + 
-			
-			'<div class="jm_starter">' + 
-				'<div class="jm_roster">' + 
-					'<div class="jm_actions">' + 
-						'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
-						'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
+		dom =   '<div class="jm_position">' + 
+				'<div class="jm_conversations"></div>' + 
+				
+				'<div class="jm_starter">' + 
+					'<div class="jm_roster">' + 
+						'<div class="jm_actions">' + 
+							'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
+							'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
+						'</div>' + 
+						
+						'<div class="jm_buddies"></div>' + 
 					'</div>' + 
 					
-					'<div class="jm_buddies"></div>' + 
+					'<a class="jm_pane jm_button jm_images" href="#">' + 
+						'<span class="jm_counter jm_images">' + _e("Please wait...") + '</span>' + 
+					'</a>' + 
 				'</div>' + 
-				
-				'<a class="jm_pane jm_button jm_images" href="#">' + 
-					'<span class="jm_counter jm_images">' + _e("Please wait...") + '</span>' + 
-				'</a>' + 
 			'</div>';
 	}
 	
