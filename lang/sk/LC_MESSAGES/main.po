@@ -4,18 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-01-28 19:15:30\n"
+"PO-Revision-Date: 2011-03-20 13:43:55\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: 
-#~ msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
-#~ msgstr ""
-
-#: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
-msgstr "Vo vašom prehliadači chýba JavaScript, takže nebude možné spustiť Jappix! Prosím naprav to."
+msgstr "Vo vašom prehliadači chýba JavaScript, takže nebude možné spustiť Jappix! Prosím napravte to."
 
 #: 
 msgid "An open social network"
@@ -23,7 +19,7 @@ msgstr "Otvorená sociálna sieť"
 
 #: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr "Jappix bol prerušený problémom so sieťou, chybou alebo nesprávnym prihlásením (skontroluj či sú zadané správne údaje). Ospravedlňujeme sa za nepríjemnosti."
+msgstr "Jappix bol prerušený problémom so sieťou, chybou alebo nesprávnym prihlásením (skontrolujte či sú zadané údaje správne). Ospravedlňujeme sa za nepríjemnosti."
 
 #: 
 msgid "The element list on this server could not be obtained!"
@@ -42,12 +38,8 @@ msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "Boli ste odhlásený z vášho XMPP účtu, prajem pekný deň!"
 
 #: 
-msgid "Your browser does not support this functionality, please try Mozilla Firefox."
-msgstr "Váš prehliadač nepodporuje túto funkciu, vyskúšajte Mozilla Firefox."
-
-#: 
 msgid "The room you joined seems not to exist. You should create it!"
-msgstr "Zdá sa, že miestnosť do ktorej ste vstúpili neexistuje, Môžete ju vytvoriť!"
+msgstr "Zdá sa, že miestnosť do ktorej ste vstúpili neexistuje, Vytvárate ju!"
 
 #: 
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
@@ -68,6 +60,14 @@ msgstr "Prosím, vyplňte prezývku pre pripojenie do %s."
 #: 
 msgid "This room (%s) is protected with a password."
 msgstr "Táto miestnosť (%s) je chránená heslom."
+
+#: 
+msgid "Your browser is out of date!"
+msgstr "Váš prehliadač je zastaralý"
+
+#: 
+msgid "Last %s version is better!"
+msgstr "Posledná %s verzia je lepšia!"
 
 #: 
 msgid "Login"
@@ -142,30 +142,6 @@ msgid "More stuff"
 msgstr "Ďalšie možnosti"
 
 #: 
-msgid "Get involved!"
-msgstr "Zapojte sa!"
-
-#: 
-msgid "Write code"
-msgstr "Programujte"
-
-#: 
-msgid "Translate"
-msgstr "Prekladajte"
-
-#: 
-msgid "Report a bug"
-msgstr "Nahláste chybu"
-
-#: 
-msgid "Write documentation"
-msgstr "Píšte dokumentáciu"
-
-#: 
-msgid "Donate"
-msgstr "Prispejte"
-
-#: 
 msgid "Show all friends"
 msgstr "Zobraziť všetkých priateľov"
 
@@ -178,16 +154,16 @@ msgid "Message archives"
 msgstr "Archív správ"
 
 #: 
-#~ msgid "Friend"
-#~ msgstr ""
-
-#: 
 msgid "Date"
 msgstr "Dátum"
 
 #: 
-msgid "About Jappix"
-msgstr "O Jappix"
+msgid "Please select a friend to view the chat history."
+msgstr "Vyberte priateľa pre zobrazenie histórie rozhovoru."
+
+#: 
+msgid "Nothing found for: %s"
+msgstr "Žiaden výsledok pre: %s"
 
 #: 
 msgid "A short message?"
@@ -235,7 +211,7 @@ msgstr "Nálada"
 
 #: 
 msgid "None"
-msgstr "Nijaká"
+msgstr "Nič"
 
 #: 
 msgid "Crazy"
@@ -271,7 +247,7 @@ msgstr "Zamilovaný"
 
 #: 
 msgid "Confident"
-msgstr "Presvedčný"
+msgstr "Dôverčivý"
 
 #: 
 msgid "Activity"
@@ -382,6 +358,10 @@ msgid "E-mail"
 msgstr "E-mail"
 
 #: 
+msgid "Phone"
+msgstr "Telefón"
+
+#: 
 msgid "Website"
 msgstr "Webstránka"
 
@@ -434,8 +414,8 @@ msgid "Not everything is private on XMPP; this is one of those things, your publ
 msgstr "Nie všetko je súkromné v XMPP; toto je jedna z týchto vecí, váš verejný profil (vCard)"
 
 #: 
-msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr "Odporúčame nahrať profilovú fotku (25Kio maximum), napríklad vašu fotografiu, vďaka ktorej vás priatelia ľahko rozpoznajú"
+msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgstr "Odporúčame nahrať profilovku (%s maximum), napríklad vašu fotku, aby vás priatelia ľahšie rozpoznali."
 
 #: 
 msgid "Save"
@@ -452,6 +432,10 @@ msgstr "Upraviť možnosti"
 #: 
 msgid "Channel"
 msgstr "Kanál"
+
+#: 
+msgid "Commands"
+msgstr "Príkazy"
 
 #: 
 msgid "Sounds"
@@ -534,6 +518,10 @@ msgid "is now"
 msgstr "je teraz"
 
 #: 
+msgid "Please wait while your avatar is uploaded..."
+msgstr "Prosím počkajte pokiaľ sa nahrá váš avatar.."
+
+#: 
 msgid "Here it is! A new beautiful profile image!"
 msgstr "Tu je! Nová krásna profilová fotka!"
 
@@ -548,6 +536,10 @@ msgstr "Odpovedať"
 #: 
 msgid "Error"
 msgstr "Chyba"
+
+#: 
+msgid "Click here to solve the error"
+msgstr "Kliknite sem pre riešenie problému"
 
 #: 
 msgid "You"
@@ -608,6 +600,10 @@ msgstr "Stiahni súbor!"
 #: 
 msgid "Clean current chat"
 msgstr "Vyčisti prebiehajúci rozhovor"
+
+#: 
+msgid "View chat history"
+msgstr "Ukáž históriu rozhovoru"
 
 #: 
 msgid "Show user profile"
@@ -706,8 +702,8 @@ msgid "Server to query"
 msgstr "Server na prehľadanie"
 
 #: 
-#~ msgid "Sorry, but the server didn't return any result!"
-#~ msgstr ""
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "Ospravedňujeme sa, ale výraz nevrátil žiaden výsledok"
 
 #: 
 msgid "Accounts"
@@ -922,8 +918,8 @@ msgid "Hi there!"
 msgstr "Ahoj!"
 
 #: 
-#~ msgid "Welcome on %1s, « %2s »."
-#~ msgstr ""
+msgid "Welcome on %1s, “%2s”."
+msgstr "Vitajte na %1s, “%2s”."
 
 #: 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1006,8 +1002,8 @@ msgid "Encrypted"
 msgstr "Šifrovane"
 
 #: 
-msgid "Uncrypted"
-msgstr "Nezašifrovane"
+msgid "Unencrypted"
+msgstr "Nešifrované"
 
 #: 
 msgid "Where are you?"
@@ -1090,6 +1086,10 @@ msgid "would like to get authorization."
 msgstr "žiada o povolenie."
 
 #: 
+msgid "Do you want to see the friends %s suggests you?"
+msgstr "Chcete vidieť priateľov, ktorých vám %s navrhuje? "
+
+#: 
 msgid "Submit"
 msgstr "Povoliť"
 
@@ -1140,6 +1140,10 @@ msgstr "Povoliť"
 #: 
 msgid "Ask for authorization"
 msgstr "Požiadaj o povolenie"
+
+#: 
+msgid "Unblock"
+msgstr "Odblokovať"
 
 #: 
 msgid "Prohibit"
@@ -1278,12 +1282,20 @@ msgid "Use this tool to find your friends on the server you are using right now,
 msgstr "Použite tento nástroj na vyhľadanie vašich priateľov na serveri, ktorý používate, alebo ich pridajte neskôr."
 
 #: 
-msgid "Great work! When you will press the save button, the profile editor will be opened."
-msgstr "Výborne! Keď kliknete na tlačidlo Uložiť, otvorí sa editor profilu"
+msgid "Great work! Now, you can share Jappix with your friends!"
+msgstr "Výborne! Teraz môžte zdielať Jappix s priateľmi!"
 
 #: 
-msgid "Thanks from the Jappix team for your interest. Happy socializing!"
-msgstr "Jappix tím vám ďakuje za váš záujem. Happy socializing! "
+msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
+msgstr ""
+
+#: 
+msgid "Share Jappix on %s"
+msgstr "Zdieľať Jappix na %s"
+
+#: 
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr "Používam Jappix, otvorenú socialnu platformu. Ja som %s!"
 
 #: 
 msgid "Unknown name"
@@ -1347,7 +1359,7 @@ msgstr "Inštalácia služieb"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "Pokiaľ sa tento jazyk nezhoduje s vašim (%1s), môžete nechať Jappix hovoriť %2s.Voľba bude uložená."
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
@@ -1420,6 +1432,10 @@ msgstr "Anonymný mód"
 #: 
 msgid "Registration allowed"
 msgstr "Registrácia povolená"
+
+#: 
+msgid "Use a proxy"
+msgstr "Použiť proxy"
 
 #: 
 msgid "Encryption"
@@ -1714,6 +1730,34 @@ msgid "December"
 msgstr "December"
 
 #: 
+msgid "Monday"
+msgstr "Pondelok"
+
+#: 
+msgid "Tuesday"
+msgstr "Utorok"
+
+#: 
+msgid "Wednesday"
+msgstr "Streda"
+
+#: 
+msgid "Thursday"
+msgstr "Štvrtok"
+
+#: 
+msgid "Friday"
+msgstr "Piatok"
+
+#: 
+msgid "Saturday"
+msgstr "Sobota"
+
+#: 
+msgid "Sunday"
+msgstr "Nedeľa"
+
+#: 
 msgid "Total"
 msgstr "Celkom"
 
@@ -1822,6 +1866,14 @@ msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr "Vaša zložka na ukladanie nemá povolený zápis, upravte oprávnenia"
 
 #: 
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr "%1s môže spôsobiť problémy s proxy, zvýšte hodnotu %2s na %3s!"
+
+#: 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr "Práve používate vývojovú verziu. Aktualizujte ju prostredníctvom nášho repozitáru spustením: %s."
+
+#: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr "Dostupná nová verzia Jappix! Skontrolujte čo je nové a spustite update!"
 
@@ -1832,6 +1884,10 @@ msgstr "Vaša verzia je neaktuálna. Aktualizujte ju na %s kliknutím sem!"
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
 msgstr "Vaša verzia sa zdá byť aktuálna, ale môžete skontrolovať aktualizácie kliknutím sem."
+
+#: 
+msgid "Check for updates"
+msgstr "Skontrolovať aktualizácie"
 
 #: 
 msgid "Update in progress"
@@ -2034,110 +2090,110 @@ msgid "Inactive since: %s"
 msgstr "Neaktívny od: %s"
 
 #: 
-msgid "View chat history"
-msgstr "Ukáž históriu rozhovoru"
-
-#: 
-msgid "Monday"
-msgstr "Pondelok"
-
-#: 
-msgid "Tuesday"
-msgstr "Utorok"
-
-#: 
-msgid "Wednesday"
-msgstr "Streda"
-
-#: 
-msgid "Thursday"
-msgstr "Štvrtok"
-
-#: 
-msgid "Friday"
-msgstr "Piatok"
-
-#: 
-msgid "Saturday"
-msgstr "Sobota"
-
-#: 
-msgid "Sunday"
-msgstr "Nedeľa"
-
-#: 
-msgid "Nothing found for: %s"
-msgstr "Žiaden výsledok pre: %s"
-
-#: 
-msgid "Please select a friend to view the chat history."
-msgstr "Vyberte priateľa pre zobrazenie histórie rozhovoru."
-
-#: 
-msgid "Click here to solve the error"
-msgstr "Kliknite sem pre riešenie problému"
-
-#: 
-msgid "Phone"
-msgstr "Telefón"
-
-#: 
-msgid "Commands"
-msgstr "Príkazy"
-
-#: 
-msgid "Sorry, but the entity didn't return any result!"
-msgstr "Ospravedňujeme sa, ale výraz nevrátil žiaden výsledok"
-
-#: 
 msgid "Your friend seems not to have received your message(s)!"
 msgstr "Zdá sa že váš priateľ nedostal nedostal vašu správu(y)!"
-
-#: 
-msgid "Unblock"
-msgstr "Odblokovať"
-
-#: 
-msgid "Albums"
-msgstr "Albumy"
-
-#: 
-msgid "Albums of %s"
-msgstr "Albumy užívateľa %s"
-
-#: 
-msgid "Shared albums of this user"
-msgstr "Zdieľané albumy užívateľa"
-
-#: 
-msgid "Welcome on %1s, “%2s”."
-msgstr "Vitajte na %1s, “%2s”."
-
-#: 
-#~ msgid "Static server"
-#~ msgstr ""
-
-#: 
-msgid "This is the static content server for %1s, “%2s”."
-msgstr "Toto je statický obsah serveru pre %1s, “%2s”."
 
 #: 
 msgid "Static content server"
 msgstr "Static content server"
 
 #: 
-msgid "Please use a supported browser!"
-msgstr "Prosím použite podporovaný prehladač!"
+msgid "This is the static content server for %1s, “%2s”."
+msgstr "Toto je statický obsah serveru pre %1s, “%2s”."
 
 #: 
-msgid "%s is supported"
-msgstr "%s je podporovaný"
+msgid "Suggested friends"
+msgstr "Navrhovaní priatelia"
 
 #: 
-msgid "%s is not supported"
-msgstr "%s nie je podporovaný"
+msgid "Check all"
+msgstr "Označit všetko"
 
 #: 
-msgid "Cross-domain for IE"
-msgstr "Cross-domain pre IE"
+msgid "Uncheck all"
+msgstr "Odznačit všetko"
+
+#: 
+msgid "Choose"
+msgstr "Zvoliť"
+
+#: 
+msgid "List name"
+msgstr "Meno zoznamu"
+
+#: 
+msgid "Allow"
+msgstr "Povoliť"
+
+#: 
+msgid "Deny"
+msgstr "Zamietnuť"
+
+#: 
+msgid "Group"
+msgstr "Skupina"
+
+#: 
+msgid "Subscription"
+msgstr "Odoberanie"
+
+#: 
+msgid "Both"
+msgstr "Obe"
+
+#: 
+msgid "From"
+msgstr "Od"
+
+#: 
+msgid "Everybody"
+msgstr "Všetci"
+
+#: 
+msgid "Send messages"
+msgstr "Poslať správu"
+
+#: 
+msgid "Send queries"
+msgstr "Send queries"
+
+#: 
+msgid "See my status"
+msgstr "Zobraziť môj status"
+
+#: 
+msgid "Send his/her status"
+msgstr "Odoslať jeho-jej status"
+
+#: 
+msgid "Everything"
+msgstr "Všetko"
+
+#: 
+msgid "Item"
+msgstr "Položka"
+
+#: 
+msgid "Order"
+msgstr "Poradie"
+
+#: 
+msgid "Active for this session"
+msgstr "Aktívny pre toto sedenie"
+
+#: 
+msgid "Always active"
+msgstr "Vždy aktívny"
+
+#: 
+msgid "User directory"
+msgstr ""
+
+#: 
+msgid "Search a friend"
+msgstr "Vyhľadať priateľa"
+
+#: 
+msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
 

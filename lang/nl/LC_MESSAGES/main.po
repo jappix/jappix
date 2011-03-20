@@ -4,14 +4,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2010-12-26 10:41:39\n"
+"PO-Revision-Date: 2011-03-20 13:42:58\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: 
-msgid "Your web browser is obsolete and will not work correctly with Jappix, please try Mozilla Firefox."
-msgstr ""
 
 #: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
@@ -42,10 +38,6 @@ msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr ""
 
 #: 
-msgid "Your browser does not support this functionality, please try Mozilla Firefox."
-msgstr ""
-
-#: 
 msgid "The room you joined seems not to exist. You should create it!"
 msgstr "De kamer die je binnenkwam bestaat nog niet. Je moet ze eerst aanmaken!"
 
@@ -67,6 +59,14 @@ msgstr ""
 
 #: 
 msgid "This room (%s) is protected with a password."
+msgstr ""
+
+#: 
+msgid "Your browser is out of date!"
+msgstr ""
+
+#: 
+msgid "Last %s version is better!"
 msgstr ""
 
 #: 
@@ -142,30 +142,6 @@ msgid "More stuff"
 msgstr ""
 
 #: 
-msgid "Get involved!"
-msgstr ""
-
-#: 
-msgid "Write code"
-msgstr "Schrijf code"
-
-#: 
-msgid "Translate"
-msgstr ""
-
-#: 
-msgid "Report a bug"
-msgstr "Meld een fout"
-
-#: 
-msgid "Write documentation"
-msgstr "Schrijf documentatie"
-
-#: 
-msgid "Donate"
-msgstr ""
-
-#: 
 msgid "Show all friends"
 msgstr "Toon alle vrienden"
 
@@ -178,16 +154,16 @@ msgid "Message archives"
 msgstr "Berichten archief"
 
 #: 
-#~ msgid "Friend"
-#~ msgstr ""
-
-#: 
 msgid "Date"
 msgstr "Datum"
 
 #: 
-msgid "About Jappix"
-msgstr "Over Jappix"
+msgid "Please select a friend to view the chat history."
+msgstr ""
+
+#: 
+msgid "Nothing found for: %s"
+msgstr ""
 
 #: 
 msgid "A short message?"
@@ -382,6 +358,10 @@ msgid "E-mail"
 msgstr "E-mail"
 
 #: 
+msgid "Phone"
+msgstr ""
+
+#: 
 msgid "Website"
 msgstr "Website"
 
@@ -434,7 +414,7 @@ msgid "Not everything is private on XMPP; this is one of those things, your publ
 msgstr ""
 
 #: 
-msgid "It is strongly recommended to upload a profile image (25Kio maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
 msgstr ""
 
 #: 
@@ -451,6 +431,10 @@ msgstr ""
 
 #: 
 msgid "Channel"
+msgstr ""
+
+#: 
+msgid "Commands"
 msgstr ""
 
 #: 
@@ -534,6 +518,10 @@ msgid "is now"
 msgstr ""
 
 #: 
+msgid "Please wait while your avatar is uploaded..."
+msgstr ""
+
+#: 
 msgid "Here it is! A new beautiful profile image!"
 msgstr ""
 
@@ -548,6 +536,10 @@ msgstr "Antwoord"
 #: 
 msgid "Error"
 msgstr "Fout"
+
+#: 
+msgid "Click here to solve the error"
+msgstr ""
 
 #: 
 msgid "You"
@@ -607,6 +599,10 @@ msgstr ""
 
 #: 
 msgid "Clean current chat"
+msgstr ""
+
+#: 
+msgid "View chat history"
 msgstr ""
 
 #: 
@@ -706,8 +702,8 @@ msgid "Server to query"
 msgstr ""
 
 #: 
-#~ msgid "Sorry, but the server didn't return any result!"
-#~ msgstr ""
+msgid "Sorry, but the entity didn't return any result!"
+msgstr ""
 
 #: 
 msgid "Accounts"
@@ -922,7 +918,7 @@ msgid "Hi there!"
 msgstr "Hallo!"
 
 #: 
-msgid "Welcome on %1s, « %2s »."
+msgid "Welcome on %1s, “%2s”."
 msgstr ""
 
 #: 
@@ -1006,8 +1002,8 @@ msgid "Encrypted"
 msgstr "Versleuteld"
 
 #: 
-msgid "Uncrypted"
-msgstr "Niet ge-encrypt"
+msgid "Unencrypted"
+msgstr ""
 
 #: 
 msgid "Where are you?"
@@ -1090,6 +1086,10 @@ msgid "would like to get authorization."
 msgstr "wil geauthoriseerd worden."
 
 #: 
+msgid "Do you want to see the friends %s suggests you?"
+msgstr ""
+
+#: 
 msgid "Submit"
 msgstr "Verzend"
 
@@ -1140,6 +1140,10 @@ msgstr "Autoriseer"
 #: 
 msgid "Ask for authorization"
 msgstr "Vraag om een authorisatie"
+
+#: 
+msgid "Unblock"
+msgstr ""
 
 #: 
 msgid "Prohibit"
@@ -1278,11 +1282,19 @@ msgid "Use this tool to find your friends on the server you are using right now,
 msgstr ""
 
 #: 
-msgid "Great work! When you will press the save button, the profile editor will be opened."
+msgid "Great work! Now, you can share Jappix with your friends!"
 msgstr ""
 
 #: 
-msgid "Thanks from the Jappix team for your interest. Happy socializing!"
+msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
+msgstr ""
+
+#: 
+msgid "Share Jappix on %s"
+msgstr ""
+
+#: 
+msgid "Using Jappix, an open social platform. I am %s!"
 msgstr ""
 
 #: 
@@ -1419,6 +1431,10 @@ msgstr ""
 
 #: 
 msgid "Registration allowed"
+msgstr ""
+
+#: 
+msgid "Use a proxy"
 msgstr ""
 
 #: 
@@ -1714,6 +1730,34 @@ msgid "December"
 msgstr ""
 
 #: 
+msgid "Monday"
+msgstr ""
+
+#: 
+msgid "Tuesday"
+msgstr ""
+
+#: 
+msgid "Wednesday"
+msgstr ""
+
+#: 
+msgid "Thursday"
+msgstr ""
+
+#: 
+msgid "Friday"
+msgstr ""
+
+#: 
+msgid "Saturday"
+msgstr ""
+
+#: 
+msgid "Sunday"
+msgstr ""
+
+#: 
 msgid "Total"
 msgstr ""
 
@@ -1822,6 +1866,14 @@ msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
 
 #: 
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr ""
+
+#: 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr ""
+
+#: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
 
@@ -1831,6 +1883,10 @@ msgstr ""
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
+msgstr ""
+
+#: 
+msgid "Check for updates"
 msgstr ""
 
 #: 
@@ -2034,62 +2090,110 @@ msgid "Inactive since: %s"
 msgstr ""
 
 #: 
-msgid "View chat history"
-msgstr ""
-
-#: 
-msgid "Monday"
-msgstr ""
-
-#: 
-msgid "Tuesday"
-msgstr ""
-
-#: 
-msgid "Wednesday"
-msgstr ""
-
-#: 
-msgid "Thursday"
-msgstr ""
-
-#: 
-msgid "Friday"
-msgstr ""
-
-#: 
-msgid "Saturday"
-msgstr ""
-
-#: 
-msgid "Sunday"
-msgstr ""
-
-#: 
-msgid "Nothing found for: %s"
-msgstr ""
-
-#: 
-msgid "Please select a friend to view the chat history."
-msgstr ""
-
-#: 
-msgid "Click here to solve the error"
-msgstr ""
-
-#: 
-msgid "Phone"
-msgstr ""
-
-#: 
-msgid "Commands"
-msgstr ""
-
-#: 
-msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
-
-#: 
 msgid "Your friend seems not to have received your message(s)!"
+msgstr ""
+
+#: 
+msgid "Static content server"
+msgstr ""
+
+#: 
+msgid "This is the static content server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Suggested friends"
+msgstr ""
+
+#: 
+msgid "Check all"
+msgstr ""
+
+#: 
+msgid "Uncheck all"
+msgstr ""
+
+#: 
+msgid "Choose"
+msgstr ""
+
+#: 
+msgid "List name"
+msgstr ""
+
+#: 
+msgid "Allow"
+msgstr ""
+
+#: 
+msgid "Deny"
+msgstr ""
+
+#: 
+msgid "Group"
+msgstr ""
+
+#: 
+msgid "Subscription"
+msgstr ""
+
+#: 
+msgid "Both"
+msgstr ""
+
+#: 
+msgid "From"
+msgstr ""
+
+#: 
+msgid "Everybody"
+msgstr ""
+
+#: 
+msgid "Send messages"
+msgstr ""
+
+#: 
+msgid "Send queries"
+msgstr ""
+
+#: 
+msgid "See my status"
+msgstr ""
+
+#: 
+msgid "Send his/her status"
+msgstr ""
+
+#: 
+msgid "Everything"
+msgstr ""
+
+#: 
+msgid "Item"
+msgstr ""
+
+#: 
+msgid "Order"
+msgstr ""
+
+#: 
+msgid "Active for this session"
+msgstr ""
+
+#: 
+msgid "Always active"
+msgstr ""
+
+#: 
+msgid "User directory"
+msgstr ""
+
+#: 
+msgid "Search a friend"
+msgstr ""
+
+#: 
+msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr ""
 
