@@ -7,7 +7,7 @@ These are the temporary/persistent data store functions
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/01/11
+Last revision: 20/03/11
 
 */
 
@@ -19,6 +19,8 @@ function getDB(type, id) {
 	
 	catch(e) {
 		logThis('Error while getting a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		
+		return null;
 	}
 }
 
@@ -87,6 +89,8 @@ function getPersistent(type, id) {
 	
 	catch(e) {
 		logThis('Error while getting a persistent database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		
+		return null;
 	}
 }
 
