@@ -1,0 +1,332 @@
+/*
+
+Jappix - An open social platform
+This is the channel CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Valérian Saliou
+Last revision: 07/03/11
+
+*/
+
+#channel .top div.update {
+	position: absolute;
+	top: 12px;
+	left: 115px;
+	right: 15px;
+	bottom: 15px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+
+#channel .top p {
+	font-size: 0.9em;
+	margin-bottom: 10px;
+}
+
+#channel .top h2 {
+	font-size: 1.6em;
+	margin-bottom: 10px;
+	color: #232323;
+}
+
+#channel .top a {
+	font-size: 0.9em;
+	color: #232323;
+}
+
+#channel .microblog-body {
+	height: 20px;
+	margin-right: 50px;
+}
+
+#channel .microblog-body input {
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+}
+
+#channel .one-microblog-icon {
+	position: absolute;
+	top: 38px;
+	right: 0;
+}
+
+#channel div.update .one-microblog-icon,
+#channel div.update .postit {
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+#channel div.update .attach {
+	background-position: 0 -79px;
+	display: none;
+}
+
+#attach {
+	position: absolute;
+	width: 263px;
+	margin-left: -227px;
+	color: white;
+	font-size: 0.85em;
+	z-index: 9998;
+	text-align: left;
+	display: none;
+}
+
+#attach p {
+	margin-bottom: 6px !important;
+}
+
+#attach input[type=submit] {
+	margin: 8px 0 6px 0;
+}
+
+#attach .wait {
+	float: right;
+	margin: 7px 5px;
+}
+
+#attach div.one-file {
+	height: 16px;
+	margin-top: 2px;
+}
+
+#attach div.one-file a.link {
+	color: white;
+	width: 215px;
+	height: 14px;
+	margin-left: 2px;
+	overflow: hidden;
+	float: left;
+}
+
+#attach div.one-file a.remove {
+	width: 16px;
+	height: 16px;
+	float: left;
+}
+
+.attach-subarrow {
+	background-position: 0 -241px;
+	opacity: 0.8;
+	height: 10px;
+	width: 18px;
+	margin-left: 226px;
+}
+
+.attach-subitem {
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.8);
+	padding: 10px;
+	text-shadow: 0 1px 1px black;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+.attach-p {
+	font-weight: bold;
+	float: left;
+}
+
+#channel .one-update {
+	margin-bottom: 14px;
+	padding: 6px;
+	border-bottom: 1px dotted #d0d0d0;
+	min-height: 50px;
+	color: black;
+	position: relative;
+}
+
+#channel .one-update .avatar-container {
+	text-align: center;
+	margin-right: 20px;
+	float: left;
+	height: 50px;
+	width: 50px;
+}
+
+#channel .one-update .avatar-container:hover {
+	cursor: pointer;
+}
+
+#channel .one-update img.avatar {
+	max-height: 50px;
+	max-width: 50px;
+}
+
+#channel .one-update div.body {
+	opacity: 0.8;
+}
+
+#channel .one-update:hover div.body {
+	opacity: 1;
+}
+
+#channel .one-update span a {
+	text-decoration: underline;
+}
+
+#channel .one-update p {
+	display: block;
+	margin: 0 12px 4px 0;
+}
+
+#channel .one-update p b:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#channel .one-update p.infos {
+	font-size: 0.9em;
+}
+
+#channel .one-update p.file {
+	font-size: 0.9em;
+	margin: 6px 0 5px 75px;
+}
+
+#channel .one-update p.file a.link,
+#inbox .message-file a,
+#inbox .inbox-new-file a.file {
+	min-height: 16px;
+	padding-left: 22px;
+	text-decoration: underline;
+	display: block;
+}
+
+#channel .one-update p.file a.link {
+	margin-top: 4px;
+}
+
+#channel p.file a.audio,
+#inbox .message-file a.audio,
+#inbox .inbox-new-file a.file.audio {
+	background-position: 0 -899px;
+}
+
+#channel p.file a.image,
+#inbox .message-file a.image,
+#inbox .inbox-new-file a.file.image {
+	background-position: 0 -917px;
+}
+
+#channel p.file a.video,
+#inbox .message-file a.video,
+#inbox .inbox-new-file a.file.video {
+	background-position: 0 -935px;
+}
+
+#channel p.file a.document,
+#inbox .message-file a.document,
+#inbox .inbox-new-file a.file.document {
+	background-position: 0 -953px;
+}
+
+#channel p.file a.package,
+#inbox .message-file a.package,
+#inbox .inbox-new-file a.file.package {
+	background-position: 0 -971px;
+}
+
+#channel p.file a.other,
+#inbox .message-file a.other,
+#inbox .inbox-new-file a.file.other {
+	background-position: 0 -989px;
+}
+
+#channel .one-update p.file a.thumb img {
+	border: 1px solid #a2a2a2;
+	max-width: 140px;
+	max-height: 105px;
+	margin: 4px 10px 2px 0;
+	padding: 1px;
+}
+
+#channel .one-update p.file a.thumb img:hover {
+	border-color: #464646;
+}
+
+#channel a.more {
+	background-position: 0 -282px;
+	color: black;
+	height: 16px;
+	text-decoration: none;
+	margin: -2px 0 0 4px;
+	padding: 0 0 14px 20px;
+	display: block;
+	visibility: hidden;
+}
+
+#channel a.more:hover,
+#channel a.more:focus {
+	text-decoration: underline;
+}
+
+#channel a.mbtool {
+	width: 11px;
+	height: 11px;
+	display: none;
+	position: absolute;
+	right: 0;
+}
+
+#channel .one-update:hover a.mbtool {
+	display: block;
+}
+
+#channel a.mbtool:hover,
+#channel a.mbtool:focus {
+	text-decoration: none;
+}
+
+#channel a.mbtool.profile {
+	background-position: -1px -1333px;
+	bottom: 24px;
+}
+
+#channel a.mbtool.repost {
+	background-position: -1px -1354px;
+}
+
+#channel a.mbtool.remove {
+	background-position: -1px -1312px;
+}
+
+#channel a.mbtool.repost,
+#channel a.mbtool.remove {
+	bottom: 6px;
+}
+
+#channel .footer {
+	bottom: 0;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#channel .footer div {
+	margin-left: 5px;
+	padding-left: 24px;
+	min-height: 16px;
+	font-size: 0.85em;
+	width: auto !important;
+}
+
+#channel .footer .sync {
+	background-position: 0 -804px;
+	display: none;
+}
+
+#channel .footer .unsync {
+	background-position: 0 -830px;
+	display: none;
+}
