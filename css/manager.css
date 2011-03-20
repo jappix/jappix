@@ -326,8 +326,10 @@ Last revision: 08/03/11
 }
 
 #manager-content object.stats {
+	border: 1px dotted #bed4d9;
 	width: 450px;
 	height: 270px;
+	margin-bottom: 20px;
 	float: right;
 }
 
