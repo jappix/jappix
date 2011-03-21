@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 21/03/11
 
 */
 
@@ -310,6 +310,9 @@ function createReconnect(mode) {
 	
 	// Reconnect pane not yet displayed?
 	if(!exists('#reconnect')) {
+		// Blur the focused input/textarea/select
+		$('input, select, textarea').blur();
+		
 		// Create the HTML code
 		var html = '<div id="reconnect" class="lock">' + 
 				'<div class="pane">' + 
