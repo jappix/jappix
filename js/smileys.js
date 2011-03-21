@@ -7,7 +7,7 @@ These are the smileys JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 21/03/11
 
 */
 
@@ -32,7 +32,7 @@ function smileyLinks(hash) {
 		':-/',
 		'=-O',
 		':-(',
-		':\\\'-(',
+		':\'-(',
 		':-@',
 		':-!',
 		'({)',

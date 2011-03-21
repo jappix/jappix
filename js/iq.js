@@ -7,7 +7,7 @@ These are the IQ JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/03/11
+Last revision: 21/03/11
 
 */
 
@@ -141,7 +141,7 @@ function handleIQ(iq) {
 	}
 	
 	// Not implemented
-	else if(!$(iqNode).find('error').size() && (iqType != 'error')) {
+	else if(!$(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
 		// Append stanza content
 		for(var i = 0; i < iqNode.childNodes.length; i++)
 			iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
