@@ -55,13 +55,13 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFExt.push($(this).attr('ext'));
 		});
 		
-		// Get the repost value
-		var uRepost = $(this).find('repost').attr('jid');
-		var uReposted = true;
+		// Get the repeat value
+		var uRepeat = $(this).find('source:first repeat:first').attr('jid');
+		var uRepeated = true;
 		
-		if(!uRepost) {
-			uRepost = from;
-			uReposted = false;
+		if(!uRepeat) {
+			uRepeat = from;
+			uRepeated = false;
 		}
 		
 		// Get the comments node
@@ -108,9 +108,9 @@ function displayMicroblog(packet, from, hash, mode) {
 					'<div class="body">' + 
 						'<p>';
 			
-			// Is it a repost?
-			if(uReposted)
-				html += '<a href="#" class="reposted talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), getBuddyName(uRepost) + ' (' + uRepost + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepost) + '\', \'chat\');"></a>';
+			// Is it a repeat?
+			if(uRepeated)
+				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), getBuddyName(uRepeat) + ' (' + uRepeat + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepeat) + '\', \'chat\');"></a>';
 			
 			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 				'<p class="infos">' + tTime + '</p>';
@@ -197,7 +197,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepost);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepeat);
 			});
 		}
 	});
@@ -263,8 +263,8 @@ function handleMicroblog(iq) {
 		var hash = hex_md5(xid);
 		
 		// Update the items counter
-		var oldCounter = $(selector + 'counter]').val();
-		$(selector + 'counter]').val(parseInt(oldCounter) + 20);
+		var old_count = parseInt($(selector + 'counter]').val());
+		$(selector + 'counter]').val(old_count + 20);
 		
 		// Display the microblog
 		displayMicroblog(iq, xid, hash, 'individual');
@@ -274,6 +274,10 @@ function handleMicroblog(iq) {
 			waitMicroblog('sync');
 		else
 			waitMicroblog('unsync');
+		
+		// Hide the 'more items' link?
+		if($(iq.getNode()).find('item').size() < old_count)
+			$('#channel .individual a.more').remove();
 	}
 }
 
@@ -532,7 +536,7 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repost) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repeat) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
@@ -560,6 +564,9 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('nick', {'xmlns': NS_ATOM}, nick));
+	
+	if(repeat)
+		Source.appendChild(iq.buildNode('repeat', {'xmlns': NS_ATOM, 'jid': repeat}));
 	
 	// Create the XML entry childs
 	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, body));
@@ -589,10 +596,6 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		if(attachedthumb[i])
 			file.setAttribute('thumb', attachedthumb[i]);
 	}
-	
-	// Is this a repost?
-	if(repost)
-		entry.appendChild(iq.buildNode('repost', {'xmlns': NS_ATOM, 'jid': repost}));
 	
 	// Create the XML comments childs
 	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'entity': xid, 'node': comments_node}));
