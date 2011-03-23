@@ -199,6 +199,19 @@ function displayMicroblog(packet, from, hash, mode) {
 			$('.' + tHash + ' a.repost').click(function() {
 				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepeat);
 			});
+			
+			// Apply the hover event
+			if(nodeComments)
+				$('.' + tHash).hover(function() {
+					// Don't request twice!
+					if(!exists('div.comments')) {
+						$(this).append('<div class="comments">' + _e("Loading comments...") + '</div>');
+						// TODO: load comments
+					}
+				}, function() {
+					// Clear the comments
+					$(this).find('div.comments').remove();
+				});
 		}
 	});
 	

@@ -260,6 +260,16 @@ Last revision: 23/03/11
 	border-color: #464646;
 }
 
+#channel .one-update div.comments {
+	background-color: #dedede;
+	border: 1px solid #939393;
+	color: #292929;
+	width: 400px;
+	font-size: 0.9em;
+	margin: 10px 0 5px 70px;
+	padding: 4px 8px;
+}
+
 #channel a.more {
 	background-position: 0 -282px;
 	color: black;
