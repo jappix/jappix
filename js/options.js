@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 04/03/11
+Last revision: 23/03/11
 
 */
 
@@ -279,7 +279,7 @@ function saveOptions() {
 		persist = '1';
 	
 	if(enabledPEP() && enabledPubSub())
-		configMicroblog(persist, maximum);
+		setupMicroblog(NS_URN_MBLOG, persist, maximum, false);
 	
 	// We send the options to the database
 	storeOptions();

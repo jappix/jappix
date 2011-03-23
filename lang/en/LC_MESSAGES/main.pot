@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 12/03/11
+# Last revision: 23/03/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -224,6 +224,9 @@ msgid "Working"
 msgstr ""
 
 msgid "View profile"
+msgstr ""
+
+msgid "This is a repeat from %s"
 msgstr ""
 
 msgid "Repeat this notice"

@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 23/03/11
 
 */
 
@@ -55,6 +55,25 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFExt.push($(this).attr('ext'));
 		});
 		
+		// Get the repost value
+		var uRepost = $(this).find('repost').attr('jid');
+		var uReposted = true;
+		
+		if(!uRepost) {
+			uRepost = from;
+			uReposted = false;
+		}
+		
+		// Get the comments node
+		var entityComments = $(this).find('comments').attr('entity');
+		var nodeComments = $(this).find('comments').attr('node');
+		
+		// No comments node?
+		if(!entityComments || !nodeComments) {
+			entityComments = '';
+			nodeComments = '';
+		}
+		
 		// Get the stamp & time
 		if(tDate) {
 			tStamp = extractStamp(Date.jab2date(tDate));
@@ -87,8 +106,14 @@ function displayMicroblog(packet, from, hash, mode) {
 					'</div>' + 
 					
 					'<div class="body">' + 
-						'<p><b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
-						'<p class="infos">' + tTime + '</p>';
+						'<p>';
+			
+			// Is it a repost?
+			if(uReposted)
+				html += '<a href="#" class="reposted talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), getBuddyName(uRepost) + ' (' + uRepost + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepost) + '\', \'chat\');"></a>';
+			
+			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
+				'<p class="infos">' + tTime + '</p>';
 			
 			// Any file to display?
 			if(tFURL.length)
@@ -117,7 +142,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeQuotes(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
@@ -170,9 +195,9 @@ function displayMicroblog(packet, from, hash, mode) {
 					});
 			}
 			
-			// Apply the click events
+			// Apply the click event
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tName + ' - ' + tTitle, tFName, tFURL, tFType, tFExt, tFThumb);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepost);
 			});
 		}
 	});
@@ -182,7 +207,7 @@ function displayMicroblog(packet, from, hash, mode) {
 }
 
 // Removes a given microblog item
-function removeMicroblog(id, hash) {
+function removeMicroblog(id, hash, comments_node) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
 	// Remove the item from our DOM
@@ -197,6 +222,25 @@ function removeMicroblog(id, hash) {
 	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq, handleErrorReply);
+	
+	// Any comments node to remove?
+	if(comments_node)
+		removeCommentsMicroblog(comments_node);
+	
+	return false;
+}
+
+// Removes a given microblog comments node
+function removeCommentsMicroblog(comments_node) {
+	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
+	
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
+	pubsub.appendChild(iq.buildNode('delete', {'node': comments_node, 'xmlns': NS_PUBSUB_OWNER}));
+	
+	con.send(iq);
 	
 	return false;
 }
@@ -336,25 +380,34 @@ function waitMicroblog(type) {
 		});
 }
 
-// Handles the microblog setup
-function handleSetupMicroblog(iq) {
-	// Microblog is created, we can configure it
-	if(enabledPEP() && enabledPubSub())
-		configMicroblog(1, 10000);
-}
-
 // Setups a new microblog
-function setupMicroblog() {
+function setupMicroblog(node, persist, maximum, create) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-create */
 	
-	// Creates the urn:xmpp:microblog:0 node
+	// Create the PubSub node
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	pubsub.appendChild(iq.buildNode('create', {'xmlns': NS_PUBSUB, 'node': NS_URN_MBLOG}));
 	
-	con.send(iq, handleSetupMicroblog);
+	// Create it?
+	if(create)
+		pubsub.appendChild(iq.buildNode('create', {'xmlns': NS_PUBSUB, 'node': node}));
+	
+	// Configure it!
+	var configure = pubsub.appendChild(iq.buildNode('configure', {'node': node, 'xmlns': NS_PUBSUB_OWNER}));
+	var x = configure.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': 'submit'}));
+	
+	var field1 = x.appendChild(iq.buildNode('field', {'var': 'FORM_TYPE', 'type': 'hidden', 'xmlns': NS_XDATA}));
+	field1.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, NS_PUBSUB_NC));
+	
+	var field2 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#persist_items', 'xmlns': NS_XDATA}));
+	field2.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, persist));
+	
+	var field3 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#max_items', 'xmlns': NS_XDATA}));
+	field3.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, maximum));
+	
+	con.send(iq);
 }
 
 // Gets the microblog configuration
@@ -425,32 +478,6 @@ function handleGetConfigMicroblog(iq) {
 	$('#maxnotices').val(maxnotices);
 }
 
-// Configures the user's microblog
-function configMicroblog(persist, maximum) {
-	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-configure */
-	
-	// New IQ
-	var iq = new JSJaCIQ();
-	iq.setType('set');
-	
-	// Create the main XML nodes/childs
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
-	var configure = pubsub.appendChild(iq.buildNode('configure', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB_OWNER}));
-	var x = configure.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': 'submit'}));
-	
-	var field1 = x.appendChild(iq.buildNode('field', {'var': 'FORM_TYPE', 'type': 'hidden', 'xmlns': NS_XDATA}));
-	field1.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, NS_PUBSUB_NC));
-	
-	var field2 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#persist_items', 'xmlns': NS_XDATA}));
-	field2.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, persist));
-	
-	var field3 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#max_items', 'xmlns': NS_XDATA}));
-	field3.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, maximum));
-	
-	// Send the IQ
-	con.send(iq);
-}
-
 // Handles the user's microblog
 function handleMyMicroblog(packet) {
 	// Reset the entire form
@@ -458,7 +485,7 @@ function handleMyMicroblog(packet) {
 	unattachMicroblog();
 	
 	// Check for errors
-	handleError(packet.getNode());
+	handleErrorReply(packet);
 }
 
 // Performs the microblog sender checks
@@ -505,12 +532,13 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repost) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
 	var time = getXMPPTime('utc');
 	var id = hex_md5(body + time);
+	var comments_node = NS_URN_MBLOG + ':comments:' + id;
 	var nick = getNick();
 	var xid = getXID();
 	
@@ -562,8 +590,18 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 			file.setAttribute('thumb', attachedthumb[i]);
 	}
 	
+	// Is this a repost?
+	if(repost)
+		entry.appendChild(iq.buildNode('repost', {'xmlns': NS_ATOM, 'jid': repost}));
+	
+	// Create the XML comments childs
+	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'entity': xid, 'node': comments_node}));
+	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
+	
+	// Create the XML comments PubSub node
+	setupMicroblog(comments_node, '1', '10000', true);
 	
 	return false;
 }

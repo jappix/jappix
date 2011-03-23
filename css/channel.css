@@ -168,6 +168,14 @@ Last revision: 07/03/11
 	opacity: 1;
 }
 
+#channel .one-update a.reposted {
+	background-position: 0 -1681px;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+	float: left;
+}
+
 #channel .one-update span a {
 	text-decoration: underline;
 }
