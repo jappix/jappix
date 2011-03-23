@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/03/11
+Last revision: 23/03/11
 
 */
 
@@ -36,7 +36,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		oArgs = new Object();
 		oArgs.domain = trim(lServer);
 		oArgs.username = trim(lNick);
-		oArgs.resource = lResource;
+		oArgs.resource = lResource + ' (' + (new Date()).getTime() + ')';
 		oArgs.pass = lPass;
 		oArgs.secure = true;
 		
@@ -115,7 +115,7 @@ function doRegister(username, domain, pass) {
 		oArgs = new Object();
 		oArgs.domain = trim(domain);
 		oArgs.username = trim(username);
-		oArgs.resource = JAPPIX_RESOURCE + ' Register';
+		oArgs.resource = JAPPIX_RESOURCE + ' Register (' + (new Date()).getTime() + ')';
 		oArgs.pass = pass;
 		oArgs.register = true;
 		oArgs.secure = true;
