@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/03/11
+Last revision: 25/03/11
 
 */
 
@@ -65,7 +65,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		}
 		
 		// Get the comments node
-		var entityComments = $(this).find('comments').attr('entity');
+		var entityComments = $(this).find('comments').attr('jid');
 		var nodeComments = $(this).find('comments').attr('node');
 		
 		// No comments node?
@@ -204,9 +204,19 @@ function displayMicroblog(packet, from, hash, mode) {
 			if(nodeComments)
 				$('.' + tHash).hover(function() {
 					// Don't request twice!
-					if(!exists('div.comments')) {
-						$(this).append('<div class="comments">' + _e("Loading comments...") + '</div>');
-						// TODO: load comments
+					if(!$(this).find('div.comments').size()) {
+						// Generate an unique ID
+						var idComments = genID();
+						
+						// Create comments container
+						$(this).append(
+							'<div class="comments" data-id="' + idComments + '">' + 
+								'<div class="one-comment loading">' + _e("Loading comments...") + '</div>' + 
+							'</div>'
+						);
+						
+						// Request comments
+						getCommentsMicroblog(entityComments, nodeComments, idComments);
 					}
 				}, function() {
 					// Clear the comments
@@ -243,15 +253,208 @@ function removeMicroblog(id, hash, comments_node) {
 	return false;
 }
 
+// Gets a given microblog comments node
+function getCommentsMicroblog(server, node, id) {
+	/* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve-requestall */
+	
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	iq.setID('get_' + genID() + '-' + id);
+	iq.setTo(server);
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	pubsub.appendChild(iq.buildNode('items', {'node': node, 'xmlns': NS_PUBSUB}));
+	
+	con.send(iq, handleCommentsMicroblog);
+	
+	return false;
+}
+
+// Handles a microblog comments node items
+function handleCommentsMicroblog(iq) {
+	// Path
+	var id = explodeThis('-', iq.getID(), 1);
+	var path = '#channel .one-update div.comments[data-id=' + id + ']';
+	
+	// Any error?
+	if(handleErrorReply(iq)) {
+		$(path).find('.one-comment').text(_e("Could not get the comments!"));
+		
+		return false;
+	}
+	
+	// Initialize
+	var data = iq.getNode();
+	var server = bareXID(getStanzaFrom(iq));
+	var node = $(data).find('items:first').attr('node');
+	var code = '';
+	
+	// Does not exist?
+	if(!exists(path))
+		return false;
+	
+	// Must we create the complete DOM?
+	var complete = true;
+	
+	if($(path).find('.one-comment:not(.loading)').size())
+		complete = false;
+	
+	// Add the comment tool
+	if(complete)
+		code += '<span class="icon talk-images"></span><input type="text" placeholder="' + _e("Type your comment here...") + '" />';
+	
+	// Append the comments
+	$(data).find('item').each(function() {
+		// Get comment
+		var current_id = $(this).attr('id');
+		var current_xid = $(this).find('source author jid').text();
+		var current_date = $(this).find('published').text();
+		var current_body = $(this).find('title').text();
+		var current_name;
+		
+		// No XID?
+		if(!current_xid) {
+			current_name = _e("unknown");
+			current_xid = '';
+		}
+		
+		else
+			current_name = getBuddyName(current_xid);
+		
+		// No date?
+		if(!current_date)
+			current_date = relativeDate(current_date);
+		else
+			current_date = getCompleteTime();
+		
+		// Click event
+		var onclick = 'false';
+		
+		if(current_xid != getXID())
+			onclick = 'checkChatCreate(\'' + encodeQuotes(current_xid) + '\', \'chat\')';
+		
+		// If this is my comment, add a marker
+		var type = 'him';
+		var marker = '';
+		var remove = '';
+		
+		if(current_xid == getXID()) {
+			type = 'me';
+			marker = '<div class="marker"></div>';
+			remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeQuotes(server) + '\', \'' + encodeQuotes(node) + '\', \'' + encodeQuotes(current_id) + '\');">' + _e("Remove") + '</a>';
+		}
+		
+		// Add the comment
+		if(current_body)
+			code += '<div class="one-comment ' + type + '" data-id="' + encodeQuotes(current_id) + '">' + 
+					marker + 
+					'<a href="#" onclick="return ' + onclick + ';" title="' + encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
+					'<span class="date">' + current_date.htmlEnc() + '</span>' + 
+					remove + 
+					'<p class="body">' + filterThisMessage(current_body, current_name, true) + '</p>' + 
+				'</div>';
+	});
+	
+	// Add the HTML
+	if(complete)
+		$(path).html(code);
+	else {
+		$(path).find('.one-comment:first').before(code);
+		
+		// Beautiful effect
+		$(path).find('.one-comment:first').hide()
+		                                  .slideDown('fast');
+	}
+	
+	// DOM events
+	if(complete) {
+		$(path).find('input').placeholder()
+			             .keyup(function(e) {
+			             		if((e.keyCode == 13) && $(this).val()) {
+			             			// Send the comment!
+			             			sendCommentsMicroblog($(this).val(), server, node, id);
+			             			
+			             			// Reset the input value
+			             			$(this).val('');
+			             			
+			             			return false;
+			             		}
+			             });
+	}
+}
+
+// Sends a comment on a given microblog comments node
+function sendCommentsMicroblog(value, server, node, id) {
+	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-publish */
+	
+	// Not enough data?
+	if(!value || !server || !node)
+		return false;
+	
+	// Get some values
+	var date = getXMPPTime('utc');
+	var hash = hex_md5(value + date);
+	
+	// New IQ
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	iq.setTo(server);
+	iq.setID('get_' + genID() + '-' + id);
+	
+	// PubSub main elements
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node, 'xmlns': NS_PUBSUB}));
+	var item = publish.appendChild(iq.buildNode('item', {'id': hash, 'xmlns': NS_PUBSUB}));
+	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
+	
+	// Create the comment
+	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, value));
+	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, date));
+	
+	// Author XID
+	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
+	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, getXID()));
+	
+	con.send(iq);
+	
+	// Handle this comment!
+	handleCommentsMicroblog(iq);
+	
+	return false;
+}
+
 // Removes a given microblog comments node
-function removeCommentsMicroblog(comments_node) {
-	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
+function removeCommentsMicroblog(node) {
+	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-delete */
 	
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
-	pubsub.appendChild(iq.buildNode('delete', {'node': comments_node, 'xmlns': NS_PUBSUB_OWNER}));
+	pubsub.appendChild(iq.buildNode('delete', {'node': node, 'xmlns': NS_PUBSUB_OWNER}));
+	
+	con.send(iq);
+	
+	return false;
+}
+
+// Removes a given microblog comment item
+function removeCommentMicroblog(server, node, id) {
+	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
+	
+	// Remove the item from our DOM
+	$('.one-comment[data-id=' + id + ']').slideUp('fast', function() {
+		$(this).remove();
+	});
+	
+	// Send the IQ to remove the item (and get eventual error callback)
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': node, 'xmlns': NS_PUBSUB}));
+	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq);
 	
@@ -399,7 +602,7 @@ function waitMicroblog(type) {
 
 // Setups a new microblog
 function setupMicroblog(node, persist, maximum, create) {
-	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-create */
+	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-create-and-configure */
 	
 	// Create the PubSub node
 	var iq = new JSJaCIQ();
@@ -423,6 +626,12 @@ function setupMicroblog(node, persist, maximum, create) {
 	
 	var field3 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#max_items', 'xmlns': NS_XDATA}));
 	field3.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, maximum));
+	
+	// Allow subscribers to write on that node?
+	if(node != NS_URN_MBLOG) {
+		var field4 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#publish_model', 'xmlns': NS_XDATA}));
+		field4.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, 'open'));
+	}
 	
 	con.send(iq);
 }
@@ -611,7 +820,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Create the XML comments childs
-	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'entity': xid, 'node': comments_node}));
+	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'jid': xid, 'node': comments_node}));
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);

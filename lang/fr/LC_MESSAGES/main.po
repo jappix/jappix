@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-03-23 14:47:49\n"
+"PO-Revision-Date: 2011-03-25 22:01:10\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2200,4 +2200,16 @@ msgstr "La fonction demandée n'est pas implémentée par l'entité de destinati
 #: 
 msgid "This is a repeat from %s"
 msgstr "C'est une répétition depuis %s"
+
+#: 
+msgid "Loading comments..."
+msgstr "Chargement des commentaires..."
+
+#: 
+msgid "Type your comment here..."
+msgstr "Entrez votre commentaire..."
+
+#: 
+msgid "Could not get the comments!"
+msgstr "Commentaires non récupérés !"
 

@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 01/03/11
+Last revision: 25/03/11
 
 */
 
@@ -154,7 +154,13 @@ function jsEscape(str) {
 
 // Encodes quotes in a string
 function encodeQuotes(str) {
-	return str.replace(/"/g, '&quot;');
+	// New string
+	str = str + '';
+	
+	// Process replacement
+	str = str.replace(/"/g, '&quot;');
+	
+	return str;
 }
 
 // Encodes a string for onclick attribute
