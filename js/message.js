@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 19/03/11
+Last revision: 26/03/11
 
 */
 
@@ -144,10 +144,10 @@ function handleMessage(message) {
 		// Attached message file
 		var msg_file = $(node).find('x[xmlns=' + NS_X_ATTACH + '] file:first');
 		var msg_file_arr = [
-				    msg_file.attr('name'),
-				    msg_file.attr('url'),
-				    msg_file.attr('type'),
-				    msg_file.attr('ext')
+				    msg_file.attr('file_title'),
+				    msg_file.attr('file_href'),
+				    msg_file.attr('file_type'),
+				    msg_file.attr('file_length')
 				   ];
 		
 		// We store the received message

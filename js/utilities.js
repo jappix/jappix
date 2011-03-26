@@ -476,6 +476,154 @@ function getJappixLocation() {
 	return url;
 }
 
+// Return the file category
+function fileCategory(ext) {
+	var cat;
+	
+	switch(ext) {
+		// Images
+		case 'jpg':
+		case 'jpeg':
+		case 'png':
+		case 'bmp':
+		case 'gif':
+		case 'tif':
+		case 'svg':
+		case 'psp':
+		case 'xcf':
+			cat = 'image';
+			
+			break;
+		
+		// Videos
+		case 'ogv':
+		case 'mkv':
+		case 'avi':
+		case 'mov':
+		case 'mp4':
+		case 'm4v':
+		case 'wmv':
+		case 'asf':
+		case 'mpg':
+		case 'mpeg':
+		case 'ogm':
+		case 'rmvb':
+		case 'rmv':
+		case 'qt':
+		case 'flv':
+		case 'ram':
+		case '3gp':
+		case 'avc':
+			cat = 'video';
+			
+			break;
+		
+		// Sounds
+		case 'oga':
+		case 'ogg':
+		case 'mka':
+		case 'flac':
+		case 'mp3':
+		case 'wav':
+		case 'm4a':
+		case 'wma':
+		case 'rmab':
+		case 'rma':
+		case 'bwf':
+		case 'aiff':
+		case 'caf':
+		case 'cda':
+		case 'atrac':
+		case 'vqf':
+		case 'au':
+		case 'aac':
+		case 'm3u':
+		case 'mid':
+		case 'mp2':
+		case 'snd':
+		case 'voc':
+			cat = 'audio';
+			
+			break;
+		
+		// Documents
+		case 'pdf':
+		case 'odt':
+		case 'ott':
+		case 'sxw':
+		case 'stw':
+		case 'ots':
+		case 'sxc':
+		case 'stc':
+		case 'sxi':
+		case 'sti':
+		case 'pot':
+		case 'odp':
+		case 'ods':
+		case 'doc':
+		case 'docx':
+		case 'docm':
+		case 'xls':
+		case 'xlsx':
+		case 'xlsm':
+		case 'xlt':
+		case 'ppt':
+		case 'pptx':
+		case 'pptm':
+		case 'pps':
+		case 'odg':
+		case 'otp':
+		case 'sxd':
+		case 'std':
+		case 'std':
+		case 'rtf':
+		case 'txt':
+		case 'htm':
+		case 'html':
+		case 'shtml':
+		case 'dhtml':
+		case 'mshtml':
+			cat = 'document';
+			
+			break;
+		
+		// Packages
+		case 'tgz':
+		case 'gz':
+		case 'tar':
+		case 'ar':
+		case 'cbz':
+		case 'jar':
+		case 'tar.7z':
+		case 'tar.bz2':
+		case 'tar.gz':
+		case 'tar.lzma':
+		case 'tar.xz':
+		case 'zip':
+		case 'xz':
+		case 'rar':
+		case 'bz':
+		case 'deb':
+		case 'rpm':
+		case '7z':
+		case 'ace':
+		case 'cab':
+		case 'arj':
+		case 'msi':
+			cat = 'package';
+			
+			break;
+		
+		// Others
+		default:
+			cat = 'other';
+			
+			break;
+	}
+	
+	return cat;
+}
+
 // Registers Jappix as the default XMPP links handler
 function xmppLinksHandler() {
 	try {

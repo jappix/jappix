@@ -9,7 +9,7 @@ This is the Jappix microblog file attaching script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/03/11
+Last revision: 26/03/11
 
 */
 
@@ -97,16 +97,13 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
 	}
 	
-	// File type?
-	$file_type = getFileType($ext);
-	
 	// Return the path to the file
 	exit(
 '<jappix xmlns=\'jappix:file:post\'>
-	<url>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'.'.$ext).'</url>
-	<name>'.htmlspecialchars($new_name).'</name>
-	<type>'.htmlspecialchars($file_type).'</type>
-	<ext>'.htmlspecialchars($ext).'</ext>
+	<href>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'.'.$ext).'</href>
+	<title>'.htmlspecialchars($new_name).'</title>
+	<type>'.htmlspecialchars(getFileMIME($path)).'</type>
+	<length>'.htmlspecialchars(filesize($path)).'</length>
 	'.$thumb_xml.'
 </jappix>'
 	);

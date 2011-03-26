@@ -212,6 +212,12 @@ Last revision: 26/03/11
 	margin-top: 4px;
 }
 
+#channel p.file a,
+#inbox .message-file a,
+#inbox .inbox-new-file a.file {
+	background-position: 0 -989px;
+}
+
 #channel p.file a.audio,
 #inbox .message-file a.audio,
 #inbox .inbox-new-file a.file.audio {
@@ -240,12 +246,6 @@ Last revision: 26/03/11
 #inbox .message-file a.package,
 #inbox .inbox-new-file a.file.package {
 	background-position: 0 -971px;
-}
-
-#channel p.file a.other,
-#inbox .message-file a.other,
-#inbox .inbox-new-file a.file.other {
-	background-position: 0 -989px;
 }
 
 #channel .one-update p.file a.thumb img {

@@ -26,7 +26,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		var tFThumb = [];
 		var tFSource = [];
 		var tFType = [];
-		var tFExt = [];
+		var tFLength = [];
 		
 		// Get the values
 		tDate = $(this).find('published').text();
@@ -36,37 +36,48 @@ function displayMicroblog(packet, from, hash, mode) {
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
 		
 		// Read attached files with a thumb (place them at first)
-		$(this).find('file[thumb]').each(function() {
-			tFName.push($(this).attr('name'));
-			tFURL.push($(this).attr('url'));
-			tFThumb.push($(this).attr('thumb'));
+		$(this).find('link[rel=enclosure][hrefthumb]').each(function() {
+			tFName.push($(this).attr('title'));
+			tFURL.push($(this).attr('href'));
+			tFThumb.push($(this).attr('hrefthumb'));
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
-			tFExt.push($(this).attr('ext'));
+			tFLength.push($(this).attr('length'));
 		});
 		
 		// Read attached files without any thumb
-		$(this).find('file:not([thumb])').each(function() {
-			tFName.push($(this).attr('name'));
-			tFURL.push($(this).attr('url'));
-			tFThumb.push($(this).attr('thumb'));
+		$(this).find('link[rel=enclosure]:not([hrefthumb])').each(function() {
+			tFName.push($(this).attr('title'));
+			tFURL.push($(this).attr('href'));
+			tFThumb.push($(this).attr('hrefthumb'));
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
-			tFExt.push($(this).attr('ext'));
+			tFLength.push($(this).attr('length'));
 		});
 		
 		// Get the repeat value
-		var uRepeat = $(this).find('source:first repeat:first').attr('jid');
-		var uRepeated = true;
+		var uRepeat = [$(this).find('source author nick').text(), $(this).find('source author jid').text()];
+		var uRepeated = false;
 		
-		if(!uRepeat) {
-			uRepeat = from;
-			uRepeated = false;
-		}
+		if(!uRepeat[0])
+			uRepeat = [getBuddyName(from), uRepeat[1]];
+		if(!uRepeat[1])
+			uRepeat = [uRepeat[0], from];
+		
+		// Repeated?
+		if(uRepeat[1] != from)
+			uRepeated = true;
 		
 		// Get the comments node
-		var entityComments = $(this).find('comments').attr('jid');
-		var nodeComments = $(this).find('comments').attr('node');
+		var entityComments, nodeComments;
+		
+		// Get the comments
+		var comments_href = $(this).find('link[title=comments]:first').attr('href');
+		
+		if(comments_href && comments_href.match(/^xmpp:(.+)\?;node=(.+)/)) {
+			entityComments = decodeURIComponent(RegExp.$1);
+			nodeComments = decodeURIComponent(RegExp.$2);
+		}
 		
 		// No comments node?
 		if(!entityComments || !nodeComments) {
@@ -110,7 +121,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Is it a repeat?
 			if(uRepeated)
-				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), getBuddyName(uRepeat) + ' (' + uRepeat + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepeat) + '\', \'chat\');"></a>';
+				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepeat[1]) + '\', \'chat\');"></a>';
 			
 			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 				'<p class="infos">' + tTime + '</p>';
@@ -124,9 +135,13 @@ function displayMicroblog(packet, from, hash, mode) {
 				if(!tFName[f] || !tFURL[f] || !tFType[f])
 					continue;
 				
+				// Get the file types
+				var tFExt = explodeThis('/', tFType[f], 1);
+				var tfCat = fileCategory(tFExt);
+				
 				// Supported image/video/sound
-				if(tFExt[f] && ((tFExt[f] == 'jpg') || (tFExt[f] == 'jpeg') || (tFExt[f] == 'png') || (tFExt[f] == 'gif') || (tFExt[f] == 'ogg') || (tFExt[f] == 'oga') || (tFExt[f] == 'ogv')))
-					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFType[f]) + '\');" ';
+				if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
+					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tfCat) + '\');" ';
 				else
 					tFEClick = '';
 				
@@ -134,7 +149,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				if(tFThumb[f])
 					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
 				else
-					html += '<a class="' + encodeQuotes(tFType[f]) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
+					html += '<a class="' + encodeQuotes(tfCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
 			}
 			
 			if(tFURL.length)
@@ -197,7 +212,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepeat, entityComments, nodeComments);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments);
 			});
 			
 			// Apply the hover event
@@ -767,7 +782,7 @@ function sendMicroblog() {
 			// Files array
 			var fName = [];
 			var fType = [];
-			var fExt = [];
+			var fLength = [];
 			var fURL = [];
 			var fThumb = [];
 			
@@ -776,13 +791,13 @@ function sendMicroblog() {
 				// Push the values!
 				fName.push($(this).find('a.link').text());
 				fType.push($(this).attr('data-type'));
-				fExt.push($(this).attr('data-ext'));
+				fLength.push($(this).attr('data-length'));
 				fURL.push($(this).find('a.link').attr('href'));
 				fThumb.push($(this).attr('data-thumb'));
 			});
 			
 			// Send the message on the XMPP network
-			publishMicroblog(body, fName, fURL, fType, fExt, fThumb);
+			publishMicroblog(body, fName, fURL, fType, fLength, fThumb);
 		}
 	}
 	
@@ -793,14 +808,23 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repeat, comments_entity, comments_node) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
 	var time = getXMPPTime('utc');
 	var id = hex_md5(body + time);
-	var nick = getNick();
+	var nick = getName();
 	var xid = getXID();
+	
+	// Define repeat options
+	var author_nick = nick;
+	var author_xid = xid;
+	
+	if(repeat && repeat.length) {
+		author_nick = repeat[0];
+		author_xid = repeat[1];
+	}
 	
 	// Define comments options
 	var node_create = false;
@@ -828,10 +852,8 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	Source.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
-	author.appendChild(iq.buildNode('nick', {'xmlns': NS_ATOM}, nick));
-	
-	if(repeat)
-		Source.appendChild(iq.buildNode('repeat', {'xmlns': NS_ATOM, 'jid': repeat}));
+	author.appendChild(iq.buildNode('nick', {'xmlns': NS_ATOM}, author_nick));
+	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, author_xid));
 	
 	// Create the XML entry childs
 	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, body));
@@ -840,7 +862,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	entry.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('link', {
 			'rel': 'alternate',
-			'href': 'xmpp:' + xid + '?;node=urn%3Axmpp%3Amicroblog%3A0;item=' + id,
+			'href': 'xmpp:' + encodeURIComponent(xid) + '?;node=' + encodeURIComponent(NS_URN_MBLOG) + ';item=' + encodeURIComponent(id),
 			'xmlns': NS_ATOM
 	}));
 	
@@ -851,19 +873,15 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 			continue;
 		
 		// Append a new file element
-		var file = entry.appendChild(iq.buildNode('file', {'xmlns': NS_ATOM, 'name': attachedname[i], 'url': attachedurl[i], 'type': attachedtype[i], 'source': 'web'}));
-		
-		// Any extension?
-		if(attachedext[i])
-			file.setAttribute('ext', attachedext[i]);
+		var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'title': attachedname[i], 'type': attachedtype[i], 'length': attachedlength, 'href': attachedurl[i]}));
 		
 		// Any thumbnail?
 		if(attachedthumb[i])
-			file.setAttribute('thumb', attachedthumb[i]);
+			file.setAttribute('hrefthumb', attachedthumb[i]);
 	}
 	
-	// Create the XML comments childs
-	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'jid': comments_entity, 'node': comments_node}));
+	// Create the comments child
+	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'related', 'title': 'comments', 'href': 'xmpp:' + encodeURIComponent(comments_entity) + '?;node=' + encodeURIComponent(comments_node)}));
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
@@ -961,10 +979,10 @@ function handleMicroblogAttach(responseXML) {
 		$('#attach').removeClass('bubble');
 		
 		// Get the file values
-		var fName = dData.find('name').text();
+		var fName = dData.find('title').text();
 		var fType = dData.find('type').text();
-		var fExt = dData.find('ext').text();
-		var fURL = dData.find('url').text();
+		var fLength = dData.find('length').text();
+		var fURL = dData.find('href').text();
 		var fThumb = dData.find('thumb').text();
 		
 		// Generate a file ID
@@ -972,7 +990,7 @@ function handleMicroblogAttach(responseXML) {
 		
 		// Add this file
 		$('#attach .attach-subitem').append(
-			'<div class="one-file" data-type="' + encodeQuotes(fType) + '" data-ext="' + encodeQuotes(fExt) + '" data-thumb="' + encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
+			'<div class="one-file" data-type="' + encodeQuotes(fType) + '" data-length="' + encodeQuotes(fLength) + '" data-thumb="' + encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
 				'<a class="remove talk-images" href="#" title="' + encodeQuotes(_e("Unattach the file")) + '"></a>' + 
 				'<a class="link" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a>' + 
 			'</div>'

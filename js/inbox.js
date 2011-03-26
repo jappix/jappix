@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 26/03/11
 
 */
 
@@ -115,10 +115,10 @@ function storeInbox() {
 								     'subject': value.find('subject').text(),
 								     'status': value.find('status').text(),
 								     'date': value.find('date').text(),
-								     'file_name': file.find('name').text(),
-								     'file_url': file.find('url').text(),
+								     'file_title': file.find('title').text(),
+								     'file_href': file.find('href').text(),
 								     'file_type': file.find('type').text(),
-								     'file_ext': file.find('ext').text(),
+								     'file_length': file.find('length').text(),
 								     'xmlns': NS_INBOX
 								    },
 								    
@@ -188,10 +188,10 @@ function sendInboxMessage(to, subject, body) {
 		
 		// Build the file vars
 		x.appendChild(mess.buildNode('file', {
-							'name': unescape($(attached).attr('data-attachedname')),
-							'url': unescape($(attached).attr('data-attachedurl')),
-							'type': unescape($(attached).attr('data-attachedtype')),
-							'ext': unescape($(attached).attr('data-attachedext')),
+							'file_title': unescape($(attached).attr('data-attachedtitle')),
+							'file_href': unescape($(attached).attr('data-attachedhref')),
+							'file_type': unescape($(attached).attr('data-attachedtype')),
+							'file_length': unescape($(attached).attr('data-attachedlength')),
 							'xmlns': NS_X_ATTACH
 						     }));
 	}
@@ -333,7 +333,7 @@ function storeInboxMessage(from, subject, content, status, id, date, file_arr) {
 	
 	// Any attached file?
 	if(file_arr[0])
-		xml += '<file><name>' + file_arr[0].htmlEnc() + '</name><url>' + file_arr[1].htmlEnc() + '</url><type>' + file_arr[2].htmlEnc() + '</type><ext>' + file_arr[3].htmlEnc() + '</ext></file>';
+		xml += '<file><title>' + file_arr[0].htmlEnc() + '</title><href>' + file_arr[1].htmlEnc() + '</href><type>' + file_arr[2].htmlEnc() + '</type><length>' + file_arr[3].htmlEnc() + '</length></file>';
 	
 	// End the XML data
 	xml += '</message>';
@@ -463,7 +463,7 @@ function revealInboxMessage(id, from, subject, content, name, date, status, msg_
 	// Message file
 	if(msg_file_arr[0]) {
 		html+= '<div class="message-file">' + 
-				'<a class="' + msg_file_arr[2] + ' talk-images" href="' + msg_file_arr[1] + '" target="_blank">' + msg_file_arr[0] + '</a>' + 
+				'<a class="' + encodeQuotes(fileCategory(explodeThis('/', msg_file_arr[2], 1))) + ' talk-images" href="' + encodeQuotes(msg_file_arr[1]) + '" target="_blank">' + msg_file_arr[0].htmlEnc() + '</a>' + 
 		       '</div>';
 	}
 	
@@ -562,10 +562,10 @@ function loadInbox() {
 						value.find('id').text(),
 						value.find('date').text(),
 						[
-						 value.find('name').text(),
-						 value.find('url').text(),
+						 value.find('title').text(),
+						 value.find('href').text(),
 						 value.find('type').text(),
-						 value.find('ext').text()
+						 value.find('length').text()
 						]
 					   );
 		}
@@ -594,20 +594,20 @@ function handleInboxAttach(responseXML) {
 	
 	else {
 		// Get the file values
-		var fName = dData.find('name').text();
+		var fName = dData.find('title').text();
 		var fType = dData.find('type').text();
-		var fExt = dData.find('ext').text();
-		var fURL = dData.find('url').text();
+		var fURL = dData.find('href').text();
+		var fLength = dData.find('length').text();
 		
 		// Hide the attach link, show the unattach one
 		$('#inbox .inbox-new-file input').hide();
-		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fType) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + _e("Remove") + '</a>');
+		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fileCategory(explodeThis('/', fType, 1))) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + _e("Remove") + '</a>');
 		
 		// Set values to the file link
-		$('#inbox .inbox-new-file a.file').attr('data-attachedname', escape(fName))
+		$('#inbox .inbox-new-file a.file').attr('data-attachedtitle', escape(fName))
 						  .attr('data-attachedtype', escape(fType))
-						  .attr('data-attachedext',  escape(fExt))
-						  .attr('data-attachedurl',  escape(fURL));
+						  .attr('data-attachedhref',  escape(fURL))
+						  .attr('data-attachedlength',  escape(fLength));
 		
 		// Click events
 		$('#inbox .inbox-new-file a.remove').click(function() {

@@ -9,7 +9,7 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 26/03/11
 
 */
 
@@ -206,16 +206,9 @@ if($file && $type) {
 		else if(($mime == 'oga') || ($mime == 'ogg'))
 			header('Content-Type: audio/ogg');
 		
-		// Try to catch the file MIME type
-		else {
-			// Get the MIME
-			$finfo = finfo_open(FILEINFO_MIME_TYPE);
-			$cmime = finfo_file($finfo, $path);
-			finfo_close($finfo);
-			
-			// Output the MIME
-			header('Content-Type: '.$cmime);
-		}
+		// Catch the file MIME type
+		else
+			header('Content-Type: '.getFileMIME($path));
 		
 		// Read the text file(s) (CSS & JS)
 		if(($type == 'css') || ($type == 'js')) {

@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 05/03/11
+Last revision: 26/03/11
 
 */
 
@@ -880,6 +880,15 @@ function getFileType($ext) {
 	}
 	
 	return $file_type;
+}
+
+// The function to get the MIME type of a file
+function getFileMIME($path) {
+	$finfo = finfo_open(FILEINFO_MIME_TYPE);
+	$cmime = finfo_file($finfo, $path);
+	finfo_close($finfo);
+	
+	return $cmime;
 }
 
 // The function to keep the current GET vars

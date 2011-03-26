@@ -7,7 +7,7 @@ These are the storage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/12/10
+Last revision: 26/03/11
 
 */
 
@@ -63,10 +63,10 @@ function handleStorage(iq) {
 				  $(this).attr('id'),
 				  $(this).attr('date'),
 				  [
-				   $(this).attr('file_name'),
-				   $(this).attr('file_url'),
+				   $(this).attr('file_title'),
+				   $(this).attr('file_href'),
 				   $(this).attr('file_type'),
-				   $(this).attr('file_ext')
+				   $(this).attr('file_length')
 				  ]
 				 );
 	});
