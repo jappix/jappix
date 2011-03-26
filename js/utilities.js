@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 25/03/11
+Last revision: 26/03/11
 
 */
 
@@ -33,6 +33,20 @@ function isConnected() {
 		return true;
 	
 	return false;
+}
+
+// Checks if Jappix has focus
+function isFocused() {
+	try {
+		if(document.hasFocus())
+			return true;
+		
+		return false;
+	}
+	
+	catch(e) {
+		return false;
+	}
 }
 
 // Generates the good XID

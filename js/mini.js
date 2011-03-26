@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/03/11
+Last revision: 26/03/11
 
 */
 
@@ -308,7 +308,7 @@ function handleMessage(msg) {
 			displayMessage(type, body, use_xid, nick, hash, time, stamp, message_type);
 			
 			// Notify the user if not focused & the message is not a groupchat old one
-			if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !document.hasFocus()) && (message_type == 'user-message'))
+			if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !isFocused()) && (message_type == 'user-message'))
 				notifyMessage(hash);
 			
 			logThis('Message received from: ' + from);
