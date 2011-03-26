@@ -239,15 +239,19 @@ function displayMicroblog(packet, from, hash, mode) {
 							$(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>');
 							
 							// Request comments
-							return getCommentsMicroblog(entityComments, nodeComments, idComments);
-						});
-						
-						// Remove the comments from the DOM if click away
-						$('#channel').live('click', function(evt) {
-							if(!$(evt.target).parents('.' + tHash).size()) {
-								$('#channel').die('click');
-								$(this).find('.one-update div.comments[data-id=' + idComments + ']').stopTime().remove();
-							}
+							getCommentsMicroblog(entityComments, nodeComments, idComments);
+							
+							// Remove the comments from the DOM if click away
+							$('#channel').die('click');
+							
+							$('#channel').live('click', function(evt) {
+								if(!$(evt.target).parents('.' + tHash).size()) {
+									$('#channel').die('click');
+									$('#channel .one-update div.comments').stopTime().remove();
+								}
+							});
+							
+							return false;
 						});
 					}
 				}, function() {
