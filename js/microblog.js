@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/03/11
+Last revision: 26/03/11
 
 */
 
@@ -142,7 +142,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeQuotes(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeQuotes(entityComments) + '\', \'' + encodeQuotes(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
@@ -197,7 +197,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepeat);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFExt, tFThumb, uRepeat, entityComments, nodeComments);
 			});
 			
 			// Apply the hover event
@@ -211,16 +211,30 @@ function displayMicroblog(packet, from, hash, mode) {
 						// Create comments container
 						$(this).append(
 							'<div class="comments" data-id="' + idComments + '">' + 
-								'<div class="one-comment loading">' + _e("Loading comments...") + '</div>' + 
+								'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
 							'</div>'
 						);
 						
-						// Request comments
-						getCommentsMicroblog(entityComments, nodeComments, idComments);
+						// Click event
+						$(this).find('div.comments a.one-comment').click(function() {
+							// Set loading info
+							$(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>');
+							
+							// Request comments
+							return getCommentsMicroblog(entityComments, nodeComments, idComments);
+						});
+						
+						// Remove the comments from the DOM if click away
+						$('#channel').live('click', function(evt) {
+							if(!$(evt.target).parents('.' + tHash).size()) {
+								$('#channel').die('click');
+								$(this).find('.one-update div.comments[data-id=' + idComments + ']').stopTime().remove();
+							}
+						});
 					}
 				}, function() {
-					// Clear the comments
-					$(this).find('div.comments').remove();
+					if($(this).find('div.comments a.one-comment.loading').size())
+						$(this).find('div.comments').remove();
 				});
 		}
 	});
@@ -230,7 +244,7 @@ function displayMicroblog(packet, from, hash, mode) {
 }
 
 // Removes a given microblog item
-function removeMicroblog(id, hash, comments_node) {
+function removeMicroblog(id, hash, comments_server, comments_node) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
 	// Remove the item from our DOM
@@ -247,7 +261,7 @@ function removeMicroblog(id, hash, comments_node) {
 	con.send(iq, handleErrorReply);
 	
 	// Any comments node to remove?
-	if(comments_node)
+	if(comments_node && (comments_server == getXID()))
 		removeCommentsMicroblog(comments_node);
 	
 	return false;
@@ -276,6 +290,10 @@ function handleCommentsMicroblog(iq) {
 	var id = explodeThis('-', iq.getID(), 1);
 	var path = '#channel .one-update div.comments[data-id=' + id + ']';
 	
+	// Does not exist?
+	if(!exists(path))
+		return false;
+	
 	// Any error?
 	if(handleErrorReply(iq)) {
 		$(path).find('.one-comment').text(_e("Could not get the comments!"));
@@ -289,14 +307,10 @@ function handleCommentsMicroblog(iq) {
 	var node = $(data).find('items:first').attr('node');
 	var code = '';
 	
-	// Does not exist?
-	if(!exists(path))
-		return false;
-	
 	// Must we create the complete DOM?
 	var complete = true;
 	
-	if($(path).find('.one-comment:not(.loading)').size())
+	if($(path).find('input').size())
 		complete = false;
 	
 	// Add the comment tool
@@ -311,6 +325,10 @@ function handleCommentsMicroblog(iq) {
 		var current_date = $(this).find('published').text();
 		var current_body = $(this).find('title').text();
 		var current_name;
+		
+		// Yet displayed? (continue the loop)
+		if($(path).find('.one-comment[data-id=' + current_id + ']').size())
+			return;
 		
 		// No XID?
 		if(!current_xid) {
@@ -344,9 +362,15 @@ function handleCommentsMicroblog(iq) {
 			remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeQuotes(server) + '\', \'' + encodeQuotes(node) + '\', \'' + encodeQuotes(current_id) + '\');">' + _e("Remove") + '</a>';
 		}
 		
+		// New comment?
+		var new_class = '';
+		
+		if(!complete)
+			new_class = ' new';
+		
 		// Add the comment
 		if(current_body)
-			code += '<div class="one-comment ' + type + '" data-id="' + encodeQuotes(current_id) + '">' + 
+			code += '<div class="one-comment ' + type + new_class + '" data-id="' + encodeQuotes(current_id) + '">' + 
 					marker + 
 					'<a href="#" onclick="return ' + onclick + ';" title="' + encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
 					'<span class="date">' + current_date.htmlEnc() + '</span>' + 
@@ -359,15 +383,20 @@ function handleCommentsMicroblog(iq) {
 	if(complete)
 		$(path).html(code);
 	else {
-		$(path).find('.one-comment:first').before(code);
+		$(path).find('input:first').after(code);
 		
 		// Beautiful effect
-		$(path).find('.one-comment:first').hide()
-		                                  .slideDown('fast');
+		$(path).find('.one-comment.new').slideDown('fast').removeClass('new');
 	}
 	
 	// DOM events
 	if(complete) {
+		// Update timer
+		$(path).everyTime('60s', function() {
+			getCommentsMicroblog(server, node, id);
+		});
+		
+		// Input key event
 		$(path).find('input').placeholder()
 			             .keyup(function(e) {
 			             		if((e.keyCode == 13) && $(this).val()) {
@@ -451,6 +480,7 @@ function removeCommentMicroblog(server, node, id) {
 	// Send the IQ to remove the item (and get eventual error callback)
 	var iq = new JSJaCIQ();
 	iq.setType('set');
+	iq.setTo(server);
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
 	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': node, 'xmlns': NS_PUBSUB}));
@@ -758,15 +788,23 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repeat) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedext, attachedthumb, repeat, comments_entity, comments_node) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
 	var time = getXMPPTime('utc');
 	var id = hex_md5(body + time);
-	var comments_node = NS_URN_MBLOG + ':comments:' + id;
 	var nick = getNick();
 	var xid = getXID();
+	
+	// Define comments options
+	var node_create = false;
+	
+	if(!comments_entity || !comments_node) {
+		node_create = true;
+		comments_entity = xid;
+		comments_node = NS_URN_MBLOG + ':comments:' + id;
+	}
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -820,13 +858,14 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Create the XML comments childs
-	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'jid': xid, 'node': comments_node}));
+	entry.appendChild(iq.buildNode('comments', {'xmlns': NS_ATOM, 'jid': comments_entity, 'node': comments_node}));
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
 	
 	// Create the XML comments PubSub node
-	setupMicroblog(comments_node, '1', '10000', true);
+	if(node_create)
+		setupMicroblog(comments_node, '1', '10000', true);
 	
 	return false;
 }

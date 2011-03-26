@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/03/11
+Last revision: 26/03/11
 
 */
 
@@ -265,6 +265,7 @@ Last revision: 25/03/11
 	color: #292929;
 	width: 410px;
 	font-size: 0.9em;
+	text-shadow: 0 1px 0 white;
 	margin: 10px 0 5px 76px;
 }
 
@@ -282,17 +283,35 @@ Last revision: 25/03/11
 	float: left;
 }
 
-#channel .one-update div.comments div.one-comment {
+#channel .one-update div.comments .one-comment.loading span.icon {
+	margin: 0 10px 0 0;
+}
+
+#channel .one-update div.comments .one-comment {
 	border-top: 2px solid #f4f4f4;
 	padding: 5px 6px 2px 11px;
 	position: relative;
+	display: block;
 }
 
-#channel .one-update div.comments div.one-comment.loading {
+#channel .one-update div.comments .one-comment.new {
+	display: none;
+}
+
+#channel .one-update div.comments a.one-comment:hover,
+#channel .one-update div.comments a.one-comment:focus {
+	background-color: #dfe6e8;
+}
+
+#channel .one-update div.comments a.one-comment:active {
+	background-color: #dae3e5;
+}
+
+#channel .one-update div.comments .one-comment.loading {
 	padding-bottom: 5px;
 }
 
-#channel .one-update div.comments div.one-comment div.marker {
+#channel .one-update div.comments .one-comment div.marker {
 	background-color: #6d8387;
 	width: 3px;
 	position: absolute;
@@ -301,7 +320,7 @@ Last revision: 25/03/11
 	bottom: 0;
 }
 
-#channel .one-update div.comments div.one-comment a.name {
+#channel .one-update div.comments .one-comment a.name {
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 0.95em;
@@ -309,30 +328,30 @@ Last revision: 25/03/11
 	float: left;
 }
 
-#channel .one-update div.comments div.one-comment a.name:hover,
-#channel .one-update div.comments div.one-comment a.name:focus {
+#channel .one-update div.comments .one-comment a.name:hover,
+#channel .one-update div.comments .one-comment a.name:focus {
 	text-decoration: underline;
 }
 
-#channel .one-update div.comments div.one-comment span.date,
-#channel .one-update div.comments div.one-comment a.remove {
+#channel .one-update div.comments .one-comment span.date,
+#channel .one-update div.comments .one-comment a.remove {
 	font-size: 0.85em;
 	float: right;
 }
 
-#channel .one-update div.comments div.one-comment.me:hover span.date {
+#channel .one-update div.comments .one-comment.me:hover span.date {
 	display: none;
 }
 
-#channel .one-update div.comments div.one-comment.me a.remove {
+#channel .one-update div.comments .one-comment.me a.remove {
 	display: none;
 }
 
-#channel .one-update div.comments div.one-comment.me:hover a.remove {
+#channel .one-update div.comments .one-comment.me:hover a.remove {
 	display: block;
 }
 
-#channel .one-update div.comments div.one-comment p.body {
+#channel .one-update div.comments .one-comment p.body {
 	clear: both;
 }
 
