@@ -211,7 +211,10 @@ function displayMicroblog(packet, from, hash, mode) {
 						// Create comments container
 						$(this).append(
 							'<div class="comments" data-id="' + idComments + '">' + 
-								'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
+								'<div class="arrow talk-images"></div>' + 
+								'<div class="comments-content">' + 
+									'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
+								'</div>' + 
 							'</div>'
 						);
 						
@@ -288,7 +291,7 @@ function getCommentsMicroblog(server, node, id) {
 function handleCommentsMicroblog(iq) {
 	// Path
 	var id = explodeThis('-', iq.getID(), 1);
-	var path = '#channel .one-update div.comments[data-id=' + id + ']';
+	var path = '#channel .one-update div.comments[data-id=' + id + '] div.comments-content';
 	
 	// Does not exist?
 	if(!exists(path))
@@ -310,12 +313,14 @@ function handleCommentsMicroblog(iq) {
 	// Must we create the complete DOM?
 	var complete = true;
 	
-	if($(path).find('input').size())
+	if($(path).find('.one-comment.compose').size())
 		complete = false;
 	
 	// Add the comment tool
 	if(complete)
-		code += '<span class="icon talk-images"></span><input type="text" placeholder="' + _e("Type your comment here...") + '" />';
+		code += '<div class="one-comment compose">' + 
+				'<span class="icon talk-images"></span><input type="text" placeholder="' + _e("Type your comment here...") + '" />' + 
+			'</div>';
 	
 	// Append the comments
 	$(data).find('item').each(function() {
@@ -383,7 +388,7 @@ function handleCommentsMicroblog(iq) {
 	if(complete)
 		$(path).html(code);
 	else {
-		$(path).find('input:first').after(code);
+		$(path).find('.one-comment.compose').after(code);
 		
 		// Beautiful effect
 		$(path).find('.one-comment.new').slideDown('fast').removeClass('new');
@@ -397,7 +402,7 @@ function handleCommentsMicroblog(iq) {
 		});
 		
 		// Input key event
-		$(path).find('input').placeholder()
+		$(path).find('.one-comment.compose input').placeholder()
 			             .keyup(function(e) {
 			             		if((e.keyCode == 13) && $(this).val()) {
 			             			// Send the comment!

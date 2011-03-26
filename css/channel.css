@@ -261,12 +261,23 @@ Last revision: 26/03/11
 }
 
 #channel .one-update div.comments {
+	width: 410px;
+	margin: 2px 0 2px 76px;
+}
+
+#channel .one-update div.comments div.arrow {
+	background-position: 0 -1702px;
+	width: 20px;
+	height: 8px;
+	margin-left: 20px;
+	display: block;
+}
+
+#channel .one-update div.comments div.comments-content {
 	background-color: #e5ebec;
 	color: #292929;
-	width: 410px;
 	font-size: 0.9em;
 	text-shadow: 0 1px 0 white;
-	margin: 10px 0 5px 76px;
 }
 
 #channel .one-update div.comments input {
@@ -288,23 +299,27 @@ Last revision: 26/03/11
 }
 
 #channel .one-update div.comments .one-comment {
-	border-top: 2px solid #f4f4f4;
+	border-bottom: 2px solid #f4f4f4;
 	padding: 5px 6px 2px 11px;
 	position: relative;
 	display: block;
+}
+
+#channel .one-update div.comments .one-comment.compose {
+	padding: 0;
 }
 
 #channel .one-update div.comments .one-comment.new {
 	display: none;
 }
 
-#channel .one-update div.comments a.one-comment:hover,
-#channel .one-update div.comments a.one-comment:focus {
-	background-color: #dfe6e8;
+#channel .one-update div.comments a.one-comment {
+	text-decoration: none;
 }
 
-#channel .one-update div.comments a.one-comment:active {
-	background-color: #dae3e5;
+#channel .one-update div.comments a.one-comment:hover,
+#channel .one-update div.comments a.one-comment:focus {
+	text-decoration: underline;
 }
 
 #channel .one-update div.comments .one-comment.loading {
