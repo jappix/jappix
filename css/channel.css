@@ -299,13 +299,14 @@ Last revision: 26/03/11
 }
 
 #channel .one-update div.comments .one-comment {
-	border-bottom: 2px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
 	padding: 5px 6px 2px 11px;
 	position: relative;
 	display: block;
 }
 
 #channel .one-update div.comments .one-comment.compose {
+	border-bottom: 2px solid #f4f4f4;
 	padding: 0;
 }
 

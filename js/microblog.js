@@ -212,7 +212,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat);
 			});
 			
 			// Apply the hover event
@@ -812,7 +812,7 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
@@ -831,13 +831,8 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Define comments options
-	var node_create = false;
-	
-	if(!comments_entity || !comments_node) {
-		node_create = true;
-		comments_entity = xid;
-		comments_node = NS_URN_MBLOG + ':comments:' + id;
-	}
+	var comments_entity = xid;
+	var comments_node = NS_URN_MBLOG + ':comments:' + id;
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -891,8 +886,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	con.send(iq, handleMyMicroblog);
 	
 	// Create the XML comments PubSub node
-	if(node_create)
-		setupMicroblog(comments_node, '1', '10000', true);
+	setupMicroblog(comments_node, '1', '10000', true);
 	
 	return false;
 }
