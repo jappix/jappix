@@ -427,7 +427,7 @@ function handleCommentsMicroblog(iq) {
 			             .keyup(function(e) {
 			             		if((e.keyCode == 13) && $(this).val()) {
 			             			// Send the comment!
-			             			sendCommentsMicroblog($(this).val(), server, node, id);
+			             			sendCommentMicroblog($(this).val(), server, node, id);
 			             			
 			             			// Reset the input value
 			             			$(this).val('');
@@ -439,7 +439,7 @@ function handleCommentsMicroblog(iq) {
 }
 
 // Sends a comment on a given microblog comments node
-function sendCommentsMicroblog(value, server, node, id) {
+function sendCommentMicroblog(value, server, node, id) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-publish */
 	
 	// Not enough data?
@@ -588,11 +588,19 @@ function getMicroblog(xid, hash) {
 		
 		// Get the channel title depending on the XID
 		var cTitle;
+		var cShortcuts = '';
 		
 		if(xid == getXID())
 			cTitle = _e("Your channel");
-		else
+		else {
 			cTitle = _e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
+			cShortcuts = '<div class="shortcuts">' + 
+						'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeQuotes(xid) + '\');"></a>' + 
+						'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="return checkChatCreate(\'' + encodeQuotes(xid) + '\', \'chat\');"></a>' + 
+						'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="return retrieveAdHoc(\'' + encodeQuotes(xid) + '\');"></a>' + 
+						'<a href="#" class="profile talk-images" title="' + _e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeQuotes(xid) + '\');"></a>' + 
+			             '</div>';
+		}
 		
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
@@ -611,6 +619,8 @@ function getMicroblog(xid, hash) {
 						'<h2>' + cTitle + '</h2>' + 
 						'<a href="#" onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
 					'</div>' + 
+					
+					cShortcuts + 
 					
 					'<input type="hidden" name="jid" value="' + xid + '" />' + 
 					'<input type="hidden" name="counter" value="' + 20 + '" />' + 

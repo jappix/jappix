@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 27/03/11
 
 */
 
@@ -87,6 +87,23 @@ function openInbox() {
 function closeInbox() {
 	// Destroy the popup
 	destroyPopup('inbox');
+	
+	return false;
+}
+
+// Opens the message compose tool
+function composeInboxMessage(xid) {
+	// Open things
+	openInbox();
+	newInboxMessage();
+	
+	// Apply XID
+	$('#inbox .inbox-new-to-input').val(xid);
+	
+	// Focus to the next item
+	$(document).oneTime(10, function() {
+		$('#inbox .inbox-new-subject-input').focus();
+	});
 	
 	return false;
 }
@@ -241,12 +258,16 @@ function checkInboxMessage() {
 	
 	else {
 		$(mPath + 'input[type=text], ' + mPath + 'textarea').each(function() {
-			if(!$(this).val())
+			var current = this;
+			
+			if(!$(current).val()) {
 				$(document).oneTime(10, function() {
-					$(this).addClass('please-complete').focus();
+					$(current).addClass('please-complete').focus();
 				});
+			}
+			
 			else
-				$(this).removeClass('please-complete');	
+				$(current).removeClass('please-complete');	
 		});
 	}
 	

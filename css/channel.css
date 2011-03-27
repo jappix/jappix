@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 27/03/11
 
 */
 
@@ -36,6 +36,43 @@ Last revision: 26/03/11
 #channel .top a {
 	font-size: 0.9em;
 	color: #232323;
+}
+
+#channel .top.individual div.update {
+	right: 36px;
+}
+
+#channel .top.individual div.shortcuts,
+#userinfos .main-infos div.shortcuts {
+	width: 16px;
+	float: right;
+}
+
+#channel .top.individual div.shortcuts {
+	margin: 2px 5px 0 0;
+}
+
+#channel .top.individual div.shortcuts a,
+#userinfos .main-infos div.shortcuts a {
+	height: 16px;
+	width: 16px;
+	margin-bottom: 4px;
+	display: block;
+}
+
+#channel .top.individual div.shortcuts a.message,
+#userinfos .main-infos a.message {
+	background-position: 0 -1717px;
+}
+
+#channel .top.individual div.shortcuts a.chat,
+#userinfos .main-infos a.chat {
+	background-position: 0 -1737px;
+}
+
+#channel .top.individual div.shortcuts a.command,
+#userinfos .main-infos a.command {
+	background-position: 0 -1758px;
 }
 
 #channel .microblog-body {
@@ -275,7 +312,7 @@ Last revision: 26/03/11
 
 #channel .one-update div.comments div.comments-content {
 	background-color: #e5ebec;
-	color: #292929;
+	color: black;
 	font-size: 0.9em;
 	text-shadow: 0 1px 0 white;
 }

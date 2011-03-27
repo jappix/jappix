@@ -7,12 +7,23 @@ These are the user-infos JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 27/03/11
 
 */
 
 // Opens the user-infos popup
 function openUserInfos(xid) {
+	// Can show shortcuts?
+	var shortcuts = '';
+	
+	if(xid != getXID()) {
+		shortcuts = '<div class="shortcuts">' + 
+					'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeQuotes(xid) + '\');"></a>' + 
+					'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="closeUserInfos(); return checkChatCreate(\'' + encodeQuotes(xid) + '\', \'chat\');"></a>' + 
+					'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="closeUserInfos(); return retrieveAdHoc(\'' + encodeQuotes(xid) + '\');"></a>' + 
+		             '</div>';
+	}
+	
 	// Popup HTML content
 	var html = 
 	'<div class="top">' + _e("User profile") + '</div>' + 
@@ -33,6 +44,8 @@ function openUserInfos(xid) {
 				'<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
 				'<h2 class="buddy-xid" class="reset-info">' + _e("unknown") + '</h2>' + 
 				'<h3 class="buddy-last" class="reset-info">' + _e("unknown") + '</h3>' + 
+				
+				shortcuts + 
 			'</div>' + 
 			
 			'<div class="block-infos">' + 

@@ -7,7 +7,7 @@ These are the Ad-Hoc JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 27/03/11
 
 */
 
@@ -62,6 +62,8 @@ function retrieveAdHoc(xid) {
 	
 	// Start a new adhoc command
 	dataForm(xid, 'command', '', '', 'adhoc');
+	
+	return false;
 }
 
 // Starts an adhoc command on the user server

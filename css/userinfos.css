@@ -7,7 +7,7 @@ This is the user-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 27/03/11
 
 */
 
@@ -23,6 +23,7 @@ Last revision: 05/03/11
 	margin: 20px 20px 8px 20px;
 	height: 120px;
 	background: white;
+	position: relative;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -44,7 +45,7 @@ Last revision: 05/03/11
 #userinfos h1,
 #userinfos h2,
 #userinfos h3 {
-	width: 420px;
+	width: 410px;
 	overflow: hidden;
 }
 
@@ -63,6 +64,12 @@ Last revision: 05/03/11
 #userinfos h3 {
 	color: #6e8388;
 	font-size: 0.8em;
+}
+
+#userinfos .main-infos div.shortcuts {
+	position: absolute;
+	top: 10px;
+	right: 12px;
 }
 
 #userinfos .block-infos {

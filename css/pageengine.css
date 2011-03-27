@@ -361,7 +361,8 @@ Last revision: 16/03/11
 	background-position: 0 -739px;
 }
 
-#page-engine .text .tools-infos {
+#page-engine .text .tools-infos,
+#channel .top div.shortcuts a.profile {
 	background-position: 0 -758px;
 }
 
