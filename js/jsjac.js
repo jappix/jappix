@@ -2538,31 +2538,32 @@ JSJaCConnection.prototype.connected = function() { return this._connected; };
  */
 JSJaCConnection.prototype.disconnect = function() {
   this._setStatus('disconnecting');
-
+ 
   if (!this.connected())
     return;
-
+  this._connected = false;
+ 
+  clearInterval(this._interval);
+  clearInterval(this._inQto);
+ 
+  if (this._timeout)
+    clearTimeout(this._timeout); // remove timer
+ 
   var slot = this._getFreeSlot();
-
-  this._req[slot] = this._setupRequest(true);
-
-  this._req[slot].r.onreadystatechange = JSJaC.bind(function() {
-    try {
-      if (this._req[slot].r.readyState == 4) {
-        this.oDbg.log("async recv: "+this._req[slot].r.responseText,4);
-        this._handleResponse(this._req[slot]);
-      }
-    } catch(e) { this.oDbg.log(e, 1); }
-  }, this);
-
+  // Intentionally synchronous
+  this._req[slot] = this._setupRequest(false);
+ 
   request = this._getRequestString(false, true);
-
-  this.oDbg.log("Disconnecting: " + request, 4);
+ 
+  this.oDbg.log("Disconnecting: " + request,4);
   this._req[slot].r.send(request);
-  
+ 
   try {
     removeDB('jsjac', 'state');
   } catch (e) {}
+ 
+  this.oDbg.log("Disconnected: "+this._req[slot].r.responseText,2);
+  this._handleEvent('ondisconnect');
 };
 
 /**
