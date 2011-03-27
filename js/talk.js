@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/11
+Last revision: 27/03/11
 
 */
 
@@ -184,7 +184,7 @@ function createTalkPage() {
 								'<p>' + _e("What\'s up with you?") +  '</p>' + 
 								
 								'<div class="microblog-body">' + 
-									'<input class="focusable" type="text" name="microblog_body" maxlength="140" disabled="" />' + 
+									'<input class="focusable" type="text" name="microblog_body" disabled="" />' + 
 								'</div>' + 
 								
 								'<div class="one-microblog-icon ibubble">' + 
