@@ -7,7 +7,7 @@ These are the anonymous mode JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 23/03/11
+Last revision: 27/03/11
 
 */
 
@@ -82,6 +82,7 @@ function anonymousLogin(server) {
 		oArgs.authtype = 'saslanon';
 		oArgs.resource = JAPPIX_RESOURCE + ' Anonymous (' + (new Date()).getTime() + ')';
 		oArgs.secure = true;
+		oArgs.xmllang = XML_LANG;
 		
 		// We connect !
 		con.connect(oArgs);

@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/03/11
+Last revision: 27/03/11
 
 */
 
@@ -71,6 +71,7 @@ function doLogin(aForm) {
 			oArgs.resource = JAPPIX_RESOURCE + ' Mobile (' + (new Date()).getTime() + ')';
 			oArgs.pass = pwd;
 			oArgs.secure = true;
+			oArgs.xmllang = XML_LANG;
 			
 			// Register?
 			if(reg)
