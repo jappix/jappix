@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 27/03/11
 
 */
 
@@ -75,7 +75,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		var comments_href = $(this).find('link[title=comments]:first').attr('href');
 		
 		if(comments_href && comments_href.match(/^xmpp:(.+)\?;node=(.+)/)) {
-			entityComments = decodeURIComponent(RegExp.$1);
+			entityComments = RegExp.$1;
 			nodeComments = decodeURIComponent(RegExp.$2);
 		}
 		
@@ -211,9 +211,11 @@ function displayMicroblog(packet, from, hash, mode) {
 			}
 			
 			// Apply the click event
-			$('.' + tHash + ' a.repost').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat);
-			});
+			$('.' + tHash + ' a.repost:not([data-event=true])').click(function() {
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments);
+			})
+			
+			.attr('data-event', 'true');
 			
 			// Apply the hover event
 			if(nodeComments)
@@ -683,8 +685,11 @@ function setupMicroblog(node, persist, maximum, create) {
 	
 	// Allow subscribers to write on that node?
 	if(node != NS_URN_MBLOG) {
-		var field4 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#publish_model', 'xmlns': NS_XDATA}));
+		var field4 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#access_model', 'xmlns': NS_XDATA}));
 		field4.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, 'open'));
+		
+		var field5 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#publish_model', 'xmlns': NS_XDATA}));
+		field5.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, 'open'));
 	}
 	
 	con.send(iq);
@@ -812,7 +817,7 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
@@ -831,8 +836,13 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Define comments options
-	var comments_entity = xid;
-	var comments_node = NS_URN_MBLOG + ':comments:' + id;
+	var node_create = false;
+	
+	if(!comments_entity || !comments_node) {
+		node_create = true;
+		comments_entity = xid;
+		comments_node = NS_URN_MBLOG + ':comments:' + id;
+	}
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -861,7 +871,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	entry.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('link', {
 			'rel': 'alternate',
-			'href': 'xmpp:' + encodeURIComponent(xid) + '?;node=' + encodeURIComponent(NS_URN_MBLOG) + ';item=' + encodeURIComponent(id),
+			'href': 'xmpp:' + xid + '?;node=' + encodeURIComponent(NS_URN_MBLOG) + ';item=' + encodeURIComponent(id),
 			'xmlns': NS_ATOM
 	}));
 	
@@ -880,13 +890,14 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Create the comments child
-	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'related', 'title': 'comments', 'href': 'xmpp:' + encodeURIComponent(comments_entity) + '?;node=' + encodeURIComponent(comments_node)}));
+	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'related', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
 	
 	// Create the XML comments PubSub node
-	setupMicroblog(comments_node, '1', '10000', true);
+	if(node_create)
+		setupMicroblog(comments_node, '1', '10000', true);
 	
 	return false;
 }
