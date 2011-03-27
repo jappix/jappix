@@ -429,37 +429,49 @@ function logThis(data, level) {
 
 // Converts a XML document to a string
 function xmlToString(xmlData) {
-	// For Mozilla, Firefox, Opera, etc.
-	if(window.XMLSerializer)
-		return (new XMLSerializer()).serializeToString(xmlData);
+	try {
+		// For Mozilla, Firefox, Opera, etc.
+		if(window.XMLSerializer)
+			return (new XMLSerializer()).serializeToString(xmlData);
+		
+		// For Internet Explorer
+		if(window.ActiveXObject)
+			return xmlData.xml;
+		
+		return null;
+	}
 	
-	// For Internet Explorer
-	if(window.ActiveXObject)
-		return xmlData.xml;
-	
-	return null;
+	catch(e) {
+		return null;
+	}
 }
 
 // Converts a string to a XML document
 function XMLFromString(sXML) {
-	// No data?
-	if(!sXML)
-		return '';
-	
-	// Add the XML tag
-	if(!sXML.match(/^<\?xml/i))
-		sXML = '<?xml version="1.0"?>' + sXML;
-	
-	// Parse it!
-	if(window.ActiveXObject) {
-		var oXML = new ActiveXObject('Microsoft.XMLDOM');
-		oXML.loadXML(sXML);
+	try {
+		// No data?
+		if(!sXML)
+			return '';
 		
- 		return oXML;
+		// Add the XML tag
+		if(!sXML.match(/^<\?xml/i))
+			sXML = '<?xml version="1.0"?>' + sXML;
+		
+		// Parse it!
+		if(window.DOMParser)
+			return (new DOMParser()).parseFromString(sXML, 'text/xml');
+		
+		if(window.ActiveXObject) {
+			var oXML = new ActiveXObject('Microsoft.XMLDOM');
+			oXML.loadXML(sXML);
+			
+	 		return oXML;
+		}
 	}
 	
-	else
-		return (new DOMParser()).parseFromString(sXML, 'text/xml');
+	catch(e) {
+		return '';
+	}
 }
 
 // Gets the current Jappix app. location
