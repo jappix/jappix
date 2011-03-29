@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 27/03/11
+Last revision: 29/03/11
 
 */
 
@@ -3075,7 +3075,7 @@ JSJaCConnection.prototype._doLegacyAuth = function() {
    * Non-SASL Authentication as described in JEP-0078
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(this.server,'get','auth1');
+  iq.setIQ(null,'get','auth1');
   iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                 [['username', this.username]]);
 
@@ -3100,7 +3100,7 @@ JSJaCConnection.prototype._doLegacyAuth2 = function(iq) {
    * Send authentication
    */
   var iq = new JSJaCIQ();
-  iq.setIQ(this.server,'set','auth2');
+  iq.setIQ(null,'set','auth2');
 
   query = iq.appendNode('query', {xmlns: 'jabber:iq:auth'},
                         [['username', this.username],
@@ -3306,7 +3306,7 @@ JSJaCConnection.prototype._doXMPPSess = function(iq) {
   this.jid = this.fulljid.substring(0,this.fulljid.lastIndexOf('/'));
 
   iq = new JSJaCIQ();
-  iq.setIQ(this.domain,'set','sess_1');
+  iq.setIQ(null,'set','sess_1');
   iq.appendNode("session", {xmlns: "urn:ietf:params:xml:ns:xmpp-session"},
                 []);
   this.oDbg.log(iq.xml());

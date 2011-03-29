@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 29/03/11
 
 */
 
@@ -337,7 +337,7 @@ Last revision: 27/03/11
 
 #channel .one-update div.comments .one-comment {
 	border-bottom: 1px solid #f4f4f4;
-	padding: 5px 6px 2px 11px;
+	padding: 4px 6px 1px 11px;
 	position: relative;
 	display: block;
 }
