@@ -7,7 +7,7 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 16/02/11
+Last revision: 30/03/11
 
 */
 
@@ -183,14 +183,14 @@ function filterThisXHTML(code) {
 				  );
 	
 	// Remove forbidden elements
-	$(code).find('*').each(function() {
+	$(code).find('html body *').each(function() {
 		// This element is not authorized
-		if(!existArrayValue(elements, (this).nodeName))
+		if(!existArrayValue(elements, (this).nodeName.toLowerCase()))
 			$(this).remove();
 	});
 	
 	// Remove forbidden attributes
-	$(code).find('*').each(function() {
+	$(code).find('html body *').each(function() {
 		// Put a pointer on this element (jQuery way & normal way)
 		var cSelector = $(this);
 		var cElement = (this);
@@ -203,7 +203,7 @@ function filterThisXHTML(code) {
 			var cVal = cAttr.value;
 			
 			// This attribute is not authorized, or contains JS code
-			if(!existArrayValue(attributes, cName) || (cVal.match(/(^|"|')javascript:/)))
+			if(!existArrayValue(attributes, cName.toLowerCase()) || ((cVal.toLowerCase()).match(/(^|"|')javascript:/)))
 				cSelector.removeAttr(cName);
 		});
 	});

@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 30/03/11
 
 */
 
@@ -131,12 +131,12 @@ function applyIntegrateBox(url, service) {
 }
 
 // Filters a string to apply the integratebox links
-function filterIntegrateBox(string) {
+function filterIntegrateBox(data) {
 	// Encapsulates the string into two <div /> elements
-	string = $('<div><div>' + string + '</div></div>').contents();
+	var xml = $('<div><div>' + data + '</div></div>').contents();
 	
 	// Loop the <a /> elements
-	$(string).find('a').each(function() {
+	$(xml).find('a').each(function() {
 		// Initialize this element
 		var href = $(this).attr('href');
 		var to, url, service, event;
@@ -188,12 +188,33 @@ function filterIntegrateBox(string) {
 			event = 'applyIntegrateBox(\'' + encodeOnclick(url) + '\', \'' + encodeOnclick(service) + '\')';
 		
 		// Any click event to apply?
-		if(event)
-			$(this).attr('onclick', 'return ' + event + ';');
+		if(event) {
+			// Regenerate the link element (for onclick)
+			var new_a = '<a';
+			var element_a = (this);
+			
+			// Attributes
+			$(element_a.attributes).each(function(index) {
+				// Read the current attribute
+				var current_attr = element_a.attributes[index];
+				
+				// Apply the current attribute
+				new_a += ' ' + encodeQuotes(current_attr.name) + '="' + encodeQuotes(current_attr.value) + '"';
+			});
+			
+			// Add onclick attribute
+			new_a += ' onclick="return ' + event + ';"';
+			
+			// Value
+			new_a += '>' + $(this).text().htmlEnc() + '</a>';
+			
+			// Replace it!
+			$(this).replaceWith(new_a);
+		}
 	});
 	
 	// Regenerate the HTML code (include string into a div to be readable)
-	string = $(string).html();
+	var string = $(xml).html();
 	
 	return string;
 }
