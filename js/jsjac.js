@@ -1655,9 +1655,6 @@ JSJaCPacket.prototype.setType = function(type) {
  * @type JSJaCPacket
  */
 JSJaCPacket.prototype.setXMLLang = function(xmllang) {
-  // Abort if IE (get bugs with it)
-  if(BrowserDetect && BrowserDetect.browser == 'Explorer')
-    return this;
   if (!xmllang || xmllang == '')
     this.getNode().removeAttribute('xml:lang');
   else
@@ -2813,10 +2810,6 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
     // generate an ID for the packet
     if (!packet.getID())
       packet.setID(genID());
-    
-    // apply the xml:lang attribute
-    if (!packet.getXMLLang())
-      packet.setXMLLang(XML_LANG);
 
     // register callback with id
     this._registerPID(packet.getID(),cb,arg);
@@ -3824,7 +3817,7 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
       this._pQueue = this._pQueue.slice(1,this._pQueue.length);
     }
 
-    reqstr = "<body xml:lang='"+this._xmllang + "' rid='"+this._rid+"' sid='"+this._sid+"' xmlns='http://jabber.org/protocol/httpbind' ";
+    reqstr = "<body xml:lang='"+XML_LANG+"' rid='"+this._rid+"' sid='"+this._sid+"' xmlns='http://jabber.org/protocol/httpbind' ";
     if (JSJAC_HAVEKEYS) {
       reqstr += "key='"+this._keys.getKey()+"' ";
       if (this._keys.lastKey()) {
@@ -3863,7 +3856,7 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  * @private
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
-  var reqstr = "<body xml:lang='"+this._xmllang + "' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
+  var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
   if (this.host || this.port)
     reqstr += " route='xmpp:"+this.host+":"+this.port+"'";
   if (this.secure)
@@ -4254,7 +4247,7 @@ JSJaCHttpBindingConnection.prototype._suspend = function() {
   // Intentionally synchronous
   this._req[slot] = this._setupRequest(false);
 
-  var reqstr = "<body xml:lang='"+this._xmllang + "' pause='"+this._pause+"' xmlns='http://jabber.org/protocol/httpbind' sid='"+this._sid+"' rid='"+this._rid+"'";
+  var reqstr = "<body xml:lang='"+XML_LANG+"' pause='"+this._pause+"' xmlns='http://jabber.org/protocol/httpbind' sid='"+this._sid+"' rid='"+this._rid+"'";
   if (JSJAC_HAVEKEYS) {
     reqstr += " key='"+this._keys.getKey()+"'";
     if (this._keys.lastKey()) {

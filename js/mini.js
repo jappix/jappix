@@ -179,41 +179,73 @@ function saveSession() {
 	logThis('Jappix Mini session save tool launched.', 3);
 }
 
-// When the user is disconnected
-function disconnected() {
-	// Browser error?
-	notifyError();
+// Disconnects the connected user
+function disconnect() {
+	// No connection?
+	if(!isConnected())
+		return false;
 	
-	// Stop the save session timer
-	jQuery('#jappix_mini').stopTime();
-	
-	// Reset initialized marker
+	// Remove initialized marker
 	MINI_INITIALIZED = false;
 	
+	// Add disconnection handler
+	con.registerHandler('ondisconnect', disconnected);
+	
+	// Disconnect the user
+	con.disconnect();
+	
+	logThis('Jappix Mini is disconnecting...', 3);
+	
+	return false;
+}
+
+// When the user is disconnected
+function disconnected() {
 	// Remove the stored items
 	removeDB('jappix-mini', 'dom');
 	removeDB('jappix-mini', 'nickname');
 	removeDB('jappix-mini', 'scroll');
 	removeDB('jappix-mini', 'stamp');
 	
-	// Try to reconnect after a while
-	if(MINI_RECONNECT < 5) {
-		// Reconnect interval
-		var reconnect_interval = 10;
+	// Connection error?
+	if(MINI_INITIALIZED) {
+		// Browser error?
+		notifyError();
 		
-		if(MINI_RECONNECT)
-			reconnect_interval = (5 + (5 * MINI_RECONNECT)) * 1000;
+		// Reset reconnect timer
+		jQuery('#jappix_mini').stopTime();
 		
-		MINI_RECONNECT++;
-		
-		// Set timer
-		jQuery('#jappix_mini').oneTime(reconnect_interval, function() {
-			// Remove the Jappix Mini DOM
-			jQuery(this).remove();
+		// Try to reconnect after a while
+		if(MINI_RECONNECT < 5) {
+			// Reconnect interval
+			var reconnect_interval = 10;
 			
-			// Launch Jappix Mini again!
-			launchMini(MINI_AUTOCONNECT, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
-		});
+			if(MINI_RECONNECT)
+				reconnect_interval = (5 + (5 * MINI_RECONNECT)) * 1000;
+			
+			MINI_RECONNECT++;
+			
+			// Set timer
+			jQuery('#jappix_mini').oneTime(reconnect_interval, function() {
+				// Remove the Jappix Mini DOM
+				jQuery(this).remove();
+				
+				// Launch Jappix Mini again!
+				launchMini(true, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
+			});
+		}
+		
+		// Reset initialized marker
+		MINI_INITIALIZED = false;
+	}
+	
+	// Normal disconnection?
+	else {
+		// Remove Jappix Mini
+		jQuery('#jappix_mini').remove();
+		
+		// Launch it again!
+		launchMini(false, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
 	}
 	
 	logThis('Jappix Mini is now disconnected.', 3);
@@ -1480,24 +1512,30 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	MINI_USER = user;
 	MINI_PASSWORD = password;
 	
+	// Anonymous mode?
+	if(!user || !password)
+		MINI_ANONYMOUS = true;
+	else
+		MINI_ANONYMOUS = false;
+	
+	// Autoconnect?
+	if(autoconnect)
+		MINI_AUTOCONNECT = true;
+	else
+		MINI_AUTOCONNECT = false;
+	
+	// Show pane?
+	if(show_pane)
+		MINI_SHOWPANE = true;
+	else
+		MINI_SHOWPANE = false;
+	
 	// Reconnect?
 	if(MINI_RECONNECT) {
 		logThis('Trying to reconnect (try: ' + MINI_RECONNECT + ')!');
 		
 		return createMini(domain, user, password);
 	}
-	
-	// Anonymous mode?
-	if(!user || !password)
-		MINI_ANONYMOUS = true;
-	
-	// Autoconnect?
-	if(autoconnect)
-		MINI_AUTOCONNECT = true;
-	
-	// Show pane?
-	if(show_pane)
-		MINI_SHOWPANE = true;
 	
 	// Append the Mini stylesheet
 	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;g=mini.xml" type="text/css" media="all" />');
