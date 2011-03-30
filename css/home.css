@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/03/11
+Last revision: 30/03/11
 
 */
 
@@ -215,7 +215,6 @@ Last revision: 08/03/11
 	height: 64px;
 	text-decoration: none;
 	font-weight: bold;
-	vertical-align: middle;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -313,7 +312,6 @@ Last revision: 08/03/11
 	color: black;
 	text-decoration: none;
 	font-size: 0.9em;
-	vertical-align: middle;
 	height: 12px;
 	padding: 0 0 4px 20px;
 	float: right;

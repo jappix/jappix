@@ -7,7 +7,7 @@ This is the tools CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 30/03/11
 
 */
 
@@ -29,7 +29,6 @@ Last revision: 07/03/11
 	color: black;
 	padding: 0 3px;
 	margin: 0 1.5px;
-	vertical-align: middle;
 }
 
 #top-content .tools a:hover,

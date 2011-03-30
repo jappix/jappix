@@ -123,23 +123,18 @@ function storeInbox() {
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Get the values
 			var value = $(XMLFromString(sessionStorage.getItem(current)));
-			var file = value.find('file');
 			
 			// Create the storage node
 			storage.appendChild(iq.buildNode('message', {
-								     'id': value.find('id').text(),
-								     'from': value.find('from').text(),
-								     'subject': value.find('subject').text(),
-								     'status': value.find('status').text(),
-								     'date': value.find('date').text(),
-								     'file_title': file.find('title').text(),
-								     'file_href': file.find('href').text(),
-								     'file_type': file.find('type').text(),
-								     'file_length': file.find('length').text(),
+								     'id': value.find('id').text().revertHtmlEnc(),
+								     'from': value.find('from').text().revertHtmlEnc(),
+								     'subject': value.find('subject').text().revertHtmlEnc(),
+								     'status': value.find('status').text().revertHtmlEnc(),
+								     'date': value.find('date').text().revertHtmlEnc(),
 								     'xmlns': NS_INBOX
 								    },
 								    
-								    value.find('content').text()
+								    value.find('content').text().revertHtmlEnc()
 							));
 		}
 	}
@@ -190,28 +185,21 @@ function sendInboxMessage(to, subject, body) {
 	// We send the message
 	var mess = new JSJaCMessage();
 	
-	// General stuffs
+	// Main attributes
 	mess.setTo(to);
 	mess.setSubject(subject);
-	mess.setBody(body);
 	mess.setType('normal');
 	
 	// Any file to attach?
 	var attached = '#inbox .inbox-new-file a.file';
 	
-	if(exists(attached)) {
-		// New X node
-		var x = mess.appendNode('x', {'xmlns': NS_X_ATTACH});
-		
-		// Build the file vars
-		x.appendChild(mess.buildNode('file', {
-							'file_title': unescape($(attached).attr('data-attachedtitle')),
-							'file_href': unescape($(attached).attr('data-attachedhref')),
-							'file_type': unescape($(attached).attr('data-attachedtype')),
-							'file_length': unescape($(attached).attr('data-attachedlength')),
-							'xmlns': NS_X_ATTACH
-						     }));
-	}
+	if(exists(attached))
+		body += '\n' + 
+			'\n' + 
+			$(attached).attr('data-attachedtitle') + ' - ' + $(attached).attr('data-attachedhref');
+	
+	// Set body
+	mess.setBody(body);
 	
 	con.send(mess, handleErrorReply);
 }
@@ -295,7 +283,7 @@ function showInboxMessages() {
 }
 
 // Displays a normal message
-function displayInboxMessage(from, subject, content, status, id, date, msg_file_arr) {
+function displayInboxMessage(from, subject, content, status, id, date) {
 	// Generate some paths
 	var inbox = '#inbox .';
 	var one_message = inbox + 'one-message.' + id;
@@ -334,7 +322,7 @@ function displayInboxMessage(from, subject, content, status, id, date, msg_file_
 	// Click events
 	$(one_message + ' .message-head').click(function() {
 		if(!exists(one_message + ' .message-content'))
-			revealInboxMessage(id, from, subject, content, name, date, status, msg_file_arr);
+			revealInboxMessage(id, from, subject, content, name, date, status);
 		else
 			hideInboxMessage(id);
 		
@@ -348,13 +336,9 @@ function displayInboxMessage(from, subject, content, status, id, date, msg_file_
 }
 
 // Stores an inbox message
-function storeInboxMessage(from, subject, content, status, id, date, file_arr) {
+function storeInboxMessage(from, subject, content, status, id, date) {
 	// Initialize the XML data
-	var xml = '<message><id>' + id.htmlEnc() + '</id><date>' + date.htmlEnc() + '</date><from>' + from.htmlEnc() + '</from><subject>' + subject.htmlEnc() + '</subject><status>' + status.htmlEnc() + '</status><content>' + content.htmlEnc() + '</content>';
-	
-	// Any attached file?
-	if(file_arr[0])
-		xml += '<file><title>' + file_arr[0].htmlEnc() + '</title><href>' + file_arr[1].htmlEnc() + '</href><type>' + file_arr[2].htmlEnc() + '</type><length>' + file_arr[3].htmlEnc() + '</length></file>';
+	var xml = '<message><id>' + id.htmlEnc().htmlEnc() + '</id><date>' + date.htmlEnc().htmlEnc() + '</date><from>' + from.htmlEnc().htmlEnc() + '</from><subject>' + subject.htmlEnc().htmlEnc() + '</subject><status>' + status.htmlEnc().htmlEnc() + '</status><content>' + content.htmlEnc().htmlEnc() + '</content>';
 	
 	// End the XML data
 	xml += '</message>';
@@ -465,7 +449,7 @@ function checkInboxMessages() {
 }
 
 // Reveal a normal message content
-function revealInboxMessage(id, from, subject, content, name, date, status, msg_file_arr) {
+function revealInboxMessage(id, from, subject, content, name, date, status) {
 	// Message path
 	var all_message = '#inbox .one-message';
 	var one_message = all_message + '.' + id;
@@ -476,26 +460,18 @@ function revealInboxMessage(id, from, subject, content, name, date, status, msg_
 	$(all_message).removeClass('message-reading');
 	
 	// Message content
-	var html = '<div class="message-content">';
-	
-	// Message body
-	html += '<div class="message-body">' + filterThisMessage(content, name, true) + '</div>';
-	
-	// Message file
-	if(msg_file_arr[0]) {
-		html+= '<div class="message-file">' + 
-				'<a class="' + encodeQuotes(fileCategory(explodeThis('/', msg_file_arr[2], 1))) + ' talk-images" href="' + encodeQuotes(msg_file_arr[1]) + '" target="_blank">' + msg_file_arr[0].htmlEnc() + '</a>' + 
-		       '</div>';
-	}
-	
-	// Message meta
-	html += '<div class="message-meta">' + 
-			'<span class="date">' + parseDate(date) + '</span>' + 
+	var html = 
+		'<div class="message-content">' + 
+			'<div class="message-body">' + filterThisMessage(content, name, true) + '</div>' + 
 			
-			'<a href="#" class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
-			'<a href="#" class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
-			
-			'<div class="clear"></div>' + 
+			'<div class="message-meta">' + 
+				'<span class="date">' + parseDate(date) + '</span>' + 
+				
+				'<a href="#" class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
+				'<a href="#" class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
+				
+				'<div class="clear">' + 
+			'</div>' + 
 		'</div>';
 	
 	// Message content
@@ -576,18 +552,12 @@ function loadInbox() {
 			
 			// Display the current message
 			displayInboxMessage(
-						value.find('from').text(),
-						value.find('subject').text(),
-						value.find('content').text(),
-						value.find('status').text(),
-						value.find('id').text(),
-						value.find('date').text(),
-						[
-						 value.find('title').text(),
-						 value.find('href').text(),
-						 value.find('type').text(),
-						 value.find('length').text()
-						]
+						value.find('from').text().revertHtmlEnc(),
+						value.find('subject').text().revertHtmlEnc(),
+						value.find('content').text().revertHtmlEnc(),
+						value.find('status').text().revertHtmlEnc(),
+						value.find('id').text().revertHtmlEnc(),
+						value.find('date').text().revertHtmlEnc()
 					   );
 		}
 	}
@@ -625,10 +595,10 @@ function handleInboxAttach(responseXML) {
 		$('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fileCategory(explodeThis('/', fType, 1))) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + _e("Remove") + '</a>');
 		
 		// Set values to the file link
-		$('#inbox .inbox-new-file a.file').attr('data-attachedtitle', escape(fName))
-						  .attr('data-attachedtype', escape(fType))
-						  .attr('data-attachedhref',  escape(fURL))
-						  .attr('data-attachedlength',  escape(fLength));
+		$('#inbox .inbox-new-file a.file').attr('data-attachedtitle', fName)
+						  .attr('data-attachedtype', fType)
+						  .attr('data-attachedhref',  fURL)
+						  .attr('data-attachedlength',  fLength);
 		
 		// Click events
 		$('#inbox .inbox-new-file a.remove').click(function() {

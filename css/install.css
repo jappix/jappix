@@ -7,7 +7,7 @@ This is the install CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/03/11
+Last revision: 30/03/11
 
 */
 
@@ -237,9 +237,9 @@ body {
 	margin-right: 20px;
 	text-shadow: 0 1px 1px black;
 	float: right;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	box-shadow: 0 0 5px #202020;
 	-moz-box-shadow: 0 0 5px #202020;
 	-webkit-box-shadow: 0 0 5px #202020;

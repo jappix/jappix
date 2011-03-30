@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 30/03/11
 
 */
 
@@ -52,10 +52,6 @@ textarea {
 	box-shadow: inset 0 3px 10px #dcdcdc;
 	-moz-box-shadow: inset 0 3px 10px #dcdcdc;
 	-webkit-box-shadow: inset 0 3px 10px #dcdcdc;
-}
-
-input {
-	vertical-align: middle;
 }
 
 textarea {

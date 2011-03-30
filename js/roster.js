@@ -398,7 +398,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 					'<div class="buddy-infos-subarrow talk-images"></div>' + 
 					'<div class="buddy-infos-subitem">' + 
 						'<div class="pep-infos">' + 
-							'<p class="bi-status talk-images status-unavailable">' + _e("unknown") + '</p>' + 
+							'<p class="bi-status talk-images unavailable">' + _e("unknown") + '</p>' + 
 							'<p class="bi-mood talk-images mood-four">' + _e("unknown") + '</p>' + 
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
