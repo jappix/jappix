@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 30/03/11
 
 */
 
@@ -605,7 +605,7 @@ function displayFormPrivacy(type, value, action, order, presence_in, presence_ou
 	if(iq == 'true')
 		$(privacy_do + '[name=send-queries]').attr('checked', true);
 	
-	if(!exists(privacy_do + ':checked'))
+	if(!$(privacy_do).filter(':checked').size())
 		$(privacy_do + '[name=everything]').attr('checked', true);
 	
 	// Apply the order
@@ -822,8 +822,8 @@ function launchPrivacy() {
 		// Read the form
 		var privacy_second = '#privacy .privacy-second';
 		var item_list = $('#privacy .privacy-head .list-left select').val();
-		var item_action = $('#privacy .privacy-first input[name=action]:checked').val();
-		var item_type = $(privacy_second + ' input[name=type]:checked').val();
+		var item_action = $('#privacy .privacy-first input[name=action]').filter(':checked').val();
+		var item_type = $(privacy_second + ' input[name=type]').filter(':checked').val();
 		var item_order = $('#privacy .privacy-active input[name=order]').val();
 		var item_value = '';
 		
@@ -901,7 +901,7 @@ function launchPrivacy() {
 		var target = '#privacy .privacy-third input[type=checkbox]';
 		
 		// Must tick "everything" checkbox?
-		if(!exists(target + ':checked'))
+		if(!$(target).filter(':checked').size())
 			$(target + '[name=everything]').attr('checked', true);
 		
 		// Must untick the other checkboxes?

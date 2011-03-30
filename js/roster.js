@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 30/03/11
 
 */
 
@@ -481,7 +481,7 @@ function thisBuddyGroups(xid) {
 	var array = new Array();
 	
 	// Each checked checkboxes
-	$(path + 'div.bm-choose input[type=checkbox]:checked').each(function() {
+	$(path + 'div.bm-choose input[type=checkbox]').filter(':checked').each(function() {
 		array.push(unescape($(this).attr('data-group')));
 	});
 	

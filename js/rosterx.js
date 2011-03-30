@@ -7,7 +7,7 @@ These are the Roster Item Exchange JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 30/03/11
 
 */
 
@@ -117,7 +117,7 @@ function displayRosterX(xid, nick, group, action) {
 // Saves the rosterx settings
 function saveRosterX() {
 	// Send the requests
-	$('#rosterx .results input[type=checkbox]:checked').each(function() {
+	$('#rosterx .results input[type=checkbox]').filter(':checked').each(function() {
 		// Read the attributes
 		var nick = $(this).attr('data-name');
 		var xid = $(this).attr('data-xid');

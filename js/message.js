@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 26/03/11
+Last revision: 30/03/11
 
 */
 
@@ -623,12 +623,12 @@ function sendMessage(hash, type) {
 function generateStyle(hash) {
 	// Initialize the vars
 	var styles = '#' + hash + ' div.bubble-style';
-	var checkbox = styles + ' input[type=checkbox]:checked';
+	var checkbox = styles + ' input[type=checkbox]';
 	var color = styles + ' a.color.selected';
 	var style = '';
 	
 	// Loop the input values
-	$(checkbox).each(function() {
+	$(checkbox).filter(':checked').each(function() {
 		// If there is a previous element
 		if(style)
 			style += ' ';
