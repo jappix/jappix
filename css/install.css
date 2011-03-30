@@ -134,7 +134,6 @@ body {
 	background: #e8f1f3;
 	background: -moz-linear-gradient(top, #e8f1f3, #dee8ea);
 	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#dee8ea));
-	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e8f1f3', EndColorStr='#dee8ea', GradientType=0);
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;

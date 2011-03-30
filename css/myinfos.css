@@ -29,7 +29,6 @@ Last revision: 07/03/11
 	background: #e8f1f3;
 	background: -moz-linear-gradient(top, #e4edef, #e8f1f3);
 	background: -webkit-gradient(linear, left top, left bottom, from(#e4edef), to(#e8f1f3));
-	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e4edef', EndColorStr='#e8f1f3', GradientType=0);
 	color: #919191;
 	max-height: 140px;
 	padding: 1px 0;
