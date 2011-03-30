@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 30/03/11
 
 */
 
@@ -56,7 +56,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		});
 		
 		// Get the repeat value
-		var uRepeat = [$(this).find('source author nick').text(), $(this).find('source author jid').text()];
+		var uRepeat = [$(this).find('source author name').text(), $(this).find('source author jid').text()];
 		var uRepeated = false;
 		
 		if(!uRepeat[0])
@@ -454,7 +454,7 @@ function sendCommentMicroblog(value, server, node, id) {
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 	iq.setTo(server);
-	iq.setID('get_' + genID() + '-' + id);
+	iq.setID('set_' + genID() + '-' + id);
 	
 	// PubSub main elements
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
@@ -469,6 +469,7 @@ function sendCommentMicroblog(value, server, node, id) {
 	// Author XID
 	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
 	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, getXID()));
 	
 	con.send(iq);
@@ -871,7 +872,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	Source.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
-	author.appendChild(iq.buildNode('nick', {'xmlns': NS_ATOM}, author_nick));
+	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, author_nick));
 	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, author_xid));
 	
 	// Create the XML entry childs
