@@ -7,12 +7,16 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 31/03/11
 
 */
 
 // Correctly opens a new chat
 function checkChatCreate(xid, type, nickname, password, title) {
+	// No XID?
+	if(!xid)
+		return false;
+	
 	// We generate some stuffs
 	var hash = hex_md5(xid);
 	var name;

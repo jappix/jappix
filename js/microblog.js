@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 31/03/11
 
 */
 
@@ -36,27 +36,27 @@ function displayMicroblog(packet, from, hash, mode) {
 		tHash = 'update-' + hex_md5(tName + tDate + tID);
 		
 		// Read attached files with a thumb (place them at first)
-		$(this).find('link[rel=enclosure][hrefthumb]').each(function() {
+		$(this).find('link[rel=enclosure]:has(link[rel=self][title=thumb])').each(function() {
 			tFName.push($(this).attr('title'));
 			tFURL.push($(this).attr('href'));
-			tFThumb.push($(this).attr('hrefthumb'));
+			tFThumb.push($(this).find('link[rel=self][title=thumb]:first').attr('href'));
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
 			tFLength.push($(this).attr('length'));
 		});
 		
 		// Read attached files without any thumb
-		$(this).find('link[rel=enclosure]:not([hrefthumb])').each(function() {
+		$(this).find('link[rel=enclosure]:not(:has(link[rel=self][title=thumb]))').each(function() {
 			tFName.push($(this).attr('title'));
 			tFURL.push($(this).attr('href'));
-			tFThumb.push($(this).attr('hrefthumb'));
+			tFThumb.push('');
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
 			tFLength.push($(this).attr('length'));
 		});
 		
 		// Get the repeat value
-		var uRepeat = [$(this).find('source author name').text(), $(this).find('source author jid').text()];
+		var uRepeat = [$(this).find('source author name').text(), explodeThis(':', $(this).find('source author uri').text(), 1)];
 		var uRepeated = false;
 		
 		if(!uRepeat[0])
@@ -347,7 +347,7 @@ function handleCommentsMicroblog(iq) {
 	$(data).find('item').each(function() {
 		// Get comment
 		var current_id = $(this).attr('id');
-		var current_xid = $(this).find('source author jid').text();
+		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
 		var current_date = $(this).find('published').text();
 		var current_body = $(this).find('title').text();
 		var current_name;
@@ -470,7 +470,7 @@ function sendCommentMicroblog(value, server, node, id) {
 	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
-	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, getXID()));
+	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
 	
 	con.send(iq);
 	
@@ -873,7 +873,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, author_nick));
-	author.appendChild(iq.buildNode('jid', {'xmlns': NS_ATOM}, author_xid));
+	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + author_xid));
 	
 	// Create the XML entry childs
 	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, body));
@@ -897,7 +897,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		
 		// Any thumbnail?
 		if(attachedthumb[i])
-			file.setAttribute('hrefthumb', attachedthumb[i]);
+			file.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'self', 'title': 'thumb', 'type': attachedtype[i], 'href': attachedthumb[i]}));
 	}
 	
 	// Create the comments child

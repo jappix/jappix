@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 31/03/11
 
 */
 
@@ -588,7 +588,6 @@ function handleInboxAttach(responseXML) {
 		var fName = dData.find('title').text();
 		var fType = dData.find('type').text();
 		var fURL = dData.find('href').text();
-		var fLength = dData.find('length').text();
 		
 		// Hide the attach link, show the unattach one
 		$('#inbox .inbox-new-file input').hide();
@@ -596,9 +595,7 @@ function handleInboxAttach(responseXML) {
 		
 		// Set values to the file link
 		$('#inbox .inbox-new-file a.file').attr('data-attachedtitle', fName)
-						  .attr('data-attachedtype', fType)
-						  .attr('data-attachedhref',  fURL)
-						  .attr('data-attachedlength',  fLength);
+						  .attr('data-attachedhref',  fURL);
 		
 		// Click events
 		$('#inbox .inbox-new-file a.remove').click(function() {
