@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/03/11
+Last revision: 01/04/11
 
 */
 
@@ -897,7 +897,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		
 		// Any thumbnail?
 		if(attachedthumb[i])
-			file.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'self', 'title': 'thumb', 'type': attachedtype[i], 'href': attachedthumb[i]}));
+			file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'self', 'title': 'thumb', 'type': attachedtype[i], 'href': attachedthumb[i]}));
 	}
 	
 	// Create the comments child

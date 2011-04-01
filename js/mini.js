@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 01/04/11
 
 */
 
@@ -53,12 +53,21 @@ function connect(domain, user, password) {
 		// And we handle everything that happen
 		setupCon(con);
 		
+		// Generate a resource
+		var random_resource = getDB('jappix-mini', 'resource');
+		
+		if(!random_resource)
+			random_resource = MINI_RESOURCE + ' (' + (new Date()).getTime() + ')';
+		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.secure = true;
 		oArgs.xmllang = XML_LANG;
-		oArgs.resource = MINI_RESOURCE + ' (' + (new Date()).getTime() + ')';
+		oArgs.resource = random_resource;
 		oArgs.domain = domain;
+		
+		// Store the resource (for reconnection)
+		setDB('jappix-mini', 'resource', random_resource);
 		
 		// Anonymous login?
 		if(MINI_ANONYMOUS) {

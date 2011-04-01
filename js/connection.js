@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 01/04/11
 
 */
 
@@ -32,14 +32,23 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		// And we handle everything that happen
 		setupCon(con);
 		
+		// Generate a resource
+		var random_resource = getDB('session', 'resource');
+		
+		if(!random_resource)
+			random_resource = lResource + ' (' + (new Date()).getTime() + ')';
+		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.domain = trim(lServer);
 		oArgs.username = trim(lNick);
-		oArgs.resource = lResource + ' (' + (new Date()).getTime() + ')';
+		oArgs.resource = random_resource;
 		oArgs.pass = lPass;
 		oArgs.secure = true;
 		oArgs.xmllang = XML_LANG;
+		
+		// Store the resource (for reconnection)
+		setDB('session', 'resource', random_resource);
 		
 		// Generate a session XML to be stored
 		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
