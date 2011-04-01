@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 01/04/11
 
 */
 
@@ -77,10 +77,6 @@ input[type=submit]:active {
 	-webkit-box-shadow: inset 0 3px 15px #e1a753;
 }
 
-input[type=checkbox] {
-	margin-top: 2px;
-}
-
 input[disabled],
 textarea[disabled] {
 	background-color: #f3f3f3;
@@ -95,6 +91,16 @@ input:-webkit-input-placeholder {
 
 input.placeholder {
 	color: #67787c !important;
+}
+
+input[type=checkbox] {
+	margin-top: 2px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	background: transparent none !important;
+	border: 0 none !important;
 }
 
 .please-complete,
