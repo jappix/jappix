@@ -18,9 +18,9 @@ function openUserInfos(xid) {
 	
 	if(xid != getXID()) {
 		shortcuts = '<div class="shortcuts">' + 
-					'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeQuotes(xid) + '\');"></a>' + 
-					'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="closeUserInfos(); return checkChatCreate(\'' + encodeQuotes(xid) + '\', \'chat\');"></a>' + 
-					'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="closeUserInfos(); return retrieveAdHoc(\'' + encodeQuotes(xid) + '\');"></a>' + 
+					'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+					'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="closeUserInfos(); return checkChatCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+					'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="closeUserInfos(); return retrieveAdHoc(\'' + encodeOnclick(xid) + '\');"></a>' + 
 		             '</div>';
 	}
 	

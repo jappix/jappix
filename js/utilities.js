@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 27/03/11
+Last revision: 01/04/11
 
 */
 
@@ -161,25 +161,14 @@ function stringPrep(string) {
 	return string;
 }
 
-// Escapes special JS chars in a string
-function jsEscape(str) {
-	return str.replace(/'/g, '\\$&');
-}
-
 // Encodes quotes in a string
 function encodeQuotes(str) {
-	// New string
-	str = str + '';
-	
-	// Process replacement
-	str = str.replace(/"/g, '&quot;');
-	
-	return str;
+	return (str + '').replace(/"/g, '&quot;');
 }
 
 // Encodes a string for onclick attribute
 function encodeOnclick(str) {
-	return jsEscape(encodeQuotes(str));
+	return (encodeQuotes(str)).replace(/'/g, '\\$&');
 }
 
 // Gets the bare XID from a XID

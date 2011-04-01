@@ -121,7 +121,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Is it a repeat?
 			if(uRepeated)
-				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeQuotes(uRepeat[1]) + '\', \'chat\');"></a>';
+				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');"></a>';
 			
 			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 				'<p class="infos">' + tTime + '</p>';
@@ -157,7 +157,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeQuotes(entityComments) + '\', \'' + encodeQuotes(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
@@ -375,7 +375,7 @@ function handleCommentsMicroblog(iq) {
 		var onclick = 'false';
 		
 		if(current_xid != getXID())
-			onclick = 'checkChatCreate(\'' + encodeQuotes(current_xid) + '\', \'chat\')';
+			onclick = 'checkChatCreate(\'' + encodeOnclick(current_xid) + '\', \'chat\')';
 		
 		// If this is my comment, add a marker
 		var type = 'him';
@@ -385,7 +385,7 @@ function handleCommentsMicroblog(iq) {
 		if(current_xid == getXID()) {
 			type = 'me';
 			marker = '<div class="marker"></div>';
-			remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeQuotes(server) + '\', \'' + encodeQuotes(node) + '\', \'' + encodeQuotes(current_id) + '\');">' + _e("Remove") + '</a>';
+			remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeOnclick(server) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(current_id) + '\');">' + _e("Remove") + '</a>';
 		}
 		
 		// New comment?
@@ -596,10 +596,10 @@ function getMicroblog(xid, hash) {
 		else {
 			cTitle = _e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
 			cShortcuts = '<div class="shortcuts">' + 
-						'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeQuotes(xid) + '\');"></a>' + 
-						'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="return checkChatCreate(\'' + encodeQuotes(xid) + '\', \'chat\');"></a>' + 
-						'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="return retrieveAdHoc(\'' + encodeQuotes(xid) + '\');"></a>' + 
-						'<a href="#" class="profile talk-images" title="' + _e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeQuotes(xid) + '\');"></a>' + 
+						'<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+						'<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="return checkChatCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+						'<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="return retrieveAdHoc(\'' + encodeOnclick(xid) + '\');"></a>' + 
+						'<a href="#" class="profile talk-images" title="' + _e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeOnclick(xid) + '\');"></a>' + 
 			             '</div>';
 		}
 		

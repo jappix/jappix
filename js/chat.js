@@ -196,14 +196,14 @@ function generateSwitch(type, id, xid, nick) {
 	}
 	
 	// Generate the HTML code
-	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeQuotes(id) + '\')">' + 
+	var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeOnclick(id) + '\')">' + 
 			'<div class="icon talk-images' + specialClass + '"></div>' + 
 			
 			'<div class="name">' + nick.htmlEnc() + '</div>';
 	
 	// Show the close button if not MUC and not anonymous
 	if(show_close)
-		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeQuotes(xid) + '\', \'' + encodeQuotes(id) + '\', \'' + encodeQuotes(type) + '\');">x</div>';
+		html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
 	
 	// Close the HTML
 	html += '</div>';
