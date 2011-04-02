@@ -1655,6 +1655,9 @@ JSJaCPacket.prototype.setType = function(type) {
  * @type JSJaCPacket
  */
 JSJaCPacket.prototype.setXMLLang = function(xmllang) {
+  // Fix IE9+ bug with xml:lang attribute
+  if (BrowserDetect && (BrowserDetect.browser == 'Explorer') && (BrowserDetect.version > 9))
+    return this;
   if (!xmllang || xmllang == '')
     this.getNode().removeAttribute('xml:lang');
   else
@@ -2808,6 +2811,10 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
   // generate an ID for the packet
   if (!packet.getID())
     packet.setID(genID());
+
+  // packet xml:lang
+  if (!packet.getXMLLang())
+    packet.setXMLLang(XML_LANG);
 
   // remember id for response if callback present
   if (cb)

@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/03/11
+Last revision: 02/04/11
 
 */
 
@@ -552,7 +552,7 @@ else
 							<option value="bottom"<?php echo($background_image_vertical_bottom); ?>><?php _e("Bottom"); ?></option>
 						</select>
 						
-						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt" value="<?php echo($background_image_adapt); ?>" />
+						<label for="background_image_adapt"><?php _e("Adapt"); ?></label><input id="background_image_adapt" type="checkbox" name="background_image_adapt"<?php echo($background_image_adapt); ?> />
 						
 						<label for="background_image_color"><?php _e("Color"); ?></label><input id="background_image_color" class="icon manager-images" type="color" name="background_image_color" value="<?php echo(htmlspecialchars($background['image_color'])); ?>" />
 						

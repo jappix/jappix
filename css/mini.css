@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/03/11
+Last revision: 02/04/11
 
 */
 
@@ -78,7 +78,6 @@ Last revision: 20/03/11
 	border-width: 1px 1px 0 1px;
 	font-weight: bold;
 	outline-style: none;
-	overflow-y: hidden;
 	display: block;
 	padding: 6px;
 	height: 13px;
