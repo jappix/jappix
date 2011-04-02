@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/04/11
+Last revision: 02/04/11
 
 */
 
@@ -675,14 +675,17 @@ function setupMicroblog(node, persist, maximum, create) {
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 	
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	
 	// Create it?
-	if(create)
+	if(create) {
+		var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
 		pubsub.appendChild(iq.buildNode('create', {'xmlns': NS_PUBSUB, 'node': node}));
+	}
+	
+	else
+		var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
 	
 	// Configure it!
-	var configure = pubsub.appendChild(iq.buildNode('configure', {'node': node, 'xmlns': NS_PUBSUB_OWNER}));
+	var configure = pubsub.appendChild(iq.buildNode('configure', {'node': node, 'xmlns': NS_PUBSUB}));
 	var x = configure.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': 'submit'}));
 	
 	var field1 = x.appendChild(iq.buildNode('field', {'var': 'FORM_TYPE', 'type': 'hidden', 'xmlns': NS_XDATA}));

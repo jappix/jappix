@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 30/03/11
+Last revision: 02/04/11
 
 */
 
@@ -2805,15 +2805,13 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
   if (!this.connected())
     return false;
 
-  // remember id for response if callback present
-  if (cb) {
-    // generate an ID for the packet
-    if (!packet.getID())
-      packet.setID(genID());
+  // generate an ID for the packet
+  if (!packet.getID())
+    packet.setID(genID());
 
-    // register callback with id
+  // remember id for response if callback present
+  if (cb)
     this._registerPID(packet.getID(),cb,arg);
-  }
 
   try {
     this._handleEvent(packet.pType()+'_out', packet);
