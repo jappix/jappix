@@ -7,7 +7,7 @@ These are the error functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 02/04/11
 
 */
 
@@ -99,6 +99,10 @@ function handleError(packet) {
 			$('#home').show();
 			pageTitle('home');
 		}
+		
+		// Still connected? (security)
+		if(isConnected())
+			con.disconnect();
 		
 		logThis('First level error received.', 1);
 	}
