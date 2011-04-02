@@ -45,7 +45,7 @@ function isFocused() {
 	}
 	
 	catch(e) {
-		return false;
+		return true;
 	}
 }
 
