@@ -1656,7 +1656,7 @@ JSJaCPacket.prototype.setType = function(type) {
  */
 JSJaCPacket.prototype.setXMLLang = function(xmllang) {
   // Fix IE9+ bug with xml:lang attribute
-  if (BrowserDetect && (BrowserDetect.browser == 'Explorer') && (BrowserDetect.version > 9))
+  if (BrowserDetect && (BrowserDetect.browser == 'Explorer') && (BrowserDetect.version >= 9))
     return this;
   if (!xmllang || xmllang == '')
     this.getNode().removeAttribute('xml:lang');
