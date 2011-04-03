@@ -479,6 +479,7 @@ function sendCommentMicroblog(value, server, node, id) {
 	con.send(iq);
 	
 	// Handle this comment!
+	iq.setFrom(server);
 	handleCommentsMicroblog(iq);
 	
 	return false;
