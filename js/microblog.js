@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/04/11
+Last revision: 03/04/11
 
 */
 
@@ -330,6 +330,10 @@ function handleCommentsMicroblog(iq) {
 	var server = bareXID(getStanzaFrom(iq));
 	var node = $(data).find('items:first').attr('node');
 	var code = '';
+	
+	// No node?
+	if(!node)
+		node = $(data).find('publish:first').attr('node');
 	
 	// Must we create the complete DOM?
 	var complete = true;
