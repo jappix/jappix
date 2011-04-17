@@ -7,7 +7,7 @@ These are the date related JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/02/11
+Last revision: 17/04/11
 
 */
 
@@ -177,8 +177,12 @@ function relativeDate(to_parse) {
 	if(days == 1)
 		return _e("Yesterday") + ' - ' + old_time;
 	
+	// Is it less than a week ago?
+	if(days <= 7)
+		return printf(_e("%s days ago"), days) + ' - ' + old_time;
+	
 	// Another longer period
-	return printf(_e("%s days ago"), days) + ' - ' + old_time;
+	return old_date.toLocaleDateString() + ' - ' + old_time;
 }
 
 // Reads a message delay
