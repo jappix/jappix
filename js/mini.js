@@ -7,12 +7,12 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/04/11
+Last revision: 17/04/11
 
 */
 
 // Jappix Mini vars
-var MINI_CONNECTING	= false;
+var MINI_DISCONNECT	= false;
 var MINI_AUTOCONNECT	= false;
 var MINI_SHOWPANE	= false;
 var MINI_INITIALIZED	= false;
@@ -39,9 +39,6 @@ function setupCon(con) {
 
 // Connects the user with the given logins
 function connect(domain, user, password) {
-	// Update the marker
-	MINI_CONNECTING = true;
-	
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
@@ -194,7 +191,8 @@ function disconnect() {
 	if(!isConnected())
 		return false;
 	
-	// Remove initialized marker
+	// Change markers
+	MINI_DISCONNECT = true;
 	MINI_INITIALIZED = false;
 	
 	// Add disconnection handler
@@ -217,7 +215,7 @@ function disconnected() {
 	removeDB('jappix-mini', 'stamp');
 	
 	// Connection error?
-	if(MINI_INITIALIZED) {
+	if(!MINI_DISCONNECT || MINI_INITIALIZED) {
 		// Browser error?
 		notifyError();
 		
@@ -225,7 +223,7 @@ function disconnected() {
 		jQuery('#jappix_mini').stopTime();
 		
 		// Try to reconnect after a while
-		if(MINI_RECONNECT < 5) {
+		if(MINI_INITIALIZED && (MINI_RECONNECT < 5)) {
 			// Reconnect interval
 			var reconnect_interval = 10;
 			
@@ -236,26 +234,18 @@ function disconnected() {
 			
 			// Set timer
 			jQuery('#jappix_mini').oneTime(reconnect_interval, function() {
-				// Remove the Jappix Mini DOM
-				jQuery(this).remove();
-				
-				// Launch Jappix Mini again!
 				launchMini(true, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
 			});
 		}
-		
-		// Reset initialized marker
-		MINI_INITIALIZED = false;
 	}
 	
 	// Normal disconnection?
-	else {
-		// Remove Jappix Mini
-		jQuery('#jappix_mini').remove();
-		
-		// Launch it again!
+	else
 		launchMini(false, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
-	}
+	
+	// Reset markers
+	MINI_DISCONNECT = false;
+	MINI_INITIALIZED = false;
 	
 	logThis('Jappix Mini is now disconnected.', 3);
 }
@@ -1538,6 +1528,9 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 		MINI_SHOWPANE = true;
 	else
 		MINI_SHOWPANE = false;
+	
+	// Remove Jappix Mini
+	jQuery('#jappix_mini').remove();
 	
 	// Reconnect?
 	if(MINI_RECONNECT) {
