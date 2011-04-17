@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/04/11
+Last revision: 17/04/11
 
 */
 
@@ -185,7 +185,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				// Remove the old notices to make the DOM lighter
 				var oneUpdate = '#channel .content.mixed .one-update';
 				
-				if($(oneUpdate).size() > 40)
+				if($(oneUpdate).size() > 80)
 					$(oneUpdate + ':last').remove();
 				
 				// Click event on avatar/name
@@ -201,7 +201,10 @@ function displayMicroblog(packet, from, hash, mode) {
 				if(mode == 'mixed')
 					$(tIndividual).prepend(html);
 				else
-					$(tIndividual + ' a.more').css('visibility', 'visible').before(html);
+					$(tIndividual + ' a.more').before(html);
+				
+				// Make 'more' link visible
+				$(tIndividual + ' a.more').css('visibility', 'visible');
 				
 				// Click event on name (if not me!)
 				if(from != getXID())
@@ -526,26 +529,21 @@ function removeCommentMicroblog(server, node, id) {
 // Handles the microblog of an user
 function handleMicroblog(iq) {
 	// Get the from attribute of this IQ
-	var from = fullXID(getStanzaFrom(iq));
-	
-	logThis('Microblog got: ' + from, 3);
+	var from = bareXID(getStanzaFrom(iq));
 	
 	// Define the selector path
 	var selector = '#channel .top.individual input[name=';
 	
-	// Get the XID of the current buddy
-	var xid = $(selector + 'jid]').val();
-	
-	// Is this request alive?
-	if(from == xid) {
-		var hash = hex_md5(xid);
+	// Is this request still alive?
+	if(from == $(selector + 'jid]').val()) {
+		var hash = hex_md5(from);
 		
 		// Update the items counter
 		var old_count = parseInt($(selector + 'counter]').val());
 		$(selector + 'counter]').val(old_count + 20);
 		
 		// Display the microblog
-		displayMicroblog(iq, xid, hash, 'individual');
+		displayMicroblog(iq, from, hash, 'individual');
 		
 		// Hide the waiting icon
 		if(enabledPEP())
@@ -557,6 +555,8 @@ function handleMicroblog(iq) {
 		if($(iq.getNode()).find('item').size() < old_count)
 			$('#channel .individual a.more').remove();
 	}
+	
+	logThis('Microblog got: ' + from, 3);
 }
 
 // Resets the microblog elements
@@ -585,10 +585,8 @@ function getMicroblog(xid, hash) {
 	// Fire the wait event
 	waitMicroblog('fetch');
 	
-	// Remove the previous individual channel
+	// Can display the individual channel?
 	if(!exists('#channel .individual')) {
-		$('#channel .individual').remove();
-		
 		// Hide the mixed channel
 		$('#channel .mixed').hide();
 		
