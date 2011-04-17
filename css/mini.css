@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/04/11
+Last revision: 17/04/11
 
 */
 
@@ -373,7 +373,7 @@ Last revision: 02/04/11
 	width: 111px;
 	height: 102px;
 	position: absolute;
-	top: -102px;
+	top: -100px;
 	left: -74px;
 	z-index: 1;
 	display: block;

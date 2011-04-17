@@ -954,7 +954,7 @@ function createMini(domain, user, password) {
 		// Must animate?
 		if(MINI_ANIMATE) {
 			// Add content
-			jQuery('#jappix_mini div.jm_starter a.jm_pane').prepend(
+			jQuery('#jappix_mini div.jm_starter').prepend(
 				'<span class="jm_animate jm_images_animate"></span>'
 			);
 			
