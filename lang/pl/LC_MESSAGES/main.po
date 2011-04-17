@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-03-20 13:43:38\n"
+"PO-Revision-Date: 2011-04-17 19:00:17\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,11 +63,11 @@ msgstr "Ten pokój (%s) jest chroniony hasłem."
 
 #: 
 msgid "Your browser is out of date!"
-msgstr ""
+msgstr "Twoja przeglądarka jest nieaktualna!"
 
 #: 
 msgid "Last %s version is better!"
-msgstr ""
+msgstr "Ostatnia wersja %s jest lepsza!"
 
 #: 
 msgid "Login"
@@ -163,7 +163,7 @@ msgstr "Wybierz znajomego aby zobaczyć archiwum."
 
 #: 
 msgid "Nothing found for: %s"
-msgstr "Nieznaleziono niczego dla: %s"
+msgstr "Nic nieznaleziono dla: %s"
 
 #: 
 msgid "A short message?"
@@ -519,7 +519,7 @@ msgstr "jest teraz"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Proszę czekać, Twój awatar jest ładowany..."
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
@@ -919,7 +919,7 @@ msgstr "Cześć wam!"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "Witamy na %1s, “%2s“."
 
 #: 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1003,7 +1003,7 @@ msgstr "Szyfrowane"
 
 #: 
 msgid "Unencrypted"
-msgstr ""
+msgstr "Nieszyfrowane"
 
 #: 
 msgid "Where are you?"
@@ -1143,7 +1143,7 @@ msgstr "Zapytaj o autoryzację"
 
 #: 
 msgid "Unblock"
-msgstr ""
+msgstr "Odblokuj"
 
 #: 
 msgid "Prohibit"
@@ -1435,7 +1435,7 @@ msgstr "Rejestracja włączona"
 
 #: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "Użyj serwera proxy"
 
 #: 
 msgid "Encryption"
@@ -1887,7 +1887,7 @@ msgstr "Wygląda na to, że Twoja wersja jest aktualna ale możesz sprawdzić j�
 
 #: 
 msgid "Check for updates"
-msgstr ""
+msgstr "Sprawdź aktualizacje"
 
 #: 
 msgid "Update in progress"
@@ -2107,27 +2107,27 @@ msgstr ""
 
 #: 
 msgid "Check all"
-msgstr ""
+msgstr "Zaznacz wszystkie"
 
 #: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Odznacz wszystkie"
 
 #: 
 msgid "Choose"
-msgstr ""
+msgstr "Wybierz"
 
 #: 
 msgid "List name"
-msgstr ""
+msgstr "Nazwa listy"
 
 #: 
 msgid "Allow"
-msgstr ""
+msgstr "Zezwól"
 
 #: 
 msgid "Deny"
-msgstr ""
+msgstr "Zabroń"
 
 #: 
 msgid "Group"
@@ -2195,5 +2195,33 @@ msgstr ""
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
+
+#: 
+msgid "This is a repeat from %s"
+msgstr ""
+
+#: 
+msgid "Loading comments..."
+msgstr ""
+
+#: 
+msgid "Type your comment here..."
+msgstr ""
+
+#: 
+msgid "Could not get the comments!"
+msgstr ""
+
+#: 
+msgid "Show comments"
+msgstr ""
+
+#: 
+msgid "Send him/her a message"
+msgstr ""
+
+#: 
+msgid "Start a chat with him/her"
 msgstr ""
 

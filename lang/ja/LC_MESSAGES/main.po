@@ -4,14 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-03-20 13:43:28\n"
+"PO-Revision-Date: 2011-04-17 19:01:11\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
-msgstr "JavaScriptが無効になっている為Jappixを起動できません! JavaScriptを有効にしてください。"
+msgstr "ブラウザの設定でJavaScriptが無効になっている為、Jappixを起動できません! JavaScriptを有効にしてください。"
 
 #: 
 msgid "An open social network"
@@ -19,11 +19,11 @@ msgstr "オープンソーシャルネットワーク"
 
 #: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr "jappixはネットワークの問題により停止しました。バグか不正なログインです（入力した認証情報を確認してください）。ご不便をおかけして申し訳ありません。"
+msgstr "Jappixはネットワークの問題により停止しました。バグか不正なログインです（入力した認証情報を確認してください）。ご不便をおかけして申し訳ありません。"
 
 #: 
 msgid "The element list on this server could not be obtained!"
-msgstr "このサーバのエレメントリストを取得することができませんでした。"
+msgstr "このサーバのエレメントリストを取得することができませんでした!"
 
 #: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
@@ -31,7 +31,7 @@ msgstr "あなたのパスワードは変更されました。今から新しい
 
 #: 
 msgid "Your XMPP account has been removed, bye!"
-msgstr "あなたのXMPPアカウントは削除されました。さようなら!"
+msgstr "あなたのXMPPアカウントは正常に削除されました。さようなら!"
 
 #: 
 msgid "You have been logged out of your XMPP account, have a nice day!"
@@ -39,7 +39,7 @@ msgstr "XMPPアカウントをログアウトしました。良い一日を!"
 
 #: 
 msgid "The room you joined seems not to exist. You should create it!"
-msgstr "参加すルームが存在しません。作成する必要があります。"
+msgstr "参加するルームが存在しません。作成する必要があります!"
 
 #: 
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
@@ -47,19 +47,19 @@ msgstr "グループチャットは削除されました、今から誰でも再
 
 #: 
 msgid "The user that you want to reach is not present in the room."
-msgstr "ユーザはあなたの望む部屋に到着することができませんでした。"
+msgstr "ユーザはあなたの望むチャットルームに到着することができませんでした。"
 
 #: 
 msgid "Please enter the group chat address to join."
-msgstr "接続するグループチャットアドレスを入力してください。"
+msgstr "参加するグループチャットアドレスを入力してください。"
 
 #: 
 msgid "Please enter your nickname to join %s."
-msgstr "%s　接続時のニックネームを入力してください。"
+msgstr "%s に参加するニックネームを入力してください。"
 
 #: 
 msgid "This room (%s) is protected with a password."
-msgstr "%s　はパスワードで保護されています。"
+msgstr "このチャットルーム (%s) はパスワードで保護されています。"
 
 #: 
 msgid "Your browser is out of date!"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: 
 msgid "Last %s version is better!"
-msgstr ""
+msgstr "バージョン %s を推奨します。"
 
 #: 
 msgid "Login"
@@ -79,7 +79,7 @@ msgstr "登録"
 
 #: 
 msgid "Here we go!"
-msgstr "はじめよう!"
+msgstr "さあ、はじめよう!"
 
 #: 
 msgid "Server"
@@ -95,7 +95,7 @@ msgstr "記憶する"
 
 #: 
 msgid "This tool has been disabled, you cannot use it!"
-msgstr "このツールは無効になっているので使用することができません!"
+msgstr "このツールは無効になっている為、使用することができません!"
 
 #: 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "見つかりません: %s"
 
 #: 
 msgid "A short message?"
@@ -359,7 +359,7 @@ msgstr "Eメール"
 
 #: 
 msgid "Phone"
-msgstr ""
+msgstr "電話"
 
 #: 
 msgid "Website"
@@ -435,7 +435,7 @@ msgstr "チャンネル"
 
 #: 
 msgid "Commands"
-msgstr ""
+msgstr "コマンド"
 
 #: 
 msgid "Sounds"
@@ -519,7 +519,7 @@ msgstr "新規"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "アバターのアップロードが完了するのを待ってください…"
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
@@ -539,7 +539,7 @@ msgstr "エラー"
 
 #: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "クリックしてエラーを修正してください"
 
 #: 
 msgid "You"
@@ -603,7 +603,7 @@ msgstr "カレントチャットをクリア"
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "会話履歴を参照"
 
 #: 
 msgid "Show user profile"
@@ -703,7 +703,7 @@ msgstr "サーバーに問い合わせ"
 
 #: 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
+msgstr "ごめんね、エンティティがあらゆる結果を返しませんでした!"
 
 #: 
 msgid "Accounts"
@@ -919,7 +919,7 @@ msgstr "こんにちは!"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "ようこそ %1s へ、 “%2s”."
 
 #: 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1003,7 +1003,7 @@ msgstr "暗号化済"
 
 #: 
 msgid "Unencrypted"
-msgstr ""
+msgstr "暗号化しない"
 
 #: 
 msgid "Where are you?"
@@ -1143,7 +1143,7 @@ msgstr "承認を依頼する。"
 
 #: 
 msgid "Unblock"
-msgstr ""
+msgstr "ブロック解除"
 
 #: 
 msgid "Prohibit"
@@ -1435,7 +1435,7 @@ msgstr "承認許可"
 
 #: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "プロキシーを使用する"
 
 #: 
 msgid "Encryption"
@@ -1619,7 +1619,7 @@ msgstr "資格情報"
 
 #: 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "あなたはログアウトしています。さようなら!"
 
 #: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
@@ -2195,5 +2195,33 @@ msgstr ""
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
+
+#: 
+msgid "This is a repeat from %s"
+msgstr ""
+
+#: 
+msgid "Loading comments..."
+msgstr ""
+
+#: 
+msgid "Type your comment here..."
+msgstr ""
+
+#: 
+msgid "Could not get the comments!"
+msgstr ""
+
+#: 
+msgid "Show comments"
+msgstr ""
+
+#: 
+msgid "Send him/her a message"
+msgstr ""
+
+#: 
+msgid "Start a chat with him/her"
 msgstr ""
 

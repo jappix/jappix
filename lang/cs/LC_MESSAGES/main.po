@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-04-03 14:24:00\n"
+"PO-Revision-Date: 2011-04-17 19:00:58\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr "Otevřená sociální síť"
 
 #: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr "Jappix byl prerusen spatnyms pojenim, chybou nebo spatnym uzivatelskym jmenem (zkontrolujte si prihlasovaci udaje), omlouvam se za komplikace"
+msgstr "Činnost Jappixe byla přerušena buď chybou ve spojenim , programu nebo nesprávnými přihlašovacími údaji (zkontrolujte vaše přihlašovací údaje), omlouváme se za komplikace"
 
 #: 
 msgid "The element list on this server could not be obtained!"
@@ -187,7 +187,7 @@ msgstr "Stav"
 
 #: 
 msgid "Available"
-msgstr "Dostupný"
+msgstr "Přítomen"
 
 #: 
 msgid "Talkative"
@@ -195,7 +195,7 @@ msgstr "Hovorný"
 
 #: 
 msgid "Away"
-msgstr "Nepřítomný"
+msgstr "Pryč"
 
 #: 
 msgid "Not available"
@@ -203,7 +203,7 @@ msgstr "Nedostupný"
 
 #: 
 msgid "Busy"
-msgstr "Zaneprázdněný"
+msgstr "Nerušit"
 
 #: 
 msgid "Mood"
@@ -211,7 +211,7 @@ msgstr "Nálada"
 
 #: 
 msgid "None"
-msgstr "Nic"
+msgstr "Neuvedena"
 
 #: 
 msgid "Crazy"
@@ -507,15 +507,15 @@ msgstr "Zavřít"
 
 #: 
 msgid "unknown"
-msgstr "neznáme"
+msgstr "neznámá"
 
 #: 
 msgid "Unavailable"
-msgstr "Není dostupné"
+msgstr "Odpojen"
 
 #: 
 msgid "is now"
-msgstr "nyní je"
+msgstr ""
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
@@ -547,7 +547,7 @@ msgstr "Ty"
 
 #: 
 msgid "Remove"
-msgstr "Odstarnit"
+msgstr "Odstranit"
 
 #: 
 msgid "Rename"
@@ -563,7 +563,7 @@ msgstr "Vložit smajlíka"
 
 #: 
 msgid "Change style"
-msgstr "Změna písma"
+msgstr "Písmo"
 
 #: 
 msgid "Text in bold"
@@ -571,7 +571,7 @@ msgstr "Tučné"
 
 #: 
 msgid "Text in italic"
-msgstr "Italic"
+msgstr "Kurzíva"
 
 #: 
 msgid "Underlined text"
@@ -655,11 +655,11 @@ msgstr "Změnit oblíbené"
 
 #: 
 msgid "Search a room"
-msgstr "Prohledat místnost"
+msgstr "Najít místnost"
 
 #: 
 msgid "Select a favorite"
-msgstr "Vybrat blíbené"
+msgstr "Vyberte oblíbenou"
 
 #: 
 msgid "Getting the name..."
@@ -687,7 +687,7 @@ msgstr "Upravit"
 
 #: 
 msgid "Search a room on"
-msgstr "Najít místnost"
+msgstr "Najít místnost na"
 
 #: 
 msgid "No room found on this server."
@@ -851,7 +851,7 @@ msgstr "Ano, pojďme na to!"
 
 #: 
 msgid "Your friend is paying attention to the conversation."
-msgstr "Váš kamarád sleduje rozhovoru."
+msgstr "Váš kamarád sleduje rozhovor."
 
 #: 
 msgid "Your friend is writing a message..."
@@ -871,7 +871,7 @@ msgstr "Váš kamarád ukončil rozhovor."
 
 #: 
 msgid "Requesting this service..."
-msgstr "Požadující tutuo službu ..."
+msgstr "Žádám o tuto službu ..."
 
 #: 
 msgid "Loading"
@@ -927,7 +927,7 @@ msgstr "Přihlaste se ke svému již existujícímu XMPP účtu nebo si zaregist
 
 #: 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappix je open-source projekt  od PostPro, neziskové orgynizace, která poskytuje velkou podporu."
+msgstr "Jappix je open-source projekt od PostPro, neziskové organizace, která poskytuje velkou podporu."
 
 #: 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
@@ -967,11 +967,11 @@ msgstr "Vysoká"
 
 #: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
-msgstr "Zadejte název skupinového rozhovoru ke kterému se chcete připojit a zvolte si přezdívku. Nebo se můžete vrátit k %s."
+msgstr "Zadejte název skupinového rozhovoru ke kterému se chcete připojit a zvolte si přezdívku. Nebo se můžete vrátit na %s."
 
 #: 
 msgid "login page"
-msgstr "přihlašovací stránka"
+msgstr "přihlašovací stránku"
 
 #: 
 msgid "Share this link with your friends:"
@@ -1039,11 +1039,11 @@ msgstr "Příkaz"
 
 #: 
 msgid "Subscribe"
-msgstr "Odebrat"
+msgstr "Registrace"
 
 #: 
 msgid "Join"
-msgstr "Přidat se"
+msgstr "Připojit"
 
 #: 
 msgid "Automatic"
@@ -1091,7 +1091,7 @@ msgstr "Přejete si vidět kamarády, které vám %s navrhuje?"
 
 #: 
 msgid "Submit"
-msgstr "Povolit"
+msgstr "Odeslat"
 
 #: 
 msgid "Client"
@@ -1119,7 +1119,7 @@ msgstr "Zobraz jeho/její polohu na zeměkouli"
 
 #: 
 msgid "Confirm"
-msgstr "Potvrdit"
+msgstr "Ověřit"
 
 #: 
 msgid "anonymous mode"
@@ -1135,11 +1135,11 @@ msgstr "Nezařazené"
 
 #: 
 msgid "Authorize"
-msgstr "Schválit"
+msgstr "Oprávnit"
 
 #: 
 msgid "Ask for authorization"
-msgstr "Požádat o povolení"
+msgstr "Požádat o oprávnění"
 
 #: 
 msgid "Unblock"
@@ -1203,15 +1203,15 @@ msgstr "Odeslat"
 
 #: 
 msgid "Unattach the file"
-msgstr "Odpojit soubor"
+msgstr "Odebrat soubor"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr "Nastala chyba během nahrávání souboru: buď je přílič velký (%s maximálně) nebo není povolen!"
+msgstr "Nastala chyba během nahrávání souboru: buď je příliš velký (%s maximálně) nebo není povolen!"
 
 #: 
 msgid "Authorization failed"
-msgstr "Ověřování se nezdařilo"
+msgstr "Autorizace se nezdařila"
 
 #: 
 msgid "Registration failed, please choose a different username"
@@ -1287,7 +1287,7 @@ msgstr "Skvěle! Nyní můžete sdílet Jappix se svými kamarády!"
 
 #: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
-msgstr "Nyní když stisknete tlačitko Uložit, následuje otevření editoru vašeho profilu."
+msgstr "Nyní, když stisknete tlačitko Uložit, následuje otevření editoru vašeho profilu."
 
 #: 
 msgid "Share Jappix on %s"
@@ -1483,7 +1483,7 @@ msgstr "BOSH host"
 
 #: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-msgstr "Můžete nainstalovat další software pro přidání funkcí vašeho Jappix. Jiné můžete upravit zejména z důvodů bezpečnostích omezení, které jsou nastaveny ve vychozím stavu."
+msgstr "Můžete nainstalovat další software pro rozšíření funkcí vašeho Jappix. Některé jiné funkce můžete upravit, zejména z důvodů bezpečnosti, protože byly nastaveny na vychozí hodnoty."
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
@@ -1615,7 +1615,7 @@ msgstr "Pro zvýšení bezpečnosti je přihlášení časově omezeno a pokud z
 
 #: 
 msgid "Credentials"
-msgstr "Ověřeni"
+msgstr "Ověření"
 
 #: 
 msgid "You have been logged out. Goodbye!"
@@ -1667,7 +1667,7 @@ msgstr "Na tomto Jappix uzlu lze zadat více správců. Také lze změnit heslo 
 
 #: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
-msgstr "Aktualizuj Jappix uzel v tohoto panelu nebo ověř dostupnost nové verze. Zobrazí se informace o peslední verzi (anglicky).)"
+msgstr "Aktualizuj Jappix uzel v tohoto panelu nebo zjisti, zda není dostupná nové verze. Informace o poslední verzi se také zobrazí (anglicky)."
 
 #: 
 msgid "Access statistics"
@@ -1819,7 +1819,7 @@ msgstr "Použijte vlastní barvu"
 
 #: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr "Zadejte hexadecimal barvu vašeho pozadí."
+msgstr "Zadejte hexadecimálně barvu vašeho pozadí."
 
 #: 
 msgid "Manage backgrounds"
@@ -1887,7 +1887,7 @@ msgstr "Vaše verze se zdá být aktuální, ale je možné zkontrolovat aktuali
 
 #: 
 msgid "Check for updates"
-msgstr "Zkontrolovat aktualizace"
+msgstr "Dostupné aktualizace"
 
 #: 
 msgid "Update in progress"
@@ -1995,7 +1995,7 @@ msgstr "Soubor který chcete nahrát nesmí být větší než %s."
 
 #: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
-msgstr "Buďte v obraze o tom so vaši uživatelé ukládají na server a odstraňte nevhodný obsah v tomto panelu."
+msgstr "Buďte v obraze o tom co vaši uživatelé ukládají na server a odstraňte nevhodný obsah v tomto panelu."
 
 #: 
 msgid "Title"
@@ -2135,7 +2135,7 @@ msgstr "Skupina"
 
 #: 
 msgid "Subscription"
-msgstr "Odebírat"
+msgstr "Oprávnění"
 
 #: 
 msgid "Both"
@@ -2163,7 +2163,7 @@ msgstr "Vidět můj status"
 
 #: 
 msgid "Send his/her status"
-msgstr "Odeslat jeho/její status"
+msgstr "Odeslat jemu/ji status"
 
 #: 
 msgid "Everything"

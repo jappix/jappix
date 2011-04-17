@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-04-03 14:23:54\n"
+"PO-Revision-Date: 2011-04-17 19:00:12\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2203,25 +2203,25 @@ msgstr "Dies ist eine Wiederholung von %s"
 
 #: 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Lade Kommentare..."
 
 #: 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Gebe dein Kommentar hier ein..."
 
 #: 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "Kommentare nicht Ladbar!"
 
 #: 
 msgid "Show comments"
-msgstr ""
+msgstr "Zeige Kommentare"
 
 #: 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Sende Ihm/Ihr eine Nachricht"
 
 #: 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "Starte Chat mit Ihm/Ihr"
 

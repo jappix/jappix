@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-04-06 12:55:04\n"
+"PO-Revision-Date: 2011-04-17 19:00:29\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -375,7 +375,7 @@ msgstr "Suprimir"
 
 #: 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr ""
+msgstr "De que ? Avetz pas d'imatge de perfil definida sus vòstra carta d'identitat !"
 
 #: 
 msgid "Address"
@@ -407,15 +407,15 @@ msgstr "Important"
 
 #: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
-msgstr ""
+msgstr "Siatz prudents emb las informacions qu'escrivetz sus vòstre perfil. Son accesiblas a tot lo monde quitament a los que voletz pas."
 
 #: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
-msgstr ""
+msgstr "Tot es pas privat sus XMPP, per exemple vòstre perfil (vCard)."
 
 #: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr ""
+msgstr "Qu'es recomandat de charjar un imatge de perfil (%s maximum), coma una fòto de vosautres, per que vòstres amics vos pueschan conéisser."
 
 #: 
 msgid "Save"
@@ -447,11 +447,11 @@ msgstr "Vita privada"
 
 #: 
 msgid "Message archiving"
-msgstr ""
+msgstr "Archivatge daus messatges"
 
 #: 
 msgid "Store a history of your chats"
-msgstr ""
+msgstr "Gardar un istoric de vòstras charradas"
 
 #: 
 msgid "Geolocation"
@@ -519,11 +519,11 @@ msgstr "es aura"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Esperatz dau temps que vòstre avatar se charja..."
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
-msgstr ""
+msgstr "Veiquí ! Un brave imatge de perfil tot nuòu !"
 
 #: 
 msgid "The image file is not supported or has a bad size."
@@ -539,7 +539,7 @@ msgstr "Error"
 
 #: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Clicar aicí per corregir l'error"
 
 #: 
 msgid "You"
@@ -555,7 +555,7 @@ msgstr "Renomenar "
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Adiu ! Sei %s, vos voldriá apondre coma amic."
 
 #: 
 msgid "Smiley insertion"
@@ -579,43 +579,43 @@ msgstr "Texte joslinhat"
 
 #: 
 msgid "Save chat"
-msgstr ""
+msgstr "Enregistrar la charrada"
 
 #: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
-msgstr ""
+msgstr "Clicatz sus lo liam per aver l'istoric de la charrada. Puei tornatz clicar per lo recuperar."
 
 #: 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Quela charrada es voida !"
 
 #: 
 msgid "Generate file!"
-msgstr ""
+msgstr "Generar lo fichier !"
 
 #: 
 msgid "Download file!"
-msgstr ""
+msgstr "Descharjar lo fichier !"
 
 #: 
 msgid "Clean current chat"
-msgstr ""
+msgstr "Netiar la charrada "
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "Veire l'istoric de la charrada"
 
 #: 
 msgid "Show user profile"
-msgstr ""
+msgstr "Mostrar lo perfil de l'utilizaire"
 
 #: 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "Apondre queu contacte a vòstres amics"
 
 #: 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "Apondre queu charrador a vòstres preferits"
 
 #: 
 msgid "All tabs"
@@ -627,7 +627,7 @@ msgstr "Barrar quel onglet"
 
 #: 
 msgid "no subject defined for this room."
-msgstr ""
+msgstr "p'un subjècte definit per queu charrador."
 
 #: 
 msgid "Administration panel for this room"
@@ -647,27 +647,27 @@ msgstr "Visitaires/as"
 
 #: 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr "Gerir los charradors preferits"
 
 #: 
 msgid "Change favorites"
-msgstr ""
+msgstr "Modificar los preferits"
 
 #: 
 msgid "Search a room"
-msgstr ""
+msgstr "Cerchar un charrador"
 
 #: 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Seleccionatz un preferit"
 
 #: 
 msgid "Getting the name..."
-msgstr ""
+msgstr "Obtencion dau nom..."
 
 #: 
 msgid "Gateway"
-msgstr ""
+msgstr "Passarèla"
 
 #: 
 msgid "Name"
@@ -707,51 +707,51 @@ msgstr ""
 
 #: 
 msgid "Accounts"
-msgstr ""
+msgstr "Comptes"
 
 #: 
 msgid "Authentications"
-msgstr ""
+msgstr "Autentificacion  ﻿ "
 
 #: 
 msgid "Automation"
-msgstr ""
+msgstr "Automatizacion"
 
 #: 
 msgid "Clients"
-msgstr ""
+msgstr "Clients"
 
 #: 
 msgid "Collaboration"
-msgstr ""
+msgstr "Collaboracion"
 
 #: 
 msgid "Components"
-msgstr ""
+msgstr "Compausants"
 
 #: 
 msgid "Rooms"
-msgstr ""
+msgstr "Charradors"
 
 #: 
 msgid "Directories"
-msgstr ""
+msgstr "Repertòris"
 
 #: 
 msgid "Gateways"
-msgstr ""
+msgstr "Passarèlas"
 
 #: 
 msgid "News"
-msgstr ""
+msgstr "Actualitats"
 
 #: 
 msgid "Hierarchy"
-msgstr ""
+msgstr "Ierarchia"
 
 #: 
 msgid "Proxies"
-msgstr ""
+msgstr "Proxies"
 
 #: 
 msgid "Publication/Subscription"
@@ -759,7 +759,7 @@ msgstr ""
 
 #: 
 msgid "Storage"
-msgstr ""
+msgstr "Emmagazinatge"
 
 #: 
 msgid "Service offline or broken"
@@ -767,7 +767,7 @@ msgstr ""
 
 #: 
 msgid "Your inbox"
-msgstr ""
+msgstr "Vòstra boitia d'arribada"
 
 #: 
 msgid "Available actions"
@@ -775,7 +775,7 @@ msgstr ""
 
 #: 
 msgid "Clean"
-msgstr ""
+msgstr "Voidar"
 
 #: 
 msgid "New"
@@ -791,15 +791,15 @@ msgstr "Subjècte"
 
 #: 
 msgid "Content"
-msgstr ""
+msgstr "Contengut"
 
 #: 
 msgid "Send message"
-msgstr ""
+msgstr "Enviar lo messatge"
 
 #: 
 msgid "Your inbox is empty."
-msgstr ""
+msgstr "Vòstra boitia d'arribada es voida"
 
 #: 
 msgid "MUC administration"
@@ -815,11 +815,11 @@ msgstr ""
 
 #: 
 msgid "Configuration"
-msgstr ""
+msgstr "Configuracion"
 
 #: 
 msgid "Authorizations"
-msgstr ""
+msgstr "Autorizacions"
 
 #: 
 msgid "Member list"
@@ -855,7 +855,7 @@ msgstr ""
 
 #: 
 msgid "Your friend is writing a message..."
-msgstr ""
+msgstr "Vòstre amic es a escriure un messatge..."
 
 #: 
 msgid "Your friend stopped writing a message."
@@ -875,7 +875,7 @@ msgstr ""
 
 #: 
 msgid "Loading"
-msgstr ""
+msgstr "Charja"
 
 #: 
 msgid "joined the chat room"
@@ -915,11 +915,11 @@ msgstr ""
 
 #: 
 msgid "Hi there!"
-msgstr ""
+msgstr "Adiu !"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "Benvengut/uda sus %1s, “%2s”."
 
 #: 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -935,15 +935,15 @@ msgstr ""
 
 #: 
 msgid "Previous"
-msgstr ""
+msgstr "Precedent"
 
 #: 
 msgid "General"
-msgstr ""
+msgstr "Generau"
 
 #: 
 msgid "Advanced"
-msgstr ""
+msgstr "Avançat"
 
 #: 
 msgid "Resource"
@@ -951,23 +951,23 @@ msgstr ""
 
 #: 
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #: 
 msgid "Low"
-msgstr ""
+msgstr "Bassa"
 
 #: 
 msgid "Medium"
-msgstr ""
+msgstr "Mejana"
 
 #: 
 msgid "High"
-msgstr ""
+msgstr "Nauta"
 
 #: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
-msgstr ""
+msgstr "Picatz lo nom dau charrador que voletz junher e vòstre chafre. Podetz tanben tornar a la %s. "
 
 #: 
 msgid "login page"
@@ -1007,7 +1007,7 @@ msgstr ""
 
 #: 
 msgid "Where are you?"
-msgstr ""
+msgstr "Ente setz ?"
 
 #: 
 msgid "What's up with you?"
