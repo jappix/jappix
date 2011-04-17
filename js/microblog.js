@@ -372,8 +372,8 @@ function handleCommentsMicroblog(iq) {
 		else
 			current_name = getBuddyName(current_xid);
 		
-		// No date?
-		if(!current_date)
+		// Any date?
+		if(current_date)
 			current_date = relativeDate(current_date);
 		else
 			current_date = getCompleteTime();
