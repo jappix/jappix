@@ -3862,8 +3862,6 @@ JSJaCHttpBindingConnection.prototype._getRequestString = function(raw, last) {
  */
 JSJaCHttpBindingConnection.prototype._getInitialRequestString = function() {
   var reqstr = "<body xml:lang='"+XML_LANG+"' content='text/xml; charset=utf-8' hold='"+this._hold+"' xmlns='http://jabber.org/protocol/httpbind' to='"+this.authhost+"' wait='"+this._wait+"' rid='"+this._rid+"'";
-  if (this.host || this.port)
-    reqstr += " route='xmpp:"+this.host+":"+this.port+"'";
   if (this.secure)
     reqstr += " secure='"+this.secure+"'";
   if (JSJAC_HAVEKEYS) {
