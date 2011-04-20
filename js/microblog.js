@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/04/11
+Last revision: 20/04/11
 
 */
 
@@ -323,7 +323,7 @@ function handleCommentsMicroblog(iq) {
 	
 	// Any error?
 	if(handleErrorReply(iq)) {
-		$(path).find('.one-comment').text(_e("Could not get the comments!"));
+		$(path).html('<div class="one-comment loading">' + _e("Could not get the comments!") + '</div>');
 		
 		return false;
 	}
