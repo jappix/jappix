@@ -22,7 +22,9 @@ function openIntegrateBox() {
 	'<div class="bottom">' + 
 		'<div class="wait wait-medium"></div>' + 
 		
-		'<a href="#" class="finish">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish close">' + _e("Close") + '</a>' + 
+		'<a href="#" class="finish next disabled" title="' + _e("Next") + '">&gt;</a>' + 
+		'<a href="#" class="finish previous disabled" title="' + _e("Previous") + '">&lt;</a>' + 
 	'</div>';
 	
 	// Create the popup
@@ -226,7 +228,9 @@ function filterIntegrateBox(data) {
 // Plugin launcher
 function launchIntegratebox() {
 	// Click event
+	$('#integratebox .bottom .finish.close').click(closeIntegrateBox);
+	
 	$('#integratebox .bottom .finish').click(function() {
-		return closeIntegrateBox();
+		return false;
 	});
 }
