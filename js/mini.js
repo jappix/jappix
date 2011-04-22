@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/04/11
+Last revision: 22/04/11
 
 */
 
@@ -1183,28 +1183,31 @@ function chat(type, xid, nick, hash, pwd, show_pane) {
 		}
 		
 		// Create the HTML markup
-		jQuery('#jappix_mini div.jm_conversations').prepend(
-			'<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
+		var html = '<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 
-						'<span class="jm_nick">' + nick + '</span>' + 
-						'<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>' + 
-					'</div>' + 
-					
-					'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
-					
-					'<form action="#" method="post">' + 
-						'<input type="text" class="jm_send-messages" name="body" autocomplete="off" />' + 
-						'<input type="hidden" name="xid" value="' + xid + '" />' + 
-						'<input type="hidden" name="type" value="' + type + '" />' + 
-					'</form>' + 
-				'</div>' + 
-				
-				'<a class="jm_pane jm_chat-tab jm_images" href="#">' + 
-					'<span class="jm_name">' + nick.htmlEnc() + '</span>' + 
-				'</a>' + 
-			'</div>'
-		);
+						'<span class="jm_nick">' + nick + '</span>';
+		
+		// Any close button to display?
+		if(((type == 'groupchat') && !existArrayValue(MINI_GROUPCHATS, xid)) || (type != 'groupchat'))
+			html += '<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>';
+		
+		html += '</div>' + 
+			
+			'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
+				'<form action="#" method="post">' + 
+					'<input type="text" class="jm_send-messages" name="body" autocomplete="off" />' + 
+					'<input type="hidden" name="xid" value="' + xid + '" />' + 
+					'<input type="hidden" name="type" value="' + type + '" />' + 
+				'</form>' + 
+			'</div>' + 
+			
+			'<a class="jm_pane jm_chat-tab jm_images" href="#">' + 
+				'<span class="jm_name">' + nick.htmlEnc() + '</span>' + 
+			'</a>' + 
+		'</div>';
+		
+		jQuery('#jappix_mini div.jm_conversations').prepend(html);
 		
 		// Get the presence of this friend
 		if(type != 'groupchat') {
