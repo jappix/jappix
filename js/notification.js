@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 22/04/11
 
 */
 
@@ -49,7 +49,7 @@ function newNotification(type, from, data, body) {
 		return;
 	
 	// Generate an ID hash
-	var id = hex_md5(type + data[0] + from + getCompleteTime());
+	var id = hex_md5(type + from);
 	
 	// Generate the text to be displayed
 	var text, action, code;

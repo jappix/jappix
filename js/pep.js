@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 22/04/11
 
 */
 
@@ -120,7 +120,7 @@ function displayPEP(xid, type) {
 				else {
 					// URI element
 					if(!tURI)
-						fURI = 'http://www.deezer.com/fr/music/result/all/' + tArtist + ' ' + tTitle + ' ' + tAlbum;
+						fURI = 'http://listen.grooveshark.com/search?q=' + encodeURIComponent(tArtist + ' ' + tTitle + ' ' + tAlbum);
 					else
 						fURI = tURI;
 					
