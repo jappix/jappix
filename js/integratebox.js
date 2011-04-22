@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 22/04/11
 
 */
 
@@ -99,6 +99,10 @@ function codeIntegrateBox(serv, url) {
 
 // Applies a given integratebox element
 function applyIntegrateBox(url, service) {
+	// Media integration not wanted?
+	if(getDB('options', 'integratemedias') == '0')
+		return true;
+	
 	// Apply the HTML code
 	var dom_code = codeIntegrateBox(service, url);
 	

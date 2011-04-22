@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/03/11
+Last revision: 22/04/11
 
 */
 
@@ -43,6 +43,9 @@ function optionsOpen() {
 				
 				'<label for="showall">' + _e("Show all friends") + '</label>' + 
 				'<input id="showall" type="checkbox" />' + 
+				
+				'<label for="integratemedias">' + _e("Media integration") + '</label>' + 
+				'<input id="integratemedias" type="checkbox" />' + 
 				
 				'<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
 				'<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
@@ -195,11 +198,12 @@ function storeOptions() {
 	var sounds = getDB('options', 'sounds');
 	var geolocation = getDB('options', 'geolocation');
 	var showall = getDB('options', 'roster-showall');
+	var integratemedias = getDB('options', 'integratemedias');
 	var status = getDB('options', 'presence-status');
 	
 	// Create an array to be looped
-	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'presence-status');
-	var oContent = new Array(sounds, geolocation, showall, status);
+	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'integratemedias', 'presence-status');
+	var oContent = new Array(sounds, geolocation, showall, integratemedias, status);
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -260,6 +264,14 @@ function saveOptions() {
 		setDB('options', 'roster-showall', '0');
 		showOnlineBuddies('options');
 	}
+	
+	// We apply the media integration
+	var integratemedias = '0';
+	
+	if($('#integratemedias').is(':checked'))
+		integratemedias = '1';
+	
+	setDB('options', 'integratemedias', integratemedias);
 	
 	// We apply the message archiving
 	if(enabledArchives('pref')) {
@@ -513,6 +525,12 @@ function loadOptions() {
 		$('#showall').attr('checked', true);
 	else
 		$('#showall').attr('checked', false);
+	
+	// We get the values of the forms for the integratemedias
+	if(getDB('options', 'integratemedias') == '0')
+		$('#integratemedias').attr('checked', false);
+	else
+		$('#integratemedias').attr('checked', true);
 }
 
 // Plugin launcher
