@@ -20,9 +20,9 @@ Last revision: 23/04/11
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	box-shadow: 0 0 10px #5c5c5c;
-	-moz-box-shadow: 0 0 10px #5c5c5c;
-	-webkit-box-shadow: 0 0 10px #5c5c5c;
+	box-shadow: 0 0 8px #5c5c5c;
+	-moz-box-shadow: 0 0 8px #5c5c5c;
+	-webkit-box-shadow: 0 0 8px #5c5c5c;
 }
 
 #my-infos .content {

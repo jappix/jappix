@@ -17,8 +17,8 @@ Last revision: 23/04/11
  
 #top-content {
         position: absolute;
-        right: 10px;
-        left: 10px;
+        right: 8px;
+        left: 8px;
         top: 0;
         min-width: 860px;
         z-index: 50;
@@ -27,9 +27,9 @@ Last revision: 23/04/11
 #main-content {
         position: absolute;
         top: 36px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
         min-width: 850px;
         min-height: 450px;
 }
@@ -54,9 +54,9 @@ Last revision: 23/04/11
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
-        box-shadow: 0 0 10px #5c5c5c;
-        -moz-box-shadow: 0 0 10px #5c5c5c;
-        -webkit-box-shadow: 0 0 10px #5c5c5c;
+        box-shadow: 0 0 8px #5c5c5c;
+        -moz-box-shadow: 0 0 8px #5c5c5c;
+        -webkit-box-shadow: 0 0 8px #5c5c5c;
 }
  
 #general-wait {
