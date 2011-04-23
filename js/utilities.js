@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 22/04/11
+Last revision: 23/04/11
 
 */
 
@@ -675,4 +675,50 @@ function removeArrayValue(array, value) {
 	}
 	
 	return false;
+}
+
+// Converts a string to an array
+function stringToArray(string) {
+	var array = [];
+	
+	// Any string to convert?
+	if(string) {
+		// More than one item
+		if(string.match(/,/gi)) {
+			var string_split = string.split(',');
+			
+			for(i in string_split) {
+				if(string_split[i])
+					array.push(string_split[i]);
+				else
+					array.push('');
+			}
+		}
+		
+		// Only one item
+		else
+			array.push(string);
+	}
+	
+	return array;
+}
+
+// Get the index of an array value
+function indexArrayValue(array, value) {
+	// Nothing?
+	if(!array || !array.length)
+		return 0;
+	
+	// Read the index of the value
+	var index = 0;
+	
+	for(var i = 0; i < array.length; i++) {
+		if(array[i] == value) {
+			index = i;
+			
+			break;
+		}
+	}
+	
+	return index;
 }

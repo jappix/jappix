@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 23/04/11
 
 */
 
@@ -62,36 +62,36 @@ function codeIntegrateBox(serv, url) {
 	switch(serv) {
 		case 'youtube':
 			if(legacy)
-				code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + url + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
+				code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + encodeQuotes(url) + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
 			else
-				code = '<object width="640" height="385" data="' + protocol + '://www.youtube.com/embed/' + url + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + url + '">http://www.youtube.com/watch?v=' + url + '</a></object>';
+				code = '<object width="640" height="385" data="' + encodeQuotes(protocol) + '://www.youtube.com/embed/' + encodeQuotes(url) + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + encodeQuotes(url) + '" target="_blank">http://www.youtube.com/watch?v=' + encodeQuotes(url) + '</a></object>';
 			
 			break;
 		
 		case 'dailymotion':
-			code = '<object width="640" height="385"><param name="movie" value="http://www.dailymotion.com/swf/video/' + url + '&amp;autoplay=1"></param><param name="allowFullScreen" value="false"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/' + url + '&amp;autoplay=1" width="640" height="385" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
+			code = '<object width="640" height="385"><param name="movie" value="http://www.dailymotion.com/swf/video/' + url + '&amp;autoplay=1"></param><param name="allowFullScreen" value="false"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/' + encodeQuotes(url) + '&amp;autoplay=1" width="640" height="385" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
 			
 			break;
 		
 		case 'vimeo':
-			code = '<object width="640" height="385"><param name="allowfullscreen" value="true" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' + url + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=' + url + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="640" height="385"></embed></object>';
+			code = '<object width="640" height="385"><param name="allowfullscreen" value="true" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' + encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=' + encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="640" height="385"></embed></object>';
 			
 			break;
 		
 		case 'theora':
 		case 'video':
-			code = '<video width="640" height="385" src="' + url + '" controls autoplay></video>';
+			code = '<video width="640" height="385" src="' + encodeQuotes(url) + '" controls autoplay><a href="' + encodeQuotes(url) + '" target="_blank">' + encodeQuotes(url) + '</a></video>';
 			
 			break;
 		
 		case 'vorbis':
 		case 'audio':
-			code = '<audio src="' + url + '" controls autoplay></audio>';
+			code = '<audio src="' + encodeQuotes(url) + '" controls autoplay><a href="' + encodeQuotes(url) + '" target="_blank">' + encodeQuotes(url) + '</a></audio>';
 			
 			break;
 		
 		case 'image':
-			code = '<a href="' + url + '" target="_blank"><img alt="" src="' + url + '" /></a>';
+			code = '<a href="' + encodeQuotes(url) + '" target="_blank"><img alt="" src="' + encodeQuotes(url) + '" /></a>';
 		
 			break;
 	}
@@ -100,7 +100,10 @@ function codeIntegrateBox(serv, url) {
 }
 
 // Applies a given integratebox element
-function applyIntegrateBox(url, service) {
+function applyIntegrateBox(url, service, url_list, services_list) {
+	// Close the integratebox
+	closeIntegrateBox();
+	
 	// Media integration not wanted?
 	if(getDB('options', 'integratemedias') == '0')
 		return true;
@@ -129,11 +132,59 @@ function applyIntegrateBox(url, service) {
 			});
 		}
 		
+		// Previous and next items?
+		var url_array = stringToArray(url_list);
+		var services_array = stringToArray(services_list);
+		var index = indexArrayValue(url_array, url);
+		
+		// Get the previous values
+		var previous_url = url_array[index - 1];
+		var previous_services = services_array[index - 1];
+		
+		// Get the next values
+		var next_url = url_array[index + 1];
+		var next_services = services_array[index + 1];
+		
+		// Enable/disable buttons
+		if(previous_url && previous_services)
+			$('#integratebox .bottom .finish.previous').removeClass('disabled');
+		else
+			$('#integratebox .bottom .finish.previous').addClass('disabled');
+		
+		if(next_url && next_services)
+			$('#integratebox .bottom .finish.next').removeClass('disabled');
+		else
+			$('#integratebox .bottom .finish.next').addClass('disabled');
+		
+		// Click event
+		$('#integratebox .bottom .finish.previous, #integratebox .bottom .finish.next').click(function() {
+			// Not acceptable?
+			if($(this).is('.disabled'))
+				return false;
+			
+			// Apply the event!
+			if($(this).is('.previous'))
+				applyIntegrateBox(previous_url, previous_services, url_list, services_list);
+			else
+				applyIntegrateBox(next_url, next_services, url_list, services_list);
+			
+			return false;
+		});
+		
 		return false;
 	}
 	
 	// Nothing: return true to be able to open the URL in a new tab
 	return true;
+}
+
+// Checks whether the file ext can use integratebox or not
+function canIntegrateBox(ext) {
+	// Can use?
+	if(ext && ((ext == 'jpg') || (ext == 'jpeg') || (ext == 'png') || (ext == 'gif') || (ext == 'ogg') || (ext == 'oga') || (ext == 'ogv')))
+		return true;
+	
+	return false;
 }
 
 // Filters a string to apply the integratebox links
@@ -229,8 +280,4 @@ function filterIntegrateBox(data) {
 function launchIntegratebox() {
 	// Click event
 	$('#integratebox .bottom .finish.close').click(closeIntegrateBox);
-	
-	$('#integratebox .bottom .finish').click(function() {
-		return false;
-	});
 }

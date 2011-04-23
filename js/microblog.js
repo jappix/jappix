@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/04/11
+Last revision: 23/04/11
 
 */
 
@@ -27,6 +27,8 @@ function displayMicroblog(packet, from, hash, mode) {
 		var tFSource = [];
 		var tFType = [];
 		var tFLength = [];
+		var aFURL = [];
+		var aFCat = [];
 		
 		// Get the values
 		tDate = $(this).find('published').text();
@@ -130,18 +132,32 @@ function displayMicroblog(packet, from, hash, mode) {
 			if(tFURL.length)
 				html += '<p class="file">';
 			
+			// Generate an array of the files URL
+			for(var a = 0; a < tFURL.length; a++) {
+				// Not enough data?
+				if(!tFName[a] || !tFURL[a] || !tFType[a])
+					continue;
+				
+				// Push the current URL!
+				if(canIntegrateBox(explodeThis('/', tFType[a], 1))) {
+					aFURL.push(tFURL[a]);
+					aFCat.push(fileCategory(explodeThis('/', tFType[a], 1)));
+				}
+			}
+			
+			// Add each file code
 			for(var f = 0; f < tFURL.length; f++) {
 				// Not enough data?
 				if(!tFName[f] || !tFURL[f] || !tFType[f])
 					continue;
 				
-				// Get the file types
+				// Get the file type
 				var tFExt = explodeThis('/', tFType[f], 1);
-				var tfCat = fileCategory(tFExt);
+				var tFCat = fileCategory(tFExt);
 				
 				// Supported image/video/sound
-				if(tFExt && ((tFExt == 'jpg') || (tFExt == 'jpeg') || (tFExt == 'png') || (tFExt == 'gif') || (tFExt == 'ogg') || (tFExt == 'oga') || (tFExt == 'ogv')))
-					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tfCat) + '\');" ';
+				if(canIntegrateBox(tFExt))
+					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\');" ';
 				else
 					tFEClick = '';
 				
@@ -149,7 +165,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				if(tFThumb[f])
 					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
 				else
-					html += '<a class="' + encodeQuotes(tfCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
+					html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
 			}
 			
 			if(tFURL.length)
