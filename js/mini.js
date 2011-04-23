@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 23/04/11
 
 */
 
@@ -739,11 +739,17 @@ function notifyTitleMini() {
 
 // Clears the notifications
 function clearNotificationsMini(hash) {
+	// Not focused?
+	if(!isFocused())
+		return false;
+	
 	// Remove the notifications counter
 	jQuery('#jappix_mini #chat-' + hash + ' span.jm_notify').remove();
 	
 	// Update the page title
 	notifyTitleMini();
+	
+	return true;
 }
 
 // Updates the roster counter
