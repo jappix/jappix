@@ -7,13 +7,13 @@ This is the manager CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 23/04/11
 
 */
 
 #manager {
 	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.8);
+	background-color: rgba(20,20,20,0.85);
 	width: 945px;
 	margin: 0 auto 25px;
 	padding-bottom: 17px;

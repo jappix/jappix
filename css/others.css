@@ -7,7 +7,7 @@ This is the others CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/04/11
+Last revision: 23/04/11
  
 */
  
@@ -44,7 +44,7 @@ Last revision: 06/04/11
  
 #right-content {
         background-color: rgb(20,20,20);
-        background-color: rgba(20,20,20,0.8);
+        background-color: rgba(20,20,20,0.85);
         position: absolute;
         top: 0;
         right: 0;
@@ -98,7 +98,7 @@ Last revision: 06/04/11
  
 #reconnect .pane {
         background-color: rgb(20,20,20);
-        background-color: rgba(20,20,20,0.8);
+        background-color: rgba(20,20,20,0.85);
         color: white;
         padding: 25px;
         z-index: 10000;

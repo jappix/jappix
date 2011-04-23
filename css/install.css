@@ -7,7 +7,7 @@ This is the install CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 23/04/11
 
 */
 
@@ -17,7 +17,7 @@ body {
 
 #install {
 	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.8);
+	background-color: rgba(20,20,20,0.85);
 	width: 800px;
 	margin: 35px auto;
 	padding-bottom: 17px;

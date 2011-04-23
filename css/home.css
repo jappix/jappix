@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 23/04/11
 
 */
 
@@ -24,7 +24,7 @@ Last revision: 22/04/11
 #home .locale,
 #home .obsolete {
 	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.6);
+	background-color: rgba(20,20,20,0.65);
 	color: white;
 	position: absolute;
 	top: 0;

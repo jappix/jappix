@@ -7,13 +7,13 @@ This is the my-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/03/11
+Last revision: 23/04/11
 
 */
 
 #my-infos {
 	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.8);
+	background-color: rgba(20,20,20,0.85);
 	color: #919191;
 	margin-top: 12px;
 	padding: 15px 6px 6px 6px;
