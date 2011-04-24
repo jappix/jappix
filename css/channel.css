@@ -172,8 +172,8 @@ Last revision: 24/04/11
 }
 
 #channel .one-update {
-	margin-bottom: 14px;
-	padding: 6px;
+	margin-bottom: 12px;
+	padding: 6px 6px 8px 6px;
 	border-bottom: 1px dotted #d0d0d0;
 	min-height: 50px;
 	color: black;
