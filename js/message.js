@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 30/03/11
+Last revision: 24/04/11
 
 */
 
@@ -240,16 +240,9 @@ function handleMessage(message) {
 					
 					// Any extra-values?
 					var tLocality = iGeoloc.find('locality').text();
+					var tRegion = iGeoloc.find('region').text();
 					var tCountry = iGeoloc.find('country').text();
-					var tHuman = '';
-					
-					// Build an human-readable location string
-					if(tLocality && tCountry)
-						tHuman = tLocality + ' (' + tCountry + ')';
-					else if(tLocality && !tCountry)
-						tHuman = tLocality;
-					else if(tCountry && !tLocality)
-						tHuman = tCountry;
+					var tHuman = humanPosition(tLocality, tRegion, tCountry);
 					
 					// Store the PEP event (and display it)
 					storePEP(xid, 'geoloc', tLat, tLon, tHuman);

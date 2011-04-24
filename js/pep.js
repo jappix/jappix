@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 24/04/11
 
 */
 
@@ -172,7 +172,7 @@ function displayPEP(xid, type) {
 				
 				// Generate the text to be displayed
 				if(tLat && tLon) {
-					aLink = ' href="http://www.openstreetmap.org/?mlat=' + tLat + '&amp;mlon=' + tLon + '&amp;zoom=14" target="_blank"';
+					aLink = ' href="http://www.openstreetmap.org/?mlat=' + encodeQuotes(tLat) + '&amp;mlon=' + encodeQuotes(tLon) + '&amp;zoom=14" target="_blank"';
 					fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
 					dText = tLat + '; ' + tLon;
 				}
@@ -488,7 +488,7 @@ function sendActivity(main, sub, text) {
 }
 
 // Sends the user's geographic position
-function sendPosition(vLat, vLon, vAlt) {
+function sendPosition(vLat, vLon, vAlt, vCountry, vCountrycode, vRegion, vPostalcode, vLocality, vStreet, vBuilding, vText, vURI) {
 	/* REF: http://xmpp.org/extensions/xep-0080.html */
 	
 	// We propagate the position on pubsub
@@ -501,13 +501,13 @@ function sendPosition(vLat, vLon, vAlt) {
 	var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
 	var geoloc = item.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
 	
-	if(vLat || vLon || vAlt) {
-		if(vLat)
-			geoloc.appendChild(iq.buildNode('lat', {'xmlns': NS_GEOLOC}, vLat));
-		if(vLon)
-			geoloc.appendChild(iq.buildNode('lon', {'xmlns': NS_GEOLOC}, vLon));
-		if(vAlt)
-			geoloc.appendChild(iq.buildNode('alt', {'xmlns': NS_GEOLOC}, vAlt));
+	// Create two position arrays
+	var pos_names  = ['lat', 'lon', 'alt', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
+	var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  getXMPPTime('utc')];
+	
+	for(var i = 0; i < pos_names.length; i++) {
+		if(pos_names[i] && pos_values[i])
+			geoloc.appendChild(iq.buildNode(pos_names[i], {'xmlns': NS_GEOLOC}, pos_values[i]));
 	}
 	
 	// And finally we send the XML
@@ -520,15 +520,95 @@ function sendPosition(vLat, vLon, vAlt) {
 		logThis('Not geolocated.', 2);
 }
 
+// Parses the user's geographic position
+function parsePosition(data) {
+	var result = $(data).find('result:first');
+	
+	// Get latitude and longitude
+	var lat = result.find('geometry:first location:first lat').text();
+	var lng = result.find('geometry:first location:first lng').text();
+	
+	var array = [
+	             lat,
+	             lng,
+	             result.find('address_component:has(type:contains("country")):first long_name').text(),
+	             result.find('address_component:has(type:contains("country")):first short_name').text(),
+	             result.find('address_component:has(type:contains("administrative_area_level_1")):first long_name').text(),
+	             result.find('address_component:has(type:contains("postal_code")):first long_name').text(),
+	             result.find('address_component:has(type:contains("locality")):first long_name').text(),
+	             result.find('address_component:has(type:contains("route")):first long_name').text(),
+	             result.find('address_component:has(type:contains("street_number")):first long_name').text(),
+	             result.find('formatted_address:first').text(),
+	             'http://www.openstreetmap.org/?mlat=' + lat + '&mlon=' + lng + '&zoom=14'
+	            ];
+	
+	return array;
+}
+
+// Converts a position into an human-readable one
+function humanPosition(tLocality, tRegion, tCountry) {
+	var tHuman = '';
+	
+	// Any locality?
+	if(tLocality) {
+		tHuman += tLocality;
+		
+		if(tRegion)
+			tHuman += ', ' + tRegion;
+		if(tCountry)
+			tHuman += ', ' + tCountry;
+	}
+	
+	// Any region?
+	else if(tRegion) {
+		tHuman += tRegion;
+		
+		if(tCountry)
+			tHuman += ', ' + tCountry;
+	}
+	
+	// Any country?
+	else if(tCountry)
+		tHuman += tCountry;
+	
+	return tHuman;
+}
+
 // Gets the user's geographic position
 function getPosition(position) {
-	var vLat = '' + position.coords.latitude + '';
-	var vLon = '' + position.coords.longitude + '';
-	var vAlt = '' + position.coords.altitude + '';
+	// Convert integers to strings
+	var vLat = '' + position.coords.latitude;
+	var vLon = '' + position.coords.longitude;
+	var vAlt = '' + position.coords.altitude;
+	
+	// Get full position (from Google Maps API)
+	$.get('./php/geolocation.php?latitude=' + encodeURIComponent(vLat) + '&longitude=' + encodeURIComponent(vLon) + '&language=' + encodeURIComponent(XML_LANG), function(data) {
+		// Parse data!
+		var results = parsePosition(data);
+		
+		// Handled!
+		sendPosition(
+		             vLat,
+		             vLon,
+		             vAlt,
+		             results[2],
+		             results[3],
+		             results[4],
+		             results[5],
+		             results[6],
+		             results[7],
+		             results[8],
+		             results[9],
+		             results[10]
+		            );
+		
+		// Store data
+		setDB('geolocation', 'now', xmlToString(data));
+		
+		logThis('Position details got from Google Maps API.');
+	});
 	
 	logThis('Position got: latitude > ' + vLat + ' / longitude > ' + vLon + ' / altitude > ' + vAlt);
-	
-	sendPosition(vLat, vLon, vAlt);
 }
 
 // Geolocates the user

@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 24/04/11
 
 */
 
@@ -98,6 +98,30 @@ function displayMicroblog(packet, from, hash, mode) {
 			tTime = '';
 		}
 		
+		// Get the item geoloc
+		var tGeoloc = '';
+		var sGeoloc = $(this).find('geoloc[xmlns=' + NS_GEOLOC + ']:first');
+		var gLat = sGeoloc.find('lat').text();
+		var gLon = sGeoloc.find('lon').text();
+		
+		if(gLat && gLon) {
+			tGeoloc += '<a class="geoloc talk-images" href="http://www.openstreetmap.org/?mlat=' + encodeQuotes(gLat) + '&amp;mlon=' + encodeQuotes(gLon) + '&amp;zoom=14" target="_blank">';
+			
+			// Human-readable name?
+			var gHuman = humanPosition(
+		                           sGeoloc.find('locality').text(),
+		                           sGeoloc.find('region').text(),
+		                           sGeoloc.find('country').text()
+		                          );
+			
+			if(gHuman)
+				tGeoloc += gHuman.htmlEnc();
+			else
+				tGeoloc += gLat.htmlEnc() + '; ' + gLon.htmlEnc();
+			
+			tGeoloc += '</a>';
+		}
+		
 		// Retrieve the message body
 		if(tBody)
 			tTitle = tBody;
@@ -126,7 +150,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');"></a>';
 			
 			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
-				'<p class="infos">' + tTime + '</p>';
+				'<p class="infos">' + tTime + tGeoloc + '</p>';
 			
 			// Any file to display?
 			if(tFURL.length)
@@ -924,6 +948,24 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Create the comments child
 	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'related', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
+	
+	// Create the geoloc child
+	var geoloc_xml = getDB('geolocation', 'now');
+	
+	if(geoloc_xml) {
+		// Create two position arrays
+		var geo_names  = ['lat', 'lon', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
+		var geo_values = parsePosition(XMLFromString(geoloc_xml));
+		
+		// New geoloc child
+		var geoloc = entry.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
+		
+		// Append the geoloc content
+		for(var g = 0; g < geo_names.length; g++) {
+			if(geo_names[g] && geo_values[g])
+				geoloc.appendChild(iq.buildNode(geo_names[g], {'xmlns': NS_GEOLOC}, geo_values[g]));
+		}
+	}
 	
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);

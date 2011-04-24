@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 24/04/11
 
 */
 
@@ -49,7 +49,7 @@ function codeIntegrateBox(serv, url) {
 	// Protocol to use
 	var protocol = 'http';
 	
-	if(window.location.href && (window.location.href).match(/^https/i))
+	if(isHTTPS())
 		protocol = 'https';
 	
 	// Legacy browser

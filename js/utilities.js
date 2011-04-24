@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 23/04/11
+Last revision: 24/04/11
 
 */
 
@@ -67,6 +67,14 @@ function generateXID(xid, type) {
 	
 	// Nothing special (yet bare XID)
 	return xid;
+}
+
+// Returns whether using HTTPS or not
+function isHTTPS() {
+	if(window.location.href && (window.location.href).match(/^https/i))
+		return true;
+	
+	return false;
 }
 
 // Generates the good storage URL

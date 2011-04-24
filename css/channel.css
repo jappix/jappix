@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 24/04/11
 
 */
 
@@ -229,6 +229,13 @@ Last revision: 23/04/11
 
 #channel .one-update p.infos {
 	font-size: 0.9em;
+}
+
+#channel .one-update p.infos a.geoloc {
+	background-position: 0 -1778px;
+	color: #3f3f3f;
+	margin-left: 18px;
+	padding-left: 14px;
 }
 
 #channel .one-update p.file {

@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 24/04/11
 
 */
 
@@ -250,8 +250,9 @@ function saveOptions() {
 	else {
 		setDB('options', 'geolocation', '0');
 		
-		// We delete the geolocation informations in pubsub
-		sendPosition('', '', '');
+		// We delete the geolocation informations
+		sendPosition();
+		removeDB('geolocation', 'now');
 	}
 	
 	// We apply the roster show all
