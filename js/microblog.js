@@ -947,7 +947,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	}
 	
 	// Create the comments child
-	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'related', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
+	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'replies', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
 	
 	// Create the geoloc child
 	var geoloc_xml = getDB('geolocation', 'now');
