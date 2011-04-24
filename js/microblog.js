@@ -399,6 +399,10 @@ function handleCommentsMicroblog(iq) {
 		var current_body = $(this).find('content[type=text]').text();
 		var current_name;
 		
+		// Legacy?
+		if(!current_body)
+			current_body = $(this).find('title:last').text();
+		
 		// Yet displayed? (continue the loop)
 		if($(path).find('.one-comment[data-id=' + current_id + ']').size())
 			return;
