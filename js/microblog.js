@@ -126,7 +126,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		if(tBody)
 			tTitle = tBody;
 		else
-			tTitle = $(this).find('title:last').text();
+			tTitle = $(this).find('content[type=text]').text();
 		
 		// Trim the content
 		tTitle = trim(tTitle);
@@ -396,7 +396,7 @@ function handleCommentsMicroblog(iq) {
 		var current_id = $(this).attr('id');
 		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
 		var current_date = $(this).find('published').text();
-		var current_body = $(this).find('title').text();
+		var current_body = $(this).find('content[type=text]').text();
 		var current_name;
 		
 		// Yet displayed? (continue the loop)
@@ -510,7 +510,7 @@ function sendCommentMicroblog(value, server, node, id) {
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
 	// Create the comment
-	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, value));
+	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, value));
 	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, date));
 	
 	// Author XID
@@ -922,7 +922,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + author_xid));
 	
 	// Create the XML entry childs
-	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, body));
+	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, body));
 	entry.appendChild(iq.buildNode('body', {'xmlns': NS_ATOM}, body));
 	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
