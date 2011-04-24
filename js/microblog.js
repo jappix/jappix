@@ -923,7 +923,6 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Create the XML entry childs
 	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, body));
-	entry.appendChild(iq.buildNode('body', {'xmlns': NS_ATOM}, body));
 	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
 	entry.appendChild(iq.buildNode('link', {
