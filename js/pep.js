@@ -165,6 +165,7 @@ function displayPEP(xid, type) {
 				var tLat = value.find('lat').text();
 				var tLon = value.find('lon').text();
 				var tHuman = value.find('human').text();
+				var tReal = tHuman;
 				
 				// No human location?
 				if(!tHuman)
@@ -174,7 +175,11 @@ function displayPEP(xid, type) {
 				if(tLat && tLon) {
 					aLink = ' href="http://www.openstreetmap.org/?mlat=' + encodeQuotes(tLat) + '&amp;mlon=' + encodeQuotes(tLon) + '&amp;zoom=14" target="_blank"';
 					fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
-					dText = tLat + '; ' + tLon;
+					
+					if(tReal)
+						dText = tReal;
+					else
+						dText = tLat + '; ' + tLon;
 				}
 				
 				else {
@@ -253,7 +258,7 @@ function displayPEP(xid, type) {
 					
 					else {
 						href = 'http://www.openstreetmap.org/?mlat=' + tLat + '&amp;mlon=' + tLon + '&amp;zoom=14';
-						title = _e("Where are you?");
+						title = _e("Where are you?") + ' (' + dText + ')';
 						icon_class = 'location-world';
 					}
 					
