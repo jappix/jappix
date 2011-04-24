@@ -292,7 +292,8 @@ function displayMicroblog(packet, from, hash, mode) {
 							$('#channel').live('click', function(evt) {
 								if(!$(evt.target).parents('.' + tHash).size()) {
 									$('#channel').die('click');
-									$('#channel div.comments-content').stopTime().remove();
+									$('#channel .one-update div.comments-content').stopTime();
+									$('#channel .one-update div.comments').remove();
 								}
 							});
 							
@@ -606,7 +607,7 @@ function handleMicroblog(iq) {
 // Resets the microblog elements
 function resetMicroblog() {
 	// Reset everything
-	$('#channel .individual div.comments-content').stopTime();
+	$('#channel .individual .one-update div.comments-content').stopTime();
 	$('#channel .individual').remove();
 	$('#channel .mixed').show();
 	
