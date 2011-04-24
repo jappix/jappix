@@ -219,7 +219,7 @@ Last revision: 24/04/11
 
 #channel .one-update p {
 	display: block;
-	margin: 0 12px 4px 0;
+	margin: 0 12px 5px 0;
 }
 
 #channel .one-update p b:hover {
@@ -233,7 +233,7 @@ Last revision: 24/04/11
 
 #channel .one-update p.infos a.geoloc {
 	background-position: 0 -1778px;
-	color: #141414;
+	color: #363636;
 	margin-left: 18px;
 	padding-left: 14px;
 }
@@ -241,7 +241,7 @@ Last revision: 24/04/11
 #channel .one-update p.infos a.geoloc:hover,
 #channel .one-update p.infos a.geoloc:focus,
 #channel .one-update p.infos a.geoloc:active {
-	color: #2a2a2a;
+	color: #141414;
 }
 
 #channel .one-update p.file {
