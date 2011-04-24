@@ -238,6 +238,12 @@ Last revision: 24/04/11
 	padding-left: 14px;
 }
 
+#channel .one-update p.infos a.geoloc:hover,
+#channel .one-update p.infos a.geoloc:focus,
+#channel .one-update p.infos a.geoloc:active {
+	color: #2a2a2a;
+}
+
 #channel .one-update p.file {
 	font-size: 0.9em;
 	margin: 6px 0 5px 75px;

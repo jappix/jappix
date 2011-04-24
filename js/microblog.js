@@ -292,7 +292,7 @@ function displayMicroblog(packet, from, hash, mode) {
 							$('#channel').live('click', function(evt) {
 								if(!$(evt.target).parents('.' + tHash).size()) {
 									$('#channel').die('click');
-									$('#channel .one-update div.comments').stopTime().remove();
+									$('#channel div.comments-content').stopTime().remove();
 								}
 							});
 							
@@ -469,7 +469,7 @@ function handleCommentsMicroblog(iq) {
 	// DOM events
 	if(complete) {
 		// Update timer
-		$(path).everyTime('60s', function() {
+		$(path).everyTime('30s', function() {
 			getCommentsMicroblog(server, node, id);
 		});
 		
@@ -605,10 +605,9 @@ function handleMicroblog(iq) {
 
 // Resets the microblog elements
 function resetMicroblog() {
-	// Remove the individual channel
+	// Reset everything
+	$('#channel .individual div.comments-content').stopTime();
 	$('#channel .individual').remove();
-	
-	// Show the mixed channel
 	$('#channel .mixed').show();
 	
 	// Hide the waiting icon
