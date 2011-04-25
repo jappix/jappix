@@ -7,7 +7,7 @@ These are the music JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 25/04/11
 
 */
 
@@ -113,12 +113,12 @@ function searchMusic() {
 	$(path + '.no-results').hide();
 	
 	// Get the Jamendo results
-	$.get('./php/music-search.php?searchquery=' + encodeURIComponent(string) + '&location=jamendo', function(data) {
+	$.get('./php/music-search.php', {searchquery: string, location: 'jamendo'}, function(data) {
 		parseMusic(data, 'jamendo');
 	});
 	
 	// Get the local results
-	$.get('./php/music-search.php?searchquery=' + encodeURIComponent(string) + '&location=' + encodeURIComponent(JAPPIX_LOCATION), function(data) {
+	$.get('./php/music-search.php', {searchquery: string, location: JAPPIX_LOCATION}, function(data) {
 		parseMusic(data, 'local');
 	});
 }

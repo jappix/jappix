@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 25/04/11
 
 */
 
@@ -587,7 +587,7 @@ function getPosition(position) {
 	var vAlt = '' + position.coords.altitude;
 	
 	// Get full position (from Google Maps API)
-	$.get('./php/geolocation.php?latitude=' + encodeURIComponent(vLat) + '&longitude=' + encodeURIComponent(vLon) + '&language=' + encodeURIComponent(XML_LANG), function(data) {
+	$.get('./php/geolocation.php', {latitude: vLat, longitude: vLon, language: XML_LANG}, function(data) {
 		// Parse data!
 		var results = parsePosition(data);
 		
