@@ -186,7 +186,7 @@ function applyIntegrateBox(url, service, url_list, services_list, comments_e_lis
 		else
 			$('#integratebox .bottom .finish.next').addClass('disabled');
 		
-		// Click event
+		// Click events
 		$('#integratebox .bottom .finish.previous, #integratebox .bottom .finish.next').click(function() {
 			// Not acceptable?
 			if($(this).is('.disabled'))
@@ -200,6 +200,14 @@ function applyIntegrateBox(url, service, url_list, services_list, comments_e_lis
 			
 			return false;
 		});
+		
+		if(width_style == 'large')
+			$('#integratebox .content a:has(img)').click(function() {
+				if(next_url && next_services)
+					applyIntegrateBox(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+				
+				return false;
+			});
 		
 		return false;
 	}
@@ -311,3 +319,20 @@ function launchIntegratebox() {
 	// Click event
 	$('#integratebox .bottom .finish.close').click(closeIntegrateBox);
 }
+
+// Plugin keyup event
+$(document).keyup(function(e) {
+	// Previous item?
+	if((exists('#integratebox .bottom .finish.previous:not(.disabled)')) && (e.keyCode == 37)) {
+		$('#integratebox .bottom .finish.previous').click();
+		
+		return false;
+	}
+	
+	// Next item?
+	if((exists('#integratebox .bottom .finish.next:not(.disabled)')) && (e.keyCode == 39)) {
+		$('#integratebox .bottom .finish.next').click();
+		
+		return false;
+	}
+});
