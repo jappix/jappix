@@ -41,12 +41,35 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Read attached files with a thumb (place them at first)
 		$(this).find('link[rel=enclosure]:has(link[rel=self][title=thumb])').each(function() {
-			tFName.push($(this).attr('title'));
-			tFURL.push($(this).attr('href'));
-			tFThumb.push($(this).find('link[rel=self][title=thumb]:first').attr('href'));
-			tFSource.push($(this).attr('source'));
-			tFType.push($(this).attr('type'));
-			tFLength.push($(this).attr('length'));
+			if($(this).attr('title'))
+				tFName.push($(this).attr('title'));
+			else
+				tFName.push('');
+			
+			if($(this).attr('href'))
+				tFURL.push($(this).attr('href'));
+			else
+				tFURL.push('');
+			
+			if($(this).find('link[rel=self][title=thumb]:first').attr('href'))
+				tFThumb.push($(this).find('link[rel=self][title=thumb]:first').attr('href'));
+			else
+				tFThumb.push('');
+			
+			if($(this).attr('source'))
+				tFSource.push($(this).attr('source'));
+			else
+				tFSource.push('');
+			
+			if($(this).attr('type'))
+				tFType.push($(this).attr('type'));
+			else
+				tFType.push('');
+			
+			if($(this).attr('length'))
+				tFLength.push($(this).attr('length'));
+			else
+				tFLength.push('');
 			
 			// Comments?
 			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
@@ -64,12 +87,32 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Read attached files without any thumb
 		$(this).find('link[rel=enclosure]:not(:has(link[rel=self][title=thumb]))').each(function() {
-			tFName.push($(this).attr('title'));
-			tFURL.push($(this).attr('href'));
+			if($(this).attr('title'))
+				tFName.push($(this).attr('title'));
+			else
+				tFName.push('');
+			
+			if($(this).attr('href'))
+				tFURL.push($(this).attr('href'));
+			else
+				tFURL.push('');
+			
+			if($(this).attr('source'))
+				tFSource.push($(this).attr('source'));
+			else
+				tFSource.push('');
+			
+			if($(this).attr('type'))
+				tFType.push($(this).attr('type'));
+			else
+				tFType.push('');
+			
+			if($(this).attr('length'))
+				tFLength.push($(this).attr('length'));
+			else
+				tFLength.push('');
+			
 			tFThumb.push('');
-			tFSource.push($(this).attr('source'));
-			tFType.push($(this).attr('type'));
-			tFLength.push($(this).attr('length'));
 			
 			// Comments?
 			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
@@ -189,11 +232,16 @@ function displayMicroblog(packet, from, hash, mode) {
 			// Generate an array of the files URL
 			for(var a = 0; a < tFURL.length; a++) {
 				// Not enough data?
-				if(!tFName[a] || !tFURL[a] || !tFType[a])
+				if(!tFURL[a])
 					continue;
 				
-				// Push the current URL!
-				if(canIntegrateBox(explodeThis('/', tFType[a], 1))) {
+				// Push the current URL! (YouTube or file)
+				if(tFURL[a].match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
+					aFURL.push(trim(RegExp.$8));
+					aFCat.push('youtube');
+				}
+				
+				else if(canIntegrateBox(explodeThis('/', tFType[a], 1))) {
 					aFURL.push(tFURL[a]);
 					aFCat.push(fileCategory(explodeThis('/', tFType[a], 1)));
 				}
@@ -202,16 +250,23 @@ function displayMicroblog(packet, from, hash, mode) {
 			// Add each file code
 			for(var f = 0; f < tFURL.length; f++) {
 				// Not enough data?
-				if(!tFName[f] || !tFURL[f] || !tFType[f])
+				if(!tFURL[f])
 					continue;
 				
 				// Get the file type
 				var tFExt = explodeThis('/', tFType[f], 1);
 				var tFCat = fileCategory(tFExt);
+				var tFLink = tFURL[f];
+				
+				// Youtube video?
+				if(tFLink.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
+					tFLink = trim(RegExp.$8);
+					tFCat = 'youtube';
+				}
 				
 				// Supported image/video/sound
-				if(canIntegrateBox(tFExt))
-					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
+				if(canIntegrateBox(tFExt) || (tFCat == 'youtube'))
+					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFLink) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
 				else
 					tFEClick = '';
 				
@@ -904,6 +959,17 @@ function sendMicroblog() {
 				fThumb.push($(this).attr('data-thumb'));
 			});
 			
+			// Containing YouTube videos?
+			var yt_matches = body.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim);
+			
+			for(y in yt_matches) {
+				fName.push('');
+				fType.push('text/html');
+				fLength.push('');
+				fURL.push(trim(yt_matches[y]));
+				fThumb.push('https://img.youtube.com/vi/' + trim(yt_matches[y].replace(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim, '$8')) + '/0.jpg');
+			}
+			
 			// Send the message on the XMPP network
 			publishMicroblog(body, fName, fURL, fType, fLength, fThumb);
 		}
@@ -981,11 +1047,19 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	// Create the attached files nodes
 	for(var i = 0; i < attachedurl.length; i++) {
 		// Not enough data?
-		if(!attachedname[i] || !attachedurl[i] || !attachedtype[i])
+		if(!attachedurl[i])
 			continue;
 		
 		// Append a new file element
-		var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'title': attachedname[i], 'type': attachedtype[i], 'length': attachedlength[i], 'href': attachedurl[i]}));
+		var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'href': attachedurl[i]}));
+		
+		// Add attributes
+		if(attachedname[i])
+			file.setAttribute('title', attachedname[i]);
+		if(attachedtype[i])
+			file.setAttribute('type', attachedtype[i]);
+		if(attachedlength[i])
+			file.setAttribute('length', attachedlength[i]);
 		
 		// Any thumbnail?
 		if(attachedthumb[i])

@@ -237,7 +237,7 @@ function applyBuddyInput(xid) {
 	$(rename).keyup(function(e) {
 		if(e.keyCode == 13) {
 			// Send the item
-			sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+			sendRoster(xid, '', trim($(rename).val()), thisBuddyGroups(xid));
 			
 			// Remove the buddy editor
 			closeBubbles();
@@ -249,9 +249,9 @@ function applyBuddyInput(xid) {
 	$(group).keyup(function(e) {
 		if(e.keyCode == 13) {
 			// Empty input?
-			if(!$(this).val()) {
+			if(!trim($(this).val())) {
 				// Send the item
-				sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+				sendRoster(xid, '', trim($(rename).val()), thisBuddyGroups(xid));
 				
 				// Remove the buddy editor
 				closeBubbles();
@@ -260,7 +260,7 @@ function applyBuddyInput(xid) {
 			}
 			
 			// Get the values
-			var this_value = $(this).val();
+			var this_value = trim($(this).val());
 			var escaped_value = escape(this_value);
 			
 			// Check if the group yet exists
@@ -363,7 +363,7 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' a.save').click(function() {
 		// Send the item
-		sendRoster(xid, '', $(rename).val(), thisBuddyGroups(xid));
+		sendRoster(xid, '', trim($(rename).val()), thisBuddyGroups(xid));
 		
 		// Remove the buddy editor
 		closeBubbles();
@@ -486,7 +486,7 @@ function thisBuddyGroups(xid) {
 	});
 	
 	// Entered input value (and not yet in the array)
-	var value = $(path + 'p.bm-group input').val();
+	var value = trim($(path + 'p.bm-group input').val());
 	
 	if(value && !existArrayValue(array, value))
 		array.push(value);
@@ -718,7 +718,7 @@ function launchRoster() {
 	
 	.blur(function() {
 		// Nothing is entered, put the placeholder instead
-		if(!$(this).val())
+		if(!trim($(this).val()))
 			aFilter.hide();
 		else
 			aFilter.show();
@@ -796,10 +796,10 @@ function launchRoster() {
 		// Blur event on the add contact input
 		$('.add-contact-jid').blur(function() {
 			// Read the value
-			var value = $(this).val();
+			var value = trim($(this).val());
 			
 			// Try to catch the buddy name
-			if(value && !$('.add-contact-name').val() && ($('.add-contact-gateway').val() == 'none')) {
+			if(value && !trim($('.add-contact-name').val()) && ($('.add-contact-gateway').val() == 'none')) {
 				// User XID
 				var xid = generateXID(value, 'chat');
 				
@@ -816,8 +816,8 @@ function launchRoster() {
 			// Enter : continue
 			if(e.keyCode == 13) {
 				// Get the values
-				var xid = $('.add-contact-jid').val();
-				var name = $('.add-contact-name').val();
+				var xid = trim($('.add-contact-jid').val());
+				var name = trim($('.add-contact-name').val());
 				var gateway = unescape($('.add-contact-gateway').val());
 				
 				// Generate the XID to add
@@ -896,7 +896,7 @@ function launchRoster() {
 				
 				// Join something
 				else {
-					var xid = $('.join-jid').val();
+					var xid = trim($('.join-jid').val());
 					var type = $('.buddy-conf-join-select').val();
 					
 					if(xid && type) {
@@ -996,7 +996,7 @@ function launchRoster() {
 		
 		// Change event
 		$('.buddy-conf-groupchat-select').change(function() {
-			var groupchat = $(this).val();
+			var groupchat = trim($(this).val());
 			
 			if(groupchat != 'none') {
 				// We hide the bubble
