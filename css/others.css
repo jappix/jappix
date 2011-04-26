@@ -7,7 +7,7 @@ This is the others CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 26/04/11
  
 */
  
@@ -17,8 +17,8 @@ Last revision: 23/04/11
  
 #top-content {
         position: absolute;
-        right: 8px;
-        left: 8px;
+        right: 6px;
+        left: 6px;
         top: 0;
         min-width: 860px;
         z-index: 50;
@@ -27,9 +27,9 @@ Last revision: 23/04/11
 #main-content {
         position: absolute;
         top: 36px;
-        left: 8px;
-        right: 8px;
-        bottom: 8px;
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
         min-width: 850px;
         min-height: 450px;
 }
@@ -49,14 +49,14 @@ Last revision: 23/04/11
         top: 0;
         right: 0;
         bottom: 0;
-        left: 265px;
+        left: 262px;
         z-index: 10;
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
-        box-shadow: 0 0 8px #5c5c5c;
-        -moz-box-shadow: 0 0 8px #5c5c5c;
-        -webkit-box-shadow: 0 0 8px #5c5c5c;
+        box-shadow: 0 0 6px #5c5c5c;
+        -moz-box-shadow: 0 0 6px #5c5c5c;
+        -webkit-box-shadow: 0 0 6px #5c5c5c;
 }
  
 #general-wait {
@@ -75,8 +75,8 @@ Last revision: 23/04/11
         background-position: 8px 8px;
         padding: 8px;
         position: absolute;
-        right: 10px;
-        bottom: 10px;
+        right: 6px;
+        bottom: 6px;
         border-radius: 4px;
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;

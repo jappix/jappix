@@ -1148,7 +1148,10 @@ function launchMicroblog() {
 		// Enter pressed: send the microblog notice
 		if((e.keyCode == 13) && !exists('#attach .wait'))
 			return sendMicroblog();
-	});
+	})
+	
+	// Placeholder
+	.placeholder();
 	
 	// Microblog file attacher
 	attachMicroblog();

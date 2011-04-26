@@ -766,6 +766,9 @@ msgstr ""
 msgid "What's up with you?"
 msgstr ""
 
+msgid "Type something you want to share with your friends..."
+msgstr ""
+
 msgid "Fetching the social channel..."
 msgstr ""
 

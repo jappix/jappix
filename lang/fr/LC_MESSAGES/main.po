@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-04-26 12:13:24\n"
+"PO-Revision-Date: 2011-04-26 14:16:53\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2232,4 +2232,8 @@ msgstr "Intégration des médias"
 #: 
 msgid "Comments locked!"
 msgstr "Commentaires verrouillés !"
+
+#: 
+msgid "Type something you want to share with your friends..."
+msgstr "Entrez quelque-chose que vous souhaitez partager avec vos amis..."
 
