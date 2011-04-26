@@ -31,9 +31,9 @@ Last revision: 13/02/11
 	width: 270px;
 	text-decoration: none;
 	float: left;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 }
 
 #welcome a.box.share {

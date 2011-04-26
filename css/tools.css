@@ -120,9 +120,9 @@ Last revision: 30/03/11
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.8);
 	padding: 14px 6px 6px 6px;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .notifications-content .tools-content-subitem {

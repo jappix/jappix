@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 24/04/11
+Last revision: 26/04/11
 
 */
 
@@ -509,6 +509,7 @@ function fileCategory(ext) {
 		
 		// Videos
 		case 'ogv':
+		case 'ogg':
 		case 'mkv':
 		case 'avi':
 		case 'mov':
@@ -532,7 +533,6 @@ function fileCategory(ext) {
 		
 		// Sounds
 		case 'oga':
-		case 'ogg':
 		case 'mka':
 		case 'flac':
 		case 'mp3':

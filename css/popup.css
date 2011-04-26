@@ -34,9 +34,9 @@ Last revision: 26/04/11
 	z-index: 10000;
 	left: 50%;
 	top: 50%;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	box-shadow: 0 0 35px #232323;
 	-moz-box-shadow: 0 0 35px #232323;
 	-webkit-box-shadow: 0 0 35px #232323;
@@ -78,12 +78,12 @@ Last revision: 26/04/11
 	font-size: 0.94em;
 	overflow: hidden;
 	float: left;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
 }
 
 .popup .tab a:hover,
@@ -117,9 +117,9 @@ Last revision: 26/04/11
 	width: 640px;
 	position: absolute;
 	left: 10px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	box-shadow: 0 0 20px black;
 	-moz-box-shadow: 0 0 20px black;
 	-webkit-box-shadow: 0 0 20px black;
@@ -140,9 +140,9 @@ Last revision: 26/04/11
 	bottom: 10px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .popup.large div.comments div.comments-content {
@@ -163,12 +163,12 @@ Last revision: 26/04/11
 }
 
 .popup.large div.comments div.comments-content {
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
 }
 
 .popup .head {
@@ -413,9 +413,9 @@ Last revision: 26/04/11
 	margin-top: 1px;
 	padding: 4px 8px;
 	text-decoration: none;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 .popup a.one-button:hover,

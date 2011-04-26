@@ -19,9 +19,9 @@ Last revision: 16/03/11
 	right: 6px;
 	left: 6px;
 	z-index: 8;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 #page-engine .top {
@@ -36,12 +36,12 @@ Last revision: 16/03/11
 	right: 0;
 	padding: 6px;
 	height: 80px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
 }
 
 #page-engine .top .avatar-container {
@@ -436,9 +436,9 @@ Last revision: 16/03/11
 	height: 100%;
 	width: 100%;
 	font-size: 1.1em;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
 	-moz-border-radius-topright: 0;
@@ -453,12 +453,12 @@ Last revision: 16/03/11
 	font-size: 0.9em;
 	right: 0;
 	z-index: 2;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
 }
 
 #page-engine .muc-ask label {
@@ -494,9 +494,9 @@ Last revision: 16/03/11
 	width: 200px;
 	height: 110px;
 	text-shadow: 0 1px 1px black;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 #page-engine .tooltip-subarrow {
