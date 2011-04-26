@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 26/04/11
 
 */
 
@@ -27,6 +27,8 @@ function displayMicroblog(packet, from, hash, mode) {
 		var tFSource = [];
 		var tFType = [];
 		var tFLength = [];
+		var tFEComments = [];
+		var tFNComments = [];
 		var aFURL = [];
 		var aFCat = [];
 		
@@ -45,6 +47,19 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
 			tFLength.push($(this).attr('length'));
+			
+			// Comments?
+			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
+			
+			if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
+				tFEComments.push(RegExp.$1);
+				tFNComments.push(decodeURIComponent(RegExp.$2));
+			}
+			
+			else {
+				tFEComments.push('');
+				tFNComments.push('');
+			}
 		});
 		
 		// Read attached files without any thumb
@@ -55,6 +70,19 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFSource.push($(this).attr('source'));
 			tFType.push($(this).attr('type'));
 			tFLength.push($(this).attr('length'));
+			
+			// Comments?
+			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
+			
+			if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
+				tFEComments.push(RegExp.$1);
+				tFNComments.push(decodeURIComponent(RegExp.$2));
+			}
+			
+			else {
+				tFEComments.push('');
+				tFNComments.push('');
+			}
 		});
 		
 		// Get the repeat value
@@ -181,7 +209,7 @@ function displayMicroblog(packet, from, hash, mode) {
 				
 				// Supported image/video/sound
 				if(canIntegrateBox(tFExt))
-					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\');" ';
+					tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFURL[f]) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
 				else
 					tFEClick = '';
 				
@@ -197,7 +225,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
@@ -255,7 +283,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost:not([data-event=true])').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments);
+				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments, tFEComments, tFNComments);
 			})
 			
 			.attr('data-event', 'true');
@@ -270,7 +298,7 @@ function displayMicroblog(packet, from, hash, mode) {
 						
 						// Create comments container
 						$(this).append(
-							'<div class="comments" data-id="' + idComments + '">' + 
+							'<div class="comments" data-id="' + encodeQuotes(idComments) + '">' + 
 								'<div class="arrow talk-images"></div>' + 
 								'<div class="comments-content">' + 
 									'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
@@ -312,7 +340,7 @@ function displayMicroblog(packet, from, hash, mode) {
 }
 
 // Removes a given microblog item
-function removeMicroblog(id, hash, comments_server, comments_node) {
+function removeMicroblog(id, hash) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
 	// Remove the item from our DOM
@@ -327,10 +355,6 @@ function removeMicroblog(id, hash, comments_server, comments_node) {
 	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq, handleErrorReply);
-	
-	// Any comments node to remove?
-	if(comments_node && (comments_server == getXID()))
-		removeCommentsMicroblog(comments_node);
 	
 	return false;
 }
@@ -356,7 +380,7 @@ function getCommentsMicroblog(server, node, id) {
 function handleCommentsMicroblog(iq) {
 	// Path
 	var id = explodeThis('-', iq.getID(), 1);
-	var path = '#channel .one-update div.comments[data-id=' + id + '] div.comments-content';
+	var path = 'div.comments[data-id=' + id + '] div.comments-content';
 	
 	// Does not exist?
 	if(!exists(path))
@@ -472,6 +496,8 @@ function handleCommentsMicroblog(iq) {
 		// Update timer
 		$(path).everyTime('30s', function() {
 			getCommentsMicroblog(server, node, id);
+			
+			logThis('Updating comments node: ' + node + ' on ' + server + '...');
 		});
 		
 		// Input key event
@@ -529,21 +555,6 @@ function sendCommentMicroblog(value, server, node, id) {
 	// Handle this comment!
 	iq.setFrom(server);
 	handleCommentsMicroblog(iq);
-	
-	return false;
-}
-
-// Removes a given microblog comments node
-function removeCommentsMicroblog(node) {
-	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-delete */
-	
-	var iq = new JSJaCIQ();
-	iq.setType('set');
-	
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
-	pubsub.appendChild(iq.buildNode('delete', {'node': node, 'xmlns': NS_PUBSUB_OWNER}));
-	
-	con.send(iq);
 	
 	return false;
 }
@@ -878,7 +889,7 @@ function sendMicroblog() {
 }
 
 // Publishes a given microblog item
-function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node) {
+function publishMicroblog(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node, comments_entity_file, comments_node_file) {
 	/* REF: http://xmpp.org/extensions/xep-0277.html */
 	
 	// Generate some values
@@ -904,6 +915,11 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		comments_entity = xid;
 		comments_node = NS_URN_MBLOG + ':comments:' + id;
 	}
+	
+	if(!comments_entity_file)
+		comments_entity_file = [];
+	if(!comments_node_file)
+		comments_node_file = [];
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -942,11 +958,23 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 			continue;
 		
 		// Append a new file element
-		var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'title': attachedname[i], 'type': attachedtype[i], 'length': attachedlength, 'href': attachedurl[i]}));
+		var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'title': attachedname[i], 'type': attachedtype[i], 'length': attachedlength[i], 'href': attachedurl[i]}));
 		
 		// Any thumbnail?
 		if(attachedthumb[i])
 			file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'self', 'title': 'thumb', 'type': attachedtype[i], 'href': attachedthumb[i]}));
+		
+		// Any comments node?
+		if(!comments_entity_file[i] || !comments_node_file[i]) {
+			// Generate values
+			comments_entity_file[i] = getXID();
+			comments_node_file[i] = NS_URN_MBLOG + ':comments:' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
+			
+			// Create the node
+			setupMicroblog(comments_node_file[i], '1', '10000', true);
+		}
+		
+		file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'replies', 'title': 'comments_file', 'href': 'xmpp:' + comments_entity_file[i] + '?;node=' + encodeURIComponent(comments_node_file[i])}));
 	}
 	
 	// Create the comments child
@@ -973,7 +1001,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	// Send the IQ
 	con.send(iq, handleMyMicroblog);
 	
-	// Create the XML comments PubSub node
+	// Create the XML comments PubSub nodes
 	if(node_create)
 		setupMicroblog(comments_node, '1', '10000', true);
 	

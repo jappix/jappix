@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 26/04/11
 
 */
 
@@ -100,7 +100,7 @@ function codeIntegrateBox(serv, url) {
 }
 
 // Applies a given integratebox element
-function applyIntegrateBox(url, service, url_list, services_list) {
+function applyIntegrateBox(url, service, url_list, services_list, comments_e_list, comments_n_list, width_style) {
 	// Close the integratebox
 	closeIntegrateBox();
 	
@@ -129,14 +129,44 @@ function applyIntegrateBox(url, service, url_list, services_list) {
 			// Hide it when it is loaded
 			$('#integratebox img').load(function() {
 				waitItem.hide();
+				
+				// Center the image vertically
+				$(this).css('margin-top', (($('#integratebox .content').height() - $(this).height()) / 2));
 			});
+		}
+		
+		// Large style?
+		var comments_id = genID();
+		
+		if(width_style == 'large') {
+			// Make the popup large
+			$('#integratebox .popup').addClass('large');
+			
+			// Add the right content
+			$('#integratebox .content').after(
+				'<div class="comments" data-id="' + encodeQuotes(comments_id) + '">' + 
+					'<div class="comments-content">' + 
+						'<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>' + 
+					'</div>' + 
+				'</div>'
+			);
 		}
 		
 		// Previous and next items?
 		var url_array = stringToArray(url_list);
 		var services_array = stringToArray(services_list);
+		var comments_e_array = stringToArray(comments_e_list);
+		var comments_n_array = stringToArray(comments_n_list);
 		var index = indexArrayValue(url_array, url);
 		
+		// Any comments?
+		if(exists('#integratebox .comments')) {
+			if(comments_e_array[index] && comments_n_array[index])
+				getCommentsMicroblog(comments_e_array[index], comments_n_array[index], comments_id);
+			else
+				$('#integratebox .comments .comments-content').html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Comments locked!") + '</div>');
+		}
+			
 		// Get the previous values
 		var previous_url = url_array[index - 1];
 		var previous_services = services_array[index - 1];
@@ -164,9 +194,9 @@ function applyIntegrateBox(url, service, url_list, services_list) {
 			
 			// Apply the event!
 			if($(this).is('.previous'))
-				applyIntegrateBox(previous_url, previous_services, url_list, services_list);
+				applyIntegrateBox(previous_url, previous_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
 			else
-				applyIntegrateBox(next_url, next_services, url_list, services_list);
+				applyIntegrateBox(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
 			
 			return false;
 		});

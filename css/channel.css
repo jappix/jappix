@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 26/04/11
 
 */
 
@@ -303,12 +303,14 @@ Last revision: 24/04/11
 	border-color: #464646;
 }
 
-#channel .one-update div.comments {
+#channel .one-update div.comments,
+.popup.large div.comments {
 	width: 410px;
 	margin: 2px 0 2px 76px;
 }
 
-#channel .one-update div.comments div.arrow {
+#channel .one-update div.comments div.arrow,
+.popup.large div.comments div.arrow {
 	background-position: 0 -1702px;
 	width: 20px;
 	height: 8px;
@@ -316,20 +318,23 @@ Last revision: 24/04/11
 	display: block;
 }
 
-#channel .one-update div.comments div.comments-content {
+#channel .one-update div.comments div.comments-content,
+.popup.large div.comments div.comments-content {
 	background-color: #e5ebec;
 	color: black;
 	font-size: 0.9em;
 	text-shadow: 0 1px 0 white;
 }
 
-#channel .one-update div.comments input {
+#channel .one-update div.comments input,
+.popup.large div.comments input {
 	width: 356px;
 	margin: 6px 0;
 	padding: 4px 5px;
 }
 
-#channel .one-update div.comments span.icon {
+#channel .one-update div.comments span.icon,
+.popup.large div.comments span.icon {
 	background-position: 0 -1082px;
 	height: 16px;
 	width: 16px;
@@ -337,40 +342,50 @@ Last revision: 24/04/11
 	float: left;
 }
 
-#channel .one-update div.comments .one-comment.loading span.icon {
+#channel .one-update div.comments .one-comment.loading span.icon,
+.popup.large div.comments .one-comment.loading span.icon {
 	margin: 0 10px 0 0;
 }
 
-#channel .one-update div.comments .one-comment {
+#channel .one-update div.comments .one-comment,
+.popup.large div.comments .one-comment {
 	border-bottom: 1px solid #f4f4f4;
-	padding: 4px 11px 2px 11px;
+	padding: 4px 11px 0px 11px;
 	position: relative;
 	display: block;
 }
 
-#channel .one-update div.comments .one-comment.compose {
+#channel .one-update div.comments .one-comment.compose,
+.popup.large div.comments .one-comment.compose {
 	border-bottom: 2px solid #f4f4f4;
+	height: 36px;
 	padding: 0;
 }
 
-#channel .one-update div.comments .one-comment.new {
+#channel .one-update div.comments .one-comment.new,
+.popup.large div.comments .one-comment.new {
 	display: none;
 }
 
-#channel .one-update div.comments a.one-comment {
+#channel .one-update div.comments a.one-comment,
+.popup.large div.comments a.one-comment {
 	text-decoration: none;
 }
 
 #channel .one-update div.comments a.one-comment:hover,
-#channel .one-update div.comments a.one-comment:focus {
+#channel .one-update div.comments a.one-comment:focus,
+.popup.large div.comments a.one-comment:hover,
+.popup.large div.comments a.one-comment:focus {
 	text-decoration: underline;
 }
 
-#channel .one-update div.comments .one-comment.loading {
+#channel .one-update div.comments .one-comment.loading,
+.popup.large div.comments .one-comment.loading {
 	padding-bottom: 5px;
 }
 
-#channel .one-update div.comments .one-comment div.marker {
+#channel .one-update div.comments .one-comment div.marker,
+.popup.large div.comments .one-comment div.marker {
 	background-color: #6d8387;
 	width: 3px;
 	position: absolute;
@@ -379,7 +394,8 @@ Last revision: 24/04/11
 	bottom: 0;
 }
 
-#channel .one-update div.comments .one-comment a.name {
+#channel .one-update div.comments .one-comment a.name,
+.popup.large div.comments .one-comment a.name {
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 0.95em;
@@ -388,29 +404,37 @@ Last revision: 24/04/11
 }
 
 #channel .one-update div.comments .one-comment a.name:hover,
-#channel .one-update div.comments .one-comment a.name:focus {
+#channel .one-update div.comments .one-comment a.name:focus,
+.popup.large div.comments .one-comment a.name:hover,
+.popup.large div.comments .one-comment a.name:focus {
 	text-decoration: underline;
 }
 
 #channel .one-update div.comments .one-comment span.date,
-#channel .one-update div.comments .one-comment a.remove {
+#channel .one-update div.comments .one-comment a.remove,
+.popup.large div.comments .one-comment span.date,
+.popup.large div.comments .one-comment a.remove {
 	font-size: 0.85em;
 	float: right;
 }
 
-#channel .one-update div.comments .one-comment.me:hover span.date {
+#channel .one-update div.comments .one-comment.me:hover span.date,
+.popup.large div.comments .one-comment.me:hover span.date {
 	display: none;
 }
 
-#channel .one-update div.comments .one-comment.me a.remove {
+#channel .one-update div.comments .one-comment.me a.remove,
+.popup.large div.comments .one-comment.me a.remove {
 	display: none;
 }
 
-#channel .one-update div.comments .one-comment.me:hover a.remove {
+#channel .one-update div.comments .one-comment.me:hover a.remove,
+.popup.large div.comments .one-comment.me:hover a.remove {
 	display: block;
 }
 
-#channel .one-update div.comments .one-comment p.body {
+#channel .one-update div.comments .one-comment p.body,
+.popup.large div.comments .one-comment p.body {
 	clear: both;
 }
 
