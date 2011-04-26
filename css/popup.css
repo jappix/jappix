@@ -150,7 +150,8 @@ Last revision: 26/04/11
 }
 
 .popup.large div.comments input {
-	width: 165px;
+	width: 170px;
+	min-width: 0;
 }
 
 .popup.large div.comments .one-comment {
