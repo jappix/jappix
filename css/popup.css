@@ -44,7 +44,7 @@ Last revision: 26/04/11
 
 .popup.large {
 	margin-left: -460px;
-	width: 900px;
+	width: 920px;
 }
 
 .popup .top {
@@ -132,7 +132,7 @@ Last revision: 26/04/11
 
 .popup.large div.comments {
 	background-color: #f4f4f4;
-	width: 252px;
+	width: 272px;
 	margin: 0;
 	position: absolute;
 	right: 10px;
@@ -150,7 +150,7 @@ Last revision: 26/04/11
 }
 
 .popup.large div.comments input {
-	width: 170px;
+	width: 185px;
 	min-width: 0;
 }
 

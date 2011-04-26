@@ -397,6 +397,7 @@ function handleCommentsMicroblog(iq) {
 	var data = iq.getNode();
 	var server = bareXID(getStanzaFrom(iq));
 	var node = $(data).find('items:first').attr('node');
+	var users_xid = [];
 	var code = '';
 	
 	// No node?
@@ -471,14 +472,30 @@ function handleCommentsMicroblog(iq) {
 			new_class = ' new';
 		
 		// Add the comment
-		if(current_body)
-			code += '<div class="one-comment ' + type + new_class + '" data-id="' + encodeQuotes(current_id) + '">' + 
+		if(current_body) {
+			// Add the XID
+			if(!existArrayValue(users_xid, current_xid))
+				users_xid.push(current_xid);
+			
+			// Add the HTML code
+			code += '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + encodeQuotes(current_id) + '">' + 
 					marker + 
-					'<a href="#" onclick="return ' + onclick + ';" title="' + encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
-					'<span class="date">' + current_date.htmlEnc() + '</span>' + 
-					remove + 
-					'<p class="body">' + filterThisMessage(current_body, current_name, true) + '</p>' + 
+					
+					'<div class="avatar-container" onclick="return ' + onclick + ';">' + 
+						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+					'</div>' + 
+					
+					'<div class="comment-container">' + 
+						'<a href="#" onclick="return ' + onclick + ';" title="' + encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
+						'<span class="date">' + current_date.htmlEnc() + '</span>' + 
+						remove + 
+					
+						'<p class="body">' + filterThisMessage(current_body, current_name, true) + '</p>' + 
+					'</div>' + 
+					
+					'<div class="clear"></div>' + 
 				'</div>';
+		}
 	});
 	
 	// Add the HTML
@@ -490,6 +507,14 @@ function handleCommentsMicroblog(iq) {
 		// Beautiful effect
 		$(path).find('.one-comment.new').slideDown('fast').removeClass('new');
 	}
+	
+	// Set the good widths
+	$(path).find('.one-comment.compose input').css('width', $(path).width() - 60);
+	$(path).find('.one-comment .comment-container').css('width', $(path).width() - 55);
+	
+	// Get the avatars
+	for(a in users_xid)
+		getAvatar(users_xid[a], 'cache', 'true', 'forget');
 	
 	// DOM events
 	if(complete) {

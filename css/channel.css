@@ -350,7 +350,7 @@ Last revision: 26/04/11
 #channel .one-update div.comments .one-comment,
 .popup.large div.comments .one-comment {
 	border-bottom: 1px solid #f4f4f4;
-	padding: 4px 11px 0px 11px;
+	padding: 4px 8px 0px 8px;
 	position: relative;
 	display: block;
 }
@@ -392,6 +392,31 @@ Last revision: 26/04/11
 	top: 0;
 	left: 0;
 	bottom: 0;
+}
+
+#channel .one-update div.comments .one-comment .avatar-container,
+.popup.large div.comments .one-comment .avatar-container {
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	margin: 2px 8px 0 0;
+	float: left;
+}
+
+#channel .one-update div.comments .one-comment .avatar-container:hover,
+.popup.large div.comments .one-comment .avatar-container:hover {
+	cursor: pointer;
+}
+
+#channel .one-update div.comments .one-comment img.avatar,
+.popup.large div.comments .one-comment img.avatar {
+	max-height: 30px;
+	max-width: 30px;
+}
+
+#channel .one-update div.comments .one-comment .comment-container,
+.popup.large div.comments .one-comment .comment-container {
+	float: left;
 }
 
 #channel .one-update div.comments .one-comment a.name,
