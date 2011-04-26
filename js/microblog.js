@@ -838,7 +838,7 @@ function handleGetConfigMicroblog(iq) {
 // Handles the user's microblog
 function handleMyMicroblog(packet) {
 	// Reset the entire form
-	$('#channel .top input[name=microblog_body]').removeAttr('disabled').val('');
+	$('#channel .top input[name=microblog_body]').removeAttr('disabled').val('').placeholder();
 	unattachMicroblog();
 	
 	// Check for errors
