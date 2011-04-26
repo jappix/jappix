@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 26/04/11
 
 */
 
@@ -304,6 +304,8 @@ function handleVCard(iq, type) {
 		return;
 	
 	// We retrieve main values
+	var values_yet = [];
+	
 	$(iqNode).find('vCard').children().each(function() {
 		// Read the current parent node name
 		var tokenname = (this).nodeName.toUpperCase();
@@ -315,20 +317,26 @@ function handleVCard(iq, type) {
 				var currentID = tokenname + '-' + (this).nodeName.toUpperCase();
 				var currentText = $(this).text();
 				
-				// Create an input if it does not exist
-				createInputVCard(currentID, type);
-				
-				// Userinfos viewer popup
-				if((type == 'buddy') && currentText) {
-					if(currentID == 'EMAIL-USERID')
-						$(path_userInfos + ' #BUDDY-' + currentID).html('<a href="mailto:' + currentText.htmlEnc() + '" target="_blank">' + currentText.htmlEnc() + '</a>');
-					else
-						$(path_userInfos + ' #BUDDY-' + currentID).text(currentText.htmlEnc());
+				// Not yet added?
+				if(!existArrayValue(values_yet, currentID)) {
+					// Create an input if it does not exist
+					createInputVCard(values_yet, type);
+					
+					// Userinfos viewer popup
+					if((type == 'buddy') && currentText) {
+						if(currentID == 'EMAIL-USERID')
+							$(path_userInfos + ' #BUDDY-' + currentID).html('<a href="mailto:' + currentText.htmlEnc() + '" target="_blank">' + currentText.htmlEnc() + '</a>');
+						else
+							$(path_userInfos + ' #BUDDY-' + currentID).text(currentText.htmlEnc());
+					}
+					
+					// Profile editor popup
+					else if(type == 'user')
+						$(path_vCard + ' #USER-' + currentID).val(currentText);
+					
+					// Avoid duplicating the value
+					values_yet.push(currentID);
 				}
-				
-				// Profile editor popup
-				else if(type == 'user')
-					$(path_vCard + ' #USER-' + currentID).val(currentText);
 			});
 		}
 		
@@ -337,34 +345,40 @@ function handleVCard(iq, type) {
 			// Get the node values
 			var currentText = $(this).text();
 			
-			// Create an input if it does not exist
-			createInputVCard(tokenname, type);
-			
-			// Userinfos viewer popup
-			if((type == 'buddy') && currentText) {
-				// URL modification
-				if(tokenname == 'URL') {
-					// No http:// or https:// prefix, we should add it
-					if(!currentText.match(/^https?:\/\/(.+)/))
-						currentText = 'http://' + currentText;
+			// Not yet added?
+			if(!existArrayValue(values_yet, tokenname)) {
+				// Create an input if it does not exist
+				createInputVCard(tokenname, type);
+				
+				// Userinfos viewer popup
+				if((type == 'buddy') && currentText) {
+					// URL modification
+					if(tokenname == 'URL') {
+						// No http:// or https:// prefix, we should add it
+						if(!currentText.match(/^https?:\/\/(.+)/))
+							currentText = 'http://' + currentText;
+						
+						currentText = '<a href="' + currentText + '" target="_blank">' + currentText.htmlEnc() + '</a>';
+					}
 					
-					currentText = '<a href="' + currentText + '" target="_blank">' + currentText.htmlEnc() + '</a>';
+					// Description modification
+					else if(tokenname == 'DESC')
+						currentText = filterThisMessage(currentText, getBuddyName(iqFrom).htmlEnc(), true);
+					
+					// Other stuffs
+					else
+						currentText = currentText.htmlEnc();
+					
+					$(path_userInfos + ' #BUDDY-' + tokenname).html(currentText);
 				}
 				
-				// Description modification
-				else if(tokenname == 'DESC')
-					currentText = filterThisMessage(currentText, getBuddyName(iqFrom).htmlEnc(), true);
+				// Profile editor popup
+				else if(type == 'user')
+					$(path_vCard + ' #USER-' + tokenname).val(currentText);
 				
-				// Other stuffs
-				else
-					currentText = currentText.htmlEnc();
-				
-				$(path_userInfos + ' #BUDDY-' + tokenname).html(currentText);
+				// Avoid duplicating the value
+				values_yet.push(tokenname);
 			}
-			
-			// Profile editor popup
-			else if(type == 'user')
-				$(path_vCard + ' #USER-' + tokenname).val(currentText);
 		}
 	});
 	
