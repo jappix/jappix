@@ -158,6 +158,10 @@ Last revision: 26/04/11
 	padding-bottom: 4px;
 }
 
+.popup.large div.comments .one-comment a {
+	text-decoration: underline;
+}
+
 .popup.large div.comments div.comments-content {
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
