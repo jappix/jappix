@@ -423,7 +423,7 @@ Last revision: 26/04/11
         z-index: 9998;
         text-align: left;
         font-size: 0.8em;
-        margin-left: -13px;
+        margin-left: -10px;
 }
  
 .buddy-conf-item:hover {
@@ -435,7 +435,7 @@ Last revision: 26/04/11
         opacity: 0.8;
         height: 10px;
         width: 18px;
-        margin-left: 12px;
+        margin-left: 9px;
 }
  
 .buddy-conf-subitem {
