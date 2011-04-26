@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/04/11
+Last revision: 26/04/11
 
 */
 
@@ -434,7 +434,7 @@ function handleMicroblogPurge(iq) {
 	// If no errors
 	if(!handleErrorReply(iq)) {
 		// Remove the microblog items
-		$('.one-update.' + hex_md5(getXID())).remove();
+		$('.one-update.update_' + hex_md5(getXID())).remove();
 		
 		logThis('Microblog purged.', 3);
 	}

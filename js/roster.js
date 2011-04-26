@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 26/04/11
 
 */
 
@@ -106,7 +106,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 	
 	// Remove request (empty his social channel)
 	if(dSubscription == 'remove')
-		$('#channel .mixed .one-update.' + dXIDHash).remove();
+		$('#channel .mixed .one-update.update_' + dXIDHash).remove();
 	
 	// Other request
 	else {

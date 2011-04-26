@@ -165,9 +165,11 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
 			
 			// Display the received message
-			var html = '<div class="one-update ' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
-					'<div class="avatar-container">' + 
-						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+			var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
+					'<div class="' + hash + '">' + 
+						'<div class="avatar-container">' + 
+							'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+						'</div>' + 
 					'</div>' + 
 					
 					'<div class="body">' + 
