@@ -11,6 +11,52 @@ Last revision: 26/04/11
 
 */
 
+// Completes arrays of an entry's attached files
+function attachedMicroblog(selector, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments) {
+	if($(selector).attr('title'))
+		tFName.push($(selector).attr('title'));
+	else
+		tFName.push('');
+	
+	if($(selector).attr('href'))
+		tFURL.push($(selector).attr('href'));
+	else
+		tFURL.push('');
+	
+	if($(selector).find('link[rel=self][title=thumb]:first').attr('href'))
+		tFThumb.push($(selector).find('link[rel=self][title=thumb]:first').attr('href'));
+	else
+		tFThumb.push('');
+	
+	if($(selector).attr('source'))
+		tFSource.push($(selector).attr('source'));
+	else
+		tFSource.push('');
+	
+	if($(selector).attr('type'))
+		tFType.push($(selector).attr('type'));
+	else
+		tFType.push('');
+	
+	if($(selector).attr('length'))
+		tFLength.push($(selector).attr('length'));
+	else
+		tFLength.push('');
+	
+	// Comments?
+	var comments_href_c = $(selector).find('link[rel=replies][title=comments_file]:first').attr('href');
+	
+	if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
+		tFEComments.push(RegExp.$1);
+		tFNComments.push(decodeURIComponent(RegExp.$2));
+	}
+	
+	else {
+		tFEComments.push('');
+		tFNComments.push('');
+	}
+}
+
 // Displays a given microblog item
 function displayMicroblog(packet, from, hash, mode) {
 	// Get some values
@@ -41,91 +87,12 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		// Read attached files with a thumb (place them at first)
 		$(this).find('link[rel=enclosure]:has(link[rel=self][title=thumb])').each(function() {
-			if($(this).attr('title'))
-				tFName.push($(this).attr('title'));
-			else
-				tFName.push('');
-			
-			if($(this).attr('href'))
-				tFURL.push($(this).attr('href'));
-			else
-				tFURL.push('');
-			
-			if($(this).find('link[rel=self][title=thumb]:first').attr('href'))
-				tFThumb.push($(this).find('link[rel=self][title=thumb]:first').attr('href'));
-			else
-				tFThumb.push('');
-			
-			if($(this).attr('source'))
-				tFSource.push($(this).attr('source'));
-			else
-				tFSource.push('');
-			
-			if($(this).attr('type'))
-				tFType.push($(this).attr('type'));
-			else
-				tFType.push('');
-			
-			if($(this).attr('length'))
-				tFLength.push($(this).attr('length'));
-			else
-				tFLength.push('');
-			
-			// Comments?
-			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
-			
-			if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
-				tFEComments.push(RegExp.$1);
-				tFNComments.push(decodeURIComponent(RegExp.$2));
-			}
-			
-			else {
-				tFEComments.push('');
-				tFNComments.push('');
-			}
+			attachedMicroblog(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
 		});
 		
 		// Read attached files without any thumb
 		$(this).find('link[rel=enclosure]:not(:has(link[rel=self][title=thumb]))').each(function() {
-			if($(this).attr('title'))
-				tFName.push($(this).attr('title'));
-			else
-				tFName.push('');
-			
-			if($(this).attr('href'))
-				tFURL.push($(this).attr('href'));
-			else
-				tFURL.push('');
-			
-			if($(this).attr('source'))
-				tFSource.push($(this).attr('source'));
-			else
-				tFSource.push('');
-			
-			if($(this).attr('type'))
-				tFType.push($(this).attr('type'));
-			else
-				tFType.push('');
-			
-			if($(this).attr('length'))
-				tFLength.push($(this).attr('length'));
-			else
-				tFLength.push('');
-			
-			tFThumb.push('');
-			
-			// Comments?
-			var comments_href_c = $(this).find('link[rel=replies][title=comments_file]:first').attr('href');
-			
-			if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
-				tFEComments.push(RegExp.$1);
-				tFNComments.push(decodeURIComponent(RegExp.$2));
-			}
-			
-			else {
-				tFEComments.push('');
-				tFNComments.push('');
-			}
+			attachedMicroblog(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
 		});
 		
 		// Get the repeat value
