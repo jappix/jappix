@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 29/04/11
 
 */
 
@@ -141,6 +141,10 @@ function listPrivacy() {
 
 // Handles available privacy lists
 function handleListPrivacy(iq) {
+	// Error?
+	if(iq.getType() == 'error')
+		return logThis('Privacy lists not supported!', 2);
+	
 	// Get IQ query content
 	var iqQuery = iq.getQuery();
 	
