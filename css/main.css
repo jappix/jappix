@@ -83,10 +83,19 @@ textarea[disabled] {
 	border: 1px solid #989898;
 }
 
-input.placeholder,
-input:placeholder,
-input:-moz-placeholder,
-input:-webkit-input-placeholder {
+input:placeholder {
+	color: #67787c !important;
+}
+
+input:-moz-placeholder {
+	color: #67787c !important;
+}
+
+input::-webkit-input-placeholder {
+	color: #67787c !important;
+}
+
+input.placeholder {
 	color: #67787c !important;
 }
 
