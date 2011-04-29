@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 29/04/11
 
 */
 
@@ -161,10 +161,16 @@ function displayMicroblog(packet, from, hash, mode) {
 		}
 		
 		// Retrieve the message body
-		if(tBody)
-			tTitle = tBody;
-		else
-			tTitle = $(this).find('content[type=text]').text();
+		tTitle = $(this).find('content[type=text]').text();
+		
+		if(!tTitle) {
+			// Legacy?
+			tTitle = $(this).find('title:not(source title)').text();
+			
+			// Last chance?
+			if(!tTitle)
+				tTitle = tBody;
+		}
 		
 		// Trim the content
 		tTitle = trim(tTitle);
@@ -445,13 +451,14 @@ function handleCommentsMicroblog(iq) {
 		// Get comment
 		var current_id = $(this).attr('id');
 		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
+		var current_name = $(this).find('source author name').text();
 		var current_date = $(this).find('published').text();
 		var current_body = $(this).find('content[type=text]').text();
-		var current_name;
+		var current_bname = getBuddyName(current_xid);
 		
 		// Legacy?
 		if(!current_body)
-			current_body = $(this).find('title:last').text();
+			current_body = $(this).find('title:not(source title)').text();
 		
 		// Yet displayed? (continue the loop)
 		if($(path).find('.one-comment[data-id=' + current_id + ']').size())
@@ -459,12 +466,14 @@ function handleCommentsMicroblog(iq) {
 		
 		// No XID?
 		if(!current_xid) {
-			current_name = _e("unknown");
 			current_xid = '';
+			
+			if(!current_name)
+				current_name = _e("unknown");
 		}
 		
-		else
-			current_name = getBuddyName(current_xid);
+		else if(current_bname != getXIDNick(current_xid))
+			current_name = current_bname;
 		
 		// Any date?
 		if(current_date)

@@ -7,7 +7,7 @@ These are the buddy name related JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 29/04/11
 
 */
 
@@ -91,14 +91,14 @@ function getBuddyName(xid) {
 		
 		// If the complete name exists
 		if(cname)
-			bname = cname;
+			bname = cname.revertHtmlEnc();
 		
 		// Else, we just get the nickname of the buddy
 		else
 			bname = getXIDNick(xid);
 	}
 	
-	return bname.revertHtmlEnc();
+	return bname;
 }
 
 // Gets the nickname of the user

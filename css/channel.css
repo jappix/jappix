@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 29/04/11
 
 */
 
@@ -424,7 +424,7 @@ Last revision: 26/04/11
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 0.95em;
-	padding-bottom: 3px;
+	padding-bottom: 2px;
 	float: left;
 }
 
