@@ -165,7 +165,7 @@ function displayMicroblog(packet, from, hash, mode) {
 		
 		if(!tTitle) {
 			// Legacy?
-			tTitle = $(this).find('title:not(source title)').text();
+			tTitle = $(this).find('title:not(source > title)').text();
 			
 			// Last chance?
 			if(!tTitle)
@@ -458,7 +458,7 @@ function handleCommentsMicroblog(iq) {
 		
 		// Legacy?
 		if(!current_body)
-			current_body = $(this).find('title:not(source title)').text();
+			current_body = $(this).find('title:not(source > title)').text();
 		
 		// Yet displayed? (continue the loop)
 		if($(path).find('.one-comment[data-id=' + current_id + ']').size())
