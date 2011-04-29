@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 29/04/11
 
 */
 
@@ -158,7 +158,9 @@ Last revision: 26/04/11
 }
 
 #page-engine .list .user {
-	background-color: #eff2f2;
+	background: #eff2f2;
+	background: -moz-linear-gradient(top, #eff2f2, #ecefef);
+	background: -webkit-gradient(linear, left top, left bottom, from(#eff2f2), to(#ecefef));
 	border-color: #c8c8c8;
 	border-width: 1px 0;
 	border-style: solid;
