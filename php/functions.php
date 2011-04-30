@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 26/03/11
+Last revision: 30/04/11
 
 */
 
@@ -208,7 +208,7 @@ function getLanguageName($code) {
 		'az' => 'Azərbaycan dili',
 		'ba' => 'башҡорт теле',
 		'be' => 'Беларуская',
-		'bg' => 'български език',
+		'bg' => 'български',
 		'bh' => 'भोजपुरी',
 		'bi' => 'Bislama',
 		'bm' => 'Bamanankan',
