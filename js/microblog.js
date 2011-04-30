@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/04/11
+Last revision: 30/04/11
 
 */
 
@@ -472,7 +472,7 @@ function handleCommentsMicroblog(iq) {
 				current_name = _e("unknown");
 		}
 		
-		else if(current_bname != getXIDNick(current_xid))
+		else if(!current_name || (current_bname != getXIDNick(current_xid)))
 			current_name = current_bname;
 		
 		// Any date?
