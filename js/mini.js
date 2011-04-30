@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 30/04/11
 
 */
 
@@ -969,17 +969,19 @@ function createMini(domain, user, password) {
 				return;
 			
 			// Add timers
-			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime(250, function() {
-				// Array
-				var array = ['-1', '-0.75', '-0.5', '-0.25', '0', '0.25', '0.5', '0.75', '1'];
+			var anim_i = 0;
+			
+			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime(10, function() {
+				// Next
+				anim_i++;
 				
-				// Random values
-				var v_top = array[Math.floor(Math.random() * array.length)];
-				var v_left = array[Math.floor(Math.random() * array.length)];
+				// Margins
+				var m_top = Math.cos(anim_i * 0.02) * 3;
+				var m_left = Math.sin(anim_i * 0.02) * 3;
 				
-				// CSS style
-				jQuery(this).css('margin-top', v_top + 'px')
-				            .css('margin-left', v_left + 'px');
+				// Apply new position!
+				jQuery(this).css('margin-top', m_top + 'px')
+				            .css('margin-left', m_left + 'px');
 			});
 		}
 	}
