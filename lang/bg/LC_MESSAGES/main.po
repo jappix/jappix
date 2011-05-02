@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-04-30 18:52:35\n"
+"PO-Revision-Date: 2011-05-02 14:01:48\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -159,259 +159,259 @@ msgstr "Дата"
 
 #: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "Моля, изберете приятел, за да видите историята на чата (архива на съобщенията)."
 
 #: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "Не е намерено нищо за/относно: %s"
 
 #: 
 msgid "A short message?"
-msgstr ""
+msgstr "Кратко съобщение?"
 
 #: 
 msgid "How are you?"
-msgstr ""
+msgstr "Как сте?"
 
 #: 
 msgid "What are you doing?"
-msgstr ""
+msgstr "Какво правите? Как сте?"
 
 #: 
 msgid "Join a chat"
-msgstr ""
+msgstr "Присъединяване към чат"
 
 #: 
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: 
 msgid "Available"
-msgstr ""
+msgstr "На разположение (онлайн)"
 
 #: 
 msgid "Talkative"
-msgstr ""
+msgstr "Готов за разговори"
 
 #: 
 msgid "Away"
-msgstr ""
+msgstr "отсъстващ"
 
 #: 
 msgid "Not available"
-msgstr ""
+msgstr "не е на разположение"
 
 #: 
 msgid "Busy"
-msgstr ""
+msgstr "зает"
 
 #: 
 msgid "Mood"
-msgstr ""
+msgstr "Настроение"
 
 #: 
 msgid "None"
-msgstr ""
+msgstr "(без)"
 
 #: 
 msgid "Crazy"
-msgstr ""
+msgstr "луд"
 
 #: 
 msgid "Excited"
-msgstr ""
+msgstr "развълнуван"
 
 #: 
 msgid "Playful"
-msgstr ""
+msgstr "игрив"
 
 #: 
 msgid "Happy"
-msgstr ""
+msgstr "щастлив/доволен"
 
 #: 
 msgid "Shocked"
-msgstr ""
+msgstr "шокиран"
 
 #: 
 msgid "Hot"
-msgstr ""
+msgstr "разгорещен"
 
 #: 
 msgid "Sad"
-msgstr ""
+msgstr "тъжен"
 
 #: 
 msgid "Amorous"
-msgstr ""
+msgstr "чувствен/страстен/влюбчив"
 
 #: 
 msgid "Confident"
-msgstr ""
+msgstr "уверен"
 
 #: 
 msgid "Activity"
-msgstr ""
+msgstr "дейност"
 
 #: 
 msgid "Chores"
-msgstr ""
+msgstr "задължения"
 
 #: 
 msgid "Drinking"
-msgstr ""
+msgstr "пиене"
 
 #: 
 msgid "Eating"
-msgstr ""
+msgstr "ядене"
 
 #: 
 msgid "Exercising"
-msgstr ""
+msgstr "упражнения"
 
 #: 
 msgid "Grooming"
-msgstr ""
+msgstr "в момента се подкрепям/поддържам"
 
 #: 
 msgid "Appointment"
-msgstr ""
+msgstr "на среща/служба"
 
 #: 
 msgid "Inactive"
-msgstr ""
+msgstr "неактивен"
 
 #: 
 msgid "Relaxing"
-msgstr ""
+msgstr "релаксира"
 
 #: 
 msgid "Talking"
-msgstr ""
+msgstr "говори (в дискусия)"
 
 #: 
 msgid "Traveling"
-msgstr ""
+msgstr "пътува (на път)"
 
 #: 
 msgid "Working"
-msgstr ""
+msgstr "работи (на работа)"
 
 #: 
 msgid "View profile"
-msgstr ""
+msgstr "Преглед на профила"
 
 #: 
 msgid "Repeat this notice"
-msgstr ""
+msgstr "Повторение на съобщението"
 
 #: 
 msgid "Remove this notice"
-msgstr ""
+msgstr "Премахване на съобщението"
 
 #: 
 msgid "Your profile"
-msgstr ""
+msgstr "Вашият профил"
 
 #: 
 msgid "Identity"
-msgstr ""
+msgstr "Идентичност"
 
 #: 
 msgid "Profile image"
-msgstr ""
+msgstr "Изображение за профила"
 
 #: 
 msgid "Others"
-msgstr ""
+msgstr "Други"
 
 #: 
 msgid "Personal"
-msgstr ""
+msgstr "Лични"
 
 #: 
 msgid "Complete name"
-msgstr ""
+msgstr "Пълно име"
 
 #: 
 msgid "Nickname"
-msgstr ""
+msgstr "Псевдоним (nickname)"
 
 #: 
 msgid "First name"
-msgstr ""
+msgstr "Първо име (лично име)"
 
 #: 
 msgid "Last name"
-msgstr ""
+msgstr "Последно име (фамилия)"
 
 #: 
 msgid "Date of birth"
-msgstr ""
+msgstr "Дата на раждане"
 
 #: 
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 #: 
 msgid "E-mail"
-msgstr ""
+msgstr "Имейл (е-поща)"
 
 #: 
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: 
 msgid "Website"
-msgstr ""
+msgstr "Уебсайт"
 
 #: 
 msgid "Current"
-msgstr ""
+msgstr "Настоящ"
 
 #: 
 msgid "Delete"
-msgstr ""
+msgstr "Изтриване"
 
 #: 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr ""
+msgstr "Колко жалко! Вие нямате зададено изображение за профила си в картата си за самоличност!"
 
 #: 
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: 
 msgid "Street"
-msgstr ""
+msgstr "Улица"
 
 #: 
 msgid "City"
-msgstr ""
+msgstr "Град"
 
 #: 
 msgid "Postal code"
-msgstr ""
+msgstr "Пощенски код"
 
 #: 
 msgid "Country"
-msgstr ""
+msgstr "Страна/държава"
 
 #: 
 msgid "Biography"
-msgstr ""
+msgstr "Биография"
 
 #: 
 msgid "Important notice"
-msgstr ""
+msgstr "Важно съобщение"
 
 #: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
-msgstr ""
+msgstr "Внимавайте каква и колко информация вписвате в профила си, защото е достъпна за всички (дори за хора, които не искате)."
 
 #: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
-msgstr ""
+msgstr "Не всичко е конфиденциално/поверително в XMPP; вашият публичен профил (vCard) е едно от тези неща."
 
 #: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
@@ -419,967 +419,967 @@ msgstr ""
 
 #: 
 msgid "Save"
-msgstr ""
+msgstr "Запазване"
 
 #: 
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 #: 
 msgid "Edit options"
-msgstr ""
+msgstr "Редакция на настройките"
 
 #: 
 msgid "Channel"
-msgstr ""
+msgstr "Канал"
 
 #: 
 msgid "Commands"
-msgstr ""
+msgstr "Команди"
 
 #: 
 msgid "Sounds"
-msgstr ""
+msgstr "Звуци"
 
 #: 
 msgid "Privacy"
-msgstr ""
+msgstr "Поверителност"
 
 #: 
 msgid "Message archiving"
-msgstr ""
+msgstr "Архивиране на съобщенията"
 
 #: 
 msgid "Store a history of your chats"
-msgstr ""
+msgstr "Запазване на история (водене на архив) на вашите чатове"
 
 #: 
 msgid "Geolocation"
-msgstr ""
+msgstr "Геолокация"
 
 #: 
 msgid "Empty"
-msgstr ""
+msgstr "Празно"
 
 #: 
 msgid "Empty channel"
-msgstr ""
+msgstr "Празен канал"
 
 #: 
 msgid "Persistent"
-msgstr ""
+msgstr "Натрапчивост/постоянство"
 
 #: 
 msgid "Maximum notices"
-msgstr ""
+msgstr "Максимален брой съобщения"
 
 #: 
 msgid "Account"
-msgstr ""
+msgstr "Потребителска сметка (акаунт)"
 
 #: 
 msgid "Change password"
-msgstr ""
+msgstr "Промяна на паролата"
 
 #: 
 msgid "Delete account"
-msgstr ""
+msgstr "Изтриване на потребителската сметка (акаунт)"
 
 #: 
 msgid "Old"
-msgstr ""
+msgstr "Стар(и)"
 
 #: 
 msgid "New (2 times)"
-msgstr ""
+msgstr "Нов(и) (2 пъти)"
 
 #: 
 msgid "Continue"
-msgstr ""
+msgstr "Продължаване"
 
 #: 
 msgid "To"
-msgstr ""
+msgstr "Към/за"
 
 #: 
 msgid "Close"
-msgstr ""
+msgstr "Затваряне"
 
 #: 
 msgid "unknown"
-msgstr ""
+msgstr "непознат"
 
 #: 
 msgid "Unavailable"
-msgstr ""
+msgstr "Не е на разположение (офлайн)"
 
 #: 
 msgid "is now"
-msgstr ""
+msgstr "е сега"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Моля, изчакайте докато аватарът ви се качва (ъплоудва)..."
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
-msgstr ""
+msgstr "Ето го! Хубаво ново изображение (аватар) за профила ви!"
 
 #: 
 msgid "The image file is not supported or has a bad size."
-msgstr ""
+msgstr "Файлът от тип изображение не се поддържа или има грешна големина."
 
 #: 
 msgid "Reply"
-msgstr ""
+msgstr "Отговор"
 
 #: 
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Натиснете тук, за да поправите грешката"
 
 #: 
 msgid "You"
-msgstr ""
+msgstr "Ти/Вие"
 
 #: 
 msgid "Remove"
-msgstr ""
+msgstr "Премахване"
 
 #: 
 msgid "Rename"
-msgstr ""
+msgstr "Преименуване"
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Здравей, аз съм %s, бих искал да ви добавя към моя списък с приятели."
 
 #: 
 msgid "Smiley insertion"
-msgstr ""
+msgstr "Въвеждане на емотикон(и)"
 
 #: 
 msgid "Change style"
-msgstr ""
+msgstr "Промяна на стила"
 
 #: 
 msgid "Text in bold"
-msgstr ""
+msgstr "Удебелен текст (bold)"
 
 #: 
 msgid "Text in italic"
-msgstr ""
+msgstr "Курсивен текст (italic)"
 
 #: 
 msgid "Underlined text"
-msgstr ""
+msgstr "Подчертан текст"
 
 #: 
 msgid "Save chat"
-msgstr ""
+msgstr "Запазване на чата"
 
 #: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
-msgstr ""
+msgstr "Натиснете следната връзка (хиперлинк), за да получите историята на чата, след това изчакайте. След това натиснете отново, за да изтеглите файла с историята на чата."
 
 #: 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Чатът е празен!"
 
 #: 
 msgid "Generate file!"
-msgstr ""
+msgstr "Генериране на файл!"
 
 #: 
 msgid "Download file!"
-msgstr ""
+msgstr "Изтегляне (даунлоуд) на файл!"
 
 #: 
 msgid "Clean current chat"
-msgstr ""
+msgstr "Изчистване на настоящия чат"
 
 #: 
 msgid "View chat history"
-msgstr ""
+msgstr "Преглед на историята на чата"
 
 #: 
 msgid "Show user profile"
-msgstr ""
+msgstr "Показване на потребителския профил"
 
 #: 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "Добавяне на контакта към списъка с приятели"
 
 #: 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "Добавяне на груповия чат към твоите любими"
 
 #: 
 msgid "All tabs"
-msgstr ""
+msgstr "Всички подпрозорци (табове)"
 
 #: 
 msgid "Close this tab"
-msgstr ""
+msgstr "Затваряне на подпрозореца (таба)"
 
 #: 
 msgid "no subject defined for this room."
-msgstr ""
+msgstr "Не е дефинирана тема за тази чат стая."
 
 #: 
 msgid "Administration panel for this room"
-msgstr ""
+msgstr "Администрационен панел за стаята"
 
 #: 
 msgid "Moderators"
-msgstr ""
+msgstr "Модератори"
 
 #: 
 msgid "Participants"
-msgstr ""
+msgstr "Участници"
 
 #: 
 msgid "Visitors"
-msgstr ""
+msgstr "Посетители"
 
 #: 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr "Управление на любимите стаи"
 
 #: 
 msgid "Change favorites"
-msgstr ""
+msgstr "Промяна на любимите"
 
 #: 
 msgid "Search a room"
-msgstr ""
+msgstr "Търсене из/в стаята"
 
 #: 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Избор на любим(и)"
 
 #: 
 msgid "Getting the name..."
-msgstr ""
+msgstr "Прихващане на имена..."
 
 #: 
 msgid "Gateway"
-msgstr ""
+msgstr "Врата/вход/път"
 
 #: 
 msgid "Name"
-msgstr ""
+msgstr "Име"
 
 #: 
 msgid "Room"
-msgstr ""
+msgstr "Стая"
 
 #: 
 msgid "Add"
-msgstr ""
+msgstr "Добавяне"
 
 #: 
 msgid "Edit"
-msgstr ""
+msgstr "Редактиране"
 
 #: 
 msgid "Search a room on"
-msgstr ""
+msgstr "Потърси статия от/в(ъв)"
 
 #: 
 msgid "No room found on this server."
-msgstr ""
+msgstr "Не са намерени стаи на този сървър."
 
 #: 
 msgid "Service discovery"
-msgstr ""
+msgstr "Откриване на услуги"
 
 #: 
 msgid "Server to query"
-msgstr ""
+msgstr "Заявка за сървър"
 
 #: 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
+msgstr "Съжалявам, но търсенето за обекта не върна никакъв резултат!"
 
 #: 
 msgid "Accounts"
-msgstr ""
+msgstr "Потребителски сметки (акаунти)"
 
 #: 
 msgid "Authentications"
-msgstr ""
+msgstr "Удостоверения за идентификация"
 
 #: 
 msgid "Automation"
-msgstr ""
+msgstr "Автоматизация"
 
 #: 
 msgid "Clients"
-msgstr ""
+msgstr "Клиенти"
 
 #: 
 msgid "Collaboration"
-msgstr ""
+msgstr "Сътрудничество (колаборация)"
 
 #: 
 msgid "Components"
-msgstr ""
+msgstr "Компоненти"
 
 #: 
 msgid "Rooms"
-msgstr ""
+msgstr "Стаи"
 
 #: 
 msgid "Directories"
-msgstr ""
+msgstr "Директории"
 
 #: 
 msgid "Gateways"
-msgstr ""
+msgstr "Пътища/входове"
 
 #: 
 msgid "News"
-msgstr ""
+msgstr "Новини"
 
 #: 
 msgid "Hierarchy"
-msgstr ""
+msgstr "Йерархия"
 
 #: 
 msgid "Proxies"
-msgstr ""
+msgstr "Проксита (сървъри-посредници)"
 
 #: 
 msgid "Publication/Subscription"
-msgstr ""
+msgstr "Публикация/Абонамент"
 
 #: 
 msgid "Storage"
-msgstr ""
+msgstr "Хранилище"
 
 #: 
 msgid "Service offline or broken"
-msgstr ""
+msgstr "Услугата е офлайн (извън линия) или е счупена/повредена"
 
 #: 
 msgid "Your inbox"
-msgstr ""
+msgstr "Вашата входяща кутия"
 
 #: 
 msgid "Available actions"
-msgstr ""
+msgstr "Действия на разположение"
 
 #: 
 msgid "Clean"
-msgstr ""
+msgstr "Изчистване"
 
 #: 
 msgid "New"
-msgstr ""
+msgstr "Нов(и)"
 
 #: 
 msgid "Received"
-msgstr ""
+msgstr "Получен(и)"
 
 #: 
 msgid "Subject"
-msgstr ""
+msgstr "Тема"
 
 #: 
 msgid "Content"
-msgstr ""
+msgstr "Съдържание"
 
 #: 
 msgid "Send message"
-msgstr ""
+msgstr "Изпращане на съобщението"
 
 #: 
 msgid "Your inbox is empty."
-msgstr ""
+msgstr "Входящата ви кутия е празна."
 
 #: 
 msgid "MUC administration"
-msgstr ""
+msgstr "Администрация на MUC"
 
 #: 
 msgid "You administrate this room"
-msgstr ""
+msgstr "Вие сте администраторът на тази стая"
 
 #: 
 msgid "Enter new subject"
-msgstr ""
+msgstr "Въвеждане на това тема"
 
 #: 
 msgid "Configuration"
-msgstr ""
+msgstr "Конфигурация"
 
 #: 
 msgid "Authorizations"
-msgstr ""
+msgstr "Права и пълномощни"
 
 #: 
 msgid "Member list"
-msgstr ""
+msgstr "Списък с участници"
 
 #: 
 msgid "Owner list"
-msgstr ""
+msgstr "Списък със собственици"
 
 #: 
 msgid "Administrator list"
-msgstr ""
+msgstr "Списък с администратори"
 
 #: 
 msgid "Outcast list"
-msgstr ""
+msgstr "Списък с outcast-и"
 
 #: 
 msgid "Add an input"
-msgstr ""
+msgstr "Добавяне на входни данни"
 
 #: 
 msgid "Destroy this MUC"
-msgstr ""
+msgstr "Унищожаване на този MUC (многопотребителски чат)"
 
 #: 
 msgid "Yes, let's do it!"
-msgstr ""
+msgstr "Да, да го направим!"
 
 #: 
 msgid "Your friend is paying attention to the conversation."
-msgstr ""
+msgstr "Приятелят ви обръща внимание на дискусията."
 
 #: 
 msgid "Your friend is writing a message..."
-msgstr ""
+msgstr "Приятелят ви пише съобщение..."
 
 #: 
 msgid "Your friend stopped writing a message."
-msgstr ""
+msgstr "Приятелят ви спря да пише съобщение."
 
 #: 
 msgid "Your friend is doing something else."
-msgstr ""
+msgstr "Приятелят ви прави нещо друго."
 
 #: 
 msgid "Your friend closed the chat."
-msgstr ""
+msgstr "Приятелят ви затваря чата."
 
 #: 
 msgid "Requesting this service..."
-msgstr ""
+msgstr "Заявка на тази услуга..."
 
 #: 
 msgid "Loading"
-msgstr ""
+msgstr "Зареждане"
 
 #: 
 msgid "joined the chat room"
-msgstr ""
+msgstr "се присъедини към чат стаята"
 
 #: 
 msgid "left the chat room"
-msgstr ""
+msgstr "напусна чат стаята"
 
 #: 
 msgid "no status"
-msgstr ""
+msgstr "без статус"
 
 #: 
 msgid "has been kicked"
-msgstr ""
+msgstr "беше изхвърлен (kick-нат) [от стаята]"
 
 #: 
 msgid "has been banned"
-msgstr ""
+msgstr "е баннат"
 
 #: 
 msgid "no reason"
-msgstr ""
+msgstr "без причина"
 
 #: 
 msgid "Communicate with the entire world!"
-msgstr ""
+msgstr "Комуникирай с целия свят!"
 
 #: 
 msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr ""
+msgstr "Jappix (Джапикс) е некомерсиална (non-profit) социална платформа, която е достъпно навсякъде [стига да имате компютър и активна Интернет връзка], по всяко време, когато пожелаете, и с която можете да комуникирате с когото поискате."
 
 #: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
-msgstr ""
+msgstr "Позволява ви да се свързвате с милиони потребители, които използват мрежата XMPP както и ти с Jappix. Присъедини се към общността и остани свободен. Пояснение: XMPP = екс-ем-пи-пи, eXtensible Messaging and Presence Protocol, http://xmpp.org/."
 
 #: 
 msgid "Hi there!"
-msgstr ""
+msgstr "Ей, ти там, здравей!"
 
 #: 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "Добре дошли в %1s, “%2s”."
 
 #: 
 msgid "Login to your existing XMPP account or create a new one for free!"
-msgstr ""
+msgstr "Влезте във вашата вече съществуваща XMPP потребителска сметка (акаунт) или създайте нова свободно и безплатно!"
 
 #: 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr ""
+msgstr "Jappix е проект с отворен код (FLOSS, свободен софтуер) от PostPro, некомерсиална (non-profit) организация, която ни осигурява много помощ."
 
 #: 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
-msgstr ""
+msgstr "Влезте във вече наличната си (съществуваща) XMPP потребителска сметка (акаунт). Също така можете да използвате %s, за да се присъедините към групов чат."
 
 #: 
 msgid "Previous"
-msgstr ""
+msgstr "Предишни"
 
 #: 
 msgid "General"
-msgstr ""
+msgstr "Общи"
 
 #: 
 msgid "Advanced"
-msgstr ""
+msgstr "Разширени"
 
 #: 
 msgid "Resource"
-msgstr ""
+msgstr "Ресурс"
 
 #: 
 msgid "Priority"
-msgstr ""
+msgstr "Приоритет"
 
 #: 
 msgid "Low"
-msgstr ""
+msgstr "Нисък"
 
 #: 
 msgid "Medium"
-msgstr ""
+msgstr "Среден"
 
 #: 
 msgid "High"
-msgstr ""
+msgstr "Висок"
 
 #: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
-msgstr ""
+msgstr "Въведете адреса на груповия чат, към който искате да се присъедините, както и псевдонимът, който искате да използвате. Също така можете да се върнете към %s."
 
 #: 
 msgid "login page"
-msgstr ""
+msgstr "страница за вход"
 
 #: 
 msgid "Share this link with your friends:"
-msgstr ""
+msgstr "Споделяне на връзката с вашите приятели:"
 
 #: 
 msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
-msgstr ""
+msgstr "Регистрирайте нова потребителска сметка (акаунт) за XMPP, за да се присъедините към вашите приятели от вашия собствен социален облак. Просто е!"
 
 #: 
 msgid "Required"
-msgstr ""
+msgstr "задължително"
 
 #: 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "Вие се регистрирахте успешно, ето ви вашия личен XMPP адрес:"
 
 #: 
 msgid "Manager"
-msgstr ""
+msgstr "Мениджър (адм. управление)"
 
 #: 
 msgid "Project"
-msgstr ""
+msgstr "Проект"
 
 #: 
 msgid "Encrypted"
-msgstr ""
+msgstr "Криптиран (шифрован) вход"
 
 #: 
 msgid "Unencrypted"
-msgstr ""
+msgstr "Некриптиран (нешифрован) вход"
 
 #: 
 msgid "Where are you?"
-msgstr ""
+msgstr "Къде сте?"
 
 #: 
 msgid "What's up with you?"
-msgstr ""
+msgstr "Как сте?"
 
 #: 
 msgid "Fetching the social channel..."
-msgstr ""
+msgstr "Прихващане на социалния канал..."
 
 #: 
 msgid "You are synchronized with your network."
-msgstr ""
+msgstr "Синхронизиран сте с мрежата си."
 
 #: 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr ""
+msgstr "Не можете да изпращате нищо: можете само да получавате известия!"
 
 #: 
 msgid "Media viewer"
-msgstr ""
+msgstr "Медиен преглед/разглеждане"
 
 #: 
 msgid "Browse"
-msgstr ""
+msgstr "Разглеждане/преглед"
 
 #: 
 msgid "Command"
-msgstr ""
+msgstr "Команда"
 
 #: 
 msgid "Subscribe"
-msgstr ""
+msgstr "Абонамент"
 
 #: 
 msgid "Join"
-msgstr ""
+msgstr "Присъединяване"
 
 #: 
 msgid "Automatic"
-msgstr ""
+msgstr "Автоматично"
 
 #: 
 msgid "Search"
-msgstr ""
+msgstr "Търсене"
 
 #: 
 msgid "No result!"
-msgstr ""
+msgstr "Няма резултат!"
 
 #: 
 msgid "No notifications."
-msgstr ""
+msgstr "Няма известия."
 
 #: 
 msgid "would like to add you as a friend."
-msgstr ""
+msgstr "желае да ви добави към списъка си с приятели."
 
 #: 
 msgid "would like you to join this chatroom:"
-msgstr ""
+msgstr "желае вие да се присъедините към следната чат стая:"
 
 #: 
 msgid "Do you accept?"
-msgstr ""
+msgstr "Приемате ли?"
 
 #: 
 msgid "Yes"
-msgstr ""
+msgstr "Да/ОК"
 
 #: 
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: 
 msgid "would like to get authorization."
-msgstr ""
+msgstr "желае да получи пълномощно."
 
 #: 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr ""
+msgstr "Желаете ли да видите списъка с приятели, които %s ви предлага?"
 
 #: 
 msgid "Submit"
-msgstr ""
+msgstr "Изпращане"
 
 #: 
 msgid "Client"
-msgstr ""
+msgstr "Клиент"
 
 #: 
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: 
 msgid "Local time"
-msgstr ""
+msgstr "Местно време"
 
 #: 
 msgid "Comments"
-msgstr ""
+msgstr "Коментари"
 
 #: 
 msgid "User profile"
-msgstr ""
+msgstr "Потребителски профил"
 
 #: 
 msgid "See his/her position on the globe"
-msgstr ""
+msgstr "Вижте неговата/нейната позиция (местоположение) на глобуса [чрез геолокация]"
 
 #: 
 msgid "Confirm"
-msgstr ""
+msgstr "Потвърждаване"
 
 #: 
 msgid "anonymous mode"
-msgstr ""
+msgstr "режим инкогнито (в анонимност)"
 
 #: 
 msgid "Groups"
-msgstr ""
+msgstr "Групи"
 
 #: 
 msgid "Unclassified"
-msgstr ""
+msgstr "Некласифицирани"
 
 #: 
 msgid "Authorize"
-msgstr ""
+msgstr "Разрешаване/упълномощаване"
 
 #: 
 msgid "Ask for authorization"
-msgstr ""
+msgstr "Питай/-не за разрешение/упълномощение"
 
 #: 
 msgid "Unblock"
-msgstr ""
+msgstr "Отблокиране"
 
 #: 
 msgid "Prohibit"
-msgstr ""
+msgstr "Забрана"
 
 #: 
 msgid "Block"
-msgstr ""
+msgstr "Блокиране"
 
 #: 
 msgid "Chat"
-msgstr ""
+msgstr "Чат"
 
 #: 
 msgid "Groupchat"
-msgstr ""
+msgstr "Групов чат"
 
 #: 
 msgid "Jappix Mobile"
-msgstr ""
+msgstr "мобилна версия на Jappix"
 
 #: 
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop (десктоп, настолна версия)"
 
 #: 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile (мобилна версия)"
 
 #: 
 msgid "Please wait..."
-msgstr ""
+msgstr "Моля, изчакайте..."
 
 #: 
 msgid "Please enable JavaScript"
-msgstr ""
+msgstr "Моля, включете JavaScript"
 
 #: 
 msgid "Your channel"
-msgstr ""
+msgstr "Вашия канал"
 
 #: 
 msgid "Channel of"
-msgstr ""
+msgstr "Канал на"
 
 #: 
 msgid "More notices..."
-msgstr ""
+msgstr "Още известия..."
 
 #: 
 msgid "Attach a file"
-msgstr ""
+msgstr "Прикачване на файл"
 
 #: 
 msgid "Send"
-msgstr ""
+msgstr "Изпращане"
 
 #: 
 msgid "Unattach the file"
-msgstr ""
+msgstr "Премахване на прикачения файл"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr ""
+msgstr "Грешка при качването (ъплоудването) на вашия файл: може би е прекалено голям (максимумът е %s) или е от забранен тип файлово разширение!"
 
 #: 
 msgid "Authorization failed"
-msgstr ""
+msgstr "Неуспешно потвърждение на потребителските данни"
 
 #: 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "Регистрацията е неуспешна, моля, изберете друго потребителско име/псевдоним"
 
 #: 
 msgid "Service unavailable"
-msgstr ""
+msgstr "Услугата не е на разположение (офлайн, извън линия)"
 
 #: 
 msgid "Internal server error, try later"
-msgstr ""
+msgstr "Вътрешна сървърна грешка, пробвайте отново по-късно"
 
 #: 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Формулярът ви беше изпратен."
 
 #: 
 msgid "Application"
-msgstr ""
+msgstr "Приложение"
 
 #: 
 msgid "XMPP links"
-msgstr ""
+msgstr "XMPP връзки"
 
 #: 
 msgid "Open XMPP links with Jappix"
-msgstr ""
+msgstr "Отваряне на XMPP връзки с Jappix"
 
 #: 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "промени темата на:"
 
 #: 
 msgid "Welcome!"
-msgstr ""
+msgstr "Добре дошли!"
 
 #: 
 msgid "Friends"
-msgstr ""
+msgstr "Приятели"
 
 #: 
 msgid "Welcome on Jappix, your own social cloud!"
-msgstr ""
+msgstr "Добре дошли в Jappix, твоят собствен социален облак!"
 
 #: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
-msgstr ""
+msgstr "Преди да започнете да го използвате, трябва да промените някои настройки, да потърсите приятели и да попълните профила си."
 
 #: 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "Включване на звуци за известия"
 
 #: 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "Споделяне на позицията (местоположението) ви на глобуса"
 
 #: 
 msgid "Offline friends"
-msgstr ""
+msgstr "Приятели извън линия"
 
 #: 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Без скриване на прителите извън линия"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
-msgstr ""
+msgstr "Използвайте този помощник/инструмент, за да намерите приятелите си на сървъра, който използвате в момента, или ги добавете по-късно."
 
 #: 
 msgid "Great work! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "Добра работа! Сега можете да споделите Jappix със своите приятели!"
 
 #: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
-msgstr ""
+msgstr "Когато натиснете бутона за запазване, ще бъде отворен редакторът на профила. Приятно социализиране!"
 
 #: 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "Споделяне на Jappix по %s"
 
 #: 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr ""
+msgstr "Използвам Jappix, отворена социална платформа. Аз съм %s!"
 
 #: 
 msgid "Unknown name"
-msgstr ""
+msgstr "Неизвестно име"
 
 #: 
 msgid "Unknown country"
-msgstr ""
+msgstr "Неизвестна страна/държава"
 
 #: 
 msgid "Click to enable"
-msgstr ""
+msgstr "Натиснете за включване"
 
 #: 
 msgid "Click to disable"
-msgstr ""
+msgstr "Натиснете за изключване"
 
 #: 
 msgid "Installation"
-msgstr ""
+msgstr "Инсталация"
 
 #: 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Инсталация на Jappix"
 
 #: 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Добре дошли в инсталацията за/на Jappix!"
 
 #: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr ""
+msgstr "Този помощник/инструмент ще ви помогне бързо да инсталирате Jappix, първата пълноценна онлайн социална платформа, базирана на XMPP, на вашия сървър. Дори не са ви нужни технически познания."
 
 #: 
 msgid "Let's have a look at the installation steps:"
-msgstr ""
+msgstr "Нека да разгледаме стъпките при/на инсталацията:"
 
 #: 
 msgid "Welcome"
-msgstr ""
+msgstr "Здравейте"
 
 #: 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Конфигурация на хранилището"
 
 #: 
 msgid "Administrator account"
-msgstr ""
+msgstr "Администраторска потребителска сметка (акаунт)"
 
 #: 
 msgid "Main configuration"
-msgstr ""
+msgstr "Основна конфигурация"
 
 #: 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "Конфигурация на хостовете"
 
 #: 
 msgid "Services installation"
-msgstr ""
+msgstr "Инсталация на услуги"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "Ако настоящият език не съвпада с вашия (%1s), можете да направите Jappix да говори на %2s, като това ще се запази."
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
-msgstr ""
+msgstr "Ако желаете да получите помощ относно инсталацията и конфигурацията на Jappix, можете да използвате цялата наша документация на програмата, която е на разположение от:"
 
 #: 
 msgid "It's time to build your own social cloud: just go to the next step!"
-msgstr ""
+msgstr "Време е да построите вашия собствен социален облак: просто отидете на следващата стъпка!"
 
 #: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr ""
+msgstr "Jappix съхранява натрапчиви/постоянни данни (като споделени файлове, дневници/архиви на чатовете, вашата музика и собствената си конфигурация) в своята собствена сигурна папка/директория за съхранение."
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
-msgstr ""
+msgstr "Jappix трябва да може да вписва данни в тази папка/директория, за да създаде своите поддиректории. Ако това е невъзможно, трябва да настроите правомощията на %1s или да промените собственика на папката на %2s (в зависимост от вашата конфигурация)."
 
 #: 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "В тази папка/директория може да се записва, можете да продължите!"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
@@ -1403,55 +1403,55 @@ msgstr ""
 
 #: 
 msgid "User"
-msgstr ""
+msgstr "Потребител"
 
 #: 
 msgid "Service"
-msgstr ""
+msgstr "Услуга"
 
 #: 
 msgid "Service name"
-msgstr ""
+msgstr "Наименование на услугата"
 
 #: 
 msgid "Service description"
-msgstr ""
+msgstr "Описание на услугата"
 
 #: 
 msgid "Connection"
-msgstr ""
+msgstr "Връзка"
 
 #: 
 msgid "Lock the host"
-msgstr ""
+msgstr "Заключване на хоста"
 
 #: 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Режим инкогнито (в анонимност)"
 
 #: 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Регистрациите са разрешени"
 
 #: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "Използване на прокси (сървър-посредник)"
 
 #: 
 msgid "Encryption"
-msgstr ""
+msgstr "Криптиране (шифроване)"
 
 #: 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "съхранение/складиране с HTTPS"
 
 #: 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "Принудително използване на HTTPS"
 
 #: 
 msgid "Compression"
-msgstr ""
+msgstr "Компресия"
 
 #: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
@@ -1463,15 +1463,15 @@ msgstr ""
 
 #: 
 msgid "Main host"
-msgstr ""
+msgstr "Основен хост"
 
 #: 
 msgid "Groupchat host"
-msgstr ""
+msgstr "Хост на групови чатове"
 
 #: 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Анонимен хост"
 
 #: 
 msgid "Directory host"
@@ -1507,7 +1507,7 @@ msgstr ""
 
 #: 
 msgid "Check again"
-msgstr ""
+msgstr "Проверете отново"
 
 #: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
@@ -1531,23 +1531,23 @@ msgstr ""
 
 #: 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix мениджър"
 
 #: 
 msgid "Manager access"
-msgstr ""
+msgstr "Мениджърски достъп"
 
 #: 
 msgid "Statistics"
-msgstr ""
+msgstr "Статистики"
 
 #: 
 msgid "Hosts"
-msgstr ""
+msgstr "Хостове"
 
 #: 
 msgid "Design"
-msgstr ""
+msgstr "Дизайн"
 
 #: 
 msgid "Repeat"
@@ -1555,7 +1555,7 @@ msgstr ""
 
 #: 
 msgid "All"
-msgstr ""
+msgstr "Всички"
 
 #: 
 msgid "Horizontal"
@@ -1591,23 +1591,23 @@ msgstr ""
 
 #: 
 msgid "Color"
-msgstr ""
+msgstr "Цвят"
 
 #: 
 msgid "Users"
-msgstr ""
+msgstr "Потребители"
 
 #: 
 msgid "Updates"
-msgstr ""
+msgstr "Обновления"
 
 #: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
-msgstr ""
+msgstr "Това е ограничена зона: само оправомощени потребители могат да управляват този Jappix възел."
 
 #: 
 msgid "Please use the form below to login to the administration panel."
-msgstr ""
+msgstr "Моля, използвайте формуляра надолу, за да влезете в администрационния панел."
 
 #: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
@@ -1615,15 +1615,15 @@ msgstr ""
 
 #: 
 msgid "Credentials"
-msgstr ""
+msgstr "Акредитивни пълномощни/права"
 
 #: 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "Вие излязохте. Довиждане!"
 
 #: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
-msgstr ""
+msgstr "Опа, системата не ви разпознава като валиден администратор. Моля, проверете верността на данните си за вход!"
 
 #: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
@@ -1631,11 +1631,11 @@ msgstr ""
 
 #: 
 msgid "Change your Jappix node configuration with this tool."
-msgstr ""
+msgstr "Променете конфигурацията на вашия Jappix възел с този инструмент/помощник."
 
 #: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr ""
+msgstr "Промяна на XMPP хостовете, които обслужва този Jappix възел, с този инструмент/помощник."
 
 #: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
@@ -1643,11 +1643,11 @@ msgstr ""
 
 #: 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappix може напълно да се промени по вкуса ви: можете да промените неговия дизайн от тук."
 
 #: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr ""
+msgstr "Изображението е невалидно, моля, използвайте изображения с файлови формати PNG, GIF или JPG!"
 
 #: 
 msgid "The image could not be received, would you mind retry?"
@@ -1659,7 +1659,7 @@ msgstr ""
 
 #: 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Промените са запазени!"
 
 #: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
@@ -1683,31 +1683,31 @@ msgstr ""
 
 #: 
 msgid "January"
-msgstr ""
+msgstr "януари"
 
 #: 
 msgid "February"
-msgstr ""
+msgstr "февруари"
 
 #: 
 msgid "March"
-msgstr ""
+msgstr "март"
 
 #: 
 msgid "April"
-msgstr ""
+msgstr "април"
 
 #: 
 msgid "May"
-msgstr ""
+msgstr "май"
 
 #: 
 msgid "June"
-msgstr ""
+msgstr "юни"
 
 #: 
 msgid "July"
-msgstr ""
+msgstr "юли"
 
 #: 
 msgid "August"
@@ -1735,99 +1735,99 @@ msgstr ""
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "вторник"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "сряда"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "четвъртък"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "петък"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "събота"
 
 #: 
 msgid "Sunday"
-msgstr ""
+msgstr "неделя"
 
 #: 
 msgid "Total"
-msgstr ""
+msgstr "Общо"
 
 #: 
 msgid "Cache"
-msgstr ""
+msgstr "Кеш (cache)"
 
 #: 
 msgid "Logs"
-msgstr ""
+msgstr "Дневници (logs)"
 
 #: 
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Фонове"
 
 #: 
 msgid "Share"
-msgstr ""
+msgstr "Споделяне"
 
 #: 
 msgid "Background"
-msgstr ""
+msgstr "Фон"
 
 #: 
 msgid "Notice"
-msgstr ""
+msgstr "Бележка"
 
 #: 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "Предпочитанията ви за дизайна са запазени!"
 
 #: 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "Моля, проверете своите входни данни: нещо липсва!"
 
 #: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
-msgstr ""
+msgstr "Променете фона на вашия Jappix възел с този инструмент. Можете или да сложите цвят по избор за фон, или да използвате качено изображение за фон. Нека вашата креативност се лее!"
 
 #: 
 msgid "Use default background"
-msgstr ""
+msgstr "Използване на фона по подразбиране (фабричния фон)"
 
 #: 
 msgid "Use your own image"
-msgstr ""
+msgstr "Използване на ваше изображение"
 
 #: 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "Изберете фона, който ще използвате, и променете настройките за визуализация."
 
 #: 
 msgid "Use your own color"
-msgstr ""
+msgstr "Използване на цвят по ваш избор"
 
 #: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr ""
+msgstr "Въведете шестнадесетичната (HTML hex) стойност на цвета, който искате да използвате за фон."
 
 #: 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "Управление на фоновете"
 
 #: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
-msgstr ""
+msgstr "Можете да добавите нов фон към списъка с помощта на този инструмент/помощник. Моля, качете валидно изображение."
 
 #: 
 msgid "If you want to remove some backgrounds, use the browser below."
@@ -1839,7 +1839,7 @@ msgstr ""
 
 #: 
 msgid "Simple notice"
-msgstr ""
+msgstr "Проста бележка"
 
 #: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
@@ -1847,19 +1847,19 @@ msgstr ""
 
 #: 
 msgid "Advanced notice"
-msgstr ""
+msgstr "Разширена бележка"
 
 #: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
-msgstr ""
+msgstr "Можете да промените по вкуса ви бележката чрез вградени (embedded) HTML, CSS и JavaScript, но трябва сами да кодирате (напишете кода) на стила."
 
 #: 
 msgid "Available updates"
-msgstr ""
+msgstr "Обновления (ъпдейти) на разположение"
 
 #: 
 msgid "What's new?"
-msgstr ""
+msgstr "Какво ново?"
 
 #: 
 msgid "Your storage folders are not writable, please apply the good rights!"
@@ -1875,11 +1875,11 @@ msgstr ""
 
 #: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
-msgstr ""
+msgstr "Налична е нова версия на Jappix! Проверете какво ново има и пуснете да се инсталира обновлението (ъпдейта)!"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr ""
+msgstr "Използвате остаряла версия. Можете да обновите Jappix до по-новата налична версия (%s), като натиснете тук!"
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
@@ -1887,7 +1887,7 @@ msgstr ""
 
 #: 
 msgid "Check for updates"
-msgstr ""
+msgstr "Проверка за обновления (ъпдейти)"
 
 #: 
 msgid "Update in progress"
@@ -1903,15 +1903,15 @@ msgstr ""
 
 #: 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Изтегляне на пакета..."
 
 #: 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Премахване/изтриване на настоящите системни файлове на Jappix..."
 
 #: 
 msgid "Extracting package..."
-msgstr ""
+msgstr "Извличане на пакета..."
 
 #: 
 msgid "Regenerating storage folder tree..."
@@ -1919,15 +1919,15 @@ msgstr ""
 
 #: 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix е вече обновен до най-новата версия!"
 
 #: 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "Прекъсната операция: цокълна (socket) грешка!"
 
 #: 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "Неуспешна операция: буферна грешка!"
 
 #: 
 msgid "Aborted: everything is not writable!"
@@ -1935,35 +1935,35 @@ msgstr ""
 
 #: 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "Операцията е неуспешна: пакетът не може да се извлече!"
 
 #: 
 msgid "Visits"
-msgstr ""
+msgstr "Посещения"
 
 #: 
 msgid "Daily"
-msgstr ""
+msgstr "дневно"
 
 #: 
 msgid "Weekly"
-msgstr ""
+msgstr "седмично"
 
 #: 
 msgid "Monthly"
-msgstr ""
+msgstr "месечно"
 
 #: 
 msgid "Yearly"
-msgstr ""
+msgstr "годишно"
 
 #: 
 msgid "Size"
-msgstr ""
+msgstr "Големина"
 
 #: 
 msgid "Clean everything"
-msgstr ""
+msgstr "Изчистване на всичко/-и"
 
 #: 
 msgid "Purge cache"
@@ -1987,253 +1987,253 @@ msgstr ""
 
 #: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
-msgstr ""
+msgstr "Качете (ъплоуднете) ваша музика (позволени файлови формати: Ogg Vorbis, MP3 или WAV), за да можете да я слушате в Jappix."
 
 #: 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "Файлът, който искате да качите (ъплоуднете) трябва да е по-малък от %s."
 
 #: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
-msgstr ""
+msgstr "Следете какво потребителите ви съхраняват на вашия сървър и премахвайте/изтривайте нежелателно съдържание чрез този инструмент/помощник."
 
 #: 
 msgid "Title"
-msgstr ""
+msgstr "Заглавие"
 
 #: 
 msgid "Artist"
-msgstr ""
+msgstr "Изпълнител/автор"
 
 #: 
 msgid "Album"
-msgstr ""
+msgstr "Албум"
 
 #: 
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: 
 msgid "Upload"
-msgstr ""
+msgstr "Качване"
 
 #: 
 msgid "The folder is empty."
-msgstr ""
+msgstr "Тази папка/директория е празна."
 
 #: 
 msgid "The music could not be received, please retry!"
-msgstr ""
+msgstr "Музикалният файл не може да бъде получен, моля, пробвайте отново!"
 
 #: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
-msgstr ""
+msgstr "Това е невалиден музикален (аудио) файл, моля, прекодирайте (транскодирайте) файла към формати като Ogg Vorbis, MP3 или WAV!"
 
 #: 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Музиката ви е добавена!"
 
 #: 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "Избраните елементи са премахнати/изтрити."
 
 #: 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "Трябва да изберете елементи за премахване!"
 
 #: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
-msgstr ""
+msgstr "С този инструмент можете да добавите нов потребител или да промените парола (за това е нужно да въведете потребителското име/псевдоним на съществуващ потребител). Моля, използвайте силна (сигурна) парола!"
 
 #: 
 msgid "Manage"
-msgstr ""
+msgstr "Управление"
 
 #: 
 msgid "List"
-msgstr ""
+msgstr "Списък"
 
 #: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
-msgstr ""
+msgstr "С този инструмент/помощник можете да премахвате/изтривате потребители. Обърнете внимание на това, че не можете да премахнете потребител от системата, ако той е единственият съществуващ/вписан."
 
 #: 
 msgid "The user has been added!"
-msgstr ""
+msgstr "Потребителят е добавен!"
 
 #: 
 msgid "The chosen users have been removed."
-msgstr ""
+msgstr "Избраните потребители са премахнати."
 
 #: 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "Трябва да изберете един или повече потребители, които искате да премахнете от списъка!"
 
 #: 
 msgid "Yesterday"
-msgstr ""
+msgstr "вчера"
 
 #: 
 msgid "%s days ago"
-msgstr ""
+msgstr "преди %s дни"
 
 #: 
 msgid "User currently active"
-msgstr ""
+msgstr "Потребителят е активен в момента"
 
 #: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Последно видян(и): %s"
 
 #: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Неактивен от: %s"
 
 #: 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "Приятелят ви изглежда не е получил вашето съобщение/-я!"
 
 #: 
 msgid "Static content server"
-msgstr ""
+msgstr "Статичен сървър за съдържанието"
 
 #: 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr ""
+msgstr "Това е статичният сървър за съдържанието за %1s, “%2s”."
 
 #: 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Предложени приятели"
 
 #: 
 msgid "Check all"
-msgstr ""
+msgstr "Маркиране/избиране на всички"
 
 #: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Размаркиране/премахване на всички"
 
 #: 
 msgid "Choose"
-msgstr ""
+msgstr "Избиране"
 
 #: 
 msgid "List name"
-msgstr ""
+msgstr "Име на списъка"
 
 #: 
 msgid "Allow"
-msgstr ""
+msgstr "Позволяване"
 
 #: 
 msgid "Deny"
-msgstr ""
+msgstr "Отказване/отхвърляне"
 
 #: 
 msgid "Group"
-msgstr ""
+msgstr "Група"
 
 #: 
 msgid "Subscription"
-msgstr ""
+msgstr "Абонамент"
 
 #: 
 msgid "Both"
-msgstr ""
+msgstr "И двамата/двете"
 
 #: 
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: 
 msgid "Everybody"
-msgstr ""
+msgstr "Всички"
 
 #: 
 msgid "Send messages"
-msgstr ""
+msgstr "Изпращане на съобщения"
 
 #: 
 msgid "Send queries"
-msgstr ""
+msgstr "Изпращане на заявки"
 
 #: 
 msgid "See my status"
-msgstr ""
+msgstr "Разглеждане на моя статус"
 
 #: 
 msgid "Send his/her status"
-msgstr ""
+msgstr "Изпращане на неговия/нейния статус"
 
 #: 
 msgid "Everything"
-msgstr ""
+msgstr "Всичко/-и"
 
 #: 
 msgid "Item"
-msgstr ""
+msgstr "Номер"
 
 #: 
 msgid "Order"
-msgstr ""
+msgstr "Ред"
 
 #: 
 msgid "Active for this session"
-msgstr ""
+msgstr "Активен за тази сесия"
 
 #: 
 msgid "Always active"
-msgstr ""
+msgstr "Винаги активен"
 
 #: 
 msgid "User directory"
-msgstr ""
+msgstr "Потребителска директория"
 
 #: 
 msgid "Search a friend"
-msgstr ""
+msgstr "Търсене за приятел"
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
-msgstr ""
+msgstr "Изисканата възможност не е имплементирана от получателя или сървъра и поради това не може да бъде обработена."
 
 #: 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "Това е повторение от %s"
 
 #: 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Зареждане на коментарите..."
 
 #: 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Въведете вашия коментар тук..."
 
 #: 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "Коментарите не могат да бъдат заредени!"
 
 #: 
 msgid "Show comments"
-msgstr ""
+msgstr "Показване на коментарите"
 
 #: 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Изпращане на съобщение за него/нея"
 
 #: 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "Започване на чат с него/нея"
 
 #: 
 msgid "Media integration"
-msgstr ""
+msgstr "Медийна интеграция"
 
 #: 
 msgid "Comments locked!"
-msgstr ""
+msgstr "Коментарите са заключени!"
 
 #: 
 msgid "Type something you want to share with your friends..."
-msgstr ""
+msgstr "Въведете нещо, което бихте искали да споделите с вашите приятели..."
 
