@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 26/04/11
+Last revision: 02/05/11
 
 */
 
@@ -310,7 +310,12 @@ function getXID() {
 
 // Gets a MUC user XID
 function getMUCUserXID(room, nick) {
-	return unescape($('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid'));
+	var xid = $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid');
+	
+	if(xid)
+		return unescape(xid);
+	
+	return null;
 }
 
 // Gets a MUC user read XID

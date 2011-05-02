@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 24/04/11
+Last revision: 02/05/11
 
 */
 
@@ -489,11 +489,14 @@ function sendMessage(hash, type) {
 			else if(body.match(/^\/nick (.+)/)) {
 				var nick = body.replace(/^\/nick (.+)/, '$1');
 				
-				// Send a new presence
-				sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, handleErrorReply);
-				
-				// Change the stored nickname
-				$('#' + hex_md5(xid)).attr('data-nick', escape(nick));
+				// Does not exist yet?
+				if(!getMUCUserXID(xid, nick)) {
+					// Send a new presence
+					sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, handleErrorReply);
+					
+					// Change the stored nickname
+					$('#' + hex_md5(xid)).attr('data-nick', escape(nick));
+				}
 			}
 			
 			// /msg shortcut
@@ -502,14 +505,14 @@ function sendMessage(hash, type) {
 				var body = RegExp.$2;
 				var nXID = getMUCUserXID(xid, nick);
 				
-				// We check if the user to kick exists
+				// We check if the user exists
 				if(!nXID)
 					openThisInfo(6);
 				
 				// If the private message is not empty
 				else if(body) {
 					aMsg.setType('chat');
-					aMsg.setTo(xid);
+					aMsg.setTo(nXID);
 					generateMessage(aMsg, body, hash);
 					
 					con.send(aMsg, handleErrorReply);
@@ -532,7 +535,7 @@ function sendMessage(hash, type) {
 				var reason = RegExp.$2;
 				var nXID = getMUCUserRealXID(xid, nick);
 				
-				// We check if the user to ban exists
+				// We check if the user exists
 				if(!nXID)
 					openThisInfo(6);
 				
@@ -558,7 +561,7 @@ function sendMessage(hash, type) {
 				var reason = RegExp.$2;
 				var nXID = getMUCUserXID(xid, nick);
 				
-				// We check if the user to kick exists
+				// We check if the user exists
 				if(!nXID)
 					openThisInfo(6);
 				
