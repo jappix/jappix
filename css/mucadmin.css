@@ -7,7 +7,7 @@ This is the mucadmin CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 02/05/11
 
 */
 
@@ -22,7 +22,6 @@ Last revision: 28/12/10
 }
 
 #mucadmin .mucadmin-head-jid {
-	font-size: 14px;
 	text-decoration: underline;
 	float: right;
 	margin: 1px 4px 1px 1px;

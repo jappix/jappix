@@ -7,7 +7,7 @@ This is the popup CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 02/05/11
 
 */
 
@@ -371,11 +371,11 @@ Last revision: 26/04/11
 
 .popup .results .one-host {
 	font-weight: bold;
-	width: 165px;
+	width: 170px;
 }
 
 .popup .results .one-type {
-	width: 215px;
+	width: 210px;
 }
 
 .popup .results .one-type,
