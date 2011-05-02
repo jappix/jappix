@@ -111,6 +111,7 @@ function handlePresence(presence) {
 		var role = item.attr('role');
 		var reason = item.find('reason').text();
 		var iXID = item.attr('jid');
+		var iNick = item.attr('nick');
 		var nick = thisResource(from);
 		var messageTime = getCompleteTime();
 		var notInitial = true;
@@ -128,7 +129,7 @@ function handlePresence(presence) {
 		
 		// If one user is quitting
 		if(type && (type == 'unavailable')) {
-			displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, notInitial);
+			displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
 			
 			removeDB('presence', from);
 		}
@@ -143,7 +144,7 @@ function handlePresence(presence) {
 			}
 			
 			else {
-				displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, notInitial);
+				displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
 				
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 				
@@ -220,7 +221,7 @@ function handlePresence(presence) {
 }
 
 // Displays a MUC presence
-function displayMucPresence(from, roomHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, messageTime, nick, initial) {
+function displayMucPresence(from, roomHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, initial) {
 	// Generate the values
 	var thisUser = '#page-engine #' + roomHash + ' .list .' + hash;
 	var thisPrivate = $('#' + hash + ' .message-area');
@@ -262,7 +263,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Click event
 		if(nick != getMUCNick(roomHash))
-			$('#' + roomHash + ' .user.' + hash).click(function() {
+			$(thisUser).live('click', function() {
 				checkChatCreate(from, 'private');
 			});
 		
@@ -283,10 +284,10 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	}
 	
 	else if((type == 'unavailable') || (type == 'error')) {
-		$(thisUser).remove();
-		
 		// Is it me?
 		if(nick == getMUCNick(roomHash)) {
+			$(thisUser).remove();
+			
 			// Disable the groupchat input
 			$('#' + roomHash + ' .message-area').attr('disabled', true);
 			
@@ -296,6 +297,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Someone has been kicked or banned?
 		if(existArrayValue(status_code, 301) || existArrayValue(status_code, 307)) {
+			$(thisUser).remove();
 			notify = true;
 			
 			// Kicked?
@@ -313,8 +315,39 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 				write += ' (' + _e("no reason") + ')';
 		}
 		
+		// Nickname change?
+		else if(existArrayValue(status_code, 303) && iNick) {
+			notify = true;
+			write += printf(_e("changed his/her nickname to %s"), iNick);
+			
+			// New values
+			var new_xid = cutResource(from) + '/' + iNick;
+			var new_hash = hex_md5(new_xid);
+			var new_class = 'user ' + new_hash;
+			
+			if($(thisUser).hasClass('myself'))
+				new_class += ' myself';
+			
+			// Die the click event
+			$(thisUser).die('click');
+			
+			// Change to the new nickname
+			$(thisUser).attr('data-nick', iNick)
+			           .attr('data-xid', new_xid)
+			           .find('.name').text(iNick);
+			
+			// Change the user class
+			$(thisUser).attr('class', new_class);
+			
+			// New click event
+			$('#page-engine #' + roomHash + ' .list .' + new_hash).live('click', function() {
+				checkChatCreate(new_xid, 'private');
+			});
+		}
+		
 		// We tell the user that someone left the room
 		else if(!initial) {
+			$(thisUser).remove();
 			notify = true;
 			write += _e("left the chat room");
 			

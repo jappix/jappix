@@ -310,12 +310,7 @@ function getXID() {
 
 // Gets a MUC user XID
 function getMUCUserXID(room, nick) {
-	var xid = $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid');
-	
-	if(xid)
-		return unescape(xid);
-	
-	return null;
+	return $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid');
 }
 
 // Gets a MUC user read XID

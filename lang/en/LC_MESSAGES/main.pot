@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 26/04/11
+# Last revision: 02/05/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -662,6 +662,9 @@ msgid "Requesting this service..."
 msgstr ""
 
 msgid "Loading"
+msgstr ""
+
+msgid "changed his/her nickname to %s"
 msgstr ""
 
 msgid "joined the chat room"
