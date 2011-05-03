@@ -1201,8 +1201,11 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 		
 		if(MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
 			for(g in MINI_GROUPCHATS) {
-				if(xid == bareXID(generateXID(MINI_GROUPCHATS[g], 'groupchat')))
+				if(xid == bareXID(generateXID(MINI_GROUPCHATS[g], 'groupchat'))) {
 					groupchat_exists = true;
+					
+					break;
+				}
 			}
 		}
 		
