@@ -1196,8 +1196,18 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 					'<div class="jm_actions">' + 
 						'<span class="jm_nick">' + nick + '</span>';
 		
+		// Check if the groupchat exists
+		var groupchat_exists = false;
+		
+		if(MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
+			for(g in MINI_GROUPCHATS) {
+				if(xid == bareXID(generateXID(MINI_GROUPCHATS[g], 'groupchat')))
+					groupchat_exists = true;
+			}
+		}
+		
 		// Any close button to display?
-		if(((type == 'groupchat') && !existArrayValue(MINI_GROUPCHATS, xid) && !existArrayValue(MINI_GROUPCHATS, getXIDNick(xid))) || (type != 'groupchat'))
+		if(((type == 'groupchat') && !groupchat_exists) || (type != 'groupchat'))
 			html += '<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>';
 		
 		html += '</div>' + 
