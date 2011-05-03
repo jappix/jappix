@@ -7,7 +7,7 @@ This is the my-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 03/05/11
 
 */
 
@@ -39,7 +39,7 @@ Last revision: 26/04/11
 
 #my-infos .element {
 	height: 24px;
-	margin: 7px 0;
+	margin: 6px 0;
 	position: relative;
 }
 
@@ -48,7 +48,7 @@ Last revision: 26/04/11
 	border-color: #636363;
 	border-width: 1px;
 	border-style: solid;
-	margin-left: 8px;
+	margin-left: 6px;
 	height: 22px;
 	width: 25px;
 	border-radius: 2px;
@@ -298,7 +298,7 @@ Last revision: 26/04/11
 	padding: 1px 0;
 	position: absolute;
 	bottom: 21px;
-	left: 8px;
+	left: 6px;
 	border-top-left-radius: 2px;
 	border-top-right-radius: 2px;
 	-moz-border-radius-topleft: 2px;
@@ -320,7 +320,7 @@ Last revision: 26/04/11
 
 #my-infos .element input {
 	height: 18px;
-	width: 186px;
+	width: 190px;
 	font-size: 0.85em;
 	padding-left: 4px;
 	border-top-left-radius: 0;
