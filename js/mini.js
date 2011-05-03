@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/04/11
+Last revision: 03/05/11
 
 */
 
@@ -1197,7 +1197,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 						'<span class="jm_nick">' + nick + '</span>';
 		
 		// Any close button to display?
-		if(((type == 'groupchat') && !existArrayValue(MINI_GROUPCHATS, xid)) || (type != 'groupchat'))
+		if(((type == 'groupchat') && !existArrayValue(MINI_GROUPCHATS, xid) && !existArrayValue(MINI_GROUPCHATS, getXIDNick(xid))) || (type != 'groupchat'))
 			html += '<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>';
 		
 		html += '</div>' + 
