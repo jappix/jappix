@@ -44,12 +44,13 @@ function checkNotifications() {
 }
 
 // Creates a new notification
-function newNotification(type, from, data, body) {
+function newNotification(type, from, data, body, id) {
 	if(!type || !from)
 		return;
 	
 	// Generate an ID hash
-	var id = hex_md5(type + from);
+	if(!id)
+		var id = hex_md5(type + from);
 	
 	// Generate the text to be displayed
 	var text, action, code;
@@ -76,7 +77,7 @@ function newNotification(type, from, data, body) {
 			break;
 		
 		case 'request':
-			text = from + ' ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
+			text = from.htmlEnc() + ' ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
 			
 			break;
 		
@@ -85,11 +86,20 @@ function newNotification(type, from, data, body) {
 			
 			break;
 		
+		case 'comment':
+			text = data[0].htmlEnc() + ' ' + printf(_e("commented an item you follow: “%s”."), truncate(body, 25));
+			
+			break;
+		
 		default:
 			break;
 	}
 	
-	action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
+	// Action links?
+	if(type == 'comment')
+		action = '<a href="#" class="yes">' + _e("See") + '</a><a href="#" class="no">' + _e("Hide") + '</a>';
+	else	
+		action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
 	if(text) {
 		// We display the notification
@@ -149,6 +159,15 @@ function actionNotification(type, data, value, id) {
 	else if((type == 'rosterx') && (value == 'yes'))
 		openRosterX(data[0]);
 	
+	else if(type == 'comment') {
+		// Remove the inbox notification
+		removeNotification(data[2]);
+		
+		// Must open the link?
+		if(value == 'yes')
+			alert('Open: ' + data[1] + ' [NOT YET CODED]');
+	}
+	
 	// We remove the notification
 	$('.notifications-content .' + id).remove();
 	
@@ -165,7 +184,7 @@ function getNotifications() {
 	iq.setType('get');
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq, handleNotifications);
 	
@@ -175,16 +194,34 @@ function getNotifications() {
 // Handles the social notifications
 function handleNotifications(iq) {
 	// Any error?
-	if(iq.getType() == 'error')
-		logThis('An error occured while getting social notifications!', 2);
+	if(iq.getType() == 'error') {
+		// The node may not exist, create it!
+		setupMicroblog(NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
+		
+		logThis('Error while getting social notifications, trying to reconfigure it!', 2);
+	}
 	
 	// Selector
 	var items = $(iq.getNode()).find('item');
 	
 	// Parse notifications
 	items.each(function() {
-		// TODO
-		// newNotification(type, from, data, body);
+		// Parse the current item
+		var current_item = $(this).attr('id');
+		var current_type = $(this).find('link[rel=via]:first').attr('title');
+		var current_href = $(this).find('link[rel=via]:first').attr('href');
+		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
+		var current_name = $(this).find('source author name').text();
+		var current_text = $(this).find('content[type=text]:first').text();
+		var current_bname = getBuddyName(current_xid);
+		var current_id = hex_md5(current_type + current_xid + current_href + current_text);
+		
+		// Choose the good name!
+		if(!current_name || (current_bname != getXIDNick(current_xid)))
+			current_name = current_bname;
+		
+		// Create it!
+		newNotification(current_type, current_xid, [current_name, current_href, current_item], current_text, current_id);
 	});
 	
 	logThis(items.size() + ' social notification(s) got!', 3);
@@ -193,7 +230,7 @@ function handleNotifications(iq) {
 // Sends a social notification
 function sendNotification(xid, type, href, text) {
 	// Notification ID
-	var id = hex_md5(xid + data + getTimeStamp());
+	var id = hex_md5(xid + text + getTimeStamp());
 	
 	// IQ
 	var iq = new JSJaCIQ();
@@ -202,7 +239,7 @@ function sendNotification(xid, type, href, text) {
 	
 	// ATOM content
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB}));
 	var item = publish.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
@@ -228,7 +265,7 @@ function removeNotification(id) {
 	iq.setType('set');
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB}));
 	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
 	con.send(iq);

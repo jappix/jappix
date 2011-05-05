@@ -549,6 +549,13 @@ function handleCommentsMicroblog(iq) {
 	for(a in users_xid)
 		getAvatar(users_xid[a], 'cache', 'true', 'forget');
 	
+	// Add the owner XID
+	if(server && server.match('@') && !existArrayValue(users_xid, server))
+		users_xid.push(server);
+	
+	// Remove my own XID
+	removeArrayValue(users_xid, getXID());
+	
 	// DOM events
 	if(complete) {
 		// Update timer
@@ -563,7 +570,7 @@ function handleCommentsMicroblog(iq) {
 			             .keyup(function(e) {
 			             		if((e.keyCode == 13) && $(this).val()) {
 			             			// Send the comment!
-			             			sendCommentMicroblog($(this).val(), server, node, id);
+			             			sendCommentMicroblog($(this).val(), server, node, id, users_xid);
 			             			
 			             			// Reset the input value
 			             			$(this).val('');
@@ -575,7 +582,7 @@ function handleCommentsMicroblog(iq) {
 }
 
 // Sends a comment on a given microblog comments node
-function sendCommentMicroblog(value, server, node, id) {
+function sendCommentMicroblog(value, server, node, id, notifiy_arr) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-publish */
 	
 	// Not enough data?
@@ -613,6 +620,16 @@ function sendCommentMicroblog(value, server, node, id) {
 	// Handle this comment!
 	iq.setFrom(server);
 	handleCommentsMicroblog(iq);
+	
+	// Notify users
+	if(notifiy_arr && notifiy_arr.length) {
+		// XMPP link to the item
+		var href = 'xmpp:' + server + '?;node=' + encodeURIComponent(node) + ';item=' + encodeURIComponent(hash);
+		
+		// Loop!
+		for(n in notifiy_arr)
+			sendNotification(notifiy_arr[n], 'comment', href, value);
+	}
 	
 	return false;
 }

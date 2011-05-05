@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 02/05/11
+Last revision: 05/05/11
 
 */
 
@@ -252,6 +252,12 @@ function handleMessage(message) {
 				// Microblog
 				case NS_URN_MBLOG:
 					displayMicroblog(message, xid, hash, 'mixed');
+					
+					break;
+				
+				// Inbox
+				case NS_URN_INBOX:
+					handleNotifications(message);
 					
 					break;
 			}

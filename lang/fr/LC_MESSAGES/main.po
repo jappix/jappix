@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-02 14:13:37\n"
+"PO-Revision-Date: 2011-05-05 22:15:11\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2240,4 +2240,16 @@ msgstr "Entrez quelque-chose que vous souhaitez partager avec vos amis..."
 #: 
 msgid "changed his/her nickname to %s"
 msgstr "porte %s comme nouveau pseudo"
+
+#: 
+msgid "commented an item you follow: “%s”."
+msgstr "a commenté un élément que vous suivez : « %s »."
+
+#: 
+msgid "See"
+msgstr "Voir"
+
+#: 
+msgid "Hide"
+msgstr "Masquer"
 
