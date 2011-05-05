@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/03/11
+Last revision: 05/05/11
 
 */
 
@@ -197,7 +197,7 @@ function sendWelcome(array) {
 		var value = array[i];
 		var tag = tags[i];
 		
-		if((i != 2) && (i != 3)) {
+		if((i != 2) && (i != 3) && tag && value) {
 			storage.appendChild(iq.buildNode('option', {'type': tag, 'xmlns': NS_OPTIONS}, value));
 			setDB('options', tag, value);
 		}
@@ -246,7 +246,7 @@ function saveWelcome() {
 	
 	// If PubSub is supported by the server
 	if(enabledPEP() && enabledPubSub())
-		setupMicroblog(NS_URN_MBLOG, '1', '10000', true);
+		setupMicroblog(NS_URN_MBLOG, '1', '1000000', true);
 	
 	// Send the new options
 	sendWelcome(array);

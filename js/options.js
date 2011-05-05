@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 05/05/11
 
 */
 
@@ -64,12 +64,12 @@ function optionsOpen() {
 				
 				'<label>' + _e("Maximum notices") + '</label>' + 
 				'<select id="maxnotices">' + 
-					'<option value="50">50</option>' + 
+					'<option value="1">1</option>' + 
 					'<option value="100">100</option>' + 
-					'<option value="500">500</option>' + 
 					'<option value="1000">1000</option>' + 
-					'<option value="5000">5000</option>' + 
 					'<option value="10000">10000</option>' + 
+					'<option value="100000">100000</option>' + 
+					'<option value="1000000">1000000</option>' + 
 				'</select>' + 
 			'</fieldset>' + 
 			

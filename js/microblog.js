@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/04/11
+Last revision: 05/05/11
 
 */
 
@@ -855,7 +855,7 @@ function handleGetConfigMicroblog(iq) {
 	// Initialize the values
 	var selector = $(iq.getNode());
 	var persistent = '0';
-	var maxnotices = '10000';
+	var maxnotices = '1000000';
 	
 	// Get the values
 	var xPersistent = selector.find('field[var=pubsub#persist_items] value:first').text();
@@ -870,16 +870,16 @@ function handleGetConfigMicroblog(iq) {
 	
 	// Change the maxnotices value
 	switch(maxnotices) {
-		case '50':
+		case '1':
 		case '100':
-		case '500':
 		case '1000':
-		case '5000':
 		case '10000':
+		case '100000':
+		case '1000000':
 			break;
 		
 		default:
-			maxnotices = '10000';
+			maxnotices = '1000000';
 			break;
 	}
 	
@@ -1048,7 +1048,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 			comments_node_file[i] = NS_URN_MBLOG + ':comments:' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
 			
 			// Create the node
-			setupMicroblog(comments_node_file[i], '1', '10000', true);
+			setupMicroblog(comments_node_file[i], '1', '1000000', true);
 		}
 		
 		file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'replies', 'title': 'comments_file', 'href': 'xmpp:' + comments_entity_file[i] + '?;node=' + encodeURIComponent(comments_node_file[i])}));
@@ -1080,7 +1080,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Create the XML comments PubSub nodes
 	if(node_create)
-		setupMicroblog(comments_node, '1', '10000', true);
+		setupMicroblog(comments_node, '1', '1000000', true);
 	
 	return false;
 }
