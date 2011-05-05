@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 05/05/11
 
 */
 
@@ -76,6 +76,9 @@ function handleFeatures(xml) {
 	if(pep) {
 		// Update our database
 		enableFeature('pep');
+		
+		// Get the notifications
+		getNotifications();
 		
 		// Geolocate the user
 		geolocate();

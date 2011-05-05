@@ -7,7 +7,7 @@ This is the others CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 05/05/11
  
 */
  
@@ -26,7 +26,7 @@ Last revision: 26/04/11
  
 #main-content {
         position: absolute;
-        top: 36px;
+        top: 34px;
         left: 6px;
         right: 6px;
         bottom: 6px;

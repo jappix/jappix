@@ -292,7 +292,7 @@ function saveOptions() {
 		persist = '1';
 	
 	if(enabledPEP() && enabledPubSub())
-		setupMicroblog(NS_URN_MBLOG, persist, maximum, false);
+		setupMicroblog(NS_URN_MBLOG, persist, maximum, '', '', false);
 	
 	// We send the options to the database
 	storeOptions();

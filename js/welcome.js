@@ -245,8 +245,13 @@ function saveWelcome() {
 	}
 	
 	// If PubSub is supported by the server
-	if(enabledPEP() && enabledPubSub())
-		setupMicroblog(NS_URN_MBLOG, '1', '1000000', true);
+	if(enabledPEP() && enabledPubSub()) {
+		// Setup microblog node
+		setupMicroblog(NS_URN_MBLOG, '1', '1000000', '', '', true);
+		
+		// Setup notify node
+		setupMicroblog(NS_URN_NOTIFY, '1', '1000000', 'whitelist', 'open', true);
+	}
 	
 	// Send the new options
 	sendWelcome(array);

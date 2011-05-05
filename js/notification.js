@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/04/11
+Last revision: 05/05/11
 
 */
 
@@ -157,4 +157,79 @@ function actionNotification(type, data, value, id) {
 	checkNotifications();
 	
 	return false;
+}
+
+// Gets the pending social notifications
+function getNotifications() {
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	
+	con.send(iq, handleNotifications);
+	
+	logThis('Getting social notifications...');
+}
+
+// Handles the social notifications
+function handleNotifications(iq) {
+	// Any error?
+	if(iq.getType() == 'error')
+		logThis('An error occured while getting social notifications!', 2);
+	
+	// Selector
+	var items = $(iq.getNode()).find('item');
+	
+	// Parse notifications
+	items.each(function() {
+		// TODO
+		// newNotification(type, from, data, body);
+	});
+	
+	logThis(items.size() + ' social notification(s) got!', 3);
+}
+
+// Sends a social notification
+function sendNotification(xid, type, href, text) {
+	// Notification ID
+	var id = hex_md5(xid + data + getTimeStamp());
+	
+	// IQ
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	iq.setTo(xid);
+	
+	// ATOM content
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	var item = publish.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
+	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
+	
+	// Notification author (us)
+	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
+	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
+	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
+	
+	// Notification content
+	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, text));
+	entry.appendChild(iq.buildNode('link', {'rel': 'via', 'title': type, 'href': href, 'xmlns': NS_ATOM}));
+	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, getXMPPTime('utc')));
+	
+	con.send(iq);
+	
+	logThis('Sending a social notification to ' + xid + ' (type: ' + type + ')...');
+}
+
+// Removes a social notification
+function removeNotification(id) {
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_NOTIFY, 'xmlns': NS_PUBSUB}));
+	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
+	
+	con.send(iq);
 }
