@@ -41,6 +41,9 @@ function checkNotifications() {
 	else {
 		$(empty).hide();
 		$(nothing).show();
+		
+		// Purge the social inbox node
+		purgeNotifications();
 	}
 	
 	// Update the page title
@@ -71,52 +74,52 @@ function newNotification(type, from, data, body, id, inverse) {
 			if(!display_name)
 				display_name = data[0];
 			
-			text = display_name.htmlEnc() + ' ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
+			text = '<b>' + display_name.htmlEnc() + '</b> ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
 			
 			break;
 		
 		case 'invite_room':
-			text = getBuddyName(from).htmlEnc() + ' ' + _e("would like you to join this chatroom:") + ' ' + data[0] + ' ' + _e("Do you accept?");
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + _e("would like you to join this chatroom:") + ' <em>' + data[0] + '</em> ' + _e("Do you accept?");
 			
 			break;
 		
 		case 'request':
-			text = from.htmlEnc() + ' ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
+			text = '<b>' + from.htmlEnc() + '</b> ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
 			
 			break;
 		
 		case 'rosterx':
-			text = printf(_e("Do you want to see the friends %s suggests you?"), getBuddyName(from).htmlEnc());
+			text = printf(_e("Do you want to see the friends %s suggests you?"), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
 			
 			break;
 		
 		case 'comment':
-			text = data[0].htmlEnc() + ' ' + printf(_e("commented an item you follow: “%s”."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("commented an item you follow: “%s”."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
 		case 'like':
-			text = data[0].htmlEnc() + ' ' + printf(_e("liked your post: “%s”."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("liked your post: “%s”."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
 		case 'quote':
-			text = data[0].htmlEnc() + ' ' + printf(_e("quoted you somewhere: “%s”."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("quoted you somewhere: “%s”."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
 		case 'wall':
-			text = data[0].htmlEnc() + ' ' + printf(_e("published on your wall: “%s”."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("published on your wall: “%s”."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
 		case 'photo':
-			text = data[0].htmlEnc() + ' ' + printf(_e("tagged you in a photo (%s)."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a photo (%s)."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
 		case 'video':
-			text = data[0].htmlEnc() + ' ' + printf(_e("tagged you in a video (%s)."), truncate(body, 25));
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a video (%s)."), '<em>' + truncate(body, 25) + '</em>');
 			
 			break;
 		
@@ -205,6 +208,18 @@ function actionNotification(type, data, value, id) {
 	$('.notifications-content .' + id).remove();
 	
 	// We check if there's any other pending notification
+	closeEmptyNotifications();
+	checkNotifications();
+	
+	return false;
+}
+
+// Clear the social notifications
+function clearNotifications() {
+	// Remove notifications
+	$('.one-notification').remove();
+	
+	// Refresh
 	closeEmptyNotifications();
 	checkNotifications();
 	
@@ -306,10 +321,6 @@ function removeNotification(id) {
 
 // Purge the social notifications
 function purgeNotifications() {
-	// Remove notifications
-	$('.one-notification').remove();
-	
-	// Purge social notifications
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 	
@@ -317,10 +328,6 @@ function purgeNotifications() {
 	pubsub.appendChild(iq.buildNode('purge', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB_OWNER}));
 	
 	con.send(iq);
-	
-	// Refresh
-	closeEmptyNotifications();
-	checkNotifications();
 	
 	return false;
 }

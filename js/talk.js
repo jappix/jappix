@@ -82,7 +82,7 @@ function createTalkPage() {
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
-						'<a class="empty" href="#" onclick="return purgeNotifications();">' + _e("Empty") +  '</a>' + 
+						'<a class="empty" href="#" onclick="return clearNotifications();">' + _e("Empty") +  '</a>' + 
 						'<p class="nothing">' + _e("No notifications.") +  '</p>' + 
 					'</div>' + 
 				'</div>' + 

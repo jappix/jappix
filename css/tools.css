@@ -141,7 +141,7 @@ Last revision: 06/05/11
 	color: white;
 	font-size: 0.9em;
 	text-decoration: underline;
-	margin: -8px 4px 1px 0;
+	margin: -8px 4px 2px 0;
 	display: none;
 	float: right;
 }
@@ -199,6 +199,7 @@ Last revision: 06/05/11
 	color: white;
 	font-weight: bold;
 	font-size: 0.9em;
+	text-decoration: underline;
 	margin-right: 8px;
 }
 
