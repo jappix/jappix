@@ -7,7 +7,7 @@ These are the talkpage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 06/05/11
 
 */
 
@@ -18,6 +18,7 @@ function eventsTalkPage() {
 	launchRoster();
 	launchPresence();
 	launchPEP();
+	launchNotifications();
 	launchMusic();
 }
 
@@ -81,6 +82,7 @@ function createTalkPage() {
 					'<div class="tools-content-subarrow talk-images"></div>' + 
 					
 					'<div class="tools-content-subitem">' + 
+						'<a class="empty" href="#" onclick="return purgeNotifications();">' + _e("Empty") +  '</a>' + 
 						'<p class="nothing">' + _e("No notifications.") +  '</p>' + 
 					'</div>' + 
 				'</div>' + 

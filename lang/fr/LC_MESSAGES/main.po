@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-05 22:15:11\n"
+"PO-Revision-Date: 2011-05-06 11:17:23\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2252,4 +2252,24 @@ msgstr "Voir"
 #: 
 msgid "Hide"
 msgstr "Masquer"
+
+#: 
+msgid "liked your post: “%s”."
+msgstr "a aimé votre publication : « %s »."
+
+#: 
+msgid "quoted you somewhere: “%s”."
+msgstr "vous a cité quelque-part : « %s »."
+
+#: 
+msgid "published on your wall: “%s”."
+msgstr "a publié sur votre mur : « %s »."
+
+#: 
+msgid "tagged you in a photo (%s)."
+msgstr "vous a marqué dans une photo (%s)."
+
+#: 
+msgid "tagged you in a video (%s)."
+msgstr "vous a marqué dans une vidéo (%s)."
 

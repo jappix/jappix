@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/05/11
+Last revision: 06/05/11
 
 */
 
@@ -22,6 +22,7 @@ function checkNotifications() {
 	// Define the selectors
 	var notif = '#top-content .notifications';
 	var nothing = '.notifications-content .nothing';
+	var empty = '.notifications-content .empty';
 	
 	// Get the notifications number
 	var number = $('.one-notification').size();
@@ -33,18 +34,21 @@ function checkNotifications() {
 	if(number) {
 		$(notif).prepend('<div class="notify one-counter" data-counter="' + number + '">' + number + '</div>');
 		$(nothing).hide();
+		$(empty).show();
 	}
 	
 	// No notification!
-	else
+	else {
+		$(empty).hide();
 		$(nothing).show();
+	}
 	
 	// Update the page title
 	updateTitle();
 }
 
 // Creates a new notification
-function newNotification(type, from, data, body, id) {
+function newNotification(type, from, data, body, id, inverse) {
 	if(!type || !from)
 		return;
 	
@@ -71,7 +75,7 @@ function newNotification(type, from, data, body, id) {
 			
 			break;
 		
-		case 'invite/room':
+		case 'invite_room':
 			text = getBuddyName(from).htmlEnc() + ' ' + _e("would like you to join this chatroom:") + ' ' + data[0] + ' ' + _e("Do you accept?");
 			
 			break;
@@ -91,13 +95,42 @@ function newNotification(type, from, data, body, id) {
 			
 			break;
 		
+		case 'like':
+			text = data[0].htmlEnc() + ' ' + printf(_e("liked your post: “%s”."), truncate(body, 25));
+			
+			break;
+		
+		case 'quote':
+			text = data[0].htmlEnc() + ' ' + printf(_e("quoted you somewhere: “%s”."), truncate(body, 25));
+			
+			break;
+		
+		case 'wall':
+			text = data[0].htmlEnc() + ' ' + printf(_e("published on your wall: “%s”."), truncate(body, 25));
+			
+			break;
+		
+		case 'photo':
+			text = data[0].htmlEnc() + ' ' + printf(_e("tagged you in a photo (%s)."), truncate(body, 25));
+			
+			break;
+		
+		case 'video':
+			text = data[0].htmlEnc() + ' ' + printf(_e("tagged you in a video (%s)."), truncate(body, 25));
+			
+			break;
+		
 		default:
 			break;
 	}
 	
+	// No text?
+	if(!text)
+		return;
+	
 	// Action links?
-	if(type == 'comment')
-		action = '<a href="#" class="yes">' + _e("See") + '</a><a href="#" class="no">' + _e("Hide") + '</a>';
+	if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video'))
+		action = '<a href="#" class="no">' + _e("Hide") + '</a>';
 	else	
 		action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
@@ -105,17 +138,23 @@ function newNotification(type, from, data, body, id) {
 		// We display the notification
 		if(!exists('.notifications-content .' + id)) {
 			// We create the html markup depending of the notification type
-			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + '">' + 
+			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + '" data-type="' + encodeQuotes(type) + '">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 
 					
 					'<p class="notification-text">' + text + '</p>' + 
-					'<p class="notification-actions">' + action + '</p>' + 
+					'<p class="notification-actions">' + 
+						'<span class="talk-images" />' + 
+						action + 
+					'</p>' + 
 			       '</div>';
 			
 			// Add the HTML code
-			$('.notifications-content .tools-content-subitem').prepend(code);
+			if(inverse)
+				$('.notifications-content .nothing').before(code);
+			else
+				$('.notifications-content .empty').after(code);
 			
 			// Play a sound to alert the user
 			soundPlay(2);
@@ -150,7 +189,7 @@ function actionNotification(type, data, value, id) {
 	else if((type == 'subscribe') && (value == 'no'))
 		sendSubscribe(data[0], 'unsubscribed');
 	
-	else if((type == 'invite/room') && (value == 'yes'))
+	else if((type == 'invite_room') && (value == 'yes'))
 		checkChatCreate(data[0], 'groupchat');
 	
 	else if(type == 'request')
@@ -159,14 +198,8 @@ function actionNotification(type, data, value, id) {
 	else if((type == 'rosterx') && (value == 'yes'))
 		openRosterX(data[0]);
 	
-	else if(type == 'comment') {
-		// Remove the inbox notification
+	else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video'))
 		removeNotification(data[2]);
-		
-		// Must open the link?
-		if(value == 'yes')
-			alert('Open: ' + data[1] + ' [NOT YET CODED]');
-	}
 	
 	// We remove the notification
 	$('.notifications-content .' + id).remove();
@@ -221,7 +254,7 @@ function handleNotifications(iq) {
 			current_name = current_bname;
 		
 		// Create it!
-		newNotification(current_type, current_xid, [current_name, current_href, current_item], current_text, current_id);
+		newNotification(current_type, current_xid, [current_name, current_href, current_item], current_text, current_id, true);
 	});
 	
 	logThis(items.size() + ' social notification(s) got!', 3);
@@ -270,3 +303,46 @@ function removeNotification(id) {
 	
 	con.send(iq);
 }
+
+// Purge the social notifications
+function purgeNotifications() {
+	// Remove notifications
+	$('.one-notification').remove();
+	
+	// Purge social notifications
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
+	pubsub.appendChild(iq.buildNode('purge', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB_OWNER}));
+	
+	con.send(iq);
+	
+	// Refresh
+	closeEmptyNotifications();
+	checkNotifications();
+	
+	return false;
+}
+
+// Adapt the notifications bubble max-height
+function adaptNotifications() {
+	// Process the new height
+	var max_height = $('#right-content').height() - 22;
+	
+	// New height too small
+	if(max_height < 250)
+		max_height = 250;
+	
+	// Apply the new height
+	$('.notifications-content .tools-content-subitem').css('max-height', max_height);
+}
+
+// Plugin launcher
+function launchNotifications() {
+	// Adapt the notifications height
+	adaptNotifications();
+}
+
+// Window resize event handler
+$(window).resize(adaptNotifications);

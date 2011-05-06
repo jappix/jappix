@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 05/05/11
+Last revision: 06/05/11
 
 */
 
@@ -102,7 +102,7 @@ function handleMessage(message) {
 			iRoom = from;
 		
 		// We display the notification
-		newNotification('invite/room', iFrom, [iRoom], body);
+		newNotification('invite_room', iFrom, [iRoom], body);
 		
 		logThis('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
 		

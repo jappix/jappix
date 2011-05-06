@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/05/11
+Last revision: 06/05/11
 
 */
 
@@ -605,15 +605,15 @@ function sendCommentMicroblog(value, server, node, id, notifiy_arr) {
 	var item = publish.appendChild(iq.buildNode('item', {'id': hash, 'xmlns': NS_PUBSUB}));
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
-	// Create the comment
-	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, value));
-	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, date));
-	
-	// Author XID
+	// Author infos
 	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
+	
+	// Create the comment
+	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, value));
+	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, date));
 	
 	con.send(iq);
 	

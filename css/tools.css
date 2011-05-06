@@ -7,7 +7,7 @@ This is the tools CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 06/05/11
 
 */
 
@@ -101,7 +101,6 @@ Last revision: 26/04/11
 }
 
 #top-content .tools-content {
-	width: 220px;
 	display: none;
 	position: absolute;
 	top: 26px;
@@ -125,13 +124,130 @@ Last revision: 26/04/11
 	-webkit-border-radius: 5px;
 }
 
+.notifications-content {
+	width: 240px;
+}
+
 .notifications-content .tools-content-subitem {
-	max-height: 247px;
+	max-height: 250px;
 	color: white;
 	text-shadow: 0 1px 1px black;
 	text-align: left;
 	overflow-x: none;
 	overflow-y: auto;
+}
+
+.notifications-content .empty {
+	color: white;
+	font-size: 0.9em;
+	text-decoration: underline;
+	margin: -8px 4px 1px 0;
+	display: none;
+	float: right;
+}
+
+.notifications-content .nothing {
+	font-size: 0.9em;
+	margin: 5px;
+}
+
+.notifications-content .one-notification {
+	padding: 6px 4px;
+	font-size: 0.85em;
+	clear: both;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+.notifications-content .one-notification:hover,
+.notifications-content .one-notification:focus {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,0.1);
+}
+
+.notifications-content .one-notification:active {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,0.2);
+}
+
+.notifications-content .avatar-container {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 0 8px 8px 0;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+
+.notifications-content .avatar {
+	max-width: 40px;
+	max-height: 40px;
+}
+
+.notifications-content .notification-text,
+.notifications-content .notification-actions {
+	margin-left: 48px;
+	overflow: hidden;
+}
+
+.notifications-content .notification-actions {
+	margin-top: 3px;
+}
+
+.notifications-content .notification-actions a {
+	color: white;
+	font-weight: bold;
+	font-size: 0.9em;
+	margin-right: 8px;
+}
+
+.notifications-content .one-notification .notification-actions span.talk-images {
+	background-position: 0 -1828px;
+	width: 16px;
+	height: 16px;
+	margin: -1px 6px 0 0;
+	float: left;
+}
+
+.notifications-content .one-notification[data-type=subscribe] .notification-actions span.talk-images {
+	background-position: 0 -1796px;
+}
+
+.notifications-content .one-notification[data-type=invite_room] .notification-actions span.talk-images {
+	background-position: 0 -1812px;
+}
+
+.notifications-content .one-notification[data-type=rosterx] .notification-actions span.talk-images {
+	background-position: 0 -1844px;
+}
+
+.notifications-content .one-notification[data-type=comment] .notification-actions span.talk-images {
+	background-position: 0 -1860px;
+}
+
+.notifications-content .one-notification[data-type=like] .notification-actions span.talk-images {
+	background-position: 0 -1876px;
+}
+
+.notifications-content .one-notification[data-type=quote] .notification-actions span.talk-images {
+	background-position: 0 -1892px;
+}
+
+.notifications-content .one-notification[data-type=wall] .notification-actions span.talk-images {
+	background-position: 0 -1908px;
+}
+
+.notifications-content .one-notification[data-type=photo] .notification-actions span.talk-images {
+	background-position: 0 -1924px;
+}
+
+.notifications-content .one-notification[data-type=video] .notification-actions span.talk-images {
+	background-position: 0 -1940px;
+}
+
+.music-content {
+	width: 220px;
 }
 
 .music-content .tools-content-subitem {
@@ -219,59 +335,4 @@ Last revision: 26/04/11
 	margin: 2px;
 	width: 198px;
 	height: 15px;
-}
-
-.notifications-content .nothing {
-	font-size: 0.9em;
-	margin: 5px;
-}
-
-.notifications-content .one-notification {
-	padding: 8px 4px;
-	font-size: 0.85em;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-}
-
-.notifications-content .one-notification:hover,
-.notifications-content .one-notification:focus {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.1);
-}
-
-.notifications-content .one-notification:active {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.2);
-}
-
-.notifications-content .avatar-container {
-	float: left;
-	width: 40px;
-	height: 40px;
-	margin: 0 8px 8px 0;
-	text-align: center;
-	background-repeat: no-repeat;
-}
-
-.notifications-content .avatar {
-	max-width: 40px;
-	max-height: 40px;
-}
-
-.notifications-content .notification-text,
-.notifications-content .notification-actions {
-	margin-left: 48px;
-	overflow: hidden;
-}
-
-.notifications-content .notification-actions {
-	margin-top: 3px;
-}
-
-.notifications-content .notification-actions a {
-	margin-right: 8px;
-	font-weight: bold;
-	font-size: 0.9em;
-	color: white;
 }
