@@ -1008,7 +1008,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	if(!comments_entity || !comments_node) {
 		node_create = true;
 		comments_entity = xid;
-		comments_node = NS_URN_MBLOG + ':comments:' + id;
+		comments_node = NS_URN_MBLOG + ':comments/' + id;
 	}
 	
 	if(!comments_entity_file)
@@ -1029,9 +1029,6 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Create the XML source childs
 	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
-	Source.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}, 'Microblog (' + nick + ')'));
-	Source.appendChild(iq.buildNode('updated', {'xmlns': NS_ATOM}, time));
-	
 	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, author_nick));
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + author_xid));
@@ -1071,7 +1068,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		if(!comments_entity_file[i] || !comments_node_file[i]) {
 			// Generate values
 			comments_entity_file[i] = getXID();
-			comments_node_file[i] = NS_URN_MBLOG + ':comments:' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
+			comments_node_file[i] = NS_URN_MBLOG + ':comments/' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
 			
 			// Create the node
 			setupMicroblog(comments_node_file[i], '1', '1000000', 'open', 'open', true);
