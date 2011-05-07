@@ -833,13 +833,13 @@ function autoIdle() {
 	// Can we extend to auto extended away mode (10 minutes)?
 	if(AUTO_IDLE && (last_presence == 'away')) {
 		idle_presence = 'xa';
-		activity_limit = 600;
+		activity_limit = 1200;
 	}
 	
 	// We must set the user to auto-away (5 minutes)
 	else {
 		idle_presence = 'away';
-		activity_limit = 300;
+		activity_limit = 600;
 	}
 	
 	// The user is really inactive and has set another presence than extended away
