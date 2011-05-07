@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/05/11
+Last revision: 07/05/11
 
 */
 
@@ -214,10 +214,14 @@ function handlePresence(presence) {
 	}
 	
 	// For logger
-	if(!type)
-		type = 'available';
+	if(!show) {
+		if(!type)
+			show = 'available';
+		else
+			show = 'unavailable';
+	}
 	
-	logThis('Presence received: ' + type + ', from ' + from);
+	logThis('Presence received: ' + show + ', from ' + from);
 }
 
 // Displays a MUC presence
@@ -813,7 +817,11 @@ function acceptSubscribe(xid, name) {
 var AUTO_IDLE = false;
 
 function autoIdle() {
-	// Stop if an away presence was set manually
+	// Not connected?
+	if(!isConnected())
+		return;
+	
+	// Stop if an xa presence was set manually
 	var last_presence = getUserShow();
 	
 	if(!AUTO_IDLE && ((last_presence == 'away') || (last_presence == 'xa')))
@@ -866,7 +874,8 @@ function eventIdle() {
 		
 		// Change the presence input
 		$('#my-infos .f-presence a.picker').attr('data-value', show);
-		$('#presence-status').val(status).placeholder();
+		$('#presence-status').val(status);
+		$('#presence-status').placeholder();
 		
 		// Then restore the old presence
 		presenceSend('', true);
@@ -886,7 +895,7 @@ function eventIdle() {
 function liveIdle() {
 	// Apply the autoIdle function every minute
 	AUTO_IDLE = false;
-	$('#my-infos .f-presence').everyTime('60s', autoIdle);
+	$('#my-infos .f-presence').everyTime('30s', autoIdle);
 	
 	// On body bind (click & key event)
 	$('body').live('mousedown', eventIdle)
@@ -922,8 +931,8 @@ function launchPresence() {
 		
 		// Initialize some vars
 		var path = '#my-infos .f-presence div.bubble';
-		var show_id = ['available', 'away', 'xa'];
-		var show_lang = [_e("Available"), _e("Away"), _e("Not available")];
+		var show_id = ['xa', 'away', 'available'];
+		var show_lang = [_e("Not available"), _e("Away"), _e("Available")];
 		var show_val = getUserShow();
 		
 		// Yet displayed?

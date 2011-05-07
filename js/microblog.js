@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/05/11
+Last revision: 07/05/11
 
 */
 
@@ -922,7 +922,8 @@ function handleGetConfigMicroblog(iq) {
 // Handles the user's microblog
 function handleMyMicroblog(packet) {
 	// Reset the entire form
-	$('#channel .top input[name=microblog_body]').removeAttr('disabled').val('').placeholder();
+	$('#channel .top input[name=microblog_body]').removeAttr('disabled').val('');
+	$('#channel .top input[name=microblog_body]').placeholder();
 	unattachMicroblog();
 	
 	// Check for errors

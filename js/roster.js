@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 07/05/11
 
 */
 
@@ -731,7 +731,8 @@ function launchRoster() {
 	aFilter.click(function() {
 		// Reset the input
 		$(this).hide();
-		iFilter.val('').placeholder();
+		iFilter.val('');
+		iFilter.placeholder();
 		
 		// Security: show all the groups, empty or not
 		$('#buddy-list .one-group').show();

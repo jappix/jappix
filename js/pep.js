@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/04/11
+Last revision: 07/05/11
 
 */
 
@@ -238,7 +238,8 @@ function displayPEP(xid, type) {
 				
 				// Apply this PEP event
 				$('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
-				$('#my-infos .f-' + type + ' input').val(dVal).placeholder();
+				$('#my-infos .f-' + type + ' input').val(dVal);
+				$('#my-infos .f-' + type + ' input').placeholder();
 			}
 			
 			else if((type == 'tune') || (type == 'geoloc')) {

@@ -7,7 +7,7 @@ These are the anonymous mode JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 27/03/11
+Last revision: 07/05/11
 
 */
 
@@ -28,6 +28,9 @@ function anonymousConnected(con) {
 		
 		// Send our first presence
 		firstPresence('');
+		
+		// Set last activity stamp
+		LAST_ACTIVITY = getTimeStamp();
 		
 		// If no domain is defined, we assume this must be ours
 		if(ANONYMOUS_ROOM.indexOf('@') == -1)
