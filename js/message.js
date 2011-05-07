@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 06/05/11
+Last revision: 07/05/11
 
 */
 
@@ -416,7 +416,7 @@ function sendMessage(hash, type) {
 		}
 		
 		// /part shortcut
-		else if(body.match(/^\/part\s*(.*)/) && (!isAnonymous() || (isAnonymous() && (type != 'groupchat'))))
+		else if(body.match(/^\/part\s*(.*)/) && (!isAnonymous() || (isAnonymous() && (xid != generateXID(ANONYMOUS_ROOM, 'groupchat')))))
 			quitThisChat(xid, hex_md5(xid), type);
 		
 		// /whois shortcut

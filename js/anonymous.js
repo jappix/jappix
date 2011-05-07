@@ -32,12 +32,8 @@ function anonymousConnected(con) {
 		// Set last activity stamp
 		LAST_ACTIVITY = getTimeStamp();
 		
-		// If no domain is defined, we assume this must be ours
-		if(ANONYMOUS_ROOM.indexOf('@') == -1)
-			ANONYMOUS_ROOM = ANONYMOUS_ROOM + '@' + HOST_MUC;
-		
 		// Create the new groupchat
-		checkChatCreate(ANONYMOUS_ROOM, 'groupchat');
+		checkChatCreate(generateXID(ANONYMOUS_ROOM, 'groupchat'), 'groupchat');
 		
 		// Remove some nasty elements for the anonymous mode
 		$('.tools-mucadmin, .tools-add').remove();

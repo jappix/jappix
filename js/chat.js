@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/03/11
+Last revision: 07/05/11
 
 */
 
@@ -191,7 +191,7 @@ function generateSwitch(type, id, xid, nick) {
 	if(type == 'groupchat') {
 		specialClass = ' groupchat-default';
 		
-		if(isAnonymous())
+		if(isAnonymous() && (xid == generateXID(ANONYMOUS_ROOM, 'groupchat')))
 			show_close = false;
 	}
 	
