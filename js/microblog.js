@@ -539,12 +539,12 @@ function handleCommentsMicroblog(iq) {
 		
 		// Beautiful effect
 		$(path).find('.one-comment.new').slideDown('fast', function() {
-			adaptCommentMicroblog(path);
+			adaptCommentMicroblog(id);
 		}).removeClass('new');
 	}
 	
 	// Set the good widths
-	adaptCommentMicroblog(path);
+	adaptCommentMicroblog(id);
 	
 	// Get the avatars
 	for(a in users_xid)
@@ -641,7 +641,14 @@ function removeCommentMicroblog(server, node, id) {
 	
 	// Remove the item from our DOM
 	$('.one-comment[data-id=' + id + ']').slideUp('fast', function() {
+		// Get the parent ID
+		var parent_id = $(this).parents('div.comments').attr('data-id');
+		
+		// Remove it!
 		$(this).remove();
+		
+		// Adapt the width
+		adaptCommentMicroblog(parent_id);
 	});
 	
 	// Send the IQ to remove the item (and get eventual error callback)
@@ -659,9 +666,13 @@ function removeCommentMicroblog(server, node, id) {
 }
 
 // Adapts the comment elements width
-function adaptCommentMicroblog(path) {
-	$(path).find('.one-comment.compose input').css('width', $(path).width() - 60);
-	$(path).find('.one-comment .comment-container').css('width', $(path).width() - 55);
+function adaptCommentMicroblog(id) {
+	var selector = $('div.comments[data-id=' + id + '] div.comments-content');
+	var selector_width = selector.width();
+	
+	// Change widths
+	selector.find('.one-comment.compose input').css('width', selector_width - 60);
+	selector.find('.one-comment .comment-container').css('width', selector_width - 55);
 }
 
 // Handles the microblog of an user
