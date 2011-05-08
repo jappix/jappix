@@ -7,7 +7,7 @@ These are the XMPP links handling JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/12/10
+Last revision: 08/05/11
 
 */
 
@@ -16,10 +16,7 @@ function xmppLink(link) {
 	/* REF: http://xmpp.org/registrar/querytypes.html */
 	
 	// Remove the "xmpp:" string
-	link = link.replace(/^xmpp(:|%3A)(.+)/gi, '$2');
-	
-	// Unescape the encoded URL
-	link = unescape(link);
+	link = explodeThis(':', link, 1);
 	
 	// The XMPP URI has no "?"
 	if(link.indexOf('?') == -1)
@@ -62,6 +59,8 @@ function xmppLink(link) {
 				break;
 		}
 	}
+	
+	return false;
 }
 
 // Gets the links vars (get parameters in URL)

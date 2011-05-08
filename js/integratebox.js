@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 08/05/11
 
 */
 
@@ -278,7 +278,7 @@ function filterIntegrateBox(data) {
 		
 		// Define the good event
 		if(to)
-			event = 'checkChatCreate(\'' + encodeOnclick(to) + '\', \'chat\')';
+			event = 'xmppLink(\'' + encodeOnclick(to) + '\')';
 		else if(url && service)
 			event = 'applyIntegrateBox(\'' + encodeOnclick(url) + '\', \'' + encodeOnclick(service) + '\')';
 		
