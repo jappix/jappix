@@ -19,21 +19,21 @@ if(!defined('JAPPIX_BASE'))
 
 // Service name
 if(isset($_POST['service_name']) && !empty($_POST['service_name']))
-	$service_name = htmlspecialchars($_POST['service_name']);
+	$service_name = stripslashes(htmlspecialchars($_POST['service_name']));
 else
-	$service_name = htmlspecialchars($main_default['name']);
+	$service_name = stripslashes(htmlspecialchars($main_default['name']));
 
 // Service description
 if(isset($_POST['service_desc']) && !empty($_POST['service_desc']))
-	$service_desc = htmlspecialchars($_POST['service_desc']);
+	$service_desc = stripslashes(htmlspecialchars($_POST['service_desc']));
 else
-	$service_desc = htmlspecialchars($main_default['desc']);
+	$service_desc = stripslashes(htmlspecialchars($main_default['desc']));
 
 // Jappix resource
 if(isset($_POST['jappix_resource']) && !empty($_POST['jappix_resource']))
-	$jappix_resource = htmlspecialchars($_POST['jappix_resource']);
+	$jappix_resource = stripslashes(htmlspecialchars($_POST['jappix_resource']));
 else
-	$jappix_resource = htmlspecialchars($main_default['resource']);
+	$jappix_resource = stripslashes(htmlspecialchars($main_default['resource']));
 
 // Lock host
 if(isset($_POST['lock_host']) && !empty($_POST['lock_host']))
