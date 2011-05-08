@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/05/11
+Last revision: 08/05/11
 
 */
 
@@ -538,12 +538,13 @@ function handleCommentsMicroblog(iq) {
 		$(path).find('.one-comment.compose').after(code);
 		
 		// Beautiful effect
-		$(path).find('.one-comment.new').slideDown('fast').removeClass('new');
+		$(path).find('.one-comment.new').slideDown('fast', function() {
+			adaptCommentMicroblog(path);
+		}).removeClass('new');
 	}
 	
 	// Set the good widths
-	$(path).find('.one-comment.compose input').css('width', $(path).width() - 60);
-	$(path).find('.one-comment .comment-container').css('width', $(path).width() - 55);
+	adaptCommentMicroblog(path);
 	
 	// Get the avatars
 	for(a in users_xid)
@@ -655,6 +656,12 @@ function removeCommentMicroblog(server, node, id) {
 	con.send(iq);
 	
 	return false;
+}
+
+// Adapts the comment elements width
+function adaptCommentMicroblog(path) {
+	$(path).find('.one-comment.compose input').css('width', $(path).width() - 60);
+	$(path).find('.one-comment .comment-container').css('width', $(path).width() - 55);
 }
 
 // Handles the microblog of an user
