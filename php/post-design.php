@@ -9,7 +9,7 @@ This is the design configuration POST handler (manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 08/05/11
 
 */
 
@@ -98,7 +98,7 @@ else if(isset($_POST['save'])) {
 	$notice_text = '';
 	
 	if(isset($_POST['notice_text']))
-		$notice_text = stripslashes($_POST['notice_text']);
+		$notice_text = $_POST['notice_text'];
 	
 	// Check our values
 	if(!$notice_text && ($notice_type != 'none'))

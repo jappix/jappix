@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 30/04/11
+Last revision: 08/05/11
 
 */
 
@@ -1256,7 +1256,7 @@ function manageUsers($action, $array) {
 	$users_xml = '';
 	
 	foreach($users_array as $users_name => $users_password)
-		$users_xml .= "\n".'	<user name="'.htmlspecialchars($users_name).'" password="'.$users_password.'" />';
+		$users_xml .= "\n".'	<user name="'.stripslashes(htmlspecialchars($users_name)).'" password="'.stripslashes($users_password).'" />';
 	
 	// Write the main configuration
 	writeXML('conf', 'users', $users_xml);

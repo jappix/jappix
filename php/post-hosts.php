@@ -9,7 +9,7 @@ This is the hosts configuration POST handler (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 08/05/11
 
 */
 
@@ -19,39 +19,39 @@ if(!defined('JAPPIX_BASE'))
 
 // Main host
 if(isset($_POST['host_main']) && !empty($_POST['host_main']))
-	$host_main = htmlspecialchars($_POST['host_main']);
+	$host_main = stripslashes(htmlspecialchars($_POST['host_main']));
 else
-	$host_main = htmlspecialchars($hosts_default['main']);
+	$host_main = stripslashes(htmlspecialchars($hosts_default['main']));
 
 // Groupchat host
 if(isset($_POST['host_muc']) && !empty($_POST['host_muc']))
-	$host_muc = htmlspecialchars($_POST['host_muc']);
+	$host_muc = stripslashes(htmlspecialchars($_POST['host_muc']));
 else
-	$host_muc = htmlspecialchars($hosts_default['muc']);
+	$host_muc = stripslashes(htmlspecialchars($hosts_default['muc']));
 
 // Directory host
 if(isset($_POST['host_vjud']) && !empty($_POST['host_vjud']))
-	$host_vjud = htmlspecialchars($_POST['host_vjud']);
+	$host_vjud = stripslashes(htmlspecialchars($_POST['host_vjud']));
 else
-	$host_vjud = htmlspecialchars($hosts_default['vjud']);
+	$host_vjud = stripslashes(htmlspecialchars($hosts_default['vjud']));
 
 // Anonymous host
 if(isset($_POST['host_anonymous']) && !empty($_POST['host_anonymous']))
-	$host_anonymous = htmlspecialchars($_POST['host_anonymous']);
+	$host_anonymous = stripslashes(htmlspecialchars($_POST['host_anonymous']));
 else
-	$host_anonymous = htmlspecialchars($hosts_default['anonymous']);
+	$host_anonymous = stripslashes(htmlspecialchars($hosts_default['anonymous']));
 
 // BOSH host
 if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh']))
-	$host_bosh = htmlspecialchars($_POST['host_bosh']);
+	$host_bosh = stripslashes(htmlspecialchars($_POST['host_bosh']));
 else
-	$host_bosh = htmlspecialchars($hosts_default['bosh']);
+	$host_bosh = stripslashes(htmlspecialchars($hosts_default['bosh']));
 
 // Static host
 if(isset($_POST['host_static']) && !empty($_POST['host_static']))
-	$host_static = htmlspecialchars($_POST['host_static']);
+	$host_static = stripslashes(htmlspecialchars($_POST['host_static']));
 else
-	$host_static = htmlspecialchars($hosts_default['static']);
+	$host_static = stripslashes(htmlspecialchars($hosts_default['static']));
 
 // Generate the hosts XML content
 $hosts_xml = 

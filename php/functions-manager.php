@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 12/03/11
+Last revision: 08/05/11
 
 */
 
@@ -715,7 +715,7 @@ function writeBackground($array) {
 	$xml = '';
 	
 	foreach($array as $key => $value)
-		$xml .= "\n".'	<'.$key.'>'.htmlspecialchars($value).'</'.$key.'>';
+		$xml .= "\n".'	<'.$key.'>'.stripslashes(htmlspecialchars($value)).'</'.$key.'>';
 	
 	// Write this data
 	writeXML('conf', 'background', $xml);
@@ -742,7 +742,7 @@ function writeNotice($type, $simple) {
 	// Generate the XML data
 	$xml = 
 	'<type>'.$type.'</type>
-	<notice>'.htmlspecialchars($simple).'</notice>'
+	<notice>'.stripslashes(htmlspecialchars($simple)).'</notice>'
 	;
 	
 	// Write this data
