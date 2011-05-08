@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 08/05/11
 
 */
 
@@ -177,7 +177,8 @@ function quitThisChat(xid, hash, type) {
 	deleteThisChat(hash);
 	
 	// Reset the switcher
-	switchChan(previous);
+	if(!exists('#page-switch .switcher.activechan'))
+		switchChan(previous);
 	
 	// Reset the notifications
 	chanCleanNotify(hash);
