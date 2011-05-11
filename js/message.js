@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 07/05/11
+Last revision: 11/05/11
 
 */
 
@@ -269,7 +269,8 @@ function handleMessage(message) {
 	// If this is a room topic message
 	if(subject && (type == 'groupchat')) {
 		// Filter the vars
-		var filteredSubject = filterThisMessage(subject, resource, true);
+		var filter_subject = subject.replace(/\n/g, ' ');
+		var filteredSubject = filterThisMessage(filter_subject, resource, true);
 		var filteredName = resource.htmlEnc();
 		
 		// Display the new subject at the top
