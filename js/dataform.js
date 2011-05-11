@@ -610,7 +610,7 @@ function fillDataForm(xml, id) {
 		var required = '';
 		
 		// No value?
-		if(!value || !field)
+		if(!field)
 			return;
 		
 		// Required input?
