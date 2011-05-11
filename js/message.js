@@ -257,7 +257,9 @@ function handleMessage(message) {
 				
 				// Inbox
 				case NS_URN_INBOX:
-					handleNotifications(message);
+					// Do not handle friend's notifications
+					if(xid == getXID())
+						handleNotifications(message);
 					
 					break;
 			}
