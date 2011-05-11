@@ -267,7 +267,7 @@ function displayMicroblog(packet, from, hash, mode) {
 					html += '<a href="#" title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
 			}
 			
-			html += '<div class="comments-container" data-node="' + encodeQuotes(nodeComments) + '"></div></div></div>';
+			html += '</div><div class="comments-container" data-node="' + encodeQuotes(nodeComments) + '"></div></div>';
 			
 			// Mixed mode
 			if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
