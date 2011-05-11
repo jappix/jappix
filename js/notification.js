@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/05/11
+Last revision: 11/05/11
 
 */
 
@@ -132,8 +132,14 @@ function newNotification(type, from, data, body, id, inverse) {
 		return;
 	
 	// Action links?
-	if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video'))
+	if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
 		action = '<a href="#" class="no">' + _e("Hide") + '</a>';
+		
+		// Any parent link?
+		if(data[2] && (type == 'comment'))
+			action = '<a href="#" class="yes">' + _e("Show") + '</a>' + action;
+	}
+	
 	else	
 		action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
@@ -201,8 +207,17 @@ function actionNotification(type, data, value, id) {
 	else if((type == 'rosterx') && (value == 'yes'))
 		openRosterX(data[0]);
 	
-	else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video'))
-		removeNotification(data[2]);
+	else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
+		if(value == 'yes') {
+			// Get the microblog item
+			fromInfosMicroblog(data[2]);
+			
+			// Append the marker
+			$('#channel .top.individual').append('<input type="hidden" name="comments" value="' + encodeQuotes(data[1]) + '" />');
+		}
+		
+		removeNotification(data[3]);
+	}
 	
 	// We remove the notification
 	$('.notifications-content .' + id).remove();
@@ -252,12 +267,19 @@ function handleNotifications(iq) {
 	// Selector
 	var items = $(iq.getNode()).find('item');
 	
+	// Should we inverse?
+	var inverse = true;
+	
+	if(items.size() == 1)
+		inverse = false;
+	
 	// Parse notifications
 	items.each(function() {
 		// Parse the current item
 		var current_item = $(this).attr('id');
 		var current_type = $(this).find('link[rel=via]:first').attr('title');
 		var current_href = $(this).find('link[rel=via]:first').attr('href');
+		var current_parent_href = $(this).find('link[rel=related]:first').attr('href');
 		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
 		var current_name = $(this).find('source author name').text();
 		var current_text = $(this).find('content[type=text]:first').text();
@@ -269,14 +291,14 @@ function handleNotifications(iq) {
 			current_name = current_bname;
 		
 		// Create it!
-		newNotification(current_type, current_xid, [current_name, current_href, current_item], current_text, current_id, true);
+		newNotification(current_type, current_xid, [current_name, current_href, current_parent_href, current_item], current_text, current_id, inverse);
 	});
 	
 	logThis(items.size() + ' social notification(s) got!', 3);
 }
 
 // Sends a social notification
-function sendNotification(xid, type, href, text) {
+function sendNotification(xid, type, href, text, parent) {
 	// Notification ID
 	var id = hex_md5(xid + text + getTimeStamp());
 	
@@ -298,9 +320,17 @@ function sendNotification(xid, type, href, text) {
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
 	
 	// Notification content
+	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, getXMPPTime('utc')));
 	entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, text));
 	entry.appendChild(iq.buildNode('link', {'rel': 'via', 'title': type, 'href': href, 'xmlns': NS_ATOM}));
-	entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, getXMPPTime('utc')));
+	
+	// Any parent item?
+	if(parent && parent[0] && parent[1] && parent[2]) {
+		// Generate the parent XMPP URI
+		var parent_href = 'xmpp:' + parent[0] + '?;node=' + encodeURIComponent(parent[1]) + ';item=' + encodeURIComponent(parent[2]);
+		
+		entry.appendChild(iq.buildNode('link', {'rel': 'related', 'href': parent_href, 'xmlns': NS_ATOM}));
+	}
 	
 	con.send(iq);
 	

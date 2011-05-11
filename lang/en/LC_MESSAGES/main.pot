@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 06/05/11
+# Last revision: 11/05/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -845,6 +845,9 @@ msgid "tagged you in a photo (%s)."
 msgstr ""
 
 msgid "tagged you in a video (%s)."
+msgstr ""
+
+msgid "Show"
 msgstr ""
 
 msgid "Hide"

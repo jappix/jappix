@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 11/05/11
 
 */
 
@@ -181,7 +181,7 @@ function displayMicroblog(packet, from, hash, mode) {
 			tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
 			
 			// Display the received message
-			var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + tStamp + '">' + 
+			var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + encodeQuotes(tStamp) + '" data-id="' + encodeQuotes(tID) + '" data-xid="' + encodeQuotes(from) + '">' + 
 					'<div class="' + hash + '">' + 
 						'<div class="avatar-container">' + 
 							'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
@@ -245,9 +245,9 @@ function displayMicroblog(packet, from, hash, mode) {
 				
 				// Any thumbnail?
 				if(tFThumb[f])
-					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
+					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '" data-node="' + encodeQuotes(tFNComments) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
 				else
-					html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank">' + tFName[f].htmlEnc() + '</a>';
+					html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + encodeQuotes(tFNComments) + '">' + tFName[f].htmlEnc() + '</a>';
 			}
 			
 			if(tFURL.length)
@@ -267,7 +267,7 @@ function displayMicroblog(packet, from, hash, mode) {
 					html += '<a href="#" title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
 			}
 			
-			html += '</div></div>';
+			html += '<div class="comments-container" data-node="' + encodeQuotes(nodeComments) + '"></div></div></div>';
 			
 			// Mixed mode
 			if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
@@ -295,7 +295,13 @@ function displayMicroblog(packet, from, hash, mode) {
 			// Individual mode
 			tIndividual = '#channel .content.individual.microblog-' + hash;
 			
-			if(exists(tIndividual) && !exists('.individual .' + tHash)) {
+			// Can append individual content?
+			var can_individual = true;
+			
+			if($('#channel .top.individual input[name=comments]').val() && exists(tIndividual + ' .one-update'))
+				can_individual = false;
+			
+			if(can_individual && exists(tIndividual) && !exists('.individual .' + tHash)) {
 				if(mode == 'mixed')
 					$(tIndividual).prepend(html);
 				else
@@ -320,44 +326,8 @@ function displayMicroblog(packet, from, hash, mode) {
 			
 			// Apply the hover event
 			if(nodeComments)
-				$('.' + tHash).hover(function() {
-					// Don't request twice!
-					if(!$(this).find('div.comments').size()) {
-						// Generate an unique ID
-						var idComments = genID();
-						
-						// Create comments container
-						$(this).append(
-							'<div class="comments" data-id="' + encodeQuotes(idComments) + '">' + 
-								'<div class="arrow talk-images"></div>' + 
-								'<div class="comments-content">' + 
-									'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
-								'</div>' + 
-							'</div>'
-						);
-						
-						// Click event
-						$(this).find('div.comments a.one-comment').click(function() {
-							// Set loading info
-							$(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>');
-							
-							// Request comments
-							getCommentsMicroblog(entityComments, nodeComments, idComments);
-							
-							// Remove the comments from the DOM if click away
-							$('#channel').die('click');
-							
-							$('#channel').live('click', function(evt) {
-								if(!$(evt.target).parents('.' + tHash).size()) {
-									$('#channel').die('click');
-									$('#channel .one-update div.comments-content').stopTime();
-									$('#channel .one-update div.comments').remove();
-								}
-							});
-							
-							return false;
-						});
-					}
+				$('.' + mode + ' .' + tHash).hover(function() {
+					showCommentsMicroblog($(this), entityComments, nodeComments, tHash);
 				}, function() {
 					if($(this).find('div.comments a.one-comment.loading').size())
 						$(this).find('div.comments').remove();
@@ -433,6 +403,10 @@ function handleCommentsMicroblog(iq) {
 	// No node?
 	if(!node)
 		node = $(data).find('publish:first').attr('node');
+	
+	// Get the parent microblog item
+	var parent_select = $('#channel .one-update:has(*[data-node=' + node + '])');
+	var parent_data = [parent_select.attr('data-xid'), NS_URN_MBLOG, parent_select.attr('data-id')];
 	
 	// Must we create the complete DOM?
 	var complete = true;
@@ -571,7 +545,7 @@ function handleCommentsMicroblog(iq) {
 			             .keyup(function(e) {
 			             		if((e.keyCode == 13) && $(this).val()) {
 			             			// Send the comment!
-			             			sendCommentMicroblog($(this).val(), server, node, id, users_xid);
+			             			sendCommentMicroblog($(this).val(), server, node, id, users_xid, parent_data);
 			             			
 			             			// Reset the input value
 			             			$(this).val('');
@@ -582,8 +556,52 @@ function handleCommentsMicroblog(iq) {
 	}
 }
 
+// Shows the microblog comments box
+function showCommentsMicroblog(path, entityComments, nodeComments, tHash) {
+	// Do not display it twice!
+	if(path.find('div.comments').size())
+		return;
+	
+	// Generate an unique ID
+	var idComments = genID();
+	
+	// Create comments container
+	path.find('div.comments-container').append(
+		'<div class="comments" data-id="' + encodeQuotes(idComments) + '">' + 
+			'<div class="arrow talk-images"></div>' + 
+			'<div class="comments-content">' + 
+				'<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
+			'</div>' + 
+		'</div>'
+	);
+	
+	// Click event
+	path.find('div.comments a.one-comment').click(function() {
+		// Set loading info
+		$(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>');
+		
+		// Request comments
+		getCommentsMicroblog(entityComments, nodeComments, idComments);
+		
+		// Remove the comments from the DOM if click away
+		if(tHash) {
+			$('#channel').die('click');
+			
+			$('#channel').live('click', function(evt) {
+				if(!$(evt.target).parents('.' + tHash).size()) {
+					$('#channel').die('click');
+					$('#channel .one-update div.comments-content').stopTime();
+					$('#channel .one-update div.comments').remove();
+				}
+			});
+		}
+		
+		return false;
+	});
+}
+
 // Sends a comment on a given microblog comments node
-function sendCommentMicroblog(value, server, node, id, notifiy_arr) {
+function sendCommentMicroblog(value, server, node, id, notifiy_arr, parent_data) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-publish */
 	
 	// Not enough data?
@@ -629,7 +647,7 @@ function sendCommentMicroblog(value, server, node, id, notifiy_arr) {
 		
 		// Loop!
 		for(n in notifiy_arr)
-			sendNotification(notifiy_arr[n], 'comment', href, value);
+			sendNotification(notifiy_arr[n], 'comment', href, value, parent_data);
 	}
 	
 	return false;
@@ -703,6 +721,29 @@ function handleMicroblog(iq) {
 		// Hide the 'more items' link?
 		if($(iq.getNode()).find('item').size() < old_count)
 			$('#channel .individual a.more').remove();
+		
+		// Get the comments?
+		var comments_node = $('#channel .top.individual input[name=comments]').val();
+		
+		if(comments_node && comments_node.match(/^xmpp:(.+)\?;node=(.+);item=(.+)/)) {
+			// Get the values
+			var comments_entity = RegExp.$1;
+			comments_node = decodeURIComponent(RegExp.$2);
+			
+			// Selectors
+			var file_link = $('#channel .individual .one-update p.file a[data-node=' + comments_node + ']');
+			var entry_link = $('#channel .individual .one-update:has(*[data-node=' + comments_node + '])');
+			
+			// Is it a file?
+			if(file_link.size())
+				file_link.click();
+			
+			// Is it a microblog entry?
+			else if(entry_link.size()) {
+				showCommentsMicroblog(entry_link, comments_entity, comments_node);
+				entry_link.find('a.one-comment').click();
+			}
+		}
 	}
 	
 	logThis('Microblog got: ' + from, 3);
@@ -732,6 +773,18 @@ function getMicroblog(xid, hash) {
 	
 	// Fire the wait event
 	waitMicroblog('fetch');
+	
+	// XMPP URI?
+	var get_item = '';
+	
+	if(xid.match(/^xmpp:(.+)\?;node=(.+);item=(.+)/)) {
+		xid = RegExp.$1;
+		get_item = decodeURIComponent(RegExp.$3);
+	}
+	
+	// No hash?
+	if(!hash)
+		hash = hex_md5(xid);
 	
 	// Can display the individual channel?
 	if(!exists('#channel .individual')) {
@@ -774,8 +827,8 @@ function getMicroblog(xid, hash) {
 					
 					cShortcuts + 
 					
-					'<input type="hidden" name="jid" value="' + xid + '" />' + 
-					'<input type="hidden" name="counter" value="' + 20 + '" />' + 
+					'<input type="hidden" name="jid" value="' + encodeQuotes(xid) + '" />' + 
+					'<input type="hidden" name="counter" value="20" />' + 
 				'</div>'
 						 );
 		
@@ -792,7 +845,13 @@ function getMicroblog(xid, hash) {
 	iq.setTo(xid);
 	
 	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'max_items': items, 'xmlns': NS_PUBSUB}));
+	var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
+	
+	// Request a particular item?
+	if(get_item)
+		ps_items.appendChild(iq.buildNode('item', {'id': get_item, 'xmlns': NS_PUBSUB}));
+	else
+		ps_items.setAttribute('max_items', items);
 	
 	con.send(iq, handleMicroblog);
 	

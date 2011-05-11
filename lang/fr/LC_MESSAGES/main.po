@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-06 11:17:23\n"
+"PO-Revision-Date: 2011-05-11 14:21:43\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2246,8 +2246,8 @@ msgid "commented an item you follow: “%s”."
 msgstr "a commenté un élément que vous suivez : « %s »."
 
 #: 
-msgid "See"
-msgstr "Voir"
+#~ msgid "See"
+#~ msgstr "Voir"
 
 #: 
 msgid "Hide"
@@ -2272,4 +2272,8 @@ msgstr "vous a marqué dans une photo (%s)."
 #: 
 msgid "tagged you in a video (%s)."
 msgstr "vous a marqué dans une vidéo (%s)."
+
+#: 
+msgid "Show"
+msgstr "Afficher"
 
