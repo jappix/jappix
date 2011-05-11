@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/03/11
+Last revision: 11/05/11
 
 */
 
@@ -151,14 +151,14 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 				// JID-multi input?
 				if(iType == 'jid-multi') {
 					// Values array
-					var xid_arr = new Array(iValue);
+					var xid_arr = [iValue];
 					
 					// Try to split it
 					if(iValue.indexOf(',') != -1)
 						xid_arr = iValue.split(',');
 					
 					// Append each value to the XML document
-					for(i in muc_arr) {
+					for(i in xid_arr) {
 						// Get the current value
 						xid_current = xid_arr[i];
 						
@@ -608,6 +608,10 @@ function fillDataForm(xml, id) {
 		var field = $(this).attr('var');
 		var value = $(this).find('value:first').text();
 		var required = '';
+		
+		// No value?
+		if(!value || !field)
+			return;
 		
 		// Required input?
 		if($(this).find('required').size())
