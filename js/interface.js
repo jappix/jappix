@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 11/05/11
 
 */
 
@@ -168,7 +168,7 @@ function quitThisChat(xid, hash, type) {
 	}
 	
 	else
-		chatStateSend('gone', xid, hash, 'chat');
+		chatStateSend('gone', xid, hash);
 	
 	// Get the chat ID which is before
 	var previous = $('#' + hash).prev().attr('id');

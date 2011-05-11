@@ -607,6 +607,10 @@ function sendMessage(hash, type) {
 			// No shortcut, this is a message
 			else {
 				aMsg.setType('groupchat');
+				
+				// Chatstate
+				aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
+				
 				generateMessage(aMsg, body, hash);
 				
 				con.send(aMsg, handleMessageError);

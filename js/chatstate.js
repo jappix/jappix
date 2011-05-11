@@ -7,20 +7,20 @@ These are the chatstate JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/12/10
+Last revision: 11/05/11
 
 */
 
 // Sends a given chatstate to a given entity
-function chatStateSend(state, xid, hash, type) {
+function chatStateSend(state, xid, hash) {
 	var user_type = $('#' + hash).attr('data-type');
-
+	
 	// If the friend client supports chatstates and is online
-	if(user_type == 'groupchat' || (user_type == 'chat' && $('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable'))) {
+	if((user_type == 'groupchat') || ((user_type == 'chat') && $('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable'))) {
 		// New message stanza
 		var aMsg = new JSJaCMessage();
 		aMsg.setTo(xid);
-		aMsg.setType(type);
+		aMsg.setType(user_type);
 		
 		// Append the chatstate node
 		aMsg.appendNode(state, {'xmlns': NS_CHATSTATES});
@@ -85,4 +85,54 @@ function resetChatState(hash) {
 					     .removeClass('paused')
 					     .removeClass('inactive')
 					     .removeClass('gone');
+}
+
+// Adds the chatstate events
+function eventsChatState(target, xid, hash) {
+	target.keyup(function(e) {
+		if(e.keyCode != 13) {
+			// Composing a message
+			if($(this).val() && (getDB('chatstate', xid) != 'on')) {
+				// We change the state detect input
+				setDB('chatstate', xid, 'on');
+				
+				// We send the friend a "composing" chatstate
+				chatStateSend('composing', xid, hash);
+			}
+			
+			// Stopped composing a message
+			else if(!$(this).val() && (getDB('chatstate', xid) == 'on')) {
+				// We change the state detect input
+				setDB('chatstate', xid, 'off');
+				
+				// We send the friend an "active" chatstate
+				chatStateSend('active', xid, hash);
+			}
+		}
+	});
+	
+	target.change(function() {
+		// Reset the composing database entry
+		setDB('chatstate', xid, 'off');
+	});
+	
+	target.focus(function() {
+		// Nothing in the input, user is active
+		if(!$(this).val())
+			chatStateSend('active', xid, hash);
+		
+		// Something was written, user started writing again
+		else
+			chatStateSend('composing', xid, hash);
+	});
+	
+	target.blur(function() {
+		// Nothing in the input, user is inactive
+		if(!$(this).val())
+			chatStateSend('inactive', xid, hash);
+		
+		// Something was written, user paused
+		else
+			chatStateSend('paused', xid, hash);
+	});
 }

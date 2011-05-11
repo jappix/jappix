@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/05/11
+Last revision: 11/05/11
 
 */
 
@@ -277,53 +277,6 @@ function chatCreate(hash, xid, nick, type) {
 		}
 	});
 	
-	inputDetect.keyup(function(e) {
-		if(e.keyCode != 13) {
-			// Composing a message
-			if($(this).val() && (getDB('chatstate', xid) != 'on')) {
-				// We change the state detect input
-				setDB('chatstate', xid, 'on');
-				
-				// We send the friend a "composing" chatstate
-				chatStateSend('composing', xid, hash, 'chat');
-			}
-			
-			// Stopped composing a message
-			else if(!$(this).val() && (getDB('chatstate', xid) == 'on')) {
-				// We change the state detect input
-				setDB('chatstate', xid, 'off');
-				
-				// We send the friend an "active" chatstate
-				chatStateSend('active', xid, hash, 'chat');
-			}
-		}
-	});
-	
-	inputDetect.change(function() {
-		// Reset the composing database entry
-		setDB('chatstate', xid, 'off');
-	});
-	
-	inputDetect.focus(function() {
-		// We clean the current notifications
-		chanCleanNotify(hash);
-		
-		// Nothing in the input, user is active
-		if(!inputDetect.val())
-			chatStateSend('active', xid, hash, 'chat');
-		
-		// Something was written, user started writing again
-		else
-			chatStateSend('composing', xid, hash, 'chat');
-	});
-	
-	inputDetect.blur(function() {
-		// Nothing in the input, user is inactive
-		if(!inputDetect.val())
-			chatStateSend('inactive', xid, hash, 'chat');
-		
-		// Something was written, user paused
-		else
-			chatStateSend('paused', xid, hash, 'chat');
-	});
+	// Chatstate events
+	eventsChatState(inputDetect, xid, hash);
 }
