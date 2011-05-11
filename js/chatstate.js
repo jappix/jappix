@@ -13,8 +13,10 @@ Last revision: 10/12/10
 
 // Sends a given chatstate to a given entity
 function chatStateSend(state, xid, hash, type) {
+	var user_type = $('#' + hash).attr('data-type');
+
 	// If the friend client supports chatstates and is online
-	if($('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable')) {
+	if(user_type == 'groupchat' || (user_type == 'chat' && $('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable'))) {
 		// New message stanza
 		var aMsg = new JSJaCMessage();
 		aMsg.setTo(xid);

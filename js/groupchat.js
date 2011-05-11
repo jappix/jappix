@@ -197,11 +197,27 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	// Focus event
 	$('#' + hash + ' .message-area').focus(function() {
 		chanCleanNotify(hash);
+		
+		// Nothing in the input, user is active
+		if(!inputDetect.val())
+			chatStateSend('active', room, hash, 'groupchat');
+		
+		// Something was written, user started writing again
+		else
+			chatStateSend('composing', room, hash, 'groupchat');
 	})
 	
 	// Blur event
 	.blur(function() {
 		resetAutocompletion(hash);
+		
+		// Nothing in the input, user is inactive
+		if(!inputDetect.val())
+			chatStateSend('inactive', room, hash, 'groupchat');
+		
+		// Something was written, user paused
+		else
+			chatStateSend('paused', room, hash, 'groupchat');
 	})
 	
 	// Lock to the input
@@ -209,6 +225,9 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 		// Enter key
 		if(e.keyCode == 13) {
 			sendMessage(hash, 'groupchat');
+			
+			// Reset the composing database entry
+			setDB('chatstate', room, 'off');
 			
 			return false;
 		}
@@ -223,6 +242,33 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 		// Reset the autocompleter
 		else
 			resetAutocompletion(hash);
+	})
+
+	.keyup(function(e) {
+		if(e.keyCode != 13) {
+			// Composing a message
+			if($(this).val() && (getDB('chatstate', room) != 'on')) {
+				// We change the state detect input
+				setDB('chatstate', room, 'on');
+				
+				// We send the friend a "composing" chatstate
+				chatStateSend('composing', room, hash, 'groupchat');
+			}
+			
+			// Stopped composing a message
+			else if(!$(this).val() && (getDB('chatstate', room) == 'on')) {
+				// We change the state detect input
+				setDB('chatstate', room, 'off');
+				
+				// We send the friend an "active" chatstate
+				chatStateSend('active', room, hash, 'groupchat');
+			}
+		}
+	})
+	
+	.change(function() {
+		// Reset the composing database entry
+		setDB('chatstate', room, 'off');
 	});
 	
 	// Get the current muc informations and content
