@@ -12,7 +12,7 @@ Last revision: 13/05/11
 */
 
 .body-images {
-	background-image: url(../img/sprites/clouds.png);
+	background-image: url(../img/sprites/background.png);
 	background-repeat: repeat;
 	background-color: #94d0e1;
 }
