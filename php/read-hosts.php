@@ -9,7 +9,7 @@ This is the hosts configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 13/05/11
 
 */
 
@@ -29,7 +29,7 @@ $hosts_conf = array(
 	      	'muc'		=> 'muc.'.$_SERVER['HTTP_HOST'],
 	      	'vjud'		=> 'vjud.'.$_SERVER['HTTP_HOST'],
 	      	'anonymous'	=> 'anonymous.'.$_SERVER['HTTP_HOST'],
-	      	'bosh'		=> 'http://localhost:5280/http-bind',
+	      	'bosh'		=> 'http://'.$_SERVER['HTTP_HOST'].':5280/http-bind',
 	      	'static'	=> '.'
 	      );
 
