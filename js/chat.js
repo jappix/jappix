@@ -264,6 +264,10 @@ function chatCreate(hash, xid, nick, type) {
 	// The event handlers
 	var inputDetect = $('#page-engine #' + hash + ' .message-area');
 	
+	inputDetect.focus(function() {
+		chanCleanNotify(hash);
+	})
+	
 	inputDetect.keypress(function(e) {
 		// Enter key
 		if(e.keyCode == 13) {

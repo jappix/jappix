@@ -7,7 +7,7 @@ This is the page-switch CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 13/05/11
 
 */
 
@@ -179,20 +179,24 @@ Last revision: 26/04/11
 	background-color: #ede4b8 !important;
 }
 
-#page-switch .composing {
+#page-switch .composing,
+#page-engine .list .user.composing {
 	color: #217021 !important;
 }
 
 #page-switch .paused,
-#page-switch .chan-unread .name {
+#page-switch .chan-unread .name,
+#page-engine .list .user.paused {
 	color: #2431ac !important;
 }
 
-#page-switch .active {
+#page-switch .active,
+#page-engine .list .user.active {
 	color: #353535 !important;
 }
 
-#page-switch .inactive {
+#page-switch .inactive,
+#page-engine .list .user.inactive {
 	color: #585858 !important;
 }
 

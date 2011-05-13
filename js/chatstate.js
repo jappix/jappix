@@ -7,7 +7,7 @@ These are the chatstate JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/05/11
+Last revision: 13/05/11
 
 */
 
@@ -31,60 +31,81 @@ function chatStateSend(state, xid, hash) {
 }
 
 // Displays a given chatstate in a given chat
-function displayChatState(state, hash) {
-	// We change the buddy name color in the page-switch
-	resetChatState(hash);
-	$('#page-switch .' + hash + ' .name').addClass(state);
-	
-	// We generate the chatstate text
-	var text = '';
-	
-	switch(state) {
-		// Active
-		case 'active':
-			text = _e("Your friend is paying attention to the conversation.");
-			
-			break;
+function displayChatState(state, hash, type) {
+	// Groupchat?
+	if(type == 'groupchat') {
+		resetChatState(hash, type);
 		
-		// Composing
-		case 'composing':
-			text = _e("Your friend is writing a message...");
-			
-			break;
-		
-		// Paused
-		case 'paused':
-			text = _e("Your friend stopped writing a message.");
-			
-			break;
-		
-		// Inactive
-		case 'inactive':
-			text = _e("Your friend is doing something else.");
-			
-			break;
-		
-		// Gone
-		case 'gone':
-			text = _e("Your friend closed the chat.");
-			
-			break;
+		// "gone" state not allowed
+		if(state != 'gone')
+			$('#page-engine .page-engine-chan .user.' + hash).addClass(state);
 	}
 	
-	// We reset the previous state
-	$('#' + hash + ' .chatstate').remove();
-	
-	// We create the chatstate
-	$('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
+	// Chat
+	else {
+		// We change the buddy name color in the page-switch
+		resetChatState(hash, type);
+		$('#page-switch .' + hash + ' .name').addClass(state);
+		
+		// We generate the chatstate text
+		var text = '';
+		
+		switch(state) {
+			// Active
+			case 'active':
+				text = _e("Your friend is paying attention to the conversation.");
+				
+				break;
+			
+			// Composing
+			case 'composing':
+				text = _e("Your friend is writing a message...");
+				
+				break;
+			
+			// Paused
+			case 'paused':
+				text = _e("Your friend stopped writing a message.");
+				
+				break;
+			
+			// Inactive
+			case 'inactive':
+				text = _e("Your friend is doing something else.");
+				
+				break;
+			
+			// Gone
+			case 'gone':
+				text = _e("Your friend closed the chat.");
+				
+				break;
+		}
+		
+		// We reset the previous state
+		$('#' + hash + ' .chatstate').remove();
+		
+		// We create the chatstate
+		$('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
+	}
 }
 
 // Resets the chatstate switcher marker
-function resetChatState(hash) {
-	$('#page-switch .' + hash + ' .name').removeClass('active')
-					     .removeClass('composing')
-					     .removeClass('paused')
-					     .removeClass('inactive')
-					     .removeClass('gone');
+function resetChatState(hash, type) {
+	// Define the selector
+	var selector;
+	
+	if(type == 'groupchat')
+		selector = $('#page-engine .page-engine-chan .user.' + hash);
+	else
+		selector = $('#page-switch .' + hash + ' .name');
+	
+	// Reset!
+	selector.removeClass('active')
+	selector.removeClass('composing')
+	selector.removeClass('paused')
+	selector.removeClass('inactive')
+	selector.removeClass('gone');
 }
 
 // Adds the chatstate events

@@ -203,12 +203,12 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	})
 	
 	// Blur event
-	.blur(function() {
+	inputDetect.blur(function() {
 		resetAutocompletion(hash);
 	})
 	
 	// Lock to the input
-	.keypress(function(e) {
+	inputDetect.keypress(function(e) {
 		// Enter key
 		if(e.keyCode == 13) {
 			sendMessage(hash, 'groupchat');

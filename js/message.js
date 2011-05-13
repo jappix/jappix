@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 11/05/11
+Last revision: 13/05/11
 
 */
 
@@ -33,7 +33,7 @@ function handleMessage(message) {
 	var GCUser = false;
 	
 	// This message comes from a groupchat user
-	if(isPrivate(xid) && (type == 'chat') && resource) {
+	if(isPrivate(xid) && ((type == 'chat') || !type) && resource) {
 		GCUser = true;
 		xid = from;
 		hash = hex_md5(xid);
@@ -65,30 +65,36 @@ function handleMessage(message) {
 		return messageReceived(hash, id);
 	
 	// Chatstate message
-	if(node && ((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) {
+	if(node && ((((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
 		/* REF: http://xmpp.org/extensions/xep-0085.html */
+		
+		// Re-process the hash
+		var chatstate_hash = hash;
+		
+		if(type == 'groupchat')
+			chatstate_hash = hex_md5(from);
 		
 		// Do something depending of the received state
 		if($(node).find('active').size()) {
-			displayChatState('active', hash);
+			displayChatState('active', chatstate_hash, type);
 			
 			// Tell Jappix the entity supports chatstates
-			$('#' + hash + ' .message-area').attr('data-chatstates', 'true');
+			$('#' + chatstate_hash + ' .message-area').attr('data-chatstates', 'true');
 			
 			logThis('Active chatstate received from: ' + from);
 		}
 		
 		else if($(node).find('composing').size())
-			displayChatState('composing', hash);
+			displayChatState('composing', chatstate_hash, type);
 		
 		else if($(node).find('paused').size())
-			displayChatState('paused', hash);
+			displayChatState('paused', chatstate_hash, type);
 		
 		else if($(node).find('inactive').size())
-			displayChatState('inactive', hash);
+			displayChatState('inactive', chatstate_hash, type);
 		
 		else if($(node).find('gone').size())
-			displayChatState('gone', hash);
+			displayChatState('gone', chatstate_hash, type);
 	}
 	
 	// Invite message
@@ -345,7 +351,7 @@ function handleMessage(message) {
 		}
 		
 		// Chat message
-		else {
+		else if((type == 'chat') || !type) {
 			// Gets the nickname of the user
 			var fromName = resource;
 			var chatType = 'chat';
