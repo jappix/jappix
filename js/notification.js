@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/05/11
+Last revision: 13/05/11
 
 */
 
@@ -257,11 +257,11 @@ function getNotifications() {
 // Handles the social notifications
 function handleNotifications(iq) {
 	// Any error?
-	if(iq.getType() == 'error') {
+	if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
 		// The node may not exist, create it!
 		setupMicroblog(NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
 		
-		logThis('Error while getting social notifications, trying to reconfigure it!', 2);
+		logThis('Error while getting social notifications, trying to reconfigure the Pubsub node!', 2);
 	}
 	
 	// Selector
