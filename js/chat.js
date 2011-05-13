@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/05/11
+Last revision: 13/05/11
 
 */
 
@@ -102,7 +102,7 @@ function generateChat(type, id, xid, nick) {
 	else {
 		specialAttributes = ' data-type="chat"';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
-		specialName = '<div class="bc-pep"></div><p class="bc-infos unavailable talk-images"></p>';
+		specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
 		specialLink = '<a href="#" class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';

@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/05/11
+Last revision: 13/05/11
 
 */
 
@@ -431,7 +431,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 	// Display the presence in the roster
 	var path = '#buddy-list .' + hash;
 	var buddy = $('#buddy-list .content .' + hash);
-	var dStatus = filterStatus(xid, status, true);
+	var dStatus = filterStatus(xid, status, false);
 	var tStatus = encodeQuotes(status);
 	var biStatus;
 	
@@ -496,7 +496,10 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		}
 		
 		// We show the presence value
-		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos ' + type + ' talk-images" title="' + tStatus + '">' + value + dStatus + '</p>');
+		$('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos" title="' + tStatus + '"><span class="' + type + ' show talk-images">' + value + '</span>' + dStatus + '</p>');
+		
+		// Process the new status position
+		adaptChatPresence(hash);
 		
 		// Get the disco#infos for this user
 		var highest = getHighestResource(xid);
@@ -516,6 +519,21 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		updateGroups();
 	else
 		funnelFilterBuddySearch();
+}
+
+// Process the chat presence position
+function adaptChatPresence(hash) {
+	// Get values
+	var pep_numb = $('#' + hash + ' .bc-pep').find('a').size();
+	
+	// Process the right position
+	var presence_right = 12;
+	
+	if(pep_numb)
+		presence_right = (pep_numb * 20) + 18;
+	
+	// Apply the right position
+	$('#' + hash + ' p.bc-infos').css('right', presence_right);
 }
 
 // Convert the presence "show" element into a human-readable output

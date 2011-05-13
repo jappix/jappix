@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/05/11
+Last revision: 13/05/11
 
 */
 
@@ -202,14 +202,20 @@ function displayPEP(xid, type) {
 		
 		// Apply the text to the buddy chat
 		if(exists('#' + hash)) {
+			// Selector
+			var bc_pep = $('#' + hash + ' .bc-pep');
+			
 			// We remove the old PEP item
-			$('#' + hash + ' a.bi-' + type).remove();
+			bc_pep.find('a.bi-' + type).remove();
 			
 			// If the new PEP item is not null, create a new one
 			if(fText != _e("unknown"))
-				$('#' + hash + ' .bc-pep').prepend(
+				bc_pep.prepend(
 					'<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '"></a>'
 				);
+			
+			// Process the new status position
+			adaptChatPresence(hash);
 		}
 		
 		// If this is the PEP values of the logged in user

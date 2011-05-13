@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/04/11
+Last revision: 13/05/11
 
 */
 
@@ -70,9 +70,18 @@ Last revision: 29/04/11
 #page-engine p.bc-infos {
 	font-size: 0.85em;
 	height: 16px;
-	padding-left: 18px;
 	overflow: hidden;
-	float: right;
+	position: absolute;
+	left: 115px;
+	right: 12px;
+}
+
+#page-engine .page-engine-chan[data-type=groupchat] p.bc-infos {
+	left: 12px;
+}
+
+#page-engine p.bc-infos span.show {
+	padding-left: 18px;
 }
 
 #page-engine p.bc-infos a {
@@ -81,7 +90,6 @@ Last revision: 29/04/11
 
 #page-engine div.bc-pep {
 	float: right;
-	margin-left: 6px;
 }
 
 #page-engine div.bc-pep a {
