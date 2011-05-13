@@ -65,7 +65,7 @@ function handleMessage(message) {
 		return messageReceived(hash, id);
 	
 	// Chatstate message
-	if(node && ((((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
+	if(node && !delay && ((((type == 'chat') || !type) && !exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
 		/* REF: http://xmpp.org/extensions/xep-0085.html */
 		
 		// Re-process the hash
