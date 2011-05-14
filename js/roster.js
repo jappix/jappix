@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/05/11
+Last revision: 14/05/11
 
 */
 
@@ -666,11 +666,11 @@ function sendRoster(xid, subscription, name, group) {
 // Adapts the roster height, depending of the window size
 function adaptRoster() {
 	// Process the new height
-	var new_height = $('#left-content').height() - $('#my-infos').height() - 101;
+	var new_height = $('#left-content').height() - $('#my-infos').height() - 97;
 	
 	// New height too small
-	if(new_height < 207)
-		new_height = 207;
+	if(new_height < 211)
+		new_height = 211;
 	
 	// Apply the new height
 	$('#buddy-list .content').css('height', new_height);

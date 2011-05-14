@@ -7,7 +7,7 @@ This is the my-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/05/11
+Last revision: 14/05/11
 
 */
 
@@ -15,7 +15,7 @@ Last revision: 06/05/11
 	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.85);
 	color: #919191;
-	margin-top: 12px;
+	margin-top: 8px;
 	padding: 15px 6px 6px 6px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
