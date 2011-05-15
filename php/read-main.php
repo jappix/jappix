@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/02/11
+Last revision: 15/05/11
 
 */
 
@@ -22,7 +22,7 @@ $main_conf = array(
 	     	'name'		=> 'Jappix',
 	     	'desc'		=> 'a free social network',
 	     	'resource'	=> 'Jappix',
-	     	'lock'		=> 'off',
+	     	'lock'		=> 'on',
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
 	     	'bosh_proxy'	=> 'on',
