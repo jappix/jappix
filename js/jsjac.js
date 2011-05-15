@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 29/04/11
+Last revision: 15/05/11
 
 */
 
@@ -1064,13 +1064,13 @@ JSJAC_TIMERVAL = 2000;          // default polling interval
 // Options specific to HTTP Binding (BOSH)
 JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
                                     // connection maanger 
-JSJACHBC_MAX_WAIT = 25;        // default 'wait' param - how long an idle connection
+JSJACHBC_MAX_WAIT = 20;        // default 'wait' param - how long an idle connection
                                     // should be held by connection manager
 
 JSJACHBC_BOSH_VERSION  = "1.6";
 JSJACHBC_USE_BOSH_VER  = true;
 
-JSJACHBC_MAXPAUSE = 25;        // how long a suspend/resume cycle may take
+JSJACHBC_MAXPAUSE = 20;        // how long a suspend/resume cycle may take
 
 /*** END CONFIG ***/
 
