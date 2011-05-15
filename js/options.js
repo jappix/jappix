@@ -613,6 +613,8 @@ function launchOptions() {
 			return saveOptions();
 		if($(this).is('.cancel'))
 			return closeOptions();
+		
+		return false;
 	});
 	
 	// The keyup events

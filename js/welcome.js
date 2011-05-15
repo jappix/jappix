@@ -299,5 +299,7 @@ function launchWelcome() {
 			return nextWelcome();
 		if($(this).is('.save'))
 			return saveWelcome();
+		
+		return false;
 	});
 }

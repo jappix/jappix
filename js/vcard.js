@@ -545,6 +545,8 @@ function launchVCard() {
 		// Enter pressed: send the vCard
 		if((e.keyCode == 13) && !$('#vcard .finish.save').hasClass('disabled'))
 			return sendVCard();
+		
+		return false;
 	});
 	
 	// Click events
