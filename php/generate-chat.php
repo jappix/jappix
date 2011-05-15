@@ -9,7 +9,7 @@ This is the PHP script used to generate a chat log
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/01/11
+Last revision: 15/05/11
 
 */
 
@@ -79,6 +79,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 			background-color: #424242;
 			font-family : Verdana, Arial, Helvetica, sans-serif;
 			font-size: 0.8em;
+			text-shadow: 0 0 5px white;
 			color: white;
 			margin: 8px;
 			padding: 8px 12px;
