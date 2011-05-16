@@ -7,18 +7,12 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/05/11
+Last revision: 16/05/11
 
 */
 
 // Opens the welcome tools
-function openWelcome() {
-	// Blacklisted XMPP servers?
-	var server = getServer();
-	
-	if((server == 'gmail.com') || (server == 'googlemail.com') || (server == 'chat.facebook.com'))
-		return;
-	
+function openWelcome() {	
 	// Share message
 	var share_msg = printf(_e("Using Jappix, an open social platform. I am %s!"), getXID());
 	

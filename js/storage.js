@@ -7,7 +7,7 @@ These are the storage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 16/05/11
 
 */
 
@@ -36,7 +36,7 @@ function handleStorage(iq) {
 	var rosternotes = $(handleXML).find('storage[xmlns=' + NS_ROSTERNOTES + ']');
 	
 	// No options and node not yet configured
-	if(options.size() && !options.find('option').size())
+	if(options.size() && !options.find('option').size() && (iq.getType() != 'error'))
 		openWelcome();
 	
 	// Parse the options xml
