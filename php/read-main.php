@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 15/05/11
+Last revision: 18/05/11
 
 */
 
@@ -29,7 +29,7 @@ $main_conf = array(
 	     	'encryption'	=> 'on',
 	     	'https_storage'	=> 'off',
 	     	'https_force'	=> 'off',
-	     	'compression'	=> 'on',
+	     	'compression'	=> 'off',
 	     	'multi_files'	=> 'off',
 	     	'developer'	=> 'off'
 	     );

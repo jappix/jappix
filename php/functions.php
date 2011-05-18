@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 08/05/11
+Last revision: 18/05/11
 
 */
 
@@ -526,7 +526,7 @@ function BOSHProxy() {
 
 // The function to check compression is enabled
 function hasCompression() {
-	if(COMPRESSION == 'on')
+	if(COMPRESSION != 'off')
 		return true;
 	
 	return false;
