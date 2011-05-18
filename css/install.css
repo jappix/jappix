@@ -182,35 +182,60 @@ body {
 	margin-bottom: 10px;
 }
 
-#install-content p.info {
+#install-content .info {
+	color: black;
 	border-width: 1px;
 	border-style: dashed;
-	color: black;
 	padding: 6px 8px;
+	display: block;
+	text-decoration: none;
 }
 
-#install-content p.info.smallspace {
+#install-content .info.smallspace {
 	margin: 14px 0 10px 0;
 }
 
-#install-content p.info.bigspace {
+#install-content .info.bigspace {
 	margin: 35px 0 20px 0;
 }
 
-#install-content p.info.first {
+#install-content .info.first {
 	margin-top: 28px;
 }
 
-#install-content p.info.last {
+#install-content .info.last {
 	margin-bottom: 28px;
 }
 
-#install-content p.info.success {
+#install-content .info.neutral {
+	background-color: #f0f19d;
+	border-color: #b3ad4f;
+}
+
+#install-content a.info.neutral:hover,
+#install-content a.info.neutral:focus {
+	background-color: #eced96;
+}
+
+#install-content a.info.neutral:active {
+	background-color: #e9ea93;
+}
+
+#install-content .info.success {
 	background-color: #a8dca9;
 	border-color: #5e9f5f;
 }
 
-#install-content p.info.fail {
+#install-content a.info.success:hover,
+#install-content a.info.success:focus {
+	background-color: #a0d5a1;
+}
+
+#install-content a.info.success:active {
+	background-color: #9ad09b;
+}
+
+#install-content .info.fail {
 	background-color: #f19d9d;
 	border-color: #b34f4f;
 }
