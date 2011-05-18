@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-11 14:21:43\n"
+"PO-Revision-Date: 2011-05-18 13:02:01\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2276,4 +2276,8 @@ msgstr "vous a marqué dans une vidéo (%s)."
 #: 
 msgid "Show"
 msgstr "Afficher"
+
+#: 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Besoin d'aide ? Vous feriez mieux de lire notre page de documentation à propos de comment compléter ce formulaire !"
 

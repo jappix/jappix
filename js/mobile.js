@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 18/05/11
 
 */
 
@@ -42,7 +42,10 @@ function doLogin(aForm) {
 		}
 		
 		var pwd = aForm.pwd.value;
-		var reg = aForm.reg.checked;
+		var reg = false;
+		
+		if(aForm.reg)
+			reg = aForm.reg.checked;
 		
 		// Enough parameters
 		if(username && domain && pwd) {

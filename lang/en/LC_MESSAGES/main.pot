@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 11/05/11
+# Last revision: 18/05/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1103,6 +1103,9 @@ msgid "Jappix needs that you specify some values to work. Please correct the fol
 msgstr ""
 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
+msgstr ""
+
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
 msgstr ""
 
 msgid "User"
