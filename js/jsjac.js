@@ -4092,12 +4092,8 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
   if (body.getAttribute("type") == "terminate") {
     // read condition
     var condition = body.getAttribute('condition');
-    
-    // RID issue (fix Punjab issue)
-    if (condition == "item-not-found")
-      this._rid = this._last_rid;
-    
-    else {
+
+    if (condition != "item-not-found") {
       this.oDbg.log("session terminated:\n" + r.responseText,1);
 
       clearTimeout(this._timeout); // remove timer
