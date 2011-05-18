@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 15/05/11
+Last revision: 18/05/11
 
 */
 
@@ -1058,12 +1058,12 @@ JSJAC_ERR_COUNT = 10;           // number of retries in case of connection
 JSJAC_ALLOW_PLAIN = true;       // whether to allow plaintext logins
 
 JSJAC_CHECKQUEUEINTERVAL = 1;   // msecs to poll send queue
-JSJAC_CHECKINQUEUEINTERVAL = 1; // msecs to poll incoming queue
+JSJAC_CHECKINQUEUEINTERVAL = 100; // msecs to poll incoming queue
 JSJAC_TIMERVAL = 2000;          // default polling interval
 
 // Options specific to HTTP Binding (BOSH)
 JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
-                                    // connection maanger 
+                                    // connection manager 
 JSJACHBC_MAX_WAIT = 20;        // default 'wait' param - how long an idle connection
                                     // should be held by connection manager
 
@@ -4090,40 +4090,48 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
 
   // Check for errors from the server
   if (body.getAttribute("type") == "terminate") {
-    this.oDbg.log("session terminated:\n" + r.responseText,1);
-
-    clearTimeout(this._timeout); // remove timer
-    clearInterval(this._interval);
-    clearInterval(this._inQto);
-
-    try {
-      removeDB('jsjac', 'state');
-    } catch (e) {}
-
-    this._connected = false;
-
+    // read condition
     var condition = body.getAttribute('condition');
-    if (condition == "remote-stream-error")
-      if (body.getElementsByTagName("conflict").length > 0)
-        this._setStatus("session-terminate-conflict");
-    if (condition == null)
-      condition = 'session-terminate';
-    this._handleEvent('onerror',JSJaCError('503','cancel',condition));
+    
+    // RID issue (fix Punjab issue)
+    if (condition == "item-not-found")
+      this._rid = this._last_rid;
+    
+    else {
+      this.oDbg.log("session terminated:\n" + r.responseText,1);
 
-    this.oDbg.log("Aborting remaining connections",4);
+      clearTimeout(this._timeout); // remove timer
+      clearInterval(this._interval);
+      clearInterval(this._inQto);
 
-    for (var i=0; i<this._hold+1; i++) {
       try {
-        this._req[i].r.abort();
-      } catch(e) { this.oDbg.log(e, 1); }
+        removeDB('jsjac', 'state');
+      } catch (e) {}
+
+      this._connected = false;
+
+      if (condition == "remote-stream-error")
+        if (body.getElementsByTagName("conflict").length > 0)
+          this._setStatus("session-terminate-conflict");
+      if (condition == null)
+        condition = 'session-terminate';
+      this._handleEvent('onerror',JSJaCError('503','cancel',condition));
+
+      this.oDbg.log("Aborting remaining connections",4);
+
+      for (var i=0; i<this._hold+1; i++) {
+        try {
+          this._req[i].r.abort();
+        } catch(e) { this.oDbg.log(e, 1); }
+      }
+
+      this.oDbg.log("parseResponse done with terminating", 3);
+
+      this.oDbg.log("Disconnected.",1);
+      this._handleEvent('ondisconnect');
+
+      return null;
     }
-
-    this.oDbg.log("parseResponse done with terminating", 3);
-
-    this.oDbg.log("Disconnected.",1);
-    this._handleEvent('ondisconnect');
-
-    return null;
   }
 
   // no error
