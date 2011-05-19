@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 05/05/11
+Last revision: 19/05/11
 
 */
 
@@ -72,6 +72,8 @@ var NS_URN_INBOX =    NS_XMPP + 'inbox';
 var NS_URN_ARCHIVE =  NS_XMPP + 'archive';
 var NS_URN_AR_PREF =  NS_URN_ARCHIVE + ':pref';
 var NS_URN_AR_AUTO =  NS_URN_ARCHIVE + ':auto';
+var NS_URN_AR_MANUAL =  NS_URN_ARCHIVE + ':manual';
+var NS_URN_AR_MANAGE =  NS_URN_ARCHIVE + ':manage';
 var NS_URN_DELAY =    NS_XMPP + 'delay';
 var NS_URN_RECEIPTS = NS_XMPP + 'receipts';
 var NS_RSM =          NS_PROTOCOL + 'rsm';

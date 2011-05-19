@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/05/11
+Last revision: 19/05/11
 
 */
 
@@ -55,6 +55,8 @@ function handleFeatures(xml) {
 	var pubsub = false;
 	var archive = false;
 	var archive_auto = false;
+	var archive_manual = false;
+	var archive_manage = false;
 	var archive_pref = false;
 	var commands = false;
 	
@@ -67,6 +69,10 @@ function handleFeatures(xml) {
 		archive = true;
 	if(selector.find('feature[var=' + NS_URN_AR_AUTO + ']').size())
 		archive_auto = true;
+	if(selector.find('feature[var=' + NS_URN_AR_MANUAL + ']').size())
+		archive_manual = true;
+	if(selector.find('feature[var=' + NS_URN_AR_MANAGE + ']').size())
+		archive_manage = true;
 	if(selector.find('feature[var=' + NS_URN_AR_PREF + ']').size())
 		archive_pref = true;
 	if(selector.find('feature[var=' + NS_COMMANDS + ']').size())
@@ -102,15 +108,18 @@ function handleFeatures(xml) {
 		enableFeature(NS_PUBSUB);
 	
 	// Enable the archiving features if available
-	if(archive) {
+	if(archive)
 		enableFeature(NS_URN_ARCHIVE);
-		
-		// Enable the archiving sub-features if available
-		if(archive_pref)
-			enableFeature(NS_URN_AR_PREF);
-		if(archive_auto)
-			enableFeature(NS_URN_AR_AUTO);
-	}
+	
+	// Enable the archiving sub-features if available
+	if(archive_pref)
+		enableFeature(NS_URN_AR_PREF);
+	if(archive_auto)
+		enableFeature(NS_URN_AR_AUTO);
+	if(archive_manual)
+		enableFeature(NS_URN_AR_MANUAL);
+	if(archive_manage)
+		enableFeature(NS_URN_AR_MANAGE);
 	
 	// Enable the commands features if available
 	if(commands)
@@ -144,11 +153,11 @@ function applyFeatures(id) {
 		$(path + 'pubsub-hidable').show();
 	
 	// Archives features
-	if(enabledArchives()) {
+	if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage')) {
 		$(path + 'archives-hidable:not(.pref)').show();
 		
 		// Sub-feature: archives preferences
-		if(enabledArchives('pref') && enabledArchives('auto'))
+		if(enabledArchives('pref'))
 			$(path + 'archives-hidable.pref').show();
 	}
 	
