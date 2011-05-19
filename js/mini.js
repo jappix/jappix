@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/05/11
+Last revision: 19/05/11
 
 */
 
@@ -173,14 +173,8 @@ function saveSessionMini() {
 	// Save the session stamp
 	setDB('jappix-mini', 'stamp', getTimeStamp());
 	
-	// Can pause connection?
-	var has_pause = true;
-	
-	if(BOSH_HACK)
-		has_pause = false;
-	
 	// Suspend connection
-	con.suspend(has_pause);
+	con.suspend(false);
 	
 	logThis('Jappix Mini session save tool launched.', 3);
 }
