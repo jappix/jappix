@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/05/11
+Last revision: 19/05/11
 
 */
 
@@ -244,7 +244,7 @@ function chatCreate(hash, xid, nick, type) {
 			}).show();
 		
 		// Archives button
-		else if(enabledArchives())
+		else if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage'))
 			$('#' + hash + ' .tools-archives').click(function() {
 				// Open the archives popup
 				openArchives();

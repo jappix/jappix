@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 14/05/11
+Last revision: 19/05/11
 
 */
 
@@ -1099,7 +1099,7 @@ function launchRoster() {
 			$('.buddy-conf-more-display-available').show();
 		}
 		
-		if(enabledArchives())
+		if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage'))
 			$('.buddy-conf-more-archives').parent().show();
 		
 		if(enabledCommands())
