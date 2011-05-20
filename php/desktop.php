@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/02/11
+Last revision: 20/05/11
 
 */
 
@@ -52,7 +52,7 @@ if(!anonymousMode()) { ?>
 			<div class="left">
 				<div class="home-images logo"></div>
 				<p class="upper"><?php _e("Communicate with the entire world!"); ?></p>
-				<p class="secondary"><?php _e("Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."); ?></p>
+				<p class="secondary"><?php _e("Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."); ?></p>
 				<p class="secondary"><?php _e("It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"); ?></p>
 			</div>
 			

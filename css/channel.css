@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/04/11
+Last revision: 20/05/11
 
 */
 
@@ -464,7 +464,7 @@ Last revision: 29/04/11
 }
 
 #channel a.more {
-	background-position: 0 -282px;
+	background-position: 0 -334px;
 	color: black;
 	height: 16px;
 	text-decoration: none;

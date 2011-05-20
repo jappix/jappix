@@ -7,7 +7,7 @@ This is the Jappix Mobile CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 20/05/11
 
 */
 
@@ -43,10 +43,10 @@ a {
 	height: 30px;
 }
 
-.header button {
-	float: right;
-	margin-right: 7px;
-	padding: 2px;
+.header div {
+	background-position: 0 0;
+	width: 83px;
+	height: 30px;
 }
 
 /* END HEADER STYLE */
@@ -54,10 +54,7 @@ a {
 /* BEGIN HOME STYLE */
 
 #home .header div {
-	background-position: 0 0;
 	margin: 0 auto;
-	width: 120px;
-	height: 30px;
 }
 
 #home .notification {
@@ -131,6 +128,19 @@ a {
 /* END HOME STYLE */
 
 /* BEGIN TALK STYLE */
+
+#talk .header div,
+#chat .header div {
+	float: left;
+	margin-left: 7px;
+}
+
+#talk .header button,
+#chat .header button {
+	float: right;
+	margin-right: 7px;
+	padding: 2px;
+}
 
 #talk a.one-buddy {
 	display: none;

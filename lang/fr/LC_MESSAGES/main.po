@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-20 18:58:48\n"
+"PO-Revision-Date: 2011-05-20 22:56:12\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -906,8 +906,8 @@ msgid "Communicate with the entire world!"
 msgstr "Communiquez avec le monde tout entier !"
 
 #: 
-msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
 
 #: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
@@ -2284,4 +2284,8 @@ msgstr "Besoin d'aide ? Vous feriez mieux de lire notre page de documentation à
 #: 
 msgid "Pubsub host"
 msgstr "Hôte Pubsub"
+
+#: 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix est une plateforme sociale géniale, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
 

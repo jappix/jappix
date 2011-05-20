@@ -688,7 +688,7 @@ msgstr ""
 msgid "Communicate with the entire world!"
 msgstr ""
 
-msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 msgstr ""
 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"

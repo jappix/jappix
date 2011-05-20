@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/04/11
+Last revision: 20/05/11
 
 */
 
@@ -143,7 +143,7 @@ Last revision: 23/04/11
 	width: 350px;
 	height: 370px;
 	margin: 15px 0 15px 15px;
-	color: #efefef;
+	color: white;
 	text-align: center;
 	text-shadow: 0 1px 1px black;
 }
@@ -151,9 +151,9 @@ Last revision: 23/04/11
 #home .left .logo {
 	background-position: 0 0;
 	float: left;
-	margin: 52px 39px 38px;
-	width: 273px;
-	height: 70px;
+	margin: 30px 20px;
+	width: 311px;
+	height: 113px;
 }
 
 #home .left p.upper {
@@ -321,12 +321,12 @@ Last revision: 23/04/11
 	text-decoration: underline;
 }
 
-#home .right .navigation a.encrypted {
-	background-position: 0 -100px;
+#home .right .navigation a.unencrypted {
+	background-position: 0 -256px;
 }
 
-#home .right .navigation a.unencrypted {
-	background-position: 0 -74px;
+#home .right .navigation a.encrypted {
+	background-position: 0 -282px;
 }
 
 #home .right .navigation a.project {
@@ -342,7 +342,7 @@ Last revision: 23/04/11
 }
 
 #home a.advanced {
-	background-position: 0 -283px;
+	background-position: 0 -334px;
 	font-size: 0.9em;
 	height: 16px;
 	margin-bottom: 10px;
@@ -468,7 +468,7 @@ Last revision: 23/04/11
 #home .notice.simple .title {
 	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.4);
-	background-position: 8px -247px;
+	background-position: 8px -299px;
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	border-color: #141414;

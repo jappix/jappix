@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/05/11
+Last revision: 20/05/11
 
 */
 
@@ -302,6 +302,7 @@ function handleConnected() {
 	document.getElementsByTagName('body')[0].innerHTML +=
 	'<div id="talk">' + 
 		'<div class="header">' + 
+			'<div class="mobile-images"></div>' + 
 			'<button onclick="doLogout();">' + _e("Disconnect") + '</button>' + 
 		'</div>' + 
 		
@@ -310,6 +311,7 @@ function handleConnected() {
 	
 	'<div id="chat">' + 
 		'<div class="header">' + 
+			'<div class="mobile-images"></div>' + 
 			'<button onclick="returnToRoster();">' + _e("Previous") + '</button>' + 
 		'</div>' + 
 		
