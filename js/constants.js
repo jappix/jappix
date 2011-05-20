@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 19/05/11
+Last revision: 20/05/11
 
 */
 
@@ -137,6 +137,7 @@ var DEVELOPER = null;
 // Jappix hosts configuration
 var HOST_MAIN = null;
 var HOST_MUC = null;
+var HOST_PUBSUB = null;
 var HOST_VJUD = null;
 var HOST_ANONYMOUS = null;
 var HOST_BOSH = null;

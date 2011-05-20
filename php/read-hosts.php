@@ -9,7 +9,7 @@ This is the hosts configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/05/11
+Last revision: 20/05/11
 
 */
 
@@ -27,6 +27,7 @@ else
 $hosts_conf = array(
 	      	'main'		=> $_SERVER['HTTP_HOST'],
 	      	'muc'		=> 'muc.'.$_SERVER['HTTP_HOST'],
+	      	'pubsub'	=> 'pubsub.'.$_SERVER['HTTP_HOST'],
 	      	'vjud'		=> 'vjud.'.$_SERVER['HTTP_HOST'],
 	      	'anonymous'	=> 'anonymous.'.$_SERVER['HTTP_HOST'],
 	      	'bosh'		=> 'http://'.$_SERVER['HTTP_HOST'].':5280/http-bind',
@@ -57,6 +58,7 @@ if($hosts_data) {
 // Finally, define the hosts configuration globals
 define('HOST_MAIN', $hosts_conf['main']);
 define('HOST_MUC', $hosts_conf['muc']);
+define('HOST_PUBSUB', $hosts_conf['pubsub']);
 define('HOST_VJUD', $hosts_conf['vjud']);
 define('HOST_ANONYMOUS', $hosts_conf['anonymous']);
 define('HOST_BOSH', $hosts_conf['bosh']);

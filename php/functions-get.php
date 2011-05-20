@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 01/03/11
+Last revision: 20/05/11
 
 */
 
@@ -157,6 +157,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	// Hosts configuration
 		      	'HOST_MAIN'		=> HOST_MAIN,
 		      	'HOST_MUC'		=> HOST_MUC,
+		      	'HOST_PUBSUB'		=> HOST_PUBSUB,
 		      	'HOST_VJUD'		=> HOST_VJUD,
 		      	'HOST_ANONYMOUS'	=> HOST_ANONYMOUS,
 		      	'HOST_BOSH'		=> $bosh_special,

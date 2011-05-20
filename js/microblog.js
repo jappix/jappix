@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/05/11
+Last revision: 20/05/11
 
 */
 
@@ -408,6 +408,9 @@ function handleCommentsMicroblog(iq) {
 	var parent_select = $('#channel .one-update:has(*[data-node=' + node + '])');
 	var parent_data = [parent_select.attr('data-xid'), NS_URN_MBLOG, parent_select.attr('data-id')];
 	
+	// Get the owner XID
+	var owner_xid = parent_select.attr('data-xid');
+	
 	// Must we create the complete DOM?
 	var complete = true;
 	
@@ -506,8 +509,15 @@ function handleCommentsMicroblog(iq) {
 	});
 	
 	// Add the HTML
-	if(complete)
+	if(complete) {
 		$(path).html(code);
+		
+		// Focus on the compose input
+		$(document).oneTime(10, function() {
+			$(path).find('.one-comment.compose input').focus();
+		});
+	}
+	
 	else {
 		$(path).find('.one-comment.compose').after(code);
 		
@@ -525,8 +535,8 @@ function handleCommentsMicroblog(iq) {
 		getAvatar(users_xid[a], 'cache', 'true', 'forget');
 	
 	// Add the owner XID
-	if(server && server.match('@') && !existArrayValue(users_xid, server))
-		users_xid.push(server);
+	if(owner_xid && owner_xid.match('@') && !existArrayValue(users_xid, owner_xid))
+		users_xid.push(owner_xid);
 	
 	// Remove my own XID
 	removeArrayValue(users_xid, getXID());
@@ -878,12 +888,16 @@ function waitMicroblog(type) {
 }
 
 // Setups a new microblog
-function setupMicroblog(node, persist, maximum, access, publish, create) {
+function setupMicroblog(entity, node, persist, maximum, access, publish, create) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#owner-create-and-configure */
 	
 	// Create the PubSub node
 	var iq = new JSJaCIQ();
 	iq.setType('set');
+	
+	// Any external entity?
+	if(entity)
+		iq.setTo(entity);
 	
 	// Create it?
 	if(create) {
@@ -1085,7 +1099,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	if(!comments_entity || !comments_node) {
 		node_create = true;
-		comments_entity = xid;
+		comments_entity = HOST_PUBSUB;
 		comments_node = NS_URN_MBLOG + ':comments/' + id;
 	}
 	
@@ -1145,11 +1159,11 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		// Any comments node?
 		if(!comments_entity_file[i] || !comments_node_file[i]) {
 			// Generate values
-			comments_entity_file[i] = getXID();
+			comments_entity_file[i] = HOST_PUBSUB;
 			comments_node_file[i] = NS_URN_MBLOG + ':comments/' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
 			
 			// Create the node
-			setupMicroblog(comments_node_file[i], '1', '1000000', 'open', 'open', true);
+			setupMicroblog(comments_entity_file[i], comments_node_file[i], '1', '1000000', 'open', 'open', true);
 		}
 		
 		file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'replies', 'title': 'comments_file', 'href': 'xmpp:' + comments_entity_file[i] + '?;node=' + encodeURIComponent(comments_node_file[i])}));
@@ -1181,7 +1195,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	
 	// Create the XML comments PubSub nodes
 	if(node_create)
-		setupMicroblog(comments_node, '1', '1000000', 'open', 'open', true);
+		setupMicroblog(comments_entity, comments_node, '1', '1000000', 'open', 'open', true);
 	
 	return false;
 }

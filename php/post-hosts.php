@@ -9,7 +9,7 @@ This is the hosts configuration POST handler (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 20/05/11
 
 */
 
@@ -28,6 +28,12 @@ if(isset($_POST['host_muc']) && !empty($_POST['host_muc']))
 	$host_muc = stripslashes(htmlspecialchars($_POST['host_muc']));
 else
 	$host_muc = stripslashes(htmlspecialchars($hosts_default['muc']));
+
+// Pubsub host
+if(isset($_POST['host_pubsub']) && !empty($_POST['host_pubsub']))
+	$host_pubsub = stripslashes(htmlspecialchars($_POST['host_pubsub']));
+else
+	$host_pubsub = stripslashes(htmlspecialchars($hosts_default['pubsub']));
 
 // Directory host
 if(isset($_POST['host_vjud']) && !empty($_POST['host_vjud']))
@@ -57,6 +63,7 @@ else
 $hosts_xml = 
 	'<main>'.$host_main.'</main>
 	<muc>'.$host_muc.'</muc>
+	<pubsub>'.$host_pubsub.'</pubsub>
 	<vjud>'.$host_vjud.'</vjud>
 	<anonymous>'.$host_anonymous.'</anonymous>
 	<bosh>'.$host_bosh.'</bosh>

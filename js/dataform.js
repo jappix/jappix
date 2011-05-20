@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/05/11
+Last revision: 20/05/11
 
 */
 
@@ -331,6 +331,9 @@ function handleDataFormContent(iq, type) {
 		
 		if(type == 'browse') {
 			if($(handleXML).find('item').attr('jid')) {
+				// Get the query node
+				var queryNode = $(handleXML).find('query').attr('node');
+				
 				$(handleXML).find('item').each(function() {
 					// We parse the received xml
 					var itemHost = $(this).attr('jid');
@@ -338,7 +341,7 @@ function handleDataFormContent(iq, type) {
 					var itemName = $(this).attr('name');
 					var itemHash = hex_md5(itemHost);
 					
-					// Special node
+					// Node
 					if(itemNode)
 						$(pathID).append(
 							'<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + 
@@ -346,7 +349,15 @@ function handleDataFormContent(iq, type) {
 							'</div>'
 						);
 					
-					// Classic item
+					// Item
+					else if(queryNode && itemName)
+						$(pathID).append(
+							'<div class="oneresult ' + target + '-oneresult">' + 
+								'<div class="one-name">' + itemName.htmlEnc() + '</div>' + 
+							'</div>'
+						);
+					
+					// Item with children
 					else {
 						// We display the waiting element
 						$(pathID + ' .disco-wait .disco-category-title').after(

@@ -9,7 +9,7 @@ This is the hosts configuration form (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/05/11
+Last revision: 20/05/11
 
 */
 
@@ -26,6 +26,8 @@ if(!defined('JAPPIX_BASE'))
 	<label for="host_main"><?php _e("Main host"); ?></label><input id="host_main" type="text" name="host_main" value="<?php echo $host_main; ?>" pattern="[^@/]+" />
 	
 	<label for="host_muc"><?php _e("Groupchat host"); ?></label><input id="host_muc" type="text" name="host_muc" value="<?php echo $host_muc; ?>" pattern="[^@/]+" />
+	
+	<label for="host_pubsub"><?php _e("Pubsub host"); ?></label><input id="host_pubsub" type="text" name="host_pubsub" value="<?php echo $host_pubsub; ?>" pattern="[^@/]+" />
 </fieldset>
 
 <fieldset>
