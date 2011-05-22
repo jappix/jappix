@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 22/05/11
 
 */
 
@@ -25,10 +25,10 @@ Last revision: 20/05/11
 }
 
 #page-engine .top {
-	background: #e0e7e8;
-	background: -moz-linear-gradient(top, #e0e7e8, #d4dfe1);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e0e7e8), to(#d4dfe1));
-	border-bottom: 1px solid #c8c8c8;
+	background: #e8f1f3;
+	background: -moz-linear-gradient(top, #e8f1f3, #dee8ea);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#dee8ea));
+	border-bottom: 1px solid #d0d0d0;
 	color: black;
 	position: absolute;
 	top: 0;
@@ -315,10 +315,10 @@ Last revision: 20/05/11
 }
 
 #page-engine .footer {
-	background: #e0e7e8;
-	background: -moz-linear-gradient(top, #d4dfe1, #e0e7e8);
-	background: -webkit-gradient(linear, left top, left bottom, from(#d4dfe1), to(#e0e7e8));
-	border-color: #c8c8c8;
+	background: #e8f1f3;
+	background: -moz-linear-gradient(top, #dee8ea, #e8f1f3);
+	background: -webkit-gradient(linear, left top, left bottom, from(#dee8ea), to(#e8f1f3));
+	border-color: #d0d0d0;
 	border-width: 1px 0 0;
 	border-style: solid;
 	color: black;
@@ -458,7 +458,7 @@ Last revision: 20/05/11
 }
 
 #page-engine .muc-ask {
-	background-color: #e0e7e8;
+	background-color: #e8f1f3;
 	height: 64px;
 	font-size: 0.9em;
 	right: 0;

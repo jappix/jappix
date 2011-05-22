@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 22/05/11
 
 */
 
@@ -167,9 +167,9 @@ Last revision: 20/05/11
 }
 
 #home .right {
-	background: #c4e0e3;
-	background: -moz-linear-gradient(top, #c4e0e3, #bdd9dc);
-	background: -webkit-gradient(linear, left top, left bottom, from(#c4e0e3), to(#bdd9dc));
+	background: #e1edef;
+	background: -moz-linear-gradient(top, #e1edef, #d7e5e8);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e1edef), to(#d7e5e8));
 	float: right;
 	width: 385px;
 	height: 350px;
@@ -243,11 +243,17 @@ Last revision: 20/05/11
 	background-position: 0 0;
 	border: 1px solid #5cb55c;
 	margin-top: 22px;
+	box-shadow: 0 0 10px #89e389;
+	-moz-box-shadow: 0 0 10px #89e389;
+	-webkit-box-shadow: 0 0 10px #89e389;
 }
 
 #home .right .login:hover,
 #home .right .login:focus {
 	border: 1px solid #419141;
+	box-shadow: 0 0 15px #72d071;
+	-moz-box-shadow: 0 0 15px #72d071;
+	-webkit-box-shadow: 0 0 15px #72d071;
 }
 
 #home .right .login:active {
@@ -269,11 +275,17 @@ Last revision: 20/05/11
 	background-position: 0 -160px;
 	border: 1px solid #e3db56;
 	margin-top: 15px;
+	box-shadow: 0 0 10px #fff99d;
+	-moz-box-shadow: 0 0 10px #fff99d;
+	-webkit-box-shadow: 0 0 10px #fff99d;
 }
 
 #home .right .register:hover,
 #home .right .register:focus {
 	border: 1px solid #d2c93f;
+	box-shadow: 0 0 15px #f1e968;
+	-moz-box-shadow: 0 0 15px #f1e968;
+	-webkit-box-shadow: 0 0 15px #f1e968;
 }
 
 #home .right .register:active {
