@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 19/05/11
+Last revision: 22/05/11
 
 */
 
@@ -1057,8 +1057,8 @@ JSJAC_ERR_COUNT = 10;           // number of retries in case of connection
 
 JSJAC_ALLOW_PLAIN = true;       // whether to allow plaintext logins
 
-JSJAC_CHECKQUEUEINTERVAL = 1;   // msecs to poll send queue
-JSJAC_CHECKINQUEUEINTERVAL = 1; // msecs to poll incoming queue
+JSJAC_CHECKQUEUEINTERVAL = 100;   // msecs to poll send queue
+JSJAC_CHECKINQUEUEINTERVAL = 100; // msecs to poll incoming queue
 JSJAC_TIMERVAL = 2000;          // default polling interval
 
 // Options specific to HTTP Binding (BOSH)
