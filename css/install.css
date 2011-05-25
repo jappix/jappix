@@ -7,7 +7,7 @@ This is the install CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 14/05/11
+Last revision: 25/05/11
 
 */
 
@@ -104,7 +104,7 @@ body {
 	height: 39px;
 	padding: 29px 0 0 67px;
 	font-size: 32px;
-	color: #f3f3f3;
+	color: white;
 	text-transform: lowercase;
 	float: left;
 	text-shadow: 0 1px 1px black;
