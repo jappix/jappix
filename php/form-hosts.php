@@ -41,7 +41,7 @@ if(!defined('JAPPIX_BASE'))
 	
 	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_main; ?>" />
 	
-	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_mini; ?>" />
+	<input type="hidden" name="host_bosh_mini" value="<?php echo $host_bosh_mini; ?>" />
 	
 	<input type="hidden" name="host_static" value="<?php echo $host_static; ?>" />
 	
