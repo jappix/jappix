@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/05/11
+Last revision: 27/05/11
 
 */
 
@@ -234,6 +234,16 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	var write = nick_html + ' ';
 	var notify = false;
 	
+	// Reset data?
+	if(!role)
+		role = 'participant';
+	if(!affiliation)
+		affiliation = 'none';
+	
+	// Must update the role?
+	if(exists(thisUser) && (($(thisUser).attr('data-role') != role) || ($(thisUser).attr('data-affiliation') != affiliation)))
+		$(thisUser).remove();
+	
 	// Any XID submitted?
 	if(iXID) {
 		real_xid = ' data-realxid="' + iXID + '"';
@@ -256,7 +266,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Set the user in the MUC list
 		$('#' + roomHash + ' .list .' + role + ' .title').after(
-			'<div class="user ' + hash + myself + '" data-xid="' + encodeQuotes(from) + '" data-nick="' + escape(nick) + '"' + real_xid + '>' + 
+			'<div class="user ' + hash + myself + '" data-xid="' + encodeQuotes(from) + '" data-nick="' + escape(nick) + '"' + real_xid + ' data-role="' + encodeQuotes(role) + '" data-affiliation="' + encodeQuotes(affiliation) + '">' + 
 				'<div class="name talk-images available">' + nick_html + '</div>' + 
 				
 				'<div class="avatar-container">' + 
