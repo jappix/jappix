@@ -5,7 +5,7 @@
 Jappix - An open social platform
 The SVG loader for Jappix statistics
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou

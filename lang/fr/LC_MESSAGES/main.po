@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-20 22:56:12\n"
+"PO-Revision-Date: 2011-05-27 20:07:54\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2288,4 +2288,16 @@ msgstr "Hôte Pubsub"
 #: 
 msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 msgstr "Jappix est une plateforme sociale géniale, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
+
+#: 
+msgid "Manager link"
+msgstr "Lien du gestionnaire"
+
+#: 
+msgid "User uploads server"
+msgstr "Serveur d'envois des utilisateurs"
+
+#: 
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Ceci est le serveur d'envois des utilisateurs pour %1s, « %2s »."
 

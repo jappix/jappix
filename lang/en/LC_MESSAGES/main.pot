@@ -1,11 +1,11 @@
 # Jappix - An open social platform
 # These are the default english strings of Jappix
 
-# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# -------------------------------------------------
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 20/05/11
+# Last revision: 27/05/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1135,6 +1135,9 @@ msgstr ""
 msgid "Use a proxy"
 msgstr ""
 
+msgid "Manager link"
+msgstr ""
+
 msgid "Encryption"
 msgstr ""
 
@@ -1637,6 +1640,12 @@ msgid "Static content server"
 msgstr ""
 
 msgid "This is the static content server for %1s, “%2s”."
+msgstr ""
+
+msgid "User uploads server"
+msgstr ""
+
+msgid "This is the user uploads server for %1s, “%2s”."
 msgstr ""
 
 msgid "Suggested friends"

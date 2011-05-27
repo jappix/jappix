@@ -5,7 +5,7 @@
 Jappix - An open social platform
 This is the Jappix Manager PHP/HTML code
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou

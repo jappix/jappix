@@ -5,7 +5,7 @@
 Jappix - An open social platform
 This script (re)generates the store sub-folders (after an update)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Authors: Valérian Saliou

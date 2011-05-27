@@ -5,7 +5,7 @@
 Jappix - An open social platform
 This is the store configuration POST handler (manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou

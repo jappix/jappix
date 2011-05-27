@@ -5,7 +5,7 @@
 Jappix - An open social platform
 This is the user add form (install & manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou

@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the hosts configuration form (install & manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -39,5 +39,11 @@ if(!defined('JAPPIX_BASE'))
 	
 	<label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="url" name="host_bosh" value="<?php echo $host_bosh; ?>" />
 	
+	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_main; ?>" />
+	
+	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_mini; ?>" />
+	
 	<input type="hidden" name="host_static" value="<?php echo $host_static; ?>" />
+	
+	<input type="hidden" name="host_upload" value="<?php echo $host_upload; ?>" />
 </fieldset>

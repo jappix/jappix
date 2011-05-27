@@ -5,11 +5,11 @@
 Jappix - An open social platform
 These are the hosts configuration variables
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -24,6 +24,9 @@ $host_pubsub = htmlspecialchars(HOST_PUBSUB);
 $host_vjud = htmlspecialchars(HOST_VJUD);
 $host_anonymous = htmlspecialchars(HOST_ANONYMOUS);
 $host_bosh = htmlspecialchars(HOST_BOSH);
+$host_bosh_main = htmlspecialchars(HOST_BOSH_MAIN);
+$host_bosh_mini = htmlspecialchars(HOST_BOSH_MINI);
 $host_static = htmlspecialchars(HOST_STATIC);
+$host_upload = htmlspecialchars(HOST_UPLOAD);
 
 ?>

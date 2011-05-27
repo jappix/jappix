@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/05/11
+Last revision: 27/05/11
 
 */
 
@@ -42,7 +42,11 @@ function connectMini(domain, user, password) {
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
-		oArgs.httpbase = HOST_BOSH;
+		
+		if(HOST_BOSH_MINI)
+			oArgs.httpbase = HOST_BOSH_MINI;
+		else
+			oArgs.httpbase = HOST_BOSH;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);

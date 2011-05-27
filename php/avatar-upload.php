@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the avatar upload PHP script for Jappix
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/03/11
+Last revision: 27/05/11
 
 */
 
@@ -25,8 +25,8 @@ require_once('./read-hosts.php');
 hideErrors();
 compressThis();
 
-// Not allowed for a static node
-if(isStatic())
+// Not allowed for a special node
+if(isStatic() || isUpload())
 	exit;
 
 // Set a special XML header

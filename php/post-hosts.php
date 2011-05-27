@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the hosts configuration POST handler (install & manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -53,11 +53,29 @@ if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh']))
 else
 	$host_bosh = stripslashes(htmlspecialchars($hosts_default['bosh']));
 
+// Main BOSH host
+if(isset($_POST['host_bosh_main']) && !empty($_POST['host_bosh_main']))
+	$host_bosh_main = stripslashes(htmlspecialchars($_POST['host_bosh_main']));
+else
+	$host_bosh_main = stripslashes(htmlspecialchars($hosts_default['bosh_main']));
+
+// Mini BOSH host
+if(isset($_POST['host_bosh_mini']) && !empty($_POST['host_bosh_mini']))
+	$host_bosh_mini = stripslashes(htmlspecialchars($_POST['host_bosh_mini']));
+else
+	$host_bosh_mini = stripslashes(htmlspecialchars($hosts_default['bosh_mini']));
+
 // Static host
 if(isset($_POST['host_static']) && !empty($_POST['host_static']))
 	$host_static = stripslashes(htmlspecialchars($_POST['host_static']));
 else
 	$host_static = stripslashes(htmlspecialchars($hosts_default['static']));
+
+// Upload host
+if(isset($_POST['host_upload']) && !empty($_POST['host_upload']))
+	$host_upload = stripslashes(htmlspecialchars($_POST['host_upload']));
+else
+	$host_upload = stripslashes(htmlspecialchars($hosts_default['upload']));
 
 // Generate the hosts XML content
 $hosts_xml = 
@@ -67,7 +85,10 @@ $hosts_xml =
 	<vjud>'.$host_vjud.'</vjud>
 	<anonymous>'.$host_anonymous.'</anonymous>
 	<bosh>'.$host_bosh.'</bosh>
-	<static>'.$host_static.'</static>'
+	<bosh_main>'.$host_bosh_main.'</bosh_main>
+	<bosh_mini>'.$host_bosh_mini.'</bosh_mini>
+	<static>'.$host_static.'</static>
+	<upload>'.$host_upload.'</upload>'
 ;
 
 // Write the main configuration

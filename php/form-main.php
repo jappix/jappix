@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the main configuration form (install & manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 18/05/11
+Last revision: 27/05/11
 
 */
 
@@ -43,6 +43,12 @@ if($bosh_proxy == 'on')
 	$check_bosh_proxy = $checked;
 else
 	$check_bosh_proxy = '';
+
+// Manager link
+if($manager_link == 'on')
+	$check_manager_link = $checked;
+else
+	$check_manager_link = '';
 
 // Encryption
 if($encryption == 'on')
@@ -92,6 +98,12 @@ else
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
 	
 	<label for="bosh_proxy"><?php _e("Use a proxy"); ?></label><input id="bosh_proxy" type="checkbox" name="bosh_proxy"<?php echo $check_bosh_proxy; ?> />
+</fieldset>
+
+<fieldset>
+	<legend><?php _e("Others"); ?></legend>
+	
+	<label for="manager_link"><?php _e("Manager link"); ?></label><input id="manager_link" type="checkbox" name="manager_link"<?php echo $check_manager_link; ?> />
 </fieldset>
 
 <fieldset>

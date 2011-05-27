@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the Jappix Desktop PHP/HTML code
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -85,7 +85,9 @@ if(!anonymousMode()) { ?>
 				
 					?>
 					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
+					<?php if(showManagerLink()) { ?>
 					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><?php _e("Manager"); ?></a>
+					<?php } ?>
 					<a class="home-images project" href="https://project.jappix.com/"><?php _e("Project"); ?></a>
 					<?php if(sslCheck() && !httpsForce()) echo sslLink(); ?>
 				</div>

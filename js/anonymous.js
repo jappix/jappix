@@ -7,7 +7,7 @@ These are the anonymous mode JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 07/05/11
+Last revision: 27/05/11
 
 */
 
@@ -62,7 +62,11 @@ function anonymousLogin(server) {
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
-		oArgs.httpbase = HOST_BOSH;
+		
+		if(HOST_BOSH_MAIN)
+			oArgs.httpbase = HOST_BOSH_MAIN;
+		else
+			oArgs.httpbase = HOST_BOSH;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);

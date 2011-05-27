@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the main configuration reader
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/05/11
+Last revision: 27/05/11
 
 */
 
@@ -26,6 +26,7 @@ $main_conf = array(
 	     	'anonymous'	=> 'on',
 	     	'registration'	=> 'on',
 	     	'bosh_proxy'	=> 'on',
+	     	'manager_link'	=> 'on',
 	     	'encryption'	=> 'on',
 	     	'https_storage'	=> 'off',
 	     	'https_force'	=> 'off',
@@ -63,6 +64,7 @@ define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('REGISTRATION', $main_conf['registration']);
 define('BOSH_PROXY', $main_conf['bosh_proxy']);
+define('MANAGER_LINK', $main_conf['manager_link']);
 define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);

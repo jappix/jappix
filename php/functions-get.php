@@ -5,11 +5,11 @@
 Jappix - An open social platform
 These are the PHP functions for Jappix Get API
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -62,7 +62,7 @@ function setPath($string, $hash, $host, $type, $locale) {
 	// Replace the JS strings
 	if($type == 'js') {
 		// Static host defined
-		if($host != '.')
+		if($host && ($host != '.'))
 			$static = $host;
 		
 		// Links to JS (must have a lang parameter)
@@ -75,7 +75,7 @@ function setPath($string, $hash, $host, $type, $locale) {
 	// Replace the CSS strings
 	else if($type == 'css') {
 		// Static host defined
-		if($host != '.')
+		if($host && ($host != '.'))
 			$static = $host.'/php';
 		
 		$string = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)(\/)(\S+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$4$5)', $string);
@@ -147,6 +147,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'ANONYMOUS'		=> ANONYMOUS,
 		      	'REGISTRATION'		=> REGISTRATION,
 		      	'BOSH_PROXY'		=> BOSH_PROXY,
+		      	'MANAGER_LINK'		=> MANAGER_LINK,
 		      	'ENCRYPTION'		=> ENCRYPTION,
 		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
 		      	'HTTPS_FORCE'		=> HTTPS_FORCE,
@@ -161,7 +162,10 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'HOST_VJUD'		=> HOST_VJUD,
 		      	'HOST_ANONYMOUS'	=> HOST_ANONYMOUS,
 		      	'HOST_BOSH'		=> $bosh_special,
-		      	'HOST_STATIC'		=> HOST_STATIC
+		      	'HOST_BOSH_MAIN'	=> HOST_BOSH_MAIN,
+		      	'HOST_BOSH_MINI'	=> HOST_BOSH_MINI,
+		      	'HOST_STATIC'		=> HOST_STATIC,
+		      	'HOST_UPLOAD'		=> HOST_UPLOAD
 		      );
 	
 	// Apply it!

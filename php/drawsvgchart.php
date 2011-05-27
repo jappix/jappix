@@ -97,7 +97,7 @@ class DrawSVGChart {
 	// Process the static file host prefix
 	$static_prefix = '.';
 	
-	if(HOST_STATIC != '.')
+	if(hasStatic())
 		$static_prefix = HOST_STATIC.'/php';
 	
         // Add the stylesheet

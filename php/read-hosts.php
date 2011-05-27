@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the hosts configuration reader
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -31,7 +31,10 @@ $hosts_conf = array(
 	      	'vjud'		=> 'vjud.'.$_SERVER['HTTP_HOST'],
 	      	'anonymous'	=> 'anonymous.'.$_SERVER['HTTP_HOST'],
 	      	'bosh'		=> 'http://'.$_SERVER['HTTP_HOST'].':5280/http-bind',
-	      	'static'	=> '.'
+	      	'bosh_main'	=> '',
+	      	'bosh_mini'	=> '',
+	      	'static'	=> '',
+	      	'upload'	=> ''
 	      );
 
 // Define a default values array
@@ -62,6 +65,9 @@ define('HOST_PUBSUB', $hosts_conf['pubsub']);
 define('HOST_VJUD', $hosts_conf['vjud']);
 define('HOST_ANONYMOUS', $hosts_conf['anonymous']);
 define('HOST_BOSH', $hosts_conf['bosh']);
+define('HOST_BOSH_MAIN', $hosts_conf['bosh_main']);
+define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);
 define('HOST_STATIC', $hosts_conf['static']);
+define('HOST_UPLOAD', $hosts_conf['upload']);
 
 ?>

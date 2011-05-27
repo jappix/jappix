@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 27/05/11
 
 */
 
@@ -24,7 +24,11 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		
 		// We define the http binding parameters
 		oArgs = new Object();
-		oArgs.httpbase = HOST_BOSH;
+		
+		if(HOST_BOSH_MAIN)
+			oArgs.httpbase = HOST_BOSH_MAIN;
+		else
+			oArgs.httpbase = HOST_BOSH;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);
@@ -112,7 +116,11 @@ function doRegister(username, domain, pass) {
 	try {
 		// We define the http binding parameters
 		oArgs = new Object();
-		oArgs.httpbase = HOST_BOSH;
+		
+		if(HOST_BOSH_MAIN)
+			oArgs.httpbase = HOST_BOSH_MAIN;
+		else
+			oArgs.httpbase = HOST_BOSH;
 		
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);

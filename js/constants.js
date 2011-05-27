@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -127,6 +127,7 @@ var LOCK_HOST = null;
 var ANONYMOUS = null;
 var REGISTRATION = null;
 var BOSH_PROXY = null;
+var MANAGER_LINK = null;
 var ENCRYPTION = null;
 var HTTPS_STORAGE = null;
 var HTTPS_FORCE = null;
@@ -141,7 +142,10 @@ var HOST_PUBSUB = null;
 var HOST_VJUD = null;
 var HOST_ANONYMOUS = null;
 var HOST_BOSH = null;
+var HOST_BOSH_MAIN = null;
+var HOST_BOSH_MINI = null;
 var HOST_STATIC = null;
+var HOST_UPLOAD = null;
 
 // Anonymous mode
 var ANONYMOUS_ROOM = null;
@@ -149,9 +153,6 @@ var ANONYMOUS_NICK = null;
 
 // Node parameters
 var JAPPIX_LOCATION = getJappixLocation();
-
-// BOSH hack marker
-var BOSH_HACK = false;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {

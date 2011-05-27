@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is a PHP BOSH proxy
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 18/05/11
+Last revision: 27/05/11
 
 */
 
@@ -98,6 +98,10 @@ if($connection == false) {
 // Get the output content
 $output = @stream_get_contents($connection);
 
+// Cache headers
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+
 // POST output
 if($method == 'POST') {
 	// XML header
@@ -111,6 +115,10 @@ if($method == 'POST') {
 
 // GET output
 if($method == 'GET') {
+	// JSON header
+	header('Content-type: application/json');
+	
+	// Encode output to JSON
 	$json_output = json_encode($output);
 	
 	if(($output == false) || ($output == '') || ($json_output == 'null'))

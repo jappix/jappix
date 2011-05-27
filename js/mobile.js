@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/05/11
 
 */
 
@@ -54,7 +54,11 @@ function doLogin(aForm) {
 			
 			// We define the http binding parameters
 			oArgs = new Object();
-			oArgs.httpbase = HOST_BOSH;
+			
+			if(HOST_BOSH_MAIN)
+				oArgs.httpbase = HOST_BOSH_MAIN;
+			else
+				oArgs.httpbase = HOST_BOSH;
 			
 			// We create the new http-binding connection
 			con = new JSJaCHttpBindingConnection(oArgs);

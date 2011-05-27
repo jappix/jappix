@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the main configuration POST handler (install & manager)
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 27/05/11
 
 */
 
@@ -59,6 +59,12 @@ if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy']))
 else
 	$bosh_proxy = 'off';
 
+// Manager link
+if(isset($_POST['manager_link']) && !empty($_POST['manager_link']))
+	$manager_link = 'on';
+else
+	$manager_link = 'off';
+
 // Encryption
 if(isset($_POST['encryption']) && !empty($_POST['encryption']))
 	$encryption = 'on';
@@ -104,6 +110,7 @@ $conf_xml =
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<registration>'.$registration.'</registration>
 	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
+	<manager_link>'.$manager_link.'</manager_link>
 	<encryption>'.$encryption.'</encryption>
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>

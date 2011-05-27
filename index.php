@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the Jappix PHP application launcher
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/03/11
+Last revision: 27/05/11
 
 */
 
@@ -98,6 +98,10 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 	// Is it a static node?
 	if(isStatic())
 		$include_app = 'static';
+	
+	// Is it an upload node?
+	if(isUpload())
+		$include_app = 'upload';
 	
 	// Save this visit (for the stats)
 	writeVisit();

@@ -5,11 +5,11 @@
 Jappix - An open social platform
 These are the PHP functions for Jappix
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 18/05/11
+Last revision: 27/05/11
 
 */
 
@@ -21,9 +21,25 @@ function isInstalled() {
 	return true;
 }
 
+// The function to check if a static host is defined
+function hasStatic() {
+	if(HOST_STATIC && (HOST_STATIC != '.'))
+		return true;
+	
+	return false;
+}
+
 // The function to check if this is a static server
 function isStatic() {
-	if(parse_url(HOST_STATIC, PHP_URL_HOST) == $_SERVER['HTTP_HOST'])
+	if(hasStatic() && (parse_url(HOST_STATIC, PHP_URL_HOST) == $_SERVER['HTTP_HOST']))
+		return true;
+	
+	return false;
+}
+
+// The function to check if this is an upload server
+function isUpload() {
+	if(HOST_UPLOAD && (parse_url(HOST_UPLOAD, PHP_URL_HOST) == $_SERVER['HTTP_HOST']))
 		return true;
 	
 	return false;
@@ -541,6 +557,14 @@ function canCompress() {
 	return false;
 }
 
+// The function to check whether to show manager link or not
+function showManagerLink() {
+	if(MANAGER_LINK != 'off')
+		return true;
+	
+	return false;
+}
+
 // The function to check HTTPS storage is allowed
 function httpsStorage() {
 	if(HTTPS_STORAGE == 'on')
@@ -581,7 +605,7 @@ function multiFiles() {
 
 function getFiles($h, $l, $t, $g, $f) {
 	// Define the good path to the Get API
-	if(HOST_STATIC != '.')
+	if(hasStatic())
 		$path_to = HOST_STATIC.'/';
 	else
 		$path_to = JAPPIX_BASE.'/';

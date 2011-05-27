@@ -66,7 +66,7 @@ function removeGeneralWait() {
 	$('#general-wait').remove();
 }
 
-// Generates a file-share.php valid form content
+// Generates a file upload valid form content
 function generateFileShare() {
 	return  '<input type="hidden" name="MAX_FILE_SIZE" value="' + encodeQuotes(JAPPIX_MAX_FILE_SIZE) + '">' + 
 		'<input type="hidden" name="user" value="' + encodeQuotes(getXID()) + '" />' + 

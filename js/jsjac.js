@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 22/05/11
+Last revision: 27/05/11
 
 */
 
@@ -68,7 +68,7 @@ function XmlHttp() {}
 XmlHttp.create = function () {
   try {
     // Are we cross-domain?
-    if((BOSH_PROXY == 'on') && (typeof jXHR == "function")) {
+    if(((BOSH_PROXY == 'on') || (HOST_BOSH_MINI)) && (typeof jXHR == "function")) {
         // Able to use CORS?
         if (window.XMLHttpRequest) {
           var req = new XMLHttpRequest();
@@ -77,7 +77,6 @@ XmlHttp.create = function () {
             return req;
         }
         
-        BOSH_HACK = true;
     	return new jXHR();
     }
     // Might be local-domain?

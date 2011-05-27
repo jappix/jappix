@@ -5,11 +5,11 @@
 Jappix - An open social platform
 This is the Jappix microblog file attaching script
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 27/05/11
 
 */
 
@@ -25,8 +25,8 @@ require_once('./read-hosts.php');
 hideErrors();
 compressThis();
 
-// Not allowed for a static node
-if(isStatic())
+// Not allowed for a special node
+if(isStatic() || isUpload())
 	exit;
 
 // Set a special XML header
@@ -42,7 +42,10 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	$filename = $_FILES['file']['name'];
 	
 	// Get the location
-	$location = $_POST['location'];
+	if(HOST_UPLOAD)
+		$location = HOST_UPLOAD;
+	else
+		$location = $_POST['location'];
 	
 	// Forbidden file?
 	if(!isSafe($filename)) {

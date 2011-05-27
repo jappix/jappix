@@ -5,11 +5,11 @@
 Jappix - An open social platform
 These are the main configuration variables
 
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+-------------------------------------------------
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/01/11
+Last revision: 27/05/11
 
 */
 
@@ -25,6 +25,7 @@ $lock_host = htmlspecialchars(LOCK_HOST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);
 $registration = htmlspecialchars(REGISTRATION);
 $bosh_proxy = htmlspecialchars(BOSH_PROXY);
+$manager_link = htmlspecialchars(MANAGER_LINK);
 $encryption = htmlspecialchars(ENCRYPTION);
 $https_storage = htmlspecialchars(HTTPS_STORAGE);
 $https_force = htmlspecialchars(HTTPS_FORCE);
