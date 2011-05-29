@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 27/05/11
+Last revision: 29/05/11
 
 */
 
@@ -3221,7 +3221,7 @@ JSJaCConnection.prototype._doSASLAuthDigestMd5S1 = function(el) {
     this.oDbg.log("response: "+rPlain,2);
 
     this._sendRaw("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>"+
-                  binb2b64(str2binb(rPlain))+"</response>",
+                  Base64.encode(rPlain)+"</response>",
                   this._doSASLAuthDigestMd5S2);
   }
 };
