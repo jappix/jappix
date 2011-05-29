@@ -9,7 +9,7 @@ This is the hosts configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 29/05/11
 
 */
 
@@ -23,14 +23,25 @@ if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
 else
 	$protocol = 'http';
 
+// Get the HTTP host
+$http_host = 'jappix.com';
+
+if($_SERVER['HTTP_HOST']) {
+	$http_host_split = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+	$http_host_split = preg_replace('/:[0-9]+$/i', '', $http_host_split);
+	
+	if($http_host_split)
+		$http_host = $http_host_split;
+}
+
 // Define the default hosts configuration values
 $hosts_conf = array(
-	      	'main'		=> $_SERVER['HTTP_HOST'],
-	      	'muc'		=> 'muc.'.$_SERVER['HTTP_HOST'],
-	      	'pubsub'	=> 'pubsub.'.$_SERVER['HTTP_HOST'],
-	      	'vjud'		=> 'vjud.'.$_SERVER['HTTP_HOST'],
-	      	'anonymous'	=> 'anonymous.'.$_SERVER['HTTP_HOST'],
-	      	'bosh'		=> 'http://'.$_SERVER['HTTP_HOST'].':5280/http-bind',
+	      	'main'		=> $http_host,
+	      	'muc'		=> 'muc.'.$http_host,
+	      	'pubsub'	=> 'pubsub.'.$http_host,
+	      	'vjud'		=> 'vjud.'.$http_host,
+	      	'anonymous'	=> 'anonymous.'.$http_host,
+	      	'bosh'		=> 'http://'.$http_host.':5280/http-bind',
 	      	'bosh_main'	=> '',
 	      	'bosh_mini'	=> '',
 	      	'static'	=> '',
