@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 30/05/11
 
 */
 
@@ -544,7 +544,7 @@ function handleCommentsMicroblog(iq) {
 	// DOM events
 	if(complete) {
 		// Update timer
-		$(path).everyTime('30s', function() {
+		$(path).everyTime('60s', function() {
 			getCommentsMicroblog(server, node, id);
 			
 			logThis('Updating comments node: ' + node + ' on ' + server + '...');
