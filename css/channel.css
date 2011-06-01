@@ -180,6 +180,10 @@ Last revision: 20/05/11
 	position: relative;
 }
 
+#channel .content.mixed .one-update {
+	display: none;
+}
+
 #channel .one-update .avatar-container {
 	text-align: center;
 	margin-right: 16px;

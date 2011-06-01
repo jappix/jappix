@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/05/11
+Last revision: 01/06/11
 
 */
 
@@ -274,11 +274,23 @@ function displayMicroblog(packet, from, hash, mode) {
 				// Get the nearest element
 				var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
 				
+				// Fade out the older item after a while
+				var selected_item = $('#channel .content.mixed .one-update[data-xid=' + from + ']');
+				
+				$(document).oneTime('1s', function() {
+					selected_item.fadeOut('fast', function() {
+						selected_item.remove();
+					});
+				});
+				
 				// Append the content at the right position (date relative)
 				if(nearest == 0)
 					$('#channel .content.mixed').append(html);
 				else
 					$('#channel .one-update[data-stamp=' + nearest + ']:first').before(html);
+				
+				// Fade in the new item
+				$('#channel .content.mixed .one-update.' + tHash).fadeIn('fast');
 				
 				// Remove the old notices to make the DOM lighter
 				var oneUpdate = '#channel .content.mixed .one-update';

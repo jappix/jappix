@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/05/11
+Last revision: 01/06/11
 
 */
 
