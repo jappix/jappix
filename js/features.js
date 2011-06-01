@@ -83,6 +83,9 @@ function handleFeatures(xml) {
 		// Update our database
 		enableFeature('pep');
 		
+		// Get the microblog
+		getInitMicroblog();
+		
 		// Get the notifications
 		getNotifications();
 		

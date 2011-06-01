@@ -775,8 +775,24 @@ function resetMicroblog() {
 	return false;
 }
 
+// Gets the user's microblog to check it exists
+function getInitMicroblog() {
+	getMicroblog(getXID(), hex_md5(getXID()), true);
+}
+
+// Handles the user's microblog to create it in case of error
+function handleInitMicroblog(iq) {
+	// Any error?
+	if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
+		// The node may not exist, create it!
+		setupMicroblog('', NS_URN_MBLOG, '1', '1000000', '', '', true);
+		
+		logThis('Error while getting microblog, trying to reconfigure the Pubsub node!', 2);
+	}
+}
+
 // Gets the microblog of an user
-function getMicroblog(xid, hash) {
+function getMicroblog(xid, hash, check) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve */
 	
 	logThis('Get the microblog: ' + xid, 3);
@@ -797,7 +813,7 @@ function getMicroblog(xid, hash) {
 		hash = hex_md5(xid);
 	
 	// Can display the individual channel?
-	if(!exists('#channel .individual')) {
+	if(!check && !exists('#channel .individual')) {
 		// Hide the mixed channel
 		$('#channel .mixed').hide();
 		
@@ -847,7 +863,10 @@ function getMicroblog(xid, hash) {
 	}
 	
 	// Get the number of items to retrieve
-	var items = $('#channel .top.individual input[name=counter]').val();
+	var items = '0';
+	
+	if(!check)
+		items = $('#channel .top.individual input[name=counter]').val();
 	
 	// Ask the server the user's microblog 
 	var iq = new JSJaCIQ();
@@ -863,7 +882,10 @@ function getMicroblog(xid, hash) {
 	else
 		ps_items.setAttribute('max_items', items);
 	
-	con.send(iq, handleMicroblog);
+	if(!check)
+		con.send(iq, handleMicroblog);
+	else
+		con.send(iq, handleInitMicroblog);
 	
 	return false;
 }

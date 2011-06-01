@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 01/06/11
 
 */
 
@@ -237,10 +237,6 @@ function saveWelcome() {
 		// Send the archives configuration
 		configArchives(aEnabled);
 	}
-	
-	// If PubSub is supported by the server
-	if(enabledPEP() && enabledPubSub())
-		setupMicroblog('', NS_URN_MBLOG, '1', '1000000', '', '', true);
 	
 	// Send the new options
 	sendWelcome(array);
