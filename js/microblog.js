@@ -271,17 +271,12 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			
 			// Mixed mode
 			if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
+				// Remove the old element
+				if(way == 'push')
+					$('#channel .content.mixed .one-update[data-xid=' + from + ']').remove();
+				
 				// Get the nearest element
 				var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
-				
-				// Fade out the older item after a while
-				var selected_item = $('#channel .content.mixed .one-update[data-xid=' + from + ']');
-				
-				$(document).oneTime('1s', function() {
-					selected_item.fadeOut('fast', function() {
-						selected_item.remove();
-					});
-				});
 				
 				// Append the content at the right position (date relative)
 				if(nearest == 0)
@@ -364,8 +359,16 @@ function displayMicroblog(packet, from, hash, mode, way) {
 function removeMicroblog(id, hash) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
+	// Initialize
+	var selector = $('.' + hash);
+	var get_last = false;
+	
+	// Get the latest item for the mixed mode
+	if(exists('#channel .content.mixed .' + hash))
+		get_last = true;
+	
 	// Remove the item from our DOM
-	$('.' + hash).fadeOut('fast', function() {
+	selector.fadeOut('fast', function() {
 		$(this).remove();
 	});
 	
@@ -377,9 +380,35 @@ function removeMicroblog(id, hash) {
 	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
 	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
-	con.send(iq, handleErrorReply);
+	if(get_last)
+		con.send(iq, handleRemoveMicroblog);
+	else
+		con.send(iq, handleErrorReply);
 	
 	return false;
+}
+
+// Handles the microblog item removal
+function handleRemoveMicroblog(iq) {
+	// Handle the error reply
+	handleErrorReply(iq);
+	
+	// Get the latest item
+	requestMicroblog(getXID(), '1', false, handleUpdateRemoveMicroblog);
+}
+
+// Handles the microblog update
+function handleUpdateRemoveMicroblog(iq) {
+	// Error?
+	if(iq.getType() == 'error')
+		return;
+	
+	// Initialize
+	var xid = bareXID(getStanzaFrom(iq));
+	var hash = hex_md5(xid);
+	
+	// Display the item!
+	displayMicroblog(iq, xid, hash, 'mixed', 'push');
 }
 
 // Gets a given microblog comments node
@@ -814,6 +843,30 @@ function handleInitMicroblog(iq) {
 	}
 }
 
+// Requests an user's microblog
+function requestMicroblog(xid, items, get_item, handler) {
+	// Ask the server the user's microblog 
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	iq.setTo(xid);
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
+	
+	// Request a particular item?
+	if(get_item)
+		ps_items.appendChild(iq.buildNode('item', {'id': get_item, 'xmlns': NS_PUBSUB}));
+	else
+		ps_items.setAttribute('max_items', items);
+	
+	if(handler)
+		con.send(iq, handler);
+	else
+		con.send(iq, handleMicroblog);
+	
+	return false;
+}
+
 // Gets the microblog of an user
 function getMicroblog(xid, hash, check) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve */
@@ -891,26 +944,11 @@ function getMicroblog(xid, hash, check) {
 	if(!check)
 		items = $('#channel .top.individual input[name=counter]').val();
 	
-	// Ask the server the user's microblog 
-	var iq = new JSJaCIQ();
-	iq.setType('get');
-	iq.setTo(xid);
-	
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
-	
-	// Request a particular item?
-	if(get_item)
-		ps_items.appendChild(iq.buildNode('item', {'id': get_item, 'xmlns': NS_PUBSUB}));
+	// Request
+	if(check)
+		requestMicroblog(xid, items, get_item, handleInitMicroblog);
 	else
-		ps_items.setAttribute('max_items', items);
-	
-	if(!check)
-		con.send(iq, handleMicroblog);
-	else
-		con.send(iq, handleInitMicroblog);
-	
-	return false;
+		requestMicroblog(xid, items, get_item, handleMicroblog);
 }
 
 // Show a given microblog waiting status
