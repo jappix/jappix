@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/06/11
+Last revision: 02/06/11
 
 */
 
@@ -58,7 +58,7 @@ function attachedMicroblog(selector, tFName, tFURL, tFThumb, tFSource, tFType, t
 }
 
 // Displays a given microblog item
-function displayMicroblog(packet, from, hash, mode) {
+function displayMicroblog(packet, from, hash, mode, way) {
 	// Get some values
 	var iParse = $(packet.getNode()).find('items item');
 	
@@ -289,8 +289,11 @@ function displayMicroblog(packet, from, hash, mode) {
 				else
 					$('#channel .one-update[data-stamp=' + nearest + ']:first').before(html);
 				
-				// Fade in the new item
-				$('#channel .content.mixed .one-update.' + tHash).fadeIn('fast');
+				// Show the new item
+				if(way == 'push')
+					$('#channel .content.mixed .one-update.' + tHash).fadeIn('fast');
+				else
+					$('#channel .content.mixed .one-update.' + tHash).show();
 				
 				// Remove the old notices to make the DOM lighter
 				var oneUpdate = '#channel .content.mixed .one-update';
@@ -318,6 +321,12 @@ function displayMicroblog(packet, from, hash, mode) {
 					$(tIndividual).prepend(html);
 				else
 					$(tIndividual + ' a.more').before(html);
+				
+				// Show the new item
+				if(way == 'push')
+					$('#channel .content.individual .one-update.' + tHash).fadeIn('fast');
+				else
+					$('#channel .content.individual .one-update.' + tHash).show();
 				
 				// Make 'more' link visible
 				$(tIndividual + ' a.more').css('visibility', 'visible');
@@ -356,7 +365,9 @@ function removeMicroblog(id, hash) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
 	// Remove the item from our DOM
-	$('.' + hash).remove();
+	$('.' + hash).fadeOut('fast', function() {
+		$(this).remove();
+	});
 	
 	// Send the IQ to remove the item (and get eventual error callback)
 	var iq = new JSJaCIQ();
@@ -732,7 +743,7 @@ function handleMicroblog(iq) {
 		$(selector + 'counter]').val(old_count + 20);
 		
 		// Display the microblog
-		displayMicroblog(iq, from, hash, 'individual');
+		displayMicroblog(iq, from, hash, 'individual', 'request');
 		
 		// Hide the waiting icon
 		if(enabledPEP())

@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 02/06/11
 
 */
 
@@ -178,9 +178,6 @@ Last revision: 20/05/11
 	min-height: 50px;
 	color: black;
 	position: relative;
-}
-
-#channel .content.mixed .one-update {
 	display: none;
 }
 

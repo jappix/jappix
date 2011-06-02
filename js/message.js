@@ -257,7 +257,7 @@ function handleMessage(message) {
 				
 				// Microblog
 				case NS_URN_MBLOG:
-					displayMicroblog(message, xid, hash, 'mixed');
+					displayMicroblog(message, xid, hash, 'mixed', 'push');
 					
 					break;
 				
