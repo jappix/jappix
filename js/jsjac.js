@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 29/05/11
+Last revision: 03/06/11
 
 */
 
@@ -4124,8 +4124,11 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
 
       this.oDbg.log("Disconnected.",1);
       this._handleEvent('ondisconnect');
+    } else {
+      this._errcnt++;
+      if (this._errcnt > JSJAC_ERR_COUNT)
+        this._abort();
     }
-    
     return null;
   }
 
