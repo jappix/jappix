@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/06/11
+Last revision: 07/06/11
 
 */
 
@@ -273,7 +273,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
 				// Remove the old element
 				if(way == 'push')
-					$('#channel .content.mixed .one-update[data-xid=' + from + ']').remove();
+					$('#channel .content.mixed .one-update.update_' + hash).remove();
 				
 				// Get the nearest element
 				var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
