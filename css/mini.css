@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/04/11
+Last revision: 08/06/11
 
 */
 
@@ -202,7 +202,7 @@ Last revision: 17/04/11
 
 #jappix_mini div.jm_actions a.jm_logo {
 	background-position: 7px 2px;
-	width: 87px;
+	width: 81px;
 	height: 22px;
 	margin: -4px 0 0 -2px;
 	outline-style: none;
