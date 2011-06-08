@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 08/06/11
 
 */
 
@@ -796,8 +796,13 @@ function presenceSend(checksum, autoidle) {
 	
 	// We send the presence to our active MUC
 	$('.page-engine-chan[data-type=groupchat]').each(function() {
+		var tmp_nick = $(this).attr('data-nick');
+		
+		if(!tmp_nick)
+			return;
+		
 		var room = unescape($(this).attr('data-xid'));
-		var nick = unescape($(this).attr('data-nick'));
+		var nick = unescape(tmp_nick);
 		
 		// Must re-initialize?
 		if(RESUME)
