@@ -7,7 +7,7 @@ These are the inbox JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/03/11
+Last revision: 08/06/11
 
 */
 
@@ -525,14 +525,14 @@ function replyInboxMessage(id, from, subject, body) {
 	var inbox = '#inbox .';
 	
 	// Generate the body
-	var body = truncate(body, 120) + '\n' + '----' + '\n';
+	var body = '\n' + '____________' + '\n\n' + truncate(body, 120);
 	
 	// We apply the generated values to the form
 	$(inbox + 'inbox-new-to-input').val(from);
 	$(inbox + 'inbox-new-subject-input').val(subject);
 	
 	$(document).oneTime(10, function() {
-		$(inbox + 'inbox-new-textarea').val(body).focus();
+		$(inbox + 'inbox-new-textarea').val(body).focus().selectRange(1, 0);
 	});
 	
 	return false;
