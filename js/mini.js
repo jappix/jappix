@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 08/06/11
 
 */
 
@@ -1189,7 +1189,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 		}
 		
 		// Create the HTML markup
-		var html = '<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
+		var html = '<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-nick="' + escape(nick) + '" data-hash="' + hash + '" data-origin="' + escape(cutResource(xid)) + '">' + 
 				'<div class="jm_chat-content">' + 
 					'<div class="jm_actions">' + 
 						'<span class="jm_nick">' + nick + '</span>';
