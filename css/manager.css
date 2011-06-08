@@ -7,7 +7,7 @@ This is the manager CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/05/11
+Last revision: 08/06/11
 
 */
 
@@ -138,9 +138,9 @@ Last revision: 25/05/11
 
 #manager-top .logo {
 	background-position: 0 0;
-	min-width: 87px;
-	height: 42px;
-	padding: 26px 0 0 67px;
+	min-width: 89px;
+	height: 40px;
+	padding: 28px 0 0 65px;
 	font-size: 32px;
 	color: white;
 	text-transform: lowercase;

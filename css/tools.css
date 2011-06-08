@@ -7,7 +7,7 @@ This is the tools CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/05/11
+Last revision: 08/06/11
 
 */
 
@@ -38,8 +38,8 @@ Last revision: 06/05/11
 }
 
 #top-content .tools-logo {
-	background-position: 9px 3px;
-	width: 76px;
+	background-position: 9px 2px;
+	width: 74px;
 	float: left;
 }
 
