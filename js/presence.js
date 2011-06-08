@@ -208,7 +208,20 @@ function handlePresence(presence) {
 				// Generate the presence-in-chat code
 				var dName = getBuddyName(from).htmlEnc();
 				var dBody = dName + ' (' + from + ') ' + _e("is now") + ' ' + humanShow(show, type) + dStatus;
-				displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
+				
+				// Check whether it has been previously displayed
+				var can_display = true;
+				
+				$('#' + xidHash + ' .one-group:last .one-line.system-message').each(function() {
+					if($(this).text() == dBody) {
+						can_display = false;
+						
+						return;
+					}
+				});
+				
+				if(can_display)
+					displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
 			}
 		}
 	}

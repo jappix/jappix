@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 13/05/11
+Last revision: 08/06/11
 
 */
 
@@ -756,8 +756,12 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	// Name color attribute
 	if(type == 'groupchat')
 		attribute = ' style="color: ' + generateColor(name) + ';" class="name';
-	else
-		attribute = ' class="name ' + mode;
+	else {
+		attribute = ' class="name';
+		
+		if(mode)
+			attribute += ' ' + mode;
+	}
 	
 	// Close the class attribute
 	if(message_type == 'system-message')
