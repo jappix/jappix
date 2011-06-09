@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/06/11
+Last revision: 09/06/11
 
 */
 
@@ -388,7 +388,7 @@ Last revision: 02/06/11
 #channel .one-update div.comments .one-comment div.marker,
 .popup.large div.comments .one-comment div.marker {
 	background-color: #6d8387;
-	width: 3px;
+	width: 2px;
 	position: absolute;
 	top: 0;
 	left: 0;

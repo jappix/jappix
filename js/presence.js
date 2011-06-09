@@ -212,7 +212,7 @@ function handlePresence(presence) {
 				// Check whether it has been previously displayed
 				var can_display = true;
 				
-				if($('#' + xidHash + ' .one-line.system-message:last').text() == dBody)
+				if($('#' + xidHash + ' .one-line.system-message:last').html() == dBody)
 					can_display = false;
 				
 				if(can_display)
