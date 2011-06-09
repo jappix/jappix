@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/06/11
+Last revision: 09/06/11
 
 */
 
@@ -212,13 +212,8 @@ function handlePresence(presence) {
 				// Check whether it has been previously displayed
 				var can_display = true;
 				
-				$('#' + xidHash + ' .one-group:last .one-line.system-message').each(function() {
-					if($(this).text() == dBody) {
-						can_display = false;
-						
-						return;
-					}
-				});
+				if($('#' + xidHash + ' .one-line.system-message:last').text() == dBody)
+					can_display = false;
 				
 				if(can_display)
 					displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
