@@ -9,7 +9,7 @@ This is the hosts configuration form (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 11/06/11
 
 */
 
@@ -37,7 +37,7 @@ if(!defined('JAPPIX_BASE'))
 	
 	<label for="host_vjud"><?php _e("Directory host"); ?></label><input id="host_vjud" type="text" name="host_vjud" value="<?php echo $host_vjud; ?>" pattern="[^@/]+" />
 	
-	<label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="url" name="host_bosh" value="<?php echo $host_bosh; ?>" />
+	<label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="text" name="host_bosh" value="<?php echo $host_bosh; ?>" />
 	
 	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_main; ?>" />
 	
