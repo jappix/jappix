@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/06/11
+Last revision: 11/06/11
 
 */
 
@@ -92,7 +92,7 @@ function openWelcome() {
 				'<span class="go talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a class="box share" href="http://twitter.com/home?status=' + encodeQuotes(share_msg) + ' ' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+			'<a class="box share" href="http://twitter.com/intent/tweet?text=' + encodeQuotes(share_msg) + '&amp;url=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
 				'<span class="logo twitter welcome-images"></span>' + 
 				'<span class="name">Twitter</span>' + 
 				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Twitter') + '</span>' + 
