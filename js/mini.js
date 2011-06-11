@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/06/11
+Last revision: 11/06/11
 
 */
 
@@ -1023,7 +1023,17 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 			header += '<b class="jm_him" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
 	}
 	
-	// Filter the message
+	// Apply the /me command
+	var me_command = false;
+	
+	if(body.match(/^\/me /i)) {
+		body = body.replace(/^\/me /i, nick + ' ');
+		
+		// Marker
+		me_command = true;
+	}
+	
+	// HTML-encode the message
 	body = body.htmlEnc();
 	
 	// Apply the smileys
@@ -1037,7 +1047,13 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 	           .replace(/(:D|:-D)(\s|$)/gi, smileyMini('grin', '$1'));
 	
 	// Filter the links
-	body = '<p>' + filterLinks(body, 'mini') + '</p>';
+	body = filterLinks(body, 'mini');
+	
+	// Generate the message code
+	if(me_command)
+		body = '<em>' + body + '</em>';
+	
+	body = '<p>' + body + '</p>';
 	
 	// Create the message
 	if(grouped)
