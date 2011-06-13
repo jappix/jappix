@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 03/06/11
+Last revision: 13/06/11
 
 */
 
@@ -319,7 +319,7 @@ String.prototype.revertHtmlEnc = function() {
   str = str.replace(/&quot;/gi,'\"');
   str = str.replace(/<br( )?(\/)?>/gi,'\n');
   return str;
-}
+};
 
 /**
  * Converts from jabber timestamps to JavaScript Date objects
