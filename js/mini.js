@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/06/11
+Last revision: 13/06/11
 
 */
 
@@ -1616,8 +1616,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 		});
 	}
 	
-	else
-		jQuery(window).bind('beforeunload', saveSessionMini);
+	jQuery(window).bind('beforeunload', saveSessionMini);
 	
 	// Create the Jappix Mini DOM content
 	createMini(domain, user, password);
