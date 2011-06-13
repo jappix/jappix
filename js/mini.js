@@ -1598,22 +1598,19 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	
 	// Logouts when Jappix is closed
 	if(BrowserDetect.browser == 'Opera') {
-		// Dirty hack for Opera (onbeforeunload missing!)
-		jQuery('a').click(function() {
+		// Emulates onbeforeunload on Opera (link clicked)
+		jQuery('a[href]:not([onclick])').click(function() {
 			// Link attributes
-			var href = jQuery(this).attr('href');
-			var target = jQuery(this).attr('target');
-			
-			// Avoid "undefined" bug
-			if(!href)
-				href = '';
-			if(!target)
-				target = '';
+			var href = jQuery(this).attr('href') || '';
+			var target = jQuery(this).attr('target') || '';
 			
 			// Not new window or JS link
 			if(href && !href.match(/^#/i) && !target.match(/_blank|_new/i))
 				saveSessionMini();
 		});
+		
+		// Emulates onbeforeunload on Opera (form submitted)
+		jQuery('form:not([onsubmit])').submit(saveSessionMini);
 	}
 	
 	jQuery(window).bind('beforeunload', saveSessionMini);
