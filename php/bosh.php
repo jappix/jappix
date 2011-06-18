@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 27/05/11
+Last revision: 18/06/11
 
 */
 
@@ -68,7 +68,7 @@ else {
 }
 
 // HTTP headers
-$headers = array('Content-Length: '.strlen($data), 'Content-Type: text/xml; charset=utf-8', 'Connection: Close');
+$headers = array('Content-Length: '.strlen($data), 'Content-Type: text/xml; charset=utf-8');
 
 // HTTP parameters
 $parameters = array('http' => array(
