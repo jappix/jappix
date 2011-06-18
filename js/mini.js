@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/06/11
+Last revision: 18/06/11
 
 */
 
@@ -1555,8 +1555,8 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	else
 		MINI_ANONYMOUS = false;
 	
-	// Autoconnect?
-	if(autoconnect)
+	// Autoconnect (only if storage available to avoid floods)?
+	if(autoconnect && window.sessionStorage)
 		MINI_AUTOCONNECT = true;
 	else
 		MINI_AUTOCONNECT = false;

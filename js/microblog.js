@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 07/06/11
+Last revision: 18/06/11
 
 */
 
@@ -195,7 +195,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			if(uRepeated)
 				html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');"></a>';
 			
-			html += '<b title="' + from + '">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
+			html += '<b title="' + from + '" class="name">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
 				'<p class="infos">' + tTime + tGeoloc + '</p>';
 			
 			// Any file to display?

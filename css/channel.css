@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/06/11
+Last revision: 18/06/11
 
 */
 
@@ -223,7 +223,7 @@ Last revision: 09/06/11
 	margin: 0 12px 5px 0;
 }
 
-#channel .one-update p b:hover {
+#channel .one-update p b.name:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
