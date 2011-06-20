@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-06-13 08:57:09\n"
+"PO-Revision-Date: 2011-06-20 09:00:18\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1335,31 +1335,31 @@ msgstr "讓我們看一下安裝步驟："
 
 #: 
 msgid "Welcome"
-msgstr ""
+msgstr "歡迎"
 
 #: 
 msgid "Storage configuration"
-msgstr ""
+msgstr "儲存空間設定"
 
 #: 
 msgid "Administrator account"
-msgstr ""
+msgstr "管理員帳號"
 
 #: 
 msgid "Main configuration"
-msgstr ""
+msgstr "主要設定"
 
 #: 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "主機設定"
 
 #: 
 msgid "Services installation"
-msgstr ""
+msgstr "服務安裝"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "如果目前的語言與你的不符（%1s），你可以讓 Jappix 說 %2s 它將被儲存。"
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
@@ -1379,7 +1379,7 @@ msgstr ""
 
 #: 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "資料夾可寫入，你可以繼續！"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
@@ -1387,15 +1387,15 @@ msgstr ""
 
 #: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
-msgstr ""
+msgstr "當 Jappix 安裝完成後，只要點一下首頁上的管理員連結就可以進入。"
 
 #: 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr ""
+msgstr "糟糕，你漏了某些東西或兩個密碼不一致！"
 
 #: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr ""
+msgstr "Jappix 需要你指定某些值才能開始工作。請確認下列輸入（或保留預設值，對大多數人來說是足夠的）。"
 
 #: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
@@ -1403,55 +1403,55 @@ msgstr ""
 
 #: 
 msgid "User"
-msgstr ""
+msgstr "使用者"
 
 #: 
 msgid "Service"
-msgstr ""
+msgstr "服務"
 
 #: 
 msgid "Service name"
-msgstr ""
+msgstr "服務名稱"
 
 #: 
 msgid "Service description"
-msgstr ""
+msgstr "服務説明"
 
 #: 
 msgid "Connection"
-msgstr ""
+msgstr "連線"
 
 #: 
 msgid "Lock the host"
-msgstr ""
+msgstr "鎖定主機"
 
 #: 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "匿名模式"
 
 #: 
 msgid "Registration allowed"
-msgstr ""
+msgstr "允許註冊"
 
 #: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "使用代理伺服器"
 
 #: 
 msgid "Encryption"
-msgstr ""
+msgstr "加密"
 
 #: 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "HTTPS 儲存空間"
 
 #: 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "強制使用 HTTPS"
 
 #: 
 msgid "Compression"
-msgstr ""
+msgstr "壓縮"
 
 #: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
@@ -1463,23 +1463,23 @@ msgstr ""
 
 #: 
 msgid "Main host"
-msgstr ""
+msgstr "主要主機"
 
 #: 
 msgid "Groupchat host"
-msgstr ""
+msgstr "群組聊天主機"
 
 #: 
 msgid "Anonymous host"
-msgstr ""
+msgstr "匿名主機"
 
 #: 
 msgid "Directory host"
-msgstr ""
+msgstr "目錄主機"
 
 #: 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH 主機"
 
 #: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
@@ -1491,123 +1491,123 @@ msgstr ""
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "在你完成設定後，Jappix 將產生一些快取檔案。它也許會費時，只能等到應用程式顯示且不要按任何按鈕。"
 
 #: 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "感謝使用 Jappix！"
 
 #: 
 msgid "Next"
-msgstr ""
+msgstr "下一頁"
 
 #: 
 msgid "Finish"
-msgstr ""
+msgstr "完成"
 
 #: 
 msgid "Check again"
-msgstr ""
+msgstr "再檢查"
 
 #: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
-msgstr ""
+msgstr "資料夾不可寫入，設定正確權限至 %s 目錄。"
 
 #: 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s 已經安裝在你的系統。"
 
 #: 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s 未安裝在你的系統，你需要安裝 %2s。"
 
 #: 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr ""
+msgstr "PHP 最大上傳已足夠（%s）。"
 
 #: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr ""
+msgstr "PHP 最大上傳不足夠（%1s），你必須定義它為 %2s 在 %3s 中。"
 
 #: 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix 管理員"
 
 #: 
 msgid "Manager access"
-msgstr ""
+msgstr "管理員入口"
 
 #: 
 msgid "Statistics"
-msgstr ""
+msgstr "統計"
 
 #: 
 msgid "Hosts"
-msgstr ""
+msgstr "主機"
 
 #: 
 msgid "Design"
-msgstr ""
+msgstr "設計"
 
 #: 
 msgid "Repeat"
-msgstr ""
+msgstr "報告"
 
 #: 
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: 
 msgid "Horizontal"
-msgstr ""
+msgstr "水平"
 
 #: 
 msgid "Vertical"
-msgstr ""
+msgstr "垂直"
 
 #: 
 msgid "Center"
-msgstr ""
+msgstr "中"
 
 #: 
 msgid "Left"
-msgstr ""
+msgstr "左"
 
 #: 
 msgid "Right"
-msgstr ""
+msgstr "右"
 
 #: 
 msgid "Top"
-msgstr ""
+msgstr "上"
 
 #: 
 msgid "Bottom"
-msgstr ""
+msgstr "下"
 
 #: 
 msgid "Adapt"
-msgstr ""
+msgstr "適用"
 
 #: 
 msgid "Color"
-msgstr ""
+msgstr "色彩"
 
 #: 
 msgid "Users"
-msgstr ""
+msgstr "使用者"
 
 #: 
 msgid "Updates"
-msgstr ""
+msgstr "更新"
 
 #: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
-msgstr ""
+msgstr "這是限制區域：只有得到授權的使用者可以管理此 Jappix 節點。"
 
 #: 
 msgid "Please use the form below to login to the administration panel."
-msgstr ""
+msgstr "請使用下面的表單登入管理面板。"
 
 #: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
@@ -1615,215 +1615,215 @@ msgstr ""
 
 #: 
 msgid "Credentials"
-msgstr ""
+msgstr "身份證明"
 
 #: 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "你已經被登出。再見！"
 
 #: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
-msgstr ""
+msgstr "糟糕，你無法被認為是有效的管理員。檢查你的身份證明！"
 
 #: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
-msgstr ""
+msgstr "基本統計是由 Jappix 處理關於一些重要事物，你可以在下面找到它們。"
 
 #: 
 msgid "Change your Jappix node configuration with this tool."
-msgstr ""
+msgstr "利用此工具變更你的 Jappix 節點設定。"
 
 #: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr ""
+msgstr "利用此工具變更此 Jappix 節點服務的 XMPP 主機。"
 
 #: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
-msgstr ""
+msgstr "所有此 Jappix 節點儲存的檔案可利用此工具管理：請選取子資料夾且開始編輯它的內容！"
 
 #: 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappix 可完全自訂：你可以在這邊變更它的設計。"
 
 #: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr ""
+msgstr "這不是有效的影像，請使用 PNG、GIF 或 JPG！"
 
 #: 
 msgid "The image could not be received, would you mind retry?"
-msgstr ""
+msgstr "影像無法被收到，你介意重試嗎？"
 
 #: 
 msgid "Your image was added to the list!"
-msgstr ""
+msgstr "你的影像已被加入到清單！"
 
 #: 
 msgid "Changes saved!"
-msgstr ""
+msgstr "變更已被儲存！"
 
 #: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
-msgstr ""
+msgstr "你可以為此 Jappix 節點定義多位管理員。你也可以利用此工具變更密碼。"
 
 #: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
-msgstr ""
+msgstr "利用此工具更新你的 Jappix 節點，或檢查是否有新的可用。關於最新版本的資訊也會被顯示。"
 
 #: 
 msgid "Access statistics"
-msgstr ""
+msgstr "存取統計"
 
 #: 
 msgid "Share statistics"
-msgstr ""
+msgstr "分享統計"
 
 #: 
 msgid "Other statistics"
-msgstr ""
+msgstr "其他統計"
 
 #: 
 msgid "January"
-msgstr ""
+msgstr "1月"
 
 #: 
 msgid "February"
-msgstr ""
+msgstr "2月"
 
 #: 
 msgid "March"
-msgstr ""
+msgstr "3月"
 
 #: 
 msgid "April"
-msgstr ""
+msgstr "4月"
 
 #: 
 msgid "May"
-msgstr ""
+msgstr "5月"
 
 #: 
 msgid "June"
-msgstr ""
+msgstr "6月"
 
 #: 
 msgid "July"
-msgstr ""
+msgstr "7月"
 
 #: 
 msgid "August"
-msgstr ""
+msgstr "8月"
 
 #: 
 msgid "September"
-msgstr ""
+msgstr "9月"
 
 #: 
 msgid "October"
-msgstr ""
+msgstr "10月"
 
 #: 
 msgid "November"
-msgstr ""
+msgstr "11月"
 
 #: 
 msgid "December"
-msgstr ""
+msgstr "12月"
 
 #: 
 msgid "Monday"
-msgstr ""
+msgstr "星期一"
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "星期二"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "星期三"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "星期四"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "星期五"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "星期六"
 
 #: 
 msgid "Sunday"
-msgstr ""
+msgstr "星期日"
 
 #: 
 msgid "Total"
-msgstr ""
+msgstr "合計"
 
 #: 
 msgid "Cache"
-msgstr ""
+msgstr "快取"
 
 #: 
 msgid "Logs"
-msgstr ""
+msgstr "記錄"
 
 #: 
 msgid "Music"
-msgstr ""
+msgstr "音樂"
 
 #: 
 msgid "Backgrounds"
-msgstr ""
+msgstr "背景"
 
 #: 
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: 
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: 
 msgid "Notice"
-msgstr ""
+msgstr "通知"
 
 #: 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "你的設計偏好已被儲存！"
 
 #: 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "請檢查你的輸入：漏了某些東西！"
 
 #: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
-msgstr ""
+msgstr "利用此工具變更你的 Jappix 節點背景。你可以設定自訂色彩或上傳的影像。釋出你的創造力！"
 
 #: 
 msgid "Use default background"
-msgstr ""
+msgstr "使用預設的背景"
 
 #: 
 msgid "Use your own image"
-msgstr ""
+msgstr "使用你自己的影像"
 
 #: 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "選取要使用的背景並變更顯示選項。"
 
 #: 
 msgid "Use your own color"
-msgstr ""
+msgstr "使用你自己的顏色"
 
 #: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr ""
+msgstr "輸入你要用來當作背景的 16 進位色彩值。"
 
 #: 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "管理背景"
 
 #: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
@@ -1839,7 +1839,7 @@ msgstr ""
 
 #: 
 msgid "Simple notice"
-msgstr ""
+msgstr "簡單通知"
 
 #: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
@@ -1847,7 +1847,7 @@ msgstr ""
 
 #: 
 msgid "Advanced notice"
-msgstr ""
+msgstr "進階通知"
 
 #: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
@@ -1855,15 +1855,15 @@ msgstr ""
 
 #: 
 msgid "Available updates"
-msgstr ""
+msgstr "可用的更新"
 
 #: 
 msgid "What's new?"
-msgstr ""
+msgstr "有什麼新鮮的？"
 
 #: 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr ""
+msgstr "你的儲存空間資料夾無法寫入，請套用正確權限！"
 
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
@@ -1871,127 +1871,127 @@ msgstr ""
 
 #: 
 msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
-msgstr ""
+msgstr "你正在使用開發版本的 Jappix。從我們的存放區更新它請執行：%s。"
 
 #: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
-msgstr ""
+msgstr "有新版本的 Jappix 可用！檢查有什麼新的並啟動更新！"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr ""
+msgstr "你的版本已經過時。在此點一下以便立刻更新！"
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
-msgstr ""
+msgstr "你的版本似乎是最新的，但是你可以在此點一下以便手動檢查更新。"
 
 #: 
 msgid "Check for updates"
-msgstr ""
+msgstr "檢查更新"
 
 #: 
 msgid "Update in progress"
-msgstr ""
+msgstr "更新正在進行"
 
 #: 
 msgid "Jappix has been updated: you are now running the latest version. Have fun!"
-msgstr ""
+msgstr "Jappix 已更新：你現在使用的是最新版本。祝你玩得愉快！"
 
 #: 
 msgid "The update has failed! Please try again later."
-msgstr ""
+msgstr "更新失敗！請稍後重試。"
 
 #: 
 msgid "Downloading package..."
-msgstr ""
+msgstr "正在下載套件..."
 
 #: 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "刪除目前的 Jappix 系統檔案..."
 
 #: 
 msgid "Extracting package..."
-msgstr ""
+msgstr "正在取出套件..."
 
 #: 
 msgid "Regenerating storage folder tree..."
-msgstr ""
+msgstr "重新產生儲存空間資料夾..."
 
 #: 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix 現在是最新的！"
 
 #: 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "中止：socket 錯誤！"
 
 #: 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "中止：緩衝器錯誤！"
 
 #: 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "中止：全部都無法寫入！"
 
 #: 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "中止：無法取出套件！"
 
 #: 
 msgid "Visits"
-msgstr ""
+msgstr "訪問"
 
 #: 
 msgid "Daily"
-msgstr ""
+msgstr "日"
 
 #: 
 msgid "Weekly"
-msgstr ""
+msgstr "週"
 
 #: 
 msgid "Monthly"
-msgstr ""
+msgstr "月"
 
 #: 
 msgid "Yearly"
-msgstr ""
+msgstr "年"
 
 #: 
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: 
 msgid "Clean everything"
-msgstr ""
+msgstr "全部清除"
 
 #: 
 msgid "Purge cache"
-msgstr ""
+msgstr "清除快取"
 
 #: 
 msgid "Purge logs"
-msgstr ""
+msgstr "清除記錄"
 
 #: 
 msgid "Purge updates"
-msgstr ""
+msgstr "清除更新"
 
 #: 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "你要清除的儲存空間資料夾是空的！"
 
 #: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
-msgstr ""
+msgstr "保持你的 Jappix 節點清新與快速，定期清除儲存空間資料夾！"
 
 #: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
-msgstr ""
+msgstr "上傳你的音樂（Ogg Vorbis、MP3 或 WAV）以便可以在 Jappix 聆聽！"
 
 #: 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "你要上傳的檔案必須小於 %s。"
 
 #: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
@@ -1999,123 +1999,123 @@ msgstr ""
 
 #: 
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
 #: 
 msgid "Artist"
-msgstr ""
+msgstr "藝人"
 
 #: 
 msgid "Album"
-msgstr ""
+msgstr "專輯"
 
 #: 
 msgid "File"
-msgstr ""
+msgstr "檔案"
 
 #: 
 msgid "Upload"
-msgstr ""
+msgstr "上傳"
 
 #: 
 msgid "The folder is empty."
-msgstr ""
+msgstr "資料夾是空的。"
 
 #: 
 msgid "The music could not be received, please retry!"
-msgstr ""
+msgstr "音樂無法被收到，請重試！"
 
 #: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
-msgstr ""
+msgstr "這不是有效的音樂檔案，請用 Ogg Vorbis、MP3 或 WAV 編碼！"
 
 #: 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "你的音樂已被加入！"
 
 #: 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "選取的元素已被刪除。"
 
 #: 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "你必須選取要刪除的元素！"
 
 #: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
-msgstr ""
+msgstr "利用此工具加入新的使用者，或變更密碼（輸入已存在的使用者名稱）。請輸入安全的密碼！"
 
 #: 
 msgid "Manage"
-msgstr ""
+msgstr "管理"
 
 #: 
 msgid "List"
-msgstr ""
+msgstr "清單"
 
 #: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
-msgstr ""
+msgstr "利用此工具刪除使用者。注意你不能刪除僅存的那一位使用者。"
 
 #: 
 msgid "The user has been added!"
-msgstr ""
+msgstr "使用者已被加入！"
 
 #: 
 msgid "The chosen users have been removed."
-msgstr ""
+msgstr "選取的使用者已經被刪除。"
 
 #: 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "你必須選取一或多位使用者以便刪除！"
 
 #: 
 msgid "Yesterday"
-msgstr ""
+msgstr "昨日"
 
 #: 
 msgid "%s days ago"
-msgstr ""
+msgstr "%s 日前"
 
 #: 
 msgid "User currently active"
-msgstr ""
+msgstr "使用者目前活動中"
 
 #: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "上次見到：%s"
 
 #: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "不活動自：%s"
 
 #: 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "你的好友似乎沒收到你的訊息！"
 
 #: 
 msgid "Static content server"
-msgstr ""
+msgstr "靜態內容伺服器"
 
 #: 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr ""
+msgstr "這是 %1s 用的靜態內容伺服器，“%2s”。"
 
 #: 
 msgid "Suggested friends"
-msgstr ""
+msgstr "建議的好友"
 
 #: 
 msgid "Check all"
-msgstr ""
+msgstr "全選"
 
 #: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "取消全選"
 
 #: 
 msgid "Choose"
-msgstr ""
+msgstr "選取"
 
 #: 
 msgid "List name"
@@ -2123,19 +2123,19 @@ msgstr ""
 
 #: 
 msgid "Allow"
-msgstr ""
+msgstr "允許"
 
 #: 
 msgid "Deny"
-msgstr ""
+msgstr "拒絕"
 
 #: 
 msgid "Group"
-msgstr ""
+msgstr "群組"
 
 #: 
 msgid "Subscription"
-msgstr ""
+msgstr "訂閱"
 
 #: 
 msgid "Both"
@@ -2147,23 +2147,23 @@ msgstr ""
 
 #: 
 msgid "Everybody"
-msgstr ""
+msgstr "每一位"
 
 #: 
 msgid "Send messages"
-msgstr ""
+msgstr "傳送訊息"
 
 #: 
 msgid "Send queries"
-msgstr ""
+msgstr "傳送查詢"
 
 #: 
 msgid "See my status"
-msgstr ""
+msgstr "看我的狀態"
 
 #: 
 msgid "Send his/her status"
-msgstr ""
+msgstr "傳送他的狀態"
 
 #: 
 msgid "Everything"
@@ -2171,7 +2171,7 @@ msgstr ""
 
 #: 
 msgid "Item"
-msgstr ""
+msgstr "項目"
 
 #: 
 msgid "Order"
@@ -2187,11 +2187,11 @@ msgstr ""
 
 #: 
 msgid "User directory"
-msgstr ""
+msgstr "使用者目錄"
 
 #: 
 msgid "Search a friend"
-msgstr ""
+msgstr "搜尋好友"
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
@@ -2203,27 +2203,27 @@ msgstr ""
 
 #: 
 msgid "Loading comments..."
-msgstr ""
+msgstr "載入評論..."
 
 #: 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "在此輸入你的評論..."
 
 #: 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "無法取得評論！"
 
 #: 
 msgid "Show comments"
-msgstr ""
+msgstr "顯示評論"
 
 #: 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "傳送訊息給他"
 
 #: 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "開始與他聊天"
 
 #: 
 msgid "Media integration"
