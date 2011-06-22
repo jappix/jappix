@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 13/06/11
+Last revision: 22/06/11
 
 */
 
@@ -3897,7 +3897,13 @@ JSJaCHttpBindingConnection.prototype._getStreamID = function(req) {
     return;
   }
   var body = req.responseXML.documentElement;
-
+  
+  // any session error?
+  if(body.getAttribute('type') == 'terminate') {
+    this._handleEvent('onerror',JSJaCError('503','cancel','service-unavailable'));
+    return;
+  }
+  
   // extract stream id used for non-SASL authentication
   if (body.getAttribute('authid')) {
     this.streamid = body.getAttribute('authid');
