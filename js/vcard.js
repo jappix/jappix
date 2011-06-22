@@ -504,21 +504,32 @@ function sendVCard() {
 		
 		// Generate the XML
 		for(i in read) {
-			if((i == 0) || (i == 1 && read[i]) || (i == 2)) {
-				var iq = new JSJaCIQ();
-				iq.setType('set');
-				
-				var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-				var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
+			var iq = new JSJaCIQ();
+			iq.setType('set');
+			
+			var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+			var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
+			
+			if((i == 0) && read[0]) {
 				var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
 				
-				if((i == 0) && read[i])
-					item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
+				// Nickname element
+				item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
+			}
+			
+			else if(((i == 1) || (i == 2)) && read[1]) {
+				var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
 				
-				else if(i == 1)
+				// Apply the SHA-1 hash
+				if(photo_id)
+					item.setAttribute('id', photo_id);
+				
+				// Avatar data node
+				if(i == 1)
 					item.appendChild(iq.buildNode('data', {'xmlns': NS_URN_ADATA}, read[i]));
 				
-				else if(i == 2) {
+				// Avatar metadata node
+				else {
 					var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
 					
 					if(read[i]) {
@@ -532,9 +543,9 @@ function sendVCard() {
 							meta_info.setAttribute('bytes', read[i][2]);
 					}
 				}
-				
-				con.send(iq);
 			}
+			
+			con.send(iq);
 		}
 	}
 	
