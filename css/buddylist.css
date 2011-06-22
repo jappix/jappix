@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/06/11
+Last revision: 22/06/11
  
 */
  
@@ -129,7 +129,7 @@ Last revision: 13/06/11
 }
  
 #buddy-list .name {
-        margin: 4px 3px 5px 58px;
+        margin: 4px 3px 5px 56px;
 }
  
 #buddy-list .buddy-name {
