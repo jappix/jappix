@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/04/11
+Last revision: 22/06/11
 
 */
 
@@ -480,19 +480,27 @@ function sendVCard() {
 	
 	// Send the user nickname & avatar over PEP
 	if(enabledPEP()) {
+		// Read values
+		var user_nick = $('#USER-NICKNAME').val();
+		var photo_bin = $('#USER-PHOTO-BINVAL').val();
+		var photo_type = $('#USER-PHOTO-TYPE').val();
+		var photo_data = Base64.decode(photo_bin) || '';
+		var photo_bytes = photo_data.length || '';
+		var photo_id = hex_sha1(photo_data) || '';
+		
 		// Values array
-		var read = new Array(
-			$('#USER-NICKNAME').val(),
-			$('#USER-PHOTO-BINVAL').val(),
-			$('#USER-PHOTO-TYPE').val()
-		);
+		var read = [
+			user_nick,
+			photo_bin,
+			[photo_type, photo_id, photo_bytes]
+		];
 		
 		// Nodes array
-		var node = new Array(
+		var node = [
 			NS_NICK,
 			NS_URN_ADATA,
 			NS_URN_AMETA
-		);
+		];
 		
 		// Generate the XML
 		for(i in read) {
@@ -512,9 +520,17 @@ function sendVCard() {
 				
 				else if(i == 2) {
 					var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
-				
-					if(read[i])
-						metadata.appendChild(iq.buildNode('info', {'type': read[i], 'xmlns': NS_URN_AMETA}));
+					
+					if(read[i]) {
+						var meta_info = metadata.appendChild(iq.buildNode('info', {'xmlns': NS_URN_AMETA}));
+						
+						if(read[i][0])
+							meta_info.setAttribute('type', read[i][0]);
+						if(read[i][1])
+							meta_info.setAttribute('id', read[i][1]);
+						if(read[i][2])
+							meta_info.setAttribute('bytes', read[i][2]);
+					}
 				}
 				
 				con.send(iq);
