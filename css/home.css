@@ -168,9 +168,9 @@ Last revision: 10/06/11
 }
 
 #home .right {
-	background: #e1edef;
-	background: -moz-linear-gradient(top, #e1edef, #d7e5e8);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e1edef), to(#d7e5e8));
+	background: #e4eef9;
+	background: -moz-linear-gradient(top, #e4eef9, #C5E1FF);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#C5E1FF));
 	float: right;
 	width: 385px;
 	height: 350px;

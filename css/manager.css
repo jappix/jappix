@@ -230,13 +230,13 @@ Last revision: 08/06/11
 }
 
 #manager-tabs a.tab-active {
-	background-color: #e8f1f3 !important;
+	background-color: #e4eef9 !important;
 }
 
 #manager-content {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e8f1f3, #dee8ea);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#dee8ea));
+	background: #e4eef9;
+	background: -moz-linear-gradient(top, #e4eef9, #D0E5FA);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#D0E5FA));
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;
@@ -463,11 +463,11 @@ Last revision: 08/06/11
 }
 
 #manager-content .browse .odd {
-	background-color: #dce5e7;
+	background-color: #E9F1FD;
 }
 
 #manager-content .browse .even {
-	background-color: #e4edef;
+	background-color: #F1F6FD;
 }
 
 #manager-content .sub {
