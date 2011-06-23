@@ -24,7 +24,7 @@ Last revision: 26/04/11
 }
 
 #welcome a.box {
-	background-color: #dbe7ea;
+	background-color: #e4eef9;
 	border: 1px solid #ccdbde;
 	margin: 12px 11px 4px 15px;
 	padding: 10px;
@@ -53,16 +53,16 @@ Last revision: 26/04/11
 
 #welcome a.box:hover,
 #welcome a.box:focus {
-	border: 1px solid #afc9d0;
+	border: 1px solid #93c5fa;
 }
 
 #welcome a.box:active {
-	border: 1px solid #95b1b7;
+	border: 1px solid #419afa;
 }
 
 #welcome a.box.enabled {
-	background-color: #c7d5d9;
-	border: 1px solid #b9cbcf;
+	background-color: #f1f6fd;
+	border: 1px solid #9dc4fc;
 }
 
 #welcome a.box span {
