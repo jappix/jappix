@@ -408,7 +408,7 @@ Last revision: 02/05/11
 
 .popup a.one-button {
 	display: none;
-	background-color: #c7d5d9;
+	background-color: #f1f6fd;
 	border: 1px solid #b9cbcf;
 	margin-top: 1px;
 	padding: 4px 8px;
@@ -518,7 +518,7 @@ Last revision: 02/05/11
 }
 
 .popup .oneresult:hover {
-	background: #dae4e7;
+	background: #E9F1FD;
 }
 
 .popup .oneresult[onclick]:hover {
@@ -526,7 +526,7 @@ Last revision: 02/05/11
 }
 
 .popup .oneresult[onclick]:active {
-	background: #ccd8db;
+	background: #F1F6FD;
 }
 
 .popup .infos {

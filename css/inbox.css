@@ -30,7 +30,7 @@ Last revision: 28/12/10
 }
 
 #inbox .message-unread {
-	background-color: #ccd8dc;
+	background-color: #E9F1FD;
 }
 
 #inbox .one-message {
@@ -44,17 +44,17 @@ Last revision: 28/12/10
 }
 
 #inbox .message-head:hover {
-	background-color: #dae4e7;
+	background-color: #E9F1FD;
 	cursor: pointer;
 }
 
 #inbox .message-head:active {
-	background-color: #d6dee1;
+	background-color: #F1F6FD;
 }
 
 #inbox .one-message.message-reading,
 #inbox .one-message.message-reading .message-head {
-	background-color: #dde8ea;
+	background-color: #F1F6FD;
 }
 
 #inbox .avatar-container {
