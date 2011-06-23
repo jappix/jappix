@@ -7,7 +7,7 @@ These are the favorites JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 23/06/11
 
 */
 
@@ -250,7 +250,7 @@ function terminateThisFavorite(type) {
 	var password = $(favorites + '.fedit-password').val();
 	var autojoin = '0';
 	
-	if($(favorites + '.fedit-autojoin').is(':checked'))
+	if($(favorites + '.fedit-autojoin').filter(':checked').size())
 		autojoin = '1';
 	
 	// We check the missing values and send this if okay

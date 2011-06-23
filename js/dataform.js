@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 23/06/11
 
 */
 
@@ -142,7 +142,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 				
 				// Boolean input?
 				if(iType == 'boolean') {
-					if($(this).is(':checked'))
+					if($(this).filter(':checked').size())
 						iValue = '1';
 					else
 						iValue = '0';

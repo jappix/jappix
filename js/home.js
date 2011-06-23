@@ -7,7 +7,7 @@ These are the homepage JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 30/03/11
+Last revision: 23/06/11
 
 */
 
@@ -226,7 +226,7 @@ function loginForm() {
 	var lPass = $(lPath + '.password').val();
 	var lResource = $(lPath + '.resource').val();
 	var lPriority = $(lPath + '.priority').val();
-	var lRemember = $(lPath + '.remember').is(':checked');
+	var lRemember = $(lPath + '.remember').filter(':checked').size();
 	
 	// Enough values?
 	if(lServer && lNick && lPass && lResource && lPriority)

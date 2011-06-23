@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 23/06/11
 
 */
 
@@ -121,7 +121,7 @@ function createTooltip(xid, hash, type) {
 				var style_data = 'data-' + $(this).attr('class');
 				
 				// Checked checkbox?
-				if($(this).is(':checked'))
+				if($(this).filter(':checked').size())
 					$(message_area).attr(style_data, true);
 				else
 					$(message_area).removeAttr(style_data);

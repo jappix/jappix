@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/04/11
+Last revision: 23/06/11
 
 */
 
@@ -862,16 +862,16 @@ function launchPrivacy() {
 		var item_iq = false;
 		
 		// Individual select?
-		if(!$(privacy_third_cb + '[name=everything]').is(':checked')) {
-			if($(privacy_third_cb + '[name=send-messages]').is(':checked'))
+		if(!$(privacy_third_cb + '[name=everything]').filter(':checked').size()) {
+			if($(privacy_third_cb + '[name=send-messages]').filter(':checked').size())
 				item_msg = true;
-			if($(privacy_third_cb + '[name=send-queries]').is(':checked'))
+			if($(privacy_third_cb + '[name=send-queries]').filter(':checked').size())
 				item_iq = true;
-			if($(privacy_third_cb + '[name=send-queries]').is(':checked'))
+			if($(privacy_third_cb + '[name=send-queries]').filter(':checked').size())
 				item_iq = true;
-			if($(privacy_third_cb + '[name=see-status]').is(':checked'))
+			if($(privacy_third_cb + '[name=see-status]').filter(':checked').size())
 				item_prout = true;
-			if($(privacy_third_cb + '[name=send-status]').is(':checked'))
+			if($(privacy_third_cb + '[name=send-status]').filter(':checked').size())
 				item_prin = true;
 		}
 		
@@ -955,7 +955,7 @@ function launchPrivacy() {
 			return;
 		
 		// Change the current list status
-		if($(this).is(':checked'))
+		if($(this).filter(':checked').size())
 			changePrivacy(list_name, state_name);
 		else
 			changePrivacy('', state_name);

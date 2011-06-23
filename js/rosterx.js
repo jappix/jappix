@@ -7,7 +7,7 @@ These are the Roster Item Exchange JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 30/03/11
+Last revision: 23/06/11
 
 */
 
@@ -82,7 +82,7 @@ function parseRosterX(data) {
 		var checkbox = $(this).find('input[type=checkbox]');
 		
 		// Check or uncheck?
-		if(checkbox.is(':checked'))
+		if(checkbox.filter(':checked').size())
 			checkbox.removeAttr('checked');
 		else
 			checkbox.attr('checked', true);

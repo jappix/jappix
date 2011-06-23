@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 23/06/11
 
 */
 
@@ -234,13 +234,13 @@ function saveOptions() {
 	// We apply the sounds
 	var sounds = '0';
 	
-	if($('#sounds').is(':checked'))
+	if($('#sounds').filter(':checked').size())
 		sounds = '1';
 	
 	setDB('options', 'sounds', sounds);
 	
 	// We apply the geolocation
-	if($('#geolocation').is(':checked')) {
+	if($('#geolocation').filter(':checked').size()) {
 		setDB('options', 'geolocation', '1');
 		
 		// We geolocate the user on the go
@@ -256,7 +256,7 @@ function saveOptions() {
 	}
 	
 	// We apply the roster show all
-	if($('#showall').is(':checked')) {
+	if($('#showall').filter(':checked').size()) {
 		setDB('options', 'roster-showall', '1');
 		showAllBuddies('options');
 	}
@@ -269,7 +269,7 @@ function saveOptions() {
 	// We apply the media integration
 	var integratemedias = '0';
 	
-	if($('#integratemedias').is(':checked'))
+	if($('#integratemedias').filter(':checked').size())
 		integratemedias = '1';
 	
 	setDB('options', 'integratemedias', integratemedias);
@@ -278,7 +278,7 @@ function saveOptions() {
 	if(enabledArchives('pref')) {
 		var aEnabled = false;
 		
-		if($('#archiving').is(':checked'))
+		if($('#archiving').filter(':checked').size())
 			aEnabled = true;
 		
 		configArchives(aEnabled);
@@ -288,7 +288,7 @@ function saveOptions() {
 	var persist = '0';
 	var maximum = $('#maxnotices').val();
 	
-	if($('#persistent').is(':checked'))
+	if($('#persistent').filter(':checked').size())
 		persist = '1';
 	
 	if(enabledPEP() && enabledPubSub())
