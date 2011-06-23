@@ -7,7 +7,7 @@ These are the utilities JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Olivier Migeot
-Last revision: 02/05/11
+Last revision: 23/06/11
 
 */
 
@@ -245,6 +245,10 @@ function isObsolete() {
 	// Get browser name & version
 	var browser_name = BrowserDetect.browser;
 	var browser_version = BrowserDetect.version;
+	
+	// No DOM storage
+	if(!hasDB() || !hasPersistent())
+		return true;
 	
 	// Obsolete IE
 	if((browser_name == 'Explorer') && (browser_version < 8))

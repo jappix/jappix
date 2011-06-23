@@ -7,9 +7,17 @@ These are the temporary/persistent data store functions
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/03/11
+Last revision: 23/06/11
 
 */
+
+// Temporary: returns whether it is available or not
+function hasDB() {
+	if(window.sessionStorage)
+		return true;
+	
+	return false;
+}
 
 // Temporary: used to read a database entry
 function getDB(type, id) {
@@ -79,6 +87,14 @@ function resetDB() {
 		
 		return false;
 	}
+}
+
+// Persistent: returns whether it is available or not
+function hasPersistent() {
+	if(window.localStorage)
+		return true;
+	
+	return false;
 }
 
 // Persistent: used to read a database entry
