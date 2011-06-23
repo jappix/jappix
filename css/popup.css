@@ -172,8 +172,8 @@ Last revision: 02/05/11
 }
 
 .popup .head {
-	background: #d9e4e7;
-	border: 1px #a9bbbf solid;
+	background: #f1f6fd;
+	border: 1px #9dc4fc solid;
 	width: 606px;
 	height: 24px;
 	margin: 0 10px 10px 10px;
@@ -512,13 +512,13 @@ Last revision: 02/05/11
 .popup .oneresult {
 	font-size: 0.9em;
 	padding: 3px 0 4px 4px;
-	border-bottom: 1px #b0b0b0 solid;
+	border-bottom: 1px #9dc4fc solid;
 	overflow: hidden;
 	position: relative;
 }
 
 .popup .oneresult:hover {
-	background: #E9F1FD;
+	background: #e9f1fd;
 }
 
 .popup .oneresult[onclick]:hover {
@@ -526,7 +526,7 @@ Last revision: 02/05/11
 }
 
 .popup .oneresult[onclick]:active {
-	background: #F1F6FD;
+	background: #f1f6fd;
 }
 
 .popup .infos {

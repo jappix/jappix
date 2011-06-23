@@ -132,8 +132,8 @@ body {
 
 #install-content {
 	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #D0E5FA);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#D0E5FA));
+	background: -moz-linear-gradient(top, #e4eef9, #d0e5fa);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#d0e5fa));
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;

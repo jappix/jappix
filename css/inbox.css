@@ -44,17 +44,17 @@ Last revision: 28/12/10
 }
 
 #inbox .message-head:hover {
-	background-color: #E9F1FD;
+	background-color: #e9f1fd;
 	cursor: pointer;
 }
 
 #inbox .message-head:active {
-	background-color: #F1F6FD;
+	background-color: #f1f6fd;
 }
 
 #inbox .one-message.message-reading,
 #inbox .one-message.message-reading .message-head {
-	background-color: #F1F6FD;
+	background-color: #f1f6fd;
 }
 
 #inbox .avatar-container {

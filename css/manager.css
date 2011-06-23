@@ -235,8 +235,8 @@ Last revision: 08/06/11
 
 #manager-content {
 	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #D0E5FA);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#D0E5FA));
+	background: -moz-linear-gradient(top, #e4eef9, #d0e5fa);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#d0e5fa));
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;
@@ -463,11 +463,11 @@ Last revision: 08/06/11
 }
 
 #manager-content .browse .odd {
-	background-color: #E9F1FD;
+	background-color: #e9f1fd;
 }
 
 #manager-content .browse .even {
-	background-color: #F1F6FD;
+	background-color: #f1f6fd;
 }
 
 #manager-content .sub {
