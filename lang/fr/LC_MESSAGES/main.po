@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-05-27 20:07:54\n"
+"PO-Revision-Date: 2011-06-24 15:59:54\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -411,11 +411,11 @@ msgstr "Soyez prudent par rapport aux informations que vous inscrivez dans votre
 
 #: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
-msgstr "Tout n'est pas privé sur XMPP ; votre profil public est une de ces choses."
+msgstr "Tout n'est pas privé sur XMPP, entre autres votre profil public."
 
 #: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr "Il est fortement recommandé de définir une photo de profil (%s maximum), comme une image de vous, parce-que cela vous permet d'être facilement identifié par vos amis."
+msgstr "Il est fortement recommandé de définir une photo de profil (%s maximum), par exemple une photo de vous ou une image vous représentant. Cela vous permet d'être facilement identifié par vos amis."
 
 #: 
 msgid "Save"
@@ -519,7 +519,7 @@ msgstr "est maintenant"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr "Patientez pendant que votre avatar est chargé..."
+msgstr "Patientez pendant que votre avatar est envoyé..."
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
@@ -555,7 +555,7 @@ msgstr "Renommer"
 
 #: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Salut, je suis %s, je souhaiterai vous ajouter comme ami."
+msgstr "Bonjour, je suis %s, je souhaiterais vous ajouter comme ami."
 
 #: 
 msgid "Smiley insertion"
@@ -903,7 +903,7 @@ msgstr "pas de raison"
 
 #: 
 msgid "Communicate with the entire world!"
-msgstr "Communiquez avec le monde tout entier !"
+msgstr "Communiquez avec le monde entier !"
 
 #: 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
@@ -967,7 +967,7 @@ msgstr "Haut"
 
 #: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
-msgstr "Entrez le salon que vous voulez rejoindre et votre pseudo. Vous pouvez aussi revenir à la %s."
+msgstr "Entrez le salon que vous voulez rejoindre ainsi que votre pseudo. Vous pouvez aussi revenir à la %s. "
 
 #: 
 msgid "login page"
@@ -1207,7 +1207,7 @@ msgstr "Détacher le fichier"
 
 #: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr "Une erreur est survenue en envoyant votre fichier : il peut être trop gros (%s maximum) ou interdit !"
+msgstr "Une erreur est survenue lors de l'envoi de votre fichier : il peut être trop gros (%s maximum) ou interdit ! "
 
 #: 
 msgid "Authorization failed"
@@ -1327,7 +1327,7 @@ msgstr "Bienvenue dans l'installation de Jappix !"
 
 #: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr "Cet outil vous aidera à installer rapidement Jappix, le premier réseau social complet utilisant XMPP, sur votre serveur. Vous n'avez même pas besoin d'avoir des connaissances techniques."
+msgstr "Cet outil vous aidera à installer rapidement Jappix, le premier réseau social complet utilisant XMPP, sur votre serveur. Vous n'avez pas besoin d'avoir de connaissances techniques particulières.."
 
 #: 
 msgid "Let's have a look at the installation steps:"
@@ -2287,7 +2287,7 @@ msgstr "Hôte Pubsub"
 
 #: 
 msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix est une plateforme sociale géniale, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
+msgstr "Jappix est une plateforme sociale géniale, accessible de n'importe où, n'importe quand, et qui vous permet de communiquer avec qui vous voulez. "
 
 #: 
 msgid "Manager link"
