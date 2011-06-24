@@ -1,7 +1,7 @@
 /*
 
 Jappix - An open social platform
-These are the filtering JS script for Jappix
+These are the links JS script for Jappix
 
 -------------------------------------------------
 
