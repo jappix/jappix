@@ -397,7 +397,8 @@ function handleIQMini(iq) {
 		iqQuery.appendChild(iq.appendNode('identity', {
 			'category': 'client',
 			'type': 'web',
-			'name': 'Jappix Mini'
+			'name': 'Jappix Mini',
+			'xmlns': NS_DISCO_INFO
 		}));
 		
 		// We set all the supported features
@@ -411,7 +412,7 @@ function handleIQMini(iq) {
 		);
 		
 		for(i in fArray)
-			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
+			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
 		
 		con.send(iqResponse);
 		
