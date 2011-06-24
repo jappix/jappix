@@ -7,39 +7,13 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 08/05/11
+Last revision: 24/06/11
 
 */
 
 // Generates a given emoticon HTML code
 function emoteImage(image, text, after) {
 	return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + encodeQuotes(text) + '" src="' + './img/others/blank.gif' + '" /> ' + after;
-}
-
-// Filters links in a string
-function filterLinks(string, mode, style) {
-	// Special stuffs
-	var style, target;
-	
-	// Links style
-	if(!style)
-		style = '';
-	else
-		style = ' style="' + style + '"';
-	
-	// Open in new tabs
-	if(mode != 'xhtml-im')
-		target = ' target="_blank"';
-	else
-		target = '';
-	
-	// XMPP address
-	string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\.\/_-]+))(\s|$)/gi, '$1<a href="xmpp:$2" target="_blank"' + style + '>$2</a>$5');
-	
-	// Simple link
-	string = string.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet|spotify)(:)([^<>'"\s\)]+))/gim, '$1<a href="$2"' + target + style + '>$2</a>');
-	
-	return string;
 }
 
 // Filters a given message
@@ -106,7 +80,7 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	
 	// Add the links
 	if(html_encode)
-		filteredMessage = filterLinks(filteredMessage, 'desktop');
+		filteredMessage = applyLinks(filteredMessage, 'desktop');
 	
 	// Filter integratebox links
 	filteredMessage = filterIntegrateBox(filteredMessage);

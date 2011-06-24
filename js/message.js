@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 08/06/11
+Last revision: 24/06/11
 
 */
 
@@ -707,7 +707,7 @@ function generateMessage(aMsg, body, hash) {
 				cLine = cLine.htmlEnc();
 				
 				// Filter the links
-				cLine = filterLinks(cLine, 'xhtml-im', style);
+				cLine = applyLinks(cLine, 'xhtml-im', style);
 				
 				// Append the filtered line
 				$(aBody).append($('<p style="' + style + '">' + cLine + '</p>'));

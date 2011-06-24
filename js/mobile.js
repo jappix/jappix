@@ -7,7 +7,7 @@ These are the Jappix Mobile lightweight JS script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 24/06/11
 
 */
 
@@ -491,10 +491,10 @@ function filter(msg) {
 	.htmlEnc()
 	
 	// Highlighted text
-	.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3')
+	.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
 	
 	// Links
-	.replace(/(https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet|spotify)(:)([^<>'"\s\)]+)/gim, '<a href="$&" target="_blank">$&</a>');
+	msg = applyLinks(msg, 'mini');
 	
 	return msg;
 }
