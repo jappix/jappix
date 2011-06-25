@@ -31,19 +31,19 @@ Last revision: 28/12/10
 #favorites .room-switcher {
 	width: 188px;
 	height: 18px;
-	border-bottom: 1px #a9bbbf solid;
+	border-bottom: 1px #9dc4fc solid;
 	float: left;
 	padding: 10px 6px;
 	font-size: 0.9em;
 }
 
 #favorites .room-switcher:hover {
-	background-color: #dae4e7;
+	background-color: #e9f1fd;
 	cursor: pointer;
 }
 
 #favorites .room-switcher:active {
-	background-color: #d3dcde;
+	background-color: #f1f6fd;
 }
 
 #favorites .switch-fav .icon {
@@ -89,11 +89,11 @@ Last revision: 28/12/10
 	height: 30px;
 	font-size: 0.9em;
 	padding: 10px 0 4px 4px;
-	border-bottom: 1px #b0b0b0 solid;
+	border-bottom: 1px #9dc4fc solid;
 }
 
 #favorites .fedit-line:hover {
-	background: #dae4e7;
+	background: #e9f1fd;
 }
 
 #favorites label {
