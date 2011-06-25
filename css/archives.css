@@ -16,8 +16,8 @@ Last revision: 19/12/10
 }
 
 #archives .filter {
-	background-color: #d3dee1;
-	border-right: 1px solid #a9bbbf;
+	background-color: #e9f1fd;
+	border-right: 1px solid #9dc4fc;
 	width: 180px;
 	padding: 12px;
 	position: absolute;
@@ -52,8 +52,8 @@ Last revision: 19/12/10
 }
 
 #archives .current {
-	background-color: #d3dee1;
-	border-bottom: 1px solid #a9bbbf;
+	background-color: #e4eef9;
+	border-bottom: 1px solid #9dc4fc;
 	font-size: 0.9em;
 	height: 16px;
 	padding: 6px;
