@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/06/11
+Last revision: 06/07/11
 
 */
 
@@ -949,6 +949,8 @@ function getMicroblog(xid, hash, check) {
 		requestMicroblog(xid, items, get_item, handleInitMicroblog);
 	else
 		requestMicroblog(xid, items, get_item, handleMicroblog);
+	
+	return false;
 }
 
 // Show a given microblog waiting status
