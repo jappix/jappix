@@ -9,7 +9,7 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/05/11
+Last revision: 10/07/11
 
 */
 
@@ -24,6 +24,7 @@ if(!defined('JAPPIX_BASE'))
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport">
 	<title><?php _e("Jappix Mobile"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
