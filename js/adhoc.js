@@ -7,7 +7,7 @@ These are the Ad-Hoc JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/03/11
+Last revision: 11/07/11
 
 */
 
