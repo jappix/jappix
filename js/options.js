@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/06/11
+Last revision: 17/07/11
 
 */
 
@@ -552,7 +552,11 @@ function launchOptions() {
 		$('#options .sub-ask').hide();
 	});
 	
-	$('#options .xmpp-links').click(xmppLinksHandler);
+	$('#options .xmpp-links').click(function() {
+		xmppLinksHandler();
+		
+		return false;
+	});
 	
 	$('#options .empty-channel').click(function() {
 		var selector = '#options .sub-ask-empty';
