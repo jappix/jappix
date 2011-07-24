@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/06/11
+Last revision: 24/07/11
 
 */
 
@@ -85,7 +85,7 @@ function openWelcome() {
 				'<p>' + _e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
 			'</div>' + 
 			
-			'<a class="box share first" href="http://www.facebook.com/sharer.php?u=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+			'<a class="box share first" href="http://www.facebook.com/sharer/sharer.php?u=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
 				'<span class="logo facebook welcome-images"></span>' + 
 				'<span class="name">Facebook</span>' + 
 				'<span class="description">' + printf(_e("Share Jappix on %s"), 'Facebook') + '</span>' + 
