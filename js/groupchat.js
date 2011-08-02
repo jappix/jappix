@@ -6,8 +6,8 @@ These are the groupchat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Marco Cirillo
-Last revision: 11/05/11
+Authors: Valérian Saliou, Marco Cirillo, Eric Yu
+Last revision: 02/08/11
 
 */
 
@@ -211,10 +211,17 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	inputDetect.keypress(function(e) {
 		// Enter key
 		if(e.keyCode == 13) {
-			sendMessage(hash, 'groupchat');
+			// Add a new line
+			if(e.shiftKey)
+				inputDetect.val(inputDetect.val() + '\n');
 			
-			// Reset the composing database entry
-			setDB('chatstate', room, 'off');
+			// Send the message
+			else {
+				sendMessage(hash, 'groupchat');
+				
+				// Reset the composing database entry
+				setDB('chatstate', room, 'off');
+			}
 			
 			return false;
 		}
