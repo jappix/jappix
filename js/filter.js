@@ -7,7 +7,7 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 24/06/11
+Last revision: 04/08/11
 
 */
 
@@ -28,36 +28,36 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	filteredMessage = filteredMessage.replace(/((^)|((.+)(>)))(\/me )([^<]+)/, nick + ' $7')
 	
 	// We replace the smilies text into images
-	.replace(/(:-@)($|\s|<)/gi, emoteImage('angry', '$1', '$2'))
-	.replace(/(:-\[)($|\s|<)/gi, emoteImage('bat', '$1', '$2'))
+	.replace(/(:-?@)($|\s|<)/gi, emoteImage('angry', '$1', '$2'))
+	.replace(/(:-?\[)($|\s|<)/gi, emoteImage('bat', '$1', '$2'))
 	.replace(/(\(B\))($|\s|<)/g, emoteImage('beer', '$1', '$2'))
 	.replace(/((:-?D)|(XD))($|\s|<)/gi, emoteImage('biggrin', '$1', '$4'))
-	.replace(/(:-\$)($|\s|<)/gi, emoteImage('blush', '$1', '$2'))
+	.replace(/(:-?\$)($|\s|<)/gi, emoteImage('blush', '$1', '$2'))
 	.replace(/(\(Z\))($|\s|<)/g, emoteImage('boy', '$1', '$2'))
 	.replace(/(\(W\))($|\s|<)/g, emoteImage('brflower', '$1', '$2'))			
 	.replace(/((&lt;\/3)|(\(U\)))($|\s|<)/g, emoteImage('brheart', '$1', '$4'))			
 	.replace(/(\(C\))($|\s|<)/g, emoteImage('coffee', '$1', '$2'))			
 	.replace(/((8-\))|(\(H\)))($|\s|<)/g, emoteImage('coolglasses', '$1', '$4'))
-	.replace(/(:'-\()($|\s|<)/gi, emoteImage('cry', '$1', '$2'))
+	.replace(/(:'-?\()($|\s|<)/gi, emoteImage('cry', '$1', '$2'))
 	.replace(/(\(%\))($|\s|<)/g, emoteImage('cuffs', '$1', '$2'))
-	.replace(/(\]:-&gt;)($|\s|<)/gi, emoteImage('devil', '$1', '$2'))			
+	.replace(/(\]:-?&gt;)($|\s|<)/gi, emoteImage('devil', '$1', '$2'))			
 	.replace(/(\(D\))($|\s|<)/g, emoteImage('drink', '$1', '$2'))
 	.replace(/(@}-&gt;--)($|\s|<)/gi, emoteImage('flower', '$1', '$2'))
-	.replace(/((:-\/)|(:S))($|\s|<)/gi, emoteImage('frowning', '$1', '$4'))
+	.replace(/((:-?\/)|(:-?S))($|\s|<)/gi, emoteImage('frowning', '$1', '$4'))
 	.replace(/(\(X\))($|\s|<)/g, emoteImage('girl', '$1', '$2'))
 	.replace(/((&lt;3)|(\(L\)))($|\s|<)/g, emoteImage('heart', '$1', '$4'))
 	.replace(/(\(}\))($|\s|<)/g, emoteImage('hugleft', '$1', '$2'))			
 	.replace(/(\({\))($|\s|<)/g, emoteImage('hugright', '$1', '$2'))
-	.replace(/(:-{})($|\s|<)/gi, emoteImage('kiss', '$1', '$2'))
+	.replace(/(:-?{})($|\s|<)/gi, emoteImage('kiss', '$1', '$2'))
 	.replace(/(\(I\))($|\s|<)/g, emoteImage('lamp', '$1', '$2'))
-	.replace(/(:3)($|\s|<)/gi, emoteImage('lion', '$1', '$2'))
+	.replace(/(:-?3)($|\s|<)/gi, emoteImage('lion', '$1', '$2'))
 	.replace(/(\(E\))($|\s|<)/g, emoteImage('mail', '$1', '$2'))
 	.replace(/(\(S\))($|\s|<)/g, emoteImage('moon', '$1', '$2'))
 	.replace(/(\(8\))($|\s|<)/g, emoteImage('music', '$1', '$2'))
 	.replace(/((=-?O)|(:-?O))($|\s|<)/gi, emoteImage('oh', '$1', '$4'))
 	.replace(/(\(T\))($|\s|<)/g, emoteImage('phone', '$1', '$2'))
 	.replace(/(\(P\))($|\s|<)/g, emoteImage('photo', '$1', '$2'))
-	.replace(/(:-!)($|\s|<)/gi, emoteImage('puke', '$1', '$2'))
+	.replace(/(:-?!)($|\s|<)/gi, emoteImage('puke', '$1', '$2'))
 	.replace(/(\(@\))($|\s|<)/g, emoteImage('pussy', '$1', '$2'))
 	.replace(/(\(R\))($|\s|<)/g, emoteImage('rainbow', '$1', '$2'))
 	.replace(/(:-?\))($|\s|<)/gi, emoteImage('smile', '$1', '$2'))

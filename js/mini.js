@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 24/06/11
+Last revision: 04/08/11
 
 */
 
@@ -1038,14 +1038,14 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 	body = body.htmlEnc();
 	
 	// Apply the smileys
-	body = body.replace(/(;\)|;-\))(\s|$)/gi, smileyMini('wink', '$1'))
-	           .replace(/(:3|:-3)(\s|$)/gi, smileyMini('waii', '$1'))
-	           .replace(/(:\(|:-\()(\s|$)/gi, smileyMini('unhappy', '$1'))
-	           .replace(/(:P|:-P)(\s|$)/gi, smileyMini('tongue', '$1'))
-	           .replace(/(:O|:-O)(\s|$)/gi, smileyMini('surprised', '$1'))
-	           .replace(/(:\)|:-\))(\s|$)/gi, smileyMini('smile', '$1'))
-	           .replace(/(\^\^|\^_\^)(\s|$)/gi, smileyMini('happy', '$1'))
-	           .replace(/(:D|:-D)(\s|$)/gi, smileyMini('grin', '$1'));
+	body = body.replace(/(;-?\))(\s|$)/gi, smileyMini('wink', '$1'))
+	           .replace(/(:-?3)(\s|$)/gi, smileyMini('waii', '$1'))
+	           .replace(/(:-?\()(\s|$)/gi, smileyMini('unhappy', '$1'))
+	           .replace(/(:-?P)(\s|$)/gi, smileyMini('tongue', '$1'))
+	           .replace(/(:-?O)(\s|$)/gi, smileyMini('surprised', '$1'))
+	           .replace(/(:-?\))(\s|$)/gi, smileyMini('smile', '$1'))
+	           .replace(/(\^_?\^)(\s|$)/gi, smileyMini('happy', '$1'))
+	           .replace(/(:-?D)(\s|$)/gi, smileyMini('grin', '$1'));
 	
 	// Filter the links
 	body = applyLinks(body, 'mini');
