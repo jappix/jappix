@@ -7,7 +7,7 @@ These are the chatstate JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/05/11
+Last revision: 08/08/11
 
 */
 
@@ -138,6 +138,10 @@ function eventsChatState(target, xid, hash) {
 	});
 	
 	target.focus(function() {
+		// Not needed
+		if(target.is(':disabled'))
+			return;
+		
 		// Nothing in the input, user is active
 		if(!$(this).val())
 			chatStateSend('active', xid, hash);
@@ -148,6 +152,10 @@ function eventsChatState(target, xid, hash) {
 	});
 	
 	target.blur(function() {
+		// Not needed
+		if(target.is(':disabled'))
+			return;
+		
 		// Nothing in the input, user is inactive
 		if(!$(this).val())
 			chatStateSend('inactive', xid, hash);
