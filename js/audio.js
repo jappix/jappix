@@ -7,7 +7,7 @@ These are the audio JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/03/11
+Last revision: 10/08/11
 
 */
 
@@ -15,10 +15,10 @@ Last revision: 03/03/11
 function soundPlay(num) {
 	try {
 		// Not supported!
-		if(((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) || (BrowserDetect.browser == 'Chrome'))
+		if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
 			return false;
 		
-		// If browser is not Chrome (bug fix) & the sounds are enabled
+		// If the sounds are enabled
 		if(getDB('options', 'sounds') == '1') {
 			// If the audio elements aren't yet in the DOM
 			if(!exists('#audio')) {
