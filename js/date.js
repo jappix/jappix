@@ -172,11 +172,11 @@ function relativeDate(to_parse) {
 		return getCompleteTime();
 	
 	// Is it today?
-	if((days <= 0) && (current_day == old_day))
+	if(current_day == old_day)
 		return old_time;
 	
 	// It is yesterday?
-	if((days == 1) || (current_day != old_day))
+	if(days <= 1)
 		return _e("Yesterday") + ' - ' + old_time;
 	
 	// Is it less than a week ago?
