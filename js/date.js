@@ -7,7 +7,7 @@ These are the date related JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/04/11
+Last revision: 17/08/11
 
 */
 
@@ -155,10 +155,12 @@ function parseTime(to_parse) {
 function relativeDate(to_parse) {
 	// Get the current date
 	var current_date = Date.jab2date(getXMPPTime('utc'));
+	var current_day = current_date.getDate();
 	var current_stamp = current_date.getTime();
 	
 	// Parse the given date
 	var old_date = Date.jab2date(to_parse);
+	var old_day = old_date.getDate();
 	var old_stamp = old_date.getTime();
 	var old_time = old_date.toLocaleTimeString();
 	
@@ -170,11 +172,11 @@ function relativeDate(to_parse) {
 		return getCompleteTime();
 	
 	// Is it today?
-	if(days <= 0)
+	if((days <= 0) && (current_day == old_day))
 		return old_time;
 	
 	// It is yesterday?
-	if(days == 1)
+	if((days == 1) || (current_day != old_day))
 		return _e("Yesterday") + ' - ' + old_time;
 	
 	// Is it less than a week ago?
