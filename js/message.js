@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 24/06/11
+Last revision: 17/08/11
 
 */
 
@@ -511,6 +511,9 @@ function sendMessage(hash, type) {
 					
 					// Change the stored nickname
 					$('#' + hex_md5(xid)).attr('data-nick', escape(nick));
+					
+					// Reset chatstate
+					chatStateSend('active', xid, hash);
 				}
 			}
 			
@@ -542,6 +545,9 @@ function sendMessage(hash, type) {
 				aMsg.setSubject(topic);
 				
 				con.send(aMsg, handleMessageError);
+				
+				// Reset chatstate
+				chatStateSend('active', xid, hash);
 			}
 			
 			// /ban shortcut
@@ -568,6 +574,9 @@ function sendMessage(hash, type) {
 					
 					con.send(iq, handleErrorReply);
 				}
+				
+				// Reset chatstate
+				chatStateSend('active', xid, hash);
 			}
 			
 			// /kick shortcut
@@ -594,20 +603,26 @@ function sendMessage(hash, type) {
 					
 					con.send(iq, handleErrorReply);
 				}
+				
+				// Reset chatstate
+				chatStateSend('active', xid, hash);
 			}
 			
 			// /invite shortcut
 			else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
-				var xid = RegExp.$1;
+				var i_xid = RegExp.$1;
 				var reason = RegExp.$2;
 				
 				var x = aMsg.appendNode('x', {'xmlns': NS_MUC_USER});
-				var aNode = x.appendChild(aMsg.buildNode('invite', {'to': xid, 'xmlns': NS_MUC_USER}));
+				var aNode = x.appendChild(aMsg.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
 				
 				if(reason)
 					aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, reason));
 				
 				con.send(aMsg, handleErrorReply);
+				
+				// Reset chatstate
+				chatStateSend('active', xid, hash);
 			}
 			
 			// No shortcut, this is a message
