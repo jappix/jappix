@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 27/05/11
+Last revision: 25/08/11
 
 */
 
@@ -171,6 +171,47 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 	// Apply it!
 	foreach($array as $array_key => $array_value)
 		$string = preg_replace('/var '.$array_key.'(( )?=( )?)null;/', 'var '.$array_key.'$1\''.addslashes($array_value).'\';', $string);
+	
+	return $string;
+}
+
+// The function to set the logos
+function setLogos($string, $files) {
+	// Jappix Desktop home logo?
+	if(in_array('home.css', $files) && file_exists(JAPPIX_BASE.'/store/logos/desktop_home.png')) {
+		$string .=
+'#home .left .logo {
+	background-image: url(../store/logos/desktop_home.png) !important;
+	background-position: center center !important;
+}';
+	}
+	
+	// Jappix Desktop app logo?
+	if(in_array('tools.css', $files) && file_exists(JAPPIX_BASE.'/store/logos/desktop_app.png')) {
+		$string .=
+'#top-content .tools-logo {
+	background-image: url(../store/logos/desktop_app.png) !important;
+	background-position: center center !important;
+}';
+	}
+	
+	// Jappix Mobile logo?
+	if(in_array('mobile.css', $files) && file_exists(JAPPIX_BASE.'/store/logos/mobile.png')) {
+		$string .=
+'.header div {
+	background-image: url(../store/logos/mobile.png) !important;
+	background-position: center center !important;
+}';
+	}
+	
+	// Jappix Mini logo?
+	if(in_array('mini.css', $files) && file_exists(JAPPIX_BASE.'/store/logos/mini.png')) {
+		$string .=
+'#jappix_mini div.jm_actions a.jm_logo {
+	background-image: url(../store/logos/mini.png) !important;
+	background-position: center center !important;
+}';
+	}	
 	
 	return $string;
 }

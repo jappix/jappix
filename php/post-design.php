@@ -34,12 +34,35 @@ else if(isset($_POST['remove']))
 
 // Handle the logo upload POST
 else if(isset($_POST['logo_upload'])) {
+	// Avoid errors
+	$logos_arr_1_name = $logos_arr_1_tmp = $logos_arr_2_name = $logos_arr_2_tmp = $logos_arr_3_name = $logos_arr_3_tmp = $logos_arr_4_name = $logos_arr_4_tmp = '';
+	
+	if(isset($_FILES['logo_own_1_location'])) {
+		$logos_arr_1_name = $_FILES['logo_own_1_location']['name'];
+		$logos_arr_1_tmp = $_FILES['logo_own_1_location']['tmp_name'];
+	}
+	
+	if(isset($_FILES['logo_own_2_location'])) {
+		$logos_arr_2_name = $_FILES['logo_own_2_location']['name'];
+		$logos_arr_2_tmp = $_FILES['logo_own_2_location']['tmp_name'];
+	}
+	
+	if(isset($_FILES['logo_own_3_location'])) {
+		$logos_arr_3_name = $_FILES['logo_own_3_location']['name'];
+		$logos_arr_3_tmp = $_FILES['logo_own_3_location']['tmp_name'];
+	}
+	
+	if(isset($_FILES['logo_own_4_location'])) {
+		$logos_arr_4_name = $_FILES['logo_own_4_location']['name'];
+		$logos_arr_4_tmp = $_FILES['logo_own_4_location']['tmp_name'];
+	}
+	
 	// File infos array
 	$logos = array(
-		array($_FILES['logo_own_1_location']['name'], $_FILES['logo_own_1_location']['tmp_name'], JAPPIX_BASE.'/store/logos/desktop_home.png'),
-		array($_FILES['logo_own_2_location']['name'], $_FILES['logo_own_2_location']['tmp_name'], JAPPIX_BASE.'/store/logos/desktop_app.png'),
-		array($_FILES['logo_own_3_location']['name'], $_FILES['logo_own_3_location']['tmp_name'], JAPPIX_BASE.'/store/logos/mobile.png'),
-		array($_FILES['logo_own_4_location']['name'], $_FILES['logo_own_4_location']['tmp_name'], JAPPIX_BASE.'/store/logos/mini.png')
+		array($logos_arr_1_name, $logos_arr_1_tmp, JAPPIX_BASE.'/store/logos/desktop_home.png'),
+		array($logos_arr_2_name, $logos_arr_2_tmp, JAPPIX_BASE.'/store/logos/desktop_app.png'),
+		array($logos_arr_3_name, $logos_arr_3_tmp, JAPPIX_BASE.'/store/logos/mobile.png'),
+		array($logos_arr_4_name, $logos_arr_4_tmp, JAPPIX_BASE.'/store/logos/mini.png')
 	);
 	
 	// Check for errors

@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/06/11
+Last revision: 25/08/11
 
 */
 
@@ -276,17 +276,17 @@ Last revision: 10/06/11
 	background-position: 0 -160px;
 	border: 1px solid #e3db56;
 	margin-top: 15px;
-	box-shadow: 0 0 10px #fff99d;
-	-moz-box-shadow: 0 0 10px #fff99d;
-	-webkit-box-shadow: 0 0 10px #fff99d;
+	box-shadow: 0 0 15px #f1e968;
+	-moz-box-shadow: 0 0 15px #f1e968;
+	-webkit-box-shadow: 0 0 15px #f1e968;
 }
 
 #home .right .register:hover,
 #home .right .register:focus {
 	border: 1px solid #d2c93f;
-	box-shadow: 0 0 15px #f1e968;
-	-moz-box-shadow: 0 0 15px #f1e968;
-	-webkit-box-shadow: 0 0 15px #f1e968;
+	box-shadow: 0 0 15px #e0d743;
+	-moz-box-shadow: 0 0 15px #e0d743;
+	-webkit-box-shadow: 0 0 15px #e0d743;
 }
 
 #home .right .register:active {

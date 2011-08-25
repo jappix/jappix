@@ -9,7 +9,7 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/03/11
+Last revision: 25/08/11
 
 */
 
@@ -247,6 +247,9 @@ if($file && $type) {
 					
 					// Filter the CSS
 					if($type == 'css') {
+						// Apply the CSS logos
+						$looped = setLogos($looped, $array);
+						
 						// Apply the CSS background
 						$looped = setBackground($looped);
 						
