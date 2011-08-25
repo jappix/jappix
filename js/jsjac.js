@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash
-Last revision: 22/06/11
+Last revision: 25/08/11
 
 */
 
@@ -1021,19 +1021,14 @@ function b64t2d(t) {
   return d;
 }
 
-if (typeof(atob) == 'undefined' || typeof(btoa) == 'undefined')
-  b64arrays();
+b64arrays();
 
-if (typeof(atob) == 'undefined') {
-  atob = function(s) {
-    return utf8d2t(b64t2d(s));
-  }
+b64decode = function(s) {
+  return utf8d2t(b64t2d(s));
 }
 
-if (typeof(btoa) == 'undefined') {
-  btoa = function(s) {
-    return b64d2t(utf8t2d(s));
-  }
+b64encode = function(s) {
+  return b64d2t(utf8t2d(s));
 }
 
 function cnonce(size) {
@@ -3162,7 +3157,7 @@ JSJaCConnection.prototype._doSASLAuth = function() {
       this.username+String.fromCharCode(0)+
       this.pass;
       this.oDbg.log("authenticating with '"+authStr+"'",2);
-      authStr = btoa(authStr);
+      authStr = b64encode(authStr);
       return this._sendRaw("<auth xmlns='urn:ietf:params:xml:ns:xmpp-sasl' mechanism='PLAIN'>"+authStr+"</auth>",
                            this._doSASLAuthDone);
     }
@@ -3181,7 +3176,7 @@ JSJaCConnection.prototype._doSASLAuthDigestMd5S1 = function(el) {
     this._handleEvent('onerror',JSJaCError('401','auth','not-authorized'));
     this.disconnect();
   } else {
-    var challenge = atob(el.firstChild.nodeValue);
+    var challenge = b64decode(el.firstChild.nodeValue);
     this.oDbg.log("got challenge: "+challenge,2);
     this._nonce = challenge.substring(challenge.indexOf("nonce=")+7);
     this._nonce = this._nonce.substring(0,this._nonce.indexOf("\""));
@@ -3221,7 +3216,7 @@ JSJaCConnection.prototype._doSASLAuthDigestMd5S1 = function(el) {
     this.oDbg.log("response: "+rPlain,2);
 
     this._sendRaw("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>"+
-                  Base64.encode(rPlain)+"</response>",
+                  b64encode(rPlain)+"</response>",
                   this._doSASLAuthDigestMd5S2);
   }
 };
@@ -3240,7 +3235,7 @@ JSJaCConnection.prototype._doSASLAuthDigestMd5S2 = function(el) {
     return;
   }
 
-  var response = atob(el.firstChild.nodeValue);
+  var response = b64decode(el.firstChild.nodeValue);
   this.oDbg.log("response: "+response,2);
 
   var rspauth = response.substring(response.indexOf("rspauth=")+8);
