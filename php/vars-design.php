@@ -17,6 +17,10 @@ Last revision: 28/12/10
 if(!defined('JAPPIX_BASE'))
 	exit;
 
+// Define initial logo form values
+$logo_default = ' checked=""';
+$logo_own = '';
+
 // Define initial background form values
 $background_default = ' checked=""';
 $background_image = '';

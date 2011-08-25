@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 25/08/11
 
 */
 
@@ -501,6 +501,28 @@ else
 				
 				?>
 				
+				<h4><?php _e("Logo"); ?></h4>
+				
+				<p><?php _e("You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"); ?></p>
+				
+				<label class="master" for="logo_default"><input id="logo_default" type="radio" name="logo_type" value="default"<?php echo($logo_default); ?> /><?php _e("Use default logo"); ?></label>
+				
+				<label class="master" for="logo_own"><input id="logo_own" type="radio" name="logo_type" value="own"<?php echo($logo_own); ?> /><?php _e("Use your own logo"); ?></label>
+				
+				<div class="sub">
+					<p><?php _e("Upload each logo with the recommended maximum pixel size."); ?></p>
+					<p><?php _e("The recommended image format is PNG. Leave a field empty and the logo will not be changed."); ?></p>					
+					
+					<label for="logo_own_1_location">Jappix Desktop, <em>311×113</em></label><input id="logo_own_1_location" type="file" name="logo_own_1_location" accept="image/*" />
+					<label for="logo_own_2_location">Jappix Desktop, <em>90×25</em></label><input id="logo_own_2_location" type="file" name="logo_own_2_location" accept="image/*" />
+					<label for="logo_own_3_location">Jappix Mobile, <em>83×30</em></label><input id="logo_own_3_location" type="file" name="logo_own_3_location" accept="image/*" />
+					<label for="logo_own_4_location">Jappix Mini, <em>81×22</em></label><input id="logo_own_4_location" type="file" name="logo_own_4_location" accept="image/*" />
+					
+					<label for="logo_own_upload"><?php _e("Upload"); ?></label><input id="logo_own_upload" type="submit" name="logo_upload" value="<?php _e("Upload"); ?>" />
+					
+					<div class="clear"></div>
+				</div>
+				
 				<h4><?php _e("Background"); ?></h4>
 				
 				<p><?php _e("Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"); ?></p>
@@ -579,7 +601,7 @@ else
 					
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 					
-					<label for="background_image_upload"><?php _e("File"); ?></label><input id="background_image_upload" type="file" name="background_image_upload" accept="image/*" />
+					<label for="background_image_location"><?php _e("File"); ?></label><input id="background_image_location" type="file" name="background_image_upload" accept="image/*" />
 					<label for="background_image_upload"><?php _e("Upload"); ?></label><input id="background_image_upload" type="submit" name="upload" value="<?php _e("Upload"); ?>" />
 					
 					<div class="clear"></div>

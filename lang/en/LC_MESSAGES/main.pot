@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 27/05/11
+# Last revision: 25/08/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1307,6 +1307,24 @@ msgid "Your image was added to the list!"
 msgstr ""
 
 msgid "Changes saved!"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+msgid "Use default logo"
+msgstr ""
+
+msgid "Use your own logo"
+msgstr ""
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
 msgstr ""
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
