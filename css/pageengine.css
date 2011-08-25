@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 14/06/11
+Last revision: 25/08/11
 
 */
 
@@ -362,6 +362,10 @@ Last revision: 14/06/11
 	background-position: 0 -700px;
 }
 
+#page-engine .text .tools-file {
+	background-position: 0 -1956px;
+}
+
 #page-engine .text .tools-save {
 	background-position: 0 -719px;
 }
@@ -422,6 +426,10 @@ Last revision: 14/06/11
 #page-engine .bubble-style a.color.selected {
 	opacity: 1;
 	border-color: #ffb20d;
+}
+
+#page-engine .bubble-file input.send_file {
+	width: 160px;
 }
 
 #page-engine .text .compose,

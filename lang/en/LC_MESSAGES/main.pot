@@ -439,6 +439,12 @@ msgstr ""
 msgid "Underlined text"
 msgstr ""
 
+msgid "Send a file"
+msgstr ""
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
 msgid "Save chat"
 msgstr ""
 

@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/06/11
+Last revision: 25/08/11
 
 */
 
@@ -48,6 +48,14 @@ function createTooltip(xid, hash, type) {
 				'<a href="#" class="color" style="background-color: #04228f;" data-color="04228f"></a>' + 
 				'<a href="#" class="color" style="background-color: #9d0ab7;" data-color="9d0ab7"></a>' + 
 				'<a href="#" class="color" style="background-color: #8a8a8a;" data-color="8a8a8a"></a>';
+			
+			break;
+		
+		// File send
+		case 'file':
+			title = _e("Send a file");
+			content = '<p style="margin-bottom: 8px;">' + _e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
+			content += '<form id="vcard-avatar" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
 			
 			break;
 		
@@ -185,6 +193,7 @@ function tooltipIcons(xid, hash) {
 	// Hover events
 	hoverTooltip(xid, hash, 'smileys');
 	hoverTooltip(xid, hash, 'style');
+	hoverTooltip(xid, hash, 'file');
 	hoverTooltip(xid, hash, 'save');
 	
 	// Click events

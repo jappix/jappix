@@ -151,6 +151,10 @@ function generateChat(type, id, xid, nick) {
 					
 					specialStylePicker + 
 					
+					'<div class="chat-tools-content chat-tools-file">' + 
+						'<a href="#" class="tools-file tools-tooltip talk-images"></a>' + 
+					'</div>' + 
+					
 					'<div class="chat-tools-content chat-tools-save">' + 
 						'<a href="#" class="tools-save tools-tooltip talk-images"></a>' + 
 					'</div>' + 
