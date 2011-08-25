@@ -7,7 +7,7 @@ These are the chatstate JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/08/11
+Last revision: 25/08/11
 
 */
 
@@ -17,6 +17,13 @@ function chatStateSend(state, xid, hash) {
 	
 	// If the friend client supports chatstates and is online
 	if((user_type == 'groupchat') || ((user_type == 'chat') && $('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable'))) {
+		// Already sent?
+		if(getDB('currentchatstate', xid) == state)
+			return;
+		
+		// Write the state
+		setDB('currentchatstate', xid, state);
+		
 		// New message stanza
 		var aMsg = new JSJaCMessage();
 		aMsg.setTo(xid);
