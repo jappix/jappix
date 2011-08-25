@@ -9,7 +9,7 @@ This is the Jappix Install PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/02/11
+Last revision: 25/08/11
 
 */
 
@@ -230,9 +230,9 @@ else
 				writeXML('conf', 'installed', '<installed>true</installed>');
 				
 				// Checks some services are installed
-				$services_functions = array('gd_info');
-				$services_names = array('GD');
-				$services_packages = array('php5-gd');
+				$services_functions = array('gd_info', 'curl_init');
+				$services_names = array('GD', 'cURL');
+				$services_packages = array('php5-gd', 'php5-curl');
 				
 				for($i = 0; $i < count($services_names); $i++) {
 					$service_class = 'info smallspace';

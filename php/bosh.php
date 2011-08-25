@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 18/06/11
+Last revision: 25/05/11
 
 */
 
@@ -68,35 +68,66 @@ else {
 }
 
 // HTTP headers
-$headers = array('Content-Length: '.strlen($data), 'Content-Type: text/xml; charset=utf-8');
+$headers = array('User-Agent: Jappix (BOSH PHP Proxy)', 'Connection: keep-alive', 'Content-Type: text/xml; charset=utf-8', 'Content-Length: '.strlen($data));
 
-// HTTP parameters
-$parameters = array('http' => array(
-				'method' => 'POST',
-				'content' => $data
-			      )
-	      );
+// CURL is better if available
+if(function_exists('curl_init'))
+	$use_curl = true;
+else
+	$use_curl = false;
 
-$parameters['http']['header'] = $headers;
-
-// Change default timeout
-ini_set('default_socket_timeout', 30);
-
-// Create the connection
-$stream = @stream_context_create($parameters);
-$connection = @fopen(HOST_BOSH, 'rb', false, $stream);
-
-// Failed to connect!
-if($connection == false) {
-	header('Status: 502 Proxy Error', true, 502);
-	exit('HTTP/1.1 502 Proxy Error');
+// CURL stream functions
+if($use_curl) {
+	// Initialize CURL
+	$connection = curl_init(HOST_BOSH);
+	
+	// Set the CURL settings
+	curl_setopt($connection, CURLOPT_HEADER, 0);
+	curl_setopt($connection, CURLOPT_POST, 1);
+	curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($connection, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($connection, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($connection, CURLOPT_VERBOSE, 0);
+	curl_setopt($connection, CURLOPT_CONNECTTIMEOUT, 30);
+	curl_setopt($connection, CURLOPT_TIMEOUT, 30);
+	curl_setopt($connection, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
+	
+	// Get the CURL output
+	$output = curl_exec($connection);
 }
 
-// Allow stream blocking to handle incoming BOSH data
-@stream_set_blocking($connection, true);
+// Built-in stream functions
+else {
+	// HTTP parameters
+	$parameters = array('http' => array(
+					'method' => 'POST',
+					'content' => $data
+				      )
+		      );
 
-// Get the output content
-$output = @stream_get_contents($connection);
+	$parameters['http']['header'] = $headers;
+
+	// Change default timeout
+	ini_set('default_socket_timeout', 30);
+
+	// Create the connection
+	$stream = @stream_context_create($parameters);
+	$connection = @fopen(HOST_BOSH, 'rb', false, $stream);
+
+	// Failed to connect!
+	if($connection == false) {
+		header('Status: 502 Proxy Error', true, 502);
+		exit('HTTP/1.1 502 Proxy Error');
+	}
+
+	// Allow stream blocking to handle incoming BOSH data
+	@stream_set_blocking($connection, true);
+
+	// Get the output content
+	$output = @stream_get_contents($connection);
+}
 
 // Cache headers
 header('Cache-Control: no-cache, must-revalidate');
@@ -128,6 +159,9 @@ if($method == 'GET') {
 }
 
 // Close the connection
-@fclose($connection);
+if($use_curl)
+	curl_close($connection);
+else
+	@fclose($connection);
 
 ?>
