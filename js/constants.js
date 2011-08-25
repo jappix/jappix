@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 27/05/11
+Last revision: 25/08/11
 
 */
 
@@ -44,6 +44,8 @@ var NS_TIME =         NS_IQ + 'time';
 var NS_LAST =         NS_IQ + 'last';
 var NS_IQDATA =       NS_IQ + 'data';
 var NS_XDATA =        NS_X + 'data';
+var NS_IQOOB =        NS_IQ + 'oob';
+var NS_XOOB =         NS_X + 'oob';
 var NS_DELAY =        NS_X + 'delay';
 var NS_EXPIRE =       NS_X + 'expire';
 var NS_EVENT =        NS_X + 'event';

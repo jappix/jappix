@@ -7,7 +7,7 @@ These are the CAPS JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/05/11
+Last revision: 25/08/11
 
 */
 
@@ -59,7 +59,9 @@ function myDiscoInfos() {
 		NS_URN_ARCHIVE,
 		NS_URN_AR_PREF,
 		NS_URN_RECEIPTS,
-		NS_PRIVACY
+		NS_PRIVACY,
+		NS_IQOOB,
+		NS_XOOB
 	);
 	
 	return fArray;
