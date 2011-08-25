@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 27/05/11
+Last revision: 25/08/11
 
 */
 
@@ -504,6 +504,7 @@ function genHash($version) {
 	$conf_main = $conf_path.'main.xml';
 	$conf_hosts = $conf_path.'hosts.xml';
 	$conf_background = $conf_path.'background.xml';
+	$logos_dir = JAPPIX_BASE.'/store/logos/';
 	
 	// Get the hash of the main configuration file
 	if(file_exists($conf_main))
@@ -523,7 +524,19 @@ function genHash($version) {
 	else
 		$hash_background = '0';
 	
-	return md5($version.$hash_main.$hash_hosts.$hash_background);
+	// Get the hash of the logos folder
+	$hash_logos = '';
+	
+	if(is_dir($logos_dir)) {
+		$logos_scan = scandir($logos_dir.'/');
+		
+		foreach($logos_scan as $logos_current) {
+			if(getFileExt($logos_current) == 'png')
+				$hash_logos .= md5_file($logos_dir.$logos_current);
+	   	}
+   	}
+	
+	return md5($version.$hash_main.$hash_hosts.$hash_background.$hash_logos);
 }
 
 // The function to hide the error messages
@@ -757,7 +770,7 @@ function isDeveloper() {
 
 // The function to get a file extension
 function getFileExt($name) {
-	return strtolower(preg_replace('/^(.+)(\.)(.+)$/i', '$3', $name));
+	return strtolower(preg_replace('/^(.+)(\.)([^\.]+)$/i', '$3', $name));
 }
 
 // The function to get a file type

@@ -572,7 +572,7 @@ function browseFolder($folder, $mode) {
 	$directory = JAPPIX_BASE.'/store/'.$folder;
 	$scan = scandir($directory);
 	$scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
-	$keep_get = keepGet('(s|b)', false);
+	$keep_get = keepGet('(s|b|k)', false);
 	
 	// Odd/even marker
 	$marker = 'odd';
@@ -677,6 +677,16 @@ function browseUsers() {
 		else
 			$marker = 'odd';
 	}
+}
+
+// Generates the logo form field
+function logoFormField($id, $name) {
+	if(file_exists(JAPPIX_BASE.'/store/logos/'.$name.'.png'))
+		echo '<span class="logo_links"><a class="remove manager-images" href="./?k='.urlencode($name).keepGet('k', false).'" title="'.T_("Remove this logo").'"></a><a class="view manager-images" href="./store/logos/'.$name.'.png" target="_blank" title="'.T_("View this logo").'"></a></span>';
+	else
+		echo '<input id="logo_own_'.$id.'_location" type="file" name="logo_own_'.$id.'_location" accept="image/*" />';
+	
+	echo "\n";
 }
 
 // Reads the background configuration

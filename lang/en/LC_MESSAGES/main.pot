@@ -1300,7 +1300,13 @@ msgstr ""
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr ""
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
 msgid "The image could not be received, would you mind retry?"
+msgstr ""
+
+msgid "Your service logo has been successfully changed!"
 msgstr ""
 
 msgid "Your image was added to the list!"
@@ -1315,16 +1321,16 @@ msgstr ""
 msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
 msgstr ""
 
-msgid "Use default logo"
-msgstr ""
-
-msgid "Use your own logo"
-msgstr ""
-
 msgid "Upload each logo with the recommended maximum pixel size."
 msgstr ""
 
-msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+msgid "Remove this logo"
+msgstr ""
+
+msgid "View this logo"
 msgstr ""
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."

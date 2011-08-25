@@ -196,9 +196,9 @@ $page_name = $names[$id];
 
 // Define the current page form action
 if($id == 0)
-	$form_action = keepGet('(m|a|p)', false);
+	$form_action = keepGet('(m|a|p|k)', false);
 else
-	$form_action = keepGet('(m|p)', false);
+	$form_action = keepGet('(m|p|k)', false);
 
 ?>
 <!DOCTYPE html>
@@ -224,13 +224,13 @@ else
 				<?php if($id != 0) {
 				
 					// Keep get
-					$keep_get = keepGet('(a|p|b|s)', false);
+					$keep_get = keepGet('(a|p|b|s|k)', false);
 				
 				?>
 					<a class="logout manager-images" href="./?a=logout<?php echo $keep_get; ?>"><?php _e("Disconnect"); ?></a>
 				<?php } ?>
 				
-				<a class="close manager-images" href="./<?php echo keepGet('(m|a|p|b|s)', true); ?>"><?php _e("Close"); ?></a>
+				<a class="close manager-images" href="./<?php echo keepGet('(m|a|p|b|s|k)', true); ?>"><?php _e("Close"); ?></a>
 			</div>
 			
 			<div class="clear"></div>
@@ -505,18 +505,14 @@ else
 				
 				<p><?php _e("You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"); ?></p>
 				
-				<label class="master" for="logo_default"><input id="logo_default" type="radio" name="logo_type" value="default"<?php echo($logo_default); ?> /><?php _e("Use default logo"); ?></label>
-				
-				<label class="master" for="logo_own"><input id="logo_own" type="radio" name="logo_type" value="own"<?php echo($logo_own); ?> /><?php _e("Use your own logo"); ?></label>
-				
 				<div class="sub">
 					<p><?php _e("Upload each logo with the recommended maximum pixel size."); ?></p>
-					<p><?php _e("The recommended image format is PNG. Leave a field empty and the logo will not be changed."); ?></p>					
+					<p><?php _e("Your logo format must be PNG. Leave a field empty and the logo will not be changed."); ?></p>					
 					
-					<label for="logo_own_1_location">Jappix Desktop, <em>311×113</em></label><input id="logo_own_1_location" type="file" name="logo_own_1_location" accept="image/*" />
-					<label for="logo_own_2_location">Jappix Desktop, <em>90×25</em></label><input id="logo_own_2_location" type="file" name="logo_own_2_location" accept="image/*" />
-					<label for="logo_own_3_location">Jappix Mobile, <em>83×30</em></label><input id="logo_own_3_location" type="file" name="logo_own_3_location" accept="image/*" />
-					<label for="logo_own_4_location">Jappix Mini, <em>81×22</em></label><input id="logo_own_4_location" type="file" name="logo_own_4_location" accept="image/*" />
+					<label for="logo_own_1_location">Jappix Desktop, <em>311×113</em></label><?php logoFormField('1', 'desktop_home'); ?>
+					<label for="logo_own_2_location">Jappix Desktop, <em>90×25</em></label><?php logoFormField('2', 'desktop_app'); ?>
+					<label for="logo_own_3_location">Jappix Mobile, <em>83×30</em></label><?php logoFormField('3', 'mobile'); ?>
+					<label for="logo_own_4_location">Jappix Mini, <em>81×22</em></label><?php logoFormField('4', 'mini'); ?>
 					
 					<label for="logo_own_upload"><?php _e("Upload"); ?></label><input id="logo_own_upload" type="submit" name="logo_upload" value="<?php _e("Upload"); ?>" />
 					
@@ -602,7 +598,7 @@ else
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo(uploadMaxSize().''); ?>">
 					
 					<label for="background_image_location"><?php _e("File"); ?></label><input id="background_image_location" type="file" name="background_image_upload" accept="image/*" />
-					<label for="background_image_upload"><?php _e("Upload"); ?></label><input id="background_image_upload" type="submit" name="upload" value="<?php _e("Upload"); ?>" />
+					<label for="background_image_upload"><?php _e("Upload"); ?></label><input id="background_image_upload" type="submit" name="background_upload" value="<?php _e("Upload"); ?>" />
 					
 					<div class="clear"></div>
 				</div>

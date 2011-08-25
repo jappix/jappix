@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-25 14:15:30\n"
+"PO-Revision-Date: 2011-08-25 17:14:14\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2322,6 +2322,26 @@ msgid "Upload each logo with the recommended maximum pixel size."
 msgstr "Envoyez chaque logo avec la taille maximum en pixel que nous vous recommandons."
 
 #: 
-msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
-msgstr "Le format d'image recommandé est PNG. Laisser un champ vide ne changera pas le logo correspondant."
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr "Le format d'image recommandé est PNG. Laisser un champ vide ne changera pas le logo correspondant."
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Ce n'est pas une image valide, veuillez utiliser le format PNG !"
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr "Le logo de votre service a été changé avec succès !"
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Le format de votre logo doit être PNG. Laissez un champ vide et le logo correspondant ne sera pas changé."
+
+#: 
+msgid "Remove this logo"
+msgstr "Supprimer ce logo"
+
+#: 
+msgid "View this logo"
+msgstr "Visualiser ce logo"
 

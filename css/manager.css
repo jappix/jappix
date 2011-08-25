@@ -7,7 +7,7 @@ This is the manager CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/06/11
+Last revision: 25/08/11
 
 */
 
@@ -475,6 +475,21 @@ Last revision: 08/06/11
 	margin: 5px 0 20px 22px;
 	padding-left: 12px;
 	clear: both;
+}
+
+#manager span.logo_links a {
+	width: 16px;
+	height: 16px;
+	margin-right: 6px;
+	float: left;
+}
+
+#manager span.logo_links a.remove {
+	background-position: 0 -688px;
+}
+
+#manager span.logo_links a.view {
+	background-position: 0 -666px;
 }
 
 #manager-content .clear {
