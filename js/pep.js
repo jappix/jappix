@@ -625,21 +625,23 @@ function getPosition(position) {
 
 // Geolocates the user
 function geolocate() {
-	// We wait a bit...
-	$('#my-infos').stopTime().oneTime('4s', function() {
-		// We publish the user location if allowed (maximum cache age of 1 hour)
-		if((getDB('options', 'geolocation') == '1') && enabledPEP() && navigator.geolocation) {
+	// Don't fire it until options & features are not retrieved!
+	if(!getDB('options', 'geolocation') || (getDB('options', 'geolocation') == '0') || !enabledPEP())
+		return;
+	
+	// We publish the user location if allowed
+	if(navigator.geolocation) {
+		// Wait a bit... (to fix a bug)
+		$('#my-infos').stopTime().oneTime('1s', function() {
 			navigator.geolocation.getCurrentPosition(getPosition);
-			
-			logThis('Geolocating...', 3);
-		}
+		});
 		
-		else if(!navigator.geolocation)
-			logThis('Not geolocated: browser does not support it.', 1);
-		
-		else
-			logThis('Not geolocated.', 2);
-	});
+		logThis('Geolocating...', 3);
+	}
+	
+	// Any error?
+	else
+		logThis('Not geolocated: browser does not support it.', 1);
 }
 
 // Displays all the supported PEP events for a given XID

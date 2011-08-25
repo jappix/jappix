@@ -7,7 +7,7 @@ These are the storage JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 16/05/11
+Last revision: 25/08/11
 
 */
 
@@ -99,6 +99,9 @@ function handleStorage(iq) {
 		
 		// Now, get the inbox
 		getStorage(NS_INBOX);
+		
+		// Geolocate the user
+		geolocate();
 		
 		$('.options-hidable').show();
 	}
