@@ -13,7 +13,7 @@ Last revision: 27/08/11
 
 // Sends an OOB request to someone
 function sendOOB(xid, type, url, desc) {
-	
+	alert('[DEBUG ALERT]\n\nTo: ' + xid + '\nType: ' + type + '\nURL: ' + url + '\nDesc: ' + desc);
 }
 
 // Wait event for OOB upload
@@ -32,9 +32,18 @@ function handleUploadOOB(responseXML) {
 	var dData = $(responseXML).find('jappix');
 	var fID = dData.find('id').text();
 	
+	// Not available?
+	if($('#page-engine .chat-tools-file' + oob_has).is(':hidden'))
+		return;
+	
+	// Get the OOB values
+	var oob_has = ':has(#oob-upload input[value=' + fID + '])';
+	var xid = $('#page-engine .page-engine-chan' + oob_has).attr('data-xid');
+	var oob_type = $('#page-engine .chat-tools-file' + oob_has).attr('data-oob');
+	
 	// Reset the file send tool
-	$('#page-engine .chat-tools-file:has(#oob-upload input[value=' + fID + '])').removeClass('mini');
-	$('#page-engine .bubble-file:has(#oob-upload input[value=' + fID + '])').remove();
+	$('#page-engine .chat-tools-file' + oob_has).removeClass('mini');
+	$('#page-engine .bubble-file' + oob_has).remove();
 	
 	// Process the returned data
 	if(dData.find('error').size()) {
@@ -44,10 +53,6 @@ function handleUploadOOB(responseXML) {
 	}
 	
 	else {
-		// Get the OOB values
-		var xid = '';
-		var oob_type = '';
-		
 		// Get the file values
 		var fURL = dData.find('url').text();
 		var fDesc = dData.find('desc').text();
