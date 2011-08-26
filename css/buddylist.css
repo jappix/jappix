@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/08/11
+Last revision: 26/08/11
  
 */
  
@@ -260,7 +260,7 @@ Last revision: 22/08/11
 }
  
 .manage-infos div.bm-choose input[type=checkbox] {
-        margin: 1px 6px 0 0;
+        margin: 0 6px 0 0;
 }
  
 .manage-infos div.bm-choose div {
