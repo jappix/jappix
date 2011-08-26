@@ -7,7 +7,7 @@ These are the PEP JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -173,7 +173,7 @@ function displayPEP(xid, type) {
 				
 				// Generate the text to be displayed
 				if(tLat && tLon) {
-					aLink = ' href="http://www.openstreetmap.org/?mlat=' + encodeQuotes(tLat) + '&amp;mlon=' + encodeQuotes(tLon) + '&amp;zoom=14" target="_blank"';
+					aLink = ' href="http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon) + '" target="_blank"';
 					fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
 					
 					if(tReal)
@@ -264,7 +264,7 @@ function displayPEP(xid, type) {
 					}
 					
 					else {
-						href = 'http://www.openstreetmap.org/?mlat=' + tLat + '&amp;mlon=' + tLon + '&amp;zoom=14';
+						href = 'http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon);
 						title = _e("Where are you?") + ' (' + dText + ')';
 						icon_class = 'location-world';
 					}
@@ -551,7 +551,7 @@ function parsePosition(data) {
 	             result.find('address_component:has(type:contains("route")):first long_name').text(),
 	             result.find('address_component:has(type:contains("street_number")):first long_name').text(),
 	             result.find('formatted_address:first').text(),
-	             'http://www.openstreetmap.org/?mlat=' + lat + '&mlon=' + lng + '&zoom=14'
+	             'http://maps.google.com/?q=' + encodeQuotes(lat) + ',' + encodeQuotes(lng)
 	            ];
 	
 	return array;

@@ -7,7 +7,7 @@ These are the CAPS JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -239,8 +239,10 @@ function displayDiscoInfos(from, xml) {
 	
 	hash = hex_md5(xid);
 	
-	// xHTML-IM indicator
+	// Support indicators
 	var xhtml_im = false;
+	var iq_oob = false;
+	var x_oob = false;
 	var receipts = false;
 	
 	// Display the supported features
@@ -251,6 +253,14 @@ function displayDiscoInfos(from, xml) {
 		if(current == NS_XHTML_IM)
 			xhtml_im = true;
 		
+		// Out of Band Data (IQ)
+		if(current == NS_IQOOB)
+			iq_oob = true;
+		
+		// Out of Band Data (X)
+		if(current == NS_XOOB)
+			x_oob = true;
+		
 		// Receipts
 		else if(current == NS_URN_RECEIPTS)
 			receipts = true;
@@ -260,11 +270,11 @@ function displayDiscoInfos(from, xml) {
 	var path = $('#' + hash);
 	var message_area = path.find('.message-area');
 	var style = path.find('.chat-tools-style');
+	var file = path.find('.chat-tools-file');
 	
 	// Apply xHTML-IM
 	if(xhtml_im)
 		style.show();
-	
 	else {
 		// Remove the tooltip elements
 		style.hide();
@@ -276,6 +286,26 @@ function displayDiscoInfos(from, xml) {
 			    .removeAttr('data-bold')
 			    .removeAttr('data-italic')
 			    .removeAttr('data-underline');
+	}
+	
+	// Apply Out of Band Data
+	if(iq_oob || x_oob) {
+		file.show();
+		
+		// Set a marker
+		if(iq_oob)
+			file.attr('data-oob', 'iq');
+		else
+			file.attr('data-oob', 'x');
+	}
+	
+	else {
+		// Remove the tooltip elements
+		file.hide();
+		file.find('.bubble-style').remove();
+		
+		// Reset the marker
+		file.removeAttr('data-oob');
 	}
 	
 	// Apply receipts

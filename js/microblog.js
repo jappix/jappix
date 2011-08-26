@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 06/07/11
+Last revision: 26/08/11
 
 */
 
@@ -143,7 +143,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 		var gLon = sGeoloc.find('lon').text();
 		
 		if(gLat && gLon) {
-			tGeoloc += '<a class="geoloc talk-images" href="http://www.openstreetmap.org/?mlat=' + encodeQuotes(gLat) + '&amp;mlon=' + encodeQuotes(gLon) + '&amp;zoom=14" target="_blank">';
+			tGeoloc += '<a class="geoloc talk-images" href="http://maps.google.com/?q=' + encodeQuotes(gLat) + ',' + encodeQuotes(gLon) + '" target="_blank">';
 			
 			// Human-readable name?
 			var gHuman = humanPosition(
