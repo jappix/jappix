@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 13/05/11
+Last revision: 26/08/11
 
 */
 
@@ -125,7 +125,12 @@ function insertSmiley(smiley, hash) {
 	// We define the variables
 	var selector = $('#' + hash + ' .message-area');
 	var oValue = selector.val();
-	var nValue = oValue + ' ' + smiley + ' ';
+	
+	// Any old value?
+	if(oValue && !oValue.match(/^(.+)(\s)+$/))
+		oValue += ' ';
+	
+	var nValue = oValue + smiley + ' ';
 	
 	// Put the new value and focus on it
 	$(document).oneTime(10, function() {
