@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/08/11
+Last revision: 27/08/11
 
 */
 
@@ -55,7 +55,7 @@ function createTooltip(xid, hash, type) {
 		case 'file':
 			title = _e("Send a file");
 			content = '<p style="margin-bottom: 8px;">' + _e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
-			content += '<form id="oob_upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
+			content += '<form id="oob-upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
 			
 			break;
 		
@@ -157,8 +157,29 @@ function createTooltip(xid, hash, type) {
 			break;
 		
 		// File send
-		case 'send':
-			uploadOOB();
+		case 'file':
+			// File upload vars
+			var oob_upload_options = {
+				dataType:	'xml',
+				beforeSubmit:	waitUploadOOB,
+				success:	handleUploadOOB
+			};
+			
+			// Upload form submit event
+			$(path_tooltip + ' #oob-upload').submit(function() {
+				if($(path_tooltip + ' #oob-upload input[type=file]').val())
+					$(this).ajaxSubmit(oob_upload_options);
+				
+				return false;
+			});
+			
+			// Upload input change event
+			$(path_tooltip + ' #oob-upload input[type=file]').change(function() {
+				if($(this).val())
+					$(path_tooltip + ' #oob-upload').ajaxSubmit(oob_upload_options);
+				
+				return false;
+			});
 			
 			break;
 		
@@ -182,7 +203,7 @@ function createTooltip(xid, hash, type) {
 
 // Destroys a tooltip code
 function destroyTooltip(hash, type) {
-	$('#' + hash + ' .chat-tools-content .bubble-' + type).remove();
+	$('#' + hash + ' .chat-tools-content:not(.mini) .bubble-' + type).remove();
 }
 
 // Applies the page-engine tooltips hover event

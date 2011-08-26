@@ -9,7 +9,7 @@ This is the Jappix Out of Band file send script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/08/11
+Last revision: 27/08/11
 
 */
 
@@ -64,11 +64,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 // Send a file
-else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
+else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id']) && !empty($_POST['id'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
 	header('Content-Type: text/xml; charset=utf-8');
-	
-	// Get the user name
-	$user = $_POST['user'];
 	
 	// Get the file name
 	$tmp_filename = $_FILES['file']['tmp_name'];
@@ -83,8 +80,9 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['us
 	// Forbidden file?
 	if(!isSafe($filename)) {
 		exit(
-'<jappix xmlns=\'jappix:file:post\'>
+'<jappix xmlns=\'jappix:file:send\'>
 	<error>forbidden-type</error>
+	<id>'.htmlspecialchars($_POST['id']).'</id>
 </jappix>'
 		);
 	}
@@ -100,17 +98,19 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['us
 	// File upload error?
 	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
 		exit(
-'<jappix xmlns=\'jappix:file:post\'>
+'<jappix xmlns=\'jappix:file:send\'>
 	<error>move-error</error>
+	<id>'.htmlspecialchars($_POST['id']).'</id>
 </jappix>'
 		);
 	}
 	
 	// Return the path to the file
 	exit(
-'<jappix xmlns=\'jappix:file:post\'>
-	<href>'.htmlspecialchars($location.'store/send/'.$name.'.'.$ext).'</href>
-	<title>'.htmlspecialchars($new_name).'</title>
+'<jappix xmlns=\'jappix:file:send\'>
+	<url>'.htmlspecialchars($location.'php/send.php?id='.$name.'.'.$ext).'</url>
+	<desc>'.htmlspecialchars($new_name).'</desc>
+	<id>'.htmlspecialchars($_POST['id']).'</id>
 </jappix>'
 	);
 }

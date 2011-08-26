@@ -7,7 +7,7 @@ This is the manager CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 27/08/11
 
 */
 
@@ -167,15 +167,15 @@ Last revision: 25/08/11
 }
 
 #manager-top .meta a {
-	background-color: #c7d5d9;
+	background-color: #f1f6fd;
 	border: 1px solid #b9cbcf;
 	color: #224249;
 	padding: 4px 8px 4px 21px;
 	margin-left: 2px;
 	text-decoration: none;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 #manager-top .meta a:hover,

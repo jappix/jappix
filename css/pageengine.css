@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/08/11
+Last revision: 27/08/11
 
 */
 
@@ -358,6 +358,19 @@ Last revision: 26/08/11
 	display: none;
 }
 
+#page-engine .text .chat-tools-file.mini .bubble-file {
+	z-index: 39;
+}
+
+#page-engine .text .chat-tools-file.mini .tooltip-subitem {
+	width: 22px;
+	height: 20px;
+}
+
+#page-engine .text .chat-tools-file.mini .wait {
+	margin: -2px 0 0 -1px;
+}
+
 #page-engine .text .tools-smileys {
 	background-position: 0 -388px;
 }
@@ -432,16 +445,16 @@ Last revision: 26/08/11
 	border-color: #ffb20d;
 }
 
+#page-engine .bubble-file .tooltip-subitem {
+	width: 240px;
+}
+
 #page-engine .bubble-file input[type=file] {
 	width: 220px;
 }
 
 #page-engine .bubble-file input[type=submit] {
 	margin-top: 4px;
-}
-
-#page-engine .bubble-file .tooltip-subitem {
-	width: 240px;
 }
 
 #page-engine .text .compose,

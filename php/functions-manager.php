@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 26/08/11
+Last revision: 27/08/11
 
 */
 
@@ -446,10 +446,10 @@ function otherStats() {
 	$others_stats = array(
 			     	T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
 			     	T_("Cache") => sizeDir(JAPPIX_BASE.'/store/cache/'),
-			     	T_("Configuration") => sizeDir(JAPPIX_BASE.'/store/conf/'),
 			     	T_("Logs") => sizeDir(JAPPIX_BASE.'/store/logs/'),
 			     	T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
 			     	T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
+			     	T_("Send") => sizeDir(JAPPIX_BASE.'/store/send/'),
 			     	T_("Updates") => sizeDir(JAPPIX_BASE.'/store/updates/')
 			     );
 	

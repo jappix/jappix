@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 27/08/11
 
 */
 
@@ -62,7 +62,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		
 		// Remember me?
 		if(lRemember)
-			setPersistent('session', 1, session_xml);
+			setDB('remember', 'session', 1);
 		
 		// We store the infos of the user into the data-base
 		setDB('priority', 1, lPriority);
@@ -220,6 +220,10 @@ function handleConnected() {
 	
 	// Not resumed?
 	if(!RESUME) {
+		// Remember the session?
+		if(getDB('remember', 'session'))
+			setPersistent('session', 1, CURRENT_SESSION);
+		
 		// We show the chatting app.
 		createTalkPage();
 		
