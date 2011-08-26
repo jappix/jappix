@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot, Mathieui, Olivier Migeot
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -541,8 +541,17 @@ function genHash($version) {
 
 // The function to hide the error messages
 function hideErrors() {
-	if(!isDeveloper())
-		ini_set('display_errors','off');
+	// Hide errors if not developer
+	if(!isDeveloper()) {
+		ini_set('display_errors', 'off');
+		ini_set('error_reporting', 0);
+	}
+	
+	// Developers need to get error reports!
+	else {
+		ini_set('display_errors', 'on');
+		ini_set('error_reporting', E_ALL);
+	}
 }
 
 // The function to check BOSH proxy is enabled

@@ -26,12 +26,13 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic())
 	exit;
 
 // Action on an existing file
 if(isset($_GET['id']) && !empty($_GET['id'])) {
 	$file_id = $_GET['id'];
+	$file_path = JAPPIX_BASE.'/store/send/'.$file_id;
 	
 	// Hack?
 	if(!isSafe($file_id)) {
@@ -40,46 +41,33 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	}
 	
 	// File does not exist
-	if(!file_exists(JAPPIX_BASE.'/store/conf/installed.xml')) {
+	if(!file_exists($file_path)) {
 		header('Status: 404 Not Found', true, 404);
 		exit('HTTP/1.1 404 Not Found');
 	}
 	
 	// Remove a file
 	if(isset($_GET['action']) && ($_GET['action'] == 'remove')) {
-		
+		header('Status: 204 No Content', true, 204);
+		unlink($file_path);
 	}
 	
 	// Receive a file
-	else {
-		
-	}
+	header("Content-disposition: attachment; filename=\"$file_id\"");
+	header("Content-Type: application/force-download");
+	// header("Content-Transfer-Encoding: text/html\n"); TODO
+	header("Content-Length: ".filesize($file_path));
+	header("Pragma: no-cache");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
+	header("Expires: 0");
+	readfile($file_path);
+	unlink($file_path);
 }
 
 // Send a file
-else if() {
+else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
 	header('Content-Type: text/xml; charset=utf-8');
-}
-
-// Error?
-else {
-	header('Status: 400 Bad Request', true, 400);
-	exit('HTTP/1.1 400 Bad Request');
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ////////////////////////// */
-// Everything is okay
-if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
+	
 	// Get the user name
 	$user = $_POST['user'];
 	
@@ -107,21 +95,8 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
 	
 	// Define some vars
-	$content_dir = JAPPIX_BASE.'/store/share/'.$user;
-	$security_file = $content_dir.'/index.html';
 	$name = sha1(time().$filename);
-	$path = $content_dir.'/'.$name.'.'.$ext;
-	$thumb_xml = '';
-	
-	// Create the user directory
-	if(!is_dir($content_dir)) {
-		mkdir($content_dir, 0777, true);
-		chmod($content_dir, 0777);
-	}
-	
-	// Create (or re-create) the security file
-	if(!file_exists($security_file))	
-		file_put_contents($security_file, securityHTML());
+	$path = JAPPIX_BASE.'/store/send/'.$name.'.'.$ext;
 	
 	// File upload error?
 	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
@@ -132,37 +107,19 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 		);
 	}
 	
-	// Resize and compress if this is a JPEG file
-	if(preg_match('/^(jpg|jpeg|png|gif)$/i', $ext)) {
-		// Resize the image
-		resizeImage($path, $ext, 1024, 1024);
-		
-		// Copy the image
-		$thumb = $content_dir.'/'.$name.'_thumb.'.$ext;
-		copy($path, $thumb);
-		
-		// Create the thumbnail
-		if(resizeImage($thumb, $ext, 140, 105))
-			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
-	}
-	
 	// Return the path to the file
 	exit(
 '<jappix xmlns=\'jappix:file:post\'>
-	<href>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'.'.$ext).'</href>
+	<href>'.htmlspecialchars($location.'store/send/'.$name.'.'.$ext).'</href>
 	<title>'.htmlspecialchars($new_name).'</title>
-	<type>'.htmlspecialchars(getFileMIME($path)).'</type>
-	<length>'.htmlspecialchars(filesize($path)).'</length>
-	'.$thumb_xml.'
 </jappix>'
 	);
 }
 
-// Bad request error!
-exit(
-'<jappix xmlns=\'jappix:file:post\'>
-	<error>bad-request</error>
-</jappix>'
-);
+// Error?
+else {
+	header('Status: 400 Bad Request', true, 400);
+	exit('HTTP/1.1 400 Bad Request');
+}
 
 ?>
