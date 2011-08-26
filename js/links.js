@@ -7,7 +7,7 @@ These are the links JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 24/06/11
+Last revision: 26/08/11
 
 */
 
@@ -29,7 +29,7 @@ function applyLinks(string, mode, style) {
 		target = '';
 	
 	// XMPP address
-	string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\.\/_-]+))(\s|$)/gi, '$1<a href="xmpp:$2" target="_blank"' + style + '>$2</a>$5');
+	string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\.\/_-]+))(,|\s|$)/gi, '$1<a href="xmpp:$2" target="_blank"' + style + '>$2</a>$5');
 	
 	// Simple link
 	string = string.replace(/(\s|<br \/>|^|\()((https?|ftp|file|xmpp|irc|mailto|vnc|webcal|ssh|ldap|smb|magnet|spotify)(:)([^<>'"\s\)]+))/gim, '$1<a href="$2"' + target + style + '>$2</a>');
