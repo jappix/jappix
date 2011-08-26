@@ -55,7 +55,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	// Receive a file
 	header("Content-disposition: attachment; filename=\"$file_id\"");
 	header("Content-Type: application/force-download");
-	// header("Content-Transfer-Encoding: text/html\n"); TODO
 	header("Content-Length: ".filesize($file_path));
 	header("Pragma: no-cache");
 	header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");

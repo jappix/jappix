@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -55,7 +55,9 @@ function createTooltip(xid, hash, type) {
 		case 'file':
 			title = _e("Send a file");
 			content = '<p style="margin-bottom: 8px;">' + _e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
-			content += '<form id="vcard-avatar" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
+			content += '<form id="oob_upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
+			
+			uploadOOB();
 			
 			break;
 		
