@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 09/06/11
+Last revision: 27/08/11
 
 */
 
@@ -871,13 +871,13 @@ function autoIdle() {
 	var idle_presence;
 	var activity_limit;
 	
-	// Can we extend to auto extended away mode (10 minutes)?
+	// Can we extend to auto extended away mode (20 minutes)?
 	if(AUTO_IDLE && (last_presence == 'away')) {
 		idle_presence = 'xa';
 		activity_limit = 1200;
 	}
 	
-	// We must set the user to auto-away (5 minutes)
+	// We must set the user to auto-away (10 minutes)
 	else {
 		idle_presence = 'away';
 		activity_limit = 600;
