@@ -432,8 +432,16 @@ Last revision: 26/08/11
 	border-color: #ffb20d;
 }
 
-#page-engine .bubble-file input.send_file {
-	width: 160px;
+#page-engine .bubble-file input[type=file] {
+	width: 220px;
+}
+
+#page-engine .bubble-file input[type=submit] {
+	margin-top: 4px;
+}
+
+#page-engine .bubble-file .tooltip-subitem {
+	width: 240px;
 }
 
 #page-engine .text .compose,

@@ -22,7 +22,7 @@ function uploadOOB() {
 	
 	// Upload form submit event
 	$('#oob_upload').submit(function() {
-		if(!exists('#oob_upload .wait') && $('#oob_upload input[type=file]').val())
+		if($('#oob_upload input[type=file]').val())
 			$(this).ajaxSubmit(oob_upload_options);
 		
 		return false;
@@ -30,7 +30,7 @@ function uploadOOB() {
 	
 	// Upload input change event
 	$('#oob_upload input[type=file]').change(function() {
-		if(!exists('#oob_upload .wait') && $(this).val())
+		if($(this).val())
 			$('#oob_upload').ajaxSubmit(oob_upload_options);
 		
 		return false;
@@ -39,18 +39,19 @@ function uploadOOB() {
 
 // Wait event for OOB upload
 function waitUploadOOB() {
-	return;
-	
-	// Append the wait icon
-	$('#attach input[type=submit]').after('<div class="wait wait-medium"></div>');
+	// Append the wait icon TODO
+	// $('#oob_upload input[type=submit]').after('<div class="wait wait-medium"></div>');
 	
 	// Lock the bubble
-	$('#attach').removeClass('bubble');
+	$('#oob_upload').removeClass('bubble');
+	
+	// Hide the bubble
+	$('#page-engine .bubble-file').hide();
 }
 
 // Success event for OOB upload
 function handleUploadOOB(responseXML) {
-	alert('success!');
+	$('#page-engine .bubble-file').remove();
 	
 	return;
 	
@@ -63,10 +64,10 @@ function handleUploadOOB(responseXML) {
 		
 		// Unlock the bubble?
 		if(!exists('#attach .one-file')) {
-			$('#attach').addClass('bubble').hide();
+			$('#oob_upload').addClass('bubble').hide();
 			
 			// Show the bubble again!
-			showBubble('#attach');
+			showBubble('#oob_upload');
 		}
 		
 		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
@@ -74,7 +75,7 @@ function handleUploadOOB(responseXML) {
 	
 	else {
 		// Do not allow this bubble to be hidden
-		$('#attach').removeClass('bubble');
+		$('#oob_upload').removeClass('bubble');
 		
 		// Get the file values
 		var fName = dData.find('title').text();
@@ -87,7 +88,7 @@ function handleUploadOOB(responseXML) {
 		var fID = hex_md5(fURL);
 		
 		// Add this file
-		$('#attach .attach-subitem').append(
+		$('#oob_upload .attach-subitem').append(
 			'<div class="one-file" data-type="' + encodeQuotes(fType) + '" data-length="' + encodeQuotes(fLength) + '" data-thumb="' + encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
 				'<a class="remove talk-images" href="#" title="' + encodeQuotes(_e("Unattach the file")) + '"></a>' + 
 				'<a class="link" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a>' + 
@@ -95,7 +96,7 @@ function handleUploadOOB(responseXML) {
 		);
 		
 		// Click event
-		$('#attach .one-file[data-id=' + fID + '] a.remove').click(function() {
+		$('#oob_upload .one-file[data-id=' + fID + '] a.remove').click(function() {
 			return unattachMicroblog(fID);
 		});
 		
@@ -103,8 +104,8 @@ function handleUploadOOB(responseXML) {
 	}
 	
 	// Reset the attach bubble
-	$('#attach input[type=file]').val('');
-	$('#attach .wait').remove();
+	$('#oob_upload input[type=file]').val('');
+	$('#oob_upload .wait').remove();
 	
 	// Focus on the text input
 	$(document).oneTime(10, function() {

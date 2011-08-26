@@ -57,8 +57,6 @@ function createTooltip(xid, hash, type) {
 			content = '<p style="margin-bottom: 8px;">' + _e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
 			content += '<form id="oob_upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
 			
-			uploadOOB();
-			
 			break;
 		
 		// Chat log
@@ -155,6 +153,12 @@ function createTooltip(xid, hash, type) {
 			
 			// Load current style
 			loadStyleSelector(hash);
+			
+			break;
+		
+		// File send
+		case 'send':
+			uploadOOB();
 			
 			break;
 		
