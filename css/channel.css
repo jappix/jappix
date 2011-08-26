@@ -7,7 +7,7 @@ This is the channel CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 18/06/11
+Last revision: 26/08/11
 
 */
 
@@ -199,6 +199,7 @@ Last revision: 18/06/11
 }
 
 #channel .one-update div.body {
+	margin-left: 65px;
 	opacity: 0.8;
 }
 
@@ -247,7 +248,7 @@ Last revision: 18/06/11
 
 #channel .one-update p.file {
 	font-size: 0.9em;
-	margin: 6px 0 5px 75px;
+	margin: 6px 0 5px 10px;
 }
 
 #channel .one-update p.file a.link,
