@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 26/08/11
 
 */
 
@@ -19,20 +19,21 @@ if(!defined('JAPPIX_BASE'))
 
 // Define the default main configuration values
 $main_conf = array(
-	     	'name'		=> 'Jappix',
-	     	'desc'		=> 'a free social network',
-	     	'resource'	=> 'Jappix',
-	     	'lock'		=> 'on',
-	     	'anonymous'	=> 'on',
-	     	'registration'	=> 'on',
-	     	'bosh_proxy'	=> 'on',
-	     	'manager_link'	=> 'on',
-	     	'encryption'	=> 'on',
-	     	'https_storage'	=> 'off',
-	     	'https_force'	=> 'off',
-	     	'compression'	=> 'off',
-	     	'multi_files'	=> 'off',
-	     	'developer'	=> 'off'
+	     	'name'			=> 'Jappix',
+	     	'desc'			=> 'a free social network',
+	     	'resource'		=> 'Jappix',
+	     	'lock'			=> 'on',
+	     	'anonymous'		=> 'on',
+	     	'registration'		=> 'on',
+	     	'bosh_proxy'		=> 'on',
+	     	'manager_link'		=> 'on',
+	     	'groupchats_join'	=> '',
+	     	'encryption'		=> 'on',
+	     	'https_storage'		=> 'off',
+	     	'https_force'		=> 'off',
+	     	'compression'		=> 'off',
+	     	'multi_files'		=> 'off',
+	     	'developer'		=> 'off'
 	     );
 
 // Define a default values array
@@ -65,6 +66,7 @@ define('ANONYMOUS', $main_conf['anonymous']);
 define('REGISTRATION', $main_conf['registration']);
 define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('MANAGER_LINK', $main_conf['manager_link']);
+define('GROUPCHATS_JOIN', $main_conf['groupchats_join']);
 define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);

@@ -7,7 +7,7 @@ These are the groupchat JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Marco Cirillo, Eric Yu
-Last revision: 02/08/11
+Last revision: 26/08/11
 
 */
 
@@ -243,4 +243,43 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	
 	// Get the current muc informations and content
 	getMUC(room, nickname, password);
+}
+
+// Joins the defined groupchats
+function joinConfGroupchats() {
+	// Nothing to join?
+	if(!GROUPCHATS_JOIN)
+		return;
+	
+	// Values array
+	var muc_arr = [GROUPCHATS_JOIN];
+	var new_arr = [];
+	
+	// Try to split it
+	if(GROUPCHATS_JOIN.indexOf(',') != -1)
+		muc_arr = GROUPCHATS_JOIN.split(',');
+	
+	for(i in muc_arr) {
+		// Get the current value
+		var muc_current = muc_arr[i];
+		
+		// No current value?
+		if(!muc_current || muc_current.match(/^(\s+)$/))
+			continue;
+		
+		// Filter the current value
+		muc_current = muc_current.replace(/ /g, '');
+		muc_current = muc_current.replace(/"/g, '\\\"');
+		muc_current = generateXID(muc_current, 'groupchat');
+		
+		// Add the current value
+		if(!existArrayValue(new_arr, muc_current))
+			new_arr.push(muc_current);
+	}
+	
+	// Join the chats
+	if(new_arr.length) {
+		for(g in new_arr)
+			checkChatCreate(new_arr[g], 'groupchat');
+	}
 }

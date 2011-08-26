@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: AGPL
 Authors: Stefan Strigler, Valérian Saliou
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -130,6 +130,7 @@ var ANONYMOUS = null;
 var REGISTRATION = null;
 var BOSH_PROXY = null;
 var MANAGER_LINK = null;
+var GROUPCHATS_JOIN = null;
 var ENCRYPTION = null;
 var HTTPS_STORAGE = null;
 var HTTPS_FORCE = null;

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-25 22:16:49\n"
+"PO-Revision-Date: 2011-08-26 13:43:59\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2352,4 +2352,8 @@ msgstr "Envoi d'un fichier"
 #: 
 msgid "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr "Une fois envoyé, votre ami sera invité à télécharger le fichier."
+
+#: 
+msgid "Groupchats to join"
+msgstr "Salons à rejoindre"
 

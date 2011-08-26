@@ -9,7 +9,7 @@ This is the main configuration form (install & manager)
 
 License: AGPL
 Authors: Valérian Saliou, Emmanuel Gil Peyrot
-Last revision: 27/05/11
+Last revision: 26/08/11
 
 */
 
@@ -104,6 +104,8 @@ else
 	<legend><?php _e("Others"); ?></legend>
 	
 	<label for="manager_link"><?php _e("Manager link"); ?></label><input id="manager_link" type="checkbox" name="manager_link"<?php echo $check_manager_link; ?> />
+	
+	<label for="groupchats_join"><?php _e("Groupchats to join"); ?></label><input id="groupchats_join" type="text" name="groupchats_join" value="<?php echo $groupchats_join; ?>" placeholder="postpro@muc.jappix.com, mini@muc.jappix.com" />
 </fieldset>
 
 <fieldset>

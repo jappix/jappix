@@ -9,7 +9,7 @@ This is the main configuration POST handler (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
+Last revision: 26/08/11
 
 */
 
@@ -65,6 +65,12 @@ if(isset($_POST['manager_link']) && !empty($_POST['manager_link']))
 else
 	$manager_link = 'off';
 
+// Groupchats to join
+if(isset($_POST['groupchats_join']) && !empty($_POST['groupchats_join']))
+	$groupchats_join = stripslashes(htmlspecialchars(trim($_POST['groupchats_join'])));
+else
+	$groupchats_join = stripslashes(htmlspecialchars($main_default['groupchats_join']));
+
 // Encryption
 if(isset($_POST['encryption']) && !empty($_POST['encryption']))
 	$encryption = 'on';
@@ -111,6 +117,7 @@ $conf_xml =
 	<registration>'.$registration.'</registration>
 	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
 	<manager_link>'.$manager_link.'</manager_link>
+	<groupchats_join>'.$groupchats_join.'</groupchats_join>
 	<encryption>'.$encryption.'</encryption>
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>

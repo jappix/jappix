@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -148,6 +148,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'REGISTRATION'		=> REGISTRATION,
 		      	'BOSH_PROXY'		=> BOSH_PROXY,
 		      	'MANAGER_LINK'		=> MANAGER_LINK,
+		      	'GROUPCHATS_JOIN'	=> GROUPCHATS_JOIN,
 		      	'ENCRYPTION'		=> ENCRYPTION,
 		      	'HTTPS_STORAGE'		=> HTTPS_STORAGE,
 		      	'HTTPS_FORCE'		=> HTTPS_FORCE,
