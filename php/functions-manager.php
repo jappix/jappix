@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 08/05/11
+Last revision: 26/08/11
 
 */
 
@@ -540,7 +540,7 @@ function purgeFolder($folder) {
 	
 	// We must purge all the folders?
 	if($folder == 'everything')
-		array_push($array, 'cache', 'logs', 'updates');
+		array_push($array, 'cache', 'logs', 'send', 'updates');
 	else
 		array_push($array, $folder);
 	

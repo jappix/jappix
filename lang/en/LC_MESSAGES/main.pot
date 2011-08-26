@@ -1576,6 +1576,9 @@ msgstr ""
 msgid "Purge logs"
 msgstr ""
 
+msgid "Purge sent files"
+msgstr ""
+
 msgid "Purge updates"
 msgstr ""
 

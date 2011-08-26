@@ -9,7 +9,7 @@ This is the store configuration GET handler (manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
+Last revision: 26/08/11
 
 */
 
@@ -18,7 +18,7 @@ if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Purge requested
-if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(updates))$/', $_GET['p'])) {
+if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(send)|(updates))$/', $_GET['p'])) {
 	purgeFolder($_GET['p']);
 ?>
 	

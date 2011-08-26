@@ -9,7 +9,7 @@ This script (re)generates the store sub-folders (after an update)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 26/08/11
 
 */
 
@@ -27,6 +27,7 @@ $store_folders = array(
 	'logos',
 	'logs',
 	'music',
+	'send',
 	'share',
 	'updates'
 );
