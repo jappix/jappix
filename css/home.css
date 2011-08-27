@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
+Last revision: 27/08/11
 
 */
 
@@ -462,7 +462,7 @@ Last revision: 25/08/11
 
 #home .notice.simple {
 	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.6);
+	background-color: rgba(20,20,20,0.7);
 	color: white;
 	font-size: 0.9em;
 	text-decoration: none;
