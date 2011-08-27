@@ -140,7 +140,14 @@ function handleUploadOOB(responseXML) {
 	var fDesc = dData.find('desc').text();
 	
 	// Get the OOB values
-	var oob_has = ':has(#oob-upload input[value=' + fID + '])';
+	var oob_has;
+	
+	// No ID provided?
+	if(!fID)
+		oob_has = ':has(.wait)';
+	else
+		oob_has = ':has(#oob-upload input[value=' + fID + '])';
+	
 	var xid = $('#page-engine .page-engine-chan' + oob_has).attr('data-xid');
 	var oob_type = $('#page-engine .chat-tools-file' + oob_has).attr('data-oob');
 	
@@ -157,18 +164,18 @@ function handleUploadOOB(responseXML) {
 			$.get(fURL + '&action=remove');
 	}
 	
-	// Upload error?
-	else if(dData.find('error').size()) {
-		openThisError(4);
-		
-		logThis('Error while sending the file: ' + dData.find('error').text(), 1);
-	}
-	
 	// Everything okay?
-	else if(fURL && fDesc) {
+	else if(fURL && fDesc && !dData.find('error').size()) {
 		// Send the OOB request
 		sendOOB(xid, oob_type, fURL, fDesc);
 		
 		logThis('File request sent.', 3);
+	}
+	
+	// Upload error?
+	else {
+		openThisError(4);
+		
+		logThis('Error while sending the file: ' + dData.find('error').text(), 1);
 	}
 }

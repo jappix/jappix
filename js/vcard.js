@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 22/06/11
+Last revision: 27/08/11
 
 */
 
@@ -176,18 +176,7 @@ function handleAvatarUpload(responseXML) {
 	$('#vcard .avatar-info').hide().stopTime();
 	
 	// Process the returned data
-	if(dData.find('error').size()) {
-		$('#vcard .avatar-error').show();
-		
-		// Timer
-		$('#vcard .avatar-info').oneTime('10s', function() {
-			$(this).hide();
-		});
-		
-		logThis('Error while uploading the avatar: ' + dData.find('error').text(), 1);
-	}
-	
-	else {
+	if(!dData.find('error').size()) {
 		// Read the values
 		var aType = dData.find('type').text();
 		var aBinval = dData.find('binval').text();
@@ -213,6 +202,18 @@ function handleAvatarUpload(responseXML) {
 		
 		// We display the avatar !
 		$('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
+	}
+	
+	// Any error?
+	else {
+		$('#vcard .avatar-error').show();
+		
+		// Timer
+		$('#vcard .avatar-info').oneTime('10s', function() {
+			$(this).hide();
+		});
+		
+		logThis('Error while uploading the avatar: ' + dData.find('error').text(), 1);
 	}
 }
 
