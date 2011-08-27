@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/05/11
+Last revision: 27/08/11
 
 */
 
@@ -61,6 +61,7 @@ textarea {
 
 input:focus,
 input[type=submit]:hover,
+input[type=reset]:hover,
 textarea:focus {
 	border: 1px solid #e1a014;
 	box-shadow: inset 0 3px 10px #edd9bc;
@@ -68,11 +69,13 @@ textarea:focus {
 	-webkit-box-shadow: inset 0 3px 10px #edd9bc;
 }
 
-input[type=submit] {
+input[type=submit],
+input[type=reset] {
 	cursor: pointer;
 }
 
-input[type=submit]:active {
+input[type=submit]:active,
+input[type=reset]:active {
 	box-shadow: inset 0 3px 15px #e1a753;
 	-moz-box-shadow: inset 0 3px 15px #e1a753;
 	-webkit-box-shadow: inset 0 3px 15px #e1a753;

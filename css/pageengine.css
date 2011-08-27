@@ -453,8 +453,9 @@ Last revision: 27/08/11
 	width: 220px;
 }
 
-#page-engine .bubble-file input[type=submit] {
-	margin-top: 4px;
+#page-engine .bubble-file input[type=submit],
+#page-engine .bubble-file input[type=reset] {
+	margin: 4px 4px 0 0;
 }
 
 #page-engine .text .compose,

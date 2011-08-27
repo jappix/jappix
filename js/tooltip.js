@@ -16,9 +16,10 @@ function createTooltip(xid, hash, type) {
 	// Path to the element
 	var path = '#' + hash;
 	var path_tooltip = path + ' .chat-tools-' + type;
+	var path_bubble = path_tooltip + ' .bubble-' + type;
 	
 	// Yet exists?
-	if(exists(path_tooltip + ' .bubble-' + type))
+	if(exists(path_bubble))
 		return false;
 	
 	// Generates special tooltip HTML code
@@ -181,6 +182,22 @@ function createTooltip(xid, hash, type) {
 				return false;
 			});
 			
+			// Input click event
+			$(path_tooltip + ' #oob-upload input[type=file], ' + path_tooltip + ' #oob-upload input[type=submit]').click(function() {
+				// Lock the bubble
+				$(path_bubble).addClass('locked');
+				
+				// Add a cancel button
+				$(this).after('<input type="reset" value="' + _e("Cancel") + '" />');
+				
+				// Cancel button click event
+				$(path_tooltip + ' #oob-upload input[type=reset]').click(function() {
+					// Remove the bubble
+					$(path_bubble).removeClass('locked');
+					destroyTooltip(hash, 'file');
+				});
+			});
+			
 			break;
 		
 		// Chat log
@@ -203,7 +220,7 @@ function createTooltip(xid, hash, type) {
 
 // Destroys a tooltip code
 function destroyTooltip(hash, type) {
-	$('#' + hash + ' .chat-tools-content:not(.mini) .bubble-' + type).remove();
+	$('#' + hash + ' .chat-tools-content:not(.mini) .bubble-' + type + ':not(.locked)').remove();
 }
 
 // Applies the page-engine tooltips hover event
