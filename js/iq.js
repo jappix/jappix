@@ -32,13 +32,38 @@ function handleIQ(iq) {
 	if((iqQueryXMLNS == NS_IQOOB) && (iqType == 'set')) {
 		/* REF: http://xmpp.org/extensions/xep-0066.html */
 		
-		handleOOB(iqFrom, 'iq', iqNode);
+		handleOOB(iqFrom, iqID, 'iq', iqNode);
 		
 		logThis('Received IQ OOB request: ' + iqFrom);
 	}
 	
+	// OOB reply
+	else if(getDB('send/url', iqID)) {
+		// Get the values
+		var oob_url = getDB('send/url', iqID);
+		var oob_desc = getDB('send/desc', iqID);
+		
+		// Error?
+		if($(iqNode).find('error').size()) {
+			// Rejected?
+			if($(iqNode).find('error not-acceptable').size())
+				newNotification('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+			
+			// Failed?
+			else
+				newNotification('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+			
+			// Remove the file
+			$.get(oob_url + '&action=remove');
+		}
+		
+		// Success?
+		else if(iqType == 'result')
+			newNotification('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+	}
+	
 	// Software version query
-	if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
+	else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
 		/* REF: http://xmpp.org/extensions/xep-0092.html */
 		
 		var iqQuery = iqResponse.setQuery(NS_VERSION);

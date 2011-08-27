@@ -127,7 +127,7 @@ function handleMessage(message) {
 	
 	// OOB message
 	if(message.getChild('x', NS_XOOB)) {
-		handleOOB(from, 'x', node);
+		handleOOB(from, id, 'x', node);
 		
 		logThis('Message OOB request from: ' + xid);
 		

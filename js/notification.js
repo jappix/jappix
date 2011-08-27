@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/05/11
+Last revision: 27/08/11
 
 */
 
@@ -80,7 +80,7 @@ function newNotification(type, from, data, body, id, inverse) {
 			break;
 		
 		case 'invite_room':
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + _e("would like you to join this chatroom:") + ' <em>' + data[0] + '</em> ' + _e("Do you accept?");
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + _e("would like you to join this chatroom:") + ' <em>' + data[0].htmlEnc() + '</em> ' + _e("Do you accept?");
 			
 			break;
 		
@@ -90,53 +90,59 @@ function newNotification(type, from, data, body, id, inverse) {
 			break;
 		
 		case 'send':
-			yes_path = 'href="' + encodeQuotes(data[0]) + '" target="_blank"';
+			yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
 			
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("would like to send you a file: “%s”."), '<em>' + truncate(body, 25) + '</em>') + ' ' + _e("Do you accept?");
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("would like to send you a file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>') + ' ' + _e("Do you accept?");
 			
 			break;
 		
 		case 'send_accept':
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to received your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to received your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+			
+			break;
 		
 		case 'send_reject':
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has rejected to receive your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has rejected to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+			
+			break;
 		
 		case 'send_fail':
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("could not receive your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("could not receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+			
+			break;
 		
 		case 'rosterx':
-			text = printf(_e("Do you want to see the friends %s suggests you?"), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
+			text = printf(_e("Do you want to see the friends %s suggests you?").htmlEnc(), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
 			
 			break;
 		
 		case 'comment':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("commented an item you follow: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("commented an item you follow: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
 		case 'like':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("liked your post: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("liked your post: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
 		case 'quote':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("quoted you somewhere: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("quoted you somewhere: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
 		case 'wall':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("published on your wall: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("published on your wall: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
 		case 'photo':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a photo (%s)."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a photo (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
 		case 'video':
-			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a video (%s)."), '<em>' + truncate(body, 25) + '</em>');
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a video (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
@@ -189,7 +195,7 @@ function newNotification(type, from, data, body, id, inverse) {
 			$('.' + id + ' a.yes').click(function() {
 				actionNotification(type, data, 'yes', id);
 				
-				if($(this).attr('target') != '_blank')
+				if(($(this).attr('href') == '#') && ($(this).attr('target') != '_blank'))
 					return false;
 			});
 			
@@ -225,10 +231,10 @@ function actionNotification(type, data, value, id) {
 		requestReply(value, data[0]);
 	
 	if((type == 'send') && (value == 'yes'))
-		replyOOB('accept');
+		replyOOB(data[0], data[3], 'accept', data[2], data[4]);
 	
 	else if((type == 'send') && (value == 'no'))
-		replyOOB('reject');
+		replyOOB(data[0], data[3], 'reject', data[2], data[4]);
 	
 	else if((type == 'rosterx') && (value == 'yes'))
 		openRosterX(data[0]);

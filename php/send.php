@@ -34,6 +34,12 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	$file_id = $_GET['id'];
 	$file_path = JAPPIX_BASE.'/store/send/'.$file_id;
 	
+	// Get file name
+	if(isset($_GET['name']) && !empty($_GET['name']))
+		$file_name = $_GET['name'];
+	else
+		$file_name = $file_id;
+	
 	// Hack?
 	if(!isSafe($file_id)) {
 		header('Status: 406 Not Acceptable', true, 406);
@@ -53,7 +59,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	}
 	
 	// Receive a file
-	header("Content-disposition: attachment; filename=\"$file_id\"");
+	header("Content-disposition: attachment; filename=\"$file_name\"");
 	header("Content-Type: application/force-download");
 	header("Content-Length: ".filesize($file_path));
 	header("Pragma: no-cache");
@@ -108,7 +114,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 	// Return the path to the file
 	exit(
 '<jappix xmlns=\'jappix:file:send\'>
-	<url>'.htmlspecialchars($location.'php/send.php?id='.$name.'.'.$ext).'</url>
+	<url>'.htmlspecialchars($location.'php/send.php?id='.urlencode($name).'.'.urlencode($ext).'&name='.urlencode($filename)).'</url>
 	<desc>'.htmlspecialchars($new_name).'</desc>
 	<id>'.htmlspecialchars($_POST['id']).'</id>
 </jappix>'

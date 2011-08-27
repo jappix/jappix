@@ -15,16 +15,22 @@ Last revision: 27/08/11
 function sendOOB(to, type, url, desc) {
 	// IQ stanza?
 	if(type == 'iq') {
-		// Get the highest resource
+		// Get some values
+		var id = hex_md5(genID() + to + url + desc);
 		to = getHighestResource(to);
 		
 		// IQs cannot be sent to offline users
 		if(!to)
 			return;
 		
+		// Register the ID
+		setDB('send/url', id, url);
+		setDB('send/desc', id, desc);
+		
 		var aIQ = new JSJaCIQ();
 		aIQ.setTo(fullXID(to));
 		aIQ.setType('set');
+		aIQ.setID(id);
 		
 		// Append the query content
 		var aQuery = aIQ.setQuery(NS_IQOOB);
@@ -41,7 +47,7 @@ function sendOOB(to, type, url, desc) {
 		
 		// Append the content
 		aMsg.setBody(desc);
-		var aX = aMsg.appendChild(aMsg.buildNode('x', {'xmlns': NS_XOOB}));
+		var aX = aMsg.appendNode('x', {'xmlns': NS_XOOB});
 		aX.appendChild(aMsg.buildNode('url', {'xmlns': NS_XOOB}, url));
 		
 		con.send(aMsg);
@@ -51,7 +57,7 @@ function sendOOB(to, type, url, desc) {
 }
 
 // Handles an OOB request
-function handleOOB(from, type, node) {
+function handleOOB(from, id, type, node) {
 	var xid = url = desc = '';
 	
 	// IQ stanza?
@@ -74,20 +80,43 @@ function handleOOB(from, type, node) {
 	
 	// Open a new notification
 	if(type && xid && url && desc)
-		newNotification('send', xid, [url, type], desc);
+		newNotification('send', xid, [xid, url, type, id, node], desc);
 }
 
 // Replies to an OOB request
-function replyOOB(type) {
+function replyOOB(to, id, choice, type, node) {
+	// Not IQ type?
+	if(type != 'iq')
+		return;
+	
+	// New IQ
+	var aIQ = new JSJaCIQ();
+	aIQ.setTo(to);
+	aIQ.setID(id);
+	
 	// OOB request accepted
-	if(type == 'accept') {
+	if(choice == 'accept') {
+		aIQ.setType('result');
 		
+		logThis('Accepted file request from: ' + to, 3);
 	}
 	
 	// OOB request rejected
 	else {
+		aIQ.setType('error');
 		
+		// Append stanza content
+		for(var i = 0; i < node.childNodes.length; i++)
+			aIQ.getNode().appendChild(node.childNodes.item(i).cloneNode(true));
+		
+		// Append error content
+		var aError = aIQ.appendNode('error', {'xmlns': NS_CLIENT, 'code': '406', 'type': 'modify'});
+		aError.appendChild(aIQ.buildNode('not-acceptable', {'xmlns': NS_STANZAS}));
+		
+		logThis('Rejected file request from: ' + to, 3);
 	}
+	
+	con.send(aIQ);
 }
 
 // Wait event for OOB upload
@@ -104,14 +133,11 @@ function waitUploadOOB() {
 function handleUploadOOB(responseXML) {
 	// Data selector
 	var dData = $(responseXML).find('jappix');
-	var fID = dData.find('id').text();
 	
-	// Not available?
-	if($('#page-engine .chat-tools-file' + oob_has).is(':hidden')) {
-		openThisError(4);
-		
-		return;
-	}
+	// Get the values
+	var fID = dData.find('id').text();
+	var fURL = dData.find('url').text();
+	var fDesc = dData.find('desc').text();
 	
 	// Get the OOB values
 	var oob_has = ':has(#oob-upload input[value=' + fID + '])';
@@ -122,18 +148,24 @@ function handleUploadOOB(responseXML) {
 	$('#page-engine .chat-tools-file' + oob_has).removeClass('mini');
 	$('#page-engine .bubble-file' + oob_has).remove();
 	
-	// Process the returned data
-	if(dData.find('error').size()) {
+	// Not available?
+	if($('#page-engine .chat-tools-file' + oob_has).is(':hidden') && (oob_type == 'iq')) {
+		openThisError(4);
+		
+		// Remove the file we sent
+		if(fURL)
+			$.get(fURL + '&action=remove');
+	}
+	
+	// Upload error?
+	else if(dData.find('error').size()) {
 		openThisError(4);
 		
 		logThis('Error while sending the file: ' + dData.find('error').text(), 1);
 	}
 	
-	else {
-		// Get the file values
-		var fURL = dData.find('url').text();
-		var fDesc = dData.find('desc').text();
-		
+	// Everything okay?
+	else if(fURL && fDesc) {
 		// Send the OOB request
 		sendOOB(xid, oob_type, fURL, fDesc);
 		
