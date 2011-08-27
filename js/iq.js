@@ -7,7 +7,7 @@ These are the IQ JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 21/03/11
+Last revision: 27/08/11
 
 */
 
@@ -27,6 +27,15 @@ function handleIQ(iq) {
 	iqResponse.setID(iqID);
 	iqResponse.setTo(iqFrom);
 	iqResponse.setType('result');
+	
+	// OOB request
+	if((iqQueryXMLNS == NS_IQOOB) && (iqType == 'set')) {
+		/* REF: http://xmpp.org/extensions/xep-0066.html */
+		
+		handleOOB(iqFrom, 'iq', iqNode);
+		
+		logThis('Received IQ OOB request: ' + iqFrom);
+	}
 	
 	// Software version query
 	if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {

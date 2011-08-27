@@ -12,8 +12,82 @@ Last revision: 27/08/11
 */
 
 // Sends an OOB request to someone
-function sendOOB(xid, type, url, desc) {
-	alert('[DEBUG ALERT]\n\nTo: ' + xid + '\nType: ' + type + '\nURL: ' + url + '\nDesc: ' + desc);
+function sendOOB(to, type, url, desc) {
+	// IQ stanza?
+	if(type == 'iq') {
+		// Get the highest resource
+		to = getHighestResource(to);
+		
+		// IQs cannot be sent to offline users
+		if(!to)
+			return;
+		
+		var aIQ = new JSJaCIQ();
+		aIQ.setTo(fullXID(to));
+		aIQ.setType('set');
+		
+		// Append the query content
+		var aQuery = aIQ.setQuery(NS_IQOOB);
+		aQuery.appendChild(aIQ.buildNode('url', {'xmlns': NS_IQOOB}, url));
+		aQuery.appendChild(aIQ.buildNode('desc', {'xmlns': NS_IQOOB}, desc));
+		
+		con.send(aIQ);
+	}
+	
+	// Message stanza?
+	else {
+		var aMsg = new JSJaCMessage();
+		aMsg.setTo(bareXID(to));
+		
+		// Append the content
+		aMsg.setBody(desc);
+		var aX = aMsg.appendChild(aMsg.buildNode('x', {'xmlns': NS_XOOB}));
+		aX.appendChild(aMsg.buildNode('url', {'xmlns': NS_XOOB}, url));
+		
+		con.send(aMsg);
+	}
+	
+	logThis('Sent OOB request to: ' + to + ' (' + desc + ')');
+}
+
+// Handles an OOB request
+function handleOOB(from, type, node) {
+	var xid = url = desc = '';
+	
+	// IQ stanza?
+	if(type == 'iq') {
+		xid = fullXID(from);
+		url = $(node).find('url').text();
+		desc = $(node).find('desc').text();
+	}
+	
+	// Message stanza?
+	else {
+		xid = bareXID(from);
+		url = $(node).find('url').text();
+		desc = $(node).find('body').text();
+	}
+	
+	// No desc?
+	if(!desc)
+		desc = url;
+	
+	// Open a new notification
+	if(type && xid && url && desc)
+		newNotification('send', xid, [url, type], desc);
+}
+
+// Replies to an OOB request
+function replyOOB(type) {
+	// OOB request accepted
+	if(type == 'accept') {
+		
+	}
+	
+	// OOB request rejected
+	else {
+		
+	}
 }
 
 // Wait event for OOB upload
@@ -33,8 +107,11 @@ function handleUploadOOB(responseXML) {
 	var fID = dData.find('id').text();
 	
 	// Not available?
-	if($('#page-engine .chat-tools-file' + oob_has).is(':hidden'))
+	if($('#page-engine .chat-tools-file' + oob_has).is(':hidden')) {
+		openThisError(4);
+		
 		return;
+	}
 	
 	// Get the OOB values
 	var oob_has = ':has(#oob-upload input[value=' + fID + '])';

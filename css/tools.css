@@ -7,7 +7,7 @@ This is the tools CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 26/08/11
+Last revision: 27/08/11
 
 */
 
@@ -217,6 +217,13 @@ Last revision: 26/08/11
 
 .notifications-content .one-notification[data-type=invite_room] .notification-actions span.talk-images {
 	background-position: 0 -1812px;
+}
+
+.notifications-content .one-notification[data-type=send] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type=send_accept] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type=send_reject] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type=send_fail] .notification-actions span.talk-images {
+	background-position: 0 -1956px;
 }
 
 .notifications-content .one-notification[data-type=rosterx] .notification-actions span.talk-images {

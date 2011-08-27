@@ -61,6 +61,7 @@ function newNotification(type, from, data, body, id, inverse) {
 	
 	// Generate the text to be displayed
 	var text, action, code;
+	var yes_path = 'href="#"';
 	
 	// User things
 	from = bareXID(from);
@@ -87,6 +88,22 @@ function newNotification(type, from, data, body, id, inverse) {
 			text = '<b>' + from.htmlEnc() + '</b> ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
 			
 			break;
+		
+		case 'send':
+			yes_path = 'href="' + encodeQuotes(data[0]) + '" target="_blank"';
+			
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("would like to send you a file: “%s”."), '<em>' + truncate(body, 25) + '</em>') + ' ' + _e("Do you accept?");
+			
+			break;
+		
+		case 'send_accept':
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to received your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+		
+		case 'send_reject':
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has rejected to receive your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
+		
+		case 'send_fail':
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("could not receive your file: “%s”."), '<em>' + truncate(body, 25) + '</em>');
 		
 		case 'rosterx':
 			text = printf(_e("Do you want to see the friends %s suggests you?"), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
@@ -132,16 +149,16 @@ function newNotification(type, from, data, body, id, inverse) {
 		return;
 	
 	// Action links?
-	if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
+	if((type == 'send_accept') || (type == 'send_reject') || (type == 'send_fail') || (type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
 		action = '<a href="#" class="no">' + _e("Hide") + '</a>';
 		
 		// Any parent link?
-		if(data[2] && (type == 'comment'))
+		if((type == 'comment') && data[2])
 			action = '<a href="#" class="yes">' + _e("Show") + '</a>' + action;
 	}
 	
 	else	
-		action = '<a href="#" class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
+		action = '<a ' + yes_path + ' class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
 	if(text) {
 		// We display the notification
@@ -170,7 +187,10 @@ function newNotification(type, from, data, body, id, inverse) {
 			
 			// The yes click function
 			$('.' + id + ' a.yes').click(function() {
-				return actionNotification(type, data, 'yes', id);
+				actionNotification(type, data, 'yes', id);
+				
+				if($(this).attr('target') != '_blank')
+					return false;
 			});
 			
 			// The no click function
@@ -203,6 +223,12 @@ function actionNotification(type, data, value, id) {
 	
 	else if(type == 'request')
 		requestReply(value, data[0]);
+	
+	if((type == 'send') && (value == 'yes'))
+		replyOOB('accept');
+	
+	else if((type == 'send') && (value == 'no'))
+		replyOOB('reject');
 	
 	else if((type == 'rosterx') && (value == 'yes'))
 		openRosterX(data[0]);

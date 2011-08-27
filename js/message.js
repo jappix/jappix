@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 17/08/11
+Last revision: 27/08/11
 
 */
 
@@ -121,6 +121,15 @@ function handleMessage(message) {
 		newNotification('request', xid, [message], body);
 		
 		logThis('HTTP Request from: ' + xid);
+		
+		return false;
+	}
+	
+	// OOB message
+	if(message.getChild('x', NS_XOOB)) {
+		handleOOB(from, 'x', node);
+		
+		logThis('Message OOB request from: ' + xid);
 		
 		return false;
 	}
