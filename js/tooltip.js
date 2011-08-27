@@ -184,6 +184,9 @@ function createTooltip(xid, hash, type) {
 			
 			// Input click event
 			$(path_tooltip + ' #oob-upload input[type=file], ' + path_tooltip + ' #oob-upload input[type=submit]').click(function() {
+				if(exists(path_tooltip + ' #oob-upload input[type=reset]'))
+					return;
+				
 				// Lock the bubble
 				$(path_bubble).addClass('locked');
 				
