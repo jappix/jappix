@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-27 12:10:15\n"
+"PO-Revision-Date: 2011-08-27 15:12:31\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2376,4 +2376,8 @@ msgstr "a refusé de recevoir votre fichier : « %s »."
 #: 
 msgid "could not receive your file: “%s”."
 msgstr "n'a pas pu recevoir votre fichier : « %s »."
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr "a reçu une demande d'échange de fichier : « %s »."
 

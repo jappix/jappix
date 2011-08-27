@@ -80,7 +80,7 @@ function handleOOB(from, id, type, node) {
 	
 	// Open a new notification
 	if(type && xid && url && desc)
-		newNotification('send', xid, [xid, url, type, id, node], desc);
+		newNotification('send', xid, [xid, url, type, id, node], desc, hex_md5(xid + url + desc + id));
 }
 
 // Replies to an OOB request
@@ -168,6 +168,9 @@ function handleUploadOOB(responseXML) {
 	else if(fURL && fDesc && !dData.find('error').size()) {
 		// Send the OOB request
 		sendOOB(xid, oob_type, fURL, fDesc);
+		
+		// Notify the sender
+		newNotification('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
 		
 		logThis('File request sent.', 3);
 	}

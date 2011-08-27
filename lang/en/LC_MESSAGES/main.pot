@@ -835,6 +835,9 @@ msgstr ""
 msgid "would like to send you a file: “%s”."
 msgstr ""
 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
 msgid "has accepted to received your file: “%s”."
 msgstr ""
 

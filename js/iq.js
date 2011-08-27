@@ -42,16 +42,17 @@ function handleIQ(iq) {
 		// Get the values
 		var oob_url = getDB('send/url', iqID);
 		var oob_desc = getDB('send/desc', iqID);
+		var notif_id = hex_md5(oob_url + oob_desc + iqType + iqFrom + iqID);
 		
 		// Error?
 		if($(iqNode).find('error').size()) {
 			// Rejected?
 			if($(iqNode).find('error not-acceptable').size())
-				newNotification('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+				newNotification('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
 			
 			// Failed?
 			else
-				newNotification('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+				newNotification('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
 			
 			// Remove the file
 			$.get(oob_url + '&action=remove');
@@ -59,7 +60,7 @@ function handleIQ(iq) {
 		
 		// Success?
 		else if(iqType == 'result')
-			newNotification('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc);
+			newNotification('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
 	}
 	
 	// Software version query

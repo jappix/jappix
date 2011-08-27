@@ -96,6 +96,11 @@ function newNotification(type, from, data, body, id, inverse) {
 			
 			break;
 		
+		case 'send_pending':
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has received a file exchange request: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+			
+			break;
+		
 		case 'send_accept':
 			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to received your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
@@ -155,7 +160,7 @@ function newNotification(type, from, data, body, id, inverse) {
 		return;
 	
 	// Action links?
-	if((type == 'send_accept') || (type == 'send_reject') || (type == 'send_fail') || (type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
+	if((type == 'send_pending') || (type == 'send_accept') || (type == 'send_reject') || (type == 'send_fail') || (type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
 		action = '<a href="#" class="no">' + _e("Hide") + '</a>';
 		
 		// Any parent link?
