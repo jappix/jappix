@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-06-24 16:00:04\n"
+"PO-Revision-Date: 2011-08-28 15:53:03\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,7 +63,7 @@ msgstr "このチャットルーム (%s) はパスワードで保護されてい
 
 #: 
 msgid "Your browser is out of date!"
-msgstr ""
+msgstr "ブラウザバージョンが古いです!"
 
 #: 
 msgid "Last %s version is better!"
@@ -159,7 +159,7 @@ msgstr "日付"
 
 #: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "友達を選択するとチャットの履歴が見れます"
 
 #: 
 msgid "Nothing found for: %s"
@@ -379,7 +379,7 @@ msgstr "残念!あなたの情報カードにイメージが定義されてい�
 
 #: 
 msgid "Address"
-msgstr "住所"
+msgstr "アドレス"
 
 #: 
 msgid "Street"
@@ -415,7 +415,7 @@ msgstr "XMPPはプライベートではありません。パブリックプロ�
 
 #: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr ""
+msgstr "他のユーザが簡単に識別できるようにプロファイルイメージ(最大 %s)をアップロードする事をお勧めします。"
 
 #: 
 msgid "Save"
@@ -1087,7 +1087,7 @@ msgstr "承認を希望します"
 
 #: 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr ""
+msgstr "%s に友達申請をしますか？"
 
 #: 
 msgid "Submit"
@@ -1283,19 +1283,19 @@ msgstr "このツールを使用することでサーバ上の友達の検索し
 
 #: 
 msgid "Great work! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "よくできました!あなたは友達とJappixで共有できます。"
 
 #: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
-msgstr ""
+msgstr "セーブボタンを押すとプロファイルエディターが起動します。幸せなお付き合いを！"
 
 #: 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "%sとJappixを共有しました"
 
 #: 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr ""
+msgstr "私は%sです。オープンソーシャルプラットフォームJappixを使用しています"
 
 #: 
 msgid "Unknown name"
@@ -1359,23 +1359,23 @@ msgstr "サービスのインストール"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "もし現在の言語があなたの環境（%1s）と異なる場合、Jappixスピーク %2s を作成し保存してください。"
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
-msgstr ""
+msgstr "Jappixのインストールや設定のヘルプが必要な場合には、全体ドキュメントを利用する事が可能です："
 
 #: 
 msgid "It's time to build your own social cloud: just go to the next step!"
-msgstr ""
+msgstr "個人的なソーシャルクラウドを作成するには、次のステップに移動します！"
 
 #: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr ""
+msgstr "Jappixのデータ(共有ファイル、チャットログ、音楽、設定等)は、セキュリティで保護されたフォルダに保存します。"
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
-msgstr ""
+msgstr "サブフォルダを書き込む権限が必要です。%1sに権限を与えるか%2sに権限を与えてください"
 
 #: 
 msgid "The folder is writable, you can continue!"
@@ -1383,7 +1383,7 @@ msgstr "フォルダは書き込み可能です。続けてください。"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr ""
+msgstr "Jappixは、設定ファイル、新しいプラグイン、アップデートを提供できます。管理者権限でのアクセスが必要です。"
 
 #: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
@@ -1395,11 +1395,11 @@ msgstr "パスワードが一致しません"
 
 #: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr ""
+msgstr "Jappixが動作するように設定する必要があります。次の項目を入力してください(通常は規定値で十分です)"
 
 #: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
-msgstr ""
+msgstr "値を入力しない場合には、自動的に規定値が設定されます。"
 
 #: 
 msgid "User"
@@ -1455,11 +1455,11 @@ msgstr "圧縮"
 
 #: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
-msgstr ""
+msgstr "このページでJappixが接続するホストが設定できます。オフィシャルサービスの場合はそのまま続行してください。"
 
 #: 
 msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
-msgstr ""
+msgstr "不明なBOSHサーバです。JappixクライアントとXMPPサーバ間の接続に技術的な制限が必要です。"
 
 #: 
 msgid "Main host"
@@ -1483,15 +1483,15 @@ msgstr "BOSHホスト"
 
 #: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-msgstr ""
+msgstr "Jappixを拡張するためにソフトウエアをインストールする事が出来ます。セキュリティの為規定値が変わる場合もあります。"
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
-msgstr ""
+msgstr "実行するにはroot権限でシェルを実行できるユーザでアクセスする必要があります。Jappixのいくつかの機能が制限される場合があります。"
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "セットアップ完了後キャッシュファイルを作成します。アプリケーションが表示されるまでボタンを押さずにお待ちください。"
 
 #: 
 msgid "Thanks for using Jappix!"
@@ -1511,7 +1511,7 @@ msgstr "もう一度確認して下さい"
 
 #: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
-msgstr ""
+msgstr "フォルダーに書き込みができません。%sディレクトリーに書き込み権限を追加してください。"
 
 #: 
 msgid "%s is installed on your system."
@@ -1523,11 +1523,11 @@ msgstr "%1s はインストールされてません。%2sをインストール�
 
 #: 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr ""
+msgstr "PHPの最大アップロードサイズは十分です。"
 
 #: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr ""
+msgstr "PHPの最大アップロードサイズが不足しています。%3から%2sの間で設定してください。"
 
 #: 
 msgid "Jappix manager"
@@ -1611,7 +1611,7 @@ msgstr "管理パネルにログインするには、下記のフォームを利
 
 #: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
-msgstr ""
+msgstr "セキュリティを強化するにはセッションの制限時間を設け、ブラウザ終了時にログアウトします。"
 
 #: 
 msgid "Credentials"
@@ -1627,7 +1627,7 @@ msgstr "管理者として認識できませんでした。資格情報を確認
 
 #: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
-msgstr ""
+msgstr "Jappixで処理された統計情報です。重要な情報を見つけることができます。"
 
 #: 
 msgid "Change your Jappix node configuration with this tool."
@@ -1635,15 +1635,15 @@ msgstr "このツールを使用してJappixノードの設定を変更するこ
 
 #: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr ""
+msgstr "Jappixノードが送信するXMPPホストを変更することができます。"
 
 #: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
-msgstr ""
+msgstr "Jappixノードに保存されているすべてのファイルの管理ができます。サブフォルダを選択して編集を開始！"
 
 #: 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappixは完全にカスタマイズ可能です。右側でデザインが変更できます。"
 
 #: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
@@ -1663,11 +1663,11 @@ msgstr "変更を保存しました。"
 
 #: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
-msgstr ""
+msgstr "一人又は複数のJappixノードの管理者が定義可能です。パスワードを変更する事も可能です。"
 
 #: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
-msgstr ""
+msgstr "Jappixのバージョンをチェックし、ノードをアップデートできます。英語で最新バージョン情報が表示されます。"
 
 #: 
 msgid "Access statistics"
@@ -1731,31 +1731,31 @@ msgstr "12月"
 
 #: 
 msgid "Monday"
-msgstr ""
+msgstr "月曜日"
 
 #: 
 msgid "Tuesday"
-msgstr ""
+msgstr "火曜日"
 
 #: 
 msgid "Wednesday"
-msgstr ""
+msgstr "水曜日"
 
 #: 
 msgid "Thursday"
-msgstr ""
+msgstr "木曜日"
 
 #: 
 msgid "Friday"
-msgstr ""
+msgstr "金曜日"
 
 #: 
 msgid "Saturday"
-msgstr ""
+msgstr "土曜日"
 
 #: 
 msgid "Sunday"
-msgstr ""
+msgstr "日曜日"
 
 #: 
 msgid "Total"
@@ -1799,7 +1799,7 @@ msgstr "入力項目を確認してください:何かが不足しています�
 
 #: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
-msgstr ""
+msgstr "Jappixの背景を好みの色やアップロードしたイメージに変更することができます。あなたの感性に合わせてください！"
 
 #: 
 msgid "Use default background"
@@ -1811,31 +1811,31 @@ msgstr "所有しているイメージを使用する。"
 
 #: 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "バックグランドを選択し、ディスプレイモードを変更してください"
 
 #: 
 msgid "Use your own color"
-msgstr ""
+msgstr "独自の色を使用"
 
 #: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr ""
+msgstr "背景で使用したい色を16進数で入力してください"
 
 #: 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "背景の管理"
 
 #: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
-msgstr ""
+msgstr "新しい背景を追加する事ができます。有効なイメージをアップロードしてください。"
 
 #: 
 msgid "If you want to remove some backgrounds, use the browser below."
-msgstr ""
+msgstr "背景を削除したい場合には、以下のブラウザを使用してください。"
 
 #: 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
-msgstr ""
+msgstr "全てのユーザに対しての注意書きや広告が定義できます。"
 
 #: 
 msgid "Simple notice"
@@ -1843,15 +1843,15 @@ msgstr "簡単なお知らせ"
 
 #: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
-msgstr ""
+msgstr "注意はテキストで表示できます。コードはサポートされていません。"
 
 #: 
 msgid "Advanced notice"
-msgstr ""
+msgstr "高度な通知"
 
 #: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
-msgstr ""
+msgstr "注意をHTML,CSS、JavaScript形式にカスタマイズできます。コード形式にする必要があります。"
 
 #: 
 msgid "Available updates"
@@ -1863,31 +1863,31 @@ msgstr "What's new?"
 
 #: 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr ""
+msgstr "ストレージフォルダに書き込みがせきません。書き込みを許可してください！"
 
 #: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
-msgstr ""
+msgstr "%1s の原因はプロキシーです。%2s に増加するか、最大値 %3s にしてください。"
 
 #: 
 msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
-msgstr ""
+msgstr "開発バージョンのJappixを使用しています。%s を実行してリポジトリを更新してください。"
 
 #: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
-msgstr ""
+msgstr "新しいバージョンのJappixがあります。確認してアップデートしてください。"
 
 #: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr ""
+msgstr "期限切れのバージョンです。ここをクリックして%sにバージョンアップしてください。"
 
 #: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
-msgstr ""
+msgstr "バージョンは最新のようです。バージョンを手動でチェックする場合にはクリックしてください。"
 
 #: 
 msgid "Check for updates"
-msgstr ""
+msgstr "アップデートをクリックしてください"
 
 #: 
 msgid "Update in progress"
@@ -1927,7 +1927,7 @@ msgstr "中止:ソケットエラー"
 
 #: 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "中止:バッファーエラー"
 
 #: 
 msgid "Aborted: everything is not writable!"
@@ -1983,19 +1983,19 @@ msgstr "ストレージフォルダを空にしました!"
 
 #: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
-msgstr ""
+msgstr "Jappixノードの快適さを維持するために、定期的にストレージフォルダをきれいにしてください！"
 
 #: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
-msgstr ""
+msgstr "Jappixに音楽(Ogg Vorbis, MP3 または WAV 形式)をアップロードして聞くことができます！"
 
 #: 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "アップロードするファイルは%sより小さくする必要があります。"
 
 #: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
-msgstr ""
+msgstr "ユーザストアの保持期間を調整したり、望ましくないコンテンツを削除できます。"
 
 #: 
 msgid "Title"
@@ -2043,7 +2043,7 @@ msgstr "削除する要素を選択する必要があります。"
 
 #: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
-msgstr ""
+msgstr "新しいユーザを追加したりパスワードの変更ができます。複雑なパスワードを設定してください！"
 
 #: 
 msgid "Manage"
@@ -2055,7 +2055,7 @@ msgstr "リスト"
 
 #: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
-msgstr ""
+msgstr "ユーザの削除ができます。但し、登録されているユーザが1人の場合には削除できません。"
 
 #: 
 msgid "The user has been added!"
@@ -2083,167 +2083,167 @@ msgstr "ユーザは現在アクティブです。"
 
 #: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "最終確認： %s"
 
 #: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "%s からアクティブでない"
 
 #: 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "友達はメッセージを返信することができません!"
 
 #: 
 msgid "Static content server"
-msgstr ""
+msgstr "スタティックコンテンツサーバ"
 
 #: 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr ""
+msgstr "“%2s” %1s はスタティックコンテンツサーバです。"
 
 #: 
 msgid "Suggested friends"
-msgstr ""
+msgstr "友達の申請"
 
 #: 
 msgid "Check all"
-msgstr ""
+msgstr "全てをチェック"
 
 #: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "全てのチェックの解除"
 
 #: 
 msgid "Choose"
-msgstr ""
+msgstr "選択"
 
 #: 
 msgid "List name"
-msgstr ""
+msgstr "苗字"
 
 #: 
 msgid "Allow"
-msgstr ""
+msgstr "許可"
 
 #: 
 msgid "Deny"
-msgstr ""
+msgstr "不許可"
 
 #: 
 msgid "Group"
-msgstr ""
+msgstr "グループ"
 
 #: 
 msgid "Subscription"
-msgstr ""
+msgstr "サブスクリプション"
 
 #: 
 msgid "Both"
-msgstr ""
+msgstr "両方"
 
 #: 
 msgid "From"
-msgstr ""
+msgstr "から"
 
 #: 
 msgid "Everybody"
-msgstr ""
+msgstr "みんな"
 
 #: 
 msgid "Send messages"
-msgstr ""
+msgstr "メッセージ送信"
 
 #: 
 msgid "Send queries"
-msgstr ""
+msgstr "クエリー送信"
 
 #: 
 msgid "See my status"
-msgstr ""
+msgstr "自分のステータスを見る"
 
 #: 
 msgid "Send his/her status"
-msgstr ""
+msgstr "彼/彼女にステータスを送る"
 
 #: 
 msgid "Everything"
-msgstr ""
+msgstr "全部"
 
 #: 
 msgid "Item"
-msgstr ""
+msgstr "アイテム"
 
 #: 
 msgid "Order"
-msgstr ""
+msgstr "その他"
 
 #: 
 msgid "Active for this session"
-msgstr ""
+msgstr "セッションがアクティブになりました"
 
 #: 
 msgid "Always active"
-msgstr ""
+msgstr "常にアクティブ"
 
 #: 
 msgid "User directory"
-msgstr ""
+msgstr "ユーザーディレクトリ"
 
 #: 
 msgid "Search a friend"
-msgstr ""
+msgstr "友達を検索"
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
-msgstr ""
+msgstr "要求されたリクエストは、受信者又はサーバに実装されていないため、処理する事ができません"
 
 #: 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "%sからのレポート"
 
 #: 
 msgid "Loading comments..."
-msgstr ""
+msgstr "コメントをロード中…"
 
 #: 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "ここにコメントを入力してください…"
 
 #: 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "コメントを取得できませんでした。"
 
 #: 
 msgid "Show comments"
-msgstr ""
+msgstr "コメントを見る"
 
 #: 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "彼/彼女にメッセージを送る"
 
 #: 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "彼/彼女とチャットする"
 
 #: 
 msgid "Media integration"
-msgstr ""
+msgstr "メディア統合"
 
 #: 
 msgid "Comments locked!"
-msgstr ""
+msgstr "コメントがロックされています"
 
 #: 
 msgid "Type something you want to share with your friends..."
-msgstr ""
+msgstr "友達と共有したいものを入力…"
 
 #: 
 msgid "changed his/her nickname to %s"
-msgstr ""
+msgstr "彼/彼女のニックネームを %s に変更"
 
 #: 
 msgid "commented an item you follow: “%s”."
-msgstr ""
+msgstr "“%s”のコメントをフォローする"
 
 #: 
 #~ msgid "See"
@@ -2251,53 +2251,181 @@ msgstr ""
 
 #: 
 msgid "Hide"
-msgstr ""
+msgstr "隠す"
 
 #: 
 msgid "liked your post: “%s”."
-msgstr ""
+msgstr "“%s”にいいねを送信する"
 
 #: 
 msgid "quoted you somewhere: “%s”."
-msgstr ""
+msgstr "“%s”を引用する"
 
 #: 
 msgid "published on your wall: “%s”."
-msgstr ""
+msgstr "“%s”を公開する。"
 
 #: 
 msgid "tagged you in a photo (%s)."
-msgstr ""
+msgstr "写真(%s)にタグを付けました。"
 
 #: 
 msgid "tagged you in a video (%s)."
-msgstr ""
+msgstr "映像(%s)にタグを付けました。"
 
 #: 
 msgid "Show"
-msgstr ""
+msgstr "見る"
 
 #: 
 msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr ""
+msgstr "ヘルプが必要ですか？ドキュメントページをよく読むか、このフォームを入力してください！"
 
 #: 
 msgid "Pubsub host"
-msgstr ""
+msgstr "Pubsubホスト"
 
 #: 
 msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr ""
+msgstr "Jappixは素晴らしいソーシャルプラットフォームです。どこにいてもいつでもアクセスできます。"
 
 #: 
 msgid "Manager link"
-msgstr ""
+msgstr "マネージャーリンク"
 
 #: 
 msgid "User uploads server"
-msgstr ""
+msgstr "ユーザアップロードサーバ"
 
 #: 
 msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "“%2s”を%1sサーバにアップロードしました。"
+
+#: 
+msgid "Logo"
+msgstr ""
+
+#: 
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+#: 
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#: 
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#: 
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+#: 
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr ""
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+#: 
+msgid "Remove this logo"
+msgstr ""
+
+#: 
+msgid "View this logo"
+msgstr ""
+
+#: 
+msgid "Send a file"
+msgstr ""
+
+#: 
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
+#: 
+msgid "Groupchats to join"
+msgstr ""
+
+#: 
+msgid "Purge sent files"
+msgstr ""
+
+#: 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+#: 
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "could not receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+#: 
+msgid "Available shortcuts:"
+msgstr ""
+
+#: 
+msgid "%s removes the chat logs"
+msgstr ""
+
+#: 
+msgid "%s joins a groupchat"
+msgstr ""
+
+#: 
+msgid "%s closes the chat"
+msgstr ""
+
+#: 
+msgid "%s shows the user profile"
+msgstr ""
+
+#: 
+msgid "%s sends a message to the room"
+msgstr ""
+
+#: 
+msgid "%s changes your nickname"
+msgstr ""
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+#: 
+msgid "%s changes the room topic"
+msgstr ""
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr ""
+
+#: 
+msgid "%s bans an user of the room"
+msgstr ""
+
+#: 
+msgid "%s invites someone to join the room"
 msgstr ""
 

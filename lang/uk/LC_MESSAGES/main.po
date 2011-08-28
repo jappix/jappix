@@ -4,14 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-03-20 13:44:05\n"
+"PO-Revision-Date: 2011-08-28 15:42:49\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
-msgstr ""
+msgstr "У вашому браузері не активовано виконання JavaScript, тому Ви не зможете використовувати Jappix. Будь ласка, активуйте виконання JavaScript."
 
 #: 
 msgid "An open social network"
@@ -19,7 +19,7 @@ msgstr "Відкрита соціальна мережа"
 
 #: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr "Jappix був перерваний через проблеми зі зв'язком, помилки або невірних даних про користувача (перевірте логін та інші дані), просимо вибачення за незручності."
+msgstr "Робота Jappix була перервана через проблеми зі зв'язком, помилку чи невірні дані користувача (перевірте логін та пароль), просимо вибачення за незручності."
 
 #: 
 msgid "The element list on this server could not be obtained!"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
-msgstr "Ваш пароль було змінено, тепер ви можете увійти в свій акаунт з вашим новим паролем."
+msgstr "Ваш пароль було змінено, тепер Ви можете увійти, використовуючи новий пароль."
 
 #: 
 msgid "Your XMPP account has been removed, bye!"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: 
 msgid "The room you joined seems not to exist. You should create it!"
-msgstr "Кімната до якої ви приєднались неіснує. Ви повинні створити її."
+msgstr "Кімнати, до якої ви приєднались, не існує. Ви повинні створити її."
 
 #: 
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
@@ -47,7 +47,7 @@ msgstr ""
 
 #: 
 msgid "The user that you want to reach is not present in the room."
-msgstr ""
+msgstr "Користувач, з яким Ви намагаєтесь зв’язатися, відсутній у кімнаті."
 
 #: 
 msgid "Please enter the group chat address to join."
@@ -55,7 +55,7 @@ msgstr "Будьласка введіть адресу чату."
 
 #: 
 msgid "Please enter your nickname to join %s."
-msgstr "Будьласка введіть ваш псевдонім щоб приєднатися %s."
+msgstr "Будь ласка, введіть ваш псевдонім щоб приєднатися до %s."
 
 #: 
 msgid "This room (%s) is protected with a password."
@@ -63,7 +63,7 @@ msgstr "Кімната %s захищена паролем."
 
 #: 
 msgid "Your browser is out of date!"
-msgstr ""
+msgstr "Ваш браузер застарів!"
 
 #: 
 msgid "Last %s version is better!"
@@ -91,15 +91,15 @@ msgstr "Пароль"
 
 #: 
 msgid "Remember me"
-msgstr "Запамятати мене"
+msgstr "Запам’ятати мене"
 
 #: 
 msgid "This tool has been disabled, you cannot use it!"
-msgstr "Цей інструмент був вимкнений, ви неможете використовувати його!"
+msgstr "Цей інструмент був вимкнений, ви не можете використовувати його!"
 
 #: 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr ""
+msgstr "Вас було від’єднано через проблеми з мережею. Що Ви хочете зробити тепер?"
 
 #: 
 msgid "Reconnect"
@@ -119,7 +119,7 @@ msgstr "Налаштування"
 
 #: 
 msgid "Disconnect"
-msgstr "Відєднатись"
+msgstr "Від’єднатись"
 
 #: 
 msgid "Filter"
@@ -147,7 +147,7 @@ msgstr "Показувати всіх друзів"
 
 #: 
 msgid "Only show connected friends"
-msgstr "Показувати тільки підєднаних друзів"
+msgstr "Показувати тільки під’єднаних друзів"
 
 #: 
 msgid "Message archives"
@@ -159,11 +159,11 @@ msgstr "Дата"
 
 #: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "Будь ласка, виберіть друга для перегляду історії переписки."
 
 #: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "Нічого не знайдено про %s"
 
 #: 
 msgid "A short message?"
@@ -271,7 +271,7 @@ msgstr "Виконую вправи"
 
 #: 
 msgid "Grooming"
-msgstr ""
+msgstr "Чепурюсь"
 
 #: 
 msgid "Appointment"
@@ -355,11 +355,11 @@ msgstr "Контакт"
 
 #: 
 msgid "E-mail"
-msgstr "E-mail"
+msgstr ""
 
 #: 
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: 
 msgid "Website"
@@ -906,8 +906,8 @@ msgid "Communicate with the entire world!"
 msgstr ""
 
 #: 
-msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr ""
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
 
 #: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
@@ -1139,7 +1139,7 @@ msgstr "Авторизований"
 
 #: 
 msgid "Ask for authorization"
-msgstr "Запрочити авторизацію"
+msgstr "Надіслати запит авторизації"
 
 #: 
 msgid "Unblock"
@@ -1163,7 +1163,7 @@ msgstr "Конференція"
 
 #: 
 msgid "Jappix Mobile"
-msgstr "Jappix мобільний"
+msgstr "мобільний Jappix "
 
 #: 
 msgid "Desktop"
@@ -1175,11 +1175,11 @@ msgstr "Мобільний"
 
 #: 
 msgid "Please wait..."
-msgstr "Будь ласка зачекайте..."
+msgstr "Будь ласка, зачекайте..."
 
 #: 
 msgid "Please enable JavaScript"
-msgstr "Будь ласка включіть JavaScript"
+msgstr "Будь ласка, дозвольте виконання JavaScript"
 
 #: 
 msgid "Your channel"
@@ -2195,5 +2195,237 @@ msgstr ""
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
+
+#: 
+msgid "This is a repeat from %s"
+msgstr ""
+
+#: 
+msgid "Loading comments..."
+msgstr ""
+
+#: 
+msgid "Type your comment here..."
+msgstr ""
+
+#: 
+msgid "Could not get the comments!"
+msgstr ""
+
+#: 
+msgid "Show comments"
+msgstr ""
+
+#: 
+msgid "Send him/her a message"
+msgstr ""
+
+#: 
+msgid "Start a chat with him/her"
+msgstr ""
+
+#: 
+msgid "Media integration"
+msgstr ""
+
+#: 
+msgid "Comments locked!"
+msgstr ""
+
+#: 
+msgid "Type something you want to share with your friends..."
+msgstr ""
+
+#: 
+msgid "changed his/her nickname to %s"
+msgstr ""
+
+#: 
+msgid "commented an item you follow: “%s”."
+msgstr ""
+
+#: 
+#~ msgid "See"
+#~ msgstr ""
+
+#: 
+msgid "Hide"
+msgstr ""
+
+#: 
+msgid "liked your post: “%s”."
+msgstr ""
+
+#: 
+msgid "quoted you somewhere: “%s”."
+msgstr ""
+
+#: 
+msgid "published on your wall: “%s”."
+msgstr ""
+
+#: 
+msgid "tagged you in a photo (%s)."
+msgstr ""
+
+#: 
+msgid "tagged you in a video (%s)."
+msgstr ""
+
+#: 
+msgid "Show"
+msgstr ""
+
+#: 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr ""
+
+#: 
+msgid "Pubsub host"
+msgstr ""
+
+#: 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr ""
+
+#: 
+msgid "Manager link"
+msgstr ""
+
+#: 
+msgid "User uploads server"
+msgstr ""
+
+#: 
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Logo"
+msgstr ""
+
+#: 
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+#: 
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#: 
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#: 
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+#: 
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr ""
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+#: 
+msgid "Remove this logo"
+msgstr ""
+
+#: 
+msgid "View this logo"
+msgstr ""
+
+#: 
+msgid "Send a file"
+msgstr ""
+
+#: 
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
+#: 
+msgid "Groupchats to join"
+msgstr ""
+
+#: 
+msgid "Purge sent files"
+msgstr ""
+
+#: 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+#: 
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "could not receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+#: 
+msgid "Available shortcuts:"
+msgstr ""
+
+#: 
+msgid "%s removes the chat logs"
+msgstr ""
+
+#: 
+msgid "%s joins a groupchat"
+msgstr ""
+
+#: 
+msgid "%s closes the chat"
+msgstr ""
+
+#: 
+msgid "%s shows the user profile"
+msgstr ""
+
+#: 
+msgid "%s sends a message to the room"
+msgstr ""
+
+#: 
+msgid "%s changes your nickname"
+msgstr ""
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+#: 
+msgid "%s changes the room topic"
+msgstr ""
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr ""
+
+#: 
+msgid "%s bans an user of the room"
+msgstr ""
+
+#: 
+msgid "%s invites someone to join the room"
 msgstr ""
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-06-20 09:00:18\n"
+"PO-Revision-Date: 2011-08-28 15:40:54\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2299,5 +2299,133 @@ msgstr ""
 
 #: 
 msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Logo"
+msgstr ""
+
+#: 
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+#: 
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#: 
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#: 
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+#: 
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr ""
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+#: 
+msgid "Remove this logo"
+msgstr ""
+
+#: 
+msgid "View this logo"
+msgstr ""
+
+#: 
+msgid "Send a file"
+msgstr ""
+
+#: 
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
+#: 
+msgid "Groupchats to join"
+msgstr ""
+
+#: 
+msgid "Purge sent files"
+msgstr ""
+
+#: 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+#: 
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "could not receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+#: 
+msgid "Available shortcuts:"
+msgstr ""
+
+#: 
+msgid "%s removes the chat logs"
+msgstr ""
+
+#: 
+msgid "%s joins a groupchat"
+msgstr ""
+
+#: 
+msgid "%s closes the chat"
+msgstr ""
+
+#: 
+msgid "%s shows the user profile"
+msgstr ""
+
+#: 
+msgid "%s sends a message to the room"
+msgstr ""
+
+#: 
+msgid "%s changes your nickname"
+msgstr ""
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+#: 
+msgid "%s changes the room topic"
+msgstr ""
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr ""
+
+#: 
+msgid "%s bans an user of the room"
+msgstr ""
+
+#: 
+msgid "%s invites someone to join the room"
 msgstr ""
 

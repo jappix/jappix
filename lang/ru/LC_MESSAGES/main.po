@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-03-20 13:43:50\n"
+"PO-Revision-Date: 2011-08-28 15:42:21\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -519,7 +519,7 @@ msgstr "в настоящее время"
 
 #: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Подождите, аватар загружается..."
 
 #: 
 msgid "Here it is! A new beautiful profile image!"
@@ -906,8 +906,8 @@ msgid "Communicate with the entire world!"
 msgstr "Общайся со всем миром!"
 
 #: 
-msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix это некоммерческая общественная платформа, доступная откуда бы ни было, когда бы ни пожелаете и с кем бы ни решили пообщаться."
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr "Jappix это некоммерческая общественная платформа, доступная откуда бы ни было, когда бы ни пожелаете и с кем бы ни решили пообщаться."
 
 #: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
@@ -987,7 +987,7 @@ msgstr "Обязательный"
 
 #: 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "Вы были зарегистрированы, ваш XMPP-адрес:"
 
 #: 
 msgid "Manager"
@@ -1271,11 +1271,11 @@ msgstr "Поделится своим мемтоположением"
 
 #: 
 msgid "Offline friends"
-msgstr ""
+msgstr "Друзья оффлайн"
 
 #: 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Не скрывать друзей оффлайн"
 
 #: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
@@ -1323,11 +1323,11 @@ msgstr "Установка Jappix"
 
 #: 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Добро пожаловать в установку Jappix!"
 
 #: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr ""
+msgstr "Этот мастер поможет вам быстро установить Jappix, первую полноценную социальную платформу на XMPP-протоколе. Для установки не требуется особых технических навыков."
 
 #: 
 msgid "Let's have a look at the installation steps:"
@@ -1335,7 +1335,7 @@ msgstr ""
 
 #: 
 msgid "Welcome"
-msgstr ""
+msgstr "Добро пожаловать"
 
 #: 
 msgid "Storage configuration"
@@ -1359,7 +1359,7 @@ msgstr "Установка сервиса"
 
 #: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "Если текущий язык не совпадает с вашим (%1s), вы можете настроить Jabbix на %2s."
 
 #: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
@@ -1367,11 +1367,11 @@ msgstr "Если хотите получить какую-либо помощь 
 
 #: 
 msgid "It's time to build your own social cloud: just go to the next step!"
-msgstr ""
+msgstr "Пришло время создать свое социальное облако: переходите к следующему шагу!"
 
 #: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr ""
+msgstr "Jappix сохраняет постоянные данные (такие, как общие файлы, логи переписки, вашу музыку и собственные настройки) в единой защищенной папке."
 
 #: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
@@ -1379,11 +1379,11 @@ msgstr ""
 
 #: 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "Папка доступна для записи, можно продолжать!"
 
 #: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr ""
+msgstr "Jabbix позволяет вам управлять конфигурацией, устанавливать новые плагины или проверять обновления. Для доступа к панели управления требуется создать учетную запись администратора."
 
 #: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
-msgstr ""
+msgstr "Примечание: если вы не заполните необходимое значение, оно будет автоматически заполнено значением по умолчанию."
 
 #: 
 msgid "User"
@@ -1439,7 +1439,7 @@ msgstr "Использовать proxy"
 
 #: 
 msgid "Encryption"
-msgstr ""
+msgstr "Шифрование"
 
 #: 
 msgid "HTTPS storage"
@@ -1455,7 +1455,7 @@ msgstr "Сжатие"
 
 #: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
-msgstr ""
+msgstr "На этой странице можно задать сервер, с которым Jappix будет соединяться по умолчанию. Вы можете оставить его как есть, если хотите использовать официальные серверы."
 
 #: 
 msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
@@ -1487,11 +1487,11 @@ msgstr ""
 
 #: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
-msgstr ""
+msgstr "Для этого вам необходимо иметь root-доступ к консоли вашего сервера. Помните - это необязательные модули, Jappix будет работать и без них, но некоторые возможности будут недоступны."
 
 #: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "После окончания установки, Jappix сгенерирует файлы кеша. Процесс может занять некоторое время, не нажимайте на кнопки и подождите, пока не отобразится окно приложения."
 
 #: 
 msgid "Thanks for using Jappix!"
@@ -2195,5 +2195,237 @@ msgstr "Поиск друга"
 
 #: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
+
+#: 
+msgid "This is a repeat from %s"
+msgstr ""
+
+#: 
+msgid "Loading comments..."
+msgstr ""
+
+#: 
+msgid "Type your comment here..."
+msgstr ""
+
+#: 
+msgid "Could not get the comments!"
+msgstr ""
+
+#: 
+msgid "Show comments"
+msgstr ""
+
+#: 
+msgid "Send him/her a message"
+msgstr ""
+
+#: 
+msgid "Start a chat with him/her"
+msgstr ""
+
+#: 
+msgid "Media integration"
+msgstr ""
+
+#: 
+msgid "Comments locked!"
+msgstr ""
+
+#: 
+msgid "Type something you want to share with your friends..."
+msgstr ""
+
+#: 
+msgid "changed his/her nickname to %s"
+msgstr ""
+
+#: 
+msgid "commented an item you follow: “%s”."
+msgstr ""
+
+#: 
+#~ msgid "See"
+#~ msgstr ""
+
+#: 
+msgid "Hide"
+msgstr ""
+
+#: 
+msgid "liked your post: “%s”."
+msgstr ""
+
+#: 
+msgid "quoted you somewhere: “%s”."
+msgstr ""
+
+#: 
+msgid "published on your wall: “%s”."
+msgstr ""
+
+#: 
+msgid "tagged you in a photo (%s)."
+msgstr ""
+
+#: 
+msgid "tagged you in a video (%s)."
+msgstr ""
+
+#: 
+msgid "Show"
+msgstr ""
+
+#: 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr ""
+
+#: 
+msgid "Pubsub host"
+msgstr ""
+
+#: 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr ""
+
+#: 
+msgid "Manager link"
+msgstr ""
+
+#: 
+msgid "User uploads server"
+msgstr ""
+
+#: 
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Logo"
+msgstr ""
+
+#: 
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+#: 
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#: 
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#: 
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+#: 
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr ""
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+#: 
+msgid "Remove this logo"
+msgstr ""
+
+#: 
+msgid "View this logo"
+msgstr ""
+
+#: 
+msgid "Send a file"
+msgstr ""
+
+#: 
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
+#: 
+msgid "Groupchats to join"
+msgstr ""
+
+#: 
+msgid "Purge sent files"
+msgstr ""
+
+#: 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+#: 
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "could not receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+#: 
+msgid "Available shortcuts:"
+msgstr ""
+
+#: 
+msgid "%s removes the chat logs"
+msgstr ""
+
+#: 
+msgid "%s joins a groupchat"
+msgstr ""
+
+#: 
+msgid "%s closes the chat"
+msgstr ""
+
+#: 
+msgid "%s shows the user profile"
+msgstr ""
+
+#: 
+msgid "%s sends a message to the room"
+msgstr ""
+
+#: 
+msgid "%s changes your nickname"
+msgstr ""
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+#: 
+msgid "%s changes the room topic"
+msgstr ""
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr ""
+
+#: 
+msgid "%s bans an user of the room"
+msgstr ""
+
+#: 
+msgid "%s invites someone to join the room"
 msgstr ""
 
