@@ -161,14 +161,11 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 					// Append each value to the XML document
 					for(i in xid_arr) {
 						// Get the current value
-						xid_current = xid_arr[i];
+						xid_current = trim(xid_arr[i]);
 						
 						// No current value?
-						if(!xid_current || xid_current.match(/^(\s+)$/))
+						if(!xid_current)
 							continue;
-						
-						// Filter the current value
-						xid_current = xid_current.replace(/ /g, '');
 						
 						// Add the current value
 						if(!existArrayValue(xid_check, xid_current)) {
@@ -736,7 +733,7 @@ function fillDataForm(xml, id) {
 					}
 				}
 				
-				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" multiple="" class="dataform-i" value="' + encodeQuotes(xid_value) + '" placeholder="jack@jappix.com, jones@jappix.com"' + required + ' />';
+				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="text" class="dataform-i" value="' + encodeQuotes(xid_value) + '" placeholder="jack@jappix.com, jones@jappix.com"' + required + ' />';
 			}
 			
 			// Other stuffs that are similar

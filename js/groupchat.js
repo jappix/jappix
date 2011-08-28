@@ -261,14 +261,13 @@ function joinConfGroupchats() {
 	
 	for(i in muc_arr) {
 		// Get the current value
-		var muc_current = muc_arr[i];
+		var muc_current = trim(muc_arr[i]);
 		
 		// No current value?
-		if(!muc_current || muc_current.match(/^(\s+)$/))
+		if(!muc_current)
 			continue;
 		
 		// Filter the current value
-		muc_current = muc_current.replace(/ /g, '');
 		muc_current = generateXID(muc_current, 'groupchat');
 		
 		// Add the current value
