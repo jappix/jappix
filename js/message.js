@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 27/08/11
+Last revision: 28/08/11
 
 */
 
@@ -420,9 +420,54 @@ function sendMessage(hash, type) {
 		var id = genID();
 		aMsg.setID(id);
 		
+		// /help shortcut
+		if(body.match(/^\/help\s*(.*)/)) {
+			// Help text
+			var help_text = '<p class="help" xmlns="http://www.w3.org/1999/xhtml">';
+			help_text += '<b>' + _e("Available shortcuts:") + '</b>';
+			
+			// Shortcuts array
+			var shortcuts = [];
+			
+			// Common shortcuts
+			shortcuts.push(printf(_e("%s removes the chat logs"), '<em>/clear</em>'));
+			shortcuts.push(printf(_e("%s joins a groupchat"), '<em>/join jid</em>'));
+			shortcuts.push(printf(_e("%s closes the chat"), '<em>/part</em>'));
+			shortcuts.push(printf(_e("%s shows the user profile"), '<em>/whois jid</em>'));
+			
+			// Groupchat shortcuts
+			if(type == 'groupchat') {
+				shortcuts.push(printf(_e("%s sends a message to the room"), '<em>/say message</em>'));
+				shortcuts.push(printf(_e("%s changes your nickname"), '<em>/nick nickname</em>'));
+				shortcuts.push(printf(_e("%s sends a message to someone in the room"), '<em>/msg nickname message</em>'));
+				shortcuts.push(printf(_e("%s changes the room topic"), '<em>/topic subject</em>'));
+				shortcuts.push(printf(_e("%s kicks an user of the room"), '<em>/kick nickname reason</em>'));
+				shortcuts.push(printf(_e("%s bans an user of the room"), '<em>/ban nickname reason</em>'));
+				shortcuts.push(printf(_e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
+			}
+			
+			// Generate the code from the array
+			shortcuts = shortcuts.sort();
+			
+			for(s in shortcuts)
+				help_text += shortcuts[s] + '<br />';
+			
+			help_text += '</p>';
+			
+			// Display the message
+			displayMessage(type, xid, hash, 'help', help_text, getCompleteTime(), getTimeStamp(), 'system-message', false);
+			
+			// Reset chatstate
+			chatStateSend('active', xid, hash);
+		}
+		
 		// /clear shortcut
-		if(body.match(/^\/clear/))
+		else if(body.match(/^\/clear/)) {
 			cleanChat(hex_md5(xid));
+			
+			// Reset chatstate
+			chatStateSend('active', xid, hash);
+		}
 		
 		// /join shortcut
 		else if(body.match(/^\/join (\S+)\s*(.*)/)) {
@@ -431,6 +476,9 @@ function sendMessage(hash, type) {
 			var pass = RegExp.$2;
 			
 			checkChatCreate(room, 'groupchat');
+			
+			// Reset chatstate
+			chatStateSend('active', xid, hash);
 		}
 		
 		// /part shortcut
@@ -458,6 +506,9 @@ function sendMessage(hash, type) {
 				else
 					openUserInfos(whois_xid);
 			}
+			
+			// Reset chatstate
+			chatStateSend('active', xid, hash);
 		}
 		
 		// Chat message type
@@ -644,6 +695,8 @@ function sendMessage(hash, type) {
 				generateMessage(aMsg, body, hash);
 				
 				con.send(aMsg, handleMessageError);
+				
+				logThis('Message sent to: ' + xid + ' / ' + type, 3);
 			}
 		}
 		
@@ -652,8 +705,6 @@ function sendMessage(hash, type) {
 	}
 	
 	finally {
-		logThis('Message sent to: ' + xid + ' / ' + type, 3);
-		
 		return false;
 	}
 }

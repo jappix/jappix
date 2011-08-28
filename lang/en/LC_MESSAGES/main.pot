@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, Jan-Christoph Borchardt
-# Last revision: 27/08/11
+# Last revision: 28/08/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -1775,4 +1775,40 @@ msgid "Send him/her a message"
 msgstr ""
 
 msgid "Start a chat with him/her"
+msgstr ""
+
+msgid "Available shortcuts:"
+msgstr ""
+
+msgid "%s removes the chat logs"
+msgstr ""
+
+msgid "%s joins a groupchat"
+msgstr ""
+
+msgid "%s closes the chat"
+msgstr ""
+
+msgid "%s shows the user profile"
+msgstr ""
+
+msgid "%s sends a message to the room"
+msgstr ""
+
+msgid "%s changes your nickname"
+msgstr ""
+
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+msgid "%s changes the room topic"
+msgstr ""
+
+msgid "%s kicks an user of the room"
+msgstr ""
+
+msgid "%s bans an user of the room"
+msgstr ""
+
+msgid "%s invites someone to join the room"
 msgstr ""

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-27 15:12:31\n"
+"PO-Revision-Date: 2011-08-28 15:23:05\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2380,4 +2380,52 @@ msgstr "n'a pas pu recevoir votre fichier : « %s »."
 #: 
 msgid "has received a file exchange request: “%s”."
 msgstr "a reçu une demande d'échange de fichier : « %s »."
+
+#: 
+msgid "Available shortcuts:"
+msgstr "Raccourcis disponibles :"
+
+#: 
+msgid "%s removes the chat logs"
+msgstr "%s efface l'historique de la discussion"
+
+#: 
+msgid "%s joins a groupchat"
+msgstr "%s rejoint un salon"
+
+#: 
+msgid "%s closes the chat"
+msgstr "%s ferme la discussion"
+
+#: 
+msgid "%s shows the user profile"
+msgstr "%s affiche le profil de l'utilisateur"
+
+#: 
+msgid "%s sends a message to the room"
+msgstr "%s envoie un message au salon"
+
+#: 
+msgid "%s changes your nickname"
+msgstr "%s modifie votre pseudonyme"
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr "%s envoie un message à quelqu'un du salon"
+
+#: 
+msgid "%s changes the room topic"
+msgstr "%s modifie le sujet du salon"
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr "%s éjecte un utilisateur du salon"
+
+#: 
+msgid "%s bans an user of the room"
+msgstr "%s banni un utilisateur du salon"
+
+#: 
+msgid "%s invites someone to join the room"
+msgstr "%s invite quelqu'un à rejoindre le salon"
 
