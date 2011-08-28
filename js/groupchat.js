@@ -7,7 +7,7 @@ These are the groupchat JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Marco Cirillo, Eric Yu
-Last revision: 26/08/11
+Last revision: 28/08/11
 
 */
 
@@ -269,7 +269,6 @@ function joinConfGroupchats() {
 		
 		// Filter the current value
 		muc_current = muc_current.replace(/ /g, '');
-		muc_current = muc_current.replace(/"/g, '\\\"');
 		muc_current = generateXID(muc_current, 'groupchat');
 		
 		// Add the current value

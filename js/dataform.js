@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/06/11
+Last revision: 28/08/11
 
 */
 
@@ -152,6 +152,7 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 				if(iType == 'jid-multi') {
 					// Values array
 					var xid_arr = [iValue];
+					var xid_check = [];
 					
 					// Try to split it
 					if(iValue.indexOf(',') != -1)
@@ -170,7 +171,10 @@ function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 						xid_current = xid_current.replace(/ /g, '');
 						
 						// Add the current value
-						field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, xid_current));
+						if(!existArrayValue(xid_check, xid_current)) {
+							xid_check.push(xid_current);
+							field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, xid_current));
+						}
 					}
 				}
 				
@@ -277,6 +281,10 @@ function buttonsDataForm(type, action, id, xid, node, sessionid, target, pathID)
 	
 	// We display the buttons code
 	$(pathID).append(buttonsCode);
+	
+	// If no submit link, lock the form
+	if(!exists(pathID + ' a.submit'))
+		$(pathID + ' input, ' + pathID + ' textarea').attr('readonly', true);
 }
 
 // Handles the MUC dataform
@@ -714,10 +722,10 @@ function fillDataForm(xml, id) {
 				// Sort the array
 				xid_arr.sort();
 				
-				// Create the array content
+				// Create the input
+				var xid_value = '';
+				
 				if(xid_arr.length) {
-					var xid_value = '';
-					
 					for(i in xid_arr) {
 						// Any pre-value
 						if(xid_value)
@@ -726,9 +734,9 @@ function fillDataForm(xml, id) {
 						// Add the current XID
 						xid_value += xid_arr[i];
 					}
-					
-					input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" multiple="" class="dataform-i" value="' + encodeQuotes(xid_value) + '"' + required + ' />';
 				}
+				
+				input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="email" multiple="" class="dataform-i" value="' + encodeQuotes(xid_value) + '" placeholder="jack@jappix.com, jones@jappix.com"' + required + ' />';
 			}
 			
 			// Other stuffs that are similar
