@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/08/11
+Last revision: 29/08/11
 
 */
 
@@ -50,9 +50,20 @@ function firstPresence(checksum) {
 	// We store our presence
 	setDB('presence-show', 1, 'available');
 	
-	// We get the stored bookmarks (because of the photo hash and some other stuffs, we must get it later)
-	if(!is_anonymous)
+	// Not anonymous
+	if(!is_anonymous) {
+		// We get the stored bookmarks (because of the photo hash and some other stuffs, we must get it later)
 		getStorage(NS_BOOKMARKS);
+		
+		// We open a new chat if a XMPP link was submitted
+		if((parent.location.hash != '#OK') && LINK_VARS['x']) {
+			// A link is submitted in the URL
+			xmppLink(LINK_VARS['x']);
+			
+			// Set a OK status
+			parent.location.hash = 'OK';
+		}
+	}
 }
 
 // Handles incoming presence packets

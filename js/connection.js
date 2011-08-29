@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/08/11
+Last revision: 29/08/11
 
 */
 
@@ -235,15 +235,6 @@ function handleConnected() {
 		
 		// Set last activity stamp
 		LAST_ACTIVITY = getTimeStamp();
-		
-		// We open a new chat if a XMPP link was submitted
-		if((parent.location.hash != '#OK') && LINK_VARS['x']) {
-			// A link is submitted in the URL
-			xmppLink(LINK_VARS['x']);
-			
-			// Set a OK status
-			parent.location.hash = 'OK';
-		}
 	}
 	
 	// Resumed
