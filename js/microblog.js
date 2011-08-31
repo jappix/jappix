@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/08/11
+Last revision: 31/08/11
 
 */
 
@@ -1197,6 +1197,12 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 		comments_entity_file = [];
 	if(!comments_node_file)
 		comments_node_file = [];
+	
+	// No need to create a comment node per file
+	if(attachedurl && (attachedurl.length == 1) && (!comments_entity_file[0] || !comments_node_file[0])) {
+		comments_entity_file = [comments_entity];
+		comments_node_file = [comments_node];
+	}
 	
 	// New IQ
 	var iq = new JSJaCIQ();
