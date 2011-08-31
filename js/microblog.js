@@ -1198,7 +1198,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	if(!comments_node_file)
 		comments_node_file = [];
 	
-	// No need to create a comment node per file
+	// Don't create another comments node if only 1 file is attached
 	if(attachedurl && (attachedurl.length == 1) && (!comments_entity_file[0] || !comments_node_file[0])) {
 		comments_entity_file = [comments_entity];
 		comments_node_file = [comments_node];
