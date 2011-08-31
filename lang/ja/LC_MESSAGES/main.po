@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-28 15:53:03\n"
+"PO-Revision-Date: 2011-08-31 22:43:53\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2303,11 +2303,11 @@ msgstr "“%2s”を%1sサーバにアップロードしました。"
 
 #: 
 msgid "Logo"
-msgstr ""
+msgstr "ロゴ"
 
 #: 
 msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr ""
+msgstr "デフォルトからあなたのサービスロゴに変更する事が出来ます。サイズと色に気をつけて！"
 
 #: 
 #~ msgid "Use default logo"
@@ -2319,7 +2319,7 @@ msgstr ""
 
 #: 
 msgid "Upload each logo with the recommended maximum pixel size."
-msgstr ""
+msgstr "推奨されるピクセルサイズのロゴをアップロードできます"
 
 #: 
 #~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
@@ -2327,105 +2327,105 @@ msgstr ""
 
 #: 
 msgid "This is not a valid image, please use the PNG format!"
-msgstr ""
+msgstr "有効なイメージではありません。PNGフォーマットを使用してください。"
 
 #: 
 msgid "Your service logo has been successfully changed!"
-msgstr ""
+msgstr "サービスロゴを変更しました。"
 
 #: 
 msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr ""
+msgstr "ロゴフォーマットはPNG形式を使用する必要があります。フィールドが空欄の場合はロゴは変更されません。"
 
 #: 
 msgid "Remove this logo"
-msgstr ""
+msgstr "このロゴの削除"
 
 #: 
 msgid "View this logo"
-msgstr ""
+msgstr "このロゴを見る"
 
 #: 
 msgid "Send a file"
-msgstr ""
+msgstr "ファイル送信"
 
 #: 
 msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr ""
+msgstr "アップロードとは、友達が望むダウンロードファイルを送ることです。"
 
 #: 
 msgid "Groupchats to join"
-msgstr ""
+msgstr "画像結合"
 
 #: 
 msgid "Purge sent files"
-msgstr ""
+msgstr "送信ファイルのパージ"
 
 #: 
 msgid "would like to send you a file: “%s”."
-msgstr ""
+msgstr "送信ファイルは“%s”のようになります"
 
 #: 
 msgid "has accepted to received your file: “%s”."
-msgstr ""
+msgstr "“%s”ファイルを受信する事を受け入れました。"
 
 #: 
 msgid "has rejected to receive your file: “%s”."
-msgstr ""
+msgstr "“%s”ファイルの受け取りを拒否しました。"
 
 #: 
 msgid "could not receive your file: “%s”."
-msgstr ""
+msgstr "“%s”ファイルを受け取ることができません。"
 
 #: 
 msgid "has received a file exchange request: “%s”."
-msgstr ""
+msgstr "“%s”ファイル交換要求を受信しました。"
 
 #: 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "使用可能なショートカット："
 
 #: 
 msgid "%s removes the chat logs"
-msgstr ""
+msgstr "%s はチャットログを削除しました。"
 
 #: 
 msgid "%s joins a groupchat"
-msgstr ""
+msgstr "%s はグループチャットに接続しました。"
 
 #: 
 msgid "%s closes the chat"
-msgstr ""
+msgstr "%s はチャットをクローズしました。"
 
 #: 
 msgid "%s shows the user profile"
-msgstr ""
+msgstr "%s のユーザプロファイルを見る。"
 
 #: 
 msgid "%s sends a message to the room"
-msgstr ""
+msgstr "%s は部屋にメッセージを送信する。"
 
 #: 
 msgid "%s changes your nickname"
-msgstr ""
+msgstr "%s はニックネームを変更しました。"
 
 #: 
 msgid "%s sends a message to someone in the room"
-msgstr ""
+msgstr "%s は部屋の誰かにメッセージを送ります。"
 
 #: 
 msgid "%s changes the room topic"
-msgstr ""
+msgstr "%s は部屋のトピックを変更しました。"
 
 #: 
 msgid "%s kicks an user of the room"
-msgstr ""
+msgstr "%s を部屋から追い出しました。"
 
 #: 
 msgid "%s bans an user of the room"
-msgstr ""
+msgstr "%s の部屋の使用を禁止しました。"
 
 #: 
 msgid "%s invites someone to join the room"
-msgstr ""
+msgstr "%s は部屋の出席者を招待しています。"
 
