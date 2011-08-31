@@ -7,7 +7,7 @@ This is the others CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 14/05/11
+Last revision: 31/08/11
  
 */
  
@@ -51,9 +51,9 @@ Last revision: 14/05/11
         bottom: 0;
         left: 260px;
         z-index: 10;
-        border-radius: 5px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
         box-shadow: 0 0 6px #5c5c5c;
         -moz-box-shadow: 0 0 6px #5c5c5c;
         -webkit-box-shadow: 0 0 6px #5c5c5c;
