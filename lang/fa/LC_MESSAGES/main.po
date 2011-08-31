@@ -1,0 +1,2431 @@
+# Persian translations for Jappix package.
+# This file is distributed under the same license as the Jappix package.
+# This file was translated from CodingTeam at <http://codingteam.net/>.
+msgid ""
+msgstr ""
+"Project-Id-Version: Jappix\n"
+"PO-Revision-Date: 2011-08-28 15:42:04\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: 
+msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
+msgstr "نمی‌توان جاوااسکریپت را در مرورگر شما یافت. بنابراین شما نمی‌توانید Jappix را ببینید! لطفاً این را اصلاح کنید."
+
+#: 
+msgid "An open social network"
+msgstr "یک شما اجتماعی باز"
+
+#: 
+msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
+msgstr "Jappix توسط یک اشکال شبکه متوقف شده‌است. یک اشکال یا ورود بد (بررسی کنید که اعتبارات درست را وارد کرده‌اید). شرمنده بابات دردسر ایجاد شده."
+
+#: 
+msgid "The element list on this server could not be obtained!"
+msgstr "فهرست عناصر این سرور نمی‌تواند گرفته شود!"
+
+#: 
+msgid "Your password has been changed, now you can connect to your account with your new login data."
+msgstr "گذرواژهٔ شما تغییر کرده‌است. شما می‌توانید با داده‌ها جدید ورودی متصل شوید."
+
+#: 
+msgid "Your XMPP account has been removed, bye!"
+msgstr "حساب XMPP شما حذف شده‌است. بدرود!"
+
+#: 
+msgid "You have been logged out of your XMPP account, have a nice day!"
+msgstr "شما از حساب XMPP خود خارج شده‌اید. روز خوش!"
+
+#: 
+msgid "The room you joined seems not to exist. You should create it!"
+msgstr "اتاقی که شما به آن وصل شده‌اید به نظر وجود ندارد. شما می‌توانید ایجادش کنید!"
+
+#: 
+msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgstr "چپ گروهی خذف شد. الآن هر کس دیگری می‌تواند آن را ایجاد کند."
+
+#: 
+msgid "The user that you want to reach is not present in the room."
+msgstr ""
+
+#: 
+msgid "Please enter the group chat address to join."
+msgstr ""
+
+#: 
+msgid "Please enter your nickname to join %s."
+msgstr ""
+
+#: 
+msgid "This room (%s) is protected with a password."
+msgstr ""
+
+#: 
+msgid "Your browser is out of date!"
+msgstr "مرورگر شما منسوخ است!"
+
+#: 
+msgid "Last %s version is better!"
+msgstr ""
+
+#: 
+msgid "Login"
+msgstr "وارد شدن"
+
+#: 
+msgid "Register"
+msgstr "ثبت نام"
+
+#: 
+msgid "Here we go!"
+msgstr "اینجا می‌رویم!"
+
+#: 
+msgid "Server"
+msgstr "سرور"
+
+#: 
+msgid "Password"
+msgstr "پسورد"
+
+#: 
+msgid "Remember me"
+msgstr "مرا به خاطر بسپار"
+
+#: 
+msgid "This tool has been disabled, you cannot use it!"
+msgstr "این سرویس غیر فعال شده و دسترسی شما به ان ممکن نیست"
+
+#: 
+msgid "Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr "به دلیل مشکل شبکه‌ای، شما قطع شده‌اید. الآن چه می‌خواهید بکنید؟"
+
+#: 
+msgid "Reconnect"
+msgstr "اتصال مجدد"
+
+#: 
+msgid "Messages"
+msgstr "پیغام‌ها"
+
+#: 
+msgid "Profile"
+msgstr "پروفایل"
+
+#: 
+msgid "Options"
+msgstr "گزینه‌ها"
+
+#: 
+msgid "Disconnect"
+msgstr "قطع"
+
+#: 
+msgid "Filter"
+msgstr "پالایه"
+
+#: 
+msgid "Add a friend"
+msgstr "افزودن یک دوست"
+
+#: 
+msgid "Your groupchats"
+msgstr "گروه‌های چت شما"
+
+#: 
+msgid "Manage your favorite groupchats"
+msgstr "گفتگوی گروهی محبوبتان را مدیریت کنید"
+
+#: 
+msgid "More stuff"
+msgstr "چیزهای بیشتر"
+
+#: 
+msgid "Show all friends"
+msgstr "مشاهده همه دوستان"
+
+#: 
+msgid "Only show connected friends"
+msgstr "مشاهده دوستان انلاین"
+
+#: 
+msgid "Message archives"
+msgstr "بایگانی‌های پیغام"
+
+#: 
+msgid "Date"
+msgstr "تاریخ"
+
+#: 
+msgid "Please select a friend to view the chat history."
+msgstr ""
+
+#: 
+msgid "Nothing found for: %s"
+msgstr "چیزی یافت نشد برای: %s"
+
+#: 
+msgid "A short message?"
+msgstr "یک پیغام کوتاه؟"
+
+#: 
+msgid "How are you?"
+msgstr "چطورید؟"
+
+#: 
+msgid "What are you doing?"
+msgstr "چکاری می‌کنید؟"
+
+#: 
+msgid "Join a chat"
+msgstr "ورود به گفتگو"
+
+#: 
+msgid "Status"
+msgstr "وضعیت"
+
+#: 
+msgid "Available"
+msgstr "حاضر"
+
+#: 
+msgid "Talkative"
+msgstr "پرحرف"
+
+#: 
+msgid "Away"
+msgstr "دور"
+
+#: 
+msgid "Not available"
+msgstr "ناحاضر"
+
+#: 
+msgid "Busy"
+msgstr "مشغول"
+
+#: 
+msgid "Mood"
+msgstr "حالت"
+
+#: 
+msgid "None"
+msgstr "هیچ"
+
+#: 
+msgid "Crazy"
+msgstr "دیوانه"
+
+#: 
+msgid "Excited"
+msgstr "هیحان زده"
+
+#: 
+msgid "Playful"
+msgstr "اهل بازی"
+
+#: 
+msgid "Happy"
+msgstr "خوشحال"
+
+#: 
+msgid "Shocked"
+msgstr "پاسخ همراه با اعلان"
+
+#: 
+msgid "Hot"
+msgstr "داغ"
+
+#: 
+msgid "Sad"
+msgstr "غمگین"
+
+#: 
+msgid "Amorous"
+msgstr "عاشق"
+
+#: 
+msgid "Confident"
+msgstr "اعتماد به نقس"
+
+#: 
+msgid "Activity"
+msgstr "فعالیت"
+
+#: 
+msgid "Chores"
+msgstr ""
+
+#: 
+msgid "Drinking"
+msgstr "نوشیدن"
+
+#: 
+msgid "Eating"
+msgstr "خوردن"
+
+#: 
+msgid "Exercising"
+msgstr "تمرین‌کردن"
+
+#: 
+msgid "Grooming"
+msgstr "آراسته‌کردن"
+
+#: 
+msgid "Appointment"
+msgstr "انتصاب"
+
+#: 
+msgid "Inactive"
+msgstr "غیرفعال"
+
+#: 
+msgid "Relaxing"
+msgstr "آرامش"
+
+#: 
+msgid "Talking"
+msgstr "گفتگو"
+
+#: 
+msgid "Traveling"
+msgstr "سفر کردن"
+
+#: 
+msgid "Working"
+msgstr "کار کردن"
+
+#: 
+msgid "View profile"
+msgstr "نمایش مشخصات"
+
+#: 
+msgid "Repeat this notice"
+msgstr "تکرار این موضوع"
+
+#: 
+msgid "Remove this notice"
+msgstr "حذف این موضوع"
+
+#: 
+msgid "Your profile"
+msgstr "مشخصات شما"
+
+#: 
+msgid "Identity"
+msgstr "هویت"
+
+#: 
+msgid "Profile image"
+msgstr "مشخصات شما"
+
+#: 
+msgid "Others"
+msgstr "دیگران"
+
+#: 
+msgid "Personal"
+msgstr "شخصی"
+
+#: 
+msgid "Complete name"
+msgstr "نام کامل"
+
+#: 
+msgid "Nickname"
+msgstr "نام کاربری"
+
+#: 
+msgid "First name"
+msgstr "نام"
+
+#: 
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: 
+msgid "Date of birth"
+msgstr "تاریخ تولد"
+
+#: 
+msgid "Contact"
+msgstr "مشخصات تماس"
+
+#: 
+msgid "E-mail"
+msgstr "ایمیل"
+
+#: 
+msgid "Phone"
+msgstr "تلفن"
+
+#: 
+msgid "Website"
+msgstr "آدرس وب سایت"
+
+#: 
+msgid "Current"
+msgstr "واحد پول"
+
+#: 
+msgid "Delete"
+msgstr "حذف‌کردن"
+
+#: 
+msgid "What a pity! You have no profile image defined in your identity card!"
+msgstr "چه متأسر کننده! شما تصویر پروفایلی در کارت شناساییتان تعیین نکرده‌اید!"
+
+#: 
+msgid "Address"
+msgstr "نشانی"
+
+#: 
+msgid "Street"
+msgstr "خیابان"
+
+#: 
+msgid "City"
+msgstr "شهر"
+
+#: 
+msgid "Postal code"
+msgstr "کد پستی"
+
+#: 
+msgid "Country"
+msgstr "کشور"
+
+#: 
+msgid "Biography"
+msgstr "زندگی‌نامه"
+
+#: 
+msgid "Important notice"
+msgstr "اخطار مهم"
+
+#: 
+msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
+msgstr ""
+
+#: 
+msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
+msgstr ""
+
+#: 
+msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgstr ""
+
+#: 
+msgid "Save"
+msgstr "ذخیره"
+
+#: 
+msgid "Cancel"
+msgstr "انصراف"
+
+#: 
+msgid "Edit options"
+msgstr "ویرایش اختیارات"
+
+#: 
+msgid "Channel"
+msgstr "کانال"
+
+#: 
+msgid "Commands"
+msgstr "دستورات"
+
+#: 
+msgid "Sounds"
+msgstr "صداها"
+
+#: 
+msgid "Privacy"
+msgstr "حریم خصوصی"
+
+#: 
+msgid "Message archiving"
+msgstr "بایگانی پیام"
+
+#: 
+msgid "Store a history of your chats"
+msgstr "ذخیرهٔ تاریخچهٔ گفتگوهای شما"
+
+#: 
+msgid "Geolocation"
+msgstr "منطقهٔ جغرافیایی"
+
+#: 
+msgid "Empty"
+msgstr "خالی"
+
+#: 
+msgid "Empty channel"
+msgstr "کانال خالی"
+
+#: 
+msgid "Persistent"
+msgstr "ماندگار"
+
+#: 
+msgid "Maximum notices"
+msgstr "بیشترین آگاهی‌دادن‌ها"
+
+#: 
+msgid "Account"
+msgstr "حساب"
+
+#: 
+msgid "Change password"
+msgstr "تغییر گذرواژه"
+
+#: 
+msgid "Delete account"
+msgstr "حذف حساب"
+
+#: 
+msgid "Old"
+msgstr "قدیمی"
+
+#: 
+msgid "New (2 times)"
+msgstr "جدید (۲ مرتبه)"
+
+#: 
+msgid "Continue"
+msgstr "ادامه"
+
+#: 
+msgid "To"
+msgstr "به"
+
+#: 
+msgid "Close"
+msgstr "بستن"
+
+#: 
+msgid "unknown"
+msgstr "ناشناخته"
+
+#: 
+msgid "Unavailable"
+msgstr "ناموجود"
+
+#: 
+msgid "is now"
+msgstr "الآن هست"
+
+#: 
+msgid "Please wait while your avatar is uploaded..."
+msgstr "لظفاً صبر کنید تا آواتار شما بارگذاری شود..."
+
+#: 
+msgid "Here it is! A new beautiful profile image!"
+msgstr "اینجاست! یک تصویر زیبا و جدید پروفایل!"
+
+#: 
+msgid "The image file is not supported or has a bad size."
+msgstr ""
+
+#: 
+msgid "Reply"
+msgstr "پاسخ"
+
+#: 
+msgid "Error"
+msgstr "خطا"
+
+#: 
+msgid "Click here to solve the error"
+msgstr "اینجا را برای حل ایراد کلیک کنید"
+
+#: 
+msgid "You"
+msgstr "شما"
+
+#: 
+msgid "Remove"
+msgstr "حذف"
+
+#: 
+msgid "Rename"
+msgstr "تغییر نام"
+
+#: 
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr ""
+
+#: 
+msgid "Smiley insertion"
+msgstr "افزودن شکلک"
+
+#: 
+msgid "Change style"
+msgstr "تغییر سبک"
+
+#: 
+msgid "Text in bold"
+msgstr "متن ضخیم"
+
+#: 
+msgid "Text in italic"
+msgstr "متن مورب"
+
+#: 
+msgid "Underlined text"
+msgstr "متن زیرخط کشیده شده"
+
+#: 
+msgid "Save chat"
+msgstr "ذخیرهٔ گفتگو"
+
+#: 
+msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
+msgstr ""
+
+#: 
+msgid "This chat is empty!"
+msgstr "این گفتگو خالی‌است!"
+
+#: 
+msgid "Generate file!"
+msgstr "ساختن پرونده!"
+
+#: 
+msgid "Download file!"
+msgstr "بارگیری پرونده!"
+
+#: 
+msgid "Clean current chat"
+msgstr "پاکسازی گفتگوی فعلی"
+
+#: 
+msgid "View chat history"
+msgstr "دیدن تاریخچهٔ گفتگو"
+
+#: 
+msgid "Show user profile"
+msgstr "نمایش پروفایل کاربری"
+
+#: 
+msgid "Add this contact to your friends"
+msgstr "افزودن این تماس به دوستان شما"
+
+#: 
+msgid "Add this groupchat to your favorites"
+msgstr "افزودن این گفتگوی گروهی به محبوب‌ها شما"
+
+#: 
+msgid "All tabs"
+msgstr "همهٔ برگه‌ها"
+
+#: 
+msgid "Close this tab"
+msgstr "بستن این برگه"
+
+#: 
+msgid "no subject defined for this room."
+msgstr "موضوعی برای این اتاق تعیین نشده‌است."
+
+#: 
+msgid "Administration panel for this room"
+msgstr "پنل مدیریتی این اتاق"
+
+#: 
+msgid "Moderators"
+msgstr "مدیران"
+
+#: 
+msgid "Participants"
+msgstr "شریک‌ها"
+
+#: 
+msgid "Visitors"
+msgstr "بازدیدکنندگان"
+
+#: 
+msgid "Manage favorite rooms"
+msgstr "مدیریت اتاق‌ها محبوب شده"
+
+#: 
+msgid "Change favorites"
+msgstr "عوض‌کردن محبوب شده‌ها"
+
+#: 
+msgid "Search a room"
+msgstr "جستجوی یک اتاق"
+
+#: 
+msgid "Select a favorite"
+msgstr "انتخاب یکی از محبوب شده‌ها"
+
+#: 
+msgid "Getting the name..."
+msgstr "گرفتن نام..."
+
+#: 
+msgid "Gateway"
+msgstr "دروازه"
+
+#: 
+msgid "Name"
+msgstr "نام"
+
+#: 
+msgid "Room"
+msgstr "اتاق"
+
+#: 
+msgid "Add"
+msgstr "افزودن"
+
+#: 
+msgid "Edit"
+msgstr "ویرایش"
+
+#: 
+msgid "Search a room on"
+msgstr ""
+
+#: 
+msgid "No room found on this server."
+msgstr "اتاقی در این سرور یافت نشد."
+
+#: 
+msgid "Service discovery"
+msgstr "جستجوی "
+
+#: 
+msgid "Server to query"
+msgstr "کارساز برای پرس‌وجو"
+
+#: 
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "شرمنده. ولی موجودیت هیچ نتیجه‌ای را برنگرداند!"
+
+#: 
+msgid "Accounts"
+msgstr "حساب‌ها"
+
+#: 
+msgid "Authentications"
+msgstr "تصدیقات"
+
+#: 
+msgid "Automation"
+msgstr "خودکاری"
+
+#: 
+msgid "Clients"
+msgstr "مشتری‌ها"
+
+#: 
+msgid "Collaboration"
+msgstr "همکاری"
+
+#: 
+msgid "Components"
+msgstr "اجزاء"
+
+#: 
+msgid "Rooms"
+msgstr "اتاق‌ها"
+
+#: 
+msgid "Directories"
+msgstr ""
+
+#: 
+msgid "Gateways"
+msgstr "دروازه‌ها"
+
+#: 
+msgid "News"
+msgstr "اخبار"
+
+#: 
+msgid "Hierarchy"
+msgstr "سلسه مراتبی"
+
+#: 
+msgid "Proxies"
+msgstr "پروکسی‌ها"
+
+#: 
+msgid "Publication/Subscription"
+msgstr ""
+
+#: 
+msgid "Storage"
+msgstr "انباره"
+
+#: 
+msgid "Service offline or broken"
+msgstr ""
+
+#: 
+msgid "Your inbox"
+msgstr "صندوق ورودی شما"
+
+#: 
+msgid "Available actions"
+msgstr "اقدام‌ها موجود"
+
+#: 
+msgid "Clean"
+msgstr "تمیز"
+
+#: 
+msgid "New"
+msgstr "جدید"
+
+#: 
+msgid "Received"
+msgstr "دریافت شده"
+
+#: 
+msgid "Subject"
+msgstr "موضوع"
+
+#: 
+msgid "Content"
+msgstr "محتوا"
+
+#: 
+msgid "Send message"
+msgstr "فرستادن پیام"
+
+#: 
+msgid "Your inbox is empty."
+msgstr "صندوق ورودی شما خالی‌است."
+
+#: 
+msgid "MUC administration"
+msgstr "مدیریت MUC"
+
+#: 
+msgid "You administrate this room"
+msgstr ""
+
+#: 
+msgid "Enter new subject"
+msgstr "افزودن عنوان جدید"
+
+#: 
+msgid "Configuration"
+msgstr "پیکربندی"
+
+#: 
+msgid "Authorizations"
+msgstr "اجازه‌ها"
+
+#: 
+msgid "Member list"
+msgstr "فهرست عضو"
+
+#: 
+msgid "Owner list"
+msgstr "فهرست دارنده"
+
+#: 
+msgid "Administrator list"
+msgstr "فهرست مدیران"
+
+#: 
+msgid "Outcast list"
+msgstr ""
+
+#: 
+msgid "Add an input"
+msgstr "افزودن یک وررو"
+
+#: 
+msgid "Destroy this MUC"
+msgstr "نابودسازی این MUC"
+
+#: 
+msgid "Yes, let's do it!"
+msgstr "بله. بگذار انجامش دهیم!"
+
+#: 
+msgid "Your friend is paying attention to the conversation."
+msgstr "دوست شما به مکالمه توجه می‌کنند."
+
+#: 
+msgid "Your friend is writing a message..."
+msgstr "دوست شما در حال نوشتن یک پیام است..."
+
+#: 
+msgid "Your friend stopped writing a message."
+msgstr "دوست شما از نوشتن پیامی باز ایستاد."
+
+#: 
+msgid "Your friend is doing something else."
+msgstr "دوست شما کا دیگری می‌کند."
+
+#: 
+msgid "Your friend closed the chat."
+msgstr "دوست شما گفتگو را بست."
+
+#: 
+msgid "Requesting this service..."
+msgstr "درخواست کردن این سرویس..."
+
+#: 
+msgid "Loading"
+msgstr "بارگیری"
+
+#: 
+msgid "joined the chat room"
+msgstr "به اتاق گفتگو پیوست"
+
+#: 
+msgid "left the chat room"
+msgstr "ترک‌کردن اتاق گفتگو"
+
+#: 
+msgid "no status"
+msgstr "بی‌وضعیت"
+
+#: 
+msgid "has been kicked"
+msgstr "بیرون شده‌است"
+
+#: 
+msgid "has been banned"
+msgstr "بسته شده‌است"
+
+#: 
+msgid "no reason"
+msgstr "بی‌دلیل"
+
+#: 
+msgid "Communicate with the entire world!"
+msgstr ""
+
+#: 
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+
+#: 
+msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgstr ""
+
+#: 
+msgid "Hi there!"
+msgstr "سلام!"
+
+#: 
+msgid "Welcome on %1s, “%2s”."
+msgstr "خوش‌آمدید به %1s. «%2s»"
+
+#: 
+msgid "Login to your existing XMPP account or create a new one for free!"
+msgstr ""
+
+#: 
+msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgstr ""
+
+#: 
+msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
+msgstr ""
+
+#: 
+msgid "Previous"
+msgstr "قبلی"
+
+#: 
+msgid "General"
+msgstr "عمومی"
+
+#: 
+msgid "Advanced"
+msgstr "پیشرفته"
+
+#: 
+msgid "Resource"
+msgstr "منبع"
+
+#: 
+msgid "Priority"
+msgstr "اولویت"
+
+#: 
+msgid "Low"
+msgstr "کم"
+
+#: 
+msgid "Medium"
+msgstr "متوسط"
+
+#: 
+msgid "High"
+msgstr "زیاد"
+
+#: 
+msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
+msgstr ""
+
+#: 
+msgid "login page"
+msgstr "صفحهٔ واردشدن"
+
+#: 
+msgid "Share this link with your friends:"
+msgstr "اشتراک این پیوند با دوستانتان:"
+
+#: 
+msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
+msgstr ""
+
+#: 
+msgid "Required"
+msgstr "مورد نیاز"
+
+#: 
+msgid "You have been registered, here is your XMPP address:"
+msgstr ""
+
+#: 
+msgid "Manager"
+msgstr "مدیر"
+
+#: 
+msgid "Project"
+msgstr "پروژه"
+
+#: 
+msgid "Encrypted"
+msgstr "رمزنگاری‌شده"
+
+#: 
+msgid "Unencrypted"
+msgstr "رمزنگاری‌نشده"
+
+#: 
+msgid "Where are you?"
+msgstr ""
+
+#: 
+msgid "What's up with you?"
+msgstr ""
+
+#: 
+msgid "Fetching the social channel..."
+msgstr ""
+
+#: 
+msgid "You are synchronized with your network."
+msgstr ""
+
+#: 
+msgid "Cannot send anything: you can only receive notices!"
+msgstr ""
+
+#: 
+msgid "Media viewer"
+msgstr "نمایشگر رسانه"
+
+#: 
+msgid "Browse"
+msgstr "جستجو"
+
+#: 
+msgid "Command"
+msgstr "دستور"
+
+#: 
+msgid "Subscribe"
+msgstr "تصویب‌کردن"
+
+#: 
+msgid "Join"
+msgstr "وصل‌شدن"
+
+#: 
+msgid "Automatic"
+msgstr "خودکار"
+
+#: 
+msgid "Search"
+msgstr "جستجو"
+
+#: 
+msgid "No result!"
+msgstr "بی‌نتیجه!"
+
+#: 
+msgid "No notifications."
+msgstr ""
+
+#: 
+msgid "would like to add you as a friend."
+msgstr "دوست دارد شما را به عنوان یک بیافزاید."
+
+#: 
+msgid "would like you to join this chatroom:"
+msgstr ""
+
+#: 
+msgid "Do you accept?"
+msgstr "قبول می‌کنید؟"
+
+#: 
+msgid "Yes"
+msgstr "بله"
+
+#: 
+msgid "No"
+msgstr "خیر"
+
+#: 
+msgid "would like to get authorization."
+msgstr "دوست دارد که دسترسی بگیرد."
+
+#: 
+msgid "Do you want to see the friends %s suggests you?"
+msgstr ""
+
+#: 
+msgid "Submit"
+msgstr "ارائه‌کردن"
+
+#: 
+msgid "Client"
+msgstr "مشتری"
+
+#: 
+msgid "System"
+msgstr "سامانه"
+
+#: 
+msgid "Local time"
+msgstr "زمان محلی"
+
+#: 
+msgid "Comments"
+msgstr "توضیحات"
+
+#: 
+msgid "User profile"
+msgstr "پروفایل کاربری"
+
+#: 
+msgid "See his/her position on the globe"
+msgstr ""
+
+#: 
+msgid "Confirm"
+msgstr "تأیید"
+
+#: 
+msgid "anonymous mode"
+msgstr "حالت ناشناس"
+
+#: 
+msgid "Groups"
+msgstr "گروه‌ها"
+
+#: 
+msgid "Unclassified"
+msgstr "طبقه‌بندی‌نشده"
+
+#: 
+msgid "Authorize"
+msgstr "اجازه‌دادن"
+
+#: 
+msgid "Ask for authorization"
+msgstr "درخواست برای اجازه‌دادن"
+
+#: 
+msgid "Unblock"
+msgstr "بازکردن"
+
+#: 
+msgid "Prohibit"
+msgstr "منع‌کردن"
+
+#: 
+msgid "Block"
+msgstr "بستن"
+
+#: 
+msgid "Chat"
+msgstr "گفتگو"
+
+#: 
+msgid "Groupchat"
+msgstr "گروه گفتگو"
+
+#: 
+msgid "Jappix Mobile"
+msgstr "Jappix همراه"
+
+#: 
+msgid "Desktop"
+msgstr "میزکار"
+
+#: 
+msgid "Mobile"
+msgstr "گوشی همراه"
+
+#: 
+msgid "Please wait..."
+msgstr "لطفاً صبرکنید..."
+
+#: 
+msgid "Please enable JavaScript"
+msgstr "لطفاً جاوااسکریپت را فعال کنید"
+
+#: 
+msgid "Your channel"
+msgstr "کانال شما"
+
+#: 
+msgid "Channel of"
+msgstr "کانال"
+
+#: 
+msgid "More notices..."
+msgstr "پیغام‌های بیشتر..."
+
+#: 
+msgid "Attach a file"
+msgstr "متصل‌کردن یک پرونده"
+
+#: 
+msgid "Send"
+msgstr "ارسال"
+
+#: 
+msgid "Unattach the file"
+msgstr "جداکردن پرونده"
+
+#: 
+msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
+msgstr ""
+
+#: 
+msgid "Authorization failed"
+msgstr "شکست در اجازه‌گیری"
+
+#: 
+msgid "Registration failed, please choose a different username"
+msgstr ""
+
+#: 
+msgid "Service unavailable"
+msgstr "خدمت ناموجود است"
+
+#: 
+msgid "Internal server error, try later"
+msgstr "ایراد داخلی کارساز. بعداً تلاش کنید"
+
+#: 
+msgid "Your form has been sent."
+msgstr "فرم شما فرستاده شده‌است."
+
+#: 
+msgid "Application"
+msgstr "برنامه"
+
+#: 
+msgid "XMPP links"
+msgstr "پیوند XMPP"
+
+#: 
+msgid "Open XMPP links with Jappix"
+msgstr ""
+
+#: 
+msgid "changed the subject to:"
+msgstr ""
+
+#: 
+msgid "Welcome!"
+msgstr ""
+
+#: 
+msgid "Friends"
+msgstr ""
+
+#: 
+msgid "Welcome on Jappix, your own social cloud!"
+msgstr ""
+
+#: 
+msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
+msgstr ""
+
+#: 
+msgid "Enable notification sounds"
+msgstr ""
+
+#: 
+msgid "Share your position on the globe"
+msgstr ""
+
+#: 
+msgid "Offline friends"
+msgstr "دوستان آفلاین"
+
+#: 
+msgid "Don't hide offline friends"
+msgstr "دوستان آفلاین را مخفی نکن"
+
+#: 
+msgid "Use this tool to find your friends on the server you are using right now, or add them later."
+msgstr ""
+
+#: 
+msgid "Great work! Now, you can share Jappix with your friends!"
+msgstr ""
+
+#: 
+msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
+msgstr ""
+
+#: 
+msgid "Share Jappix on %s"
+msgstr ""
+
+#: 
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr ""
+
+#: 
+msgid "Unknown name"
+msgstr "نام ناشناخته"
+
+#: 
+msgid "Unknown country"
+msgstr "کشور ناشناخته"
+
+#: 
+msgid "Click to enable"
+msgstr "کلیک برای فعال‌سازی"
+
+#: 
+msgid "Click to disable"
+msgstr "کلیک برای غیرفعال‌سازی"
+
+#: 
+msgid "Installation"
+msgstr "نصب"
+
+#: 
+msgid "Jappix installation"
+msgstr "نصب Jappix"
+
+#: 
+msgid "Welcome to the Jappix installation!"
+msgstr "به نصب Jappix خوش‌آمدید!"
+
+#: 
+msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgstr ""
+
+#: 
+msgid "Let's have a look at the installation steps:"
+msgstr ""
+
+#: 
+msgid "Welcome"
+msgstr "خوش‌آمدید"
+
+#: 
+msgid "Storage configuration"
+msgstr "تنظیمات حافظه"
+
+#: 
+msgid "Administrator account"
+msgstr "حساب مدیر"
+
+#: 
+msgid "Main configuration"
+msgstr "تنظیمات اصلی"
+
+#: 
+msgid "Hosts configuration"
+msgstr "تنظیمات میزبان"
+
+#: 
+msgid "Services installation"
+msgstr "نصب خدمات"
+
+#: 
+msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
+msgstr ""
+
+#: 
+msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
+msgstr ""
+
+#: 
+msgid "It's time to build your own social cloud: just go to the next step!"
+msgstr ""
+
+#: 
+msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgstr ""
+
+#: 
+msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
+msgstr ""
+
+#: 
+msgid "The folder is writable, you can continue!"
+msgstr "پوشه قابل ویرایش است. می‌توانید ادامه دهید!"
+
+#: 
+msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
+msgstr ""
+
+#: 
+msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
+msgstr ""
+
+#: 
+msgid "Oops, you missed something or the two passwords do not match!"
+msgstr ""
+
+#: 
+msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
+msgstr ""
+
+#: 
+msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
+msgstr ""
+
+#: 
+msgid "User"
+msgstr "کاربر"
+
+#: 
+msgid "Service"
+msgstr "خدمت"
+
+#: 
+msgid "Service name"
+msgstr "نام خدمت"
+
+#: 
+msgid "Service description"
+msgstr "توضیح خدمت"
+
+#: 
+msgid "Connection"
+msgstr "اتصال"
+
+#: 
+msgid "Lock the host"
+msgstr "قفل‌کردن میزبان"
+
+#: 
+msgid "Anonymous mode"
+msgstr "حالت ناشناس"
+
+#: 
+msgid "Registration allowed"
+msgstr "ثبت‌نام اجازه‌داده شده‌است"
+
+#: 
+msgid "Use a proxy"
+msgstr "استفاده از پراکسی"
+
+#: 
+msgid "Encryption"
+msgstr "رمزنگاری"
+
+#: 
+msgid "HTTPS storage"
+msgstr "انبارهٔ HTTPS"
+
+#: 
+msgid "Force HTTPS"
+msgstr "HTTPS اجباری"
+
+#: 
+msgid "Compression"
+msgstr "فشرده‌سازی"
+
+#: 
+msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
+msgstr ""
+
+#: 
+msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
+msgstr ""
+
+#: 
+msgid "Main host"
+msgstr "میزبان اصلی"
+
+#: 
+msgid "Groupchat host"
+msgstr "میزبان گفتگوی گروهی"
+
+#: 
+msgid "Anonymous host"
+msgstr "میزبان ناشناس"
+
+#: 
+msgid "Directory host"
+msgstr "میزبان پوشه"
+
+#: 
+msgid "BOSH host"
+msgstr ""
+
+#: 
+msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
+msgstr ""
+
+#: 
+msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
+msgstr ""
+
+#: 
+msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
+msgstr ""
+
+#: 
+msgid "Thanks for using Jappix!"
+msgstr "ممنون برای استفاده از Jappix!"
+
+#: 
+msgid "Next"
+msgstr "بعدی"
+
+#: 
+msgid "Finish"
+msgstr "تمام"
+
+#: 
+msgid "Check again"
+msgstr "بررسی مجدد"
+
+#: 
+msgid "The folder is not writable, set the right permissions to the %s directory."
+msgstr ""
+
+#: 
+msgid "%s is installed on your system."
+msgstr ""
+
+#: 
+msgid "%1s is not installed on your system, you should install %2s."
+msgstr ""
+
+#: 
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr "حداکثر اندازهٔ بارگذاری PHP کافی است (%s)."
+
+#: 
+msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
+msgstr ""
+
+#: 
+msgid "Jappix manager"
+msgstr "مدیریت‌کنندهٔ Jappix"
+
+#: 
+msgid "Manager access"
+msgstr ""
+
+#: 
+msgid "Statistics"
+msgstr "آمارها"
+
+#: 
+msgid "Hosts"
+msgstr "میزبان‌ها"
+
+#: 
+msgid "Design"
+msgstr "طراحی"
+
+#: 
+msgid "Repeat"
+msgstr "تکرار"
+
+#: 
+msgid "All"
+msgstr "همه"
+
+#: 
+msgid "Horizontal"
+msgstr "افقی"
+
+#: 
+msgid "Vertical"
+msgstr "عمودی"
+
+#: 
+msgid "Center"
+msgstr "وسط"
+
+#: 
+msgid "Left"
+msgstr "چپ"
+
+#: 
+msgid "Right"
+msgstr "راست"
+
+#: 
+msgid "Top"
+msgstr "بالا"
+
+#: 
+msgid "Bottom"
+msgstr "زیر"
+
+#: 
+msgid "Adapt"
+msgstr "تطابق"
+
+#: 
+msgid "Color"
+msgstr "رنگ"
+
+#: 
+msgid "Users"
+msgstr "کاربران"
+
+#: 
+msgid "Updates"
+msgstr ""
+
+#: 
+msgid "This is a restricted area: only the authorized users can manage this Jappix node."
+msgstr ""
+
+#: 
+msgid "Please use the form below to login to the administration panel."
+msgstr ""
+
+#: 
+msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
+msgstr ""
+
+#: 
+msgid "Credentials"
+msgstr "اختیارات"
+
+#: 
+msgid "You have been logged out. Goodbye!"
+msgstr "شما خارج شده‌اید. بدرود!"
+
+#: 
+msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
+msgstr ""
+
+#: 
+msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
+msgstr ""
+
+#: 
+msgid "Change your Jappix node configuration with this tool."
+msgstr ""
+
+#: 
+msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+msgstr ""
+
+#: 
+msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
+msgstr ""
+
+#: 
+msgid "Jappix is fully customisable: you can change its design right here."
+msgstr ""
+
+#: 
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
+msgstr ""
+
+#: 
+msgid "The image could not be received, would you mind retry?"
+msgstr ""
+
+#: 
+msgid "Your image was added to the list!"
+msgstr ""
+
+#: 
+msgid "Changes saved!"
+msgstr "تغییرات ذخیره شد!"
+
+#: 
+msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
+msgstr ""
+
+#: 
+msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
+msgstr ""
+
+#: 
+msgid "Access statistics"
+msgstr ""
+
+#: 
+msgid "Share statistics"
+msgstr ""
+
+#: 
+msgid "Other statistics"
+msgstr "سایر آمارها"
+
+#: 
+msgid "January"
+msgstr "ژوئن"
+
+#: 
+msgid "February"
+msgstr "فوریه"
+
+#: 
+msgid "March"
+msgstr "مارس"
+
+#: 
+msgid "April"
+msgstr "آوریل"
+
+#: 
+msgid "May"
+msgstr "می"
+
+#: 
+msgid "June"
+msgstr ""
+
+#: 
+msgid "July"
+msgstr "جولای"
+
+#: 
+msgid "August"
+msgstr "آگوست"
+
+#: 
+msgid "September"
+msgstr "سپتامبر"
+
+#: 
+msgid "October"
+msgstr "اوکتوبر"
+
+#: 
+msgid "November"
+msgstr "نوامبر"
+
+#: 
+msgid "December"
+msgstr "دسامبر"
+
+#: 
+msgid "Monday"
+msgstr "دوشنبه"
+
+#: 
+msgid "Tuesday"
+msgstr "سه‌شنبه"
+
+#: 
+msgid "Wednesday"
+msgstr "چهارشتبع"
+
+#: 
+msgid "Thursday"
+msgstr "پنج‌شنبه"
+
+#: 
+msgid "Friday"
+msgstr "جمعه"
+
+#: 
+msgid "Saturday"
+msgstr "شنبه"
+
+#: 
+msgid "Sunday"
+msgstr "یک‌شنبه"
+
+#: 
+msgid "Total"
+msgstr "همه"
+
+#: 
+msgid "Cache"
+msgstr "میانگیر"
+
+#: 
+msgid "Logs"
+msgstr "سیاهه‌ها"
+
+#: 
+msgid "Music"
+msgstr "آهنگ"
+
+#: 
+msgid "Backgrounds"
+msgstr "پشت‌زمینه‌ها"
+
+#: 
+msgid "Share"
+msgstr "اشتراک"
+
+#: 
+msgid "Background"
+msgstr "پشت‌زمینه"
+
+#: 
+msgid "Notice"
+msgstr "آگهی"
+
+#: 
+msgid "Your design preferences have been saved!"
+msgstr ""
+
+#: 
+msgid "Please check your inputs: something is missing!"
+msgstr "لطفاً ورودی‌های خود را بررسی کنید: چیزی گم شده!"
+
+#: 
+msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
+msgstr ""
+
+#: 
+msgid "Use default background"
+msgstr "استفاده از پشت‌زمینهٔ پیش‌فرض"
+
+#: 
+msgid "Use your own image"
+msgstr ""
+
+#: 
+msgid "Select a background to use and change the display options."
+msgstr ""
+
+#: 
+msgid "Use your own color"
+msgstr ""
+
+#: 
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr ""
+
+#: 
+msgid "Manage backgrounds"
+msgstr ""
+
+#: 
+msgid "You can add a new background to the list with this tool. Please send a valid image."
+msgstr ""
+
+#: 
+msgid "If you want to remove some backgrounds, use the browser below."
+msgstr ""
+
+#: 
+msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
+msgstr ""
+
+#: 
+msgid "Simple notice"
+msgstr ""
+
+#: 
+msgid "This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr ""
+
+#: 
+msgid "Advanced notice"
+msgstr ""
+
+#: 
+msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
+msgstr ""
+
+#: 
+msgid "Available updates"
+msgstr ""
+
+#: 
+msgid "What's new?"
+msgstr ""
+
+#: 
+msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr ""
+
+#: 
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr ""
+
+#: 
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr ""
+
+#: 
+msgid "A new Jappix version is available! Check what is new and launch the update!"
+msgstr ""
+
+#: 
+msgid "Your version is out to date. Update it now to %s by clicking here!"
+msgstr ""
+
+#: 
+msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
+msgstr ""
+
+#: 
+msgid "Check for updates"
+msgstr "بررسی برای به‌روزرسانی‌ها"
+
+#: 
+msgid "Update in progress"
+msgstr "به‌روزرسانی در جریان است"
+
+#: 
+msgid "Jappix has been updated: you are now running the latest version. Have fun!"
+msgstr ""
+
+#: 
+msgid "The update has failed! Please try again later."
+msgstr ""
+
+#: 
+msgid "Downloading package..."
+msgstr "بارگیری بسته..."
+
+#: 
+msgid "Removing current Jappix system files..."
+msgstr ""
+
+#: 
+msgid "Extracting package..."
+msgstr "بازکردن بسته..."
+
+#: 
+msgid "Regenerating storage folder tree..."
+msgstr ""
+
+#: 
+msgid "Jappix is now up to date!"
+msgstr "Jappix الآن به روز است!"
+
+#: 
+msgid "Aborted: socket error!"
+msgstr ""
+
+#: 
+msgid "Aborted: buffer error!"
+msgstr ""
+
+#: 
+msgid "Aborted: everything is not writable!"
+msgstr ""
+
+#: 
+msgid "Aborted: could not extract the package!"
+msgstr ""
+
+#: 
+msgid "Visits"
+msgstr "بازدیدها"
+
+#: 
+msgid "Daily"
+msgstr "روزانه"
+
+#: 
+msgid "Weekly"
+msgstr "هفته‌ای"
+
+#: 
+msgid "Monthly"
+msgstr "ماهانه"
+
+#: 
+msgid "Yearly"
+msgstr "سالانه"
+
+#: 
+msgid "Size"
+msgstr "اندازه"
+
+#: 
+msgid "Clean everything"
+msgstr "پاکسازی همه‌چیز"
+
+#: 
+msgid "Purge cache"
+msgstr "خالی‌کردن میانگیر"
+
+#: 
+msgid "Purge logs"
+msgstr "خالی‌کردن سیاهه‌ها"
+
+#: 
+msgid "Purge updates"
+msgstr "خالی‌کردن به‌روزرسانی‌ها"
+
+#: 
+msgid "The storage folder you wanted to clean is now empty!"
+msgstr ""
+
+#: 
+msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+msgstr ""
+
+#: 
+msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
+msgstr ""
+
+#: 
+msgid "The file you want to upload must be smaller than %s."
+msgstr ""
+
+#: 
+msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgstr ""
+
+#: 
+msgid "Title"
+msgstr "عنوان"
+
+#: 
+msgid "Artist"
+msgstr "عنوان"
+
+#: 
+msgid "Album"
+msgstr "آلبوم"
+
+#: 
+msgid "File"
+msgstr "پرونده"
+
+#: 
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: 
+msgid "The folder is empty."
+msgstr "پوشه خالی است."
+
+#: 
+msgid "The music could not be received, please retry!"
+msgstr "آهنگ نمی‌تواند گرفته شود. لطفاً مجدداً تلاش کنید!"
+
+#: 
+msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+msgstr ""
+
+#: 
+msgid "Your music has been added!"
+msgstr "آهنگ شما اضافه شده‌است!"
+
+#: 
+msgid "The selected elements have been removed."
+msgstr "عنصر انتخاب شده حذف شد."
+
+#: 
+msgid "You must select elements to remove!"
+msgstr ""
+
+#: 
+msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
+msgstr ""
+
+#: 
+msgid "Manage"
+msgstr "مدیریت"
+
+#: 
+msgid "List"
+msgstr "فهرست"
+
+#: 
+msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
+msgstr ""
+
+#: 
+msgid "The user has been added!"
+msgstr "کاربر اضافه شده‌است!"
+
+#: 
+msgid "The chosen users have been removed."
+msgstr "کاربرهای انتخاب شده حذف شده‌اند."
+
+#: 
+msgid "You must select one or more users to be removed!"
+msgstr ""
+
+#: 
+msgid "Yesterday"
+msgstr "دیروز"
+
+#: 
+msgid "%s days ago"
+msgstr "%s روز پیش"
+
+#: 
+msgid "User currently active"
+msgstr "کاربر فعال در حال حاضر"
+
+#: 
+msgid "Last seen: %s"
+msgstr "آخرین دیده شدن: %s"
+
+#: 
+msgid "Inactive since: %s"
+msgstr "غیرفعال از: %s"
+
+#: 
+msgid "Your friend seems not to have received your message(s)!"
+msgstr ""
+
+#: 
+msgid "Static content server"
+msgstr "کارساز محتویات ثابت"
+
+#: 
+msgid "This is the static content server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Suggested friends"
+msgstr "دوستان پیشنهادشده"
+
+#: 
+msgid "Check all"
+msgstr "انتخاب‌کردن همه"
+
+#: 
+msgid "Uncheck all"
+msgstr "از انتخاب درآوردن همه"
+
+#: 
+msgid "Choose"
+msgstr "انتخاب"
+
+#: 
+msgid "List name"
+msgstr "فهرست نام"
+
+#: 
+msgid "Allow"
+msgstr "اجازه‌دادن"
+
+#: 
+msgid "Deny"
+msgstr "ردکردن"
+
+#: 
+msgid "Group"
+msgstr "گروه"
+
+#: 
+msgid "Subscription"
+msgstr "اشتراک"
+
+#: 
+msgid "Both"
+msgstr "هردو"
+
+#: 
+msgid "From"
+msgstr "از"
+
+#: 
+msgid "Everybody"
+msgstr "همه"
+
+#: 
+msgid "Send messages"
+msgstr "پیام‌ها را بفرست"
+
+#: 
+msgid "Send queries"
+msgstr "پرس‌وجو را بفرست"
+
+#: 
+msgid "See my status"
+msgstr "وضعیت من را ببین"
+
+#: 
+msgid "Send his/her status"
+msgstr "وضعیتش را بفرست"
+
+#: 
+msgid "Everything"
+msgstr "همه‌چیز"
+
+#: 
+msgid "Item"
+msgstr "قلم"
+
+#: 
+msgid "Order"
+msgstr "ترتیب"
+
+#: 
+msgid "Active for this session"
+msgstr "فعال برای این نشست"
+
+#: 
+msgid "Always active"
+msgstr "همیشه فعال"
+
+#: 
+msgid "User directory"
+msgstr "پوشهٔ کاربری"
+
+#: 
+msgid "Search a friend"
+msgstr "جستجوی یک دوست"
+
+#: 
+msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr ""
+
+#: 
+msgid "This is a repeat from %s"
+msgstr "این یک تکراری از %s است."
+
+#: 
+msgid "Loading comments..."
+msgstr "بارگذاری توضیحات..."
+
+#: 
+msgid "Type your comment here..."
+msgstr "توضیح خود را اینجا بنویسید..."
+
+#: 
+msgid "Could not get the comments!"
+msgstr ""
+
+#: 
+msgid "Show comments"
+msgstr "نمایش توضیحات"
+
+#: 
+msgid "Send him/her a message"
+msgstr ""
+
+#: 
+msgid "Start a chat with him/her"
+msgstr ""
+
+#: 
+msgid "Media integration"
+msgstr ""
+
+#: 
+msgid "Comments locked!"
+msgstr ""
+
+#: 
+msgid "Type something you want to share with your friends..."
+msgstr ""
+
+#: 
+msgid "changed his/her nickname to %s"
+msgstr "نام مستعارش را به %s تغییر داد"
+
+#: 
+msgid "commented an item you follow: “%s”."
+msgstr ""
+
+#: 
+#~ msgid "See"
+#~ msgstr ""
+
+#: 
+msgid "Hide"
+msgstr "مخفی"
+
+#: 
+msgid "liked your post: “%s”."
+msgstr ""
+
+#: 
+msgid "quoted you somewhere: “%s”."
+msgstr ""
+
+#: 
+msgid "published on your wall: “%s”."
+msgstr ""
+
+#: 
+msgid "tagged you in a photo (%s)."
+msgstr ""
+
+#: 
+msgid "tagged you in a video (%s)."
+msgstr ""
+
+#: 
+msgid "Show"
+msgstr "نمایش"
+
+#: 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr ""
+
+#: 
+msgid "Pubsub host"
+msgstr ""
+
+#: 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr ""
+
+#: 
+msgid "Manager link"
+msgstr "مدیر پیوند"
+
+#: 
+msgid "User uploads server"
+msgstr "کارساز بارگذاری کاربر"
+
+#: 
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
+#: 
+msgid "Logo"
+msgstr ""
+
+#: 
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+#: 
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#: 
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#: 
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+#: 
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
+
+#: 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr ""
+
+#: 
+msgid "Your service logo has been successfully changed!"
+msgstr ""
+
+#: 
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr ""
+
+#: 
+msgid "Remove this logo"
+msgstr ""
+
+#: 
+msgid "View this logo"
+msgstr ""
+
+#: 
+msgid "Send a file"
+msgstr ""
+
+#: 
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
+
+#: 
+msgid "Groupchats to join"
+msgstr ""
+
+#: 
+msgid "Purge sent files"
+msgstr ""
+
+#: 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+#: 
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "could not receive your file: “%s”."
+msgstr ""
+
+#: 
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+#: 
+msgid "Available shortcuts:"
+msgstr ""
+
+#: 
+msgid "%s removes the chat logs"
+msgstr ""
+
+#: 
+msgid "%s joins a groupchat"
+msgstr ""
+
+#: 
+msgid "%s closes the chat"
+msgstr ""
+
+#: 
+msgid "%s shows the user profile"
+msgstr ""
+
+#: 
+msgid "%s sends a message to the room"
+msgstr ""
+
+#: 
+msgid "%s changes your nickname"
+msgstr ""
+
+#: 
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+#: 
+msgid "%s changes the room topic"
+msgstr ""
+
+#: 
+msgid "%s kicks an user of the room"
+msgstr ""
+
+#: 
+msgid "%s bans an user of the room"
+msgstr ""
+
+#: 
+msgid "%s invites someone to join the room"
+msgstr ""
+
