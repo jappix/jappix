@@ -68,7 +68,7 @@ else {
 }
 
 // HTTP headers
-$headers = array('User-Agent: Jappix (BOSH PHP Proxy)', 'Content-Type: text/xml; charset=utf-8', 'Content-Length: '.strlen($data));
+$headers = array('User-Agent: Jappix (BOSH PHP Proxy)', 'Connection: close', 'Content-Type: text/xml; charset=utf-8', 'Content-Length: '.strlen($data));
 
 // CURL is better if available
 if(function_exists('curl_init'))
