@@ -9,7 +9,7 @@ This is a PHP BOSH proxy
 
 License: MIT
 Authors: Jonathan Gueron, Valérian Saliou
-Last revision: 25/05/11
+Last revision: 02/09/11
 
 */
 
@@ -68,7 +68,7 @@ else {
 }
 
 // HTTP headers
-$headers = array('User-Agent: Jappix (BOSH PHP Proxy)', 'Connection: keep-alive', 'Content-Type: text/xml; charset=utf-8', 'Content-Length: '.strlen($data));
+$headers = array('User-Agent: Jappix (BOSH PHP Proxy)', 'Content-Type: text/xml; charset=utf-8', 'Content-Length: '.strlen($data));
 
 // CURL is better if available
 if(function_exists('curl_init'))
