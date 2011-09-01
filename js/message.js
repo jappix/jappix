@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 28/08/11
+Last revision: 01/09/11
 
 */
 
@@ -286,16 +286,16 @@ function handleMessage(message) {
 	// If this is a room topic message
 	if(subject && (type == 'groupchat')) {
 		// Filter the vars
-		var filter_subject = subject.replace(/\n/g, ' ');
+		var filter_subject = subject.replace(/\n+/g, ' ');
 		var filteredSubject = filterThisMessage(filter_subject, resource, true);
 		var filteredName = resource.htmlEnc();
 		
 		// Display the new subject at the top
-		$('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith('<span class="muc-topic" title="' + subject + '">' + filteredSubject + '</span>');
+		$('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith('<span class="muc-topic" title="' + filter_subject + '">' + filteredSubject + '</span>');
 		
 		// Display the new subject as a system message
 		if(resource) {
-			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filteredSubject;
+			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filterThisMessage(subject, resource, true);
 			displayMessage(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
 		}
 	}
