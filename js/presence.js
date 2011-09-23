@@ -7,7 +7,7 @@ These are the presence JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/08/11
+Last revision: 23/09/11
 
 */
 
@@ -351,7 +351,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		// Nickname change?
 		else if(existArrayValue(status_code, 303) && iNick) {
 			notify = true;
-			write += printf(_e("changed his/her nickname to %s"), iNick);
+			write += printf(_e("changed his/her nickname to %s"), iNick.htmlEnc());
 			
 			// New values
 			var new_xid = cutResource(from) + '/' + iNick;
