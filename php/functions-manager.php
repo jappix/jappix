@@ -174,7 +174,7 @@ function versionNumber($id) {
 	
 	// Normal version
 	else
-		$extract = floatval($extract);
+		$extract = eregi_replace("[^0-9]","",$extract);
 	
 	return $extract;
 }
