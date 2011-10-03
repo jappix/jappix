@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/08/11
+Last revision: 03/10/11
 
 */
 
@@ -17,7 +17,7 @@ Last revision: 27/08/11
 }
 
 body {
-	font: normal 0.9em helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+	font: normal 14.4px Helvetica, Verdana, Arial, sans-serif;
 	text-shadow: 0 0 5px white;
 }
 
