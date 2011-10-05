@@ -7,7 +7,7 @@ This is the Jappix Mobile CSS stylesheet
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/10/11
+Last revision: 05/10/11
 
 */
 
@@ -19,7 +19,7 @@ Last revision: 03/10/11
 }
 
 body {
-	font: normal 14.4px Helvetica, Verdana, Arial, sans-serif;
+	font: normal 14.4px Helvetica, Arial, Verdana, sans-serif;
 	background-color: #dcdcdc;
 	margin: 0 auto;
 	text-align: center;
