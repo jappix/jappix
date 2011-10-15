@@ -8,8 +8,8 @@ These are the PHP functions for Jappix manager
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Mathieui, Olivier Migeot
-Last revision: 27/08/11
+Authors: Valérian Saliou, Mathieui, Olivier Migeot, Vinilox
+Last revision: 16/10/11
 
 */
 
@@ -163,20 +163,27 @@ function numericToMonth($id) {
 function versionNumber($id) {
 	// First, extract the number string from the [X]
 	$extract = preg_replace('/^(.+)\[(\S+)\]$/', '$2', $id);
+	$dev = false;
 	
 	// Second extract: ~ (when this is a special version, like ~dev)
 	if(strrpos($extract, '~') !== false) {
-		$extract = preg_replace('/^(.+)~(.+)$/', '$1', $extract);
-		
-		// Allows updates
-		$extract = floatval($extract) - 0.01;
+		$dev = true;
+		$extract = preg_replace('/^([^~])~(.+)$/', '$1', $extract);
 	}
 	
-	// Normal version
-	else
-		$extract = eregi_replace("[^0-9]","",$extract);
+	// Convert [X.X.X] into a full number
+	$extract = preg_replace('/[^0-9]/', '', $extract);
 	
-	return $extract;
+	// Add missing items to [X.X.X]
+	$missing = 3 - strlen($extract.'');
+	if($missing > 0)
+		$extract = $extract.(str_repeat('0', $missing));
+	
+	// Allows updates for dev versions
+	if($dev)
+		$extract = $extract - 1;
+	
+	return intval($extract);
 }
 
 // Checks for new Jappix updates
