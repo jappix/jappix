@@ -6,8 +6,8 @@ These are the chat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou, Eric Yu
-Last revision: 02/08/11
+Authors: Valérian Saliou, Eric Yu
+Last revision: 16/10/11
 
 */
 
@@ -28,7 +28,7 @@ function checkChatCreate(xid, type, nickname, password, title) {
 	else {
 		// Private groupchat chat
 		if(type == 'private')
-			name = thisResource(xid).htmlEnc();
+			name = thisResource(xid);
 		
 		// XMPP-ID
 		else if(xid.indexOf('@') != -1)
