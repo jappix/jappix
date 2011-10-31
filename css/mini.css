@@ -71,7 +71,7 @@ Last revision: 05/10/11
 
 #jappix_mini a.jm_pane {
 	background-color: #f4f4f4;
-	background-position: 0 -100px;
+	background-image: none;
 	background-repeat: repeat-x;
 	border-color: #999999;
 	border-style: solid;
@@ -79,12 +79,15 @@ Last revision: 05/10/11
 	font-weight: bold;
 	outline-style: none;
 	display: block;
-	padding: 6px;
+	padding: 5px 6px 7px 6px;
 	height: 13px;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
 }
 
 #jappix_mini a.jm_pane:hover {
-	background: white;
+	background: #ececec;
 }
 
 #jappix_mini a.jm_pane:hover,
@@ -97,6 +100,13 @@ Last revision: 05/10/11
 #jappix_mini div.jm_conversation {
 	float: left;
 	position: relative;
+	margin-left: 5px;
+	top:1px;
+}
+
+#jappix_mini div.jm_starter {
+	position: relative;
+	top: 2px;
 }
 
 #jappix_mini div.jm_conversation {
@@ -104,18 +114,21 @@ Last revision: 05/10/11
 }
 
 #jappix_mini a.jm_chat-tab {
-	border-width: 1px 0 0 1px;
-	width: 140px;
+	border-width: 1px 1px 0 1px;
+	width: 248px;
 	float: right;
 	overflow: hidden;
 }
 
 #jappix_mini a.jm_chat-tab.jm_clicked {
-	background: white;
+	background: #ececec;
 	position: relative;
-	border-top: none;
+	border-top: 1px solid #999999;
 	border-left: 1px solid #999999;
 	padding-top: 7px;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-border-radius: 0;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify {
@@ -160,9 +173,12 @@ Last revision: 05/10/11
 	height: 300px;
 	width: 260px;
 	position: absolute;
-	right: -1px;
-	bottom: 25px;
+	right: 0;
+	bottom: 24px;
 	display: none;
+	-moz-border-radius: 7px 7px 0 0;
+	border-radius: 7px 7px 0 0;
+	-webkit-border-radius: 7px 7px 0 0;
 }
 
 #jappix_mini div.jm_actions {
@@ -172,6 +188,9 @@ Last revision: 05/10/11
 	padding: 4px 6px;
 	font-weight: bold;
 	overflow: hidden;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
 }
 
 #jappix_mini div.jm_actions span.jm_nick {
@@ -283,10 +302,10 @@ Last revision: 05/10/11
 }
 
 #jappix_mini input.jm_send-messages {
-	background-color: white;
+	background-color: #f5f5f5;
 	border-color: #999999;
 	border-style: solid;
-	border-width: 1px 0 0 0;
+	border-width: 1px 0 1px 0;
 	padding: 5px;
 	width: 250px;
 	min-height: 14px;
@@ -310,6 +329,9 @@ Last revision: 05/10/11
 	right: 0;
 	bottom: 25px;
 	display: none;
+	-moz-border-radius: 7px 7px 0 0;
+	border-radius: 7px 7px 0 0;
+	-webkit-border-radius: 7px 7px 0 0;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
@@ -366,6 +388,10 @@ Last revision: 05/10/11
 	border-left: 1px solid #999999;
 	border-right: 1px solid #999999;
 	padding: 7px 10px 6px 10px;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	width: 140px;
 }
 
 #jappix_mini span.jm_animate {
