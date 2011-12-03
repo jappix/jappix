@@ -322,11 +322,8 @@ if($file && $type) {
 		}
 		
 		// Read the binary file (PNG, OGA and others)
-		else {
-			ob_clean();
-			flush();
+		else
 			readfile($path);
-		}
 		
 		exit;
 	}
