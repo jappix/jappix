@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/08/11
+Last revision: 03/12/11
 
 */
 
@@ -128,7 +128,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 		// Get the stamp & time
 		if(tDate) {
 			tStamp = extractStamp(Date.jab2date(tDate));
-			tTime = parseDate(tDate);
+			tTime = relativeDate(tDate);
 		}
 		
 		else {
