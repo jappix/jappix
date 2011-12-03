@@ -7,7 +7,7 @@ These are the integratebox JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
+Last revision: 03/12/11
 
 */
 
@@ -131,7 +131,9 @@ function applyIntegrateBox(url, service, url_list, services_list, comments_e_lis
 				waitItem.hide();
 				
 				// Center the image vertically
-				$(this).css('margin-top', (($('#integratebox .content').height() - $(this).height()) / 2));
+				$(this).oneTime(10, function() {
+					$(this).css('margin-top', (($('#integratebox .content').height() - $(this).height()) / 2));
+				});
 			});
 		}
 		
