@@ -6,7 +6,7 @@ These are the anonymous mode JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Emmanuel Gil Peyrot
+Authors: Vanaryon, LinkMauve
 Last revision: 27/03/11
 
 */

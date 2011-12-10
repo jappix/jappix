@@ -6,7 +6,7 @@ These are the storage JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 26/03/11
 
 */

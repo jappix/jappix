@@ -6,7 +6,7 @@ These are the talkpage JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 27/03/11
 
 */
