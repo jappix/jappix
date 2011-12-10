@@ -6,7 +6,7 @@ These are the homepage JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, LinkMauve
+Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Last revision: 30/03/11
 
 */

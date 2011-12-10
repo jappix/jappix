@@ -6,7 +6,7 @@ These are the discovery JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 03/03/11
 
 */
