@@ -4,7 +4,7 @@ These are the installation instructions for Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Licence : AGPL
-Author : Vanaryon
+Author : Valérian Saliou
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 05/04/10
 

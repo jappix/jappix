@@ -6,7 +6,7 @@ These are all the necessary JavaScripts for Jappix
 -------------------------------------------------
 
 Licence : AGPL
-Author : Vanaryon
+Author : Valérian Saliou
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 24/03/10
 

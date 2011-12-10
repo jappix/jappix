@@ -8,7 +8,7 @@ This is the PHP script used to send invite emails
 -------------------------------------------------
 
 Licence : GNU/GPL
-Author : Vanaryon
+Author : Valérian Saliou
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 27/03/10
 
