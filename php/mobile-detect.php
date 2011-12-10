@@ -11,7 +11,7 @@
  * MODIFIED FOR THE JAPPIX PROJECT
  * Last revision: 20/11/10
  *
- * Thanks to LinkMauve for his patch!
+ * Thanks to Emmanuel Gil Peyrot for his patch!
  */
 
 class Mobile_Detect {

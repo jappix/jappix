@@ -6,7 +6,7 @@ These are the welcome tool functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
 Last revision: 15/12/10
 

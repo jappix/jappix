@@ -8,7 +8,7 @@ This is the main configuration reader
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
 Last revision: 18/12/10
 

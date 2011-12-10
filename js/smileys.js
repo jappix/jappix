@@ -6,7 +6,7 @@ These are the smileys JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
 Last revision: 12/11/10
 

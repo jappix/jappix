@@ -6,7 +6,7 @@ These are the datepicker JS script
 -------------------------------------------------
 
 Licenses: MIT, GPL, AGPL
-Authors: Stefan Petre, Vanaryon
+Authors: Stefan Petre, Valérian Saliou
 Contact: http://project.jappix.com/contact
 Last revision: 19/12/10
 

@@ -4,7 +4,7 @@
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 # License: AGPL
-# Authors: Vanaryon, JanCBorchardt
+# Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Contact: http://project.jappix.com/contact
 # Last revision: 22/12/10
 

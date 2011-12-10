@@ -8,7 +8,7 @@ This is the main configuration form (install & manager)
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Authors: Vanaryon, LinkMauve
+Authors: Valérian Saliou, Emmanuel Gil Peyrot
 Contact: http://project.jappix.com/contact
 Last revision: 18/12/10
 
