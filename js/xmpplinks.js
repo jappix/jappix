@@ -6,7 +6,7 @@ These are the XMPP links handling JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 08/12/10
 
 */
