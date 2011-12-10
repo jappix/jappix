@@ -8,7 +8,7 @@ This is the file get script
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 25/08/11
 
 */

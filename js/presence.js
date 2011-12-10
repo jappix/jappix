@@ -6,7 +6,7 @@ These are the presence JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 27/08/11
 
 */
