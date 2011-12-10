@@ -6,7 +6,7 @@ These are the options JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 17/07/11
 
 */
