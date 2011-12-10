@@ -8,7 +8,7 @@ This is the PHP script used to reach the good media services
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Contact: http://project.jappix.com/contact
 Last revision: 13/04/10
 
