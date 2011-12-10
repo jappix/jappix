@@ -8,7 +8,7 @@ These are the functions to checks things for Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Authors: Valérian Saliou, Mathieui
+Authors: Vanaryon, Mathieui
 Contact: http://project.jappix.com/contact
 Last revision: 09/07/10
 
