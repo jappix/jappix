@@ -6,7 +6,7 @@ These are the IQ JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 02/03/11
 
 */
