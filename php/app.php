@@ -8,7 +8,7 @@ This is the Jappix main app. html markup
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Licence : AGPL
-Author : Valérian Saliou
+Author : Vanaryon
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 24/03/10
 
