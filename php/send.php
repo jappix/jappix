@@ -8,7 +8,7 @@ This is the Jappix Out of Band file send script
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 27/08/11
 
 */

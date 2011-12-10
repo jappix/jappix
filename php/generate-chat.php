@@ -8,7 +8,7 @@ This is the PHP script used to generate a chat log
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 26/08/11
 
 */

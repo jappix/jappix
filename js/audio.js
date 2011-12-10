@@ -6,7 +6,7 @@ These are the audio JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 10/08/11
 
 */
