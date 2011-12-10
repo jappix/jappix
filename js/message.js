@@ -6,7 +6,7 @@ These are the messages JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Maranda
+Authors: Vanaryon, Maranda
 Last revision: 19/03/11
 
 */

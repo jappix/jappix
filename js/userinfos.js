@@ -6,7 +6,7 @@ These are the user-infos JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 03/03/11
 
 */

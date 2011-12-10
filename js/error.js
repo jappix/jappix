@@ -6,7 +6,7 @@ These are the error functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 11/02/11
 
 */

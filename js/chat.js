@@ -6,7 +6,7 @@ These are the chat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 19/03/11
 
 */
