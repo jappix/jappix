@@ -8,7 +8,7 @@ This is the Jappix Mobile PHP/HTML code
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 18/05/11
 
 */

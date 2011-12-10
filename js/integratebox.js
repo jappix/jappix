@@ -6,7 +6,7 @@ These are the integratebox JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 08/05/11
 
 */

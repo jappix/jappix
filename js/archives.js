@@ -6,7 +6,7 @@ These are the archives functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 03/03/11
 
 */
