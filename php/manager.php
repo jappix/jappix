@@ -8,7 +8,7 @@ This is the Jappix Manager PHP/HTML code
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 08/05/11
 
 */

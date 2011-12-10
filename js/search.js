@@ -6,7 +6,7 @@ These are the seach tools JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 19/03/11
 
 */

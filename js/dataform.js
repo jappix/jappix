@@ -6,7 +6,7 @@ These are the dataform JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 23/06/11
 
 */

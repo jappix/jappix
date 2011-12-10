@@ -6,7 +6,7 @@ These are the links JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Maranda
+Authors: Valérian Saliou, Maranda
 Last revision: 24/06/11
 
 */

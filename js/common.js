@@ -6,7 +6,7 @@ These are the common JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, olivierm
+Authors: Valérian Saliou, Olivier Migeot
 Last revision: 24/06/11
 
 */
