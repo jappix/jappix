@@ -6,7 +6,7 @@ These are the date related JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 17/08/11
 
 */
