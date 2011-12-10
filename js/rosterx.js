@@ -6,7 +6,7 @@ These are the Roster Item Exchange JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 30/03/11
 
 */

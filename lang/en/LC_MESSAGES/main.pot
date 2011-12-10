@@ -4,7 +4,7 @@
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 # License: AGPL
-# Authors: Vanaryon, JanCBorchardt
+# Authors: Valérian Saliou, Jan-Christoph Borchardt
 # Last revision: 02/05/11
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."

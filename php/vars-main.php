@@ -8,7 +8,7 @@ These are the main configuration variables
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 29/01/11
 
 */
