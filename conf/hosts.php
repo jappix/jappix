@@ -8,7 +8,7 @@ This is the hosts configuration file of Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Licence : AGPL
-Author : Valérian Saliou
+Author : Vanaryon
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 16/02/10
 

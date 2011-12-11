@@ -8,7 +8,7 @@ This is the english translation of Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Licence : AGPL
-Author : Valérian Saliou
+Author : Vanaryon
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 17/04/10
 
@@ -555,7 +555,7 @@ Last revision : 17/04/10
 		$LANG['437'] = 'Jappix IM software, version '.VERSION.', AGPL license';
 		$LANG['438'] = 'Jappix is a free software developed by the international community. Our objective is to give the world a perfect instant messaging client, that allow you to communicate with anyone, whenever it is, whatever it is.';
 		$LANG['439'] = 'The project philosophy is to develop an useful project, so that anyone will be helped at any levels. We give our best for you : the Jappix source code is distributed under the AGPL licence terms, that allow you to study it, copy it and modify it !';
-		$LANG['440'] = 'Jappix was, at the beginning, developped without any real objective by the french guy <em>Valérian Saliou</em> (visit <a href="http://www.vanaryon.eu/" target="_blank">his weblog</a>). Now, the project has grown and it interest lots of people, we\'re really proud of that ! Thanks ☺';
+		$LANG['440'] = 'Jappix was, at the beginning, developped without any real objective by the french guy <em>Vanaryon</em> (visit <a href="http://www.vanaryon.eu/" target="_blank">his weblog</a>). Now, the project has grown and it interest lots of people, we\'re really proud of that ! Thanks ☺';
 		$LANG['441'] = 'I read all the things !';
 		
 		// HELP

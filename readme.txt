@@ -4,7 +4,7 @@ This is the readme for Jappix
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Licence : AGPL
-Author : Valérian Saliou
+Author : Vanaryon
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 13/04/10
 

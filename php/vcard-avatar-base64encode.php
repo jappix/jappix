@@ -8,7 +8,7 @@ This is the PHP script used to convert binary avatars into base64 avatars
 -------------------------------------------------
 
 Licence : GNU/GPL
-Author : Valérian Saliou
+Author : Vanaryon
 Contact : mailing-list[at]jappix[dot]com
 Last revision : 12/24/09
 
