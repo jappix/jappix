@@ -6,7 +6,7 @@ These are the Jappix Mobile lightweight JS script
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Contact: http://project.jappix.com/contact
 Last revision: 28/06/10
 
