@@ -6,7 +6,7 @@ These are the roster JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 19/05/11
 
 */

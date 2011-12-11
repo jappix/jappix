@@ -8,7 +8,7 @@ This is a PHP BOSH proxy
 -------------------------------------------------
 
 License: MIT
-Authors: Jonathan Gueron, Valérian Saliou
+Author: Vanaryon
 Last revision: 18/06/11
 
 */

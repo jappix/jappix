@@ -6,7 +6,7 @@ These are the interface JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 13/05/11
 
 */

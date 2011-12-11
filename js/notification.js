@@ -6,7 +6,7 @@ These are the notification JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 20/05/11
 
 */
