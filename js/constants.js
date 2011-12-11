@@ -6,7 +6,7 @@ These are the constants JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Stefan Strigler, Valérian Saliou
+Author: Stefan Strigler, Vanaryon
 Contact: http://project.jappix.com/contact
 Last revision: 05/12/10
 

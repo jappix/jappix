@@ -8,7 +8,7 @@ These are the PHP functions for Jappix Get API
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Authors: Valérian Saliou, Mathieui, Olivier M.
+Authors: Vanaryon, Mathieui, Olivier M.
 Contact: http://project.jappix.com/contact
 Last revision: 20/11/10
 

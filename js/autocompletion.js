@@ -6,7 +6,7 @@ These are the autocompletion tools JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Contact: http://project.jappix.com/contact
 Last revision: 12/11/10
 
