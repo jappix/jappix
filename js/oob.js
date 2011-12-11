@@ -6,7 +6,7 @@ These are the Out of Band Data JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 27/08/11
 
 */

@@ -8,7 +8,7 @@ This is the user add form (install & manager)
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 08/05/11
 
 */

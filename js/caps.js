@@ -6,7 +6,7 @@ These are the CAPS JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 26/08/11
 
 */

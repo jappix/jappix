@@ -8,7 +8,7 @@ This is the store configuration GET handler (manager)
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 26/08/11
 
 */
