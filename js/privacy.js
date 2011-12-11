@@ -6,7 +6,7 @@ These are the privacy JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 29/04/11
 
 */
