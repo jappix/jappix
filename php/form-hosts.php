@@ -8,7 +8,7 @@ This is the hosts configuration form (install & manager)
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 11/06/11
 
 */

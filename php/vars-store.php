@@ -8,7 +8,7 @@ These are the store configuration variables
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 28/12/10
 
 */

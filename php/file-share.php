@@ -8,7 +8,7 @@ This is the Jappix microblog file attaching script
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 27/05/11
 
 */

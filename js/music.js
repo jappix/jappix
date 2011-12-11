@@ -6,7 +6,7 @@ These are the music JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 25/04/11
 
 */

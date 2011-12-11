@@ -6,7 +6,7 @@ These are the connection JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 29/08/11
 
 */

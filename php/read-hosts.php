@@ -8,7 +8,7 @@ This is the hosts configuration reader
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 29/05/11
 
 */
