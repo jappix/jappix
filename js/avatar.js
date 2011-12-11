@@ -6,7 +6,7 @@ These are the avatar JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 01/03/11
 
 */
