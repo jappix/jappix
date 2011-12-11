@@ -6,7 +6,7 @@ These are the tooltip JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 30/03/11
 
 */

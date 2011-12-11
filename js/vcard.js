@@ -6,7 +6,7 @@ These are the vCard JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 13/03/11
 
 */

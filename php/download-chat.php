@@ -8,7 +8,7 @@ This is the PHP script used to download a chat log
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 05/01/11
 
 */

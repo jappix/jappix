@@ -8,7 +8,7 @@ This is the hosts configuration POST handler (install & manager)
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 License: AGPL
-Author: Valérian Saliou
+Author: Vanaryon
 Last revision: 28/12/10
 
 */
