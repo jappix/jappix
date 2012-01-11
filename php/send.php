@@ -9,7 +9,7 @@ This is the Jappix Out of Band file send script
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 11/01/12
 
 */
 
@@ -83,16 +83,6 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 	else
 		$location = $_POST['location'];
 	
-	// Forbidden file?
-	if(!isSafe($filename)) {
-		exit(
-'<jappix xmlns=\'jappix:file:send\'>
-	<error>forbidden-type</error>
-	<id>'.htmlspecialchars($_POST['id']).'</id>
-</jappix>'
-		);
-	}
-	
 	// Get the file new name
 	$ext = getFileExt($filename);
 	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
@@ -100,6 +90,16 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 	// Define some vars
 	$name = sha1(time().$filename);
 	$path = JAPPIX_BASE.'/store/send/'.$name.'.'.$ext;
+	
+	// Forbidden file?
+	if(!isSafe($filename) || !isSafe($path)) {
+		exit(
+'<jappix xmlns=\'jappix:file:send\'>
+	<error>forbidden-type</error>
+	<id>'.htmlspecialchars($_POST['id']).'</id>
+</jappix>'
+		);
+	}
 	
 	// File upload error?
 	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
