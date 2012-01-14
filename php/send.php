@@ -9,7 +9,7 @@ This is the Jappix Out of Band file send script
 
 License: AGPL
 Author: Vanaryon
-Last revision: 11/01/12
+Last revision: 14/01/12
 
 */
 
@@ -92,7 +92,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 	$path = JAPPIX_BASE.'/store/send/'.$name.'.'.$ext;
 	
 	// Forbidden file?
-	if(!isSafe($filename) || !isSafe($path)) {
+	if(!isSafe($filename) || !isSafe($name.'.'.$ext)) {
 		exit(
 '<jappix xmlns=\'jappix:file:send\'>
 	<error>forbidden-type</error>
