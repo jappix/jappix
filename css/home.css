@@ -21,6 +21,8 @@ Last revision: 15/01/12
 	min-width: 875px;
 }
 
+#home .corporation,
+#home .corporation .corp_network,
 #home .locale,
 #home .obsolete {
 	background-color: rgb(20,20,20);
@@ -38,13 +40,69 @@ Last revision: 15/01/12
 	-webkit-border-bottom-right-radius: 3px;
 }
 
-#home .locale {
+#home .corporation {
+	background-position: 9px -357px;
 	left: 12px;
+	height: 26px;
+	width: 34px;
+}
+
+#home .corporation.hovered {
+	height: 28px;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+#home .corporation .corp_network {
+	width: 180px;
+	padding: 10px 12px;
+	top: 28px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+
+#home .corporation .corp_network h2 {
+	font-size: 1.1em;
+	margin: 14px 0 4px 0;
+}
+
+#home .corporation .corp_network h2.nomargin {
+	margin-top: 0;
+}
+
+#home .corporation .corp_network a {
+	font-size: 0.8em;
+	margin: 2px 0;
+	padding: 2px 6px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+#home .corporation .corp_network a span {
+	margin: 2px 0;
+	display: block;
+}
+
+#home .corporation .corp_network a span.name {
+	font-weight: bold;
+}
+
+#home .corporation .corp_network a span.desc {
+	font-size: 0.9em;
+	margin-left: 2px;
+}
+
+#home .locale {
+	left: 52px;
 	font-size: 0.8em;
 }
 
 #home .locale .current {
-	padding: 3px 10px 4px 10px;
+	height: 19px;
+	padding: 3px 12px 4px 12px;
 	font-weight: bold;
 }
 
@@ -52,25 +110,38 @@ Last revision: 15/01/12
 	cursor: default;
 }
 
+#home .locale .current .current_align {
+	height: 19px;
+	vertical-align: middle;
+	display: table-cell;
+}
+
 #home .locale .list {
 	margin: 2px 0 2px;
 }
 
-#home .locale .list a {
+#home .locale .list a,
+#home .corporation .corp_network a {
 	color: white;
-	padding: 3px 10px;
 	text-decoration: none;
 	display: block;
 }
 
+#home .locale .list a {
+	padding: 3px 10px;
+}
+
 #home .locale .list a:hover,
-#home .locale .list a:focus {
+#home .locale .list a:focus,
+#home .corporation .corp_network a:hover,
+#home .corporation .corp_network a:focus {
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
 	cursor: pointer;
 }
 
-#home .locale .list a:active {
+#home .locale .list a:active,
+#home .corporation .corp_network a:active {
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.14);
 }
@@ -121,12 +192,12 @@ Last revision: 15/01/12
 }
 
 #home .plane {
-	background-position: 0 -365px;
+	background-position: 0 -384px;
 	width: 507px;
 	height: 328px;
 	position: absolute;
 	left: 0;
-	top: 50px;
+	top: 60px;
 }
 
 #home .main {

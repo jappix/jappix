@@ -96,8 +96,12 @@ if(!anonymousMode()) { ?>
 			</div>
 		</div>
 		
+		<div class="home-images corporation"></div>
+		
 		<div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
-			<div class="current"><?php echo(getLanguageName($locale)); ?></div>
+			<div class="current">
+				<div class="current_align"><?php echo(getLanguageName($locale)); ?></div>
+			</div>
 		</div>
 		
 		<?php
