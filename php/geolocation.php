@@ -9,7 +9,7 @@ This is the Jappix geolocation script
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/05/11
+Last revision: 15/01/12
 
 */
 
@@ -35,7 +35,7 @@ if((isset($_GET['latitude']) && !empty($_GET['latitude'])) && (isset($_GET['long
 	header('Content-Type: text/xml; charset=utf-8');
 	
 	// Get the XML content
-	$xml = file_get_contents('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
+	$xml = read_url('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
 	
 	exit($xml);
 }

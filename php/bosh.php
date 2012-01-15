@@ -3,13 +3,13 @@
 /*
 
 Jappix - An open social platform
-This is a PHP BOSH proxy
+This is the PHP BOSH proxy
 
 -------------------------------------------------
 
-License: MIT
+License: AGPL
 Author: Vanaryon
-Last revision: 02/09/11
+Last revision: 15/01/12
 
 */
 

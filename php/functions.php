@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm
-Last revision: 26/08/11
+Last revision: 15/01/12
 
 */
 
@@ -125,6 +125,25 @@ function readXML($type, $xmlns) {
 		return file_get_contents($conf_file);
 	
 	return false;
+}
+
+// The function to read remote URLs
+function read_url($url) {
+	// Any cURL?
+	if(function_exists('curl_init')) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		$data = curl_exec($ch);
+		curl_close($ch);
+	}
+	
+	// Default method
+	else
+		$data = @file_get_contents($url);
+	
+	return $data;
 }
 
 // The function to get the Jappix app. current version
