@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/05/11
+Last revision: 15/01/12
 
 */
 
@@ -48,6 +48,8 @@ if(!defined('JAPPIX_BASE'))
 if(!anonymousMode()) { ?>
 	<!-- BEGIN HOMEPAGE -->
 	<div id="home">
+		<div class="home-images plane"></div>
+		
 		<div class="main">
 			<div class="left">
 				<div class="home-images logo"></div>

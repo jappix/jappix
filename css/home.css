@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 15/01/12
 
 */
 
@@ -118,6 +118,15 @@ Last revision: 27/08/11
 
 #home .obsolete a.ie {
 	background-position: -135px 0;
+}
+
+#home .plane {
+	background-position: 0 -365px;
+	width: 507px;
+	height: 328px;
+	position: absolute;
+	left: 0;
+	top: 50px;
 }
 
 #home .main {
