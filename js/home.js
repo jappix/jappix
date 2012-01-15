@@ -312,39 +312,9 @@ function launchHome() {
 	
 	// Allows the user to view the corporation infobox
 	$(corp).hover(function() {
-		// Initialize the HTML code
-		var html = '<div class="corp_network">';
-		
-		// Jappix.com
-		html += '<h2 class="nomargin">Jappix.com</h2>';
-		html += '<div class="tabulate">';
-		html += '<a href="https://www.jappix.com/"><span class="name">Jappix</span><span class="desc">' + _e("Social channel, chat and more.") + '</span></a>';
-		html += '<a href="https://me.jappix.com/"><span class="name">Jappix Me</span><span class="desc">' + _e("Create your public profile.") + '</span></a>';
-		html += '<a href="https://mini.jappix.com/"><span class="name">Jappix Mini</span><span class="desc">' + _e("A mini-chat for your website.") + '</span></a>';
-		html += '<a href="https://project.jappix.com/"><span class="name">Jappix Project</span><span class="desc">' + _e("Get Jappix, get support.") + '</span></a>';
-		html += '<a href="https://stats.jappix.com/"><span class="name">Jappix Stats</span><span class="desc">' + _e("Statistics around Jappix.") + '</span></a>';
-		html += '</div>';
-		
-		// Jappix.org
-		html += '<h2>Jappix.org</h2>';
-		html += '<div class="tabulate">';
-		html += '<a href="http://jappix.org/"><span class="name">Jappix Download</span><span class="desc">' + _e("Download Jappix for free.") + '</span></a>';
-		html += '</div>';
-		
-		// Jappix.net
-		html += '<h2>Jappix.net</h2>';
-		html += '<div class="tabulate">';
-		html += '<a href="http://jappix.net/"><span class="name">Jappix Network</span><span class="desc">' + _e("Find a public Jappix node.") + '</span></a>';
-		html += '</div>';
-		
-		html += '</div>';
-		
-		// Append the HTML code
 		$(corp).addClass('hovered');
-		$(corp).append(html);
 	}, function() {
 		$(corp).removeClass('hovered');
-		$(corp + ' .corp_network').remove();
 	});
 	
 	// Allows the user to switch the language

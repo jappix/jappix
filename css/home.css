@@ -58,9 +58,14 @@ Last revision: 15/01/12
 	width: 180px;
 	padding: 10px 12px;
 	top: 28px;
+	display: none;
 	border-top-right-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-webkit-border-top-right-radius: 3px;
+}
+
+#home .corporation.hovered .corp_network {
+	display: block;
 }
 
 #home .corporation .corp_network h2 {

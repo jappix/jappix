@@ -96,7 +96,49 @@ if(!anonymousMode()) { ?>
 			</div>
 		</div>
 		
-		<div class="home-images corporation"></div>
+		<div class="home-images corporation">
+			<div class="corp_network">
+				<h2 class="nomargin">Jappix.com</h2>
+				<div class="tabulate">
+					<a href="https://www.jappix.com/">
+						<span class="name">Jappix</span>
+						<span class="desc"><?php _e("Social channel, chat and more."); ?></span>
+					</a>
+					<a href="https://me.jappix.com/">
+						<span class="name">Jappix Me</span>
+						<span class="desc"><?php _e("Create your public profile."); ?></span>
+					</a>
+					<a href="https://mini.jappix.com/">
+						<span class="name">Jappix Mini</span>
+						<span class="desc"><?php _e("A mini-chat for your website."); ?></span>
+					</a>
+					<a href="https://project.jappix.com/">
+						<span class="name">Jappix Project</span>
+						<span class="desc"><?php _e("Get Jappix, get support."); ?></span>
+					</a>
+					<a href="https://stats.jappix.com/">
+						<span class="name">Jappix Stats</span>
+						<span class="desc"><?php _e("Statistics around Jappix."); ?></span>
+					</a>
+				</div>
+				
+				<h2>Jappix.org</h2>
+				<div class="tabulate">
+					<a href="http://jappix.org/">
+						<span class="name">Jappix Download</span>
+						<span class="desc"><?php _e("Download Jappix for free."); ?></span>
+					</a>
+				</div>
+				
+				<h2>Jappix.net</h2>
+				<div class="tabulate">
+					<a href="http://jappix.net/">
+						<span class="name">Jappix Network</span>
+						<span class="desc"><?php _e("Find a public Jappix node."); ?></span>
+					</a>
+				</div>
+			</div>
+		</div>
 		
 		<div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
 			<div class="current">
