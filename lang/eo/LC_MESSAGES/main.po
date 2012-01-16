@@ -4,2428 +4,1867 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-08-28 15:41:33\n"
+"PO-Revision-Date: 2012-01-16 21:45+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 
-#: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
-msgstr ""
+msgstr "Ĝavaskripto mankas en via retumilo, do vi ne povas lanĉi Jappix-on! Bonvolu ripari tion ĉi."
 
-#: 
 msgid "An open social network"
-msgstr ""
+msgstr "Malferma socia reto"
 
-#: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr ""
+msgstr "Jappix estis interrompita pro reta problemo, cimo aŭ malbona ensaluto (bv. kontroli ke vi tajpis la ĝustan pasvorton). Pardonon por la ĝeno."
 
-#: 
 msgid "The element list on this server could not be obtained!"
-msgstr ""
+msgstr "La elementa listo sur ĉi tiu servilo ne povus esti akirita!"
 
-#: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
-msgstr ""
+msgstr "Via pasvorto estis ŝanĝita, nun vi povas konekti al via konto kun via nova ensaluta datumo."
 
-#: 
 msgid "Your XMPP account has been removed, bye!"
-msgstr ""
+msgstr "Via XMPPa konto estis forigita. Ĝis!"
 
-#: 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr ""
+msgstr "Vi estis adiaŭita de via XMPPa konto. Belan tagon!"
 
-#: 
 msgid "The room you joined seems not to exist. You should create it!"
-msgstr ""
+msgstr "La ĉambro vi aliĝis ŝajnas ke ne ekzistas. Vi devus krei ĝin!"
 
-#: 
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
-msgstr ""
+msgstr "La retbabilejo estis forigita.Iu alia estos nun kapabla krei ĝi denove."
 
-#: 
 msgid "The user that you want to reach is not present in the room."
-msgstr ""
+msgstr "La uzanto ke vi deziras atingi ne estas en la ĉambro."
 
-#: 
 msgid "Please enter the group chat address to join."
-msgstr ""
+msgstr "Bonvolu tajpi la retbabilejan adreson por aliĝi."
 
-#: 
 msgid "Please enter your nickname to join %s."
-msgstr ""
+msgstr "Bonvolu tajpi vian kromnomon por aliĝi %s."
 
-#: 
 msgid "This room (%s) is protected with a password."
-msgstr ""
+msgstr "Ĉi tiu ĉambro (%s) estas protektita kun pasvorto."
 
-#: 
 msgid "Your browser is out of date!"
-msgstr ""
+msgstr "Via retumilo tro malnovas!"
 
-#: 
 msgid "Last %s version is better!"
-msgstr ""
+msgstr "Lasta %s versio estas pli bona!"
 
-#: 
 msgid "Login"
 msgstr "Ensaluti"
 
-#: 
 msgid "Register"
 msgstr "Registri"
 
-#: 
 msgid "Here we go!"
 msgstr "Ek!"
 
-#: 
 msgid "Server"
 msgstr "Servilo"
 
-#: 
 msgid "Password"
 msgstr "Pasvorto"
 
-#: 
 msgid "Remember me"
 msgstr "Memoru min"
 
-#: 
 msgid "This tool has been disabled, you cannot use it!"
-msgstr ""
+msgstr "Ĉi tiu ilo estis malaktivigita, vi ne povas uzi ĝin!"
 
-#: 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr ""
+msgstr "Pro reta problemo, vi estis malkonektita. Kio vi deziras fari nun?"
 
-#: 
 msgid "Reconnect"
 msgstr "Rekonekti"
 
-#: 
 msgid "Messages"
 msgstr "Mesaĝoj"
 
-#: 
 msgid "Profile"
 msgstr "Profilo"
 
-#: 
 msgid "Options"
 msgstr "Opcioj"
 
-#: 
 msgid "Disconnect"
 msgstr "Elsaluti"
 
-#: 
 msgid "Filter"
 msgstr "Filtri"
 
-#: 
 msgid "Add a friend"
 msgstr "Aldoni amikon"
 
-#: 
 msgid "Your groupchats"
 msgstr "Viaj babilejoj"
 
-#: 
 msgid "Manage your favorite groupchats"
-msgstr ""
+msgstr "Administri viajn preferatajn retbabilejojn"
 
-#: 
 msgid "More stuff"
-msgstr ""
+msgstr "Pli aĵoj"
 
-#: 
 msgid "Show all friends"
 msgstr "Montri ĉiojn amikojn"
 
-#: 
 msgid "Only show connected friends"
-msgstr ""
+msgstr "Nur montri konektitajn amikojn"
 
-#: 
 msgid "Message archives"
-msgstr ""
+msgstr "Mesaĝaj arkivoj"
 
-#: 
 msgid "Date"
 msgstr "Dato"
 
-#: 
 msgid "Please select a friend to view the chat history."
-msgstr ""
+msgstr "Bonvolu elekti amikon por vidi la konversacian historion."
 
-#: 
 msgid "Nothing found for: %s"
-msgstr ""
+msgstr "Nenion trovita por: %s"
 
-#: 
 msgid "A short message?"
-msgstr ""
+msgstr "Mallonga mesaĝo?"
 
-#: 
 msgid "How are you?"
 msgstr "Kiel vi fartas?"
 
-#: 
 msgid "What are you doing?"
-msgstr ""
+msgstr "Kion vi faras?"
 
-#: 
 msgid "Join a chat"
 msgstr "Aliĝi babilejo"
 
-#: 
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
-#: 
 msgid "Available"
 msgstr "Enrete"
 
-#: 
 msgid "Talkative"
 msgstr "Babilema"
 
-#: 
 msgid "Away"
 msgstr "Fora"
 
-#: 
 msgid "Not available"
 msgstr "Nedisponebla"
 
-#: 
 msgid "Busy"
 msgstr "Okupata"
 
-#: 
 msgid "Mood"
-msgstr ""
+msgstr "Humoro"
 
-#: 
 msgid "None"
 msgstr "Neniu"
 
-#: 
 msgid "Crazy"
-msgstr ""
+msgstr "Freneza"
 
-#: 
 msgid "Excited"
-msgstr ""
+msgstr "Ekscitema"
 
-#: 
 msgid "Playful"
-msgstr ""
+msgstr "Ludema"
 
-#: 
 msgid "Happy"
-msgstr ""
+msgstr "Feliĉa"
 
-#: 
 msgid "Shocked"
-msgstr ""
+msgstr "Ŝokita"
 
-#: 
 msgid "Hot"
-msgstr ""
+msgstr "Varma"
 
-#: 
 msgid "Sad"
-msgstr ""
+msgstr "Malfeliĉa"
 
-#: 
 msgid "Amorous"
-msgstr ""
+msgstr "Amorema"
 
-#: 
 msgid "Confident"
-msgstr ""
+msgstr "Fidema"
 
-#: 
 msgid "Activity"
-msgstr ""
+msgstr "Aktiveco"
 
-#: 
 msgid "Chores"
-msgstr ""
+msgstr "Taskoj"
 
-#: 
 msgid "Drinking"
-msgstr ""
+msgstr "Drinkante"
 
-#: 
 msgid "Eating"
-msgstr ""
+msgstr "Manĝante"
 
-#: 
 msgid "Exercising"
-msgstr ""
+msgstr "Ekzercante"
 
-#: 
 msgid "Grooming"
-msgstr ""
+msgstr "Tualetante"
 
-#: 
 msgid "Appointment"
-msgstr ""
+msgstr "Rendevuo"
 
-#: 
 msgid "Inactive"
 msgstr "Senfara"
 
-#: 
 msgid "Relaxing"
-msgstr ""
+msgstr "Ripozante"
 
-#: 
 msgid "Talking"
-msgstr ""
+msgstr "Parolante"
 
-#: 
 msgid "Traveling"
-msgstr ""
+msgstr "Vojaĝante"
 
-#: 
 msgid "Working"
-msgstr ""
+msgstr "Laborante"
 
-#: 
 msgid "View profile"
 msgstr "Vidi profilon"
 
-#: 
 msgid "Repeat this notice"
 msgstr "Ripeti tion avizon"
 
-#: 
 msgid "Remove this notice"
 msgstr "Forigi tion avizon"
 
-#: 
 msgid "Your profile"
 msgstr "Via profilo"
 
-#: 
 msgid "Identity"
 msgstr "Identeco"
 
-#: 
 msgid "Profile image"
 msgstr "Profila bildo"
 
-#: 
 msgid "Others"
 msgstr "Aliaj"
 
-#: 
 msgid "Personal"
 msgstr "Persona"
 
-#: 
 msgid "Complete name"
 msgstr "Tuta nomo"
 
-#: 
 msgid "Nickname"
 msgstr "Pseŭdonimo"
 
-#: 
 msgid "First name"
 msgstr "Antaŭa nomo"
 
-#: 
 msgid "Last name"
 msgstr "Familia nomo"
 
-#: 
 msgid "Date of birth"
 msgstr "Dato de nasko"
 
-#: 
 msgid "Contact"
 msgstr "Kontakto"
 
-#: 
 msgid "E-mail"
 msgstr "Retpoŝto"
 
-#: 
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
-#: 
 msgid "Website"
 msgstr "Retpaĝo"
 
-#: 
 msgid "Current"
 msgstr "Aktuala"
 
-#: 
 msgid "Delete"
 msgstr "Forviŝi"
 
-#: 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr ""
+msgstr "Kio domaĝo! Vi ne havas profilan bildon en via identeca karto!"
 
-#: 
 msgid "Address"
 msgstr "Adreso"
 
-#: 
 msgid "Street"
 msgstr "Strato"
 
-#: 
 msgid "City"
 msgstr "Urbo"
 
-#: 
 msgid "Postal code"
 msgstr "Poŝtkodo"
 
-#: 
 msgid "Country"
 msgstr "Lando"
 
-#: 
 msgid "Biography"
 msgstr "Vivhistorio"
 
-#: 
 msgid "Important notice"
 msgstr "Grava avizo"
 
-#: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
-msgstr ""
+msgstr "Estu zorgema pri la informojn vi skribas en via profilo, ĉar ĝi povus esti alirita de ĉiuj (eĉ iu kiu vi ne deziras montri)."
 
-#: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
-msgstr ""
+msgstr "Ne ĉio estas privata sur XMPP. Via publika profilo (vCard) estas unu el tiuj aferoj."
 
-#: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr ""
+msgstr "Alŝuti profila bildo estas forte rekomendita (%s maksimumo), kiel bildo de vi mem, ĉar ĝi faras vin facile rekonebla de viaj amikoj."
 
-#: 
 msgid "Save"
 msgstr "Akcepti"
 
-#: 
 msgid "Cancel"
 msgstr "Nuligi"
 
-#: 
 msgid "Edit options"
 msgstr "Modifi opciojn"
 
-#: 
 msgid "Channel"
 msgstr "Kanalo"
 
-#: 
 msgid "Commands"
-msgstr ""
+msgstr "Komandoj"
 
-#: 
 msgid "Sounds"
 msgstr "Sonoj"
 
-#: 
 msgid "Privacy"
-msgstr ""
+msgstr "Privateco"
 
-#: 
 msgid "Message archiving"
-msgstr ""
+msgstr "Mesaĝa enarkivago"
 
-#: 
 msgid "Store a history of your chats"
-msgstr ""
+msgstr "Entenas historion de viaj konversacioj"
 
-#: 
 msgid "Geolocation"
-msgstr ""
+msgstr "Surtera loko"
 
-#: 
 msgid "Empty"
 msgstr "Malplena"
 
-#: 
 msgid "Empty channel"
 msgstr "Malplena kanalo"
 
-#: 
 msgid "Persistent"
 msgstr "Daŭra"
 
-#: 
 msgid "Maximum notices"
 msgstr "Maksimumaj avizoj"
 
-#: 
 msgid "Account"
 msgstr "Konto"
 
-#: 
 msgid "Change password"
-msgstr ""
+msgstr "Ŝanĝi pasvorton"
 
-#: 
 msgid "Delete account"
 msgstr "Forigi konton"
 
-#: 
 msgid "Old"
 msgstr "Malnova"
 
-#: 
 msgid "New (2 times)"
 msgstr "Nova (2 fojoj)"
 
-#: 
 msgid "Continue"
 msgstr "Daŭri"
 
-#: 
 msgid "To"
 msgstr "Al"
 
-#: 
 msgid "Close"
 msgstr "Fermi"
 
-#: 
 msgid "unknown"
 msgstr "nekonata"
 
-#: 
 msgid "Unavailable"
-msgstr ""
+msgstr "Nedisponebla"
 
-#: 
 msgid "is now"
 msgstr "nun estas"
 
-#: 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Bonvolu atendi dum via avatar estos alŝutita…"
 
-#: 
 msgid "Here it is! A new beautiful profile image!"
-msgstr ""
+msgstr "Jen! Nova bela profila bildo!"
 
-#: 
 msgid "The image file is not supported or has a bad size."
-msgstr ""
+msgstr "La bilda dosiero havas nesubtenita tipon aŭ malbonan grandecon."
 
-#: 
 msgid "Reply"
 msgstr "Respondo"
 
-#: 
 msgid "Error"
 msgstr "Eraro"
 
-#: 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Klaku ĉi-tie por solvi la eraron"
 
-#: 
 msgid "You"
 msgstr "Vi"
 
-#: 
 msgid "Remove"
 msgstr "Forigi"
 
-#: 
 msgid "Rename"
 msgstr "Renomi"
 
-#: 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Saluton, mi estas %s, mi ŝatus aldoni vin kiel mia amiko."
 
-#: 
 msgid "Smiley insertion"
-msgstr ""
+msgstr "Ridetula inserto"
 
-#: 
 msgid "Change style"
-msgstr ""
+msgstr "Ŝanĝi stilon"
 
-#: 
 msgid "Text in bold"
-msgstr ""
+msgstr "Grasa"
 
-#: 
 msgid "Text in italic"
-msgstr ""
+msgstr "Kursiva"
 
-#: 
 msgid "Underlined text"
-msgstr ""
+msgstr "Substreka"
 
-#: 
 msgid "Save chat"
-msgstr ""
+msgstr "Registrigi babilon"
 
-#: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
-msgstr ""
+msgstr "Klaku sur la sekvanta ligo por akiri la konversacian protokolan dosieron kaj atendu. Tiam klaku denove por akiri la dosieron."
 
-#: 
 msgid "This chat is empty!"
 msgstr "Tio babilejo estas malplena!"
 
-#: 
 msgid "Generate file!"
 msgstr "Generi dosieron!"
 
-#: 
 msgid "Download file!"
 msgstr "Elŝuti dosieron!"
 
-#: 
 msgid "Clean current chat"
-msgstr ""
+msgstr "Forviŝi nun babilon"
 
-#: 
 msgid "View chat history"
-msgstr ""
+msgstr "Vidi konversacio historio"
 
-#: 
 msgid "Show user profile"
 msgstr "Montri uzatan profilon"
 
-#: 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "Aldoni ĉi-tiun kontakton al viaj amikoj"
 
-#: 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "Aldoni ĉi tiu retbabilejo al via ŝatolisto"
 
-#: 
 msgid "All tabs"
 msgstr "Tutaj folioj"
 
-#: 
 msgid "Close this tab"
 msgstr "Fermi tion folion"
 
-#: 
 msgid "no subject defined for this room."
-msgstr ""
+msgstr "neniu temo difinita por ĉi tiu ĉambro."
 
-#: 
 msgid "Administration panel for this room"
-msgstr ""
+msgstr "Administra panelo por ĉi tiu ĉambro."
 
-#: 
 msgid "Moderators"
-msgstr ""
+msgstr "Kontrolantoj"
 
-#: 
 msgid "Participants"
-msgstr ""
+msgstr "Partoprenantoj"
 
-#: 
 msgid "Visitors"
-msgstr ""
+msgstr "Vizituloj"
 
-#: 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr "Administri preferatajn ĉambrojn"
 
-#: 
 msgid "Change favorites"
-msgstr ""
+msgstr "Ŝanĝi ŝatolisto"
 
-#: 
 msgid "Search a room"
 msgstr "Serĉi babilejon"
 
-#: 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Elekti ŝatolistero"
 
-#: 
 msgid "Getting the name..."
-msgstr ""
+msgstr "Akirante la nomon…"
 
-#: 
 msgid "Gateway"
-msgstr ""
+msgstr "Kluzo"
 
-#: 
 msgid "Name"
 msgstr "Nomo"
 
-#: 
 msgid "Room"
 msgstr "Babilejo"
 
-#: 
 msgid "Add"
 msgstr "Aldoni"
 
-#: 
 msgid "Edit"
 msgstr "Modifi"
 
-#: 
 msgid "Search a room on"
 msgstr "Serĉi babilejon sur"
 
-#: 
 msgid "No room found on this server."
-msgstr ""
+msgstr "Neniu ĉambro trovita sur ĉi tiu servilo."
 
-#: 
 msgid "Service discovery"
-msgstr ""
+msgstr "Serva eltrovo"
 
-#: 
 msgid "Server to query"
-msgstr ""
+msgstr "Servilo por pridemandi"
 
-#: 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
+msgstr "Pardonu, sed la ento ne revenis ajnan rezulton!"
 
-#: 
 msgid "Accounts"
 msgstr "Kontoj"
 
-#: 
 msgid "Authentications"
-msgstr ""
+msgstr "Aŭtentokontroloj"
 
-#: 
 msgid "Automation"
-msgstr ""
+msgstr "Aŭtomatigo"
 
-#: 
 msgid "Clients"
 msgstr "Klientoj"
 
-#: 
 msgid "Collaboration"
-msgstr ""
+msgstr "Kunlaborado"
 
-#: 
 msgid "Components"
-msgstr ""
+msgstr "Komponento"
 
-#: 
 msgid "Rooms"
 msgstr "Babilejoj"
 
-#: 
 msgid "Directories"
 msgstr "Dosierujoj"
 
-#: 
 msgid "Gateways"
-msgstr ""
+msgstr "Kluzoj"
 
-#: 
 msgid "News"
-msgstr ""
+msgstr "Novaĵoj"
 
-#: 
 msgid "Hierarchy"
-msgstr ""
+msgstr "Hierarkio"
 
-#: 
 msgid "Proxies"
-msgstr ""
+msgstr "Prokuraj serviloj"
 
-#: 
 msgid "Publication/Subscription"
-msgstr ""
+msgstr "Eldona/Abono"
 
-#: 
 msgid "Storage"
-msgstr ""
+msgstr "Konservado"
 
-#: 
 msgid "Service offline or broken"
-msgstr ""
+msgstr "Servo elretan aŭ rompita"
 
-#: 
 msgid "Your inbox"
-msgstr ""
+msgstr "Via enirkesto"
 
-#: 
 msgid "Available actions"
-msgstr ""
+msgstr "Haveblaj agoj"
 
-#: 
 msgid "Clean"
 msgstr "Purigi"
 
-#: 
 msgid "New"
 msgstr "Nova"
 
-#: 
 msgid "Received"
-msgstr ""
+msgstr "Ricevitaj"
 
-#: 
 msgid "Subject"
 msgstr "Temo"
 
-#: 
 msgid "Content"
 msgstr "Enhavo"
 
-#: 
 msgid "Send message"
 msgstr "Sendi mesaĝon"
 
-#: 
 msgid "Your inbox is empty."
-msgstr ""
+msgstr "Via enirkesto estas malplene."
 
-#: 
 msgid "MUC administration"
-msgstr ""
+msgstr "Retbabileja administrado."
 
-#: 
 msgid "You administrate this room"
-msgstr ""
+msgstr "Vi administras ĉi-tiun ĉambron"
 
-#: 
 msgid "Enter new subject"
-msgstr ""
+msgstr "Tajpu novan subjekton"
 
-#: 
 msgid "Configuration"
-msgstr ""
+msgstr "Agordoj"
 
-#: 
 msgid "Authorizations"
-msgstr ""
+msgstr "Aŭtentigoj"
 
-#: 
 msgid "Member list"
-msgstr ""
+msgstr "Membra listo"
 
-#: 
 msgid "Owner list"
-msgstr ""
+msgstr "Posedanta listo"
 
-#: 
 msgid "Administrator list"
-msgstr ""
+msgstr "Administranta listo"
 
-#: 
 msgid "Outcast list"
-msgstr ""
+msgstr "Forĵetuloj listo"
 
-#: 
 msgid "Add an input"
-msgstr ""
+msgstr "Aldonas enigon"
 
-#: 
 msgid "Destroy this MUC"
-msgstr ""
+msgstr "Detrui la retbabilejon"
 
-#: 
 msgid "Yes, let's do it!"
-msgstr ""
+msgstr "Jes, faru ni!"
 
-#: 
 msgid "Your friend is paying attention to the conversation."
-msgstr ""
+msgstr "Via amiko estas atentita al la konversacio."
 
-#: 
 msgid "Your friend is writing a message..."
-msgstr ""
+msgstr "Via amiko estas skribanti mesaĝon... "
 
-#: 
 msgid "Your friend stopped writing a message."
-msgstr ""
+msgstr "Via amiko haltis skribi mesaĝon."
 
-#: 
 msgid "Your friend is doing something else."
-msgstr ""
+msgstr "Via amiko estas farante ion alia."
 
-#: 
 msgid "Your friend closed the chat."
-msgstr ""
+msgstr "Via amiko fermis la konversacion."
 
-#: 
 msgid "Requesting this service..."
-msgstr ""
+msgstr "Petanta ĉi-tiun servon…"
 
-#: 
 msgid "Loading"
 msgstr "Ŝargi"
 
-#: 
 msgid "joined the chat room"
 msgstr "aliĝis al la babilejo"
 
-#: 
 msgid "left the chat room"
 msgstr "foriris la babilejo"
 
-#: 
 msgid "no status"
 msgstr "neniu stato"
 
-#: 
 msgid "has been kicked"
 msgstr "estas elpelita"
 
-#: 
 msgid "has been banned"
-msgstr ""
+msgstr "estis ekskludita"
 
-#: 
 msgid "no reason"
 msgstr "neniu motivo"
 
-#: 
 msgid "Communicate with the entire world!"
-msgstr ""
+msgstr "Komuniku kun la tuta mondo!"
 
-#: 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-
-#: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
-msgstr ""
+msgstr "Kontaktu la milionojn de uzantoj kiu nuntempe uzas la XMPPan reton, kiel vi faras uzante Jappix-on. Aliĝu la komunumon kaj restu libere!"
 
-#: 
 msgid "Hi there!"
-msgstr ""
+msgstr "Saluton!"
 
-#: 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "Bonvenon en %1s, “%2s”."
 
-#: 
 msgid "Login to your existing XMPP account or create a new one for free!"
-msgstr ""
+msgstr "Ensalutu al via ekzistanta XMPP konto, aŭ krei novan senkoste!"
 
-#: 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr ""
+msgstr "Jappix estas malferma-fonta projekto de PostPro, neprofita organizo kiu grande helpas nin."
 
-#: 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
-msgstr ""
+msgstr "Ensalutu kun via ekzistanta XMPP-a konto. Vi ankaŭ povas uzi la %s por aliĝi retbabilejon."
 
-#: 
 msgid "Previous"
-msgstr ""
+msgstr "Antaŭa"
 
-#: 
 msgid "General"
 msgstr "Ĝenerala"
 
-#: 
 msgid "Advanced"
 msgstr "Krome"
 
-#: 
 msgid "Resource"
 msgstr "Risurco"
 
-#: 
 msgid "Priority"
 msgstr "Prioritato"
 
-#: 
 msgid "Low"
 msgstr "Malgrava"
 
-#: 
 msgid "Medium"
 msgstr "Norma"
 
-#: 
 msgid "High"
 msgstr "Grava"
 
-#: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
-msgstr ""
+msgstr "Eniru la retbablejon vi deziras aliĝi, kaj la kromnomon kiu vi deziras. Vi ankaŭ povas reveni al la %s."
 
-#: 
 msgid "login page"
-msgstr ""
+msgstr "ensaluta paĝo"
 
-#: 
 msgid "Share this link with your friends:"
-msgstr ""
+msgstr "Kundividu ĉi-tiun ligon kun viaj amikoj:"
 
-#: 
 msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
-msgstr ""
+msgstr "Registru novan XMPPan konton por aligi viajn amikojn sur via propra socia nubo. Tio estas simpla!"
 
-#: 
 msgid "Required"
-msgstr ""
+msgstr "Postulita"
 
-#: 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "Vi estis registrita, jen via XMPPa adreso:"
 
-#: 
 msgid "Manager"
 msgstr "Administrilo"
 
-#: 
 msgid "Project"
-msgstr ""
+msgstr "Projekto"
 
-#: 
 msgid "Encrypted"
-msgstr ""
+msgstr "Ĉifrita"
 
-#: 
 msgid "Unencrypted"
-msgstr ""
+msgstr "Neĉifrita"
 
-#: 
 msgid "Where are you?"
-msgstr ""
+msgstr "Kie vi estas?"
 
-#: 
 msgid "What's up with you?"
-msgstr ""
+msgstr "Kio nova?"
 
-#: 
 msgid "Fetching the social channel..."
-msgstr ""
+msgstr "Akirante la socian kanalon..."
 
-#: 
 msgid "You are synchronized with your network."
-msgstr ""
+msgstr "Vi estas samtempigita kun via reto."
 
-#: 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr ""
+msgstr "Ne povas sendi ion-ajn: vi nur povas ricevi avizojn!"
 
-#: 
 msgid "Media viewer"
-msgstr ""
+msgstr "Aŭdvidaĵa legilo"
 
-#: 
 msgid "Browse"
-msgstr ""
+msgstr "Foliumi"
 
-#: 
 msgid "Command"
 msgstr "Komando"
 
-#: 
 msgid "Subscribe"
 msgstr "Aboni"
 
-#: 
 msgid "Join"
 msgstr "Aliĝi"
 
-#: 
 msgid "Automatic"
 msgstr "Aŭtomata"
 
-#: 
 msgid "Search"
 msgstr "Serĉi"
 
-#: 
 msgid "No result!"
 msgstr "Neniu trafo!"
 
-#: 
 msgid "No notifications."
-msgstr ""
+msgstr "Neniuj sciigoj."
 
-#: 
 msgid "would like to add you as a friend."
-msgstr ""
+msgstr "ŝatus aldoni vin kiel amiko."
 
-#: 
 msgid "would like you to join this chatroom:"
-msgstr ""
+msgstr "ŝatus vin aliĝi ĉi tiun babilejon:"
 
-#: 
 msgid "Do you accept?"
-msgstr ""
+msgstr "Ĉu vi akceptas?"
 
-#: 
 msgid "Yes"
 msgstr "Jes"
 
-#: 
 msgid "No"
 msgstr "Ne"
 
-#: 
 msgid "would like to get authorization."
-msgstr ""
+msgstr "ŝatus akiri rajtigon."
 
-#: 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr ""
+msgstr "Ĉu vi deziras vidi la amikojn %s sugestas vin?"
 
-#: 
 msgid "Submit"
-msgstr ""
+msgstr "Sendi"
 
-#: 
 msgid "Client"
 msgstr "Kliento"
 
-#: 
 msgid "System"
 msgstr "Sistemo"
 
-#: 
 msgid "Local time"
-msgstr ""
+msgstr "Loka tempo"
 
-#: 
 msgid "Comments"
 msgstr "Komentoj"
 
-#: 
 msgid "User profile"
-msgstr ""
+msgstr "Uzanta profilo"
 
-#: 
 msgid "See his/her position on the globe"
-msgstr ""
+msgstr "Vidi lia/ŝia pozicio sur Tero"
 
-#: 
 msgid "Confirm"
 msgstr "Konfirmi"
 
-#: 
 msgid "anonymous mode"
-msgstr ""
+msgstr "anonima modo"
 
-#: 
 msgid "Groups"
 msgstr "Grupoj"
 
-#: 
 msgid "Unclassified"
-msgstr ""
+msgstr "Neklasigita"
 
-#: 
 msgid "Authorize"
-msgstr ""
+msgstr "Rajtigi"
 
-#: 
 msgid "Ask for authorization"
-msgstr ""
+msgstr "Peto por rajtigo"
 
-#: 
 msgid "Unblock"
-msgstr ""
+msgstr "Malbloki"
 
-#: 
 msgid "Prohibit"
-msgstr ""
+msgstr "Malpermesi"
 
-#: 
 msgid "Block"
-msgstr ""
+msgstr "Bloki"
 
-#: 
 msgid "Chat"
-msgstr ""
+msgstr "Babilado"
 
-#: 
 msgid "Groupchat"
-msgstr ""
+msgstr "Retbabilejo"
 
-#: 
 msgid "Jappix Mobile"
-msgstr ""
+msgstr "Poŝtelefona Jappix"
 
-#: 
 msgid "Desktop"
-msgstr ""
+msgstr "Surtabla versio"
 
-#: 
 msgid "Mobile"
-msgstr ""
+msgstr "Poŝtelefona versio"
 
-#: 
 msgid "Please wait..."
-msgstr ""
+msgstr "Momenton…"
 
-#: 
 msgid "Please enable JavaScript"
-msgstr ""
+msgstr "Bonvolu enŝalti Ĝavoskripton"
 
-#: 
 msgid "Your channel"
 msgstr "Via kanalo"
 
-#: 
 msgid "Channel of"
 msgstr "Kanalo da"
 
-#: 
 msgid "More notices..."
-msgstr ""
+msgstr "Pli da avizoj…"
 
-#: 
 msgid "Attach a file"
-msgstr ""
+msgstr "Alligas dosieron "
 
-#: 
 msgid "Send"
 msgstr "Sendi"
 
-#: 
 msgid "Unattach the file"
-msgstr ""
+msgstr "Malalligas dosieron "
 
-#: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
-msgstr ""
+msgstr "Eraro okazis dum via dosiero elŝutado: eble ĝi estas tro granda (%s maksimuma) aŭ malpermesita!"
 
-#: 
 msgid "Authorization failed"
-msgstr ""
+msgstr "Rajtigo malsuksesis"
 
-#: 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "Registrigo malsuksesis. Bonvolu elekti alian salutnomon."
 
-#: 
 msgid "Service unavailable"
-msgstr ""
+msgstr "Maldisponebla servo"
 
-#: 
 msgid "Internal server error, try later"
-msgstr ""
+msgstr "Interna servila eraro, provas poste"
 
-#: 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Via formo estis sendita."
 
-#: 
 msgid "Application"
-msgstr ""
+msgstr "Aplikaĵo"
 
-#: 
 msgid "XMPP links"
-msgstr ""
+msgstr "XMPPa ligoj"
 
-#: 
 msgid "Open XMPP links with Jappix"
-msgstr ""
+msgstr "Malfermi XMPPan ligojn kun Jappix"
 
-#: 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "ŝanĝis la temon al:"
 
-#: 
 msgid "Welcome!"
 msgstr "Bonvenon!"
 
-#: 
 msgid "Friends"
 msgstr "Amikoj"
 
-#: 
 msgid "Welcome on Jappix, your own social cloud!"
-msgstr ""
+msgstr "Bonvenon ĉe Jappix, via propra socia nubo!"
 
-#: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
-msgstr ""
+msgstr "Antaŭ ol vi komencas uzi ĝin, vi devos ŝanĝi kelkajn agordojn, serĉi amikojn kaj kompletigi vian profilon."
 
-#: 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "Enŝalti sciigajn sonojn"
 
-#: 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "Komuniku vian lokon sur Tero"
 
-#: 
 msgid "Offline friends"
-msgstr ""
+msgstr "Eksterretaj amikoj"
 
-#: 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Ne kaŝi eksterretajn amikojn"
 
-#: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
-msgstr ""
+msgstr "Uzi ĉi tiun ilon por trovi viajn amikojn sur la servilo kiu vi ĝus uzas nun, aŭ aldoni ilin poste."
 
-#: 
 msgid "Great work! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "Bonege! Nun, vi povas kunuzi Jappix kun viaj amikoj!"
 
-#: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
-msgstr ""
+msgstr "Kiam vi premos la “savi” butonon, la profila redaktorilo estos malfermita. Feliĉan societumon!"
 
-#: 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "Kunuzigi Jappix-on ĉe %s"
 
-#: 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr ""
+msgstr "Uzante Jappix-on, malferma socia platformo. Mi estas %s!"
 
-#: 
 msgid "Unknown name"
 msgstr "Nekonata nomo"
 
-#: 
 msgid "Unknown country"
 msgstr "Nekonata lando"
 
-#: 
 msgid "Click to enable"
-msgstr ""
+msgstr "Premi por enŝalti"
 
-#: 
 msgid "Click to disable"
-msgstr ""
+msgstr "Premi por elŝalti"
 
-#: 
 msgid "Installation"
-msgstr ""
+msgstr "Instalado"
 
-#: 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Jappix-a instalado"
 
-#: 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Bonvenon en la instalado de Jappix!"
 
-#: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
-msgstr ""
+msgstr "Ĉi tiu ilo helpos vin instali Jappix-on rapide, la unua  XMPP-bazita socian platformon, sur via servilo. Vi ne eĉ devas ajnan teknikan scion."
 
-#: 
 msgid "Let's have a look at the installation steps:"
-msgstr ""
+msgstr "Jen la instaladaj paŝoj:"
 
-#: 
 msgid "Welcome"
 msgstr "Bonvenon"
 
-#: 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Konservada agordo"
 
-#: 
 msgid "Administrator account"
-msgstr ""
+msgstr "Administranta konto"
 
-#: 
 msgid "Main configuration"
-msgstr ""
+msgstr "Ĉefa agordo"
 
-#: 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "Agordo de gastigoj"
 
-#: 
 msgid "Services installation"
-msgstr ""
+msgstr "Instalado de servoj"
 
-#: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
-msgstr ""
+msgstr "Se la nuna lingvo ne kongruas la vian (%1s), vi povas paroligi Jappix %2s ĝi estos savita."
 
-#: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
-msgstr ""
+msgstr "Se vi deziras akiri helpon pri la Jappix-a instalaĵo kaj agordaĵo, vi povas uzi nian tutan dokumentaron, havebla ĉe:"
 
-#: 
 msgid "It's time to build your own social cloud: just go to the next step!"
-msgstr ""
+msgstr "Estas tempo por konstrui vian propran socian nubon: nur iru al la sekvanta paŝo!"
 
-#: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
-msgstr ""
+msgstr "Jappix entenas persistan datumon (kiel komunaj dosieroj, konversaciaj ŝtipoj, via propra muziko kaj ĝia konfiguracio) en ununura gardata konservada dosierujo."
 
-#: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
-msgstr ""
+msgstr "Jappix devas esti kapabla skribi en ĉi tiu teko krei ĝia sub-adresaroj. Se ne, vi devas fiksi la rajtojn al %1s aŭ ŝanĝi la tekan posedanton al %2s (dependanta de via konfiguracio)."
 
-#: 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "La dosierujo estas skribebla, vi povas daŭri!"
 
-#: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
-msgstr ""
+msgstr "Jappix ebligas vin administri vian konfiguron, instali novajn kromaĵojn aŭ serĉi ĝisdatigojn. Tio estas kial vi devas krei administrantan konton por aliri la manaĝeron."
 
-#: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
-msgstr ""
+msgstr "Kiam Jappix estos instalita, ĵus klaku sur la manaĝera ligo ĉe la hejmpaĝo por aliri ĝin."
 
-#: 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr ""
+msgstr "Ohoh, vi perdiĝis ion aŭ la du pasvortoj ne kongruas!"
 
-#: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
-msgstr ""
+msgstr "Jappix necesas ke vi specifu kelkajn valorojn por funkcii. Bonvolu ĝustigi la sekvantajn enigojn (aŭ teni la apriorajn valorojn, kiu estas sufiĉa por plejpartoj de homoj)."
 
-#: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
-msgstr ""
+msgstr "Notu ke se vi ne specifas valoron kiu estas deviga, ĝi estos aŭtomate kompletigita kun la apriora unu."
 
-#: 
 msgid "User"
 msgstr "Uzanto"
 
-#: 
 msgid "Service"
-msgstr ""
+msgstr "Servo"
 
-#: 
 msgid "Service name"
-msgstr ""
+msgstr "Serva nomo"
 
-#: 
 msgid "Service description"
-msgstr ""
+msgstr "Serva priskribo"
 
-#: 
 msgid "Connection"
 msgstr "Konekto"
 
-#: 
 msgid "Lock the host"
-msgstr ""
+msgstr "Ŝlozi la gastigon"
 
-#: 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Sennoma modo"
 
-#: 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Registriĝo permesita"
 
-#: 
 msgid "Use a proxy"
-msgstr ""
+msgstr "Uzi prokurilon"
 
-#: 
 msgid "Encryption"
-msgstr ""
+msgstr "Ĉifrado"
 
-#: 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "HTTPS-a konservado"
 
-#: 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "Perforti HTTPS-n"
 
-#: 
 msgid "Compression"
-msgstr ""
+msgstr "Densigo"
 
-#: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
-msgstr ""
+msgstr "Ĉi-tiu paĝo helpas vin por specifi la apriorajn gastigojn kiu konektos al Jappix. Vi povas lasi ĝin kiel ĝi estas, kaj daŭri se vi deziras uzi la oficialajn servajn gastigojn."
 
-#: 
 msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
-msgstr ""
+msgstr "Eble vi ne scias kiu BOSH-a servilo estas? Fakte, tio ĉi estas transsendado inter Jappix kliento kaj XMPP-a servilo, kiu estas necesa pro teknikaj limoj."
 
-#: 
 msgid "Main host"
-msgstr ""
+msgstr "Ĉefa gastigo"
 
-#: 
 msgid "Groupchat host"
-msgstr ""
+msgstr "Retbabileja gastigo"
 
-#: 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Sennoma gastigo"
 
-#: 
 msgid "Directory host"
-msgstr ""
+msgstr "Dosieruja gastigo"
 
-#: 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH-a gastigo"
 
-#: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
-msgstr ""
+msgstr "Vi povas instali kelkajn kromaĵojn sur via servilo, etendi vian Jappix-an funkciojn. Kelkaj aliaj povus esti modifita, pro sekurecaj restriktoj kiuj estas fiksita apriore."
 
-#: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
-msgstr ""
+msgstr "Por fari tion-ĉi, vi devas esti kapabla aliri la via servila ŝelo, kaj esti ensalutita kiel administranto. Memori ĉi-tion ne estas deviga, Jappix laboros sen ĉi-tiuj kapsuloj, sed kelkaj el funkcioj estos malhaveblaj."
 
-#: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
-msgstr ""
+msgstr "Kiam tiam vi finigis la agordon, Jappix produktos la kaŝdosierojn. Povus esti malrapida, bv. atendi ĝis la aplikaĵo estos montrita kaj ne premu iu-ajnan butonon."
 
-#: 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "Dankon por uzi Jappix-n!"
 
-#: 
 msgid "Next"
 msgstr "Laŭ"
 
-#: 
 msgid "Finish"
 msgstr "Fini"
 
-#: 
 msgid "Check again"
-msgstr ""
+msgstr "Denove kontroli"
 
-#: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
-msgstr ""
+msgstr "La dosierujo ne estas skribebla. Bonvolu agordi la ĝustajn permesojn al la %s dosierujon."
 
-#: 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s estas instalita sur via sistemo."
 
-#: 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s ne estas instalita sur via sistemo. Vi devus instali %2s."
 
-#: 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr ""
+msgstr "PHP maksimuma alŝuta grando estas sufiĉa (%s)."
 
-#: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
-msgstr ""
+msgstr "PHP maksimuma alŝuta grando ne estas sufiĉa (%1s). Vi devus defini ĝin inter %2s kaj %3s."
 
-#: 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix-a administrilo"
 
-#: 
 msgid "Manager access"
-msgstr ""
+msgstr "Administrila aliro"
 
-#: 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiko"
 
-#: 
 msgid "Hosts"
-msgstr ""
+msgstr "Gastigoj"
 
-#: 
 msgid "Design"
-msgstr ""
+msgstr "Fasonado"
 
-#: 
 msgid "Repeat"
-msgstr ""
+msgstr "Ripeti"
 
-#: 
 msgid "All"
-msgstr ""
+msgstr "Ĉio"
 
-#: 
 msgid "Horizontal"
 msgstr "Horizontala"
 
-#: 
 msgid "Vertical"
 msgstr "Vertikala"
 
-#: 
 msgid "Center"
 msgstr "Centre"
 
-#: 
 msgid "Left"
 msgstr "Maldekstre"
 
-#: 
 msgid "Right"
 msgstr "Dekstre"
 
-#: 
 msgid "Top"
 msgstr "Supre"
 
-#: 
 msgid "Bottom"
-msgstr ""
+msgstr "Fundo"
 
-#: 
 msgid "Adapt"
-msgstr ""
+msgstr "Adapti"
 
-#: 
 msgid "Color"
 msgstr "koloro"
 
-#: 
 msgid "Users"
 msgstr "Uzantoj"
 
-#: 
 msgid "Updates"
-msgstr ""
+msgstr "Ĝisdatigoj"
 
-#: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
-msgstr ""
+msgstr "Tio ĉi estas restriktita zonon: nur la rajtigitaj uzantoj povus administri ĉi-tiun Jappix-an nodon."
 
-#: 
 msgid "Please use the form below to login to the administration panel."
-msgstr ""
+msgstr "Bonvolu uzi la suban formularon por ensaluti en la administrita panelo."
 
-#: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
-msgstr ""
+msgstr "Por plibonigi sekurecon, sesioj estas limigitaj per tempo kaj kiam via retumilo estos fermita, vi estos adiaŭita."
 
-#: 
 msgid "Credentials"
-msgstr ""
+msgstr "Legitimaĵo"
 
-#: 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "Vi estis elsalutita. Ĝis!"
 
-#: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
-msgstr ""
+msgstr "Hoho, vi ne povus esti rekonita kiel valida administranto. Bonvolu kontroli vian leĝitimaĵon!"
 
-#: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
-msgstr ""
+msgstr "Bazan statistikon estas faritaj per Jappix pri kelkaj gravaj aferoj. Vi povas trovi ilin malsupre."
 
-#: 
 msgid "Change your Jappix node configuration with this tool."
-msgstr ""
+msgstr "Ŝanĝu vian Jappix-an nodna konfiguracion kun ĉi-tiu ilo."
 
-#: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr ""
+msgstr "Ŝanĝu la XMPP-an gastigojn ke ĉi-tiu Jappix-a nodo povas servi kun ĉi-tiu ilo."
 
-#: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
-msgstr ""
+msgstr "Ĉiuj Jappix-a noda konservitaj dosierojn povas esti administrita kun ĉi tiu ilo: bonvolu elekti subdosierujon kaj komenci redakti ĝian enhavon!"
 
-#: 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappix estas tute tajlorebla: vi povas ŝanĝi ĝian fasonadon ĉi-tie."
 
-#: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr ""
+msgstr "Tio-ĉi ne estas valida bildo. Bonvolu uzi PNG, GIF aŭ JPG!"
 
-#: 
 msgid "The image could not be received, would you mind retry?"
-msgstr ""
+msgstr "La bildo ne povus esti ricevita. Bonvolu provi denove."
 
-#: 
 msgid "Your image was added to the list!"
-msgstr ""
+msgstr "Vian bildon estas aldonita al la listo!"
 
-#: 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Ŝanĝoj konservitaj"
 
-#: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
-msgstr ""
+msgstr "Vi povas difini pli ol unu administranto por ĉi-tiu Jappix nodo. Vi ankaŭ povas ŝanĝi pasvorton kun ĉi tiu ilo."
 
-#: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
-msgstr ""
+msgstr "Ĝisdatigu vian Jappix-an nodon kun ĉi-tiu ilo, aŭ kontroli se nova estas havebla. Informoj pri la plej lasta versio estas ankaŭ montritaj (en la angla)."
 
-#: 
 msgid "Access statistics"
-msgstr ""
+msgstr "Iri al statistiko"
 
-#: 
 msgid "Share statistics"
-msgstr ""
+msgstr "Disvastigi statistikon"
 
-#: 
 msgid "Other statistics"
-msgstr ""
+msgstr "Alia statistiko"
 
-#: 
 msgid "January"
 msgstr "Januaro"
 
-#: 
 msgid "February"
 msgstr "Februaro"
 
-#: 
 msgid "March"
 msgstr "Marto"
 
-#: 
 msgid "April"
 msgstr "Aprilo"
 
-#: 
 msgid "May"
 msgstr "Majo"
 
-#: 
 msgid "June"
 msgstr "Junio"
 
-#: 
 msgid "July"
 msgstr "Julio"
 
-#: 
 msgid "August"
 msgstr "Aŭgusto"
 
-#: 
 msgid "September"
 msgstr "Septembro"
 
-#: 
 msgid "October"
 msgstr "Oktobro"
 
-#: 
 msgid "November"
 msgstr "Novembro"
 
-#: 
 msgid "December"
 msgstr "Decembro"
 
-#: 
 msgid "Monday"
-msgstr ""
+msgstr "lundo"
 
-#: 
 msgid "Tuesday"
-msgstr ""
+msgstr "mardo"
 
-#: 
 msgid "Wednesday"
-msgstr ""
+msgstr "merkredo"
 
-#: 
 msgid "Thursday"
-msgstr ""
+msgstr "jaŭdo"
 
-#: 
 msgid "Friday"
-msgstr ""
+msgstr "vendredo"
 
-#: 
 msgid "Saturday"
-msgstr ""
+msgstr "sabato"
 
-#: 
 msgid "Sunday"
-msgstr ""
+msgstr "dimanĉo"
 
-#: 
 msgid "Total"
 msgstr "Totala"
 
-#: 
 msgid "Cache"
-msgstr ""
+msgstr "Kaŝmemoro"
 
-#: 
 msgid "Logs"
-msgstr ""
+msgstr "Protokoloj"
 
-#: 
 msgid "Music"
 msgstr "Muziko"
 
-#: 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Fonoj"
 
-#: 
 msgid "Share"
-msgstr ""
+msgstr "Disvastigi"
 
-#: 
 msgid "Background"
-msgstr ""
+msgstr "Fono"
 
-#: 
 msgid "Notice"
 msgstr "Avizo"
 
-#: 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "Viaj fasonaj preferoj estis savita!"
 
-#: 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "Bonvolu kontroli viajn enigojn: io mankas!"
 
-#: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
-msgstr ""
+msgstr "Ŝanĝu vian Jappix-an nodan fonon kun ĉi tiu ilo. Vi povas agordi propran koloron aŭ alŝutitan bildon. Lasu vian kreecon flui!"
 
-#: 
 msgid "Use default background"
-msgstr ""
+msgstr "Uzi aprioran fonon"
 
-#: 
 msgid "Use your own image"
-msgstr ""
+msgstr "Uzi vian propran bildon"
 
-#: 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "Elektu fonon por uzi kaj ŝanĝi la vidigajn elektojn."
 
-#: 
 msgid "Use your own color"
-msgstr ""
+msgstr "Uzi vian propran koloron"
 
-#: 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr ""
+msgstr "Tajpu la deksesuman koloran valoron kiun vi deziras uzi kiel fono."
 
-#: 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "Administri fonojn"
 
-#: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
-msgstr ""
+msgstr "Vi povas aldoni novan fonon al la listo kun ĉi-tiu ilo. Bonvolu sendi validan bildon."
 
-#: 
 msgid "If you want to remove some backgrounds, use the browser below."
-msgstr ""
+msgstr "Se vi deziras forigi kelkajn fonojn, uzu la suban retumilon."
 
-#: 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
-msgstr ""
+msgstr "Difinu ĉefpaĝan avizon por ĉiuj viaj uzantoj, ekzemple averto, grava mesaĝo aŭ reklamo kun ĉi-tiu ilo."
 
-#: 
 msgid "Simple notice"
 msgstr "Simple avizo"
 
-#: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
-msgstr ""
+msgstr "Ĉi-tiu avizo nur bezonas simplan tekston por esti montrita, sed kodo ne estas permesita!"
 
-#: 
 msgid "Advanced notice"
 msgstr "Kroma avizo"
 
-#: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
-msgstr ""
+msgstr "Vi povas agordi vian avizon kun enigita HTML, CSS kaj Ĝavoskripto, sed vi bezonas kodi la stilon."
 
-#: 
 msgid "Available updates"
-msgstr ""
+msgstr "Haveblaj ĝisdatigoj"
 
-#: 
 msgid "What's new?"
-msgstr ""
+msgstr "Kio nova?"
 
-#: 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr ""
+msgstr "Viaj konservaj dosierujon ne estas skribeblaj. Bonvolu apliki la ĝustajn rajtojn!"
 
-#: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
-msgstr ""
+msgstr "%1s povas kaŭzi problemojn al la prokurilo. Bonvolu pliigi %2s valoro ĝis %3s!"
 
-#: 
 msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
-msgstr ""
+msgstr "Vi estas uzanta konstruatan version de Jappix. Ĝisdatigu ĝin tra nia deponejo plenumigante: %s."
 
-#: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
-msgstr ""
+msgstr "Nova versio de Jappix estas havebla! Kontrolu kion estas nova kaj lanĉu la ĝisdatigon!"
 
-#: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
-msgstr ""
+msgstr "Via versio ne estas ĝisdatiga. Bonvolu nun ĝisdatigi al %s, klakante ĉi-tie!"
 
-#: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
-msgstr ""
+msgstr "Via versio ŝajnas esti ĝisdatiga, sed vi povas kontroli ĝisdatigojn mane, klakante ĉi-tie."
 
-#: 
 msgid "Check for updates"
-msgstr ""
+msgstr "Kontroli ĝisdatigoj"
 
-#: 
 msgid "Update in progress"
-msgstr ""
+msgstr "Ĝisdatigante…"
 
-#: 
 msgid "Jappix has been updated: you are now running the latest version. Have fun!"
-msgstr ""
+msgstr "Jappix estis ĝisdatigita: vi nun uzas la plej lastan version. Amuziĝu!"
 
-#: 
 msgid "The update has failed! Please try again later."
-msgstr ""
+msgstr "La ĝisdatigo fiaskis! Bonvolu provi denove poste."
 
-#: 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Elŝutante pakaĵon…"
 
-#: 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Forigas nunajn Jappix-an sistemajn dosierojn…"
 
-#: 
 msgid "Extracting package..."
-msgstr ""
+msgstr "Eltirante pakaĵon…"
 
-#: 
 msgid "Regenerating storage folder tree..."
-msgstr ""
+msgstr "Regenerante konservadan dosierujan arbon..."
 
-#: 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix estas nun ĝisdatigita!"
 
-#: 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "Ĉesita: inga eraro!"
 
-#: 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "Ĉesita: bufra eraro!"
 
-#: 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "Ĉesita: ĉio ne skribeblas!"
 
-#: 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "Ĉesita: ne povas eltiri la pakaĵon!"
 
-#: 
 msgid "Visits"
 msgstr "Vizitoj"
 
-#: 
 msgid "Daily"
 msgstr "Ĉiutaga"
 
-#: 
 msgid "Weekly"
 msgstr "Ĉiusemajna"
 
-#: 
 msgid "Monthly"
 msgstr "Ĉiumonata"
 
-#: 
 msgid "Yearly"
 msgstr "Ĉiujara"
 
-#: 
 msgid "Size"
-msgstr ""
+msgstr "Grando"
 
-#: 
 msgid "Clean everything"
-msgstr ""
+msgstr "Viŝi ĉion"
 
-#: 
 msgid "Purge cache"
-msgstr ""
+msgstr "Viŝi kaŝmemoron"
 
-#: 
 msgid "Purge logs"
-msgstr ""
+msgstr "Viŝi protokolojn"
 
-#: 
 msgid "Purge updates"
-msgstr ""
+msgstr "Viŝi ĝisdatigojn"
 
-#: 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "La konservada dosiero tiun, kiun vi volus viŝi estas nun malplena!"
 
-#: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
-msgstr ""
+msgstr "Tenu vian Jappix-an nodon freŝe kaj rapide, viŝu la konservadan dosieron regule!"
 
-#: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
-msgstr ""
+msgstr "Alŝutu vian muzikon (Ogg Vorbis, Mp3 aŭ WAV) por esti kapabla aŭskulti ĝin ĉe Jappix!"
 
-#: 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "La dosiero vi deziras alŝuti devus esti malpli grande ol %s."
 
-#: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
-msgstr ""
+msgstr "Estu vigla pri kion viaj uzantoj konservas en via servilo, kaj forigu nedezireman enhavon kun ĉi tiu ilo."
 
-#: 
 msgid "Title"
 msgstr "Titolo"
 
-#: 
 msgid "Artist"
 msgstr "Artisto"
 
-#: 
 msgid "Album"
 msgstr "Albumo"
 
-#: 
 msgid "File"
 msgstr "Dosiero"
 
-#: 
 msgid "Upload"
 msgstr "Alŝuti"
 
-#: 
 msgid "The folder is empty."
 msgstr "La dosieraro estas malplena."
 
-#: 
 msgid "The music could not be received, please retry!"
-msgstr ""
+msgstr "La muziko ne povus esti ricevita, bonvolu provi denove!"
 
-#: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
-msgstr ""
+msgstr "Tio ĉi ne estas valida muzika dosiero. Bonvolu kodigi en Ogg Vorbis, Mp3 aŭ WAV."
 
-#: 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Via muziko ĵus estas aldonita!"
 
-#: 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "La elektitajn elementojn estas forigita."
 
-#: 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "Vin devas elekti forigendajn elementojn!"
 
-#: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
-msgstr ""
+msgstr "Aldonu novan uzanton kun ĉi-tiu ilo, aŭ ŝanĝu pasvorton (tajpu ekzistantan salutnomon). Bonvolu sendi fortan pasvorton!"
 
-#: 
 msgid "Manage"
-msgstr ""
+msgstr "Administri"
 
-#: 
 msgid "List"
 msgstr "Listo"
 
-#: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
-msgstr ""
+msgstr "Forigu uzantojn kun ĉi-tiu ilo. Notu ke vi ne povas forigi uzanton se li estas la ununura restante."
 
-#: 
 msgid "The user has been added!"
-msgstr ""
+msgstr "La uzanto estis aldonita!"
 
-#: 
 msgid "The chosen users have been removed."
-msgstr ""
+msgstr "La elektitaj uzantoj estis forigita."
 
-#: 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "Vi devas elekti unu aŭ pli da uzantoj por esti forigi!"
 
-#: 
 msgid "Yesterday"
 msgstr "Hieraŭ"
 
-#: 
 msgid "%s days ago"
-msgstr ""
+msgstr "%s tagoj antaŭe"
 
-#: 
 msgid "User currently active"
-msgstr ""
+msgstr "Uzanto nune aktiva"
 
-#: 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Laste vidita: %s"
 
-#: 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Malaktiva ekde: %s"
 
-#: 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "Via amiko ŝajnas ke li ne ricevas viajn mesaĝojn! "
 
-#: 
 msgid "Static content server"
-msgstr ""
+msgstr "Senmova enhava servilo"
 
-#: 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr ""
+msgstr "Tiu estas la senmova enhava servilo por %1s, “%2s”."
 
-#: 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Proponi amikojn"
 
-#: 
 msgid "Check all"
-msgstr ""
+msgstr "Enŝalti ĉion"
 
-#: 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Elŝalti ĉion"
 
-#: 
 msgid "Choose"
-msgstr ""
+msgstr "Elekti"
 
-#: 
 msgid "List name"
-msgstr ""
+msgstr "Lista nomo"
 
-#: 
 msgid "Allow"
-msgstr ""
+msgstr "Permesi"
 
-#: 
 msgid "Deny"
-msgstr ""
+msgstr "Malpermesi"
 
-#: 
 msgid "Group"
-msgstr ""
+msgstr "Groupo"
 
-#: 
 msgid "Subscription"
-msgstr ""
+msgstr "Abono"
 
-#: 
 msgid "Both"
-msgstr ""
+msgstr "Ambaŭ"
 
-#: 
 msgid "From"
-msgstr ""
+msgstr "De"
 
-#: 
 msgid "Everybody"
-msgstr ""
+msgstr "Ĉiuj"
 
-#: 
 msgid "Send messages"
-msgstr ""
+msgstr "Sendi mesaĝojn"
 
-#: 
 msgid "Send queries"
-msgstr ""
+msgstr "Sendi petojn"
 
-#: 
 msgid "See my status"
-msgstr ""
+msgstr "Vidi mia stato"
 
-#: 
 msgid "Send his/her status"
-msgstr ""
+msgstr "Sendi lia/ŝia staton"
 
-#: 
 msgid "Everything"
-msgstr ""
+msgstr "Ĉio"
 
-#: 
 msgid "Item"
-msgstr ""
+msgstr "Elemento"
 
-#: 
 msgid "Order"
-msgstr ""
+msgstr "Ordo"
 
-#: 
 msgid "Active for this session"
-msgstr ""
+msgstr "Aktiva por tiu seanco"
 
-#: 
 msgid "Always active"
-msgstr ""
+msgstr "Ĉiam aktiva"
 
-#: 
 msgid "User directory"
-msgstr ""
+msgstr "Jarlibro de uzantoj"
 
-#: 
 msgid "Search a friend"
-msgstr ""
+msgstr "Serĉi amikon"
 
-#: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
-msgstr ""
+msgstr "La petita funkcio ne estas efektivigita de la ricevinto aŭ servilo kaj sekve ne povas esti pretigita."
 
-#: 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "Tio estas ripeto de %s"
 
-#: 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Ĉarĝante komentojn…"
 
-#: 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Tajpu vian komenton ĉi-tie…"
 
-#: 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "Ne povis akiri komentojn!"
 
-#: 
 msgid "Show comments"
-msgstr ""
+msgstr "Montri komentojn"
 
-#: 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Sendi mesaĝon al li/ŝi"
 
-#: 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "Komenci babilon kun li/ŝi"
 
-#: 
 msgid "Media integration"
-msgstr ""
+msgstr "Aŭdvidaĵo integrado"
 
-#: 
 msgid "Comments locked!"
-msgstr ""
+msgstr "Komentoj ŝlositaj!"
 
-#: 
 msgid "Type something you want to share with your friends..."
-msgstr ""
+msgstr "Tajpu ion vi deziras disvastigi al viaj amikoj..."
 
-#: 
 msgid "changed his/her nickname to %s"
-msgstr ""
+msgstr "ŝanĝis lia/ŝia kromnomo al %s"
 
-#: 
 msgid "commented an item you follow: “%s”."
+msgstr "komentis elementon kiun vi sekvas: “%s”."
+
+msgid "Hide"
+msgstr "Kaŝi"
+
+msgid "liked your post: “%s”."
+msgstr "ŝatas vian afiĝon: “%s”."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "citigis vin ie: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "publikigis sur via muro: “%s”."
+
+msgid "tagged you in a photo (%s)."
+msgstr "markis vin sur bildon (%s)."
+
+msgid "tagged you in a video (%s)."
+msgstr "markis vin sur videon (%s)."
+
+msgid "Show"
+msgstr "Montri"
+
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Bezoni helpon? Vi povus legi nian dokumentaran paĝon pri kiel plenigi ĉi-tiun formularon!"
+
+msgid "Pubsub host"
+msgstr "Pubsub-a gastigo"
+
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix estas genia socia platformo, kiu vi povas aliri ie-ajn vi estas, iam-ajn vi deziras kaj komuniki kun kiu-ajn vi deziras."
+
+msgid "Manager link"
+msgstr "Administra ligilo"
+
+msgid "User uploads server"
+msgstr "Uzanta alŝutitaj servilo"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Ĉi-tio estas la uzanta alŝutaj servilo por %1s, “%2s”."
+
+msgid "Logo"
+msgstr "Emblemo"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "Vi povas agordi vian propran servan emblemon por anstataŭigi la aprioran unun. Zorgu la grandon kaj la ĉefan koloron de ĉiu emblemo!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Alŝutu ĉiun emblemon kun la rekomenda maksimuma bildera grandeco."
+
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Ne estas valida bildo. Bonvolu uzi la formato PNG."
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Via serva emblemo estas sukcese ŝanĝita!"
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Via emblema formato devus esti PNG. La emblemon ne estos ŝanĝita se vi lasu malplenan kampon."
+
+msgid "Remove this logo"
+msgstr "Forviŝi ĉi-tiun emblemon"
+
+msgid "View this logo"
+msgstr "Vidi ĉi-tiun emblemon"
+
+msgid "Send a file"
+msgstr "Sendi dosieron"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Kiam alŝutita, via amiko estos invitata por elŝuti la senditan dosieron."
+
+msgid "Groupchats to join"
+msgstr "Alireblaj retbabilejoj"
+
+msgid "Purge sent files"
+msgstr "Viŝi senditajn dosierojn"
+
+msgid "would like to send you a file: “%s”."
+msgstr "deziras sendi al vi dosieron: “%s”."
+
+msgid "has accepted to received your file: “%s”."
+msgstr "akceptis ricevi vian dosieron:“%s”."
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "malakceptis ricevi vian dosieron:“%s”."
+
+msgid "could not receive your file: “%s”."
+msgstr "ne povas ricevi vian dosieron: “%s”."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "ricevis dosieran interŝanĝan peton:“%s”."
+
+msgid "Available shortcuts:"
+msgstr "Haveblaj fulmoklavoj:"
+
+msgid "%s removes the chat logs"
+msgstr "%s forigas la babilemajn protokoldosierojn"
+
+msgid "%s joins a groupchat"
+msgstr "%s aliris retbabilejon"
+
+msgid "%s closes the chat"
+msgstr "%s fermas la babilejon"
+
+msgid "%s shows the user profile"
+msgstr "%s montras la uzantan profilon"
+
+msgid "%s sends a message to the room"
+msgstr "%s sendas mesaĝon al la babilejo"
+
+msgid "%s changes your nickname"
+msgstr "%s ŝanĝas vian kromnomon"
+
+msgid "%s sends a message to someone in the room"
+msgstr "%s sendas mesaĝon al iu en la babilejo"
+
+msgid "%s changes the room topic"
+msgstr "%s ŝanĝas la babilejan subjekton"
+
+msgid "%s kicks an user of the room"
+msgstr "%s forpelas uzanton el la babilejo"
+
+msgid "%s bans an user of the room"
+msgstr "%s ekskludas uzanton el la babilejo"
+
+msgid "%s invites someone to join the room"
+msgstr "%s invitas iun por aliri la babilejon"
+
+msgid "Social channel, chat and more."
 msgstr ""
 
-#: 
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+msgid "Public profile"
+msgstr ""
+
+msgid "Your profile anywhere on the Web."
+msgstr ""
+
+msgid "%s is a Jappix.com service which makes your XMPP profile public. It is easier to share it. No XMPP account is required to view your social channel, your current position and your contact details."
+msgstr ""
+
+msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
+msgstr ""
+
+msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genious improvement!"
+msgstr ""
+
+msgid "Yay, let's create my public profile!"
+msgstr ""
+
+msgid "Enable my public profile"
+msgstr ""
+
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+
 #~ msgid "See"
 #~ msgstr ""
 
-#: 
-msgid "Hide"
-msgstr ""
-
-#: 
-msgid "liked your post: “%s”."
-msgstr ""
-
-#: 
-msgid "quoted you somewhere: “%s”."
-msgstr ""
-
-#: 
-msgid "published on your wall: “%s”."
-msgstr ""
-
-#: 
-msgid "tagged you in a photo (%s)."
-msgstr ""
-
-#: 
-msgid "tagged you in a video (%s)."
-msgstr ""
-
-#: 
-msgid "Show"
-msgstr ""
-
-#: 
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr ""
-
-#: 
-msgid "Pubsub host"
-msgstr ""
-
-#: 
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr ""
-
-#: 
-msgid "Manager link"
-msgstr ""
-
-#: 
-msgid "User uploads server"
-msgstr ""
-
-#: 
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr ""
-
-#: 
-msgid "Logo"
-msgstr ""
-
-#: 
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr ""
-
-#: 
 #~ msgid "Use default logo"
 #~ msgstr ""
 
-#: 
 #~ msgid "Use your own logo"
 #~ msgstr ""
 
-#: 
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr ""
-
-#: 
 #~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
 #~ msgstr ""
-
-#: 
-msgid "This is not a valid image, please use the PNG format!"
-msgstr ""
-
-#: 
-msgid "Your service logo has been successfully changed!"
-msgstr ""
-
-#: 
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr ""
-
-#: 
-msgid "Remove this logo"
-msgstr ""
-
-#: 
-msgid "View this logo"
-msgstr ""
-
-#: 
-msgid "Send a file"
-msgstr ""
-
-#: 
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr ""
-
-#: 
-msgid "Groupchats to join"
-msgstr ""
-
-#: 
-msgid "Purge sent files"
-msgstr ""
-
-#: 
-msgid "would like to send you a file: “%s”."
-msgstr ""
-
-#: 
-msgid "has accepted to received your file: “%s”."
-msgstr ""
-
-#: 
-msgid "has rejected to receive your file: “%s”."
-msgstr ""
-
-#: 
-msgid "could not receive your file: “%s”."
-msgstr ""
-
-#: 
-msgid "has received a file exchange request: “%s”."
-msgstr ""
-
-#: 
-msgid "Available shortcuts:"
-msgstr ""
-
-#: 
-msgid "%s removes the chat logs"
-msgstr ""
-
-#: 
-msgid "%s joins a groupchat"
-msgstr ""
-
-#: 
-msgid "%s closes the chat"
-msgstr ""
-
-#: 
-msgid "%s shows the user profile"
-msgstr ""
-
-#: 
-msgid "%s sends a message to the room"
-msgstr ""
-
-#: 
-msgid "%s changes your nickname"
-msgstr ""
-
-#: 
-msgid "%s sends a message to someone in the room"
-msgstr ""
-
-#: 
-msgid "%s changes the room topic"
-msgstr ""
-
-#: 
-msgid "%s kicks an user of the room"
-msgstr ""
-
-#: 
-msgid "%s bans an user of the room"
-msgstr ""
-
-#: 
-msgid "%s invites someone to join the room"
-msgstr ""
-

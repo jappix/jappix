@@ -4,2428 +4,1867 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2011-09-05 18:27:10\n"
+"PO-Revision-Date: 2012-01-16 21:25+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 
-#: 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "Teie brauseris puudub JavaScript, mis tähendab seda et teil ei ole võimalik Jappixit käivitada! Palun parandage see."
 
-#: 
 msgid "An open social network"
 msgstr "Avatud sotsiaalvõrgustik"
 
-#: 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Jappixi töö on katkestatud võrgu tõrke, halva sisselogimise või mõne muu vea tõttu (kontrollige, et sisestasite õiged andmed), vabandame ebameeldivuste pärast."
 
-#: 
 msgid "The element list on this server could not be obtained!"
 msgstr "Selle serveri elemendi nimekirja polnud võimalik omandada."
 
-#: 
 msgid "Your password has been changed, now you can connect to your account with your new login data."
 msgstr "Teie parool on muudetud, Te saate taas sisse logida kasutades uusi andmeid."
 
-#: 
 msgid "Your XMPP account has been removed, bye!"
 msgstr "Teie XMPP konto on eemaldatud, hüvasti!"
 
-#: 
 msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "Te olete oma XMPP kontost välja logitud, head päeva!"
 
-#: 
 msgid "The room you joined seems not to exist. You should create it!"
 msgstr "Ruum millega Te liituda proovisite ei eksisteeri. Proovige see ise teha!"
 
-#: 
 msgid "The groupchat has been removed, now someone else will be able to recreate it."
 msgstr "Grupivestlus on eemaldatud, nüüd saab keegi teine selle uuesti luua."
 
-#: 
 msgid "The user that you want to reach is not present in the room."
 msgstr "Kasutaja, kellega te püüate ühendust saada, ei eksisteeri enam selles ruumis."
 
-#: 
 msgid "Please enter the group chat address to join."
 msgstr "Palun sisestage grupivestluse aadress millega liituda."
 
-#: 
 msgid "Please enter your nickname to join %s."
 msgstr "Palun sisestage oma hüüdnimi, et liituda %s."
 
-#: 
 msgid "This room (%s) is protected with a password."
 msgstr "Ruum (%s) on parooliga kaitstud."
 
-#: 
 msgid "Your browser is out of date!"
 msgstr "Teil on liiga vana brauser!"
 
-#: 
 msgid "Last %s version is better!"
 msgstr "Viimane versioon %s on parem!"
 
-#: 
 msgid "Login"
 msgstr "Sisse logimine"
 
-#: 
 msgid "Register"
 msgstr "Registreerimine"
 
-#: 
 msgid "Here we go!"
 msgstr "Läks!"
 
-#: 
 msgid "Server"
 msgstr "Server"
 
-#: 
 msgid "Password"
 msgstr "Parool"
 
-#: 
 msgid "Remember me"
 msgstr "Jäta mind meelde"
 
-#: 
 msgid "This tool has been disabled, you cannot use it!"
 msgstr "See tööriist on keelatud, Te ei saa seda kasutada!"
 
-#: 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
 msgstr "Võrgu tõrke tõttu katkes ühendus serveriga. Mida te järgmiseks teha soovite?"
 
-#: 
 msgid "Reconnect"
 msgstr "Taasühendus"
 
-#: 
 msgid "Messages"
 msgstr "Sõnumid"
 
-#: 
 msgid "Profile"
 msgstr "Profiil"
 
-#: 
 msgid "Options"
 msgstr "Valikud"
 
-#: 
 msgid "Disconnect"
 msgstr "Katkesta ühendus"
 
-#: 
 msgid "Filter"
 msgstr "Filter"
 
-#: 
 msgid "Add a friend"
 msgstr "Lisa kontakt"
 
-#: 
 msgid "Your groupchats"
 msgstr "Minu grupivestlused"
 
-#: 
 msgid "Manage your favorite groupchats"
 msgstr "Halda oma lemmikuid grupivestluseid"
 
-#: 
 msgid "More stuff"
 msgstr "Rohkem asju"
 
-#: 
 msgid "Show all friends"
 msgstr "Näita kõiki sõpru"
 
-#: 
 msgid "Only show connected friends"
 msgstr "Näita ainult sisselogitud sõpru"
 
-#: 
 msgid "Message archives"
 msgstr "Sõnumite arhiiv"
 
-#: 
 msgid "Date"
 msgstr "Kuupäev"
 
-#: 
 msgid "Please select a friend to view the chat history."
 msgstr "Palun valige kontakt, et näha vestluse ajalugu."
 
-#: 
 msgid "Nothing found for: %s"
 msgstr "Midagi ei leitud: %s"
 
-#: 
 msgid "A short message?"
 msgstr "Lühisõnum?"
 
-#: 
 msgid "How are you?"
 msgstr "Kuidas läheb?"
 
-#: 
 msgid "What are you doing?"
 msgstr "Mida sa teed?"
 
-#: 
 msgid "Join a chat"
 msgstr "Liitu vestlusega"
 
-#: 
 msgid "Status"
 msgstr "Staatus"
 
-#: 
 msgid "Available"
 msgstr "Saadaval"
 
-#: 
 msgid "Talkative"
 msgstr "Jutukas"
 
-#: 
 msgid "Away"
 msgstr "Eemal"
 
-#: 
 msgid "Not available"
 msgstr "Mitte saadaval"
 
-#: 
 msgid "Busy"
 msgstr "Hõivatud"
 
-#: 
 msgid "Mood"
 msgstr "Meeleolu"
 
-#: 
 msgid "None"
 msgstr "Midagi"
 
-#: 
 msgid "Crazy"
 msgstr "Pöörane"
 
-#: 
 msgid "Excited"
 msgstr "Elevil"
 
-#: 
 msgid "Playful"
 msgstr "Vallatu"
 
-#: 
 msgid "Happy"
 msgstr "Õnnelik"
 
-#: 
 msgid "Shocked"
 msgstr "Šokeeritud"
 
-#: 
 msgid "Hot"
 msgstr "Kuum"
 
-#: 
 msgid "Sad"
 msgstr "Kurb"
 
-#: 
 msgid "Amorous"
 msgstr "Armunud"
 
-#: 
 msgid "Confident"
 msgstr "Enesekindel"
 
-#: 
 msgid "Activity"
 msgstr "Tegevus"
 
-#: 
 msgid "Chores"
 msgstr "Tööd"
 
-#: 
 msgid "Drinking"
 msgstr "Joomine"
 
-#: 
 msgid "Eating"
 msgstr "Söömine"
 
-#: 
 msgid "Exercising"
 msgstr "Sportimine"
 
-#: 
 msgid "Grooming"
 msgstr "Hooldamine"
 
-#: 
 msgid "Appointment"
 msgstr "Kohtumine"
 
-#: 
 msgid "Inactive"
 msgstr "Tegevusetu"
 
-#: 
 msgid "Relaxing"
 msgstr "Lõõgastumine"
 
-#: 
 msgid "Talking"
 msgstr "Rääkimine"
 
-#: 
 msgid "Traveling"
 msgstr "Reisimine"
 
-#: 
 msgid "Working"
 msgstr "Töötamine"
 
-#: 
 msgid "View profile"
 msgstr "Vaata profiili"
 
-#: 
 msgid "Repeat this notice"
 msgstr "Korda seda teadet"
 
-#: 
 msgid "Remove this notice"
 msgstr "Eemalda see teade"
 
-#: 
 msgid "Your profile"
 msgstr "Sinu profiil"
 
-#: 
 msgid "Identity"
 msgstr "Identiteet"
 
-#: 
 msgid "Profile image"
 msgstr "Profiili pilt"
 
-#: 
 msgid "Others"
 msgstr "Muu"
 
-#: 
 msgid "Personal"
 msgstr "Personaalne"
 
-#: 
 msgid "Complete name"
 msgstr "Täisnimi"
 
-#: 
 msgid "Nickname"
 msgstr "Hüüdnimi"
 
-#: 
 msgid "First name"
 msgstr "Eesnimi"
 
-#: 
 msgid "Last name"
 msgstr "Perekonnanimi"
 
-#: 
 msgid "Date of birth"
 msgstr "Sünniaeg"
 
-#: 
 msgid "Contact"
 msgstr "Kontakt"
 
-#: 
 msgid "E-mail"
 msgstr "E-mail"
 
-#: 
 msgid "Phone"
 msgstr "Telefon"
 
-#: 
 msgid "Website"
 msgstr "Koduleht"
 
-#: 
 msgid "Current"
 msgstr "Praegune"
 
-#: 
 msgid "Delete"
 msgstr "Kustuta"
 
-#: 
 msgid "What a pity! You have no profile image defined in your identity card!"
 msgstr "Kui kahju! Teil ei ole oma identiteedi kaardil profiili pilti!"
 
-#: 
 msgid "Address"
 msgstr "Aadress"
 
-#: 
 msgid "Street"
 msgstr "Tänav"
 
-#: 
 msgid "City"
 msgstr "Linn"
 
-#: 
 msgid "Postal code"
 msgstr "Postiindeks"
 
-#: 
 msgid "Country"
 msgstr "Riik"
 
-#: 
 msgid "Biography"
 msgstr "Elulugu"
 
-#: 
 msgid "Important notice"
 msgstr "Oluline teave"
 
-#: 
 msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
 msgstr "Olge ettevaatlik millist infot Te oma profiili alla lisate, sest seda võidakse kergesti näha teiste kasutajate poolt (isegi nende poolt keda Te ei soovi)."
 
-#: 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
 msgstr "Mitte kõik pole XMPP's privaatne, see siin on üks nendest asjadest, teie avalik profiil (vCard)."
 
-#: 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
 msgstr "On soovitatav üles laadida enda profiili pilt (%s maximum), sest see muudab Teid paremini äratuntavaks."
 
-#: 
 msgid "Save"
 msgstr "Salvesta"
 
-#: 
 msgid "Cancel"
 msgstr "Tühista"
 
-#: 
 msgid "Edit options"
 msgstr "Muuda valikuid"
 
-#: 
 msgid "Channel"
 msgstr "Kanal"
 
-#: 
 msgid "Commands"
 msgstr "Käsud"
 
-#: 
 msgid "Sounds"
 msgstr "Helid"
 
-#: 
 msgid "Privacy"
 msgstr "Privaatsus"
 
-#: 
 msgid "Message archiving"
 msgstr "Sõnumite arhiveerimine"
 
-#: 
 msgid "Store a history of your chats"
 msgstr "Salvesta oma vestlused"
 
-#: 
 msgid "Geolocation"
 msgstr "Geolokatsioon"
 
-#: 
 msgid "Empty"
 msgstr "Tühi"
 
-#: 
 msgid "Empty channel"
 msgstr "Tühi kanal"
 
-#: 
 msgid "Persistent"
 msgstr "Püsiv"
 
-#: 
 msgid "Maximum notices"
 msgstr "Maksimaalsed teavitused"
 
-#: 
 msgid "Account"
 msgstr "Konto"
 
-#: 
 msgid "Change password"
 msgstr "Muuda parool"
 
-#: 
 msgid "Delete account"
 msgstr "Kustuta konto"
 
-#: 
 msgid "Old"
 msgstr "Vana"
 
-#: 
 msgid "New (2 times)"
 msgstr "Uus"
 
-#: 
 msgid "Continue"
 msgstr "Jätka"
 
-#: 
 msgid "To"
 msgstr "Kellele"
 
-#: 
 msgid "Close"
 msgstr "Sulge"
 
-#: 
 msgid "unknown"
 msgstr "tundmatu"
 
-#: 
 msgid "Unavailable"
 msgstr "Mitte saadaval"
 
-#: 
 msgid "is now"
 msgstr "on nüüd"
 
-#: 
 msgid "Please wait while your avatar is uploaded..."
 msgstr "Palun oodake kuni Teie pilt on üles laetud..."
 
-#: 
 msgid "Here it is! A new beautiful profile image!"
 msgstr "Siin see on! Uus ilus profiili pilt"
 
-#: 
 msgid "The image file is not supported or has a bad size."
 msgstr "Pildi formaat ei ole toetatud või on suurus mitte sobiv."
 
-#: 
 msgid "Reply"
 msgstr "Vasta"
 
-#: 
 msgid "Error"
 msgstr "Viga"
 
-#: 
 msgid "Click here to solve the error"
 msgstr "Kliki siia, et viga lahendada"
 
-#: 
 msgid "You"
 msgstr "Teie"
 
-#: 
 msgid "Remove"
 msgstr "Eemalda"
 
-#: 
 msgid "Rename"
 msgstr "Nimeta ümber"
 
-#: 
 msgid "Hi, I am %s, I would like to add you as my friend."
 msgstr "Tere, ma olen %s, Ma sooviksin Teid endale sõbraks lisada."
 
-#: 
 msgid "Smiley insertion"
 msgstr "Smaili sisestamine"
 
-#: 
 msgid "Change style"
 msgstr "Muuda stiili"
 
-#: 
 msgid "Text in bold"
 msgstr "Tekst paksult"
 
-#: 
 msgid "Text in italic"
 msgstr "Tekst kaldkirjas"
 
-#: 
 msgid "Underlined text"
 msgstr "Tekst allajoonitult"
 
-#: 
 msgid "Save chat"
 msgstr "Salvesta vestlus"
 
-#: 
 msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
 msgstr "Vajutage järgnevale lingile ja oodake, et saada vestluslogi. Seejärel klikkige uuesti, et saada fail."
 
-#: 
 msgid "This chat is empty!"
 msgstr "See vestlus on tühi!"
 
-#: 
 msgid "Generate file!"
 msgstr "Genereeri fail!"
 
-#: 
 msgid "Download file!"
 msgstr "Lae fail alla!"
 
-#: 
 msgid "Clean current chat"
 msgstr "Puhasta hetkeline vestlus"
 
-#: 
 msgid "View chat history"
 msgstr "Vaata vestluse ajalugu"
 
-#: 
 msgid "Show user profile"
 msgstr "Näita kasutaja profiili"
 
-#: 
 msgid "Add this contact to your friends"
 msgstr "Lisa see kontakt oma kontakti nimekirja"
 
-#: 
 msgid "Add this groupchat to your favorites"
 msgstr "Lisa see grupivestlus oma lemmikutesse"
 
-#: 
 msgid "All tabs"
 msgstr "Kõik kaardid"
 
-#: 
 msgid "Close this tab"
 msgstr "Sulge see kaart"
 
-#: 
 msgid "no subject defined for this room."
 msgstr "sellele ruumile ei ole teemat pandud"
 
-#: 
 msgid "Administration panel for this room"
 msgstr "Selle ruumi administratsiooni paneel"
 
-#: 
 msgid "Moderators"
 msgstr "Moderaatorid"
 
-#: 
 msgid "Participants"
 msgstr "Osalejad"
 
-#: 
 msgid "Visitors"
 msgstr "Külastajad"
 
-#: 
 msgid "Manage favorite rooms"
 msgstr "Halda lemmik ruume"
 
-#: 
 msgid "Change favorites"
 msgstr "Muuda lemmikuid"
 
-#: 
 msgid "Search a room"
 msgstr "Otsi ruumi"
 
-#: 
 msgid "Select a favorite"
 msgstr "Vali lemmik"
 
-#: 
 msgid "Getting the name..."
 msgstr "Hangin nime..."
 
-#: 
 msgid "Gateway"
 msgstr "Värav"
 
-#: 
 msgid "Name"
 msgstr "Nimi"
 
-#: 
 msgid "Room"
 msgstr "Ruum"
 
-#: 
 msgid "Add"
 msgstr "Lisa"
 
-#: 
 msgid "Edit"
 msgstr "Muuda"
 
-#: 
 msgid "Search a room on"
 msgstr "Otsi ruumi"
 
-#: 
 msgid "No room found on this server."
 msgstr "Ruumi ei leitud sellest serverist."
 
-#: 
 msgid "Service discovery"
 msgstr "Teenuse avastamine"
 
-#: 
 msgid "Server to query"
 msgstr "Serveri päring"
 
-#: 
 msgid "Sorry, but the entity didn't return any result!"
 msgstr "Vabandame, aga tulemusi ei leitud!"
 
-#: 
 msgid "Accounts"
 msgstr "Kontod"
 
-#: 
 msgid "Authentications"
 msgstr "Autentimised"
 
-#: 
 msgid "Automation"
 msgstr "Automaatika"
 
-#: 
 msgid "Clients"
 msgstr "Kliendid"
 
-#: 
 msgid "Collaboration"
 msgstr "Koostöö"
 
-#: 
 msgid "Components"
 msgstr "Komponendid"
 
-#: 
 msgid "Rooms"
 msgstr "Ruumid"
 
-#: 
 msgid "Directories"
 msgstr "Kataloogid"
 
-#: 
 msgid "Gateways"
 msgstr "Väravad"
 
-#: 
 msgid "News"
 msgstr "Uudised"
 
-#: 
 msgid "Hierarchy"
 msgstr "Hierarhia"
 
-#: 
 msgid "Proxies"
 msgstr "Proksid"
 
-#: 
 msgid "Publication/Subscription"
 msgstr "Avalikustamine/Tellimus"
 
-#: 
 msgid "Storage"
 msgstr "Hoiuruum"
 
-#: 
 msgid "Service offline or broken"
 msgstr "Teenus lahti ühendatud või katki"
 
-#: 
 msgid "Your inbox"
 msgstr "Teie postkast"
 
-#: 
 msgid "Available actions"
 msgstr "Saadaval valikud"
 
-#: 
 msgid "Clean"
 msgstr "Puhasta"
 
-#: 
 msgid "New"
 msgstr "Uus"
 
-#: 
 msgid "Received"
 msgstr "Vastu võetud"
 
-#: 
 msgid "Subject"
 msgstr "Teema"
 
-#: 
 msgid "Content"
 msgstr "Sisu"
 
-#: 
 msgid "Send message"
 msgstr "Saada sõnum"
 
-#: 
 msgid "Your inbox is empty."
 msgstr "Teie postkast on tühi."
 
-#: 
 msgid "MUC administration"
 msgstr "MUC administratsioon"
 
-#: 
 msgid "You administrate this room"
 msgstr "Teie olete ruumi administraator"
 
-#: 
 msgid "Enter new subject"
 msgstr "Sisestage uus teema"
 
-#: 
 msgid "Configuration"
 msgstr "Seadistus"
 
-#: 
 msgid "Authorizations"
 msgstr "Load"
 
-#: 
 msgid "Member list"
 msgstr "Liikmete nimekiri"
 
-#: 
 msgid "Owner list"
 msgstr "Omanike nimekiri"
 
-#: 
 msgid "Administrator list"
 msgstr "Administraatorite nimekiri"
 
-#: 
 msgid "Outcast list"
 msgstr "Hüljatute nimekiri"
 
-#: 
 msgid "Add an input"
 msgstr "Lisa sisend"
 
-#: 
 msgid "Destroy this MUC"
 msgstr "Hävita see MUC"
 
-#: 
 msgid "Yes, let's do it!"
 msgstr "Jah, teeme seda!"
 
-#: 
 msgid "Your friend is paying attention to the conversation."
 msgstr "Teie sõber jälgib vestlust."
 
-#: 
 msgid "Your friend is writing a message..."
 msgstr "Teie sõber kirjutab..."
 
-#: 
 msgid "Your friend stopped writing a message."
 msgstr "Teie sõber lõpetas kirjutamise."
 
-#: 
 msgid "Your friend is doing something else."
 msgstr "Teie sõber teeb midagi muud."
 
-#: 
 msgid "Your friend closed the chat."
 msgstr "Teie sõber sulges vestluse."
 
-#: 
 msgid "Requesting this service..."
 msgstr "Pärin seda teenust..."
 
-#: 
 msgid "Loading"
 msgstr "Laen"
 
-#: 
 msgid "joined the chat room"
 msgstr "liitus jututoaga"
 
-#: 
 msgid "left the chat room"
 msgstr "lahkus jututoast"
 
-#: 
 msgid "no status"
 msgstr "staatus puudub"
 
-#: 
 msgid "has been kicked"
 msgstr "on välja visatud"
 
-#: 
 msgid "has been banned"
 msgstr "on keelu alla pandud"
 
-#: 
 msgid "no reason"
 msgstr "põhjust pole"
 
-#: 
 msgid "Communicate with the entire world!"
 msgstr "Suhtle terve maailmaga!"
 
-#: 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-
-#: 
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr "See lubab Teil miljonite inimestega kontakteeruda kes kasutavad XMPP võrgustikku nagu Teie kasutate Jappix'it. Liitu sõpruskonnaga ja ole vaba!"
 
-#: 
 msgid "Hi there!"
 msgstr "Tere!"
 
-#: 
 msgid "Welcome on %1s, “%2s”."
 msgstr "Tere tulemast %1s, “%2s”."
 
-#: 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Logi sisse enda XMPP kontole või tee tasuta uus!"
 
-#: 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
 msgstr "Jappix on avatud lähtekoodiga projekt PostPro'lt, mittetulundusühingult kes pakub meile suurt abi."
 
-#: 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "Logige sisse oma XMPP kontole. Te saate kasutada ka %s et liituda grupivestlusega."
 
-#: 
 msgid "Previous"
 msgstr "Eelmine"
 
-#: 
 msgid "General"
 msgstr "Üldine"
 
-#: 
 msgid "Advanced"
 msgstr "Muud"
 
-#: 
 msgid "Resource"
 msgstr "Vahend"
 
-#: 
 msgid "Priority"
 msgstr "Eelis"
 
-#: 
 msgid "Low"
 msgstr "Madal"
 
-#: 
 msgid "Medium"
 msgstr "Keskmine"
 
-#: 
 msgid "High"
 msgstr "Kõrge"
 
-#: 
 msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
 msgstr "Sisestage grupivestlus millega soovite liituda ja oma hüüdnimi. Te saate ka alati minna tagasi %s."
 
-#: 
 msgid "login page"
 msgstr "sisselogimise leht"
 
-#: 
 msgid "Share this link with your friends:"
 msgstr "Jaga seda linki oma sõpradega:"
 
-#: 
 msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
 msgstr "Registreeri uus XMPP konto ja liitu oma sõpradega. See on lihtne!"
 
-#: 
 msgid "Required"
 msgstr "Kohustuslik"
 
-#: 
 msgid "You have been registered, here is your XMPP address:"
 msgstr "Te olete registreeritud, siin on Teie XMPP aadress:"
 
-#: 
 msgid "Manager"
 msgstr "Haldur"
 
-#: 
 msgid "Project"
 msgstr "Projekt"
 
-#: 
 msgid "Encrypted"
 msgstr "Krüpteeritud"
 
-#: 
 msgid "Unencrypted"
 msgstr "Krüpteerimata"
 
-#: 
 msgid "Where are you?"
 msgstr "Kus Te olete?"
 
-#: 
 msgid "What's up with you?"
 msgstr "Mis toimub?"
 
-#: 
 msgid "Fetching the social channel..."
 msgstr "Püüan kanalit..."
 
-#: 
 msgid "You are synchronized with your network."
 msgstr "Te olete oma võrguga sünkroniseeritud."
 
-#: 
 msgid "Cannot send anything: you can only receive notices!"
 msgstr "Ei saa midagi saata: te saate ainult teateid vastu võtta!"
 
-#: 
 msgid "Media viewer"
 msgstr "Meedia vaatur"
 
-#: 
 msgid "Browse"
 msgstr "Brausi"
 
-#: 
 msgid "Command"
 msgstr "Käsk"
 
-#: 
 msgid "Subscribe"
 msgstr "Telli"
 
-#: 
 msgid "Join"
 msgstr "Liitu"
 
-#: 
 msgid "Automatic"
 msgstr "Automaatne"
 
-#: 
 msgid "Search"
 msgstr "Otsi"
 
-#: 
 msgid "No result!"
 msgstr "Ühtegi tulemust!"
 
-#: 
 msgid "No notifications."
 msgstr "Pole teateid."
 
-#: 
 msgid "would like to add you as a friend."
 msgstr "soovib lisada Teid sõbraks."
 
-#: 
 msgid "would like you to join this chatroom:"
 msgstr "soovib kutsuda Teid sellesse jututuppa:"
 
-#: 
 msgid "Do you accept?"
 msgstr "Kas Te olete nõus?"
 
-#: 
 msgid "Yes"
 msgstr "Jah"
 
-#: 
 msgid "No"
 msgstr "Ei"
 
-#: 
 msgid "would like to get authorization."
 msgstr "soovib saada luba."
 
-#: 
 msgid "Do you want to see the friends %s suggests you?"
 msgstr "Kas Te soovite näha mida sõbra %s Teile soovitab?"
 
-#: 
 msgid "Submit"
 msgstr "Kinnita"
 
-#: 
 msgid "Client"
 msgstr "Klient"
 
-#: 
 msgid "System"
 msgstr "Süsteem"
 
-#: 
 msgid "Local time"
 msgstr "Kohalik aeg"
 
-#: 
 msgid "Comments"
 msgstr "Kommentaarid"
 
-#: 
 msgid "User profile"
 msgstr "Kasutaja profiil"
 
-#: 
 msgid "See his/her position on the globe"
 msgstr "Vaata tema asukohta kaardil"
 
-#: 
 msgid "Confirm"
 msgstr "Kinnita"
 
-#: 
 msgid "anonymous mode"
 msgstr "anonüümne režiim"
 
-#: 
 msgid "Groups"
 msgstr "Grupid"
 
-#: 
 msgid "Unclassified"
 msgstr "Liigitamata"
 
-#: 
 msgid "Authorize"
 msgstr "Autoriseeri"
 
-#: 
 msgid "Ask for authorization"
 msgstr "Küsi autoriseerimist"
 
-#: 
 msgid "Unblock"
 msgstr "Deblokeeri"
 
-#: 
 msgid "Prohibit"
 msgstr "Keela"
 
-#: 
 msgid "Block"
 msgstr "Blokeeri"
 
-#: 
 msgid "Chat"
 msgstr "Vestlus"
 
-#: 
 msgid "Groupchat"
 msgstr "Grupivestlus"
 
-#: 
 msgid "Jappix Mobile"
 msgstr "Jappix Mobiilis"
 
-#: 
 msgid "Desktop"
 msgstr "Pealeht"
 
-#: 
 msgid "Mobile"
 msgstr "Mobiil"
 
-#: 
 msgid "Please wait..."
 msgstr "Palun oodake..."
 
-#: 
 msgid "Please enable JavaScript"
 msgstr "Palun lubage JavaScript"
 
-#: 
 msgid "Your channel"
 msgstr "Teie kanal"
 
-#: 
 msgid "Channel of"
 msgstr "Kanal kuulub"
 
-#: 
 msgid "More notices..."
 msgstr "Rohkem teateid..."
 
-#: 
 msgid "Attach a file"
 msgstr "Lisa fail"
 
-#: 
 msgid "Send"
 msgstr "Saada"
 
-#: 
 msgid "Unattach the file"
 msgstr "Eemalda fail"
 
-#: 
 msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
 msgstr "Faili üleslaadimisel tekkis viga: äkki on see liiga suur (%s maximum) või keelatud!"
 
-#: 
 msgid "Authorization failed"
 msgstr "Autoriseerimine ebaõnnestus"
 
-#: 
 msgid "Registration failed, please choose a different username"
 msgstr "Registreerimine ebaõnnestus, palun valige teine kasutajanimi"
 
-#: 
 msgid "Service unavailable"
 msgstr "Teenus mitte saadaval"
 
-#: 
 msgid "Internal server error, try later"
 msgstr "Serverisisene viga, proovige hiljem uuesti"
 
-#: 
 msgid "Your form has been sent."
 msgstr "Teie ankeet on saadetud."
 
-#: 
 msgid "Application"
 msgstr "Aplikatsioon"
 
-#: 
 msgid "XMPP links"
 msgstr "XMPP lingid"
 
-#: 
 msgid "Open XMPP links with Jappix"
 msgstr "Ava XMPP lingid Jappix'iga"
 
-#: 
 msgid "changed the subject to:"
 msgstr "muutis teema:"
 
-#: 
 msgid "Welcome!"
 msgstr "Tere tulemast!"
 
-#: 
 msgid "Friends"
 msgstr "Sõbrad"
 
-#: 
 msgid "Welcome on Jappix, your own social cloud!"
 msgstr "Tere tulemast Jappix'isse, Teie isiklik sotsiaalvõrgustik!"
 
-#: 
 msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
 msgstr "Enne kui Te seda kasutama hakkate, peate te mõned seaded salvestama, otsima sõpru ja täitma oma profiili."
 
-#: 
 msgid "Enable notification sounds"
 msgstr "Võimalda teadete helid"
 
-#: 
 msgid "Share your position on the globe"
 msgstr "Jaga oma asukohta kaardil"
 
-#: 
 msgid "Offline friends"
 msgstr "Ühenduseta sõbrad"
 
-#: 
 msgid "Don't hide offline friends"
 msgstr "Ära peida ühenduseta sõpru"
 
-#: 
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
 msgstr "Kasuta seda tööriista, et leida oma sõpru serverist või lisa nad hiljem."
 
-#: 
 msgid "Great work! Now, you can share Jappix with your friends!"
 msgstr "Hea töö! Nüüd saate te Jappix'it sõpradega jagada!"
 
-#: 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
 msgstr "Kui te vajutate salvestamise nuppu siis avaneb profiili muutmise aken."
 
-#: 
 msgid "Share Jappix on %s"
 msgstr "Jaga Jappix'it %s"
 
-#: 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Kasutan Jappix'it, avatud sotsiaalvõrgustik. Ma olen %s!"
 
-#: 
 msgid "Unknown name"
 msgstr "Tundmatu nimi"
 
-#: 
 msgid "Unknown country"
 msgstr "Tundmatu riik"
 
-#: 
 msgid "Click to enable"
 msgstr "Kliki, et võimaldada"
 
-#: 
 msgid "Click to disable"
 msgstr "Kliki, et keelata"
 
-#: 
 msgid "Installation"
 msgstr "Paigaldus"
 
-#: 
 msgid "Jappix installation"
 msgstr "jappixi paigaldus"
 
-#: 
 msgid "Welcome to the Jappix installation!"
 msgstr "Tere tulemast Jappixi paigaldajasse!"
 
-#: 
 msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
 msgstr "See tööriist aitab Teil kiiresti paigaldada Jappixi, avatud sotsiaalvõrgustiku, Teie serverisse. Teil ei ole isegi vaja tehnilist taipu."
 
-#: 
 msgid "Let's have a look at the installation steps:"
 msgstr "Vaatame paigalduse samme:"
 
-#: 
 msgid "Welcome"
 msgstr "Tere tulemast"
 
-#: 
 msgid "Storage configuration"
 msgstr "Hoiuruumi konfiguratsioon"
 
-#: 
 msgid "Administrator account"
 msgstr "Administraatori konto"
 
-#: 
 msgid "Main configuration"
 msgstr "Põhiline konfiguratsioon"
 
-#: 
 msgid "Hosts configuration"
 msgstr "Hosti konfiguratsioon"
 
-#: 
 msgid "Services installation"
 msgstr "Teenuste paigaldus"
 
-#: 
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
 msgstr "Kui hetkeline keel (%1s) ei kattu teie omaga siis saate muuta keele %2s."
 
-#: 
 msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
 msgstr "Kui te soovite abi Jappixi paigalduse kohta siis Te võite vaadata tervet dokumentatsiooni, mis on saadaval:"
 
-#: 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr "On aeg paigaldada Teie enda isiklik avatud sotsiaalvõrgustik: Minge järgmise sammu juurde!"
 
-#: 
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
 msgstr "Jappix hoiab säilivaid andmeid (nagu nt jagatud failid, vestluse logid, Teie muusika ja konfiguratsioon) ühes ainsas turvatud kataloogis."
 
-#: 
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
 msgstr "Jappixil peab olema siia ja alamkataloogidesse kirjutusõigus. Kui see puudub siis peate Te muutma õigused %1s või muutma kataloogi omaniku %2s (olenevalt Teie konfiguratsioonist)."
 
-#: 
 msgid "The folder is writable, you can continue!"
 msgstr "Kataloogil on kirjutusõigused, Te võite jätkata!"
 
-#: 
 msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
 msgstr "Jappix pakub võimalust hallata oma konfiguratsiooni, installida uusi pluginaid või otsida uuendusi. Sellepärast peate te tegema administraatori konto, et haldus lehele ligi pääseda."
 
-#: 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
 msgstr "Kui Jappix on paigaldatud siis lihtsalt vajutage Haldaja lingile avalehel, et sellele ligi pääseda."
 
-#: 
 msgid "Oops, you missed something or the two passwords do not match!"
 msgstr "Tundub, et Teil jäi midagi märkamata või need kaks parooli ei klapi omavahel!"
 
-#: 
 msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
 msgstr "Jappixi töötamiseks on vajalik mõned väärtused muuta. Palun muutke järgmised väljad (või jätke need samaks, mis peaksid samuti töötama)."
 
-#: 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr "NB: Kui Te ei kinnita vajalikke väljasid siis kasutatakse olemasolevaid seadeid."
 
-#: 
 msgid "User"
 msgstr "Kasutaja"
 
-#: 
 msgid "Service"
 msgstr "Teenus"
 
-#: 
 msgid "Service name"
 msgstr "Teenuse nimi"
 
-#: 
 msgid "Service description"
 msgstr "Teenuse kirjeldus"
 
-#: 
 msgid "Connection"
 msgstr "Ühendus"
 
-#: 
 msgid "Lock the host"
 msgstr "Lukusta host"
 
-#: 
 msgid "Anonymous mode"
 msgstr "Anonüümne režiim"
 
-#: 
 msgid "Registration allowed"
 msgstr "Registreerimine lubatud"
 
-#: 
 msgid "Use a proxy"
 msgstr "Kasuta proksit"
 
-#: 
 msgid "Encryption"
 msgstr "Krüpteering"
 
-#: 
 msgid "HTTPS storage"
 msgstr "HTTPS hoiustus"
 
-#: 
 msgid "Force HTTPS"
 msgstr "Sunni HTTPS kasutus"
 
-#: 
 msgid "Compression"
 msgstr "Pakkimine"
 
-#: 
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
 msgstr "See lehekülg aitab Teil täpsustada hosti kuhu Jappix ennast ühendab. Te võite selle jätta nii nagu on kui soovite kasutada ametliku teenuse hosti."
 
-#: 
 msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
 msgstr "Võib-olla Te ei tea mis on BOSH server? See on vahelüli Jappixi ja XMPP serveri vahel, see on vajalik tehniliste piirangute tõttu."
 
-#: 
 msgid "Main host"
 msgstr "Põhiline host"
 
-#: 
 msgid "Groupchat host"
 msgstr "Grupivestluse host"
 
-#: 
 msgid "Anonymous host"
 msgstr "Anonüümne host"
 
-#: 
 msgid "Directory host"
 msgstr "Kataloogi host"
 
-#: 
 msgid "BOSH host"
 msgstr "BOSH host"
 
-#: 
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
 msgstr "Te saate paigaldada lisatarkvara oma serverile, et laiendada Jappixi võimalusi."
 
-#: 
 msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
 msgstr "Et seda tegevust sooritada, peate Te olema serverisse sisse logitud administraatorina."
 
-#: 
 msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
 msgstr "Kui te olete seadistamise lõpetanud, tekitab Jappix vahemälu failid. See võib aega võtta nii, et oodake millal rakendus on nähtaval ning ärge vajutage ühtegi nuppu."
 
-#: 
 msgid "Thanks for using Jappix!"
 msgstr "Aitäh, et kasutate Jappixit!"
 
-#: 
 msgid "Next"
 msgstr "Järgmine"
 
-#: 
 msgid "Finish"
 msgstr "Valmis"
 
-#: 
 msgid "Check again"
 msgstr "Kontrolli uuesti"
 
-#: 
 msgid "The folder is not writable, set the right permissions to the %s directory."
 msgstr "Kataloogil ei ole kirjutusõigusi, lisage need õigused sellele asukohale %s."
 
-#: 
 msgid "%s is installed on your system."
 msgstr "%s on Teie süsteemi paigaldatud."
 
-#: 
 msgid "%1s is not installed on your system, you should install %2s."
 msgstr "%1s ei ole Teie süsteemi paigaldatud, Te peaksite paigaldama %2s."
 
-#: 
 msgid "PHP maximum upload size is sufficient (%s)."
 msgstr "PHP maksimaalse faili üleslaadimise mahu piirang on piisav (%s)."
 
-#: 
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
 msgstr "PHP maksimaalse faili üleslaadimise mahu piirang ei ole piisav (%1s), Te peaksite selle %2s määrama %3s."
 
-#: 
 msgid "Jappix manager"
 msgstr "Jappixi haldur"
 
-#: 
 msgid "Manager access"
 msgstr "Halduri juurdepääs"
 
-#: 
 msgid "Statistics"
 msgstr "Statistika"
 
-#: 
 msgid "Hosts"
 msgstr "Hostid"
 
-#: 
 msgid "Design"
 msgstr "Disain"
 
-#: 
 msgid "Repeat"
 msgstr "Korda"
 
-#: 
 msgid "All"
 msgstr "Kõik"
 
-#: 
 msgid "Horizontal"
 msgstr "Horisontaalne"
 
-#: 
 msgid "Vertical"
 msgstr "Vertikaalne"
 
-#: 
 msgid "Center"
 msgstr "Keskel"
 
-#: 
 msgid "Left"
 msgstr "Vasakule"
 
-#: 
 msgid "Right"
 msgstr "Paremale"
 
-#: 
 msgid "Top"
 msgstr "Üles"
 
-#: 
 msgid "Bottom"
 msgstr "Alla"
 
-#: 
 msgid "Adapt"
 msgstr "Kohanda"
 
-#: 
 msgid "Color"
 msgstr "Värv"
 
-#: 
 msgid "Users"
 msgstr "Kasutajad"
 
-#: 
 msgid "Updates"
 msgstr "Uuendused"
 
-#: 
 msgid "This is a restricted area: only the authorized users can manage this Jappix node."
 msgstr "See on keelatud ala: ainult autoriseeritud kasutajad saavad siia juurdepääsu."
 
-#: 
 msgid "Please use the form below to login to the administration panel."
 msgstr "Palun täitke alljärgnev vorm, et administraatori paneelile juurdepääs saada."
 
-#: 
 msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
 msgstr "Et turvalisust suurendada, siis sessioonid on ajalise piiranguga ja kui brauser sulgeda siis Teid logitakse välja."
 
-#: 
 msgid "Credentials"
 msgstr "Isikutunnistus"
 
-#: 
 msgid "You have been logged out. Goodbye!"
 msgstr "Teid on välja logitud. Nägemiseni!"
 
-#: 
 msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
 msgstr "Teid ei olnud võimalik kinnitada kui administraatorit. Kontrollige sisestatud andmeid!"
 
-#: 
 msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
 msgstr "Põhiline statistika on protsessitud Jappixi poolt, Te leiate selle siit alt."
 
-#: 
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Muutke oma Jappixi konfiguratsiooni selle tööriista abil."
 
-#: 
 msgid "Change the XMPP hosts that this Jappix node serve with this tool."
 msgstr "Muutke XMPP hosti, mida Jappix pakub, selle tööriista abil."
 
-#: 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
 msgstr "Kõiki Jappixi poolt salvestatud faile saab hallata selle tööriista abil: palun valige alamkataloog ja hakake selle sisu muutma!"
 
-#: 
 msgid "Jappix is fully customisable: you can change its design right here."
 msgstr "Jappix on täielikult kohandatav: Te saate selle kujundust muuta siin."
 
-#: 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "See ei ole õige pildi formaat, palun kasutage PNG, GIF või JPG formaati!"
 
-#: 
 msgid "The image could not be received, would you mind retry?"
 msgstr "Pilti ei olnud võimalik vastu võtta, kas soovite uuesti proovida?"
 
-#: 
 msgid "Your image was added to the list!"
 msgstr "Teie pilt lisati nimekirja!"
 
-#: 
 msgid "Changes saved!"
 msgstr "Muudatused salvestatud!"
 
-#: 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr "Te saate lisada rohkem kui ühe administraatori. Selle tööriistaga saate ka parooli muuta."
 
-#: 
 msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
 msgstr "Selle tööriistaga saate Jappixit uuendada või vaadata kas uus versioon on saadaval. Informatsioon uue versiooni kohta on inglise keeles."
 
-#: 
 msgid "Access statistics"
 msgstr "Juurdepääs statistikale"
 
-#: 
 msgid "Share statistics"
 msgstr "Jaga statistikat"
 
-#: 
 msgid "Other statistics"
 msgstr "Muu statistika"
 
-#: 
 msgid "January"
 msgstr "Jaanuar"
 
-#: 
 msgid "February"
 msgstr "Veebruar"
 
-#: 
 msgid "March"
 msgstr "Märts"
 
-#: 
 msgid "April"
 msgstr "Aprill"
 
-#: 
 msgid "May"
 msgstr "Mai"
 
-#: 
 msgid "June"
 msgstr "Juuni"
 
-#: 
 msgid "July"
 msgstr "Juuli"
 
-#: 
 msgid "August"
 msgstr "August"
 
-#: 
 msgid "September"
 msgstr "September"
 
-#: 
 msgid "October"
 msgstr "Oktoober"
 
-#: 
 msgid "November"
 msgstr "November"
 
-#: 
 msgid "December"
 msgstr "Detsember"
 
-#: 
 msgid "Monday"
 msgstr "Esmaspäev"
 
-#: 
 msgid "Tuesday"
 msgstr "Teisipäev"
 
-#: 
 msgid "Wednesday"
 msgstr "Kolmapäev"
 
-#: 
 msgid "Thursday"
 msgstr "Neljapäev"
 
-#: 
 msgid "Friday"
 msgstr "Reede"
 
-#: 
 msgid "Saturday"
 msgstr "Laupäev"
 
-#: 
 msgid "Sunday"
 msgstr "Pühapäev"
 
-#: 
 msgid "Total"
 msgstr "Kokku"
 
-#: 
 msgid "Cache"
 msgstr "Vahemälu"
 
-#: 
 msgid "Logs"
 msgstr "Logid"
 
-#: 
 msgid "Music"
 msgstr "Muusika"
 
-#: 
 msgid "Backgrounds"
 msgstr "Tagataustad"
 
-#: 
 msgid "Share"
 msgstr "Jaga"
 
-#: 
 msgid "Background"
 msgstr "Tagataust"
 
-#: 
 msgid "Notice"
 msgstr "Teade"
 
-#: 
 msgid "Your design preferences have been saved!"
 msgstr "Teie kujunduse seadistused on salvestatud!"
 
-#: 
 msgid "Please check your inputs: something is missing!"
 msgstr "Palun kontrollige väljasid: midagi on puudu!"
 
-#: 
 msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
 msgstr "Selle tööriistaga saate muuta Jappixi tagatausta. Te saate panna kas ühte värvi tagatausta või üles laadida pildi. Laske kujutlusvõimel lennata!"
 
-#: 
 msgid "Use default background"
 msgstr "Kasutage olemasolevat tagatausta"
 
-#: 
 msgid "Use your own image"
 msgstr "Kasutage enda üles laetud pilti"
 
-#: 
 msgid "Select a background to use and change the display options."
 msgstr "Valige tagaataust ja seejärel valige kuidas seda kuvama peaks."
 
-#: 
 msgid "Use your own color"
 msgstr "Kasutage enda valitud värvi"
 
-#: 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr "Kirjutage HEX väärtusega värvi valik mida Te soovite tagataustaks kasutada."
 
-#: 
 msgid "Manage backgrounds"
 msgstr "Tagataustade haldamine"
 
-#: 
 msgid "You can add a new background to the list with this tool. Please send a valid image."
 msgstr "Selle tööriistaga saate Te lisada uusi tagatausta pilte."
 
-#: 
 msgid "If you want to remove some backgrounds, use the browser below."
 msgstr "Kui Te soovite mingisuguseid taustapilte eemaldada siis kasutage all olevat brauserit."
 
-#: 
 msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
 msgstr "Defineerige avalehe märguanne oma teenuse kasutajatele. Nagu näiteks hoiatus sõnumid, märguanded või reklaam."
 
-#: 
 msgid "Simple notice"
 msgstr "Lihtne märguanne"
 
-#: 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
 msgstr "Sellele märguandele saab kirjutada tavalist teksti, kood ei ole lubatud!"
 
-#: 
 msgid "Advanced notice"
 msgstr "Ülendatud märguanne"
 
-#: 
 msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
 msgstr "Te saate lisada märguande kus võite kasutada HTML'i, CSS'i ja JavaScripti, aga Te peate kodeerima stiili."
 
-#: 
 msgid "Available updates"
 msgstr "Saadaval olevad uuendused"
 
-#: 
 msgid "What's new?"
 msgstr "Mis on uut?"
 
-#: 
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr "Teie failihoidla kataloogil ei ole kirjutusõigusi, palun lisage need!"
 
-#: 
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr "%1s võib põhjustada proksi probleeme, palun suurendage väärtust %2s kuni %3s!"
 
-#: 
 msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
 msgstr "Te kasutate Jappixi arendusversiooni. Uuendage seda läbi repository (hoidla) käivitades %s."
 
-#: 
 msgid "A new Jappix version is available! Check what is new and launch the update!"
 msgstr "Uus Jappixi versioon on saadaval! Vaadake mis on uut ja käivitage uuendus!"
 
-#: 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr "Teil on vana Jappixi versioon. Uuendage see versioonini %s siia klikkides!"
 
-#: 
 msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
 msgstr "Teil näib olevat Jappixi uusim versioon, aga te saate ka manuaalselt uuendusi kontrollida siia klikkides."
 
-#: 
 msgid "Check for updates"
 msgstr "Kontrolli uuendusi"
 
-#: 
 msgid "Update in progress"
 msgstr "Uuendamine käigus"
 
-#: 
 msgid "Jappix has been updated: you are now running the latest version. Have fun!"
 msgstr "Jappix on uuendatud: Teil on nüüd kõige uuem versioon."
 
-#: 
 msgid "The update has failed! Please try again later."
 msgstr "Uuendamine ebaõnnestus! Palun proovige hiljem uuesti."
 
-#: 
 msgid "Downloading package..."
 msgstr "Pakkide alla laadimine..."
 
-#: 
 msgid "Removing current Jappix system files..."
 msgstr "Eemaldan hetkelisi Jappixi süsteemi faile..."
 
-#: 
 msgid "Extracting package..."
 msgstr "Pakin pakke lahti..."
 
-#: 
 msgid "Regenerating storage folder tree..."
 msgstr "Taastan hoiukataloogi..."
 
-#: 
 msgid "Jappix is now up to date!"
 msgstr "Jappix on nüüd uuendatud!"
 
-#: 
 msgid "Aborted: socket error!"
 msgstr "Katkestatud: pesa viga!"
 
-#: 
 msgid "Aborted: buffer error!"
 msgstr "Katkestatud: puhvri viga!"
 
-#: 
 msgid "Aborted: everything is not writable!"
 msgstr "Katkestatud: kõikidel vajalikel asjadel ei ole kirjutusõigusi!"
 
-#: 
 msgid "Aborted: could not extract the package!"
 msgstr "Katkestatud: ei saanud pakke lahti pakkida!"
 
-#: 
 msgid "Visits"
 msgstr "Külastused"
 
-#: 
 msgid "Daily"
 msgstr "Päevane"
 
-#: 
 msgid "Weekly"
 msgstr "Nädalane"
 
-#: 
 msgid "Monthly"
 msgstr "Kuine"
 
-#: 
 msgid "Yearly"
 msgstr "Aastane"
 
-#: 
 msgid "Size"
 msgstr "Suurus"
 
-#: 
 msgid "Clean everything"
 msgstr "Puhasta kõik"
 
-#: 
 msgid "Purge cache"
 msgstr "Puhasta vahemälu"
 
-#: 
 msgid "Purge logs"
 msgstr "Puhasta logid"
 
-#: 
 msgid "Purge updates"
 msgstr "Puhasta uuendused"
 
-#: 
 msgid "The storage folder you wanted to clean is now empty!"
 msgstr "Failihoidla mida Te puhastasite on nüüd tühi!"
 
-#: 
 msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
 msgstr "Hoidke oma Jappix värske ja kiire, puhastage failihoidlaid regulaarselt!"
 
-#: 
 msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
 msgstr "Lae üles oma muusikat (OGG Vorbis, MP3 või WAV) et seda saaks Jappix'is kuulata!"
 
-#: 
 msgid "The file you want to upload must be smaller than %s."
 msgstr "Fail mida Te tahtsite üles laadida peab olema väiksem kui %s."
 
-#: 
 msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
 msgstr "Selle tööriistaga saate ennast kursis hoida mida Teie kasutajad serveris hoiavad ja vajaduse korral eemaldada ebasobivaid materjale."
 
-#: 
 msgid "Title"
 msgstr "Pealkiri"
 
-#: 
 msgid "Artist"
 msgstr "Esitaja"
 
-#: 
 msgid "Album"
 msgstr "Album"
 
-#: 
 msgid "File"
 msgstr "Fail"
 
-#: 
 msgid "Upload"
 msgstr "Üleslaadimine"
 
-#: 
 msgid "The folder is empty."
 msgstr "Kaust on tühi."
 
-#: 
 msgid "The music could not be received, please retry!"
 msgstr "Muusikat ei saadud vastu võtta, proovige uuesti!"
 
-#: 
 msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr "Vale muusikafaili formaat, palun laadige üles OGG Vorbis, MP3 või WAV formaadis!"
 
-#: 
 msgid "Your music has been added!"
 msgstr "Teie muusika on lisatud!"
 
-#: 
 msgid "The selected elements have been removed."
 msgstr "Valitud elemendid on eemaldatud."
 
-#: 
 msgid "You must select elements to remove!"
 msgstr "Te peate valima elemente mida eemaldada!"
 
-#: 
 msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
 msgstr "Selle tööriistaga saate lisada uue kasutaja või muuta parooli. Palun lisage tugev parool!"
 
-#: 
 msgid "Manage"
 msgstr "Halda"
 
-#: 
 msgid "List"
 msgstr "Nimekiri"
 
-#: 
 msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
 msgstr "Selle tööriistaga saate eemaldada kasutajaid. Viimast kasutajat eemaldada ei saa, vähemalt üks peab alati alles jääma."
 
-#: 
 msgid "The user has been added!"
 msgstr "Kasutaja on lisatud!"
 
-#: 
 msgid "The chosen users have been removed."
 msgstr "Valitud kasutajad on eemaldatud."
 
-#: 
 msgid "You must select one or more users to be removed!"
 msgstr "Te peate valima ühe või mitu kasutajat keda eemaldada!"
 
-#: 
 msgid "Yesterday"
 msgstr "Eile"
 
-#: 
 msgid "%s days ago"
 msgstr "%s päeva tagasi"
 
-#: 
 msgid "User currently active"
 msgstr "Hetkel aktiivsed kasutajad"
 
-#: 
 msgid "Last seen: %s"
 msgstr "Viimati nähtud: %s"
 
-#: 
 msgid "Inactive since: %s"
 msgstr "Inaktiivsed alates: %s"
 
-#: 
 msgid "Your friend seems not to have received your message(s)!"
 msgstr "Näib, et Teie sõber ei ole Teie sõnumeid kätte saanud!"
 
-#: 
 msgid "Static content server"
 msgstr "Staatilise sisuga server"
 
-#: 
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "Siin on staatilise sisuga serverid %1s, “%2s”."
 
-#: 
 msgid "Suggested friends"
 msgstr "Soovitatud sõbrad"
 
-#: 
 msgid "Check all"
 msgstr "Vali kõik"
 
-#: 
 msgid "Uncheck all"
 msgstr "Eemalda valik kõigelt"
 
-#: 
 msgid "Choose"
 msgstr "Vali"
 
-#: 
 msgid "List name"
 msgstr "Näita nime"
 
-#: 
 msgid "Allow"
 msgstr "Luba"
 
-#: 
 msgid "Deny"
 msgstr "Keela"
 
-#: 
 msgid "Group"
 msgstr "Grupp"
 
-#: 
 msgid "Subscription"
 msgstr "Tellimus"
 
-#: 
 msgid "Both"
 msgstr "Mõlemad"
 
-#: 
 msgid "From"
 msgstr "Kellelt"
 
-#: 
 msgid "Everybody"
 msgstr "Igaüks"
 
-#: 
 msgid "Send messages"
 msgstr "Saada sõnum"
 
-#: 
 msgid "Send queries"
 msgstr "Saada päringud"
 
-#: 
 msgid "See my status"
 msgstr "Vaata minu staatust"
 
-#: 
 msgid "Send his/her status"
 msgstr "Saada tema staatus"
 
-#: 
 msgid "Everything"
 msgstr "Kõik"
 
-#: 
 msgid "Item"
 msgstr "Ühik"
 
-#: 
 msgid "Order"
 msgstr "Järjekord"
 
-#: 
 msgid "Active for this session"
 msgstr "Selleks sessiooniks aktiivne"
 
-#: 
 msgid "Always active"
 msgstr "Alati aktiivne"
 
-#: 
 msgid "User directory"
 msgstr "Kasutaja kataloog"
 
-#: 
 msgid "Search a friend"
 msgstr "Otsi sõpra"
 
-#: 
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr "Server ei toeta nõutud detaili või ei ole see saadaval, seega detaili protsessimine on katkestatud."
 
-#: 
 msgid "This is a repeat from %s"
 msgstr "%s kordab seda"
 
-#: 
 msgid "Loading comments..."
 msgstr "Laen kommentaare..."
 
-#: 
 msgid "Type your comment here..."
 msgstr "Kirjuta oma kommentaar siia..."
 
-#: 
 msgid "Could not get the comments!"
 msgstr "Ei saanud kommentaare kätte!"
 
-#: 
 msgid "Show comments"
 msgstr "Näita kommentaare"
 
-#: 
 msgid "Send him/her a message"
 msgstr "Saada temale sõnum"
 
-#: 
 msgid "Start a chat with him/her"
 msgstr "Alusta temaga vestlust"
 
-#: 
 msgid "Media integration"
 msgstr "Meedia integratsioon"
 
-#: 
 msgid "Comments locked!"
 msgstr "Kommentaarid lukus!"
 
-#: 
 msgid "Type something you want to share with your friends..."
 msgstr "Kirjuta midagi mida sa tahad oma sõpradega jagada..."
 
-#: 
 msgid "changed his/her nickname to %s"
 msgstr "muutis oma hüüdnime %s"
 
-#: 
 msgid "commented an item you follow: “%s”."
 msgstr "kommenteeris asja üle mida sa jälgid: “%s”."
 
-#: 
-#~ msgid "See"
-#~ msgstr ""
-
-#: 
 msgid "Hide"
 msgstr "Peida"
 
-#: 
 msgid "liked your post: “%s”."
 msgstr "linkis sinu postituse: “%s”."
 
-#: 
 msgid "quoted you somewhere: “%s”."
 msgstr "tsiteeris sind kuskil: “%s”."
 
-#: 
 msgid "published on your wall: “%s”."
 msgstr "kirjutas sinu seinale: “%s”."
 
-#: 
 msgid "tagged you in a photo (%s)."
 msgstr "sildistas sind fotol (%s)."
 
-#: 
 msgid "tagged you in a video (%s)."
 msgstr "sildistas sind videol (%s)."
 
-#: 
 msgid "Show"
 msgstr "Näita"
 
-#: 
 msgid "Need help? You'd better read our documentation page about how to fill this form!"
 msgstr "Vajad abi? Parem oleks kui sa loed meie dokumentatsiooni lehte enne kui sa selle vormi täidad!"
 
-#: 
 msgid "Pubsub host"
 msgstr "Pubsub host"
 
-#: 
 msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 msgstr "Jappix on suurepärane sotsiaalvõrgustik millele Te saate ligi pääseda kusiganes Te olete, millal iganes Te soovite ja suhelda kellega iganes Te soovite."
 
-#: 
 msgid "Manager link"
 msgstr "Halduri link"
 
-#: 
 msgid "User uploads server"
 msgstr "Kasutajate üleslaadimised serverisse"
 
-#: 
 msgid "This is the user uploads server for %1s, “%2s”."
 msgstr "Siin on kasutajate üleslaadimised %1s, “%2s”."
 
-#: 
 msgid "Logo"
 msgstr "Logo"
 
-#: 
 msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
 msgstr "Te saate lisada enda teenuse logo ja asendada olemasoleva. Hoolitsege selle eest, et suurus ja värvid oleksid õiged!"
 
-#: 
-#~ msgid "Use default logo"
-#~ msgstr ""
-
-#: 
-#~ msgid "Use your own logo"
-#~ msgstr ""
-
-#: 
 msgid "Upload each logo with the recommended maximum pixel size."
 msgstr "Lae üles iga logo soovitatud pikseli suurusega."
 
-#: 
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
-#~ msgstr ""
-
-#: 
 msgid "This is not a valid image, please use the PNG format!"
 msgstr "See ei ole õige pildi formaat, palun valige PNG formaat!"
 
-#: 
 msgid "Your service logo has been successfully changed!"
 msgstr "Teie teenuse logo on edukalt muudetud!"
 
-#: 
 msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
 msgstr "Teie logo formaat peab olema PNG. Kui te jätate välja tühjaks siis logo ei muutu."
 
-#: 
 msgid "Remove this logo"
 msgstr "Eemalda see logo"
 
-#: 
 msgid "View this logo"
 msgstr "Vaata seda logo"
 
-#: 
 msgid "Send a file"
 msgstr "Saada fail"
 
-#: 
 msgid "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr "Kui te olete faili üles laadinud siis Teie sõber saab märguande Teie saadetud faili kohta."
 
-#: 
 msgid "Groupchats to join"
 msgstr "Grupivestlused millega liituda"
 
-#: 
 msgid "Purge sent files"
 msgstr "Puhasta saadetud failid"
 
-#: 
 msgid "would like to send you a file: “%s”."
 msgstr "soovib Teile saata faili: “%s”."
 
-#: 
 msgid "has accepted to received your file: “%s”."
 msgstr "on nõustunud Teie saadetud faili vastu võtma: “%s”."
 
-#: 
 msgid "has rejected to receive your file: “%s”."
 msgstr "on keeldunud Teie saadetud faili vastu võtmast: “%s”."
 
-#: 
 msgid "could not receive your file: “%s”."
 msgstr "ei saanud Teie faili kätte: “%s”."
 
-#: 
 msgid "has received a file exchange request: “%s”."
 msgstr "On failivahetuse pakkumise vastu võtnud: “%s”."
 
-#: 
 msgid "Available shortcuts:"
 msgstr "Saadaolevad otseteed:"
 
-#: 
 msgid "%s removes the chat logs"
 msgstr "%s eemaldab vestluse logid"
 
-#: 
 msgid "%s joins a groupchat"
 msgstr "%s liitub grupivestlusega"
 
-#: 
 msgid "%s closes the chat"
 msgstr "%s sulgeb vestluse"
 
-#: 
 msgid "%s shows the user profile"
 msgstr "%s näitab kasutaja profiili"
 
-#: 
 msgid "%s sends a message to the room"
 msgstr "%s saadab ruumi sõnumi"
 
-#: 
 msgid "%s changes your nickname"
 msgstr "%s muudab Teie hüüdnime"
 
-#: 
 msgid "%s sends a message to someone in the room"
 msgstr "%s saadab kellegile ruumis olevale sõnumi"
 
-#: 
 msgid "%s changes the room topic"
 msgstr "%s muudab ruumi teema"
 
-#: 
 msgid "%s kicks an user of the room"
 msgstr "%s lööb kasutaja ruumist välja"
 
-#: 
 msgid "%s bans an user of the room"
 msgstr "%s paneb kasutajale ruumi keelu"
 
-#: 
 msgid "%s invites someone to join the room"
 msgstr "%s kutsub kellegi ruumiga liituma"
 
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+msgid "Public profile"
+msgstr ""
+
+msgid "Your profile anywhere on the Web."
+msgstr ""
+
+msgid "%s is a Jappix.com service which makes your XMPP profile public. It is easier to share it. No XMPP account is required to view your social channel, your current position and your contact details."
+msgstr ""
+
+msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
+msgstr ""
+
+msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genious improvement!"
+msgstr ""
+
+msgid "Yay, let's create my public profile!"
+msgstr ""
+
+msgid "Enable my public profile"
+msgstr ""
+
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+
+#~ msgid "See"
+#~ msgstr ""
+
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""

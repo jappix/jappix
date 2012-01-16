@@ -1,0 +1,1870 @@
+# Hungarian translations for Jappix package.
+# This file is distributed under the same license as the Jappix package.
+# This file was translated from CodingTeam at <http://codingteam.net/>.
+msgid ""
+msgstr ""
+"Project-Id-Version: Jappix\n"
+"PO-Revision-Date: 2012-01-16 21:41+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
+msgstr "A JavaScript hiányzik a böngésződből, anélkül nem tudod használni a Jappixot! Kérlek javítsd."
+
+msgid "An open social network"
+msgstr "A nyílt szociális hálózat."
+
+msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
+msgstr "A Jappix hálózati probléma miatt megszakadt, hiba vagy rossz bejelentkezés (ellenőrízd helyesen töltötted-e ki az adatokat). Elnézést a kellemetlenségért!"
+
+msgid "The element list on this server could not be obtained!"
+msgstr "Az elemek listája ezen a szerveren nem elérhető!"
+
+msgid "Your password has been changed, now you can connect to your account with your new login data."
+msgstr "A jelszavad megváltozott. Mostmár be tudsz jelentkezni a fiókodba az új adatokkal."
+
+msgid "Your XMPP account has been removed, bye!"
+msgstr "Az XMPP fiókod törölve, szia!"
+
+msgid "You have been logged out of your XMPP account, have a nice day!"
+msgstr "Sikeresen kijelentkeztél az XMPP fiókodból, további kellemes napot!"
+
+msgid "The room you joined seems not to exist. You should create it!"
+msgstr "A szoba ahova csatlakoztál még nem létezik. Előbb létre kell hoznod!"
+
+msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgstr "A csoportos beszélgetést törölték, most valaki más létre tudja hozni."
+
+msgid "The user that you want to reach is not present in the room."
+msgstr "A felhasználó akit keresel, nincs a szobában!"
+
+msgid "Please enter the group chat address to join."
+msgstr "Kérlek add meg a csoportos beszélgetés címét a csatlakozáshoz."
+
+msgid "Please enter your nickname to join %s."
+msgstr "Adj meg egy becenevet, hogy belépj a %s szobába."
+
+msgid "This room (%s) is protected with a password."
+msgstr "Ez a szoba (%s) jelszóval védett."
+
+msgid "Your browser is out of date!"
+msgstr "A böngésződ régi, elavult."
+
+msgid "Last %s version is better!"
+msgstr "Az utolsó %s verzió jobb!"
+
+msgid "Login"
+msgstr "Bejelentkezés"
+
+msgid "Register"
+msgstr "Regisztráció"
+
+msgid "Here we go!"
+msgstr "Indulhatunk is!"
+
+msgid "Server"
+msgstr "Szerver"
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "Remember me"
+msgstr "Emlékezz rám"
+
+msgid "This tool has been disabled, you cannot use it!"
+msgstr "Ez az eszköz le van tiltva, nem tudod használni!"
+
+msgid "Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr "Hálózati hiba miatt a kapcsolat megszakadt. Most mit szeretnél tenni?"
+
+msgid "Reconnect"
+msgstr "Újrakapcsolódás"
+
+msgid "Messages"
+msgstr "Üzenetek"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Options"
+msgstr "Beállítások"
+
+msgid "Disconnect"
+msgstr "Kijelentkezés"
+
+msgid "Filter"
+msgstr "Szűrő"
+
+msgid "Add a friend"
+msgstr "Barát hozzáadása"
+
+msgid "Your groupchats"
+msgstr "Csoportos beszélgetéseid"
+
+msgid "Manage your favorite groupchats"
+msgstr "A kedvenc csoportos beszélgetéseid menedzselése"
+
+msgid "More stuff"
+msgstr "Több dolog"
+
+msgid "Show all friends"
+msgstr "Minden barát mutatása"
+
+msgid "Only show connected friends"
+msgstr "Csak a csatlakozott barátok mutatása"
+
+msgid "Message archives"
+msgstr "Archivált üzenetek"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "Please select a friend to view the chat history."
+msgstr "Kérlek válassz ki egy barátot, hogy lásd a beszélgetési előzményeket"
+
+msgid "Nothing found for: %s"
+msgstr "Nem található: %s"
+
+msgid "A short message?"
+msgstr "Egy rövid üzenet?"
+
+msgid "How are you?"
+msgstr "Hogy vagy?"
+
+msgid "What are you doing?"
+msgstr "Mit csinálsz?"
+
+msgid "Join a chat"
+msgstr "Csatlakozás egy beszélgetéshez"
+
+msgid "Status"
+msgstr "Státusz"
+
+msgid "Available"
+msgstr "Elérhető"
+
+msgid "Talkative"
+msgstr "Beszédes"
+
+msgid "Away"
+msgstr "Távol"
+
+msgid "Not available"
+msgstr "Nem elérhető"
+
+msgid "Busy"
+msgstr "Elfoglalt"
+
+msgid "Mood"
+msgstr "Hangulat"
+
+msgid "None"
+msgstr "Nincs"
+
+msgid "Crazy"
+msgstr "Bolond"
+
+msgid "Excited"
+msgstr "Izgatott"
+
+msgid "Playful"
+msgstr "Játékos"
+
+msgid "Happy"
+msgstr "Boldog"
+
+msgid "Shocked"
+msgstr "Döbbent"
+
+msgid "Hot"
+msgstr "Pimasz"
+
+msgid "Sad"
+msgstr "Szomorú"
+
+msgid "Amorous"
+msgstr "Szerelmes"
+
+msgid "Confident"
+msgstr "Magabiztos"
+
+msgid "Activity"
+msgstr "Tevékenység"
+
+msgid "Chores"
+msgstr "Házimunka"
+
+msgid "Drinking"
+msgstr "Iszik"
+
+msgid "Eating"
+msgstr "Eszik"
+
+msgid "Exercising"
+msgstr "Testedzés"
+
+msgid "Grooming"
+msgstr "Szépségápolás"
+
+msgid "Appointment"
+msgstr "Találkozó"
+
+msgid "Inactive"
+msgstr "Tétlen"
+
+msgid "Relaxing"
+msgstr "Pihen"
+
+msgid "Talking"
+msgstr "Beszélgetés"
+
+msgid "Traveling"
+msgstr "Utazás"
+
+msgid "Working"
+msgstr "Dolgozik"
+
+msgid "View profile"
+msgstr "Profil megtekintése"
+
+msgid "Repeat this notice"
+msgstr "Értesítés megismétlése"
+
+msgid "Remove this notice"
+msgstr "Értesítés eltávolítása"
+
+msgid "Your profile"
+msgstr "A te profilod"
+
+msgid "Identity"
+msgstr "Személyazonosság"
+
+msgid "Profile image"
+msgstr "Profilkép"
+
+msgid "Others"
+msgstr "Mások /Egyebek"
+
+msgid "Personal"
+msgstr "Személyes"
+
+msgid "Complete name"
+msgstr "Teljes név"
+
+msgid "Nickname"
+msgstr "Felhasználónév"
+
+msgid "First name"
+msgstr "Keresztnév"
+
+msgid "Last name"
+msgstr "Vezetéknév"
+
+msgid "Date of birth"
+msgstr "Születési dátum"
+
+msgid "Contact"
+msgstr "Kapcsolat"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Website"
+msgstr "Honlap"
+
+msgid "Current"
+msgstr "Jelenlegi"
+
+msgid "Delete"
+msgstr "Töröl"
+
+msgid "What a pity! You have no profile image defined in your identity card!"
+msgstr "Milyen kár! Nincs profilkép társítva a személyi igazolványodhoz."
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Street"
+msgstr "Utca"
+
+msgid "City"
+msgstr "Város"
+
+msgid "Postal code"
+msgstr "Irányítószám"
+
+msgid "Country"
+msgstr "Ország"
+
+msgid "Biography"
+msgstr "Életrajz"
+
+msgid "Important notice"
+msgstr "Fontos értesítés"
+
+msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
+msgstr "Légy óvatos az információkkal amiket megadsz a profilodban, mert bárki hozzáférhet (olyan is akit lehet hogy nem akarsz)."
+
+msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
+msgstr "Nem minden privát jellegű az XMPP-n, ez is egy ilyen dolog, a te publikus profilod (vCard)."
+
+msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
+msgstr "Erősen ajánlott, hogy feltölts egy profilképet (%s maximum), mondjuk egy képet rólad, mert így a barátaid könnyebben felismernek. "
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Cancel"
+msgstr "Mégse"
+
+msgid "Edit options"
+msgstr "Opciók szerkeztése"
+
+msgid "Channel"
+msgstr "Csatorna"
+
+msgid "Commands"
+msgstr "Parancsok"
+
+msgid "Sounds"
+msgstr "Hangok"
+
+msgid "Privacy"
+msgstr "Adatvédelem"
+
+msgid "Message archiving"
+msgstr "Üzenet archiválása"
+
+msgid "Store a history of your chats"
+msgstr "Korábbi beszélgetések tárolása"
+
+msgid "Geolocation"
+msgstr "Tartózkodási hely"
+
+msgid "Empty"
+msgstr "Üres"
+
+msgid "Empty channel"
+msgstr "Üres csatorna"
+
+msgid "Persistent"
+msgstr "Tartós"
+
+msgid "Maximum notices"
+msgstr "Maximális értesítés"
+
+msgid "Account"
+msgstr "Fiók"
+
+msgid "Change password"
+msgstr "Jelszó módosítása"
+
+msgid "Delete account"
+msgstr "Fiók törlése"
+
+msgid "Old"
+msgstr "Régi"
+
+msgid "New (2 times)"
+msgstr "Új (2-szer)"
+
+msgid "Continue"
+msgstr "Folytatás"
+
+msgid "To"
+msgstr "Címzett"
+
+msgid "Close"
+msgstr "Bezárás"
+
+msgid "unknown"
+msgstr "nem ismert"
+
+msgid "Unavailable"
+msgstr "Nem elérhető"
+
+msgid "is now"
+msgstr "most"
+
+msgid "Please wait while your avatar is uploaded..."
+msgstr "Kérlek várj amíg az avatar képed feltöltődik... "
+
+msgid "Here it is! A new beautiful profile image!"
+msgstr "Kész is! Egy szép új profilkép!"
+
+msgid "The image file is not supported or has a bad size."
+msgstr "Nem támogatott képfájl vagy túl nagy."
+
+msgid "Reply"
+msgstr "Válaszolás"
+
+msgid "Error"
+msgstr "Hiba"
+
+msgid "Click here to solve the error"
+msgstr "Kattints ide a hiba megoldásához"
+
+msgid "You"
+msgstr "Te"
+
+msgid "Remove"
+msgstr "Eltávolítás"
+
+msgid "Rename"
+msgstr "Átnevezés"
+
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr "Szia, %s vagyok, és szeretnélek hozzáadni a barátaimhoz."
+
+msgid "Smiley insertion"
+msgstr "Hangulatjel beszúrása"
+
+msgid "Change style"
+msgstr "Stílus megváltoztatása"
+
+msgid "Text in bold"
+msgstr "Félkövér "
+
+msgid "Text in italic"
+msgstr "Dőlt"
+
+msgid "Underlined text"
+msgstr "Aláhúzott"
+
+msgid "Save chat"
+msgstr "Beszélgetés mentése"
+
+msgid "Click on the following link to get the chat log, and wait. Then click again to get the file."
+msgstr "Kattints a következő linkre, hogy megkapd a beszélgetési naplót, majd várj. Utána kattints újra a fájl mentéséhez."
+
+msgid "This chat is empty!"
+msgstr "Ez a beszélgetés üres!"
+
+msgid "Generate file!"
+msgstr "Fájl generálása!"
+
+msgid "Download file!"
+msgstr "Fájl letöltése!"
+
+msgid "Clean current chat"
+msgstr "Aktuális beszélgetés törlése"
+
+msgid "View chat history"
+msgstr "Beszélgetés előzményeinek megnézése"
+
+msgid "Show user profile"
+msgstr "Felhasználói profil megmutatása"
+
+msgid "Add this contact to your friends"
+msgstr "Ezen kapcsolat hozzáadása a barátokhoz"
+
+msgid "Add this groupchat to your favorites"
+msgstr "Csoportos beszélgetés hozzáadása a kedvencekhez"
+
+msgid "All tabs"
+msgstr "Minden lap"
+
+msgid "Close this tab"
+msgstr "Lap bezárása"
+
+msgid "no subject defined for this room."
+msgstr "nincs téma megadva ehhez a szobához."
+
+msgid "Administration panel for this room"
+msgstr "Adminisztrációs panel ehhez a szobához"
+
+msgid "Moderators"
+msgstr "Moderátorok"
+
+msgid "Participants"
+msgstr "Résztvevők"
+
+msgid "Visitors"
+msgstr "Látogatók"
+
+msgid "Manage favorite rooms"
+msgstr "Kedvenc szobák kezelése"
+
+msgid "Change favorites"
+msgstr "Kedvencek megváltoztatása"
+
+msgid "Search a room"
+msgstr "Szoba keresése"
+
+msgid "Select a favorite"
+msgstr "Kedvenc kiválasztása"
+
+msgid "Getting the name..."
+msgstr "Név megszerzése..."
+
+msgid "Gateway"
+msgstr "Átjáró"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Room"
+msgstr "Szoba"
+
+msgid "Add"
+msgstr "Hozzáad"
+
+msgid "Edit"
+msgstr "Szerkesztés"
+
+msgid "Search a room on"
+msgstr "Szoba keresése a"
+
+msgid "No room found on this server."
+msgstr "Ezen a szerveren nincs ilyen szoba"
+
+msgid "Service discovery"
+msgstr "Szolgáltatás megismerése"
+
+msgid "Server to query"
+msgstr "Szerver lekérdezése"
+
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "Bocs, de lekérdezés nem hozott eredményt!"
+
+msgid "Accounts"
+msgstr "Fiókok"
+
+msgid "Authentications"
+msgstr "Hitelesítések"
+
+msgid "Automation"
+msgstr "Automatikusan"
+
+msgid "Clients"
+msgstr "Kliensek"
+
+msgid "Collaboration"
+msgstr "Együttműködés"
+
+msgid "Components"
+msgstr "Komponensek"
+
+msgid "Rooms"
+msgstr "Szobák"
+
+msgid "Directories"
+msgstr "Könyvtárak"
+
+msgid "Gateways"
+msgstr "Átjárók"
+
+msgid "News"
+msgstr "Hírek"
+
+msgid "Hierarchy"
+msgstr "Hierarchia"
+
+msgid "Proxies"
+msgstr "Proxik"
+
+msgid "Publication/Subscription"
+msgstr "Publikációk/Feliratkozások"
+
+msgid "Storage"
+msgstr "Tároló"
+
+msgid "Service offline or broken"
+msgstr "A szolgáltatás nem elérhető, vagy lezárt"
+
+msgid "Your inbox"
+msgstr "Postaládád"
+
+msgid "Available actions"
+msgstr "Elérhető műveletek"
+
+msgid "Clean"
+msgstr "Tisztít"
+
+msgid "New"
+msgstr "Új"
+
+msgid "Received"
+msgstr "Fogadott"
+
+msgid "Subject"
+msgstr "Tárgy"
+
+msgid "Content"
+msgstr "Tartalom"
+
+msgid "Send message"
+msgstr "Üzenet küldése"
+
+msgid "Your inbox is empty."
+msgstr "A bejövő fiókod üres"
+
+msgid "MUC administration"
+msgstr "MUC adminisztráció"
+
+msgid "You administrate this room"
+msgstr "Te adminisztrálod ezt a szobát"
+
+msgid "Enter new subject"
+msgstr "Írd be a témát"
+
+msgid "Configuration"
+msgstr "Testreszabás"
+
+msgid "Authorizations"
+msgstr "Engedélyek"
+
+msgid "Member list"
+msgstr "Tag lista"
+
+msgid "Owner list"
+msgstr "Tulajdonos lista"
+
+msgid "Administrator list"
+msgstr "Adminisztrátor lista"
+
+msgid "Outcast list"
+msgstr "Letiltottak listája"
+
+msgid "Add an input"
+msgstr "Bemenet hozzáadása"
+
+msgid "Destroy this MUC"
+msgstr "MUC elpusztítása"
+
+msgid "Yes, let's do it!"
+msgstr "Igen, csináljuk!"
+
+msgid "Your friend is paying attention to the conversation."
+msgstr "A barátod figyelemmel kíséri a beszélgetést."
+
+msgid "Your friend is writing a message..."
+msgstr "A barátod épp ír neked…"
+
+msgid "Your friend stopped writing a message."
+msgstr "A barátod abbahagyta az üzenet írását."
+
+msgid "Your friend is doing something else."
+msgstr "A barátod valami mást csinál."
+
+msgid "Your friend closed the chat."
+msgstr "A barátod bezárta a beszélgetést."
+
+msgid "Requesting this service..."
+msgstr "Szolgáltatás kérése..."
+
+msgid "Loading"
+msgstr "Betöltés"
+
+msgid "joined the chat room"
+msgstr "csatlakozás a szobához"
+
+msgid "left the chat room"
+msgstr "a szoba elhagyása"
+
+msgid "no status"
+msgstr "nincs státusz"
+
+msgid "has been kicked"
+msgstr "kirúgva"
+
+msgid "has been banned"
+msgstr "kitiltva"
+
+msgid "no reason"
+msgstr "Nincs ok"
+
+msgid "Communicate with the entire world!"
+msgstr "Kommunikálj az egész világgal!"
+
+msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgstr "Segít, hogy kapcsolatban maradj emberek millióival akik az XMPP hálózatot használják, mint ahogy te is tudod a Jappix-el. Csatlakozz a közösséghez és maradj szabad!"
+
+msgid "Hi there!"
+msgstr "Szia!"
+
+msgid "Welcome on %1s, “%2s”."
+msgstr "Üdvözöljük %1son, “%2s”."
+
+msgid "Login to your existing XMPP account or create a new one for free!"
+msgstr "Jelentkezz be az XMPP fiókodba, vagy csinálj egy újat ingyen!"
+
+msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgstr "A Jappix egy nyílt-forrású projekt a PostPro-tól, egy non-profit szervezettől ami nagy segítséggel van a számunkra."
+
+msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
+msgstr "Jelentkezz be az XMPP fiókodba. Használhatod a %s -t is, hogy csatlakozz egy csoportos beszélgetéshez."
+
+msgid "Previous"
+msgstr "Előző"
+
+msgid "General"
+msgstr "Általános"
+
+msgid "Advanced"
+msgstr "Haladó"
+
+msgid "Resource"
+msgstr "Forrás"
+
+msgid "Priority"
+msgstr "Prioritás"
+
+msgid "Low"
+msgstr "Alacsony"
+
+msgid "Medium"
+msgstr "Közepes"
+
+msgid "High"
+msgstr "Magas"
+
+msgid "Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."
+msgstr "Add meg a csoportos beszélgetést amihez csatlakozni szeretnél és felhasználó nevet amit szeretnél. Vissza is tudsz menni a %s -hez."
+
+msgid "login page"
+msgstr "bejelentkezés oldal"
+
+msgid "Share this link with your friends:"
+msgstr "Link megosztása a barátaiddal"
+
+msgid "Register a new XMPP account to join your friends on your own social cloud. That's simple!"
+msgstr "Regisztrálj egy új XMPP fiókot, hogy csatlakozz a barátaidhoz a saját szociális felhődben. Ez egyszerű!"
+
+msgid "Required"
+msgstr "Szükséges"
+
+msgid "You have been registered, here is your XMPP address:"
+msgstr "Sikeresen regisztráltál, ez az XMPP címed:"
+
+msgid "Manager"
+msgstr "Menedzser"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Encrypted"
+msgstr "Titkosított"
+
+msgid "Unencrypted"
+msgstr "Titkosítatlan"
+
+msgid "Where are you?"
+msgstr "Hol vagy?"
+
+msgid "What's up with you?"
+msgstr "Mi a helyzet veled?"
+
+msgid "Fetching the social channel..."
+msgstr "Szociális csatorna hozzáadása..."
+
+msgid "You are synchronized with your network."
+msgstr "Szinkronizálva vagy a hálózatoddal."
+
+msgid "Cannot send anything: you can only receive notices!"
+msgstr "Nem lehet küldeni semmit: csak fogadni tudsz!"
+
+msgid "Media viewer"
+msgstr "Média néző"
+
+msgid "Browse"
+msgstr "Tallózás"
+
+msgid "Command"
+msgstr "Parancs"
+
+msgid "Subscribe"
+msgstr "Feliratkozás"
+
+msgid "Join"
+msgstr "Egyesít"
+
+msgid "Automatic"
+msgstr "Automatikus"
+
+msgid "Search"
+msgstr "Keresés"
+
+msgid "No result!"
+msgstr "Nincs találat!"
+
+msgid "No notifications."
+msgstr "Nincs értesítés."
+
+msgid "would like to add you as a friend."
+msgstr "hozzá szeretne téged adni barátként"
+
+msgid "would like you to join this chatroom:"
+msgstr "szeretné hogy csatlakozz ehhez a szobához:"
+
+msgid "Do you accept?"
+msgstr "Elfogadod?"
+
+msgid "Yes"
+msgstr "Igen"
+
+msgid "No"
+msgstr "Nem"
+
+msgid "would like to get authorization."
+msgstr "szeretne engedélyt szeretne kapni."
+
+msgid "Do you want to see the friends %s suggests you?"
+msgstr "Akarod-e látni azokat a barátokat, akiket %s ajáln?"
+
+msgid "Submit"
+msgstr "Küldés"
+
+msgid "Client"
+msgstr "Kliens"
+
+msgid "System"
+msgstr "Rendszer"
+
+msgid "Local time"
+msgstr "Helyi idő"
+
+msgid "Comments"
+msgstr "Hozzászólások"
+
+msgid "User profile"
+msgstr "Felhasználói profil"
+
+msgid "See his/her position on the globe"
+msgstr "Megnézem a pozícióját a földgömbön."
+
+msgid "Confirm"
+msgstr "Megerősítés"
+
+msgid "anonymous mode"
+msgstr "Névtelen mód"
+
+msgid "Groups"
+msgstr "Csoportok"
+
+msgid "Unclassified"
+msgstr "Osztályozatlan"
+
+msgid "Authorize"
+msgstr "Engedélyez"
+
+msgid "Ask for authorization"
+msgstr "Kérés engedélyezésre"
+
+msgid "Unblock"
+msgstr "Felold"
+
+msgid "Prohibit"
+msgstr "Tiltás"
+
+msgid "Block"
+msgstr "Lezár"
+
+msgid "Chat"
+msgstr "Beszélgetés"
+
+msgid "Groupchat"
+msgstr "Csoportos beszélgetés"
+
+msgid "Jappix Mobile"
+msgstr "Jappix Mobil"
+
+msgid "Desktop"
+msgstr "Asztal"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Please wait..."
+msgstr "Kérlek várj..."
+
+msgid "Please enable JavaScript"
+msgstr "Kérlek engedélyezd a JavaScript-et"
+
+msgid "Your channel"
+msgstr "A te csatornád"
+
+msgid "Channel of"
+msgstr "Csatornája "
+
+msgid "More notices..."
+msgstr "Mégtöbb értesítés... "
+
+msgid "Attach a file"
+msgstr "Fájl csatolása"
+
+msgid "Send"
+msgstr "Küldés"
+
+msgid "Unattach the file"
+msgstr "Fájlcsatolás törlése"
+
+msgid "An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"
+msgstr "Hiba történt a fájl feltöltése közben: talán túl nagy (%s maximum) vagy le van tiltva."
+
+msgid "Authorization failed"
+msgstr "Engedélyezési hiba"
+
+msgid "Registration failed, please choose a different username"
+msgstr "A regisztráció nem sikerült, kérlek válassz másik felhasználónevet."
+
+msgid "Service unavailable"
+msgstr "A szolgáltatás nem elérhető"
+
+msgid "Internal server error, try later"
+msgstr "Belső szerver hiba, kérlek próbáld újra később"
+
+msgid "Your form has been sent."
+msgstr "Az űrlapod elküldve."
+
+msgid "Application"
+msgstr "Alkalmazás"
+
+msgid "XMPP links"
+msgstr "XMPP linkek"
+
+msgid "Open XMPP links with Jappix"
+msgstr "XMPP linkek megnyitása Jappix-el"
+
+msgid "changed the subject to:"
+msgstr "tárgy megváltoztatása erre:"
+
+msgid "Welcome!"
+msgstr "Üdvözöljük!"
+
+msgid "Friends"
+msgstr "Barátok"
+
+msgid "Welcome on Jappix, your own social cloud!"
+msgstr "Üdvözlünk a Jappix-en, a saját szociális felhődben!"
+
+msgid "Before you start using it, you will have to change some settings, search for friends and complete your profile."
+msgstr "Mielőtt elkezdenéd használni, meg kell változtatnod néhány beállítást, keresned kell barátokat és kitöltened a profilodat."
+
+msgid "Enable notification sounds"
+msgstr "Értesítési hangok engedélyezése."
+
+msgid "Share your position on the globe"
+msgstr "Pozícióm megosztása a földgömbön"
+
+msgid "Offline friends"
+msgstr "Kijelentkezett barátok"
+
+msgid "Don't hide offline friends"
+msgstr "Ne rejtse el a kijelentkezett barátokat"
+
+msgid "Use this tool to find your friends on the server you are using right now, or add them later."
+msgstr "Használd ezt az eszközt hogy megtaláld a barátaidat a szerveren amit most használsz, vagy add hozzá őket később."
+
+msgid "Great work! Now, you can share Jappix with your friends!"
+msgstr "Nagyszerű! Most már meg tudod osztani a Jappix-et a barátaiddal!"
+
+msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
+msgstr "Ha megnyomod a mentés gombot,  meg fog nyílni a profil szerkesztő. Jó szocializálódást!"
+
+msgid "Share Jappix on %s"
+msgstr "A Jappix megosztása a %s -en."
+
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr "Jappix-et, egy nyílt szociális platformot használok. %s vagyok!"
+
+msgid "Unknown name"
+msgstr "Ismeretlen név"
+
+msgid "Unknown country"
+msgstr "Ismeretlen ország"
+
+msgid "Click to enable"
+msgstr "Kattints az engedélyezéshez."
+
+msgid "Click to disable"
+msgstr "Kattints az elutasításhoz"
+
+msgid "Installation"
+msgstr "Telepítés"
+
+msgid "Jappix installation"
+msgstr "Jappix telepítése"
+
+msgid "Welcome to the Jappix installation!"
+msgstr "Üdvözöljük a Jappix telepítésében!"
+
+msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgstr "Ez az eszköz segít gyorsan telepíteni a Jappix-et, az első teljes értékű XMPP alapú szociális platformot a szerveredre. Nincs szükséged semmilyen technikai tudásra."
+
+msgid "Let's have a look at the installation steps:"
+msgstr "Nézzük, mik a telepítés lépései:"
+
+msgid "Welcome"
+msgstr "Üdvözöljük"
+
+msgid "Storage configuration"
+msgstr "Tároló konfigurálása"
+
+msgid "Administrator account"
+msgstr "Adminisztrációs fiók"
+
+msgid "Main configuration"
+msgstr "Fő beállítások"
+
+msgid "Hosts configuration"
+msgstr "Kiszolgáló konfiguráció"
+
+msgid "Services installation"
+msgstr "Szolgáltatás telepítés"
+
+msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
+msgstr "Ha az aktuális nyelv nem egyezik a tiéddel (%1s), át tudod állítani a Jappix-et hogy %2s beszéljen."
+
+msgid "If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"
+msgstr "Ha problémád van a Jappix telepítésével és konfigurálásával, megnézheted a dokumentációt ami elérhető itt:"
+
+msgid "It's time to build your own social cloud: just go to the next step!"
+msgstr "Itt az idő létrehozni a saját szociális felhődet, kezd az első lépéssel!"
+
+msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgstr "A Jappix tárolja az állandó adatokat (mint a megosztott fájlok, beszélgetések naplózásai, saját zenék és konfigurációk), egy egyedi, biztosított mappában."
+
+msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
+msgstr "A Jappix-nak tudnia kell írni ebbe a mappába, hogy létre tudjon hozni almappákat. Ha nem tud, be kell állítanod az írási jogot %1s vagy megváltoztatni a mappa tulajdonosát %2s -re (a konfigurációdtól függően)."
+
+msgid "The folder is writable, you can continue!"
+msgstr "A mappa írható, már folytathatod!"
+
+msgid "Jappix offers you the possibility to manage your configuration, install new plugins or search for updates. That's why you must create an administrator account to access the manager."
+msgstr "Jappix felajánlja a lehetőséget, hogy menedzseld a konfigurációd, telepíts új kiegészítőket, vagy keress frissítéseket. Ezért kell létrehoznod egy adminisztrátori fiókot, hogy hozzáférj ezekhez a beállításokhoz."
+
+msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
+msgstr "Ha telepítetted a Jappix-et, csak kattints a menedzser linkre a főoldalon, hogy hozzáférj."
+
+msgid "Oops, you missed something or the two passwords do not match!"
+msgstr "Oppá, valamit elírtál, vagy a két jelszó nem egyezik!"
+
+msgid "Jappix needs that you specify some values to work. Please correct the following inputs (or keep the default values, which are sufficient for most people)."
+msgstr "A Jappixnak szüksége van pár érték beállítására. Kérlek korrigáld az alábbi bemeneteket (vagy tartsd meg az alapértelmezetteket, amik a legtöbb ember számára ajánlottak)."
+
+msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
+msgstr "Jegyezd meg, hogy ha nem adod meg a kötelező adatokat, akkor automatikusan ki lesznek töltve egy alapértelmezettel."
+
+msgid "User"
+msgstr "Felhasználó"
+
+msgid "Service"
+msgstr "Szolgáltatás"
+
+msgid "Service name"
+msgstr "Szolgáltatás neve"
+
+msgid "Service description"
+msgstr "Szolgáltatás leírása"
+
+msgid "Connection"
+msgstr "Kapcsolat"
+
+msgid "Lock the host"
+msgstr "Gazda lezárása"
+
+msgid "Anonymous mode"
+msgstr "Névtelen mód"
+
+msgid "Registration allowed"
+msgstr "Regisztráció engedélyezve"
+
+msgid "Use a proxy"
+msgstr "Proxy használata"
+
+msgid "Encryption"
+msgstr "Titkosítás"
+
+msgid "HTTPS storage"
+msgstr "HTTPS tároló"
+
+msgid "Force HTTPS"
+msgstr "HTTPS erőltetése"
+
+msgid "Compression"
+msgstr "Tömörítés"
+
+msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
+msgstr "Ez az oldal segít beállítani, hogy melyik kiszolgálóhoz fog csatlakozni a Jappix.  Így is hagyhatod a beállításokat ha a hivatalos kiszolgálót szeretnéd használni."
+
+msgid "Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."
+msgstr "Nem tudod mi az a BOSH szerver? Ez egy továbbító a Jappix kliens és az XMPP szerver között, ami a technikai korlátok miatt szükséges."
+
+msgid "Main host"
+msgstr "Fő kiszolgáló"
+
+msgid "Groupchat host"
+msgstr "Csoportos beszélgetés kiszolgálója"
+
+msgid "Anonymous host"
+msgstr "Névtelenségi kiszolgáló"
+
+msgid "Directory host"
+msgstr "Címtár kiszolgáló"
+
+msgid "BOSH host"
+msgstr "BOSH kiszolgáló"
+
+msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
+msgstr "Telepíthetsz néhány extra szoftvert is a szerveredre, hogy kiterjeszd a felhasználói élményt. Néhányat esetleg módosíthatnak a biztonsági korlátozások miatt."
+
+msgid "To perform this, you must be able to access your server's shell and be logged in as root. Remember this is facultative, Jappix will work without these modules, but some of its features will be unavailable."
+msgstr "Hogy végrehajtsd ezt hozzá kell férned a szerver héjához és root-ként kell bejelentkezned. Ne felejtsd hogy ez fakultatív, a Jappix működik ezek nélkül a modulok nélkül, de néhány eleme elérhetetlen lehet."
+
+msgid "After you finished the setup, Jappix will generate the cache files. It might be slow, just wait until the application is displayed and do not press any button."
+msgstr "Telepítés után a Jappix ideiglenes állományokat hoz létre. Ez eltarthat egy ideig, addig ne nyomj semmilyen gombra."
+
+msgid "Thanks for using Jappix!"
+msgstr "Köszönjük, hogy a Jappix-ot használtad!"
+
+msgid "Next"
+msgstr "Következő"
+
+msgid "Finish"
+msgstr "Vége"
+
+msgid "Check again"
+msgstr "Ellenőrzés újra"
+
+msgid "The folder is not writable, set the right permissions to the %s directory."
+msgstr "A mappa nem írható, Állítsd be a jogosultságokat %s mappán."
+
+msgid "%s is installed on your system."
+msgstr "%s telepítve van a rendszereden."
+
+msgid "%1s is not installed on your system, you should install %2s."
+msgstr "%1s nincs telepítve a rendszereden, telepítsd %2s-t."
+
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr "PHP maximum feltöltési méret kielégítő (%s)."
+
+msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
+msgstr "PHP maximum feltöltési méret nem kielégítő (%1s), definiáld %2s és %3s közé."
+
+msgid "Jappix manager"
+msgstr "Jappix menedzser"
+
+msgid "Manager access"
+msgstr "Menedzser hozzáférés"
+
+msgid "Statistics"
+msgstr "Statisztikák"
+
+msgid "Hosts"
+msgstr "Kiszolgálók"
+
+msgid "Design"
+msgstr "Formatervezés"
+
+msgid "Repeat"
+msgstr "Ismétlés"
+
+msgid "All"
+msgstr "Minden"
+
+msgid "Horizontal"
+msgstr "Vízszintes"
+
+msgid "Vertical"
+msgstr "Függőleges"
+
+msgid "Center"
+msgstr "Középre"
+
+msgid "Left"
+msgstr "Balra"
+
+msgid "Right"
+msgstr "Jobbra"
+
+msgid "Top"
+msgstr "Fent"
+
+msgid "Bottom"
+msgstr "Lent"
+
+msgid "Adapt"
+msgstr "Adaptálás"
+
+msgid "Color"
+msgstr "Szín"
+
+msgid "Users"
+msgstr "Felhasználók"
+
+msgid "Updates"
+msgstr "Frissítések"
+
+msgid "This is a restricted area: only the authorized users can manage this Jappix node."
+msgstr "Ez egy korlátozott régió: csak a kijelölt felhasználók tudják menedzselni ezeket a Jappix opciókat."
+
+msgid "Please use the form below to login to the administration panel."
+msgstr "Kérlek használd az alábbi formát hogy bejelentkezz az adminisztrációs panelre."
+
+msgid "To improve security, sessions are limited in time and when your browser will be closed, you will be logged out."
+msgstr "A biztonság érdekében a kapcsolat időben limitált, és ha bezárod a böngésződ, ki leszel jelentkeztetve. "
+
+msgid "Credentials"
+msgstr "Azonosítók"
+
+msgid "You have been logged out. Goodbye!"
+msgstr "Sikeresen kijelentkeztél. Viszlát!"
+
+msgid "Oops, you could not be recognized as a valid administrator. Check your credentials!"
+msgstr "Oppá, nem ismertünk fel, mint érvényes adminisztrátort. Nézd meg az azonosítóid!"
+
+msgid "Basic statistics are processed by Jappix about some important things, you can find them below."
+msgstr "Jappix feldolgozza az alapvető statisztikákat néhány fontos dologról, lejjebb megtalálod őket."
+
+msgid "Change your Jappix node configuration with this tool."
+msgstr "Változtasd meg a Jappix csomóponti konfigurációit ezzel az eszközzel."
+
+msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+msgstr "Változtasd meg az XMPP kiszolgálókat a Jappix csomópont szerveren ezzel az eszközzel."
+
+msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
+msgstr "Az összes Jappix csomópont által tárolt fájl menedzselhető ezzel az eszközzel: kérlek válassz ki egy almappát és kezdheted szerkeszteni a tartalmát!"
+
+msgid "Jappix is fully customisable: you can change its design right here."
+msgstr "A Jappix teljesen testre szabható: itt meg tudod változtatni a kinézetét."
+
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
+msgstr "Nem érvényes képformátum, kérlek használj PNG, GIF, vagy JPG képet!"
+
+msgid "The image could not be received, would you mind retry?"
+msgstr "A képet nem tudtuk fogadni, szeretnéd megpróbálni újra?"
+
+msgid "Your image was added to the list!"
+msgstr "A képed hozzá lett adva a listához!"
+
+msgid "Changes saved!"
+msgstr "Változtatások elmentve!"
+
+msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
+msgstr "Ehhez a Jappix csomóponthoz több adminisztrátort is tudsz definiálni. Ezzel az eszközzel jelszót is tudsz változtatni."
+
+msgid "Update your Jappix node with this tool, or check if a new one is available. Informations about the latest version are also displayed (in english)."
+msgstr "Frissítsd a Jappix csomópontod ezzel az eszközzel, vagy nézd meg hogy létezik-e egy újabb. Információk fognak megjelenni a legújabb verzióról (angolul)."
+
+msgid "Access statistics"
+msgstr "Elérési statisztikák"
+
+msgid "Share statistics"
+msgstr "Megosztási statisztikák"
+
+msgid "Other statistics"
+msgstr "Egyéb statisztikák"
+
+msgid "January"
+msgstr "Január"
+
+msgid "February"
+msgstr "Február"
+
+msgid "March"
+msgstr "Március"
+
+msgid "April"
+msgstr "Április"
+
+msgid "May"
+msgstr "Május"
+
+msgid "June"
+msgstr "Június"
+
+msgid "July"
+msgstr "Július"
+
+msgid "August"
+msgstr "Augusztus"
+
+msgid "September"
+msgstr "Szeptember"
+
+msgid "October"
+msgstr "Október"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "Monday"
+msgstr "Hétfő"
+
+msgid "Tuesday"
+msgstr "Kedd"
+
+msgid "Wednesday"
+msgstr "Szerda"
+
+msgid "Thursday"
+msgstr "Csütörtök"
+
+msgid "Friday"
+msgstr "Péntek"
+
+msgid "Saturday"
+msgstr "Szombat"
+
+msgid "Sunday"
+msgstr "Vasárnap"
+
+msgid "Total"
+msgstr "Összeg"
+
+msgid "Cache"
+msgstr "Gyorsítótár"
+
+msgid "Logs"
+msgstr "Logok"
+
+msgid "Music"
+msgstr "Zene"
+
+msgid "Backgrounds"
+msgstr "Hátterek"
+
+msgid "Share"
+msgstr "Megosztás"
+
+msgid "Background"
+msgstr "Háttér"
+
+msgid "Notice"
+msgstr "Megjegyzés"
+
+msgid "Your design preferences have been saved!"
+msgstr "A kinézeti beállításaid elmentettük."
+
+msgid "Please check your inputs: something is missing!"
+msgstr "Kérlek ellenőrizd a bemeneteket: valami hiányzik!"
+
+msgid "Change your Jappix node background with this tool. You can either set a custom color or an uploaded image. Let your creativity flow!"
+msgstr "Változtasd meg a Jappix háttered ezzel az eszközzel. Választhatsz ezen kívül egy egyedi színt, vagy feltölthetsz egy képet. Engedd szárnyalni a kreativitásod!"
+
+msgid "Use default background"
+msgstr "Alapértelmezett háttér használata"
+
+msgid "Use your own image"
+msgstr "Használd a saját képed"
+
+msgid "Select a background to use and change the display options."
+msgstr "Háttérkép választása, hogy használd és változtasd a kijelzési opciókat. "
+
+msgid "Use your own color"
+msgstr "Használd a saját színed"
+
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr "Írd be a hexadecimális kódját annak a színnek, amit háttérként szeretnél használni."
+
+msgid "Manage backgrounds"
+msgstr "Háttérképek menedzselése"
+
+msgid "You can add a new background to the list with this tool. Please send a valid image."
+msgstr "Ezzel az eszközzel hozzá tudsz adni egy új háttérképet a listához. Kérlek küldj egy érvényes képet."
+
+msgid "If you want to remove some backgrounds, use the browser below."
+msgstr "Ha el szeretnél távolítani háttérképeket, használd az alábbi böngészőt."
+
+msgid "Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."
+msgstr "Definiálj az összes felhasználód számára egy kezdőoldal üzenet, mint a figyelmeztetés, fontos üzenet vagy hirdetés, ezzel az eszközzel. "
+
+msgid "Simple notice"
+msgstr "Egyszerű értesítés"
+
+msgid "This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr "Ez az értesítés csak egyszerű szöveget tartalmazhat, tehát kódok nem elérhetőek!"
+
+msgid "Advanced notice"
+msgstr ""
+
+msgid "You can customize your notice with embedded HTML, CSS and JavaScript, but you need to code the style."
+msgstr "HTML, CSS és JavaScript segítségével személyreszabhatod értesítéseidet, de szükséges stíluskódok használata."
+
+msgid "Available updates"
+msgstr "Elérhető frissítések"
+
+msgid "What's new?"
+msgstr "Mi újság?"
+
+msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr "A tárolóid nem írhatóak, kérlek használj másikat!"
+
+msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr "%1s talán hibát okoz a proxy kapcsolatban, kérlek emeld meg %2s értékét %3s -re!"
+
+msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
+msgstr "A Jappix egy fejlesztői kiadását használod. Frissítsd a tárolónkból ennek a végrehajtásával: %s."
+
+msgid "A new Jappix version is available! Check what is new and launch the update!"
+msgstr "Új Jappix kiadás elérhető! Lesd meg az újdonságokat, és futtasd a frissitőt!"
+
+msgid "Your version is out to date. Update it now to %s by clicking here!"
+msgstr "A te Jappixod elavult. Kattints ide, és frissits a %s verzióra!"
+
+msgid "Your version seems to be up to date, but you can check updates manually by clicking here."
+msgstr "Úgy tűnik, hogy jelenlegi verzió a legfrissebb, de ellenőrizheted manuálisan is ide kattintva."
+
+msgid "Check for updates"
+msgstr "Frissítések keresése"
+
+msgid "Update in progress"
+msgstr "Frissítés folyamatban"
+
+msgid "Jappix has been updated: you are now running the latest version. Have fun!"
+msgstr "Jappix frissitve: nálad jeleneg az utolsó kiadás fut. "
+
+msgid "The update has failed! Please try again later."
+msgstr "Sikertelen frissítés! Próbáld meg később."
+
+msgid "Downloading package..."
+msgstr "Csomagok letöltése..."
+
+msgid "Removing current Jappix system files..."
+msgstr "Az aktuális Jappix rendszer fájlok törlése..."
+
+msgid "Extracting package..."
+msgstr "Csomagok kibontása..."
+
+msgid "Regenerating storage folder tree..."
+msgstr "Tároló mappák újra generálása..."
+
+msgid "Jappix is now up to date!"
+msgstr "Jappix most naprakész!"
+
+msgid "Aborted: socket error!"
+msgstr "Megszakítva: foglaltsági hiba!"
+
+msgid "Aborted: buffer error!"
+msgstr "Megszakítva: puffer hiba!"
+
+msgid "Aborted: everything is not writable!"
+msgstr "Megszakítva: nem minden írható!"
+
+msgid "Aborted: could not extract the package!"
+msgstr "Megszakítva: nem lehet kicsomagolni a csomagot!"
+
+msgid "Visits"
+msgstr "Látogatottság"
+
+msgid "Daily"
+msgstr "Naponta"
+
+msgid "Weekly"
+msgstr "Hetente"
+
+msgid "Monthly"
+msgstr "Havonta"
+
+msgid "Yearly"
+msgstr "Évente"
+
+msgid "Size"
+msgstr "Méret"
+
+msgid "Clean everything"
+msgstr "Mindent töröl"
+
+msgid "Purge cache"
+msgstr "Cache tisztítása"
+
+msgid "Purge logs"
+msgstr "Logok tisztítása"
+
+msgid "Purge updates"
+msgstr "Frissítések tisztítása"
+
+msgid "The storage folder you wanted to clean is now empty!"
+msgstr "A tárolóhely, amit üríteni akarsz üres!"
+
+msgid "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+msgstr "Tartsd frissen a Jappixodat, tisztítsd a tároló mappákat rendszeresen!"
+
+msgid "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in Jappix!"
+msgstr "Töltsd fel a zenéid (Ogg Vorbis, MP3 vagy WAV formátumban), hogy tudd őket hallgatni a Jappix-ban is!"
+
+msgid "The file you want to upload must be smaller than %s."
+msgstr "A fájl amit felszeretnél tölteni, kisebbnek kell lennie %s-nál/nél."
+
+msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgstr "Maradj összhangban azzal amit a felhasználóid tárolnak a szerveren, és töröld a nem kívánt tartalmakat ezzel az eszközzel."
+
+msgid "Title"
+msgstr "Cím"
+
+msgid "Artist"
+msgstr "Előadó"
+
+msgid "Album"
+msgstr "Album"
+
+msgid "File"
+msgstr "Fájl"
+
+msgid "Upload"
+msgstr "Feltöltés"
+
+msgid "The folder is empty."
+msgstr "A mappa üres."
+
+msgid "The music could not be received, please retry!"
+msgstr "A zenét nem tudtuk fogadni, kérlek próbáld újra!"
+
+msgid "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+msgstr "Ez nem egy érvényes zenei fájl formátum, kérlek kódold át Ogg Vorbis, MP3 vagy WAV formátumba!"
+
+msgid "Your music has been added!"
+msgstr "Zene hozzáadva!"
+
+msgid "The selected elements have been removed."
+msgstr "A kiválasztott elemek törölve lettek."
+
+msgid "You must select elements to remove!"
+msgstr "Ahhoz, hogy törölni tudj, ki kell választanod egy elemet!"
+
+msgid "Add a new user with this tool, or change a password (type an existing username). Please submit a strong password!"
+msgstr "Adj meg új felhasználót, vagy változtasd meg a jelszót (ehhez adj meg egy létező felhasználó nevet) ezzel az eszközzel. Kérlek válassz egy erős jelszót!"
+
+msgid "Manage"
+msgstr "Intézés"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
+msgstr "Felhasználó eltávolítása ezzel az eszközzel. Akkor nem tudsz felhasználót eltávolítani, ha ő maradt az egyetlen."
+
+msgid "The user has been added!"
+msgstr "Felhasználó hozzáadva!"
+
+msgid "The chosen users have been removed."
+msgstr "A kiválaszott felhasználó eltávolítva."
+
+msgid "You must select one or more users to be removed!"
+msgstr "Legalább egy felhasználót ki kell választani ahhoz, hogy törölni lehessen!"
+
+msgid "Yesterday"
+msgstr "Tegnap"
+
+msgid "%s days ago"
+msgstr "%s nappal ezelőtt"
+
+msgid "User currently active"
+msgstr "A felhasználó jelenleg elérhető"
+
+msgid "Last seen: %s"
+msgstr "Utóljára láttad: %s"
+
+msgid "Inactive since: %s"
+msgstr "Inaktív ideje: %s "
+
+msgid "Your friend seems not to have received your message(s)!"
+msgstr "A barátod úgy tűnik nem kapta meg az üzenete(i)det!"
+
+msgid "Static content server"
+msgstr "Statikus tartalom szerver"
+
+msgid "This is the static content server for %1s, “%2s”."
+msgstr "Ez egy statikus tartalom szerver a következőknek: %1a, “%2s”."
+
+msgid "Suggested friends"
+msgstr "Javasolt barátok"
+
+msgid "Check all"
+msgstr "Összeset megjelöl"
+
+msgid "Uncheck all"
+msgstr "Megjelölések visszavonása"
+
+msgid "Choose"
+msgstr "Választás"
+
+msgid "List name"
+msgstr "Nevek listázása"
+
+msgid "Allow"
+msgstr "Elfogad"
+
+msgid "Deny"
+msgstr "Megtagad"
+
+msgid "Group"
+msgstr "Csoport"
+
+msgid "Subscription"
+msgstr "Feliratkozás"
+
+msgid "Both"
+msgstr "Mindkét"
+
+msgid "From"
+msgstr "Feladó"
+
+msgid "Everybody"
+msgstr "Mindenki"
+
+msgid "Send messages"
+msgstr "Üzenetküldés"
+
+msgid "Send queries"
+msgstr "Lekérdezések"
+
+msgid "See my status"
+msgstr "Állapotom"
+
+msgid "Send his/her status"
+msgstr "Az ő státuszának elküldése"
+
+msgid "Everything"
+msgstr "Minden"
+
+msgid "Item"
+msgstr "Elem"
+
+msgid "Order"
+msgstr "Rendez"
+
+msgid "Active for this session"
+msgstr "Aktív erre a szakaszra"
+
+msgid "Always active"
+msgstr "Mindig elérhető"
+
+msgid "User directory"
+msgstr "Felhasználói könyvtár"
+
+msgid "Search a friend"
+msgstr "Egy barát keresése"
+
+msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
+msgstr "A megkövetelt tulajdonságot a fogadó vagy a szerver nem tudja implementálni, ezért ezért művelet nem hajtható végre."
+
+msgid "This is a repeat from %s"
+msgstr "Ez egy ismétlés %s -től"
+
+msgid "Loading comments..."
+msgstr "Hozzászólások betöltése.."
+
+msgid "Type your comment here..."
+msgstr "Hozzászólok..."
+
+msgid "Could not get the comments!"
+msgstr "A kommentek nem tölthetők be"
+
+msgid "Show comments"
+msgstr "Mutasd a hozzászólásokat"
+
+msgid "Send him/her a message"
+msgstr "Küldj neki üzenetet"
+
+msgid "Start a chat with him/her"
+msgstr "Beszélj vele"
+
+msgid "Media integration"
+msgstr "Média integráció"
+
+msgid "Comments locked!"
+msgstr "Hozzászólás lezárva!"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Írj valamit, amit megosztanál a barátaiddal..."
+
+msgid "changed his/her nickname to %s"
+msgstr "megváltoztatta a felhasználónevét %s -re"
+
+msgid "commented an item you follow: “%s”."
+msgstr "Kommentálva egy elem amit követsz: “%s”."
+
+msgid "Hide"
+msgstr "Elrejt"
+
+msgid "liked your post: “%s”."
+msgstr "kedveli a bejegyzésedet: “%s”"
+
+msgid "quoted you somewhere: “%s”."
+msgstr "szavaztak rád valahol: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "írt a faladra: “%s”"
+
+msgid "tagged you in a photo (%s)."
+msgstr "megjelöltek egy képen (%s). "
+
+msgid "tagged you in a video (%s)."
+msgstr "megjelöltek egy videón (%s). "
+
+msgid "Show"
+msgstr "Mutat"
+
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Szükséged van segítségre? A legjobb, ha elolvasod a dokumentációnkat arról, hogyan töltsd ki az űrlapot!"
+
+msgid "Pubsub host"
+msgstr "Pubsub kiszolgáló"
+
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "A Jappix egy nagyszerű közösségi felület, amit bárhonnan és bármikor elérhetsz, és bárkivel beszélhetsz."
+
+msgid "Manager link"
+msgstr "Menedzser link"
+
+msgid "User uploads server"
+msgstr "Felhasználói feltöltések szervere"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Ez a következők felhasználói feltöltések szervere: %1s, “%2s”."
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "Be tudod állítani a saját vízjeled az alapértelmezett helyett. Légy óvatos a méretével és a színével kapcsolatban!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Minden logó föltöltése egy ajánlott maximum mérettel."
+
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Nem megfelelő képformátum, kérlek PNG-t használj!"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "A vízjeled sikeresen módosítva!"
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "A logo formátumodnak PNG-nek kell lennie. Hagyj egy mezőt üresen, és a logo nem lesz megváltoztatva."
+
+msgid "Remove this logo"
+msgstr "Logo eltávolítása"
+
+msgid "View this logo"
+msgstr "Logo megtekintése"
+
+msgid "Send a file"
+msgstr "Fájl küldése"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Amint feltöltötted, a barátaid azonnal le fogják tudni tölteni."
+
+msgid "Groupchats to join"
+msgstr "Csoportos beszélgetéshez csatlakozás"
+
+msgid "Purge sent files"
+msgstr "Elküldött fájlok törlése"
+
+msgid "would like to send you a file: “%s”."
+msgstr "szeretne neked küldeni egy fálj-t : “%s”"
+
+msgid "has accepted to received your file: “%s”."
+msgstr "elfogadta, hogy küldj neki egy fálj-t : “%s”"
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "elutasította a fájl-t: “%s”"
+
+msgid "could not receive your file: “%s”."
+msgstr "nem tudta fogadni a fájl-t: “%s”"
+
+msgid "has received a file exchange request: “%s”."
+msgstr "kapott egy felkérést az alábbi fájl fogadására: “%s”"
+
+msgid "Available shortcuts:"
+msgstr "Elérhető parancsikonok:"
+
+msgid "%s removes the chat logs"
+msgstr "%s eltávolította a beszélgetés előzményeit"
+
+msgid "%s joins a groupchat"
+msgstr "%s csatlakozott a csoportos beszélgetésbe"
+
+msgid "%s closes the chat"
+msgstr "%s bezárta a beszélgetést"
+
+msgid "%s shows the user profile"
+msgstr "%s megmutatta a felhasználói profilját"
+
+msgid "%s sends a message to the room"
+msgstr "%s üzenetet küldött a szobábs"
+
+msgid "%s changes your nickname"
+msgstr "%s megváltoztatta a felhasználói nevedet"
+
+msgid "%s sends a message to someone in the room"
+msgstr "%s üzenetet küldött valakinek a szobában"
+
+msgid "%s changes the room topic"
+msgstr "%s megváltoztatta a szoba témáját"
+
+msgid "%s kicks an user of the room"
+msgstr "%s kidobta az egyik felhasználót a szobából"
+
+msgid "%s bans an user of the room"
+msgstr "%s kitiltotta az egyik felhasználót a szobából"
+
+msgid "%s invites someone to join the room"
+msgstr "%s meghívott valakit a szobába"
+
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+msgid "Public profile"
+msgstr ""
+
+msgid "Your profile anywhere on the Web."
+msgstr ""
+
+msgid "%s is a Jappix.com service which makes your XMPP profile public. It is easier to share it. No XMPP account is required to view your social channel, your current position and your contact details."
+msgstr ""
+
+msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
+msgstr ""
+
+msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genious improvement!"
+msgstr ""
+
+msgid "Yay, let's create my public profile!"
+msgstr ""
+
+msgid "Enable my public profile"
+msgstr ""
+
+#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+
+#~ msgid "See"
+#~ msgstr ""
+
+#~ msgid "Use default logo"
+#~ msgstr ""
+
+#~ msgid "Use your own logo"
+#~ msgstr ""
+
+#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+#~ msgstr ""
