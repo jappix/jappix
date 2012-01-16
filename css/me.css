@@ -1,0 +1,49 @@
+/*
+
+Jappix - An open social platform
+This is the Jappix Me tool CSS stylesheet for Jappix
+
+-------------------------------------------------
+
+License: AGPL
+Author: Vanaryon
+Last revision: 16/01/12
+
+*/
+
+#me .content {
+	padding: 10px 0;
+}
+
+#me .logo {
+	background-position: 0 0;
+	width: 300px;
+	height: 61px;
+	margin: 20px auto 0 auto;
+	display: block;
+}
+
+#me .infos {
+	margin-top: 30px;
+}
+
+#me .infos p {
+	margin-top: 8px;
+}
+
+#me .infos p.infos-title {
+	margin-top: 0;
+}
+
+#me .infos a {
+	text-decoration: underline;
+}
+
+#me a.go {
+	text-align: center;
+	font-weight: bold;
+	width: 300px;
+	margin: 30px auto 0 auto;
+	padding: 8px 12px;
+	display: block;
+}

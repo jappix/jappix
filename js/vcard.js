@@ -7,7 +7,7 @@ These are the vCard JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 16/01/12
 
 */
 
@@ -114,6 +114,7 @@ function openVCard() {
 			'<p>' + _e("Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to).") + '</p>' + 
 			'<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
 			'<p>' + printf(_e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
+			'<p><a href="https://me.jappix.com/new" target="_blank">' + _e("Enable my public profile") + ' »</a></p>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -140,6 +141,10 @@ function openVCard() {
 function closeVCard() {
 	// Destroy the popup
 	destroyPopup('vcard');
+	
+	// Create the welcome end popup?
+	if(END_WELCOME)
+		openMe();
 	
 	return false;
 }

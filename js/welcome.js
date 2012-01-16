@@ -7,7 +7,7 @@ These are the welcome tool functions for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 24/07/11
+Last revision: 16/01/12
 
 */
 
@@ -205,6 +205,8 @@ function sendWelcome(array) {
 }
 
 // Saves the welcome options
+var END_WELCOME = false;
+
 function saveWelcome() {
 	// Get the new options
 	var array = new Array();
@@ -246,6 +248,8 @@ function saveWelcome() {
 	
 	// Open the profile editor
 	openVCard();
+	
+	END_WELCOME = true;
 	
 	return false;
 }
