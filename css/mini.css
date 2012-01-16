@@ -7,13 +7,13 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Authors: Vanaryon, Julien
-Last revision: 05/10/11
+Last revision: 16/01/12
 
 */
 
 #jappix_mini,
 #jappix_popup {
-	font: normal 11px Helvetica, Verdana, sans-serif;
+	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 #jappix_mini {
@@ -71,7 +71,7 @@ Last revision: 05/10/11
 
 #jappix_mini a.jm_pane {
 	background-color: #f4f4f4;
-	background-image: none;
+	background-position: 0 -100px;
 	background-repeat: repeat-x;
 	border-color: #999999;
 	border-style: solid;
@@ -79,15 +79,12 @@ Last revision: 05/10/11
 	font-weight: bold;
 	outline-style: none;
 	display: block;
-	padding: 5px 6px 7px 6px;
+	padding: 6px;
 	height: 13px;
-	-moz-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
 }
 
 #jappix_mini a.jm_pane:hover {
-	background: #ececec;
+	background: white;
 }
 
 #jappix_mini a.jm_pane:hover,
@@ -100,13 +97,6 @@ Last revision: 05/10/11
 #jappix_mini div.jm_conversation {
 	float: left;
 	position: relative;
-	margin-left: 5px;
-	top:1px;
-}
-
-#jappix_mini div.jm_starter {
-	position: relative;
-	top: 2px;
 }
 
 #jappix_mini div.jm_conversation {
@@ -114,21 +104,18 @@ Last revision: 05/10/11
 }
 
 #jappix_mini a.jm_chat-tab {
-	border-width: 1px 1px 0 1px;
-	width: 248px;
+	border-width: 1px 0 0 1px;
+	width: 140px;
 	float: right;
 	overflow: hidden;
 }
 
 #jappix_mini a.jm_chat-tab.jm_clicked {
-	background: #ececec;
+	background: white;
 	position: relative;
-	border-top: 1px solid #999999;
+	border-top: none;
 	border-left: 1px solid #999999;
 	padding-top: 7px;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-border-radius: 0;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify {
@@ -173,12 +160,9 @@ Last revision: 05/10/11
 	height: 300px;
 	width: 260px;
 	position: absolute;
-	right: 0;
-	bottom: 24px;
+	right: -1px;
+	bottom: 25px;
 	display: none;
-	-moz-border-radius: 7px 7px 0 0;
-	border-radius: 7px 7px 0 0;
-	-webkit-border-radius: 7px 7px 0 0;
 }
 
 #jappix_mini div.jm_actions {
@@ -188,9 +172,6 @@ Last revision: 05/10/11
 	padding: 4px 6px;
 	font-weight: bold;
 	overflow: hidden;
-	-moz-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
 }
 
 #jappix_mini div.jm_actions span.jm_nick {
@@ -302,13 +283,16 @@ Last revision: 05/10/11
 }
 
 #jappix_mini input.jm_send-messages {
-	background-color: #f5f5f5;
+	background-color: white;
 	border-color: #999999;
 	border-style: solid;
-	border-width: 1px 0 1px 0;
+	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 250px;
 	min-height: 14px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 #jappix_mini div.jm_disabled div.jm_chat-content,
@@ -329,9 +313,6 @@ Last revision: 05/10/11
 	right: 0;
 	bottom: 25px;
 	display: none;
-	-moz-border-radius: 7px 7px 0 0;
-	border-radius: 7px 7px 0 0;
-	-webkit-border-radius: 7px 7px 0 0;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
@@ -388,10 +369,6 @@ Last revision: 05/10/11
 	border-left: 1px solid #999999;
 	border-right: 1px solid #999999;
 	padding: 7px 10px 6px 10px;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-border-radius: 0;
-	width: 140px;
 }
 
 #jappix_mini span.jm_animate {
