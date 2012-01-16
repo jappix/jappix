@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm
-Last revision: 15/01/12
+Last revision: 16/01/12
 
 */
 
@@ -228,6 +228,8 @@ function checkLanguage() {
 
 // The function to convert a ISO language code to its full name
 function getLanguageName($code) {
+	$code = strtolower($code);
+	
 	$known = array(
 		'aa' => 'Afaraf',
 		'ab' => 'Аҧсуа',
@@ -361,6 +363,7 @@ function getLanguageName($code) {
 		'pl' => 'Polski',
 		'ps' => 'پښتو',
 		'pt' => 'Português',
+		'pt-br' => 'Brasileiro',
 		'qu' => 'Runa Simi',
 		'rm' => 'Rumantsch grischun',
 		'rn' => 'kiRundi',

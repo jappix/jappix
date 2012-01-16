@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 15/01/12
+Last revision: 16/01/12
 
 */
 
@@ -84,7 +84,7 @@ if(!anonymousMode()) { ?>
 					
 						// Keep get var
 						$keep_get = keepGet('m', false);
-				
+					
 					?>
 					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
 					<?php if(showManagerLink()) { ?>
