@@ -92,10 +92,6 @@ a.finish.disabled:active,
 }
 
 /* rgba(20,20,20,0.6) */
-#home .corporation,
-#home .corporation .corp_network,
-#home .locale,
-#home .obsolete,
 #home .notice.simple {
 	background: transparent;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0141414,endColorstr=#a0141414);
