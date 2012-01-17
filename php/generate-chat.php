@@ -9,7 +9,7 @@ This is the PHP script used to generate a chat log
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 17/01/12
 
 */
 
@@ -205,7 +205,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		<h3><a href="'.$xid_link.'">'.$xid.'</a></h3>
 		<h5>'.$date.'</h5>
 		
-		<a class="logo" href="https://project.jappix.com/" target="_blank">
+		<a class="logo" href="http://jappix.org/" target="_blank">
 			<img src="data:image/png;base64,'.$logo.'" alt="" />
 		</a>
 	</div>
