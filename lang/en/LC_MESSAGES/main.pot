@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 16/01/12
+# Last revision: 19/01/12
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -29,6 +29,9 @@ msgid "Statistics around Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Contribute to the Jappix code."
 msgstr ""
 
 msgid "Find a public Jappix node."

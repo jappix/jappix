@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 17/01/12
+Last revision: 19/01/12
 
 */
 
@@ -127,6 +127,10 @@ if(!anonymousMode()) { ?>
 					<a href="http://jappix.org/">
 						<span class="name">Jappix Download</span>
 						<span class="desc"><?php _e("Download Jappix for free."); ?></span>
+					</a>
+					<a href="http://developer.jappix.org/">
+						<span class="name">Jappix Developer</span>
+						<span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
 					</a>
 				</div>
 				
