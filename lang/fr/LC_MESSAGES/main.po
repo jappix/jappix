@@ -4,12 +4,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:26+0100\n"
+"PO-Revision-Date: 2012-01-19 13:18+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Vanaryon\n"
 "Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
@@ -1853,6 +1853,9 @@ msgstr "Ouais, créons mon profil public !"
 
 msgid "Enable my public profile"
 msgstr "Activer mon profil public"
+
+msgid "Contribute to the Jappix code."
+msgstr "Contribuez au code de Jappix."
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
