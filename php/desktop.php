@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 19/01/12
+Last revision: 21/01/12
 
 */
 
@@ -100,7 +100,7 @@ if(!anonymousMode()) { ?>
 			<div class="corp_network">
 				<h2 class="nomargin">Jappix.com</h2>
 				<div class="tabulate">
-					<a href="https://www.jappix.com/">
+					<a href="https://jappix.com/">
 						<span class="name">Jappix</span>
 						<span class="desc"><?php _e("Social channel, chat and more."); ?></span>
 					</a>
