@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 21/01/12
 
 */
 
@@ -206,7 +206,7 @@ else
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="none" />
+	<meta name="robots" content="noindex, follow" />
 	<title><?php _e("Jappix manager"); ?> &bull; <?php echo($page_name); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'manager.xml', ''); echo "\n"; ?>

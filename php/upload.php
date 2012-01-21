@@ -9,7 +9,7 @@ This is the Jappix Static PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/05/11
+Last revision: 21/01/12
 
 */
 
@@ -25,6 +25,7 @@ if(!defined('JAPPIX_BASE'))
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php _e("User uploads server"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
+	<meta name="robots" content="noindex, follow" />
 </head>
 
 <body>
