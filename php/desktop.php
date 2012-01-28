@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 21/01/12
+Last revision: 28/01/12
 
 */
 
@@ -131,6 +131,14 @@ if(!anonymousMode()) { ?>
 					<a href="http://developer.jappix.org/">
 						<span class="name">Jappix Developer</span>
 						<span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
+					</a>
+				</div>
+				
+				<h2>Jappix.mobi</h2>
+				<div class="tabulate">
+					<a href="http://jappix.mobi/">
+						<span class="name">Jappix Mobile</span>
+						<span class="desc"><?php _e("Jappix for your mobile phone."); ?></span>
 					</a>
 				</div>
 				

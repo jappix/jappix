@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-19 13:18+0100\n"
+"PO-Revision-Date: 2012-01-28 23:18+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1856,6 +1856,9 @@ msgstr "Activer mon profil public"
 
 msgid "Contribute to the Jappix code."
 msgstr "Contribuez au code de Jappix."
+
+msgid "Jappix for your mobile phone."
+msgstr "Jappix pour votre mobile."
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
