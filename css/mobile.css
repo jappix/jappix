@@ -3,11 +3,11 @@
 Jappix - An open social platform
 This is the Jappix Mobile CSS stylesheet
 
--------------------------------------------------
+---------------------------(----------------------
 
 License: AGPL
 Author: Vanaryon
-Last revision: 05/10/11
+Last revision: 28/01/12
 
 */
 
@@ -84,7 +84,7 @@ a {
 
 #home .login {
 	padding: 8px 0;
-	margin: 30px 0 30px 0;
+	margin-top: 30px;
 }
 
 #home .login input {
@@ -119,6 +119,32 @@ a {
 
 #home .login label input {
 	margin-right: 4px;
+}
+
+#home .smartphone {
+	background: #f3eba7;
+	border: 1px solid #d9d085;
+	color: #5e5616;
+	text-decoration: none;
+	width: 180px;
+	margin: 20px auto;
+	padding: 6px;
+	display: block;
+}
+
+#home .smartphone span {
+	display: block;
+}
+
+#home .smartphone span.title {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#home .smartphone span.desc {
+	font-style: italic;
+	font-size: 0.9em;
+	margin-top: 4px;
 }
 
 #home a {

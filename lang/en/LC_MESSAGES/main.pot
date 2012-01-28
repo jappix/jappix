@@ -1860,3 +1860,9 @@ msgstr ""
 
 msgid "Enable my public profile"
 msgstr ""
+
+msgid "Jappix for your phone"
+msgstr ""
+
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""

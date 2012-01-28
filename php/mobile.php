@@ -9,7 +9,7 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 10/07/11
+Last revision: 28/01/12
 
 */
 
@@ -63,6 +63,11 @@ if(!defined('JAPPIX_BASE'))
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
 		</div>
+		
+		<a class="smartphone" href="http://jappix.mobi/">
+			<span class="title"><?php _e("Jappix for your phone"); ?> »</span>
+			<span class="desc"><?php _e("A single phone app for messages, channels, profiles and much more!"); ?></span>
+		</a>
 		
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
 	</div>
