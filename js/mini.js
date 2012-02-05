@@ -759,8 +759,8 @@ function updateRosterMini() {
 // Creates the Jappix Mini DOM content
 function createMini(domain, user, password) {
 	// Try to restore the DOM
-        var dom = getDB('jappix-mini', 'dom');
-        var stamp = parseInt(getDB('jappix-mini', 'stamp'));
+    var dom = getDB('jappix-mini', 'dom');
+    var stamp = parseInt(getDB('jappix-mini', 'stamp'));
 	var suspended = false;
 	
 	// Invalid stored DOM?
@@ -788,11 +788,13 @@ function createMini(domain, user, password) {
 				'<div class="jm_starter">' + 
 					'<div class="jm_roster">' + 
 						'<div class="jm_actions">' + 
-							'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
+							'<a class="jm_logo jm_images" href="/jappix" target="_blank"></a>' + 
 							'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
 						'</div>' + 
-						
 						'<div class="jm_buddies"></div>' + 
+						'<div class="jm_search">' +
+							'<input type="text" id="jm_searchbox" placeholder="Find Buddies" />' +
+						'</div>' +
 					'</div>' + 
 					
 					'<a class="jm_pane jm_button jm_images" href="#">' + 
@@ -882,6 +884,34 @@ function createMini(domain, user, password) {
 		finally {
 			return false;
 		}
+	});
+	
+	// Updates the roster with only searched terms
+	jQuery('#jappix_mini div.jm_roster #jm_searchbox').keyup(function() {
+		var self = this;
+		typewatch(function() {
+			// Using a try/catch to override IE issues
+			try {
+				var search = jQuery(self).val().toLowerCase();
+				
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
+					var nick = decodeURIComponent(jQuery(this).data('nick'));
+					if(!search.length){
+						jQuery(this).show();
+					} else if(nick.toLowerCase().indexOf(search) !== -1) {
+						jQuery(this).show();
+					} else {
+						jQuery(this).hide();
+					}
+				});
+			}
+			
+			catch(e) {}
+			
+			finally {
+				return false;
+			}
+		}, 500);
 	});
 	
 	// Hides the roster when clicking away of Jappix Mini
@@ -1070,8 +1100,8 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 // Switches to a given point
 function switchPaneMini(element, hash) {
 	// Hide every item
-	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
-	jQuery('#jappix_mini div.jm_roster, #jappix_mini div.jm_chat-content').hide();
+	hideRosterMini();
+	jQuery('#jappix_mini div.jm_chat-content').hide();
 	
 	// Show the asked element
 	if(element && (element != 'roster')) {
@@ -1373,13 +1403,18 @@ function chatEventsMini(type, xid, hash) {
 function showRosterMini() {
 	switchPaneMini('roster');
 	jQuery('#jappix_mini div.jm_roster').show();
+	jQuery('#jappix_mini div.jm_roster #jm_searchbox').focus();
 	jQuery('#jappix_mini a.jm_button').addClass('jm_clicked');
 }
 
 // Hides the roster
 function hideRosterMini() {
 	jQuery('#jappix_mini div.jm_roster').hide();
-	jQuery('#jappix_mini a.jm_button').removeClass('jm_clicked');
+	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
+	
+	// Clear the search box and show all online contacts
+	jQuery('#jappix_mini div.jm_roster #jm_searchbox').val('');
+	jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
 }
 
 // Removes a groupchat from DOM
@@ -1503,6 +1538,11 @@ function getRosterMini() {
 
 // Handles the user's roster
 function handleRosterMini(iq) {
+	
+	// Added to sort buddies by name
+    var buddies = [];
+    var i = 0;
+	
 	// Parse the roster
 	jQuery(iq.getQuery()).find('item').each(function() {
 		// Get the values
@@ -1515,18 +1555,43 @@ function handleRosterMini(iq) {
 			var nick = current.attr('name');
 			var hash = hex_md5(xid);
 			
+			// Multidimentional array
+			buddies[i] = [];
+			
 			// No name is defined?
 			if(!nick)
 				nick = getXIDNick(xid);
 			
-			// Action on the current buddy
-			if(subscription == 'remove')
-				removeBuddyMini(hash);
-			else
-				addBuddyMini(xid, hash, nick);
+			// Populate buddy array
+            buddies[i][0] = nick;
+            buddies[i][1] = hash;
+            buddies[i][2] = xid;
+            buddies[i][3] = subscription;
 		}
+		
+		// Increment Counter
+		i++;
+		
 	});
 	
+    // Sort array and loop reverse
+    var buddies = buddies.sort();
+    var x = buddies.length;
+    var nick, hash, xid, subscription;
+    
+    while (--x) {
+    	nick = buddies[x][0];
+    	hash = buddies[x][1];
+    	xid = buddies[x][2];
+    	subscription = buddies[x][3];
+    	
+    	if(subscription == 'remove') {
+			removeBuddyMini(hash);
+    	} else {
+			addBuddyMini(xid, hash, nick);
+    	}
+    }
+    
 	// Not yet initialized
 	if(!MINI_INITIALIZED)
 		initializeMini();
@@ -1537,11 +1602,20 @@ function handleRosterMini(iq) {
 // Adapts the roster height to the window
 function adaptRosterMini() {
 	// Process the new height
-	var height = jQuery(window).height() - 70;
+	var height = jQuery(window).height() - 80;
 	
 	// Apply the new height
 	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', height);
 }
+
+//TypeWatch - don't search unless done typing
+var typewatch = (function() {
+  var timer = 0;
+  return function(callback, ms) {
+    clearTimeout(timer);
+    timer = setTimeout(callback, ms);
+  }  
+})();
 
 // Plugin launcher
 function launchMini(autoconnect, show_pane, domain, user, password) {

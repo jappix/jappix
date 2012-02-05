@@ -312,6 +312,19 @@ Last revision: 16/01/12
 	display: none;
 }
 
+#jappix_mini div.jm_search {
+	background-color: #EEE;
+}
+
+#jappix_mini div.jm_search #jm_searchbox {
+	background-color: #EEE;
+	background-image: url(../img/others/magnifier.png);
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	width: 140px;
+	margin-top: 2px;
+}
+
 #jappix_mini div.jm_roster div.jm_buddies {
 	width: 100%;
 	max-height: 300px;
