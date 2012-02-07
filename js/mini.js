@@ -6,8 +6,8 @@ These are the Jappix Mini JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 04/08/11
+Author: Vanaryon, hunterjm
+Last revision: 07/02/12
 
 */
 
@@ -753,7 +753,11 @@ function clearNotificationsMini(hash) {
 
 // Updates the roster counter
 function updateRosterMini() {
+	// Update online counter
 	jQuery('#jappix_mini a.jm_button span.jm_counter').text(jQuery('#jappix_mini a.jm_online').size());
+	
+	// Update buddy search
+	jQuery('#jappix_mini div.jm_roster input.jm_searchbox').keyup();
 }
 
 // Creates the Jappix Mini DOM content
@@ -788,13 +792,11 @@ function createMini(domain, user, password) {
 				'<div class="jm_starter">' + 
 					'<div class="jm_roster">' + 
 						'<div class="jm_actions">' + 
-							'<a class="jm_logo jm_images" href="/jappix" target="_blank"></a>' + 
+							'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
 							'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
 						'</div>' + 
 						'<div class="jm_buddies"></div>' + 
-						'<div class="jm_search">' +
-							'<input type="text" id="jm_searchbox" placeholder="Find Buddies" />' +
-						'</div>' +
+						'<input type="text" class="jm_searchbox jm_images" placeholder="' + _e("Filter") + '" />' + 
 					'</div>' + 
 					
 					'<a class="jm_pane jm_button jm_images" href="#">' + 
@@ -887,31 +889,37 @@ function createMini(domain, user, password) {
 	});
 	
 	// Updates the roster with only searched terms
-	jQuery('#jappix_mini div.jm_roster #jm_searchbox').keyup(function() {
-		var self = this;
-		typewatch(function() {
-			// Using a try/catch to override IE issues
-			try {
-				var search = jQuery(self).val().toLowerCase();
+	jQuery('#jappix_mini div.jm_roster input.jm_searchbox').keyup(function() {
+		try {
+			var search = jQuery(this).val().toLowerCase();
+			
+			// Filter buddies
+			jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
+				var nick = decodeURIComponent(jQuery(this).data('nick'));
 				
-				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
-					var nick = decodeURIComponent(jQuery(this).data('nick'));
-					if(!search.length){
-						jQuery(this).show();
-					} else if(nick.toLowerCase().indexOf(search) !== -1) {
-						jQuery(this).show();
-					} else {
-						jQuery(this).hide();
-					}
-				});
-			}
+				if(!search.length) {
+					jQuery(this).show();
+					jQuery(this).parent().show();
+				}
+				
+				else if(nick.toLowerCase().indexOf(search) !== -1)
+					jQuery(this).show();
+				else
+					jQuery(this).hide();
+			});
 			
-			catch(e) {}
-			
-			finally {
-				return false;
-			}
-		}, 500);
+			// Filter groups
+			jQuery('#jappix_mini div.jm_roster div.jm_grouped').each(function() {
+				if(!jQuery(this).find('a.jm_online:visible').size())
+					jQuery(this).hide();
+			});
+		}
+		
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
 	});
 	
 	// Hides the roster when clicking away of Jappix Mini
@@ -1403,7 +1411,7 @@ function chatEventsMini(type, xid, hash) {
 function showRosterMini() {
 	switchPaneMini('roster');
 	jQuery('#jappix_mini div.jm_roster').show();
-	jQuery('#jappix_mini div.jm_roster #jm_searchbox').focus();
+	jQuery('#jappix_mini div.jm_roster input.jm_searchbox').focus();
 	jQuery('#jappix_mini a.jm_button').addClass('jm_clicked');
 }
 
@@ -1413,7 +1421,8 @@ function hideRosterMini() {
 	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
 	
 	// Clear the search box and show all online contacts
-	jQuery('#jappix_mini div.jm_roster #jm_searchbox').val('');
+	jQuery('#jappix_mini div.jm_roster input.jm_searchbox').val('');
+	jQuery('#jappix_mini div.jm_roster div.jm_grouped').show();
 	jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
 }
 

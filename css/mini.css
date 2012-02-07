@@ -6,8 +6,8 @@ This is the Jappix Mini CSS stylesheet
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Julien
-Last revision: 16/01/12
+Authors: Vanaryon, Julien, hunterjm
+Last revision: 07/02/12
 
 */
 
@@ -312,17 +312,30 @@ Last revision: 16/01/12
 	display: none;
 }
 
-#jappix_mini div.jm_search {
-	background-color: #EEE;
+#jappix_mini input.jm_searchbox {
+	background-color: white;
+	background-position: 10px -381px;
+	color: black;
+	font-size: 0.9em;
+	padding: 2px 4px 2px 28px;
+	width: 150px;
+	margin: 4px 0;
 }
 
-#jappix_mini div.jm_search #jm_searchbox {
-	background-color: #EEE;
-	background-image: url(../img/others/magnifier.png);
-	background-repeat: no-repeat;
-	padding-left: 20px;
-	width: 140px;
-	margin-top: 2px;
+#jappix_mini input.jm_searchbox:focus {
+	border-color: #999999;
+}
+
+#jappix_mini input.jm_searchbox.placeholder {
+	color: #999999;
+}
+
+#jappix_mini input.jm_searchbox::-webkit-input-placeholder {
+	color: #999999;
+}
+
+#jappix_mini input.jm_searchbox:-moz-placeholder {
+	color: #999999;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
