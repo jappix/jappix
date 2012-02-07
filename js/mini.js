@@ -939,6 +939,8 @@ function createMini(domain, user, password) {
 		}, 500);
 	});
 	
+	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup();
+	
 	// Hides the roster when clicking away of Jappix Mini
 	jQuery(document).click(function(evt) {
 		if(!jQuery(evt.target).parents('#jappix_mini').size() && !exists('#jappix_popup'))
