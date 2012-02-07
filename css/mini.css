@@ -331,15 +331,15 @@ Last revision: 07/02/12
 }
 
 #jappix_mini input.jm_searchbox.placeholder {
-	color: #999999;
+	color: #999999 !important;
 }
 
 #jappix_mini input.jm_searchbox::-webkit-input-placeholder {
-	color: #999999;
+	color: #999999 !important;
 }
 
 #jappix_mini input.jm_searchbox:-moz-placeholder {
-	color: #999999;
+	color: #999999 !important;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
