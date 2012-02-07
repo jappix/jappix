@@ -503,6 +503,8 @@ function handlePresenceMini(pr) {
 	if(show == 'unavailable') {
 		// Offline marker
 		jQuery(friend).addClass('jm_offline').removeClass('jm_online');
+		// Hide the friend just to be safe since the search uses .hide() and .show() which can override the CSS display attribute
+		jQuery(friend).hide();
 		
 		// Disable the chat tools
 		jQuery(chat).addClass('jm_disabled');
@@ -512,6 +514,13 @@ function handlePresenceMini(pr) {
 	else {
 		// Online marker
 		jQuery(friend).removeClass('jm_offline').addClass('jm_online');
+		
+		// Check against search string
+		var search = jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val();
+		var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
+		var nick = unescape(jQuery(friend).data('nick'));
+		if(search && !nick.match(regex))
+			jQuery(friend).hide();
 		
 		// Enable the chat input
 		jQuery(chat).removeClass('jm_disabled');
@@ -755,10 +764,6 @@ function clearNotificationsMini(hash) {
 function updateRosterMini() {
 	// Update online counter
 	jQuery('#jappix_mini a.jm_button span.jm_counter').text(jQuery('#jappix_mini a.jm_online').size());
-	
-	// Update buddy search
-	if(jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val())
-		jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup();
 }
 
 // Creates the Jappix Mini DOM content
@@ -907,21 +912,21 @@ function createMini(domain, user, password) {
 				var search = jQuery(self).val();
 				var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 				
+				// If there is no search, we don't need to loop over buddies
+				if(!search) {
+					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
+					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').parent().show();
+					return;
+				}
+				
 				// Filter buddies
 				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
-					if(!search) {
-						jQuery(this).show();
-						jQuery(this).parent().show();
-					}
+					var nick = unescape(jQuery(this).data('nick'));
 					
-					else {
-						var nick = unescape(jQuery(this).data('nick'));
-						
-						if(nick.match(regex))
-							jQuery(this).show();
-						else
-							jQuery(this).hide();
-					}
+					if(nick.match(regex))
+						jQuery(this).show();
+					else
+						jQuery(this).hide();
 				});
 				
 				// Filter groups
@@ -938,8 +943,6 @@ function createMini(domain, user, password) {
 			}
 		}, 500);
 	});
-	
-	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup();
 	
 	// Hides the roster when clicking away of Jappix Mini
 	jQuery(document).click(function(evt) {
