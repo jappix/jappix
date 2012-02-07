@@ -309,3 +309,8 @@ function padZero(i) {
 	// All is okay
 	return i;
 }
+
+// Escapes a string for a regex usage
+function escapeRegex(query) {
+	return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}

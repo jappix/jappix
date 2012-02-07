@@ -798,7 +798,7 @@ function createMini(domain, user, password) {
 						'</div>' + 
 						'<div class="jm_buddies"></div>' + 
 						'<div class="jm_search">' + 
-							'<input type="text" class="jm_searchbox jm_images" placeholder="' + _e("Filter") + '" />' + 
+							'<input type="text" class="jm_searchbox jm_images" placeholder="' + _e("Filter") + '" data-value="" />' + 
 						'</div>' + 
 					'</div>' + 
 					
@@ -895,26 +895,33 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').placeholder();
 	
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup(function() {
+		// Save current value
+		jQuery(this).attr('data-value', jQuery(this).val());
+		
+		// Don't filter at each key up (faster for computer)
 		var self = this;
 		
 		typewatch(function() {
 			// Using a try/catch to override IE issues
 			try {
-				var search = jQuery(self).val().toLowerCase();
+				var search = jQuery(self).val();
+				var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 				
 				// Filter buddies
 				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
-					var nick = decodeURIComponent(jQuery(this).data('nick'));
-					
-					if(!search.length) {
+					if(!search) {
 						jQuery(this).show();
 						jQuery(this).parent().show();
 					}
 					
-					else if(nick.toLowerCase().indexOf(search) !== -1)
-						jQuery(this).show();
-					else
-						jQuery(this).hide();
+					else {
+						var nick = unescape(jQuery(this).data('nick'));
+						
+						if(nick.match(regex))
+							jQuery(this).show();
+						else
+							jQuery(this).hide();
+					}
 				});
 				
 				// Filter groups
@@ -956,6 +963,13 @@ function createMini(domain, user, password) {
 			if(chat_value)
 				jQuery(this).val(chat_value);
 		});
+		
+		// Restore roster filter value
+		var search_box = jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox');
+		var filter_value = search_box.attr('data-value');
+		
+		if(filter_value)
+			search_box.val(filter_value).keyup();
 		
 		// Restore buddy click events
 		jQuery('#jappix_mini a.jm_friend').click(function() {
@@ -1431,7 +1445,7 @@ function hideRosterMini() {
 	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
 	
 	// Clear the search box and show all online contacts
-	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('');
+	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('').attr('data-value', '');
 	jQuery('#jappix_mini div.jm_roster div.jm_grouped').show();
 	jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
 }

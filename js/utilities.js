@@ -146,11 +146,6 @@ function quoteMyNick(hash, nick) {
 	});
 }
 
-// Escapes a string for a regex usage
-function escapeRegex(query) {
-	return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-}
-
 // Converts a XML document to a string
 function xmlToString(xmlData) {
 	try {
