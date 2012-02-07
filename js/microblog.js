@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 03/12/11
+Last revision: 07/02/12
 
 */
 
@@ -214,9 +214,9 @@ function displayMicroblog(packet, from, hash, mode, way) {
 					aFCat.push('youtube');
 				}
 				
-				else if(canIntegrateBox(explodeThis('/', tFType[a], 1))) {
+				else if(canIntegrateBox(strAfterLast('.', tFURL[a]))) {
 					aFURL.push(tFURL[a]);
-					aFCat.push(fileCategory(explodeThis('/', tFType[a], 1)));
+					aFCat.push(fileCategory(strAfterLast('.', tFURL[a])));
 				}
 			}
 			
@@ -227,9 +227,9 @@ function displayMicroblog(packet, from, hash, mode, way) {
 					continue;
 				
 				// Get the file type
-				var tFExt = explodeThis('/', tFType[f], 1);
-				var tFCat = fileCategory(tFExt);
 				var tFLink = tFURL[f];
+				var tFExt = strAfterLast('.', tFLink);
+				var tFCat = fileCategory(tFExt);
 				
 				// Youtube video?
 				if(tFLink.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {

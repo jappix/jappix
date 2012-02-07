@@ -7,7 +7,7 @@ These are the common JS script for Jappix
 
 License: AGPL
 Authors: Vanaryon, olivierm
-Last revision: 24/06/11
+Last revision: 07/02/12
 
 */
 
@@ -69,6 +69,20 @@ function _e(string) {
 // Replaces '%s' to a given value for a translated string
 function printf(string, value) {
 	return string.replace('%s', value);
+}
+
+// Returns the string after the last given char
+function strAfterLast(char, str) {
+	if(!char || !str)
+		return '';
+	
+	var char_index = str.lastIndexOf(char);
+	var str_return = str;
+	
+	if(char_index >= 0)
+		str_return = str.substr(char_index + 1);
+	
+	return str_return;
 }
 
 // Properly explodes a string with a given character
