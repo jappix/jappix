@@ -312,14 +312,18 @@ Last revision: 07/02/12
 	display: none;
 }
 
-#jappix_mini input.jm_searchbox {
+#jappix_mini div.jm_search {
+	border-top: 1px solid #999999;
+	padding: 2px 0;
+}
+
+#jappix_mini div.jm_search input.jm_searchbox {
 	background-color: white;
-	background-position: 10px -381px;
+	background-position: 9px -381px;
 	color: black;
 	font-size: 0.9em;
-	padding: 2px 4px 2px 28px;
 	width: 150px;
-	margin: 4px 0;
+	padding: 2px 4px 2px 28px;
 }
 
 #jappix_mini input.jm_searchbox:focus {
