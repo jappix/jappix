@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon, hunterjm
-Last revision: 07/02/12
+Last revision: 09/02/12
 
 */
 
@@ -912,12 +912,13 @@ function createMini(domain, user, password) {
 				var search = jQuery(self).val();
 				var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 				
+				// Reset roster
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').parent().show();
+				
 				// If there is no search, we don't need to loop over buddies
-				if(!search) {
-					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
-					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').parent().show();
+				if(!search)
 					return;
-				}
 				
 				// Filter buddies
 				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
