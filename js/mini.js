@@ -1610,20 +1610,16 @@ function handleRosterMini(iq) {
             buddies[i][3] = subscription;
 		}
 		
-		// Increment Counter
+		// Increment counter
 		i++;
-		
 	});
 	
     // Sort array and loop reverse
     var buddies = buddies.sort();
-    var x = buddies.length;
+    var x = buddies.length - 1;
     var nick, hash, xid, subscription;
     
     while(x--) {
-    	if(buddies[x] == undefined)
-    		continue;
-    	
     	nick = buddies[x][0];
     	hash = buddies[x][1];
     	xid = buddies[x][2];
