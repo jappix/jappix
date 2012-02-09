@@ -909,16 +909,19 @@ function createMini(domain, user, password) {
 		typewatch(function() {
 			// Using a try/catch to override IE issues
 			try {
+				// Get values
 				var search = jQuery(self).val();
 				var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 				
-				// Reset roster
-				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
-				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').parent().show();
+				// Reset groups
+				jQuery('#jappix_mini div.jm_roster div.jm_grouped').show();
 				
 				// If there is no search, we don't need to loop over buddies
-				if(!search)
+				if(!search) {
+					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
+					
 					return;
+				}
 				
 				// Filter buddies
 				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
