@@ -1577,7 +1577,6 @@ function getRosterMini() {
 
 // Handles the user's roster
 function handleRosterMini(iq) {
-	
 	// Added to sort buddies by name
     var buddies = [];
     var i = 0;
@@ -1615,7 +1614,7 @@ function handleRosterMini(iq) {
 	
     // Sort array and loop reverse
     var buddies = buddies.sort();
-    var x = buddies.length;
+    var x = buddies.length - 1;
     var nick, hash, xid, subscription;
     
     while(--x) {
