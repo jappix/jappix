@@ -8,8 +8,8 @@ This is the PHP script used to generate a chat log
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 17/01/12
+Authors: Vanaryon, regilero
+Last revision: 11/02/12
 
 */
 
@@ -220,7 +220,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	$new_text = stripslashes($new_text_inter);
 	
 	// Write the code into a file
-	file_put_contents($filepath, $new_text);
+	file_put_contents($filepath, $new_text, LOCK_EX);
 	
 	// Security: remove the file and stop the script if too bit (+6MiB)
 	if(filesize($filepath) > 6000000) {

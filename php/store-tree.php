@@ -8,8 +8,8 @@ This script (re)generates the store sub-folders (after an update)
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 26/08/11
+Authors: Vanaryon, regilero
+Last revision: 11/02/12
 
 */
 
@@ -45,7 +45,7 @@ for($i = 0; $i < count($store_folders); $i++) {
 	// Create the security file inside the folder
 	$security_html = securityHTML();
 	
-	file_put_contents($current.'/index.html', $security_html);
+	file_put_contents($current.'/index.html', $security_html, LOCK_EX);
 }
 
 ?>

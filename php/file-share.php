@@ -8,8 +8,8 @@ This is the Jappix microblog file attaching script
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 14/01/12
+Authors: Vanaryon, regilero
+Last revision: 11/02/12
 
 */
 
@@ -75,7 +75,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	
 	// Create (or re-create) the security file
 	if(!file_exists($security_file))	
-		file_put_contents($security_file, securityHTML());
+		file_put_contents($security_file, securityHTML(), LOCK_EX);
 	
 	// File upload error?
 	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {

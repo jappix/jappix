@@ -8,8 +8,8 @@ These are the PHP functions for Jappix manager
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Mathieui, olivierm, Vinilox
-Last revision: 15/01/12
+Authors: Vanaryon, Mathieui, olivierm, Vinilox, regilero
+Last revision: 11/02/12
 
 */
 
@@ -200,7 +200,7 @@ function newUpdates($force) {
 		$last_version = read_url('http://codingteam.net/project/jappix/upload/briefcase/version.xml');
 		
 		// Write the content
-		file_put_contents($cache_path, $last_version);
+		file_put_contents($cache_path, $last_version, LOCK_EX);
 	}
 	
 	// Read from the cache

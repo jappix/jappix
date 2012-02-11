@@ -8,8 +8,8 @@ These are the PHP functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, LinkMauve, Mathieui, olivierm
-Last revision: 16/01/12
+Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
+Last revision: 11/02/12
 
 */
 
@@ -97,7 +97,7 @@ function writeXML($type, $xmlns, $xml) {
 	'.trim($xml).'
 </jappix>';
 	
-	file_put_contents($conf_file, $gen_xml);
+	file_put_contents($conf_file, $gen_xml, LOCK_EX);
 	
 	return true;
 }

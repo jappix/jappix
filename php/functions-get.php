@@ -8,8 +8,8 @@ These are the PHP functions for Jappix Get API
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Mathieui, olivierm
-Last revision: 26/08/11
+Authors: Vanaryon, Mathieui, olivierm, regilero
+Last revision: 11/02/12
 
 */
 
@@ -26,7 +26,7 @@ function genCache($string, $mode, $cache) {
 		
 		// Cache not yet wrote
 		if(is_dir($cache_dir) && !file_exists($file_put))
-			file_put_contents($file_put, $string);
+			file_put_contents($file_put, $string, LOCK_EX);
 	}
 }
 
