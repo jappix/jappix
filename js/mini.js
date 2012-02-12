@@ -7,26 +7,27 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, hunterjm
-Last revision: 11/02/12
+Last revision: 12/02/12
 
 */
 
 // Jappix Mini vars
-var MINI_DISCONNECT	= false;
+var MINI_DISCONNECT		= false;
 var MINI_AUTOCONNECT	= false;
-var MINI_SHOWPANE	= false;
+var MINI_SHOWPANE		= false;
 var MINI_INITIALIZED	= false;
-var MINI_ANONYMOUS	= false;
-var MINI_ANIMATE	= false;
-var MINI_NICKNAME	= null;
-var MINI_TITLE		= null;
-var MINI_DOMAIN		= null;
-var MINI_USER		= null;
-var MINI_PASSWORD	= null;
-var MINI_RECONNECT	= 0;
-var MINI_GROUPCHATS	= [];
-var MINI_PASSWORDS	= [];
-var MINI_RESOURCE	= JAPPIX_RESOURCE + ' Mini';
+var MINI_ANONYMOUS		= false;
+var MINI_ANIMATE		= false;
+var MINI_RANDNICK		= false;
+var MINI_NICKNAME		= null;
+var MINI_TITLE			= null;
+var MINI_DOMAIN			= null;
+var MINI_USER			= null;
+var MINI_PASSWORD		= null;
+var MINI_RECONNECT		= 0;
+var MINI_GROUPCHATS		= [];
+var MINI_PASSWORDS		= [];
+var MINI_RESOURCE		= JAPPIX_RESOURCE + ' Mini';
 
 // Setups connection handlers
 function setupConMini(con) {
@@ -1244,6 +1245,10 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 	if(!exists(current)) {
 		// Groupchat nickname
 		if(type == 'groupchat') {
+			// Random nickname?
+			if(!MINI_NICKNAME && MINI_RANDNICK)
+				MINI_NICKNAME = randomNickMini();
+			
 			var nickname = MINI_NICKNAME;
 			
 			// No nickname?
@@ -1645,6 +1650,80 @@ function adaptRosterMini() {
 	
 	// Apply the new height
 	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', height);
+}
+
+// Generates a random nickname
+function randomNickMini() {
+	// First nickname block
+	var first_arr = [
+		'Just',
+		'Bob',
+		'Jar',
+		'Pedr',
+		'Yod',
+		'Maz',
+		'Vez',
+		'Car',
+		'Erw',
+		'Tiet',
+		'Iot',
+		'Wal',
+		'Bez',
+		'Pop',
+		'Klop',
+		'Zaz',
+		'Yoy',
+		'Raz'
+	];
+	
+	// Second nickname block
+	var second_arr = [
+		'io',
+		'ice',
+		'a',
+		'u',
+		'o',
+		'ou',
+		'oi',
+		'ana',
+		'oro',
+		'izi',
+		'ozo',
+		'aza',
+		'ato',
+		'ito',
+		'ofa',
+		'oki',
+		'ima',
+		'omi'
+	];
+	
+	// Last nickname block
+	var last_arr = [
+		't',
+		'z',
+		'r',
+		'n',
+		'tt',
+		'zz',
+		'pp',
+		'j',
+		'k',
+		'v',
+		'c',
+		'x',
+		'ti',
+		'to',
+		'ta',
+		'ra',
+		'ro',
+		'ri'
+	];
+	
+	// Select random values from the arrays
+	var rand_nick = randomArrayValue(first_arr) + randomArrayValue(second_arr) + randomArrayValue(last_arr);
+	
+	return rand_nick;
 }
 
 //TypeWatch - don't search unless done typing

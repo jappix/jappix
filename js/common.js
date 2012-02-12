@@ -7,7 +7,7 @@ These are the common JS script for Jappix
 
 License: AGPL
 Authors: Vanaryon, olivierm
-Last revision: 07/02/12
+Last revision: 12/02/12
 
 */
 
@@ -327,4 +327,9 @@ function padZero(i) {
 // Escapes a string for a regex usage
 function escapeRegex(query) {
 	return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
+// Returns a random array value
+function randomArrayValue(arr) {
+	return arr[Math.floor(Math.random() * arr.length)];
 }

@@ -7,7 +7,7 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 04/08/11
+Last revision: 12/02/12
 
 */
 
@@ -92,42 +92,42 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 function filterThisXHTML(code) {
 	// Allowed elements array
 	var elements = new Array(
-				 'a',
-				 'abbr',
-			         'acronym',
-			         'address',
-			         'blockquote',
-				 'body',
-				 'br',
-				 'cite',
-			         'code',
-			         'dd',
-			         'dfn',
-			         'div',
-			         'dt',
-			         'em',
-			         'h1',
-			         'h2',
-			         'h3',
-			         'h4',
-			         'h5',
-			         'h6',
-			         'head',
-			         'html',
-			         'img',
-			         'kbd',
-			         'li',
-			         'ol',
-			         'p',
-			         'pre',
-			         'q',
-			         'samp',
-			         'span',
-			         'strong',
-			         'title',
-			         'ul',
-			         'var'
-			        );
+					'a',
+					'abbr',
+					'acronym',
+			        'address',
+			        'blockquote',
+					'body',
+					'br',
+					'cite',
+			        'code',
+			        'dd',
+			        'dfn',
+			        'div',
+			        'dt',
+			        'em',
+			        'h1',
+			        'h2',
+			        'h3',
+			        'h4',
+			        'h5',
+			        'h6',
+			        'head',
+			        'html',
+			        'img',
+			        'kbd',
+			        'li',
+			        'ol',
+			        'p',
+			        'pre',
+			        'q',
+			        'samp',
+			        'span',
+			        'strong',
+			        'title',
+			        'ul',
+			        'var'
+			       );
 	
 	// Allowed attributes array
 	var attributes = new Array(
