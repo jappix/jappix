@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 12/02/12
 
 */
 
@@ -175,7 +175,7 @@ function newNotification(type, from, data, body, id, inverse) {
 		// We display the notification
 		if(!exists('.notifications-content .' + id)) {
 			// We create the html markup depending of the notification type
-			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + '" data-type="' + encodeQuotes(type) + '">' + 
+			code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + ' - ' + _e("This notification is only informative, maybe the data it links to have been removed.") + '" data-type="' + encodeQuotes(type) + '">' + 
 					'<div class="avatar-container">' + 
 						'<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
 					'</div>' + 

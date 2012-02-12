@@ -1863,3 +1863,6 @@ msgstr ""
 
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr ""
+
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr ""

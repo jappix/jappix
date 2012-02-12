@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-29 00:02+0100\n"
+"PO-Revision-Date: 2012-02-12 15:17+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -746,9 +746,6 @@ msgstr "Vous avez été inscrit, voici votre adresse XMPP :"
 
 msgid "Manager"
 msgstr "Gestionnaire"
-
-msgid "Project"
-msgstr "Projet"
 
 msgid "Encrypted"
 msgstr "Chiffré"
@@ -1866,8 +1863,14 @@ msgstr "Jappix pour votre mobile"
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr "Une seule application pour les messages, canaux, profils et plus !"
 
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr "Cette notification n'est qu'informative, les données liées pourraient avoir été supprimées."
+
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
+
+#~ msgid "Project"
+#~ msgstr "Projet"
 
 #~ msgid "See"
 #~ msgstr "Voir"
