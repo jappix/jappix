@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 28/01/12
+Last revision: 12/02/12
 
 */
 
@@ -86,12 +86,10 @@ if(!anonymousMode()) { ?>
 						$keep_get = keepGet('m', false);
 					
 					?>
-					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><?php _e("Mobile"); ?></a>
+					<a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><span class="vert_center"><?php _e("Mobile"); ?></span></a>
 					<?php if(showManagerLink()) { ?>
-					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><?php _e("Manager"); ?></a>
-					<?php } ?>
-					<a class="home-images project" href="http://jappix.org/"><?php _e("Project"); ?></a>
-					<?php if(sslCheck() && !httpsForce()) echo sslLink(); ?>
+					<a class="home-images manager" href="./?m=manager<?php echo $keep_get; ?>"><span class="vert_center"><?php _e("Manager"); ?></span></a>
+					<?php } if(sslCheck() && !httpsForce()) echo sslLink(); ?>
 				</div>
 			</div>
 		</div>

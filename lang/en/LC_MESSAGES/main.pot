@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 28/01/12
+# Last revision: 12/02/12
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
@@ -785,9 +785,6 @@ msgid "You have been registered, here is your XMPP address:"
 msgstr ""
 
 msgid "Manager"
-msgstr ""
-
-msgid "Project"
 msgstr ""
 
 msgid "Encrypted"

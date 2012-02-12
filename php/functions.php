@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 11/02/12
+Last revision: 12/02/12
 
 */
 
@@ -749,11 +749,11 @@ function sslCheck() {
 function sslLink() {
 	// Using HTTPS?
 	if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
-		$link = '<a class="home-images unencrypted" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Unencrypted').'</a>';
+		$link = '<a class="home-images unencrypted" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"><span class="vert_center">'.T_('Unencrypted').'</span></a>';
 	
 	// Using HTTP?
 	else
-		$link = '<a class="home-images encrypted" href="https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.T_('Encrypted').'</a>';
+		$link = '<a class="home-images encrypted" href="https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"><span class="vert_center">'.T_('Encrypted').'</span></a>';
 	
 	return $link;
 }

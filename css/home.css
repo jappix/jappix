@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 15/01/12
+Last revision: 12/02/12
 
 */
 
@@ -41,7 +41,7 @@ Last revision: 15/01/12
 }
 
 #home .corporation {
-	background-position: 9px -357px;
+	background-position: 9px -120px;
 	left: 12px;
 	height: 26px;
 	width: 34px;
@@ -405,12 +405,12 @@ Last revision: 15/01/12
 }
 
 #home .right .navigation a {
-	margin-left: 9px;
+	margin-left: 10px;
 	color: black;
 	text-decoration: none;
 	font-size: 0.9em;
-	height: 12px;
-	padding: 0 0 4px 20px;
+	height: 16px;
+	padding-left: 21px;
 	float: right;
 }
 
@@ -427,16 +427,18 @@ Last revision: 15/01/12
 	background-position: 0 -282px;
 }
 
-#home .right .navigation a.project {
-	background-position: 0 -126px;
-}
-
 #home .right .navigation a.manager {
 	background-position: 0 -152px;
 }
 
 #home .right .navigation a.mobile {
 	background-position: 0 -178px;
+}
+
+#home .right .navigation a span.vert_center {
+	height: 16px;
+	vertical-align: middle;
+	display: table-cell;
 }
 
 #home a.advanced {
