@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 07/02/12
+Last revision: 12/02/12
 
 */
 
@@ -245,9 +245,9 @@ function displayMicroblog(packet, from, hash, mode, way) {
 				
 				// Any thumbnail?
 				if(tFThumb[f])
-					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '" data-node="' + encodeQuotes(tFNComments) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
+					html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '" data-node="' + encodeQuotes(tFNComments[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
 				else
-					html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + encodeQuotes(tFNComments) + '">' + tFName[f].htmlEnc() + '</a>';
+					html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + encodeQuotes(tFNComments[f]) + '">' + tFName[f].htmlEnc() + '</a>';
 			}
 			
 			if(tFURL.length)
