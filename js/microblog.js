@@ -799,17 +799,17 @@ function handleMicroblog(iq) {
 			
 			// Selectors
 			var file_link = $('#channel .individual .one-update p.file a[data-node=' + comments_node + ']');
-			var entry_link = $('#channel .individual .one-update:has(*[data-node=' + comments_node + '])');
+			var entry_link = $('#channel .individual .one-update:has(.comments-container[data-node=' + comments_node + '])');
 			
-			// Is it a file?
-			if(file_link.size())
-				file_link.click();
-			
-			// Is it a microblog entry?
-			else if(entry_link.size()) {
+			// Is it a microblog entry (or a lonely entry file)?
+			if(entry_link.size()) {
 				showCommentsMicroblog(entry_link, comments_entity, comments_node);
 				entry_link.find('a.one-comment').click();
 			}
+			
+			// Is it a file?
+			else if(file_link.size())
+				file_link.click();
 		}
 	}
 	
