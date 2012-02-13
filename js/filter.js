@@ -7,7 +7,7 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 12/02/12
+Last revision: 13/02/12
 
 */
 
@@ -70,13 +70,13 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	.replace(/(;-?\))($|\s|<)/gi, emoteImage('wink', '$1', '$2'))
 	
 	// Text in bold
-	.replace(/(^|\s|>)((\*)([^<>'"]+)(\*))($|\s|<)/gi, '$1<b>$2</b>$6')
+	.replace(/(^|\s|>|\()((\*)([^<>'"\*]+)(\*))($|\s|<|\))/gi, '$1<b>$2</b>$6')
 	
 	// Italic text
-	.replace(/(^|\s|>)((\/)([^<>'"]+)(\/))($|\s|<)/gi, '$1<i>$2</i>$6')
+	.replace(/(^|\s|>|\()((\/)([^<>'"\/]+)(\/))($|\s|<|\))/gi, '$1<em>$2</em>$6')
 	
 	// Underlined text
-	.replace(/(^|\s|>)((_)([^<>'"]+)(_))($|\s|<)/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
+	.replace(/(^|\s|>|\()((_)([^<>'"_]+)(_))($|\s|<|\))/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
 	
 	// Add the links
 	if(html_encode)

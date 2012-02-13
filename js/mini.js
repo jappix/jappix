@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, hunterjm
-Last revision: 12/02/12
+Last revision: 13/02/12
 
 */
 
@@ -509,7 +509,7 @@ function handlePresenceMini(pr) {
 		
 		// Disable the chat tools
 		jQuery(chat).addClass('jm_disabled');
-		jQuery(send_input).attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
+		jQuery(send_input).blur().attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
 	}
 	
 	else {
@@ -1089,11 +1089,11 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 		
 		// Write the buddy name at the top of the message group
 		if(type == 'groupchat')
-			header += '<b style="color: ' + generateColor(nick) + ';" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
+			header += '<b class="jm_name" style="color: ' + generateColor(nick) + ';" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
 		else if(nick == 'me')
-			header += '<b class="jm_me" data-xid="' + encodeQuotes(xid) + '">' + _e("You") + '</b>';
+			header += '<b class="jm_name jm_me" data-xid="' + encodeQuotes(xid) + '">' + _e("You") + '</b>';
 		else
-			header += '<b class="jm_him" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
+			header += '<b class="jm_name jm_him" data-xid="' + encodeQuotes(xid) + '">' + nick.htmlEnc() + '</b>';
 	}
 	
 	// Apply the /me command
@@ -1118,6 +1118,11 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 	           .replace(/(:-?\))(\s|$)/gi, smileyMini('smile', '$1'))
 	           .replace(/(\^_?\^)(\s|$)/gi, smileyMini('happy', '$1'))
 	           .replace(/(:-?D)(\s|$)/gi, smileyMini('grin', '$1'));
+	
+	// Format the text
+	body = body.replace(/(^|\s|>|\()((\*)([^<>'"\*]+)(\*))($|\s|<|\))/gi, '$1<b>$2</b>$6')
+	           .replace(/(^|\s|>|\()((\/)([^<>'"\/]+)(\/))($|\s|<|\))/gi, '$1<em>$2</em>$6')
+	           .replace(/(^|\s|>|\()((_)([^<>'"_]+)(_))($|\s|<|\))/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
 	
 	// Filter the links
 	body = applyLinks(body, 'mini');

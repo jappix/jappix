@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Authors: Vanaryon, Julien, hunterjm
-Last revision: 07/02/12
+Last revision: 13/02/12
 
 */
 
@@ -259,16 +259,16 @@ Last revision: 07/02/12
 	text-decoration: underline;
 }
 
-#jappix_mini div.jm_received-messages b {
+#jappix_mini div.jm_received-messages b.jm_name {
 	margin-bottom: 3px;
 	display: block;
 }
 
-#jappix_mini div.jm_received-messages b.jm_me {
+#jappix_mini div.jm_received-messages b.jm_name.jm_me {
 	color: #123a5c;
 }
 
-#jappix_mini div.jm_received-messages b.jm_him {
+#jappix_mini div.jm_received-messages b.jm_name.jm_him {
 	color: #801e1e;
 }
 
