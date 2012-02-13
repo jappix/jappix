@@ -7,7 +7,7 @@ These are the groupchat JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda, Eric
-Last revision: 28/08/11
+Last revision: 13/02/12
 
 */
 
@@ -208,7 +208,7 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	})
 	
 	// Lock to the input
-	inputDetect.keypress(function(e) {
+	inputDetect.keydown(function(e) {
 		// Enter key
 		if(e.keyCode == 13) {
 			// Add a new line

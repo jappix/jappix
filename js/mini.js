@@ -1000,6 +1000,15 @@ function createMini(domain, user, password) {
 			chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
 		});
 		
+		// Restore chat tabulate press
+		jQuery('#jappix_mini input.jm_send-messages').keydown(function(e) {
+			if(e.keyCode == 9) {
+				//alert('tabulate');
+				
+				return false;
+			}
+		});
+		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
 		var scroll_position = getDB('jappix-mini', 'scroll');
