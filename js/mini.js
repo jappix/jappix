@@ -1148,6 +1148,7 @@ function displayMessageMini(type, body, xid, nick, hash, time, stamp, message_ty
 function switchPaneMini(element, hash) {
 	// Hide every item
 	hideRosterMini();
+	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
 	jQuery('#jappix_mini div.jm_chat-content').hide();
 	
 	// Show the asked element
@@ -1461,7 +1462,7 @@ function showRosterMini() {
 // Hides the roster
 function hideRosterMini() {
 	jQuery('#jappix_mini div.jm_roster').hide();
-	jQuery('#jappix_mini a.jm_pane').removeClass('jm_clicked');
+	jQuery('#jappix_mini a.jm_button').removeClass('jm_clicked');
 	
 	// Clear the search box and show all online contacts
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('').attr('data-value', '');
