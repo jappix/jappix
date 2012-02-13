@@ -1000,15 +1000,6 @@ function createMini(domain, user, password) {
 			chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
 		});
 		
-		// Restore chat tabulate press
-		jQuery('#jappix_mini input.jm_send-messages').keydown(function(e) {
-			if(e.keyCode == 9) {
-				//alert('tabulate');
-				
-				return false;
-			}
-		});
-		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
 		var scroll_position = getDB('jappix-mini', 'scroll');
@@ -1359,7 +1350,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 			jQuery(current + ' a.jm_chat-tab').prepend('<span class="jm_presence jm_images jm_' + show + '"></span>');
 		}
 		
-		// The click events
+		// The chat events
 		chatEventsMini(type, xid, hash);
 		
 		// Join the groupchat
@@ -1388,6 +1379,15 @@ function chatEventsMini(type, xid, hash) {
 	// Submit the form
 	jQuery(current + ' form').submit(function() {
 		return sendMessageMini(this);
+	});
+	
+	// Restore chat tabulate press
+	jQuery(current + ' input.jm_send-messages').keydown(function(e) {
+		if(e.keyCode == 9) {
+			switchChatMini();
+			
+			return false;
+		}
 	});
 	
 	// Click on the tab
@@ -1458,6 +1458,29 @@ function chatEventsMini(type, xid, hash) {
 	.keyup(function() {
 		jQuery(this).attr('data-value', jQuery(this).val());
 	});
+}
+
+// Opens the next chat
+function switchChatMini() {
+	if(jQuery('#jappix_mini div.jm_conversation').size() <= 1)
+		return;
+	
+	// Get the current chat index
+	var chat_index = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').index();
+	chat_index++;
+	
+	if(!chat_index)
+		chat_index = 0;
+	
+	// No chat after?
+	if(!jQuery('#jappix_mini div.jm_conversation').eq(chat_index).size())
+		chat_index = 0;
+	
+	// Show the next chat
+	var chat_hash = jQuery('#jappix_mini div.jm_conversation').eq(chat_index).attr('data-hash');
+	
+	if(chat_hash)
+		switchPaneMini('chat-' + chat_hash, chat_hash);
 }
 
 // Shows the roster
