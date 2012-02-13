@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Eric
-Last revision: 16/10/11
+Last revision: 13/02/12
 
 */
 
@@ -218,8 +218,13 @@ function generateSwitch(type, id, xid, nick) {
 
 // Cleans given the chat lines
 function cleanChat(chat) {
+	// Remove the messages
 	$('#page-engine #' + chat + ' .content .one-group').remove();
 	
+	// Clear the history database
+	removePersistent('history', chat);
+	
+	// Focus again
 	$(document).oneTime(10, function() {
 		$('#page-engine #' + chat + ' .text .message-area').focus();
 	});
@@ -237,6 +242,38 @@ function chatCreate(hash, xid, nick, type) {
 	
 	// If the user is not in our buddy-list
 	if(type == 'chat') {
+		// Restore the chat history
+		var chat_history = getPersistent('history', hash);
+		
+		if(chat_history) {
+			// Generate hashs
+			var my_hash = hex_md5(getXID());
+			var friend_hash = hex_md5(xid);
+			
+			// Add chat history HTML
+			$('#' + hash + ' .content').append(chat_history);
+			
+			// Filter old groups & messages
+			$('#' + hash + ' .one-group[data-type=user-message]').addClass('from-history').attr('data-type', 'old-message');
+			$('#' + hash + ' .user-message').removeClass('user-message').addClass('old-message');
+			
+			// Regenerate user names
+			$('#' + hash + ' .one-group.' + my_hash + ' b.name').text(getBuddyName(getXID()));
+			$('#' + hash + ' .one-group.' + friend_hash + ' b.name').text(getBuddyName(xid));
+			
+			// Regenerate group dates
+			$('#' + hash + ' .one-group').each(function() {
+				var current_stamp = parseInt($(this).attr('data-stamp'));
+				$(this).find('span.date').text(relativeDate(current_stamp));
+			});
+			
+			// Regenerate avatars
+			if(exists('#' + hash + ' .one-group.' + my_hash + ' .avatar-container'))
+				getAvatar(getXID(), 'cache', 'true', 'forget');
+			if(exists('#' + hash + ' .one-group.' + friend_hash + ' .avatar-container'))
+				getAvatar(xid, 'cache', 'true', 'forget');
+		}
+		
 		// Add button
 		if(!exists('#buddy-list .buddy[data-xid=' + escape(xid) + ']'))
 			$('#' + hash + ' .tools-add').click(function() {

@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Vanaryon, Zash
-Last revision: 25/08/11
+Last revision: 13/02/12
 
 */
 
@@ -330,6 +330,10 @@ String.prototype.revertHtmlEnc = function() {
  * @type Date
  */
 Date.jab2date = function(ts) {
+  // Timestamp
+  if(!isNaN(ts))
+  	return new Date(ts * 1000);
+  
   // Get the UTC date
   var date = new Date(Date.UTC(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2)));
   

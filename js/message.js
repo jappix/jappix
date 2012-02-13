@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 01/09/11
+Last revision: 13/02/12
 
 */
 
@@ -845,7 +845,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		attribute += '"';
 	
 	// Filter the previous displayed message
-	var last = $('#' + hash + ' .one-group:last');
+	var last = $('#' + hash + ' .one-group:not(.from-history):last');
 	var last_name = last.find('b.name').attr('data-xid');
 	var last_type = last.attr('data-type');
 	var last_stamp = parseInt(last.attr('data-stamp'));
@@ -888,6 +888,20 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	else {
 		// Write the code in the DOM
 		$('#' + hash + ' .content' + group_path).append(messageCode);
+		
+		// Store the last 20 message groups
+		if((type == 'chat') && (message_type == 'user-message')) {
+			// Filter the DOM
+			var dom_filter = $('#' + hash + ' .content').clone().contents();
+			$(dom_filter).find('.system-message').parent().remove();
+			$(dom_filter).find('.avatar-container img.avatar').attr('src', './img/others/default-avatar.png');
+			$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - 20).remove();
+			var store_html = $(dom_filter).parent().html();
+			
+			// Store the data
+			if(store_html)
+				setPersistent('history', hash, store_html);
+		}
 		
 		// Must get the avatar?
 		if(has_avatar && xid)
