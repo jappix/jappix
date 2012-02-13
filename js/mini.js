@@ -1383,8 +1383,16 @@ function chatEventsMini(type, xid, hash) {
 	
 	// Restore chat tabulate press
 	jQuery(current + ' input.jm_send-messages').keydown(function(e) {
+		// Tabulate?
 		if(e.keyCode == 9) {
 			switchChatMini();
+			
+			return false;
+		}
+		
+		// Escape?
+		if(e.keyCode == 27) {
+			jQuery(current + ' a.jm_close').click();
 			
 			return false;
 		}
