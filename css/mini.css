@@ -106,7 +106,7 @@ Last revision: 14/02/12
 }
 
 #jappix_mini a.jm_switch.jm_notifnav {
-	background: #c60505 !important;
+	background-position: 0 -432px !important;
 }
 
 #jappix_mini a.jm_switch span.jm_navigation {

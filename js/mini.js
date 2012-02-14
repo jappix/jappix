@@ -796,7 +796,7 @@ function updateOverflowMini() {
 	jQuery('#jappix_mini div.jm_conversation:hidden').show();
 	
 	// Process overflow
-	var number_visible = parseInt((jQuery(window).width() - 331) / 140);
+	var number_visible = parseInt((jQuery(window).width() - 330) / 140);
 	var number_total = jQuery('#jappix_mini div.jm_conversation').size();
 	
 	if(number_visible <= 0)
@@ -828,9 +828,6 @@ function updateOverflowMini() {
 		jQuery('#jappix_mini div.jm_conversation:gt(' + index_visible + '):visible').hide();
 		
 		// Close the opened chat
-		// TODO: put the index hover to this element if exists to keep the chat open on the screen
-		// TODO: fix the display bug when changing page with a switcher
-		// TODO: design the switcher notification bubble (a gradient circle behind the arrow image maybe? or a red gradient applied to the pane box?)
 		if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size())
 			switchPaneMini();
 		
