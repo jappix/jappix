@@ -744,11 +744,11 @@ function notifyCountersMini() {
 	
 	if(number) {
 		// Left?
-		if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevUntil(':not(div.jm_conversation)').find('span.jm_notify').size())
+		if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevAll().find('span.jm_notify').size())
 			jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_notifnav');
 		
 		// Right?
-		if(jQuery('#jappix_mini div.jm_conversation:visible:last').nextUntil(':not(div.jm_conversation)').find('span.jm_notify').size())
+		if(jQuery('#jappix_mini div.jm_conversation:visible:last').nextAll().find('span.jm_notify').size())
 			jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_notifnav');
 	}
 	
@@ -1384,18 +1384,18 @@ function switchPaneMini(element, hash) {
 		var current = '#jappix_mini #' + element;
 		
 		// Navigate to this chat
-		if(jQuery(current).is(':hidden') && jQuery(current).size()) {
+		if(jQuery(current).size() && jQuery(current).is(':hidden')) {
 			var click_nav = '';
 			
 			// Before or after?
-			if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevUntil(':not(div.jm_conversation)').find('#' + element).size())
+			if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevAll().is('#' + element))
 				click_nav = jQuery('#jappix_mini a.jm_switch.jm_left');
 			else
 				click_nav = jQuery('#jappix_mini a.jm_switch.jm_right');
 			
 			// Click previous or next
 			if(click_nav) {
-				while(jQuery(current).is(':hidden'))
+				while(jQuery(current).is(':hidden') && !click_nav.hasClass('jm_nonav'))
 					click_nav.click();
 			}
 		}
