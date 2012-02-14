@@ -503,7 +503,8 @@ function handlePresenceMini(pr) {
 	// Is this friend online?
 	if(show == 'unavailable') {
 		// Offline marker
-		jQuery(friend).addClass('jm_offline').removeClass('jm_online');
+		jQuery(friend).addClass('jm_offline').removeClass('jm_online jm_hover');
+		
 		// Hide the friend just to be safe since the search uses .hide() and .show() which can override the CSS display attribute
 		jQuery(friend).hide();
 		
@@ -900,7 +901,11 @@ function createMini(domain, user, password) {
 	// Updates the roster with only searched terms
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').placeholder();
 	
-	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup(function() {
+	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup(function(e) {
+		// Avoid buddy navigation to be reseted
+		if((e.keyCode == 38) || (e.keyCode == 40))
+			return;
+		
 		// Save current value
 		jQuery(this).attr('data-value', jQuery(this).val());
 		
@@ -914,7 +919,8 @@ function createMini(domain, user, password) {
 				var search = jQuery(self).val();
 				var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 				
-				// Reset groups
+				// Reset results
+				jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
 				jQuery('#jappix_mini div.jm_roster div.jm_grouped').show();
 				
 				// If there is no search, we don't need to loop over buddies
@@ -939,6 +945,9 @@ function createMini(domain, user, password) {
 					if(!jQuery(this).find('a.jm_online:visible').size())
 						jQuery(this).hide();
 				});
+				
+				// Focus on the first buddy
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online:visible:first').addClass('jm_hover');
 			}
 			
 			catch(e) {}
@@ -947,6 +956,59 @@ function createMini(domain, user, password) {
 				return false;
 			}
 		}, 500);
+	});
+	
+	// Roster navigation
+	jQuery(document).keydown(function(e) {
+		// Cannot work if roster is not opened
+		if(jQuery('#jappix_mini div.jm_roster').is(':hidden'))
+			return;
+		
+		// Up/Down keys
+		if((e.keyCode == 38) || (e.keyCode == 40)) {
+			// Hover the last/first buddy
+			if(!jQuery('#jappix_mini a.jm_online.jm_hover').size()) {
+				if(e.keyCode == 38)
+					jQuery('#jappix_mini a.jm_online:visible:last').addClass('jm_hover');
+				else
+					jQuery('#jappix_mini a.jm_online:visible:first').addClass('jm_hover');
+			}
+			
+			// Hover the previous/next buddy
+			else if(jQuery('#jappix_mini a.jm_online:visible').size() > 1) {
+				var hover_index = jQuery('#jappix_mini a.jm_online:visible').index(jQuery('a.jm_hover'));
+				
+				// Up (decrement) or down (increment)?
+				if(e.keyCode == 38)
+					hover_index--;
+				else
+					hover_index++;
+				
+				if(!hover_index)
+					hover_index = 0;
+				
+				// No buddy before/after?
+				if(!jQuery('#jappix_mini a.jm_online:visible').eq(hover_index).size()) {
+					if(e.keyCode == 38)
+						hover_index = jQuery('#jappix_mini a.jm_online:visible:last').index();
+					else
+						hover_index = 0;
+				}
+				
+				// Hover the previous/next buddy
+				jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+				jQuery('#jappix_mini a.jm_online:visible').eq(hover_index).addClass('jm_hover');
+			}
+			
+			return false;
+		}
+		
+		// Enter key
+		if((e.keyCode == 13) && jQuery('#jappix_mini a.jm_friend.jm_hover').size()) {
+			jQuery('#jappix_mini a.jm_friend.jm_hover').click();
+			
+			return false;
+		}
 	});
 	
 	// Hides the roster when clicking away of Jappix Mini
@@ -993,6 +1055,24 @@ function createMini(domain, user, password) {
 			finally {
 				return false;
 			}
+		});
+		
+		// Restore buddy hover events
+		jQuery('#jappix_mini a.jm_friend').hover(function() {
+			jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');			jQuery(this).addClass('jm_hover');
+		}, function() {
+			jQuery(this).removeClass('jm_hover');
+		});
+		
+		// Restore buddy focus events
+		jQuery('#jappix_mini a.jm_friend').focus(function() {
+			jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+			jQuery(this).addClass('jm_hover');
+		});
+		
+		// Restore buddy blur events
+		jQuery('#jappix_mini a.jm_friend').blur(function() {
+			jQuery(this).removeClass('jm_hover');
 		});
 		
 		// Restore chat click events
@@ -1484,6 +1564,10 @@ function switchChatMini() {
 	if(!jQuery('#jappix_mini div.jm_conversation').eq(chat_index).size())
 		chat_index = 0;
 	
+	// Avoid disabled chats
+	while(jQuery('#jappix_mini div.jm_conversation').eq(chat_index).hasClass('jm_disabled'))
+		chat_index++;
+	
 	// Show the next chat
 	var chat_hash = jQuery('#jappix_mini div.jm_conversation').eq(chat_index).attr('data-hash');
 	
@@ -1495,8 +1579,11 @@ function switchChatMini() {
 function showRosterMini() {
 	switchPaneMini('roster');
 	jQuery('#jappix_mini div.jm_roster').show();
-	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').focus();
 	jQuery('#jappix_mini a.jm_button').addClass('jm_clicked');
+	
+	jQuery(document).oneTime(10, function() {
+		jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').focus();
+	});
 }
 
 // Hides the roster
@@ -1508,6 +1595,7 @@ function hideRosterMini() {
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('').attr('data-value', '');
 	jQuery('#jappix_mini div.jm_roster div.jm_grouped').show();
 	jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
+	jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
 }
 
 // Removes a groupchat from DOM
@@ -1600,6 +1688,25 @@ function addBuddyMini(xid, hash, nick, groupchat) {
 		finally {
 			return false;
 		}
+	});
+	
+	// Hover event on this buddy
+	jQuery(element).hover(function() {
+		jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+		jQuery(this).addClass('jm_hover');
+	}, function() {
+		jQuery(this).removeClass('jm_hover');
+	});
+	
+	// Focus events on this buddy
+	jQuery(element).focus(function() {
+		jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+		jQuery(this).addClass('jm_hover');
+	});
+	
+	// Blur events on this buddy
+	jQuery(element).blur(function() {
+		jQuery(this).removeClass('jm_hover');
 	});
 	
 	return true;
