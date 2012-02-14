@@ -700,7 +700,7 @@ function notifyMessageMini(hash) {
 	var notify = tab + ' span.jm_notify';
 	var notify_middle = notify + ' span.jm_notify_middle';
 	
-	// Notification box not yet added
+	// Notification box not yet added?
 	if(!exists(notify))
 		jQuery(tab).append(
 			'<span class="jm_notify">' + 
@@ -714,8 +714,8 @@ function notifyMessageMini(hash) {
 	var number = parseInt(jQuery(notify_middle).text());
 	jQuery(notify_middle).text(number + 1);
 	
-	// Change the page title
-	notifyTitleMini();
+	// Update the notification counters
+	notifyCountersMini();
 }
 
 // Notifies the user from a session error
@@ -730,21 +730,34 @@ function notifyErrorMini() {
 	);
 }
 
-// Updates the page title with the new notifications
-function notifyTitleMini() {
-	// No saved title? Abort!
-	if(MINI_TITLE == null)
-		return false;
-	
-	// Page title code
-	var title = MINI_TITLE;
-	
+// Updates the global counter with the new notifications
+function notifyCountersMini() {
 	// Count the number of notifications
 	var number = 0;
 	
 	jQuery('#jappix_mini span.jm_notify span.jm_notify_middle').each(function() {
 		number = number + parseInt(jQuery(this).text());
 	});
+	
+	// Update the notification link counters
+	jQuery('#jappix_mini a.jm_switch').removeClass('jm_notifnav');
+	
+	if(number) {
+		// Left?
+		if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevUntil(':not(div.jm_conversation)').find('span.jm_notify').size())
+			jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_notifnav');
+		
+		// Right?
+		if(jQuery('#jappix_mini div.jm_conversation:visible:last').nextUntil(':not(div.jm_conversation)').find('span.jm_notify').size())
+			jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_notifnav');
+	}
+	
+	// No saved title? Abort!
+	if(MINI_TITLE == null)
+		return;
+	
+	// Page title code
+	var title = MINI_TITLE;
 	
 	// No new stuffs? Reset the title!
 	if(number)
@@ -753,7 +766,7 @@ function notifyTitleMini() {
 	// Apply the title
 	document.title = title;
 	
-	return true;
+	return;
 }
 
 // Clears the notifications
@@ -765,8 +778,8 @@ function clearNotificationsMini(hash) {
 	// Remove the notifications counter
 	jQuery('#jappix_mini #chat-' + hash + ' span.jm_notify').remove();
 	
-	// Update the page title
-	notifyTitleMini();
+	// Update the global counters
+	notifyCountersMini();
 	
 	return true;
 }
@@ -783,7 +796,7 @@ function updateOverflowMini() {
 	jQuery('#jappix_mini div.jm_conversation:hidden').show();
 	
 	// Process overflow
-	var number_visible = parseInt((jQuery('#jappix_mini div.jm_position').outerWidth() - jQuery('#jappix_mini div.jm_starter a.jm_pane').outerWidth(true) - 60) / jQuery('#jappix_mini div.jm_conversation a.jm_pane').outerWidth(true));
+	var number_visible = parseInt((jQuery(window).width() - 331) / 140);
 	var number_total = jQuery('#jappix_mini div.jm_conversation').size();
 	
 	if(number_visible <= 0)
@@ -813,6 +826,14 @@ function updateOverflowMini() {
 		// Show first visible chats
 		var index_visible = number_visible - 1;
 		jQuery('#jappix_mini div.jm_conversation:gt(' + index_visible + '):visible').hide();
+		
+		// Update navigation buttons
+		jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
+		
+		if(!jQuery('#jappix_mini div.jm_conversation:visible:first').prev().size())
+			jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_nonav');
+		if(!jQuery('#jappix_mini div.jm_conversation:visible:last').next().size())
+			jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_nonav');
 	}
 	
 	// Must remove the overflow switcher?
@@ -825,6 +846,10 @@ function updateOverflowMini() {
 // Click events on the chat overflow
 function overflowEventsMini() {
 	jQuery('#jappix_mini a.jm_switch').click(function() {
+		// Nothing to do?
+		if(jQuery(this).hasClass('jm_nonav'))
+			return false;
+		
 		var hide_this = show_this = '';
 		
 		// Go left?
@@ -894,7 +919,7 @@ function createMini(domain, user, password) {
 	
 	// New DOM?
 	else {
-		dom =   '<div class="jm_position">' + 
+		dom = '<div class="jm_position">' + 
 				'<div class="jm_conversations"></div>' + 
 				
 				'<div class="jm_starter">' + 
@@ -913,7 +938,7 @@ function createMini(domain, user, password) {
 						'<span class="jm_counter jm_images">' + _e("Please wait...") + '</span>' + 
 					'</a>' + 
 				'</div>' + 
-			'</div>';
+			  '</div>';
 	}
 	
 	// Create the DOM
@@ -1191,6 +1216,7 @@ function createMini(domain, user, password) {
 		
 		// Restore overflow navigation events
 		overflowEventsMini();
+		updateOverflowMini();
 		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
@@ -1207,8 +1233,8 @@ function createMini(domain, user, password) {
 			});
 		}
 		
-		// Update title notifications
-		notifyTitleMini();
+		// Update notification counters
+		notifyCountersMini();
 	}
 	
 	// Can auto-connect?

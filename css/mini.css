@@ -105,6 +105,10 @@ Last revision: 14/02/12
 	border-right: none;
 }
 
+#jappix_mini a.jm_switch.jm_notifnav {
+	background: #c60505 !important;
+}
+
 #jappix_mini a.jm_switch span.jm_navigation {
 	width: 16px;
 	height: 16px;
@@ -117,7 +121,7 @@ Last revision: 14/02/12
 }
 
 #jappix_mini a.jm_switch.jm_left span.jm_navigation {
-	background-position: 0 -417px;
+	background-position: 0 -416px;
 }
 
 #jappix_mini div.jm_conversation {
