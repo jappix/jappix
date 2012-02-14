@@ -1010,7 +1010,7 @@ function createMini(domain, user, password) {
 			}
 			
 			// Scroll to the hovered buddy (if out of limits)
-			jQuery('#jappix_mini div.jm_roster div.jm_buddies').scrollTo($('#jappix_mini a.jm_online.jm_hover'), 0, {margin: true});
+			jQuery('#jappix_mini div.jm_roster div.jm_buddies').scrollTo(jQuery('#jappix_mini a.jm_online.jm_hover'), 0, {margin: true});
 			
 			return false;
 		}
