@@ -7,13 +7,14 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Authors: Vanaryon, Julien, hunterjm
-Last revision: 13/02/12
+Last revision: 14/02/12
 
 */
 
 #jappix_mini,
 #jappix_popup {
 	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+	min-width: 280px;
 }
 
 #jappix_mini {
@@ -94,9 +95,29 @@ Last revision: 13/02/12
 
 #jappix_mini div.jm_starter,
 #jappix_mini div.jm_conversations,
-#jappix_mini div.jm_conversation {
+#jappix_mini div.jm_conversation,
+#jappix_mini a.jm_switch {
 	float: left;
 	position: relative;
+}
+
+#jappix_mini a.jm_switch {
+	border-right: none;
+}
+
+#jappix_mini a.jm_switch span.jm_navigation {
+	width: 16px;
+	height: 16px;
+	margin-top: -1px;
+	display: block;
+}
+
+#jappix_mini a.jm_switch.jm_right span.jm_navigation {
+	background-position: 0 -400px;
+}
+
+#jappix_mini a.jm_switch.jm_left span.jm_navigation {
+	background-position: 0 -417px;
 }
 
 #jappix_mini div.jm_conversation {
@@ -294,7 +315,8 @@ Last revision: 13/02/12
 
 #jappix_mini div.jm_disabled div.jm_chat-content,
 #jappix_mini div.jm_disabled input.jm_send-messages,
-#jappix_mini div.jm_disabled a.jm_pane {
+#jappix_mini div.jm_disabled a.jm_pane,
+#jappix_mini a.jm_switch.jm_nonav {
 	background: #f3f3f3 !important;
 }
 

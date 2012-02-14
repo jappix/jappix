@@ -777,6 +777,97 @@ function updateRosterMini() {
 	jQuery('#jappix_mini a.jm_button span.jm_counter').text(jQuery('#jappix_mini a.jm_online').size());
 }
 
+// Updates the chat overflow
+function updateOverflowMini() {
+	// Show hidden chats
+	jQuery('#jappix_mini div.jm_conversation:hidden').show();
+	
+	// Process overflow
+	var number_visible = parseInt((jQuery('#jappix_mini div.jm_position').outerWidth() - jQuery('#jappix_mini div.jm_starter a.jm_pane').outerWidth(true) - 60) / jQuery('#jappix_mini div.jm_conversation a.jm_pane').outerWidth(true));
+	var number_total = jQuery('#jappix_mini div.jm_conversation').size();
+	
+	if(number_visible <= 0)
+		number_visible = 1;
+	
+	// Must add the overflow switcher?
+	if(number_visible < number_total) {
+		// Create the overflow handler?
+		if(!jQuery('#jappix_mini a.jm_switch').size()) {
+			// Add the navigation links
+			jQuery('#jappix_mini div.jm_conversations').before(
+				'<a class="jm_switch jm_left jm_pane jm_images" href="#">' + 
+					'<span class="jm_navigation jm_images"></span>' + 
+				'</a>'
+			);
+			
+			jQuery('#jappix_mini div.jm_conversations').after(
+				'<a class="jm_switch jm_right jm_pane jm_images" href="#">' + 
+					'<span class="jm_navigation jm_images"></span>' + 
+				'</a>'
+			);
+			
+			// Add the click events
+			overflowEventsMini();
+		}
+		
+		// Show first visible chats
+		var index_visible = number_visible - 1;
+		jQuery('#jappix_mini div.jm_conversation:gt(' + index_visible + '):visible').hide();
+	}
+	
+	// Must remove the overflow switcher?
+	else {
+		jQuery('#jappix_mini a.jm_switch').remove();
+		jQuery('#jappix_mini div.jm_conversation:hidden').show();
+	}
+}
+
+// Click events on the chat overflow
+function overflowEventsMini() {
+	jQuery('#jappix_mini a.jm_switch').click(function() {
+		var hide_this = show_this = '';
+		
+		// Go left?
+		if(jQuery(this).is('.jm_left')) {
+			show_this = jQuery('#jappix_mini div.jm_conversation:visible:first').prev();
+			
+			if(show_this.size())
+				hide_this = jQuery('#jappix_mini div.jm_conversation:visible:last');
+		}
+		
+		// Go right?
+		else {
+			show_this = jQuery('#jappix_mini div.jm_conversation:visible:last').next();
+			
+			if(show_this.size())
+				hide_this = jQuery('#jappix_mini div.jm_conversation:visible:first');
+		}
+		
+		// Update overflow content
+		if(show_this && show_this.size()) {
+			// Hide
+			if(hide_this && hide_this.size()) {
+				hide_this.hide();
+				
+				// Close the opened chat
+				if(hide_this.find('a.jm_pane').hasClass('jm_clicked'))
+					switchPaneMini();
+			}
+			
+			// Show
+			show_this.show();
+			
+			// Update navigation buttons
+			$('#jappix_mini a.jm_switch').removeClass('jm_nonav');
+			
+			if((jQuery(this).is('.jm_right') && !show_this.next().size()) || (jQuery(this).is('.jm_left') && !show_this.prev().size()))
+				$(this).addClass('jm_nonav');
+		}
+		
+		return false;
+	});
+}
+
 // Creates the Jappix Mini DOM content
 function createMini(domain, user, password) {
 	// Try to restore the DOM
@@ -1097,6 +1188,9 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini div.jm_conversation').each(function() {
 			chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
 		});
+		
+		// Restore overflow navigation events
+		overflowEventsMini();
 		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
@@ -1478,6 +1572,9 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 			switchPaneMini('chat-' + hash, hash);
 		});
 	
+	// Update chat overflow
+	updateOverflowMini();
+	
 	return false;
 }
 
@@ -1546,6 +1643,9 @@ function chatEventsMini(type, xid, hash) {
 				// Remove this groupchat!
 				removeGroupchatMini(xid);
 			}
+			
+			// Update chat overflow
+			updateOverflowMini();
 		}
 		
 		catch(e) {}
@@ -2002,8 +2102,11 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	// Save the page title
 	MINI_TITLE = document.title;
 	
-	// Sets the good roster max-height
-	jQuery(window).resize(adaptRosterMini);
+	// Adapts the content to the window size
+	jQuery(window).resize(function() {
+		adaptRosterMini();
+		updateOverflowMini();
+	});
 	
 	// Logouts when Jappix is closed
 	if(BrowserDetect.browser == 'Opera') {
