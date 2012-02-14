@@ -25,6 +25,7 @@ var MINI_DOMAIN			= null;
 var MINI_USER			= null;
 var MINI_PASSWORD		= null;
 var MINI_RECONNECT		= 0;
+var MINI_CHATS			= [];
 var MINI_GROUPCHATS		= [];
 var MINI_PASSWORDS		= [];
 var MINI_RESOURCE		= JAPPIX_RESOURCE + ' Mini';
@@ -476,8 +477,12 @@ function handlePresenceMini(pr) {
 	
 	// Is this a groupchat presence?
 	var groupchat_path = '#jappix_mini #chat-' + hash + '[data-type=groupchat]';
+	var is_groupchat = false;
 	
 	if(exists(groupchat_path)) {
+		// Groupchat exists
+		is_groupchat = true;
+		
 		// Groupchat buddy presence (not me)
 		if(resource != unescape(jQuery(groupchat_path).attr('data-nick'))) {
 			// Regenerate some stuffs
@@ -509,8 +514,10 @@ function handlePresenceMini(pr) {
 		jQuery(friend).hide();
 		
 		// Disable the chat tools
-		jQuery(chat).addClass('jm_disabled');
-		jQuery(send_input).blur().attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
+		if(is_groupchat) {
+			jQuery(chat).addClass('jm_disabled');
+			jQuery(send_input).blur().attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
+		}
 	}
 	
 	else {
@@ -525,8 +532,10 @@ function handlePresenceMini(pr) {
 			jQuery(friend).hide();
 		
 		// Enable the chat input
-		jQuery(chat).removeClass('jm_disabled');
-		jQuery(send_input).removeAttr('disabled').val('');
+		if(is_groupchat) {
+			jQuery(chat).removeClass('jm_disabled');
+			jQuery(send_input).removeAttr('disabled').val('');
+		}
 	}
 	
 	// Change the show presence of this buddy
@@ -1382,10 +1391,21 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 					'<div class="jm_actions">' + 
 						'<span class="jm_nick">' + nick + '</span>';
 		
-		// Check if the groupchat exists
+		// Check if the chat/groupchat exists
+		var chat_exists = false;
 		var groupchat_exists = false;
 		
-		if(MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
+		if((type == 'chat') && MINI_CHATS && MINI_CHATS.length) {
+			for(c in MINI_CHATS) {
+				if(xid == bareXID(generateXID(MINI_CHATS[c], 'chat'))) {
+					chat_exists = true;
+					
+					break;
+				}
+			}
+		}
+		
+		if((type == 'groupchat') && MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
 			for(g in MINI_GROUPCHATS) {
 				if(xid == bareXID(generateXID(MINI_GROUPCHATS[g], 'groupchat'))) {
 					groupchat_exists = true;
@@ -1396,7 +1416,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 		}
 		
 		// Any close button to display?
-		if(((type == 'groupchat') && !groupchat_exists) || (type != 'groupchat'))
+		if(((type == 'groupchat') && !groupchat_exists) || ((type == 'chat') && !chat_exists) || ((type != 'chat') && (type != 'groupchat')))
 			html += '<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>';
 		
 		html += '</div>' + 
@@ -1424,7 +1444,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 			var show = 'available';
 			
 			// Read the presence
-			if(selector.hasClass('jm_unavailable'))
+			if(selector.hasClass('jm_unavailable') || !selector.size())
 				show = 'unavailable';
 			else if(selector.hasClass('jm_chat'))
 				show = 'chat';
@@ -1625,6 +1645,31 @@ function initializeMini() {
 	if(!MINI_ANONYMOUS)
 		presenceMini();
 	
+	// Join the chats
+	for(var j = 0; j < MINI_CHATS.length; j++) {
+		// Empty value?
+		if(!MINI_CHATS[j])
+			continue;
+		
+		// Using a try/catch override IE issues
+		try {
+			// Current chat user
+			var chat_xid = bareXID(generateXID(MINI_CHATS[j], 'chat'));
+			var chat_hash = hex_md5(chat_xid);
+			var chat_nick = jQuery('#jappix_mini a#friend-' + chat_hash).attr('data-nick');
+			
+			if(!chat_nick)
+				chat_nick = getXIDNick(chat_xid);
+			else
+				chat_nick = unescape(chat_nick);
+			
+			// Open the current chat
+			chatMini('chat', chat_xid, chat_nick, chat_hash);
+		}
+		
+		catch(e) {}
+	}
+	
 	// Join the groupchats
 	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
 		// Empty value?
@@ -1789,8 +1834,11 @@ function handleRosterMini(iq) {
 	
     // Sort array and loop reverse
     var buddies = buddies.sort();
-    var x = buddies.length - 1;
+    var x = buddies.length;
     var nick, hash, xid, subscription;
+    
+    if(x > 1)
+    	x--;
     
     while(x--) {
     	nick = buddies[x][0];
