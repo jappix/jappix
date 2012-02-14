@@ -275,6 +275,7 @@ Last revision: 14/02/12
 }
 
 #jappix_mini div.jm_received-messages div.jm_system-message p,
+#jappix_mini div.jm_received-messages div.jm_system-message b,
 #jappix_mini div.jm_received-messages div.jm_system-message a {
 	color: #053805 !important;
 	font-style: italic !important;
@@ -313,7 +314,7 @@ Last revision: 14/02/12
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 260px;
+	width: 250px;
 	min-height: 14px;
 }
 
@@ -348,7 +349,7 @@ Last revision: 14/02/12
 	background-position: 9px -381px;
 	color: black;
 	font-size: 0.9em;
-	width: 160px;
+	width: 128px;
 	padding: 2px 4px 2px 28px;
 }
 

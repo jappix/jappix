@@ -958,6 +958,9 @@ function createMini(domain, user, password) {
 	overflowEventsMini();
 	updateOverflowMini();
 	
+	// CSS refresh (Safari display bug when restoring old DOM)
+	jQuery('#jappix_mini div.jm_starter, #jappix_mini div.jm_conversations, #jappix_mini div.jm_conversation, #jappix_mini a.jm_switch').css('float', 'left');
+	
 	// The click events
 	jQuery('#jappix_mini a.jm_button').click(function() {
 		// Using a try/catch override IE issues
