@@ -887,6 +887,9 @@ function overflowEventsMini() {
 			
 			if((jQuery(this).is('.jm_right') && !show_this.next().size()) || (jQuery(this).is('.jm_left') && !show_this.prev().size()))
 				$(this).addClass('jm_nonav');
+			
+			// Update notification counters
+			notifyCountersMini();
 		}
 		
 		return false;
@@ -1373,6 +1376,24 @@ function switchPaneMini(element, hash) {
 	if(element && (element != 'roster')) {
 		var current = '#jappix_mini #' + element;
 		
+		// Navigate to this chat
+		if(jQuery(current).is(':hidden') && jQuery(current).size()) {
+			var click_nav = '';
+			
+			// Before or after?
+			if(jQuery('#jappix_mini div.jm_conversation:visible:first').prevUntil(':not(div.jm_conversation)').find('#' + element).size())
+				click_nav = jQuery('#jappix_mini a.jm_switch.jm_left');
+			else
+				click_nav = jQuery('#jappix_mini a.jm_switch.jm_right');
+			
+			// Click previous or next
+			if(click_nav) {
+				while(jQuery(current).is(':hidden'))
+					click_nav.click();
+			}
+		}
+		
+		// Show it
 		jQuery(current + ' a.jm_pane').addClass('jm_clicked');
 		jQuery(current + ' div.jm_chat-content').show();
 		
