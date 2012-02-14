@@ -1392,18 +1392,8 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 						'<span class="jm_nick">' + nick + '</span>';
 		
 		// Check if the chat/groupchat exists
-		var chat_exists = false;
 		var groupchat_exists = false;
-		
-		if((type == 'chat') && MINI_CHATS && MINI_CHATS.length) {
-			for(c in MINI_CHATS) {
-				if(xid == bareXID(generateXID(MINI_CHATS[c], 'chat'))) {
-					chat_exists = true;
-					
-					break;
-				}
-			}
-		}
+		var chat_exists = false;
 		
 		if((type == 'groupchat') && MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
 			for(g in MINI_GROUPCHATS) {
@@ -1415,8 +1405,18 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 			}
 		}
 		
+		if((type == 'chat') && MINI_CHATS && MINI_CHATS.length) {
+			for(c in MINI_CHATS) {
+				if(xid == bareXID(generateXID(MINI_CHATS[c], 'chat'))) {
+					chat_exists = true;
+					
+					break;
+				}
+			}
+		}
+		
 		// Any close button to display?
-		if(((type == 'groupchat') && !groupchat_exists) || ((type == 'chat') && !chat_exists) || ((type != 'chat') && (type != 'groupchat')))
+		if(((type == 'groupchat') && !groupchat_exists) || ((type == 'chat') && !chat_exists) || ((type != 'groupchat') && (type != 'chat')))
 			html += '<a class="jm_one-action jm_close jm_images" title="' + _e("Close") + '" href="#"></a>';
 		
 		html += '</div>' + 
@@ -1645,7 +1645,25 @@ function initializeMini() {
 	if(!MINI_ANONYMOUS)
 		presenceMini();
 	
-	// Join the chats
+	// Join the groupchats (first)
+	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
+		// Empty value?
+		if(!MINI_GROUPCHATS[i])
+			continue;
+		
+		// Using a try/catch override IE issues
+		try {
+			// Current chat room
+			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
+			
+			// Open the current chat
+			chatMini('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room), MINI_PASSWORDS[i], MINI_SHOWPANE);
+		}
+		
+		catch(e) {}
+	}
+	
+	// Join the chats (then)
 	for(var j = 0; j < MINI_CHATS.length; j++) {
 		// Empty value?
 		if(!MINI_CHATS[j])
@@ -1670,26 +1688,8 @@ function initializeMini() {
 		catch(e) {}
 	}
 	
-	// Join the groupchats
-	for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
-		// Empty value?
-		if(!MINI_GROUPCHATS[i])
-			continue;
-		
-		// Using a try/catch override IE issues
-		try {
-			// Current chat room
-			var chat_room = bareXID(generateXID(MINI_GROUPCHATS[i], 'groupchat'));
-			
-			// Open the current chat
-			chatMini('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room), MINI_PASSWORDS[i], MINI_SHOWPANE);
-		}
-		
-		catch(e) {}
-	}
-	
 	// Must show the roster?
-	if(!MINI_AUTOCONNECT && !MINI_GROUPCHATS.length)
+	if(!MINI_AUTOCONNECT && !MINI_GROUPCHATS.length && !MINI_CHATS.length)
 		jQuery(document).oneTime(10, function() {
 			showRosterMini();
 		});
