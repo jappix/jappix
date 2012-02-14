@@ -827,6 +827,13 @@ function updateOverflowMini() {
 		var index_visible = number_visible - 1;
 		jQuery('#jappix_mini div.jm_conversation:gt(' + index_visible + '):visible').hide();
 		
+		// Close the opened chat
+		// TODO: put the index hover to this element if exists to keep the chat open on the screen
+		// TODO: fix the display bug when changing page with a switcher
+		// TODO: design the switcher notification bubble (a gradient circle behind the arrow image maybe? or a red gradient applied to the pane box?)
+		if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size())
+			switchPaneMini();
+		
 		// Update navigation buttons
 		jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
 		
@@ -883,10 +890,10 @@ function overflowEventsMini() {
 			show_this.show();
 			
 			// Update navigation buttons
-			$('#jappix_mini a.jm_switch').removeClass('jm_nonav');
+			jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
 			
 			if((jQuery(this).is('.jm_right') && !show_this.next().size()) || (jQuery(this).is('.jm_left') && !show_this.prev().size()))
-				$(this).addClass('jm_nonav');
+				jQuery(this).addClass('jm_nonav');
 			
 			// Update notification counters
 			notifyCountersMini();
@@ -949,6 +956,10 @@ function createMini(domain, user, password) {
 	
 	// Adapt roster height
 	adaptRosterMini();
+	
+	// Chat navigation overflow
+	overflowEventsMini();
+	updateOverflowMini();
 	
 	// The click events
 	jQuery('#jappix_mini a.jm_button').click(function() {
@@ -1216,10 +1227,6 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini div.jm_conversation').each(function() {
 			chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
 		});
-		
-		// Restore overflow navigation events
-		overflowEventsMini();
-		updateOverflowMini();
 		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
