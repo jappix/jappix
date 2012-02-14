@@ -1652,7 +1652,12 @@ function chatEventsMini(type, xid, hash) {
 		
 		// Escape?
 		if(e.keyCode == 27) {
-			jQuery(current + ' a.jm_close').click();
+			if(jQuery(current + ' a.jm_close').size()) {
+				jQuery(current + ' a.jm_close').click();
+				
+				// Open next chat
+				jQuery('#jappix_mini div.jm_conversation:visible:first a.jm_pane').click();
+			}
 			
 			return false;
 		}
