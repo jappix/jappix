@@ -1067,6 +1067,12 @@ function createMini(domain, user, password) {
 			jQuery(this).removeClass('jm_hover');
 		});
 		
+		// Restore buddy mousedown events
+		jQuery('#jappix_mini a.jm_friend').mousedown(function() {
+			jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+			jQuery(this).addClass('jm_hover');
+		});
+		
 		// Restore buddy focus events
 		jQuery('#jappix_mini a.jm_friend').focus(function() {
 			jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
@@ -1699,6 +1705,12 @@ function addBuddyMini(xid, hash, nick, groupchat) {
 		jQuery(this).addClass('jm_hover');
 	}, function() {
 		jQuery(this).removeClass('jm_hover');
+	});
+	
+	// Mousedown event on this buddy
+	jQuery('#jappix_mini a.jm_friend').mousedown(function() {
+		jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
+		jQuery(this).addClass('jm_hover');
 	});
 	
 	// Focus events on this buddy
