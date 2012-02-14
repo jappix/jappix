@@ -972,6 +972,11 @@ function createMini(domain, user, password) {
 					jQuery('#jappix_mini a.jm_online:visible:last').addClass('jm_hover');
 				else
 					jQuery('#jappix_mini a.jm_online:visible:first').addClass('jm_hover');
+				
+				// Scroll to the hovered buddy (if out of limits)
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies').scrollTo($('#jappix_mini a.jm_online.jm_hover'));
+				
+				return false;
 			}
 			
 			// Hover the previous/next buddy
@@ -998,6 +1003,9 @@ function createMini(domain, user, password) {
 				// Hover the previous/next buddy
 				jQuery('#jappix_mini a.jm_friend.jm_hover').removeClass('jm_hover');
 				jQuery('#jappix_mini a.jm_online:visible').eq(hover_index).addClass('jm_hover');
+				
+				// Scroll to the hovered buddy (if out of limits)
+				jQuery('#jappix_mini div.jm_roster div.jm_buddies').scrollTo($('#jappix_mini a.jm_online.jm_hover'));
 			}
 			
 			return false;
