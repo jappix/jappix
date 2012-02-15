@@ -4,12 +4,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:47+0100\n"
+"PO-Revision-Date: 2012-02-15 01:36+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Vanaryon\n"
 "Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
@@ -316,7 +316,7 @@ msgid "Not everything is private on XMPP; this is one of those things, your publ
 msgstr "Не вся информация приватна на XMPP, одна из тех вещей - ваш профиль."
 
 msgid "It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."
-msgstr ""
+msgstr "Строго рекомендуется загрузить аватар (%s максимум), что сделает вас легко узнаваемым среди друзей."
 
 msgid "Save"
 msgstr "Сохранить"
@@ -373,7 +373,7 @@ msgid "Old"
 msgstr "Старый"
 
 msgid "New (2 times)"
-msgstr "Новый"
+msgstr "Новый (дважды)"
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -697,7 +697,7 @@ msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Ввойдите в ваш XMPP аккаунт или создайте новый бесплатно!"
 
 msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappix - это открытый проект от PostPro, некоммерческой организации, обеспечивающей нам отличную поддержу"
+msgstr "Jappix - это открытый проект от PostPro, некоммерческой организации, обеспечивающей нам отличную поддержку."
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "Ввойдите в ваш XMPP аккаунт. Также можете использовать %s для присоединения к общей беседе."
@@ -747,14 +747,11 @@ msgstr "Вы были зарегистрированы, ваш XMPP-адрес:"
 msgid "Manager"
 msgstr "Менеджер"
 
-msgid "Project"
-msgstr "Проект"
-
 msgid "Encrypted"
 msgstr "Зашифрованный"
 
 msgid "Unencrypted"
-msgstr ""
+msgstr "Незашифрованный"
 
 msgid "Where are you?"
 msgstr "Где ты?"
@@ -1000,7 +997,7 @@ msgid "This tool will help you fastly install Jappix, the first full-featured XM
 msgstr "Этот мастер поможет вам быстро установить Jappix, первую полноценную социальную платформу на XMPP-протоколе. Для установки не требуется особых технических навыков."
 
 msgid "Let's have a look at the installation steps:"
-msgstr ""
+msgstr "Давайте рассмотрим порядок установки:"
 
 msgid "Welcome"
 msgstr "Добро пожаловать"
@@ -1009,7 +1006,7 @@ msgid "Storage configuration"
 msgstr "Настройка хранилища"
 
 msgid "Administrator account"
-msgstr "Администраторсикий акаунт"
+msgstr "Аккаунт администратора"
 
 msgid "Main configuration"
 msgstr "Основные настройки"
@@ -1042,7 +1039,7 @@ msgid "Jappix offers you the possibility to manage your configuration, install n
 msgstr "Jabbix позволяет вам управлять конфигурацией, устанавливать новые плагины или проверять обновления. Для доступа к панели управления требуется создать учетную запись администратора."
 
 msgid "When Jappix will be installed, just click on the manager link on the home page to access it."
-msgstr ""
+msgstr "Когда Jappix будет установлен, просто кликните на ссылку “управление” на главной странице для доступа к нему."
 
 msgid "Oops, you missed something or the two passwords do not match!"
 msgstr "Опа! Вы вы что-то забыли, или два пароля не совпали!"
@@ -1363,7 +1360,7 @@ msgid "Select a background to use and change the display options."
 msgstr "Выберите фон и смените параметры оторажения."
 
 msgid "Use your own color"
-msgstr "Использовать собственний цвет"
+msgstr "Использовать собственный цвет"
 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr "Введите шеснадцатиричное значение цвета, который вы хотите использовать для фона."
@@ -1384,7 +1381,7 @@ msgid "Simple notice"
 msgstr "Простое уведомление"
 
 msgid "This notice only needs simple text to be displayed, but no code is allowed!"
-msgstr "Это уведомление должно быть обычным текстом, код не допустим!"
+msgstr "Это уведомление должно быть обычным текстом, код недопустим!"
 
 msgid "Advanced notice"
 msgstr "Расширенное уведомление"
@@ -1594,7 +1591,7 @@ msgid "List name"
 msgstr "Фамилия"
 
 msgid "Allow"
-msgstr "Зазрешить"
+msgstr "Разрешить"
 
 msgid "Deny"
 msgstr "Отказать"
@@ -1813,49 +1810,67 @@ msgid "%s invites someone to join the room"
 msgstr "%s приглашает кого-то войти в комнату"
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Социальный канал, чат и многое другое."
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Создать ваш публичный профиль."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Мини-чат для вашего веб-сайта."
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Получить Jappix, получить поддержку."
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Статистика по Jappix."
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Скачать Jappix бесплатно."
 
 msgid "Find a public Jappix node."
-msgstr ""
+msgstr "Найти пубичный узел Jappix."
 
 msgid "Public profile"
-msgstr ""
+msgstr "Пубилчный профиль"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Ваш профиль везде с вами."
 
 msgid "%s is a Jappix.com service which makes your XMPP profile public. It is easier to share it. No XMPP account is required to view your social channel, your current position and your contact details."
-msgstr ""
+msgstr "%s это служба Jappix.com, она делает ваш XMPP профиль публичным. Его легко публиковать. Для просмотра вашего социального канала, местоположения и контактных данных, наличие XMPP аккаунта не требуется."
 
 msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
-msgstr ""
+msgstr "Более того, каждое изображение, что вы публикуете на вашем канале, добавляются в красивую галерею. Теперь вы можете просматривать все опубликованные вами картинки за все время."
 
 msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genious improvement!"
-msgstr ""
+msgstr "Вы так-же можете использовать ваш текущий XMPP аватар на любом веб-сайте, блоге или форуме. Когда вы смените его на XMPP, новый аватар везде обновится автоматически. Какое гениальное улучшение, не так ли?!"
 
 msgid "Yay, let's create my public profile!"
-msgstr ""
+msgstr "Да, давайте сделаем мой публичный профиль!"
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Задействовать мой публичный профиль"
+
+msgid "Contribute to the Jappix code."
+msgstr "Оказать поддержку проекту Jappix."
+
+msgid "Jappix for your mobile phone."
+msgstr "Jappix для вашего мобильного телефона."
+
+msgid "Jappix for your phone"
+msgstr "Jappix для вашего телефона"
+
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr "Единственное приложение для сообщений, каналов, профилей и многого другого!"
+
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr "Это информативное уведомление, данные на которые оно ссылается могут быть недоступны."
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix это некоммерческая общественная платформа, доступная откуда бы ни было, когда бы ни пожелаете и с кем бы ни решили пообщаться."
+
+#~ msgid "Project"
+#~ msgstr "Проект"
 
 #~ msgid "See"
 #~ msgstr ""
