@@ -119,9 +119,9 @@ if(!anonymousMode()) { ?>
 				<h2>Jappix.org</h2>
 				<div class="tabulate">
 					<a href="http://jappix.org/">
-                                                <span class="name">Jappix Project</span>
-                                                <span class="desc"><?php _e("Get Jappix, get support."); ?></span>
-                                        </a>
+						<span class="name">Jappix Project</span>
+						<span class="desc"><?php _e("Get Jappix, get support."); ?></span>
+					</a>
 					<a href="http://developer.jappix.org/">
 						<span class="name">Jappix Developer</span>
 						<span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
