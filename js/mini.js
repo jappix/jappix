@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, hunterjm
-Last revision: 14/02/12
+Last revision: 17/02/12
 
 */
 
@@ -1038,8 +1038,6 @@ function createMini(domain, user, password) {
 	});
 	
 	// Updates the roster with only searched terms
-	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').placeholder();
-	
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup(function(e) {
 		// Avoid buddy navigation to be reseted
 		if((e.keyCode == 38) || (e.keyCode == 40))
@@ -1571,7 +1569,7 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 			
 			'<div class="jm_received-messages" id="received-' + hash + '"></div>' + 
 				'<form action="#" method="post">' + 
-					'<input type="text" class="jm_send-messages" name="body" autocomplete="off" />' + 
+					'<input type="text" class="jm_send-messages" name="body" autocomplete="off" placeholder="' + _e("Chat") + '" data-value="" />' + 
 					'<input type="hidden" name="xid" value="' + xid + '" />' + 
 					'<input type="hidden" name="type" value="' + type + '" />' + 
 				'</form>' + 
@@ -1639,28 +1637,6 @@ function chatEventsMini(type, xid, hash) {
 	// Submit the form
 	jQuery(current + ' form').submit(function() {
 		return sendMessageMini(this);
-	});
-	
-	// Restore chat tabulate press
-	jQuery(current + ' input.jm_send-messages').keydown(function(e) {
-		// Tabulate?
-		if(e.keyCode == 9) {
-			switchChatMini();
-			
-			return false;
-		}
-		
-		// Escape?
-		if(e.keyCode == 27) {
-			if(jQuery(current + ' a.jm_close').size()) {
-				jQuery(current + ' a.jm_close').click();
-				
-				// Open next chat
-				jQuery('#jappix_mini div.jm_conversation:visible:first a.jm_pane').click();
-			}
-			
-			return false;
-		}
 	});
 	
 	// Click on the tab
@@ -1733,6 +1709,32 @@ function chatEventsMini(type, xid, hash) {
 	// Change on the chat input
 	.keyup(function() {
 		jQuery(this).attr('data-value', jQuery(this).val());
+	})
+	
+	// Chat tabulate or escape press
+	.keydown(function(e) {
+		// Tabulate?
+		if(e.keyCode == 9) {
+			switchChatMini();
+			
+			return false;
+		}
+		
+		// Escape?
+		if(e.keyCode == 27) {
+			if(jQuery(current + ' a.jm_close').size()) {
+				// Open next/previous chat
+				if($(current).next('div.jm_conversation').size())
+					$(current).next('div.jm_conversation').find('a.jm_pane').click();
+				else if($(current).prev('div.jm_conversation').size())
+					$(current).prev('div.jm_conversation').find('a.jm_pane').click();
+				
+				// Close current chat
+				jQuery(current + ' a.jm_close').click();
+			}
+			
+			return false;
+		}
 	});
 }
 

@@ -29,32 +29,32 @@ function openVCard() {
 				'<legend>' + _e("Personal") + '</legend>' + 
 				
 				'<label for="USER-FN">' + _e("Complete name") + '</label>' + 
-				'<input type="text" id="USER-FN" class="vcard-item" />' + 
+				'<input type="text" id="USER-FN" class="vcard-item" placeholder="John Locke" />' + 
 				
 				'<label for="USER-NICKNAME">' + _e("Nickname") + '</label>' + 
-				'<input type="text" id="USER-NICKNAME" class="vcard-item" />' + 
+				'<input type="text" id="USER-NICKNAME" class="vcard-item" placeholder="Jo" />' + 
 				
 				'<label for="USER-N-GIVEN">' + _e("First name") + '</label>' + 
-				'<input type="text" id="USER-N-GIVEN" class="vcard-item" />' + 
+				'<input type="text" id="USER-N-GIVEN" class="vcard-item" placeholder="John" />' + 
 				
 				'<label for="USER-N-FAMILY">' + _e("Last name") + '</label>' + 
-				'<input type="text" id="USER-N-FAMILY" class="vcard-item" />' + 
+				'<input type="text" id="USER-N-FAMILY" class="vcard-item" placeholder="Locke" />' + 
 				
 				'<label for="USER-BDAY">' + _e("Date of birth") + '</label>' + 
-				'<input type="text" id="USER-BDAY" class="vcard-item" />' + 
+				'<input type="text" id="USER-BDAY" class="vcard-item" pattern="^[0-9]{2}-[0-9]{2}-[0-9]{4}$" placeholder="16-02-1974" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
 				'<legend>' + _e("Contact") + '</legend>' + 
 				
 				'<label for="USER-EMAIL-USERID">' + _e("E-mail") + '</label>' + 
-				'<input type="text" id="USER-EMAIL-USERID" class="vcard-item" />' + 
+				'<input type="text" id="USER-EMAIL-USERID" class="vcard-item" placeholder="john@locke.fam" />' + 
 				
 				'<label for="USER-TEL-NUMBER">' + _e("Phone") + '</label>' + 
-				'<input type="text" id="USER-TEL-NUMBER" class="vcard-item" />' + 
+				'<input type="text" id="USER-TEL-NUMBER" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
 				
 				'<label for="USER-URL">' + _e("Website") + '</label>' + 
-				'<input type="text" id="USER-URL" class="vcard-item" />' + 
+				'<input type="text" id="USER-URL" class="vcard-item" placeholder="john.locke.fam" />' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -89,16 +89,16 @@ function openVCard() {
 				'<legend>' + _e("Address") + '</legend>' + 
 				
 				'<label for="USER-ADR-STREET">' + _e("Street") + '</label>' + 
-				'<input type="text" id="USER-ADR-STREET" class="vcard-item" />' + 
+				'<input type="text" id="USER-ADR-STREET" class="vcard-item" placeholder="Manhattan" />' + 
 				
 				'<label for="USER-ADR-LOCALITY">' + _e("City") + '</label>' + 
-				'<input type="text" id="USER-ADR-LOCALITY" class="vcard-item" />' + 
+				'<input type="text" id="USER-ADR-LOCALITY" class="vcard-item" placeholder="New-York" />' + 
 				
 				'<label for="USER-ADR-PCODE">' + _e("Postal code") + '</label>' + 
-				'<input type="text" id="USER-ADR-PCODE" class="vcard-item" />' + 
+				'<input type="text" id="USER-ADR-PCODE" class="vcard-item" placeholder="10002" />' + 
 				
 				'<label for="USER-ADR-CTRY">' + _e("Country") + '</label>' + 
-				'<input type="text" id="USER-ADR-CTRY" class="vcard-item" />' + 
+				'<input type="text" id="USER-ADR-CTRY" class="vcard-item" placeholder="USA" />' + 
 			'</fieldset>' + 
 			
 			'<fieldset>' + 
@@ -627,4 +627,7 @@ function launchVCard() {
 		
 		return false;
 	});
+	
+	// Placeholders
+	$('#vcard-avatar input[type=text]').placeholder();
 }
