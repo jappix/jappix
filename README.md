@@ -14,10 +14,10 @@ Please refer to the installation instructions that are located in the INSTALL fi
 Links
 -----
 
-The Jappix Project official service:  https://jappix.com/
-The Jappix Project website: 	      http://jappix.org/
-The Jappix Project dev website:	      http://developer.jappix.org/
-The Jappix Project panel: 	      https://github.com/jappix/jappix
+* Jappix Project official service: https://jappix.com/
+* Jappix Project website: http://jappix.org/
+* Jappix Project dev website: http://developer.jappix.org/
+* Jappix Project panel: https://github.com/jappix/jappix
 
 Social networking
 -----------------
