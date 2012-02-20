@@ -7,6 +7,12 @@
 # Authors: Vanaryon, JanCBorchardt
 # Last revision: 12/02/12
 
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr ""
 
@@ -359,9 +365,6 @@ msgid "Commands"
 msgstr ""
 
 msgid "Sounds"
-msgstr ""
-
-msgid "Inactive"
 msgstr ""
 
 msgid "Privacy"
@@ -1697,9 +1700,6 @@ msgid "%s days ago"
 msgstr ""
 
 msgid "User currently active"
-msgstr ""
-
-msgid "Last seen: %s"
 msgstr ""
 
 msgid "Last seen: %s"
