@@ -251,6 +251,49 @@ Last revision: 14/02/12
 	background-position: 0 -327px;
 }
 
+#jappix_mini div.jm_actions a.jm_status {
+	background-color: #727879;
+	position: static;
+}
+
+#jappix_mini div.jm_actions a.active,
+#jappix_mini div.jm_actions a.active:focus {
+	background-color: #727879;
+	border: 1px solid #3A3A3A;
+	border-width: 1px 1px 0 1px;
+    	height: 15px;
+	width: 14px;
+    	position: absolute;
+	top: 3px;
+    	right: 24px;
+    	z-index: 10;
+}
+
+#jappix_mini div.jm_status_picker {
+	background-color: #727879;
+	color: white;
+	left: 16px;
+	list-style: none outside none;
+	position: absolute;
+	top: 18px;
+	width: 120px;
+	border: 1px solid #3a3a3a;
+	z-index: 9;
+}
+
+#jappix_mini div.jm_status_picker a{
+	display: block;
+	padding: 6px;
+	color: white;
+}
+
+#jappix_mini div.jm_status_picker a:hover{
+	display: block;
+	padding: 6px;
+	color: #3A3A3A;
+	background-color: white;
+}
+
 #jappix_mini div.jm_received-messages {
 	background-color: white;
 	padding: 5px 0 4px;

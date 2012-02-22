@@ -934,6 +934,15 @@ function createMini(domain, user, password) {
 						'<div class="jm_actions">' + 
 							'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
 							'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
+							'<a class="jm_one-action jm_status" title="' + _e("Status") + '" href="#">' +
+								'<span class="jm_presence jm_images jm_available"></span>' + 
+							'</a>' +
+							'<div class="jm_status_picker">' +
+								'<a data-status="available">' + _e("Available") + '</span><span class="jm_presence jm_images jm_available"></span></a>' +
+								'<a data-status="away">' + _e("Away") + '</span><span class="jm_presence jm_images jm_away"></span></a>' +
+								'<a data-status="dnd">' + _e("Busy") + '</span><span class="jm_presence jm_images jm_dnd"></span></a>' +
+								'<a data-status="unavailable">' + _e("Offline") + '<span class="jm_presence jm_images jm_unavailable"></span></a>' +
+							'</div>' +
 						'</div>' + 
 						'<div class="jm_buddies"></div>' + 
 						'<div class="jm_search">' + 
@@ -950,6 +959,7 @@ function createMini(domain, user, password) {
 	
 	// Create the DOM
 	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
+	jQuery('#jappix_mini div.jm_status_picker').hide();
 	
 	// Adapt roster height
 	adaptRosterMini();
@@ -991,6 +1001,66 @@ function createMini(domain, user, password) {
 				showRosterMini();
 			else
 				hideRosterMini();
+		}
+		
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
+	});
+
+	jQuery('#jappix_mini a.jm_status').click(function() {
+		// Using a try/catch override IE issues
+		try {
+			if (jQuery(this).hasClass('active')) {
+				jQuery('#jappix_mini div.jm_status_picker').hide();
+				jQuery(this).blur().removeClass('active');
+			} else {
+				jQuery('#jappix_mini div.jm_status_picker').show();
+				jQuery(this).addClass('active');
+			}
+		}
+		
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
+	});
+
+	jQuery('#jappix_mini div.jm_status_picker a').click(function() {
+		// Using a try/catch override IE issues
+		try {
+			switch (jQuery(this).data('status')) {
+				case 'available':
+					presenceMini('available');
+					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable');
+					jQuery('#jappix_mini a.jm_status span').addClass('jm_available');
+					break; 
+				case 'away' :
+					presenceMini('', 'away');
+					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable');
+					jQuery('#jappix_mini a.jm_status span').addClass('jm_away');
+					break;
+				case 'dnd' :
+					presenceMini('', 'dnd');
+					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable');
+					jQuery('#jappix_mini a.jm_status span').addClass('jm_dnd');
+					break;
+				case 'unavailable' :
+					presenceMini('unavailable');
+					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable');
+					jQuery('#jappix_mini a.jm_status span').addClass('jm_unavailable');
+					break;
+				default:
+					presenceMini('available');
+					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable');
+					jQuery('#jappix_mini a.jm_status span').addClass('jm_available');
+					break; 
+			}
+			jQuery('#jappix_mini div.jm_status_picker').hide();
+			jQuery('#jappix_mini a.jm_status').blur().removeClass('active');
 		}
 		
 		catch(e) {}
