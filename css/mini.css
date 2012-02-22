@@ -415,6 +415,7 @@ Last revision: 14/02/12
 #jappix_mini div.jm_roster div.jm_buddies {
 	width: 100%;
 	max-height: 300px;
+	min-height: 100px;
 	padding: 5px 0;
 	overflow: auto;
 }
