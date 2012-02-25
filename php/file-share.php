@@ -8,8 +8,8 @@ This is the Jappix microblog file attaching script
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, regilero
-Last revision: 11/02/12
+Authors: Vanaryon, regilero, Cyril "Kyriog" Glapa
+Last revision: 25/12/2012
 
 */
 
@@ -33,80 +33,106 @@ if(isStatic() || isUpload())
 header('Content-Type: text/xml; charset=utf-8');
 
 // Everything is okay
-if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user']) && !empty($_POST['user'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
-	// Get the user name
-	$user = $_POST['user'];
-	
+if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
 	// Get the file name
 	$tmp_filename = $_FILES['file']['tmp_name'];
-	$filename = $_FILES['file']['name'];
-	
-	// Get the location
+        $filename = $_FILES['file']['name'];
+        $md5 = md5_file($tmp_filename);
+        $xml = new DOMDocument();
+        
+        // Get the file mime type
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimetype = $finfo->file($tmp_filename);
+        
+        // Get the location
 	if(HOST_UPLOAD)
 		$location = HOST_UPLOAD;
 	else
 		$location = $_POST['location'];
-	
-	// Get the file new name
-	$ext = getFileExt($filename);
-	$new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
-	
-	// Define some vars
-	$content_dir = JAPPIX_BASE.'/store/share/'.$user;
-	$security_file = $content_dir.'/index.html';
-	$name = sha1(time().$filename);
-	$path = $content_dir.'/'.$name.'.'.$ext;
-	$thumb_xml = '';
-	
-	// Forbidden file?
-	if(!isSafe($filename) || !isSafe($name.'.'.$ext)) {
-		exit(
-'<jappix xmlns=\'jappix:file:post\'>
-	<error>forbidden-type</error>
-</jappix>'
-		);
-	}
-	
-	// Create the user directory
-	if(!is_dir($content_dir)) {
-		mkdir($content_dir, 0777, true);
-		chmod($content_dir, 0777);
-	}
-	
+        
+        // Some little vars
+        $content_dir = JAPPIX_BASE.'/store/share';
+        $file_path = $content_dir.'/'.$md5;
+        $security_file = $content_dir.'/index.html';
+        $thumb_xml = '';
+        
+        if(!is_file($file_path)) {
+          // Generate XML file
+          $xml_file = $xml->createElement('file');
+          $xml_file->appendChild($xml->createElement('name',$filename));
+          $xml_file->appendChild($xml->createElement('type',$mimetype));
+          $xml_file->appendChild($xml->createElement('keys'));
+          $xml->appendChild($xml_file);
+          
+          // File upload error?
+          if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $file_path)) {
+                  exit(
+                  '<jappix xmlns=\'jappix:file:post\'>
+                          <error>move-error</error>
+                  </jappix>'
+                  );
+          }
+        } else {
+          $xml->load($file_path.'.xml');
+        }
+        
+        $key = generateKey();
+        
+        $keys = $xml->getElementsByTagName('keys')->item(0);
+        
+        // Check if the key is already present in the xml file
+        $key_found = false;
+        foreach($keys->childNodes as $current_key) {
+          if($current_key->nodeValue == $key) {
+            $key_found = true;
+            break;
+          }
+        }
+        
+        // Add key to xml file only if it's not already present
+        if(!$key_found)
+          $keys->appendChild($xml->createElement('key',$key));
+        
+        $xml->save($file_path.'.xml');
+        
 	// Create (or re-create) the security file
 	if(!file_exists($security_file))	
 		file_put_contents($security_file, securityHTML(), LOCK_EX);
 	
-	// File upload error?
-	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
-		exit(
-'<jappix xmlns=\'jappix:file:post\'>
-	<error>move-error</error>
-</jappix>'
-		);
-	}
-	
 	// Resize and compress if this is a JPEG file
-	if(preg_match('/^(jpg|jpeg|png|gif)$/i', $ext)) {
+        switch($mimetype) {
+          case 'image/gif':
+            $ext = 'gif';
+            break;
+          case 'image/jpeg':
+            $ext = 'jpg';
+            break;
+          case 'image/png':
+            $ext = 'png';
+            break;
+          default:
+            $ext = null;
+        }
+	if($ext) {
 		// Resize the image
-		resizeImage($path, $ext, 1024, 1024);
+		resizeImage($file_path, $ext, 1024, 1024);
 		
 		// Copy the image
-		$thumb = $content_dir.'/'.$name.'_thumb.'.$ext;
-		copy($path, $thumb);
+		$thumb = $file_path.'_thumb.'.$ext;
+		copy($file_path, $thumb);
 		
 		// Create the thumbnail
 		if(resizeImage($thumb, $ext, 140, 105))
-			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
+			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$md5.'_thumb.'.$ext).'</thumb>';
 	}
 	
 	// Return the path to the file
 	exit(
 '<jappix xmlns=\'jappix:file:post\'>
-	<href>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'.'.$ext).'</href>
-	<title>'.htmlspecialchars($new_name).'</title>
-	<type>'.htmlspecialchars(getFileMIME($path)).'</type>
-	<length>'.htmlspecialchars(filesize($path)).'</length>
+	<href>'.htmlspecialchars($location.'?m=download&file='.$md5.'&key='.$key).'</href>
+	<title>'.htmlspecialchars($filename).'</title>
+	<type>'.htmlspecialchars($mimetype).'</type>
+	<length>'.htmlspecialchars(filesize($file_path)).'</length>
 	'.$thumb_xml.'
 </jappix>'
 	);

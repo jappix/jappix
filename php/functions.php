@@ -8,8 +8,8 @@ These are the PHP functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 12/02/12
+Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero, Cyril "Kyriog" Glapa
+Last revision: 25/02/12
 
 */
 
@@ -1422,6 +1422,30 @@ function resizeImage($path, $ext, $width, $height) {
 	catch(Exception $e) {
 		return false;
 	}
+}
+
+// Generate a random key
+function generateKey() {
+  $letters = array(
+      array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'),
+      array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z')
+  );
+  $key = '';
+  $key_length = rand(5,10);
+  for($i=0;$i<$key_length;$i++) {
+    // Which type is that char ?
+    $type = rand(0,2);
+    switch($type) {
+      case 0: // It's a lowercase letter
+      case 1: // It's a uppercase letter
+        $letter = rand(0,25);
+        $key .= $letters[$type][$letter];
+        break;
+      case 2: // It's a number
+        $key .= rand(0,9);
+    }
+  }
+  return $key;
 }
 
 ?>
