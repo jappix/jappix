@@ -76,7 +76,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['locatio
 		$xml->load($file_path.'.xml');
 	}
 
-	$key = generateKey();
+	$key = substr(uniqid(), -rand(4,5));
 
 	$keys = $xml->getElementsByTagName('keys')->item(0);
 
