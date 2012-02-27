@@ -14,14 +14,14 @@ Last revision: 25/12/2012
 */
 
 if(!isset($_GET['file']))
-  exit('You don\'t provide any file to download!');
+  exit(T_('You haven\'t provided any file to download'));
 if(!isset($_GET['key']))
-  exit('You cannot download a file if you don\'t provide a key');
+  exit(T_('You cannot download a file if you don\'t provide a key'));
 
 $file_path = JAPPIX_BASE.'/store/share/'.$_GET['file'];
 $xml_path = $file_path.'.xml';
 if(!is_file($xml_path) || !is_file($file_path))
-  exit('Woah this file isn\'t found, please double check');
+  exit(T_('Woah this file isn\'t found, please double check'));
 
 $xml = new SimpleXMLElement($xml_path,0,true);
 
@@ -35,7 +35,7 @@ foreach($keys as $key) {
 }
 
 if(!$key_found)
-  exit('The key that you provide aren\'t granted for downloading this file');
+  exit(T_('The key you provided does not have the permission to download this file'));
 
 $filename = $xml->name;
 $mimetype = $xml->type;
