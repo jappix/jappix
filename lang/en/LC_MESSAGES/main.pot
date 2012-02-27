@@ -1866,3 +1866,15 @@ msgstr ""
 
 msgid "This notification is only informative, maybe the data it links to have been removed."
 msgstr ""
+
+msgid "You haven't provided any file to download"
+msgstr ""
+
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
