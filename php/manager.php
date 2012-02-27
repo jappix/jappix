@@ -8,8 +8,8 @@ This is the Jappix Manager PHP/HTML code
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 21/01/12
+Authors: Vanaryon, Cyril "Kyriog" Glapa
+Last revision: 27/02/12
 
 */
 
@@ -438,7 +438,7 @@ else
 						<?php
 						
 						// List the share files
-						browseFolder($share_folder, 'share');
+						browseXmlFolder($share_folder);
 						
 						?>
 					</div>
