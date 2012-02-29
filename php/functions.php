@@ -732,6 +732,23 @@ function anonymousMode() {
 		return false;
 }
 
+// The function to check if LDAP authentication is authorized and possible
+function ldapEnabled() {
+	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (LDAP == 'on'))
+		return true;
+	else
+		return false;
+}
+
+// The function to check if LDAP authentication is authorized and possible
+function ldapAuthentication() {
+	echo '<script type="text/javascript">
+				   jQuery(document).ready(function() {
+				      doLdapLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$_SERVER['HTTP_HOST'].'");
+				   });
+				</script>';
+}
+
 // The function to quickly translate a string
 function _e($string) {
 	echo T_gettext($string);

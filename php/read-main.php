@@ -24,6 +24,7 @@ $main_conf = array(
 	     	'resource'		=> 'Jappix',
 	     	'lock'			=> 'on',
 	     	'anonymous'		=> 'on',
+	     	'ldap'		=> 'off',
 	     	'registration'		=> 'on',
 	     	'bosh_proxy'		=> 'on',
 	     	'manager_link'		=> 'on',
@@ -63,6 +64,7 @@ define('SERVICE_DESC', $main_conf['desc']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
+define('LDAP', $main_conf['ldap']);
 define('REGISTRATION', $main_conf['registration']);
 define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('MANAGER_LINK', $main_conf['manager_link']);

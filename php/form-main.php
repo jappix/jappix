@@ -32,6 +32,12 @@ if($anonymous_mode == 'on')
 else
 	$check_anonymous_mode = '';
 
+// LDAP Authentication
+if($ldap_auth == 'on')
+	$check_ldap_auth = $checked;
+else
+	$check_ldap_auth = '';
+
 // Registration
 if($registration == 'on')
 	$check_registration = $checked;
@@ -94,6 +100,8 @@ else
 	<label for="lock_host"><?php _e("Lock the host"); ?></label><input id="lock_host" type="checkbox" name="lock_host"<?php echo $check_lock_host; ?> />
 	
 	<label for="anonymous_mode"><?php _e("Anonymous mode"); ?></label><input id="anonymous_mode" type="checkbox" name="anonymous_mode"<?php echo $check_anonymous_mode; ?> />
+
+	<label for="ldap_auth"><?php _e("LDAP authentication"); ?></label><input id="ldap_auth" type="checkbox" name="ldap_auth"<?php echo $check_ldap_auth; ?> />
 	
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
 	

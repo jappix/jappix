@@ -23,6 +23,7 @@ $service_desc = htmlspecialchars(SERVICE_DESC);
 $jappix_resource = htmlspecialchars(JAPPIX_RESOURCE);
 $lock_host = htmlspecialchars(LOCK_HOST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);
+$ldap_auth = htmlspecialchars(LDAP);
 $registration = htmlspecialchars(REGISTRATION);
 $bosh_proxy = htmlspecialchars(BOSH_PROXY);
 $manager_link = htmlspecialchars(MANAGER_LINK);
