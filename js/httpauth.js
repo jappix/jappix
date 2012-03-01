@@ -39,7 +39,7 @@ function doHttpLogin(lNick, lPass, lServer) {
 		var random_resource = getDB('session', 'resource');
 		
 		if(!random_resource)
-			random_resource = 'Jappix (' + (new Date()).getTime() + ')';
+			random_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
 		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
@@ -54,7 +54,7 @@ function doHttpLogin(lNick, lPass, lServer) {
 		setDB('session', 'resource', random_resource);
 		
 		// Generate a session XML to be stored
-		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>Jappix</resource><password>' + lPass.htmlEnc() + '</password><priority>10</priority></session>';
+		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + random_resource + '</resource><password>' + lPass.htmlEnc() + '</password><priority>10</priority></session>';
 		
 		// Save the session parameters (for reconnect if network issue)
 		CURRENT_SESSION = session_xml;
