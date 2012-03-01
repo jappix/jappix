@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<jappix xmlns="jappix:file:get">
+	<js>httpauth.js</js>
+</jappix>

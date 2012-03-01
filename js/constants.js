@@ -127,6 +127,7 @@ var SERVICE_DESC = null;
 var JAPPIX_RESOURCE = null;
 var LOCK_HOST = null;
 var ANONYMOUS = null;
+var HTTP_AUTH = null;
 var REGISTRATION = null;
 var BOSH_PROXY = null;
 var MANAGER_LINK = null;

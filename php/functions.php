@@ -732,6 +732,23 @@ function anonymousMode() {
 		return false;
 }
 
+// The function to check if HTTP authentication is authorized and possible
+function httpAuthEnabled() {
+	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (HTTP_AUTH == 'on'))
+		return true;
+	else
+		return false;
+}
+
+// The function to authenticate with HTTP
+function httpAuthentication() {
+	echo '<script type="text/javascript">
+				   jQuery(document).ready(function() {
+				      doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.HOST_MAIN.'");
+				   });
+				</script>';
+}
+
 // The function to quickly translate a string
 function _e($string) {
 	echo T_gettext($string);
