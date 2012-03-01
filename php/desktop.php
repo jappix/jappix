@@ -39,11 +39,11 @@ if(!defined('JAPPIX_BASE'))
 		echo "\n";
 	}
 	
-	if(ldapEnabled()) {
+	if(httpEnabled()) {
 		echo "\n\t";
-		echoGetFiles($hash, '', 'js', 'ldap.xml', '');
+		echoGetFiles($hash, '', 'js', 'httpauth.xml', '');
 		echo "\n\t";
-		ldapAuthentication();
+		httpAuthentication();
 		echo "\n";
 	} ?>
 </head>
@@ -53,7 +53,7 @@ if(!defined('JAPPIX_BASE'))
 <?php
 
 // Homepage?
-if(!anonymousMode() && !ldapEnabled()) { ?>
+if(!anonymousMode() && !httpEnabled()) { ?>
 	<!-- BEGIN HOMEPAGE -->
 	<div id="home">
 		<div class="home-images plane"></div>

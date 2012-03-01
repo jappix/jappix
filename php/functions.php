@@ -732,19 +732,19 @@ function anonymousMode() {
 		return false;
 }
 
-// The function to check if LDAP authentication is authorized and possible
-function ldapEnabled() {
-	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (LDAP == 'on'))
+// The function to check if HTTP authentication is authorized and possible
+function httpEnabled() {
+	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (HTTP == 'on'))
 		return true;
 	else
 		return false;
 }
 
-// The function to check if LDAP authentication is authorized and possible
-function ldapAuthentication() {
+// The function to check if HTTP authentication is authorized and possible
+function httpAuthentication() {
 	echo '<script type="text/javascript">
 				   jQuery(document).ready(function() {
-				      doLdapLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$_SERVER['HTTP_HOST'].'");
+				      doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.HOST_MAIN.'");
 				   });
 				</script>';
 }

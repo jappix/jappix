@@ -47,11 +47,11 @@ if(isset($_POST['anonymous_mode']) && !empty($_POST['anonymous_mode']))
 else
 	$anonymous_mode = 'off';
 
-// LDAP authentication
-if(isset($_POST['ldap_auth']) && !empty($_POST['ldap_auth']))
-	$ldap_auth = 'on';
+// HTTP authentication
+if(isset($_POST['http_auth']) && !empty($_POST['http_auth']))
+	$http_auth = 'on';
 else
-	$ldap_auth = 'off';
+	$http_auth = 'off';
 
 // Registration
 if(isset($_POST['registration']) && !empty($_POST['registration']))
@@ -120,7 +120,7 @@ $conf_xml =
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>
-	<ldap>'.$ldap_auth.'</ldap>
+	<http>'.$http_auth.'</http>
 	<registration>'.$registration.'</registration>
 	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
 	<manager_link>'.$manager_link.'</manager_link>
