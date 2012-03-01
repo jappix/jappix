@@ -98,7 +98,8 @@ else
 	<title><?php _e("Jappix installation"); ?> &bull; <?php echo($names[$step - 1]); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'install.xml', ''); echo "\n"; ?>
-	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
+	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.less'); ?><![endif]-->
+	<script src="./js/less-1.2.1.min.js" type="text/javascript"></script>
 </head>
 
 <body class="body-images">

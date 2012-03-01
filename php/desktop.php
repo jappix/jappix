@@ -27,7 +27,7 @@ if(!defined('JAPPIX_BASE'))
 	<link rel="shortcut icon" href="./favicon.ico" />
 	
 	<?php echoGetFiles($hash, '', 'css', 'desktop.xml', ''); echo "\n"; ?>
-	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
+	<!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.less'); ?><![endif]-->
 	
 	<?php echoGetFiles($hash, $locale, 'js', 'desktop.xml', ''); echo "\n";
 	
@@ -38,6 +38,7 @@ if(!defined('JAPPIX_BASE'))
 		echoGetFiles($hash, $locale, 'js', 'anonymous.xml', '');
 		echo "\n";
 	} ?>
+	<script src="./js/less-1.2.1.min.js" type="text/javascript"></script>
 </head>
 
 <body class="body-images">
