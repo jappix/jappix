@@ -2,43 +2,37 @@
  
 Jappix - An open social platform
 This is the buddy-list CSS stylesheet for Jappix
+using less.js <http://lesscss.org>
  
 -------------------------------------------------
  
 License: AGPL
-Author: Vanaryon
-Last revision: 31/08/11
+Author: Vanaryon, Julien Barrier
+Last revision: 01/03/12
  
 */
  
 #buddy-list {
-        background-color: rgb(20,20,20);
-        background-color: rgba(20,20,20,0.85);
-        color: #919191;
+        background-color: @gray2;
+        color: @gray3;
         padding: 15px 6px 4px 6px;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        box-shadow: 0 0 6px #5c5c5c;
-        -moz-box-shadow: 0 0 6px #5c5c5c;
-        -webkit-box-shadow: 0 0 6px #5c5c5c;
+	.rounded-corners(4px);
+        box-shadow: 0 0 6px @gray1;
+        -moz-box-shadow: 0 0 6px @gray1;
+        -webkit-box-shadow: 0 0 6px @gray1;
 }
  
 #buddy-list .content {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e8f1f3, #e4edef);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#e4edef));
-        color: #666666;
+	background: @blue07;
+	background: -moz-linear-gradient(top, @blue07, @blue08);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue07), to(@blue08));
+        color: @gray4;
         height: 207px;
         padding: 4px 4px 0 4px;
         overflow-x: hidden;
         overflow-y: auto;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        -moz-border-radius-topleft: 3px;
-        -moz-border-radius-topright: 3px;
-        -webkit-border-top-left-radius: 3px;
-        -webkit-border-top-right-radius: 3px;
+        .rounded-corner-tl(3px);
+	.rounded-corner-tr(3px);
 }
  
 #buddy-list .one-group {
@@ -46,7 +40,7 @@ Last revision: 31/08/11
 }
  
 #buddy-list .one-group a.group {
-        color: #202c2f;
+        color: @blue09;
         font-size: 0.8em;
         margin: 3px 6px;
         padding-left: 12px;
