@@ -39,7 +39,7 @@ if(!defined('JAPPIX_BASE'))
 		echo "\n";
 	}
 	
-	if(httpEnabled()) {
+	if(httpAuthEnabled()) {
 		echo "\n\t";
 		echoGetFiles($hash, '', 'js', 'httpauth.xml', '');
 		echo "\n\t";
@@ -53,7 +53,7 @@ if(!defined('JAPPIX_BASE'))
 <?php
 
 // Homepage?
-if(!anonymousMode() && !httpEnabled()) { ?>
+if(!anonymousMode() && !httpAuthEnabled()) { ?>
 	<!-- BEGIN HOMEPAGE -->
 	<div id="home">
 		<div class="home-images plane"></div>

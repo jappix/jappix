@@ -733,14 +733,14 @@ function anonymousMode() {
 }
 
 // The function to check if HTTP authentication is authorized and possible
-function httpEnabled() {
-	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (HTTP == 'on'))
+function httpAuthEnabled() {
+	if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (HTTP_AUTH == 'on'))
 		return true;
 	else
 		return false;
 }
 
-// The function to check if HTTP authentication is authorized and possible
+// The function to authenticate with HTTP
 function httpAuthentication() {
 	echo '<script type="text/javascript">
 				   jQuery(document).ready(function() {

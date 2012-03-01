@@ -24,7 +24,7 @@ $main_conf = array(
 	     	'resource'		=> 'Jappix',
 	     	'lock'			=> 'on',
 	     	'anonymous'		=> 'on',
-	     	'http'		=> 'off',
+	     	'http_auth'		=> 'off',
 	     	'registration'		=> 'on',
 	     	'bosh_proxy'		=> 'on',
 	     	'manager_link'		=> 'on',
@@ -64,7 +64,7 @@ define('SERVICE_DESC', $main_conf['desc']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
-define('HTTP', $main_conf['http']);
+define('HTTP_AUTH', $main_conf['http_auth']);
 define('REGISTRATION', $main_conf['registration']);
 define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('MANAGER_LINK', $main_conf['manager_link']);

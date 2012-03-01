@@ -120,7 +120,7 @@ $conf_xml =
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>
-	<http>'.$http_auth.'</http>
+	<http_auth>'.$http_auth.'</http_auth>
 	<registration>'.$registration.'</registration>
 	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
 	<manager_link>'.$manager_link.'</manager_link>
