@@ -66,8 +66,8 @@ Last revision: 01/03/12
 }
 
 .popup .tab a {
-	background-color: #d9e7ea;
-	color: #204249;
+	background-color: @blue10;
+	color: @blue34;
 	width: 180px;
 	height: 17px;
 	padding: 4px 4px 4px 16px;
@@ -75,27 +75,23 @@ Last revision: 01/03/12
 	font-size: 0.94em;
 	overflow: hidden;
 	float: left;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
 }
 
 .popup .tab a:hover,
 .popup .tab a:focus {
-	background-color: #cedee1;
+	background-color: @blue11;
 	text-decoration: none;
 }
 
 .popup .tab a:active {
-	background-color: #c3d3d7;
+	background-color: @blue12;
 	text-decoration: none;
 }
 
 .popup .tab a.tab-active {
-	background-color: #e4eef9 !important;
+	background-color: @blue05 !important;
 }
 
 .popup .one-lap {
@@ -107,16 +103,14 @@ Last revision: 01/03/12
 }
 
 .popup .content {
-	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #D0E5FA);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#D0E5FA));
+	background: @blue05;
+	background: -moz-linear-gradient(top, @blue05, @blue59);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue05), to(@blue59));
 	height: 358px;
 	width: 640px;
 	position: absolute;
 	left: 10px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 	box-shadow: 0 0 20px black;
 	-moz-box-shadow: 0 0 20px black;
 	-webkit-box-shadow: 0 0 20px black;
@@ -124,11 +118,11 @@ Last revision: 01/03/12
 
 .popup .content,
 .popup .content a {
-	color: #112a2f;
+	color: @blue60;
 }
 
 .popup.large div.comments {
-	background-color: #f4f4f4;
+	background-color: @gray11;
 	width: 272px;
 	margin: 0;
 	position: absolute;
@@ -137,9 +131,7 @@ Last revision: 01/03/12
 	bottom: 10px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 }
 
 .popup.large div.comments div.comments-content {
@@ -160,17 +152,13 @@ Last revision: 01/03/12
 }
 
 .popup.large div.comments div.comments-content {
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
 }
 
 .popup .head {
-	background: #f1f6fd;
-	border: 1px #9dc4fc solid;
+	background: @blue01;
+	border: 1px @blue02 solid;
 	width: 606px;
 	height: 24px;
 	margin: 0 10px 10px 10px;
@@ -194,7 +182,7 @@ Last revision: 01/03/12
 }
 
 .popup .actions a {
-	color: #30575f;
+	color: @blue61;
 	font-size: 0.9em;
 	margin-left: 5px;
 }
@@ -218,12 +206,10 @@ Last revision: 01/03/12
 }
 
 .popup fieldset {
-	border: 1px #547177 solid;
+	border: 1px @blue62 solid;
 	margin: 0 0 15px 0;
 	padding: 8px 2px 3px 2px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 }
 
 .popup legend {
@@ -234,7 +220,7 @@ Last revision: 01/03/12
 }
 
 .popup label {
-	color: #1b1b1b;
+	color: @gray41;
 	width: 150px;
 	margin: 0 0 10px 12px;
 	clear: both;
@@ -405,23 +391,21 @@ Last revision: 01/03/12
 
 .popup a.one-button {
 	display: none;
-	background-color: #f1f6fd;
-	border: 1px solid #b9cbcf;
+	background-color: @blue01;
+	border: 1px solid @blue30;
 	margin-top: 1px;
 	padding: 4px 8px;
 	text-decoration: none;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 .popup a.one-button:hover,
 .popup a.one-button:focus {
-	border: 1px solid #95b1b7;
+	border: 1px solid @blue32;
 }
 
 .popup a.one-button:active {
-	border: 1px solid #77989f;
+	border: 1px solid @blue33;
 }
 
 .popup .results .oneresult:hover a.one-button {
@@ -509,13 +493,13 @@ Last revision: 01/03/12
 .popup .oneresult {
 	font-size: 0.9em;
 	padding: 3px 0 4px 4px;
-	border-bottom: 1px #9dc4fc solid;
+	border-bottom: 1px @blue02 solid;
 	overflow: hidden;
 	position: relative;
 }
 
 .popup .oneresult:hover {
-	background: #e9f1fd;
+	background: @blue03;
 }
 
 .popup .oneresult[onclick]:hover {
@@ -523,14 +507,13 @@ Last revision: 01/03/12
 }
 
 .popup .oneresult[onclick]:active {
-	background: #f1f6fd;
+	background: @blue01;
 }
 
 .popup .infos {
-	background-color: rgb(255,239,104);
-	background-color: rgba(255,239,104,0.8);
-	border: 1px #decb2f solid;
-	color: #3f3f3f;
+	background-color: @yellow17;
+	border: 1px @yellow18 solid;
+	color: @gray42;
 	padding: 8px;
 	margin: 10px;
 	font-size: 0.8em;
@@ -559,8 +542,7 @@ Last revision: 01/03/12
 
 a.finish {
 	border: 1px solid white;
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.1);
+	background-color: @white01;
 	color: white;
 	padding: 4px 8px;
 	margin-right: 7px;
@@ -568,9 +550,7 @@ a.finish {
 	text-align: center;
 	text-decoration: none;
 	text-shadow: 0 1px 1px black;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 	box-shadow: 0 0 5px black;
 	-moz-box-shadow: 0 0 5px black;
 	-webkit-box-shadow: 0 0 5px black;
@@ -579,16 +559,14 @@ a.finish {
 a.finish:hover,
 a.finish:focus {
 	cursor: pointer;
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.2);
+	background-color: @white03;
 	box-shadow: 0 0 15px black;
 	-moz-box-shadow: 0 0 15px black;
 	-webkit-box-shadow: 0 0 15px black;
 }
 
 a.finish:active {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.3);
+	background-color: @white04;
 }
 
 a.finish.disabled {
@@ -599,8 +577,7 @@ a.finish.disabled:hover,
 a.finish.disabled:focus,
 a.finish.disabled:active {
 	cursor: default;
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.1);
+	background-color: @white01;
 }
 
 .popup a.finish {

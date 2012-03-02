@@ -18,18 +18,13 @@ Last revision: 01/03/12
 
 .search input.suggested {
 	border-bottom: 1px solid white;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-	-moz-border-radius-bottomright: 0;
-	-moz-border-radius-bottomleft: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
+	.rounded-corner-br(0);
+	.rounded-corner-bl(0);
 }
 
 .search ul {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.9);
-	border-color: #e1a014;
+	background-color: @white05;
+	border-color: @orange01;
 	border-style: solid;
 	border-width: 0 1px 1px 1px;
 	position: absolute;
@@ -37,17 +32,13 @@ Last revision: 01/03/12
 	padding: 3px 0;
 	list-style: none;
 	overflow: auto;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-webkit-border-bottom-right-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
+	.rounded-corner-br(3px);
+	.rounded-corner-bl(3px);
 }
 
 .search ul li {
 	padding: 2px 6px;
-	color: #3d3d3d;
+	color: @gray43;
 	text-shadow: none;
 }
 
@@ -56,6 +47,5 @@ Last revision: 01/03/12
 }
 
 .search ul li.hovered {
-	background-color: rgb(225,160,20);
-	background-color: rgba(225,160,20,0.3);
+	background-color: @orange08;
 }
