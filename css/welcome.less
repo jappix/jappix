@@ -25,16 +25,14 @@ Last revision: 01/03/12
 }
 
 #welcome a.box {
-	background-color: #e4eef9;
-	border: 1px solid #ccdbde;
+	background-color: @blue05;
+	border: 1px solid @blue73;
 	margin: 12px 11px 4px 15px;
 	padding: 10px;
 	width: 270px;
 	text-decoration: none;
 	float: left;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	.rounded-corners(4px);
 }
 
 #welcome a.box.share {
@@ -54,16 +52,16 @@ Last revision: 01/03/12
 
 #welcome a.box:hover,
 #welcome a.box:focus {
-	border: 1px solid #93c5fa;
+	border: 1px solid @blue20;
 }
 
 #welcome a.box:active {
-	border: 1px solid #419afa;
+	border: 1px solid @blue74;
 }
 
 #welcome a.box.enabled {
-	background-color: #f1f6fd;
-	border: 1px solid #9dc4fc;
+	background-color: @blue01;
+	border: 1px solid @blue02;
 }
 
 #welcome a.box span {
