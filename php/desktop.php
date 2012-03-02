@@ -1,4 +1,4 @@
-<?php
+ja<?php
 
 /*
 
@@ -118,6 +118,10 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 						<span class="name">Jappix Mini</span>
 						<span class="desc"><?php _e("A mini-chat for your website."); ?></span>
 					</a>
+					<a href="https://project.jappix.com/">
+						<span class="name">Jappix Project</span>
+						<span class="desc"><?php _e("Get Jappix, get support."); ?></span>
+					</a>
 					<a href="https://stats.jappix.com/">
 						<span class="name">Jappix Stats</span>
 						<span class="desc"><?php _e("Statistics around Jappix."); ?></span>
@@ -127,7 +131,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 				<h2>Jappix.org</h2>
 				<div class="tabulate">
 					<a href="http://jappix.org/">
-						<span class="name">Jappix Project</span>
+						<span class="name">Jappix Download</span>
 						<span class="desc"><?php _e("Get Jappix, get support."); ?></span>
 					</a>
 					<a href="http://developer.jappix.org/">
