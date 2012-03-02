@@ -18,9 +18,7 @@ Last revision: 01/03/12
 	left: 115px;
 	right: 15px;
 	bottom: 15px;
-	border-radius: 20px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
+	.rounded-corners(20px);
 }
 
 #channel .top p {
@@ -31,12 +29,12 @@ Last revision: 01/03/12
 #channel .top h2 {
 	font-size: 1.6em;
 	margin-bottom: 10px;
-	color: #232323;
+	color: @gray05;
 }
 
 #channel .top a {
 	font-size: 0.9em;
-	color: #232323;
+	color: @gray05;
 }
 
 #channel .top.individual div.update {
@@ -109,7 +107,7 @@ Last revision: 01/03/12
 	position: absolute;
 	width: 263px;
 	margin-left: -227px;
-	color: white;
+	color: @white;
 	font-size: 0.85em;
 	z-index: 9998;
 	text-align: left;
@@ -158,8 +156,7 @@ Last revision: 01/03/12
 }
 
 .attach-subitem {
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.8);
+	background-color: @black1;
 	padding: 10px;
 	text-shadow: 0 1px 1px black;
 	border-radius: 5px;
@@ -175,7 +172,7 @@ Last revision: 01/03/12
 #channel .one-update {
 	margin-bottom: 12px;
 	padding: 6px 6px 8px 6px;
-	border-bottom: 1px dotted #d0d0d0;
+	border-bottom: 1px dotted @gray06;
 	min-height: 50px;
 	color: black;
 	position: relative;
@@ -236,7 +233,7 @@ Last revision: 01/03/12
 
 #channel .one-update p.infos a.geoloc {
 	background-position: 0 -1778px;
-	color: #363636;
+	color: @gray07;
 	margin-left: 18px;
 	padding-left: 14px;
 }
@@ -244,7 +241,7 @@ Last revision: 01/03/12
 #channel .one-update p.infos a.geoloc:hover,
 #channel .one-update p.infos a.geoloc:focus,
 #channel .one-update p.infos a.geoloc:active {
-	color: #141414;
+	color: @gray8;
 }
 
 #channel .one-update p.file {
@@ -295,7 +292,7 @@ Last revision: 01/03/12
 }
 
 #channel .one-update p.file a.thumb img {
-	border: 1px solid #a2a2a2;
+	border: 1px solid @gray9;
 	max-width: 140px;
 	max-height: 105px;
 	margin: 4px 10px 2px 0;
@@ -303,7 +300,7 @@ Last revision: 01/03/12
 }
 
 #channel .one-update p.file a.thumb img:hover {
-	border-color: #464646;
+	border-color: @gray10;
 }
 
 #channel .one-update div.comments,
@@ -323,10 +320,10 @@ Last revision: 01/03/12
 
 #channel .one-update div.comments div.comments-content,
 .popup.large div.comments div.comments-content {
-	background-color: #e5ebec;
+	background-color: @blue17;
 	color: black;
 	font-size: 0.9em;
-	text-shadow: 0 1px 0 white;
+	text-shadow: 0 1px 0 @white;
 }
 
 #channel .one-update div.comments input,
@@ -352,7 +349,7 @@ Last revision: 01/03/12
 
 #channel .one-update div.comments .one-comment,
 .popup.large div.comments .one-comment {
-	border-bottom: 1px solid #f4f4f4;
+	border-bottom: 1px solid @gray11;
 	padding: 4px 8px 0px 8px;
 	position: relative;
 	display: block;
@@ -360,7 +357,7 @@ Last revision: 01/03/12
 
 #channel .one-update div.comments .one-comment.compose,
 .popup.large div.comments .one-comment.compose {
-	border-bottom: 2px solid #f4f4f4;
+	border-bottom: 2px solid @gray11;
 	height: 36px;
 	padding: 0;
 }
@@ -389,7 +386,7 @@ Last revision: 01/03/12
 
 #channel .one-update div.comments .one-comment div.marker,
 .popup.large div.comments .one-comment div.marker {
-	background-color: #6d8387;
+	background-color: @blue18;
 	width: 2px;
 	position: absolute;
 	top: 0;
@@ -519,12 +516,8 @@ Last revision: 01/03/12
 
 #channel .footer {
 	bottom: 0;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	.rounded-corner-bl(4px);
+	.rounded-corner-br(4px);
 }
 
 #channel .footer div {

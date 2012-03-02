@@ -13,23 +13,21 @@ Last revision: 01/03/12
 */
 
 #page-engine {
-	background-color: #f4f4f4;
+	background-color: @gray11;
 	position: absolute;
 	top: 40px;
 	bottom: 6px;
 	right: 6px;
 	left: 6px;
 	z-index: 8;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 }
 
 #page-engine .top {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e8f1f3, #dee8ea);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#dee8ea));
-	border-bottom: 1px solid #d0d0d0;
+	background: @blue07;
+	background: -moz-linear-gradient(top, @blue07, @blue46);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue07), to(@blue46));
+	border-bottom: 1px solid @gray06;
 	color: black;
 	position: absolute;
 	top: 0;
@@ -37,12 +35,8 @@ Last revision: 01/03/12
 	right: 0;
 	padding: 6px;
 	height: 80px;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
 }
 
 #page-engine .top .avatar-container {
@@ -116,9 +110,9 @@ Last revision: 01/03/12
 	right: 0;
 	bottom: 29px;
 	overflow: auto;
-	box-shadow: inset 0 3px 10px #e8e8e8;
-	-moz-box-shadow: inset 0 3px 10px #e8e8e8;
-	-webkit-box-shadow: inset 0 3px 10px #e8e8e8;
+	box-shadow: inset 0 3px 10px @gray32;
+	-moz-box-shadow: inset 0 3px 10px @gray32;
+	-webkit-box-shadow: inset 0 3px 10px @gray32;
 }
 
 #page-engine .content {
@@ -149,7 +143,7 @@ Last revision: 01/03/12
 }
 
 #page-engine .list {
-	border-left: 1px solid #c8c8c8;
+	border-left: 1px solid @gray34;
 	padding: 8px 0 0;
 	width: 190px;
 	right: 0;
@@ -162,34 +156,34 @@ Last revision: 01/03/12
 
 #page-engine .list .title {
 	font-weight: bold;
-	color: #383838;
+	color: @gray35;
 	margin-left: 8px;
 }
 
 #page-engine .list .user {
-	background: #eff2f2;
-	background: -moz-linear-gradient(top, #eff2f2, #ecefef);
-	background: -webkit-gradient(linear, left top, left bottom, from(#eff2f2), to(#ecefef));
-	border-color: #c8c8c8;
+	background: @blue47;
+	background: -moz-linear-gradient(top, @blue47, @blue48);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue47), to(@blue48));
+	border-color: @gray34;
 	border-width: 1px 0;
 	border-style: solid;
-	color: #383838;
+	color: @gray35;
 	margin-bottom: 3px;
 	height: 32px;
 	overflow: hidden;
 }
 
 #page-engine .list .user:hover {
-	background: #e9ecec;
+	background: @blue49;
 	cursor: pointer;
 }
 
 #page-engine .list .user:active {
-	background: #e3e7e7;
+	background: @blue50;
 }
 
 #page-engine .list .user.myself {
-	background-color: #eff2f2;
+	background-color: @blue47;
 	cursor: default;
 }
 
@@ -215,7 +209,7 @@ Last revision: 01/03/12
 
 #page-engine .one-group,
 #archives .one-group {
-	border-bottom: 1px dotted #d0d0d0;
+	border-bottom: 1px dotted @gray06;
 	padding-bottom: 8px;
 	margin-bottom: 10px;
 }
@@ -236,12 +230,12 @@ Last revision: 01/03/12
 
 #page-engine .one-group b.name.me,
 #archives .one-group b.name.me {
-	color: #123a5c;
+	color: @blue42;
 }
 
 #page-engine .one-group b.name.him,
 #archives .one-group b.name.him {
-	color: #801e1e;
+	color: @red10;
 }
 
 #page-engine .one-group span.date,
@@ -276,13 +270,13 @@ Last revision: 01/03/12
 }
 
 #page-engine .system-message {
-	color: #053805 !important;
+	color: @green13 !important;
 	margin-bottom: 3px !important;
 	padding-left: 0 !important;
 }
 
 #page-engine .system-message a {
-	color: #053805 !important;
+	color: @green13 !important;
 }
 
 #page-engine .system-message p.help b {
@@ -308,17 +302,14 @@ Last revision: 01/03/12
 }
 
 #page-engine .chatstate {
-	background-color: rgb(234,234,234);
-	background-color: rgba(234,234,234,0.8);
-	color: #2c2c2c;
+	background-color: @gray36;
+	color: @gray37;
 	padding: 3px 10px 2px 8px;
 	position: absolute;
 	bottom: 93px;
 	left: 0;
 	font-size: 0.75em;
-	border-top-right-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-webkit-border-top-right-radius: 3px;
+	.rounded-corner-tr(3px);
 }
 
 #page-engine .text {
@@ -330,10 +321,10 @@ Last revision: 01/03/12
 }
 
 #page-engine .footer {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #dee8ea, #e8f1f3);
-	background: -webkit-gradient(linear, left top, left bottom, from(#dee8ea), to(#e8f1f3));
-	border-color: #d0d0d0;
+	background: @blue07;
+	background: -moz-linear-gradient(top, @blue46, @blue07);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue46), to(@blue07));
+	border-color: @gray06;
 	border-width: 1px 0 0;
 	border-style: solid;
 	color: black;
@@ -441,9 +432,7 @@ Last revision: 01/03/12
 	margin: 6px 5px 0 0;
 	float: left;
 	opacity: 0.6;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 	box-shadow: 0 0 5px black;
 	-moz-box-shadow: 0 0 5px black;
 	-webkit-box-shadow: 0 0 5px black;
@@ -456,7 +445,7 @@ Last revision: 01/03/12
 
 #page-engine .bubble-style a.color.selected {
 	opacity: 1;
-	border-color: #ffb20d;
+	border-color: @orange04;
 }
 
 #page-engine .bubble-file .tooltip-subitem {
@@ -490,38 +479,28 @@ Last revision: 01/03/12
 }
 
 #page-engine .text textarea {
-	border: 1px solid #c8c8c8;
+	border: 1px solid @gray34;
 	padding: 5px;
 	height: 100%;
 	width: 100%;
 	font-size: 1.1em;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-top-right-radius: 0;
-	border-top-left-radius: 0;
-	-moz-border-radius-topright: 0;
-	-moz-border-radius-topleft: 0;
-	-webkit-border-top-right-radius: 0;
-	-webkit-border-top-left-radius: 0;
+	.rounded-corners(3px);
+	.rounded-corner-tr(0);
+	.rounded-corner-tl(0);
 }
 
 #page-engine .muc-ask {
-	background-color: #e8f1f3;
+	background-color: @blue07;
 	height: 64px;
 	font-size: 0.9em;
 	right: 0;
 	z-index: 2;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-webkit-border-bottom-right-radius: 3px;
+	.rounded-corner-bl(3px);
+	.rounded-corner-br(3px);
 }
 
 #page-engine .muc-ask label {
-	color: #224249;
+	color: @blue31;
 	margin: 23px 10px 0 16px;
 	font-weight: bold;
 }
@@ -547,15 +526,12 @@ Last revision: 01/03/12
 }
 
 #page-engine .tooltip-subitem {
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.8);
+	background-color: @black1;
 	padding: 10px;
 	width: 200px;
 	height: 110px;
 	text-shadow: 0 1px 1px black;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+	.rounded-corners(5px);
 }
 
 #page-engine .tooltip-subarrow {

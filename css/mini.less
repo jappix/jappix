@@ -40,9 +40,7 @@ Last revision: 01/03/12
 	text-transform: none;
 	text-shadow: none;
 	opacity: 1.0;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
+	.rounded-corners(0);
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -72,10 +70,10 @@ Last revision: 01/03/12
 }
 
 #jappix_mini a.jm_pane {
-	background-color: #f4f4f4;
+	background-color: @gray11;
 	background-position: 0 -100px;
 	background-repeat: repeat-x;
-	border-color: #999999;
+	border-color: @gray24;
 	border-style: solid;
 	border-width: 1px 1px 0 1px;
 	font-weight: bold;
@@ -91,7 +89,7 @@ Last revision: 01/03/12
 
 #jappix_mini a.jm_pane:hover,
 #jappix_mini a.jm_pane:focus {
-	border-color: #666666;
+	border-color: @gray04;
 }
 
 #jappix_mini div.jm_starter,
@@ -140,7 +138,7 @@ Last revision: 01/03/12
 	background: white;
 	position: relative;
 	border-top: none;
-	border-left: 1px solid #999999;
+	border-left: 1px solid @gray24;
 	padding-top: 7px;
 }
 
@@ -169,7 +167,7 @@ Last revision: 01/03/12
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_middle {
-	background-color: #c60505;
+	background-color: @red09;
 	color: white;
 	font-size: 0.85em;
 	height: 14px;
@@ -182,7 +180,7 @@ Last revision: 01/03/12
 
 #jappix_mini div.jm_chat-content {
 	background-color: white;
-	border: 1px solid #999999;
+	border: 1px solid @gray24;
 	height: 300px;
 	width: 260px;
 	position: absolute;
@@ -192,8 +190,8 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_actions {
-	background-color: #565d5e;
-	border-bottom: 1px solid #3a3a3a;
+	background-color: @blue36;
+	border-bottom: 1px solid @gray25;
 	height: 14px;
 	padding: 4px 6px;
 	font-weight: bold;
@@ -209,7 +207,7 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_actions a.jm_one-action {
-	background-color: #727879;
+	background-color: @blue37;
 	margin: 0 -2px 0 5px;
 	height: 15px;
 	width: 15px;
@@ -219,11 +217,11 @@ Last revision: 01/03/12
 
 #jappix_mini div.jm_actions a.jm_one-action:hover,
 #jappix_mini div.jm_actions a.jm_one-action:focus {
-	background-color: #7f8788;
+	background-color: @blue38;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action:active {
-	background-color: #8c9293;
+	background-color: @blue39;
 }
 
 #jappix_mini div.jm_actions a.jm_logo {
@@ -237,11 +235,11 @@ Last revision: 01/03/12
 
 #jappix_mini div.jm_actions a.jm_logo:hover,
 #jappix_mini div.jm_actions a.jm_logo:focus {
-	background-color: #636a6b;
+	background-color: @blue40;
 }
 
 #jappix_mini div.jm_actions a.jm_logo:active {
-	background-color: #707677;
+	background-color: @blue41;
 }
 
 #jappix_mini div.jm_actions a.jm_close {
@@ -253,14 +251,14 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_actions a.jm_status {
-	background-color: #727879;
+	background-color: @blue37;
 	position: static;
 }
 
 #jappix_mini div.jm_actions a.active,
 #jappix_mini div.jm_actions a.active:focus {
-	background-color: #727879;
-	border: 1px solid #3A3A3A;
+	background-color: @blue37;
+	border: 1px solid @gray25;
 	border-width: 1px 1px 0 1px;
     	height: 15px;
 	width: 14px;
@@ -271,14 +269,14 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_status_picker {
-	background-color: #727879;
+	background-color: @blue37;
 	color: white;
 	left: 16px;
 	list-style: none outside none;
 	position: absolute;
 	top: 18px;
 	width: 120px;
-	border: 1px solid #3a3a3a;
+	border: 1px solid @gray25;
 	z-index: 9;
 }
 
@@ -291,7 +289,7 @@ Last revision: 01/03/12
 #jappix_mini div.jm_status_picker a:hover{
 	display: block;
 	padding: 6px;
-	color: #3A3A3A;
+	color: @gray25;
 	background-color: white;
 }
 
@@ -315,13 +313,13 @@ Last revision: 01/03/12
 #jappix_mini div.jm_received-messages div.jm_group {
 	margin: 2px 6px 9px 6px;
 	padding-bottom: 8px;
-	border-bottom: 1px solid #eaeaea;
+	border-bottom: 1px solid @gray26;
 }
 
 #jappix_mini div.jm_received-messages div.jm_system-message p,
 #jappix_mini div.jm_received-messages div.jm_system-message b,
 #jappix_mini div.jm_received-messages div.jm_system-message a {
-	color: #053805 !important;
+	color: @green13 !important;
 	font-style: italic !important;
 }
 
@@ -335,11 +333,11 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_received-messages b.jm_name.jm_me {
-	color: #123a5c;
+	color: @blue42;
 }
 
 #jappix_mini div.jm_received-messages b.jm_name.jm_him {
-	color: #801e1e;
+	color: @red10;
 }
 
 #jappix_mini div.jm_received-messages span.jm_date {
@@ -354,7 +352,7 @@ Last revision: 01/03/12
 
 #jappix_mini input.jm_send-messages {
 	background-color: white;
-	border-color: #999999;
+	border-color: @gray24;
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
@@ -366,16 +364,16 @@ Last revision: 01/03/12
 #jappix_mini div.jm_disabled input.jm_send-messages,
 #jappix_mini div.jm_disabled a.jm_pane,
 #jappix_mini a.jm_switch.jm_nonav {
-	background: #f3f3f3 !important;
+	background: @gray22 !important;
 }
 
 #jappix_mini div.jm_disabled input.jm_send-messages {
-	color: #9d9d9d;
+	color: @gray27;
 }
 
 #jappix_mini div.jm_roster {
 	background-color: white;
-	border: 1px solid #999999;
+	border: 1px solid @gray24;
 	width: 160px;
 	position: absolute;
 	right: 0;
@@ -384,7 +382,7 @@ Last revision: 01/03/12
 }
 
 #jappix_mini div.jm_search {
-	border-top: 1px solid #999999;
+	border-top: 1px solid @gray24;
 	padding: 2px 0;
 }
 
@@ -398,19 +396,19 @@ Last revision: 01/03/12
 }
 
 #jappix_mini input.jm_searchbox:focus {
-	border-color: #999999;
+	border-color: @gray24;
 }
 
 #jappix_mini input.jm_searchbox.placeholder {
-	color: #999999 !important;
+	color: @gray24 !important;
 }
 
 #jappix_mini input.jm_searchbox::-webkit-input-placeholder {
-	color: #999999 !important;
+	color: @gray24 !important;
 }
 
 #jappix_mini input.jm_searchbox:-moz-placeholder {
-	color: #999999 !important;
+	color: @gray24 !important;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
@@ -445,8 +443,8 @@ Last revision: 01/03/12
 }
 
 #jappix_mini a.jm_friend.jm_hover {
-	background-color: #888888;
-	border-color: #494949;
+	background-color: @gray28;
+	border-color: @gray29;
 	color: white;
 }
 
@@ -463,8 +461,8 @@ Last revision: 01/03/12
 #jappix_mini a.jm_button.jm_clicked {
 	background: white;
 	border-top: none;
-	border-left: 1px solid #999999;
-	border-right: 1px solid #999999;
+	border-left: 1px solid @gray24;
+	border-right: 1px solid @gray24;
 	padding: 7px 10px 6px 10px;
 }
 
@@ -481,7 +479,7 @@ Last revision: 01/03/12
 
 #jappix_mini span.jm_counter {
 	background-position: 0 -288px;
-	color: #333333;
+	color: @gray19;
 	height: 16px;
 	padding-left: 25px;
 	display: block;
@@ -500,7 +498,7 @@ Last revision: 01/03/12
 }
 
 #jappix_mini span.jm_name {
-	color: #272727;
+	color: @gray30;
 	height: 14px;
 	width: 105px;
 	overflow: hidden;
@@ -575,42 +573,38 @@ Last revision: 01/03/12
 }
 
 #jappix_popup div.jm_prompt {
-	background-color: #565d5e;
-	border: 1px solid #3a3a3a;
+	background-color: @blue36;
+	border: 1px solid @gray25;
 	width: 346px;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	margin-left: -175px;
 	padding: 16px 2px 2px 2px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
-	box-shadow: 0 0 35px #232323;
-	-moz-box-shadow: 0 0 35px #232323;
-	-webkit-box-shadow: 0 0 35px #232323;
+	.rounded-corner-tr(4px);
+	.rounded-corner-tl(4px);
+	box-shadow: 0 0 35px @gray05;
+	-moz-box-shadow: 0 0 35px @gray05;
+	-webkit-box-shadow: 0 0 35px @gray05;
 }
 
 #jappix_popup div.jm_prompt form {
 	background-color: white;
-	border: 1px solid #3a3a3a;
+	border: 1px solid @gray25;
 	width: 332px;
 	padding: 6px;
 }
 
 #jappix_popup div.jm_prompt form input {
-	background-color: #f9f9f9;
-	border: 1px solid #666666;
+	background-color: @gray31;
+	border: 1px solid @gray04;
 	font-size: 1.1em;
 	padding: 1px 2px;
 }
 
 #jappix_popup div.jm_prompt form input:hover,
 #jappix_popup div.jm_prompt form input:focus {
-	border: 1px solid #202020;
+	border: 1px solid @gray17;
 }
 
 #jappix_popup div.jm_prompt form input.jm_text {
@@ -627,12 +621,12 @@ Last revision: 01/03/12
 
 #jappix_popup div.jm_prompt form input.jm_submit:hover,
 #jappix_popup div.jm_prompt form input.jm_submit:focus {
-	background-color: #f3f3f3;
+	background-color: @gray22;
 	cursor: pointer;
 }
 
 #jappix_popup div.jm_prompt form input.jm_submit:active {
-	background-color: #e8e8e8;
+	background-color: @gray32;
 }
 
 #jappix_popup div.jm_prompt div.jm_clear {

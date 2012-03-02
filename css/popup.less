@@ -13,8 +13,7 @@ Last revision: 01/03/12
 */
 
 .lock {
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.6);
+	background-color: @black3;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -24,8 +23,7 @@ Last revision: 01/03/12
 }
 
 .popup {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.95);
+	background-color: @gray40;
 	margin-top: -250px;
 	margin-left: -330px;
 	width: 640px;
@@ -35,12 +33,10 @@ Last revision: 01/03/12
 	z-index: 10000;
 	left: 50%;
 	top: 50%;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 0 0 35px #232323;
-	-moz-box-shadow: 0 0 35px #232323;
-	-webkit-box-shadow: 0 0 35px #232323;
+	.rounded-corner(5px);
+	box-shadow: 0 0 35px @gray05;
+	-moz-box-shadow: 0 0 35px @gray05;
+	-webkit-box-shadow: 0 0 35px @gray05;
 }
 
 .popup.large {

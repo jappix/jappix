@@ -38,7 +38,7 @@ if(!defined('JAPPIX_BASE'))
 		echoGetFiles($hash, $locale, 'js', 'anonymous.xml', '');
 		echo "\n";
 	} ?>
-	<script src="./js/less-1.2.1.min.js" type="text/javascript"></script>
+	<script src="../js/less-1.2.1.min.js" type="text/javascript"></script>
 </head>
 
 <body class="body-images">

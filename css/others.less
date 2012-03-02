@@ -44,20 +44,17 @@ Last revision: 01/03/12
 }
  
 #right-content {
-        background-color: rgb(20,20,20);
-        background-color: rgba(20,20,20,0.85);
+        background-color: @gray02;
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 260px;
         z-index: 10;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        box-shadow: 0 0 6px #5c5c5c;
-        -moz-box-shadow: 0 0 6px #5c5c5c;
-        -webkit-box-shadow: 0 0 6px #5c5c5c;
+	.rounded-corners(4px);
+        box-shadow: 0 0 6px @gray01;
+        -moz-box-shadow: 0 0 6px @gray01;
+        -webkit-box-shadow: 0 0 6px @gray01;
 }
  
 #general-wait {
@@ -71,16 +68,13 @@ Last revision: 01/03/12
 }
  
 .general-wait-content {
-        background-color: rgb(255,255,255);
-        background-color: rgba(255,255,255,0.9);
+        background-color: @white05;
         background-position: 8px 8px;
         padding: 8px;
         position: absolute;
         right: 5px;
         bottom: 5px;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
+        .rounded-corners(4px);
         box-shadow: 0 0 2px #000;
         -moz-box-shadow: 0 0 2px #000;
         -webkit-box-shadow: 0 0 2px #000;
@@ -98,8 +92,7 @@ Last revision: 01/03/12
 }
  
 #reconnect .pane {
-        background-color: rgb(20,20,20);
-        background-color: rgba(20,20,20,0.85);
+        background-color: @gray02;
         color: white;
         padding: 25px;
         z-index: 10000;
@@ -108,9 +101,9 @@ Last revision: 01/03/12
         left: 0;
         right: 0;
         top: 0;
-        box-shadow: 0 0 35px #232323;
-        -moz-box-shadow: 0 0 35px #232323;
-        -webkit-box-shadow: 0 0 35px #232323;
+        box-shadow: 0 0 35px @gray05;
+        -moz-box-shadow: 0 0 35px @gray05;
+        -webkit-box-shadow: 0 0 35px @gray05;
 }
  
 #reconnect .pane a {

@@ -13,20 +13,20 @@ Last revision: 01/03/12
 */
  
 #buddy-list {
-        background-color: @gray2;
-        color: @gray3;
+        background-color: @gray02;
+        color: @gray03;
         padding: 15px 6px 4px 6px;
 	.rounded-corners(4px);
-        box-shadow: 0 0 6px @gray1;
-        -moz-box-shadow: 0 0 6px @gray1;
-        -webkit-box-shadow: 0 0 6px @gray1;
+        box-shadow: 0 0 6px @gray01;
+        -moz-box-shadow: 0 0 6px @gray01;
+        -webkit-box-shadow: 0 0 6px @gray01;
 }
  
 #buddy-list .content {
 	background: @blue07;
 	background: -moz-linear-gradient(top, @blue07, @blue08);
 	background: -webkit-gradient(linear, left top, left bottom, from(@blue07), to(@blue08));
-        color: @gray4;
+        color: @gray04;
         height: 207px;
         padding: 4px 4px 0 4px;
         overflow-x: hidden;
@@ -75,23 +75,21 @@ Last revision: 01/03/12
 }
  
 #buddy-list .buddy-click {
-        background: #d9e7ea;
+        background: @blue10;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        border-radius: 3px;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
+        .rounded-corners(3px);
 }
  
 #buddy-list .buddy-click:hover,
 #buddy-list .buddy-click:focus {
-        background: #cedee1;
+        background: @blue11;
         cursor: pointer;
 }
  
 #buddy-list .buddy-click:active {
-        background: #c3d3d7;
+        background: @blue12;
 }
  
 #buddy-list .gateway {
@@ -130,7 +128,7 @@ Last revision: 01/03/12
         height: 17px;
         font-weight: bold;
         font-size: 0.8em;
-        color: #264249;
+        color: @blue13;
         margin: 5px 0 5px 2px;
         overflow: hidden;
 }
@@ -142,7 +140,7 @@ Last revision: 01/03/12
 #buddy-list .buddy-presence {
         height: 14px;
         font-size: 0.7em;
-        color: #3a585e;
+        color: @blue14;
         padding: 2px 0 0 16px;
         margin-top: -3px;
 }
@@ -203,15 +201,12 @@ Last revision: 01/03/12
 }
  
 .buddy-infos-subitem {
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.8);
+        background-color: @blue15;
         padding: 8px 10px;
         width: 308px;
         text-shadow: 0 1px 1px black;
         float: left;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+	.rounded-corners
 }
  
 .manage-infos p.bm-authorize,
@@ -292,7 +287,7 @@ Last revision: 01/03/12
 }
  
 .buddy-infos-subitem a {
-        color: white;
+        color: @white;
         text-decoration: underline;
 }
  
@@ -313,22 +308,18 @@ Last revision: 01/03/12
 }
  
 #buddy-list .filter {
-        background-color: white;
-        border-top: 1px solid #b8c2c4;
+        background-color: @white;
+        border-top: 1px solid @blue15;
         height: 15px;
         padding: 2px 4px;
         font-size: 0.8em;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-        -moz-border-radius-bottomleft: 3px;
-        -moz-border-radius-bottomright: 3px;
-        -webkit-border-bottom-left-radius: 3px;
-        -webkit-border-bottom-right-radius: 3px;
+	.rounded-corner-bl(3px);
+	.rounded-corner-br(3px);
 }
  
 #buddy-list .filter input {
         border: none;
-        color: #273a3f;
+        color: @blue16;
         width: 211px;
         padding: 0;
         box-shadow: none;
@@ -338,8 +329,8 @@ Last revision: 01/03/12
  
 #buddy-list .filter a {
         display: none;
-        background-color: #9a2d2d;
-        color: white;
+        background-color: @red02;
+        color: @white;
         height: 13px;
         width: 13px;
         margin-top: 1px;
@@ -347,18 +338,16 @@ Last revision: 01/03/12
         text-align: center;
         text-decoration: none;
         float: right;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
+        .rounded-corners(2px);
 }
  
 #buddy-list .filter a:hover,
 #buddy-list .filter a:focus {
-        background-color: #8c2121;
+        background-color: @red03;
 }
  
 #buddy-list .filter a:active {
-        background-color: #7e1919;
+        background-color: @red04;
 }
  
 #buddy-list .foot {
@@ -397,7 +386,7 @@ Last revision: 01/03/12
 }
  
 #buddy-list .foot-edit-finish a {
-        color: white;
+        color: @white;
         font-size: 0.8em;
         margin: -3px 4px 0 0;
         float: right;
@@ -413,7 +402,7 @@ Last revision: 01/03/12
 .buddy-conf-item {
         position: absolute;
         width: 263px;
-        color: white;
+        color: @white;
         z-index: 9998;
         text-align: left;
         font-size: 0.8em;
@@ -433,8 +422,7 @@ Last revision: 01/03/12
 }
  
 .buddy-conf-subitem {
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.8);
+        background-color: @black1;
         padding: 10px;
         text-shadow: 0 1px 1px black;
 	border-radius: 5px;
@@ -460,7 +448,7 @@ Last revision: 01/03/12
 }
  
 .buddy-conf-text a {
-        color: white;
+        color: @white;
 }
  
 .buddy-conf-text a:hover,

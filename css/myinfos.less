@@ -13,29 +13,24 @@ Last revision: 01/03/12
 */
 
 #my-infos {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.85);
-	color: #919191;
+	background-color: @gray02;
+	color: @gray03;
 	margin-top: 8px;
 	padding: 15px 6px 6px 6px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	box-shadow: 0 0 6px #5c5c5c;
-	-moz-box-shadow: 0 0 6px #5c5c5c;
-	-webkit-box-shadow: 0 0 6px #5c5c5c;
+	.rounded-corners(4px);
+	box-shadow: 0 0 6px @gray01;
+	-moz-box-shadow: 0 0 6px @gray01;
+	-webkit-box-shadow: 0 0 6px @gray01;
 }
 
 #my-infos .content {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e4edef, #e8f1f3);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4edef), to(#e8f1f3));
+	background: @blue07;
+	background: -moz-linear-gradient(top, @blue08, @blue07);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue08), to(@blue07));
 	color: #919191;
 	max-height: 140px;
 	padding: 1px 0;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 }
 
 #my-infos .element {
@@ -46,15 +41,13 @@ Last revision: 01/03/12
 
 #my-infos .element .icon {
 	background-color: white;
-	border-color: #636363;
+	border-color: @gray20;
 	border-width: 1px;
 	border-style: solid;
 	margin-left: 6px;
 	height: 22px;
 	width: 25px;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 #my-infos .element div.bubble a {
@@ -64,12 +57,12 @@ Last revision: 01/03/12
 
 #my-infos .element .icon:hover,
 #my-infos .element div.bubble a:hover {
-	background-color: #f4f4f4;
+	background-color: @gray11;
 }
 
 #my-infos .element .icon:active,
 #my-infos .element div.bubble a:active {
-	background-color: #ededed;
+	background-color: @gray33;
 }
 
 #my-infos .f-presence div.bubble a[data-value=available] {
@@ -274,23 +267,19 @@ Last revision: 01/03/12
 
 #my-infos .element .icon.picker {
 	border-width: 1px 0 1px 1px;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-	-moz-border-radius-topright: 0;
-	-moz-border-radius-bottomright: 0;
-	-webkit-border-top-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
+	.rounded-corner-tr(0);
+	.rounded-corner-br(0);
 }
 
 #my-infos .element .icon.disabled {
-	background-color: #f3f3f3;
-	border-color: #989898;
+	background-color: @gray22;
+	border-color: @gray23;
 	cursor: default;
 }
 
 #my-infos .element div.bubble {
 	background-color: white;
-	border-color: #636363;
+	border-color: @gray20;
 	border-width: 1px 1px 0 1px;
 	border-style: solid;
 	width: 25px;
@@ -298,12 +287,8 @@ Last revision: 01/03/12
 	position: absolute;
 	bottom: 21px;
 	left: 6px;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	-moz-border-radius-topleft: 2px;
-	-moz-border-radius-topright: 2px;
-	-webkit-border-top-left-radius: 2px;
-	-webkit-border-top-right-radius: 2px;
+	.rounded-corner-tl(2px);
+	.rounded-corner-tr(2px);
 }
 
 #my-infos .element a {
@@ -322,10 +307,6 @@ Last revision: 01/03/12
 	width: 190px;
 	font-size: 0.85em;
 	padding-left: 4px;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	-moz-border-radius-bottomleft: 0;
-	-webkit-border-top-left-radius: 0;
-	-webkit-border-top-bottom-radius: 0;
+	.rounded-corner-tl(0);
+	.rounded-corner-bl(0);
 }

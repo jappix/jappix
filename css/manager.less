@@ -13,20 +13,15 @@ Last revision: 01/03/12
 */
 
 #manager {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.85);
+	background-color: @gray02;
 	width: 945px;
 	margin: 0 auto 25px;
 	padding-bottom: 17px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	box-shadow: 0 0 35px #5c5c5c;
-	-moz-box-shadow: 0 0 35px #5c5c5c;
-	-webkit-box-shadow: 0 0 35px #5c5c5c;
+	.rounded-corner-bl(4px);
+	.rounded-corner-br(4px);
+	box-shadow: 0 0 35px @gray01;
+	-moz-box-shadow: 0 0 35px @gray01;
+	-webkit-box-shadow: 0 0 35px @gray01;
 }
 
 #manager a {
@@ -42,9 +37,7 @@ Last revision: 01/03/12
 	border: 1px solid black;
 	margin: 22px 0 15px 0;
 	padding: 7px 2px 5px 2px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	.rounded-corners(3px);
 }
 
 #manager legend {
@@ -154,12 +147,10 @@ Last revision: 01/03/12
 	font-size: 0.9em;
 	padding: 12px 7px 12px 14px;
 	float: right;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	box-shadow: 0 0 10px #202020;
-	-moz-box-shadow: 0 0 10px #202020;
-	-webkit-box-shadow: 0 0 10px #202020;
+	.rounded-corners(3px);
+	box-shadow: 0 0 10px @gray17;
+	-moz-box-shadow: 0 0 10px @gray17;
+	-webkit-box-shadow: 0 0 10px @gray17;
 }
 
 #manager-top .meta span {
@@ -168,24 +159,22 @@ Last revision: 01/03/12
 }
 
 #manager-top .meta a {
-	background-color: #f1f6fd;
-	border: 1px solid #b9cbcf;
-	color: #224249;
+	background-color: @blue01;
+	border: 1px solid @blue30;
+	color: @blue31;
 	padding: 4px 8px 4px 21px;
 	margin-left: 2px;
 	text-decoration: none;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 #manager-top .meta a:hover,
 #manager-top .meta a:focus {
-	border: 1px solid #95b1b7;
+	border: 1px solid @blue32;
 }
 
 #manager-top .meta a:active {
-	border: 1px solid #77989f;
+	border: 1px solid @blue33;
 }
 
 #manager-top .meta a.logout {
@@ -201,8 +190,8 @@ Last revision: 01/03/12
 }
 
 #manager-tabs a {
-	background-color: #d9e7ea;
-	color: #204249;
+	background-color: @blue10;
+	color: @blue34;
 	width: 107px;
 	height: 17px;
 	padding: 4px 4px 4px 16px;
@@ -211,33 +200,29 @@ Last revision: 01/03/12
 	text-decoration: none;
 	overflow: hidden;
 	float: left;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
 }
 
 #manager-tabs a:hover,
 #manager-tabs a:focus {
-	background-color: #cedee1;
+	background-color: @blue11;
 	text-decoration: none;
 }
 
 #manager-tabs a:active {
-	background-color: #c3d3d7;
+	background-color: @blue12;
 	text-decoration: none;
 }
 
 #manager-tabs a.tab-active {
-	background-color: #e4eef9 !important;
+	background-color: @blue05 !important;
 }
 
 #manager-content {
-	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #d0e5fa);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#d0e5fa));
+	background: @blue05;
+	background: -moz-linear-gradient(top, @blue05, @blue24);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue05), to(@blue24));
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;
@@ -245,12 +230,10 @@ Last revision: 01/03/12
 	min-height: 260px;
 	clear: both;
 	right: 10px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	box-shadow: 0 0 20px #202020;
-	-moz-box-shadow: 0 0 20px #202020;
-	-webkit-box-shadow: 0 0 20px #202020;
+	.rounded-corners(3px);
+	box-shadow: 0 0 20px @gray17;
+	-moz-box-shadow: 0 0 20px @gray17;
+	-webkit-box-shadow: 0 0 20px @gray17;
 }
 
 #manager-content h3 {
@@ -327,7 +310,7 @@ Last revision: 01/03/12
 }
 
 #manager-content object.stats {
-	border: 1px dotted #bed4d9;
+	border: 1px dotted @blue35;
 	width: 450px;
 	height: 270px;
 	margin-bottom: 20px;
@@ -361,45 +344,45 @@ Last revision: 01/03/12
 }
 
 #manager-content .info.neutral {
-	background-color: #f0f19d;
-	border-color: #b3ad4f;
+	background-color: @yellow13;
+	border-color: @yellow14;
 }
 
 #manager-content a.info.neutral:hover,
 #manager-content a.info.neutral:focus {
-	background-color: #eced96;
+	background-color: @yellow15;
 }
 
 #manager-content a.info.neutral:active {
-	background-color: #e9ea93;
+	background-color: @yellow16;
 }
 
 #manager-content .info.success {
-	background-color: #a8dca9;
-	border-color: #5e9f5f;
+	background-color: @green09;
+	border-color: @green10;
 }
 
 #manager-content a.info.success:hover,
 #manager-content a.info.success:focus {
-	background-color: #a0d5a1;
+	background-color: @green11;
 }
 
 #manager-content a.info.success:active {
-	background-color: #9ad09b;
+	background-color: @green12;
 }
 
 #manager-content .info.fail {
-	background-color: #f19d9d;
-	border-color: #b34f4f;
+	background-color: @pink02;
+	border-color: @red05;
 }
 
 #manager-content a.info.fail:hover,
 #manager-content a.info.fail:focus {
-	background-color: #ea9595;
+	background-color: @pink04;
 }
 
 #manager-content a.info.fail:active {
-	background-color: #e59090;
+	background-color: @pink05;
 }
 
 #manager-content .browse {
@@ -464,11 +447,11 @@ Last revision: 01/03/12
 }
 
 #manager-content .browse .odd {
-	background-color: #e9f1fd;
+	background-color: @blue03;
 }
 
 #manager-content .browse .even {
-	background-color: #f1f6fd;
+	background-color: @blue01;
 }
 
 #manager-content .sub {
@@ -511,8 +494,7 @@ Last revision: 01/03/12
 
 #manager-buttons input {
 	border: 1px solid white;
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.1);
+	background-color: @white01;
 	color: white;
 	padding: 4px 8px;
 	margin-left: -12px;
@@ -520,25 +502,21 @@ Last revision: 01/03/12
 	font-size: 1em;
 	text-shadow: 0 1px 1px black;
 	float: right;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	box-shadow: 0 0 5px #202020;
-	-moz-box-shadow: 0 0 5px #202020;
-	-webkit-box-shadow: 0 0 5px #202020;
+	.rounded-corners(3px);
+	box-shadow: 0 0 5px @gray17;
+	-moz-box-shadow: 0 0 5px @gray17;
+	-webkit-box-shadow: 0 0 5px @gray17;
 }
 
 #manager-buttons input:hover,
 #manager-buttons input:focus {
 	cursor: pointer;
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.2);
-	box-shadow: 0 0 15px #202020;
-	-moz-box-shadow: 0 0 15px #202020;
-	-webkit-box-shadow: 0 0 15px #202020;
+	background-color: @white03;
+	box-shadow: 0 0 15px @gray17;
+	-moz-box-shadow: 0 0 15px @gray17;
+	-webkit-box-shadow: 0 0 15px @gray17;
 }
 
 #manager-buttons input:active {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.3);
+	background-color: @white04;
 }

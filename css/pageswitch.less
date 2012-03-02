@@ -37,19 +37,17 @@ Last revision: 01/03/12
 
 #page-switch .more-button {
 	background-position: 6px -1372px;
-	background-color: #d9e7ea;
+	background-color: @blue10;
 	width: 7px;
 	height: 17px;
 	padding: 1px 6px;
 	font-size: 0.9em;
 	text-decoration: none;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 #page-switch .more-content {
-	background-color: #d9e7ea;
+	background-color: @blue10;
 	width: 200px;
 	max-height: 400px;
 	overflow: auto;
@@ -57,41 +55,29 @@ Last revision: 01/03/12
 	margin: -2px 0 0 -181px;
 	padding: 4px 0;
 	font-size: 0.95em;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-webkit-border-bottom-right-radius: 3px;
+	.rounded-corner-tl(3px);
+	.rounded-corner-bl(3px);
+	.rounded-corner-br(3px);
 }
 
 #page-switch .switcher {
-	background-color: #d9e7ea;
-	color: #17353b;
+	background-color: @blue10;
+	color: @blue51;
 	height: 15px;
 	padding: 5px 10px 5px 5px;
 	margin: 0 2px;
 	font-size: 0.85em;
 	float: left;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
 }
 
 #page-switch .more-content .switcher {
-	background-color: #d9e7ea;
+	background-color: @blue10;
 	float: none;
 	margin: 0;
 	font-size: 0.9em;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
+	.rounded-corners(0);
 }
 
 #page-switch .more-content .switcher .exit {
@@ -104,22 +90,22 @@ Last revision: 01/03/12
 #page-switch .switcher:focus,
 #page-switch .more-content .switcher:hover,
 #page-switch .more-content .switcher:focus {
-	background-color: #cedee1;
+	background-color: @blue11;
 	cursor: pointer;
 }
 
 #page-switch .more-button:active,
 #page-switch .switcher:active,
 #page-switch .more-content .switcher:active {
-	background-color: #c3d3d7;
+	background-color: @blue12;
 }
 
 #page-switch .switcher.activechan {
-	background-color: #e8f1f3;
+	background-color: @blue07;
 }
 
 #page-switch .more-content .switcher.activechan {
-	background-color: #d1e0e3;
+	background-color: @blue52;
 }
 
 #page-switch .icon {
@@ -138,9 +124,9 @@ Last revision: 01/03/12
 
 #page-switch .exit {
 	display: none;
-	background-color: #bdd9dc;
-	border: 1px solid #80aab0;
-	color: #355e64;
+	background-color: @blue53;
+	border: 1px solid @blue54;
+	color: @blue55;
 	height: 14px;
 	width: 13px;
 	margin-left: 10px;
@@ -148,18 +134,16 @@ Last revision: 01/03/12
 	text-align: center;
 	text-decoration: none;
 	float: right;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 #page-switch .exit:hover,
 #page-switch .exit:focus {
-	background-color: #aac7cb;
+	background-color: @blue56;
 }
 
 #page-switch .exit:active {
-	background-color: #9bbdc1;
+	background-color: @blue57;
 }
 
 #page-switch .activechan .exit {
@@ -168,41 +152,41 @@ Last revision: 01/03/12
 }
 
 #page-switch .chan-newmessage {
-	background-color: #f6edc3 !important;
+	background-color: @orange05 !important;
 }
 
 #page-switch .chan-newmessage:hover,
 #page-switch .chan-newmessage:focus {
-	background-color: #f1eac0 !important;
+	background-color: @orange06 !important;
 }
 
 #page-switch .chan-newmessage:active {
-	background-color: #ede4b8 !important;
+	background-color: @orange07 !important;
 }
 
 #page-switch .composing,
 #page-engine .list .user.composing {
-	color: #217021 !important;
+	color: @green14 !important;
 }
 
 #page-switch .paused,
 #page-switch .chan-unread .name,
 #page-engine .list .user.paused {
-	color: #2431ac !important;
+	color: @blue58 !important;
 }
 
 #page-switch .active,
 #page-engine .list .user.active {
-	color: #353535 !important;
+	color: @gray38 !important;
 }
 
 #page-switch .inactive,
 #page-engine .list .user.inactive {
-	color: #585858 !important;
+	color: @gray39 !important;
 }
 
 #page-switch .gone {
-	color: #851313 !important;
+	color: @red11 !important;
 }
 
 #page-switch .channel .icon {
