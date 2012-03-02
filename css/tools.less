@@ -13,17 +13,12 @@ Last revision: 01/03/12
 */
 
 #top-content .tools {
-	background-color: rgb(232,241,243);
-	background-color: rgba(232,241,243,0.6);
+	background-color: @blue75;
 	padding: 3px 8px 5px 8px;
 	min-width: 10px;
 	height: 17px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	.rounded-corner-bl(4px);
+	.rounded-corner-br(4px);
 }
 
 #top-content .tools a {
@@ -69,26 +64,23 @@ Last revision: 01/03/12
 #top-content .notifications:hover,
 #top-content .music:focus,
 #top-content .notifications:focus {
-	background-color: rgb(232,241,243);
-	background-color: rgba(232,241,243,0.7);
+	background-color: @blue76;
 }
 
 #top-content .music:active,
 #top-content .notifications:active {
-	background-color: rgb(232,241,243);
-	background-color: rgba(232,241,243,0.8);
+	background-color: @blue77;
 }
 
 #top-content .actived,
 #top-content .actived:hover,
 #top-content .actived:focus,
 #top-content .actived:active {
-	background-color: rgb(232,241,243) !important;
-	background-color: rgba(232,241,243,0.9) !important;
+	background-color: @blue78 !important;
 }
 
 #top-content .notify {
-	background-color: #c60505;
+	background-color: @red09;
 	color: white;
 	font-size: 0.7em;
 	font-weight: bold;
@@ -96,9 +88,7 @@ Last revision: 01/03/12
 	padding: 1px 4px;
 	position: absolute;
 	bottom: -2px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	.rounded-corners(10px);
 }
 
 #top-content .tools-content {
@@ -117,12 +107,9 @@ Last revision: 01/03/12
 }
 
 .tools-content-subitem {
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.8);
+	background-color: @black1;
 	padding: 14px 6px 6px 6px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+	.rounded-corners(5px);
 }
 
 .notifications-content {
@@ -156,20 +143,16 @@ Last revision: 01/03/12
 	padding: 6px 4px;
 	font-size: 0.85em;
 	clear: both;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	.rounded-corners(2px);
 }
 
 .notifications-content .one-notification:hover,
 .notifications-content .one-notification:focus {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.1);
+	background-color: @white01;
 }
 
 .notifications-content .one-notification:active {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.2);
+	background-color: @white03;
 }
 
 .notifications-content .avatar-container {
@@ -264,17 +247,13 @@ Last revision: 01/03/12
 }
 
 .music-content .player {
-	background: #b5d5db;
-	background: -moz-linear-gradient(top, #b5d5db, #adced4);
-	background: -webkit-gradient(linear, left top, left bottom, from(#b5d5db), to(#adced4));
+	background: @blue79;
+	background: -moz-linear-gradient(top, @blue79, @blue80);
+	background: -webkit-gradient(linear, left top, left bottom, from(@blue79), to(@blue80));
 	height: 20px;
 	padding: 2px 5px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
+	.rounded-corner-tr(4px);
+	.rounded-corner-tl(4px);
 }
 
 .music-content .player a {
@@ -299,7 +278,7 @@ Last revision: 01/03/12
 }
 
 .music-content .list {
-	background-color: #e8f1f3;
+	background-color: @blue07;
 	height: 188px;
 	padding: 5px;
 	text-align: left;
@@ -316,7 +295,7 @@ Last revision: 01/03/12
 .music-content div.special {
 	padding-bottom: 2px;
 	margin-bottom: 6px;
-	border-bottom: 1px solid #c3d4d7;
+	border-bottom: 1px solid @blue81;
 }
 
 .music-content .song {
@@ -330,14 +309,10 @@ Last revision: 01/03/12
 }
 
 .music-content .search {
-	background-color: #e8f1f3;
+	background-color: @blue07;
 	height: 25px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	.rounded-corner-bl(4px);
+	.rounded-corner-br(4px);
 }
 
 .music-content .search input {
