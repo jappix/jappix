@@ -750,7 +750,7 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	// Nickname
 	var nickname = getName();
 	
-	if(nickname)
+	if(nickname && !limit_history)
 		presence.appendNode('nick', {'xmlns': NS_NICK}, nickname);
 	
 	// vcard-temp:x:update node
