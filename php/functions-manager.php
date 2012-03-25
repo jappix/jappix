@@ -197,7 +197,7 @@ function newUpdates($force) {
 	// No cache, obsolete one or refresh forced
 	if(!file_exists($cache_path) || (file_exists($cache_path) && (time() - (filemtime($cache_path)) >= 86400)) || $force) {
 		// Get the content
-		$last_version = read_url('http://codingteam.net/project/jappix/upload/briefcase/version.xml');
+		$last_version = read_url('http://jappix.org/xml/version.xml');
 		
 		// Write the content
 		file_put_contents($cache_path, $last_version, LOCK_EX);
