@@ -132,7 +132,7 @@ else
 				
 				<p><?php printf(T_("If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."), getLanguageName($locale), languageSwitcher($locale)); ?></p>
 				
-				<p><?php _e("If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"); ?> <a href="http://codingteam.net/project/jappix/doc" target="_blank">http://codingteam.net/project/jappix/doc</a></p>
+				<p><?php _e("If you want to get some help about the Jappix installation and configuration, you can use our whole documentation, available at:"); ?> <a href="https://github.com/jappix/jappix/wiki" target="_blank">https://github.com/jappix/jappix/wiki</a></p>
 				
 				<p><?php _e("It's time to build your own social cloud: just go to the next step!"); ?></p>
 			<?php }
