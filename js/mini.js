@@ -971,7 +971,7 @@ function createMini(domain, user, password) {
 	updateOverflowMini();
 	
 	// CSS refresh (Safari display bug when restoring old DOM)
-	jQuery('#jappix_mini div.jm_starter, #jappix_mini div.jm_conversations, #jappix_mini div.jm_conversation, #jappix_mini a.jm_switch').css('float', 'left');
+	jQuery('#jappix_mini div.jm_starter, #jappix_mini div.jm_conversations, #jappix_mini div.jm_conversation, #jappix_mini a.jm_switch').less('float', 'left');
 	
 	// The click events
 	jQuery('#jappix_mini a.jm_button').click(function() {
@@ -1340,8 +1340,8 @@ function createMini(domain, user, password) {
 				var m_left = Math.sin(anim_i * 0.02) * 3;
 				
 				// Apply new position!
-				jQuery(this).css('margin-top', m_top + 'px')
-				            .css('margin-left', m_left + 'px');
+				jQuery(this).less('margin-top', m_top + 'px')
+				            .less('margin-left', m_left + 'px');
 			});
 		}
 	}
@@ -1514,7 +1514,7 @@ function openPromptMini(text, value) {
 	
 	// Vertical center
 	var vert_pos = '-' + ((jQuery(prompt).height() / 2) + 10) + 'px';
-	jQuery(prompt).css('margin-top', vert_pos);
+	jQuery(prompt).less('margin-top', vert_pos);
 	
 	// Apply the value?
 	if(value)
@@ -2089,7 +2089,7 @@ function adaptRosterMini() {
 	var height = jQuery(window).height() - 85;
 	
 	// Apply the new height
-	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', height);
+	jQuery('#jappix_mini div.jm_roster div.jm_buddies').less('max-height', height);
 }
 
 // Generates a random nickname
@@ -2215,7 +2215,10 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	
 	// Legacy IE stylesheet
 	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
-		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;f=mini-ie.css" type="text/css" media="all" />');
+		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;f=mini-ie.less" type="text/css" media="all" />');
+
+	//Integrates less.js
+	document.write("<script src="./js/less-1.2.1.min.js" type="text/javascript"></script>" );}  
 	
 	// Disables the browser HTTP-requests stopper
 	jQuery(document).keydown(function(e) {

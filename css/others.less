@@ -1,0 +1,112 @@
+/*
+ 
+Jappix - An open social platform
+This is the others CSS stylesheet for Jappix
+using less.js <http://lesscss.org>
+ 
+-------------------------------------------------
+ 
+License: AGPL
+Author: Vanaryon, Julien Barrier
+Last revision: 01/03/12
+ 
+*/
+ 
+#audio {
+        display: none;
+}
+ 
+#top-content {
+        position: absolute;
+        right: 5px;
+        left: 5px;
+        top: 0;
+        min-width: 860px;
+        z-index: 50;
+}
+ 
+#main-content {
+        position: absolute;
+        top: 34px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        min-width: 850px;
+        min-height: 450px;
+}
+ 
+#left-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 248px;
+}
+ 
+#right-content {
+        background-color: @gray02;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 260px;
+        z-index: 10;
+	.rounded-corners(4px);
+        box-shadow: 0 0 6px @gray01;
+        -moz-box-shadow: 0 0 6px @gray01;
+        -webkit-box-shadow: 0 0 6px @gray01;
+}
+ 
+#general-wait {
+	background: url(../img/others/blank.gif) repeat;
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+}
+ 
+.general-wait-content {
+        background-color: @white05;
+        background-position: 8px 8px;
+        padding: 8px;
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        .rounded-corners(4px);
+        box-shadow: 0 0 2px #000;
+        -moz-box-shadow: 0 0 2px #000;
+        -webkit-box-shadow: 0 0 2px #000;
+}
+ 
+.inbox-hidable,
+.options-hidable,
+.pep-hidable,
+.pubsub-hidable,
+.archives-hidable,
+.commands-hidable,
+.privacy-hidable,
+.xmpplinks-hidable {
+        display: none;
+}
+ 
+#reconnect .pane {
+        background-color: @gray02;
+        color: white;
+        padding: 25px;
+        z-index: 10000;
+        text-shadow: 0 1px 1px black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        box-shadow: 0 0 35px @gray05;
+        -moz-box-shadow: 0 0 35px @gray05;
+        -webkit-box-shadow: 0 0 35px @gray05;
+}
+ 
+#reconnect .pane a {
+        margin-top: -4px;
+        float: right;
+}

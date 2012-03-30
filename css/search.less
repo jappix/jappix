@@ -1,0 +1,51 @@
+/*
+
+Jappix - An open social platform
+This is the search tool CSS stylesheet for Jappix
+using less.js <http://lesscss.org>
+
+-------------------------------------------------
+
+License: AGPL
+Author: Vanaryon, Julien Barrier
+Last revision: 01/03/12
+
+*/
+
+.search {
+	position: relative;
+}
+
+.search input.suggested {
+	border-bottom: 1px solid white;
+	.rounded-corner-br(0);
+	.rounded-corner-bl(0);
+}
+
+.search ul {
+	background-color: @white05;
+	border-color: @orange01;
+	border-style: solid;
+	border-width: 0 1px 1px 1px;
+	position: absolute;
+	z-index: 1;
+	padding: 3px 0;
+	list-style: none;
+	overflow: auto;
+	.rounded-corner-br(3px);
+	.rounded-corner-bl(3px);
+}
+
+.search ul li {
+	padding: 2px 6px;
+	color: @gray43;
+	text-shadow: none;
+}
+
+.search ul li:hover {
+	cursor: pointer;
+}
+
+.search ul li.hovered {
+	background-color: @orange08;
+}

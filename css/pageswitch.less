@@ -1,0 +1,194 @@
+/*
+
+Jappix - An open social platform
+This is the page-switch CSS stylesheet for Jappix
+using less.js <http://lesscss.org>
+
+-------------------------------------------------
+
+License: AGPL
+Author: Vanaryon, Julien Barrier
+Last revision: 01/03/12
+
+*/
+
+#page-switch {
+	position: absolute;
+	top: 15px;
+	left: 10px;
+	right: 10px;
+	z-index: 9;
+}
+
+#page-switch .chans {
+	position: absolute;
+	left: 0;
+	right: 40px;
+	top: 0;
+	height: 25px;
+	overflow: hidden;
+}
+
+#page-switch .more {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#page-switch .more-button {
+	background-position: 6px -1372px;
+	background-color: @blue10;
+	width: 7px;
+	height: 17px;
+	padding: 1px 6px;
+	font-size: 0.9em;
+	text-decoration: none;
+	.rounded-corners(2px);
+}
+
+#page-switch .more-content {
+	background-color: @blue10;
+	width: 200px;
+	max-height: 400px;
+	overflow: auto;
+	position: absolute;
+	margin: -2px 0 0 -181px;
+	padding: 4px 0;
+	font-size: 0.95em;
+	.rounded-corner-tl(3px);
+	.rounded-corner-bl(3px);
+	.rounded-corner-br(3px);
+}
+
+#page-switch .switcher {
+	background-color: @blue10;
+	color: @blue51;
+	height: 15px;
+	padding: 5px 10px 5px 5px;
+	margin: 0 2px;
+	font-size: 0.85em;
+	float: left;
+	.rounded-corner-tr(3px);
+	.rounded-corner-tl(3px);
+}
+
+#page-switch .more-content .switcher {
+	background-color: @blue10;
+	float: none;
+	margin: 0;
+	font-size: 0.9em;
+	.rounded-corners(0);
+}
+
+#page-switch .more-content .switcher .exit {
+	display: block;
+}
+
+#page-switch .more-button:hover,
+#page-switch .more-button:focus,
+#page-switch .switcher:hover,
+#page-switch .switcher:focus,
+#page-switch .more-content .switcher:hover,
+#page-switch .more-content .switcher:focus {
+	background-color: @blue11;
+	cursor: pointer;
+}
+
+#page-switch .more-button:active,
+#page-switch .switcher:active,
+#page-switch .more-content .switcher:active {
+	background-color: @blue12;
+}
+
+#page-switch .switcher.activechan {
+	background-color: @blue07;
+}
+
+#page-switch .more-content .switcher.activechan {
+	background-color: @blue52;
+}
+
+#page-switch .icon {
+	height: 16px;
+	width: 16px;
+	float: left;
+}
+
+#page-switch .name {
+	float: left;
+	margin-left: 4px;
+	max-height: 16px;
+	max-width: 140px;
+	overflow: hidden;
+}
+
+#page-switch .exit {
+	display: none;
+	background-color: @blue53;
+	border: 1px solid @blue54;
+	color: @blue55;
+	height: 14px;
+	width: 13px;
+	margin-left: 10px;
+	font-size: 0.85em;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	.rounded-corners(2px);
+}
+
+#page-switch .exit:hover,
+#page-switch .exit:focus {
+	background-color: @blue56;
+}
+
+#page-switch .exit:active {
+	background-color: @blue57;
+}
+
+#page-switch .activechan .exit {
+	display: block;
+	float: right;
+}
+
+#page-switch .chan-newmessage {
+	background-color: @orange05 !important;
+}
+
+#page-switch .chan-newmessage:hover,
+#page-switch .chan-newmessage:focus {
+	background-color: @orange06 !important;
+}
+
+#page-switch .chan-newmessage:active {
+	background-color: @orange07 !important;
+}
+
+#page-switch .composing,
+#page-engine .list .user.composing {
+	color: @green14 !important;
+}
+
+#page-switch .paused,
+#page-switch .chan-unread .name,
+#page-engine .list .user.paused {
+	color: @blue58 !important;
+}
+
+#page-switch .active,
+#page-engine .list .user.active {
+	color: @gray38 !important;
+}
+
+#page-switch .inactive,
+#page-engine .list .user.inactive {
+	color: @gray39 !important;
+}
+
+#page-switch .gone {
+	color: @red11 !important;
+}
+
+#page-switch .channel .icon {
+	background-position: 0 -55px;
+}

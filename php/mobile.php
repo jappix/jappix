@@ -31,6 +31,7 @@ if(!defined('JAPPIX_BASE'))
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
 	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
+	<script src="./js/less-1.2.1.min.js" type="text/javascript"></script>
 </head>
 
 <body>

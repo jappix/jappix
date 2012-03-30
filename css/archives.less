@@ -1,0 +1,90 @@
+/*
+
+Jappix - An open social platform
+This is the archives CSS stylesheet for Jappix
+using less.js <http://lesscss.org>
+
+-------------------------------------------------
+
+License: AGPL
+Author: Vanaryon, Julien Barrier
+Last revision: 01/03/12
+
+*/
+
+#archives .content {
+	padding: 10px 0 10px 0;
+}
+
+#archives .filter {
+	background-color: @blue03;
+	border-right: 1px solid @blue04;
+	width: 180px;
+	padding: 12px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	float: left;
+	.rounded-corner-bl(4px);
+	.rounded-corner-tl(4px);
+}
+
+#archives .filter .friend {
+	margin-bottom: 12px;
+}
+
+#archives .filter .friend {
+	height: 210px;
+	width: 180px;
+	float: none;
+}
+
+#archives .current,
+#archives .logs {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 204px;
+}
+
+#archives .current {
+	background-color: @blue05;
+	border-bottom: 1px solid @blue04;
+	font-size: 0.9em;
+	height: 16px;
+	padding: 6px;
+	top: 0;
+}
+
+#archives .current span {
+	height: 16px;
+	overflow: hidden;
+}
+
+#archives .current .name {
+	max-width: 160px;
+	font-weight: bold;
+	float: left;
+}
+
+#archives .current .time {
+	color: @blue06;
+	font-size: 0.95em;
+	float: right;
+}
+
+#archives .logs {
+	color: black;
+	font-size: 0.9em;
+	overflow: auto;
+	padding: 8px 10px 0;
+	float: left;
+	position: absolute;
+	top: 29px;
+}
+
+#archives .logs a {
+	color: black;
+	text-decoration: underline;
+}
