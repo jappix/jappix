@@ -9,7 +9,7 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 28/01/12
+Last revision: 10/07/11
 
 */
 
@@ -23,10 +23,10 @@ if(!defined('JAPPIX_BASE'))
 <?php htmlTag($locale); ?>
 
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport">
+	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport"/>
 	<title><?php _e("Jappix Mobile"); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
@@ -65,11 +65,6 @@ if(!defined('JAPPIX_BASE'))
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
 			</form>
 		</div>
-		
-		<a class="smartphone" href="http://jappix.mobi/">
-			<span class="title"><?php _e("Jappix for your phone"); ?> »</span>
-			<span class="desc"><?php _e("A single phone app for messages, channels, profiles and much more!"); ?></span>
-		</a>
 		
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
 	</div>
