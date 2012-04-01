@@ -160,7 +160,21 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 		
 		<div class="home-images aboutus">
 			<div class="aboutus_org">
+				<h2 class="nomargin"><?php _e("Credits"); ?></h2>
+				<span class="one">
+					<a class="name" href="http://www.post-pro.fr/">PostPro</a>
+					<a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
+				</span>
+				<span class="one">
+					<a class="name" href="https://project.jappix.com/contact">Jappix.com</a>
+					<a class="desc" href="https://project.jappix.com/contact"><?php _e("Web agency"); ?></a>
+				</span>
 				
+				<h2><?php _e("Owner"); ?></h2>
+				<span class="one">
+					<a class="name" href="http://node.owner.tld/">Node manager</a>
+					<a class="desc" href="http://node.owner.tld/"><?php _e("Node owner"); ?></a>
+				</span>
 			</div>
 		</div>
 		

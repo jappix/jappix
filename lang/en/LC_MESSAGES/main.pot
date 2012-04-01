@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 12/02/12
+# Last revision: 01/04/12
 
 msgid ""
 msgstr ""
@@ -44,6 +44,21 @@ msgid "Jappix for your mobile phone."
 msgstr ""
 
 msgid "Find a public Jappix node."
+msgstr ""
+
+msgid "Credits"
+msgstr ""
+
+msgid "Association"
+msgstr ""
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Owner"
+msgstr ""
+
+msgid "Node owner"
 msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."

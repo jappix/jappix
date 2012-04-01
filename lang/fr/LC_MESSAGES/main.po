@@ -4,12 +4,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-02-12 15:17+0100\n"
+"PO-Revision-Date: 2012-04-01 09:41+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"Last-Translator: Vanaryon\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
@@ -1865,6 +1865,33 @@ msgstr "Une seule application pour les messages, canaux, profils et plus !"
 
 msgid "This notification is only informative, maybe the data it links to have been removed."
 msgstr "Cette notification n'est qu'informative, les données liées pourraient avoir été supprimées."
+
+msgid "Credits"
+msgstr "Crédits"
+
+msgid "Association"
+msgstr "Association"
+
+msgid "Web agency"
+msgstr "Agence Web"
+
+msgid "Owner"
+msgstr "Propriétaire"
+
+msgid "Node owner"
+msgstr "Possesseur du nœud"
+
+msgid "You haven't provided any file to download"
+msgstr "Vous n'avez pas fourni de fichier à télécharger"
+
+msgid "You cannot download a file if you don't provide a key"
+msgstr "Vous ne pouvez pas télécharger un fichier si aucune clé n'est fournie"
+
+msgid "Woah this file isn't found, please double check"
+msgstr "Le fichier n'est pas trouvable, vérifiez"
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr "La clé que vous avez fourni n'a pas la permission de télécharger ce fichier"
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."

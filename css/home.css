@@ -54,7 +54,7 @@ Last revision: 01/04/12
 }
 
 #home .aboutus {
-	background-position: 9px -140px;
+	background-position: 9px -351px;
 	left: 52px;
 }
 
@@ -82,16 +82,19 @@ Last revision: 01/04/12
 	display: block;
 }
 
-#home .corporation .corp_network h2 {
+#home .corporation .corp_network h2,
+#home .aboutus .aboutus_org h2 {
 	font-size: 1.1em;
 	margin: 14px 0 4px 0;
 }
 
-#home .corporation .corp_network h2.nomargin {
+#home .corporation .corp_network h2.nomargin,
+#home .aboutus .aboutus_org h2.nomargin {
 	margin-top: 0;
 }
 
-#home .corporation .corp_network a {
+#home .corporation .corp_network a,
+#home .aboutus .aboutus_org span.one {
 	font-size: 0.8em;
 	margin: 2px 0;
 	padding: 2px 6px;
@@ -100,16 +103,24 @@ Last revision: 01/04/12
 	-webkit-border-radius: 2px;
 }
 
-#home .corporation .corp_network a span {
+#home .aboutus .aboutus_org span.one {
+	display: block;
+}
+
+#home .corporation .corp_network a span,
+#home .aboutus .aboutus_org span.one a.name,
+#home .aboutus .aboutus_org span.one a.desc {
 	margin: 2px 0;
 	display: block;
 }
 
-#home .corporation .corp_network a span.name {
+#home .corporation .corp_network a span.name,
+#home .aboutus .aboutus_org span.one a.name {
 	font-weight: bold;
 }
 
-#home .corporation .corp_network a span.desc {
+#home .corporation .corp_network a span.desc,
+#home .aboutus .aboutus_org span.one a.desc {
 	font-size: 0.9em;
 	margin-left: 2px;
 }
@@ -140,7 +151,8 @@ Last revision: 01/04/12
 }
 
 #home .locale .list a,
-#home .corporation .corp_network a {
+#home .corporation .corp_network a,
+#home .aboutus .aboutus_org a {
 	color: white;
 	text-decoration: none;
 	display: block;
@@ -153,14 +165,22 @@ Last revision: 01/04/12
 #home .locale .list a:hover,
 #home .locale .list a:focus,
 #home .corporation .corp_network a:hover,
-#home .corporation .corp_network a:focus {
+#home .corporation .corp_network a:focus,
+#home .aboutus .aboutus_org span.one:hover {
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
+}
+
+#home .locale .list a:hover,
+#home .locale .list a:focus,
+#home .corporation .corp_network a:hover,
+#home .corporation .corp_network a:focus {
 	cursor: pointer;
 }
 
 #home .locale .list a:active,
-#home .corporation .corp_network a:active {
+#home .corporation .corp_network a:active,
+#home .aboutus .aboutus_org span.one:active {
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.14);
 }
