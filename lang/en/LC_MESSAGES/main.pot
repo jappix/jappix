@@ -754,7 +754,7 @@ msgstr ""
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
 msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."

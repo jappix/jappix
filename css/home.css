@@ -423,8 +423,9 @@ Last revision: 01/04/12
 }
 
 #home .right p.notice {
-	margin-top: 24px;
+	margin-top: 26px;
 	font-size: 0.9em;
+	font-weight: bold;
 }
 
 #home .right .navigation {

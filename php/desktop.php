@@ -84,7 +84,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 						<span class="text"><?php _e("Register"); ?></span>
 					</button>
 					
-					<p class="notice"><?php echo str_replace("PostPro", "<a href='http://www.post-pro.fr/'>PostPro</a>", T_("Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help.")); ?></p>
+					<p class="notice"><?php _e("When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"); ?></p>
 				</div>
 				
 				<div class="navigation">
