@@ -1,3 +1,16 @@
+/*
+
+Jappix - An open social platform
+These are the Jappix Mobile iPhone-specific functions
+
+-------------------------------------------------
+
+License: AGPL
+Author: Chatme.im
+Last revision: 01/04/12
+
+*/
+
 /*!
  * Add to Homescreen v2.0.1 ~ Copyright (c) 2012 Matteo Spinelli, http://cubiq.org
  * Released under MIT license, http://cubiq.org/license
