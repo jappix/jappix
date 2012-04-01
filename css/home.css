@@ -88,9 +88,13 @@ Last revision: 01/04/12
 	margin: 14px 0 4px 0;
 }
 
-#home .corporation .corp_network h2.nomargin,
-#home .aboutus .aboutus_org h2.nomargin {
+#home .corporation .corp_network h2.nomargin {
 	margin-top: 0;
+}
+
+#home .aboutus.hovered .aboutus_org span.version {
+	font-size: 0.8em;
+	display: block;
 }
 
 #home .corporation .corp_network a,

@@ -160,7 +160,9 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 		
 		<div class="home-images aboutus">
 			<div class="aboutus_org">
-				<h2 class="nomargin"><?php _e("Credits"); ?></h2>
+				<span class="version"><b>Jappix</b> <?php echo htmlspecialchars($version); ?></span>
+				
+				<h2><?php _e("Credits"); ?></h2>
 				<span class="one">
 					<a class="name" href="http://www.post-pro.fr/">PostPro</a>
 					<a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
