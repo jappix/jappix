@@ -9,7 +9,7 @@ This is the main configuration POST handler (install & manager)
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 01/04/12
 
 */
 
@@ -28,6 +28,18 @@ if(isset($_POST['service_desc']) && !empty($_POST['service_desc']))
 	$service_desc = stripslashes(htmlspecialchars($_POST['service_desc']));
 else
 	$service_desc = stripslashes(htmlspecialchars($main_default['desc']));
+
+// Owner name
+if(isset($_POST['owner_name']) && !empty($_POST['owner_name']))
+	$owner_name = stripslashes(htmlspecialchars($_POST['owner_name']));
+else
+	$owner_name = stripslashes(htmlspecialchars($main_default['owner_name']));
+
+// Owner website
+if(isset($_POST['owner_website']) && !empty($_POST['owner_website']))
+	$owner_website = stripslashes(htmlspecialchars($_POST['owner_website']));
+else
+	$owner_website = stripslashes(htmlspecialchars($main_default['owner_website']));
 
 // Jappix resource
 if(isset($_POST['jappix_resource']) && !empty($_POST['jappix_resource']))
@@ -117,6 +129,8 @@ else
 $conf_xml = 
 	'<name>'.$service_name.'</name>
 	<desc>'.$service_desc.'</desc>
+	<owner_name>'.$owner_name.'</owner_name>
+	<owner_website>'.$owner_website.'</owner_website>
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>

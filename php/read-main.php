@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 01/04/12
 
 */
 
@@ -21,6 +21,8 @@ if(!defined('JAPPIX_BASE'))
 $main_conf = array(
 	     	'name'			=> 'Jappix',
 	     	'desc'			=> 'a free social network',
+	     	'owner_name'	=> '',
+	     	'owner_website'	=> '',
 	     	'resource'		=> 'Jappix',
 	     	'lock'			=> 'on',
 	     	'anonymous'		=> 'on',
@@ -61,6 +63,8 @@ if($main_data) {
 // Finally, define the main configuration globals
 define('SERVICE_NAME', $main_conf['name']);
 define('SERVICE_DESC', $main_conf['desc']);
+define('OWNER_NAME', $main_conf['owner_name']);
+define('OWNER_WEBSITE', $main_conf['owner_website']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);

@@ -9,7 +9,7 @@ These are the main configuration variables
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 01/04/12
 
 */
 
@@ -20,6 +20,8 @@ if(!defined('JAPPIX_BASE'))
 // Define the vars with the main configuration constants
 $service_name = htmlspecialchars(SERVICE_NAME);
 $service_desc = htmlspecialchars(SERVICE_DESC);
+$owner_name = htmlspecialchars(OWNER_NAME);
+$owner_website = htmlspecialchars(OWNER_WEBSITE);
 $jappix_resource = htmlspecialchars(JAPPIX_RESOURCE);
 $lock_host = htmlspecialchars(LOCK_HOST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);

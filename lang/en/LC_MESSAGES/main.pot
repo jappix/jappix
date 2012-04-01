@@ -1183,6 +1183,12 @@ msgstr ""
 msgid "Service description"
 msgstr ""
 
+msgid "Owner name"
+msgstr ""
+
+msgid "Owner website"
+msgstr ""
+
 msgid "Connection"
 msgstr ""
 

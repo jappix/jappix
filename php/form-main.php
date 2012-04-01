@@ -9,7 +9,7 @@ This is the main configuration form (install & manager)
 
 License: AGPL
 Authors: Vanaryon, LinkMauve
-Last revision: 26/08/11
+Last revision: 01/04/12
 
 */
 
@@ -90,6 +90,10 @@ else
 	<label for="service_name"><?php _e("Service name"); ?></label><input id="service_name" type="text" name="service_name" value="<?php echo $service_name; ?>" maxlength="14" />
 	
 	<label for="service_desc"><?php _e("Service description"); ?></label><input id="service_desc" type="text" name="service_desc" value="<?php echo $service_desc; ?>" maxlength="30" />
+	
+	<label for="owner_name"><?php _e("Owner name"); ?></label><input id="owner_name" type="text" name="owner_name" value="<?php echo $owner_name; ?>" maxlength="50" placeholder="PostPro" />
+	
+	<label for="owner_website"><?php _e("Owner website"); ?></label><input id="owner_website" type="text" name="owner_website" value="<?php echo $owner_website; ?>" placeholder="http://www.post-pro.fr/" />
 </fieldset>
 
 <fieldset>

@@ -170,11 +170,13 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					<a class="desc" href="https://project.jappix.com/contact"><?php _e("Web agency"); ?></a>
 				</span>
 				
+				<?php if(hasOwner()) { ?>
 				<h2><?php _e("Owner"); ?></h2>
 				<span class="one">
-					<a class="name" href="http://node.owner.tld/">Node manager</a>
-					<a class="desc" href="http://node.owner.tld/"><?php _e("Node owner"); ?></a>
+					<a class="name" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php echo htmlspecialchars(OWNER_NAME); ?></a>
+					<a class="desc" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php _e("Node owner"); ?></a>
 				</span>
+				<?php } ?>
 			</div>
 		</div>
 		

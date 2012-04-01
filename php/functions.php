@@ -45,6 +45,14 @@ function isUpload() {
 	return false;
 }
 
+// The function to check if owner information are defined
+function hasOwner() {
+	if(OWNER_NAME && OWNER_WEBSITE)
+		return true;
+	
+	return false;
+}
+
 // The function to get the users.xml file hashed name
 function usersConfName() {
 	$conf_dir = JAPPIX_BASE.'/store/conf';

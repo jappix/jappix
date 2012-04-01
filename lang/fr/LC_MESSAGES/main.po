@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-04-01 09:41+0100\n"
+"PO-Revision-Date: 2012-04-01 09:54+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1892,6 +1892,12 @@ msgstr "Le fichier n'est pas trouvable, vérifiez"
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr "La clé que vous avez fourni n'a pas la permission de télécharger ce fichier"
+
+msgid "Owner name"
+msgstr "Nom du propriétaire"
+
+msgid "Owner website"
+msgstr "Site du propriétaire"
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
