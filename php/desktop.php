@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 12/02/12
+Last revision: 01/04/12
 
 */
 
@@ -155,6 +155,12 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 						<span class="desc"><?php _e("Find a public Jappix node."); ?></span>
 					</a>
 				</div>
+			</div>
+		</div>
+		
+		<div class="home-images aboutus">
+			<div class="aboutus_org">
+				
 			</div>
 		</div>
 		

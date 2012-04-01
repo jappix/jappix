@@ -7,7 +7,7 @@ This is the home CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 12/02/12
+Last revision: 01/04/12
 
 */
 
@@ -23,6 +23,8 @@ Last revision: 12/02/12
 
 #home .corporation,
 #home .corporation .corp_network,
+#home .aboutus,
+#home .aboutus .aboutus_org,
 #home .locale,
 #home .obsolete {
 	background-color: rgb(20,20,20);
@@ -40,21 +42,32 @@ Last revision: 12/02/12
 	-webkit-border-bottom-right-radius: 3px;
 }
 
-#home .corporation {
-	background-position: 9px -120px;
-	left: 12px;
+#home .corporation,
+#home .aboutus {
 	height: 26px;
 	width: 34px;
 }
 
-#home .corporation.hovered {
+#home .corporation {
+	background-position: 9px -120px;
+	left: 12px;
+}
+
+#home .aboutus {
+	background-position: 9px -140px;
+	left: 52px;
+}
+
+#home .corporation.hovered,
+#home .aboutus.hovered {
 	height: 28px;
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 }
 
-#home .corporation .corp_network {
+#home .corporation .corp_network,
+#home .aboutus .aboutus_org {
 	width: 180px;
 	padding: 10px 12px;
 	top: 28px;
@@ -64,7 +77,8 @@ Last revision: 12/02/12
 	-webkit-border-top-right-radius: 3px;
 }
 
-#home .corporation.hovered .corp_network {
+#home .corporation.hovered .corp_network,
+#home .aboutus.hovered .aboutus_org {
 	display: block;
 }
 
@@ -101,7 +115,7 @@ Last revision: 12/02/12
 }
 
 #home .locale {
-	left: 52px;
+	left: 92px;
 	font-size: 0.8em;
 }
 
