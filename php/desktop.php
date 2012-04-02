@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 01/04/12
+Last revision: 02/04/12
 
 */
 
@@ -168,8 +168,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					<a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
 				</span>
 				<span class="one">
-					<a class="name" href="https://project.jappix.com/contact">Jappix.com</a>
-					<a class="desc" href="https://project.jappix.com/contact"><?php _e("Web agency"); ?></a>
+					<a class="name" href="http://frenchtouch.pro/">Frenchtouch</a>
+					<a class="desc" href="http://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
 				</span>
 				
 				<?php if(hasOwner()) { ?>
