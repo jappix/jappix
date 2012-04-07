@@ -5,19 +5,19 @@ These are the installation instructions for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 15/09/10
+Last revision: 07/04/12
 
 -------------------------------------------------
 
 It's very simple to install Jappix on your webserver, you just have to follow these things:
 
 # INSTALLATION
-	- The HTTP server : http://codingteam.net/project/jappix/doc/HttpServer
-	- The XMPP server : http://codingteam.net/project/jappix/doc/XmppServer
-	- The BOSH server : http://codingteam.net/project/jappix/doc/BoshServer
-	- The Jappix app. : http://codingteam.net/project/jappix/doc/JappixApp
+	- The HTTP server: https://github.com/jappix/jappix/wiki/HttpServer
+	- The XMPP server: https://github.com/jappix/jappix/wiki/XmppServer
+	- The BOSH server: https://github.com/jappix/jappix/wiki/BoshServer
+	- The Jappix app.: https://github.com/jappix/jappix/wiki/JappixApp
 
 # MORE
-	- The whole documentation is available at : http://codingteam.net/project/jappix/doc
+	- The whole documentation is available at: https://github.com/jappix/jappix/wiki
 
 Now, you can use Jappix. Happy socializing!
