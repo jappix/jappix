@@ -18,7 +18,6 @@ Links
 * Jappix project website: http://jappix.org/
 * Jappix project dev website: http://developer.jappix.org/
 * Jappix project dev panel: https://github.com/jappix/jappix
-
 * Jappix nodes list: http://jappix.net/
 * Jappix for mobile: http://jappix.mobi/
 * Jappix official support: http://jappix.pro/
