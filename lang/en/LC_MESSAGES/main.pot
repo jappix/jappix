@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 01/04/12
+# Last revision: 08/04/12
 
 msgid ""
 msgstr ""
@@ -203,6 +203,9 @@ msgid "Not available"
 msgstr ""
 
 msgid "Busy"
+msgstr ""
+
+msgid "Offline"
 msgstr ""
 
 msgid "Mood"

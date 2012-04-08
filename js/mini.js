@@ -937,6 +937,7 @@ function createMini(domain, user, password) {
 							'<a class="jm_one-action jm_status" title="' + _e("Status") + '" href="#">' +
 								'<span class="jm_presence jm_images jm_available"></span>' + 
 							'</a>' +
+							
 							'<div class="jm_status_picker">' +
 								'<a data-status="available">' + _e("Available") + '</span><span class="jm_presence jm_images jm_available"></span></a>' +
 								'<a data-status="away">' + _e("Away") + '</span><span class="jm_presence jm_images jm_away"></span></a>' +
