@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, hunterjm
-Last revision: 17/02/12
+Last revision: 09/04/12
 
 */
 
@@ -191,6 +191,8 @@ function disconnectMini() {
 	if(!isConnected())
 		return false;
 	
+	logThis('Jappix Mini is disconnecting...', 3);
+	
 	// Change markers
 	MINI_DISCONNECT = true;
 	MINI_INITIALIZED = false;
@@ -200,8 +202,6 @@ function disconnectMini() {
 	
 	// Disconnect the user
 	con.disconnect();
-	
-	logThis('Jappix Mini is disconnecting...', 3);
 	
 	return false;
 }
@@ -934,16 +934,16 @@ function createMini(domain, user, password) {
 						'<div class="jm_actions">' + 
 							'<a class="jm_logo jm_images" href="https://mini.jappix.com/" target="_blank"></a>' + 
 							'<a class="jm_one-action jm_join jm_images" title="' + _e("Join a chat") + '" href="#"></a>' + 
-							'<a class="jm_one-action jm_status" title="' + _e("Status") + '" href="#">' +
+							'<a class="jm_one-action jm_status" title="' + _e("Status") + '" href="#">' + 
 								'<span class="jm_presence jm_images jm_available"></span>' + 
-							'</a>' +
+							'</a>' + 
 							
-							'<div class="jm_status_picker">' +
-								'<a data-status="available">' + _e("Available") + '</span><span class="jm_presence jm_images jm_available"></span></a>' +
-								'<a data-status="away">' + _e("Away") + '</span><span class="jm_presence jm_images jm_away"></span></a>' +
-								'<a data-status="dnd">' + _e("Busy") + '</span><span class="jm_presence jm_images jm_dnd"></span></a>' +
-								'<a data-status="unavailable">' + _e("Offline") + '<span class="jm_presence jm_images jm_unavailable"></span></a>' +
-							'</div>' +
+							'<div class="jm_status_picker">' + 
+								'<a href="#" data-status="available">' + _e("Available") + '<span class="jm_presence jm_images jm_available"></span></a>' + 
+								'<a href="#" data-status="away">' + _e("Away") + '<span class="jm_presence jm_images jm_away"></span></a>' + 
+								'<a href="#" data-status="dnd">' + _e("Busy") + '<span class="jm_presence jm_images jm_dnd"></span></a>' + 
+								'<a href="#" data-status="unavailable">' + _e("Offline") + '<span class="jm_presence jm_images jm_unavailable"></span></a>' + 
+							'</div>' + 
 						'</div>' + 
 						'<div class="jm_buddies"></div>' + 
 						'<div class="jm_search">' + 
@@ -960,8 +960,9 @@ function createMini(domain, user, password) {
 	
 	// Create the DOM
 	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
-
+	
 	// Hide the status picker panel
+	jQuery('#jappix_mini a.jm_status').removeClass('active');
 	jQuery('#jappix_mini div.jm_status_picker').hide();
 	
 	// Adapt roster height
@@ -1016,7 +1017,7 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini a.jm_status').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			if (jQuery(this).hasClass('active')) {
+			if(jQuery(this).hasClass('active')) {
 				jQuery('#jappix_mini div.jm_status_picker').hide();
 				jQuery(this).blur().removeClass('active');
 			} else {
@@ -1035,26 +1036,48 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini div.jm_status_picker a').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			switch (jQuery(this).data('status')) {
-				case 'available':
-					presenceMini('available');		
-					break; 
-				case 'away' :
-					presenceMini('', 'away');
-					break;
-				case 'dnd' :
-					presenceMini('', 'dnd');
-					break;
-				case 'unavailable' :
-					presenceMini('unavailable');
-					break;
-				default:
-					presenceMini('available');
-					break; 
+			// Generate an array of presence change XIDs
+			var pr_xid = [''];
+			
+			jQuery('#jappix_mini div.jm_conversation[data-type=groupchat]').each(function() {
+				pr_xid.push(jQuery(this).attr('data-xid'));
+			});
+			
+			// Loop on XIDs
+			var new_status = jQuery(this).data('status');
+			
+			jQuery.each(pr_xid, function(key, value) {
+				switch(new_status) {
+					case 'available':
+						presenceMini('', '', '', '', value);
+						break;
+					
+					case 'away':
+						presenceMini('', 'away', '', '', value);
+						break;
+					
+					case 'dnd':
+						presenceMini('', 'dnd', '', '', value);
+						break;
+					
+					case 'unavailable':
+						disconnectMini();
+						break;
+					
+					default:
+						presenceMini('', '', '', '', value);
+						break;
+				}
+			});
+			
+			// Switch the status
+			if(new_status != 'unavailable') {
+				jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable')
+				                                       .addClass('jm_' + jQuery(this).data('status'));
+				
+				jQuery('#jappix_mini div.jm_status_picker').hide();
+				jQuery('#jappix_mini a.jm_status').blur().removeClass('active');
 			}
-			jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable').addClass('jm_' + jQuery(this).data('status'));;
-			jQuery('#jappix_mini div.jm_status_picker').hide();
-			jQuery('#jappix_mini a.jm_status').blur().removeClass('active');
 		}
 		
 		catch(e) {}
@@ -1788,10 +1811,10 @@ function chatEventsMini(type, xid, hash) {
 		if(e.keyCode == 27) {
 			if(jQuery(current + ' a.jm_close').size()) {
 				// Open next/previous chat
-				if($(current).next('div.jm_conversation').size())
-					$(current).next('div.jm_conversation').find('a.jm_pane').click();
-				else if($(current).prev('div.jm_conversation').size())
-					$(current).prev('div.jm_conversation').find('a.jm_pane').click();
+				if(jQuery(current).next('div.jm_conversation').size())
+					jQuery(current).next('div.jm_conversation').find('a.jm_pane').click();
+				else if(jQuery(current).prev('div.jm_conversation').size())
+					jQuery(current).prev('div.jm_conversation').find('a.jm_pane').click();
 				
 				// Close current chat
 				jQuery(current + ' a.jm_close').click();
@@ -1842,8 +1865,12 @@ function showRosterMini() {
 
 // Hides the roster
 function hideRosterMini() {
+	// Hide the roster box
 	jQuery('#jappix_mini div.jm_roster').hide();
 	jQuery('#jappix_mini a.jm_button').removeClass('jm_clicked');
+	
+	// Close the status picker
+	jQuery('#jappix_mini a.jm_status.active').click();
 	
 	// Clear the search box and show all online contacts
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('').attr('data-value', '');
