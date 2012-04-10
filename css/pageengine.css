@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 09/04/12
+Last revision: 10/04/12
 
 */
 
@@ -423,6 +423,10 @@ Last revision: 09/04/12
 	margin: 0 0 3px 0 !important;
 }
 
+#page-engine .bubble-style label.font {
+	height: 14px !important;
+}
+
 #page-engine .bubble-style label.font div.font-icon {
 	background-position: 0 -1978px;
 	width: 14px;
@@ -430,28 +434,49 @@ Last revision: 09/04/12
 	float: left;
 }
 
-#page-engine .bubble-style label.font div.font-change {
-	margin-left: 4px;
-	float: left;
-	position: relative;
+#page-engine .bubble-style label.font div.font-change,
+#page-engine .bubble-style label.font div.fontsize-change {
+	position: absolute;
 }
 
-#page-engine .bubble-style label.font div.font-change a.font-current {
+#page-engine .bubble-style label.font div.font-change {
+	left: 59px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change {
+	left: 28px;
+}
+
+#page-engine .bubble-style label.font div.font-change a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current {
 	text-decoration: none;
 	float: left;
 }
 
+#page-engine .bubble-style label.font div.font-change a.font-current {
+	width: 140px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current {
+	width: 25px;
+}
+
 #page-engine .bubble-style label.font div.font-change a.font-current:hover,
-#page-engine .bubble-style label.font div.font-change a.font-current:focus {
+#page-engine .bubble-style label.font div.font-change a.font-current:focus,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current:hover,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current:focus {
 	text-decoration: underline;
 }
 
-#page-engine .bubble-style label.font div.font-change.listed {
+#page-engine .bubble-style label.font div.font-change.listed,
+#page-engine .bubble-style label.font div.fontsize-change.listed {
 	margin-bottom: 15px;
 }
 
 #page-engine .bubble-style label.font div.font-change div.font-list,
 #page-engine .bubble-style label.font div.font-change.listed a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list,
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current,
 #page-engine .bubble-style div.color-picker div.color-hex {
 	border-style: solid;
 	border-color: black;
@@ -461,13 +486,13 @@ Last revision: 09/04/12
 	-webkit-box-shadow: 0 0 5px #5f5f5f;
 }
 
-#page-engine .bubble-style label.font div.font-change.listed a.font-current {
+#page-engine .bubble-style label.font div.font-change.listed a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current {
 	background: rgba(255,255,255, 0.8);
 	border-width: 0 1px 1px 1px;
 	color: black;
 	text-shadow: none;
 	text-decoration: none;
-	width: 133px;
 	padding: 2px 6px;
 	position: absolute;
 	top: -2px;
@@ -481,12 +506,19 @@ Last revision: 09/04/12
 	-webkit-border-bottom-left-radius: 2px;
 }
 
+#page-engine .bubble-style label.font div.font-change.listed a.font-current {
+	width: 133px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current {
+	width: 18px;
+}
+
 #page-engine .bubble-style label.font div.font-change div.font-list,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list,
 #page-engine .bubble-style div.color-picker div.color-hex {
 	background: rgba(255,255,255, 0.9);
 	border-width: 1px 1px 0 1px;
-	width: 145px;
-	height: 250px;
 	padding: 2px 0;
 	overflow: auto;
 	position: absolute;
@@ -502,12 +534,23 @@ Last revision: 09/04/12
 	-webkit-border-top-left-radius: 2px;
 }
 
+#page-engine .bubble-style label.font div.font-change div.font-list {
+	width: 145px;
+	height: 250px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list {
+	width: 30px;
+}
+
 #page-engine .bubble-style label.font div.font-change.listed div.font-list,
+#page-engine .bubble-style label.font div.fontsize-change.listed div.fontsize-list,
 #page-engine .bubble-style div.color-picker.opened div.color-hex {
 	display: block;
 }
 
-#page-engine .bubble-style label.font div.font-change div.font-list a {
+#page-engine .bubble-style label.font div.font-change div.font-list a,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a {
 	font-size: 1em;
 	text-shadow: none;
 	font-weight: bold;
@@ -518,9 +561,21 @@ Last revision: 09/04/12
 }
 
 #page-engine .bubble-style label.font div.font-change div.font-list a:hover,
-#page-engine .bubble-style label.font div.font-change div.font-list a:focus {
-	background: rgba(0,0,0, 0.8);
+#page-engine .bubble-style label.font div.font-change div.font-list a:focus,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a:hover,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a:focus {
+	background-color: rgba(0,0,0, 0.8);
 	color: white;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset {
+	background-position: 7px -2006px;
+	height: 14px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset:hover,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset:focus {
+	background-position: 7px -2025px;
 }
 
 #page-engine .bubble-style label.bold {
@@ -541,7 +596,7 @@ Last revision: 09/04/12
 	border-color: white;
 	border-width: 1px;
 	border-style: solid;
-	margin: 3px 5px 0 0;
+	margin: 4px 5px 0 0;
 	float: left;
 	opacity: 0.6;
 	border-radius: 3px;
@@ -572,7 +627,7 @@ Last revision: 09/04/12
 	background-position: 1px -1991px;
 	height: 14px;
 	width: 14px;
-	margin-top: 3px;
+	margin-top: 4px;
 	float: left;
 }
 

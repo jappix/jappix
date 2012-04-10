@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 09/04/12
+Last revision: 10/04/12
 
 */
 
@@ -714,6 +714,7 @@ function generateStyle(hash) {
 	// Initialize the vars
 	var styles = '#' + hash + ' div.bubble-style';
 	var font = styles + ' a.font-current';
+	var fontsize = styles + ' a.fontsize-current';
 	var checkbox = styles + ' input[type=checkbox]';
 	var color = '#' + hash + ' .message-area[data-color]';
 	var style = '';
@@ -721,6 +722,11 @@ function generateStyle(hash) {
 	// Get the font value
 	$(font).filter('[data-font]').each(function() {
 		style += 'font-family: ' + $(this).attr('data-font') + ';';
+	});
+	
+	// Get the font value
+	$(fontsize).filter('[data-value]').each(function() {
+		style += 'font-size: ' + $(this).attr('data-value') + 'px;';
 	});
 	
 	// Loop the input values

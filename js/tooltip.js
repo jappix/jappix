@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 09/04/12
+Last revision: 10/04/12
 
 */
 
@@ -88,6 +88,19 @@ function createTooltip(xid, hash, type) {
 			content = 
 				'<label class="font">' + 
 					'<div class="font-icon talk-images"></div>' + 
+					
+					'<div class="fontsize-change">' + 
+						'<a class="fontsize-current" href="#">12</a>' + 
+						'<div class="fontsize-list">' + 
+							'<a href="#" class="reset talk-images"></a>' + 
+							'<a href="#" data-value="10" style="font-size: 10px;">10</a>' + 
+							'<a href="#" data-value="12" style="font-size: 12px;">12</a>' + 
+							'<a href="#" data-value="14" style="font-size: 14px;">14</a>' + 
+							'<a href="#" data-value="16" style="font-size: 16px;">16</a>' + 
+							'<a href="#" data-value="18" style="font-size: 18px;">18</a>' + 
+						'</div>' + 
+					'</div>' + 
+					
 					'<div class="font-change">' + 
 						'<a class="font-current" href="#">' + _e("None") + '</a>' + 
 						fonts_html + 
@@ -170,6 +183,9 @@ function createTooltip(xid, hash, type) {
 			var font_current = bubble_style + ' a.font-current';
 			var font_list = bubble_style + ' div.font-list';
 			var font_select = font_list + ' a';
+			var fontsize_current = bubble_style + ' a.fontsize-current';
+			var fontsize_list = bubble_style + ' div.fontsize-list';
+			var fontsize_select = fontsize_list + ' a';
 			var color = bubble_style + ' div.color-picker';
 			var color_more = color + ' a.color-more';
 			var color_hex = color + ' div.color-hex';
@@ -179,6 +195,10 @@ function createTooltip(xid, hash, type) {
 				// Hide font selector if opened
 				if($(font_list).is(':visible'))
 					$(font_current).click();
+				
+				// Hide font-size selector if opened
+				if($(fontsize_list).is(':visible'))
+					$(fontsize_current).click();
 				
 				// Hide color selector if opened
 				if($(color_hex).is(':visible'))
@@ -214,6 +234,35 @@ function createTooltip(xid, hash, type) {
 					               .text($(font_list).find('a[data-value=' + $(this).attr('data-value') + ']').text());
 					
 					$(message_area).attr('data-font', $(this).attr('data-value'));
+				}
+				
+				return false;
+			});
+			
+			// Click event on font-size picker
+			$(fontsize_current).click(function() {
+				// The clicked color is yet selected
+				if($(fontsize_list).is(':visible'))
+					$(this).parent().removeClass('listed');
+				else
+					$(this).parent().addClass('listed');
+				
+				return false;
+			});
+			
+			// Click event on a new font-size in the picker
+			$(fontsize_select).click(function() {
+				// No font-size selected
+				if(!$(this).attr('data-value')) {
+					$(fontsize_current).removeAttr('data-value').text(_e("16"));
+					$(message_area).removeAttr('data-fontsize');
+				}
+				
+				// A font-size is defined
+				else {
+					$(fontsize_current).attr('data-value', $(this).attr('data-value'))
+					                   .text($(this).attr('data-value'));
+					$(message_area).attr('data-fontsize', $(this).attr('data-value'));
 				}
 				
 				return false;
@@ -312,7 +361,7 @@ function createTooltip(xid, hash, type) {
 			});
 			
 			// Update the textarea style when it is changed
-			$(style + ', ' + colors + ', ' + font_select).click(function() {
+			$(style + ', ' + colors + ', ' + font_select + ', ' + fontsize_select).click(function() {
 				var style = generateStyle(hash);
 				
 				// Any style to apply?
@@ -432,6 +481,7 @@ function loadStyleSelector(hash) {
 	var bubble_style = path + ' .bubble-style';
 	var font = message_area.attr('data-font');
 	var font_select = $(bubble_style + ' div.font-list').find('a[data-value=' + font + ']');
+	var fontsize = message_area.attr('data-fontsize');
 	var color = message_area.attr('data-color');
 	
 	// Apply message font
@@ -439,6 +489,12 @@ function loadStyleSelector(hash) {
 		$(bubble_style + ' a.font-current').attr('data-value', font)
 		                                   .attr('data-font', font_select.attr('data-font'))
 		                                   .text(font_select.text());
+	}
+	
+	// Apply message font-size
+	if(fontsize) {
+		$(bubble_style + ' a.fontsize-current').attr('data-value', fontsize)
+		                                       .text(fontsize);
 	}
 	
 	// Apply the options to the style selector
