@@ -7,7 +7,7 @@ These are the tooltip JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 09/04/12
 
 */
 
@@ -37,7 +37,62 @@ function createTooltip(xid, hash, type) {
 		// Style
 		case 'style':
 			title = _e("Change style");
+			
+			// Generate fonts list
+			var fonts = {
+				'arial': 'Arial, Helvetica, sans-serif',
+				'arial-black': '\'Arial Black\', Gadget, sans-serif',
+				'bookman-old-style': '\'Bookman Old Style\', serif',
+				'comic-sans-ms': '\'Comic Sans MS\', cursive',
+				'courier': 'Courier, monospace',
+				'courier-new': '\'Courier New\', Courier, monospace',
+				'garamond': 'Garamond, serif',
+				'georgia': 'Georgia, serif',
+				'impact': 'Impact, Charcoal, sans-serif',
+				'lucida-console': '\'Lucida Console\', Monaco, monospace',
+				'lucida-sans-unicode': '\'Lucida Sans Unicode\', \'Lucida Grande\', sans-serif',
+				'ms-sans-serif': '\'MS Sans Serif\', Geneva, sans-serif',
+				'ms-serif': '\'MS Serif\', \'New York\', sans-serif',
+				'palatino-linotype': '\'Palatino Linotype\', \'Book Antiqua\', Palatino, serif',
+				'symbol': 'Symbol, sans-serif',
+				'tahoma': 'Tahoma, Geneva, sans-serif',
+				'times-new-roman': '\'Times New Roman\', Times, serif',
+				'trebuchet-ms': '\'Trebuchet MS\', Helvetica, sans-serif',
+				'verdana': 'Verdana, Geneva, sans-serif',
+				'webdings': 'Webdings, sans-serif',
+				'wingdings': 'Wingdings, \'Zapf Dingbats\', sans-serif'
+			};
+			
+			var fonts_html = '<div class="font-list">';
+			
+			// No fonts
+			fonts_html += '<a href="#">' + _e("None") + '</a>';
+			
+			// Available fonts
+			$.each(fonts, function(id_name, full_name) {
+				// Generate short name
+				var short_name = full_name;
+				
+				if(short_name.match(/,/)) {
+					var name_split = short_name.split(',');
+					short_name = trim(name_split[0]);
+				}
+				
+				short_name = short_name.replace(/([^a-z0-9\s]+)/gi, '');
+				
+				// Add this to the HTML
+				fonts_html += '<a href="#" data-value="' + encodeQuotes(id_name) + '" data-font="' + encodeQuotes(full_name) + '" style="font-family: ' + encodeQuotes(full_name) + ';">' + short_name.htmlEnc() + '</a>';
+			});
+			fonts_html += '</div>';
+			
 			content = 
+				'<label class="font">' + 
+					'<div class="font-icon talk-images"></div>' + 
+					'<div class="font-change">' + 
+						'<a class="font-current" href="#">' + _e("None") + '</a>' + 
+						fonts_html + 
+					'</div>' + 
+				'</label>' + 
 				'<label class="bold"><input type="checkbox" class="bold" />' + _e("Text in bold") + '</label>' + 
 				'<label class="italic"><input type="checkbox" class="italic" />' + _e("Text in italic") + '</label>' + 
 				'<label class="underline"><input type="checkbox" class="underline" />' + _e("Underlined text") + '</label>' + 
@@ -48,7 +103,13 @@ function createTooltip(xid, hash, type) {
 				'<a href="#" class="color" style="background-color: #0ba9a0;" data-color="0ba9a0"></a>' + 
 				'<a href="#" class="color" style="background-color: #04228f;" data-color="04228f"></a>' + 
 				'<a href="#" class="color" style="background-color: #9d0ab7;" data-color="9d0ab7"></a>' + 
-				'<a href="#" class="color" style="background-color: #8a8a8a;" data-color="8a8a8a"></a>';
+				'<div class="color-picker">' + 
+					'<a href="#" class="color-more talk-images"></a>' + 
+					'<div class="color-hex">' + 
+						'<span class="hex-begin">#</span>' + 
+						'<input class="hex-value" type="text" maxlength="6" placeholder="e1e1e1" />' + 
+					'</div>' + 
+				'</div>';
 			
 			break;
 		
@@ -103,12 +164,66 @@ function createTooltip(xid, hash, type) {
 		case 'style':
 			// Paths to items
 			var message_area = path + ' .message-area';
-			var bubble_style = path_tooltip + ' .bubble-style ';
-			var style = bubble_style + 'input:checkbox';
-			var colors = bubble_style + 'a.color';
+			var bubble_style = path_tooltip + ' .bubble-style';
+			var style = bubble_style + ' input:checkbox';
+			var colors = bubble_style + ' a.color';
+			var font_current = bubble_style + ' a.font-current';
+			var font_list = bubble_style + ' div.font-list';
+			var font_select = font_list + ' a';
+			var color = bubble_style + ' div.color-picker';
+			var color_more = color + ' a.color-more';
+			var color_hex = color + ' div.color-hex';
+			
+			// Click event on style bubble
+			$(bubble_style).click(function() {
+				// Hide font selector if opened
+				if($(font_list).is(':visible'))
+					$(font_current).click();
+				
+				// Hide color selector if opened
+				if($(color_hex).is(':visible'))
+					$(color_more).click();
+			});
+			
+			// Click event on font picker
+			$(font_current).click(function() {
+				// The clicked color is yet selected
+				if($(font_list).is(':visible'))
+					$(this).parent().removeClass('listed');
+				else
+					$(this).parent().addClass('listed');
+				
+				return false;
+			});
+			
+			// Click event on a new font in the picker
+			$(font_select).click(function() {
+				// No font selected
+				if(!$(this).attr('data-value')) {
+					$(font_current).removeAttr('data-font')
+					               .removeAttr('data-value')
+					               .text(_e("None"));
+					
+					$(message_area).removeAttr('data-font');
+				}
+				
+				// A font is defined
+				else {
+					$(font_current).attr('data-font', $(this).attr('data-font'))
+					               .attr('data-value', $(this).attr('data-value'))
+					               .text($(font_list).find('a[data-value=' + $(this).attr('data-value') + ']').text());
+					
+					$(message_area).attr('data-font', $(this).attr('data-value'));
+				}
+				
+				return false;
+			});
 			
 			// Click event on color picker
 			$(colors).click(function() {
+				// Reset the manual picker
+				$(color_hex).find('input').val('');
+				
 				// The clicked color is yet selected
 				if($(this).hasClass('selected')) {
 					$(message_area).removeAttr('data-color');
@@ -124,6 +239,66 @@ function createTooltip(xid, hash, type) {
 				return false;
 			});
 			
+			// Click event on color picker
+			$(color_more).click(function() {
+				// The clicked color is yet selected
+				if($(color_hex).is(':visible'))
+					$(this).parent().removeClass('opened');
+				
+				else {
+					$(this).parent().addClass('opened');
+					
+					// Focus
+					$(document).oneTime(10, function() {
+						$(color_hex).find('input').focus();
+					});
+				}
+				
+				return false;
+			});
+			
+			// Click event on color hex
+			$(color_hex).click(function() {
+				return false;
+			});
+			
+			// Keyup event on color picker
+			$(color_hex).find('input').keyup(function(e) {
+				// Submit
+				if(e.keyCode == 13) {
+					if($(color_hex).is(':visible')) {
+						$(color_more).click();
+						
+						// Focus again on the message textarea
+						$(document).oneTime(10, function() {
+							$(message_area).focus();
+						});
+					}
+					
+					return false;
+				}
+				
+				// Reset current color
+				$(message_area).removeAttr('data-color');
+				$(colors).removeClass('selected');
+				
+				// Change value
+				var new_value = $(this).val().replace(/([^a-z0-9]+)/gi, '');
+				$(this).val(new_value);
+				
+				if(new_value)
+					$(message_area).attr('data-color', new_value);
+				
+				// Regenerate style
+				var style = generateStyle(hash);
+				
+				// Any style to apply?
+				if(style)
+					$(message_area).attr('style', style);
+				else
+					$(message_area).removeAttr('style');
+			}).placeholder();
+			
 			// Change event on text style checkboxes
 			$(style).change(function() {
 				// Get current type
@@ -137,7 +312,7 @@ function createTooltip(xid, hash, type) {
 			});
 			
 			// Update the textarea style when it is changed
-			$(style + ', ' + colors).click(function() {
+			$(style + ', ' + colors + ', ' + font_select).click(function() {
 				var style = generateStyle(hash);
 				
 				// Any style to apply?
@@ -255,6 +430,16 @@ function loadStyleSelector(hash) {
 	var path = '#' + hash;
 	var message_area = $(path + ' .message-area');
 	var bubble_style = path + ' .bubble-style';
+	var font = message_area.attr('data-font');
+	var font_select = $(bubble_style + ' div.font-list').find('a[data-value=' + font + ']');
+	var color = message_area.attr('data-color');
+	
+	// Apply message font
+	if(font) {
+		$(bubble_style + ' a.font-current').attr('data-value', font)
+		                                   .attr('data-font', font_select.attr('data-font'))
+		                                   .text(font_select.text());
+	}
 	
 	// Apply the options to the style selector
 	$(bubble_style + ' input[type=checkbox]').each(function() {
@@ -264,5 +449,10 @@ function loadStyleSelector(hash) {
 	});
 	
 	// Apply message color
-	$(bubble_style + ' a.color[data-color=' + message_area.attr('data-color') + ']').addClass('selected');
+	if(color) {
+		if($(bubble_style + ' a.color[data-color=' + color + ']').size())
+			$(bubble_style + ' a.color[data-color=' + color + ']').addClass('selected');
+		else
+			$(bubble_style + ' div.color-hex input.hex-value').val(color);
+	}
 }

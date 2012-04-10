@@ -282,6 +282,7 @@ function displayDiscoInfos(from, xml) {
 		
 		// Reset the markers
 		message_area.removeAttr('style')
+			    .removeAttr('data-font')
 			    .removeAttr('data-color')
 			    .removeAttr('data-bold')
 			    .removeAttr('data-italic')
