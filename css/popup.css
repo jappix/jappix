@@ -7,7 +7,7 @@ This is the popup CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 02/05/11
+Last revision: 10/04/12
 
 */
 
@@ -447,7 +447,8 @@ Last revision: 02/05/11
 	top: 8px;
 }
 
-.popup .results a.one-chat {
+.popup .results a.one-chat,
+.popup .results a.one-profile {
 	top: 42px;
 }
 

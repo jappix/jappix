@@ -7,7 +7,7 @@ This is the favorites CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 28/12/10
+Last revision: 10/04/12
 
 */
 
@@ -151,7 +151,8 @@ Last revision: 28/12/10
 #favorites .join,
 #inbox .reply,
 #inbox .send,
-.popup .results .one-button.one-chat {
+.popup .results .one-button.one-chat,
+.popup .results a.one-profile {
 	background-position: 3px -124px;
 }
 
