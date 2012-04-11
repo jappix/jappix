@@ -3,13 +3,13 @@
 /*
 
 Jappix - An open social platform
-This is the Jappix microblog file attaching script
+This is the Jappix file share (upload handler) script
 
 -------------------------------------------------
 
 License: AGPL
 Authors: Vanaryon, regilero, Cyril "Kyriog" Glapa
-Last revision: 10/04/12
+Last revision: 11/04/12
 
 */
 
@@ -39,7 +39,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['locatio
 	$filename = $_FILES['file']['name'];
 	$md5 = md5_file($tmp_filename);
 	$xml = new DOMDocument();
-
+	
 	// Get the file mime type
 	$finfo = new finfo(FILEINFO_MIME_TYPE);
 	$mimetype = $finfo->file($tmp_filename);
@@ -49,13 +49,13 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['locatio
 		$location = HOST_UPLOAD;
 	else
 		$location = $_POST['location'];
-
+	
 	// Some little vars
 	$content_dir = JAPPIX_BASE.'/store/share';
 	$file_path = $content_dir.'/'.$md5;
 	$security_file = $content_dir.'/index.html';
 	$thumb_xml = '';
-
+	
 	if(!is_file($file_path)) {
 		// Generate XML file
 		$xml_file = $xml->createElement('file');
@@ -63,7 +63,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['locatio
 		$xml_file->appendChild($xml->createElement('type',$mimetype));
 		$xml_file->appendChild($xml->createElement('keys'));
 		$xml->appendChild($xml_file);
-
+		
 		// File upload error?
 		if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $file_path)) {
 			exit(
@@ -72,15 +72,17 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['locatio
 			</jappix>'
 			);
 		}
-	} else {
-		$xml->load($file_path.'.xml');
 	}
+	
+	else
+		$xml->load($file_path.'.xml');
 	
 	$key = substr(uniqid(), -rand(4,5));
 	$keys = $xml->getElementsByTagName('keys')->item(0);
 	
 	// Check if the key is already present in the xml file
 	$key_found = false;
+	
 	foreach($keys->childNodes as $current_key) {
 		if($current_key->nodeValue == $key) {
 			$key_found = true;

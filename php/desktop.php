@@ -176,7 +176,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					<a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
 				</span>
 				<span class="one">
-					<a class="name" href="http://frenchtouch.pro/">Frenchtouch</a>
+					<a class="name" href="http://frenchtouch.pro/">FrenchTouch</a>
 					<a class="desc" href="http://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
 				</span>
 				
