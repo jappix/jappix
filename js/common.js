@@ -72,11 +72,11 @@ function printf(string, value) {
 }
 
 // Returns the string after the last given char
-function strAfterLast(char, str) {
-	if(!char || !str)
+function strAfterLast(given_char, str) {
+	if(!given_char || !str)
 		return '';
 	
-	var char_index = str.lastIndexOf(char);
+	var char_index = str.lastIndexOf(given_char);
 	var str_return = str;
 	
 	if(char_index >= 0)
