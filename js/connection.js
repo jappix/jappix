@@ -14,8 +14,11 @@ Last revision: 29/08/11
 // Does the user login
 var CURRENT_SESSION = false;
 
-function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
+function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember,loginOpts) {
 	try {
+		// get optionnal conn handlers
+		oExtend = loginOpts || {};
+
 		// We remove the not completed class to avoid problems
 		$('#home .loginer input').removeClass('please-complete');
 		
@@ -34,14 +37,14 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		con = new JSJaCHttpBindingConnection(oArgs);
 		
 		// And we handle everything that happen
-		setupCon(con);
+		setupCon(con,oExtend);
 		
 		// Generate a resource
 		var random_resource = getDB('session', 'resource');
 		
 		if(!random_resource)
 			random_resource = lResource + ' (' + (new Date()).getTime() + ')';
-		
+
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.domain = trim(lServer);
@@ -56,7 +59,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 		
 		// Generate a session XML to be stored
 		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
-		
+
 		// Save the session parameters (for reconnect if network issue)
 		CURRENT_SESSION = session_xml;
 		
@@ -260,7 +263,7 @@ function handleDisconnected() {
 }
 
 // Setups the normal connection
-function setupCon(con) {
+function setupCon(con,oExtend) {
 	// We setup all the necessary handlers for the connection
 	con.registerHandler('message', handleMessage);
 	con.registerHandler('presence', handlePresence);
@@ -268,6 +271,10 @@ function setupCon(con) {
 	con.registerHandler('onconnect', handleConnected);
 	con.registerHandler('onerror', handleError);
 	con.registerHandler('ondisconnect', handleDisconnected);
+	oExtend = oExtend||{};
+	jQuery.each(oExtend,function(keywd,funct) {
+	  con.registerHandler(keywd, funct);
+	});
 }
 
 // Logouts from the server
