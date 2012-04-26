@@ -17,7 +17,7 @@ var CURRENT_SESSION = false;
 function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember,loginOpts) {
 	try {
 		// get optionnal conn handlers
-		oextend = loginOpts || {};
+		oExtend = loginOpts || {};
 
 		// We remove the not completed class to avoid problems
 		$('#home .loginer input').removeClass('please-complete');
