@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 31/08/11
+Last revision: 10/04/12
 
 */
 
@@ -419,6 +419,165 @@ Last revision: 31/08/11
 	background-position: 0 -777px;
 }
 
+#page-engine .bubble-style label {
+	margin: 0 0 3px 0 !important;
+}
+
+#page-engine .bubble-style label.font {
+	height: 14px !important;
+}
+
+#page-engine .bubble-style label.font div.font-icon {
+	background-position: 0 -1978px;
+	width: 14px;
+	height: 11px;
+	float: left;
+}
+
+#page-engine .bubble-style label.font div.font-change,
+#page-engine .bubble-style label.font div.fontsize-change {
+	position: absolute;
+}
+
+#page-engine .bubble-style label.font div.font-change {
+	left: 59px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change {
+	left: 28px;
+}
+
+#page-engine .bubble-style label.font div.font-change a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current {
+	text-decoration: none;
+	float: left;
+}
+
+#page-engine .bubble-style label.font div.font-change a.font-current {
+	width: 140px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current {
+	width: 25px;
+}
+
+#page-engine .bubble-style label.font div.font-change a.font-current:hover,
+#page-engine .bubble-style label.font div.font-change a.font-current:focus,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current:hover,
+#page-engine .bubble-style label.font div.fontsize-change a.fontsize-current:focus {
+	text-decoration: underline;
+}
+
+#page-engine .bubble-style label.font div.font-change.listed,
+#page-engine .bubble-style label.font div.fontsize-change.listed {
+	margin-bottom: 15px;
+}
+
+#page-engine .bubble-style label.font div.font-change div.font-list,
+#page-engine .bubble-style label.font div.font-change.listed a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list,
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current,
+#page-engine .bubble-style div.color-picker div.color-hex {
+	border-style: solid;
+	border-color: black;
+	background: white;
+	box-shadow: 0 0 5px #5f5f5f;
+	-moz-box-shadow: 0 0 5px #5f5f5f;
+	-webkit-box-shadow: 0 0 5px #5f5f5f;
+}
+
+#page-engine .bubble-style label.font div.font-change.listed a.font-current,
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current {
+	background: rgba(255,255,255, 0.8);
+	border-width: 0 1px 1px 1px;
+	color: black;
+	text-shadow: none;
+	text-decoration: none;
+	padding: 2px 6px;
+	position: absolute;
+	top: -2px;
+	left: -7px;
+	z-index: 2;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+}
+
+#page-engine .bubble-style label.font div.font-change.listed a.font-current {
+	width: 133px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change.listed a.fontsize-current {
+	width: 18px;
+}
+
+#page-engine .bubble-style label.font div.font-change div.font-list,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list,
+#page-engine .bubble-style div.color-picker div.color-hex {
+	background: rgba(255,255,255, 0.9);
+	border-width: 1px 1px 0 1px;
+	padding: 2px 0;
+	overflow: auto;
+	position: absolute;
+	bottom: 2px;
+	left: -7px;
+	z-index: 1;
+	display: none;
+	border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-moz-border-radius-topleft: 2px;
+	-webkit-border-top-right-radius: 2px;
+	-webkit-border-top-left-radius: 2px;
+}
+
+#page-engine .bubble-style label.font div.font-change div.font-list {
+	width: 145px;
+	height: 250px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list {
+	width: 30px;
+}
+
+#page-engine .bubble-style label.font div.font-change.listed div.font-list,
+#page-engine .bubble-style label.font div.fontsize-change.listed div.fontsize-list,
+#page-engine .bubble-style div.color-picker.opened div.color-hex {
+	display: block;
+}
+
+#page-engine .bubble-style label.font div.font-change div.font-list a,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a {
+	font-size: 1em;
+	text-shadow: none;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+	padding: 3px 6px;
+	display: block;
+}
+
+#page-engine .bubble-style label.font div.font-change div.font-list a:hover,
+#page-engine .bubble-style label.font div.font-change div.font-list a:focus,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a:hover,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a:focus {
+	background-color: rgba(0,0,0, 0.8);
+	color: white;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset {
+	background-position: 7px -2006px;
+	height: 14px;
+}
+
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset:hover,
+#page-engine .bubble-style label.font div.fontsize-change div.fontsize-list a.reset:focus {
+	background-position: 7px -2025px;
+}
+
 #page-engine .bubble-style label.bold {
 	font-weight: bold;
 }
@@ -432,12 +591,12 @@ Last revision: 31/08/11
 }
 
 #page-engine .bubble-style a.color {
-	height: 18px;
+	height: 12px;
 	width: 18px;
 	border-color: white;
 	border-width: 1px;
 	border-style: solid;
-	margin: 6px 5px 0 0;
+	margin: 4px 5px 0 0;
 	float: left;
 	opacity: 0.6;
 	border-radius: 3px;
@@ -456,6 +615,51 @@ Last revision: 31/08/11
 #page-engine .bubble-style a.color.selected {
 	opacity: 1;
 	border-color: #ffb20d;
+}
+
+#page-engine .bubble-style div.color-picker {
+	margin-left: 4px;
+	float: left;
+	position: relative;
+}
+
+#page-engine .bubble-style div.color-picker a.color-more {
+	background-position: 1px -1991px;
+	height: 14px;
+	width: 14px;
+	margin-top: 4px;
+	float: left;
+}
+
+#page-engine .bubble-style div.color-picker div.color-hex {
+	border-width: 1px;
+	width: 80px;
+	height: auto;
+	padding: 3px 5px;
+	text-shadow: none;
+	bottom: -5px;
+	left: -52px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+#page-engine .bubble-style div.color-picker div.color-hex span.hex-begin,
+#page-engine .bubble-style div.color-picker div.color-hex input.hex-value {
+	color: black;
+	float: left;
+}
+
+#page-engine .bubble-style div.color-picker div.color-hex span.hex-begin {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-right: 5px;
+}
+
+#page-engine .bubble-style div.color-picker div.color-hex input.hex-value {
+	background: rgba(0,0,0,0.1);
+	border: none;
+	width: 60px;
 }
 
 #page-engine .bubble-file .tooltip-subitem {

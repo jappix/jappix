@@ -7,7 +7,7 @@ These are the popup JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/04/11
+Last revision: 10/04/12
 
 */
 
@@ -17,6 +17,9 @@ function createPopup(id, content) {
 	if(exists('#' + id))
 		return false;
 	
+	// Popop on top of another one?
+	var top_of = exists('div.lock:has(div.popup)');
+	
 	// Append the popup code
 	$('body').append(
 		'<div id="' + id + '" class="lock removable">' + 
@@ -25,6 +28,10 @@ function createPopup(id, content) {
 			'</div>' + 
 		'</div>'
 	);
+	
+	// Avoids darker popup background (if on top of another popup)
+	if(top_of)
+		$('#' + id).css('background', 'transparent');
 	
 	return true;
 }

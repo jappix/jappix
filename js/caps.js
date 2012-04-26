@@ -7,7 +7,7 @@ These are the CAPS JS script for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 10/04/12
 
 */
 
@@ -282,6 +282,8 @@ function displayDiscoInfos(from, xml) {
 		
 		// Reset the markers
 		message_area.removeAttr('style')
+			    .removeAttr('data-font')
+			    .removeAttr('data-fontsize')
 			    .removeAttr('data-color')
 			    .removeAttr('data-bold')
 			    .removeAttr('data-italic')

@@ -7,7 +7,7 @@ These are the common JS script for Jappix
 
 License: AGPL
 Authors: Vanaryon, olivierm
-Last revision: 12/02/12
+Last revision: 09/04/12
 
 */
 
@@ -142,7 +142,8 @@ function bareXID(xid) {
 	xid = cutResource(xid);
 	
 	// Launch the stringprep
-	xid = stringPrep(xid);
+	// xid = stringPrep(xid);
+	// stringPrep() transforms 'a' to 's' in Safari, without any reason!
 	
 	// Set the XID to lower case
 	xid = xid.toLowerCase();

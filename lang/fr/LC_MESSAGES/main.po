@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-04-01 10:12+0100\n"
+"PO-Revision-Date: 2012-04-08 08:21+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -158,6 +158,9 @@ msgstr "Indisponible"
 
 msgid "Busy"
 msgstr "Occupé(e)"
+
+msgid "Offline"
+msgstr "Déconnecté(e)"
 
 msgid "Mood"
 msgstr "Humeur"
@@ -1898,6 +1901,9 @@ msgstr "Site du propriétaire"
 
 msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
 msgstr "Quand vous vous connectez ou vous enregistrez, votre mot de passe doit rester secret. Ne le donnez à personne, il est personnel !"
+
+msgid "Jappix for your company."
+msgstr "Jappix pour votre entreprise."
 
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."

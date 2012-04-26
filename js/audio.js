@@ -7,7 +7,7 @@ These are the audio JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 10/08/11
+Last revision: 10/04/12
 
 */
 
@@ -24,16 +24,28 @@ function soundPlay(num) {
 			if(!exists('#audio')) {
 				$('body').append(
 					'<div id="audio">' + 
-						'<audio id="new-chat" src="./snd/new-chat.oga" type="audio/ogg" />' + 
-						'<audio id="receive-message" src="./snd/receive-message.oga" type="audio/ogg" />' + 
-						'<audio id="notification" src="./snd/notification.oga" type="audio/ogg" />' + 
+						'<audio id="new-chat" preload="auto">' + 
+							'<source src="./snd/new-chat.mp3" />' + 
+							'<source src="./snd/new-chat.oga" />' + 
+						'</audio>' + 
+						
+						'<audio id="receive-message" preload="auto">' + 
+							'<source src="./snd/receive-message.mp3" />' + 
+							'<source src="./snd/receive-message.oga" />' + 
+						'</audio>' + 
+						
+						'<audio id="notification" preload="auto">' + 
+							'<source src="./snd/notification.mp3" />' + 
+							'<source src="./snd/notification.oga" />' + 
+						'</audio>' + 
 					'</div>'
 				);
 			}
 			
 			// We play the target sound
 			var playThis = document.getElementById('audio').getElementsByTagName('audio')[num];
-			playThis.load();
+			// playThis.load();
+			// load() method breaks Safari audio playing
 			playThis.play();
 		}
 	}

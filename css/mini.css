@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: AGPL
 Authors: Vanaryon, Julien, hunterjm
-Last revision: 14/02/12
+Last revision: 09/04/12
 
 */
 
@@ -257,41 +257,52 @@ Last revision: 14/02/12
 }
 
 #jappix_mini div.jm_actions a.active,
-#jappix_mini div.jm_actions a.active:focus {
+#jappix_mini div.jm_actions a.active:hover,
+#jappix_mini div.jm_actions a.active:focus,
+#jappix_mini div.jm_actions a.active:active {
 	background-color: #727879;
-	border: 1px solid #3A3A3A;
+	border: 1px solid #3a3a3a;
 	border-width: 1px 1px 0 1px;
-    	height: 15px;
+	height: 15px;
 	width: 14px;
-    	position: absolute;
+	position: absolute;
 	top: 3px;
-    	right: 24px;
-    	z-index: 10;
+	right: 24px;
+	z-index: 10;
 }
 
 #jappix_mini div.jm_status_picker {
 	background-color: #727879;
-	color: white;
-	left: 16px;
-	list-style: none outside none;
-	position: absolute;
-	top: 18px;
-	width: 120px;
 	border: 1px solid #3a3a3a;
+	color: white;
+	list-style: none outside none;
+	width: 130px;
+	position: absolute;
+	right: 22px;
+	top: 18px;
+	padding: 3px 0;
 	z-index: 9;
 }
 
-#jappix_mini div.jm_status_picker a{
+#jappix_mini div.jm_status_picker a {
 	display: block;
-	padding: 6px;
+	padding: 4px;
 	color: white;
 }
 
-#jappix_mini div.jm_status_picker a:hover{
-	display: block;
-	padding: 6px;
-	color: #3A3A3A;
+#jappix_mini div.jm_status_picker a:hover,
+#jappix_mini div.jm_status_picker a:focus {
 	background-color: white;
+	color: #3a3a3a;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #3a3a3a;
+	margin: -1px 0;
+	display: block;
+}
+
+#jappix_mini div.jm_status_picker a span.jm_presence {
+	margin-top: -1px;
 }
 
 #jappix_mini div.jm_received-messages {

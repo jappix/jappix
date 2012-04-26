@@ -7,7 +7,7 @@ These are the dataform JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 28/08/11
+Last revision: 10/04/12
 
 */
 
@@ -436,6 +436,10 @@ function handleDataFormContent(iq, type) {
 					if(target == 'discovery')
 						bHTML += '<a href="#" class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
 					
+					// Profile button, if not in discovery mode
+					else
+						bHTML += '<a href="#" class="one-profile one-vjud one-button talk-images">' + _e("Profile") + '</a>';
+					
 					// Close the HTML element
 					bHTML += '</div></div>';
 					
@@ -455,8 +459,12 @@ function handleDataFormContent(iq, type) {
 							if(target == 'discovery')
 								closeDiscovery();
 							
-							checkChatCreate(bXID , 'chat', '', '', dName);
+							checkChatCreate(bXID, 'chat', '', '', dName);
 						}
+						
+						// Buddy profile
+						if($(this).is('.one-profile'))
+							openUserInfos(bXID);
 						
 						return false;
 					});

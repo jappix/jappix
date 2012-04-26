@@ -18,7 +18,7 @@ if(!defined('JAPPIX_BASE'))
 	exit;
 
 ?>
-<a class="info smallspace neutral" href="http://codingteam.net/project/jappix/doc/JappixApp#title-3" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>
+<a class="info smallspace neutral" href="https://github.com/jappix/jappix/wiki/JappixApp" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>
 
 <fieldset>
 	<legend><?php _e("General"); ?></legend>
