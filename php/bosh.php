@@ -110,7 +110,7 @@ else {
 	$parameters['http']['header'] = $headers;
 
 	// Change default timeout
-	ini_set('default_socket_timeout', 30);
+	ini_set('default_socket_timeout', 120);
 
 	// Create the connection
 	$stream = @stream_context_create($parameters);
