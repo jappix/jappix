@@ -441,8 +441,8 @@ function sendMessage(hash, type) {
 				shortcuts.push(printf(_e("%s changes your nickname"), '<em>/nick nickname</em>'));
 				shortcuts.push(printf(_e("%s sends a message to someone in the room"), '<em>/msg nickname message</em>'));
 				shortcuts.push(printf(_e("%s changes the room topic"), '<em>/topic subject</em>'));
-				shortcuts.push(printf(_e("%s kicks an user of the room"), '<em>/kick nickname reason</em>'));
-				shortcuts.push(printf(_e("%s bans an user of the room"), '<em>/ban nickname reason</em>'));
+				shortcuts.push(printf(_e("%s kicks an user of the room"), '<em>/kick [reason:] nickname</em>'));
+				shortcuts.push(printf(_e("%s bans an user of the room"), '<em>/ban [reason:] nickname</em>'));
 				shortcuts.push(printf(_e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
 			}
 			
@@ -611,10 +611,21 @@ function sendMessage(hash, type) {
 			}
 			
 			// /ban shortcut
-			else if(body.match(/^\/ban (\S+)\s*(.*)/)) {
-				var nick = RegExp.$1;
-				var reason = RegExp.$2;
+			else if(body.match(/^\/ban (.*)/)) {
+                                nick = jQuery.trim(RegExp.$1);
+                                reason='';
 				var nXID = getMUCUserRealXID(xid, nick);
+                                // We check if the user exists, if not it may be because a reason is given
+                                // we do not check it at first because the nickname could contain ':'
+                                if(!nXID && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
+                                    var reason = jQuery.trim(RegExp.$1);
+                                    var nick = jQuery.trim(RegExp.$2);
+                                    if (0==nick.length) {
+                                        nick = reason;
+                                        reason='';
+                                    }
+                                    var nXID = getMUCUserXID(xid, nick);
+                                }
 				
 				// We check if the user exists
 				if(!nXID)
@@ -640,10 +651,21 @@ function sendMessage(hash, type) {
 			}
 			
 			// /kick shortcut
-			else if(body.match(/^\/kick (\S+)\s*(.*)/)) {
-				var nick = RegExp.$1;
-				var reason = RegExp.$2;
-				var nXID = getMUCUserXID(xid, nick);
+			else if(body.match(/^\/kick (.*)/)) {
+                                nick = jQuery.trim(RegExp.$1);
+                                reason='';
+				var nXID = getMUCUserRealXID(xid, nick);
+                                // We check if the user exists, if not it may be because a reason is given
+                                // we do not check it at first because the nickname could contain ':'
+                                if(!nXID && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
+                                    var reason = jQuery.trim(RegExp.$1);
+                                    var nick = jQuery.trim(RegExp.$2);
+                                    if (0==nick.length) {
+                                        nick = reason;
+                                        reason='';
+                                    }
+                                    var nXID = getMUCUserXID(xid, nick);
+                                }
 				
 				// We check if the user exists
 				if(!nXID)

@@ -365,7 +365,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 			$(thisUser).die('click');
 			
 			// Change to the new nickname
-			$(thisUser).attr('data-nick', iNick)
+			$(thisUser).attr('data-nick', escape(iNick))
 			           .attr('data-xid', new_xid)
 			           .find('.name').text(iNick);
 			
