@@ -2211,6 +2211,32 @@ JSJaCMessage.prototype.setThread = function(thread) {
   return this;
 };
 /**
+ * Sets the 'nick' attribute for this message.
+ * This is sometime sused to detect the sender nickname when he's not in the roster
+ * @param {String} nickname
+ * @return this message
+ * @type JSJaCMessage
+ */
+JSJaCMessage.prototype.setNick = function(nick) {
+  var aNode = this.getChild("nick");
+  var tNode = this.getDoc().createTextNode(nick);
+  if (aNode)
+    try {
+      aNode.replaceChild(tNode,aNode.firstChild);
+    } catch (e) { }
+  else {
+    try {
+      aNode = this.getDoc().createElementNS('http://jabber.org/protocol/nick',
+                                            "nick");
+    } catch (ex) {
+      aNode = this.getDoc().createElement("nick")
+    }
+    this.getNode().appendChild(aNode);
+    aNode.appendChild(tNode);
+  }
+  return this;
+};
+/**
  * Gets the 'thread' identifier for this message
  * @return A thread identifier
  * @type String
@@ -2233,6 +2259,14 @@ JSJaCMessage.prototype.getBody = function() {
  */
 JSJaCMessage.prototype.getSubject = function() {
   return this.getChildVal('subject')
+};
+/**
+ * Gets the nickname of this message
+ * @return The nickname of this message
+ * @type String
+ */
+JSJaCMessage.prototype.getNick = function() {
+  return this.getChildVal('nick');
 };
 
 
