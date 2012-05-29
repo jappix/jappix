@@ -270,7 +270,9 @@ else
 				<h3 class="statistics manager-images"><?php _e("Statistics"); ?></h3>
 				
 				<p><?php _e("Basic statistics are processed by Jappix about some important things, you can find them below."); ?></p>
-				
+				<?php if ('off'==STATISTICS) : ?>
+				  <p><?php _e("Statistics are currently disabled in the settings."); ?></p>
+				<?php else : ?>
 				<h4><?php _e("Access statistics"); ?></h4>
 				
 				<?php
@@ -331,6 +333,7 @@ else
 				</ul>
 				
 				<object class="stats" type="image/svg+xml" data="./php/stats-svg.php?l=<?php echo $locale; ?>&amp;g=others"></object>
+			<?php endif ?>
 			<?php }
 			
 			// Authorized and configuration page requested

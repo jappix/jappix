@@ -1905,3 +1905,6 @@ msgstr ""
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""

@@ -1905,6 +1905,9 @@ msgstr "Quand vous vous connectez ou vous enregistrez, votre mot de passe doit r
 msgid "Jappix for your company."
 msgstr "Jappix pour votre entreprise."
 
+msgid "Statistics are currently disabled in the settings."
+msgstr "Les Statistiques sont actuellement suspendues dans la configuration."
+
 #~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
 #~ msgstr "Jappix est une plateforme sociale à but non lucratif, accessible n'importe où, n'importe quand pour communiquer avec qui vous voulez."
 

@@ -107,7 +107,9 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 		$include_app = 'upload';
 	
 	// Save this visit (for the stats)
-	writeVisit();
+	if('off'!==STATISTICS) {
+		writeVisit();
+	}
 }
 
 // Include it!
