@@ -325,8 +325,29 @@ function handleMessageMini(msg) {
 				nick = jQuery('#jappix_mini a#friend-' + hash).text().revertHtmlEnc();
 				
 				// No nickname?
-				if(!nick)
-					nick = getXIDNick(xid);
+				if(!nick) {
+				    // if the roster does not give us any nick the user may have send us a nickname to use with his first message
+                                   // @see http://xmpp.org/extensions/xep-0172.html
+                                   // we first check we do not have made this stuff before
+                                   var unknown_entry = jQuery("a.jm_unknown[data-xid="+xid+"]",jQuery("#jappix_mini"));
+                                   if (unknown_entry.length > 0) {
+                                       nick =  unknown_entry.attr('data-nick');
+                                   } else {
+                                       msgnick = msg.getNick();
+                                       nick = getXIDNick(xid);
+                                       if (msgnick) {
+                                           if (nick != msgnick) {
+                                               // if there is a nickname in the message which differs from the jid-extracted nick then tell it to the user
+                                               nick = msgnick + ' (' + nick + ')';
+                                           }
+                                       }
+                                       //push that unknown guy in a temporary roster entry
+                                       var unknown_entry = jQuery('<a class="jm_unknown jm_offline" href="#"></a>')
+                                                           .attr('data-nick',nick)
+                                                           .attr('data-xid',xid);
+                                       unknown_entry.appendTo(jQuery(".jm_buddies",jQuery("#jappix_mini")));
+                                   }
+				}
 			}
 			
 			// Define the target div
@@ -663,7 +684,18 @@ function sendMessageMini(aForm) {
 		if(body && xid) {
 			// Send the message
 			var aMsg = new JSJaCMessage();
-			
+		
+			// if the roster does not give us any nick the user may have send us a nickname to use with his first message
+                        // @see http://xmpp.org/extensions/xep-0172.html
+			var known_roster_entry = jQuery("a.jm_friend[data-xid="+xid+"]",jQuery("#jappix_mini"));
+			if (0==known_roster_entry.length) {
+			        var subscription = known_roster_entry.attr('data-sub');
+			        // the other may not know my nickname if we do not have both a roster entry, or if he doesn't have one
+			        if ('both' != subscription && 'from' != subscription) {
+			                // Adding our nickname in the message, hard to know if this is just the first one
+			                aMsg.setNick(MINI_NICKNAME);
+			        }
+			}
 			aMsg.setTo(xid);
 			aMsg.setType(type);
 			aMsg.setBody(body);
@@ -1948,7 +1980,7 @@ function initializeMini() {
 }
 
 // Displays a roster buddy
-function addBuddyMini(xid, hash, nick, groupchat) {
+function addBuddyMini(xid, hash, nick, groupchat, subscription) {
 	// Element
 	var element = '#jappix_mini a.jm_friend#friend-' + hash;
 	
@@ -1974,8 +2006,18 @@ function addBuddyMini(xid, hash, nick, groupchat) {
 		}
 	}
 	
+	if (subscription) {
+	  substr = ' data-sub="' + subscription +'" ';
+	} else {
+	  substr = '';
+	}
 	// Append this buddy content
-	var code = '<a class="jm_friend jm_offline" id="friend-' + hash + '" data-xid="' + escape(xid) + '" data-nick="' + escape(nick) +  '" data-hash="' + hash + '" href="#"><span class="jm_presence jm_images jm_unavailable"></span>' + nick.htmlEnc() + '</a>';
+	var code = '<a class="jm_friend jm_offline" id="friend-' + hash
+	           + '" data-xid="' + escape(xid)
+	           + '" data-nick="' + escape(nick)
+	           +  '" data-hash="' + hash + '" href="#" '
+	           + substr + '><span class="jm_presence jm_images jm_unavailable"></span>'
+	           + nick.htmlEnc() + '</a>';
 	
 	if(groupchat)
 		jQuery(path).append(code);
@@ -2089,19 +2131,16 @@ function handleRosterMini(iq) {
     var x = buddies.length;
     var nick, hash, xid, subscription;
     
-    if(x > 1)
-    	x--;
-    
-    while(x--) {
-    	nick = buddies[x][0];
-    	hash = buddies[x][1];
-    	xid = buddies[x][2];
-    	subscription = buddies[x][3];
+    for (var i=0;i<x; i++) {
+        nick = buddies[i][0];
+        hash = buddies[i][1];
+        xid = buddies[i][2];
+        subscription = buddies[i][3];
     	
     	if(subscription == 'remove')
 			removeBuddyMini(hash);
     	else
-			addBuddyMini(xid, hash, nick);
+			addBuddyMini(xid, hash, nick, null, subscription);
     }
     
 	// Not yet initialized
