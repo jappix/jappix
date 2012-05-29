@@ -2089,14 +2089,11 @@ function handleRosterMini(iq) {
     var x = buddies.length;
     var nick, hash, xid, subscription;
     
-    if(x > 1)
-    	x--;
-    
-    while(x--) {
-    	nick = buddies[x][0];
-    	hash = buddies[x][1];
-    	xid = buddies[x][2];
-    	subscription = buddies[x][3];
+    for (var i=0;i<x; i++) {
+        nick = buddies[i][0];
+        hash = buddies[i][1];
+        xid = buddies[i][2];
+        subscription = buddies[i][3];
     	
     	if(subscription == 'remove')
 			removeBuddyMini(hash);
