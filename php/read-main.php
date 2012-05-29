@@ -36,8 +36,9 @@ $main_conf = array(
 	     	'https_force'		=> 'off',
 	     	'compression'		=> 'off',
 	     	'multi_files'		=> 'off',
-	     	'developer'		=> 'off'
-	     );
+	     	'developer'		=> 'off',
+	     	'statistics'  => 'off'
+);
 
 // Define a default values array
 $main_default = $main_conf;
@@ -79,5 +80,6 @@ define('HTTPS_FORCE', $main_conf['https_force']);
 define('COMPRESSION', $main_conf['compression']);
 define('MULTI_FILES', $main_conf['multi_files']);
 define('DEVELOPER', $main_conf['developer']);
+define('STATISTICS', $main_conf['statistics']);
 
 ?>

@@ -113,6 +113,12 @@ if(isset($_POST['compression']) && !empty($_POST['compression']))
 else
 	$compression = 'off';
 
+// Compression
+if(isset($_POST['statistics']) && !empty($_POST['statistics']))
+	$statistics = 'on';
+else
+	$statistics = 'off';
+	
 // Multiple resources
 if(isset($_POST['multi_files']) && ($_POST['multi_files'] == 'on'))
 	$multi_files = 'on';
@@ -144,7 +150,8 @@ $conf_xml =
 	<https_force>'.$https_force.'</https_force>
 	<compression>'.$compression.'</compression>
 	<multi_files>'.$multi_files.'</multi_files>
-	<developer>'.$developer.'</developer>'
+	<developer>'.$developer.'</developer>
+	<statistics>'.$statistics.'</statistics>'
 ;
 
 // Write the main configuration
