@@ -80,6 +80,12 @@ if($compression == 'on')
 else
 	$check_compression = '';
 
+// Statistics
+if($statistics == 'on')
+	$check_statistics = $checked;
+else
+	$check_statistics = '';
+
 ?>
 
 <a class="info smallspace neutral" href="https://github.com/jappix/jappix/wiki/JappixApp" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>
@@ -130,6 +136,8 @@ else
 	<label for="https_force"><?php _e("Force HTTPS"); ?></label><input id="https_force" type="checkbox" name="https_force"<?php echo $check_https_force; ?> />
 	
 	<label for="compression"><?php _e("Compression"); ?></label><input id="compression" type="checkbox" name="compression"<?php echo $check_compression; ?> />
+	
+	<label for="statistics"><?php _e("Statistics"); ?></label><input id="statistics" type="checkbox" name="statistics"<?php echo $check_statistics; ?> />
 	
 	<input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 	
