@@ -6,8 +6,8 @@ These are the Jappix Mini JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, hunterjm
-Last revision: 09/04/12
+Authors: Vanaryon, hunterjm, Camaran
+Last revision: 30/06/12
 
 */
 
@@ -29,7 +29,7 @@ var MINI_CHATS			= [];
 var MINI_GROUPCHATS		= [];
 var MINI_PASSWORDS		= [];
 var MINI_RESOURCE		= JAPPIX_RESOURCE + ' Mini';
-var MINI_ERROR_LINK		= "https://mini.jappix.com/issues";
+var MINI_ERROR_LINK		= 'https://mini.jappix.com/issues';
 
 // Setups connection handlers
 function setupConMini(con) {
@@ -756,7 +756,7 @@ function notifyErrorMini() {
 	// Replace the Jappix Mini DOM content
 	jQuery('#jappix_mini').html(
 		'<div class="jm_starter">' + 
-			'<a class="jm_pane jm_button jm_images" href="'+MINI_ERROR_LINK+'" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
+			'<a class="jm_pane jm_button jm_images" href="' + MINI_ERROR_LINK + '" target="_blank" title="' + _e("Click here to solve the error") + '">' + 
 				'<span class="jm_counter jm_error jm_images">' + _e("Error") + '</span>' + 
 			'</a>' + 
 		'</div>'
