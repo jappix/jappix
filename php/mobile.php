@@ -25,7 +25,7 @@ if(!defined('JAPPIX_BASE'))
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport">
-	<title><?php _e("Jappix Mobile"); ?></title>
+	<title><?php echo htmlspecialchars(SERVICE_NAME); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
 	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
