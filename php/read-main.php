@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Vanaryon
-Last revision: 01/04/12
+Last revision: 01/06/12
 
 */
 
@@ -37,7 +37,7 @@ $main_conf = array(
 	     	'compression'		=> 'off',
 	     	'multi_files'		=> 'off',
 	     	'developer'		=> 'off',
-	     	'statistics'  => 'off'
+	     	'statistics'  	=> 'on'
 );
 
 // Define a default values array

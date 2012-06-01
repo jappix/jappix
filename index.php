@@ -9,7 +9,7 @@ This is the Jappix PHP application launcher
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/05/11
+Last revision: 01/06/12
 
 */
 
@@ -107,9 +107,8 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 		$include_app = 'upload';
 	
 	// Save this visit (for the stats)
-	if('off'!==STATISTICS) {
+	if(hasStatistics())
 		writeVisit();
-	}
 }
 
 // Include it!

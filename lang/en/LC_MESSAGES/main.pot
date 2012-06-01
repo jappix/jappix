@@ -1204,6 +1204,9 @@ msgstr ""
 msgid "Anonymous mode"
 msgstr ""
 
+msgid "HTTP authentication"
+msgstr ""
+
 msgid "Registration allowed"
 msgstr ""
 

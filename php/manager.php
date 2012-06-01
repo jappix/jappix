@@ -9,7 +9,7 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Authors: Vanaryon, Cyril "Kyriog" Glapa
-Last revision: 27/02/12
+Last revision: 01/06/12
 
 */
 
@@ -270,9 +270,9 @@ else
 				<h3 class="statistics manager-images"><?php _e("Statistics"); ?></h3>
 				
 				<p><?php _e("Basic statistics are processed by Jappix about some important things, you can find them below."); ?></p>
-				<?php if ('off'==STATISTICS) : ?>
+				<?php if(!hasStatistics()): ?>
 				  <p><?php _e("Statistics are currently disabled in the settings."); ?></p>
-				<?php else : ?>
+				<?php else: ?>
 				<h4><?php _e("Access statistics"); ?></h4>
 				
 				<?php

@@ -9,13 +9,21 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 25/02/12
+Last revision: 01/06/12
 
 */
 
 // The function to check if Jappix is already installed
 function isInstalled() {
 	if(!file_exists(JAPPIX_BASE.'/store/conf/installed.xml'))
+		return false;
+	
+	return true;
+}
+
+// The function to check if statistics are enabled
+function hasStatistics() {
+	if(STATISTICS && (STATISTICS == 'off'))
 		return false;
 	
 	return true;
