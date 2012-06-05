@@ -5,7 +5,7 @@ These are the date related JS scripts for Jappix
 
 -------------------------------------------------
 
-License: AGPL
+License: dual-licensed under AGPL and MPLv2
 Author: Vanaryon
 Last revision: 17/08/11
 

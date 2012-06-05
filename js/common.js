@@ -5,8 +5,8 @@ These are the common JS script for Jappix
 
 -------------------------------------------------
 
-License: AGPL
-Authors: Vanaryon, olivierm
+License: dual-licensed under AGPL and MPLv2
+Authors: Vanaryon, olivierm, regilero
 Last revision: 09/04/12
 
 */
