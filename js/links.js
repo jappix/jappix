@@ -5,7 +5,7 @@ These are the links JS script for Jappix
 
 -------------------------------------------------
 
-License: AGPL
+License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, Maranda
 Last revision: 26/08/11
 

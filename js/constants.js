@@ -5,8 +5,8 @@ These are the constants JS scripts for Jappix
 
 -------------------------------------------------
 
-License: AGPL
-Authors: Stefan Strigler, Vanaryon
+License: dual-licensed under AGPL and MPLv2
+Authors: Stefan Strigler, Vanaryon, Kloadut
 Last revision: 26/08/11
 
 */
