@@ -27,17 +27,17 @@ function pageTitle(title) {
 			break;
 		
 		case 'talk':
-			document.title = 'Jappix • ' + head_name;
+			document.title = SERVICE_NAME + ' • ' + head_name;
 			
 			break;
 		
 		case 'new':
-			document.title = '[' + pendingEvents() + '] Jappix • ' + head_name;
+			document.title = '[' + pendingEvents() + '] ' + SERVICE_NAME + ' • ' + head_name;
 			
 			break;
 		
 		case 'wait':
-			document.title = 'Jappix • ' + _e("Please wait...");
+			document.title = SERVICE_NAME + ' • ' + _e("Please wait...");
 			
 			break;
 	}
