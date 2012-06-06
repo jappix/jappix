@@ -6,7 +6,7 @@ This is the Jappix Mobile CSS stylesheet
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Authors: Vanaryon, Camaran
 Last revision: 28/01/12
 
 */
@@ -301,7 +301,7 @@ a {
 #chat .one-chat input {
 	background-color: white;
 	bottom: 0;
-	height: 25px;
+	height: 37px;
 	width: 100%;
 	border: none;
 }
