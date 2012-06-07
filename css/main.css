@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 17/02/12
+Last revision: 07/06/12
 
 */
 
@@ -57,6 +57,7 @@ textarea {
 
 textarea {
 	font-size: 1.1em;
+	resize: none;
 }
 
 input:focus,
