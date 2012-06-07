@@ -14,7 +14,7 @@ Last revision: 29/08/11
 // Does the user login
 var CURRENT_SESSION = false;
 
-function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember,loginOpts) {
+function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOpts) {
 	try {
 		// get optionnal conn handlers
 		oExtend = loginOpts || {};
