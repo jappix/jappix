@@ -5,8 +5,8 @@ These are the Jappix Mini JS scripts for Jappix
 
 -------------------------------------------------
 
-License: AGPL
-Authors: Vanaryon, hunterjm, Camaran
+License: dual-licensed under AGPL and MPLv2
+Authors: Vanaryon, hunterjm, Camaran, regilero, Kloadut
 Last revision: 30/06/12
 
 */
