@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Stefan Strigler, Vanaryon, Kloadut
-Last revision: 26/08/11
+Last revision: 12/06/12
 
 */
 
@@ -124,6 +124,9 @@ var JAPPIX_MAX_UPLOAD = null;
 // Jappix main configuration
 var SERVICE_NAME = null;
 var SERVICE_DESC = null;
+var OWNER_NAME = null;
+var OWNER_WEBSITE = null;
+var LEGAL = null;
 var JAPPIX_RESOURCE = null;
 var LOCK_HOST = null;
 var ANONYMOUS = null;

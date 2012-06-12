@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 01/06/12
+Last revision: 12/06/12
 
 */
 
@@ -48,6 +48,14 @@ function isStatic() {
 // The function to check if this is an upload server
 function isUpload() {
 	if(HOST_UPLOAD && (parse_url(HOST_UPLOAD, PHP_URL_HOST) == $_SERVER['HTTP_HOST']))
+		return true;
+	
+	return false;
+}
+
+// The function to check if any legal disclaimer is defined
+function hasLegal() {
+	if(LEGAL)
 		return true;
 	
 	return false;

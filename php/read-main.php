@@ -9,7 +9,7 @@ This is the main configuration reader
 
 License: AGPL
 Author: Vanaryon
-Last revision: 01/06/12
+Last revision: 12/06/12
 
 */
 
@@ -23,6 +23,7 @@ $main_conf = array(
 	     	'desc'			=> 'a free social network',
 	     	'owner_name'	=> '',
 	     	'owner_website'	=> '',
+	     	'legal'	=> 		'',
 	     	'resource'		=> 'Jappix',
 	     	'lock'			=> 'on',
 	     	'anonymous'		=> 'on',
@@ -66,6 +67,7 @@ define('SERVICE_NAME', $main_conf['name']);
 define('SERVICE_DESC', $main_conf['desc']);
 define('OWNER_NAME', $main_conf['owner_name']);
 define('OWNER_WEBSITE', $main_conf['owner_website']);
+define('LEGAL', $main_conf['legal']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);

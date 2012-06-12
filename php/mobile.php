@@ -9,7 +9,7 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Authors: Vanaryon, Chatme.im
-Last revision: 01/04/12
+Last revision: 12/06/12
 
 */
 
@@ -72,6 +72,7 @@ if(!defined('JAPPIX_BASE'))
 		</a>
 		
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
+		<?php if(hasLegal()) { ?>- <a href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal"); ?></a><?php } ?>
 	</div>
 </body>
 

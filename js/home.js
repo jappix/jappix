@@ -7,7 +7,7 @@ These are the homepage JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve
-Last revision: 01/04/12
+Last revision: 12/06/12
 
 */
 
@@ -90,9 +90,12 @@ function switchHome(div) {
 		// Anonymous login tool
 		case 'anonymouser':
 			disable_form = disableInput(ANONYMOUS, 'off');
-			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + _e("login page") + '</a>') + '</p>' + 
-				
-				'<form action="#" method="post">' + 
+			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + _e("login page") + '</a>') + '</p>';
+			
+			if(LEGAL)
+				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '">' + _e("our terms of use") + '</a></b>') + '</p>';
+			
+			code += '<form action="#" method="post">' + 
 					'<fieldset>' + 
 						'<legend>' + _e("Required") + '</legend>' + 
 						
@@ -119,9 +122,12 @@ function switchHome(div) {
 			if(!disable_form)
 				lock_host = disableInput(LOCK_HOST, 'on');
 			
-			code = '<p>' + _e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>' + 
-				
-				'<form action="#" method="post">' + 
+			code = '<p>' + _e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
+			
+			if(LEGAL)
+				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '">' + _e("our terms of use") + '</a></b>') + '</p>';
+			
+			code += '<form action="#" method="post">' + 
 					'<fieldset>' + 
 						'<legend>' + _e("Required") + '</legend>' + 
 						

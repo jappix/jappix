@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-06-01 07:06+0100\n"
+"PO-Revision-Date: 2012-06-12 19:44+0100\n"
 "Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,9 @@ msgstr "Obtenez Jappix, recevez de l'aide."
 msgid "Statistics around Jappix."
 msgstr "Statistiques sur Jappix."
 
+msgid "Legal disclaimer for Jappix."
+msgstr "Conditions d'utilisation de Jappix."
+
 msgid "Download Jappix for free."
 msgstr "Téléchargez gratuitement Jappix."
 
@@ -57,11 +60,26 @@ msgstr "Association"
 msgid "Web agency"
 msgstr "Agence Web"
 
+msgid "Legal"
+msgstr "Légal"
+
+msgid "Legal disclaimer"
+msgstr "Conditions d'utilisation"
+
+msgid "Terms of use and legal"
+msgstr "Conditions d'utilisation et légal"
+
 msgid "Owner"
 msgstr "Propriétaire"
 
 msgid "Node owner"
 msgstr "Possesseur du nœud"
+
+msgid "By using our service, you accept %s."
+msgstr "En utilisant notre service, vous acceptez %s."
+
+msgid "our terms of use"
+msgstr "nos conditions"
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Jappix a été interrompu par un problème réseau, un bug ou de mauvais identifiants (vérifiez-les !). Nous sommes désolés pour ce souci."

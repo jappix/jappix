@@ -9,7 +9,7 @@ This is the main configuration POST handler (install & manager)
 
 License: AGPL
 Author: Vanaryon
-Last revision: 01/04/12
+Last revision: 12/06/12
 
 */
 
@@ -40,6 +40,12 @@ if(isset($_POST['owner_website']) && !empty($_POST['owner_website']))
 	$owner_website = stripslashes(htmlspecialchars($_POST['owner_website']));
 else
 	$owner_website = stripslashes(htmlspecialchars($main_default['owner_website']));
+
+// Legal disclaimer
+if(isset($_POST['legal']) && !empty($_POST['legal']))
+	$legal = stripslashes(htmlspecialchars($_POST['legal']));
+else
+	$legal = stripslashes(htmlspecialchars($main_default['legal']));
 
 // Jappix resource
 if(isset($_POST['jappix_resource']) && !empty($_POST['jappix_resource']))
@@ -137,6 +143,7 @@ $conf_xml =
 	<desc>'.$service_desc.'</desc>
 	<owner_name>'.$owner_name.'</owner_name>
 	<owner_website>'.$owner_website.'</owner_website>
+	<legal>'.$legal.'</legal>
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>

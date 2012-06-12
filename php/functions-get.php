@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Vanaryon, Mathieui, olivierm, regilero
-Last revision: 11/02/12
+Last revision: 12/06/12
 
 */
 
@@ -134,17 +134,20 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'XML_LANG'		=> $locale,
 		      	
 		      	// Jappix parameters
-		      	'JAPPIX_STATIC'		=> staticLocation(),
-		      	'JAPPIX_VERSION'	=> $version,
+		      	'JAPPIX_STATIC'			=> staticLocation(),
+		      	'JAPPIX_VERSION'		=> $version,
 		      	'JAPPIX_MAX_FILE_SIZE'	=> $max_upload,
-		      	'JAPPIX_MAX_UPLOAD'	=> formatBytes($max_upload),
+		      	'JAPPIX_MAX_UPLOAD'		=> formatBytes($max_upload),
 		      	
 		      	// Main configuration
 		      	'SERVICE_NAME'		=> SERVICE_NAME,
 		      	'SERVICE_DESC'		=> SERVICE_DESC,
+		      	'OWNER_NAME'		=> OWNER_NAME,
+		      	'OWNER_WEBSITE'		=> OWNER_WEBSITE,
+		      	'LEGAL'				=> LEGAL,
 		      	'JAPPIX_RESOURCE'	=> JAPPIX_RESOURCE,
-		      	'LOCK_HOST'		=> LOCK_HOST,
-		      	'ANONYMOUS'		=> ANONYMOUS,
+		      	'LOCK_HOST'			=> LOCK_HOST,
+		      	'ANONYMOUS'			=> ANONYMOUS,
 		      	'REGISTRATION'		=> REGISTRATION,
 		      	'BOSH_PROXY'		=> BOSH_PROXY,
 		      	'MANAGER_LINK'		=> MANAGER_LINK,
@@ -154,15 +157,15 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'HTTPS_FORCE'		=> HTTPS_FORCE,
 		      	'COMPRESSION'		=> COMPRESSION,
 		      	'MULTI_FILES'		=> MULTI_FILES,
-		      	'DEVELOPER'		=> DEVELOPER,
+		      	'DEVELOPER'			=> DEVELOPER,
 		      	
 		      	// Hosts configuration
-		      	'HOST_MAIN'		=> HOST_MAIN,
-		      	'HOST_MUC'		=> HOST_MUC,
+		      	'HOST_MAIN'			=> HOST_MAIN,
+		      	'HOST_MUC'			=> HOST_MUC,
 		      	'HOST_PUBSUB'		=> HOST_PUBSUB,
-		      	'HOST_VJUD'		=> HOST_VJUD,
+		      	'HOST_VJUD'			=> HOST_VJUD,
 		      	'HOST_ANONYMOUS'	=> HOST_ANONYMOUS,
-		      	'HOST_BOSH'		=> $bosh_special,
+		      	'HOST_BOSH'			=> $bosh_special,
 		      	'HOST_BOSH_MAIN'	=> HOST_BOSH_MAIN,
 		      	'HOST_BOSH_MINI'	=> HOST_BOSH_MINI,
 		      	'HOST_STATIC'		=> HOST_STATIC,

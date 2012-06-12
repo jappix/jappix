@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 08/04/12
+# Last revision: 12/06/12
 
 msgid ""
 msgstr ""
@@ -34,6 +34,9 @@ msgstr ""
 msgid "Statistics around Jappix."
 msgstr ""
 
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
 msgid "Download Jappix for free."
 msgstr ""
 
@@ -58,10 +61,25 @@ msgstr ""
 msgid "Web agency"
 msgstr ""
 
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
 msgid "Owner"
 msgstr ""
 
 msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
 msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."

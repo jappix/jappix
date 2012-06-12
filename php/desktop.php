@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 03/04/12
+Last revision: 12/06/12
 
 */
 
@@ -126,6 +126,10 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 						<span class="name">Jappix Stats</span>
 						<span class="desc"><?php _e("Statistics around Jappix."); ?></span>
 					</a>
+					<a href="https://legal.jappix.com/">
+						<span class="name">Jappix Legal</span>
+						<span class="desc"><?php _e("Legal disclaimer for Jappix."); ?></span>
+					</a>
 				</div>
 				
 				<h2>Jappix.org</h2>
@@ -179,6 +183,14 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					<a class="name" href="http://frenchtouch.pro/">FrenchTouch</a>
 					<a class="desc" href="http://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
 				</span>
+				
+				<?php if(hasLegal()) { ?>
+				<h2><?php _e("Legal"); ?></h2>
+				<span class="one">
+					<a class="name" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal disclaimer"); ?></a>
+					<a class="desc" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Terms of use and legal"); ?></a>
+				</span>
+				<?php } ?>
 				
 				<?php if(hasOwner()) { ?>
 				<h2><?php _e("Owner"); ?></h2>
