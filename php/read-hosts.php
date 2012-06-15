@@ -64,7 +64,7 @@ if($hosts_data) {
 		$hosts_value = $hosts_child->getName();
 		
 		// Only push this to the array if it exists
-		if(isset($hosts_conf[$hosts_value]) && $hosts_child)
+		if(isset($hosts_conf[$hosts_value]) && (string)$hosts_child)
 			$hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, $hosts_child);
 	}
 }

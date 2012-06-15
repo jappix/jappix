@@ -57,7 +57,7 @@ if($main_data) {
 		$main_value = $main_child->getName();
 		
 		// Only push this to the array if it exists
-		if(isset($main_conf[$main_value]) && $main_child)
+		if(isset($main_conf[$main_value]) && (string)$main_child)
 			$main_conf[$main_value] = $main_child;
 	}
 }
