@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 12/06/12
+Last revision: 15/06/12
 
 */
 
@@ -441,6 +441,8 @@ function getLanguageName($code) {
 		'yo' => 'Yorùbá',
 		'za' => 'Saɯ cueŋƅ',
 		'zh' => '中文',
+		'zh-cn'	 => '简体字',
+		'zh-tw'	 => '簡體字',
 		'zu' => 'isiZulu'
 	);
 	
