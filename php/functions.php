@@ -505,7 +505,7 @@ function availableLocales($active_locale) {
 		$current_name = getLanguageName($current_id);
 		
 		// Not valid?
-		if(($current_id == $active_locale) || ($current_name == null))
+		if((strtolower($current_id) == $active_locale) || ($current_name == null))
 			continue;
 		
 		// Add this to the list
