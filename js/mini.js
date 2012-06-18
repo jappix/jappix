@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, hunterjm, Camaran, regilero, Kloadut
-Last revision: 30/06/12
+Last revision: 18/06/12
 
 */
 
@@ -972,10 +972,25 @@ function createMini(domain, user, password) {
 							'</a>' + 
 							
 							'<div class="jm_status_picker">' + 
-								'<a href="#" data-status="available">' + _e("Available") + '<span class="jm_presence jm_images jm_available"></span></a>' + 
-								'<a href="#" data-status="away">' + _e("Away") + '<span class="jm_presence jm_images jm_away"></span></a>' + 
-								'<a href="#" data-status="dnd">' + _e("Busy") + '<span class="jm_presence jm_images jm_dnd"></span></a>' + 
-								'<a href="#" data-status="unavailable">' + _e("Offline") + '<span class="jm_presence jm_images jm_unavailable"></span></a>' + 
+								'<a href="#" data-status="available">' + 
+									'<span class="jm_presence jm_images jm_available"></span>' + 
+									'<span class="jm_show_text">' + _e("Available") + '</span>' + 
+								'</a>' + 
+								
+								'<a href="#" data-status="away">' + 
+									'<span class="jm_presence jm_images jm_away"></span>' + 
+									'<span class="jm_show_text">' + _e("Away") + '</span>' + 
+								'</a>' + 
+								
+								'<a href="#" data-status="dnd">' + 
+									'<span class="jm_presence jm_images jm_dnd"></span>' + 
+									'<span class="jm_show_text">' + _e("Busy") + '</span>' + 
+								'</a>' + 
+								
+								'<a href="#" data-status="unavailable">' + 
+									'<span class="jm_presence jm_images jm_unavailable"></span>' + 
+									'<span class="jm_show_text">' + _e("Offline") + '</span>' + 
+								'</a>' + 
 							'</div>' + 
 						'</div>' + 
 						'<div class="jm_buddies"></div>' + 
@@ -1898,12 +1913,12 @@ function showRosterMini() {
 
 // Hides the roster
 function hideRosterMini() {
+	// Close the status picker
+	jQuery('#jappix_mini a.jm_status.active').click();
+	
 	// Hide the roster box
 	jQuery('#jappix_mini div.jm_roster').hide();
 	jQuery('#jappix_mini a.jm_button').removeClass('jm_clicked');
-	
-	// Close the status picker
-	jQuery('#jappix_mini a.jm_status.active').click();
 	
 	// Clear the search box and show all online contacts
 	jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val('').attr('data-value', '');

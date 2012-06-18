@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, Julien, hunterjm, Kloadut
-Last revision: 09/04/12
+Last revision: 18/06/12
 
 */
 
@@ -254,6 +254,7 @@ Last revision: 09/04/12
 #jappix_mini div.jm_actions a.jm_status {
 	background-color: #727879;
 	position: static;
+	overflow: hidden;
 }
 
 #jappix_mini div.jm_actions a.active,
@@ -285,9 +286,10 @@ Last revision: 09/04/12
 }
 
 #jappix_mini div.jm_status_picker a {
-	display: block;
-	padding: 4px;
 	color: white;
+	height: 13px;
+	padding: 4px;
+	display: block;
 }
 
 #jappix_mini div.jm_status_picker a:hover,
@@ -303,6 +305,16 @@ Last revision: 09/04/12
 
 #jappix_mini div.jm_status_picker a span.jm_presence {
 	margin-top: -1px;
+}
+
+#jappix_mini div.jm_status_picker a span.jm_show_text {
+	color: white;
+	float: left;
+}
+
+#jappix_mini div.jm_status_picker a:hover span.jm_show_text,
+#jappix_mini div.jm_status_picker a:focus span.jm_show_text {
+	color: #3a3a3a;
 }
 
 #jappix_mini div.jm_received-messages {
