@@ -7,11 +7,11 @@ These are the Roster Item Exchange JS script for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 23/06/11
+Last revision: 20/06/12
 
 */
 
-// Opens the welcome tools
+// Opens the rosterx tools
 function openRosterX(data) {
 	// Popup HTML content
 	var html = 
@@ -43,7 +43,7 @@ function openRosterX(data) {
 	logThis('Roster Item Exchange popup opened.');
 }
 
-// Closes the welcome tools
+// Closes the rosterx tools
 function closeRosterX() {
 	// Destroy the popup
 	destroyPopup('rosterx');
