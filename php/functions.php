@@ -441,8 +441,8 @@ function getLanguageName($code) {
 		'yo' => 'Yorùbá',
 		'za' => 'Saɯ cueŋƅ',
 		'zh' => '中文',
-		'zh-cn'	 => '简体字',
-		'zh-tw'	 => '簡體字',
+		'zh-cn'	 => '中文简体',
+		'zh-tw'	 => '中文繁體',
 		'zu' => 'isiZulu'
 	);
 	

@@ -5,12 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-06-15 13:05+0100\n"
+"PO-Revision-Date: 2012-06-20 12:14+0100\n"
 "Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Language: zh_CN\n"
+"X-Source-Language: C\n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "網頁流覽器找不到 JavaScript，無法啟動 Jappix！請修正。"
@@ -28,64 +31,61 @@ msgid "A mini-chat for your website."
 msgstr "網站上的迷你聊天"
 
 msgid "Get Jappix, get support."
-msgstr "使用Mensix,得到支持"
+msgstr "使用Jappix,得到支持"
 
 msgid "Statistics around Jappix."
 msgstr "圍繞Jappix的統計資料。"
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "對於Jappix的合法的免責聲明"
 
 msgid "Download Jappix for free."
 msgstr "免費下載Jappix "
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "有助於Jappix代碼"
 
 msgid "Jappix for your mobile phone."
-msgstr ""
+msgstr "你手機的Jappix"
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "你公司的Jappix"
 
 msgid "Find a public Jappix node."
 msgstr "找到一個公開的Jappix網點。 "
 
-#, fuzzy
 msgid "Credits"
-msgstr "認證資訊"
+msgstr "信用"
 
-#, fuzzy
 msgid "Association"
-msgstr "自動"
+msgstr "聯合"
 
 msgid "Web agency"
-msgstr ""
+msgstr "網路代理"
 
 msgid "Legal"
-msgstr ""
+msgstr "合法的"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "合法的免責聲明"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "使用條款和合法的"
 
-#, fuzzy
 msgid "Owner"
-msgstr "所有者清單"
+msgstr "所有者"
 
 msgid "Node owner"
-msgstr ""
+msgstr "網店所有者"
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "通過使用我們的服務，你接受%s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "使用條款"
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
-msgstr "Jappix 已經因網路問題、bug 或錯誤登錄（檢查你輸入了正確的認證資訊）而被中斷，造成不便表示抱歉。"
+msgstr "Jappix 已因網路問題、bug 或錯誤登錄（檢查你輸入了正確的認證資訊）而被中斷，造成不便表示抱歉。"
 
 msgid "The element list on this server could not be obtained!"
 msgstr "伺服器的元素清單無法獲得！"
@@ -225,9 +225,8 @@ msgstr "沒空"
 msgid "Busy"
 msgstr "忙碌"
 
-#, fuzzy
 msgid "Offline"
-msgstr "離線好友"
+msgstr "離線"
 
 msgid "Mood"
 msgstr "心情"
@@ -740,7 +739,7 @@ msgid "Requesting this service..."
 msgstr "正在請求此服務..."
 
 msgid "Loading"
-msgstr "載入中"
+msgstr "正在載入"
 
 msgid "changed his/her nickname to %s"
 msgstr "更改他／她的昵稱為%s"
@@ -775,6 +774,7 @@ msgstr "它允許你與幾百萬跟你一樣正在使用 Jappix 的用戶聯繫�
 msgid "Hi there!"
 msgstr "你好！"
 
+#, qt-format
 msgid "Welcome on %1s, “%2s”."
 msgstr "歡迎來到 %1s，“%2s”。"
 
@@ -782,7 +782,7 @@ msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "登錄已有的 Jappix 帳號或免費建立新帳號！"
 
 msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
-msgstr ""
+msgstr "當你登陸或者註冊，確保你密碼的保密性。不要把它給與他人，它是私人的。"
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "登錄你已有的 Jappix 帳號。你也可以使用 %s 加入聊天群。"
@@ -926,7 +926,7 @@ msgid "liked your post: “%s”."
 msgstr "喜歡你的帖子：“%s”。"
 
 msgid "quoted you somewhere: “%s”."
-msgstr "在某處引用你：“％s”。"
+msgstr "在某處引用你：“%s”。"
 
 msgid "published on your wall: “%s”."
 msgstr "在你的留言板上發表了：“%s”。"
@@ -1162,6 +1162,7 @@ msgstr "主機設置"
 msgid "Services installation"
 msgstr "服務安裝"
 
+#, qt-format
 msgid "If the current language does not match yours (%1s), you can make Jappix speak %2s it will be saved."
 msgstr "如果目前的語言與你的（%1s）不符，你可以讓 Jappix 說 %2s 它將被保存。"
 
@@ -1174,8 +1175,9 @@ msgstr "是時候該去創建你自己的社交圈：只要進入下一步"
 msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
 msgstr "Jappix供應持久性資料（比如分享的檔，聊天記錄，你自己的音樂和其配置）保存在一個安全的儲存文檔中"
 
+#, qt-format
 msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
-msgstr "Jappix必須有能力去在這個文檔中創建其分目錄。如果不能，你必須設置權力給%1或者將文檔的所有者更改為%2（取決於你的配置）"
+msgstr "Jappix必須有能力去在這個文檔中創建其分目錄。如果不能，你必須設置權力給%1s或者將文檔的所有者更改為%2s（取決於你的配置）"
 
 msgid "The folder is writable, you can continue!"
 msgstr "資料夾可寫入，你可以繼續！"
@@ -1210,13 +1212,11 @@ msgstr "服務名稱"
 msgid "Service description"
 msgstr "服務說明"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "陌生的名字"
+msgstr "用戶名字"
 
-#, fuzzy
 msgid "Owner website"
-msgstr "所有者清單"
+msgstr "所有者網站"
 
 msgid "Connection"
 msgstr "連線"
@@ -1227,9 +1227,8 @@ msgstr "鎖定主機"
 msgid "Anonymous mode"
 msgstr "匿名模式"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "身份驗證"
+msgstr "HTTP身份驗證"
 
 msgid "Registration allowed"
 msgstr "允許註冊"
@@ -1306,12 +1305,14 @@ msgstr "資料夾不可寫入，設置正確許可權至 %s 目錄。"
 msgid "%s is installed on your system."
 msgstr "%s 已經安裝在你的系統。"
 
+#, qt-format
 msgid "%1s is not installed on your system, you should install %2s."
 msgstr "%1s 未安裝在你的系統，你需要安裝 %2s。"
 
 msgid "PHP maximum upload size is sufficient (%s)."
 msgstr "PHP 最大上傳已足夠（%s）。"
 
+#, qt-format
 msgid "PHP maximum upload size is not sufficient (%1s), you should define it to %2s in %3s."
 msgstr "PHP 最大上傳不足夠（%1s），你必須定義它為 %2s 在 %3s 中。"
 
@@ -1591,8 +1592,9 @@ msgstr "有什麼新鮮的？"
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr "你的保存空間資料夾無法寫入，請申請正確許可權！"
 
+#, qt-format
 msgid "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
-msgstr "％1可能對於代理造成問題，請增加%2s的值到%3!"
+msgstr "%1可能對於代理造成問題，請增加%2s的值到%3s!"
 
 msgid "You are using a development version of Jappix. Update it through our repository by executing: %s."
 msgstr "你正在使用開發版本的 Jappix。請通過執行：%s從我們的存放區更新它。"
@@ -1768,14 +1770,16 @@ msgstr "你的好友似乎沒收到你的消息！"
 msgid "Static content server"
 msgstr "靜態內容伺服器"
 
+#, qt-format
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "這是 %1s，%2s用的靜態內容伺服器，“”。"
 
 msgid "User uploads server"
 msgstr "使用者上傳主機"
 
+#, qt-format
 msgid "This is the user uploads server for %1s, “%2s”."
-msgstr "這個是%1s，“％2s”的使用者上傳主機"
+msgstr "這個是%1s，“%2s”的使用者上傳主機"
 
 msgid "Suggested friends"
 msgstr "建議的好友"
@@ -1898,7 +1902,7 @@ msgid "Your profile anywhere on the Web."
 msgstr "你的公開資料在網站上的任何地方"
 
 msgid "%s is a Jappix.com service which makes your XMPP profile public. It is easier to share it. No XMPP account is required to view your social channel, your current position and your contact details."
-msgstr " %s是一個Jappix.com 的服務，它令你的XMPP資料公開。這將更容易的將它分享。XMPP帳戶不要求查閱你的社交頻道，目前職位和連絡人詳情。"
+msgstr " %s 是一個Jappix.com 的服務，它令你的XMPP資料公開。這將更容易的將它分享。XMPP帳戶不要求查閱你的社交頻道，目前職位和連絡人詳情。"
 
 msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
 msgstr "另外，每一張你在社交頻道張貼的照片被添加在美麗的照片時間表中。你現在可以按照年份流覽你分享的照片。"
@@ -1913,35 +1917,33 @@ msgid "Enable my public profile"
 msgstr "啟用我的公共資料"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "你手機的Jappix"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
-msgstr ""
+msgstr "對於資訊，頻道，個人資料還有其他的單一手機應用"
 
 msgid "This notification is only informative, maybe the data it links to have been removed."
-msgstr ""
+msgstr "此通知只是告知性的，可能連接它的資料已被移除。"
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "還沒有提供任何檔供下載"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "如果你不提供密碼是不能下載此檔的。"
 
 msgid "Woah this file isn't found, please double check"
-msgstr ""
+msgstr "此檔未找到，請重新查找"
 
 msgid "The key you provided does not have the permission to download this file"
-msgstr ""
+msgstr "你提供的密碼沒有許可權下載這個檔。"
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "設置中統計資料目前不能使用。"
 
 #~ msgid ""
 #~ "Jappix is an open-source project from PostPro, a non-profit organization "
 #~ "which provides us a great help."
-#~ msgstr ""
-#~ "Jappix是由後贊成組織而來的可公開資源的專案。後贊成組織是提供與我們很大説明"
-#~ "的非盈利組織"
+#~ msgstr "Jappix是由後贊成組織而來的可公開資源的專案。後贊成組織是提供與我們很大説明的非盈利組織"
 
 #~ msgid "Project"
 #~ msgstr "項目"
@@ -1949,9 +1951,7 @@ msgstr ""
 #~ msgid ""
 #~ "Jappix is a non-profit social platform, that you can access wherever you "
 #~ "are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-#~ "Jappix是一個非盈利的社交平臺，你無論在哪理，在任何時間，都可以訪問它，並與"
-#~ "你想要溝通的人交流。"
+#~ msgstr "Jappix是一個非盈利的社交平臺，你無論在哪理，在任何時間，都可以訪問它，並與你想要溝通的人交流。"
 
 #~ msgid "See"
 #~ msgstr "看"
