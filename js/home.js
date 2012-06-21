@@ -93,7 +93,7 @@ function switchHome(div) {
 			code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + _e("login page") + '</a>') + '</p>';
 			
 			if(LEGAL)
-				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '">' + _e("our terms of use") + '</a></b>') + '</p>';
+				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '" target="_blank">' + _e("our terms of use") + '</a></b>') + '</p>';
 			
 			code += '<form action="#" method="post">' + 
 					'<fieldset>' + 
@@ -125,7 +125,7 @@ function switchHome(div) {
 			code = '<p>' + _e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
 			
 			if(LEGAL)
-				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '">' + _e("our terms of use") + '</a></b>') + '</p>';
+				code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '" target="_blank">' + _e("our terms of use") + '</a></b>') + '</p>';
 			
 			code += '<form action="#" method="post">' + 
 					'<fieldset>' + 

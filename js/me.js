@@ -48,6 +48,9 @@ function closeMe() {
 	// Destroy the popup
 	destroyPopup('me');
 	
+	// We finished
+	END_WELCOME = false;
+	
 	return false;
 }
 
