@@ -7,7 +7,7 @@ These are the Jappix Me tool functions for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 16/01/12
+Last revision: 21/06/12
 
 */
 

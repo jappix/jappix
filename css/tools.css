@@ -7,14 +7,14 @@ This is the tools CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/08/11
+Last revision: 21/06/12
 
 */
 
 #top-content .tools {
 	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.6);
-	padding: 3px 8px 5px 8px;
+	padding: 4px 8px;
 	min-width: 10px;
 	height: 17px;
 	border-bottom-left-radius: 4px;

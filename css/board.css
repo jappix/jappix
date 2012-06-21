@@ -7,7 +7,7 @@ This is the board CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 21/06/12
 
 */
 
@@ -20,7 +20,7 @@ Last revision: 26/08/11
 	height: 18px;
 	z-index: 10000;
 	font-size: 0.92em;
-	padding: 6px 8px;
+	padding: 7px 8px 5px 8px;
 	box-shadow: 0 0 8px #5c5c5c;
 	-moz-box-shadow: 0 0 8px #5c5c5c;
 	-webkit-box-shadow: 0 0 8px #5c5c5c;

@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 15/06/12
+Last revision: 21/06/12
 
 */
 

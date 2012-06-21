@@ -7,7 +7,7 @@ This is the buddy-list CSS stylesheet for Jappix
  
 License: AGPL
 Author: Vanaryon
-Last revision: 31/08/11
+Last revision: 21/06/12
  
 */
  
@@ -135,7 +135,7 @@ Last revision: 31/08/11
 #buddy-list .buddy-name {
         height: 17px;
         font-weight: bold;
-        font-size: 0.8em;
+        font-size: 0.85em;
         color: #264249;
         margin: 5px 0 5px 2px;
         overflow: hidden;

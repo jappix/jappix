@@ -7,7 +7,7 @@ This is the page-engine CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 10/04/12
+Last revision: 21/06/12
 
 */
 
@@ -231,6 +231,7 @@ Last revision: 10/04/12
 #archives .one-group b.name {
 	display: block;
 	margin-bottom: 4px;
+	line-height: 1.4;
 }
 
 #page-engine .one-group b.name.me,
@@ -246,7 +247,7 @@ Last revision: 10/04/12
 #page-engine .one-group span.date,
 #archives .one-group span.date {
 	float: right;
-	font-size: 0.9em;
+	font-size: 0.95em;
 }
 
 #page-engine .one-group .avatar-container,
@@ -272,6 +273,7 @@ Last revision: 10/04/12
 #page-engine .user-message,
 #archives .user-message {
 	margin-bottom: 3px;
+	line-height: 1.3;
 }
 
 #page-engine .system-message {

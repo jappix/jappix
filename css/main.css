@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 07/06/12
+Last revision: 21/06/12
 
 */
 
@@ -17,7 +17,7 @@ Last revision: 07/06/12
 }
 
 body {
-	font: normal 14.4px Helvetica, Verdana, sans-serif;
+	font: normal 15px Myriad Web Pro, sans-serif;
 	text-shadow: 0 0 5px white;
 }
 
@@ -47,6 +47,7 @@ textarea {
 	border: 1px solid #636363;
 	font-size: 0.95em;
 	padding: 2px;
+	outline-style: none;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
