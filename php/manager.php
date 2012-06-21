@@ -742,7 +742,7 @@ else
 				if(isDeveloper()) { ?>
 					<h4><?php _e("Check for updates"); ?></h4>
 					
-					<p class="info smallspace neutral"><?php printf(T_("You are using a development version of Jappix. Update it through our repository by executing: %s."), '<em>svn up</em>'); ?></p>
+					<p class="info smallspace neutral"><?php printf(T_("You are using a development version of Jappix. Update it through our repository by executing: %s."), '<em>git pull</em>'); ?></p>
 				<?php }
 				
 				// New updates available?

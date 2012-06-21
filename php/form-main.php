@@ -112,10 +112,10 @@ else
 	<label for="lock_host"><?php _e("Lock the host"); ?></label><input id="lock_host" type="checkbox" name="lock_host"<?php echo $check_lock_host; ?> />
 	
 	<label for="anonymous_mode"><?php _e("Anonymous mode"); ?></label><input id="anonymous_mode" type="checkbox" name="anonymous_mode"<?php echo $check_anonymous_mode; ?> />
-
-	<label for="http_auth"><?php _e("HTTP authentication"); ?></label><input id="http_auth" type="checkbox" name="http_auth"<?php echo $check_http_auth; ?> />
 	
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
+	
+	<label for="http_auth"><?php _e("HTTP authentication"); ?></label><input id="http_auth" type="checkbox" name="http_auth"<?php echo $check_http_auth; ?> />
 	
 	<label for="bosh_proxy"><?php _e("Use a proxy"); ?></label><input id="bosh_proxy" type="checkbox" name="bosh_proxy"<?php echo $check_bosh_proxy; ?> />
 </fieldset>
