@@ -167,10 +167,10 @@ function handleAvatar(iq) {
 		setDB('checksum', 1, pChecksum);
 		
 		// Send the stanza
-		if(FIRST_PRESENCE_SENT)
-			presenceSend(pChecksum);
-		else
+		if(!FIRST_PRESENCE_SENT)
 			getStorage(NS_OPTIONS);
+		else if(hasPersistent())
+			presenceSend(pChecksum);
 	}
 }
 

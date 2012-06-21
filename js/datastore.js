@@ -13,10 +13,21 @@ Last revision: 23/06/11
 
 // Temporary: returns whether it is available or not
 function hasDB() {
-	if(window.sessionStorage)
+	// Try to write something
+	try {
+		// Not supported?
+		if(!window.sessionStorage)
+			return false;
+		
+		sessionStorage.setItem('hasdb_check', 'ok');
+		
 		return true;
+	}
 	
-	return false;
+	// Not available?
+	catch(e) {
+		return false;
+	}
 }
 
 // Temporary: used to read a database entry
@@ -91,10 +102,21 @@ function resetDB() {
 
 // Persistent: returns whether it is available or not
 function hasPersistent() {
-	if(window.localStorage)
+	// Try to write something
+	try {
+		// Not supported?
+		if(!window.localStorage)
+			return false;
+		
+		localStorage.setItem('haspersistent_check', 'ok');
+		
 		return true;
+	}
 	
-	return false;
+	// Not available?
+	catch(e) {
+		return false;
+	}
 }
 
 // Persistent: used to read a database entry
