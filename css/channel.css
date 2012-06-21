@@ -471,8 +471,8 @@ Last revision: 21/06/12
 	color: black;
 	height: 16px;
 	text-decoration: none;
-	margin: -2px 0 0 4px;
-	padding: 0 0 14px 20px;
+	margin: -2px 0 14px 4px;
+	padding-left: 20px;
 	display: block;
 	visibility: hidden;
 }
