@@ -4,19 +4,85 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:25+0100\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-21 14:12+0100\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "Jappix kräver Javascript för att fungera, men det saknas eller är avstängt i din webbläsare."
 
 msgid "An open social network"
 msgstr "Ett öppet socialt nätverk."
+
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Contribute to the Jappix code."
+msgstr ""
+
+msgid "Jappix for your mobile phone."
+msgstr ""
+
+msgid "Jappix for your company."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+#, fuzzy
+msgid "Credits"
+msgstr "Rättigheter"
+
+#, fuzzy
+msgid "Association"
+msgstr "Automatik"
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+#, fuzzy
+msgid "Owner"
+msgstr "Ägarlista"
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Jappix har blivit avbryten av ett nätverksproblem, en bugg eller felaktiga loginuppgifter (se till att du har skrivit rätt uppgifter), Vi ber om ursäkt för besväret."
@@ -159,6 +225,10 @@ msgstr "Ej tillgänglig"
 msgid "Busy"
 msgstr "Uppagen"
 
+#, fuzzy
+msgid "Offline"
+msgstr "Ej inloggade vänner"
+
 msgid "Mood"
 msgstr "Humör"
 
@@ -230,6 +300,9 @@ msgstr "Jobbar"
 
 msgid "View profile"
 msgstr "Visa profil"
+
+msgid "This is a repeat from %s"
+msgstr ""
 
 msgid "Repeat this notice"
 msgstr "Repetera notis"
@@ -437,6 +510,12 @@ msgstr "Kursiv text"
 
 msgid "Underlined text"
 msgstr "Understruken text"
+
+msgid "Send a file"
+msgstr ""
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr ""
 
 msgid "Save chat"
 msgstr "Spara chat"
@@ -663,6 +742,9 @@ msgstr ""
 msgid "Loading"
 msgstr "Startar"
 
+msgid "changed his/her nickname to %s"
+msgstr ""
+
 msgid "joined the chat room"
 msgstr "kom in i rummet"
 
@@ -684,6 +766,9 @@ msgstr "ingen anledning"
 msgid "Communicate with the entire world!"
 msgstr "Kommunicera med hela världen!"
 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr ""
+
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr ""
 
@@ -696,7 +781,7 @@ msgstr "Välkommen till %1s, “%2s”."
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
 msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
@@ -747,9 +832,6 @@ msgstr "Du har registrertats. Din XMPP-adress är:"
 msgid "Manager"
 msgstr ""
 
-msgid "Project"
-msgstr "Projekt"
-
 msgid "Encrypted"
 msgstr "Krypterad"
 
@@ -761,6 +843,9 @@ msgstr "Var är du?"
 
 msgid "What's up with you?"
 msgstr "Hur är läget?"
+
+msgid "Type something you want to share with your friends..."
+msgstr ""
 
 msgid "Fetching the social channel..."
 msgstr "Hämtar den sociala kanalen..."
@@ -816,7 +901,46 @@ msgstr "Nej"
 msgid "would like to get authorization."
 msgstr "vill få tillåtelse."
 
+msgid "would like to send you a file: “%s”."
+msgstr ""
+
+msgid "has received a file exchange request: “%s”."
+msgstr ""
+
+msgid "has accepted to received your file: “%s”."
+msgstr ""
+
+msgid "has rejected to receive your file: “%s”."
+msgstr ""
+
+msgid "could not receive your file: “%s”."
+msgstr "kunde ej ta emot din fil “%s”."
+
 msgid "Do you want to see the friends %s suggests you?"
+msgstr ""
+
+msgid "commented an item you follow: “%s”."
+msgstr ""
+
+msgid "liked your post: “%s”."
+msgstr ""
+
+msgid "quoted you somewhere: “%s”."
+msgstr ""
+
+msgid "published on your wall: “%s”."
+msgstr ""
+
+msgid "tagged you in a photo (%s)."
+msgstr ""
+
+msgid "tagged you in a video (%s)."
+msgstr ""
+
+msgid "Show"
+msgstr "Visa"
+
+msgid "Hide"
 msgstr ""
 
 msgid "Submit"
@@ -888,6 +1012,21 @@ msgstr "Var god vänta..."
 msgid "Please enable JavaScript"
 msgstr "Vänligen aktivera JavaScript"
 
+msgid "Show comments"
+msgstr "Visa kommentarer"
+
+msgid "Loading comments..."
+msgstr "Laddar kommentarer..."
+
+msgid "Could not get the comments!"
+msgstr "Kunde ej hämta kommentarer!"
+
+msgid "Comments locked!"
+msgstr ""
+
+msgid "Type your comment here..."
+msgstr "Skriv här..."
+
 msgid "Your channel"
 msgstr "Din kanal"
 
@@ -925,6 +1064,9 @@ msgid "Your form has been sent."
 msgstr "Ditt formulär har skickats."
 
 msgid "Application"
+msgstr ""
+
+msgid "Media integration"
 msgstr ""
 
 msgid "XMPP links"
@@ -1053,6 +1195,9 @@ msgstr ""
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr ""
 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr ""
+
 msgid "User"
 msgstr "Användare"
 
@@ -1065,6 +1210,14 @@ msgstr "Tjänstnamn"
 msgid "Service description"
 msgstr "Tjänstbeskrivning"
 
+#, fuzzy
+msgid "Owner name"
+msgstr "Okänt namn"
+
+#, fuzzy
+msgid "Owner website"
+msgstr "Ägarlista"
+
 msgid "Connection"
 msgstr "Anslutning"
 
@@ -1074,11 +1227,21 @@ msgstr "Lås värd"
 msgid "Anonymous mode"
 msgstr "Anonymt läge"
 
+#, fuzzy
+msgid "HTTP authentication"
+msgstr "Autentiseringar"
+
 msgid "Registration allowed"
 msgstr "Registrering tillåten"
 
 msgid "Use a proxy"
 msgstr "Använd en proxy"
+
+msgid "Manager link"
+msgstr ""
+
+msgid "Groupchats to join"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Kryptering"
@@ -1103,6 +1266,9 @@ msgstr "Huvudvärd"
 
 msgid "Groupchat host"
 msgstr "Värd för gruppchatt"
+
+msgid "Pubsub host"
+msgstr "Värd för pubsub"
 
 msgid "Anonymous host"
 msgstr "Anonym värd"
@@ -1239,14 +1405,38 @@ msgstr ""
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "Ej giltig bild. Vänligen använd enbart bilder i format PNG, GIF eller JPG."
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Detta är ej en giltig bild. Vänligen använd bildformatet PNG."
+
 msgid "The image could not be received, would you mind retry?"
 msgstr "Bilden kunde inte tas emot. Det kanske hjälper att försöka igen."
+
+msgid "Your service logo has been successfully changed!"
+msgstr ""
 
 msgid "Your image was added to the list!"
 msgstr "Din bild lades till i listan!"
 
 msgid "Changes saved!"
 msgstr "Ändringar sparade!"
+
+msgid "Logo"
+msgstr "Logotyp"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr ""
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr ""
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Bildformatet för logotypen måste vara PNG. Om något fält lämnas tomt kommer loggan ej att ändras."
+
+msgid "Remove this logo"
+msgstr "Ta bort denna logotyp."
+
+msgid "View this logo"
+msgstr "Se denna logotyp"
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr ""
@@ -1482,6 +1672,9 @@ msgstr "Rensa cache"
 msgid "Purge logs"
 msgstr "Rensa loggar"
 
+msgid "Purge sent files"
+msgstr ""
+
 msgid "Purge updates"
 msgstr "Rensa uppdateringar"
 
@@ -1578,6 +1771,12 @@ msgstr ""
 msgid "This is the static content server for %1s, “%2s”."
 msgstr ""
 
+msgid "User uploads server"
+msgstr ""
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
 msgid "Suggested friends"
 msgstr ""
 
@@ -1650,131 +1849,11 @@ msgstr "Sök en vän"
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr ""
 
-msgid "This is a repeat from %s"
-msgstr ""
-
-msgid "Loading comments..."
-msgstr "Laddar kommentarer..."
-
-msgid "Type your comment here..."
-msgstr "Skriv här..."
-
-msgid "Could not get the comments!"
-msgstr "Kunde ej hämta kommentarer!"
-
-msgid "Show comments"
-msgstr "Visa kommentarer"
-
 msgid "Send him/her a message"
 msgstr "Skicka honom/henne ett meddelande"
 
 msgid "Start a chat with him/her"
 msgstr "Öppna en chatt med honom/henne"
-
-msgid "Media integration"
-msgstr ""
-
-msgid "Comments locked!"
-msgstr ""
-
-msgid "Type something you want to share with your friends..."
-msgstr ""
-
-msgid "changed his/her nickname to %s"
-msgstr ""
-
-msgid "commented an item you follow: “%s”."
-msgstr ""
-
-msgid "Hide"
-msgstr ""
-
-msgid "liked your post: “%s”."
-msgstr ""
-
-msgid "quoted you somewhere: “%s”."
-msgstr ""
-
-msgid "published on your wall: “%s”."
-msgstr ""
-
-msgid "tagged you in a photo (%s)."
-msgstr ""
-
-msgid "tagged you in a video (%s)."
-msgstr ""
-
-msgid "Show"
-msgstr "Visa"
-
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr ""
-
-msgid "Pubsub host"
-msgstr "Värd för pubsub"
-
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr ""
-
-msgid "Manager link"
-msgstr ""
-
-msgid "User uploads server"
-msgstr ""
-
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr ""
-
-msgid "Logo"
-msgstr "Logotyp"
-
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr ""
-
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr ""
-
-msgid "This is not a valid image, please use the PNG format!"
-msgstr "Detta är ej en giltig bild. Vänligen använd bildformatet PNG."
-
-msgid "Your service logo has been successfully changed!"
-msgstr ""
-
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr "Bildformatet för logotypen måste vara PNG. Om något fält lämnas tomt kommer loggan ej att ändras."
-
-msgid "Remove this logo"
-msgstr "Ta bort denna logotyp."
-
-msgid "View this logo"
-msgstr "Se denna logotyp"
-
-msgid "Send a file"
-msgstr ""
-
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr ""
-
-msgid "Groupchats to join"
-msgstr ""
-
-msgid "Purge sent files"
-msgstr ""
-
-msgid "would like to send you a file: “%s”."
-msgstr ""
-
-msgid "has accepted to received your file: “%s”."
-msgstr ""
-
-msgid "has rejected to receive your file: “%s”."
-msgstr ""
-
-msgid "could not receive your file: “%s”."
-msgstr "kunde ej ta emot din fil “%s”."
-
-msgid "has received a file exchange request: “%s”."
-msgstr ""
 
 msgid "Available shortcuts:"
 msgstr "Tillgängliga genvägar:"
@@ -1812,27 +1891,6 @@ msgstr "%s utesluter en användare från rummet"
 msgid "%s invites someone to join the room"
 msgstr "%s bjuder in någon att gå med i rummet"
 
-msgid "Social channel, chat and more."
-msgstr ""
-
-msgid "Create your public profile."
-msgstr ""
-
-msgid "A mini-chat for your website."
-msgstr ""
-
-msgid "Get Jappix, get support."
-msgstr ""
-
-msgid "Statistics around Jappix."
-msgstr ""
-
-msgid "Download Jappix for free."
-msgstr ""
-
-msgid "Find a public Jappix node."
-msgstr ""
-
 msgid "Public profile"
 msgstr ""
 
@@ -1854,17 +1912,29 @@ msgstr ""
 msgid "Enable my public profile"
 msgstr ""
 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
+msgid "Jappix for your phone"
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr ""
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr ""
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr ""
+msgid "You haven't provided any file to download"
+msgstr ""
 
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
-#~ msgstr ""
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+#~ msgid "Project"
+#~ msgstr "Projekt"

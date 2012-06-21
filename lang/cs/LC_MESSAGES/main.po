@@ -4,19 +4,85 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:26+0100\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-21 14:15+0100\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "Ve vašem prohlížeči chybí JavaScript, takže nebude možné spustit Jappix! Prosím napravte to."
 
 msgid "An open social network"
 msgstr "Otevřená sociální síť"
+
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Contribute to the Jappix code."
+msgstr ""
+
+msgid "Jappix for your mobile phone."
+msgstr ""
+
+msgid "Jappix for your company."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+#, fuzzy
+msgid "Credits"
+msgstr "Ověření"
+
+#, fuzzy
+msgid "Association"
+msgstr "Automaticky"
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+#, fuzzy
+msgid "Owner"
+msgstr "Seznam vlastníků"
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Činnost Jappixe byla přerušena buď chybou ve spojenim , programu nebo nesprávnými přihlašovacími údaji (zkontrolujte vaše přihlašovací údaje), omlouváme se za komplikace"
@@ -159,6 +225,10 @@ msgstr "Nedostupný"
 msgid "Busy"
 msgstr "Nerušit"
 
+#, fuzzy
+msgid "Offline"
+msgstr "Odpojení kamarádi"
+
 msgid "Mood"
 msgstr "Nálada"
 
@@ -230,6 +300,9 @@ msgstr "Pracuje"
 
 msgid "View profile"
 msgstr "Zobrazit profil"
+
+msgid "This is a repeat from %s"
+msgstr "Jedná se o opakování od %s"
 
 msgid "Repeat this notice"
 msgstr "Opakovat toto upozornění"
@@ -437,6 +510,12 @@ msgstr "Kurzíva"
 
 msgid "Underlined text"
 msgstr "Podtržené"
+
+msgid "Send a file"
+msgstr "Odeslat soubor"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Jakmile dojde k nahrání, bude váš kamarád vyzván ke stažení souboru, který jste odeslal."
 
 msgid "Save chat"
 msgstr "Uložit rozhovor"
@@ -663,6 +742,9 @@ msgstr "Žádám o tuto službu ..."
 msgid "Loading"
 msgstr "Načítání"
 
+msgid "changed his/her nickname to %s"
+msgstr "byla změněna jeho/její přezdívka na %s"
+
 msgid "joined the chat room"
 msgstr "Vstoupit do místnosti"
 
@@ -684,6 +766,9 @@ msgstr "bez důvodu"
 msgid "Communicate with the entire world!"
 msgstr "Komunikujte s celým světem!"
 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix je velká sociální platforma, ke které máte přístup ať jste kdekoliv, kdykoliv chcete s někým komunikovat."
+
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr "Umožní vám být v kontaktu s milióny uživateli, kteří právě využívají XMPP síť stejně jako vy s Jabbixem. Přidpojte se ke komunitě a zůstaňte svobodní."
 
@@ -696,8 +781,8 @@ msgstr "Vítejte na %1s, “%2s”."
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Přihlaste se ke svému již existujícímu XMPP účtu nebo si zaregistrujte zdarma nový!"
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappix je open-source projekt od PostPro, neziskové organizace, která poskytuje velkou podporu."
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "Přihlaš se ke svému již existujícímu XMPP účtu. Také můžeš použít %s pro připojení ke skupinovému rozhovoru."
@@ -747,9 +832,6 @@ msgstr "Jste zaregistrivání, toto je vaše XMPP adresa:"
 msgid "Manager"
 msgstr "Správce"
 
-msgid "Project"
-msgstr "Projekt"
-
 msgid "Encrypted"
 msgstr "Šifrovaně"
 
@@ -761,6 +843,9 @@ msgstr "Kde jsi?"
 
 msgid "What's up with you?"
 msgstr "Co je s tebou?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Zde napište, co si přejete sdílet s vašimi přáteli ..."
 
 msgid "Fetching the social channel..."
 msgstr "Stahuji kanál ..."
@@ -816,8 +901,47 @@ msgstr "Ne"
 msgid "would like to get authorization."
 msgstr "žádá o povolení."
 
+msgid "would like to send you a file: “%s”."
+msgstr "přejete si odeslat soubor: “%s”."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "obdržel žádost pro výměnu souboru: “%s”."
+
+msgid "has accepted to received your file: “%s”."
+msgstr "souhlasí s přijetím souboru: “%s”."
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "odmítl přijmout soubor: “%s”."
+
+msgid "could not receive your file: “%s”."
+msgstr "nelze přijmout soubor: “%s”."
+
 msgid "Do you want to see the friends %s suggests you?"
 msgstr "Přejete si vidět kamarády, které vám %s navrhuje?"
+
+msgid "commented an item you follow: “%s”."
+msgstr "pro komentování položky postupujte následovně: “%s”."
+
+msgid "liked your post: “%s”."
+msgstr "váš oblíbený příspěvek: “%s”."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "citoval jste někde: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "zvěřejněno na vaší nástěnce: “%s”."
+
+msgid "tagged you in a photo (%s)."
+msgstr "jste označen na fotografii (%s)."
+
+msgid "tagged you in a video (%s)."
+msgstr "jste označen na videu (%s)."
+
+msgid "Show"
+msgstr "Zobrazit"
+
+msgid "Hide"
+msgstr "Skrýt"
 
 msgid "Submit"
 msgstr "Odeslat"
@@ -888,6 +1012,21 @@ msgstr "Čekejte prosím ..."
 msgid "Please enable JavaScript"
 msgstr "Prosím povolte JavaScript"
 
+msgid "Show comments"
+msgstr "Zobrazit komentáře"
+
+msgid "Loading comments..."
+msgstr "Načítám komentáře..."
+
+msgid "Could not get the comments!"
+msgstr "Nelze získat komentáře!"
+
+msgid "Comments locked!"
+msgstr "Komentáře jsou uzamčené!"
+
+msgid "Type your comment here..."
+msgstr "Napište svůj komentář zde ..."
+
 msgid "Your channel"
 msgstr "Váš kanál"
 
@@ -926,6 +1065,9 @@ msgstr "Váš formulář byl odeslán."
 
 msgid "Application"
 msgstr "Aplikace"
+
+msgid "Media integration"
+msgstr "Integrovat media"
 
 msgid "XMPP links"
 msgstr "XMPP odkaz"
@@ -1053,6 +1195,9 @@ msgstr "Jappix vyžaduje nastavení některých údajů. Prosím upravtel násle
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr "Pokud nenastavíte povinné údaje, budou nastaveny na výchozí."
 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Potřebujete pomoct? Raději si nejprve přečtete v dokumentaci stránku jak vyplnit tento formulář!"
+
 msgid "User"
 msgstr "Uživatel"
 
@@ -1065,6 +1210,14 @@ msgstr "Název služby"
 msgid "Service description"
 msgstr "Popis služby"
 
+#, fuzzy
+msgid "Owner name"
+msgstr "Neznámé jméno"
+
+#, fuzzy
+msgid "Owner website"
+msgstr "Seznam vlastníků"
+
 msgid "Connection"
 msgstr "Připojení"
 
@@ -1074,11 +1227,21 @@ msgstr "Uzamknout hostitele"
 msgid "Anonymous mode"
 msgstr "Anonymní mód"
 
+#, fuzzy
+msgid "HTTP authentication"
+msgstr "Ověřování"
+
 msgid "Registration allowed"
 msgstr "Registrace povolena"
 
 msgid "Use a proxy"
 msgstr "Použít proxy"
+
+msgid "Manager link"
+msgstr "Odkaz správce"
+
+msgid "Groupchats to join"
+msgstr "Připojit skupinové rozhovory"
 
 msgid "Encryption"
 msgstr "Šifrování"
@@ -1103,6 +1266,9 @@ msgstr "Hlavní hostitel"
 
 msgid "Groupchat host"
 msgstr "Hostitel skupinových rozhovorů (Groupchat host)"
+
+msgid "Pubsub host"
+msgstr "Pubsub hostitel"
 
 msgid "Anonymous host"
 msgstr "Anonymní host"
@@ -1239,14 +1405,38 @@ msgstr "Jappix je zcela přizpůsobitelný: jeho vzhled si můžete zde upravit.
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "Toto není povolený obrázek, prosím použijte PNG, GIF nebo JPG!"
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Toto není platný obrázek, použijte prosím PNG formát!"
+
 msgid "The image could not be received, would you mind retry?"
 msgstr "Obrázek nebyl přijat, přejete si akci zopakovat?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Vaše logo služby bylo úspěšně změněno!"
 
 msgid "Your image was added to the list!"
 msgstr "Váš obrázek byl přidán do seznamu!"
 
 msgid "Changes saved!"
 msgstr "Změny byly uloženy!"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "Můžete si nastavit vlastní logo služby, které nahradí to výchozí. Dávejte při tom pozor na velikost a hlavní barvu každého loga!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Nahrát každé logo s doporučeným maximálním rozměrem v pixelech."
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Vaše logo musí být ve formátu PNG. Pokud je pole prázdné logo se nezmění."
+
+msgid "Remove this logo"
+msgstr "Odstranit toto logo"
+
+msgid "View this logo"
+msgstr "Zobrazit toto logo"
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr "Na tomto Jappix uzlu lze zadat více správců. Také lze změnit heslo v tomto panelu."
@@ -1482,6 +1672,9 @@ msgstr "Vymazat keš"
 msgid "Purge logs"
 msgstr "Vymazat logy"
 
+msgid "Purge sent files"
+msgstr "Vyčistit odeslané soubory"
+
 msgid "Purge updates"
 msgstr "Vymazat aktualizace"
 
@@ -1578,6 +1771,12 @@ msgstr "Statický obsah serveru"
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "Toto je statický obsah serveru před %1s, “%2s”."
 
+msgid "User uploads server"
+msgstr "Uživate nahrávající na server"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Toto je uživatel nahrávající na server pro  %1s, “%2s”."
+
 msgid "Suggested friends"
 msgstr "Navrhovaní kamarádi"
 
@@ -1650,131 +1849,11 @@ msgstr "Najít kamaráda"
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr "Požadovanou vlastnost nepodporuje buď příjemce nebo server, a proto nemůže být vykonána."
 
-msgid "This is a repeat from %s"
-msgstr "Jedná se o opakování od %s"
-
-msgid "Loading comments..."
-msgstr "Načítám komentáře..."
-
-msgid "Type your comment here..."
-msgstr "Napište svůj komentář zde ..."
-
-msgid "Could not get the comments!"
-msgstr "Nelze získat komentáře!"
-
-msgid "Show comments"
-msgstr "Zobrazit komentáře"
-
 msgid "Send him/her a message"
 msgstr "Odeslat jemu/jí zprávu"
 
 msgid "Start a chat with him/her"
 msgstr "Začít rozhovor s ním/ní"
-
-msgid "Media integration"
-msgstr "Integrovat media"
-
-msgid "Comments locked!"
-msgstr "Komentáře jsou uzamčené!"
-
-msgid "Type something you want to share with your friends..."
-msgstr "Zde napište, co si přejete sdílet s vašimi přáteli ..."
-
-msgid "changed his/her nickname to %s"
-msgstr "byla změněna jeho/její přezdívka na %s"
-
-msgid "commented an item you follow: “%s”."
-msgstr "pro komentování položky postupujte následovně: “%s”."
-
-msgid "Hide"
-msgstr "Skrýt"
-
-msgid "liked your post: “%s”."
-msgstr "váš oblíbený příspěvek: “%s”."
-
-msgid "quoted you somewhere: “%s”."
-msgstr "citoval jste někde: “%s”."
-
-msgid "published on your wall: “%s”."
-msgstr "zvěřejněno na vaší nástěnce: “%s”."
-
-msgid "tagged you in a photo (%s)."
-msgstr "jste označen na fotografii (%s)."
-
-msgid "tagged you in a video (%s)."
-msgstr "jste označen na videu (%s)."
-
-msgid "Show"
-msgstr "Zobrazit"
-
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr "Potřebujete pomoct? Raději si nejprve přečtete v dokumentaci stránku jak vyplnit tento formulář!"
-
-msgid "Pubsub host"
-msgstr "Pubsub hostitel"
-
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix je velká sociální platforma, ke které máte přístup ať jste kdekoliv, kdykoliv chcete s někým komunikovat."
-
-msgid "Manager link"
-msgstr "Odkaz správce"
-
-msgid "User uploads server"
-msgstr "Uživate nahrávající na server"
-
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr "Toto je uživatel nahrávající na server pro  %1s, “%2s”."
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr "Můžete si nastavit vlastní logo služby, které nahradí to výchozí. Dávejte při tom pozor na velikost a hlavní barvu každého loga!"
-
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr "Nahrát každé logo s doporučeným maximálním rozměrem v pixelech."
-
-msgid "This is not a valid image, please use the PNG format!"
-msgstr "Toto není platný obrázek, použijte prosím PNG formát!"
-
-msgid "Your service logo has been successfully changed!"
-msgstr "Vaše logo služby bylo úspěšně změněno!"
-
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr "Vaše logo musí být ve formátu PNG. Pokud je pole prázdné logo se nezmění."
-
-msgid "Remove this logo"
-msgstr "Odstranit toto logo"
-
-msgid "View this logo"
-msgstr "Zobrazit toto logo"
-
-msgid "Send a file"
-msgstr "Odeslat soubor"
-
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr "Jakmile dojde k nahrání, bude váš kamarád vyzván ke stažení souboru, který jste odeslal."
-
-msgid "Groupchats to join"
-msgstr "Připojit skupinové rozhovory"
-
-msgid "Purge sent files"
-msgstr "Vyčistit odeslané soubory"
-
-msgid "would like to send you a file: “%s”."
-msgstr "přejete si odeslat soubor: “%s”."
-
-msgid "has accepted to received your file: “%s”."
-msgstr "souhlasí s přijetím souboru: “%s”."
-
-msgid "has rejected to receive your file: “%s”."
-msgstr "odmítl přijmout soubor: “%s”."
-
-msgid "could not receive your file: “%s”."
-msgstr "nelze přijmout soubor: “%s”."
-
-msgid "has received a file exchange request: “%s”."
-msgstr "obdržel žádost pro výměnu souboru: “%s”."
 
 msgid "Available shortcuts:"
 msgstr "Dostupné klávesové zkratky:"
@@ -1812,27 +1891,6 @@ msgstr "%s zakáže uživateli přístup do místnosti"
 msgid "%s invites someone to join the room"
 msgstr "%s zve někoho do místnosti"
 
-msgid "Social channel, chat and more."
-msgstr ""
-
-msgid "Create your public profile."
-msgstr ""
-
-msgid "A mini-chat for your website."
-msgstr ""
-
-msgid "Get Jappix, get support."
-msgstr ""
-
-msgid "Statistics around Jappix."
-msgstr ""
-
-msgid "Download Jappix for free."
-msgstr ""
-
-msgid "Find a public Jappix node."
-msgstr ""
-
 msgid "Public profile"
 msgstr ""
 
@@ -1854,17 +1912,43 @@ msgstr ""
 msgid "Enable my public profile"
 msgstr ""
 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr "Jappix je nezisková sociální platforma, ke které máte přístup ať jste kdekoliv, kdykoli budete chtít s někým komunikovat."
+msgid "Jappix for your phone"
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr ""
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr ""
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr ""
+msgid "You haven't provided any file to download"
+msgstr ""
 
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+#~ msgid ""
+#~ "Jappix is an open-source project from PostPro, a non-profit organization "
+#~ "which provides us a great help."
 #~ msgstr ""
+#~ "Jappix je open-source projekt od PostPro, neziskové organizace, která "
+#~ "poskytuje velkou podporu."
+
+#~ msgid "Project"
+#~ msgstr "Projekt"
+
+#~ msgid ""
+#~ "Jappix is a non-profit social platform, that you can access wherever you "
+#~ "are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+#~ "Jappix je nezisková sociální platforma, ke které máte přístup ať jste "
+#~ "kdekoliv, kdykoli budete chtít s někým komunikovat."

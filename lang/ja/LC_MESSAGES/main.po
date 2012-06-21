@@ -4,19 +4,86 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-02-15 01:30+0100\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-21 14:13+0100\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Last-Translator: Vanaryon\n"
-"Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "ブラウザの設定でJavaScriptが無効になっているため、Jappixを起動できません! JavaScriptを有効にしてください。"
 
 msgid "An open social network"
 msgstr "オープンソーシャルネットワーク"
+
+msgid "Social channel, chat and more."
+msgstr "ソーシャルチャンネル、チャットなどなど。"
+
+msgid "Create your public profile."
+msgstr "公開プロフィールを作成"
+
+msgid "A mini-chat for your website."
+msgstr "ウェブサイト用のミニチャット"
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr "Jappixに関する統計"
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr "Jappixを無料でダウンロード"
+
+msgid "Contribute to the Jappix code."
+msgstr "Jappixのコードに貢献する"
+
+msgid "Jappix for your mobile phone."
+msgstr "モバイル用Jappix"
+
+#, fuzzy
+msgid "Jappix for your company."
+msgstr "電話用Jappix"
+
+msgid "Find a public Jappix node."
+msgstr "公開Jappixノードを見つける"
+
+#, fuzzy
+msgid "Credits"
+msgstr "資格情報"
+
+#, fuzzy
+msgid "Association"
+msgstr "自動化"
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+#, fuzzy
+msgid "Owner"
+msgstr "主宰者一覧"
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Jappixはネットワークの問題により停止しました。バグか不正なログインです（入力した認証情報を確認してください）。ご不便をおかけして申し訳ありません。"
@@ -159,6 +226,10 @@ msgstr "不在"
 msgid "Busy"
 msgstr "取り込み中"
 
+#, fuzzy
+msgid "Offline"
+msgstr "オフラインの友達"
+
 msgid "Mood"
 msgstr "気分"
 
@@ -230,6 +301,9 @@ msgstr "仕事"
 
 msgid "View profile"
 msgstr "プロフィールを見る"
+
+msgid "This is a repeat from %s"
+msgstr "%sからの反復"
 
 msgid "Repeat this notice"
 msgstr "お知らせを繰り返す"
@@ -437,6 +511,12 @@ msgstr "イタリック"
 
 msgid "Underlined text"
 msgstr "下線"
+
+msgid "Send a file"
+msgstr "ファイル送信"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "アップロードすると、友達にはダウンロードするよう通知されます。"
 
 msgid "Save chat"
 msgstr "チャットを保存"
@@ -663,6 +743,9 @@ msgstr "サービスを要求中..."
 msgid "Loading"
 msgstr "読み込み中"
 
+msgid "changed his/her nickname to %s"
+msgstr "相手のニックネームは %s に変更されました"
+
 msgid "joined the chat room"
 msgstr "談話室の参加しました"
 
@@ -684,6 +767,9 @@ msgstr "理由なし"
 msgid "Communicate with the entire world!"
 msgstr "全世界とコミュニケーション!"
 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappixはすばらしいソーシャルプラットフォームです。どこにいてもいつでもアクセスでき、誰とでもコミュニケートできます。"
+
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr "ここでは XMPPネットワークを使用する何百万人のユーザーと連絡を取ることが出来ます。コミュニティーへの参加は自由です!"
 
@@ -696,8 +782,8 @@ msgstr "ようこそ。ここは %1s 、 “%2s” です。"
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "既存のXMPPアカウントでログインするか、無料でアカウント作成できます!"
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappixは、非営利団体PostProのオープンソースプロジェクトです。"
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "既存のXMPPアカウントでログインしてください。また、%s を使ってグループチャットに参加できます。"
@@ -759,6 +845,9 @@ msgstr "どこにいますか？"
 msgid "What's up with you?"
 msgstr "なにしてる?"
 
+msgid "Type something you want to share with your friends..."
+msgstr "友達と共有したいものを入力…"
+
 msgid "Fetching the social channel..."
 msgstr "ソーシャルチャンネルを取得..."
 
@@ -813,8 +902,47 @@ msgstr "いいえ"
 msgid "would like to get authorization."
 msgstr "は承認を求めています。"
 
+msgid "would like to send you a file: “%s”."
+msgstr "このファイルを送りたいと思います: “%s”"
+
+msgid "has received a file exchange request: “%s”."
+msgstr "ファイル交換の要求を受け取りました: “%s”"
+
+msgid "has accepted to received your file: “%s”."
+msgstr "このファイルを受け取りを承諾しました: “%s”"
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "このファイルを受け取りを拒否しました: “%s”"
+
+msgid "could not receive your file: “%s”."
+msgstr "このファイルを受け取ることができませんでした: “%s”"
+
 msgid "Do you want to see the friends %s suggests you?"
 msgstr "%s に友達申請をしますか？"
+
+msgid "commented an item you follow: “%s”."
+msgstr "“%s”のコメントをフォローする"
+
+msgid "liked your post: “%s”."
+msgstr "“%s”にいいねを送信する"
+
+msgid "quoted you somewhere: “%s”."
+msgstr "“%s”を引用する"
+
+msgid "published on your wall: “%s”."
+msgstr "“%s”を公開する。"
+
+msgid "tagged you in a photo (%s)."
+msgstr "写真(%s)にタグを付けました。"
+
+msgid "tagged you in a video (%s)."
+msgstr "映像(%s)にタグを付けました。"
+
+msgid "Show"
+msgstr "見る"
+
+msgid "Hide"
+msgstr "隠す"
 
 msgid "Submit"
 msgstr "送信"
@@ -885,6 +1013,21 @@ msgstr "しばらくお待ちください..."
 msgid "Please enable JavaScript"
 msgstr "JavaScriptを有効にしてください"
 
+msgid "Show comments"
+msgstr "コメントを見る"
+
+msgid "Loading comments..."
+msgstr "コメントをロード中…"
+
+msgid "Could not get the comments!"
+msgstr "コメントを取得できませんでした。"
+
+msgid "Comments locked!"
+msgstr "コメントがロックされています"
+
+msgid "Type your comment here..."
+msgstr "ここにコメントを入力してください…"
+
 msgid "Your channel"
 msgstr "チャンネル"
 
@@ -923,6 +1066,9 @@ msgstr "フォームが送信されました。"
 
 msgid "Application"
 msgstr "アプリケーション"
+
+msgid "Media integration"
+msgstr "メディア統合"
 
 msgid "XMPP links"
 msgstr "XMPPリンク"
@@ -1050,6 +1196,9 @@ msgstr "Jappixが動作するように設定する必要があります。次の
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr "値を入力しない場合には、自動的にデフォルト値が設定されます。"
 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "ヘルプが必要ですか? どのようにこの欄に入力するか、ドキュメントページをよく読んでください。"
+
 msgid "User"
 msgstr "ユーザー"
 
@@ -1062,6 +1211,14 @@ msgstr "サービス名"
 msgid "Service description"
 msgstr "サービスの説明"
 
+#, fuzzy
+msgid "Owner name"
+msgstr "不明な名前"
+
+#, fuzzy
+msgid "Owner website"
+msgstr "主宰者一覧"
+
 msgid "Connection"
 msgstr "コネクション"
 
@@ -1071,11 +1228,21 @@ msgstr "ホストのロック"
 msgid "Anonymous mode"
 msgstr "匿名モード"
 
+#, fuzzy
+msgid "HTTP authentication"
+msgstr "認証"
+
 msgid "Registration allowed"
 msgstr "登録を許可"
 
 msgid "Use a proxy"
 msgstr "プロキシーを使用"
+
+msgid "Manager link"
+msgstr "マネージャーリンク"
+
+msgid "Groupchats to join"
+msgstr "参加するグループチャット"
 
 msgid "Encryption"
 msgstr "暗号化"
@@ -1100,6 +1267,9 @@ msgstr "メインホスト"
 
 msgid "Groupchat host"
 msgstr "グループチャットホスト"
+
+msgid "Pubsub host"
+msgstr "Pubsubホスト"
 
 msgid "Anonymous host"
 msgstr "匿名ホスト"
@@ -1236,14 +1406,38 @@ msgstr "Jappixは完全にカスタマイズ可能です。右側でデザイン
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "画像の形式が正しくありません。PNG,GIFまたはJPGを使用してください。"
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "正しい画像の形式ではありません。PNGフォーマットを使用してください。"
+
 msgid "The image could not be received, would you mind retry?"
 msgstr "画像を受け取ることができませんでした。もういちど試しますか?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "サービスロゴを変更しました。"
 
 msgid "Your image was added to the list!"
 msgstr "画像をリストに追加しました!"
 
 msgid "Changes saved!"
 msgstr "変更を保存しました。"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "サービスロゴをデフォルトから独自のものに変更できます。サイズと色に気をつけて！"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "それぞれのロゴを推奨の最大のピクセルサイズでアップロード"
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "ロゴフォーマットはPNG形式を使用する必要があります。フィールドが空欄の場合はロゴは変更されません。"
+
+msgid "Remove this logo"
+msgstr "このロゴを削除"
+
+msgid "View this logo"
+msgstr "このロゴを見る"
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr "一人または複数のJappixノードの管理者が定義することができます。パスワードを変更することもできます。"
@@ -1479,6 +1673,9 @@ msgstr "キャッシュをパージ"
 msgid "Purge logs"
 msgstr "ログをパージ"
 
+msgid "Purge sent files"
+msgstr "送信ファイルのパージ"
+
 msgid "Purge updates"
 msgstr "アップデートをパージ"
 
@@ -1575,6 +1772,12 @@ msgstr "スタティックコンテンツサーバ"
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "“%2s” %1s はスタティックコンテンツサーバです。"
 
+msgid "User uploads server"
+msgstr "ユーザーアップロードサーバー"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "“%2s”を%1sサーバにアップロードしました。"
+
 msgid "Suggested friends"
 msgstr "友達の候補"
 
@@ -1647,131 +1850,11 @@ msgstr "友達を検索"
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr "要求されたリクエストは、受信者又またはサーバに実装されていないため、処理することができません。"
 
-msgid "This is a repeat from %s"
-msgstr "%sからの反復"
-
-msgid "Loading comments..."
-msgstr "コメントをロード中…"
-
-msgid "Type your comment here..."
-msgstr "ここにコメントを入力してください…"
-
-msgid "Could not get the comments!"
-msgstr "コメントを取得できませんでした。"
-
-msgid "Show comments"
-msgstr "コメントを見る"
-
 msgid "Send him/her a message"
 msgstr "相手にメッセージを送る"
 
 msgid "Start a chat with him/her"
 msgstr "相手とチャットを始める"
-
-msgid "Media integration"
-msgstr "メディア統合"
-
-msgid "Comments locked!"
-msgstr "コメントがロックされています"
-
-msgid "Type something you want to share with your friends..."
-msgstr "友達と共有したいものを入力…"
-
-msgid "changed his/her nickname to %s"
-msgstr "相手のニックネームは %s に変更されました"
-
-msgid "commented an item you follow: “%s”."
-msgstr "“%s”のコメントをフォローする"
-
-msgid "Hide"
-msgstr "隠す"
-
-msgid "liked your post: “%s”."
-msgstr "“%s”にいいねを送信する"
-
-msgid "quoted you somewhere: “%s”."
-msgstr "“%s”を引用する"
-
-msgid "published on your wall: “%s”."
-msgstr "“%s”を公開する。"
-
-msgid "tagged you in a photo (%s)."
-msgstr "写真(%s)にタグを付けました。"
-
-msgid "tagged you in a video (%s)."
-msgstr "映像(%s)にタグを付けました。"
-
-msgid "Show"
-msgstr "見る"
-
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr "ヘルプが必要ですか? どのようにこの欄に入力するか、ドキュメントページをよく読んでください。"
-
-msgid "Pubsub host"
-msgstr "Pubsubホスト"
-
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappixはすばらしいソーシャルプラットフォームです。どこにいてもいつでもアクセスでき、誰とでもコミュニケートできます。"
-
-msgid "Manager link"
-msgstr "マネージャーリンク"
-
-msgid "User uploads server"
-msgstr "ユーザーアップロードサーバー"
-
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr "“%2s”を%1sサーバにアップロードしました。"
-
-msgid "Logo"
-msgstr "ロゴ"
-
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr "サービスロゴをデフォルトから独自のものに変更できます。サイズと色に気をつけて！"
-
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr "それぞれのロゴを推奨の最大のピクセルサイズでアップロード"
-
-msgid "This is not a valid image, please use the PNG format!"
-msgstr "正しい画像の形式ではありません。PNGフォーマットを使用してください。"
-
-msgid "Your service logo has been successfully changed!"
-msgstr "サービスロゴを変更しました。"
-
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr "ロゴフォーマットはPNG形式を使用する必要があります。フィールドが空欄の場合はロゴは変更されません。"
-
-msgid "Remove this logo"
-msgstr "このロゴを削除"
-
-msgid "View this logo"
-msgstr "このロゴを見る"
-
-msgid "Send a file"
-msgstr "ファイル送信"
-
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr "アップロードすると、友達にはダウンロードするよう通知されます。"
-
-msgid "Groupchats to join"
-msgstr "参加するグループチャット"
-
-msgid "Purge sent files"
-msgstr "送信ファイルのパージ"
-
-msgid "would like to send you a file: “%s”."
-msgstr "このファイルを送りたいと思います: “%s”"
-
-msgid "has accepted to received your file: “%s”."
-msgstr "このファイルを受け取りを承諾しました: “%s”"
-
-msgid "has rejected to receive your file: “%s”."
-msgstr "このファイルを受け取りを拒否しました: “%s”"
-
-msgid "could not receive your file: “%s”."
-msgstr "このファイルを受け取ることができませんでした: “%s”"
-
-msgid "has received a file exchange request: “%s”."
-msgstr "ファイル交換の要求を受け取りました: “%s”"
 
 msgid "Available shortcuts:"
 msgstr "使用可能なショートカット："
@@ -1809,27 +1892,6 @@ msgstr "%s はユーザーを談話室から締め出します"
 msgid "%s invites someone to join the room"
 msgstr "%s は誰かを談話室に招待します"
 
-msgid "Social channel, chat and more."
-msgstr "ソーシャルチャンネル、チャットなどなど。"
-
-msgid "Create your public profile."
-msgstr "公開プロフィールを作成"
-
-msgid "A mini-chat for your website."
-msgstr "ウェブサイト用のミニチャット"
-
-msgid "Get Jappix, get support."
-msgstr ""
-
-msgid "Statistics around Jappix."
-msgstr "Jappixに関する統計"
-
-msgid "Download Jappix for free."
-msgstr "Jappixを無料でダウンロード"
-
-msgid "Find a public Jappix node."
-msgstr "公開Jappixノードを見つける"
-
 msgid "Public profile"
 msgstr "公開プロフィール"
 
@@ -1851,12 +1913,6 @@ msgstr ""
 msgid "Enable my public profile"
 msgstr ""
 
-msgid "Contribute to the Jappix code."
-msgstr "Jappixのコードに貢献する"
-
-msgid "Jappix for your mobile phone."
-msgstr "モバイル用Jappix"
-
 msgid "Jappix for your phone"
 msgstr "電話用Jappix"
 
@@ -1866,20 +1922,32 @@ msgstr ""
 msgid "This notification is only informative, maybe the data it links to have been removed."
 msgstr ""
 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr "Jappixは非営利のソーシャルプラットフォームです。どこにいてもアクセスでき、いつでもコミュニケーションを取ることができます。"
+msgid "You haven't provided any file to download"
+msgstr ""
+
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+#~ msgid ""
+#~ "Jappix is an open-source project from PostPro, a non-profit organization "
+#~ "which provides us a great help."
+#~ msgstr "Jappixは、非営利団体PostProのオープンソースプロジェクトです。"
+
+#~ msgid ""
+#~ "Jappix is a non-profit social platform, that you can access wherever you "
+#~ "are, whenever you want and communicate with whovever you want."
+#~ msgstr ""
+#~ "Jappixは非営利のソーシャルプラットフォームです。どこにいてもアクセスでき、"
+#~ "いつでもコミュニケーションを取ることができます。"
 
 #~ msgid "Project"
 #~ msgstr "プロジェクト"
-
-#~ msgid "See"
-#~ msgstr ""
-
-#~ msgid "Use default logo"
-#~ msgstr ""
-
-#~ msgid "Use your own logo"
-#~ msgstr ""
-
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
-#~ msgstr ""

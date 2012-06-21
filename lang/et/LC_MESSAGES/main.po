@@ -4,19 +4,85 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:25+0100\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-21 14:14+0100\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "Teie brauseris puudub JavaScript, mis tähendab seda et teil ei ole võimalik Jappixit käivitada! Palun parandage see."
 
 msgid "An open social network"
 msgstr "Avatud sotsiaalvõrgustik"
+
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Contribute to the Jappix code."
+msgstr ""
+
+msgid "Jappix for your mobile phone."
+msgstr ""
+
+msgid "Jappix for your company."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+#, fuzzy
+msgid "Credits"
+msgstr "Isikutunnistus"
+
+#, fuzzy
+msgid "Association"
+msgstr "Automaatika"
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+#, fuzzy
+msgid "Owner"
+msgstr "Omanike nimekiri"
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Jappixi töö on katkestatud võrgu tõrke, halva sisselogimise või mõne muu vea tõttu (kontrollige, et sisestasite õiged andmed), vabandame ebameeldivuste pärast."
@@ -159,6 +225,10 @@ msgstr "Mitte saadaval"
 msgid "Busy"
 msgstr "Hõivatud"
 
+#, fuzzy
+msgid "Offline"
+msgstr "Ühenduseta sõbrad"
+
 msgid "Mood"
 msgstr "Meeleolu"
 
@@ -230,6 +300,9 @@ msgstr "Töötamine"
 
 msgid "View profile"
 msgstr "Vaata profiili"
+
+msgid "This is a repeat from %s"
+msgstr "%s kordab seda"
 
 msgid "Repeat this notice"
 msgstr "Korda seda teadet"
@@ -437,6 +510,12 @@ msgstr "Tekst kaldkirjas"
 
 msgid "Underlined text"
 msgstr "Tekst allajoonitult"
+
+msgid "Send a file"
+msgstr "Saada fail"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Kui te olete faili üles laadinud siis Teie sõber saab märguande Teie saadetud faili kohta."
 
 msgid "Save chat"
 msgstr "Salvesta vestlus"
@@ -663,6 +742,9 @@ msgstr "Pärin seda teenust..."
 msgid "Loading"
 msgstr "Laen"
 
+msgid "changed his/her nickname to %s"
+msgstr "muutis oma hüüdnime %s"
+
 msgid "joined the chat room"
 msgstr "liitus jututoaga"
 
@@ -684,6 +766,9 @@ msgstr "põhjust pole"
 msgid "Communicate with the entire world!"
 msgstr "Suhtle terve maailmaga!"
 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix on suurepärane sotsiaalvõrgustik millele Te saate ligi pääseda kusiganes Te olete, millal iganes Te soovite ja suhelda kellega iganes Te soovite."
+
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr "See lubab Teil miljonite inimestega kontakteeruda kes kasutavad XMPP võrgustikku nagu Teie kasutate Jappix'it. Liitu sõpruskonnaga ja ole vaba!"
 
@@ -696,8 +781,8 @@ msgstr "Tere tulemast %1s, “%2s”."
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Logi sisse enda XMPP kontole või tee tasuta uus!"
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappix on avatud lähtekoodiga projekt PostPro'lt, mittetulundusühingult kes pakub meile suurt abi."
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "Logige sisse oma XMPP kontole. Te saate kasutada ka %s et liituda grupivestlusega."
@@ -747,9 +832,6 @@ msgstr "Te olete registreeritud, siin on Teie XMPP aadress:"
 msgid "Manager"
 msgstr "Haldur"
 
-msgid "Project"
-msgstr "Projekt"
-
 msgid "Encrypted"
 msgstr "Krüpteeritud"
 
@@ -761,6 +843,9 @@ msgstr "Kus Te olete?"
 
 msgid "What's up with you?"
 msgstr "Mis toimub?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Kirjuta midagi mida sa tahad oma sõpradega jagada..."
 
 msgid "Fetching the social channel..."
 msgstr "Püüan kanalit..."
@@ -816,8 +901,47 @@ msgstr "Ei"
 msgid "would like to get authorization."
 msgstr "soovib saada luba."
 
+msgid "would like to send you a file: “%s”."
+msgstr "soovib Teile saata faili: “%s”."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "On failivahetuse pakkumise vastu võtnud: “%s”."
+
+msgid "has accepted to received your file: “%s”."
+msgstr "on nõustunud Teie saadetud faili vastu võtma: “%s”."
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "on keeldunud Teie saadetud faili vastu võtmast: “%s”."
+
+msgid "could not receive your file: “%s”."
+msgstr "ei saanud Teie faili kätte: “%s”."
+
 msgid "Do you want to see the friends %s suggests you?"
 msgstr "Kas Te soovite näha mida sõbra %s Teile soovitab?"
+
+msgid "commented an item you follow: “%s”."
+msgstr "kommenteeris asja üle mida sa jälgid: “%s”."
+
+msgid "liked your post: “%s”."
+msgstr "linkis sinu postituse: “%s”."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "tsiteeris sind kuskil: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "kirjutas sinu seinale: “%s”."
+
+msgid "tagged you in a photo (%s)."
+msgstr "sildistas sind fotol (%s)."
+
+msgid "tagged you in a video (%s)."
+msgstr "sildistas sind videol (%s)."
+
+msgid "Show"
+msgstr "Näita"
+
+msgid "Hide"
+msgstr "Peida"
 
 msgid "Submit"
 msgstr "Kinnita"
@@ -888,6 +1012,21 @@ msgstr "Palun oodake..."
 msgid "Please enable JavaScript"
 msgstr "Palun lubage JavaScript"
 
+msgid "Show comments"
+msgstr "Näita kommentaare"
+
+msgid "Loading comments..."
+msgstr "Laen kommentaare..."
+
+msgid "Could not get the comments!"
+msgstr "Ei saanud kommentaare kätte!"
+
+msgid "Comments locked!"
+msgstr "Kommentaarid lukus!"
+
+msgid "Type your comment here..."
+msgstr "Kirjuta oma kommentaar siia..."
+
 msgid "Your channel"
 msgstr "Teie kanal"
 
@@ -926,6 +1065,9 @@ msgstr "Teie ankeet on saadetud."
 
 msgid "Application"
 msgstr "Aplikatsioon"
+
+msgid "Media integration"
+msgstr "Meedia integratsioon"
 
 msgid "XMPP links"
 msgstr "XMPP lingid"
@@ -1053,6 +1195,9 @@ msgstr "Jappixi töötamiseks on vajalik mõned väärtused muuta. Palun muutke 
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr "NB: Kui Te ei kinnita vajalikke väljasid siis kasutatakse olemasolevaid seadeid."
 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Vajad abi? Parem oleks kui sa loed meie dokumentatsiooni lehte enne kui sa selle vormi täidad!"
+
 msgid "User"
 msgstr "Kasutaja"
 
@@ -1065,6 +1210,14 @@ msgstr "Teenuse nimi"
 msgid "Service description"
 msgstr "Teenuse kirjeldus"
 
+#, fuzzy
+msgid "Owner name"
+msgstr "Tundmatu nimi"
+
+#, fuzzy
+msgid "Owner website"
+msgstr "Omanike nimekiri"
+
 msgid "Connection"
 msgstr "Ühendus"
 
@@ -1074,11 +1227,21 @@ msgstr "Lukusta host"
 msgid "Anonymous mode"
 msgstr "Anonüümne režiim"
 
+#, fuzzy
+msgid "HTTP authentication"
+msgstr "Autentimised"
+
 msgid "Registration allowed"
 msgstr "Registreerimine lubatud"
 
 msgid "Use a proxy"
 msgstr "Kasuta proksit"
+
+msgid "Manager link"
+msgstr "Halduri link"
+
+msgid "Groupchats to join"
+msgstr "Grupivestlused millega liituda"
 
 msgid "Encryption"
 msgstr "Krüpteering"
@@ -1103,6 +1266,9 @@ msgstr "Põhiline host"
 
 msgid "Groupchat host"
 msgstr "Grupivestluse host"
+
+msgid "Pubsub host"
+msgstr "Pubsub host"
 
 msgid "Anonymous host"
 msgstr "Anonüümne host"
@@ -1239,14 +1405,38 @@ msgstr "Jappix on täielikult kohandatav: Te saate selle kujundust muuta siin."
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "See ei ole õige pildi formaat, palun kasutage PNG, GIF või JPG formaati!"
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "See ei ole õige pildi formaat, palun valige PNG formaat!"
+
 msgid "The image could not be received, would you mind retry?"
 msgstr "Pilti ei olnud võimalik vastu võtta, kas soovite uuesti proovida?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Teie teenuse logo on edukalt muudetud!"
 
 msgid "Your image was added to the list!"
 msgstr "Teie pilt lisati nimekirja!"
 
 msgid "Changes saved!"
 msgstr "Muudatused salvestatud!"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "Te saate lisada enda teenuse logo ja asendada olemasoleva. Hoolitsege selle eest, et suurus ja värvid oleksid õiged!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Lae üles iga logo soovitatud pikseli suurusega."
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Teie logo formaat peab olema PNG. Kui te jätate välja tühjaks siis logo ei muutu."
+
+msgid "Remove this logo"
+msgstr "Eemalda see logo"
+
+msgid "View this logo"
+msgstr "Vaata seda logo"
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr "Te saate lisada rohkem kui ühe administraatori. Selle tööriistaga saate ka parooli muuta."
@@ -1482,6 +1672,9 @@ msgstr "Puhasta vahemälu"
 msgid "Purge logs"
 msgstr "Puhasta logid"
 
+msgid "Purge sent files"
+msgstr "Puhasta saadetud failid"
+
 msgid "Purge updates"
 msgstr "Puhasta uuendused"
 
@@ -1578,6 +1771,12 @@ msgstr "Staatilise sisuga server"
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "Siin on staatilise sisuga serverid %1s, “%2s”."
 
+msgid "User uploads server"
+msgstr "Kasutajate üleslaadimised serverisse"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Siin on kasutajate üleslaadimised %1s, “%2s”."
+
 msgid "Suggested friends"
 msgstr "Soovitatud sõbrad"
 
@@ -1650,131 +1849,11 @@ msgstr "Otsi sõpra"
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr "Server ei toeta nõutud detaili või ei ole see saadaval, seega detaili protsessimine on katkestatud."
 
-msgid "This is a repeat from %s"
-msgstr "%s kordab seda"
-
-msgid "Loading comments..."
-msgstr "Laen kommentaare..."
-
-msgid "Type your comment here..."
-msgstr "Kirjuta oma kommentaar siia..."
-
-msgid "Could not get the comments!"
-msgstr "Ei saanud kommentaare kätte!"
-
-msgid "Show comments"
-msgstr "Näita kommentaare"
-
 msgid "Send him/her a message"
 msgstr "Saada temale sõnum"
 
 msgid "Start a chat with him/her"
 msgstr "Alusta temaga vestlust"
-
-msgid "Media integration"
-msgstr "Meedia integratsioon"
-
-msgid "Comments locked!"
-msgstr "Kommentaarid lukus!"
-
-msgid "Type something you want to share with your friends..."
-msgstr "Kirjuta midagi mida sa tahad oma sõpradega jagada..."
-
-msgid "changed his/her nickname to %s"
-msgstr "muutis oma hüüdnime %s"
-
-msgid "commented an item you follow: “%s”."
-msgstr "kommenteeris asja üle mida sa jälgid: “%s”."
-
-msgid "Hide"
-msgstr "Peida"
-
-msgid "liked your post: “%s”."
-msgstr "linkis sinu postituse: “%s”."
-
-msgid "quoted you somewhere: “%s”."
-msgstr "tsiteeris sind kuskil: “%s”."
-
-msgid "published on your wall: “%s”."
-msgstr "kirjutas sinu seinale: “%s”."
-
-msgid "tagged you in a photo (%s)."
-msgstr "sildistas sind fotol (%s)."
-
-msgid "tagged you in a video (%s)."
-msgstr "sildistas sind videol (%s)."
-
-msgid "Show"
-msgstr "Näita"
-
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr "Vajad abi? Parem oleks kui sa loed meie dokumentatsiooni lehte enne kui sa selle vormi täidad!"
-
-msgid "Pubsub host"
-msgstr "Pubsub host"
-
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix on suurepärane sotsiaalvõrgustik millele Te saate ligi pääseda kusiganes Te olete, millal iganes Te soovite ja suhelda kellega iganes Te soovite."
-
-msgid "Manager link"
-msgstr "Halduri link"
-
-msgid "User uploads server"
-msgstr "Kasutajate üleslaadimised serverisse"
-
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr "Siin on kasutajate üleslaadimised %1s, “%2s”."
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr "Te saate lisada enda teenuse logo ja asendada olemasoleva. Hoolitsege selle eest, et suurus ja värvid oleksid õiged!"
-
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr "Lae üles iga logo soovitatud pikseli suurusega."
-
-msgid "This is not a valid image, please use the PNG format!"
-msgstr "See ei ole õige pildi formaat, palun valige PNG formaat!"
-
-msgid "Your service logo has been successfully changed!"
-msgstr "Teie teenuse logo on edukalt muudetud!"
-
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr "Teie logo formaat peab olema PNG. Kui te jätate välja tühjaks siis logo ei muutu."
-
-msgid "Remove this logo"
-msgstr "Eemalda see logo"
-
-msgid "View this logo"
-msgstr "Vaata seda logo"
-
-msgid "Send a file"
-msgstr "Saada fail"
-
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr "Kui te olete faili üles laadinud siis Teie sõber saab märguande Teie saadetud faili kohta."
-
-msgid "Groupchats to join"
-msgstr "Grupivestlused millega liituda"
-
-msgid "Purge sent files"
-msgstr "Puhasta saadetud failid"
-
-msgid "would like to send you a file: “%s”."
-msgstr "soovib Teile saata faili: “%s”."
-
-msgid "has accepted to received your file: “%s”."
-msgstr "on nõustunud Teie saadetud faili vastu võtma: “%s”."
-
-msgid "has rejected to receive your file: “%s”."
-msgstr "on keeldunud Teie saadetud faili vastu võtmast: “%s”."
-
-msgid "could not receive your file: “%s”."
-msgstr "ei saanud Teie faili kätte: “%s”."
-
-msgid "has received a file exchange request: “%s”."
-msgstr "On failivahetuse pakkumise vastu võtnud: “%s”."
 
 msgid "Available shortcuts:"
 msgstr "Saadaolevad otseteed:"
@@ -1812,27 +1891,6 @@ msgstr "%s paneb kasutajale ruumi keelu"
 msgid "%s invites someone to join the room"
 msgstr "%s kutsub kellegi ruumiga liituma"
 
-msgid "Social channel, chat and more."
-msgstr ""
-
-msgid "Create your public profile."
-msgstr ""
-
-msgid "A mini-chat for your website."
-msgstr ""
-
-msgid "Get Jappix, get support."
-msgstr ""
-
-msgid "Statistics around Jappix."
-msgstr ""
-
-msgid "Download Jappix for free."
-msgstr ""
-
-msgid "Find a public Jappix node."
-msgstr ""
-
 msgid "Public profile"
 msgstr ""
 
@@ -1854,17 +1912,36 @@ msgstr ""
 msgid "Enable my public profile"
 msgstr ""
 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
+msgid "Jappix for your phone"
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr ""
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr ""
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr ""
+msgid "You haven't provided any file to download"
+msgstr ""
 
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+#~ msgid ""
+#~ "Jappix is an open-source project from PostPro, a non-profit organization "
+#~ "which provides us a great help."
 #~ msgstr ""
+#~ "Jappix on avatud lähtekoodiga projekt PostPro'lt, mittetulundusühingult "
+#~ "kes pakub meile suurt abi."
+
+#~ msgid "Project"
+#~ msgstr "Projekt"

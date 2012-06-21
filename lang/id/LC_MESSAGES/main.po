@@ -4,19 +4,85 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2012-01-16 21:26+0100\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-21 14:13+0100\n"
+"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
 msgstr "JavaScript telah hilang di browser web anda, sehingga anda tidak akan dapat membuka Jappix! Harap perbaiki hal ini."
 
 msgid "An open social network"
 msgstr "Sebuah jaringan sosial terbuka"
+
+msgid "Social channel, chat and more."
+msgstr ""
+
+msgid "Create your public profile."
+msgstr ""
+
+msgid "A mini-chat for your website."
+msgstr ""
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr ""
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr ""
+
+msgid "Contribute to the Jappix code."
+msgstr ""
+
+msgid "Jappix for your mobile phone."
+msgstr ""
+
+msgid "Jappix for your company."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+#, fuzzy
+msgid "Credits"
+msgstr "Surat kepercayaan"
+
+#, fuzzy
+msgid "Association"
+msgstr "Otomatisasi"
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+#, fuzzy
+msgid "Owner"
+msgstr "Daftar pemilik"
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
 
 msgid "Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience."
 msgstr "Saat ini Jappix sedang mengalami gangguan jaringan, bug atau login yang salah (periksa lagi data kredensial yang telah anda masukkan), maaf untuk ketidaknyamanan ini."
@@ -159,6 +225,10 @@ msgstr "Tidak tersedia"
 msgid "Busy"
 msgstr "Sibuk"
 
+#, fuzzy
+msgid "Offline"
+msgstr "Teman offline"
+
 msgid "Mood"
 msgstr "Suasana hati"
 
@@ -230,6 +300,9 @@ msgstr "Bekerja"
 
 msgid "View profile"
 msgstr "Lihat profil"
+
+msgid "This is a repeat from %s"
+msgstr "Ini adalah pengulangan dari %s"
 
 msgid "Repeat this notice"
 msgstr "Ulangi pemberitahuan ini"
@@ -437,6 +510,12 @@ msgstr "Teks dengan huruf miring"
 
 msgid "Underlined text"
 msgstr "Garisbawahi teks"
+
+msgid "Send a file"
+msgstr "Mengirim file"
+
+msgid "Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Setelah upload, teman Anda akan diminta untuk men-download file yang Anda kirim."
 
 msgid "Save chat"
 msgstr "Simpan pembicaraan"
@@ -663,6 +742,9 @@ msgstr "Meminta layanan ini ..."
 msgid "Loading"
 msgstr "Pemuatan"
 
+msgid "changed his/her nickname to %s"
+msgstr "merubah nama panggilannya ke %s"
+
 msgid "joined the chat room"
 msgstr "bergabung dengan chat room"
 
@@ -684,6 +766,9 @@ msgstr "tanpa alasan"
 msgid "Communicate with the entire world!"
 msgstr "Berkomunikasi dengan seluruh dunia!"
 
+msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgstr "Jappix adalah sebuah platform sosial yang hebat, yang dapat Anda akses di manapun Anda berada, kapan pun Anda inginkan dan berkomunikasi dengan siapapun yang Anda inginkan."
+
 msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
 msgstr "Hal ini memungkinkan anda untuk berhubungan dengan jutaan pengguna yang saat ini menggunakan jaringan XMPP seperti yang anda lakukan dengan Jappix. Bergabung dengan komunitas dan tetap bebas!"
 
@@ -696,8 +781,8 @@ msgstr "Selamat datang di %1s, “%2s”."
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Masuk ke akun XMPP anda atau buat yang baru dengan gratis!"
 
-msgid "Jappix is an open-source project from PostPro, a non-profit organization which provides us a great help."
-msgstr "Jappix adalah sebuah proyek open source dari PostPro, sebuah organisasi non-profit yang memberikan kita bantuan besar."
+msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
 msgstr "Masuk ke akun XMPP anda. Anda juga dapat menggunakan %s untuk bergabung dengan suatu groupchat."
@@ -747,9 +832,6 @@ msgstr "Anda telah terdaftar, alamat XMPP anda adalah:"
 msgid "Manager"
 msgstr "Manajer"
 
-msgid "Project"
-msgstr "Proyek"
-
 msgid "Encrypted"
 msgstr "Terenkripsi"
 
@@ -761,6 +843,9 @@ msgstr "Di mana anda?"
 
 msgid "What's up with you?"
 msgstr "Ada apa dengan anda?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Ketik sesuatu untuk dibagikan ke teman..."
 
 msgid "Fetching the social channel..."
 msgstr "Mengambil saluran sosial ..."
@@ -816,8 +901,47 @@ msgstr "Tidak"
 msgid "would like to get authorization."
 msgstr "ingin mendapatkan otorisasi."
 
+msgid "would like to send you a file: “%s”."
+msgstr "ingin mengirimkan file: “%s”."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "telah menerima permintaan pertukaran file: “%s”."
+
+msgid "has accepted to received your file: “%s”."
+msgstr "telah diterima untuk menerima file anda: “%s”."
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "telah menolak untuk menerima file anda: “%s”."
+
+msgid "could not receive your file: “%s”."
+msgstr "tidak bisa menerima file anda: “%s”."
+
 msgid "Do you want to see the friends %s suggests you?"
 msgstr "Apakah anda ingin melihat teman-teman %s yang menyarankan anda?"
+
+msgid "commented an item you follow: “%s”."
+msgstr "mengkomentari item yang kamu ikuti: “%s”."
+
+msgid "liked your post: “%s”."
+msgstr "suka dengan isian anda: “%s”."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "dikutip di suatu tempat: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "diterbitkan di dinding: “%s”."
+
+msgid "tagged you in a photo (%s)."
+msgstr "tag anda di photo (%s)"
+
+msgid "tagged you in a video (%s)."
+msgstr "tag anda di video (%s)."
+
+msgid "Show"
+msgstr "Tampilkan"
+
+msgid "Hide"
+msgstr "Menyembunyikan"
 
 msgid "Submit"
 msgstr "Menyerahkan"
@@ -888,6 +1012,21 @@ msgstr "Silakan tunggu ..."
 msgid "Please enable JavaScript"
 msgstr "Silahkan mengaktifkan JavaScript"
 
+msgid "Show comments"
+msgstr "Tampilkan komentar"
+
+msgid "Loading comments..."
+msgstr "Memuat komentar..."
+
+msgid "Could not get the comments!"
+msgstr "Tidak dapat menampilkan komentar!"
+
+msgid "Comments locked!"
+msgstr "Komentar terkunci!"
+
+msgid "Type your comment here..."
+msgstr "Ketik komentar anda di sini..."
+
 msgid "Your channel"
 msgstr "Saluran anda"
 
@@ -926,6 +1065,9 @@ msgstr "Formulir anda telah dikirim."
 
 msgid "Application"
 msgstr "Aplikasi"
+
+msgid "Media integration"
+msgstr "Integrasi Media"
 
 msgid "XMPP links"
 msgstr "XMPP link"
@@ -1053,6 +1195,9 @@ msgstr "Jappix membutuhkan beberapa nilai yang spesifik untuk bekerja. Harap per
 msgid "Note that if you don't specify a value which is compulsory, it will be automatically completed with the default one."
 msgstr "Catatan, jika anda tidak menentukan nilai yang bersifat wajib, maka akan secara otomatis dilengkapi dengan default."
 
+msgid "Need help? You'd better read our documentation page about how to fill this form!"
+msgstr "Perlu bantuan? Anda sebaiknya membaca halaman dokumentasi kami tentang bagaimana mengisi formulir ini!"
+
 msgid "User"
 msgstr "Pengguna"
 
@@ -1065,6 +1210,14 @@ msgstr "Nama layanan"
 msgid "Service description"
 msgstr "Layanan deskripsi"
 
+#, fuzzy
+msgid "Owner name"
+msgstr "Nama tidak diketahui"
+
+#, fuzzy
+msgid "Owner website"
+msgstr "Daftar pemilik"
+
 msgid "Connection"
 msgstr "Koneksi"
 
@@ -1074,11 +1227,21 @@ msgstr "Kunci host"
 msgid "Anonymous mode"
 msgstr "Modus anonim"
 
+#, fuzzy
+msgid "HTTP authentication"
+msgstr "Otentikasi"
+
 msgid "Registration allowed"
 msgstr "Pendaftaran diperbolehkan"
 
 msgid "Use a proxy"
 msgstr "Gunakan proxy"
+
+msgid "Manager link"
+msgstr "Link manager"
+
+msgid "Groupchats to join"
+msgstr "Groupchats untuk bergabung"
 
 msgid "Encryption"
 msgstr "Enkripsi"
@@ -1103,6 +1266,9 @@ msgstr "Host Utama"
 
 msgid "Groupchat host"
 msgstr "Host Groupchat"
+
+msgid "Pubsub host"
+msgstr "Host Pubsub"
 
 msgid "Anonymous host"
 msgstr "Host Anonim"
@@ -1239,14 +1405,38 @@ msgstr "Jappix sepenuhnya dapat disesuaikan: anda bisa mengubah desain di sini."
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr "Ini bukan gambar yang sesuai, tolong gunakan PNG, GIF atau JPG!"
 
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Ini bukan gambar yang sesuai, tolong gunakan format PNG!"
+
 msgid "The image could not be received, would you mind retry?"
 msgstr "Gambar tidak dapat diterima, maukah kau coba lagi?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Servis logo anda telah sukses diganti!"
 
 msgid "Your image was added to the list!"
 msgstr "Gambar anda telah ditambahkan ke dalam daftar!"
 
 msgid "Changes saved!"
 msgstr "Perubahan disimpan!"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
+msgstr "Anda dapat mengatur logo layanan Anda sendiri untuk menggantikan default. Jaga ukuran dan warna utama logo masing-masing!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Upload masing-masing logo dengan ukuran pixel maksimum yang disarankan."
+
+msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
+msgstr "Format logo anda harus PNG. Tinggalkan field kosong dan Logo tidak akan terganti."
+
+msgid "Remove this logo"
+msgstr "Hapus logo ini"
+
+msgid "View this logo"
+msgstr "Lihat logo ini"
 
 msgid "You can define more than one administrator for this Jappix node. You can also change a password with this tool."
 msgstr "Anda dapat menentukan lebih dari satu administrator untuk node ini Jappix. Anda juga dapat mengubah password dengan alat ini."
@@ -1482,6 +1672,9 @@ msgstr "Purge Cache"
 msgid "Purge logs"
 msgstr "Purge log"
 
+msgid "Purge sent files"
+msgstr "Purge file terkirim"
+
 msgid "Purge updates"
 msgstr "Purge update"
 
@@ -1578,6 +1771,12 @@ msgstr "Statis server isi"
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "Ini adalah server konten statis untuk %1s, “%2s”."
 
+msgid "User uploads server"
+msgstr "Server upload pengguna"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Ini server upload pengguna untuk %1s, “%2s”."
+
 msgid "Suggested friends"
 msgstr "Sarankan teman"
 
@@ -1650,131 +1849,11 @@ msgstr "Cari teman"
 msgid "The feature requested is not implemented by the recipient or server and therefore cannot be processed."
 msgstr "Fitur yang diminta tidak dilaksanakan oleh penerima atau server dan karena itu tidak dapat diproses."
 
-msgid "This is a repeat from %s"
-msgstr "Ini adalah pengulangan dari %s"
-
-msgid "Loading comments..."
-msgstr "Memuat komentar..."
-
-msgid "Type your comment here..."
-msgstr "Ketik komentar anda di sini..."
-
-msgid "Could not get the comments!"
-msgstr "Tidak dapat menampilkan komentar!"
-
-msgid "Show comments"
-msgstr "Tampilkan komentar"
-
 msgid "Send him/her a message"
 msgstr "Kirim kan dia pesan"
 
 msgid "Start a chat with him/her"
 msgstr "Mulai obrolan dengan dia"
-
-msgid "Media integration"
-msgstr "Integrasi Media"
-
-msgid "Comments locked!"
-msgstr "Komentar terkunci!"
-
-msgid "Type something you want to share with your friends..."
-msgstr "Ketik sesuatu untuk dibagikan ke teman..."
-
-msgid "changed his/her nickname to %s"
-msgstr "merubah nama panggilannya ke %s"
-
-msgid "commented an item you follow: “%s”."
-msgstr "mengkomentari item yang kamu ikuti: “%s”."
-
-msgid "Hide"
-msgstr "Menyembunyikan"
-
-msgid "liked your post: “%s”."
-msgstr "suka dengan isian anda: “%s”."
-
-msgid "quoted you somewhere: “%s”."
-msgstr "dikutip di suatu tempat: “%s”."
-
-msgid "published on your wall: “%s”."
-msgstr "diterbitkan di dinding: “%s”."
-
-msgid "tagged you in a photo (%s)."
-msgstr "tag anda di photo (%s)"
-
-msgid "tagged you in a video (%s)."
-msgstr "tag anda di video (%s)."
-
-msgid "Show"
-msgstr "Tampilkan"
-
-msgid "Need help? You'd better read our documentation page about how to fill this form!"
-msgstr "Perlu bantuan? Anda sebaiknya membaca halaman dokumentasi kami tentang bagaimana mengisi formulir ini!"
-
-msgid "Pubsub host"
-msgstr "Host Pubsub"
-
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-msgstr "Jappix adalah sebuah platform sosial yang hebat, yang dapat Anda akses di manapun Anda berada, kapan pun Anda inginkan dan berkomunikasi dengan siapapun yang Anda inginkan."
-
-msgid "Manager link"
-msgstr "Link manager"
-
-msgid "User uploads server"
-msgstr "Server upload pengguna"
-
-msgid "This is the user uploads server for %1s, “%2s”."
-msgstr "Ini server upload pengguna untuk %1s, “%2s”."
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "You can set your own service logo to replace the default one. Take care of the size and the main color of each logo!"
-msgstr "Anda dapat mengatur logo layanan Anda sendiri untuk menggantikan default. Jaga ukuran dan warna utama logo masing-masing!"
-
-msgid "Upload each logo with the recommended maximum pixel size."
-msgstr "Upload masing-masing logo dengan ukuran pixel maksimum yang disarankan."
-
-msgid "This is not a valid image, please use the PNG format!"
-msgstr "Ini bukan gambar yang sesuai, tolong gunakan format PNG!"
-
-msgid "Your service logo has been successfully changed!"
-msgstr "Servis logo anda telah sukses diganti!"
-
-msgid "Your logo format must be PNG. Leave a field empty and the logo will not be changed."
-msgstr "Format logo anda harus PNG. Tinggalkan field kosong dan Logo tidak akan terganti."
-
-msgid "Remove this logo"
-msgstr "Hapus logo ini"
-
-msgid "View this logo"
-msgstr "Lihat logo ini"
-
-msgid "Send a file"
-msgstr "Mengirim file"
-
-msgid "Once uploaded, your friend will be prompted to download the file you sent."
-msgstr "Setelah upload, teman Anda akan diminta untuk men-download file yang Anda kirim."
-
-msgid "Groupchats to join"
-msgstr "Groupchats untuk bergabung"
-
-msgid "Purge sent files"
-msgstr "Purge file terkirim"
-
-msgid "would like to send you a file: “%s”."
-msgstr "ingin mengirimkan file: “%s”."
-
-msgid "has accepted to received your file: “%s”."
-msgstr "telah diterima untuk menerima file anda: “%s”."
-
-msgid "has rejected to receive your file: “%s”."
-msgstr "telah menolak untuk menerima file anda: “%s”."
-
-msgid "could not receive your file: “%s”."
-msgstr "tidak bisa menerima file anda: “%s”."
-
-msgid "has received a file exchange request: “%s”."
-msgstr "telah menerima permintaan pertukaran file: “%s”."
 
 msgid "Available shortcuts:"
 msgstr "Tersedia jalan pintas:"
@@ -1812,27 +1891,6 @@ msgstr "%s melarang pengguna ke room"
 msgid "%s invites someone to join the room"
 msgstr "%s mengajak seseorang untuk bergabung dalam room"
 
-msgid "Social channel, chat and more."
-msgstr ""
-
-msgid "Create your public profile."
-msgstr ""
-
-msgid "A mini-chat for your website."
-msgstr ""
-
-msgid "Get Jappix, get support."
-msgstr ""
-
-msgid "Statistics around Jappix."
-msgstr ""
-
-msgid "Download Jappix for free."
-msgstr ""
-
-msgid "Find a public Jappix node."
-msgstr ""
-
 msgid "Public profile"
 msgstr ""
 
@@ -1854,17 +1912,36 @@ msgstr ""
 msgid "Enable my public profile"
 msgstr ""
 
-#~ msgid "Jappix is a non-profit social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
+msgid "Jappix for your phone"
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr ""
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr ""
+msgid "This notification is only informative, maybe the data it links to have been removed."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr ""
+msgid "You haven't provided any file to download"
+msgstr ""
 
-#~ msgid "The recommended image format is PNG. Leave a field empty and the logo will not be changed."
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+#~ msgid ""
+#~ "Jappix is an open-source project from PostPro, a non-profit organization "
+#~ "which provides us a great help."
 #~ msgstr ""
+#~ "Jappix adalah sebuah proyek open source dari PostPro, sebuah organisasi "
+#~ "non-profit yang memberikan kita bantuan besar."
+
+#~ msgid "Project"
+#~ msgstr "Proyek"
