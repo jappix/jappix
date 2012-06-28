@@ -723,7 +723,7 @@ function sendMessageMini(aForm) {
 
 // Generates the asked smiley image
 function smileyMini(image, text) {
-	return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'php/get.php?t=img&amp;f=others/blank.gif" /> ';
+	return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'img/others/blank.gif' + '" /> ';
 }
 
 // Notifies incoming chat messages
@@ -2296,11 +2296,11 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	}
 	
 	// Append the Mini stylesheet
-	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;g=mini.xml" type="text/css" media="all" />');
+	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini.css' + '" type="text/css" media="all" />');
 	
 	// Legacy IE stylesheet
 	if(jQuery.browser.msie && ( parseInt(jQuery.browser.version) < 7 ) )
-		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;f=mini-ie.css" type="text/css" media="all" />');
+		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini-ie.css' + '" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	jQuery(document).keydown(function(e) {
