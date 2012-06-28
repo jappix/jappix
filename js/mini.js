@@ -2148,6 +2148,8 @@ function handleRosterMini(iq) {
     var nick, hash, xid, subscription;
     
     for (var i=0;i<x; i++) {
+	if (!buddies[i]) continue;
+
         nick = buddies[i][0];
         hash = buddies[i][1];
         xid = buddies[i][2];
