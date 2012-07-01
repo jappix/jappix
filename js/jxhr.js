@@ -1,6 +1,6 @@
 // jXHR.js (JSON-P XHR)
 // v0.1 (c) Kyle Simpson
-// MIT License
+// License: MIT
 // modified by gueron Jonathan to work with strophe lib
 // for http://www.iadvize.com
 

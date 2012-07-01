@@ -394,7 +394,7 @@ function handleIQMini(iq) {
 		
 		iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix Mini'));
 		iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
-		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
+		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, navigator.platform));
 		
 		con.send(iqResponse);
 		
@@ -723,7 +723,7 @@ function sendMessageMini(aForm) {
 
 // Generates the asked smiley image
 function smileyMini(image, text) {
-	return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'php/get.php?t=img&amp;f=others/blank.gif" /> ';
+	return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'img/others/blank.gif' + '" /> ';
 }
 
 // Notifies incoming chat messages
@@ -1397,7 +1397,7 @@ function createMini(domain, user, password) {
 			);
 			
 			// IE6 makes the image blink when animated...
-			if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
+			if(jQuery.browser.msie && ( parseInt(jQuery.browser.version) < 7 ) )
 				return;
 			
 			// Add timers
@@ -2296,11 +2296,11 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	}
 	
 	// Append the Mini stylesheet
-	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;g=mini.xml" type="text/css" media="all" />');
+	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini.css' + '" type="text/css" media="all" />');
 	
 	// Legacy IE stylesheet
-	if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
-		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'php/get.php?t=css&amp;f=mini-ie.css" type="text/css" media="all" />');
+	if(jQuery.browser.msie && ( parseInt(jQuery.browser.version) < 7 ) )
+		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini-ie.css' + '" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper
 	jQuery(document).keydown(function(e) {
@@ -2318,7 +2318,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	});
 	
 	// Logouts when Jappix is closed
-	if(BrowserDetect.browser == 'Opera') {
+	if(jQuery.browser.opera) {
 		// Emulates onbeforeunload on Opera (link clicked)
 		jQuery('a[href]:not([onclick])').click(function() {
 			// Link attributes
