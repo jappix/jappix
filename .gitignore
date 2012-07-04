@@ -1,4 +1,4 @@
+mini/
 store/*
 .DS_Store
-jappix.esproj
-mini/
+*.esproj
