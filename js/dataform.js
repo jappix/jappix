@@ -402,9 +402,19 @@ function handleDataFormContent(iq, type) {
 				
 				// Display the result
 				$(handleXML).find('item').each(function() {
+					// Have some "flexibility" for what regards field names, it would be better to return the whole original DF
+					// layout, but on a large amount of result which have many fields, there's a very high chance the browser can
+					// choke on old systems or new ones even.
+
+					// Search for useful fields, return first result. This is rather hacky, but jQuery is horrible when it comes to
+					// matching st. using patterns. (TODO: Improve and return the full DF layout without choking the browser)
+					var sDone;
+					var bName;
+					var bCountry;
+					sDone = false; bName = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/(fn|[^n][^i][^c][^k]name)/i) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
+					sDone = false; bCountry = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/(ctry|country.*)/i) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
+
 					var bXID = $(this).find('field[var=jid] value:first').text();
-					var bName = $(this).find('field[var=fn] value:first').text();
-					var bCountry = $(this).find('field[var=ctry] value:first').text();
 					var dName = bName;
 					
 					// Override "undefined" value
