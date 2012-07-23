@@ -488,7 +488,7 @@ function htmlTag($locale) {
 	$html .= 'ltr';
 	
 	// Close the tag
-	$html .= '">';
+	$html .= '" manifest="cache.manifest">'; //ADD local cache
 	
 	echo($html);
 }
