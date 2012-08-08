@@ -7,7 +7,7 @@ These are the common JS script for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, olivierm, regilero
-Last revision: 09/04/12
+Last revision: 08/08/12
 
 */
 
@@ -166,6 +166,10 @@ function fullXID(xid) {
 
 // Gets the nick from a XID
 function getXIDNick(aXID) {
+	// Gateway nick?
+	if(aXID.match(/\\40/))
+		return explodeThis('\\40', aXID, 0);
+	
 	return explodeThis('@', aXID, 0);
 }
 
