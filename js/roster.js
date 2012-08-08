@@ -7,7 +7,7 @@ These are the roster JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 19/05/11
+Last revision: 08/08/12
 
 */
 
@@ -319,6 +319,12 @@ function applyBuddyInput(xid) {
 	
 	$(manage_infos + ' p.bm-remove a.remove').click(function() {
 		closeBubbles();
+		
+		// First unregister if gateway
+		if(isGateway(xid))
+			unregisterGatewayRoster(xid);
+		
+		// Then send roster removal query
 		sendRoster(xid, 'remove');
 		
 		return false;
@@ -633,6 +639,18 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Apply the editing input events
 	applyBuddyInput(xid);
+}
+
+// Unregisters from a given gateway
+function unregisterGatewayRoster(xid) {
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+	iq.setTo(xid);
+	
+	var query = iq.setQuery(NS_REGISTER);
+	query.appendChild(iq.buildNode('remove', {'xmlns': NS_REGISTER}));
+	
+	con.send(iq);
 }
 
 // Updates the roster items
