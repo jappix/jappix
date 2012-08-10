@@ -1,4 +1,4 @@
 mini/
-store/*
+store/
 .DS_Store
 *.esproj
