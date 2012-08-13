@@ -7,7 +7,7 @@ These are the connection JS script for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 29/08/11
+Last revision: 12/08/12
 
 */
 
@@ -44,7 +44,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		
 		if(!random_resource)
 			random_resource = lResource + ' (' + (new Date()).getTime() + ')';
-
+		
 		// We retrieve what the user typed in the login inputs
 		oArgs = new Object();
 		oArgs.domain = trim(lServer);
@@ -57,15 +57,8 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		// Store the resource (for reconnection)
 		setDB('session', 'resource', random_resource);
 		
-		// Generate a session XML to be stored
-		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
-
-		// Save the session parameters (for reconnect if network issue)
-		CURRENT_SESSION = session_xml;
-		
-		// Remember me?
-		if(lRemember)
-			setDB('remember', 'session', 1);
+		// Store session XML in temporary database
+		storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember);
 		
 		// We store the infos of the user into the data-base
 		setDB('priority', 1, lPriority);
@@ -272,6 +265,7 @@ function setupCon(con,oExtend) {
 	con.registerHandler('onerror', handleError);
 	con.registerHandler('ondisconnect', handleDisconnected);
 	oExtend = oExtend||{};
+	
 	jQuery.each(oExtend,function(keywd,funct) {
 	  con.registerHandler(keywd, funct);
 	});
@@ -496,6 +490,21 @@ function getEverything() {
 	getStorage(NS_ROSTERNOTES);
 }
 
+// Generates session data to store
+function storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember) {
+	// Generate a session XML to be stored
+	session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
+	
+	// Save the session parameters (for reconnect if network issue)
+	CURRENT_SESSION = session_xml;
+	
+	// Remember me?
+	if(lRemember)
+		setDB('remember', 'session', 1);
+	
+	return session_xml;
+}
+
 // Plugin launcher
 function launchConnection() {
 	// Logouts when Jappix is closed
@@ -504,6 +513,39 @@ function launchConnection() {
 	// Nothing to do when anonymous!
 	if(isAnonymous())
 		return;
+	
+	// Connection params submitted in URL?
+	if(LINK_VARS['u'] && LINK_VARS['q']) {
+		// Generate login data
+		var login_xid = bareXID(generateXID(LINK_VARS['u'], 'chat'));
+		var login_nick = getXIDNick(login_xid);
+		var login_server = getXIDHost(login_xid);
+		var login_pwd = LINK_VARS['q'];
+		var login_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
+		var login_priority = '10';
+		var login_remember = 1;
+		
+		// Must store session?
+		if(LINK_VARS['h'] && (LINK_VARS['h'] == '1')) {
+			// Store session
+			var session_xml = storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
+			setPersistent('session', 1, session_xml);
+			
+			// Redirect to a clean URL
+			document.location.href = './';
+		} else {
+			// Hide the homepage
+			$('#home').hide();
+			
+			// Show the waiting icon
+			showGeneralWait();
+			
+			// Proceed login
+			doLogin(login_nick, login_server, login_pwd, login_resource, login_priority, login_remember);
+		}
+		
+		return;
+	}
 	
 	// Try to resume a stored session, if not anonymous
 	var session = XMLFromString(getPersistent('session', 1));

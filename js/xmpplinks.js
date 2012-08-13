@@ -7,7 +7,7 @@ These are the XMPP links handling JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 08/05/11
+Last revision: 12/08/12
 
 */
 
@@ -71,7 +71,7 @@ var LINK_VARS = (function() {
 	for(var i = 0; i < hashes.length; i++) {
 		var hash = hashes[i].split('=');
 		vars.push(hash[0]);
-		vars[hash[0]] = decodeURIComponent(hash[1]);
+		vars[hash[0]] = trim(decodeURIComponent(hash[1]));
 	}
 	
 	return vars;
