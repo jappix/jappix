@@ -214,6 +214,15 @@ function handleConnected() {
 	// We hide the home page
 	$('#home').hide();
 	
+	// Any suggest to do before triggering connected event?
+	suggestCheck();
+	
+	// Remove the waiting item
+	removeGeneralWait();
+}
+
+// Triggers the connected state
+function triggerConnected() {
 	// Not resumed?
 	if(!RESUME) {
 		// Remember the session?
@@ -241,9 +250,6 @@ function handleConnected() {
 		// Change the title
 		updateTitle();
 	}
-	
-	// Remove the waiting item
-	removeGeneralWait();
 }
 
 // Handles the user disconnected event

@@ -31,6 +31,7 @@ $registration = htmlspecialchars(REGISTRATION);
 $bosh_proxy = htmlspecialchars(BOSH_PROXY);
 $manager_link = htmlspecialchars(MANAGER_LINK);
 $groupchats_join = htmlspecialchars(GROUPCHATS_JOIN);
+$groupchats_suggest = htmlspecialchars(GROUPCHATS_SUGGEST);
 $encryption = htmlspecialchars(ENCRYPTION);
 $https_storage = htmlspecialchars(HTTPS_STORAGE);
 $https_force = htmlspecialchars(HTTPS_FORCE);

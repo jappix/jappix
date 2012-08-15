@@ -247,6 +247,7 @@ function destroyTalkPage() {
 	FIRST_PRESENCE_SENT = false;
 	SEARCH_FILTERED = false;
 	AVATAR_PENDING = [];
+	JOIN_SUGGEST = [];
 	
 	// Kill all timers, exept the board ones
 	$('*:not(#board .one-board)').stopTime();

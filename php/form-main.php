@@ -45,6 +45,12 @@ else
 	$check_registration = '';
 
 // BOSH proxy
+if($groupchats_suggest == 'on')
+	$check_groupchats_suggest = $checked;
+else
+	$check_groupchats_suggest = '';
+
+// Suggest groupchats
 if($bosh_proxy == 'on')
 	$check_bosh_proxy = $checked;
 else
@@ -126,6 +132,8 @@ else
 	<label for="manager_link"><?php _e("Manager link"); ?></label><input id="manager_link" type="checkbox" name="manager_link"<?php echo $check_manager_link; ?> />
 	
 	<label for="groupchats_join"><?php _e("Groupchats to join"); ?></label><input id="groupchats_join" type="text" name="groupchats_join" value="<?php echo $groupchats_join; ?>" placeholder="postpro@muc.jappix.com, mini@muc.jappix.com" />
+	
+	<label for="groupchats_suggest"><?php _e("Suggest groupchats"); ?></label><input id="groupchats_suggest" type="checkbox" name="groupchats_suggest"<?php echo $check_groupchats_suggest; ?> />
 </fieldset>
 
 <fieldset>

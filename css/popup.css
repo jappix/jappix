@@ -561,7 +561,8 @@ Last revision: 10/04/12
 	float: left;
 }
 
-a.finish {
+a.finish,
+#suggest a.next {
 	border: 1px solid white;
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);
@@ -581,7 +582,9 @@ a.finish {
 }
 
 a.finish:hover,
-a.finish:focus {
+a.finish:focus,
+#suggest a.next:hover,
+#suggest a.next:focus {
 	cursor: pointer;
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
@@ -590,18 +593,23 @@ a.finish:focus {
 	-webkit-box-shadow: 0 0 15px black;
 }
 
-a.finish:active {
+a.finish:active,
+#suggest a.next:active {
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.3);
 }
 
-a.finish.disabled {
+a.finish.disabled,
+#suggest a.next.disabled {
 	opacity: 0.2;
 }
 
 a.finish.disabled:hover,
 a.finish.disabled:focus,
-a.finish.disabled:active {
+a.finish.disabled:active,
+#suggest a.next.disabled:hover,
+#suggest a.next.disabled:focus,
+#suggest a.next.disabled:active {
 	cursor: default;
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.1);

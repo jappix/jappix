@@ -19,26 +19,27 @@ if(!defined('JAPPIX_BASE'))
 
 // Define the default main configuration values
 $main_conf = array(
-	     	'name'			=> 'Jappix',
-	     	'desc'			=> 'a free social network',
-	     	'owner_name'	=> '',
-	     	'owner_website'	=> '',
-	     	'legal'	=> 		'',
-	     	'resource'		=> 'Jappix',
-	     	'lock'			=> 'on',
-	     	'anonymous'		=> 'on',
-	     	'http_auth'		=> 'off',
-	     	'registration'		=> 'on',
-	     	'bosh_proxy'		=> 'on',
-	     	'manager_link'		=> 'on',
-	     	'groupchats_join'	=> '',
-	     	'encryption'		=> 'on',
-	     	'https_storage'		=> 'off',
-	     	'https_force'		=> 'off',
-	     	'compression'		=> 'off',
-	     	'multi_files'		=> 'off',
-	     	'developer'		=> 'off',
-	     	'statistics'  	=> 'on'
+	     	'name'					=> 'Jappix',
+	     	'desc'					=> 'a free social network',
+	     	'owner_name'			=> '',
+	     	'owner_website'			=> '',
+	     	'legal'					=> 		'',
+	     	'resource'				=> 'Jappix',
+	     	'lock'					=> 'on',
+	     	'anonymous'				=> 'on',
+	     	'http_auth'				=> 'off',
+	     	'registration'			=> 'on',
+	     	'bosh_proxy'			=> 'on',
+	     	'manager_link'			=> 'on',
+	     	'groupchats_join'		=> '',
+	     	'groupchats_suggest'	=> 'on',
+	     	'encryption'			=> 'on',
+	     	'https_storage'			=> 'off',
+	     	'https_force'			=> 'off',
+	     	'compression'			=> 'off',
+	     	'multi_files'			=> 'off',
+	     	'developer'				=> 'off',
+	     	'statistics'  			=> 'on'
 );
 
 // Define a default values array
@@ -76,6 +77,7 @@ define('REGISTRATION', $main_conf['registration']);
 define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('MANAGER_LINK', $main_conf['manager_link']);
 define('GROUPCHATS_JOIN', $main_conf['groupchats_join']);
+define('GROUPCHATS_SUGGEST', $main_conf['groupchats_suggest']);
 define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);

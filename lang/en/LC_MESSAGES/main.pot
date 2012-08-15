@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 12/06/12
+# Last revision: 03/08/12
 
 msgid ""
 msgstr ""
@@ -319,6 +319,9 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
+msgid "Other"
+msgstr ""
+
 msgid "Personal"
 msgstr ""
 
@@ -443,6 +446,9 @@ msgid "Old"
 msgstr ""
 
 msgid "New (2 times)"
+msgstr ""
+
+msgid "Suggested chatrooms"
 msgstr ""
 
 msgid "Continue"
@@ -1235,6 +1241,9 @@ msgid "Manager link"
 msgstr ""
 
 msgid "Groupchats to join"
+msgstr ""
+
+msgid "Suggest groupchats"
 msgstr ""
 
 msgid "Encryption"

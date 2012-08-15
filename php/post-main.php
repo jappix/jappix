@@ -95,6 +95,12 @@ if(isset($_POST['groupchats_join']) && !empty($_POST['groupchats_join']))
 else
 	$groupchats_join = stripslashes(htmlspecialchars($main_default['groupchats_join']));
 
+// Suggested groupchats
+if(isset($_POST['groupchats_suggest']) && !empty($_POST['groupchats_suggest']))
+	$groupchats_suggest = 'on';
+else
+	$groupchats_suggest = 'off';
+
 // Encryption
 if(isset($_POST['encryption']) && !empty($_POST['encryption']))
 	$encryption = 'on';
@@ -152,6 +158,7 @@ $conf_xml =
 	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>
 	<manager_link>'.$manager_link.'</manager_link>
 	<groupchats_join>'.$groupchats_join.'</groupchats_join>
+	<groupchats_suggest>'.$groupchats_suggest.'</groupchats_suggest>
 	<encryption>'.$encryption.'</encryption>
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>

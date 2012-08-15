@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, Julien, hunterjm, Kloadut
-Last revision: 18/06/12
+Last revision: 03/08/12
 
 */
 
@@ -213,7 +213,8 @@ Last revision: 18/06/12
 	height: 15px;
 	width: 15px;
 	outline-style: none;
-	float: right;
+	display: block;
+	position: absolute;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action:hover,
@@ -245,16 +246,18 @@ Last revision: 18/06/12
 
 #jappix_mini div.jm_actions a.jm_close {
 	background-position: 1px -341px;
+	right: 6px;
 }
 
 #jappix_mini div.jm_actions a.jm_join {
 	background-position: 0 -327px;
+	right: 6px;
 }
 
 #jappix_mini div.jm_actions a.jm_status {
 	background-color: #727879;
-	position: static;
 	overflow: hidden;
+	right: 24px;
 }
 
 #jappix_mini div.jm_actions a.active,
@@ -266,26 +269,38 @@ Last revision: 18/06/12
 	border-width: 1px 1px 0 1px;
 	height: 15px;
 	width: 14px;
-	position: absolute;
 	top: 3px;
-	right: 24px;
 	z-index: 10;
 }
 
-#jappix_mini div.jm_status_picker {
+#jappix_mini div.jm_status_picker,
+#jappix_mini div.jm_chan_suggest {
 	background-color: #727879;
 	border: 1px solid #3a3a3a;
 	color: white;
 	list-style: none outside none;
 	width: 130px;
 	position: absolute;
-	right: 22px;
 	top: 18px;
 	padding: 3px 0;
 	z-index: 9;
 }
 
-#jappix_mini div.jm_status_picker a {
+#jappix_mini div.jm_status_picker {
+	right: 22px;
+}
+
+#jappix_mini div.jm_chan_suggest {
+	right: 4px;
+}
+
+#jappix_mini div.jm_chan_suggest {
+	max-height: 108px;
+	overflow: auto;
+}
+
+#jappix_mini div.jm_status_picker a,
+#jappix_mini div.jm_chan_suggest a {
 	color: white;
 	height: 13px;
 	padding: 4px;
@@ -293,7 +308,9 @@ Last revision: 18/06/12
 }
 
 #jappix_mini div.jm_status_picker a:hover,
-#jappix_mini div.jm_status_picker a:focus {
+#jappix_mini div.jm_status_picker a:focus,
+#jappix_mini div.jm_chan_suggest a:hover,
+#jappix_mini div.jm_chan_suggest a:focus {
 	background-color: white;
 	color: #3a3a3a;
 	border-width: 1px 0;
@@ -303,15 +320,53 @@ Last revision: 18/06/12
 	display: block;
 }
 
+#jappix_mini div.jm_chan_suggest div.jm_space {
+	height: 6px;
+}
+
 #jappix_mini div.jm_status_picker a span.jm_presence {
 	margin-top: -1px;
 }
 
+#jappix_mini div.jm_chan_suggest a span.jm_chan_icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 8px 0 4px;
+	float: left;
+}
+
+#jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat span.jm_chan_icon {
+	background-position: 0 -480px;
+}
+
+#jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat:hover span.jm_chan_icon,
+#jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat:focus span.jm_chan_icon {
+	background-position: 0 -496px;
+}
+
+#jappix_mini div.jm_chan_suggest a.jm_suggest_chat span.jm_chan_icon {
+	background-position: 0 -512px;
+}
+
+#jappix_mini div.jm_chan_suggest a.jm_suggest_chat:hover span.jm_chan_icon,
+#jappix_mini div.jm_chan_suggest a.jm_suggest_chat:focus span.jm_chan_icon {
+	background-position: 0 -528px;
+}
+
+#jappix_mini div.jm_chan_suggest a span.jm_chan_name,
 #jappix_mini div.jm_status_picker a span.jm_show_text {
 	color: white;
 	float: left;
 }
 
+#jappix_mini div.jm_chan_suggest a span.jm_chan_name {
+	height: 15px;
+	width: 90px;
+	overflow: hidden;
+}
+
+#jappix_mini div.jm_chan_suggest a:hover span.jm_chan_name,
+#jappix_mini div.jm_chan_suggest a:focus span.jm_chan_name,
 #jappix_mini div.jm_status_picker a:hover span.jm_show_text,
 #jappix_mini div.jm_status_picker a:focus span.jm_show_text {
 	color: #3a3a3a;

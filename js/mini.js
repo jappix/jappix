@@ -7,29 +7,32 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, hunterjm, Camaran, regilero, Kloadut
-Last revision: 18/06/12
+Last revision: 03/08/12
 
 */
 
-// Jappix Mini vars
-var MINI_DISCONNECT		= false;
-var MINI_AUTOCONNECT	= false;
-var MINI_SHOWPANE		= false;
-var MINI_INITIALIZED	= false;
-var MINI_ANONYMOUS		= false;
-var MINI_ANIMATE		= false;
-var MINI_RANDNICK		= false;
-var MINI_NICKNAME		= null;
-var MINI_TITLE			= null;
-var MINI_DOMAIN			= null;
-var MINI_USER			= null;
-var MINI_PASSWORD		= null;
-var MINI_RECONNECT		= 0;
-var MINI_CHATS			= [];
-var MINI_GROUPCHATS		= [];
-var MINI_PASSWORDS		= [];
-var MINI_RESOURCE		= JAPPIX_RESOURCE + ' Mini';
-var MINI_ERROR_LINK		= 'https://mini.jappix.com/issues';
+// Jappix Mini globals
+var MINI_DISCONNECT				= false;
+var MINI_AUTOCONNECT			= false;
+var MINI_SHOWPANE				= false;
+var MINI_INITIALIZED			= false;
+var MINI_ANONYMOUS				= false;
+var MINI_ANIMATE				= false;
+var MINI_RANDNICK				= false;
+var MINI_NICKNAME				= null;
+var MINI_TITLE					= null;
+var MINI_DOMAIN					= null;
+var MINI_USER					= null;
+var MINI_PASSWORD				= null;
+var MINI_RECONNECT				= 0;
+var MINI_CHATS					= [];
+var MINI_GROUPCHATS				= [];
+var MINI_SUGGEST_CHATS			= [];
+var MINI_SUGGEST_GROUPCHATS		= [];
+var MINI_SUGGEST_PASSWORDS		= [];
+var MINI_PASSWORDS				= [];
+var MINI_RESOURCE				= JAPPIX_RESOURCE + ' Mini';
+var MINI_ERROR_LINK				= 'https://mini.jappix.com/issues';
 
 // Setups connection handlers
 function setupConMini(con) {
@@ -1009,9 +1012,10 @@ function createMini(domain, user, password) {
 	// Create the DOM
 	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
 	
-	// Hide the status picker panel
-	jQuery('#jappix_mini a.jm_status').removeClass('active');
+	// Hide the roster picker panels
+	jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').removeClass('active');
 	jQuery('#jappix_mini div.jm_status_picker').hide();
+	jQuery('#jappix_mini div.jm_chan_suggest').remove();
 	
 	// Adapt roster height
 	adaptRosterMini();
@@ -1065,10 +1069,13 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini a.jm_status').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			if(jQuery(this).hasClass('active')) {
+			var is_active = jQuery(this).hasClass('active');
+			jQuery('#jappix_mini div.jm_actions a').blur().removeClass('active');
+			
+			if(is_active) {
 				jQuery('#jappix_mini div.jm_status_picker').hide();
-				jQuery(this).blur().removeClass('active');
 			} else {
+				jQuery('#jappix_mini div.jm_chan_suggest').remove();
 				jQuery('#jappix_mini div.jm_status_picker').show();
 				jQuery(this).addClass('active');
 			}
@@ -1138,31 +1145,132 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini div.jm_actions a.jm_join').click(function() {
 		// Using a try/catch override IE issues
 		try {
-			// Create a new prompt
-			openPromptMini(_e("Please enter the group chat address to join."));
-			
-			// When prompt submitted
-			jQuery('#jappix_popup div.jm_prompt form').submit(function() {
-				try {
-					// Read the value
-					var join_this = closePromptMini();
+			// Any suggested chat/groupchat?
+			if((MINI_SUGGEST_CHATS && MINI_SUGGEST_CHATS.length) || (MINI_SUGGEST_GROUPCHATS && MINI_SUGGEST_GROUPCHATS.length)) {
+				var is_active = jQuery(this).hasClass('active');
+				jQuery('#jappix_mini div.jm_actions a').blur().removeClass('active');
+				
+				if(is_active) {
+					jQuery('#jappix_mini div.jm_chan_suggest').remove();
+				} else {
+					// Button style
+					jQuery('#jappix_mini div.jm_status_picker').hide();
+					jQuery(this).addClass('active');
 					
-					// Any submitted chat to join?
-					if(join_this) {
-						// Get the chat room to join
-						chat_room = bareXID(generateXID(join_this, 'groupchat'));
+					// Generate selector code
+					var chans_html = '';
+					
+					// Generate the groupchat links HTML
+					for(var i = 0; i < MINI_SUGGEST_GROUPCHATS.length; i++) {
+						// Empty value?
+						if(!MINI_SUGGEST_GROUPCHATS[i])
+							continue;
 						
-						// Create a new groupchat
-						chatMini('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+						// Using a try/catch override IE issues
+						try {
+							var chat_room = bareXID(generateXID(MINI_SUGGEST_GROUPCHATS[i], 'groupchat'));
+							var chat_pwd = MINI_SUGGEST_PASSWORDS[i] || '';
+							
+							chans_html += '<a class="jm_suggest_groupchat" href="#" data-xid="' + escape(chat_room) + '" data-pwd="' + escape(chat_pwd) + '">' + 
+								'<span class="jm_chan_icon jm_images"></span>' + 
+								'<span class="jm_chan_name">' + getXIDNick(chat_room).htmlEnc() + '</span>' + 
+							'</a>';
+						}
+						
+						catch(e) {}
 					}
+					
+					// Any separation space to add?
+					if(chans_html)
+						chans_html += '<div class="jm_space"></div>';
+					
+					// Generate the chat links HTML
+					for(var j = 0; j < MINI_SUGGEST_CHATS.length; j++) {
+						// Empty value?
+						if(!MINI_SUGGEST_CHATS[j])
+							continue;
+						
+						// Using a try/catch override IE issues
+						try {
+							// Read current chat values
+							var chat_xid = bareXID(generateXID(MINI_SUGGEST_CHATS[j], 'chat'));
+							var chat_hash = hex_md5(chat_xid);
+							var chat_nick = jQuery('#jappix_mini a#friend-' + chat_hash).attr('data-nick');
+							
+							// Get current chat nickname
+							if(!chat_nick)
+								chat_nick = getXIDNick(chat_xid);
+							else
+								chat_nick = unescape(chat_nick);
+							
+							// Generate HTML for current chat
+							chans_html += '<a class="jm_suggest_chat" href="#" data-xid="' + escape(chat_xid) + '">' + 
+								'<span class="jm_chan_icon jm_images"></span>' + 
+								'<span class="jm_chan_name">' + getXIDNick(chat_nick).htmlEnc() + '</span>' + 
+							'</a>';
+						}
+						
+						catch(e) {}
+					}
+					
+					// Any separation space to add?
+					if(chans_html)
+						chans_html += '<div class="jm_space"></div>';
+					
+					// Append selector code
+					jQuery('#jappix_mini div.jm_actions').append(
+						'<div class="jm_chan_suggest">' + 
+							chans_html + 
+							
+							'<a class="jm_suggest_prompt" href="#">' + 
+								'<span class="jm_chan_icon"></span>' + 
+								'<span class="jm_chan_name">' + _e("Other") + '</span>' + 
+							'</a>' + 
+						'</div>'
+					);
+					
+					// Click events
+					jQuery('#jappix_mini div.jm_chan_suggest a').click(function() {
+						// Using a try/catch override IE issues
+						try {
+							// Chat?
+							if(jQuery(this).is('.jm_suggest_chat')) {
+								var current_chat = unescape(jQuery(this).attr('data-xid'));
+								
+								chatMini('chat', current_chat, jQuery(this).find('span.jm_chan_name').text(), hex_md5(current_chat));
+							}
+							
+							// Groupchat?
+							else if(jQuery(this).is('.jm_suggest_groupchat')) {
+								var current_groupchat = unescape(jQuery(this).attr('data-xid'));
+								var current_password = jQuery(this).attr('data-pwd') || null;
+								
+								if(current_password)
+									current_password = unescape(current_password);
+								
+								chatMini('groupchat', current_groupchat, jQuery(this).find('span.jm_chan_name').text(), hex_md5(current_groupchat), current_password);
+							}
+							
+							// Default prompt?
+							else
+								groupchatPromptMini();
+						}
+						
+						catch(e) {}
+						
+						finally {
+							return false;
+						}
+					});
+					
+					// Adapt chan suggest height
+					adaptRosterMini();
 				}
-				
-				catch(e) {}
-				
-				finally {
-					return false;
-				}
-			});
+			}
+			
+			// Default action
+			else
+				groupchatPromptMini();
 		}
 		
 		catch(e) {}
@@ -1622,6 +1730,35 @@ function closePromptMini() {
 	return value;
 }
 
+// Opens the new groupchat prompt
+function groupchatPromptMini() {
+	// Create a new prompt
+	openPromptMini(_e("Please enter the group chat address to join."));
+	
+	// When prompt submitted
+	jQuery('#jappix_popup div.jm_prompt form').submit(function() {
+		try {
+			// Read the value
+			var join_this = closePromptMini();
+			
+			// Any submitted chat to join?
+			if(join_this) {
+				// Get the chat room to join
+				chat_room = bareXID(generateXID(join_this, 'groupchat'));
+				
+				// Create a new groupchat
+				chatMini('groupchat', chat_room, getXIDNick(chat_room), hex_md5(chat_room));
+			}
+		}
+		
+		catch(e) {}
+		
+		finally {
+			return false;
+		}
+	});
+}
+
 // Manages and creates a chat
 function chatMini(type, xid, nick, hash, pwd, show_pane) {
 	var current = '#jappix_mini #chat-' + hash;
@@ -1913,8 +2050,8 @@ function showRosterMini() {
 
 // Hides the roster
 function hideRosterMini() {
-	// Close the status picker
-	jQuery('#jappix_mini a.jm_status.active').click();
+	// Close the roster pickers
+	jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').click();
 	
 	// Hide the roster box
 	jQuery('#jappix_mini div.jm_roster').hide();
@@ -2170,11 +2307,13 @@ function handleRosterMini(iq) {
 
 // Adapts the roster height to the window
 function adaptRosterMini() {
-	// Process the new height
-	var height = jQuery(window).height() - 85;
+	// Adapt buddy list height
+	var roster_height = jQuery(window).height() - 85;
+	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', roster_height);
 	
-	// Apply the new height
-	jQuery('#jappix_mini div.jm_roster div.jm_buddies').css('max-height', height);
+	// Adapt chan suggest height
+	var suggest_height = jQuery('#jappix_mini div.jm_roster').height() - 46;
+	jQuery('#jappix_mini div.jm_chan_suggest').css('max-height', suggest_height);
 }
 
 // Generates a random nickname

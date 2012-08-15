@@ -245,12 +245,8 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	getMUC(room, nickname, password);
 }
 
-// Joins the defined groupchats
-function joinConfGroupchats() {
-	// Nothing to join?
-	if(!GROUPCHATS_JOIN)
-		return;
-	
+// Generates a groupchat to join array
+function arrayJoinGroupchats() {
 	// Values array
 	var muc_arr = [GROUPCHATS_JOIN];
 	var new_arr = [];
@@ -275,9 +271,87 @@ function joinConfGroupchats() {
 			new_arr.push(muc_current);
 	}
 	
+	return new_arr;
+}
+
+// Joins the defined groupchats
+var JOIN_SUGGEST = [];
+
+function joinConfGroupchats() {
+	// Nothing to join?
+	if(!JOIN_SUGGEST)
+		return;
+	
 	// Join the chats
-	if(new_arr.length) {
-		for(g in new_arr)
-			checkChatCreate(new_arr[g], 'groupchat');
+	if(JOIN_SUGGEST.length) {
+		for(g in JOIN_SUGGEST)
+			checkChatCreate(JOIN_SUGGEST[g], 'groupchat');
+	}
+}
+
+// Checks suggest utility
+function suggestCheck() {
+	var groupchat_arr = arrayJoinGroupchats();
+	
+	// Must suggest the user?
+	if((GROUPCHATS_SUGGEST == 'on') && groupchat_arr.length) {
+		if(exists('#suggest'))
+			return;
+		
+		// Create HTML code
+		var html = '<div id="suggest">';
+			html += '<div class="title">' + _e("Suggested chatrooms") + '</div>';
+			
+			html += '<div class="content">';
+				for(g in groupchat_arr) {
+					html += '<a class="one" href="#" data-xid="' + encodeQuotes(groupchat_arr[g]) + '">';
+						html += '<span class="icon talk-images"></span>';
+						html += '<span class="name">' + capitaliseFirstLetter(getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
+						html += '<span class="state talk-images"></span>';
+						html += '<span class="clear"></span>';
+					html += '</a>';
+				}
+			html += '</div>';
+			
+			html += '<a class="next disabled" href="#">' + _e("Continue") + '</a>';
+		html += '</div>';
+		
+		// Append HTML code
+		$('body').append(html);
+		
+		// Click events
+		$('#suggest .content a.one').click(function() {
+			// Add/remove the active class
+			$(this).toggleClass('active');
+			
+			// We require at least one room to be chosen
+			if(exists('#suggest .content a.one.active'))
+				$('#suggest a.next').removeClass('disabled');
+			else
+				$('#suggest a.next').addClass('disabled');
+			
+			return false;
+		});
+		
+		$('#suggest a.next').click(function() {
+			// Disabled?
+			if($(this).hasClass('disabled'))
+				return false;
+			
+			// Store groupchats to join
+			$('#suggest .content a.one.active').each(function() {
+				JOIN_SUGGEST.push($(this).attr('data-xid'));
+			});
+			
+			// Switch to talk UI
+			$('#suggest').remove();
+			triggerConnected();
+			
+			return false;
+		});
+	} else {
+		JOIN_SUGGEST = groupchat_arr;
+		
+		triggerConnected();
 	}
 }

@@ -135,6 +135,7 @@ var REGISTRATION = null;
 var BOSH_PROXY = null;
 var MANAGER_LINK = null;
 var GROUPCHATS_JOIN = null;
+var GROUPCHATS_SUGGEST = null;
 var ENCRYPTION = null;
 var HTTPS_STORAGE = null;
 var HTTPS_FORCE = null;

@@ -430,3 +430,8 @@ function indexArrayValue(array, value) {
 	
 	return index;
 }
+
+// Capitalizes the first letter of a string
+function capitaliseFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
