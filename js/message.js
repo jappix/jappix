@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 10/04/12
+Last revision: 19/08/12
 
 */
 
@@ -24,6 +24,9 @@ function handleMessage(message) {
 	var body = trim(message.getBody());
 	var node = message.getNode();
 	var subject = trim(message.getSubject());
+	
+	// Keep raw message body
+	var raw_body = body;
 	
 	// We generate some values
 	var xid = bareXID(from);
@@ -347,6 +350,7 @@ function handleMessage(message) {
 				// We notify the user if there's a new personnal message
 				if(nickQuote) {
 					messageNotify(hash, 'personnal');
+					quickBoard(from, 'groupchat', raw_body, resource);
 					soundPlay(1);
 				}
 				
@@ -392,6 +396,7 @@ function handleMessage(message) {
 			
 			// We notify the user
 			messageNotify(hash, 'personnal');
+			quickBoard(xid, 'chat', raw_body, fromName);
 		}
 		
 		return false;

@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 03/08/12
+# Last revision: 19/08/12
 
 msgid ""
 msgstr ""
@@ -1937,4 +1937,7 @@ msgid "The key you provided does not have the permission to download this file"
 msgstr ""
 
 msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+msgid "New event!"
 msgstr ""

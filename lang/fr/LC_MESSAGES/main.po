@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-08-15 00:32+0100\n"
+"PO-Revision-Date: 2012-08-19 23:17+0100\n"
 "Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2252,6 +2252,9 @@ msgstr ""
 
 msgid "Statistics are currently disabled in the settings."
 msgstr "Les statistiques sont actuellement suspendues dans la configuration."
+
+msgid "New event!"
+msgstr "Nouvel évènement !"
 
 #~ msgid ""
 #~ "Jappix is a non-profit social platform, that you can access wherever you "
