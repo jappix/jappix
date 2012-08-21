@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, hunterjm, Camaran, regilero, Kloadut
-Last revision: 03/08/12
+Last revision: 21/08/12
 
 */
 
@@ -19,7 +19,7 @@ var MINI_INITIALIZED			= false;
 var MINI_ANONYMOUS				= false;
 var MINI_ANIMATE				= false;
 var MINI_RANDNICK				= false;
-var MINI_NICKNAME				= null;
+var MINI_NICKNAME				= '';
 var MINI_TITLE					= null;
 var MINI_DOMAIN					= null;
 var MINI_USER					= null;
