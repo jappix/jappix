@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 19/08/12
+# Last revision: 22/08/12
 
 msgid ""
 msgstr ""

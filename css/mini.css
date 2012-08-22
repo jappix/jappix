@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, Julien, hunterjm, Kloadut
-Last revision: 03/08/12
+Last revision: 22/08/12
 
 */
 
@@ -93,7 +93,11 @@ Last revision: 03/08/12
 	border-color: #666666;
 }
 
-#jappix_mini div.jm_starter,
+#jappix_mini div.jm_starter {
+	float: right;
+	position: relative;
+}
+
 #jappix_mini div.jm_conversations,
 #jappix_mini div.jm_conversation,
 #jappix_mini a.jm_switch {

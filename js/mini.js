@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Vanaryon, hunterjm, Camaran, regilero, Kloadut
-Last revision: 21/08/12
+Last revision: 22/08/12
 
 */
 
@@ -1025,7 +1025,8 @@ function createMini(domain, user, password) {
 	updateOverflowMini();
 	
 	// CSS refresh (Safari display bug when restoring old DOM)
-	jQuery('#jappix_mini div.jm_starter, #jappix_mini div.jm_conversations, #jappix_mini div.jm_conversation, #jappix_mini a.jm_switch').css('float', 'left');
+	jQuery('#jappix_mini div.jm_starter').css('float', 'right');
+	jQuery('#jappix_mini div.jm_conversations, #jappix_mini div.jm_conversation, #jappix_mini a.jm_switch').css('float', 'left');
 	
 	// The click events
 	jQuery('#jappix_mini a.jm_button').click(function() {
