@@ -1941,3 +1941,6 @@ msgstr ""
 
 msgid "New event!"
 msgstr ""
+
+msgid "%s is typing..."
+msgstr ""

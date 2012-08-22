@@ -7,7 +7,7 @@ This is the images CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 16/01/12
+Last revision: 22/08/12
 
 */
 
@@ -86,4 +86,11 @@ Last revision: 16/01/12
 	background-repeat: no-repeat;
 	height: 30px;
 	width: 30px;
+}
+
+.wait-typing {
+	background-image: url(../img/wait/wait-typing.gif);
+	background-repeat: no-repeat;
+	height: 4px;
+	width: 16px;
 }
