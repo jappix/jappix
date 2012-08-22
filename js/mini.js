@@ -392,12 +392,12 @@ function handleMessageMini(msg) {
 			resetChatstateMini(xid, hash, type);
 			
 			// Apply new chatstate (if supported)
-			if($(node).find('active[xmlns=' + NS_CHATSTATES + ']').size() || $(node).find('composing[xmlns=' + NS_CHATSTATES + ']').size()) {
+			if(jQuery(node).find('active[xmlns=' + NS_CHATSTATES + ']').size() || jQuery(node).find('composing[xmlns=' + NS_CHATSTATES + ']').size()) {
 				// Set marker to tell other user supports chatstates
-				$('#jappix_mini #chat-' + hash + ' input.jm_send-messages').attr('data-chatstates', 'true');
+				jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').attr('data-chatstates', 'true');
 				
 				// Composing?
-				if($(node).find('composing[xmlns=' + NS_CHATSTATES + ']').size())
+				if(jQuery(node).find('composing[xmlns=' + NS_CHATSTATES + ']').size())
 					displayChatstateMini('composing', xid, hash, type);
 			}
 		}
@@ -2438,8 +2438,8 @@ function randomNickMini() {
 
 // Sends a given chatstate to a given entity
 function sendChatstateMini(state, xid, hash) {
-	var user_type = $('#jappix_mini #chat-' + hash).attr('data-type');
-	var user_storage = $('#jappix_mini #chat-' + hash + ' input.jm_send-messages');
+	var user_type = jQuery('#jappix_mini #chat-' + hash).attr('data-type');
+	var user_storage = jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages');
 	
 	// If the friend client supports chatstates and is online
 	if((user_type == 'groupchat') || ((user_type == 'chat') && user_storage.attr('data-chatstates') && !exists('#jappix_mini a#friend-' + hash + '.jm_offline'))) {
@@ -2471,7 +2471,7 @@ function displayChatstateMini(state, xid, hash, type) {
 	
 	// Composing?
 	if(state == 'composing')
-		$('#jappix_mini #chat-' + hash + ' div.jm_chatstate_typing').css('visibility', 'visible');
+		jQuery('#jappix_mini #chat-' + hash + ' div.jm_chatstate_typing').css('visibility', 'visible');
 	else
 		resetChatstateMini(xid, hash, type);
 	
@@ -2484,7 +2484,7 @@ function resetChatstateMini(xid, hash, type) {
 	if(type == 'groupchat')
 		return;
 	
-	$('#jappix_mini #chat-' + hash + ' div.jm_chatstate_typing').css('visibility', 'hidden');
+	jQuery('#jappix_mini #chat-' + hash + ' div.jm_chatstate_typing').css('visibility', 'hidden');
 }
 
 // Adds the chatstate events
@@ -2496,18 +2496,18 @@ function eventsChatstateMini(xid, hash, type) {
 	jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').keyup(function(e) {
 		if(e.keyCode != 13) {
 			// Composing a message
-			if($(this).val() && ($(this).attr('data-composing') != 'on')) {
+			if(jQuery(this).val() && (jQuery(this).attr('data-composing') != 'on')) {
 				// We change the state detect input
-				$(this).attr('data-composing', 'on');
+				jQuery(this).attr('data-composing', 'on');
 				
 				// We send the friend a "composing" chatstate
 				sendChatstateMini('composing', xid, hash);
 			}
 			
 			// Stopped composing a message
-			else if(!$(this).val() && ($(this).attr('data-composing') == 'on')) {
+			else if(!jQuery(this).val() && (jQuery(this).attr('data-composing') == 'on')) {
 				// We change the state detect input
-				$(this).attr('data-composing', 'off');
+				jQuery(this).attr('data-composing', 'off');
 				
 				// We send the friend an "active" chatstate
 				sendChatstateMini('active', xid, hash);
@@ -2517,16 +2517,16 @@ function eventsChatstateMini(xid, hash, type) {
 	
 	.change(function() {
 		// Reset the composing database entry
-		$(this).attr('data-composing', 'off');
+		jQuery(this).attr('data-composing', 'off');
 	})
 	
 	.focus(function() {
 		// Not needed
-		if($(this).is(':disabled'))
+		if(jQuery(this).is(':disabled'))
 			return;
 		
 		// Nothing in the input, user is active
-		if(!$(this).val())
+		if(!jQuery(this).val())
 			sendChatstateMini('active', xid, hash);
 		
 		// Something was written, user started writing again
@@ -2536,11 +2536,11 @@ function eventsChatstateMini(xid, hash, type) {
 	
 	.blur(function() {
 		// Not needed
-		if($(this).is(':disabled'))
+		if(jQuery(this).is(':disabled'))
 			return;
 		
 		// Nothing in the input, user is inactive
-		if(!$(this).val())
+		if(!jQuery(this).val())
 			sendChatstateMini('inactive', xid, hash);
 		
 		// Something was written, user paused
