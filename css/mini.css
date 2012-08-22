@@ -563,11 +563,11 @@ Last revision: 22/08/12
 
 #jappix_mini span.jm_animate {
 	background-position: 0 0;
-	width: 111px;
-	height: 102px;
+	width: 80px;
+	height: 74px;
 	position: absolute;
-	top: -100px;
-	left: -74px;
+	top: -76px;
+	left: -52px;
 	z-index: 1;
 	display: block;
 }
