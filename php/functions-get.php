@@ -9,7 +9,7 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Vanaryon, Mathieui, olivierm, regilero
-Last revision: 12/06/12
+Last revision: 25/08/12
 
 */
 
@@ -69,13 +69,13 @@ function setPath($string, $hash, $host, $type, $locale) {
 		$string = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(\S+)(js)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&l='.$locale.'&t=$5&f=$7$8$9', $string);
 		
 		// Other "normal" links (no lang parameter)
-		$string = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $string);
+		$string = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $string);
 
 		// Links to JS that are prefixed with JAPPIX_STATIC (must have a lang parameter)
 		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(js)(\/)(\S+)(js)((\")|(\'))/', '$1$2'.'php/get.php?h='.$hash.'&l='.$locale.'&t=$5&f=$7$8$9', $string);
 
 		// Other "normal" links prefixed with JAPPIX_STATIC (no lang parameter) (used by mini)
-		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(css|img|store|snd)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga)((\")|(\'))/', '$1$2'.'php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $string);
+		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(css|img|store|snd)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3)((\")|(\'))/', '$1$2'.'php/get.php?h='.$hash.'&t=$5&f=$7$8$9', $string);
 	}
 	
 	// Replace the CSS strings
@@ -84,7 +84,7 @@ function setPath($string, $hash, $host, $type, $locale) {
 		if($host && ($host != '.'))
 			$static = $host.'/php';
 		
-		$string = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)(\/)(\S+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$4$5)', $string);
+		$string = preg_replace('/(\(\.\.\/)(css|js|img|store|snd)(\/)(\S+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga|mp3)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$4$5)', $string);
 	}
 	
 	return $string;
