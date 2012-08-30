@@ -341,27 +341,26 @@ function handleMessageMini(msg) {
 					
 					// No nickname?
 					if(!nick) {
-					    // if the roster does not give us any nick the user may have send us a nickname to use with his first message
-	                   // @see http://xmpp.org/extensions/xep-0172.html
-	                   // we first check we do not have made this stuff before
-	                   var unknown_entry = jQuery('#jappix_mini a.jm_unknown[data-xid=' + xid + ']');
-	                   
-	                   if(unknown_entry.length > 0) {
-	                       nick =  unknown_entry.attr('data-nick');
-	                   } else {
-	                       var msgnick = msg.getNick();
-	                       nick = getXIDNick(xid);
-	                       
-	                       if(msgnick) {
-	                       	   // If there is a nickname in the message which differs from the jid-extracted nick then tell it to the user
-	                           if(nick != msgnick)
-	                               nick = msgnick + ' (' + nick + ')';
-	                       }
-	                       
-	                       // Push that unknown guy in a temporary roster entry
-	                       var unknown_entry = jQuery('<a class="jm_unknown jm_offline" href="#"></a>').attr('data-nick', nick).attr('data-xid', xid);
-	                       unknown_entry.appendTo(jQuery('.jm_buddies', jQuery('#jappix_mini')));
-	                   }
+						// If the roster does not give us any nick the user may have send us a nickname to use with his first message
+						// @see http://xmpp.org/extensions/xep-0172.html
+						var unknown_entry = jQuery('#jappix_mini a.jm_unknown[data-xid=' + xid + ']');
+						
+						if(unknown_entry.size() > 0) {
+							nick =  unknown_entry.attr('data-nick');
+						} else {
+							var msgnick = msg.getNick();
+							nick = getXIDNick(xid);
+							
+							if(msgnick) {
+							 	// If there is a nickname in the message which differs from the jid-extracted nick then tell it to the user
+								if(nick != msgnick)
+									 nick = msgnick + ' (' + nick + ')';
+							}
+							
+							// Push that unknown guy in a temporary roster entry
+							var unknown_entry = jQuery('<a class="jm_unknown jm_offline" href="#"></a>').attr('data-nick', nick).attr('data-xid', xid);
+							unknown_entry.appendTo('#jappix_mini div.jm_roster div.jm_buddies');
+						 }
 					}
 				}
 				
@@ -721,14 +720,14 @@ function sendMessageMini(aForm) {
 			
 			// If the roster does not give us any nick the user may have send us a nickname to use with his first message
             // @see http://xmpp.org/extensions/xep-0172.html
-			if(0 == jQuery('#jappix_mini a.jm_friend[data-xid=' + xid + ']').size()) {
-			        var subscription = known_roster_entry.attr('data-sub');
-			        
-			        // The other may not know my nickname if we do not have both a roster entry, or if he doesn't have one
-			        if(('both' != subscription) && ('from' != subscription)) {
-			                // Adding our nickname in the message, hard to know if this is just the first one
-			                aMsg.setNick(MINI_NICKNAME);
-			        }
+            var known_roster_entry = jQuery('#jappix_mini a.jm_friend[data-xid=' + xid + ']');
+            
+			if(known_roster_entry.size() == 0) {
+		        var subscription = known_roster_entry.attr('data-sub');
+		        
+		        // The other may not know my nickname if we do not have both a roster entry, or if he doesn't have one
+		        if(('both' != subscription) && ('from' != subscription))
+	                aMsg.setNick(MINI_NICKNAME);
 			}
 			
 			// Message data
