@@ -8,8 +8,8 @@ This is the Jappix Mobile PHP/HTML code
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Chatme.im
-Last revision: 12/06/12
+Authors: Vanaryon, Camaran
+Last revision: 31/08/12
 
 */
 
@@ -27,7 +27,7 @@ if(!defined('JAPPIX_BASE'))
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" />
-	<title><?php _e("Jappix Mobile"); ?></title>
+	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> (<?php _e("Jappix Mobile"); ?>) &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
 	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>

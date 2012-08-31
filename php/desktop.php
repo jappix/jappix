@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 12/06/12
+Last revision: 31/08/12
 
 */
 
@@ -23,7 +23,7 @@ if(!defined('JAPPIX_BASE'))
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php _e("An open social network"); ?></title>
+	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	
 	<?php echoGetFiles($hash, '', 'css', 'desktop.xml', ''); echo "\n"; ?>

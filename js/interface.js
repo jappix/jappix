@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 26/08/11
+Last revision: 31/08/12
 
 */
 
@@ -22,7 +22,7 @@ function pageTitle(title) {
 	// We change the title to give essential informations
 	switch(title) {
 		case 'home':
-			document.title = SERVICE_NAME + ' • ' + _e("An open social network");
+			document.title = SERVICE_NAME + ' • ' + SERVICE_DESC;
 			
 			break;
 		

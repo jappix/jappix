@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Vanaryon, JanCBorchardt
-# Last revision: 22/08/12
+# Last revision: 31/08/12
 
 msgid ""
 msgstr ""
@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "JavaScript is missing in your web browser, so that you will not be able to launch Jappix! Please fix this."
-msgstr ""
-
-msgid "An open social network"
 msgstr ""
 
 msgid "Social channel, chat and more."
