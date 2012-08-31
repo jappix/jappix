@@ -7,7 +7,7 @@ These are the notification board JS script for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 19/08/12
+Last revision: 31/08/12
 
 */
 
@@ -220,6 +220,6 @@ function quickBoardPermission() {
 // Fires quickBoardPermission() on document click
 $(document).click(function() {
 	// Ask for permission to use quick boards
-	if(con.connected())
+	if((typeof con != 'undefined') && con.connected())
 		quickBoardPermission();
 });
