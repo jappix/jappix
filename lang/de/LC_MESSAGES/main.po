@@ -99,10 +99,10 @@ msgstr "Dein XMPP-Konto wurde entfernt."
 msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "Du wurdest von Jappix abgemeldet."
 
-msgid "The room you joined seems not to exist. You should create it!"
+msgid "The room you tried to join doesn't seem to exist."
 msgstr "Der Chatraum, den du betreten hast, scheint nicht zu existieren. Du solltest ihn erstellen!"
 
-msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgid "The groupchat has been removed."
 msgstr "Der Chatraum wurde gelöscht. Jetzt kann ihn jemand anders registrieren."
 
 msgid "The user that you want to reach is not present in the room."
@@ -141,7 +141,7 @@ msgstr "Passwort"
 msgid "Remember me"
 msgstr "Anmeldung merken"
 
-msgid "This tool has been disabled, you cannot use it!"
+msgid "This tool has been disabled!"
 msgstr "Dieses Werkzeug wurde deaktiviert, du kannst es nicht verwenden."
 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -766,10 +766,10 @@ msgstr "kein Grund"
 msgid "Communicate with the entire world!"
 msgstr "Kommuniziere mit der ganzen Welt!"
 
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgid "Jappix is an open social platform, that let's you easily get or keep in touch with everyone."
 msgstr "Jappix ist eine großartige soziale Platform, auf die du immer und überall Zugriff hast und auf der du kommunizieren kannst, mit wem du willst."
 
-msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgid "Join the millions of users who are currently using the XMPP Network (Google Talk, etc), don't stay out!"
 msgstr "Du kannst Kontakt aufnehmen mit den Millionen von Nutzern des XMPP-Netzwerkes. Tritt der Gemeinschaft bei und bleib frei!"
 
 msgid "Hi there!"
@@ -781,7 +781,7 @@ msgstr "Willkommen bei %1s, »%2s«."
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "Melde dich mit deinem bestehenden XMPP-Konto an oder erstelle gratis ein Neues!"
 
-msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgid "For your account safety, when you login or register, make sure your password remains secret."
 msgstr ""
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
@@ -907,7 +907,7 @@ msgstr "würde dir gerne eine Datei senden: “%s”."
 msgid "has received a file exchange request: “%s”."
 msgstr "hat eine Anfrage zum Dateiaustausch empfangen: “%s”"
 
-msgid "has accepted to received your file: “%s”."
+msgid "has accepted to receive your file: “%s”."
 msgstr "ist damit einverstanden, deine Datei zu empfangen: “%s”."
 
 msgid "has rejected to receive your file: “%s”."
@@ -1105,7 +1105,7 @@ msgstr "Nicht verfügbare Freunde anzeigen"
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
 msgstr "Benutze dieses Werkzeug, um Freunde auf dem aktuellen Server zu finden, oder versuche es später."
 
-msgid "Great work! Now, you can share Jappix with your friends!"
+msgid "Good job! Now, you can share Jappix with your friends!"
 msgstr "Gut gemacht! Jetzt kannst du Jappix mit deinen Freunden teilen!"
 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
@@ -1138,10 +1138,10 @@ msgstr "Jappix-Installation"
 msgid "Welcome to the Jappix installation!"
 msgstr "Willkommen zur Jappix-Installation"
 
-msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgid "This tool will help you installing Jappix, the first full-featured XMPP-based social platform, on your server with ease."
 msgstr "Dieses Tool wird dir helfen Jappix, die erste voll funktionstüchtige XMPP-basierte soziale Platform, schnell auf deinem Server zu installieren. Du brauchst dazu nichteinmal technisches Wissen."
 
-msgid "Let's have a look at the installation steps:"
+msgid "Installation Steps:"
 msgstr "Lass uns die Installationsschritte durchgehen."
 
 msgid "Welcome"

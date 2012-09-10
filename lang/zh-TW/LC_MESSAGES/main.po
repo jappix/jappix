@@ -99,10 +99,10 @@ msgstr " Jappix 帳號已被刪除，再見！"
 msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "已經退出 Jappix 帳號，祝你今天愉快！"
 
-msgid "The room you joined seems not to exist. You should create it!"
+msgid "The room you tried to join doesn't seem to exist."
 msgstr "你加入的聊天室似乎不存在。你應該創建一個新的！"
 
-msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgid "The groupchat has been removed."
 msgstr "該群已被刪除，現在其他人將可以重建一個。"
 
 msgid "The user that you want to reach is not present in the room."
@@ -141,7 +141,7 @@ msgstr "密碼"
 msgid "Remember me"
 msgstr "記住我"
 
-msgid "This tool has been disabled, you cannot use it!"
+msgid "This tool has been disabled!"
 msgstr "此工具已被停用，你不能使用它！"
 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -765,10 +765,10 @@ msgstr "無理由"
 msgid "Communicate with the entire world!"
 msgstr "與全世界溝通！"
 
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgid "Jappix is an open social platform, that let's you easily get or keep in touch with everyone."
 msgstr "Jappix是一個強大的社交平臺，你可以在任何地點、任何時間訪問他，並且與任何你希望的人交流。"
 
-msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgid "Join the millions of users who are currently using the XMPP Network (Google Talk, etc), don't stay out!"
 msgstr "它允許你與幾百萬跟你一樣正在使用 Jappix 的用戶聯繫。自由地加入社群吧！"
 
 msgid "Hi there!"
@@ -781,7 +781,7 @@ msgstr "歡迎來到 %1s，“%2s”。"
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "登錄已有的 Jappix 帳號或免費建立新帳號！"
 
-msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgid "For your account safety, when you login or register, make sure your password remains secret."
 msgstr "當你登陸或者註冊，確保你密碼的保密性。不要把它給與他人，它是私人的。"
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
@@ -907,7 +907,7 @@ msgstr "想向您發送一個文檔: “%s。"
 msgid "has received a file exchange request: “%s”."
 msgstr "已接收文檔交換的要求：“%s”。"
 
-msgid "has accepted to received your file: “%s”."
+msgid "has accepted to receive your file: “%s”."
 msgstr "已接受接收你發送的文檔：“%s”。"
 
 msgid "has rejected to receive your file: “%s”."
@@ -1105,7 +1105,7 @@ msgstr "不要隱藏離線好友"
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
 msgstr "使用此工具在你正在使用的伺服器上找到你的朋友，或稍後加入他們。"
 
-msgid "Great work! Now, you can share Jappix with your friends!"
+msgid "Good job! Now, you can share Jappix with your friends!"
 msgstr "做的好！現在，你可以與你的朋友們分享Jappix"
 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
@@ -1138,10 +1138,10 @@ msgstr "Jappix 安裝"
 msgid "Welcome to the Jappix installation!"
 msgstr "歡迎來到 Jappix 安裝！"
 
-msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgid "This tool will help you installing Jappix, the first full-featured XMPP-based social platform, on your server with ease."
 msgstr "此工具將幫你快速地安裝 Jappix，第一個以 XMPP 為基礎的全功能的社交平臺。你甚至不需要任何技術知識。"
 
-msgid "Let's have a look at the installation steps:"
+msgid "Installation Steps:"
 msgstr "讓我們看一下安裝步驟："
 
 msgid "Welcome"

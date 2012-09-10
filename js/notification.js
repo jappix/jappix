@@ -102,7 +102,7 @@ function newNotification(type, from, data, body, id, inverse) {
 			break;
 		
 		case 'send_accept':
-			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to received your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+			text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
 		
