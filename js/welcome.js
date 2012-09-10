@@ -81,7 +81,7 @@ function openWelcome() {
 		'<div class="one-lap welcome3">' + 
 			'<div class="infos">' + 
 				'<p class="infos-title">' + _e("Share") + '</p>' + 
-				'<p>' + _e("Great work! Now, you can share Jappix with your friends!") + '</p>' + 
+				'<p>' + _e("Good job! Now, you can share Jappix with your friends!") + '</p>' + 
 				'<p>' + _e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
 			'</div>' + 
 			

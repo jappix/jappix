@@ -147,7 +147,7 @@ function switchHome(div) {
 	// Form disabled?
 	if(disable_form)
 		code += '<div class="info fail">' + 
-				_e("This tool has been disabled, you cannot use it!") + 
+				_e("This tool has been disabled!") + 
 			'</div>';
 	
 	// Create this HTML code
