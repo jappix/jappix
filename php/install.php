@@ -118,8 +118,8 @@ else
 			if($step == 1) { ?>
 				<h3 class="start install-images"><?php _e("Welcome to the Jappix installation!"); ?></h3>
 				
-				<p><?php _e("This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."); ?></p>
-				<p><?php _e("Let's have a look at the installation steps:"); ?></p>
+				<p><?php _e("This tool will help you installing Jappix, the first full-featured XMPP-based social platform, on your server with ease."); ?></p>
+				<p><?php _e("Installation Steps:"); ?></p>
 				
 				<ol>
 					<li><?php _e("Welcome"); ?></li>

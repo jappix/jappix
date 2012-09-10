@@ -39,13 +39,13 @@ function createBoard(type, id) {
 			
 			// Groupchat join
 			case 4:
-				text = _e("The room you joined seems not to exist. You should create it!");
+				text = _e("The room you tried to join doesn't seem to exist.");
 				
 				break;
 			
 			// Groupchat removal
 			case 5:
-				text = _e("The groupchat has been removed, now someone else will be able to recreate it.");
+				text = _e("The groupchat has been removed.");
 				
 				break;
 			

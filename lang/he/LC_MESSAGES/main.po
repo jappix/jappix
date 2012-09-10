@@ -102,10 +102,10 @@ msgstr "חשבון ‏XMPP הוסר, להתראות!"
 msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "התנתקת מן חשבון ה־‏XMPP שלך, שיהיה לך יום נעים!"
 
-msgid "The room you joined seems not to exist. You should create it!"
+msgid "The room you tried to join doesn't seem to exist."
 msgstr "נראה שהחדר שאליו הצטרפת אינו קיים. עליך ליצור אותו!"
 
-msgid "The groupchat has been removed, now someone else will be able to recreate it."
+msgid "The groupchat has been removed."
 msgstr "קבוצת השחה הוסרה, כעת מישהו אחר יוכל ליצור אותה מחדש."
 
 # BUG: the>this? (not sure)
@@ -145,7 +145,7 @@ msgstr "סיסמה"
 msgid "Remember me"
 msgstr "זכור אותי"
 
-msgid "This tool has been disabled, you cannot use it!"
+msgid "This tool has been disabled!"
 msgstr "כלי זה נוטרל, אין ביכולתך לעשות זו שימוש!"
 
 msgid "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -790,10 +790,10 @@ msgid "Communicate with the entire world!"
 msgstr "תקשורת עם כל העולם!"
 
 # ‫Jappix הינה פלטפורמה חברתית נהדרת, שביכולתך לגשת אליה מכל מקום בו הינך נמצא/ת, בכל עת שתחפוץ/שתחפצי ולתקשר עם מי שרצונך לתקשר עם.
-msgid "Jappix is a great social platform, that you can access wherever you are, whenever you want and communicate with whovever you want."
+msgid "Jappix is an open social platform, that let's you easily get or keep in touch with everyone."
 msgstr "‏Jappix הינה פלטפורמה חברתית נהדרת, אליה ניתן לגשת מכל מקום, בכל עת ולתקשר עם כל מי שרק תרצו."
 
-msgid "It allows you to get in touch with the millions of users who currently use the XMPP network like you do with Jappix. Join the community and stay free!"
+msgid "Join the millions of users who are currently using the XMPP Network (Google Talk, etc), don't stay out!"
 msgstr "פלטפורמה זו מתירה לך לתקשר עם מיליוני משתמשים שכעת עושים שימוש ברשת התקשורת ‏XMPP כפי שהינך עושה עם ‏Jappix. הצטרפו אל הקהילה והישארו חופשיים!"
 
 msgid "Hi there!"
@@ -807,7 +807,7 @@ msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "התחברות עם חשבון ‏XMPP קיים או יצירת חשבון חדש בחינם!"
 
 # בהתחברך או בהירשמך
-msgid "When you login or register, make sure your password remains secret. Don't give it to others, it is personal!"
+msgid "For your account safety, when you login or register, make sure your password remains secret."
 msgstr "בעת התחברותך או בעת הירשמותך, נא לדאוג ולוודא שסיסמתך נשארת בסוד. אין לחשוף אותה לאחרים, סיסמתך הינה אישית!"
 
 msgid "Login to your existing XMPP account. You can also use the %s to join a groupchat."
@@ -937,7 +937,7 @@ msgstr "רוצה לשלוח אליך קובץ: ‏“%s”."
 msgid "has received a file exchange request: “%s”."
 msgstr "קיבל/ה בקשה להמרת קבצים: ‏“%s”."
 
-msgid "has accepted to received your file: “%s”."
+msgid "has accepted to receive your file: “%s”."
 msgstr "הסכים/ה לקבל את הקובץ שלך: ‏“%s”."
 
 msgid "has rejected to receive your file: “%s”."
@@ -1147,7 +1147,7 @@ msgstr "לא להסתיר חברים בלתי מקוונים"
 msgid "Use this tool to find your friends on the server you are using right now, or add them later."
 msgstr "באפשרותך למצוא את חברייך על השרת שבו הינך עושה שימוש כעת, וניתן גם להוסיפם מאוחר יותר בעזרת כלי זה."
 
-msgid "Great work! Now, you can share Jappix with your friends!"
+msgid "Good job! Now, you can share Jappix with your friends!"
 msgstr "עבודה נהדרת! כעת, ביכולתך לשתף את ‏Jappix עם חברייך!"
 
 msgid "When you will press the save button, the profile editor will be opened. Happy socializing!"
@@ -1183,10 +1183,10 @@ msgid "Welcome to the Jappix installation!"
 msgstr "ברוך בואך אל התקנת Jappix!"
 
 # אינך אפילו נזקק לידע טכני
-msgid "This tool will help you fastly install Jappix, the first full-featured XMPP-based social platform, on your server. You don't even need any technical knowledge."
+msgid "This tool will help you installing Jappix, the first full-featured XMPP-based social platform, on your server with ease."
 msgstr "כלי זה יסייע לך להתקין במהירות את ‏Jappix, הפלטפורמה החברתית הרב תכליתית הראשונה המבוססת ‏XMPP, על שרתך. אפילו לא קיים צורך שיעמוד לרשותך ידע טכני בעניין."
 
-msgid "Let's have a look at the installation steps:"
+msgid "Installation Steps:"
 msgstr "הבא נסתכל על צעדי ההתקנה:"
 
 msgid "Welcome"
