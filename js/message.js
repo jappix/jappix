@@ -355,12 +355,11 @@ function handleMessage(message) {
 				}
 				
 				// We notify the user there's a new unread muc message
-				else{
+				else {
 					messageNotify(hash, 'unread');
 
 					//Play sound to all users in the muc, except user who sent the message.
-                    if(myNick != resource)
-                    {
+                    if(myNick != resource) {
                         soundPlay(1);
                     }
 				}
