@@ -18,9 +18,9 @@ function optionsOpen() {
 	'<div class="top">' + _e("Edit options") + '</div>' + 
 	
 	'<div class="tab">' + 
-		'<a href="#" class="tab-active" data-key="1">' + _e("General") + '</a>' + 
-		'<a href="#" class="pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
-		'<a href="#" data-key="3">' + _e("Account") + '</a>' + 
+		'<a href="#" class="tab-general tab-active" data-key="1">' + _e("General") + '</a>' + 
+		'<a href="#" class="tab-channel pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
+		'<a href="#" class="tab-account" data-key="3">' + _e("Account") + '</a>' + 
 	'</div>' + 
 	
 	'<div class="content">' + 
@@ -28,49 +28,70 @@ function optionsOpen() {
 			'<fieldset class="privacy">' + 
 				'<legend>' + _e("Privacy") + '</legend>' + 
 				
-				'<label for="geolocation" class="pep-hidable">' + _e("Geolocation") + '</label>' + 
-				'<input id="geolocation" type="checkbox" class="pep-hidable" />' + 
+				'<div class="geolocation">' +
+					'<label for="geolocation" class="pep-hidable">' + _e("Geolocation") + '</label>' + 
+					'<input id="geolocation" type="checkbox" class="pep-hidable" />' + 
+				'</div>' +
 				
-				'<label for="archiving" class="archives-hidable pref">' + _e("Message archiving") + '</label>' + 
-				'<input id="archiving" type="checkbox" class="archives-hidable pref" />' + 
+				'<div class="archiving">' +
+					'<label for="archiving" class="archives-hidable pref">' + _e("Message archiving") + '</label>' + 
+					'<input id="archiving" type="checkbox" class="archives-hidable pref" />' + 
+				'</div>' +
+				
 			'</fieldset>' + 
 			
-			'<fieldset>' + 
+			'<fieldset class="application">' + 
 				'<legend>' + _e("Application") + '</legend>' + 
 				
-				'<label for="sounds">' + _e("Sounds") + '</label>' + 
-				'<input id="sounds" type="checkbox" />' + 
+				'<div class="sounds">' +
+					'<label for="sounds">' + _e("Sounds") + '</label>' + 
+					'<input id="sounds" type="checkbox" />' + 
+				'</div>' +
 				
-				'<label for="showall">' + _e("Show all friends") + '</label>' + 
-				'<input id="showall" type="checkbox" />' + 
+				'<div class="showall">' +
+					'<label for="showall">' + _e("Show all friends") + '</label>' + 
+					'<input id="showall" type="checkbox" />' + 
+				'</div>' +
 				
-				'<label for="integratemedias">' + _e("Media integration") + '</label>' + 
-				'<input id="integratemedias" type="checkbox" />' + 
+				'<div class="integratemedias">' +
+					'<label for="integratemedias">' + _e("Media integration") + '</label>' + 
+					'<input id="integratemedias" type="checkbox" />' + 
+				'</div>' +
 				
-				'<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
-				'<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
+				'<div class="xmpplinks">' +
+					'<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
+					'<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
+				'</div>' +
+				
 			'</fieldset>' + 
 		'</div>' + 
 		
 		'<div id="conf2" class="one-lap forms">' + 
-			'<fieldset>' + 
+			'<fieldset class="channel">' + 
 				'<legend>' + _e("Channel") + '</legend>' + 
 				
-				'<label>' + _e("Empty") + '</label>' + 
-				'<a href="#" class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
+				'<div class="empty-channel">' +
+					'<label>' + _e("Empty") + '</label>' + 
+					'<a href="#" class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
+				'</div>' +
 				
-				'<label>' + _e("Persistent") + '</label>' + 
-				'<input id="persistent" type="checkbox" />' + 
+				'<div class="persistent">' +
+					'<label>' + _e("Persistent") + '</label>' + 
+					'<input id="persistent" type="checkbox" />' + 
+				'</div>' +
 				
-				'<label>' + _e("Maximum notices") + '</label>' + 
-				'<select id="maxnotices">' + 
-					'<option value="1">1</option>' + 
-					'<option value="100">100</option>' + 
-					'<option value="1000">1000</option>' + 
-					'<option value="10000">10000</option>' + 
-					'<option value="100000">100000</option>' + 
-					'<option value="1000000">1000000</option>' + 
-				'</select>' + 
+				'<div class="maxnotices">' +
+					'<label>' + _e("Maximum notices") + '</label>' + 
+					'<select id="maxnotices">' + 
+						'<option value="1">1</option>' + 
+						'<option value="100">100</option>' + 
+						'<option value="1000">1000</option>' + 
+						'<option value="10000">10000</option>' + 
+						'<option value="100000">100000</option>' + 
+						'<option value="1000000">1000000</option>' + 
+					'</select>' + 
+				'</div>' +
+
 			'</fieldset>' + 
 			
 			'<div class="sub-ask sub-ask-empty sub-ask-element">' + 
