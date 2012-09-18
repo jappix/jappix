@@ -41,9 +41,9 @@ function createTalkPage() {
 				
 				if(!anonymous) html += 
 				'<a href="#" onclick="return openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
-				'<a href="#" onclick="return openVCard();">' + _e("Profile") +  '</a>' + 
+				'<a href="#" onclick="return openVCard();" class="vcard">' + _e("Profile") +  '</a>' + 
 				'<a href="#" onclick="return optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
-				'<a href="#" onclick="return normalQuit();">' + _e("Disconnect") +  '</a>';
+				'<a href="#" onclick="return normalQuit();" class="quit">' + _e("Disconnect") +  '</a>';
 				
 				else html +=
 				'<a href="./">' + _e("Disconnect") +  '</a>';
