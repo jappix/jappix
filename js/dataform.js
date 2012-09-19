@@ -408,11 +408,21 @@ function handleDataFormContent(iq, type) {
 
 					// Search for useful fields, return first result. This is rather hacky, but jQuery is horrible when it comes to
 					// matching st. using patterns. (TODO: Improve and return the full DF layout without choking the browser)
-					var sDone;
 					var bName;
 					var bCountry;
-					sDone = false; bName = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
-					sDone = false; bCountry = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/^(ctry|country.*)$/gi) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
+					var doneName, doneCountry;
+
+					$.each($(this).find('field'), function(i, item)
+					{                                                                                                                                                                                                                      
+						var $item = $(item);
+						if ($(item).attr('var').match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && doneName != true) {
+							bName = $item.children('value:first').text();
+							doneName = true;
+						} else if ($(item).attr('var').match(/^(ctry|country.*)$/gi) && doneCountry != true) {
+							bCountry = $item.children('value:first').text();
+							doneCountry = true;
+						}
+					});
 
 					var bXID = $(this).find('field[var=jid] value:first').text();
 					var dName = bName;
