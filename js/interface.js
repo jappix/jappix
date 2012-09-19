@@ -241,7 +241,7 @@ function messageNotify(hash, type) {
 	// We notify the user if he has not the focus on the chat
 	if(!active || !isFocused()) {
 		if(!active) {
-			if(type == 'personnal')
+			if(type == 'personal')
 				$(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
 			else if(type == 'unread')
 				$(tested).addClass('chan-unread');
