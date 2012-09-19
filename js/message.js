@@ -347,9 +347,9 @@ function handleMessage(message) {
 				if(body.match(regex) && (myNick != resource) && (message_type == 'user-message'))
 					nickQuote = ' my-nick';
 				
-				// We notify the user if there's a new personnal message
+				// We notify the user if there's a new personal message
 				if(nickQuote) {
-					messageNotify(hash, 'personnal');
+					messageNotify(hash, 'personal');
 					quickBoard(from, 'groupchat', raw_body, resource);
 					soundPlay(1);
 				}
@@ -401,7 +401,7 @@ function handleMessage(message) {
 			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', notXHTML, '', 'him');
 			
 			// We notify the user
-			messageNotify(hash, 'personnal');
+			messageNotify(hash, 'personal');
 			quickBoard(xid, 'chat', raw_body, fromName);
 		}
 		
