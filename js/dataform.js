@@ -6,8 +6,8 @@ These are the dataform JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 09/07/12
+Authors: Vanaryon, Maranda
+Last revision: 19/09/12
 
 */
 
@@ -411,7 +411,7 @@ function handleDataFormContent(iq, type) {
 					var sDone;
 					var bName;
 					var bCountry;
-					sDone = false; bName = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/^(fn|[^n][^i][^c][^k]name)$/gi) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
+					sDone = false; bName = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
 					sDone = false; bCountry = $(this).find('field').filter(function (i) { if ($(this).attr("var").match(/^(ctry|country.*)$/gi) && sDone != true) { sDone = true; return $(this) } }).children('value:first').text();
 
 					var bXID = $(this).find('field[var=jid] value:first').text();
