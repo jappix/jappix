@@ -6,7 +6,7 @@ These are the microblog JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Authors: Vanaryon, Maranda
 Last revision: 12/02/12
 
 */
@@ -373,17 +373,26 @@ function removeMicroblog(id, hash) {
 	});
 	
 	// Send the IQ to remove the item (and get eventual error callback)
-	var iq = new JSJaCIQ();
-	iq.setType('set');
+	// Also attempt to remove the comments node.
+	var retract_iq = new JSJaCIQ();
+	retract_iq.setType('set');
+	retract_iq.appendNode('pubsub', {'xmlns': NS_PUBSUB}).appendChild(retract_iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB})).appendChild(retract_iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
-	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
+	var comm_delete_iq;
+	if (pserver != '' && cnode != '') {
+		comm_delete_iq = new JSJaCIQ();
+		comm_delete_iq.setType('set');
+		comm_delete_iq.setTo(pserver);
+		comm_delete_iq.appendNode('pubsub', {'xmlns': 'http://jabber.org/protocol/pubsub#owner'}).appendChild(comm_delete_iq.buildNode('delete', {'node': cnode, 'xmlns': 'http://jabber.org/protocol/pubsub#owner'}));
+	}
 	
-	if(get_last)
-		con.send(iq, handleRemoveMicroblog);
-	else
-		con.send(iq, handleErrorReply);
+	if(get_last) {
+		if (comm_delete_iq) { con.send(comm_delete_iq); }
+		con.send(retract_iq, handleRemoveMicroblog);
+	} else {
+		if (comm_delete_iq) { con.send(comm_delete_iq); }
+		con.send(retract_iq, handleErrorReply);
+	}
 	
 	return false;
 }
