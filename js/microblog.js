@@ -6,8 +6,8 @@ These are the microblog JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
-Last revision: 12/02/12
+Authors: Vanaryon, Maranda
+Last revision: 20/09/12
 
 */
 
@@ -255,7 +255,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			
 			// It's my own notice, we can remove it!
 			if(from == getXID())
-				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+				html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
 			
 			// Notice from another user
 			else {
@@ -373,17 +373,26 @@ function removeMicroblog(id, hash) {
 	});
 	
 	// Send the IQ to remove the item (and get eventual error callback)
-	var iq = new JSJaCIQ();
-	iq.setType('set');
+	// Also attempt to remove the comments node.
+	var retract_iq = new JSJaCIQ();
+	retract_iq.setType('set');
+	retract_iq.appendNode('pubsub', {'xmlns': NS_PUBSUB}).appendChild(retract_iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB})).appendChild(retract_iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	
-	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-	var retract = pubsub.appendChild(iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
-	retract.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
+	var comm_delete_iq;
+	if (pserver != '' && cnode != '') {
+		comm_delete_iq = new JSJaCIQ();
+		comm_delete_iq.setType('set');
+		comm_delete_iq.setTo(pserver);
+		comm_delete_iq.appendNode('pubsub', {'xmlns': 'http://jabber.org/protocol/pubsub#owner'}).appendChild(comm_delete_iq.buildNode('delete', {'node': cnode, 'xmlns': 'http://jabber.org/protocol/pubsub#owner'}));
+	}
 	
-	if(get_last)
-		con.send(iq, handleRemoveMicroblog);
-	else
-		con.send(iq, handleErrorReply);
+	if(get_last) {
+		if (comm_delete_iq) { con.send(comm_delete_iq); }
+		con.send(retract_iq, handleRemoveMicroblog);
+	} else {
+		if (comm_delete_iq) { con.send(comm_delete_iq); }
+		con.send(retract_iq, handleErrorReply);
+	}
 	
 	return false;
 }
