@@ -9,7 +9,7 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Vanaryon
-Last revision: 31/08/12
+Last revision: 22/09/12
 
 */
 
@@ -180,7 +180,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					<a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
 				</span>
 				<span class="one">
-					<a class="name" href="http://frenchtouch.pro/">FrenchTouch Studio</a>
+					<a class="name" href="http://frenchtouch.pro/">FrenchTouch</a>
 					<a class="desc" href="http://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
 				</span>
 				
