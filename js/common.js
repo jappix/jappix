@@ -6,8 +6,8 @@ These are the common JS script for Jappix
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: Vanaryon, olivierm, regilero
-Last revision: 08/08/12
+Authors: Vanaryon, olivierm, regilero, Maranda
+Last revision: 24/09/12
 
 */
 
@@ -44,6 +44,9 @@ function isFocused() {
 // Generates the good XID
 function generateXID(xid, type) {
 	// XID needs to be transformed
+	// .. and made lowercase (uncertain though this is the right place...)
+	xid = xid.toLowerCase();
+
 	if(xid && (xid.indexOf('@') == -1)) {
 		// Groupchat
 		if(type == 'groupchat')
