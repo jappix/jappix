@@ -1692,7 +1692,7 @@ msgstr "上傳你的音樂（Ogg Vorbis、MP3 或 WAV）以便可以在 Jappix �
 msgid "The file you want to upload must be smaller than %s."
 msgstr "你要上傳的文檔必須小於 %s。"
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "敬請關注你的使用者在伺服器上的存儲，並且用移除不想要的內容。"
 
 msgid "Title"

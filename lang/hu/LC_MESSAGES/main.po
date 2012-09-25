@@ -1690,7 +1690,7 @@ msgstr "Töltsd fel a zenéid (Ogg Vorbis, MP3 vagy WAV formátumban), hogy tudd
 msgid "The file you want to upload must be smaller than %s."
 msgstr "A fájl amit felszeretnél tölteni, kisebbnek kell lennie %s-nál/nél."
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "Maradj összhangban azzal amit a felhasználóid tárolnak a szerveren, és töröld a nem kívánt tartalmakat ezzel az eszközzel."
 
 msgid "Title"

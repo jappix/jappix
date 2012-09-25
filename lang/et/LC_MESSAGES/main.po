@@ -1690,7 +1690,7 @@ msgstr "Lae üles oma muusikat (OGG Vorbis, MP3 või WAV) et seda saaks Jappix'i
 msgid "The file you want to upload must be smaller than %s."
 msgstr "Fail mida Te tahtsite üles laadida peab olema väiksem kui %s."
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "Selle tööriistaga saate ennast kursis hoida mida Teie kasutajad serveris hoiavad ja vajaduse korral eemaldada ebasobivaid materjale."
 
 msgid "Title"

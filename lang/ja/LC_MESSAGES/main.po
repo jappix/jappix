@@ -1691,7 +1691,7 @@ msgstr "Jappixに音楽(Ogg Vorbis, MP3 または WAV 形式)をアップロー�
 msgid "The file you want to upload must be smaller than %s."
 msgstr "アップロードするファイルは%sより小さくする必要があります。"
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "ユーザストアの保持期間を調整したり、望ましくないコンテンツを削除できます。"
 
 msgid "Title"

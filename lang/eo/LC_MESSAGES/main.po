@@ -1690,7 +1690,7 @@ msgstr "Alŝutu vian muzikon (Ogg Vorbis, Mp3 aŭ WAV) por esti kapabla aŭskult
 msgid "The file you want to upload must be smaller than %s."
 msgstr "La dosiero vi deziras alŝuti devus esti malpli grande ol %s."
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "Estu vigla pri kion viaj uzantoj konservas en via servilo, kaj forigu nedezireman enhavon kun ĉi tiu ilo."
 
 msgid "Title"

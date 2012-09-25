@@ -1690,7 +1690,7 @@ msgstr "Upload musik anda (Ogg Vorbis, MP3 atau WAV) untuk dapat didengarkan di 
 msgid "The file you want to upload must be smaller than %s."
 msgstr "File yang ingin anda upload harus lebih kecil dari %s."
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "Tetap setia dalam apa toko pengguna anda pada server anda dan menghapus konten yang tidak diinginkan dengan alat ini."
 
 msgid "Title"

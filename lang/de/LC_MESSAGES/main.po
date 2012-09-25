@@ -1690,7 +1690,7 @@ msgstr "Lade deine Musik (Ogg Vorbis, MP3 oder WAV) hoch um sie in Jappix zu hö
 msgid "The file you want to upload must be smaller than %s."
 msgstr "Die hochzuladende Datei muss kleiner als %s sein."
 
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "Bleib auf dem Laufenden, was Deine Nutzer auf deinem Server speichern und entferne ungewünschte Inhalte mit diesem Tool."
 
 msgid "Title"

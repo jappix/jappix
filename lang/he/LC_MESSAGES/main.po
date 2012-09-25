@@ -1775,7 +1775,7 @@ msgid "The file you want to upload must be smaller than %s."
 msgstr "על הקובץ שברצונך להעלות להיות קטן יותר מן %s."
 
 # מוטב לשמור
-msgid "Stay tuned in what your users store on your server and remove undesired content with this tool."
+msgid "You can check what your users store on your server and remove undesired content with this tool."
 msgstr "שמור על ערנות באשר למה שמשתמשים מאחסנים על שרתך, והסר תוכן שאיננו רצוי בעזרת כלי זה."
 
 msgid "Title"
