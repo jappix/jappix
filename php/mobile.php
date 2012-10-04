@@ -29,6 +29,7 @@ if(!defined('JAPPIX_BASE'))
 	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" />
 	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> (<?php _e("Jappix Mobile"); ?>) &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
+	<meta name="apple-itunes-app" content="app-id=285688934" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
 	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
 </head>
