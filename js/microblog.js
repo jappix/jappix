@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Authors: Vanaryon, Maranda
-Last revision: 20/09/12
+Last revision: 07/10/12
 
 */
 
@@ -356,7 +356,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 }
 
 // Removes a given microblog item
-function removeMicroblog(id, hash) {
+function removeMicroblog(id, hash, pserver, cnode) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 	
 	// Initialize
