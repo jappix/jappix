@@ -6,8 +6,8 @@ This is the JSJaC library for Jappix (from trunk)
 -------------------------------------------------
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
-Authors: Stefan Strigler, Vanaryon, Zash
-Last revision: 13/02/12
+Authors: Stefan Strigler, Vanaryon, Zash, Maranda
+Last revision: 08/10/12
 
 */
 
@@ -1660,7 +1660,10 @@ JSJaCPacket.prototype.setType = function(type) {
  */
 JSJaCPacket.prototype.setXMLLang = function(xmllang) {
   // Fix IE9+ bug with xml:lang attribute
-  if (jQuery.browser.msie && (parseInt(jQuery.browser.version) >= 9))
+
+  // Also due to issues with both BD and jQuery being used, employ a simple regexp since the detection
+  // here is very limited.
+  if (navigator.appVersion.match(/^.*MSIE (\d)/) && navigator.appVersion.match(/^.*MSIE (\d)/)[1] >= 9)
     return this;
   if (!xmllang || xmllang == '')
     this.getNode().removeAttribute('xml:lang');
