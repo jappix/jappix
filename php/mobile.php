@@ -30,7 +30,7 @@ if(!defined('JAPPIX_BASE'))
 	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> (<?php _e("Jappix Mobile"); ?>) &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	<?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
 </head>
 
