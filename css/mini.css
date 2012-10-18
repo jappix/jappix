@@ -731,3 +731,7 @@ Last revision: 22/08/12
 #jappix_popup div.jm_prompt div.jm_clear {
 	clear: both;
 }
+/*hide jappix mini on mobile device*/
+@media (max-width: 480px) {
+	#jappix_mini {display:none;}
+}
