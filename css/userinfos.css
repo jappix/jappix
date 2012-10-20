@@ -7,7 +7,7 @@ This is the user-infos CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 27/03/11
+Last revision: 20/10/12
 
 */
 
@@ -79,7 +79,7 @@ Last revision: 27/03/11
 
 #userinfos .one-line {
 	margin: 4px 0;
-	font-size: 0.9em;
+	font-size: 12px;
 	float: left;
 }
 

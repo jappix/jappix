@@ -7,7 +7,7 @@ This is the main CSS stylesheet for Jappix
 
 License: AGPL
 Author: Vanaryon
-Last revision: 21/06/12
+Last revision: 20/10/12
 
 */
 
@@ -17,7 +17,7 @@ Last revision: 21/06/12
 }
 
 body {
-	font: normal 15px Myriad Web Pro, sans-serif;
+	font: normal 14.6px PT Sans, sans-serif;
 	text-shadow: 0 0 5px white;
 }
 

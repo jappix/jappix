@@ -7,27 +7,34 @@ These are all the IE compliant CSS classes
 
 License: AGPL
 Author: Vanaryon
-Last revision: 09/09/12
+Last revision: 20/10/12
 
 */
 
 /* Fix custom fonts */
 
 @font-face {
-	font-family: Myriad Web Pro;
-	src: url(../ttf/MyriadWebPro.eot);
+	font-family: PT Sans;
+	src: url(../ttf/PTSans.eot);
 }
 
 @font-face {
-	font-family: Myriad Web Pro;
+	font-family: PT Sans;
 	font-style: italic;
-	src: url(../ttf/MyriadWebPro-Italic.eot);
+	src: url(../ttf/PTSans-Italic.eot);
 }
 
 @font-face {
-	font-family: Myriad Web Pro;
+	font-family: PT Sans;
 	font-weight: bold;
-	src: url(../ttf/MyriadWebPro-Bold.eot);
+	src: url(../ttf/PTSans-Bold.eot);
+}
+
+@font-face {
+	font-family: PT Sans;
+	font-weight: bold;
+	font-style: italic;
+	src: url(../ttf/PTSans-Bold-Italic.eot);
 }
 
 /* rgba(255,255,255,0.9) */
