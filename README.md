@@ -22,6 +22,12 @@ Links
 * Jappix for mobile: http://jappix.mobi/
 * Jappix official support: http://jappix.pro/
 
+MUC Links
+---------
+
+* Jappix.org support room: https://jappix.com/?r=support@muc.jappix.org
+* Jappix.org dev-talk room: https://jappix.com/?r=dev@muc.jappix.org
+
 Social networking
 -----------------
 
