@@ -6,7 +6,7 @@ These are the buddy name related JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 29/04/11
 
 */

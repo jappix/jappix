@@ -8,7 +8,7 @@ This is the main configuration form (install & manager)
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, LinkMauve
+Authors: Valérian Saliou, LinkMauve
 Last revision: 21/06/12
 
 */

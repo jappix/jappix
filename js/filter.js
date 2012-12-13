@@ -6,7 +6,7 @@ These are the filtering JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Maranda
+Authors: Valérian Saliou, Maranda
 Last revision: 13/02/12
 
 */

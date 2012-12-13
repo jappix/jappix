@@ -8,7 +8,7 @@ These are the PHP functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, LinkMauve, Mathieui, olivierm, regilero
+Authors: Valérian Saliou, LinkMauve, Mathieui, olivierm, regilero
 Last revision: 08/08/12
 
 */

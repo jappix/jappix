@@ -8,7 +8,7 @@ This is the Jappix file share (upload handler) script
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, regilero, Cyril "Kyriog" Glapa
+Authors: Valérian Saliou, regilero, Cyril "Kyriog" Glapa
 Last revision: 11/04/12
 
 */

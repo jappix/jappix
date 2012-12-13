@@ -6,7 +6,7 @@ These are the mucadmin JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Maranda
+Authors: Valérian Saliou, Maranda
 Last revision: 03/03/11
 
 */

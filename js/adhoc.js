@@ -6,7 +6,7 @@ These are the Ad-Hoc JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 11/07/11
 
 */

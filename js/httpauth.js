@@ -6,7 +6,7 @@ These are the http-auth JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon, Kload
+Author: Valérian Saliou, Kload
 Last revision: 01/03/12
 
 */

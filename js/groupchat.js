@@ -6,7 +6,7 @@ These are the groupchat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, Maranda, Eric
+Authors: Valérian Saliou, Maranda, Eric
 Last revision: 13/02/12
 
 */

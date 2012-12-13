@@ -6,7 +6,7 @@ These are the Jappix Me tool functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 21/06/12
 
 */

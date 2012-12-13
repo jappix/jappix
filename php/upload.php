@@ -8,7 +8,7 @@ This is the Jappix Static PHP/HTML code
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 21/01/12
 
 */

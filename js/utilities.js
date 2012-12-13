@@ -6,7 +6,7 @@ These are the utilities JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, olivierm
+Authors: Valérian Saliou, olivierm
 Last revision: 24/06/11
 
 */

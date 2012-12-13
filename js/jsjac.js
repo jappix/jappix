@@ -6,7 +6,7 @@ This is the JSJaC library for Jappix (from trunk)
 -------------------------------------------------
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
-Authors: Stefan Strigler, Vanaryon, Zash, Maranda
+Authors: Stefan Strigler, Valérian Saliou, Zash, Maranda
 Last revision: 08/10/12
 
 */

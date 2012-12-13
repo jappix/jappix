@@ -6,7 +6,7 @@ These are the temporary/persistent data store functions
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 21/06/12
 
 */

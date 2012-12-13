@@ -8,7 +8,7 @@ These are the hosts configuration variables
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 27/05/11
 
 */

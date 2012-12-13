@@ -8,7 +8,7 @@ This script (re)generates the store sub-folders (after an update)
 -------------------------------------------------
 
 License: AGPL
-Authors: Vanaryon, regilero
+Authors: Valérian Saliou, regilero
 Last revision: 11/02/12
 
 */
