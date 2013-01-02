@@ -35,7 +35,7 @@ if((isset($_GET['latitude']) && !empty($_GET['latitude'])) && (isset($_GET['long
 	header('Content-Type: text/xml; charset=utf-8');
 	
 	// Get the XML content
-	$xml = read_url('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
+	$xml = read_url('http://www.openstreetmap.org/?mlat'.urlencode($_GET['latitude']).'&amp;mlon='.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&amp;zoom=14&amp;layers=0B00FT');
 	
 	exit($xml);
 }
