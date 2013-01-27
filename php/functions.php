@@ -592,11 +592,8 @@ function hideErrors() {
 	// Hide errors if not developer
 	if(!isDeveloper()) {
 		ini_set('display_errors', 'off');
-		ini_set('error_reporting', 0);
-	}
-	
-	// Developers need to get error reports!
-	else {
+		//ini_set('error_reporting', 0); not used anymore since we still need errors to be logged in /var/logs
+	} else {
 		ini_set('display_errors', 'on');
 		ini_set('error_reporting', E_ALL);
 	}
