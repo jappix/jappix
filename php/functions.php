@@ -591,10 +591,10 @@ function genHash($version) {
 function hideErrors() {
 	// Hide errors if not developer
 	if(!isDeveloper()) {
-		ini_set('display_errors', 'off');
+		ini_set('display_errors', 0);
 		//ini_set('error_reporting', 0); not used anymore since we still need errors to be logged in /var/logs
 	} else {
-		ini_set('display_errors', 'on');
+		ini_set('display_errors', 1);
 		ini_set('error_reporting', E_ALL);
 	}
 }
