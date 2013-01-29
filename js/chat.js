@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Eric
-Last revision: 13/02/12
+Last revision: 23/01/13
 
 */
 
@@ -306,8 +306,18 @@ function chatCreate(hash, xid, nick, type) {
 	var inputDetect = $('#page-engine #' + hash + ' .message-area');
 	
 	inputDetect.focus(function() {
+		// Clean notifications for this chat
 		chanCleanNotify(hash);
-	})
+		
+		// Store focus on this chat!
+		CHAT_FOCUS_HASH = hash;
+	});
+	
+	inputDetect.blur(function() {
+		// Reset storage about focus on this chat!
+		if(CHAT_FOCUS_HASH == hash)
+			CHAT_FOCUS_HASH = null;
+	});
 	
 	inputDetect.keypress(function(e) {
 		// Enter key

@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 22/08/12
+Last revision: 23/01/13
 
 */
 
@@ -24,6 +24,7 @@ var MINI_TITLE					= null;
 var MINI_DOMAIN					= null;
 var MINI_USER					= null;
 var MINI_PASSWORD				= null;
+var MINI_ACTIVE					= null;
 var MINI_RECONNECT				= 0;
 var MINI_CHATS					= [];
 var MINI_GROUPCHATS				= [];
@@ -375,8 +376,14 @@ function handleMessageMini(msg) {
 				displayMessageMini(type, body, use_xid, nick, hash, time, stamp, message_type);
 				
 				// Notify the user if not focused & the message is not a groupchat old one
-				if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !isFocused()) && (message_type == 'user-message'))
+				if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !isFocused() || (MINI_ACTIVE != hash)) && (message_type == 'user-message')) {
+					// Play a sound
+					if(type != 'groupchat')
+						soundPlayMini();
+					
+					// Show a notification bubble
 					notifyMessageMini(hash);
+				}
 				
 				logThis('Message received from: ' + from);
 			}
@@ -493,7 +500,7 @@ function handleIQMini(iq) {
 		}
 		
 		// Ping
-		else if($(iqNode).find('ping').size() && (iqType == 'get')) {
+		else if(jQuery(iqNode).find('ping').size() && (iqType == 'get')) {
 			/* REF: http://xmpp.org/extensions/xep-0199.html */
 			
 			con.send(iqResponse);
@@ -502,7 +509,7 @@ function handleIQMini(iq) {
 		}
 		
 		// Not implemented
-		else if(!$(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
+		else if(!jQuery(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
 			// Append stanza content
 			for(var i = 0; i < iqNode.childNodes.length; i++)
 				iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
@@ -1565,7 +1572,7 @@ function createMini(domain, user, password) {
 			);
 			
 			// IE6 makes the image blink when animated...
-			if(jQuery.browser.msie && ( parseInt(jQuery.browser.version) < 7 ) )
+			if(jQuery.browser.msie && (parseInt(jQuery.browser.version) < 7))
 				return;
 			
 			// Add timers
@@ -2076,6 +2083,18 @@ function chatEventsMini(type, xid, hash) {
 		}
 	});
 	
+	// Focus/Blur events
+	jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').focus(function() {
+		// Store active chat
+		MINI_ACTIVE = hash;
+	})
+	
+	.blur(function() {
+		// Reset active chat
+		if(MINI_ACTIVE == hash)
+			MINI_ACTIVE = null;
+	});
+	
 	// Chatstate events
 	eventsChatstateMini(xid, hash, type);
 }
@@ -2552,8 +2571,6 @@ function eventsChatstateMini(xid, hash, type) {
 		// Nothing in the input, user is active
 		if(!jQuery(this).val())
 			sendChatstateMini('active', xid, hash);
-		
-		// Something was written, user started writing again
 		else
 			sendChatstateMini('composing', xid, hash);
 	})
@@ -2566,11 +2583,46 @@ function eventsChatstateMini(xid, hash, type) {
 		// Nothing in the input, user is inactive
 		if(!jQuery(this).val())
 			sendChatstateMini('inactive', xid, hash);
-		
-		// Something was written, user paused
 		else
 			sendChatstateMini('paused', xid, hash);
 	});
+}
+
+// Plays a sound
+function soundPlayMini() {
+	try {
+		// Not supported!
+		if(jQuery.browser.msie && (parseInt(jQuery.browser.version) < 9))
+			return false;
+		
+		// Append the sound container
+		if(!exists('#jappix_mini #jm_audio')) {
+			jQuery('#jappix_mini').append(
+				'<div id="jm_audio">' + 
+					'<audio preload="auto">' + 
+						'<source src="' + JAPPIX_STATIC + 'snd/receive-message.mp3" />' + 
+						'<source src="' + JAPPIX_STATIC + 'snd/receive-message.oga" />' + 
+					'</audio>' + 
+				'</div>'
+			);
+		}
+		
+		// Play the sound
+		var audio_select = document.getElementById('jm_audio').getElementsByTagName('audio')[0];
+		
+		// Avoids Safari bug (2011 and less versions)
+		try {
+			audio_select.load();
+		} finally {
+			audio_select.play();
+		}
+	}
+	
+	catch(e) {}
+	
+	finally {
+		return false;
+	}
 }
 
 // TypeWatch to set a timeout to input value reading
@@ -2622,7 +2674,7 @@ function launchMini(autoconnect, show_pane, domain, user, password) {
 	jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini.css' + '" type="text/css" media="all" />');
 	
 	// Legacy IE stylesheet
-	if(jQuery.browser.msie && ( parseInt(jQuery.browser.version) < 7 ) )
+	if(jQuery.browser.msie && (parseInt(jQuery.browser.version) < 7))
 		jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini-ie.css' + '" type="text/css" media="all" />');
 	
 	// Disables the browser HTTP-requests stopper

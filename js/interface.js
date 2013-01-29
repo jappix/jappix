@@ -7,7 +7,7 @@ These are the interface JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/08/12
+Last revision: 23/01/13
 
 */
 
@@ -232,6 +232,8 @@ function generateChatLog(xid, hash) {
 }
 
 // Notifies the user from a new incoming message
+var CHAT_FOCUS_HASH = null;
+
 function messageNotify(hash, type) {
 	// Initialize the vars
 	var chat_switch = '#page-switch .';
@@ -239,7 +241,7 @@ function messageNotify(hash, type) {
 	var active = $(tested).hasClass('activechan');
 	
 	// We notify the user if he has not the focus on the chat
-	if(!active || !isFocused()) {
+	if(!active || !isFocused() || (CHAT_FOCUS_HASH != hash)) {
 		if(!active) {
 			if(type == 'personal')
 				$(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');

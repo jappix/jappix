@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 19/08/12
+Last revision: 23/01/13
 
 */
 
@@ -357,8 +357,8 @@ function handleMessage(message) {
 				// We notify the user there's a new unread muc message
 				else {
 					messageNotify(hash, 'unread');
-
-					//Play sound to all users in the muc, except user who sent the message.
+					
+					// Play sound to all users in the muc, except user who sent the message.
                     if(myNick != resource) {
                         soundPlay(1);
                     }
@@ -392,10 +392,9 @@ function handleMessage(message) {
 				
 				// We tell the user that a new chat has started
 				soundPlay(0);
-			}
-			
-			else
+			} else {
 				soundPlay(1);
+			}
 			
 			// Display the received message
 			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', notXHTML, '', 'him');
