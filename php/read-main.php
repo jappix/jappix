@@ -8,8 +8,8 @@ This is the main configuration reader
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 12/06/12
+Author: Valérian Saliou, Maranda
+Last revision: 31/01/13
 
 */
 
@@ -29,7 +29,6 @@ $main_conf = array(
 	     	'anonymous'				=> 'on',
 	     	'http_auth'				=> 'off',
 	     	'registration'			=> 'on',
-	     	'bosh_proxy'			=> 'on',
 	     	'manager_link'			=> 'on',
 	     	'groupchats_join'		=> '',
 	     	'groupchats_suggest'	=> 'on',
@@ -52,11 +51,11 @@ $main_data = readXML('conf', 'main');
 if($main_data) {
 	// Initialize the main configuration XML data
 	$main_xml = new SimpleXMLElement($main_data);
-	
+
 	// Loop the main configuration elements
 	foreach($main_xml->children() as $main_child) {
 		$main_value = $main_child->getName();
-		
+
 		// Only push this to the array if it exists
 		if(isset($main_conf[$main_value]) && (string)$main_child)
 			$main_conf[$main_value] = $main_child;
@@ -74,7 +73,6 @@ define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('HTTP_AUTH', $main_conf['http_auth']);
 define('REGISTRATION', $main_conf['registration']);
-define('BOSH_PROXY', $main_conf['bosh_proxy']);
 define('MANAGER_LINK', $main_conf['manager_link']);
 define('GROUPCHATS_JOIN', $main_conf['groupchats_join']);
 define('GROUPCHATS_SUGGEST', $main_conf['groupchats_suggest']);
