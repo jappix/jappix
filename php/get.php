@@ -195,6 +195,7 @@ if($file && $type) {
 				header('Content-Type: application/javascript; charset=utf-8');
 		}
 		
+		// Images
 		else if($mime == 'png')
 			header('Content-Type: image/png');
 		else if($mime == 'gif')
@@ -203,8 +204,22 @@ if($file && $type) {
 			header('Content-Type: image/jpeg');
 		else if($mime == 'bmp')
 			header('Content-Type: image/bmp');
+		
+		// Sounds
 		else if(($mime == 'oga') || ($mime == 'ogg'))
 			header('Content-Type: audio/ogg');
+		else if($mime == 'mp3')
+			header('Content-Type: audio/mpeg');
+		
+		// Fonts
+		else if($mime == 'woff')
+			header('Content-Type: application/x-font-woff');
+		else if($mime == 'ttf')
+			header('Content-Type: application/x-font-ttf');
+		else if($mime == 'eot')
+			header('Content-Type: application/vnd.ms-fontobject');
+		else if($mime == 'svg')
+			header('Content-Type: image/svg+xml');
 		
 		// Catch the file MIME type
 		else

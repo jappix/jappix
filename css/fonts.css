@@ -7,30 +7,42 @@ This is the fonts CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 20/10/12
+Last revision: 05/02/13
 
 */
 
 @font-face {
-	font-family: PT Sans;
-	src: url(../ttf/PTSans.ttf) format('truetype');
+	font-family: 'PT Sans';
+	src: url('../fonts/eot/ptsans.eot');
+	src: url('../fonts/eot/ptsans.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsans.woff') format('woff'),
+	     url('../fonts/ttf/ptsans.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-style: italic;
-	src: url(../ttf/PTSans-Italic.ttf) format('truetype');
+	src: url('../fonts/eot/ptsansitalic.eot');
+	src: url('../fonts/eot/ptsansitalic.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansitalic.woff') format('woff'),
+	     url('../fonts/ttf/ptsansitalic.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-weight: bold;
-	src: url(../ttf/PTSans-Bold.ttf) format('truetype');
+	src: url('../fonts/eot/ptsansbold.eot');
+	src: url('../fonts/eot/ptsansbold.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansbold.woff') format('woff'),
+	     url('../fonts/ttf/ptsansbold.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: PT Sans;
+	font-family: 'PT Sans';
 	font-weight: bold;
 	font-style: italic;
-	src: url(../ttf/PTSans-Bold-Italic.ttf) format('truetype');
+	src: url('../fonts/eot/ptsansbolditalic.eot');
+	src: url('../fonts/eot/ptsansbolditalic.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansbolditalic.woff') format('woff'),
+	     url('../fonts/ttf/ptsansbolditalic.ttf') format('truetype');
 }
