@@ -49,7 +49,7 @@ $type = '';
 $file = '';
 
 // Read the type var
-if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|js|img|snd|store)$/', $_GET['t']))
+if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|js|img|snd|fonts|store)$/', $_GET['t']))
 	$type = $_GET['t'];
 
 // Read the files var
@@ -98,6 +98,7 @@ if($file && $type) {
 			// Audio file
 			case 'ogg':
 			case 'oga':
+			case 'mp3':
 				$type = 'snd';
 				
 				break;
@@ -109,6 +110,15 @@ if($file && $type) {
 			case 'gif':
 			case 'bmp':
 				$type = 'img';
+				
+				break;
+			
+			// Image file
+			case 'woff':
+			case 'ttf':
+			case 'eot':
+			case 'svg':
+				$type = 'fonts';
 				
 				break;
 		}

@@ -15,26 +15,26 @@ Last revision: 05/02/13
 
 @font-face {
 	font-family: 'PT Sans';
-	src: url('../fonts/eot/ptsans.eot');
+	src: url(../fonts/eot/ptsans.eot);
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-style: italic;
-	src: url('../fonts/eot/ptsansitalic.eot');
+	src: url(../fonts/eot/ptsansitalic.eot);
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-weight: bold;
-	src: url('../fonts/eot/ptsansbold.eot');
+	src: url(../fonts/eot/ptsansbold.eot);
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-weight: bold;
 	font-style: italic;
-	src: url('../fonts/eot/ptsansbolditalic.eot');
+	src: url(../fonts/eot/ptsansbolditalic.eot);
 }
 
 /* rgba(255,255,255,0.9) */
