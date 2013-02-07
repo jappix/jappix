@@ -245,7 +245,7 @@ function checkInboxMessage() {
 	}
 	
 	else {
-		$(mPath + 'input[type=text], ' + mPath + 'textarea').each(function() {
+		$(mPath + 'input[type="text"], ' + mPath + 'textarea').each(function() {
 			var current = this;
 			
 			if(!$(current).val()) {
@@ -317,7 +317,7 @@ function displayInboxMessage(from, subject, content, status, id, date) {
 	if(nearest == 0)
 		$(inbox + 'inbox-results .inbox').append(nContent);
 	else
-		$('#inbox .one-message[data-stamp=' + nearest + ']:first').before(nContent);
+		$('#inbox .one-message[data-stamp="' + nearest + '"]:first').before(nContent);
 	
 	// Click events
 	$(one_message + ' .message-head').click(function() {
@@ -609,7 +609,7 @@ function handleInboxAttach(responseXML) {
 	}
 	
 	// Reset the attach bubble
-	$('#inbox .inbox-new-file input[type=file]').val('');
+	$('#inbox .inbox-new-file input[type="file"]').val('');
 	$('#inbox .wait').hide();
 }
 
@@ -678,14 +678,14 @@ function launchInbox() {
 	
 	// Upload form submit event
 	$('#inbox .inbox-new-file').submit(function() {
-		if($('#inbox .wait').is(':hidden') && $('#inbox .inbox-new-file input[type=file]').val())
+		if($('#inbox .wait').is(':hidden') && $('#inbox .inbox-new-file input[type="file"]').val())
 			$(this).ajaxSubmit(attach_options);
 		
 		return false;
 	});
 	
 	// Upload input change event
-	$('#inbox .inbox-new-file input[type=file]').change(function() {
+	$('#inbox .inbox-new-file input[type="file"]').change(function() {
 		if($('#inbox .wait').is(':hidden') && $(this).val())
 			$('#inbox .inbox-new-file').ajaxSubmit(attach_options);
 		

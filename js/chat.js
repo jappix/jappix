@@ -254,7 +254,7 @@ function chatCreate(hash, xid, nick, type) {
 			$('#' + hash + ' .content').append(chat_history);
 			
 			// Filter old groups & messages
-			$('#' + hash + ' .one-group[data-type=user-message]').addClass('from-history').attr('data-type', 'old-message');
+			$('#' + hash + ' .one-group[data-type="user-message"]').addClass('from-history').attr('data-type', 'old-message');
 			$('#' + hash + ' .user-message').removeClass('user-message').addClass('old-message');
 			
 			// Regenerate user names
@@ -275,7 +275,7 @@ function chatCreate(hash, xid, nick, type) {
 		}
 		
 		// Add button
-		if(!exists('#buddy-list .buddy[data-xid=' + escape(xid) + ']'))
+		if(!exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
 			$('#' + hash + ' .tools-add').click(function() {
 				// Hide the icon (to tell the user all is okay)
 				$(this).hide();

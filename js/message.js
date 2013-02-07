@@ -101,10 +101,10 @@ function handleMessage(message) {
 	}
 	
 	// Invite message
-	if($(node).find('x[xmlns=' + NS_MUC_USER + '] invite').size()) {
+	if($(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').size()) {
 		// We get the needed values
-		var iFrom = $(node).find('x[xmlns=' + NS_MUC_USER + '] invite').attr('from');
-		var iRoom = $(node).find('x[xmlns=' + NS_XCONFERENCE + ']').attr('jid');
+		var iFrom = $(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').attr('from');
+		var iRoom = $(node).find('x[xmlns="' + NS_XCONFERENCE + '"]').attr('jid');
 		
 		// Old invite method?
 		if(!iRoom)
@@ -747,7 +747,7 @@ function generateStyle(hash) {
 	var styles = '#' + hash + ' div.bubble-style';
 	var font = styles + ' a.font-current';
 	var fontsize = styles + ' a.fontsize-current';
-	var checkbox = styles + ' input[type=checkbox]';
+	var checkbox = styles + ' input[type="checkbox"]';
 	var color = '#' + hash + ' .message-area[data-color]';
 	var style = '';
 	

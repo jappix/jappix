@@ -68,9 +68,9 @@ function parseMusic(xml, type) {
 		$(path_type).append('<a href="#" class="song" data-id="' + id + '">' + title + '</a>');
 		
 		// Current playing song?
-		var current_song = $(path_type + ' a[data-id=' + id + ']');
+		var current_song = $(path_type + ' a[data-id="' + id + '"]');
 		
-		if(exists('.music-audio[data-id=' + id + ']'))
+		if(exists('.music-audio[data-id="' + id + '"]'))
 			current_song.addClass('playing');
 		
 		// Click event
@@ -236,7 +236,7 @@ function addMusic(id, title, artist, source, duration, uri, mime, type) {
 	
 	// We set a current played track indicator
 	$(path + '.list a').removeClass('playing');
-	$(path + 'a[data-id=' + id + ']').addClass('playing');
+	$(path + 'a[data-id="' + id + '"]').addClass('playing');
 	
 	// We publish what we listen
 	publishMusic(title, artist, source, duration, uri);

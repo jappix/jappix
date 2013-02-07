@@ -251,7 +251,7 @@ Last revision: 20/10/12
 	float: left;
 }
 
-.popup input[type=text] {
+.popup input[type="text"] {
 	min-width: 174px;
 }
 
@@ -289,8 +289,8 @@ Last revision: 20/10/12
 	min-width: 180px;
 }
 
-.popup .results input[type=checkbox],
-.popup .results input[type=radio] {
+.popup .results input[type="checkbox"],
+.popup .results input[type="radio"] {
 	margin-top: 7px;
 }
 

@@ -118,7 +118,7 @@ Last revision: 10/04/12
 	float: right;
 }
 
-#favorites input[type=checkbox] {
+#favorites input[type="checkbox"] {
 	margin-top: 5px;
 }
 

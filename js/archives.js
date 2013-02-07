@@ -102,7 +102,7 @@ function handleListArchives(iq) {
 	$('#archives .wait').hide();
 	
 	// Any error?
-	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+	if(handleErrorReply(iq) || !exists('#archives[data-session="' + iq.getID() + '"]'))
 		return;
 	
 	// Get the last archive date
@@ -153,7 +153,7 @@ function handleDayArchives(iq) {
 	$('#archives .wait').hide();
 	
 	// Any error?
-	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+	if(handleErrorReply(iq) || !exists('#archives[data-session="' + iq.getID() + '"]'))
 		return;
 	
 	// Get each archive thread
@@ -212,7 +212,7 @@ function handleRetrieveArchives(iq) {
 	$('#archives .wait').hide();
 	
 	// Any error?
-	if(handleErrorReply(iq) || !exists('#archives[data-session=' + iq.getID() + ']'))
+	if(handleErrorReply(iq) || !exists('#archives[data-session="' + iq.getID() + '"]'))
 		return;
 	
 	// Get the node

@@ -227,7 +227,7 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 // Applies the buddy editing input events
 function applyBuddyInput(xid) {
 	// Initialize
-	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + ']';
+	var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"]';
 	var rename = path + ' .bm-rename input';
 	var group = path + ' .bm-group input';
 	var manage_infos = path + ' .manage-infos';
@@ -276,7 +276,7 @@ function applyBuddyInput(xid) {
 				$(bm_choose).prepend('<label><input type="checkbox" data-group="' + escaped_value + '" /><span>' + this_value.htmlEnc() + '</span></label>');
 			
 			// Check the checkbox
-			$(bm_choose + ' input[data-group=' + escaped_value + ']').attr('checked', true);
+			$(bm_choose + ' input[data-group="' + escaped_value + '"]').attr('checked', true);
 			
 			// Reset the value of this input
 			$(this).val('');
@@ -381,7 +381,7 @@ function applyBuddyInput(xid) {
 // Applies the buddy editing hover events
 function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 	// Generate the values
-	var bPath = '#buddy-list .' + group_hash + ' .buddy[data-xid=' + escape(xid) + ']';
+	var bPath = '#buddy-list .' + group_hash + ' .buddy[data-xid="' + escape(xid) + '"]';
 	var iPath = bPath + ' .buddy-infos';
 	
 	// Apply the hover event
@@ -463,7 +463,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 function buddyInfosPosition(xid, group_hash) {
 	// Paths
 	var group = '#buddy-list .' + group_hash;
-	var buddy = group + ' .buddy[data-xid=' + escape(xid) + ']';
+	var buddy = group + ' .buddy[data-xid="' + escape(xid) + '"]';
 	var buddy_infos = buddy + ' .buddy-infos';
 	
 	// Get the offset to define
@@ -483,11 +483,11 @@ function buddyInfosPosition(xid, group_hash) {
 
 // Generates an array of the current groups of a buddy
 function thisBuddyGroups(xid) {
-	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + '] ';
+	var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] ';
 	var array = new Array();
 	
 	// Each checked checkboxes
-	$(path + 'div.bm-choose input[type=checkbox]').filter(':checked').each(function() {
+	$(path + 'div.bm-choose input[type="checkbox"]').filter(':checked').each(function() {
 		array.push(unescape($(this).attr('data-group')));
 	});
 	
@@ -537,7 +537,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	logThis('Buddy edit: ' + xid, 3);
 	
 	// Initialize
-	var path = '#buddy-list .buddy[data-xid=' + escape(xid) + '] .';
+	var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] .';
 	var html = '<div class="manage-infos">';
 	
 	// Get the privacy state

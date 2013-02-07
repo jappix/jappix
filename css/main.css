@@ -62,8 +62,8 @@ textarea {
 }
 
 input:focus,
-input[type=submit]:hover,
-input[type=reset]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
 textarea:focus {
 	border: 1px solid #e1a014;
 	box-shadow: inset 0 3px 10px #edd9bc;
@@ -71,13 +71,13 @@ textarea:focus {
 	-webkit-box-shadow: inset 0 3px 10px #edd9bc;
 }
 
-input[type=submit],
-input[type=reset] {
+input[type="submit"],
+input[type="reset"] {
 	cursor: pointer;
 }
 
-input[type=submit]:active,
-input[type=reset]:active {
+input[type="submit"]:active,
+input[type="reset"]:active {
 	box-shadow: inset 0 3px 15px #e1a753;
 	-moz-box-shadow: inset 0 3px 15px #e1a753;
 	-webkit-box-shadow: inset 0 3px 15px #e1a753;
@@ -105,12 +105,12 @@ input.placeholder {
 	color: #78868a !important;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
 	margin-top: 2px;
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
 	background: transparent none !important;
 	border: 0 none !important;
 }

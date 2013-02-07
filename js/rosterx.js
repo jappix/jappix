@@ -54,7 +54,7 @@ function closeRosterX() {
 // Parses a rosterx query
 function parseRosterX(data) {
 	// Main selector
-	var x = $(data).find('x[xmlns=' + NS_ROSTERX + ']:first');
+	var x = $(data).find('x[xmlns="' + NS_ROSTERX + '"]:first');
 	
 	// Parse data
 	x.find('item').each(function() {
@@ -75,11 +75,11 @@ function parseRosterX(data) {
 	// Click to check/uncheck
 	$('#rosterx .oneresult').click(function(evt) {
 		// No need to apply when click on input
-		if($(evt.target).is('input[type=checkbox]'))
+		if($(evt.target).is('input[type="checkbox"]'))
 			return;
 		
 		// Input selector
-		var checkbox = $(this).find('input[type=checkbox]');
+		var checkbox = $(this).find('input[type="checkbox"]');
 		
 		// Check or uncheck?
 		if(checkbox.filter(':checked').size())
@@ -117,7 +117,7 @@ function displayRosterX(xid, nick, group, action) {
 // Saves the rosterx settings
 function saveRosterX() {
 	// Send the requests
-	$('#rosterx .results input[type=checkbox]').filter(':checked').each(function() {
+	$('#rosterx .results input[type="checkbox"]').filter(':checked').each(function() {
 		// Read the attributes
 		var nick = $(this).attr('data-name');
 		var xid = $(this).attr('data-xid');
@@ -178,9 +178,9 @@ function launchRosterX() {
 	
 	$('#rosterx .rosterx-head a').click(function() {
 		if($(this).is('.check'))
-			$('#rosterx .results input[type=checkbox]').attr('checked', true);
+			$('#rosterx .results input[type="checkbox"]').attr('checked', true);
 		else if($(this).is('.uncheck'))
-			$('#rosterx .results input[type=checkbox]').removeAttr('checked');
+			$('#rosterx .results input[type="checkbox"]').removeAttr('checked');
 		
 		return false;
 	});

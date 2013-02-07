@@ -147,13 +147,13 @@ function handleDiscoInfos(iq) {
 	});
 	
 	// Data-form values
-	$(query).find('x[xmlns=' + NS_XDATA + ']').each(function() {
+	$(query).find('x[xmlns="' + NS_XDATA + '"]').each(function() {
 		// Initialize some stuffs
 		var pString = '';
 		var sortVar = new Array();
 		
 		// Add the form type field
-		$(this).find('field[var=FORM_TYPE] value').each(function() {
+		$(this).find('field[var="FORM_TYPE"] value').each(function() {
 			var cText = $(this).text();
 			
 			if(cText)
@@ -161,7 +161,7 @@ function handleDiscoInfos(iq) {
 		});
 		
 		// Add the var attributes into an array
-		$(this).find('field:not([var=FORM_TYPE])').each(function() {
+		$(this).find('field:not([var="FORM_TYPE"])').each(function() {
 			var cVar = $(this).attr('var');
 			
 			if(cVar)

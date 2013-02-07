@@ -94,7 +94,7 @@ function createBoard(type, id) {
 	$('#board').append('<div class="one-board ' + type + '" data-id="' + id + '">' + text + '</div>');
 	
 	// Events (click and auto-hide)
-	$('#board .one-board.' + type + '[data-id=' + id + ']')
+	$('#board .one-board.' + type + '[data-id="' + id + '"]')
 	
 	.click(function() {
 		closeThisBoard(this);

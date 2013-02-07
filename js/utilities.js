@@ -78,7 +78,7 @@ function isAnonymous() {
 
 // Checks if this is a private chat user
 function isPrivate(xid) {
-	if(exists('[data-xid=' + escape(xid) + '][data-type=groupchat]'))
+	if(exists('[data-xid="' + escape(xid) + '"][data-type="groupchat"]'))
 		return true;
 	
 	return false;
@@ -119,12 +119,12 @@ function isObsolete() {
 
 // Gets a MUC user XID
 function getMUCUserXID(room, nick) {
-	return $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-xid');
+	return $('div.chat[data-xid="' + escape(room) + '"] div[data-nick="' + escape(nick) + '"]').attr('data-xid');
 }
 
 // Gets a MUC user read XID
 function getMUCUserRealXID(room, nick) {
-	return $('div.chat[data-xid=' + escape(room) + '] div[data-nick=' + escape(nick) + ']').attr('data-realxid');
+	return $('div.chat[data-xid="' + escape(room) + '"] div[data-nick="' + escape(nick) + '"]').attr('data-realxid');
 }
 
 // Gets the server of the user

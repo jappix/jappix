@@ -211,46 +211,46 @@ Last revision: 20/10/12
 	float: left;
 }
 
-.notifications-content .one-notification[data-type=subscribe] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="subscribe"] .notification-actions span.talk-images {
 	background-position: 0 -1796px;
 }
 
-.notifications-content .one-notification[data-type=invite_room] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="invite_room"] .notification-actions span.talk-images {
 	background-position: 0 -1812px;
 }
 
-.notifications-content .one-notification[data-type=send] .notification-actions span.talk-images,
-.notifications-content .one-notification[data-type=send_accept] .notification-actions span.talk-images,
-.notifications-content .one-notification[data-type=send_reject] .notification-actions span.talk-images,
-.notifications-content .one-notification[data-type=send_fail] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="send"] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type="send_accept"] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type="send_reject"] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type="send_fail"] .notification-actions span.talk-images {
 	background-position: 0 -1956px;
 }
 
-.notifications-content .one-notification[data-type=rosterx] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="rosterx"] .notification-actions span.talk-images {
 	background-position: 0 -1844px;
 }
 
-.notifications-content .one-notification[data-type=comment] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="comment"] .notification-actions span.talk-images {
 	background-position: 0 -1860px;
 }
 
-.notifications-content .one-notification[data-type=like] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="like"] .notification-actions span.talk-images {
 	background-position: 0 -1876px;
 }
 
-.notifications-content .one-notification[data-type=quote] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="quote"] .notification-actions span.talk-images {
 	background-position: 0 -1892px;
 }
 
-.notifications-content .one-notification[data-type=wall] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="wall"] .notification-actions span.talk-images {
 	background-position: 0 -1908px;
 }
 
-.notifications-content .one-notification[data-type=photo] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="photo"] .notification-actions span.talk-images {
 	background-position: 0 -1924px;
 }
 
-.notifications-content .one-notification[data-type=video] .notification-actions span.talk-images {
+.notifications-content .one-notification[data-type="video"] .notification-actions span.talk-images {
 	background-position: 0 -1940px;
 }
 

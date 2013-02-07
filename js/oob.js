@@ -146,7 +146,7 @@ function handleUploadOOB(responseXML) {
 	if(!fID)
 		oob_has = ':has(.wait)';
 	else
-		oob_has = ':has(#oob-upload input[value=' + fID + '])';
+		oob_has = ':has(#oob-upload input[value="' + fID + '"])';
 	
 	var xid = $('#page-engine .page-engine-chan' + oob_has).attr('data-xid');
 	var oob_type = $('#page-engine .chat-tools-file' + oob_has).attr('data-oob');

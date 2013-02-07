@@ -494,7 +494,7 @@ Last revision: 20/10/12
 	display: none;
 }
 
-#home .anonymouser input[type=text] {
+#home .anonymouser input[type="text"] {
 	width: 160px;
 }
 
@@ -533,14 +533,14 @@ Last revision: 20/10/12
 	margin-bottom: 5px;
 }
 
-#home input[type=text],
-#home input[type=password],
+#home input[type="text"],
+#home input[type="password"],
 #home select {
 	width: 140px;
 	margin-top: -2px;
 }
 
-#home input[type=submit] {
+#home input[type="submit"] {
 	min-width: 120px;
 	float: right;
 }

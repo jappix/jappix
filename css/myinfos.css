@@ -71,51 +71,51 @@ Last revision: 31/08/11
 	background-color: #ededed;
 }
 
-#my-infos .f-presence div.bubble a[data-value=available] {
+#my-infos .f-presence div.bubble a[data-value="available"] {
 	background-position: 4px -167px;
 }
 
-#my-infos .f-presence div.bubble a[data-value=away] {
+#my-infos .f-presence div.bubble a[data-value="away"] {
 	background-position: 4px -183px;
 }
 
-#my-infos .f-presence div.bubble a[data-value=xa] {
+#my-infos .f-presence div.bubble a[data-value="xa"] {
 	background-position: 4px -199px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=crazy] {
+#my-infos .f-mood div.bubble a[data-value="crazy"] {
 	background-position: 4px -296px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=excited] {
+#my-infos .f-mood div.bubble a[data-value="excited"] {
 	background-position: 4px -314px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=playful] {
+#my-infos .f-mood div.bubble a[data-value="playful"] {
 	background-position: 4px -332px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=happy] {
+#my-infos .f-mood div.bubble a[data-value="happy"] {
 	background-position: 4px -350px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=shocked] {
+#my-infos .f-mood div.bubble a[data-value="shocked"] {
 	background-position: 4px -368px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=hot] {
+#my-infos .f-mood div.bubble a[data-value="hot"] {
 	background-position: 4px -386px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=sad] {
+#my-infos .f-mood div.bubble a[data-value="sad"] {
 	background-position: 4px -404px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=amorous] {
+#my-infos .f-mood div.bubble a[data-value="amorous"] {
 	background-position: 4px -422px;
 }
 
-#my-infos .f-mood div.bubble a[data-value=confident] {
+#my-infos .f-mood div.bubble a[data-value="confident"] {
 	background-position: 4px -440px;
 }
 
@@ -123,92 +123,92 @@ Last revision: 31/08/11
 	background-position: 0 -352px;
 }
 
-#my-infos .f-mood a[data-value=crazy] span,
+#my-infos .f-mood a[data-value="crazy"] span,
 .mood-one {
 	background-position: 0 -298px;
 }
 
-#my-infos .f-mood a[data-value=excited] span,
+#my-infos .f-mood a[data-value="excited"] span,
 .mood-two {
 	background-position: 0 -316px;
 }
 
-#my-infos .f-mood a[data-value=playful] span,
+#my-infos .f-mood a[data-value="playful"] span,
 .mood-three {
 	background-position: 0 -334px;
 }
 
-#my-infos .f-mood a[data-value=happy] span,
+#my-infos .f-mood a[data-value="happy"] span,
 .mood-four {
 	background-position: 0 -352px;
 }
 
-#my-infos .f-mood a[data-value=shocked] span,
+#my-infos .f-mood a[data-value="shocked"] span,
 .mood-five {
 	background-position: 0 -370px;
 }
 
-#my-infos .f-mood a[data-value=hot] span,
+#my-infos .f-mood a[data-value="hot"] span,
 .mood-six {
 	background-position: 0 -388px;
 }
 
-#my-infos .f-mood a[data-value=sad] span,
+#my-infos .f-mood a[data-value="sad"] span,
 .mood-seven {
 	background-position: 0 -406px;
 }
 
-#my-infos .f-mood a[data-value=amorous] span,
+#my-infos .f-mood a[data-value="amorous"] span,
 .mood-eight {
 	background-position: 0 -424px;
 }
 
-#my-infos .f-mood a[data-value=confident] span,
+#my-infos .f-mood a[data-value="confident"] span,
 .mood-nine {
 	background-position: 0 -442px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=doing_chores] {
+#my-infos .f-activity div.bubble a[data-value="doing_chores"] {
 	background-position: 4px -458px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=drinking] {
+#my-infos .f-activity div.bubble a[data-value="drinking"] {
 	background-position: 4px -476px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=eating] {
+#my-infos .f-activity div.bubble a[data-value="eating"] {
 	background-position: 4px -494px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=exercising] {
+#my-infos .f-activity div.bubble a[data-value="exercising"] {
 	background-position: 4px -512px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=grooming] {
+#my-infos .f-activity div.bubble a[data-value="grooming"] {
 	background-position: 4px -548px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=having_appointment] {
+#my-infos .f-activity div.bubble a[data-value="having_appointment"] {
 	background-position: 4px -566px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=inactive] {
+#my-infos .f-activity div.bubble a[data-value="inactive"] {
 	background-position: 4px -530px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=relaxing] {
+#my-infos .f-activity div.bubble a[data-value="relaxing"] {
 	background-position: 4px -620px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=talking] {
+#my-infos .f-activity div.bubble a[data-value="talking"] {
 	background-position: 4px -602px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=traveling] {
+#my-infos .f-activity div.bubble a[data-value="traveling"] {
 	background-position: 4px -584px;
 }
 
-#my-infos .f-activity div.bubble a[data-value=working] {
+#my-infos .f-activity div.bubble a[data-value="working"] {
 	background-position: 4px -638px;
 }
 
@@ -216,57 +216,57 @@ Last revision: 31/08/11
 	background-position: 0 -514px;
 }
 
-#my-infos .f-activity a[data-value=doing_chores] span,
+#my-infos .f-activity a[data-value="doing_chores"] span,
 .activity-doing_chores {
 	background-position: 0 -460px;
 }
 
-#my-infos .f-activity a[data-value=drinking] span,
+#my-infos .f-activity a[data-value="drinking"] span,
 .activity-drinking {
 	background-position: 0 -478px;
 }
 
-#my-infos .f-activity a[data-value=eating] span,
+#my-infos .f-activity a[data-value="eating"] span,
 .activity-eating {
 	background-position: 0 -496px;
 }
 
-#my-infos .f-activity a[data-value=exercising] span,
+#my-infos .f-activity a[data-value="exercising"] span,
 .activity-exercising {
 	background-position: 0 -514px;
 }
 
-#my-infos .f-activity a[data-value=grooming] span,
+#my-infos .f-activity a[data-value="grooming"] span,
 .activity-grooming {
 	background-position: 0 -550px;
 }
 
-#my-infos .f-activity a[data-value=having_appointment] span,
+#my-infos .f-activity a[data-value="having_appointment"] span,
 .activity-having_appointment {
 	background-position: 0 -568px;
 }
 
-#my-infos .f-activity a[data-value=inactive] span,
+#my-infos .f-activity a[data-value="inactive"] span,
 .activity-inactive {
 	background-position: 0 -532px;
 }
 
-#my-infos .f-activity a[data-value=relaxing] span,
+#my-infos .f-activity a[data-value="relaxing"] span,
 .activity-relaxing {
 	background-position: 0 -622px;
 }
 
-#my-infos .f-activity a[data-value=talking] span,
+#my-infos .f-activity a[data-value="talking"] span,
 .activity-talking {
 	background-position: 0 -604px;
 }
 
-#my-infos .f-activity a[data-value=traveling] span,
+#my-infos .f-activity a[data-value="traveling"] span,
 .activity-traveling {
 	background-position: 0 -586px;
 }
 
-#my-infos .f-activity a[data-value=working] span,
+#my-infos .f-activity a[data-value="working"] span,
 .activity-working {
 	background-position: 0 -640px;
 }

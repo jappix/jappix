@@ -95,7 +95,7 @@ function dataForm(host, type, node, action, target) {
 // Sends a given dataform
 function sendDataForm(type, action, x_type, id, xid, node, sessionid, target) {
 	// Path
-	var pathID = '#' + target + ' .results[data-session=' + id + ']';
+	var pathID = '#' + target + ' .results[data-session="' + id + '"]';
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -324,7 +324,7 @@ function handleDataFormContent(iq, type) {
 	var target = splitted[0];
 	var sessionID = target + '-' + splitted[1];
 	var from = fullXID(getStanzaFrom(iq));
-	var pathID = '#' + target + ' .results[data-session=' + sessionID + ']';
+	var pathID = '#' + target + ' .results[data-session="' + sessionID + '"]';
 	
 	// If an error occured
 	if(!iq || (iq.getType() != 'result'))
@@ -393,7 +393,7 @@ function handleDataFormContent(iq, type) {
 			var bNode = xCommand.attr('node');
 			var bSession = xCommand.attr('sessionid');
 			var bStatus = xCommand.attr('status');
-			var xRegister = $(handleXML).find('query[xmlns=' + NS_REGISTER + ']').text();
+			var xRegister = $(handleXML).find('query[xmlns="' + NS_REGISTER + '"]').text();
 			var xElement = $(handleXML).find('x');
 			
 			// Search done
@@ -424,7 +424,7 @@ function handleDataFormContent(iq, type) {
 						}
 					});
 
-					var bXID = $(this).find('field[var=jid] value:first').text();
+					var bXID = $(this).find('field[var="jid"] value:first').text();
 					var dName = bName;
 					
 					// Override "undefined" value
@@ -449,7 +449,7 @@ function handleDataFormContent(iq, type) {
 							'<div class="buttons-container">';
 					
 					// The buddy is not in our buddy list?
-					if(!exists('#buddy-list .buddy[data-xid=' + escape(bXID) + ']'))
+					if(!exists('#buddy-list .buddy[data-xid="' + escape(bXID) + '"]'))
 						bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
 					
 					// Chat button, if not in welcome/directory mode
@@ -594,18 +594,18 @@ function fillDataForm(xml, id) {
 	
 	// Initialize new vars
 	var target = id.split('-')[0];
-	var pathID = '#' + target + ' .results[data-session=' + id + ']';
+	var pathID = '#' + target + ' .results[data-session="' + id + '"]';
 	var selector, is_dataform;
 	
 	// Is it a dataform?
-	if($(xml).find('x[xmlns=' + NS_XDATA + ']').size())
+	if($(xml).find('x[xmlns="' + NS_XDATA + '"]').size())
 		is_dataform = true;
 	else
 		is_dataform = false;
 	
 	// Determines the good selector to use
 	if(is_dataform)
-		selector = $(xml).find('x[xmlns=' + NS_XDATA + ']');
+		selector = $(xml).find('x[xmlns="' + NS_XDATA + '"]');
 	else
 		selector = $(xml);
 	
@@ -819,7 +819,7 @@ function handleThisBrowse(iq) {
 	var from = fullXID(getStanzaFrom(iq));
 	var hash = hex_md5(from);
 	var handleXML = iq.getQuery();
-	var pathID = '#' + target + ' .results[data-session=' + sessionID + ']';
+	var pathID = '#' + target + ' .results[data-session="' + sessionID + '"]';
 	
 	// We first remove the waiting element
 	$(pathID + ' .disco-wait .' + hash).remove();

@@ -185,7 +185,7 @@ function doAnonymous() {
 	
 	// We check if the form is entirely completed
 	else {
-		$(aPath + 'input[type=text]').each(function() {
+		$(aPath + 'input[type="text"]').each(function() {
 			var select = $(this);
 			
 			if(!select.val())
@@ -400,7 +400,7 @@ function acceptReconnect(mode) {
 	showGeneralWait();
 	
 	// Reset some various stuffs
-	var groupchats = '#page-engine .page-engine-chan[data-type=groupchat]';
+	var groupchats = '#page-engine .page-engine-chan[data-type="groupchat"]';
 	$(groupchats + ' .list .role').hide();
 	$(groupchats + ' .one-group, ' + groupchats + ' .list .user').remove();
 	$(groupchats).attr('data-initial', 'false');

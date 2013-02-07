@@ -16,7 +16,7 @@ Last revision: 16/01/12
 	margin-top: 2px;
 }
 
-#vcard #vcard-avatar input[type=file] {
+#vcard #vcard-avatar input[type="file"] {
 	margin-left: 15px;
 }
 

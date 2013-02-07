@@ -25,7 +25,7 @@ function getAddUserName(xid) {
 // Handles an user name for buddy add tool
 function handleAddUserName(iq) {
 	// Was it an obsolete request?
-	if(!exists('.add-contact-name-get[data-for=' + escape(bareXID(getStanzaFrom(iq))) + ']'))
+	if(!exists('.add-contact-name-get[data-for="' + escape(bareXID(getStanzaFrom(iq))) + '"]'))
 		return false;
 	
 	// Reset the waiting item
@@ -87,7 +87,7 @@ function getBuddyName(xid) {
 	
 	// Not me!
 	else {
-		cname = $('#buddy-list .buddy[data-xid=' + escape(xid) + ']:first .buddy-name').html();
+		cname = $('#buddy-list .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
 		
 		// If the complete name exists
 		if(cname)

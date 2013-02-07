@@ -124,7 +124,7 @@ var addToHome = (function (w) {
 
 		if ( !overrideChecks && ( !isSafari || !isExpired || isSessionActive || isStandalone || !isReturningVisitor ) ) return;
 
-		var icons = options.touchIcon ? document.querySelectorAll('head link[rel=apple-touch-icon],head link[rel=apple-touch-icon-precomposed]') : [],
+		var icons = options.touchIcon ? document.querySelectorAll('head link[rel="apple-touch-icon"], head link[rel="apple-touch-icon-precomposed"]') : [],
 			sizes,
 			touchIcon = '',
 			closeButton,

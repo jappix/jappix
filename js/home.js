@@ -240,7 +240,7 @@ function loginForm() {
 	
 	// Something is missing?
 	else {
-		$(lPath + 'input[type=text], ' + lPath + 'input[type=password]').each(function() {
+		$(lPath + 'input[type="text"], ' + lPath + 'input[type="password"]').each(function() {
 			var select = $(this);
 			
 			if(!select.val())
@@ -279,7 +279,7 @@ function registerForm() {
 	
 	// Something is missing?
 	else {
-		$(rPath + 'input[type=text], ' + rPath + 'input[type=password]').each(function() {
+		$(rPath + 'input[type="text"], ' + rPath + 'input[type="password"]').each(function() {
 			var select = $(this);
 			
 			if(!select.val() || (select.is('#spassword') && pass && (pass != spass)))

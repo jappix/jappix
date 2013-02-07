@@ -59,7 +59,7 @@ function sendReceived(type, to, id) {
 // Tells the message has been received
 function messageReceived(hash, id) {
 	// Line selector
-	var path = $('#' + hash + ' .one-line[data-id=' + id + ']');
+	var path = $('#' + hash + ' .one-line[data-id="' + id + '"]');
 	
 	// Add a received marker
 	path.attr('data-received', 'true')
@@ -80,7 +80,7 @@ function messageReceived(hash, id) {
 // Checks if the message has been received
 function checkReceived(hash, id) {
 	// Fire a check 10 seconds later
-	$('#' + hash + ' .one-line[data-id=' + id + ']').oneTime('10s', function() {
+	$('#' + hash + ' .one-line[data-id="' + id + '"]').oneTime('10s', function() {
 		// Not received?
 		if($(this).attr('data-received') != 'true') {
 			// Add a "lost" marker

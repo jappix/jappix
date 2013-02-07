@@ -209,7 +209,7 @@ function displayBuddyComments(xid) {
 function lastActivityUserInfos(iq) {
 	// Extract the request ID
 	var id = iq.getID();
-	var path = '#userinfos[data-last=' + id + ']';
+	var path = '#userinfos[data-last="' + id + '"]';
 	
 	// End if session does not exist
 	if(!exists(path))
@@ -262,7 +262,7 @@ function lastActivityUserInfos(iq) {
 function versionUserInfos(iq) {
 	// Extract the request ID
 	var id = iq.getID();
-	var path = '#userinfos[data-version=' + id + ']';
+	var path = '#userinfos[data-version="' + id + '"]';
 	
 	// End if session does not exist
 	if(!exists(path))
@@ -297,7 +297,7 @@ function versionUserInfos(iq) {
 function localTimeUserInfos(iq) {
 	// Extract the request ID
 	var id = iq.getID();
-	var path = '#userinfos[data-time=' + id + ']';
+	var path = '#userinfos[data-time="' + id + '"]';
 	
 	// End if session does not exist
 	if(!exists(path))
@@ -383,7 +383,7 @@ function switchUInfos(id) {
 	$('#userinfos .content .one-lap').hide();
 	$('#userinfos .content .info' + id).show();
 	$('#userinfos .tab a').removeClass('tab-active');
-	$('#userinfos .tab a[data-key=' + id + ']').addClass('tab-active');
+	$('#userinfos .tab a[data-key="' + id + '"]').addClass('tab-active');
 	
 	return false;
 }

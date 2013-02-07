@@ -71,21 +71,21 @@ Last revision: 31/08/11
 	margin-bottom: 5px;
 }
 
-#manager input[type=radio] {
+#manager input[type="radio"] {
 	margin: 2px 8px 5px 0;
 }
 
-#manager input[type=text],
-#manager input[type=url],
-#manager input[type=password],
+#manager input[type="text"],
+#manager input[type="url"],
+#manager input[type="password"],
 #manager select {
 	margin-top: -2px;
 	font-size: 0.95em;
 }
 
-#manager input[type=text],
-#manager input[type=url],
-#manager input[type=password] {
+#manager input[type="text"],
+#manager input[type="url"],
+#manager input[type="password"] {
 	padding: 3px;
 	min-width: 220px;
 }

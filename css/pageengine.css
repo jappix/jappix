@@ -76,7 +76,7 @@ Last revision: 21/06/12
 	right: 12px;
 }
 
-#page-engine .page-engine-chan[data-type=groupchat] p.bc-infos {
+#page-engine .page-engine-chan[data-type="groupchat"] p.bc-infos {
 	left: 12px;
 }
 
@@ -668,12 +668,12 @@ Last revision: 21/06/12
 	width: 240px;
 }
 
-#page-engine .bubble-file input[type=file] {
+#page-engine .bubble-file input[type="file"] {
 	width: 220px;
 }
 
-#page-engine .bubble-file input[type=submit],
-#page-engine .bubble-file input[type=reset] {
+#page-engine .bubble-file input[type="submit"],
+#page-engine .bubble-file input[type="reset"] {
 	margin: 4px 4px 0 0;
 }
 
@@ -782,7 +782,7 @@ Last revision: 21/06/12
 	clear: both;
 }
 
-#page-engine .tooltip label input[type=checkbox] {
+#page-engine .tooltip label input[type="checkbox"] {
 	margin: 0 6px 0 0;
 	float: left;
 }

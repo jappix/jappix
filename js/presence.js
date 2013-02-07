@@ -96,7 +96,7 @@ function handlePresence(presence) {
 		status = '';
 	
 	// We get the photo content
-	var photo = $(node).find('x[xmlns=' + NS_VCARD_P + ']:first photo');
+	var photo = $(node).find('x[xmlns="' + NS_VCARD_P + '"]:first photo');
 	var checksum = photo.text();
 	var hasPhoto = photo.size();
 	
@@ -106,7 +106,7 @@ function handlePresence(presence) {
 		hasPhoto = 'false';
 	
 	// We get the CAPS content
-	var caps = $(node).find('c[xmlns=' + NS_CAPS + ']:first').attr('ver');
+	var caps = $(node).find('c[xmlns="' + NS_CAPS + '"]:first').attr('ver');
 	if(!caps || (type == 'error'))
 		caps = '';
 	
@@ -116,7 +116,7 @@ function handlePresence(presence) {
 	
 	// This presence comes from a groupchat
 	if(isPrivate(xid)) {
-		var x_muc = $(node).find('x[xmlns=' + NS_MUC_USER + ']:first');
+		var x_muc = $(node).find('x[xmlns="' + NS_MUC_USER + '"]:first');
 		var item = x_muc.find('item');
 		var affiliation = item.attr('affiliation');
 		var role = item.attr('role');
@@ -135,7 +135,7 @@ function handlePresence(presence) {
 		});
 		
 		// If this is an initial presence (when user join the room)
-		if(exists('#' + xidHash + '[data-initial=true]'))
+		if(exists('#' + xidHash + '[data-initial="true"]'))
 			notInitial = false;
 		
 		// If one user is quitting
@@ -176,13 +176,13 @@ function handlePresence(presence) {
 		// Subscribe stanza
 		else if(type == 'subscribe') {
 			// This is a buddy we can safely authorize, because we added him to our roster
-			if(exists('#buddy-list .buddy[data-xid=' + escape(xid) + ']'))
+			if(exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
 				acceptSubscribe(xid);
 			
 			// We do not know this entity, we'd be better ask the user
 			else {
 				// Get the nickname
-				var nickname = $(node).find('nick[xmlns=' + NS_NICK + ']:first').text();
+				var nickname = $(node).find('nick[xmlns="' + NS_NICK + '"]:first').text();
 				
 				// New notification
 				newNotification('subscribe', xid, [xid, nickname], status);
@@ -814,7 +814,7 @@ function presenceSend(checksum, autoidle) {
 		setDB('presence-show', 1, show);
 	
 	// We send the presence to our active MUC
-	$('.page-engine-chan[data-type=groupchat]').each(function() {
+	$('.page-engine-chan[data-type="groupchat"]').each(function() {
 		var tmp_nick = $(this).attr('data-nick');
 		
 		if(!tmp_nick)

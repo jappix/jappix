@@ -140,7 +140,7 @@ function quitFavorites() {
 // Adds a room to the favorites
 function addThisFavorite(roomXID, roomName) {
 	// Button path
-	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
+	var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
 	
 	// Add a remove button instead of the add one
 	$(button + '.add').replaceWith('<a href="#" class="one-button remove talk-images">' + _e("Remove") + '</a>');
@@ -165,7 +165,7 @@ function addThisFavorite(roomXID, roomName) {
 // Removes a room from the favorites
 function removeThisFavorite(roomXID, roomName) {
 	// Button path
-	var button = '#favorites .fsearch-results div[data-xid=' + escape(roomXID) + '] a.one-button';
+	var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
 	
 	// Add a remove button instead of the add one
 	$(button + '.remove').replaceWith('<a href="#" class="one-button add talk-images">' + _e("Add") + '</a>');
@@ -300,8 +300,8 @@ function terminateThisFavorite(type) {
 // Removes a favorite
 function removeFavorite(xid, database) {
 	// We remove the target favorite everywhere needed
-	$('.buddy-conf-groupchat-select option[value=' + xid + ']').remove();
-	$('.fedit-head-select option[value=' + xid + ']').remove();
+	$('.buddy-conf-groupchat-select option[value="' + xid + '"]').remove();
+	$('.fedit-head-select option[value="' + xid + '"]').remove();
 	
 	// Must remove it from database?
 	if(database)

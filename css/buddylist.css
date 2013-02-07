@@ -164,7 +164,7 @@ Last revision: 21/06/12
 #page-engine .list .available,
 #page-engine .list .chat,
 #page-switch .available,
-#my-infos .f-presence a[data-value=available] span {
+#my-infos .f-presence a[data-value="available"] span {
         background-position: 0 -169px;
 }
  
@@ -172,7 +172,7 @@ Last revision: 21/06/12
 #page-engine p.bc-infos span.show.away,
 #page-engine .list .away,
 #page-switch .away,
-#my-infos .f-presence a[data-value=away] span {
+#my-infos .f-presence a[data-value="away"] span {
         background-position: 0 -185px;
 }
  
@@ -181,7 +181,7 @@ Last revision: 21/06/12
 #page-engine .list .xa,
 #page-engine .list .dnd,
 #page-switch .busy,
-#my-infos .f-presence a[data-value=xa] span {
+#my-infos .f-presence a[data-value="xa"] span {
         background-position: 0 -201px;
 }
  
@@ -259,7 +259,7 @@ Last revision: 21/06/12
         float: left;
 }
  
-.manage-infos div.bm-choose input[type=checkbox] {
+.manage-infos div.bm-choose input[type="checkbox"] {
         margin: 0 6px 0 0;
 }
  

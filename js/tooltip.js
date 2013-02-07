@@ -231,7 +231,7 @@ function createTooltip(xid, hash, type) {
 				else {
 					$(font_current).attr('data-font', $(this).attr('data-font'))
 					               .attr('data-value', $(this).attr('data-value'))
-					               .text($(font_list).find('a[data-value=' + $(this).attr('data-value') + ']').text());
+					               .text($(font_list).find('a[data-value="' + $(this).attr('data-value') + '"]').text());
 					
 					$(message_area).attr('data-font', $(this).attr('data-value'));
 				}
@@ -392,14 +392,14 @@ function createTooltip(xid, hash, type) {
 			
 			// Upload form submit event
 			$(path_tooltip + ' #oob-upload').submit(function() {
-				if($(path_tooltip + ' #oob-upload input[type=file]').val())
+				if($(path_tooltip + ' #oob-upload input[type="file"]').val())
 					$(this).ajaxSubmit(oob_upload_options);
 				
 				return false;
 			});
 			
 			// Upload input change event
-			$(path_tooltip + ' #oob-upload input[type=file]').change(function() {
+			$(path_tooltip + ' #oob-upload input[type="file"]').change(function() {
 				if($(this).val())
 					$(path_tooltip + ' #oob-upload').ajaxSubmit(oob_upload_options);
 				
@@ -407,8 +407,8 @@ function createTooltip(xid, hash, type) {
 			});
 			
 			// Input click event
-			$(path_tooltip + ' #oob-upload input[type=file], ' + path_tooltip + ' #oob-upload input[type=submit]').click(function() {
-				if(exists(path_tooltip + ' #oob-upload input[type=reset]'))
+			$(path_tooltip + ' #oob-upload input[type="file"], ' + path_tooltip + ' #oob-upload input[type="submit"]').click(function() {
+				if(exists(path_tooltip + ' #oob-upload input[type="reset"]'))
 					return;
 				
 				// Lock the bubble
@@ -418,7 +418,7 @@ function createTooltip(xid, hash, type) {
 				$(this).after('<input type="reset" value="' + _e("Cancel") + '" />');
 				
 				// Cancel button click event
-				$(path_tooltip + ' #oob-upload input[type=reset]').click(function() {
+				$(path_tooltip + ' #oob-upload input[type="reset"]').click(function() {
 					// Remove the bubble
 					$(path_bubble).removeClass('locked');
 					destroyTooltip(hash, 'file');
@@ -480,7 +480,7 @@ function loadStyleSelector(hash) {
 	var message_area = $(path + ' .message-area');
 	var bubble_style = path + ' .bubble-style';
 	var font = message_area.attr('data-font');
-	var font_select = $(bubble_style + ' div.font-list').find('a[data-value=' + font + ']');
+	var font_select = $(bubble_style + ' div.font-list').find('a[data-value="' + font + '"]');
 	var fontsize = message_area.attr('data-fontsize');
 	var color = message_area.attr('data-color');
 	
@@ -498,7 +498,7 @@ function loadStyleSelector(hash) {
 	}
 	
 	// Apply the options to the style selector
-	$(bubble_style + ' input[type=checkbox]').each(function() {
+	$(bubble_style + ' input[type="checkbox"]').each(function() {
 		// Current input enabled?
 		if(message_area.attr('data-' + $(this).attr('class')))
 			$(this).attr('checked', true);
@@ -506,8 +506,8 @@ function loadStyleSelector(hash) {
 	
 	// Apply message color
 	if(color) {
-		if($(bubble_style + ' a.color[data-color=' + color + ']').size())
-			$(bubble_style + ' a.color[data-color=' + color + ']').addClass('selected');
+		if($(bubble_style + ' a.color[data-color="' + color + '"]').size())
+			$(bubble_style + ' a.color[data-color="' + color + '"]').addClass('selected');
 		else
 			$(bubble_style + ' div.color-hex input.hex-value').val(color);
 	}

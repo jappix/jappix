@@ -119,7 +119,7 @@ Last revision: 21/06/12
 	margin-bottom: 6px !important;
 }
 
-#attach input[type=submit] {
+#attach input[type="submit"] {
 	margin: 8px 0 6px 0;
 }
 

@@ -153,7 +153,7 @@ function switchWelcome(id) {
 	$(content + 'one-lap').hide();
 	$(content + 'welcome' + id).show();
 	$(tab + 'a').removeClass('tab-active');
-	$(tab + 'a[data-step=' + id + ']').addClass('tab-active').removeClass('tab-missing');
+	$(tab + 'a[data-step="' + id + '"]').addClass('tab-active').removeClass('tab-missing');
 	
 	// Update the "save" button if all is okay
 	if(!exists(tab + '.tab-missing')) {
