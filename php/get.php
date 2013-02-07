@@ -29,15 +29,10 @@ hideErrors();
 $is_developer = isDeveloper();
 $has_compression = hasCompression();
 
+// Cache control (for development & production)
 if($is_developer) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-	header('Cache-Control: no-store, no-cache, must-revalidate');
-	header('Cache-Control: post-check=0, pre-check=0', false);
-	header('Pragma: no-cache');
-}
-
-// Else, we put a far away cache date (1 year)
-else {
+} else {
 	$expires = 31536000;
 	header('Pragma: public');
 	header('Cache-Control: maxage='.$expires);
