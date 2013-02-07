@@ -16,7 +16,7 @@ function closeBubbles() {
 	// Destroy all the elements
 	$('.bubble.hidable:visible').hide();
 	$('.bubble.removable').remove();
-	$('body').die('click');
+	$('body').off('click');
 	
 	return false;
 }
@@ -47,7 +47,7 @@ function showBubble(selector) {
 	}
 	
 	// Creates a new click event to close the bubble
-	$('body').live('click', function(evt) {
+	$('body').on('click', function(evt) {
 		var target = evt.target;
 		
 		// If this is a click away from a bubble

@@ -1,116 +1,157 @@
-(function(jQuery) {
-	jQuery.extend({
-		placeholder : {
-			settings : {
-				focusClass: 'placeholderFocus',
-				activeClass: 'placeholder',
-				overrideSupport: false,
-				preventRefreshIssues: true
+/*! http://mths.be/placeholder v2.0.7 by @mathias */
+;(function(window, document, $) {
+
+	var isInputSupported = 'placeholder' in document.createElement('input'),
+	    isTextareaSupported = 'placeholder' in document.createElement('textarea'),
+	    prototype = $.fn,
+	    valHooks = $.valHooks,
+	    hooks,
+	    placeholder;
+
+	if (isInputSupported && isTextareaSupported) {
+
+		placeholder = prototype.placeholder = function() {
+			return this;
+		};
+
+		placeholder.input = placeholder.textarea = true;
+
+	} else {
+
+		placeholder = prototype.placeholder = function() {
+			var $this = this;
+			$this
+				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
+				.not('.placeholder')
+				.bind({
+					'focus.placeholder': clearPlaceholder,
+					'blur.placeholder': setPlaceholder
+				})
+				.data('placeholder-enabled', true)
+				.trigger('blur.placeholder');
+			return $this;
+		};
+
+		placeholder.input = isInputSupported;
+		placeholder.textarea = isTextareaSupported;
+
+		hooks = {
+			'get': function(element) {
+				var $element = $(element);
+				return $element.data('placeholder-enabled') && $element.hasClass('placeholder') ? '' : element.value;
 			},
-			debug : false,
-			log : function(msg){
-				if(!jQuery.placeholder.debug) return;
-				msg = "[Placeholder] " + msg;
-				jQuery.placeholder.hasFirebug ?
-				console.log(msg) :
-				jQuery.placeholder.hasConsoleLog ?
-					window.console.log(msg) :
-					alert(msg);
-			},
-			hasFirebug : "console" in window && "firebug" in window.console,
-			hasConsoleLog: "console" in window && "log" in window.console
-		}
-
-	});
-
-    // check browser support for placeholder
-    jQuery.support.placeholder = 'placeholder' in document.createElement('input');
-
-	// Replace the val function to never return placeholders
-	jQuery.fn.plVal = jQuery.fn.val;
-	jQuery.fn.val = function(value) {
-		jQuery.placeholder.log('in val');
-		if(this[0]) {
-			jQuery.placeholder.log('have found an element');
-			var el = jQuery(this[0]);
-			if(value != undefined)
-			{
-				jQuery.placeholder.log('in setter');
-				var currentValue = el.plVal();
-				var returnValue = jQuery(this).plVal(value);
-				if(el.hasClass(jQuery.placeholder.settings.activeClass) && currentValue == el.attr('placeholder')){
-					el.removeClass(jQuery.placeholder.settings.activeClass);
+			'set': function(element, value) {
+				var $element = $(element);
+				if (!$element.data('placeholder-enabled')) {
+					return element.value = value;
 				}
-				return returnValue;
+				if (value == '') {
+					element.value = value;
+					// Issue #56: Setting the placeholder causes problems if the element continues to have focus.
+					if (element != document.activeElement) {
+						// We can't use `triggerHandler` here because of dummy text/password inputs :(
+						setPlaceholder.call(element);
+					}
+				} else if ($element.hasClass('placeholder')) {
+					clearPlaceholder.call(element, true, value) || (element.value = value);
+				} else {
+					element.value = value;
+				}
+				// `set` can not return `undefined`; see http://jsapi.info/jquery/1.7.1/val#L2363
+				return $element;
 			}
+		};
 
-			if(el.hasClass(jQuery.placeholder.settings.activeClass) && el.plVal() == el.attr('placeholder')) {
-				jQuery.placeholder.log('returning empty because its a placeholder');
-				return '';
+		isInputSupported || (valHooks.input = hooks);
+		isTextareaSupported || (valHooks.textarea = hooks);
+
+		$(function() {
+			// Look for forms
+			$(document).delegate('form', 'submit.placeholder', function() {
+				// Clear the placeholder values so they don't get submitted
+				var $inputs = $('.placeholder', this).each(clearPlaceholder);
+				setTimeout(function() {
+					$inputs.each(setPlaceholder);
+				}, 10);
+			});
+		});
+
+		// Clear placeholder values upon page reload
+		$(window).bind('beforeunload.placeholder', function() {
+			$('.placeholder').each(function() {
+				this.value = '';
+			});
+		});
+
+	}
+
+	function args(elem) {
+		// Return an object of element attributes
+		var newAttrs = {},
+		    rinlinejQuery = /^jQuery\d+$/;
+		$.each(elem.attributes, function(i, attr) {
+			if (attr.specified && !rinlinejQuery.test(attr.name)) {
+				newAttrs[attr.name] = attr.value;
+			}
+		});
+		return newAttrs;
+	}
+
+	function clearPlaceholder(event, value) {
+		var input = this,
+		    $input = $(input);
+		if (input.value == $input.attr('placeholder') && $input.hasClass('placeholder')) {
+			if ($input.data('placeholder-password')) {
+				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
+				// If `clearPlaceholder` was called from `$.valHooks.input.set`
+				if (event === true) {
+					return $input[0].value = value;
+				}
+				$input.focus();
 			} else {
-				jQuery.placeholder.log('returning original val');
-				return el.plVal();
+				input.value = '';
+				$input.removeClass('placeholder');
+				input == document.activeElement && input.select();
 			}
 		}
-		jQuery.placeholder.log('returning undefined');
-		return undefined;
-	};
+	}
 
-	// Clear placeholder values upon page reload
-	jQuery(window).bind('beforeunload.placeholder', function() {
-		var els = jQuery('input.placeholderActive' );
-		if(els.length > 0)
-			els.val('').attr('autocomplete','off');
-	});
+	function setPlaceholder() {
+		var $replacement,
+		    input = this,
+		    $input = $(input),
+		    $origInput = $input,
+		    id = this.id;
+		if (input.value == '') {
+			if (input.type == 'password') {
+				if (!$input.data('placeholder-textinput')) {
+					try {
+						$replacement = $input.clone().attr({ 'type': 'text' });
+					} catch(e) {
+						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
+					}
+					$replacement
+						.removeAttr('name')
+						.data({
+							'placeholder-password': true,
+							'placeholder-id': id
+						})
+						.bind('focus.placeholder', clearPlaceholder);
+					$input
+						.data({
+							'placeholder-textinput': $replacement,
+							'placeholder-id': id
+						})
+						.before($replacement);
+				}
+				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
+				// Note: `$input[0] != input` now!
+			}
+			$input.addClass('placeholder');
+			$input[0].value = $input.attr('placeholder');
+		} else {
+			$input.removeClass('placeholder');
+		}
+	}
 
-
-    // plugin code
-	jQuery.fn.placeholder = function(opts) {
-		opts = jQuery.extend({},jQuery.placeholder.settings, opts);
-
-		// we don't have to do anything if the browser supports placeholder
-		if(!opts.overrideSupport && jQuery.support.placeholder)
-		    return this;
-			
-        return this.each(function() {
-            var $el = jQuery(this);
-
-            // skip if we do not have the placeholder attribute
-            if(!$el.is('[placeholder]'))
-                return;
-
-            // we cannot do password fields, but supported browsers can
-            if($el.is(':password'))
-                return;
-			
-			// Prevent values from being reapplied on refresh
-			if(opts.preventRefreshIssues)
-				$el.attr('autocomplete','off');
-
-            $el.bind('focus.placeholder', function(){
-                var $el = jQuery(this);
-                if(this.value == $el.attr('placeholder') && $el.hasClass(opts.activeClass))
-                    $el.val('')
-                       .removeClass(opts.activeClass)
-                       .addClass(opts.focusClass);
-            });
-            $el.bind('blur.placeholder', function(){
-                var $el = jQuery(this);
-				
-				$el.removeClass(opts.focusClass);
-
-                if(this.value == '')
-                  $el.val($el.attr('placeholder'))
-                     .addClass(opts.activeClass);
-            });
-
-            $el.triggerHandler('blur');
-			
-			// Prevent incorrect form values being posted
-			$el.parents('form').submit(function(){
-				$el.triggerHandler('focus.placeholder');
-			});
-
-        });
-    };
-})(jQuery);
+}(this, document, jQuery));

@@ -661,11 +661,11 @@ function showCommentsMicroblog(path, entityComments, nodeComments, tHash) {
 		
 		// Remove the comments from the DOM if click away
 		if(tHash) {
-			$('#channel').die('click');
+			$('#channel').off('click');
 			
-			$('#channel').live('click', function(evt) {
+			$('#channel').on('click', function(evt) {
 				if(!$(evt.target).parents('.' + tHash).size()) {
-					$('#channel').die('click');
+					$('#channel').off('click');
 					$('#channel .one-update div.comments-content').stopTime();
 					$('#channel .one-update div.comments').remove();
 				}

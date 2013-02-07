@@ -223,32 +223,36 @@ function handleConnected() {
 
 // Triggers the connected state
 function triggerConnected() {
-	// Not resumed?
-	if(!RESUME) {
-		// Remember the session?
-		if(getDB('remember', 'session'))
-			setPersistent('session', 1, CURRENT_SESSION);
+	try {
+		// Not resumed?
+		if(!RESUME) {
+			// Remember the session?
+			if(getDB('remember', 'session'))
+				setPersistent('session', 1, CURRENT_SESSION);
+			
+			// We show the chatting app.
+			createTalkPage();
+			
+			// We reset the homepage
+			switchHome('default');
+			
+			// We get all the other things
+			getEverything();
+			
+			// Set last activity stamp
+			LAST_ACTIVITY = getTimeStamp();
+		}
 		
-		// We show the chatting app.
-		createTalkPage();
-		
-		// We reset the homepage
-		switchHome('default');
-		
-		// We get all the other things
-		getEverything();
-		
-		// Set last activity stamp
-		LAST_ACTIVITY = getTimeStamp();
-	}
-	
-	// Resumed
-	else {
-		// Send our presence
-		presenceSend();
-		
-		// Change the title
-		updateTitle();
+		// Resumed
+		else {
+			// Send our presence
+			presenceSend();
+			
+			// Change the title
+			updateTitle();
+		}
+	} catch(e) {
+		logThis('Error in triggerConnected() with message: ' + e, 1);
 	}
 }
 
@@ -262,18 +266,20 @@ function handleDisconnected() {
 }
 
 // Setups the normal connection
-function setupCon(con,oExtend) {
-	// We setup all the necessary handlers for the connection
+function setupCon(con, oExtend) {
+	// Setup connection handlers
 	con.registerHandler('message', handleMessage);
 	con.registerHandler('presence', handlePresence);
 	con.registerHandler('iq', handleIQ);
 	con.registerHandler('onconnect', handleConnected);
 	con.registerHandler('onerror', handleError);
 	con.registerHandler('ondisconnect', handleDisconnected);
-	oExtend = oExtend||{};
 	
-	jQuery.each(oExtend,function(keywd,funct) {
-	  con.registerHandler(keywd, funct);
+	// Extended handlers
+	oExtend = oExtend || {};
+	
+	jQuery.each(oExtend, function(keywd,funct) {
+		con.registerHandler(keywd, funct);
 	});
 }
 

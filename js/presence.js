@@ -296,7 +296,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 		
 		// Click event
 		if(nick != getMUCNick(roomHash))
-			$(thisUser).live('click', function() {
+			$(thisUser).on('click', function() {
 				checkChatCreate(from, 'private');
 			});
 		
@@ -362,7 +362,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 				new_class += ' myself';
 			
 			// Die the click event
-			$(thisUser).die('click');
+			$(thisUser).off('click');
 			
 			// Change to the new nickname
 			$(thisUser).attr('data-nick', escape(iNick))
@@ -373,7 +373,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 			$(thisUser).attr('class', new_class);
 			
 			// New click event
-			$('#page-engine #' + roomHash + ' .list .' + new_hash).live('click', function() {
+			$('#page-engine #' + roomHash + ' .list .' + new_hash).on('click', function() {
 				checkChatCreate(new_xid, 'private');
 			});
 		}
@@ -950,17 +950,17 @@ function liveIdle() {
 	$('#my-infos .f-presence').everyTime('30s', autoIdle);
 	
 	// On body bind (click & key event)
-	$('body').live('mousedown', eventIdle)
-		 .live('mousemove', eventIdle)
-		 .live('keydown', eventIdle);
+	$('body').on('mousedown', eventIdle)
+	         .on('mousemove', eventIdle)
+	         .on('keydown', eventIdle);
 }
 
 // Kills the auto idle functions
 function dieIdle() {
 	// Remove the event detector
-	$('body').die('mousedown', eventIdle)
-		 .die('mousemove', eventIdle)
-		 .die('keydown', eventIdle);
+	$('body').off('mousedown', eventIdle)
+	         .off('mousemove', eventIdle)
+	         .off('keydown', eventIdle);
 }
 
 // Gets the user presence show

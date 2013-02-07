@@ -1,15 +1,13 @@
-/**
+/*!
  * jQuery.ScrollTo
- * Copyright (c) 2007-2009 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+ * Copyright (c) 2007-2012 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
- * Date: 5/25/2009
+ * Date: 12/14/2012
  *
  * @projectDescription Easy element scrolling using jQuery.
  * http://flesler.blogspot.com/2007/10/jqueryscrollto.html
- * Works with jQuery +1.2.6. Tested on FF 2/3, IE 6/7/8, Opera 9.5/6, Safari 3, Chrome 1 on WinXP.
- *
  * @author Ariel Flesler
- * @version 1.4.2
+ * @version 1.4.5 BETA
  *
  * @id jQuery.scrollTo
  * @id jQuery.fn.scrollTo
@@ -20,12 +18,12 @@
  *		- A jQuery/DOM element ( logically, child of the element to scroll )
  *		- A string selector, that will be relative to the element to scroll ( 'li:eq(2)', etc )
  *		- A hash { top:x, left:y }, x and y can be any kind of number/string like above.
-*		- A percentage of the container's dimension/s, for example: 50% to go to the middle.
+ *		- A percentage of the container's dimension/s, for example: 50% to go to the middle.
  *		- The string 'max' for go-to-end. 
- * @param {Number} duration The OVERALL length of the animation, this argument can be the settings object instead.
+ * @param {Number, Function} duration The OVERALL length of the animation, this argument can be the settings object instead.
  * @param {Object,Function} settings Optional set of settings or the onAfter callback.
  *	 @option {String} axis Which axis must be scrolled, use 'x', 'y', 'xy' or 'yx'.
- *	 @option {Number} duration The OVERALL length of the animation.
+ *	 @option {Number, Function} duration The OVERALL length of the animation.
  *	 @option {String} easing The easing method for the animation.
  *	 @option {Boolean} margin If true, the margin of the target element will be deducted from the final position.
  *	 @option {Object, Number} offset Add/deduct from the end position. One number for both axes or { top:x, left:y }.
@@ -41,10 +39,10 @@
  * @desc Scroll relatively to the actual position
  * @example $('div').scrollTo( '+=340px', { axis:'y' } );
  *
- * @dec Scroll using a selector (relative to the scrolled element)
+ * @desc Scroll using a selector (relative to the scrolled element)
  * @example $('div').scrollTo( 'p.paragraph:eq(2)', 500, { easing:'swing', queue:true, axis:'xy' } );
  *
- * @ Scroll to a DOM element (same for jQuery object)
+ * @desc Scroll to a DOM element (same for jQuery object)
  * @example var second_child = document.getElementById('container').firstChild.nextSibling;
  *			$('#container').scrollTo( second_child, { duration:500, axis:'x', onAfter:function(){
  *				alert('scrolled!!');																   
@@ -53,6 +51,7 @@
  * @desc Scroll on both axes, to different values
  * @example $('div').scrollTo( { top: 300, left:'+=200' }, { axis:'xy', offset:-20 } );
  */
+
 ;(function( $ ){
 	
 	var $scrollTo = $.scrollTo = function( target, duration, settings ){
@@ -61,7 +60,8 @@
 
 	$scrollTo.defaults = {
 		axis:'xy',
-		duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1
+		duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1,
+		limit:true
 	};
 
 	// Returns the element that needs to be animated to scroll the window.
@@ -82,7 +82,7 @@
 
 			var doc = (elem.contentWindow || elem).document || elem.ownerDocument || elem;
 			
-			return $.browser.safari || doc.compatMode == 'BackCompat' ?
+			return /webkit/i.test(navigator.userAgent) || doc.compatMode == 'BackCompat' ?
 				doc.body : 
 				doc.documentElement;
 		});
@@ -101,7 +101,7 @@
 			
 		settings = $.extend( {}, $scrollTo.defaults, settings );
 		// Speed is still recognized for backwards compatibility
-		duration = duration || settings.speed || settings.duration;
+		duration = duration || settings.duration;
 		// Make sure the settings are given right
 		settings.queue = settings.queue && settings.axis.length > 1;
 		
@@ -112,6 +112,9 @@
 		settings.over = both( settings.over );
 
 		return this._scrollable().each(function(){
+			// Null target yields nothing, just like jQuery does
+			if (target == null) return;
+
 			var elem = this,
 				$elem = $(elem),
 				targ = target, toff, attr = {},
@@ -121,13 +124,14 @@
 				// A number will pass the regex
 				case 'number':
 				case 'string':
-					if( /^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ) ){
+					if( /^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(targ) ){
 						targ = both( targ );
 						// We are done
 						break;
 					}
 					// Relative selector, no break!
 					targ = $(targ,this);
+					if (!targ.length) return;
 				case 'object':
 					// DOMElement / jQuery
 					if( targ.is || targ.style )
@@ -164,7 +168,7 @@
 				}
 
 				// Number or 'number'
-				if( /^\d+$/.test(attr[key]) )
+				if( settings.limit && /^\d+$/.test(attr[key]) )
 					// Check the limits
 					attr[key] = attr[key] <= 0 ? 0 : Math.min( attr[key], max );
 
@@ -205,7 +209,6 @@
 
 		return Math.max( html[scroll], body[scroll] ) 
 			 - Math.min( html[size]  , body[size]   );
-			
 	};
 
 	function both( val ){
