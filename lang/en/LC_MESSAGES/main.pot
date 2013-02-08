@@ -1231,7 +1231,7 @@ msgstr ""
 msgid "Registration allowed"
 msgstr ""
 
-msgid "Use a proxy"
+msgid "Use the built-in BOSH proxy"
 msgstr ""
 
 msgid "Manager link"

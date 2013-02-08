@@ -17,6 +17,15 @@ Last revision: 11/06/11
 if(!defined('JAPPIX_BASE'))
 	exit;
 
+// Checks the checkboxes which are set "on"
+$checked = ' checked=""';
+
+// BOSH proxy
+if($bosh_proxy == 'on')
+	$check_bosh_proxy = $checked;
+else
+	$check_bosh_proxy = '';
+
 ?>
 <a class="info smallspace neutral" href="https://github.com/jappix/jappix/wiki/JappixApp" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>
 
@@ -38,6 +47,8 @@ if(!defined('JAPPIX_BASE'))
 	<label for="host_vjud"><?php _e("Directory host"); ?></label><input id="host_vjud" type="text" name="host_vjud" value="<?php echo $host_vjud; ?>" pattern="[^@/]+" />
 	
 	<label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="text" name="host_bosh" value="<?php echo $host_bosh; ?>" />
+	
+	<label for="bosh_proxy"><?php _e("Use the built-in BOSH proxy"); ?></label><input id="bosh_proxy" type="checkbox" name="bosh_proxy"<?php echo $check_bosh_proxy; ?> />
 	
 	<input type="hidden" name="host_bosh_main" value="<?php echo $host_bosh_main; ?>" />
 	

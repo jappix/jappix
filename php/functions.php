@@ -599,6 +599,14 @@ function hideErrors() {
 	}
 }
 
+// The function to check BOSH proxy is enabled
+function BOSHProxy() {
+	if(BOSH_PROXY == 'on')
+		return true;
+	
+	return false;
+}
+
 // The function to check compression is enabled
 function hasCompression() {
 	if(COMPRESSION != 'off')

@@ -77,6 +77,12 @@ if(isset($_POST['host_upload']) && !empty($_POST['host_upload']))
 else
 	$host_upload = stripslashes(htmlspecialchars($hosts_default['upload']));
 
+// BOSH proxy
+if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy']))
+	$bosh_proxy = 'on';
+else
+	$bosh_proxy = 'off';
+
 // Generate the hosts XML content
 $hosts_xml = 
 	'<main>'.$host_main.'</main>
@@ -88,7 +94,8 @@ $hosts_xml =
 	<bosh_main>'.$host_bosh_main.'</bosh_main>
 	<bosh_mini>'.$host_bosh_mini.'</bosh_mini>
 	<static>'.$host_static.'</static>
-	<upload>'.$host_upload.'</upload>'
+	<upload>'.$host_upload.'</upload>
+	<bosh_proxy>'.$bosh_proxy.'</bosh_proxy>'
 ;
 
 // Write the main configuration
