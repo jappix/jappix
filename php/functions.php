@@ -8,8 +8,8 @@ These are the PHP functions for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, LinkMauve, Mathieui, olivierm, regilero
-Last revision: 08/08/12
+Authors: Valérian Saliou, LinkMauve, Mathieui, olivierm, regilero, Maranda
+Last revision: 08/02/13
 
 */
 
@@ -597,14 +597,6 @@ function hideErrors() {
 		ini_set('display_errors', 1);
 		ini_set('error_reporting', E_ALL);
 	}
-}
-
-// The function to check BOSH proxy is enabled
-function BOSHProxy() {
-	if(BOSH_PROXY == 'on')
-		return true;
-	
-	return false;
 }
 
 // The function to check compression is enabled
