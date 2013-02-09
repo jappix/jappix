@@ -2368,25 +2368,28 @@ function handleRosterMini(iq) {
 		i++;
 	});
 	
-    // Sort array and loop reverse
-    var buddies = buddies.sort();
-    var x = buddies.length;
-    var nick, hash, xid, subscription;
-    
-    for (var i=0;i<x; i++) {
-	if (!buddies[i]) continue;
-
-        nick = buddies[i][0];
-        hash = buddies[i][1];
-        xid = buddies[i][2];
-        subscription = buddies[i][3];
-    	
-    	if(subscription == 'remove')
+	// Sort array and loop reverse
+	var buddies = buddies.sort();
+	var x = buddies.length;
+	var nick, hash, xid, subscription;
+	
+	for(var i = 0; i < x; i++) {
+		if(!buddies[i])
+			continue;
+		
+		// Current buddy information
+		nick = buddies[i][0];
+		hash = buddies[i][1];
+		xid = buddies[i][2];
+		subscription = buddies[i][3];
+		
+		// Apply current buddy action
+		if(subscription == 'remove')
 			removeBuddyMini(hash);
-    	else
+		else
 			addBuddyMini(xid, hash, nick, null, subscription);
-    }
-    
+	}
+	
 	// Not yet initialized
 	if(!MINI_INITIALIZED)
 		initializeMini();
