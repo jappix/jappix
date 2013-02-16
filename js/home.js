@@ -6,8 +6,8 @@ These are the homepage JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, LinkMauve
-Last revision: 21/06/12
+Authors: Valérian Saliou, LinkMauve, Maranda
+Last revision: 16/02/13
 
 */
 
@@ -235,11 +235,17 @@ function loginForm() {
 	var lRemember = $(lPath + '.remember').filter(':checked').size();
 	
 	// Enough values?
-	if(lServer && lNick && lPass && lResource && lPriority)
+	if (lServer && lNick && lPass && lResource && lPriority) {
+		// Verify that it's the same user connecting else flush the persistent storage
+		if (!verifyUser(lNick, lServer)) {
+			flushPersistent();
+			setUser(lNick, lServer);
+		}
+
 		doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember);
 	
 	// Something is missing?
-	else {
+	} else {
 		$(lPath + 'input[type="text"], ' + lPath + 'input[type="password"]').each(function() {
 			var select = $(this);
 			
