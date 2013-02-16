@@ -248,7 +248,7 @@ function verifyUser(xNode, xDomain) {
 }
 
 function setUser(xNode, xDomain) {
-        if (hasPersistent()) {
+	if (hasPersistent()) {
 		try { localStorage.setItem('previous_user', xNode + '@' + xDomain); return true; }
 
 		catch(e) {
