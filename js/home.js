@@ -137,7 +137,9 @@ function switchHome(div) {
 						'<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + _e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + _e("Once again...") + '" />';
 			
 			if(REGISTER_API == 'on')
-				code += '<label for="captcha">' + _e("Code") + '</label><input type="captcha" class="captcha" id="captcha" ' + disable_form + ' maxlength="5" pattern="[a-zA-Z0-9]{5}" required="" placeholder="' + _e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />';
+				code += '<div class="captcha_grp">' + 
+							'<label for="captcha">' + _e("Code") + '</label><input type="captcha" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + _e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />' + 
+						'</div>';
 			
 			code += '</fieldset>' + 
 					
@@ -201,6 +203,18 @@ function switchHome(div) {
 			
 			// Register tool
 			case 'registerer':
+				// Server input change
+				$('#home input.server').keyup(function(e) {
+					if(trim($(this).val()) == HOST_MAIN) {
+						$('#home .captcha_grp').show();
+						$('#home input.captcha').removeAttr('disabled');
+					} else {
+						$('#home .captcha_grp').hide();
+						$('#home input.captcha').attr('disabled', true);
+					}
+				});
+				
+				// Register form submit
 				$(current + ' form').submit(registerForm);
 				
 				break;
@@ -266,7 +280,6 @@ function loginForm() {
 
 // Reads the register form values
 function registerForm() {
-	try {
 	var rPath = '#home .registerer ';
 	
 	// Remove the success info
@@ -280,7 +293,7 @@ function registerForm() {
 	var captcha = $(rPath + '.captcha').val();
 	
 	// Enough values?
-	if(domain && username && pass && spass && (pass == spass) && !((REGISTER_API == 'on') && !captcha)) {
+	if(domain && username && pass && spass && (pass == spass) && !((REGISTER_API == 'on') && (domain == HOST_MAIN) && !captcha)) {
 		// We remove the not completed class to avoid problems
 		$('#home .registerer input').removeClass('please-complete');
 		
@@ -301,7 +314,7 @@ function registerForm() {
 				select.removeClass('please-complete');	
 		});
 	}
-	} catch(e) { alert(e); }
+	
 	return false;
 }
 

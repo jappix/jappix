@@ -77,19 +77,8 @@ if(REGISTER_API == 'on') {
 		if(XMPPD == 'ejabberd') {
 			$xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'ejabberdctl';
 			
-			// TODO
+			// Command string
 			$command_str = $xmppd_ctl.' register '.escapeshellarg($username).' '.escapeshellarg($domain).' '.escapeshellarg($password);
-			
-			//} else {
-				$error = true;
-				$error_reason = 'Username Unavailable';
-			//}
-		} else if(XMPPD == 'prosody') {
-			$xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'prosodyctl';
-			
-			$command_str = $xmppd_ctl.' adduser '.escapeshellarg($username).'@'.escapeshellarg($domain);
-			
-			// TODO: raw output password and press enter (simulate command-line interaction)
 		} else {
 			$error = true;
 			$error_reason = 'Unsupported XMPP Daemon';
@@ -103,6 +92,21 @@ if(REGISTER_API == 'on') {
 			
 			// Here we go
 			exec($command_str, $command_output, $command_return);
+			
+			// Check if user could be registered
+			foreach($command_output as $command_line) {
+				if(preg_match('/successfully(.+)registered/i', $command_line)) {
+					$command_return = 1;
+					
+					break;
+				}
+			}
+			
+			// User created?
+			if($command_return != 1) {
+				$error = true;
+				$error_reason = 'Username Unavailable';
+			}
 		} else {
 			$error = true;
 			$error_reason = 'No Command To Execute';

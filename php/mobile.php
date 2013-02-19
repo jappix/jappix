@@ -59,7 +59,7 @@ if(!defined('JAPPIX_BASE'))
 			<form action="#" method="post" onsubmit="return doLogin(this);">
 				<input class="xid mobile-images" type="text" name="xid" required="" placeholder="<?php _e("jid@domain.tld"); ?>" />
 				<input class="password mobile-images" type="password" id="pwd" name="pwd" required="" placeholder="<?php _e("Password"); ?>" />
-				<?php if(REGISTRATION != 'off') { ?>
+				<?php if((REGISTRATION != 'off') && (REGISTER_API != 'on')) { ?>
 				<label><input class="register" type="checkbox" id="reg" name="reg" /><?php _e("Register"); ?></label>
 				<?php } ?>
 				<input type="submit" name="ok" value="<?php _e("Here we go!"); ?>" />
