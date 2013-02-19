@@ -222,7 +222,7 @@ function cleanChat(chat) {
 	$('#page-engine #' + chat + ' .content .one-group').remove();
 	
 	// Clear the history database
-	removePersistent('history', chat);
+	removePersistent('history-' + hex_md5(getXID()), chat);
 	
 	// Focus again
 	$(document).oneTime(10, function() {
@@ -243,7 +243,7 @@ function chatCreate(hash, xid, nick, type) {
 	// If the user is not in our buddy-list
 	if(type == 'chat') {
 		// Restore the chat history
-		var chat_history = getPersistent('history', hash);
+		var chat_history = getPersistent('history-' + hex_md5(getXID()), hash);
 		
 		if(chat_history) {
 			// Generate hashs

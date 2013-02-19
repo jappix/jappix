@@ -6,8 +6,8 @@ These are the temporary/persistent data store functions
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: Valérian Saliou, Maranda
-Last revision: 16/02/13
+Authors: Valérian Saliou
+Last revision: 19/02/13
 
 */
 
@@ -226,36 +226,6 @@ function flushPersistent() {
 	catch(e) {
 		logThis('Error while flushing persistent database: ' + e, 1);
 		
-		return false;
-	}
-}
-
-// Functions to verify that the user logining is the same, elseway storage will be flushed.
-function verifyUser(xNode, xDomain) {
-        if(hasPersistent())
-		try { 
-			var pastUser = localStorage.getItem('previous_user');
-			
-			if(pastUser && pastUser == xNode + '@' + xDomain)
-				return true;
-			else
-				return false;
-		} 
-		
-		catch(e) { return false; }
-	else
-		return false;
-}
-
-function setUser(xNode, xDomain) {
-	if (hasPersistent()) {
-		try { localStorage.setItem('previous_user', xNode + '@' + xDomain); return true; }
-
-		catch(e) {
-			logThis('Error while setting user for verification: ' + e, 1);
-			return false;
-		}
-	} else {
 		return false;
 	}
 }
