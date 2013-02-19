@@ -214,6 +214,10 @@ function switchHome(div) {
 					}
 				});
 				
+				// Register input placeholder
+				// FIXME: breaks IE compatibility
+				//$('#home input[placeholder]').placeholder();
+				
 				// Register form submit
 				$(current + ' form').submit(registerForm);
 				
