@@ -8,7 +8,7 @@ This is the PHP BOSH proxy
 -------------------------------------------------
 
 License: AGPL
-Author: Vanaryon
+Author: Valérian Saliou
 Last revision: 15/01/12
 
 */
