@@ -142,6 +142,7 @@ var HTTPS_FORCE = null;
 var COMPRESSION = null;
 var MULTI_FILES = null;
 var DEVELOPER = null;
+var REGISTER_API = null;
 
 // Jappix hosts configuration
 var HOST_MAIN = null;

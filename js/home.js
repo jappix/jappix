@@ -132,11 +132,14 @@ function switchHome(div) {
 						'<legend>' + _e("Required") + '</legend>' + 
 						
 						'<label for="rnick">' + _e("Address") + '</label>' + 
-						'<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" />' + 
+						'<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" placeholder="' + _e("Username") + '" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" placeholder="' + _e("Server") + '" />' + 
 						'<label for="rpassword">' + _e("Password") + '</label>' + 
-						'<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" />' + 
-						'<label for="spassword">' + _e("Confirm") + '</label><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" />' + 
-					'</fieldset>' + 
+						'<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + _e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + _e("Once again...") + '" />';
+			
+			if(REGISTER_API == 'on')
+				code += '<label for="captcha">' + _e("Code") + '</label><input type="captcha" class="captcha" id="captcha" ' + disable_form + ' maxlength="5" pattern="[a-zA-Z0-9]{5}" required="" placeholder="' + _e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />';
+			
+			code += '</fieldset>' + 
 					
 					'<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 
 				'</form>';
@@ -263,6 +266,7 @@ function loginForm() {
 
 // Reads the register form values
 function registerForm() {
+	try {
 	var rPath = '#home .registerer ';
 	
 	// Remove the success info
@@ -273,14 +277,15 @@ function registerForm() {
 	var domain = $(rPath + '.server').val();
 	var pass = $(rPath + '.password').val();
 	var spass = $(rPath + '.spassword').val();
+	var captcha = $(rPath + '.captcha').val();
 	
 	// Enough values?
-	if(domain && username && pass && spass && (pass == spass)) {
+	if(domain && username && pass && spass && (pass == spass) && !((REGISTER_API == 'on') && !captcha)) {
 		// We remove the not completed class to avoid problems
 		$('#home .registerer input').removeClass('please-complete');
 		
 		// Fire the register event!
-		doRegister(username, domain, pass);
+		doRegister(username, domain, pass, captcha);
 	}
 	
 	// Something is missing?
@@ -296,7 +301,7 @@ function registerForm() {
 				select.removeClass('please-complete');	
 		});
 	}
-	
+	} catch(e) { alert(e); }
 	return false;
 }
 

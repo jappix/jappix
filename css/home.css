@@ -551,8 +551,20 @@ Last revision: 20/10/12
 	margin: 0 4px;
 }
 
-#home input.nick, #home input.server {
+#home input.nick,
+#home input.server,
+#home input.password,
+#home input.spassword {
 	width: 110px;
+}
+
+#home input.password {
+	margin-right: 22px;
+}
+
+#home img.captcha_img {
+	margin-left: 20px;
+	float: left;
 }
 
 #home .info {

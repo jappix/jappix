@@ -137,6 +137,24 @@ if(isset($_POST['developer']) && ($_POST['developer'] == 'on'))
 else
 	$developer = 'off';
 
+// Register API
+if(isset($_POST['register_api']) && ($_POST['register_api'] == 'on'))
+	$register_api = 'on';
+else
+	$register_api = 'off';
+
+// XMPP Daemon Control Command
+if(isset($_POST['xmppd_ctl']) && !empty($_POST['xmppd_ctl']))
+	$xmppd_ctl = stripslashes(htmlspecialchars($_POST['xmppd_ctl']));
+else
+	$xmppd_ctl = stripslashes(htmlspecialchars($main_default['xmppd_ctl']));
+
+// XMPP Daemon
+if(isset($_POST['xmppd']) && !empty($_POST['xmppd']))
+	$xmppd = stripslashes(htmlspecialchars($_POST['xmppd']));
+else
+	$xmppd = stripslashes(htmlspecialchars($main_default['xmppd']));
+
 // Generate the configuration XML content
 $conf_xml =
 	'<name>'.$service_name.'</name>
@@ -158,7 +176,10 @@ $conf_xml =
 	<compression>'.$compression.'</compression>
 	<multi_files>'.$multi_files.'</multi_files>
 	<developer>'.$developer.'</developer>
-	<statistics>'.$statistics.'</statistics>'
+	<statistics>'.$statistics.'</statistics>
+	<register_api>'.$register_api.'</register_api>
+	<xmppd_ctl>'.$xmppd_ctl.'</xmppd_ctl>
+	<xmppd>'.$xmppd.'</xmppd>'
 ;
 
 // Write the main configuration

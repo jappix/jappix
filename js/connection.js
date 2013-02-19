@@ -102,68 +102,117 @@ function handleRegistered() {
 	$('#home .registerer .success').fadeIn('fast');
 	
 	// We quit the session
-	logout();
+	if(isConnected())
+		logout();
 }
 
 // Does the user registration
-function doRegister(username, domain, pass) {
+function doRegister(username, domain, pass, captcha) {
 	logThis('Trying to register an account...', 3);
 	
-	try {
-		// We define the http binding parameters
-		oArgs = new Object();
-		
-		if(HOST_BOSH_MAIN)
-			oArgs.httpbase = HOST_BOSH_MAIN;
-		else
-			oArgs.httpbase = HOST_BOSH;
-		
-		// We create the new http-binding connection
-		con = new JSJaCHttpBindingConnection(oArgs);
-		
-		// We setup the connection !
-		con.registerHandler('onconnect', handleRegistered);
-		con.registerHandler('onerror', handleError);
-		
-		// We retrieve what the user typed in the register inputs
-		oArgs = new Object();
-		oArgs.domain = trim(domain);
-		oArgs.username = trim(username);
-		oArgs.resource = JAPPIX_RESOURCE + ' Register (' + (new Date()).getTime() + ')';
-		oArgs.pass = pass;
-		oArgs.register = true;
-		oArgs.secure = true;
-		oArgs.xmllang = XML_LANG;
-		
-		con.connect(oArgs);
-		
-		// We change the registered information text
-		$('#home .homediv.registerer').append(
-			'<div class="info success">' + 
-				_e("You have been registered, here is your XMPP address:") + ' <b>' + con.username.htmlEnc() + '@' + con.domain.htmlEnc() + '</b> - <a href="#">' + _e("Login") + '</a>' + 
-			'</div>'
-		);
-		
-		// Login link
-		$('#home .homediv.registerer .success a').click(function() {
-			return doLogin(con.username, con.domain, con.pass, con.resource, '10', false);
-		});
-		
+	// We change the registered information text
+	$('#home .homediv.registerer').append(
+		'<div class="info success">' + 
+			_e("You have been registered, here is your XMPP address:") + ' <b>' + username.htmlEnc() + '@' + domain.htmlEnc() + '</b> - <a href="#">' + _e("Login") + '</a>' + 
+		'</div>'
+	);
+	
+	// Login link
+	$('#home .homediv.registerer .success a').click(function() {
+		return doLogin(username, domain, pass, '', '10', false);
+	});
+	
+	if((REGISTER_API == 'on') && (domain == HOST_MAIN) && captcha) {
 		// Show the waiting image
 		showGeneralWait();
 		
 		// Change the page title
 		pageTitle('wait');
+		
+		// Send request
+		$.post('./php/register.php', {username: username, domain: domain, password: pass, captcha: captcha}, function(data) {
+			// Registration okay
+			if($(data).find('query status').text() == '1')
+				handleRegistered();
+			
+			// Error registering
+			removeGeneralWait();
+			pageTitle('home');
+			
+			// In all case, update CAPTCHA
+			$('#home img.captcha_img').attr('src', './php/captcha.php?id=' + genID());
+			$('#home input.captcha').val('');
+			
+			// Show error message
+			var error_message = '';
+			
+			switch($(data).find('query message').text()) {
+				case 'CAPTCHA Not Matching':
+					error_message = _e("The security code you entered is invalid. Please retry with another one.");
+					
+					$('#home input.captcha').focus();
+					
+					break;
+				
+				case 'Username Unavailable':
+					error_message = _e("The username you picked is not available. Please try another one.");
+					
+					$('#home input.nick').focus();
+					
+					break;
+				
+				default:
+					error_message = _e("There was an error registering your account. Please retry.");
+					
+					break;
+			}
+			
+			if(error_message)
+				showError('', error_message, '');
+		});
+	} else {
+		try {
+			// We define the http binding parameters
+			oArgs = new Object();
+			
+			if(HOST_BOSH_MAIN)
+				oArgs.httpbase = HOST_BOSH_MAIN;
+			else
+				oArgs.httpbase = HOST_BOSH;
+			
+			// We create the new http-binding connection
+			con = new JSJaCHttpBindingConnection(oArgs);
+			
+			// We setup the connection !
+			con.registerHandler('onconnect', handleRegistered);
+			con.registerHandler('onerror', handleError);
+			
+			// We retrieve what the user typed in the register inputs
+			oArgs = new Object();
+			oArgs.domain = trim(domain);
+			oArgs.username = trim(username);
+			oArgs.resource = JAPPIX_RESOURCE + ' Register (' + (new Date()).getTime() + ')';
+			oArgs.pass = pass;
+			oArgs.register = true;
+			oArgs.secure = true;
+			oArgs.xmllang = XML_LANG;
+			
+			con.connect(oArgs);
+			
+			// Show the waiting image
+			showGeneralWait();
+			
+			// Change the page title
+			pageTitle('wait');
+		}
+		
+		catch(e) {
+			// Logs errors
+			logThis(e, 1);
+		}
 	}
 	
-	catch(e) {
-		// Logs errors
-		logThis(e, 1);
-	}
-	
-	finally {
-		return false;
-	}
+	return false;
 }
 
 // Does the user anonymous login

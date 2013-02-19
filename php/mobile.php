@@ -66,11 +66,6 @@ if(!defined('JAPPIX_BASE'))
 			</form>
 		</div>
 
-		<a class="smartphone" href="http://jappix.mobi/">
-			<span class="title"><?php _e("Jappix for your phone"); ?> »</span>
-			<span class="desc"><?php _e("A single phone app for messages, channels, profiles and much more!"); ?></span>
-		</a>
-
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
 		<?php if(hasLegal()) { ?>- <a href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal"); ?></a><?php } ?>
 	</div>

@@ -164,6 +164,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'COMPRESSION'			=> COMPRESSION,
 		      	'MULTI_FILES'			=> MULTI_FILES,
 		      	'DEVELOPER'				=> DEVELOPER,
+		      	'REGISTER_API'			=> REGISTER_API,
 
 		      	// Hosts configuration
 		      	'HOST_MAIN'				=> HOST_MAIN,

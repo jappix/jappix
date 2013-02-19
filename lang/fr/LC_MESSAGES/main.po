@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-02-08 18:38+0100\n"
+"PO-Revision-Date: 2013-02-19 20:02+0100\n"
 "Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,9 +43,6 @@ msgstr "Téléchargez gratuitement Jappix."
 
 msgid "Contribute to the Jappix code."
 msgstr "Contribuez au code de Jappix."
-
-msgid "Jappix for your mobile phone."
-msgstr "Jappix pour votre mobile."
 
 msgid "Jappix for your company."
 msgstr "Jappix pour votre entreprise."
@@ -2253,6 +2250,42 @@ msgstr "Nouvel évènement !"
 
 msgid "%s is typing..."
 msgstr "%s écrit…"
+
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
+"Le code de sécurité que vous avez entré est invalide. Réessayez avec un "
+"autre."
+
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
+"Le nom d'utilisateur que vous avez choisi n'est pas disponible. Réessayez "
+"avec un autre."
+
+msgid "There was an error registering your account. Please retry."
+msgstr ""
+"Nous avons rencontré une erreur à la création de votre compte. Réessayez."
+
+msgid "Username"
+msgstr "Utilisateur"
+
+msgid "Enter password"
+msgstr "Mot de passe"
+
+msgid "Once again..."
+msgstr "Une autre fois..."
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Security code"
+msgstr "Code de sécurité"
+
+#~ msgid "Jappix for your mobile phone."
+#~ msgstr "Jappix pour votre mobile."
+
+#~ msgid "Unreadable?"
+#~ msgstr "Illisible ?"
 
 #~ msgid "An open social network"
 #~ msgstr "Un réseau social libre"

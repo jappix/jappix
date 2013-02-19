@@ -144,4 +144,10 @@ else
 	<input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 
 	<input type="hidden" name="developer" value="<?php echo $developer; ?>" />
+	
+	<input type="hidden" name="register_api" value="<?php echo $register_api; ?>" />
+	
+	<input type="hidden" name="xmppd_ctl" value="<?php echo $xmppd_ctl; ?>" />
+	
+	<input type="hidden" name="xmppd" value="<?php echo $xmppd; ?>" />
 </fieldset>

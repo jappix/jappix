@@ -144,14 +144,6 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 					</a>
 				</div>
 				
-				<h2>Jappix.mobi</h2>
-				<div class="tabulate">
-					<a href="http://jappix.mobi/">
-						<span class="name">Jappix Mobile</span>
-						<span class="desc"><?php _e("Jappix for your mobile phone."); ?></span>
-					</a>
-				</div>
-				
 				<h2>Jappix.pro</h2>
 				<div class="tabulate">
 					<a href="http://jappix.pro/">

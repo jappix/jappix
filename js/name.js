@@ -103,14 +103,16 @@ function getBuddyName(xid) {
 
 // Gets the nickname of the user
 function getNick() {
-	// Try to read the user nickname
-	var nick = getDB('profile', 'nick');
-	
-	// No nick?
-	if(!nick)
-		nick = con.username;
-	
-	return nick;
+	try {
+		// Try to read the user nickname
+		var nick = getDB('profile', 'nick');
+		
+		// No nick?
+		if(!nick)
+			nick = con.username;
+		
+		return nick;
+	} catch(e) {}
 }
 
 // Gets the full name of the user
