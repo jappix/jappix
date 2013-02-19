@@ -54,7 +54,7 @@ function openVCard() {
 				'<input type="text" id="USER-TEL-NUMBER" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
 				
 				'<label for="USER-URL">' + _e("Website") + '</label>' + 
-				'<input type="text" id="USER-URL" class="vcard-item" placeholder="john.locke.fam" />' + 
+				'<input type="text" id="USER-URL" class="vcard-item" placeholder="http://john.locke.fam/" />' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
