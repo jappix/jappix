@@ -131,10 +131,6 @@ function doRegister(username, domain, pass, captcha) {
 		
 		// Send request
 		$.post('./php/register.php', {username: username, domain: domain, password: pass, captcha: captcha}, function(data) {
-			// Registration okay
-			if($(data).find('query status').text() == '1')
-				handleRegistered();
-			
 			// Error registering
 			removeGeneralWait();
 			pageTitle('home');
@@ -143,32 +139,37 @@ function doRegister(username, domain, pass, captcha) {
 			$('#home img.captcha_img').attr('src', './php/captcha.php?id=' + genID());
 			$('#home input.captcha').val('');
 			
-			// Show error message
-			var error_message = '';
-			
-			switch($(data).find('query message').text()) {
-				case 'CAPTCHA Not Matching':
-					error_message = _e("The security code you entered is invalid. Please retry with another one.");
-					
-					$('#home input.captcha').focus();
-					
-					break;
+			// Registration okay
+			if($(data).find('query status').text() == '1') {
+				handleRegistered();
+			} else {
+				// Show error message
+				var error_message = '';
 				
-				case 'Username Unavailable':
-					error_message = _e("The username you picked is not available. Please try another one.");
+				switch($(data).find('query message').text()) {
+					case 'CAPTCHA Not Matching':
+						error_message = _e("The security code you entered is invalid. Please retry with another one.");
+						
+						$('#home input.captcha').focus();
+						
+						break;
 					
-					$('#home input.nick').focus();
+					case 'Username Unavailable':
+						error_message = _e("The username you picked is not available. Please try another one.");
+						
+						$('#home input.nick').focus();
+						
+						break;
 					
-					break;
+					default:
+						error_message = _e("There was an error registering your account. Please retry.");
+						
+						break;
+				}
 				
-				default:
-					error_message = _e("There was an error registering your account. Please retry.");
-					
-					break;
+				if(error_message)
+					showError('', error_message, '');
 			}
-			
-			if(error_message)
-				showError('', error_message, '');
 		});
 	} else {
 		try {

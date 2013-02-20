@@ -78,7 +78,7 @@ if(REGISTER_API == 'on') {
 			$xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'ejabberdctl';
 			
 			// Command string
-			$command_str = $xmppd_ctl.' register '.escapeshellarg($username).' '.escapeshellarg($domain).' '.escapeshellarg($password);
+			$command_str = 'sudo '.$xmppd_ctl.' register '.escapeshellarg($username).' '.escapeshellarg($domain).' '.escapeshellarg($password);
 		} else {
 			$error = true;
 			$error_reason = 'Unsupported XMPP Daemon';
@@ -95,15 +95,24 @@ if(REGISTER_API == 'on') {
 			
 			// Check if user could be registered
 			foreach($command_output as $command_line) {
-				if(preg_match('/successfully(.+)registered/i', $command_line)) {
+				if(preg_match('/User (.+) successfully registered/i', $command_line)) {
 					$command_return = 1;
+					
+					break;
+				}
+				
+				if(preg_match('/User (.+) already registered/i', $command_line)) {
+					$command_return = 2;
 					
 					break;
 				}
 			}
 			
 			// User created?
-			if($command_return != 1) {
+			if($command_return == 0) {
+				$error = true;
+				$error_reason = 'Server Error';
+			} else if($command_return == 2) {
 				$error = true;
 				$error_reason = 'Username Unavailable';
 			}

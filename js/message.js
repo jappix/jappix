@@ -944,7 +944,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 			
 			// Store the data
 			if(store_html)
-				setPersistent('history-' + hex_md5(getXID()), hash, store_html);
+				setPersistent('history[' + getXID() + ']', hash, store_html);
 		}
 		
 		// Must get the avatar?
