@@ -86,14 +86,14 @@ if(REGISTER_API == 'on') {
 		
 		// Execute command
 		if($command_str) {
-			// Status vars
+			// Here we go!
 			$command_output = array();
-			$command_return = 0;
 			
-			// Here we go
-			exec($command_str, $command_output, $command_return);
+			exec($command_str, $command_output);
 			
 			// Check if user could be registered
+			$command_return = 0;
+			
 			foreach($command_output as $command_line) {
 				if(preg_match('/User (.+) successfully registered/i', $command_line)) {
 					$command_return = 1;
@@ -108,13 +108,14 @@ if(REGISTER_API == 'on') {
 				}
 			}
 			
-			// User created?
-			if($command_return == 0) {
+			// Check for errors
+			if($command_return != 1) {
 				$error = true;
-				$error_reason = 'Server Error';
-			} else if($command_return == 2) {
-				$error = true;
-				$error_reason = 'Username Unavailable';
+				
+				if($command_return == 2)
+					$error_reason = 'Username Unavailable';
+				else
+					$error_reason = 'Server Error';
 			}
 		} else {
 			$error = true;
