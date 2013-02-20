@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 07/10/12
+Last revision: 20/02/13
 
 */
 
@@ -938,7 +938,7 @@ function getMicroblog(xid, hash, check) {
 					
 					'<div class="update">' + 
 						'<h2>' + cTitle + '</h2>' + 
-						'<a href="#" onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
+						'<a href="#" onclick="return resetMicroblog();">Â« ' + _e("Previous") + '</a>' + 
 					'</div>' + 
 					
 					cShortcuts + 

@@ -6,8 +6,8 @@ These are the connection JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 12/08/12
+Author: Valérian Saliou, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -277,7 +277,7 @@ function triggerConnected() {
 		if(!RESUME) {
 			// Remember the session?
 			if(getDB('remember', 'session'))
-				setPersistent('session', 1, CURRENT_SESSION);
+				setPersistent('global', 'session', 1, CURRENT_SESSION);
 			
 			// We show the chatting app.
 			createTalkPage();
@@ -500,8 +500,8 @@ function clearLastSession() {
 	resetConMarkers();
 	
 	// Clear persistent storage
-	if($(XMLFromString(getPersistent('session', 1))).find('stored').text() == 'true')
-		removePersistent('session', 1);
+	if($(XMLFromString(getPersistent('global', 'session', 1))).find('stored').text() == 'true')
+		removePersistent('global', 'session', 1);
 }
 
 // Resets the connection markers
@@ -590,7 +590,7 @@ function launchConnection() {
 		if(LINK_VARS['h'] && (LINK_VARS['h'] == '1')) {
 			// Store session
 			var session_xml = storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
-			setPersistent('session', 1, session_xml);
+			setPersistent('global', 'session', 1, session_xml);
 			
 			// Redirect to a clean URL
 			document.location.href = './';
@@ -609,7 +609,7 @@ function launchConnection() {
 	}
 	
 	// Try to resume a stored session, if not anonymous
-	var session = XMLFromString(getPersistent('session', 1));
+	var session = XMLFromString(getPersistent('global', 'session', 1));
 	
 	if($(session).find('stored').text() == 'true') {
 		// Hide the homepage

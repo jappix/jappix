@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 23/01/13
+Last revision: 20/02/13
 
 */
 
@@ -944,7 +944,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 			
 			// Store the data
 			if(store_html)
-				setPersistent('history-' + hex_md5(getXID()), hash, store_html);
+				setPersistent(getXID(), 'history', hash, store_html);
 		}
 		
 		// Must get the avatar?

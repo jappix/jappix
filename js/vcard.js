@@ -6,8 +6,8 @@ These are the vCard JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 12/02/12
+Author: Valérian Saliou, Maranda
+Last revision: 20/02/12
 
 */
 
@@ -54,7 +54,7 @@ function openVCard() {
 				'<input type="text" id="USER-TEL-NUMBER" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
 				
 				'<label for="USER-URL">' + _e("Website") + '</label>' + 
-				'<input type="text" id="USER-URL" class="vcard-item" placeholder="http://john.locke.fam/" />' + 
+				'<input type="text" id="USER-URL" class="vcard-item" placeholder="john.locke.fam" />' + 
 			'</fieldset>' + 
 		'</div>' + 
 		
@@ -114,7 +114,7 @@ function openVCard() {
 			'<p>' + _e("Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to).") + '</p>' + 
 			'<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
 			'<p>' + printf(_e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
-			'<p><b><a href="https://me.jappix.com/new" target="_blank">' + _e("Enable my public profile") + ' »</a></b></p>' + 
+			'<p><b><a href="https://me.jappix.com/new" target="_blank">' + _e("Enable my public profile") + ' Â»</a></b></p>' + 
 		'</div>' + 
 	'</div>' + 
 	
@@ -391,12 +391,12 @@ function handleVCard(iq, type) {
 	// Update the stored avatar
 	if(type == 'buddy') {
 		// Get the avatar XML
-		var xml = getPersistent('avatar', iqFrom);
+		var xml = getPersistent('global', 'avatar', iqFrom);
 		
 		// If there were no stored avatar previously
 		if($(XMLFromString(xml)).find('type').text() == 'none') {
 			xml = xml.replace(/<forced>false<\/forced>/gi, '<forced>true</forced>');
-			setPersistent('avatar', iqFrom, xml);
+			setPersistent(getXID(), 'avatar', iqFrom, xml);
 		}
 		
 		// Handle the user avatar
@@ -631,3 +631,4 @@ function launchVCard() {
 	// Placeholders
 	$('#vcard-avatar input[type="text"]').placeholder();
 }
+

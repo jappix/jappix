@@ -6,8 +6,8 @@ These are the chat JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Eric
-Last revision: 23/01/13
+Authors: Valérian Saliou, Eric, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -222,7 +222,7 @@ function cleanChat(chat) {
 	$('#page-engine #' + chat + ' .content .one-group').remove();
 	
 	// Clear the history database
-	removePersistent('history-' + hex_md5(getXID()), chat);
+	removePersistent(getXID(), 'history', chat);
 	
 	// Focus again
 	$(document).oneTime(10, function() {
@@ -243,7 +243,7 @@ function chatCreate(hash, xid, nick, type) {
 	// If the user is not in our buddy-list
 	if(type == 'chat') {
 		// Restore the chat history
-		var chat_history = getPersistent('history-' + hex_md5(getXID()), hash);
+		var chat_history = getPersistent(getXID(), 'history', hash);
 		
 		if(chat_history) {
 			// Generate hashs
@@ -342,3 +342,4 @@ function chatCreate(hash, xid, nick, type) {
 	// Chatstate events
 	eventsChatState(inputDetect, xid, hash);
 }
+

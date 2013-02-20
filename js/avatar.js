@@ -6,8 +6,8 @@ These are the avatar JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 21/06/12
+Author: Valérian Saliou, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -22,7 +22,7 @@ function getAvatar(xid, mode, enabled, photo) {
 		return false;
 	
 	// Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
-	var xml = XMLFromString(getPersistent('avatar', xid));
+	var xml = XMLFromString(getPersistent('global', 'avatar', xid));
 	var forced = false;
 	
 	// Retrieving forced?
@@ -146,7 +146,7 @@ function handleAvatar(iq) {
 		displayAvatar(handleFrom, hash, aType, aBinval);
 		
 		// Store the avatar
-		setPersistent('avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
+		setPersistent('global', 'avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
 		
 		logThis('Avatar retrieved from server: ' + handleFrom, 3);
 	}
@@ -177,7 +177,7 @@ function handleAvatar(iq) {
 // Reset the avatar of an user
 function resetAvatar(xid, hash) {
 	// Store the empty avatar
-	setPersistent('avatar', xid, '<avatar><type>none</type><binval>none</binval><checksum>none</checksum><forced>false</forced></avatar>');
+	setPersistent('global', 'avatar', xid, '<avatar><type>none</type><binval>none</binval><checksum>none</checksum><forced>false</forced></avatar>');
 	
 	// Display the empty avatar
 	displayAvatar(xid, hash, 'none', 'none');
@@ -203,3 +203,4 @@ function displayAvatar(xid, hash, type, binval) {
 	// We can remove the pending marker
 	removeArrayValue(AVATAR_PENDING, xid);
 }
+

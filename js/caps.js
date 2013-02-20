@@ -6,8 +6,8 @@ These are the CAPS JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 10/04/12
+Author: Valérian Saliou, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -79,7 +79,7 @@ function getDiscoInfos(to, caps) {
 	}
 	
 	// Get the stored disco infos
-	var xml = XMLFromString(getPersistent('caps', caps));
+	var xml = XMLFromString(getPersistent('global', 'caps', caps));
 	
 	// Yet stored
 	if(xml) {
@@ -210,7 +210,7 @@ function handleDiscoInfos(iq) {
 	var xml = xmlToString(query);
 	
 	// Store the disco infos
-	setPersistent('caps', caps, xml);
+	setPersistent('global', 'caps', caps, xml);
 	
 	// This is our server
 	if(from == getServer()) {
@@ -349,3 +349,4 @@ function processCaps(cIdentities, cFeatures, cDataForms) {
 function myCaps() {
 	return processCaps(new Array('client/web//Jappix'), myDiscoInfos(), new Array());
 }
+

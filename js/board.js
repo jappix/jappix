@@ -6,8 +6,8 @@ These are the notification board JS script for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 31/08/12
+Author: Valérian Saliou, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -152,7 +152,7 @@ function quickBoard(xid, type, content, title, icon) {
 		
 		// Avatar icon?
 		if(xid) {
-			var avatar_xml = XMLFromString(getPersistent('avatar', xid));
+			var avatar_xml = XMLFromString(getPersistent('global', 'avatar', xid));
 			var avatar_type = $(avatar_xml).find('type').text() || 'image/png';
 			var avatar_binval = $(avatar_xml).find('binval').text();
 			
@@ -223,3 +223,4 @@ $(document).click(function() {
 	if((typeof con != 'undefined') && con.connected())
 		quickBoardPermission();
 });
+

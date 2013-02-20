@@ -6,8 +6,8 @@ These are the temporary/persistent data store functions
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: Valérian Saliou
-Last revision: 19/02/13
+Authors: Valérian Saliou, Maranda
+Last revision: 20/02/13
 
 */
 
@@ -120,43 +120,43 @@ function hasPersistent() {
 }
 
 // Persistent: used to read a database entry
-function getPersistent(type, id) {
+function getPersistent(dbID, type, id) {
 	try {
-		return localStorage.getItem(type + '_' + id);
+		return localStorage.getItem(dbID + '_' + type + '_' + id);
 	}
 	
 	catch(e) {
-		logThis('Error while getting a persistent database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		logThis('Error while getting a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
 		
 		return null;
 	}
 }
 
 // Persistent: used to update a database entry
-function setPersistent(type, id, value) {
+function setPersistent(dbID, type, id, value) {
 	try {
-		localStorage.setItem(type + '_' + id, value);
+		localStorage.setItem(dbID + '_' + type + '_' + id, value);
 		
 		return true;
 	}
 	
 	// Database might be full
 	catch(e) {
-		logThis('Retrying: could not write a persistent database entry (' + type + ' -> ' + id + '): ' + e, 2);
+		logThis('Retrying: could not write a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 2);
 		
 		// Flush it!
 		flushPersistent();
 		
 		// Set the item again
 		try {
-			localStorage.setItem(type + '_' + id, value);
+			localStorage.setItem(dbID + ' -> ' + type + '_' + id, value);
 			
 			return true;
 		}
 		
 		// New error!
 		catch(e) {
-			logThis('Aborted: error while writing a persistent database entry (' + type + ' -> ' + id + '): ' + e, 1);
+			logThis('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
 			
 			return false;
 		}
@@ -164,23 +164,23 @@ function setPersistent(type, id, value) {
 }
 
 // Persistent: used to remove a database entry
-function removePersistent(type, id) {
+function removePersistent(dbID, type, id) {
 	try {
-		localStorage.removeItem(type + '_' + id);
+		localStorage.removeItem(dbID + '_' + type + '_' + id);
 		
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while removing a persistent database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		logThis('Error while removing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
 		
 		return false;
 	}
 }
 
 // Persistent: used to check a database entry exists
-function existPersistent(type, id) {
-	var read = getPersistent(type, id);
+function existPersistent(dbID, type, id) {
+	var read = getPersistent(dbID, type, id);
 	
 	if(read != null)
 		return true;
@@ -209,14 +209,14 @@ function resetPersistent() {
 function flushPersistent() {
 	try {
 		// Get the stored session entry
-		var session = getPersistent('session', 1);
+		var session = getPersistent('global', 'session', 1);
 		
 		// Clear the persistent database
 		localStorage.clear();
 		
 		// Restaure the stored session entry
 		if(session)
-			setPersistent('session', 1, session);
+			setPersistent('global', 'session', 1, session);
 		
 		logThis('Persistent database flushed.', 3);
 		
@@ -229,3 +229,4 @@ function flushPersistent() {
 		return false;
 	}
 }
+
