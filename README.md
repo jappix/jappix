@@ -14,12 +14,11 @@ Please refer to the installation instructions that are located in the INSTALL fi
 Links
 -----
 
-* Jappix official service: https://jappix.com/
 * Jappix project website: http://jappix.org/
-* Jappix project dev website: http://developer.jappix.org/
 * Jappix project dev panel: https://github.com/jappix/jappix
 * Jappix nodes list: http://jappix.net/
-* Jappix official support: http://jappix.pro/
+* Jappix main service: https://jappix.com/
+* Jappix commercial support: http://jappix.pro/
 
 MUC Links
 ---------
@@ -32,11 +31,9 @@ Social networking
 
 We're social and you can join us on:
 
-  + Jappix Me: https://me.jappix.com/community@jappix.com
-  + Facebook: https://www.facebook.com/jappix
-  + Twitter: https://twitter.com/jappixorg
-  + Google+: https://plus.google.com/b/107215163233435523450/
-  + Status.net: https://identi.ca/jappixorg
+* Twitter: https://twitter.com/jappixorg
+* Facebook: https://www.facebook.com/jappix
+* Google+: https://plus.google.com/b/107215163233435523450/
 
 We're not on your favorite social network? Contact us and we'll do everything we can to be present!
 
