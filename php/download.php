@@ -5,11 +5,14 @@
 Jappix - An open social platform
 This is the PHP script used to download a chat log
 
+WARNING: THIS FILE IS DEPRECATED!
+(ONLY THERE FOR BACKWARD COMPATIBILITY, SINCE FILE-SHARE.PHP NO LONGER REQUIRE IT)
+
 -------------------------------------------------
 
 License: AGPL
 Author: Cyril "Kyriog" Glapa
-Last revision: 25/12/2012
+Last revision: 03/03/2012
 
 */
 

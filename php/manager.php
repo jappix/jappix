@@ -441,7 +441,7 @@ else
 						<?php
 						
 						// List the share files
-						browseXmlFolder($share_folder);
+						browseFolder($share_folder, 'share');
 						
 						?>
 					</div>
