@@ -938,7 +938,7 @@ function getMicroblog(xid, hash, check) {
 					
 					'<div class="update">' + 
 						'<h2>' + cTitle + '</h2>' + 
-						'<a href="#" onclick="return resetMicroblog();">Â« ' + _e("Previous") + '</a>' + 
+						'<a href="#" onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
 					'</div>' + 
 					
 					cShortcuts + 
