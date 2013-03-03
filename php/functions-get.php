@@ -84,7 +84,7 @@ function setPath($string, $hash, $host, $type, $locale) {
 		if($host && ($host != '.'))
 			$static = $host.'/php';
 
-		$string = preg_replace('/(\(\.\.\/)(css|js|img|store|snd|fonts)(\/)(\S+)(css|js|png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)(\))/', '('.$static.'/get.php?h='.$hash.'&amp;t=$2&amp;f=$4$5)', $string);
+		$string = preg_replace('/(\(\.\.\/)(img|store|snd|fonts)(\/)(\S+)(png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)(\))/', '('.$static.'/get.php?h='.$hash.'&t=$2&f=$4$5)', $string);
 	}
 
 	return $string;
