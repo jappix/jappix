@@ -77,7 +77,7 @@ if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)
 	);
 
 // Resize the image?
-if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96)) {
+if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96, 'square')) {
 	try {
 		// Encode the file
 		$binval = base64_encode(file_get_contents($path));

@@ -54,7 +54,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	// Define some vars
 	$content_dir = JAPPIX_BASE.'/store/share/'.$user;
 	$security_file = $content_dir.'/index.html';
-	$name = sha1(time().$filename);
+	$name = sha1_file($tmp_filename);
 	$path = $content_dir.'/'.$name.'.'.$ext;
 	$thumb_xml = '';
 	
@@ -77,26 +77,37 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	if(!file_exists($security_file))	
 		file_put_contents($security_file, securityHTML(), LOCK_EX);
 	
-	// File upload error?
-	if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
-		exit(
-'<jappix xmlns=\'jappix:file:post\'>
-	<error>move-error</error>
-</jappix>'
-		);
+	// Not already there? (sometimes users upload same file twice, no need to compute it 2 times)
+	$file_first_upload = !file_exists($path);
+	
+	if($file_first_upload) {
+		// File upload error?
+		if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+			exit(
+	'<jappix xmlns=\'jappix:file:post\'>
+		<error>move-error</error>
+	</jappix>'
+			);
+		}
 	}
 	
 	// Resize and compress if this is a JPEG file
 	if(preg_match('/^(jpg|jpeg|png|gif)$/i', $ext)) {
-		// Resize the image
-		resizeImage($path, $ext, 1024, 1024);
-		
-		// Copy the image
+		// Image thumbnail path
 		$thumb = $content_dir.'/'.$name.'_thumb.'.$ext;
-		copy($path, $thumb);
+		$thumb_first_upload = !file_exists($thumb);
 		
-		// Create the thumbnail
-		if(resizeImage($thumb, $ext, 140, 105))
+		// Resize only if first time file is uploaded
+		if($file_first_upload) {
+			// Resize the image
+			resizeImage($path, $ext, 1024, 1024);
+			
+			// Copy the image
+			copy($path, $thumb);
+		}
+		
+		// Create the thumbnail (only once)
+		if(!$thumb_first_upload || resizeImage($thumb, $ext, 140, 105, 'square'))
 			$thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
 	}
 	

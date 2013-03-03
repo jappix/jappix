@@ -1371,7 +1371,7 @@ function manageUsers($action, $array) {
 }
 
 // Resize an image with GD
-function resizeImage($path, $ext, $width, $height) {
+function resizeImage($path, $ext, $width, $height, $mode = 'default') {
 	// No GD?
 	if(!function_exists('gd_info'))
 		return false;
@@ -1401,7 +1401,7 @@ function resizeImage($path, $ext, $width, $height) {
 		$new_y = 0;
 		
 		// Check if we need to generate a square
-		if(($img_width != $img_height) && ($width == $height))
+		if(($mode == 'square') && ($img_width != $img_height) && ($width == $height))
 			$square = true;
 		else
 			$square = false;
