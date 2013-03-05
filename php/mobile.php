@@ -69,6 +69,8 @@ if(!defined('JAPPIX_BASE'))
 		<a href="./?m=desktop<?php echo keepGet('m', false); ?>"><?php _e("Desktop"); ?></a>
 		<?php if(hasLegal()) { ?>- <a href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal"); ?></a><?php } ?>
 	</div>
+	
+	<?php include(JAPPIX_BASE.'/php/analytics.php'); ?>
 </body>
 
 </html>

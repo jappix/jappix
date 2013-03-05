@@ -205,12 +205,12 @@ function goFilterBuddySearch(vFilter) {
 	$('#buddy-list .buddy').hide();
 	
 	// Only show the buddies which match the search
-	for(i in rFilter) {
-		// Choose the correct selector for this search
-		if(!BLIST_ALL)
-			$('#buddy-list .buddy[data-xid=' + escape(rFilter[i]) + ']:not(.hidden-buddy)').show();
-		else
-			$('#buddy-list .buddy[data-xid=' + escape(rFilter[i]) + ']').show();
+	if(!BLIST_ALL) {
+		for(i in rFilter)
+			$('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
+	} else {
+		for(i in rFilter)
+			$('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]').show();
 	}
 }
 
