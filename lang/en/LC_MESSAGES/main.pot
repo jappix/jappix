@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 31/08/12
+# Last revision: 05/03/13
 
 msgid ""
 msgstr ""

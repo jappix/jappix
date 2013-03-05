@@ -7,7 +7,7 @@ These are the homepage JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, LinkMauve
-Last revision: 19/02/13
+Last revision: 05/03/13
 
 */
 
@@ -369,9 +369,8 @@ function launchHome() {
 	});
 	
 	// Slide down the friend links
-	if(exists('#home .friendsview .friends')) {
+	if(exists('#home .friendsview .friends'))
 		$('#home .friendsview .friends').hide().slideDown(750);
-	}
 	
 	// Warns for an obsolete browser
 	if(isObsolete()) {
