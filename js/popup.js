@@ -33,6 +33,9 @@ function createPopup(id, content) {
 	if(top_of)
 		$('#' + id).css('background', 'transparent');
 	
+	// Attach popup events
+	launchPopup(id);
+	
 	return true;
 }
 
@@ -46,4 +49,18 @@ function destroyPopup(id) {
 	
 	// Manage input focus
 	inputFocus();
+}
+
+// Attaches popup events
+function launchPopup(id) {
+	// Click events
+	$('#' + id).click(function(evt) {
+		// Click on lock background?
+		if($(evt.target).is('.lock:not(.unavoidable)')) {
+			// Destroy the popup
+			destroyPopup(id);
+			
+			return false;
+		}
+	});
 }

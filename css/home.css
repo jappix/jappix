@@ -563,7 +563,7 @@ Last revision: 20/10/12
 }
 
 #home img.captcha_img {
-	margin-left: 20px;
+	margin: -2px 0 0 20px;
 	float: left;
 }
 

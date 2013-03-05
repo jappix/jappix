@@ -125,6 +125,9 @@ function openWelcome() {
 	// Create the popup
 	createPopup('welcome', html);
 	
+	// Unavoidable popup
+	$('#welcome').addClass('unavoidable');
+	
 	// Apply the features
 	applyFeatures('welcome');
 	
@@ -248,6 +251,9 @@ function saveWelcome() {
 	
 	// Open the profile editor
 	openVCard();
+	
+	// Unavoidable popup
+	$('#vcard').addClass('unavoidable');
 	
 	END_WELCOME = true;
 	

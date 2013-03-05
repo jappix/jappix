@@ -143,8 +143,13 @@ function closeVCard() {
 	destroyPopup('vcard');
 	
 	// Create the welcome end popup?
-	if(END_WELCOME)
+	if(END_WELCOME) {
+		// Open popup
 		openMe();
+		
+		// Unavoidable popup
+		$('#me').addClass('unavoidable');
+	}
 	
 	return false;
 }
