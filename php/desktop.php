@@ -228,6 +228,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 </div>
 <!-- END BOARD -->
 
+<?php include(JAPPIX_BASE.'/php/analytics.php'); ?>
+
 </body>
 
 </html>

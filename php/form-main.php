@@ -44,6 +44,12 @@ if($registration == 'on')
 else
 	$check_registration = '';
 
+// Analytics tracking
+if($analytics_track == 'on')
+	$check_analytics_track = $checked;
+else
+	$check_analytics_track = '';
+
 // Suggest groupchats
 if($groupchats_suggest == 'on')
 	$check_groupchats_suggest = $checked;
@@ -116,6 +122,16 @@ else
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
 
 	<label for="http_auth"><?php _e("HTTP authentication"); ?></label><input id="http_auth" type="checkbox" name="http_auth"<?php echo $check_http_auth; ?> />
+</fieldset>
+
+<fieldset>
+	<legend><?php printf(T_("Analytics (%s)"), 'Piwik'); ?></legend>
+
+	<label for="analytics_track"><?php _e("Track visits"); ?></label><input id="analytics_track" type="checkbox" name="analytics_track"<?php echo $check_analytics_track; ?> />
+
+	<label for="analytics_url"><?php _e("Piwik URL"); ?></label><input id="analytics_url" type="url" name="analytics_url" value="<?php echo $analytics_url; ?>" placeholder="http://analytics.jappix.tld/" />
+
+	<label for="analytics_id"><?php _e("Piwik tracking ID"); ?></label><input id="analytics_id" type="number" name="analytics_id" value="<?php echo $analytics_id; ?>" placeholder="1, 15, 56" min="1" />
 </fieldset>
 
 <fieldset>

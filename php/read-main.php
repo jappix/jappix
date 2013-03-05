@@ -29,6 +29,9 @@ $main_conf = array(
 	     	'anonymous'				=> 'on',
 	     	'http_auth'				=> 'off',
 	     	'registration'			=> 'on',
+	     	'analytics_track'		=> 'off',
+	     	'analytics_url'			=> '',
+	     	'analytics_id'			=> '',
 	     	'manager_link'			=> 'on',
 	     	'groupchats_join'		=> '',
 	     	'groupchats_suggest'	=> 'on',
@@ -76,6 +79,9 @@ define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('HTTP_AUTH', $main_conf['http_auth']);
 define('REGISTRATION', $main_conf['registration']);
+define('ANALYTICS_TRACK', $main_conf['analytics_track']);
+define('ANALYTICS_URL', $main_conf['analytics_url']);
+define('ANALYTICS_ID', $main_conf['analytics_id']);
 define('MANAGER_LINK', $main_conf['manager_link']);
 define('GROUPCHATS_JOIN', $main_conf['groupchats_join']);
 define('GROUPCHATS_SUGGEST', $main_conf['groupchats_suggest']);

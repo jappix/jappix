@@ -71,6 +71,24 @@ if(isset($_POST['http_auth']) && !empty($_POST['http_auth']))
 else
 	$http_auth = 'off';
 
+// Analytics tracking
+if(isset($_POST['analytics_track']) && !empty($_POST['analytics_track']))
+	$analytics_track = 'on';
+else
+	$analytics_track = 'off';
+
+// Analytics Piwik URL
+if(isset($_POST['analytics_url']) && !empty($_POST['analytics_url']))
+	$analytics_url = stripslashes(htmlspecialchars(trim($_POST['analytics_url'])));
+else
+	$analytics_url = stripslashes(htmlspecialchars($main_default['analytics_url']));
+
+// Analytics Piwik tracking ID
+if(isset($_POST['analytics_id']) && !empty($_POST['analytics_id']))
+	$analytics_id = stripslashes(htmlspecialchars(trim($_POST['analytics_id'])));
+else
+	$analytics_id = stripslashes(htmlspecialchars($main_default['analytics_id']));
+
 // Registration
 if(isset($_POST['registration']) && !empty($_POST['registration']))
 	$registration = 'on';
@@ -167,6 +185,9 @@ $conf_xml =
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<http_auth>'.$http_auth.'</http_auth>
 	<registration>'.$registration.'</registration>
+	<analytics_track>'.$analytics_track.'</analytics_track>
+	<analytics_url>'.$analytics_url.'</analytics_url>
+	<analytics_id>'.$analytics_id.'</analytics_id>
 	<manager_link>'.$manager_link.'</manager_link>
 	<groupchats_join>'.$groupchats_join.'</groupchats_join>
 	<groupchats_suggest>'.$groupchats_suggest.'</groupchats_suggest>
