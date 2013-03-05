@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-03 18:14+0100\n"
+"PO-Revision-Date: 2013-03-05 16:37+0100\n"
 "Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2280,6 +2280,36 @@ msgstr "Code"
 
 msgid "Security code"
 msgstr "Code de sécurité"
+
+msgid "Advertising space available!"
+msgstr "Emplacement publicitaire disponible !"
+
+msgid "Advertise here"
+msgstr "Annoncez ici"
+
+msgid "Analytics (%s)"
+msgstr "Statistiques (%s)"
+
+msgid "Track visits"
+msgstr "Relever les visites"
+
+msgid "Piwik URL"
+msgstr "URL Piwik"
+
+msgid "Piwik tracking ID"
+msgstr "ID de suivi Piwik"
+
+msgid "Advertising (%s)"
+msgstr "Publicités (%s)"
+
+msgid "Enable ads"
+msgstr "Activer les pubs"
+
+msgid "Standard ads key"
+msgstr "Clé des pubs standard"
+
+msgid "Content ads key"
+msgstr "Clé des pubs content"
 
 #~ msgid "Jappix for your mobile phone."
 #~ msgstr "Jappix pour votre mobile."

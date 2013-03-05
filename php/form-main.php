@@ -164,7 +164,7 @@ else
 	<input type="hidden" name="xmppd" value="<?php echo $xmppd; ?>" />
 </fieldset>
 
-<fieldset>
+<?php if(($analytics_track == 'on') || $analytics_url || $analytics_id) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
 	<legend><?php printf(T_("Analytics (%s)"), 'Piwik'); ?></legend>
 
 	<label for="analytics_track"><?php _e("Track visits"); ?></label><input id="analytics_track" type="checkbox" name="analytics_track"<?php echo $check_analytics_track; ?> />
@@ -174,7 +174,7 @@ else
 	<label for="analytics_id"><?php _e("Piwik tracking ID"); ?></label><input id="analytics_id" type="number" name="analytics_id" value="<?php echo $analytics_id; ?>" placeholder="1" min="1" />
 </fieldset>
 
-<fieldset>
+<?php if(($ads_enable == 'on') || $ads_standard || $ads_content) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
 	<legend><?php printf(T_("Advertising (%s)"), 'BackLinks.com'); ?></legend>
 
 	<label for="ads_enable"><?php _e("Enable ads"); ?></label><input id="ads_enable" type="checkbox" name="ads_enable"<?php echo $check_ads_enable; ?> />

@@ -104,7 +104,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 			</div>
 			
 			<?php if((ADS_ENABLE == 'on') && (ADS_STANDARD || ADS_STANDARD)) { ?>
-				<?php require_once('./php/advertising.php'); ?>
+				<?php require_once('./php/functions-advertising.php'); ?>
 				<?php $advertise_link = 'http://www.backlinks.com/?aff=58769'; ?>
 				
 				<div class="friendsview">

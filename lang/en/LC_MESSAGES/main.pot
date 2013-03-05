@@ -1962,3 +1962,33 @@ msgstr ""
 
 msgid "Security code"
 msgstr ""
+
+msgid "Advertising space available!"
+msgstr ""
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+msgid "Content ads key"
+msgstr ""
