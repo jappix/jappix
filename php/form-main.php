@@ -44,12 +44,6 @@ if($registration == 'on')
 else
 	$check_registration = '';
 
-// Analytics tracking
-if($analytics_track == 'on')
-	$check_analytics_track = $checked;
-else
-	$check_analytics_track = '';
-
 // Suggest groupchats
 if($groupchats_suggest == 'on')
 	$check_groupchats_suggest = $checked;
@@ -92,6 +86,18 @@ if($statistics == 'on')
 else
 	$check_statistics = '';
 
+// Analytics tracking
+if($analytics_track == 'on')
+	$check_analytics_track = $checked;
+else
+	$check_analytics_track = '';
+
+// Advertising
+if($ads_enable == 'on')
+	$check_ads_enable = $checked;
+else
+	$check_ads_enable = '';
+
 ?>
 
 <a class="info smallspace neutral" href="https://github.com/jappix/jappix/wiki/JappixApp" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>
@@ -122,16 +128,6 @@ else
 	<label for="registration"><?php _e("Registration allowed"); ?></label><input id="registration" type="checkbox" name="registration"<?php echo $check_registration; ?> />
 
 	<label for="http_auth"><?php _e("HTTP authentication"); ?></label><input id="http_auth" type="checkbox" name="http_auth"<?php echo $check_http_auth; ?> />
-</fieldset>
-
-<fieldset>
-	<legend><?php printf(T_("Analytics (%s)"), 'Piwik'); ?></legend>
-
-	<label for="analytics_track"><?php _e("Track visits"); ?></label><input id="analytics_track" type="checkbox" name="analytics_track"<?php echo $check_analytics_track; ?> />
-
-	<label for="analytics_url"><?php _e("Piwik URL"); ?></label><input id="analytics_url" type="url" name="analytics_url" value="<?php echo $analytics_url; ?>" placeholder="http://analytics.jappix.tld/" />
-
-	<label for="analytics_id"><?php _e("Piwik tracking ID"); ?></label><input id="analytics_id" type="number" name="analytics_id" value="<?php echo $analytics_id; ?>" placeholder="1, 15, 56" min="1" />
 </fieldset>
 
 <fieldset>
@@ -166,4 +162,24 @@ else
 	<input type="hidden" name="xmppd_ctl" value="<?php echo $xmppd_ctl; ?>" />
 	
 	<input type="hidden" name="xmppd" value="<?php echo $xmppd; ?>" />
+</fieldset>
+
+<fieldset>
+	<legend><?php printf(T_("Analytics (%s)"), 'Piwik'); ?></legend>
+
+	<label for="analytics_track"><?php _e("Track visits"); ?></label><input id="analytics_track" type="checkbox" name="analytics_track"<?php echo $check_analytics_track; ?> />
+
+	<label for="analytics_url"><?php _e("Piwik URL"); ?></label><input id="analytics_url" type="url" name="analytics_url" value="<?php echo $analytics_url; ?>" placeholder="http://analytics.jappix.tld/" />
+
+	<label for="analytics_id"><?php _e("Piwik tracking ID"); ?></label><input id="analytics_id" type="number" name="analytics_id" value="<?php echo $analytics_id; ?>" placeholder="1" min="1" />
+</fieldset>
+
+<fieldset>
+	<legend><?php printf(T_("Advertising (%s)"), 'BackLinks.com'); ?></legend>
+
+	<label for="ads_enable"><?php _e("Enable ads"); ?></label><input id="ads_enable" type="checkbox" name="ads_enable"<?php echo $check_ads_enable; ?> />
+	
+	<label for="ads_standard"><?php _e("Standard ads key"); ?></label><input id="ads_standard" type="text" name="ads_standard" value="<?php echo $ads_standard; ?>" placeholder="XXXX-XXXX-XXXX" />
+	
+	<label for="ads_content"><?php _e("Content ads key"); ?></label><input id="ads_content" type="text" name="ads_content" value="<?php echo $ads_content; ?>" placeholder="XXXX-XXXX-XXXX" />
 </fieldset>

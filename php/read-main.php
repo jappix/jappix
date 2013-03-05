@@ -29,9 +29,6 @@ $main_conf = array(
 	     	'anonymous'				=> 'on',
 	     	'http_auth'				=> 'off',
 	     	'registration'			=> 'on',
-	     	'analytics_track'		=> 'off',
-	     	'analytics_url'			=> '',
-	     	'analytics_id'			=> '',
 	     	'manager_link'			=> 'on',
 	     	'groupchats_join'		=> '',
 	     	'groupchats_suggest'	=> 'on',
@@ -39,6 +36,12 @@ $main_conf = array(
 	     	'https_storage'			=> 'off',
 	     	'https_force'			=> 'off',
 	     	'compression'			=> 'off',
+	     	'analytics_track'		=> 'off',
+	     	'analytics_url'			=> '',
+	     	'analytics_id'			=> '',
+	     	'ads_enable'			=> 'off',
+	     	'ads_standard'			=> '',
+	     	'ads_content'			=> '',
 	     	'multi_files'			=> 'off',
 	     	'developer'				=> 'off',
 	     	'statistics'  			=> 'on',
@@ -79,9 +82,6 @@ define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
 define('HTTP_AUTH', $main_conf['http_auth']);
 define('REGISTRATION', $main_conf['registration']);
-define('ANALYTICS_TRACK', $main_conf['analytics_track']);
-define('ANALYTICS_URL', $main_conf['analytics_url']);
-define('ANALYTICS_ID', $main_conf['analytics_id']);
 define('MANAGER_LINK', $main_conf['manager_link']);
 define('GROUPCHATS_JOIN', $main_conf['groupchats_join']);
 define('GROUPCHATS_SUGGEST', $main_conf['groupchats_suggest']);
@@ -89,6 +89,12 @@ define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);
 define('COMPRESSION', $main_conf['compression']);
+define('ANALYTICS_TRACK', $main_conf['analytics_track']);
+define('ANALYTICS_URL', $main_conf['analytics_url']);
+define('ANALYTICS_ID', $main_conf['analytics_id']);
+define('ADS_ENABLE', $main_conf['ads_enable']);
+define('ADS_STANDARD', $main_conf['ads_standard']);
+define('ADS_CONTENT', $main_conf['ads_content']);
 define('MULTI_FILES', $main_conf['multi_files']);
 define('DEVELOPER', $main_conf['developer']);
 define('STATISTICS', $main_conf['statistics']);

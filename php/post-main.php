@@ -71,24 +71,6 @@ if(isset($_POST['http_auth']) && !empty($_POST['http_auth']))
 else
 	$http_auth = 'off';
 
-// Analytics tracking
-if(isset($_POST['analytics_track']) && !empty($_POST['analytics_track']))
-	$analytics_track = 'on';
-else
-	$analytics_track = 'off';
-
-// Analytics Piwik URL
-if(isset($_POST['analytics_url']) && !empty($_POST['analytics_url']))
-	$analytics_url = stripslashes(htmlspecialchars(trim($_POST['analytics_url'])));
-else
-	$analytics_url = stripslashes(htmlspecialchars($main_default['analytics_url']));
-
-// Analytics Piwik tracking ID
-if(isset($_POST['analytics_id']) && !empty($_POST['analytics_id']))
-	$analytics_id = stripslashes(htmlspecialchars(trim($_POST['analytics_id'])));
-else
-	$analytics_id = stripslashes(htmlspecialchars($main_default['analytics_id']));
-
 // Registration
 if(isset($_POST['registration']) && !empty($_POST['registration']))
 	$registration = 'on';
@@ -137,11 +119,47 @@ if(isset($_POST['compression']) && !empty($_POST['compression']))
 else
 	$compression = 'off';
 
-// Compression
+// Statistics
 if(isset($_POST['statistics']) && !empty($_POST['statistics']))
 	$statistics = 'on';
 else
 	$statistics = 'off';
+
+// Analytics tracking
+if(isset($_POST['analytics_track']) && !empty($_POST['analytics_track']))
+	$analytics_track = 'on';
+else
+	$analytics_track = 'off';
+
+// Analytics Piwik URL
+if(isset($_POST['analytics_url']) && !empty($_POST['analytics_url']))
+	$analytics_url = stripslashes(htmlspecialchars(trim($_POST['analytics_url'])));
+else
+	$analytics_url = stripslashes(htmlspecialchars($main_default['analytics_url']));
+
+// Analytics Piwik tracking ID
+if(isset($_POST['analytics_id']) && !empty($_POST['analytics_id']))
+	$analytics_id = stripslashes(htmlspecialchars(trim($_POST['analytics_id'])));
+else
+	$analytics_id = stripslashes(htmlspecialchars($main_default['analytics_id']));
+
+// Advertising enable
+if(isset($_POST['ads_enable']) && !empty($_POST['ads_enable']))
+	$ads_enable = 'on';
+else
+	$ads_enable = 'off';
+
+// Advertising (standard)
+if(isset($_POST['ads_standard']) && !empty($_POST['ads_standard']))
+	$ads_standard = stripslashes(htmlspecialchars(trim($_POST['ads_standard'])));
+else
+	$ads_standard = stripslashes(htmlspecialchars($main_default['ads_standard']));
+
+// Advertising (content)
+if(isset($_POST['ads_content']) && !empty($_POST['ads_content']))
+	$ads_content = stripslashes(htmlspecialchars(trim($_POST['ads_content'])));
+else
+	$ads_content = stripslashes(htmlspecialchars($main_default['ads_content']));
 
 // Multiple resources
 if(isset($_POST['multi_files']) && ($_POST['multi_files'] == 'on'))
@@ -185,9 +203,6 @@ $conf_xml =
 	<anonymous>'.$anonymous_mode.'</anonymous>
 	<http_auth>'.$http_auth.'</http_auth>
 	<registration>'.$registration.'</registration>
-	<analytics_track>'.$analytics_track.'</analytics_track>
-	<analytics_url>'.$analytics_url.'</analytics_url>
-	<analytics_id>'.$analytics_id.'</analytics_id>
 	<manager_link>'.$manager_link.'</manager_link>
 	<groupchats_join>'.$groupchats_join.'</groupchats_join>
 	<groupchats_suggest>'.$groupchats_suggest.'</groupchats_suggest>
@@ -195,6 +210,12 @@ $conf_xml =
 	<https_storage>'.$https_storage.'</https_storage>
 	<https_force>'.$https_force.'</https_force>
 	<compression>'.$compression.'</compression>
+	<analytics_track>'.$analytics_track.'</analytics_track>
+	<analytics_url>'.$analytics_url.'</analytics_url>
+	<analytics_id>'.$analytics_id.'</analytics_id>
+	<ads_enable>'.$ads_enable.'</ads_enable>
+	<ads_standard>'.$ads_standard.'</ads_standard>
+	<ads_content>'.$ads_content.'</ads_content>
 	<multi_files>'.$multi_files.'</multi_files>
 	<developer>'.$developer.'</developer>
 	<statistics>'.$statistics.'</statistics>

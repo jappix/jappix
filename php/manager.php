@@ -622,24 +622,6 @@ else
 					</div>
 				</fieldset>
 				
-				<h4><?php _e("Advertising"); ?></h4>
-				
-				<p><?php _e("Display small ads on your Jappix node homepage, and monetize your service. Ads are served from BackLinks.com, and cannot be blocked by ads blockers."); ?></p>
-				
-				<label for="ads_enable"><?php _e("Enable ads"); ?></label><input id="ads_enable" type="checkbox" name="ads_enable"<?php echo $check_ads_enable; ?> />
-				
-				<label for="ads_standard"><?php _e("Standard ads key"); ?></label><input id="ads_standard" type="text" name="ads_standard" value="<?php echo $ads_standard; ?>" />
-				
-				<label for="ads_content"><?php _e("Content ads key"); ?></label><input id="ads_content" type="text" name="ads_content" value="<?php echo $ads_content; ?>" />
-				
-				<div class="clear"></div>
-				
-				<?php if(!$ads_standard && !$ads_content) { ?>
-					<a class="info smallspace neutral" href="http://backlinks.com/" target="_blank"><?php _e("Don't have a BackLinks.com publisher account? Register there and start earning money with your Jappix!"); ?></a>
-				<?php } else { ?>
-					<a class="info smallspace neutral" href="http://backlinks.com/" target="_blank"><?php _e("You can get your ad keys anytime on BackLinks.com - You just need to add your Jappix homepage to BackLinks first."); ?></a>
-				<? } ?>
-				
 				<h4><?php _e("Notice"); ?></h4>
 				
 				<p><?php _e("Define a homepage notice for all your users, such as a warn, an important message or an advert with this tool."); ?></p>
