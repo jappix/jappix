@@ -368,6 +368,11 @@ function launchHome() {
 			return false;
 	});
 	
+	// Slide down the friend links
+	if(exists('#home .friendsview .friends')) {
+		$('#home .friendsview .friends').hide().slideDown(750);
+	}
+	
 	// Warns for an obsolete browser
 	if(isObsolete()) {
 		// Add the code

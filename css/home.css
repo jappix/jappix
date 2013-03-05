@@ -235,7 +235,7 @@ Last revision: 20/10/12
 }
 
 #home .plane {
-	background-position: 0 -384px;
+	background-position: 0 -421px;
 	width: 507px;
 	height: 328px;
 	position: absolute;
@@ -244,8 +244,6 @@ Last revision: 20/10/12
 }
 
 #home .main {
-	background-color: rgb(20,20,20);
-	background-color: rgba(20,20,20,0.85);
 	position: absolute;
 	top: 50%;
 	margin-top: -200px;
@@ -254,6 +252,17 @@ Last revision: 20/10/12
 	left: 50%;
 	margin-left: -400px;
 	z-index: 50;
+}
+
+#home .mainview {
+	background-color: rgb(20,20,20);
+	background-color: rgba(20,20,20,0.85);
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 2;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -479,6 +488,194 @@ Last revision: 20/10/12
 	height: 16px;
 	vertical-align: middle;
 	display: table-cell;
+}
+
+#home .friendsview {
+	height: 65px;
+	position: absolute;
+	bottom: -65px;
+	left: 15px;
+	right: 15px;
+	z-index: 1;
+	opacity: 0.8;
+}
+
+#home .friendsview .friends {
+	background: #e4eef9;
+	background: -moz-linear-gradient(top, #e4eef9, #C5E1FF);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#C5E1FF));
+	font-size: 13.4px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	box-shadow: 0 0 10px black;
+	-moz-box-shadow: 0 0 10px black;
+	-webkit-box-shadow: 0 0 10px black;
+}
+
+#home .friendsview .friends,
+#home .friendsview .friends a {
+	color: black;
+}
+
+#home .friendsview .friends .group {
+	display: block;
+	position: absolute;
+	top: 10px;
+	bottom: 10px;
+}
+
+#home .friendsview .friends .group.content {
+	width: 340px;
+	left: 10px;
+}
+
+#home .friendsview .friends .group.standard {
+	width: 289px;
+	padding-left: 10px;
+	left: 360px;
+}
+
+#home .friendsview .friends .group.content table,
+#home .friendsview .friends .group.standard table {
+	margin-top: -4px;
+}
+
+#home .friendsview .friends .group.content table a,
+#home .friendsview .friends .group.standard table a {
+	text-decoration: underline;
+}
+
+#home .friendsview .friends .group.content table td {
+	padding-top: 3px;
+}
+
+#home .friendsview .friends .group.content a.available_space,
+#home .friendsview .friends .group.standard a.available_space,
+#home .friendsview .friends a.group.refer {
+	opacity: 0.75;
+	-webkit-transition: 0.3s linear;
+	-moz-transition: 0.3s linear;
+	transition: 0.3s linear;
+}
+
+#home .friendsview .friends .group.content a.available_space:hover,
+#home .friendsview .friends .group.content a.available_space:focus,
+#home .friendsview .friends .group.standard a.available_space:hover,
+#home .friendsview .friends .group.standard a.available_space:focus,
+#home .friendsview .friends a.group.refer:hover,
+#home .friendsview .friends a.group.refer:focus {
+	opacity: 1;
+}
+
+#home .friendsview .friends .group.content a.available_space,
+#home .friendsview .friends .group.standard a.available_space {
+	border: 1px dashed #909090;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 14px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+#home .friendsview .friends .group.standard a.available_space {
+	left: 10px;
+}
+
+#home .friendsview .friends a.group.refer {
+	width: 81px;
+	padding-left: 10px;
+	right: 10px;
+}
+
+#home .friendsview .friends a.group.refer span {
+	display: block;
+}
+
+#home .friendsview .friends a.group.refer span.icon {
+	background-position: 0 -385px;
+	width: 25px;
+	height: 25px;
+	margin: 0 auto;
+	-webkit-transition: 0.3s linear;
+	-moz-transition: 0.3s linear;
+	transition: 0.3s linear;
+}
+
+#home .friendsview .friends a.group.refer:hover span.icon,
+#home .friendsview .friends a.group.refer:focus span.icon {
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+#home .friendsview .friends a.group.refer span.label {
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 6px;
+}
+
+#home .friendsview .friends .group .separator,
+#home .friendsview .friends .group .separator .top,
+#home .friendsview .friends .group .separator .bottom {
+	position: absolute;
+}
+
+#home .friendsview .friends .group .separator {
+	width: 1px;
+	top: 0;
+	bottom: 0;
+	left: -1px;
+}
+
+#home .friendsview .friends .group .separator .top,
+#home .friendsview .friends .group .separator .bottom {
+	height: 50%;
+	left: 0;
+	right: 0;
+}
+
+#home .friendsview .friends .group .separator .top {
+	background: #eeeeee;
+	background: rgba(0,0,0,0.3);
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.3)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+	top: 0;
+}
+
+#home .friendsview .friends .group .separator .bottom {
+	background: #eeeeee;
+	background: rgba(0,0,0,0.3);
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.3)), color-stop(100%, rgba(0,0,0,0)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	background: -o-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	background: -ms-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	bottom: 0;
 }
 
 #home a.advanced {
