@@ -26,12 +26,10 @@ if(!defined('JAPPIX_BASE'))
 	<?php
 		// Enable compatibility mode for IE 10
 		if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match("/MSIE 10\.0/", $_SERVER['HTTP_USER_AGENT'])) {
-			echo "\t";
 			echo '<meta http-equiv="X-UA-Compatible" content="IE=9" />';
 			echo "\n";
 		}
-	?>
-	<title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
+	?><title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
 	<link rel="shortcut icon" href="./favicon.ico" />
 	
 	<?php echoGetFiles($hash, '', 'css', 'desktop.xml', ''); echo "\n"; ?>
