@@ -294,13 +294,14 @@ if (window.XMLSerializer &&
 String.prototype.htmlEnc = function() {
   if(!this)
     return this;
-  
-  var str = this.replace(/&/g,"&amp;");
-  str = str.replace(/</g,"&lt;");
-  str = str.replace(/>/g,"&gt;");
-  str = str.replace(/\"/g,"&quot;");
-  str = str.replace(/\n/g,"<br />");
-  return str;
+
+  return this.replace(/&/g,"&amp;")
+             .replace(/</g,"&lt;")
+             .replace(/>/g,"&gt;")
+             .replace(/\"/g,"&quot;")
+             .replace(/\'/g,"&#039;")
+             .replace(/\"/g,"&quot;")
+             .replace(/\n/g,"<br />");
 };
 
 /**

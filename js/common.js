@@ -136,7 +136,7 @@ function stringPrep(string) {
 
 // Encodes quotes in a string
 function encodeQuotes(str) {
-	return (str + '').replace(/"/g, '&quot;');
+	return (str + '').htmlEnc();
 }
 
 // Gets the bare XID from a XID
