@@ -25,8 +25,8 @@ Mirrors
 
 In case a master service is down (GitHub for Git access or Jappix.org for project download), here is a list of available mirrors:
 
+* Project website mirror: https://project.jappix.com/
 * Git read-only mirror: git clone https://code.frenchtouch.pro/jappix/jappix.git
-* Download website mirror: https://project.jappix.com/
 
 MUC Links
 ---------
