@@ -7,7 +7,7 @@ This is the JSJaC library for Jappix (from trunk)
 
 Licenses: Mozilla Public License version 1.1, GNU GPL, AGPL
 Authors: Stefan Strigler, Valérian Saliou, Zash, Maranda
-Last revision: 08/10/12
+Last revision: 31/03/13
 
 */
 
@@ -298,7 +298,6 @@ String.prototype.htmlEnc = function() {
   return this.replace(/&/g,"&amp;")
              .replace(/</g,"&lt;")
              .replace(/>/g,"&gt;")
-             .replace(/\"/g,"&quot;")
              .replace(/\'/g,"&#039;")
              .replace(/\"/g,"&quot;")
              .replace(/\n/g,"<br />");
