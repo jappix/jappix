@@ -316,7 +316,7 @@ function handleNotifications(iq) {
 		var current_item = $(this).attr('id');
 		var current_type = $(this).find('link[rel="via"]:first').attr('title');
 		var current_href = $(this).find('link[rel="via"]:first').attr('href');
-		var current_parent_href = $(this).find('link[rel="related]":first').attr('href');
+		var current_parent_href = $(this).find('link[rel="related"]:first').attr('href');
 		var current_xid = explodeThis(':', $(this).find('author uri').text(), 1);
 		var current_name = $(this).find('author name').text();
 		var current_text = $(this).find('content[type="text"]:first').text();
