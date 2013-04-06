@@ -96,7 +96,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 		});
 		
 		// Get the repeat value
-		var uRepeat = [$(this).find('source author name').text(), explodeThis(':', $(this).find('source author uri').text(), 1)];
+		var uRepeat = [$(this).find('author name').text(), explodeThis(':', $(this).find('author uri').text(), 1)];
 		var uRepeated = false;
 		
 		if(!uRepeat[0])
@@ -489,8 +489,8 @@ function handleCommentsMicroblog(iq) {
 	$(data).find('item').each(function() {
 		// Get comment
 		var current_id = $(this).attr('id');
-		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
-		var current_name = $(this).find('source author name').text();
+		var current_xid = explodeThis(':', $(this).find('author uri').text(), 1);
+		var current_name = $(this).find('author name').text();
 		var current_date = $(this).find('published').text();
 		var current_body = $(this).find('content[type="text"]').text();
 		var current_bname = getBuddyName(current_xid);
@@ -701,8 +701,7 @@ function sendCommentMicroblog(value, server, node, id, notifiy_arr, parent_data)
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
 	// Author infos
-	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
-	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
 	
@@ -1224,9 +1223,8 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	var item = publish.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
-	// Create the XML source childs
-	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
-	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	// Create the XML author childs
+	var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, author_nick));
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + author_xid));
 	
