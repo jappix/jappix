@@ -317,8 +317,8 @@ function handleNotifications(iq) {
 		var current_type = $(this).find('link[rel="via"]:first').attr('title');
 		var current_href = $(this).find('link[rel="via"]:first').attr('href');
 		var current_parent_href = $(this).find('link[rel="related]":first').attr('href');
-		var current_xid = explodeThis(':', $(this).find('source author uri').text(), 1);
-		var current_name = $(this).find('source author name').text();
+		var current_xid = explodeThis(':', $(this).find('author uri').text(), 1);
+		var current_name = $(this).find('author name').text();
 		var current_text = $(this).find('content[type="text"]:first').text();
 		var current_bname = getBuddyName(current_xid);
 		var current_id = hex_md5(current_type + current_xid + current_href + current_text);
@@ -351,8 +351,7 @@ function sendNotification(xid, type, href, text, parent) {
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
 	
 	// Notification author (us)
-	var Source = entry.appendChild(iq.buildNode('source', {'xmlns': NS_ATOM}));
-	var author = Source.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
+	var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
 	author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
 	author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
 	
