@@ -32,6 +32,7 @@ var MINI_SUGGEST_CHATS			= [];
 var MINI_SUGGEST_GROUPCHATS		= [];
 var MINI_SUGGEST_PASSWORDS		= [];
 var MINI_PASSWORDS				= [];
+var MINI_PRIORITY				= 1;
 var MINI_RESOURCE				= JAPPIX_RESOURCE + ' Mini';
 var MINI_ERROR_LINK				= 'https://mini.jappix.com/issues';
 
@@ -707,11 +708,14 @@ function presenceMini(type, show, priority, status, to, password, limit_history,
 		pr.setType(type);
 	if(show)
 		pr.setShow(show);
-	if(priority)
-		pr.setPriority(priority);
 	if(status)
 		pr.setStatus(status);
-	
+
+	if(priority)
+		pr.setPriority(priority);
+	else if(MINI_PRIORITY && !to)
+		pr.setPriority(MINI_PRIORITY);
+
 	// Special presence elements
 	if(password || limit_history) {
 		var x = pr.appendNode('x', {'xmlns': NS_MUC});
@@ -2639,11 +2643,14 @@ var typewatch = (function() {
 })();
 
 // Plugin launcher
-function launchMini(autoconnect, show_pane, domain, user, password) {
+function launchMini(autoconnect, show_pane, domain, user, password, priority) {
 	// Save infos to reconnect
 	MINI_DOMAIN = domain;
 	MINI_USER = user;
 	MINI_PASSWORD = password;
+
+	if(priority != undefined)
+		MINI_PRIORITY = priority;
 	
 	// Anonymous mode?
 	if(!user || !password)

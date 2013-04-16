@@ -766,10 +766,10 @@ function httpAuthEnabled() {
 // The function to authenticate with HTTP
 function httpAuthentication() {
 	echo '<script type="text/javascript">
-				   jQuery(document).ready(function() {
-				      doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.HOST_MAIN.'");
-				   });
-				</script>';
+			jQuery(document).ready(function() {
+				doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.HOST_MAIN.'", 10);
+			});
+		  </script>';
 }
 
 // The function to quickly translate a string
