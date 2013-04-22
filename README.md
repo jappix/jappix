@@ -48,10 +48,10 @@ We're social and you can join us on:
 * Facebook: https://www.facebook.com/jappix
 * Google+: https://plus.google.com/b/107215163233435523450/
 
-We're not on your favorite social network? Contact us and we'll do everything we can to be present!
+We're not on your favorite social network? Contact us and we'll do everything we can to be there too!
 
 
 One more thing...
 -----------------
 
-Have fun with Jappix, and don't hesitate to help by reporting bugs, translating or submitting new ideas!
+Have fun with Jappix, and don't hesitate to help us by reporting bugs, translating or submitting new ideas!
