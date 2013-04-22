@@ -5,10 +5,10 @@ _Copyright © 2009 ParaType Ltd._
 _with Reserved Names "PT Sans" and "ParaType"._
 
 
-FONT LICENSE
+Font License
 ------------
 
-PERMISSION & CONDITIONS
+Permission & Conditions
 -----------------------
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of the font software, to use, study, copy, merge, embed, modify, redistribute, and sell modified and unmodified copies of the font software, subject to the following conditions:
@@ -24,13 +24,13 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 5. The font software, modified or unmodified, in part or in whole, must be distributed entirely under this license, and must not be distributed under any other license. The requirement for fonts to remain under this license does not apply to any document created using the Font Software.
 
 
-TERMINATION & TERRITORY
+Termination & Territory
 -----------------------
 
 This license has no limits on time and territory, but it becomes null and void if any of the above conditions are not met.
 
 
-DISCLAIMER
+Disclaimer
 ----------
 
 THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL PARATYPE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
