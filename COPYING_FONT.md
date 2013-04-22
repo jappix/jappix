@@ -1,3 +1,6 @@
+Jappix Font Copying
+===================
+
 The following license applies to the "PT Sans" bundled font family.
 -------------------------------------------------------------------
 
