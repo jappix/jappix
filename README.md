@@ -6,10 +6,12 @@ License
 
 Jappix is released under the terms of the AGPL license. See COPYING for details.
 
+
 Installation
 ------------
 
 Please refer to the installation instructions that are located in the INSTALL file to process the Jappix installation.
+
 
 Links
 -----
@@ -20,6 +22,7 @@ Links
 * Jappix main service: https://jappix.com/
 * Jappix commercial support: http://jappix.pro/
 
+
 Mirrors
 -------
 
@@ -28,11 +31,13 @@ In case a master service is down (GitHub for Git access or Jappix.org for projec
 * Project website mirror: https://project.jappix.com/
 * Git read-only mirror: git clone https://code.frenchtouch.pro/jappix/jappix.git
 
+
 MUC Links
 ---------
 
 * Jappix.org support room: https://jappix.com/?r=support@muc.jappix.org
 * Jappix.org dev-talk room: https://jappix.com/?r=dev@muc.jappix.org
+
 
 Social networking
 -----------------
@@ -44,6 +49,7 @@ We're social and you can join us on:
 * Google+: https://plus.google.com/b/107215163233435523450/
 
 We're not on your favorite social network? Contact us and we'll do everything we can to be present!
+
 
 One more thing...
 -----------------
