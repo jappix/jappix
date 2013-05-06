@@ -800,11 +800,16 @@ function sslLink() {
 
 // The function to get the Jappix static URL
 function staticURL() {
-	// Check for HTTPS
-	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
-	
-	// Full URL
-	$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	if(hasStatic()) {
+		// Static URL in hosts.xml
+		$url = HOST_STATIC.$_SERVER['REQUEST_URI'];
+	} else {
+		// Check for HTTPS
+		$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+
+		// Full URL
+		$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	}
 	
 	return $url;
 }
