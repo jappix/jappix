@@ -79,8 +79,13 @@ define('HOST_ANONYMOUS', $hosts_conf['anonymous']);
 define('HOST_BOSH', $hosts_conf['bosh']);
 define('HOST_BOSH_MAIN', $hosts_conf['bosh_main']);
 define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);
-define('HOST_STATIC', $hosts_conf['static']);
-define('HOST_UPLOAD', $hosts_conf['upload']);
 define('BOSH_PROXY', $hosts_conf['bosh_proxy']);
+
+if(strlen($hosts_conf['static']) && $hosts_conf['static']{strlen($hosts_conf['static'])-1} !== '/') {
+        define('HOST_STATIC', $hosts_conf['static'] . '/');
+} else {
+        define('HOST_STATIC', $hosts_conf['static']);
+}
+
 
 ?>
