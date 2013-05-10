@@ -138,7 +138,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 		
 		// Get the item geoloc
 		var tGeoloc = '';
-		var sGeoloc = $(this).find('geoloc[xmlns="' + NS_GEOLOC + '"]:first');
+		var sGeoloc = $(this).find('geoloc:first');
 		var gLat = sGeoloc.find('lat').text();
 		var gLon = sGeoloc.find('lon').text();
 		
