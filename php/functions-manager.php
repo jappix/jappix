@@ -726,7 +726,7 @@ function readBackground() {
 	
 	// Checks no value is missing in the stored configuration
 	foreach($background_default as $background_name => $background_value) {
-		if(!isset($background_conf[$background_name]) || empty($background_conf[$background_name]))
+		if(!isset($background_conf[$background_name]) || ($background_conf[$background_name] == ''))
 			$background_conf[$background_name] = $background_default[$background_name];
 	}
 	
