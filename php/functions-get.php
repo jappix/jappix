@@ -239,9 +239,11 @@ function setBackground($string) {
 		$read = new SimpleXMLElement($xml);
 
 		foreach($read->children() as $child) {
+			$current_child = (string)$child;
+
 			// Any value?
-			if($child)
-				$array[$child->getName()] = $child;
+			if($current_child)
+				$array[$child->getName()] = $current_child;
 		}
 	}
 

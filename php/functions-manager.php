@@ -721,12 +721,12 @@ function readBackground() {
 		
 		// Loop the notice configuration elements
 		foreach($background_xml->children() as $background_child)
-			$background_conf[$background_child->getName()] = $background_child;
+			$background_conf[$background_child->getName()] = (string)$background_child;
 	}
 	
 	// Checks no value is missing in the stored configuration
 	foreach($background_default as $background_name => $background_value) {
-		if(!isset($background_conf[$background_name]) || ($background_conf[$background_name] == ''))
+		if(!isset($background_conf[$background_name]) || empty($background_conf[$background_name]))
 			$background_conf[$background_name] = $background_default[$background_name];
 	}
 	
