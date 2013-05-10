@@ -23,13 +23,19 @@ function getRoster() {
 
 // Handles the roster items
 function handleRoster(iq) {
-	// Define some variables
-	var handleXML = iq.getQuery();
-	var current, xid, dName, subscription, group, xidHash, getNick, nick;
-	
-	// Parse the vcard xml
-	$(handleXML).find('item').each(function() {
+	// Parse the roster xml
+	$(iq.getQuery()).find('item').each(function() {
+		// Get user data
+		var self = $(this);
+		var user_xid = self.attr('jid');
+		var user_subscription = self.attr('subscription');
+
+		// Parse roster data & display user
 		parseRoster($(this), 'load');
+
+		// Request user microblog (populates channel)
+		if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to')))
+			requestMicroblog(user_xid, 1, null, handleRosterMicroblog);
 	});
 	
 	// Update our avatar (if changed), and send our presence

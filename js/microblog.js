@@ -824,6 +824,15 @@ function handleMicroblog(iq) {
 	logThis('Microblog got: ' + from, 3);
 }
 
+// Handles the microblog of an user (from roster)
+function handleRosterMicroblog(iq) {
+	// Get the from attribute of this IQ
+	var from = bareXID(getStanzaFrom(iq));
+
+	// Display the microblog
+	displayMicroblog(iq, from, hex_md5(from), 'mixed', 'push');
+}
+
 // Resets the microblog elements
 function resetMicroblog() {
 	// Reset everything
