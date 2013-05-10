@@ -248,7 +248,7 @@ function updateInformations() {
 		$current_name = $this_child->getName();
 		
 		// Push it to the array, with a basic HTML encoding
-		$array[$current_name] = str_replace('\n', '<br />', $this_child);
+		$array[$current_name] = str_replace('\n', '<br />', (string)$this_child);
 	}
 	
 	// Return this array
@@ -533,7 +533,7 @@ function getMonthlyVisits() {
 			$current_name = numericToMonth($current_id);
 			
 			// Push it!
-			$array[$current_name] = intval($child);
+			$array[$current_name] = intval((string)$child);
 		}
 	}
 	

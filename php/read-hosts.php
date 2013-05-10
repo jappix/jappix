@@ -66,7 +66,7 @@ if($hosts_data) {
 		
 		// Only push this to the array if it exists
 		if(isset($hosts_conf[$hosts_value]) && (string)$hosts_child)
-			$hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, $hosts_child);
+			$hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, (string)$hosts_child);
 	}
 }
 

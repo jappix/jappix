@@ -1178,7 +1178,7 @@ function writeTotalVisit() {
 		
 		// Loop the visit elements
 		foreach($read_xml->children() as $current_child)
-			$array[$current_child->getName()] = intval($current_child);
+			$array[$current_child->getName()] = intval((string)$current_child);
 	}
 	
 	// Increment the total number of visits
@@ -1241,7 +1241,7 @@ function writeMonthsVisit() {
 			
 			// Is this month still valid?
 			if((($month <= 8) && ($current_id <= $month)) || (($month >= 8) && ($current_id >= 8) && ($current_id <= $month)))
-				$array[$current_month] = intval($current_child);
+				$array[$current_month] = intval((string)$current_child);
 		}
 	}
 	
@@ -1305,7 +1305,7 @@ function readNotice() {
 		
 		// Loop the notice configuration elements
 		foreach($notice_xml->children() as $notice_child)
-			$notice_conf[$notice_child->getName()] = utf8_decode($notice_child);
+			$notice_conf[$notice_child->getName()] = utf8_decode((string)$notice_child);
 	}
 	
 	// Checks no value is missing in the stored configuration

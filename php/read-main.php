@@ -67,7 +67,7 @@ if($main_data) {
 
 		// Only push this to the array if it exists
 		if(isset($main_conf[$main_value]) && (string)$main_child)
-			$main_conf[$main_value] = $main_child;
+			$main_conf[$main_value] = (string)$main_child;
 	}
 }
 
