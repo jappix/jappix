@@ -84,7 +84,12 @@ if(REGISTER_API == 'on') {
 		// Which command to execute?
 		$command_str = null;
 		
-		if(XMPPD == 'ejabberd') {
+		if(XMPPD == 'metronome') {
+			$xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'metronomectl';
+			
+			// Command string
+			$command_str = 'sudo '.$xmppd_ctl.' adduser '.escapeshellarg($username.'@'.$domain).' '.escapeshellarg($password);
+		} else if(XMPPD == 'ejabberd') {
 			$xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'ejabberdctl';
 			
 			// Command string
@@ -105,13 +110,13 @@ if(REGISTER_API == 'on') {
 			$command_return = 0;
 			
 			foreach($command_output as $command_line) {
-				if(preg_match('/User (.+) successfully registered/i', $command_line)) {
+				if(((XMPPD == 'metronome') && preg_match('/User successfully added/i', $command_line)) || ((XMPPD == 'ejabberd') && preg_match('/User (.+) successfully registered/i', $command_line))) {
 					$command_return = 1;
 					
 					break;
 				}
 				
-				if(preg_match('/User (.+) already registered/i', $command_line)) {
+				if(((XMPPD == 'metronome') && preg_match('/User already exists/i', $command_line)) || ((XMPPD == 'ejabberd') && preg_match('/User (.+) already registered/i', $command_line))) {
 					$command_return = 2;
 					
 					break;
