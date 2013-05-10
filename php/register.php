@@ -9,7 +9,7 @@ This is the Register API
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 19/02/13
+Last revision: 10/05/13
 
 */
 
@@ -18,6 +18,16 @@ define('JAPPIX_BASE', '..');
 
 // Start PHP session (for CAPTCHA check)
 session_start();
+
+// Get captcha
+$session_captcha = isset($_SESSION['captcha']) ? $_SESSION['captcha'] : null;
+
+// Remove CAPTCHA
+if(isset($_SESSION['captcha']))
+	unset($_SESSION['captcha']);
+
+// Close the session
+session_write_close();
 
 // Get the configuration
 require_once('./functions.php');
@@ -34,7 +44,7 @@ header('Content-Type: text/xml');
 // API vars
 $xml_output = null;
 $error = false;
-$error_reason = 'none';
+$error_reason = '';
 
 // Get POST data
 $query_id = isset($_POST['id']) ? trim($_POST['id']) : 'none';
@@ -64,10 +74,10 @@ if(REGISTER_API == 'on') {
 	} else if($domain != HOST_MAIN) {
 		$error = true;
 		$error_reason = 'Domain Not Allowed';
-	} else if(!isset($_SESSION['captcha'])) {
+	} else if($session_captcha == null) {
 		$error = true;
 		$error_reason = 'CAPTCHA Session Missing';
-	} else if(strtolower(trim($captcha)) != strtolower(trim($_SESSION['captcha']))) {
+	} else if(strtolower(trim($captcha)) != strtolower(trim($session_captcha))) {
 		$error = true;
 		$error_reason = 'CAPTCHA Not Matching';
 	} else {
@@ -122,10 +132,6 @@ if(REGISTER_API == 'on') {
 			$error_reason = 'No Command To Execute';
 		}
 	}
-	
-	// Remove CAPTCHA
-	if(isset($_SESSION['captcha']))
-		unset($_SESSION['captcha']);
 } else {
 	$error = true;
 	$error_reason = 'API Disabled';
@@ -137,7 +143,7 @@ $status_message = 'Success';
 
 if($error) {
 	$status_code = '0';
-	$status_message = 'Unknown error';
+	$status_message = 'Server error';
 	
 	if($error_reason)
 		$status_message = $error_reason;
