@@ -1081,7 +1081,7 @@ function createMini(domain, user, password) {
 	}
 	
 	// Create the DOM
-	jQuery('body').append('<div id="jappix_mini">' + dom + '</div>');
+	jQuery('body').append('<div id="jappix_mini" style="display: none;">' + dom + '</div>');
 	
 	// Hide the roster picker panels
 	jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').removeClass('active');

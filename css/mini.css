@@ -22,6 +22,7 @@ Last revision: 14/05/13
 	position: fixed;
 	bottom: 0;
 	right: 20px;
+	display: block !important;
 	z-index: 999;
 }
 
@@ -55,6 +56,18 @@ Last revision: 14/05/13
 #jappix_mini .jm_images_animate {
 	background-image: url(../img/sprites/animate.png);
 	background-repeat: no-repeat;
+}
+
+#jappix_mini input.placeholder {
+	color: #999999 !important;
+}
+
+#jappix_mini input:-moz-placeholder {
+	color: #999999 !important;
+}
+
+#jappix_mini input::-webkit-input-placeholder {
+	color: #999999 !important;
 }
 
 #jappix_mini a {
@@ -492,18 +505,6 @@ Last revision: 14/05/13
 
 #jappix_mini input.jm_searchbox:focus {
 	border-color: #999999;
-}
-
-#jappix_mini input.jm_searchbox.placeholder {
-	color: #999999 !important;
-}
-
-#jappix_mini input.jm_searchbox::-webkit-input-placeholder {
-	color: #999999 !important;
-}
-
-#jappix_mini input.jm_searchbox:-moz-placeholder {
-	color: #999999 !important;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
