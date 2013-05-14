@@ -111,7 +111,7 @@ function openVCard() {
 		'<div class="infos">' + 
 			'<p class="infos-title">' + _e("Important notice") + '</p>' + 
 			
-			'<p>' + _e("Be careful of the information you write into your profile, because it can be accessed by everyone (even someone you don't want to).") + '</p>' + 
+			'<p>' + _e("Be careful with the information you store into your profile, because it might be accessible by everyone (even someone you don't want to).") + '</p>' + 
 			'<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
 			'<p>' + printf(_e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
 			'<p><b><a href="https://me.jappix.com/new" target="_blank">' + _e("Enable my public profile") + ' »</a></b></p>' + 
