@@ -462,8 +462,8 @@ function sendMessage(hash, type) {
 				shortcuts.push(printf(_e("%s changes your nickname"), '<em>/nick nickname</em>'));
 				shortcuts.push(printf(_e("%s sends a message to someone in the room"), '<em>/msg nickname message</em>'));
 				shortcuts.push(printf(_e("%s changes the room topic"), '<em>/topic subject</em>'));
-				shortcuts.push(printf(_e("%s kicks an user of the room"), '<em>/kick [reason:] nickname</em>'));
-				shortcuts.push(printf(_e("%s bans an user of the room"), '<em>/ban [reason:] nickname</em>'));
+				shortcuts.push(printf(_e("%s kicks a user of the room"), '<em>/kick [reason:] nickname</em>'));
+				shortcuts.push(printf(_e("%s bans a user of the room"), '<em>/ban [reason:] nickname</em>'));
 				shortcuts.push(printf(_e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
 			}
 			

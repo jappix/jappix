@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 05/03/13
+# Last revision: 14/05/13
 
 msgid ""
 msgstr ""
@@ -376,7 +376,7 @@ msgstr ""
 msgid "Important notice"
 msgstr ""
 
-msgid "Be careful of the information you write into your profile, because it could be accessed by everyone (even someone you don't want to)."
+msgid "Be careful of the information you write into your profile, because it can be accessed by everyone (even someone you don't want to)."
 msgstr ""
 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
@@ -1390,7 +1390,7 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr ""
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
 
 msgid "All this Jappix node stored files can be managed with this tool: please select a sub-folder and start editing its content!"
@@ -1732,7 +1732,7 @@ msgstr ""
 msgid "List"
 msgstr ""
 
-msgid "Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."
+msgid "Remove users with this tool. Note that you cannot remove a user if he is the only one remaining."
 msgstr ""
 
 msgid "The user has been added!"
@@ -1879,10 +1879,10 @@ msgstr ""
 msgid "%s changes the room topic"
 msgstr ""
 
-msgid "%s kicks an user of the room"
+msgid "%s kicks a user of the room"
 msgstr ""
 
-msgid "%s bans an user of the room"
+msgid "%s bans a user of the room"
 msgstr ""
 
 msgid "%s invites someone to join the room"
@@ -1900,10 +1900,10 @@ msgstr ""
 msgid "Furthermore, every picture you post in your social channel is added to a beautiful picture timeline. You can now view the pictures you shared year by year."
 msgstr ""
 
-msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genious improvement!"
+msgid "You can also use your XMPP avatar as a single avatar for every website, blog and forum you use. When you change it on XMPP, the new avatar appears everywhere. What a genius improvement!"
 msgstr ""
 
-msgid "Yay, let's create my public profile!"
+msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"

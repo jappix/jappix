@@ -367,7 +367,7 @@ else
 			else if($id == 3) { ?>
 				<h3 class="hosts manager-images"><?php _e("Hosts"); ?></h3>
 				
-				<p><?php _e("Change the XMPP hosts that this Jappix node serve with this tool."); ?></p>
+				<p><?php _e("Change the XMPP hosts that this Jappix node serves with this tool."); ?></p>
 				
 				<p><?php _e("Maybe you don't know what a BOSH server is? In fact, this is a relay between a Jappix client and a XMPP server, which is necessary because of technical limitations."); ?></p>
 				
@@ -714,7 +714,7 @@ else
 				
 				<h4><?php _e("Manage"); ?></h4>
 				
-				<p><?php _e("Remove users with this tool. Note that you cannot remove an user if he is the only one remaining."); ?></p>
+				<p><?php _e("Remove users with this tool. Note that you cannot remove a user if he is the only one remaining."); ?></p>
 				
 				<fieldset>
 					<legend><?php _e("List"); ?></legend>
