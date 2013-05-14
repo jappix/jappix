@@ -17,11 +17,11 @@ function emoteImage(image, text, after) {
 }
 
 // Filters a given message
-function filterThisMessage(neutralMessage, nick, html_encode) {
+function filterThisMessage(neutralMessage, nick, html_escape) {
 	var filteredMessage = neutralMessage;
 	
 	// We encode the HTML special chars
-	if(html_encode)
+	if(html_escape)
 		filteredMessage = filteredMessage.htmlEnc();
 	
 	// /me command
@@ -79,7 +79,7 @@ function filterThisMessage(neutralMessage, nick, html_encode) {
 	.replace(/(^|\s|>|\()((_)([^<>'"_]+)(_))($|\s|<|\))/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
 	
 	// Add the links
-	if(html_encode)
+	if(html_escape)
 		filteredMessage = applyLinks(filteredMessage, 'desktop');
 	
 	// Filter integratebox links

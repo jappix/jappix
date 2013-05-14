@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 20/02/13
+Last revision: 14/05/13
 
 */
 
@@ -64,8 +64,9 @@ function displayMicroblog(packet, from, hash, mode, way) {
 	
 	iParse.each(function() {
 		// Initialize
-		var tTitle, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFEClick;
-		
+		var tContent, tFiltered, tTime, tDate, tStamp, tBody, tName, tID, tHash, tIndividual, tFEClick;
+		var tHTMLEscape = false;
+
 		// Arrays
 		var tFName = [];
 		var tFURL = [];
@@ -160,25 +161,35 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			tGeoloc += '</a>';
 		}
 		
-		// Retrieve the message body
-		tTitle = $(this).find('content[type="text"]').text();
-		
-		if(!tTitle) {
-			// Legacy?
-			tTitle = $(this).find('title:not(source > title)').text();
-			
-			// Last chance?
-			if(!tTitle)
-				tTitle = tBody;
+		// Entry content: HTML, parse!
+		if($(this).find('content[type="html"]').size()) {
+			// Filter the xHTML message
+			tContent = filterThisXHTML(this);
+			tHTMLEscape = false;
 		}
-		
-		// Trim the content
-		tTitle = trim(tTitle);
-		
+
+		// Entry content: Fallback on PLAIN?
+		if(!tContent) {
+			tContent = $(this).find('content[type="text"]').text();
+			
+			if(!tContent) {
+				// Legacy?
+				tContent = $(this).find('title:not(source > title)').text();
+				
+				// Last chance?
+				if(!tContent)
+					tContent = tBody;
+			}
+			
+			// Trim the content
+			tContent = trim(tContent);
+			tHTMLEscape = true;
+		}
+
 		// Any content?
-		if(tTitle) {
+		if(tContent) {
 			// Apply links to message body
-			tFiltered = filterThisMessage(tTitle, tName.htmlEnc(), true);
+			tFiltered = filterThisMessage(tContent, tName.htmlEnc(), tHTMLEscape);
 			
 			// Display the received message
 			var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + encodeQuotes(tStamp) + '" data-id="' + encodeQuotes(tID) + '" data-xid="' + encodeQuotes(from) + '">' + 
@@ -335,7 +346,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 			
 			// Apply the click event
 			$('.' + tHash + ' a.repost:not([data-event="true"])').click(function() {
-				return publishMicroblog(tTitle, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments, tFEComments, tFNComments);
+				return publishMicroblog(tContent, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments, tFEComments, tFNComments);
 			})
 			
 			.attr('data-event', 'true');

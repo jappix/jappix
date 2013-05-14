@@ -318,7 +318,7 @@ function handleMessage(message) {
 	// If the message has a content
 	if(xHTML || body) {
 		var filteredMessage;
-		var notXHTML = true;
+		var html_escape = true;
 		
 		// IE bug fix
 		if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
@@ -326,7 +326,7 @@ function handleMessage(message) {
 		
 		//If this is a xHTML message
 		if(xHTML) {
-			notXHTML = false;
+			html_escape = false;
 			
 			// Filter the xHTML message
 			body = filterThisXHTML(node);
@@ -377,7 +377,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, notXHTML, nickQuote);
+			displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
 		}
 		
 		// Chat message
@@ -408,7 +408,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', notXHTML, '', 'him');
+			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
 			
 			// We notify the user
 			messageNotify(hash, 'personal');
@@ -537,11 +537,8 @@ function sendMessage(hash, type) {
 			aMsg.setType('chat');
 			
 			// Generates the correct message depending of the choosen style
-			var notXHTML = true;
 			var genMsg = generateMessage(aMsg, body, hash);
-			
-			if(genMsg == 'XHTML')
-				notXHTML = false;
+			var html_escape = genMsg != 'XHTML';
 			
 			// Receipt request
 			var receipt_request = receiptRequest(hash);
@@ -556,13 +553,13 @@ function sendMessage(hash, type) {
 			con.send(aMsg, handleErrorReply);
 			
 			// Filter the xHTML message (for us!)
-			if(!notXHTML)
+			if(!html_escape)
 				body = filterThisXHTML(aMsg.getNode());
 			
 			// Finally we display the message we just sent
 			var my_xid = getXID();
 			
-			displayMessage('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', notXHTML, '', 'me', id);
+			displayMessage('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', html_escape, '', 'me', id);
 			
 			// Receipt timer
 			if(receipt_request)
@@ -851,7 +848,7 @@ function generateMessage(aMsg, body, hash) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(type, xid, hash, name, body, time, stamp, message_type, is_xhtml, nick_quote, mode, id) {
+function displayMessage(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id) {
 	// Generate some stuffs
 	var has_avatar = false;
 	var xid_hash = '';
@@ -878,7 +875,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		data_id = ' data-id="' + id + '"';
 	
 	// Filter the message
-	var filteredMessage = filterThisMessage(body, name, is_xhtml);
+	var filteredMessage = filterThisMessage(body, name, html_escape);
 	
 	// Display the received message in the room
 	var messageCode = '<div class="one-line ' + message_type + nick_quote + '"' + data_id + '>';
