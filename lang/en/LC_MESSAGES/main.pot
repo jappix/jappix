@@ -376,7 +376,7 @@ msgstr ""
 msgid "Important notice"
 msgstr ""
 
-msgid "Be careful of the information you write into your profile, because it can be accessed by everyone (even someone you don't want to)."
+msgid "Be careful with the information you store into your profile, because it might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 
 msgid "Not everything is private on XMPP; this is one of those things, your public profile (vCard)."
