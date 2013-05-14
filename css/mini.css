@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, Julien, hunterjm, Kloadut
-Last revision: 22/08/12
+Last revision: 14/05/13
 
 */
 
@@ -570,6 +570,21 @@ Last revision: 22/08/12
 	left: -52px;
 	z-index: 1;
 	display: block;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -moz-animation-name: jm_animate;
+    -webkit-animation-name: jm_animate;
+    animation-name: jm_animate;
+    -moz-transition-timing-function: ease-in-out;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
 }
 
 #jappix_mini span.jm_counter {
@@ -730,4 +745,22 @@ Last revision: 22/08/12
 
 #jappix_popup div.jm_prompt div.jm_clear {
 	clear: both;
+}
+
+@-moz-keyframes jm_animate {
+    to {
+        margin-top: 4px;
+    }
+}
+
+@-webkit-keyframes jm_animate {
+    to {
+        margin-top: 4px;
+    }
+}
+
+@keyframes jm_animate {
+    to {
+        margin-top: 4px;
+    }
 }

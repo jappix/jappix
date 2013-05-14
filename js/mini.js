@@ -1113,7 +1113,7 @@ function createMini(domain, user, password) {
 			// Not yet connected?
 			if(jQuery(counter).text() == _e("Chat")) {
 				// Remove the animated bubble
-				jQuery('#jappix_mini div.jm_starter span.jm_animate').stopTime().remove();
+				jQuery('#jappix_mini div.jm_starter span.jm_animate').remove();
 				
 				// Add a waiting marker
 				jQuery(counter).text(_e("Please wait..."));
@@ -1575,26 +1575,6 @@ function createMini(domain, user, password) {
 			jQuery('#jappix_mini div.jm_starter').prepend(
 				'<span class="jm_animate jm_images_animate"></span>'
 			);
-			
-			// IE6 makes the image blink when animated...
-			if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
-				return;
-			
-			// Add timers
-			var anim_i = 0;
-			
-			jQuery('#jappix_mini div.jm_starter span.jm_animate').everyTime(10, function() {
-				// Next
-				anim_i++;
-				
-				// Margins
-				var m_top = Math.cos(anim_i * 0.02) * 3;
-				var m_left = Math.sin(anim_i * 0.02) * 3;
-				
-				// Apply new position!
-				jQuery(this).css('margin-top', m_top + 'px')
-				            .css('margin-left', m_left + 'px');
-			});
 		}
 	}
 }

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-05 16:37+0100\n"
-"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-05-14 19:22+0100\n"
+"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -400,9 +400,10 @@ msgstr "Biographie"
 msgid "Important notice"
 msgstr "Important"
 
+#, fuzzy
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful of the information you write into your profile, because it can be "
+"accessed by everyone (even someone you don't want to)."
 msgstr ""
 "Soyez prudent par rapport aux informations que vous inscrivez dans votre "
 "profil, étant donné que ceci peut être accessible de tous (même de ceux que "
@@ -1583,7 +1584,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Modifiez la configuration de votre nœud Jappix avec cet outil."
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+#, fuzzy
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr "Modifiez les hôtes XMPP que ce nœud Jappix peut servir avec cet outil."
 
 msgid ""
@@ -2013,9 +2015,10 @@ msgstr "Gérer"
 msgid "List"
 msgstr "Liste"
 
+#, fuzzy
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr ""
 "Supprimez des utilisateurs avec cet outil. Notez que vous ne pouvez pas "
 "supprimer un utilisateur s'il est le seul restant."
@@ -2168,10 +2171,12 @@ msgstr "%s envoie un message à quelqu'un du salon"
 msgid "%s changes the room topic"
 msgstr "%s modifie le sujet du salon"
 
-msgid "%s kicks an user of the room"
+#, fuzzy
+msgid "%s kicks a user of the room"
 msgstr "%s éjecte un utilisateur du salon"
 
-msgid "%s bans an user of the room"
+#, fuzzy
+msgid "%s bans a user of the room"
 msgstr "%s banni un utilisateur du salon"
 
 msgid "%s invites someone to join the room"
@@ -2201,16 +2206,18 @@ msgstr ""
 "un magnifique journal de vos photos. Vous pouvez à présent voir les photos "
 "que vous avez partagées année par année."
 
+#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 "Vous pouvez aussi utiliser votre avatar XMPP comme un avatar unique pour "
 "tout site, blog et forum que vous utilisez. Quand vous le changez sur XMPP, "
 "le nouvel avatar apparaît partout. Quelle innovation géniale !"
 
-msgid "Yay, let's create my public profile!"
+#, fuzzy
+msgid "Yay, let's create your public profile!"
 msgstr "Ouais, créons mon profil public !"
 
 msgid "Enable my public profile"
