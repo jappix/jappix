@@ -9,7 +9,7 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 03/12/11
+Last revision: 14/05/13
 
 */
 
@@ -34,7 +34,7 @@ if($is_developer) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 } else {
 	$expires = 31536000;
-	header('Pragma: public');
+
 	header('Cache-Control: maxage='.$expires);
 	header('Expires: '.gmdate('D, d M Y H:i:s', (time() + $expires)).' GMT');
 }
@@ -232,14 +232,18 @@ if($file && $type) {
 		
 		// Read the text file(s) (CSS & JS)
 		if(($type == 'css') || ($type == 'js')) {
+			// Storage vars
+			$last_modified = $output_data = null;
+
 			// If there's a cache file, read it
 			if(hasCache($cache_lang) && !$is_developer) {
+				$last_modified = filemtime(pathCache($cache_lang));
 				$cache_read = readCache($cache_lang);
 				
 				if($deflate_support || !$has_compression)
-					echo $cache_read;
+					$output_data = $cache_read;
 				else
-					echo gzinflate($cache_read);
+					$output_data = gzinflate($cache_read);
 			}
 			
 			// Else, we generate the cache
@@ -247,6 +251,7 @@ if($file && $type) {
 				// First try to read the cache reference
 				if(hasCache($cache_hash) && !$is_developer) {
 					// Read the reference
+					$last_modified = filemtime(pathCache($cache_hash));
 					$cache_reference = readCache($cache_hash);
 					
 					// Filter the cache reference
@@ -258,6 +263,9 @@ if($file && $type) {
 				
 				// No cache reference, we should generate it
 				else {
+					// Last modified date is now
+					$last_modified = time();
+
 					// Initialize the loop
 					$looped = '';
 					
@@ -335,10 +343,38 @@ if($file && $type) {
 				
 				// Output a well-encoded string
 				if($deflate_support || !$has_compression)
-					echo $final;
+					$output_data = $final;
 				else
-					echo gzinflate($final);
+					$output_data = gzinflate($final);
 			}
+
+			// Any data to output?
+			if($output_data) {
+				// Read request headers (no need to read them before for performance reasons)
+				$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
+				$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
+
+				// Last-Modified HTTP header
+				if(!$is_developer)
+					header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+
+				// Check browser cache
+				if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
+					// Use browser cache
+					header('Status: 304 Not Modified', true, 304);
+
+					exit;
+				} else {
+					// More file HTTP headers
+					header('Content-Length: '.strlen($output_data));
+
+					// Output data
+					echo($output_data);
+				}
+			}
+
+			// Free up memory (prevents leaks)
+			unset($output_data);
 		}
 		
 		// Read the binary file (PNG, OGA and others)

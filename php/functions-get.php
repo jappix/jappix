@@ -9,13 +9,18 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, olivierm, regilero, Maranda
-Last revision: 01/03/13
+Last revision: 14/05/13
 
 */
 
+// The function to get the cache path
+function pathCache($hash) {
+	return JAPPIX_BASE.'/store/cache/'.$hash.'.cache';
+}
+
 // The function to get the cached content
 function readCache($hash) {
-	return file_get_contents(JAPPIX_BASE.'/store/cache/'.$hash.'.cache');
+	return file_get_contents(pathCache($hash));
 }
 
 // The function to generate a cached file
