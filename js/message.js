@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 20/02/13
+Last revision: 14/05/13
 
 */
 
@@ -948,9 +948,12 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		if((type == 'chat') && (message_type == 'user-message')) {
 			// Filter the DOM
 			var dom_filter = $('#' + hash + ' .content').clone().contents();
+			var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
+			
 			$(dom_filter).find('.system-message').parent().remove();
-			$(dom_filter).find('.avatar-container img.avatar').attr('src', './img/others/default-avatar.png');
+			$(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
 			$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - 20).remove();
+			
 			var store_html = $(dom_filter).parent().html();
 			
 			// Store the data
