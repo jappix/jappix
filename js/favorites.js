@@ -7,7 +7,7 @@ These are the favorites JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/06/11
+Last revision: 14/05/13
 
 */
 
@@ -126,7 +126,7 @@ function resetFavorites() {
 	$(path + '.please-complete').removeClass('please-complete');
 	$(path + '.fedit-nick').val(getNick());
 	$(path + '.fsearch-head-server, ' + path + '.fedit-server').val(HOST_MUC);
-	$(path + '.fedit-autojoin').attr('checked', false);
+	$(path + '.fedit-autojoin').removeAttr('checked');
 }
 
 // Quits the favorites popup
@@ -213,12 +213,9 @@ function editFavorite() {
 		$(favorites + 'fedit-server').val(getXIDHost(xid));
 		$(favorites + 'fedit-password').val($(data).find('password').text());
 		
-		if($(data).find('autojoin').text() == '1')
+		if($(data).find('autojoin').text() == 'true')
 			$(favorites + 'fedit-autojoin').attr('checked', true);
 	}
-	
-	else
-		resetFavorites();
 }
 
 // Adds a favorite
@@ -248,10 +245,10 @@ function terminateThisFavorite(type) {
 	var server = $(favorites + '.fedit-server').val();
 	var xid = room + '@' + server;
 	var password = $(favorites + '.fedit-password').val();
-	var autojoin = '0';
+	var autojoin = 'false';
 	
 	if($(favorites + '.fedit-autojoin').filter(':checked').size())
-		autojoin = '1';
+		autojoin = 'true';
 	
 	// We check the missing values and send this if okay
 	if((type == 'add') || (type == 'edit')) {
