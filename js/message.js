@@ -87,17 +87,29 @@ function handleMessage(message) {
 			logThis('Active chatstate received from: ' + from);
 		}
 		
-		else if($(node).find('composing').size())
+		else if($(node).find('composing').size()) {
 			displayChatState('composing', chatstate_hash, type);
+
+			logThis('Composing chatstate received from: ' + from);
+		}
 		
-		else if($(node).find('paused').size())
+		else if($(node).find('paused').size()) {
 			displayChatState('paused', chatstate_hash, type);
+
+			logThis('Paused chatstate received from: ' + from);
+		}
 		
-		else if($(node).find('inactive').size())
+		else if($(node).find('inactive').size()){
 			displayChatState('inactive', chatstate_hash, type);
+
+			logThis('Inactive chatstate received from: ' + from);
+		}
 		
-		else if($(node).find('gone').size())
+		else if($(node).find('gone').size()){
 			displayChatState('gone', chatstate_hash, type);
+
+			logThis('Gone chatstate received from: ' + from);
+		}
 	}
 	
 	// Invite message
@@ -354,14 +366,13 @@ function handleMessage(message) {
 					soundPlay(1);
 				}
 				
-				// We notify the user there's a new unread muc message
+				// We notify the user there's a new unread MUC message
 				else {
 					messageNotify(hash, 'unread');
 					
-					// Play sound to all users in the muc, except user who sent the message.
-                    if(myNick != resource) {
+					// Play sound to all users in the MUC, except user who sent the message.
+                    if(myNick != resource)
                         soundPlay(1);
-                    }
 				}
 			}
 			

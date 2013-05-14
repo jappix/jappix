@@ -340,5 +340,5 @@ function chatCreate(hash, xid, nick, type) {
 	});
 	
 	// Chatstate events
-	eventsChatState(inputDetect, xid, hash);
+	eventsChatState(inputDetect, xid, hash, 'chat');
 }

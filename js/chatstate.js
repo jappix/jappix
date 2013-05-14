@@ -116,7 +116,7 @@ function resetChatState(hash, type) {
 }
 
 // Adds the chatstate events
-function eventsChatState(target, xid, hash) {
+function eventsChatState(target, xid, hash, type) {
 	target.keyup(function(e) {
 		if(e.keyCode != 13) {
 			// Composing a message
@@ -128,7 +128,7 @@ function eventsChatState(target, xid, hash) {
 				chatStateSend('composing', xid, hash);
 			}
 			
-			// Stopped composing a message
+			// Flushed the message which was being composed
 			else if(!$(this).val() && (getDB('chatstate', xid) == 'on')) {
 				// We change the state detect input
 				setDB('chatstate', xid, 'off');
@@ -149,13 +149,13 @@ function eventsChatState(target, xid, hash) {
 		if(target.is(':disabled'))
 			return;
 		
-		// Nothing in the input, user is active
-		if(!$(this).val())
-			chatStateSend('active', xid, hash);
-		
 		// Something was written, user started writing again
-		else
+		if($(this).val())
 			chatStateSend('composing', xid, hash);
+
+		// Chat only: Nothing in the input, user is active
+		else if(type == 'chat')
+			chatStateSend('active', xid, hash);
 	});
 	
 	target.blur(function() {
@@ -163,12 +163,12 @@ function eventsChatState(target, xid, hash) {
 		if(target.is(':disabled'))
 			return;
 		
-		// Nothing in the input, user is inactive
-		if(!$(this).val())
-			chatStateSend('inactive', xid, hash);
-		
 		// Something was written, user paused
-		else
+		if($(this).val())
 			chatStateSend('paused', xid, hash);
+
+		// Chat only: Nothing in the input, user is inactive
+		else if(type == 'chat')
+			chatStateSend('inactive', xid, hash);
 	});
 }

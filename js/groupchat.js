@@ -199,11 +199,20 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	
 	// Focus event
 	inputDetect.focus(function() {
+		// Clean notifications for this chat
 		chanCleanNotify(hash);
+		
+		// Store focus on this chat!
+		CHAT_FOCUS_HASH = hash;
 	})
 	
 	// Blur event
 	inputDetect.blur(function() {
+		// Reset storage about focus on this chat!
+		if(CHAT_FOCUS_HASH == hash)
+			CHAT_FOCUS_HASH = null;
+
+		// Reset autocompletion
 		resetAutocompletion(hash);
 	})
 	
@@ -239,7 +248,7 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	});
 	
 	// Chatstate events
-	eventsChatState(inputDetect, room, hash);
+	eventsChatState(inputDetect, room, hash, 'groupchat');
 	
 	// Get the current muc informations and content
 	getMUC(room, nickname, password);
