@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 23/01/13
+Last revision: 14/05/13
 
 */
 
@@ -19,6 +19,7 @@ var MINI_INITIALIZED			= false;
 var MINI_ANONYMOUS				= false;
 var MINI_ANIMATE				= false;
 var MINI_RANDNICK				= false;
+var MINI_DISABLE_MOBILE			= false;
 var MINI_NICKNAME				= '';
 var MINI_TITLE					= null;
 var MINI_DOMAIN					= null;
@@ -2644,6 +2645,13 @@ var typewatch = (function() {
 
 // Plugin launcher
 function launchMini(autoconnect, show_pane, domain, user, password, priority) {
+	// Disabled on mobile?
+	if(MINI_DISABLE_MOBILE && isMobile()) {
+		logThis('Jappix Mini disabled on mobile.');
+
+		return;
+	}
+
 	// Save infos to reconnect
 	MINI_DOMAIN = domain;
 	MINI_USER = user;

@@ -341,3 +341,12 @@ function escapeRegex(query) {
 function randomArrayValue(arr) {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
+
+// Returns whether the browser is mobile or not
+function isMobile() {
+	try {
+		return /Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|Bada|Maemo|Meego|webOS/i.test(navigator.userAgent);
+	} catch(e) {
+		return false;
+	}
+}
