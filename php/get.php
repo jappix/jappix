@@ -74,6 +74,10 @@ if($file && $type) {
 	$dir = '../'.$type.'/';
 	$path = $dir.$file;
 	
+	// Read request headers
+	$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
+	$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
+
 	// Define the real type if this is a "store" file
 	if($type == 'store') {
 		// Extract the file extension
@@ -350,10 +354,6 @@ if($file && $type) {
 
 			// Any data to output?
 			if($output_data) {
-				// Read request headers (no need to read them before for performance reasons)
-				$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
-				$if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
-
 				// Last-Modified HTTP header
 				if(!$is_developer)
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
@@ -378,9 +378,29 @@ if($file && $type) {
 		}
 		
 		// Read the binary file (PNG, OGA and others)
-		else
-			readfile($path);
-		
+		else {
+			// Process re-usable HTTP headers values
+			$last_modified = filemtime($path);
+
+			// File HTTP headers
+			if(!$is_developer)
+				header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+
+			// Check browser cache
+			if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
+				// Use browser cache
+				header('Status: 304 Not Modified', true, 304);
+				
+				exit;
+			} else {
+				// More file HTTP headers
+				header('Content-Length: '.filesize($path));
+
+				// Simple binary read (no packing needed)
+				readfile($path);
+			}
+		}
+
 		exit;
 	}
 	
