@@ -82,7 +82,7 @@ else {
 	$mobile = new Mobile_Detect();
 	
 	// Really mobile?
-	if($mobile -> isMobile())
+	if(($mobile -> isMobile()) && !($mobile -> isTablet()))
 		$include_app = 'mobile';
 }
 

@@ -11,13 +11,13 @@ Projects
 * DrawSVGChart		http://codingteam.net/project/codingteam
 * idzXHR			http://www.iadvize.com/plugin_strophe_xmpp.html
 * JSJaC				http://blog.jwchat.org/jsjac/
+* JSMin				http://github.com/rgrove/jsmin-php/
 * jQuery			http://jquery.com/
 * jQuery Form		http://jquery.malsup.com/form/
 * jQuery Timers		http://plugins.jquery.com/project/timers
 * jXHR				http://mulletxhr.com/
-* Mobile Detect		http://code.google.com/p/php-mobile-detect/
-* Myriad Web Pro	http://www.adobe.com/
-* JSMin				http://github.com/rgrove/jsmin-php/
+* Mobile Detect		https://github.com/serbanghita/Mobile-Detect
+* ParaType			http://paratype.ru/
 * PHP-gettext		https://launchpad.net/php-gettext	
 * Silk icons		http://www.famfamfam.com/lab/icons/silk/
 * Smileys			http://www.gajim.org/
