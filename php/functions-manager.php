@@ -9,7 +9,7 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, olivierm, Vinilox, regilero, Cyril "Kyriog" Glapa
-Last revision: 27/02/12
+Last revision: 15/05/12
 
 */
 
@@ -259,7 +259,7 @@ function updateInformations() {
 function processUpdate($url) {
 	// Archive path
 	$name = md5($url).'.zip';
-	$update_dir = $dir_base.'store/updates/';
+	$update_dir = JAPPIX_BASE.'/store/updates/';
 	$path = JAPPIX_BASE.'/store/updates/'.$name;
 	$extract_to = $update_dir.'jappix/';
 	$store_tree = JAPPIX_BASE.'/php/store-tree.php';
