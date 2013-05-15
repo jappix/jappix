@@ -9,7 +9,7 @@ This is the hosts configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 29/05/11
+Last revision: 15/05/13
 
 */
 
@@ -70,6 +70,15 @@ if($hosts_data) {
 	}
 }
 
+// Filter hosts (remove multiple '/' at the end)
+$filter_host_regex = '/(\/+)?$/';
+
+if($hosts_conf['upload'])
+	$hosts_conf['upload'] = preg_replace($filter_host_regex, '', $hosts_conf['upload']);
+
+if($hosts_conf['static'])
+	$hosts_conf['static'] = preg_replace($filter_host_regex, '', $hosts_conf['static']);
+
 // Finally, define the hosts configuration globals
 define('HOST_MAIN', $hosts_conf['main']);
 define('HOST_MUC', $hosts_conf['muc']);
@@ -82,8 +91,8 @@ define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);
 define('HOST_UPLOAD', $hosts_conf['upload']);
 define('BOSH_PROXY', $hosts_conf['bosh_proxy']);
 
-if(strlen($hosts_conf['static']) && $hosts_conf['static']{strlen($hosts_conf['static'])-1} !== '/') {
-        define('HOST_STATIC', $hosts_conf['static'] . '/');
+if(strlen($hosts_conf['static']) && ($hosts_conf['static']{strlen($hosts_conf['static']) - 1} !== '/')) {
+        define('HOST_STATIC', $hosts_conf['static'].'/');
 } else {
         define('HOST_STATIC', $hosts_conf['static']);
 }

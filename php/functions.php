@@ -673,10 +673,10 @@ function multiFiles() {
 function getFiles($h, $l, $t, $g, $f) {
 	// Define the good path to the Get API
 	if(hasStatic())
-		$path_to = HOST_STATIC.'/';
+		$path_to = HOST_STATIC;
 	else
 		$path_to = JAPPIX_BASE.'/';
-		
+	
 	if(!multiFiles()) {
 		$values = array();
 		if ($h)
