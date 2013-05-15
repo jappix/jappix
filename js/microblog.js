@@ -945,7 +945,7 @@ function getMicroblog(xid, hash, check) {
 		// Create a new individual channel
 		$('#channel .content.mixed').after(
 				'<div class="content individual microblog-' + hash + '">' + 
-					'<a href="#" class="more home-images" onclick="return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\');">' + _e("More notices...") + '</a>' + 
+					'<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\'); } return false;">' + _e("More notices...") + '</a>' + 
 				'</div>'
 						 )
 					   
@@ -967,6 +967,12 @@ function getMicroblog(xid, hash, check) {
 				'</div>'
 						 );
 		
+		// Microblog navigation
+		$('#channel .content.individual').scroll(function() {
+			if($('#channel .footer div.fetch').is(':hidden') && $('#channel .individual a.more:visible').size() && $('#channel .content.individual').scrollTop() >= ($('#channel .content.individual')[0].scrollHeight - $('#channel .content.individual').height() - 200))
+				$('#channel .individual a.more').click();
+		});
+
 		// Display the user avatar
 		getAvatar(xid, 'cache', 'true', 'forget');
 	}
