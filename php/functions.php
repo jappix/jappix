@@ -9,7 +9,7 @@ These are the PHP functions for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, LinkMauve, Mathieui, olivierm, regilero, Maranda
-Last revision: 08/02/13
+Last revision: 15/05/13
 
 */
 
@@ -226,15 +226,15 @@ function checkLanguage() {
 	$order = array();
 	
 	foreach($nav_langs as $entry) {
-		$indice = explode('=', $entry);
-		$lang = strtolower(substr(trim($indice[0]), 0, 2));
+		$index = explode('=', $entry);
+		$lang = strtolower(substr(trim($index[0]), 0, 2));
 		
-		if(!isset($indice[1]) || !$indice[1])
-			$indice = 1;
+		if(!isset($index[1]) || !$index[1])
+			$index = 1;
 		else
-			$indice = $indice[1];
+			$index = $index[1];
 		
-		$order[$lang] = $indice;
+		$order[$lang] = $index;
 	}
 	
 	arsort($order);
