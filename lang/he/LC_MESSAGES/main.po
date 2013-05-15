@@ -2,27 +2,27 @@
 # Hebrew translations for jappix package.
 # This file is distributed under the same license as the jappix package.
 # This file was translated from CodingTeam at <http://codingteam.net/>.
-# Isratine Citizen <genghiskhan@gmx.ca>, 2012.
+# Isratine Citizen <genghiskhan@gmx.ca>, 2012, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Jappix\n"
+"Project-Id-Version: Jappix 0.9.5\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-03 18:14+0100\n"
-"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
-"Language-Team: Rahut <genghiskhan@gmx.ca>\n"
+"PO-Revision-Date: 2013-05-15 21:26+0200\n"
+"Last-Translator: Isratine Citizen <genghiskhan@gmx.ca>\n"
+"Language-Team: Rahut <http://sourceforge.net/projects/rahut/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
-"‫JavaScript נעדר מדפדפן הרשת שלך, כך שלא תהיה ביכולתך להריץ את ‫Jappix! נא "
-"לתקן זאת."
+"‫JavaScript נעדר מדפדפן הרשת שלך, כך שלא תהיה ביכולתך להריץ את ‫Jappix! אנא "
+"תקן זאת."
 
 msgid "Social channel, chat and more."
 msgstr "ערוץ חברתי, צ'אט ועוד."
@@ -31,7 +31,7 @@ msgid "Create your public profile."
 msgstr "יצירת הדיקן הפומבי שלך."
 
 msgid "A mini-chat for your website."
-msgstr "מיני־צ'אט עבור אתר הרשת שלך."
+msgstr "מיני צ'אט עבור אתר הרשת שלך."
 
 msgid "Get Jappix, get support."
 msgstr "השגת ‫Jappix, השגת תמיכה."
@@ -47,9 +47,6 @@ msgstr "הורדת ‫Jappix בחינם."
 
 msgid "Contribute to the Jappix code."
 msgstr "תרמו לקוד של ‫Jappix."
-
-msgid "Jappix for your mobile phone."
-msgstr "‫Jappix עבור הטלפון הנייד שלך."
 
 msgid "Jappix for your company."
 msgstr "‫Jappix עבור הפירמה שלך."
@@ -92,27 +89,25 @@ msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
 "that you entered the right credentials), sorry for the inconvenience."
 msgstr ""
-"‫Jappix הופרעה על ידי בעיית רשת תקשורת, או באג או התחברות שגויה (נא לבדוק "
+"‫Jappix הופרעה על ידי בעיית רשת תקשורת, או באג או התחברות שגויה (אנא בדוק "
 "שהזנת את נתוני ההתחברות המדויקים), אנחנו מתנצלים על אי הנוחיות."
 
 msgid "The element list on this server could not be obtained!"
-msgstr "לא ניתן היה להשיג את רשימת הפרטים בשרת זה!"
+msgstr "לא היתה אפשרות להשיג את רשימת הפרטים בשרת זה!"
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
-msgstr "סיסמתך שונתה, כעת ביכולתך להתחבר אל חשבונך עם נתוני ההתחברות החדשים."
+msgstr "סיסמתך שונתה, כעת ניתן להתחבר אל חשבונך עם נתוני ההתחברות החדשים."
 
 msgid "Your XMPP account has been removed, bye!"
 msgstr "חשבון ‫XMPP הוסר, להתראות!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr "התנתקת מן חשבון ה־‫XMPP שלך, שיהיה לך יום נעים!"
+msgstr "התנתקת מן חשבון ‫XMPP, שיהיה לך יום נעים!"
 
 msgid "The room you tried to join doesn't seem to exist."
-msgstr ""
-"‫JavaScript נעדר מדפדפן הרשת שלך, כך שלא תהיה ביכולתך להריץ את ‫Jappix! נא "
-"לתקן זאת."
+msgstr "לא נראה שהחדר אליו ניסית להצטרף קיים."
 
 msgid "The groupchat has been removed."
 msgstr "שיחת הקבוצה הוסרה."
@@ -122,10 +117,10 @@ msgid "The user that you want to reach is not present in the room."
 msgstr "המשתמש אליו ברצונך לגשת אינו נוכח בחדר."
 
 msgid "Please enter the group chat address to join."
-msgstr "נא להזין את כתובת קבוצת השיחה שברצונך להצטרף אליה."
+msgstr "אנא הזן כתובת קבוצת שיחה שברצונך להצטרף אליה."
 
 msgid "Please enter your nickname to join %s."
-msgstr "נא להזין כינוי כדי להצטרף אל %s."
+msgstr "אנא הזן כינוי כדי להצטרף אל %s."
 
 msgid "This room (%s) is protected with a password."
 msgstr "חדר זה ‫(%s) מוגן עם מילת־מעבר."
@@ -137,7 +132,7 @@ msgid "Last %s version is better!"
 msgstr "גרסה ‫%s הינה טובה יותר!"
 
 msgid "Login"
-msgstr "התחברות"
+msgstr "כניסה"
 
 msgid "Register"
 msgstr "הרשמה"
@@ -163,7 +158,7 @@ msgstr "נותקת, עקב בעיה ברשת התקשורת. מה ברצונך �
 
 # חידוש חיבור
 msgid "Reconnect"
-msgstr "התחברות מחדש"
+msgstr "התחבר מחדש"
 
 msgid "Messages"
 msgstr "הודעות"
@@ -181,7 +176,7 @@ msgid "Filter"
 msgstr "סינון"
 
 msgid "Add a friend"
-msgstr "הוספת חבר/ה"
+msgstr "הוסף חבר/ה"
 
 msgid "Your groupchats"
 msgstr "שיחות הקבוצה שלך"
@@ -194,10 +189,10 @@ msgid "More stuff"
 msgstr "דברים נוספים"
 
 msgid "Show all friends"
-msgstr "הצגת כל החברים"
+msgstr "הצג את כל החברים"
 
 msgid "Only show connected friends"
-msgstr "הצגת חברים מחוברים בלבד"
+msgstr "הצג חברים מחוברים בלבד"
 
 msgid "Message archives"
 msgstr "ארכיוני הודעות"
@@ -206,7 +201,7 @@ msgid "Date"
 msgstr "תאריך"
 
 msgid "Please select a friend to view the chat history."
-msgstr "נא לבחור חבר להצגת היסטוריית שיחה."
+msgstr "אנא בחר חבר להצגת היסטוריית שיחה."
 
 msgid "Nothing found for: %s"
 msgstr "לא נמצא דבר עבור: ‫%s"
@@ -224,7 +219,7 @@ msgid "Join a chat"
 msgstr "הצטרפות אל שיחה"
 
 msgid "Status"
-msgstr "מצב־חיבור"
+msgstr "מצב חיבור"
 
 msgid "Available"
 msgstr "זמין"
@@ -314,16 +309,16 @@ msgid "Working"
 msgstr "עובד"
 
 msgid "View profile"
-msgstr "הצגת דיוקן"
+msgstr "הצג דיוקן"
 
 msgid "This is a repeat from %s"
 msgstr "זוהי חזרה מאת ‫%s"
 
 msgid "Repeat this notice"
-msgstr "חזרה על התראה זו"
+msgstr "חזור על התראה זו"
 
 msgid "Remove this notice"
-msgstr "הסרת התראה זו"
+msgstr "הסר את התראה זו"
 
 msgid "Your profile"
 msgstr "הדיוקן שלך"
@@ -374,7 +369,7 @@ msgid "Current"
 msgstr "נוכחית"
 
 msgid "Delete"
-msgstr "מחיקה"
+msgstr "מחק"
 
 msgid "What a pity! You have no profile image defined in your identity card!"
 msgstr "כמה חבל! אין לך תמונת דיוקן מוגדרת בכרטיס הזהות שלך!"
@@ -401,8 +396,8 @@ msgid "Important notice"
 msgstr "התראה חשובה"
 
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 "יש לעשות שימוש זהיר עם המידע שיוזן אל הדיוקן שלך, מכיוון שמידע זה עלול להיות "
 "נגיש על ידי כולם (אפילו לכאלו שאין לך עניין שיראו זאת)."
@@ -424,13 +419,13 @@ msgstr ""
 "תביאי לידי כך שחברייך יוכלו לזהותך בקלות."
 
 msgid "Save"
-msgstr "שמירה"
+msgstr "שמור"
 
 msgid "Cancel"
 msgstr "ביטול"
 
 msgid "Edit options"
-msgstr "עריכת אפשרויות"
+msgstr "ערוך אפשרויות"
 
 msgid "Channel"
 msgstr "ערוץ"
@@ -471,10 +466,10 @@ msgid "Account"
 msgstr "חשבון"
 
 msgid "Change password"
-msgstr "שינוי סיסמה"
+msgstr "שנה סיסמה"
 
 msgid "Delete account"
-msgstr "מחיקת חשבון"
+msgstr "מחק חשבון"
 
 msgid "Old"
 msgstr "ישן"
@@ -492,7 +487,7 @@ msgid "To"
 msgstr "אל"
 
 msgid "Close"
-msgstr "סגירה"
+msgstr "סגור"
 
 msgid "unknown"
 msgstr "לא ידוע"
@@ -505,7 +500,7 @@ msgid "is now"
 msgstr "עתה"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr "נא להמתין בזמן שהאווטאר מועלה..."
+msgstr "אנא המתן בזמן שהאווטאר מועלה..."
 
 msgid "Here it is! A new beautiful profile image!"
 msgstr "והנה היא! תמונת דיוקן חדשה ומרהיבה!"
@@ -519,10 +514,8 @@ msgstr "מענה"
 msgid "Error"
 msgstr "שגיאה"
 
-# ניתן לפתור את השגיאה (בלחיצה) כאן
-# לחץ/י כאן כדי לפתור את השגיאה
 msgid "Click here to solve the error"
-msgstr "ביכולתך לפתור את השגיאה כאן"
+msgstr "לחץ/י כאן כדי לפתור את השגיאה"
 
 # You>Me
 # את/ה
@@ -530,10 +523,10 @@ msgid "You"
 msgstr "אני"
 
 msgid "Remove"
-msgstr "הסרה"
+msgstr "הסר"
 
 msgid "Rename"
-msgstr "שינוי שם"
+msgstr "שנה שם"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
 msgstr "שלום, שמי ‫%s, ברצוני להוסיפך אל רשימת החברים שלי."
@@ -542,7 +535,7 @@ msgid "Smiley insertion"
 msgstr "שיבוץ רגשונים"
 
 msgid "Change style"
-msgstr "התאמת סגנון"
+msgstr "שנה סגנון"
 
 msgid "Text in bold"
 msgstr "תמליל מודגש"
@@ -561,44 +554,44 @@ msgid ""
 msgstr "ברגע שההעלאה תסתיים, חברך יתבקש להוריד את הקובץ ששלחת."
 
 msgid "Save chat"
-msgstr "שמירת שיחה"
+msgstr "שמור שיחה"
 
 msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
-"בהקלקה על קישור זה ניתן להשיג את רשומת השיחה (נא להמתין כעבור ההקלקה "
-"הראשונה). לאחר ההקלקה הראשונה, עליך להקליק שנית כדי להוריד את הקובץ."
+"בהקלקה על קישור זה ניתן להשיג את רשומת השיחה (אנא המתן עבור ההקלקה הראשונה). "
+"לאחר ההקלקה הראשונה, עליך להקליק שנית כדי להוריד את הקובץ."
 
 msgid "This chat is empty!"
 msgstr "שיחה זו הינה ריקה!"
 
 msgid "Generate file!"
-msgstr "הלחנת קובץ!"
+msgstr "חולל קובץ!"
 
 msgid "Download file!"
-msgstr "הורדת קובץ!"
+msgstr "הורד קובץ!"
 
 msgid "Clean current chat"
-msgstr "טיהור שיחה נוכחית"
+msgstr "נקה שיחה נוכחית"
 
 msgid "View chat history"
-msgstr "הצגת היסטוריית שיחה"
+msgstr "הצג היסטוריית שיחה"
 
 msgid "Show user profile"
-msgstr "הצגת דיוקן משתמש"
+msgstr "הצג דיוקן משתמש"
 
 msgid "Add this contact to your friends"
-msgstr "הוספת איש־קשר זה אל חברייך"
+msgstr "הוסף את איש קשר זה אל חברייך"
 
 msgid "Add this groupchat to your favorites"
-msgstr "הוספת שיחת קבוצה זו אל המועדפים שלך"
+msgstr "הוסף שיחת קבוצה זו אל המועדפים שלך"
 
 msgid "All tabs"
 msgstr "כל הלשוניות"
 
 msgid "Close this tab"
-msgstr "סגירת לשונית זו"
+msgstr "סגור את לשונית זו"
 
 msgid "no subject defined for this room."
 msgstr "לא הוגדר נושא עבור חדר זה."
@@ -620,7 +613,7 @@ msgstr "ניהול חדרים מועדפים"
 
 # Change>Edit
 msgid "Change favorites"
-msgstr "עריכת מועדפים"
+msgstr "שנה מועדפים"
 
 msgid "Search a room"
 msgstr "חיפוש חדר"
@@ -629,7 +622,7 @@ msgid "Select a favorite"
 msgstr "בחירת מועדף"
 
 msgid "Getting the name..."
-msgstr "משיג את השם כעת..."
+msgstr "משיג כעת את השם..."
 
 # מוביל
 msgid "Gateway"
@@ -642,10 +635,10 @@ msgid "Room"
 msgstr "חדר"
 
 msgid "Add"
-msgstr "הוספה"
+msgstr "הוסף"
 
 msgid "Edit"
-msgstr "עריכה"
+msgstr "ערוך"
 
 msgid "Search a room on"
 msgstr "חיפוש חדר אצל"
@@ -732,7 +725,7 @@ msgid "Content"
 msgstr "תוכן"
 
 msgid "Send message"
-msgstr "שליחת הודעה"
+msgstr "שלח הודעה"
 
 msgid "Your inbox is empty."
 msgstr "התיבה הנכנסת ריקה."
@@ -745,7 +738,7 @@ msgid "You administrate this room"
 msgstr "חדר זה מנוהל על ידך"
 
 msgid "Enter new subject"
-msgstr "הזנת נושא חדש"
+msgstr "הזן נושא חדש"
 
 msgid "Configuration"
 msgstr "תצורה"
@@ -767,7 +760,7 @@ msgid "Outcast list"
 msgstr "רשימת מנודים"
 
 msgid "Add an input"
-msgstr "הוספת קלט"
+msgstr "הוסף קלט"
 
 msgid "Destroy this MUC"
 msgstr "החרבת ‫MUC זה"
@@ -777,10 +770,10 @@ msgstr "כן, קדימה לדרך!"
 
 # BUG: Better replace "Your friend is" with "NICK is"
 msgid "Your friend is paying attention to the conversation."
-msgstr "חברך מאזין לשיחה כעת."
+msgstr "חברך מאזין כעת לשיחה."
 
 msgid "Your friend is writing a message..."
-msgstr "חברך כותב הודעה כעת..."
+msgstr "חברך כותב כעת הודעה..."
 
 msgid "Your friend stopped writing a message."
 msgstr "חברך פסק מלכתוב הודעה."
@@ -792,7 +785,7 @@ msgid "Your friend closed the chat."
 msgstr "חברך סגר את השיחה."
 
 msgid "Requesting this service..."
-msgstr "מבקש את שירות זה כעת..."
+msgstr "מבקש כעת את שירות זה..."
 
 msgid "Loading"
 msgstr "טוען כעת"
@@ -813,7 +806,7 @@ msgid "has been kicked"
 msgstr "נבעט/ה"
 
 msgid "has been banned"
-msgstr "נחסם/ה"
+msgstr "נאסר/ה"
 
 # שום סיבה
 msgid "no reason"
@@ -853,15 +846,15 @@ msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
-"למען בטיחות חשבונך, בעת התחברותך או בעת הירשמותך, נא לדאוג ולוודא שסיסמתך "
+"למען בטיחות חשבונך, בעת התחברותך או בעת הירשמותך, אנא דאג ולוודא שסיסמתך "
 "נשארת בסוד."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"התחברות באמצעות חשבון ‫XMPP קיים. ביכולתך לעשות שימוש גם %s כדי להצטרף אל "
-"שיחת קבוצה."
+"התחברות באמצעות חשבון ‫XMPP קיים. ניתן לעשות שימוש גם %s כדי להצטרף אל שיחת "
+"קבוצה."
 
 msgid "Previous"
 msgstr "חזרה"
@@ -891,8 +884,7 @@ msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
-"נא להזין את הכינוי ואת שיחת הקבוצה אליה ברצונך להצטרף, באפשרותך לפנות בחזרה "
-"אל ‫%s."
+"אנא הזן את הכינוי ואת שיחת הקבוצה אליה ברצונך להצטרף, ניתן לפנות בחזרה אל ‫%s."
 
 msgid "login page"
 msgstr "עמוד ההתחברות"
@@ -911,7 +903,7 @@ msgstr "חובה"
 
 # הנה כתובת XMPP לשימושך האישי
 msgid "You have been registered, here is your XMPP address:"
-msgstr "נרשמת בהצלחה, הנה כתובת ה־‫XMPP שלך:"
+msgstr "נרשמת בהצלחה, הנה כתובת XMPP לשימושך:"
 
 msgid "Manager"
 msgstr "מנהל"
@@ -933,13 +925,13 @@ msgid "Type something you want to share with your friends..."
 msgstr "בשדה זה ניתן להקליד הודעת מצב אותה ברצונך לשתף עם חברייך..."
 
 msgid "Fetching the social channel..."
-msgstr "מאחזר את הערוץ החברתי כעת..."
+msgstr "מאחזר כעת את הערוץ החברתי..."
 
 msgid "You are synchronized with your network."
 msgstr "אנחנו מסונכרנים עם רשת התקשורת שלך."
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr "לא ניתן לשלוח דבר: ביכולתך לקבל התראות בלבד!"
+msgstr "אין אפשרות לשלוח דבר: ניתן לקבל התראות בלבד!"
 
 msgid "Media viewer"
 msgstr "נגן מדיה"
@@ -1056,7 +1048,7 @@ msgid "User profile"
 msgstr "דיוקן משתמש"
 
 msgid "See his/her position on the globe"
-msgstr "הצגת מיקום על הגלובוס"
+msgstr "הצג מיקום על הגלובוס"
 
 # וידוא
 msgid "Confirm"
@@ -1102,25 +1094,25 @@ msgid "Mobile"
 msgstr "ממשק ניידי"
 
 msgid "Please wait..."
-msgstr "נא להמתין..."
+msgstr "אנא המתן..."
 
 msgid "Please enable JavaScript"
-msgstr "נא לאפשר ‫JavaScript"
+msgstr "אנא אפשר ‫JavaScript"
 
 msgid "Show comments"
-msgstr "הצגת תגובות"
+msgstr "הצג תגובות"
 
 msgid "Loading comments..."
-msgstr "טוען תגובות כעת..."
+msgstr "טוען כעת תגובות..."
 
 msgid "Could not get the comments!"
-msgstr "לא ניתן היה להשיג את התגובות!"
+msgstr "לא היתה אפשרות להשיג את התגובות!"
 
 msgid "Comments locked!"
 msgstr "תגובות נעולות!"
 
 msgid "Type your comment here..."
-msgstr "נא להקליד את תגובתך כאן..."
+msgstr "הקלד את תגובתך כאן..."
 
 msgid "Your channel"
 msgstr "הערוץ שלך"
@@ -1133,33 +1125,33 @@ msgid "More notices..."
 msgstr "התראות נוספות..."
 
 msgid "Attach a file"
-msgstr "צירוף קובץ"
+msgstr "צרף קובץ"
 
 msgid "Send"
-msgstr "שליחה"
+msgstr "שלח"
 
 msgid "Unattach the file"
-msgstr "אי־צירוף הקובץ"
+msgstr "בטל צירוף הקובץ"
 
 # מנוע
 msgid ""
 "An error occured while uploading your file: maybe it is too big (%s maximum) "
 "or forbidden!"
 msgstr ""
-"ארעה שגיאה בעת העלאת הקובץ שלך: ייתכן וקובץ זה גדול יותר מן (%s לכל היותר) "
+"אירעה שגיאה בעת העלאת הקובץ שלך: ייתכן וקובץ זה גדול יותר מן (%s לכל היותר) "
 "או אסור!"
 
 msgid "Authorization failed"
 msgstr "הרשאה נכשלה"
 
 msgid "Registration failed, please choose a different username"
-msgstr "ההרשמה נכשלה, נא לבחור שם משתמש אחר"
+msgstr "הרשמה נכשלה, אנא בחר שם משתמש אחר"
 
 msgid "Service unavailable"
 msgstr "שירות לא זמין"
 
 msgid "Internal server error, try later"
-msgstr "שגיאת שרת פנימית, נא לנסות מאוחר יותר"
+msgstr "שגיאת שרת פנימית, נסה מאוחר יותר"
 
 msgid "Your form has been sent."
 msgstr "התבנית שלך נשלחה."
@@ -1197,7 +1189,7 @@ msgstr ""
 "הדיוקן שלך."
 
 msgid "Enable notification sounds"
-msgstr "אפשור צלילי התראה"
+msgstr "אפשר צלילי התראה"
 
 msgid "Share your position on the globe"
 msgstr "שיתוף מיקומך על הגלובוס"
@@ -1212,11 +1204,11 @@ msgid ""
 "Use this tool to find your friends on the server you are using right now, or "
 "add them later."
 msgstr ""
-"באפשרותך למצוא את חברייך על השרת שבו הינך עושה שימוש כעת, וניתן גם להוסיפם "
-"מאוחר יותר בעזרת כלי זה."
+"ניתן למצוא את חברייך על השרת שבו הינך עושה שימוש כעת, וניתן גם להוסיפם מאוחר "
+"יותר בעזרת כלי זה."
 
 msgid "Good job! Now, you can share Jappix with your friends!"
-msgstr "עבודה טובה! כעת, ביכולתך לשתף את ‫Jappix עם חברייך!"
+msgstr "עבודה טובה! כעת, באפשרותך לשתף את ‫Jappix עם חברייך!"
 
 msgid ""
 "When you will press the save button, the profile editor will be opened. "
@@ -1225,7 +1217,7 @@ msgstr "בלוחצך על לחצן השמירה, עורך הדיוקן יפתח.
 
 # Jappix über %s teilen
 msgid "Share Jappix on %s"
-msgstr "שיתוף ‫Jappix אצל ‫%s"
+msgstr "שתף את ‫Jappix אצל ‫%s"
 
 # ב־Jappix, פלטפורמה החברתית הפתוחה
 msgid "Using Jappix, an open social platform. I am %s!"
@@ -1238,10 +1230,10 @@ msgid "Unknown country"
 msgstr "מדינה לא ידועה"
 
 msgid "Click to enable"
-msgstr "הקלקה לאפשור"
+msgstr "הקלק כדי לאפשר"
 
 msgid "Click to disable"
-msgstr "הקלקה לנטרול"
+msgstr "הקלק כדי לנטרל"
 
 msgid "Installation"
 msgstr "התקנה"
@@ -1286,15 +1278,15 @@ msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
 "speak %2s it will be saved."
 msgstr ""
-"במידה והשפה הנוכחית לא מתאימה לשפתך (%1s), ביכולתך לגרום ל־‫Jappix לדבר ‫%2s "
+"במידה והשפה הנוכחית לא מתאימה לשפתך (%1s), באפשרותך לגרום ל־‫Jappix לדבר ‫%2s "
 "וזה יישמר."
 
 msgid ""
 "If you want to get some help about the Jappix installation and "
 "configuration, you can use our whole documentation, available at:"
 msgstr ""
-"במידה וברצונך לקבל עזרה בכל הנוגע אל התקנת ותצורת Jappix, ביכולתך לעשות "
-"שימוש בתיעוד שלנו בשלמותו, זמין בכתובת:"
+"במידה וברצונך לקבל עזרה בכל הנוגע אל התקנת ותצורת Jappix, ניתן לעשות שימוש "
+"בתיעוד שלנו בשלמותו, זמין בכתובת:"
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr "זהו הזמן לבנות את הענן החברתי שלך: צריך פשוט לעבור אל השלב הבא!"
@@ -1311,9 +1303,9 @@ msgid ""
 "If not, you must set the rights to %1s or change the folder owner to %2s "
 "(depending of your configuration)."
 msgstr ""
-"יש לאפשר ל־‫Jappix לכתוב את תיקייה זו כדי ליצור את מדורי המשנה שלה. היה ולא, "
-"עליך להגדיר את ההרשאות אל ‫%1s או לשנות את הבעלים של התיקייה אל ‫%2s (תלוי "
-"בתצורה שלך)."
+"על Jappix לקבל הרשאה לכתוב את תיקייה זו כדי ליצור את מדורי המשנה שלה. היה "
+"ולא, עליך להגדיר את ההרשאות אל ‫%1s או לשנות את הבעלים של התיקייה אל ‫%2s "
+"(תלוי בתצורה שלך)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "תיקייה זו הינה ברת כתיבה, ניתן להמשיך!"
@@ -1350,7 +1342,7 @@ msgid ""
 "following inputs (or keep the default values, which are sufficient for most "
 "people)."
 msgstr ""
-"עליך לציין כמה ערכים כדי שתעמוד לרשות ‫Jappix היכולת לעבוד. נא לתקן את הקלט/"
+"עליך לציין כמה ערכים כדי שתעמוד לרשות ‫Jappix היכולת לעבוד. אנא תקן את הקלט/"
 "ים הבאים (לחלופין ניתן להשתמש בערכים המשתמטים, המספיקים למרבית האנשים)."
 
 msgid ""
@@ -1402,8 +1394,8 @@ msgstr "אימות ‫HTTP"
 msgid "Registration allowed"
 msgstr "ההרשמה פתוחה"
 
-msgid "Use a proxy"
-msgstr "שימוש במתווך (‫Proxy)"
+msgid "Use the built-in BOSH proxy"
+msgstr "השתמש במתווך (proxy) ‫BOSH מובנה"
 
 # קישור ניהול
 msgid "Manager link"
@@ -1432,9 +1424,8 @@ msgid ""
 "can leave it as it is and continue if you want to use the official service "
 "hosts."
 msgstr ""
-"עמוד זה מסייע לך לציין את המארחים המשתמטים אליהם ‫Jappix תתחבר. ביכולתך "
-"להשאירו כפי שהוא (as is) ולהמשיך, אם ברצונך לעשות שימוש במארחי השירות "
-"הרשמיים."
+"עמוד זה מסייע לך לציין את המארחים המשתמטים אליהם ‫Jappix תתחבר. ניתן להשאירו "
+"כפי שהוא (as is) ולהמשיך, אם ברצונך לעשות שימוש במארחי השירות הרשמיים."
 
 # ואינך יודע/ת
 msgid ""
@@ -1469,7 +1460,7 @@ msgid ""
 "features. Some others might be modified, because of security restrictions "
 "which are set by default."
 msgstr ""
-"ביכולתך להתקין מספר תוכנות נוספות על שרתך, כדי להרחיב את התכונות של ‫Jappix. "
+"ניתן להתקין מספר תוכנות נוספות על שרתך, כדי להרחיב את התכונות של ‫Jappix. "
 "ייתכן ויהיו כאלו שיעברו שינוי בעת התהליך, משום הגבלות אבטחה שמוגדרות באופן "
 "משתמט."
 
@@ -1509,7 +1500,7 @@ msgstr "בדוק שוב"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
-msgstr "התיקייה אינה ברת כתיבה, נא להגדיר את ההרשאות הנאותות למדור ‫%s."
+msgstr "התיקייה אינה ברת כתיבה, קבע את ההרשאות הנאותות למדור ‫%s."
 
 msgid "%s is installed on your system."
 msgstr "‫%s לא מותקן במערכתך."
@@ -1588,7 +1579,7 @@ msgid ""
 msgstr "זהו אזור מוגבל: רק משתמשים מורשים יכולים לנהל את ממסר ‫Jappix זה."
 
 msgid "Please use the form below to login to the administration panel."
-msgstr "נא להשתמש בתבנית שלמטה כדי להתחבר את לוח הניהול."
+msgstr "אנא השתמש בתבנית שלמטה כדי להתחבר את לוח הניהול."
 
 # סשנים (sessions) הינם מוגבלים
 # המערכת תנתק אותך
@@ -1608,40 +1599,40 @@ msgstr "התנתקת. להתראות!"
 msgid ""
 "Oops, you could not be recognized as a valid administrator. Check your "
 "credentials!"
-msgstr "אופס, לא ניתן היה לזהותך כמשתמש מנהל. נא לבדוק את נתוני ההתחברות שלך!"
+msgstr "אופס, לא היתה אפשרות לזהותך כמשתמש מנהל. בדוק את נתוני ההתחברות שלך!"
 
 # למצואן
 msgid ""
 "Basic statistics are processed by Jappix about some important things, you "
 "can find them below."
 msgstr ""
-"סטטיסטיקות בסיסיות מעובדות על ידי ‫Jappix אודות מספר דברים חשובים, ביכולתך "
-"למצוא אותן למטה."
+"סטטיסטיקות בסיסיות מעובדות על ידי ‫Jappix אודות מספר דברים חשובים, ניתן למצוא "
+"אותן למטה."
 
 # your>this?
 msgid "Change your Jappix node configuration with this tool."
 msgstr "שינוי תצורת ממסר ‫Jappix בעזרת כלי זה."
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
-msgstr "שינוי מארחי ‫XMPP שממסר ‫Jappix זה משרת, בעזרת כלי זה."
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
+msgstr "שנה מארחי ‫XMPP שממסר ‫Jappix זה משרת, בעזרת כלי זה."
 
 # All these files
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
 "select a sub-folder and start editing its content!"
 msgstr ""
-"כל הקבצים המאוחסנים בממסר ‫Jappix זה יכולים להתנהל בעזרת כלי זה: נא לבחור "
-"תיקיית משנה ואז תעמוד לרשותך היכולת להתחיל לערוך את תוכנה!"
+"כל הקבצים המאוחסנים בממסר ‫Jappix זה יכולים להתנהל בעזרת כלי זה: אנא בחר "
+"תיקיית משנה ואז תעמוד לרשותך האפשרות להתחיל לערוך את תוכנה!"
 
 # באופן שלם/מוחלט/מושלם
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr "‫Jappix הינה ברת התאמה בצורה מלאה: ביכולתך לשנות את עיצובה ממש כאן."
+msgstr "‫Jappix הינה ברת התאמה בצורה מלאה: ניתן לשנות את עיצובה ממש כאן."
 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr "זוהי אינה תמונה תקפה, נא לעשות שימוש בפורמט PNG, ‫GIF או JPG!"
+msgstr "זוהי אינה תמונה תקפה, אנא השתמש בפורמט PNG, ‫GIF או JPG!"
 
 msgid "This is not a valid image, please use the PNG format!"
-msgstr "זוהי לא תמונה תקפה, נא להשתמש בפורמט PNG!"
+msgstr "זוהי אינה תמונה תקפה, אנא השתמש בפורמט PNG!"
 
 msgid "The image could not be received, would you mind retry?"
 msgstr "התמונה לא יכלה להתקבל, האם אכפת לך לנסות שוב?"
@@ -1662,7 +1653,7 @@ msgid ""
 "You can set your own service logo to replace the default one. Take care of "
 "the size and the main color of each logo!"
 msgstr ""
-"באפשרותך להגדיר את סמל השירות שלך במקום הסמל המשתמט. יש לשים לב לגודל ולצבע "
+"ניתן להגדיר את סמל השירות שלך במקום הסמל המשתמט. יש לשים לב לגודל ולצבע "
 "המרכזי של כל סמל!"
 
 msgid "Upload each logo with the recommended maximum pixel size."
@@ -1674,23 +1665,23 @@ msgid ""
 msgstr "פורמט הסמל שלך מוכרח להיות PNG. בהשאירך את שדה זה ריק הסמל לא ישתנה."
 
 msgid "Remove this logo"
-msgstr "הסרת סמל זה"
+msgstr "הסר את סמל זה"
 
 msgid "View this logo"
-msgstr "הצגת סמל זה"
+msgstr "הצג את סמל זה"
 
 msgid ""
 "You can define more than one administrator for this Jappix node. You can "
 "also change a password with this tool."
 msgstr ""
-"ביכולתך לתחום יותר ממנהלן אחד עבור ממסר ‫Jappix זה. ביכולתך גם לשנות את "
-"הסיסמה בעזרת כלי זה."
+"ניתן לתחום יותר ממנהלן אחד עבור ממסר ‫Jappix זה. ניתן גם לשנות את הסיסמה "
+"בעזרת כלי זה."
 
 msgid ""
 "Update your Jappix node with this tool, or check if a new one is available. "
 "Informations about the latest version are also displayed (in english)."
 msgstr ""
-"עדכון ממסר ‫Jappix בעזרת כלי זה, לחלופין באפשרותך לבדוק אם ממסר חדש זמין כעת. "
+"עדכון ממסר ‫Jappix בעזרת כלי זה, לחלופין ניתן לבדוק אם ממסר חדש זמין כעת. "
 "מידע אודות הגרסה האחרונה גם כן מוצג (באנגלית)."
 
 msgid "Access statistics"
@@ -1787,38 +1778,38 @@ msgid "Your design preferences have been saved!"
 msgstr "העדפות העיצוב שלך נשמרו!"
 
 msgid "Please check your inputs: something is missing!"
-msgstr "נא לבדוק את הקלט/ים שלך: משהו חסר!"
+msgstr "אנא בדוק את הקלט/ים שלך: משהו חסר!"
 
 # התר ליצירתיות שלך לזרום
 msgid ""
 "Change your Jappix node background with this tool. You can either set a "
 "custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
-"שינוי רקע ממסר ‫Jappix בעזרת כלי זה. ביכולתך להגדיר צבע מותאם או להעלות "
-"תמונה. התירו ליצירתיות לזרום!"
+"שינוי רקע ממסר ‫Jappix בעזרת כלי זה. ניתן להגדיר צבע מותאם או להעלות תמונה. "
+"התירו ליצירתיות לזרום!"
 
 msgid "Use default background"
-msgstr "שימוש ברקע משתמט"
+msgstr "השתמש ברקע משתמט"
 
 msgid "Use your own image"
-msgstr "שימוש ברקע מותאם"
+msgstr "השתמש ברקע מותאם"
 
 msgid "Select a background to use and change the display options."
 msgstr "בחירת צבע רקע לשימוש ושינוי אפשרויות התצוגה."
 
 msgid "Use your own color"
-msgstr "שימוש בצבע מותאם"
+msgstr "השתמש בצבע מותאם"
 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr "הזנת ערך הצבע ההקסדצימלי שברצונך לעשות בו שימוש כרקע."
+msgstr "הקלד ערך הצבע ההקסדצימלי שברצונך לעשות בו שימוש כרקע."
 
 msgid "Manage backgrounds"
-msgstr "ניהול רקעים"
+msgstr "נהל רקעים"
 
 msgid ""
 "You can add a new background to the list with this tool. Please send a valid "
 "image."
-msgstr "ביכולתך להוסיף רקע אל הרשימה בעזרת כלי זה. נא לשלוח תמונה תקפה."
+msgstr "ניתן להוסיף רקע אל הרשימה בעזרת כלי זה. אנא שלח תמונה תקפה."
 
 msgid "If you want to remove some backgrounds, use the browser below."
 msgstr "אם ברצונך להסיר רקעים, עליך לעשות שימוש בדפדפן מטה."
@@ -1844,8 +1835,8 @@ msgid ""
 "You can customize your notice with embedded HTML, CSS and JavaScript, but "
 "you need to code the style."
 msgstr ""
-"ביכולתך להתאים את ההתראה שלך בשילוב עם HTML, ‫CSS וגם JavaScript, אך עליך "
-"לקודד את הסגנון."
+"ניתן להתאים את ההתראה שלך בשילוב עם HTML, ‫CSS וגם JavaScript, אך עליך לקודד "
+"את הסגנון."
 
 msgid "Available updates"
 msgstr "עדכונים זמינים"
@@ -1854,11 +1845,11 @@ msgid "What's new?"
 msgstr "מה חדש?"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr "תיקיות האחסון שלך אינן ברות כתיבה, נא להחיל את ההרשאות הנאותות!"
+msgstr "תיקיות האחסון שלך אינן ברות כתיבה, אנא החל את ההרשאות הנאותות!"
 
 msgid ""
 "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
-msgstr "‫%1s עלול לגרום לבעיות למתווך (‫Proxy), נא להגביר את הערך ‫%2s אל ‫%3s!"
+msgstr "‫%1s עלול לגרום לבעיות למתווך (‫Proxy), אנא הגבר את הערך ‫%2s אל ‫%3s!"
 
 # executing the command
 msgid ""
@@ -1879,7 +1870,7 @@ msgid ""
 "Your version seems to be up to date, but you can check updates manually by "
 "clicking here."
 msgstr ""
-"נראה שגרסתך מעודכנת, אולם ביכולתך לבדוק עבור עדכונים באופן ידנית בהקלקה כאן."
+"נראה שגרסתך מעודכנת, אולם ניתן לבדוק עבור עדכונים באופן ידנית בהקלקה כאן."
 
 msgid "Check for updates"
 msgstr "בדיקה עבור עדכונים"
@@ -1893,22 +1884,22 @@ msgid ""
 msgstr "‫Jappix עודכנה: הינך מריץ כעת את הגרסה האחרונה. בלה בנעימים!"
 
 msgid "The update has failed! Please try again later."
-msgstr "העדכון נכשל! נא לנסות שוב מאוחר יותר."
+msgstr "העדכון נכשל! אנא נסה שוב מאוחר יותר."
 
 msgid "Downloading package..."
-msgstr "מוריד חבילה כעת..."
+msgstr "מוריד כעת חבילה..."
 
 # נוכחיים של Jappix
 msgid "Removing current Jappix system files..."
-msgstr "מסיר קבצי מערכת ‫Jappix נוכחיים כעת..."
+msgstr "מסיר כעת קבצי מערכת ‫Jappix נוכחיים..."
 
 msgid "Extracting package..."
-msgstr "מחלץ חבילה כעת..."
+msgstr "מחלץ כעת חבילה..."
 
 # מלחין מחדש
 # ??? renew, restore to good condition; form again, re-create; be renewed, be restored to good condition ???
 msgid "Regenerating storage folder tree..."
-msgstr "מחדש עץ תיקיית אחסון כעת..."
+msgstr "מחדש כעת עץ תיקיית אחסון..."
 
 # מעודכנת
 # יש is ולכן אין צורך במילה כעת (ing)
@@ -1962,7 +1953,7 @@ msgid "Purge updates"
 msgstr "טיהור עדכונים"
 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr "תיקיית האחסון שרצית לטהר, ריקה כעת!"
+msgstr "תיקיית האחסון שרצית לטהר, הינה ריקה כעת!"
 
 # באופן שגרתי
 msgid ""
@@ -1984,8 +1975,7 @@ msgid ""
 "You can check what your users store on your server and remove undesired "
 "content with this tool."
 msgstr ""
-"ביכולתך לבדוק מה שמשתמשים מאחסנים על שרתך ולהסיר תוכן שאיננו רצוי בעזרת כלי "
-"זה."
+"ניתן לבדוק מה משתמשים מאחסנים על שרתך ולהסיר תוכן שאיננו רצוי בעזרת כלי זה."
 
 msgid "Title"
 msgstr "כותרת"
@@ -2006,11 +1996,11 @@ msgid "The folder is empty."
 msgstr "תיקייה זו ריקה"
 
 msgid "The music could not be received, please retry!"
-msgstr "הלחן לא יכול היה להתקבל, נא לנסות שוב!"
+msgstr "הלחן לא יכול היה להתקבל, אנא נסה שוב!"
 
 msgid ""
 "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
-msgstr "זהו אינו קובץ מוזיקה בר תוקף, נא לקודדו אל Ogg Vorbis, ‫MP3 או WAV!"
+msgstr "זהו אינו קובץ מוזיקה תקף, אנא קודד אותו אל Ogg Vorbis, ‫MP3 או WAV!"
 
 msgid "Your music has been added!"
 msgstr "הלחן שלך הוסף!"
@@ -2026,8 +2016,8 @@ msgid ""
 "Add a new user with this tool, or change a password (type an existing "
 "username). Please submit a strong password!"
 msgstr ""
-"הוספת משתמש חדש בעזרת כלי זה, או שינוי סיסמה (יש להקליד שם משתמש קיים). נא "
-"להזין סיסמה חזקה וקשה לפיצוח!"
+"הוסף משתמש חדש בעזרת כלי זה, או שנה סיסמה (יש להקליד שם משתמש קיים). אנא הזן "
+"סיסמה חזקה וקשה לפיצוח!"
 
 msgid "Manage"
 msgstr "ניהול"
@@ -2036,11 +2026,11 @@ msgid "List"
 msgstr "רשימה"
 
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr ""
 "ניתן להסיר משתמשים בעזרת כלי זה. לתשומת לבך, אין באפשרותך להסיר משתמש במידה "
-"והוא היחידי שנותר."
+"והוא היחיד שנותר."
 
 msgid "The user has been added!"
 msgstr "המשתמש הוסף!"
@@ -2088,22 +2078,22 @@ msgid "Suggested friends"
 msgstr "חברים מוצעים"
 
 msgid "Check all"
-msgstr "סימון מוחלט"
+msgstr "סמן הכל"
 
 msgid "Uncheck all"
-msgstr "אי־סימון מוחלט"
+msgstr "בטל סמן הכל"
 
 msgid "Choose"
-msgstr "בחירה"
+msgstr "בחר"
 
 msgid "List name"
-msgstr "מינוי שם"
+msgstr "מנה שם"
 
 msgid "Allow"
-msgstr "לאפשר"
+msgstr "התר"
 
 msgid "Deny"
-msgstr "לאסור"
+msgstr "אסור"
 
 msgid "Group"
 msgstr "קבוצה"
@@ -2127,10 +2117,10 @@ msgid "Send queries"
 msgstr "שליחת שאילתות"
 
 msgid "See my status"
-msgstr "הצגת מצבי"
+msgstr "הצג את מצבי"
 
 msgid "Send his/her status"
-msgstr "שליחת מצב"
+msgstr "שלח את מצבו/מצבה"
 
 msgid "Everything"
 msgstr "הכל"
@@ -2160,50 +2150,48 @@ msgid ""
 msgstr ""
 "התכונה המבוקשת אינה מיושמת על ידי הקצה או השרת המקבל ולכן לא ניתן לעבד אותה."
 
-# שליחת הודעה אליו/אליה
 msgid "Send him/her a message"
-msgstr "שליחת הודעה"
+msgstr "שלח אליו/אליה הודעה"
 
-# התחלת שיחה עימו/עימה
 msgid "Start a chat with him/her"
-msgstr "התחלת שיחה"
+msgstr "התחל שיחה עמו/עמה"
 
 msgid "Available shortcuts:"
 msgstr "קיצורי דרך זמינים:"
 
 msgid "%s removes the chat logs"
-msgstr "‫%s הסרת רשומות שיחה"
+msgstr "‫%s מסירה רשומות שיחה"
 
 msgid "%s joins a groupchat"
-msgstr "‫%s הצטרפות שיחת קבוצה"
+msgstr "‫%s מצטרפת אל שיחת קבוצה"
 
 msgid "%s closes the chat"
-msgstr "‫%s סגירת שיחה"
+msgstr "‫%s סוגרת את השיחה"
 
 msgid "%s shows the user profile"
-msgstr "‫%s הצגת דיוקן המשתמש"
+msgstr "‫%s מציגה את דיוקן המשתמש"
 
 msgid "%s sends a message to the room"
-msgstr "‫%s שליחת הודעה אל החדר"
+msgstr "‫%s שולחת הודעה אל החדר"
 
 msgid "%s changes your nickname"
-msgstr "‫%s שינוי כינוייך"
+msgstr "‫%s משנה את כינוייך"
 
 # מאן דהו
 msgid "%s sends a message to someone in the room"
-msgstr "‫%s שליחת הודעה אל מישהו בחדר"
+msgstr "‫%s שולחת הודעה אל מישהו בחדר"
 
 msgid "%s changes the room topic"
-msgstr "‫%s שינוי נושא החדר"
+msgstr "‫%s משנה נושא החדר"
 
-msgid "%s kicks an user of the room"
-msgstr "‫%s בעיטת משתמש בחדר זה"
+msgid "%s kicks a user of the room"
+msgstr "‫%s בועטת משתמש בחדר זה"
 
-msgid "%s bans an user of the room"
-msgstr "‫%s חסימת משתמש בחדר זה"
+msgid "%s bans a user of the room"
+msgstr "‫%s חוסמת משתמש בחדר זה"
 
 msgid "%s invites someone to join the room"
-msgstr "‫%s הזמנת מישהו להצטרף אל חדר זה"
+msgstr "‫%s מזמינה מישהו להצטרף אל חדר זה"
 
 msgid "Public profile"
 msgstr "דיוקן פומבי"
@@ -2228,23 +2216,23 @@ msgid ""
 "year."
 msgstr ""
 "מלבד זאת, כל תמונה שתודבק על ידך בערוץ החברתי שלך מוספת אל ציר זמן תמונה "
-"מרהיב. כעת ביכולתך לצפות בתמונות ששיתפת משנה לשנה."
+"מרהיב. כעת ניתן לצפות בתמונות ששיתפת משנה לשנה."
 
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 "ביכולתך גם לעשות שימוש באווטאר ‫XMPP כאווטאר בודד עבור כל אתר רשת, בלוג "
 "ופורום שהינך עושה בו שימוש. כאשר יוחלט על ידך לשנותו אצל ‫XMPP, האווטאר החדש "
 "יופיע בכל מקום. איזו השבחה גאונית!"
 
-# יאללה, ברצוני
-msgid "Yay, let's create my public profile!"
-msgstr "ברצוני להתחיל ליצור את הדיוקן הפומבי אישי!"
+# ברצוני להתחיל ליצור את הדיוקן הפומבי אישי!
+msgid "Yay, let's create your public profile!"
+msgstr "יאללה, בוא/י ניצור את הדיוקן הפומבי שלך!"
 
 msgid "Enable my public profile"
-msgstr "אפשור הפרופיל הפומבי שלי"
+msgstr "אפשר את הפרופיל הפומבי שלי"
 
 msgid "Jappix for your phone"
 msgstr "‫Jappix עבור הטלפון שלך"
@@ -2261,12 +2249,12 @@ msgstr "התראה זו הינה אינפורמטיבית בלבד, ייתכן �
 msgid "You haven't provided any file to download"
 msgstr "לא סיפקת קובץ להורדה"
 
-# אין ביכולתך להוריד קובץ אם לא יסופק מפתח על ידך
+# אין באפשרותך להוריד קובץ אם לא יסופק מפתח על ידך
 msgid "You cannot download a file if you don't provide a key"
 msgstr "לא תעמוד לרשותך היכולת להוריד קובץ אם לא יסופק מפתח על ידך"
 
 msgid "Woah this file isn't found, please double check"
-msgstr "קובץ זה לא נמצא, נא לבדוק את עצמך שוב"
+msgstr "קובץ זה לא נמצא, אנא בדוק את עצמך שוב"
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr "למפתח שסיפקת אין את ההרשאה להוריד קובץ זה"
@@ -2278,7 +2266,69 @@ msgid "New event!"
 msgstr "אירוע חדש!"
 
 msgid "%s is typing..."
-msgstr "‫%s מקלידה כעת..."
+msgstr "‫%s מקליד/ה כעת..."
+
+# עם קוד אחר
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr "קוד האבטחה שהזנת אינו תקף. אנא נסה שוב עם אחד אחר."
+
+msgid "The username you picked is not available. Please try another one."
+msgstr "שם המשתמש שבחרת אינו זמין. אנא נסה אחד אחר."
+
+msgid "There was an error registering your account. Please retry."
+msgstr "אירעה שגיאה ברישום חשבונך. אנא נסה שוב."
+
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Enter password"
+msgstr "הזן סיסמה"
+
+msgid "Once again..."
+msgstr "פעם נוספת..."
+
+msgid "Code"
+msgstr "קוד"
+
+msgid "Security code"
+msgstr "קוד אבטחה"
+
+msgid "Advertising space available!"
+msgstr "מקום פרסום זמין!"
+
+msgid "Advertise here"
+msgstr "פרסם כאן"
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr "מזהה מעקב Piwik"
+
+msgid "Advertising (%s)"
+msgstr "פרסום (%s)"
+
+msgid "Enable ads"
+msgstr "אפשר פרסומות"
+
+msgid "Standard ads key"
+msgstr ""
+
+msgid "Content ads key"
+msgstr ""
+
+#~ msgid "Jappix for your mobile phone."
+#~ msgstr "‫Jappix עבור הטלפון הנייד שלך."
+
+#~ msgid "Use a proxy"
+#~ msgstr "שימוש במתווך (‫Proxy)"
 
 #~ msgid ""
 #~ "The groupchat has been removed, now someone else will be able to recreate "
