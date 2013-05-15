@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-05-14 20:28+0100\n"
+"PO-Revision-Date: 2013-05-15 17:32+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -400,7 +400,6 @@ msgstr "Biographie"
 msgid "Important notice"
 msgstr "Important"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
@@ -1584,7 +1583,6 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Modifiez la configuration de votre nœud Jappix avec cet outil."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr "Modifiez les hôtes XMPP que ce nœud Jappix peut servir avec cet outil."
 
@@ -2015,7 +2013,6 @@ msgstr "Gérer"
 msgid "List"
 msgstr "Liste"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
@@ -2171,11 +2168,9 @@ msgstr "%s envoie un message à quelqu'un du salon"
 msgid "%s changes the room topic"
 msgstr "%s modifie le sujet du salon"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
 msgstr "%s éjecte un utilisateur du salon"
 
-#, fuzzy
 msgid "%s bans a user of the room"
 msgstr "%s banni un utilisateur du salon"
 
@@ -2206,7 +2201,6 @@ msgstr ""
 "un magnifique journal de vos photos. Vous pouvez à présent voir les photos "
 "que vous avez partagées année par année."
 
-#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
@@ -2216,7 +2210,6 @@ msgstr ""
 "tout site, blog et forum que vous utilisez. Quand vous le changez sur XMPP, "
 "le nouvel avatar apparaît partout. Quelle innovation géniale !"
 
-#, fuzzy
 msgid "Yay, let's create your public profile!"
 msgstr "Ouais, créons mon profil public !"
 
