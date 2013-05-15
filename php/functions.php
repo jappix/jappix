@@ -807,8 +807,15 @@ function staticURL() {
 		// Check for HTTPS
 		$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
+		// Check for port
+		$port_section = null;
+		$port_value = isset($_SERVER['SERVER_PORT']) && is_numeric($_SERVER['SERVER_PORT']) ? intval($_SERVER['SERVER_PORT']) : null;
+
+		if(($port_value != null) && (($protocol == 'http') && ($port_value != 80)) || (($protocol == 'https') && ($port_value != 443)))
+			$port_section = ':'.$port_value;
+
 		// Full URL
-		$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$url = $protocol.'://'.$_SERVER['HTTP_HOST'].$port_section.$_SERVER['REQUEST_URI'];
 	}
 	
 	return $url;
