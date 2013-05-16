@@ -43,7 +43,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
 	
 	// Get the location
 	if(HOST_UPLOAD)
-		$location = HOST_UPLOAD;
+		$location = HOST_UPLOAD.'/';
 	else
 		$location = $_POST['location'];
 	
