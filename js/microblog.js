@@ -7,7 +7,7 @@ These are the microblog JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 14/05/13
+Last revision: 16/05/13
 
 */
 
@@ -274,7 +274,7 @@ function displayMicroblog(packet, from, hash, mode, way) {
 				html += '<a href="#" title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
 				
 				// If PEP is enabled
-				if(enabledPEP())
+				if(enabledPEP() && tHTMLEscape)
 					html += '<a href="#" title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
 			}
 			
