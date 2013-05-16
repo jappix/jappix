@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix 0.9.5\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-05-15 20:41+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-05-16 07:58+0200\n"
+"Last-Translator: GreenLunar <https://github.com/GreenLunar>\n"
 "Language-Team: Rahut <http://sourceforge.net/projects/rahut/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -28,13 +28,13 @@ msgid "Social channel, chat and more."
 msgstr "ערוץ חברתי, צ'אט ועוד."
 
 msgid "Create your public profile."
-msgstr "יצירת הדיקן הפומבי שלך."
+msgstr "צור את הדיקן הפומבי שלך."
 
 msgid "A mini-chat for your website."
 msgstr "מיני צ'אט עבור אתר הרשת שלך."
 
 msgid "Get Jappix, get support."
-msgstr "השגת ‫Jappix, השגת תמיכה."
+msgstr "השג את ‫Jappix, קבל תמיכה."
 
 msgid "Statistics around Jappix."
 msgstr "סטטיסטיקות סביב ‫Jappix."
@@ -43,7 +43,7 @@ msgid "Legal disclaimer for Jappix."
 msgstr "תניית פטור משפטית עבור ‫Jappix."
 
 msgid "Download Jappix for free."
-msgstr "הורדת ‫Jappix בחינם."
+msgstr "הורד את ‫Jappix בחינם."
 
 msgid "Contribute to the Jappix code."
 msgstr "תרמו לקוד של ‫Jappix."
@@ -52,7 +52,7 @@ msgid "Jappix for your company."
 msgstr "‫Jappix עבור הפירמה שלך."
 
 msgid "Find a public Jappix node."
-msgstr "מציאת נקודת ממסר ‫Jappix פומבית."
+msgstr "מצא נקודת ממסר ‫Jappix פומבית."
 
 msgid "Credits"
 msgstr "תודות"
@@ -547,7 +547,7 @@ msgid "Underlined text"
 msgstr "תמליל עם קו תחתון"
 
 msgid "Send a file"
-msgstr "שליחת קובץ"
+msgstr "שלח קובץ"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
@@ -588,10 +588,10 @@ msgid "Add this groupchat to your favorites"
 msgstr "הוסף שיחת קבוצה זו אל המועדפים שלך"
 
 msgid "All tabs"
-msgstr "כל הלשוניות"
+msgstr "כל הכרטיסיות"
 
 msgid "Close this tab"
-msgstr "סגור את לשונית זו"
+msgstr "סגור את כרטיסיה זו"
 
 msgid "no subject defined for this room."
 msgstr "לא הוגדר נושא עבור חדר זה."
@@ -731,7 +731,7 @@ msgid "Your inbox is empty."
 msgstr "התיבה הנכנסת ריקה."
 
 msgid "MUC administration"
-msgstr "ניהול ‫MUC"
+msgstr "ניהול שמ״מ"
 
 # הינך מנהל/ת את חדר זה
 msgid "You administrate this room"
@@ -763,7 +763,7 @@ msgid "Add an input"
 msgstr "הוסף קלט"
 
 msgid "Destroy this MUC"
-msgstr "החרבת ‫MUC זה"
+msgstr "החרב את שמ״מ זה"
 
 msgid "Yes, let's do it!"
 msgstr "כן, קדימה לדרך!"
@@ -839,22 +839,22 @@ msgstr "ברוך בואך אל %1s, ‫“%2s”."
 
 # אחד חדש
 msgid "Login to your existing XMPP account or create a new one for free!"
-msgstr "התחברות עם חשבון ‫XMPP קיים או יצירת חשבון חדש בחינם!"
+msgstr "באפשרותך להיכנס עם חשבון ‫XMPP קיים או ליצור חשבון חדש בחינם!"
 
 # בהתחברך או בהירשמך
 msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
-"למען בטיחות חשבונך, בעת התחברותך או בעת הירשמותך, אנא דאג ולוודא שסיסמתך "
+"למען בטיחות חשבונך, בעת התחברותך או בעת הירשמותך, אנא דאג לוודא שסיסמתך "
 "נשארת בסוד."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"התחברות באמצעות חשבון ‫XMPP קיים. ניתן לעשות שימוש גם %s כדי להצטרף אל שיחת "
-"קבוצה."
+"בחרת להתחבר באמצעות חשבון ‫XMPP קיים. אפשר לעשות שימוש גם %s כדי להצטרף אל "
+"שיחת קבוצה."
 
 msgid "Previous"
 msgstr "חזרה"
@@ -884,18 +884,18 @@ msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
-"אנא הזן את הכינוי ואת שיחת הקבוצה אליה ברצונך להצטרף, ניתן לפנות בחזרה אל ‫%s."
+"אנא הזן את הכינוי ואת שיחת הקבוצה אליה ברצונך להצטרף, אפשר לפנות בחזרה אל ‫%s."
 
 msgid "login page"
-msgstr "עמוד ההתחברות"
+msgstr "עמוד התחברות"
 
 msgid "Share this link with your friends:"
-msgstr "שיתוף הקישור עם חברייך:"
+msgstr "שתף את קישור זה עם חברייך:"
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
 "That's simple!"
-msgstr "הרשמת חשבון ‫XMPP חדש לצירוף חברייך בענן החברתי שלך. זה פשוט!"
+msgstr "רשום חשבון ‫XMPP חדש לצירוף חברייך בענן החברתי שלך. זה פשוט!"
 
 # נדרש
 msgid "Required"
@@ -934,7 +934,7 @@ msgid "Cannot send anything: you can only receive notices!"
 msgstr "אין אפשרות לשלוח דבר: ניתן לקבל התראות בלבד!"
 
 msgid "Media viewer"
-msgstr "נגן מדיה"
+msgstr "מציג מדיה"
 
 msgid "Browse"
 msgstr "עיון"
@@ -1131,7 +1131,7 @@ msgid "Send"
 msgstr "שלח"
 
 msgid "Unattach the file"
-msgstr "בטל צירוף הקובץ"
+msgstr "בטל צירוף קובץ"
 
 # מנוע
 msgid ""
@@ -1562,7 +1562,7 @@ msgid "Bottom"
 msgstr "תחתון"
 
 msgid "Adapt"
-msgstr "התאמה"
+msgstr "התאם"
 
 msgid "Color"
 msgstr "צבע"
@@ -2102,7 +2102,7 @@ msgid "Subscription"
 msgstr "הרשמה"
 
 msgid "Both"
-msgstr "הדדי"
+msgstr "הדדית"
 
 msgid "From"
 msgstr "מן"
@@ -2304,7 +2304,7 @@ msgid "Analytics (%s)"
 msgstr ""
 
 msgid "Track visits"
-msgstr ""
+msgstr "עקוב אחר ביקורים"
 
 msgid "Piwik URL"
 msgstr ""
