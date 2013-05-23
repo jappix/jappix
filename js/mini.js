@@ -543,10 +543,9 @@ function handlePresenceMini(pr) {
 		var show = pr.getShow();
 		
 		// Manage the received presence values
-		if((type == 'error') || (type == 'unavailable'))
+		if((type == 'error') || (type == 'unavailable')) {
 			show = 'unavailable';
-		
-		else {
+		} else {
 			switch(show) {
 				case 'chat':
 				case 'away':
@@ -595,7 +594,7 @@ function handlePresenceMini(pr) {
 				}
 
 				// Log message in chat view
-				if(MINI_GROUPCHAT_PRESENCE && log_message)
+				if(MINI_GROUPCHAT_PRESENCE && log_message && ($(groupchat_path).attr('data-init') == 'true'))
 					displayMessageMini('groupchat', log_message, xid, '', groupchat_hash, getCompleteTime(), getTimeStamp(), 'system-message');
 			}
 		}
@@ -615,7 +614,7 @@ function handlePresenceMini(pr) {
 			
 			// Disable the chat tools
 			if(is_groupchat) {
-				jQuery(chat).addClass('jm_disabled');
+				jQuery(chat).addClass('jm_disabled').attr('data-init', 'false');
 				jQuery(send_input).blur().attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
 			}
 		} else {
@@ -707,8 +706,15 @@ function handleMUCMini(pr) {
 	}
 	
 	// Handle normal presence
-	else
+	else {
+		// Start the initial timer
+		jQuery('#jappix_mini #chat-' + hash).oneTime('10s', function() {
+			jQuery(this).attr('data-init', 'true');
+		});
+
+		// Trigger presence handler
 		handlePresenceMini(pr);
+	}
 }
 
 // Updates the user presence
@@ -1580,6 +1586,9 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini div.jm_conversation').each(function() {
 			chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
 		});
+
+		// Restore init marker on all groupchats
+		jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').attr('data-init', 'true');
 		
 		// Scroll down to the last message
 		var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
@@ -1977,8 +1986,9 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 		
 		// Join the groupchat
 		if(type == 'groupchat') {
-			// Add the nickname value
-			jQuery(current).attr('data-nick', escape(nickname));
+			// Add nickname & init values
+			jQuery(current).attr('data-nick', escape(nickname))
+			               .attr('data-init', 'false');
 			
 			// Send the first groupchat presence
 			presenceMini('', '', '', '', xid + '/' + nickname, pwd, true, handleMUCMini);
@@ -2039,7 +2049,7 @@ function chatEventsMini(type, xid, hash) {
 				if(type != 'groupchat')
 					sendChatstateMini('gone', xid, hash);
 				
-				jQuery(current).remove();
+				jQuery(current).stopTime().remove();
 				
 				// Quit the groupchat?
 				if(type == 'groupchat') {
