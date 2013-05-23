@@ -19,6 +19,7 @@ var MINI_INITIALIZED			= false;
 var MINI_ANONYMOUS				= false;
 var MINI_ANIMATE				= false;
 var MINI_RANDNICK				= false;
+var MINI_GROUPCHAT_PRESENCE		= false;
 var MINI_DISABLE_MOBILE			= false;
 var MINI_NICKNAME				= '';
 var MINI_TITLE					= null;
@@ -572,16 +573,30 @@ function handlePresenceMini(pr) {
 			if(resource != unescape(jQuery(groupchat_path).attr('data-nick'))) {
 				// Regenerate some stuffs
 				var groupchat = xid;
+				var groupchat_hash = hash;
 				xid = from;
 				hash = hex_md5(xid);
 				
-				// Remove this from the roster
-				if(show == 'unavailable')
+				// Process this groupchat user presence
+				var log_message;
+
+				if(show == 'unavailable') {
+					// Remove from roster view
 					removeBuddyMini(hash, groupchat);
-				
-				// Add this to the roster
-				else
+
+					// Generate log message
+					log_message = printf("%s left", resource.htmlEnc());
+				} else {
+					// Add to roster view
 					addBuddyMini(xid, hash, resource, groupchat);
+
+					// Generate log message
+					log_message = printf("%s joined", resource.htmlEnc());
+				}
+
+				// Log message in chat view
+				if(MINI_GROUPCHAT_PRESENCE && log_message)
+					displayMessageMini('groupchat', log_message, xid, '', groupchat_hash, getCompleteTime(), getTimeStamp(), 'system-message');
 			}
 		}
 		
@@ -603,9 +618,7 @@ function handlePresenceMini(pr) {
 				jQuery(chat).addClass('jm_disabled');
 				jQuery(send_input).blur().attr('disabled', true).attr('data-value', _e("Unavailable")).val(_e("Unavailable"));
 			}
-		}
-		
-		else {
+		} else {
 			// Online marker
 			jQuery(friend).removeClass('jm_offline').addClass('jm_online');
 			
