@@ -594,7 +594,7 @@ function handlePresenceMini(pr) {
 				}
 
 				// Log message in chat view
-				if(MINI_GROUPCHAT_PRESENCE && log_message && ($(groupchat_path).attr('data-init') == 'true'))
+				if(MINI_GROUPCHAT_PRESENCE && log_message && (jQuery(groupchat_path).attr('data-init') == 'true'))
 					displayMessageMini('groupchat', log_message, xid, '', groupchat_hash, getCompleteTime(), getTimeStamp(), 'system-message');
 			}
 		}
