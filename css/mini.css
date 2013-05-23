@@ -216,6 +216,10 @@ Last revision: 14/05/13
 	overflow: hidden;
 }
 
+#jappix_mini div.jm_conversation div.jm_actions {
+	cursor: pointer;
+}
+
 #jappix_mini div.jm_actions span.jm_nick {
 	color: white;
 	height: 16px;

@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 14/05/13
+Last revision: 23/05/13
 
 */
 
@@ -1977,11 +1977,9 @@ function chatEventsMini(type, xid, hash) {
 				
 				// Clear the eventual notifications
 				clearNotificationsMini(hash);
-			}
-			
-			// Yet opened: close it!
-			else
+			} else {
 				switchPaneMini();
+			}
 		}
 		
 		catch(e) {}
@@ -1992,26 +1990,32 @@ function chatEventsMini(type, xid, hash) {
 	});
 	
 	// Click on the close button
-	jQuery(current + ' a.jm_close').click(function() {
+	jQuery(current + ' div.jm_actions').click(function(e) {
 		// Using a try/catch override IE issues
 		try {
-			// Gone chatstate
-			if(type != 'groupchat')
-				sendChatstateMini('gone', xid, hash);
-			
-			jQuery(current).remove();
-			
-			// Quit the groupchat?
-			if(type == 'groupchat') {
-				// Send an unavailable presence
-				presenceMini('unavailable', '', '', '', xid + '/' + unescape(jQuery(current).attr('data-nick')));
+			// Close button?
+			if(jQuery(e.target).is('a.jm_close')) {
+				// Gone chatstate
+				if(type != 'groupchat')
+					sendChatstateMini('gone', xid, hash);
 				
-				// Remove this groupchat!
-				removeGroupchatMini(xid);
+				jQuery(current).remove();
+				
+				// Quit the groupchat?
+				if(type == 'groupchat') {
+					// Send an unavailable presence
+					presenceMini('unavailable', '', '', '', xid + '/' + unescape(jQuery(current).attr('data-nick')));
+					
+					// Remove this groupchat!
+					removeGroupchatMini(xid);
+				}
+				
+				// Update chat overflow
+				updateOverflowMini();
+			} else {
+				// Minimize current chat
+				jQuery(current + ' a.jm_chat-tab.jm_clicked').click();
 			}
-			
-			// Update chat overflow
-			updateOverflowMini();
 		}
 		
 		catch(e) {}
