@@ -1478,6 +1478,33 @@ function createMini(domain, user, password) {
 			return false;
 		}
 	});
+
+	// Chat type re-focus
+	jQuery(document).keypress(function(e) {
+		// Cannot work if an input/textarea is already focused or chat is not opened
+		var path = '#jappix_mini div.jm_conversation div.jm_chat-content';
+
+		if(jQuery('input, textarea').is(':focus') || !jQuery(path).is(':visible'))
+			return;
+
+		// May cause some compatibility issues
+		try {
+			// Get key value
+			var key_value = trim(String.fromCharCode(e.which));
+			
+			// Re-focus on opened chat?
+			if(key_value) {
+				// Path to chat input
+				var path_input = path + ' input.jm_send-messages';
+
+				// Use a timer to override the DOM lag issue
+				jQuery(document).oneTime(10, function() {
+					jQuery(path_input).val(jQuery(path_input).val() + key_value);
+					jQuery(path_input).focus();
+				});
+			}
+		} catch(e) {}
+	});
 	
 	// Hides the roster when clicking away of Jappix Mini
 	jQuery(document).click(function(evt) {
@@ -2036,17 +2063,6 @@ function chatEventsMini(type, xid, hash) {
 		finally {
 			return false;
 		}
-	});
-	
-	// Click on the chat content
-	jQuery(current + ' div.jm_received-messages').click(function() {
-		try {
-			jQuery(document).oneTime(10, function() {
-				jQuery(current + ' input.jm_send-messages').focus();
-			});
-		}
-		
-		catch(e) {}
 	});
 	
 	// Focus on the chat input
