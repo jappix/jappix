@@ -1,5 +1,6 @@
 /* BROWSER DETECT
  * http://www.quirksmode.org/js/detect.html
+ * License: dual-licensed under MPLv2 and the original license
  */
 
 var BrowserDetect = {
