@@ -748,6 +748,12 @@ msgstr ""
 msgid "left the chat room"
 msgstr ""
 
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
 msgid "no status"
 msgstr ""
 

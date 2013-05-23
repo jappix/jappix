@@ -585,13 +585,13 @@ function handlePresenceMini(pr) {
 					removeBuddyMini(hash, groupchat);
 
 					// Generate log message
-					log_message = printf("%s left", resource.htmlEnc());
+					log_message = printf(_e("%s left"), resource.htmlEnc());
 				} else {
 					// Add to roster view
 					addBuddyMini(xid, hash, resource, groupchat);
 
 					// Generate log message
-					log_message = printf("%s joined", resource.htmlEnc());
+					log_message = printf(_e("%s joined"), resource.htmlEnc());
 				}
 
 				// Log message in chat view

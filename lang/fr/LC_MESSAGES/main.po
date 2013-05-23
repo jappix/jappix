@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-05-15 17:32+0100\n"
+"PO-Revision-Date: 2013-05-23 08:01+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -789,6 +789,12 @@ msgstr "a rejoint le salon"
 
 msgid "left the chat room"
 msgstr "a quitté le salon"
+
+msgid "%s left"
+msgstr "%s est parti"
+
+msgid "%s joined"
+msgstr "%s a rejoint"
 
 msgid "no status"
 msgstr "aucun statut"
