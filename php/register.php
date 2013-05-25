@@ -9,7 +9,7 @@ This is the Register API
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/05/13
+Last revision: 25/05/13
 
 */
 
@@ -81,6 +81,9 @@ if(REGISTER_API == 'on') {
 		$error = true;
 		$error_reason = 'CAPTCHA Not Matching';
 	} else {
+		// Fixes escapeshellarg() with UTF-8 chars
+		setlocale(LC_CTYPE, 'en_US.UTF-8');
+
 		// Which command to execute?
 		$command_str = null;
 		
