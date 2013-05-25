@@ -440,7 +440,6 @@ Number.min = function(A, B) {
  * @fileoverview Collection of MD5 and SHA1 hashing and encoding
  * methods.
  * @author Stefan Strigler steve@zeank.in-berlin.de
- * @version $Revision$
  */
 
 /*
@@ -896,7 +895,7 @@ function binl2b64(binarray)
    UTF-8 Decoder and Encoder
    base64 Encoder and Decoder
    written by Tobias Kieslich, justdreams
-   Contact: tobias@justdreams.de				http://www.justdreams.de/
+   Contact: tobias@justdreams.de        http://www.justdreams.de/
    ############################################################################# */
 
 // returns an array of byterepresenting dezimal numbers which represent the
@@ -943,7 +942,7 @@ function utf8t2d(t)
       }
   return d;
 }
-	
+  
 // returns plaintext from an array of bytesrepresenting dezimal numbers, which
 // represent an UTF-8 encoded text; browser which does not understand unicode
 // like NN401 will show "?"-signs instead
@@ -1025,14 +1024,27 @@ function b64t2d(t) {
   return d;
 }
 
-b64arrays();
+if (typeof(atob) == 'undefined' || typeof(btoa) == 'undefined')
+  b64arrays();
 
-b64decode = function(s) {
-  return utf8d2t(b64t2d(s));
+if (typeof(atob) == 'undefined') {
+  b64decode = function(s) {
+    return utf8d2t(b64t2d(s));
+  }
+} else {
+  b64decode = function(s) {
+    return decodeURIComponent(escape(atob(s)));
+  }
 }
 
-b64encode = function(s) {
-  return b64d2t(utf8t2d(s));
+if (typeof(btoa) == 'undefined') {
+  b64encode = function(s) {
+    return b64d2t(utf8t2d(s));
+  }
+} else {
+  b64encode = function(s) {
+    return btoa(unescape(encodeURIComponent(s)));
+  }
 }
 
 function cnonce(size) {
@@ -1043,7 +1055,6 @@ function cnonce(size) {
   }
   return cnonce;
 }
-
 
 
 JSJAC_HAVEKEYS = true;          // whether to use keys
