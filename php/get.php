@@ -9,7 +9,7 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 14/05/13
+Last revision: 25/05/13
 
 */
 
@@ -222,7 +222,7 @@ if($file && $type) {
 		
 		// Fonts
 		else if($mime == 'woff')
-			header('Content-Type: application/x-font-woff');
+			header('Content-Type: application/font-woff');
 		else if($mime == 'ttf')
 			header('Content-Type: application/x-font-ttf');
 		else if($mime == 'eot')
