@@ -249,7 +249,7 @@ function loginForm() {
 	// We get the values
 	var lPath = '#home .loginer ';
 	var lServer = $(lPath + '.server').val();
-	var lNick = $(lPath + '.nick').val();
+	var lNick = nodeprep($(lPath + '.nick').val());
 	var lPass = $(lPath + '.password').val();
 	var lResource = $(lPath + '.resource').val();
 	var lPriority = $(lPath + '.priority').val();
@@ -282,7 +282,7 @@ function registerForm() {
 	$(rPath + '.success').remove();
 	
 	// Get the values
-	var username = $(rPath + '.nick').val();
+	var username = nodeprep($(rPath + '.nick').val());
 	var domain = $(rPath + '.server').val();
 	var pass = $(rPath + '.password').val();
 	var spass = $(rPath + '.spassword').val();

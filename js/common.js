@@ -120,18 +120,23 @@ function thisResource(aXID) {
 	return '';
 }
 
-// Does stringprep on a string
-function stringPrep(string) {
-	// Replacement arrays
-	var invalid = new Array('Š', 'š', 'Đ', 'đ', 'Ž', 'ž', 'Č', 'č', 'Ć', 'ć', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ý', 'þ', 'ÿ', 'Ŕ', 'ŕ');
-	
-	var valid   = new Array('S', 's', 'Dj', 'dj', 'Z', 'z', 'C', 'c', 'C', 'c', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 'B', 'Ss', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'b', 'y', 'R', 'r');
-	
-	// Compute a new string
-	for(i in invalid)
-		string = string.replace(invalid[i], valid[i]);
-	
-	return string;
+// nodepreps an XMPP node
+function nodeprep(node) {
+	// Spec: http://tools.ietf.org/html/rfc6122#appendix-A
+
+	if(!node)
+		return node;
+
+	// Remove prohibited chars
+	var prohibited_chars = ['"', '&', '\'', '/', ':', '<', '>', '@'];
+
+	for(j in prohibited_chars)
+		node = node.replace(prohibited_chars[j], '');
+
+	// Lower case
+	node = node.toLowerCase();
+
+	return node;
 }
 
 // Encodes quotes in a string
@@ -144,12 +149,9 @@ function bareXID(xid) {
 	// Cut the resource
 	xid = cutResource(xid);
 	
-	// Launch the stringprep
-	// xid = stringPrep(xid);
-	// stringPrep() transforms 'a' to 's' in Safari, without any reason!
-	
-	// Set the XID to lower case
-	xid = xid.toLowerCase();
+	// Launch nodeprep
+	if(xid.indexOf('@') != -1)
+		xid = nodeprep(getXIDNick(xid)) + '@' + getXIDHost(xid);
 	
 	return xid;
 }
