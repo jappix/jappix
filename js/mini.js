@@ -1505,8 +1505,16 @@ function createMini(domain, user, password) {
 
 				// Use a timer to override the DOM lag issue
 				jQuery(document).oneTime(10, function() {
-					jQuery(path_input).val(jQuery(path_input).val() + key_value);
-					jQuery(path_input).focus();
+					// Get input values
+					select_input = jQuery(path_input);
+					value_input = select_input.val();
+
+					// Append pressed key value
+					select_input.val(value_input + key_value);
+					select_input.focus();
+
+					// Put cursor at the end of input
+					select_input[0].selectionStart = select_input[0].selectionEnd = value_input.length + 1;
 				});
 			}
 		} catch(e) {}
