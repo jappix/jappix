@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 14/05/13
+Last revision: 03/06/13
 
 */
 
@@ -381,7 +381,7 @@ function handleMessage(message) {
 		}
 		
 		// Chat message
-		else if((type == 'chat') || !type) {
+		else {
 			// Gets the nickname of the user
 			var fromName = resource;
 			var chatType = 'chat';
