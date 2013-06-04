@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 23/05/13
+Last revision: 04/06/13
 
 */
 
@@ -918,58 +918,66 @@ function updateRosterMini() {
 
 // Updates the chat overflow
 function updateOverflowMini() {
-	// Show hidden chats
-	jQuery('#jappix_mini div.jm_conversation:hidden').show();
-	
 	// Process overflow
-	var number_visible = parseInt((jQuery(window).width() - 330) / 140);
-	var number_total = jQuery('#jappix_mini div.jm_conversation').size();
-	
+	var number_visible = parseInt((jQuery(window).width() - 380) / 140);
+	var number_visible_dom = jQuery('#jappix_mini div.jm_conversation:visible').size();
+
 	if(number_visible <= 0)
 		number_visible = 1;
-	
-	// Must add the overflow switcher?
-	if(number_visible < number_total) {
-		// Create the overflow handler?
-		if(!jQuery('#jappix_mini a.jm_switch').size()) {
-			// Add the navigation links
-			jQuery('#jappix_mini div.jm_conversations').before(
-				'<a class="jm_switch jm_left jm_pane jm_images" href="#">' + 
-					'<span class="jm_navigation jm_images"></span>' + 
-				'</a>'
-			);
+
+	// Need to reprocess?
+	if(number_visible != number_visible_dom) {
+		// Show hidden chats
+		jQuery('#jappix_mini div.jm_conversation:hidden').show();
+		
+		// Get total number of chats
+		var number_total = jQuery('#jappix_mini div.jm_conversation').size();
+		
+		// Must add the overflow switcher?
+		if(number_visible < number_total) {
+			// Create the overflow handler?
+			if(!jQuery('#jappix_mini a.jm_switch').size()) {
+				// Add the navigation links
+				jQuery('#jappix_mini div.jm_conversations').before(
+					'<a class="jm_switch jm_left jm_pane jm_images" href="#">' + 
+						'<span class="jm_navigation jm_images"></span>' + 
+					'</a>'
+				);
+				
+				jQuery('#jappix_mini div.jm_conversations').after(
+					'<a class="jm_switch jm_right jm_pane jm_images" href="#">' + 
+						'<span class="jm_navigation jm_images"></span>' + 
+					'</a>'
+				);
+				
+				// Add the click events
+				overflowEventsMini();
+			}
 			
-			jQuery('#jappix_mini div.jm_conversations').after(
-				'<a class="jm_switch jm_right jm_pane jm_images" href="#">' + 
-					'<span class="jm_navigation jm_images"></span>' + 
-				'</a>'
-			);
+			// Show first visible chats
+			var first_visible = jQuery('#jappix_mini div.jm_conversation:visible:first').index();
+			var index_visible = number_visible - first_visible - 1;
+
+			jQuery('#jappix_mini div.jm_conversation:visible:gt(' + index_visible + ')').hide();
 			
-			// Add the click events
-			overflowEventsMini();
+			// Close the opened chat
+			if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size())
+				switchPaneMini();
+			
+			// Update navigation buttons
+			jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
+			
+			if(!jQuery('#jappix_mini div.jm_conversation:visible:first').prev().size())
+				jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_nonav');
+			if(!jQuery('#jappix_mini div.jm_conversation:visible:last').next().size())
+				jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_nonav');
 		}
 		
-		// Show first visible chats
-		var index_visible = number_visible - 1;
-		jQuery('#jappix_mini div.jm_conversation:gt(' + index_visible + '):visible').hide();
-		
-		// Close the opened chat
-		if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size())
-			switchPaneMini();
-		
-		// Update navigation buttons
-		jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
-		
-		if(!jQuery('#jappix_mini div.jm_conversation:visible:first').prev().size())
-			jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_nonav');
-		if(!jQuery('#jappix_mini div.jm_conversation:visible:last').next().size())
-			jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_nonav');
-	}
-	
-	// Must remove the overflow switcher?
-	else {
-		jQuery('#jappix_mini a.jm_switch').remove();
-		jQuery('#jappix_mini div.jm_conversation:hidden').show();
+		// Must remove the overflow switcher?
+		else {
+			jQuery('#jappix_mini a.jm_switch').remove();
+			jQuery('#jappix_mini div.jm_conversation:hidden').show();
+		}
 	}
 }
 
@@ -1107,12 +1115,23 @@ function createMini(domain, user, password) {
 	jQuery('#jappix_mini div.jm_status_picker').hide();
 	jQuery('#jappix_mini div.jm_chan_suggest').remove();
 	
-	// Adapt roster height
-	adaptRosterMini();
-	
-	// Chat navigation overflow
+	// Chat navigation overflow events
 	overflowEventsMini();
-	updateOverflowMini();
+
+	// Delay to fix DOM lag bug (CSS file not yet loaded)
+	jQuery('#jappix_mini').everyTime(10, function() {
+		if(jQuery(this).is(':visible')) {
+			logThis('CSS loaded asynchronously.', 3);
+
+			jQuery(this).stopTime();
+
+			// Re-process chat overflow
+			updateOverflowMini();
+
+			// Adapt roster height
+			adaptRosterMini();
+		}
+	});
 	
 	// CSS refresh (Safari display bug when restoring old DOM)
 	jQuery('#jappix_mini div.jm_starter').css('float', 'right');
