@@ -7,7 +7,7 @@ These are the notification JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 12/02/12
+Last revision: 04/05/12
 
 */
 
@@ -150,6 +150,34 @@ function newNotification(type, from, data, body, id, inverse) {
 			text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a video (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
 			
 			break;
+
+		case 'me_profile_new_success':
+			yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("validated your account. Your public profile will be available in a few moments.").htmlEnc();
+			
+			break;
+
+		case 'me_profile_remove_success':
+			yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("has removed your public profile after your request. We will miss you!").htmlEnc();
+			
+			break;
+
+		case 'me_profile_update_success':
+			yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("has saved your new public profile settings. They will be applied in a few moments.").htmlEnc();
+			
+			break;
+
+		case 'me_profile_check_error':
+			yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+
+			text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("could not validate your account to create or update your public profile. Check your credentials.").htmlEnc();
+			
+			break;
 		
 		default:
 			break;
@@ -160,16 +188,39 @@ function newNotification(type, from, data, body, id, inverse) {
 		return;
 	
 	// Action links?
-	if((type == 'send_pending') || (type == 'send_accept') || (type == 'send_reject') || (type == 'send_fail') || (type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
-		action = '<a href="#" class="no">' + _e("Hide") + '</a>';
-		
-		// Any parent link?
-		if((type == 'comment') && data[2])
-			action = '<a href="#" class="yes">' + _e("Show") + '</a>' + action;
+	switch(type) {
+		// Hide/Show actions
+		case 'send_pending':
+		case 'send_accept':
+		case 'send_reject':
+		case 'send_fail':
+		case 'comment':
+		case 'like':
+		case 'quote':
+		case 'wall':
+		case 'photo':
+		case 'video':
+			action = '<a href="#" class="no">' + _e("Hide") + '</a>';
+
+			// Any parent link?
+			if((type == 'comment') && data[2])
+				action = '<a href="#" class="yes">' + _e("Show") + '</a>' + action;
+
+			break;
+
+		// Jappix Me actions
+		case 'me_profile_new_success':
+		case 'me_profile_remove_success':
+		case 'me_profile_update_success':
+		case 'me_profile_check_error':
+			action = '<a ' + yes_path + ' class="yes">' + _e("Open") + '</a><a href="#" class="no">' + _e("Hide") + '</a>';
+
+			break;
+
+		// Default actions
+		default:
+			action = '<a ' + yes_path + ' class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	}
-	
-	else	
-		action = '<a ' + yes_path + ' class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
 	
 	if(text) {
 		// We display the notification

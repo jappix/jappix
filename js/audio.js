@@ -7,7 +7,7 @@ These are the audio JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 10/04/12
+Last revision: 04/05/12
 
 */
 
@@ -44,8 +44,11 @@ function soundPlay(num) {
 			
 			// We play the target sound
 			var playThis = document.getElementById('audio').getElementsByTagName('audio')[num];
-			// playThis.load();
-			// load() method breaks Safari audio playing
+
+			// Fixes Chrome audio bug when Get API serves expired files (for development work purposes)
+			if(window.chrome && isDeveloper())
+				playThis.load();
+
 			playThis.play();
 		}
 	}

@@ -7,7 +7,7 @@ These are the messages JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 03/06/13
+Last revision: 04/05/12
 
 */
 
@@ -112,6 +112,45 @@ function handleMessage(message) {
 		}
 	}
 	
+	// Request message
+	if(message.getChild('app', 'jappix:app')) {
+		// Get notification data
+		var jappix_app_node = $(node).find('app[xmlns="jappix:app"]');
+		var jappix_app_name = jappix_app_node.find('name');
+
+		var jappix_app_name_id = jappix_app_name.attr('id');
+		var jappix_app_name_value = jappix_app_name.text();
+
+		// Jappix Me notification?
+		if(jappix_app_name_id == 'me') {
+			// Get more notification data
+			var jappix_app_data = jappix_app_node.find('data[xmlns="jappix:app:me"]');
+			var jappix_app_data_action = jappix_app_data.find('action');
+			var jappix_app_data_url = jappix_app_data.find('url');
+
+			var jappix_app_data_action_type = jappix_app_data_action.attr('type');
+			var jappix_app_data_action_success = jappix_app_data_action.attr('success');
+			var jappix_app_data_action_job = jappix_app_data_action.attr('job');
+			var jappix_app_data_url_value = jappix_app_data_url.text();
+
+			// Validate data
+			if(jappix_app_data_action_type && jappix_app_data_action_success && jappix_app_data_action_job) {
+				// Filter success
+				jappix_app_data_action_success = parseInt(jappix_app_data_action_success) == 1 ? 'success' : 'error';
+
+				// Generate notification namespace
+				var jappix_me_notification_ns = jappix_app_name_id + '_' + jappix_app_data_action_type + '_' + jappix_app_data_action_job + '_' + jappix_app_data_action_success;
+
+				// Open a new notification
+				newNotification(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
+				
+				logThis('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
+				
+				return false;
+			}
+		}
+	}
+
 	// Invite message
 	if($(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').size()) {
 		// We get the needed values

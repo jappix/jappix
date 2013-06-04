@@ -254,6 +254,16 @@ Last revision: 20/10/12
 	background-position: 0 -1940px;
 }
 
+.notifications-content .one-notification[data-type="me_profile_new_success"] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type="me_profile_remove_success"] .notification-actions span.talk-images,
+.notifications-content .one-notification[data-type="me_profile_update_success"] .notification-actions span.talk-images {
+	background-position: 0 -1660px;
+}
+
+.notifications-content .one-notification[data-type="me_profile_check_error"] .notification-actions span.talk-images {
+	background-position: 0 -1640px;
+}
+
 .music-content {
 	width: 220px;
 }

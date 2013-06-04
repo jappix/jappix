@@ -5,7 +5,7 @@
 
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 23/05/13
+# Last revision: 04/05/12
 
 msgid ""
 msgstr ""
@@ -938,6 +938,21 @@ msgid "tagged you in a photo (%s)."
 msgstr ""
 
 msgid "tagged you in a video (%s)."
+msgstr ""
+
+msgid "validated your account. Your public profile will be available in a few moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid "has saved your new public profile settings. They will be applied in a few moments."
+msgstr ""
+
+msgid "could not validate your account to create or update your public profile. Check your credentials."
+msgstr ""
+
+msgid "Open"
 msgstr ""
 
 msgid "Show"
