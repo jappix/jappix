@@ -7,7 +7,7 @@ This is the manager CSS stylesheet for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/08/11
+Last revision: 04/06/13
 
 */
 
@@ -312,12 +312,12 @@ Last revision: 31/08/11
 
 #manager-content li b {
 	width: 190px;
-	float: left;
+	display: inline-block;
 }
 
 #manager-content li span {
 	margin-left: 10px;
-	float: left;
+	display: inline-block;
 }
 
 #manager-content ul.stats,
