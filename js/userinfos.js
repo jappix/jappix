@@ -49,37 +49,37 @@ function openUserInfos(xid) {
 			'</div>' + 
 			
 			'<div class="block-infos">' + 
-				'<div class="one-line"><b>' + _e("Date of birth") + '</b><span id="BUDDY-BDAY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Date of birth") + '</b><span id="BUDDY-BDAY" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("E-mail") + '</b><span id="BUDDY-EMAIL-USERID" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("E-mail") + '</b><span id="BUDDY-EMAIL-USERID" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("Phone") + '</b><span id="BUDDY-TEL-NUMBER" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Phone") + '</b><span id="BUDDY-TEL-NUMBER" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("Website") + '</b><span id="BUDDY-URL" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Website") + '</b><span id="BUDDY-URL" class="reset-info">' + _e("unknown") + '</span></div>' + 
 			'</div>' + 
 			
 			'<div class="block-infos">' + 
-				'<div class="one-line"><b>' + _e("Client") + '</b><span id="BUDDY-CLIENT" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Client") + '</b><span id="BUDDY-CLIENT" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("System") + '</b><span id="BUDDY-SYSTEM" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("System") + '</b><span id="BUDDY-SYSTEM" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("Local time") + '</b><span id="BUDDY-TIME" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Local time") + '</b><span id="BUDDY-TIME" class="reset-info">' + _e("unknown") + '</span></div>' + 
 			'</div>' + 
 		'</div>' + 
 		
 		'<div class="one-lap info2">' + 
 			'<div class="block-infos">' + 
-				'<div class="one-line"><b>' + _e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("City") + '</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("City") + '</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("Postal code") + '</b><span id="BUDDY-ADR-PCODE" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Postal code") + '</b><span id="BUDDY-ADR-PCODE" class="reset-info">' + _e("unknown") + '</span></div>' + 
 				
-				'<div class="one-line"><b>' + _e("Country") + '</b><span id="BUDDY-ADR-CTRY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Country") + '</b><span id="BUDDY-ADR-CTRY" class="reset-info">' + _e("unknown") + '</span></div>' + 
 			'</div>' + 
 			
 			'<div class="block-infos">' + 
-				'<div class="one-line"><b>' + _e("Biography") + '</b><span id="BUDDY-DESC" class="reset-info">' + _e("unknown") + '</span></div>' + 
+				'<div class="one-line"><b class="line-label">' + _e("Biography") + '</b><span id="BUDDY-DESC" class="reset-info">' + _e("unknown") + '</span></div>' + 
 			'</div>' + 
 		'</div>' + 
 		

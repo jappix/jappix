@@ -83,7 +83,7 @@ Last revision: 20/10/12
 	float: left;
 }
 
-#userinfos .one-line b {
+#userinfos .one-line b.line-label {
 	width: 120px;
 	float: left;
 }
