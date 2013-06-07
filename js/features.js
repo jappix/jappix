@@ -7,7 +7,7 @@ This is the server features JS script for Jappix
 
 License: AGPL
 Author: Valérian Saliou, Maranda
-Last revision: 20/02/13
+Last revision: 07/06/13
 
 */
 
@@ -83,8 +83,9 @@ function handleFeatures(xml) {
 		// Update our database
 		enableFeature('pep');
 		
-		// Get the microblog
+		// Get the PEP nodes to initiate
 		getInitMicroblog();
+		getInitGeoloc();
 		
 		// Get the notifications
 		getNotifications();

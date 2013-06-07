@@ -600,9 +600,9 @@ function getPosition(position) {
 		
 		// Handled!
 		sendPosition(
-		             vLat,
-		             vLon,
-		             vAlt,
+		             isNumber(vLat) ? vLat : null,
+		             isNumber(vLon) ? vLon : null,
+		             isNumber(vAlt) ? vAlt : null,
 		             results[2],
 		             results[3],
 		             results[4],
@@ -642,6 +642,30 @@ function geolocate() {
 	// Any error?
 	else
 		logThis('Not geolocated: browser does not support it.', 1);
+}
+
+// Gets the user's microblog to check it exists
+function getInitGeoloc() {
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+	
+	var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+	var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_GEOLOC, 'xmlns': NS_PUBSUB}));
+	
+	ps_items.setAttribute('max_items', '0');
+	
+	con.send(iq, handleInitGeoloc);
+}
+
+// Handles the user's microblog to create it in case of error
+function handleInitGeoloc(iq) {
+	// Any error?
+	if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
+		// The node may not exist, create it!
+		setupMicroblog('', NS_GEOLOC, '1', '1', '', '', true);
+		
+		logThis('Error while getting geoloc, trying to reconfigure the PubSub node!', 2);
+	}
 }
 
 // Displays all the supported PEP events for a given XID

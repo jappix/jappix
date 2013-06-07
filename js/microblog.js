@@ -872,7 +872,7 @@ function handleInitMicroblog(iq) {
 		// The node may not exist, create it!
 		setupMicroblog('', NS_URN_MBLOG, '1', '1000000', '', '', true);
 		
-		logThis('Error while getting microblog, trying to reconfigure the Pubsub node!', 2);
+		logThis('Error while getting microblog, trying to reconfigure the PubSub node!', 2);
 	}
 }
 

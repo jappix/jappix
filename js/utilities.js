@@ -68,6 +68,11 @@ function encodeOnclick(str) {
 	return (encodeQuotes(str)).replace(/'/g, '\\$&');
 }
 
+// Checks whether the passed parameter is a number or not
+function isNumber(n) {
+	return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 // Checks if we are in the anonymous mode
 function isAnonymous() {
 	if(allowedAnonymous() && LINK_VARS['r'])
