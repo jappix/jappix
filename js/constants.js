@@ -7,7 +7,7 @@ These are the constants JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Stefan Strigler, Valérian Saliou, Kloadut
-Last revision: 12/06/12
+Last revision: 07/06/13
 
 */
 
@@ -61,6 +61,7 @@ var NS_PUBSUB_EVENT = NS_PUBSUB + '#event';
 var NS_PUBSUB_OWNER = NS_PUBSUB + '#owner';
 var NS_PUBSUB_NMI =   NS_PUBSUB + '#node-meta-info';
 var NS_PUBSUB_NC =    NS_PUBSUB + '#node_config';
+var NS_PUBSUB_CN =    NS_PUBSUB + '#config-node';
 var NS_PUBSUB_RI =    NS_PUBSUB + '#retrieve-items';
 var NS_COMMANDS =     NS_PROTOCOL + 'commands';
 var NS_BOSH =         NS_PROTOCOL + 'httpbind';

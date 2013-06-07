@@ -7,7 +7,7 @@ These are the options JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 17/07/11
+Last revision: 07/06/13
 
 */
 
@@ -19,7 +19,7 @@ function optionsOpen() {
 	
 	'<div class="tab">' + 
 		'<a href="#" class="tab-general tab-active" data-key="1">' + _e("General") + '</a>' + 
-		'<a href="#" class="tab-channel pubsub-hidable" data-key="2">' + _e("Channel") + '</a>' + 
+		'<a href="#" class="tab-channel pubsub-hidable pubsub-hidable-cn" data-key="2">' + _e("Channel") + '</a>' + 
 		'<a href="#" class="tab-account" data-key="3">' + _e("Account") + '</a>' + 
 	'</div>' + 
 	
@@ -312,7 +312,7 @@ function saveOptions() {
 	if($('#persistent').filter(':checked').size())
 		persist = '1';
 	
-	if(enabledPEP() && enabledPubSub())
+	if(enabledPEP() && (enabledPubSub() || enabledPubSubCN()))
 		setupMicroblog('', NS_URN_MBLOG, persist, maximum, '', '', false);
 	
 	// We send the options to the database
@@ -505,11 +505,12 @@ function loadOptions() {
 	// Process the good stuffs, depending of the server features
 	var enabled_archives_pref = enabledArchives('pref');
 	var enabled_pubsub = enabledPubSub();
+	var enabled_pubsub_cn = enabledPubSubCN();
 	var enabled_pep = enabledPEP();
 	var sWait = $('#options .content');
 	
 	// Show the waiting items if necessary
-	if(enabled_archives_pref || (enabled_pep && enabled_pubsub)) {
+	if(enabled_archives_pref || (enabled_pep && (enabled_pubsub || enabled_pubsub_cn))) {
 		$('#options .wait').show();
 		$('#options .finish:first').addClass('disabled');
 	}
@@ -521,7 +522,7 @@ function loadOptions() {
 	}
 	
 	// We get the microblog configuration
-	if(enabled_pubsub && enabled_pep) {
+	if((enabled_pubsub || enabled_pubsub_cn) && enabled_pep) {
 		sWait.addClass('microblog');
 		getConfigMicroblog();
 	}

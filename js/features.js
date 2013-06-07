@@ -53,6 +53,7 @@ function handleFeatures(xml) {
 	// Markers
 	var pep = false;
 	var pubsub = false;
+	var pubsub_cn = false;
 	var archive = false;
 	var archive_auto = false;
 	var archive_manual = false;
@@ -65,6 +66,8 @@ function handleFeatures(xml) {
 		pep = true;
 	if(selector.find('feature[var="' + NS_PUBSUB + '"]').size())
 		pubsub = true;
+	if(selector.find('feature[var="' + NS_PUBSUB_CN + '"]').size())
+		pubsub_cn = true;
 	if(selector.find('feature[var="' + NS_URN_ARCHIVE + '"]').size())
 		archive = true;
 	if(selector.find('feature[var="' + NS_URN_AR_AUTO + '"]').size())
@@ -110,6 +113,10 @@ function handleFeatures(xml) {
 	// Enable the pubsub features if available
 	if(pubsub)
 		enableFeature(NS_PUBSUB);
+
+	// Enable the pubsub config-node features if available
+	if(pubsub_cn)
+		enableFeature(NS_PUBSUB_CN);
 	
 	// Enable the archiving features if available
 	if(archive)
@@ -155,6 +162,10 @@ function applyFeatures(id) {
 	// PubSub features
 	if(enabledPubSub())
 		$(path + 'pubsub-hidable').show();
+
+	// PubSub Config-Node features
+	if(enabledPubSubCN())
+		$(path + 'pubsub-hidable-cn').show();
 	
 	// Archives features
 	if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage')) {
@@ -195,6 +206,11 @@ function enabledPEP() {
 // Returns the XMPP server PubSub support
 function enabledPubSub() {
 	return enabledFeature(NS_PUBSUB);
+}
+
+// Returns the XMPP server PubSub Config-Node support
+function enabledPubSubCN() {
+	return enabledFeature(NS_PUBSUB_CN);
 }
 
 // Returns the XMPP server archives support

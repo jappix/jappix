@@ -7,7 +7,7 @@ This is the others CSS stylesheet for Jappix
  
 License: AGPL
 Author: Valérian Saliou
-Last revision: 31/08/11
+Last revision: 07/06/13
  
 */
  
@@ -90,6 +90,7 @@ Last revision: 31/08/11
 .options-hidable,
 .pep-hidable,
 .pubsub-hidable,
+.pubsub-hidable-cn,
 .archives-hidable,
 .commands-hidable,
 .privacy-hidable,
