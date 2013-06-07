@@ -454,24 +454,10 @@ function getLanguageName($code) {
 
 // The function to know if a language is right-to-left
 function isRTL($code) {
-	switch($code) {
-		// RTL language
-		case 'ar':
-		case 'he':
-		case 'dv':
-		case 'ur':
-			$is_rtl = true;
-			
-			break;
-		
-		// LTR language
-		default:
-			$is_rtl = false;
-			
-			break;
-	}
+	if(T_("default:LTR") == 'default:RTL')
+		return true;
 	
-	return $is_rtl;
+	return false;
 }
 
 // The function to set the good localized <html /> tag
@@ -479,13 +465,8 @@ function htmlTag($locale) {
 	// Initialize the tag
 	$html = '<html xml:lang="'.$locale.'" lang="'.$locale.'" dir="';
 	
-	// Set the good text direction (TODO)
-	/* if(isRTL($locale))
-		$html .= 'rtl';
-	else
-		$html .= 'ltr'; */
-	
-	$html .= 'ltr';
+	// Set the good text direction
+	$html .= isRTL($locale) ? 'rtl' : 'ltr';
 	
 	// Close the tag
 	$html .= '">';
