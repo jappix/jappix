@@ -301,7 +301,6 @@ function processUpdate($url) {
 			fwrite($local, $buffer);
 			
 			// Flush the current buffer
-			ob_flush();
 			flush();
    		}
    		
