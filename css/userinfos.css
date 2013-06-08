@@ -37,6 +37,10 @@ Last revision: 20/10/12
 	height: 80px;
 }
 
+html[dir="rtl"] #userinfos .avatar-container {
+	float: right;
+}
+
 #userinfos .avatar {
 	max-width: 80px;
 	max-height: 80px;
@@ -72,6 +76,11 @@ Last revision: 20/10/12
 	right: 12px;
 }
 
+html[dir="rtl"] #userinfos .main-infos div.shortcuts {
+	right: auto;
+	left: 12px;
+}
+
 #userinfos .block-infos {
 	margin: 7px 20px;
 	float: left;
@@ -88,13 +97,26 @@ Last revision: 20/10/12
 	float: left;
 }
 
+html[dir="rtl"] #userinfos .one-line b.line-label {
+	float: right;
+}
+
 #userinfos .one-line span.reset-info {
 	float: left;
 	width: 460px;
+}
+
+html[dir="rtl"] #userinfos .one-line span.reset-info {
+	float: right;
 }
 
 #userinfos textarea {
 	margin: 30px 0 0 30px;
 	width: 572px;
 	height: 292px;
+}
+
+html[dir="rtl"] #userinfos textarea {
+	margin-right: 30px;
+	margin-left: auto;
 }

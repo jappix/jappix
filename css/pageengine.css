@@ -147,11 +147,24 @@ Last revision: 21/06/12
 	right: 191px !important;
 }
 
+html[dir="rtl"] #page-engine .groupchat-content {
+	right: 0 !important;
+	left: 191px !important;
+}
+
 #page-engine .list {
-	border-left: 1px solid #c8c8c8;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #c8c8c8;
 	padding: 8px 0 0;
 	width: 190px;
 	right: 0;
+}
+
+html[dir="rtl"] #page-engine .list {
+	border-width: 0 1px 0 0;
+	right: auto;
+	left: 0;
 }
 
 #page-engine .list .role {
@@ -200,11 +213,21 @@ Last revision: 21/06/12
 	padding-left: 18px;
 }
 
+html[dir="rtl"] #page-engine .list .user .name {
+	margin-left: auto;
+	margin-right: 8px;
+	float: right;
+}
+
 #page-engine .list .user .avatar-container {
 	text-align: center;
 	float: right;
 	height: 32px;
 	width: 32px;
+}
+
+html[dir="rtl"] #page-engine .list .user .avatar-container {
+	float: left;
 }
 
 #page-engine .list .user .avatar {
@@ -800,12 +823,21 @@ html[dir="rtl"] #page-engine .text .compose {
 	-webkit-border-radius: 5px;
 }
 
+html[dir="rtl"] #page-engine .tooltip-subitem {
+	margin-right: -10px;
+}
+
 #page-engine .tooltip-subarrow {
 	background-position: 0 -251px;
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;
 	margin-left: 12px;
+}
+
+html[dir="rtl"] #page-engine .tooltip-subarrow {
+	margin-right: -1px;
+	margin-left: auto;
 }
 
 #page-engine .tooltip .tooltip-top {

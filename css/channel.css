@@ -152,10 +152,21 @@ html[dir="rtl"] #channel .one-microblog-icon {
 	float: left;
 }
 
+html[dir="rtl"] #attach div.one-file a.link {
+	text-align: right;
+	margin-left: auto;
+	margin-right: 2px;
+	float: right;
+}
+
 #attach div.one-file a.remove {
 	width: 16px;
 	height: 16px;
 	float: left;
+}
+
+html[dir="rtl"] #attach div.one-file a.remove {
+	float: right;
 }
 
 .attach-subarrow {
@@ -174,6 +185,11 @@ html[dir="rtl"] #channel .one-microblog-icon {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+}
+
+html[dir="rtl"] .attach-subitem {
+	position: absolute;
+	left: 238px;
 }
 
 .attach-p {
@@ -331,11 +347,6 @@ html[dir="rtl"] #channel .one-update p.infos a.geoloc {
 	border-color: #464646;
 }
 
-#channel .one-update div.comments-container,
-.popup.large div.comments-container {
-	clear: both;
-}
-
 #channel .one-update div.comments,
 .popup.large div.comments {
 	width: 410px;
@@ -344,7 +355,8 @@ html[dir="rtl"] #channel .one-update p.infos a.geoloc {
 
 html[dir="rtl"] #channel .one-update div.comments,
 html[dir="rtl"] .popup.large div.comments {
-	margin-top: 16px;
+	margin-left: auto;
+	margin-right: 76px;
 }
 
 #channel .one-update div.comments div.arrow,
@@ -354,6 +366,12 @@ html[dir="rtl"] .popup.large div.comments {
 	height: 8px;
 	margin-left: 20px;
 	display: block;
+}
+
+html[dir="rtl"] #channel .one-update div.comments div.arrow,
+html[dir="rtl"] .popup.large div.comments div.arrow {
+	margin-left: auto;
+	margin-right: 20px;
 }
 
 #channel .one-update div.comments div.comments-content,

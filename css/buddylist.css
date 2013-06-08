@@ -86,6 +86,7 @@ html[dir="rtl"] #buddy-list .one-group a.group {
         width: 100%;
         height: 50px;
         margin-bottom: 4px;
+        clear: both;
 }
  
 #buddy-list .buddy-click {
@@ -219,7 +220,7 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         color: white;
         font-size: 0.8em;
 }
- 
+
 .buddy-infos-subarrow {
         background-position: 0 -241px;
         opacity: 0.8;
@@ -227,6 +228,11 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         height: 20px;
         margin-top: 12px;
         float: left;
+}
+
+html[dir="rtl"] .buddy-infos-subarrow {
+        background-position: -10px -241px;
+        float: right;
 }
  
 .buddy-infos-subitem {
@@ -240,7 +246,11 @@ html[dir="rtl"] #buddy-list .buddy-presence {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
- 
+
+html[dir="rtl"] .buddy-infos-subitem {
+        float: right;
+}
+
 .manage-infos p.bm-authorize,
 #rosterx .oneresult span.action.add {
         background-position: 0 -1181px;
@@ -299,11 +309,21 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         padding-top: 3px;
         float: left;
 }
+
+html[dir="rtl"] .manage-infos p.bm-rename label,
+html[dir="rtl"] .manage-infos p.bm-group label {
+        float: right;
+}
  
 .manage-infos p.bm-rename input,
 .manage-infos p.bm-group input {
         float: left;
         width: 155px;
+}
+
+html[dir="rtl"] .manage-infos p.bm-rename input,
+html[dir="rtl"] .manage-infos p.bm-group input {
+        float: right;
 }
  
 .manage-infos a.save {
@@ -456,6 +476,11 @@ html[dir="rtl"] #buddy-list .buddy-list-icon {
         z-index: 9998;
         font-size: 0.8em;
 }
+
+html[dir="rtl"] .buddy-conf-item {
+        left: auto;
+        right: -10px;
+}
  
 .buddy-conf-item:hover {
         cursor: default;
@@ -468,6 +493,12 @@ html[dir="rtl"] #buddy-list .buddy-list-icon {
         width: 18px;
         margin-left: 9px;
         float: left;
+}
+
+html[dir="rtl"] .buddy-conf-subarrow {
+        margin-left: auto;
+        margin-right: 9px;
+        float: right;
 }
  
 .buddy-conf-subitem {

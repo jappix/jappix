@@ -479,12 +479,17 @@ function buddyInfosPosition(xid, group_hash) {
 		offset = -8;
 	
 	// Process the position
-	var top = $(buddy).position().top + offset;
-	var left = $(buddy).width() - 10;
+	var v_position = $(buddy).position().top + offset;
+	var h_position = $(buddy).width() - 10;
 	
 	// Apply the top position
-	$(buddy_infos).css('top', top)
-	              .css('left', left);
+	$(buddy_infos).css('top', v_position);
+
+	// Apply the left/right position
+	if($('html').attr('dir') == 'rtl')
+		$(buddy_infos).css('right', h_position);
+	else
+		$(buddy_infos).css('left', h_position);
 }
 
 // Generates an array of the current groups of a buddy

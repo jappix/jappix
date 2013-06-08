@@ -80,6 +80,12 @@ html[dir="rtl"] #page-switch .more {
 html[dir="rtl"] #page-switch .more-content {
 	margin-left: 0;
 	left: 0;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 0;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 0;
 }
 
 #page-switch .switcher {

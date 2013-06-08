@@ -359,6 +359,11 @@ html[dir="rtl"] #home .left p.secondary {
 	-webkit-border-radius: 4px;
 }
 
+html[dir="rtl"] #home .right button {
+	margin-right: 21px;
+	margin-left: auto;
+}
+
 #home .right button:hover {
 	cursor: pointer;
 }

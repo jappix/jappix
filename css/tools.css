@@ -100,6 +100,11 @@ Last revision: 20/10/12
 	-webkit-border-radius: 10px;
 }
 
+html[dir="rtl"] #top-content .notify {
+	margin-left: auto;
+	margin-right: -10px;
+}
+
 #top-content .tools-content {
 	display: none;
 	position: absolute;
@@ -113,6 +118,11 @@ Last revision: 20/10/12
 	height: 10px;
 	width: 18px;
 	margin-left: 12px;
+}
+
+html[dir="rtl"] .tools-content-subarrow {
+	margin-left: auto;
+	margin-right: 4px;
 }
 
 .tools-content-subitem {
@@ -135,6 +145,10 @@ Last revision: 20/10/12
 	text-align: left;
 	overflow-x: none;
 	overflow-y: auto;
+}
+
+html[dir="rtl"] .notifications-content .tools-content-subitem {
+	text-align: right;
 }
 
 .notifications-content .empty {
@@ -180,6 +194,12 @@ Last revision: 20/10/12
 	background-repeat: no-repeat;
 }
 
+html[dir="rtl"] .notifications-content .avatar-container {
+	float: right;
+	margin-right: auto;
+	margin-left: 8px;
+}
+
 .notifications-content .avatar {
 	max-width: 40px;
 	max-height: 40px;
@@ -189,6 +209,11 @@ Last revision: 20/10/12
 .notifications-content .notification-actions {
 	margin-left: 48px;
 	overflow: hidden;
+}
+
+html[dir="rtl"] .notifications-content .notification-text,
+html[dir="rtl"] .notifications-content .notification-actions {
+	margin-left: auto;
 }
 
 .notifications-content .notification-actions {
@@ -209,6 +234,12 @@ Last revision: 20/10/12
 	height: 16px;
 	margin: -1px 6px 0 0;
 	float: left;
+}
+
+html[dir="rtl"] .notifications-content .one-notification .notification-actions span.talk-images {
+	margin-right: auto;
+	margin-left: 6px;
+	float: right;
 }
 
 .notifications-content .one-notification[data-type="subscribe"] .notification-actions span.talk-images {
