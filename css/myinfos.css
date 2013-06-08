@@ -273,6 +273,7 @@ Last revision: 31/08/11
 
 #my-infos .element .icon.picker {
 	border-width: 1px 0 1px 1px;
+	float: left;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 	-moz-border-radius-topright: 0;
@@ -321,6 +322,7 @@ Last revision: 31/08/11
 	width: 190px;
 	font-size: 0.85em;
 	padding-left: 4px;
+	float: left;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	-moz-border-radius-topleft: 0;

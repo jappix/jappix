@@ -254,6 +254,10 @@ a {
 	text-align: left;
 }
 
+html[dir="rtl"] #chat .one-chat div {
+	text-align: right;
+}
+
 #chat .one-chat span {
 	display: block;
 	font-size: 0.85em;
@@ -263,6 +267,11 @@ a {
 
 #chat .one-chat b {
 	margin-right: 3px;
+}
+
+html[dir="rtl"] #chat .one-chat b {
+	margin-right: auto;
+	margin-left: 3px;
 }
 
 #chat .one-chat b.me {
@@ -284,6 +293,11 @@ a {
 #chat .one-chat input.submit {
 	right: 0;
 	width: 35px;
+}
+
+html[dir="rtl"] #chat .one-chat input.submit {
+	left: 0;
+	right: auto;
 }
 
 /* END CHAT STYLE */

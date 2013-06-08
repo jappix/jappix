@@ -227,6 +227,14 @@ Last revision: 21/06/12
 	word-wrap: break-word;
 }
 
+html[dir="rtl"] #page-engine .one-line,
+html[dir="rtl"] #archives .one-line,
+html[dir="rtl"] #page-engine .one-group b.name,
+html[dir="rtl"] #archives .one-group b.name {
+	padding-left: auto;
+	padding-right: 50px;
+}
+
 #page-engine .one-group b.name,
 #archives .one-group b.name {
 	display: block;
@@ -250,6 +258,11 @@ Last revision: 21/06/12
 	font-size: 0.95em;
 }
 
+html[dir="rtl"] #page-engine .one-group span.date,
+html[dir="rtl"] #archives .one-group span.date {
+	float: left;
+}
+
 #page-engine .one-group .avatar-container,
 #archives .one-group .avatar-container {
 	text-align: center;
@@ -257,6 +270,13 @@ Last revision: 21/06/12
 	height: 30px;
 	width: 30px;
 	float: left;
+}
+
+html[dir="rtl"] #page-engine .one-group .avatar-container,
+html[dir="rtl"] #archives .one-group .avatar-container {
+	margin-left: auto;
+	margin-right: 6px;
+	float: right;
 }
 
 #page-engine .one-group .avatar,
@@ -687,6 +707,11 @@ Last revision: 21/06/12
 	top: 29px;
 	right: 12px;
 	bottom: 12px;
+}
+
+html[dir="rtl"] #page-engine .text .compose {
+	right: 0;
+	left: 12px;
 }
 
 #page-engine .muc-ask {

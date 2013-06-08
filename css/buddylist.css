@@ -376,6 +376,7 @@ Last revision: 21/06/12
         width: 16px;
         margin: -3px 5px 0 0;
         float: left;
+        position: relative;
 }
  
 #buddy-list .buddy-list-icon a.talk-images {
@@ -418,12 +419,11 @@ Last revision: 21/06/12
  
 .buddy-conf-item {
         position: absolute;
+        left: -10px;
         width: 263px;
         color: white;
         z-index: 9998;
-        text-align: left;
         font-size: 0.8em;
-        margin-left: -10px;
 }
  
 .buddy-conf-item:hover {
@@ -436,11 +436,13 @@ Last revision: 21/06/12
         height: 10px;
         width: 18px;
         margin-left: 9px;
+        float: left;
 }
  
 .buddy-conf-subitem {
         background-color: rgb(0,0,0);
         background-color: rgba(0,0,0,0.8);
+        margin-top: 10px;
         padding: 10px;
         text-shadow: 0 1px 1px black;
 	border-radius: 5px;

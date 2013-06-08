@@ -71,6 +71,7 @@ Last revision: 20/10/12
 	width: 180px;
 	padding: 10px 12px;
 	top: 28px;
+	left: 0;
 	display: none;
 	border-top-right-radius: 3px;
 	-moz-border-radius-topright: 3px;
@@ -298,6 +299,11 @@ Last revision: 20/10/12
 	margin: 8px 0 0 16px;
 	font-size: 0.9em;
 	width: 320px;
+}
+
+html[dir="rtl"] #home .left p.secondary {
+	margin-left: auto;
+	margin-right: 16px;
 }
 
 #home .right {
@@ -684,7 +690,11 @@ Last revision: 20/10/12
 	height: 16px;
 	margin-bottom: 10px;
 	padding-left: 16px;
-	display: block;
+	float: left;
+}
+
+html[dir="rtl"] #home a.advanced {
+	float: right;
 }
 
 #home fieldset.advanced {
@@ -709,6 +719,10 @@ Last revision: 20/10/12
 	-webkit-border-radius: 3px;
 }
 
+html[dir="rtl"] #home fieldset {
+	padding-left: 6px;
+}
+
 #home legend {
 	font-size: 0.9em;
 	margin: 0 0 0 15px;
@@ -722,6 +736,12 @@ Last revision: 20/10/12
 	float: left;
 	clear: both;
 	margin: 0 0 5px 12px;
+}
+
+html[dir="rtl"] #home label {
+	margin-left: auto;
+	margin-right: 12px;
+	float: right;
 }
 
 #home input,
@@ -740,6 +760,7 @@ Last revision: 20/10/12
 #home input[type="submit"] {
 	min-width: 120px;
 	float: right;
+	clear: both;
 }
 
 #home span.jid {
@@ -757,6 +778,19 @@ Last revision: 20/10/12
 
 #home input.password {
 	margin-right: 22px;
+}
+
+html[dir="rtl"] #home .loginer input.password {
+	margin-right: auto;
+}
+
+html[dir="rtl"] #home .loginer input.remember,
+html[dir="rtl"] #home .loginer input.password,
+html[dir="rtl"] #home .loginer input.resource,
+html[dir="rtl"] #home .loginer select.priority,
+html[dir="rtl"] #home .anonymouser input.room,
+html[dir="rtl"] #home .anonymouser input.nick {
+	float: right;
 }
 
 #home img.captcha_img {
