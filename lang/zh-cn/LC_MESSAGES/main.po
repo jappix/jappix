@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-03 18:14+0100\n"
-"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-06-08 12:22+0100\n"
+"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Source-Language: C\n"
 "X-Generator: Poedit 1.5.5\n"
 
+msgid "default:LTR"
+msgstr "default:LTR"
+
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr "网页浏览器找不到 JavaScript，无法启动 Jappix！请修正。"
-
-msgid "An open social network"
-msgstr "开放式社交网络"
 
 msgid "Social channel, chat and more."
 msgstr "社交频道，聊天以及更多。"
@@ -47,9 +47,6 @@ msgstr "免费下载Jappix "
 
 msgid "Contribute to the Jappix code."
 msgstr "有助于Jappix代码"
-
-msgid "Jappix for your mobile phone."
-msgstr "你手机的Jappix"
 
 msgid "Jappix for your company."
 msgstr "你公司的Jappix"
@@ -331,6 +328,10 @@ msgstr "头像"
 msgid "Others"
 msgstr "其他"
 
+#, fuzzy
+msgid "Other"
+msgstr "其他"
+
 msgid "Personal"
 msgstr "个人"
 
@@ -391,9 +392,10 @@ msgstr "自传"
 msgid "Important notice"
 msgstr "重要通知"
 
+#, fuzzy
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 "注意你输入的个人资料的信息，因为它可被每个人取得（甚至是你不想被它看到的"
 "人）。"
@@ -466,6 +468,10 @@ msgstr "旧"
 
 msgid "New (2 times)"
 msgstr "新（2 次）"
+
+#, fuzzy
+msgid "Suggested chatrooms"
+msgstr "建议的好友"
 
 msgid "Continue"
 msgstr "继续"
@@ -773,6 +779,12 @@ msgstr "加入聊天室"
 msgid "left the chat room"
 msgstr "离开聊天室"
 
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
 msgid "no status"
 msgstr "无状态"
 
@@ -972,6 +984,27 @@ msgstr "在一张照片中圈了你(%s)。"
 
 msgid "tagged you in a video (%s)."
 msgstr " 在一个视频中圈了你(%s)。"
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
+msgstr ""
 
 msgid "Show"
 msgstr "表演"
@@ -1310,14 +1343,18 @@ msgstr "HTTP身份验证"
 msgid "Registration allowed"
 msgstr "允许注册"
 
-msgid "Use a proxy"
-msgstr "使用代理服务器"
+msgid "Use the built-in BOSH proxy"
+msgstr ""
 
 msgid "Manager link"
 msgstr "管理员连结"
 
 msgid "Groupchats to join"
 msgstr "参与小组聊天"
+
+#, fuzzy
+msgid "Suggest groupchats"
+msgstr "你的群"
 
 msgid "Encryption"
 msgstr "加密"
@@ -1505,7 +1542,8 @@ msgstr "基本统计是由 Jappix 处理关于一些重要事物，你可以在�
 msgid "Change your Jappix node configuration with this tool."
 msgstr "利用此工具改变 Jappix 节点设置。"
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+#, fuzzy
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr "利用此工具变改变 Jappix 节点服务的 XMPP 主机。"
 
 msgid ""
@@ -1893,9 +1931,10 @@ msgstr "管理"
 msgid "List"
 msgstr "清单"
 
+#, fuzzy
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr "利用此工具删除用户。注意你不能删除仅存的那一位用户。"
 
 msgid "The user has been added!"
@@ -2044,10 +2083,12 @@ msgstr "%s 给聊天室中的某人发送消息"
 msgid "%s changes the room topic"
 msgstr "%s 更改聊天室主题"
 
-msgid "%s kicks an user of the room"
+#, fuzzy
+msgid "%s kicks a user of the room"
 msgstr "%s 踢出该聊天室用户"
 
-msgid "%s bans an user of the room"
+#, fuzzy
+msgid "%s bans a user of the room"
 msgstr "%s 禁止该聊天室用户"
 
 msgid "%s invites someone to join the room"
@@ -2075,15 +2116,17 @@ msgstr ""
 "另外，每一张你在社交频道张贴的照片被添加在美丽的照片时间表中。你现在可以按照"
 "年份浏览你分享的照片。"
 
+#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 "你还可以使用你的XMPP头像作为每一个你使用的网站、博客和卢坛的单一头像。当你在"
 "XMPP上更改时，新的头像会在每一处都更改你的头像。这是多么天才的改进！"
 
-msgid "Yay, let's create my public profile!"
+#, fuzzy
+msgid "Yay, let's create your public profile!"
 msgstr "是的，让我们一起创建公共资料吧！"
 
 msgid "Enable my public profile"
@@ -2115,33 +2158,67 @@ msgstr "你提供的密码没有权限下载这个文件。"
 msgid "Statistics are currently disabled in the settings."
 msgstr "设置中统计资料目前不能使用。"
 
-#~ msgid ""
-#~ "Jappix is an open-source project from PostPro, a non-profit organization "
-#~ "which provides us a great help."
-#~ msgstr ""
-#~ "Jappix是由后赞成组织而来的可公开资源的项目。后赞成组织是提供与我们很大帮助"
-#~ "的非盈利组织"
+msgid "New event!"
+msgstr ""
 
-#~ msgid "Project"
-#~ msgstr "项目"
+msgid "%s is typing..."
+msgstr ""
 
-#~ msgid ""
-#~ "Jappix is a non-profit social platform, that you can access wherever you "
-#~ "are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-#~ "Jappix是一个非盈利的社交平台，你无论在哪理，在任何时间，都可以访问它，并与"
-#~ "你想要沟通的人交流。"
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr "看"
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr "使用默认标志"
+msgid "There was an error registering your account. Please retry."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr "使用你自己的标志"
+#, fuzzy
+msgid "Username"
+msgstr "重命名"
 
-#~ msgid ""
-#~ "The recommended image format is PNG. Leave a field empty and the logo "
-#~ "will not be changed."
-#~ msgstr "建议使用PNG格式的图像。将该领域留空，标志将不会更改。"
+#, fuzzy
+msgid "Enter password"
+msgstr "变更密码"
+
+msgid "Once again..."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+#, fuzzy
+msgid "Advertising space available!"
+msgstr "找不到服务器"
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+#, fuzzy
+msgid "Content ads key"
+msgstr "内容"

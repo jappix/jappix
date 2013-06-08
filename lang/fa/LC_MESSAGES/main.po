@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-07 16:15+0100\n"
+"PO-Revision-Date: 2013-06-08 12:15+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2178,12 +2178,3 @@ msgstr ""
 #, fuzzy
 msgid "Content ads key"
 msgstr "محتوا"
-
-#~ msgid "An open social network"
-#~ msgstr "یک شما اجتماعی باز"
-
-#~ msgid "Use a proxy"
-#~ msgstr "استفاده از پراکسی"
-
-#~ msgid "Project"
-#~ msgstr "پروژه"

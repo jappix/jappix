@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-04 10:59+0100\n"
+"PO-Revision-Date: 2013-06-08 12:15+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
+
+msgid "default:LTR"
+msgstr "default:LTR"
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
@@ -2342,48 +2345,3 @@ msgstr "Clé des pubs standard"
 
 msgid "Content ads key"
 msgstr "Clé des pubs content"
-
-#~ msgid "Jappix for your mobile phone."
-#~ msgstr "Jappix pour votre mobile."
-
-#~ msgid "Unreadable?"
-#~ msgstr "Illisible ?"
-
-#~ msgid "An open social network"
-#~ msgstr "Un réseau social libre"
-
-#~ msgid "Use a proxy"
-#~ msgstr "Utiliser un proxy"
-
-#~ msgid ""
-#~ "Jappix is a non-profit social platform, that you can access wherever you "
-#~ "are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-#~ "Jappix est une plateforme sociale à but non lucratif, accessible "
-#~ "n'importe où, n'importe quand pour communiquer avec qui vous voulez."
-
-#~ msgid ""
-#~ "Jappix is an open-source project from PostPro, a non-profit organization "
-#~ "which provides us a great help."
-#~ msgstr ""
-#~ "Jappix est un projet libre de PostPro, une organisation à but non "
-#~ "lucratif qui nous aide beaucoup."
-
-#~ msgid "Project"
-#~ msgstr "Projet"
-
-#~ msgid "See"
-#~ msgstr "Voir"
-
-#~ msgid "Use default logo"
-#~ msgstr "Utiliser le logo par défaut"
-
-#~ msgid "Use your own logo"
-#~ msgstr "Utiliser votre propre logo"
-
-#~ msgid ""
-#~ "The recommended image format is PNG. Leave a field empty and the logo "
-#~ "will not be changed."
-#~ msgstr ""
-#~ "Le format d'image recommandé est PNG. Laisser un champ vide ne changera "
-#~ "pas le logo correspondant."

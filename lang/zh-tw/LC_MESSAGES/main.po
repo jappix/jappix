@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-03 18:14+0100\n"
-"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-06-08 12:22+0100\n"
+"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Source-Language: C\n"
 "X-Generator: Poedit 1.5.5\n"
 
+msgid "default:LTR"
+msgstr "default:LTR"
+
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr "網頁流覽器找不到 JavaScript，無法啟動 Jappix！請修正。"
-
-msgid "An open social network"
-msgstr "開放式社交網路"
 
 msgid "Social channel, chat and more."
 msgstr "社交頻道，聊天以及更多。"
@@ -47,9 +47,6 @@ msgstr "免費下載Jappix "
 
 msgid "Contribute to the Jappix code."
 msgstr "有助於Jappix代碼"
-
-msgid "Jappix for your mobile phone."
-msgstr "你手機的Jappix"
 
 msgid "Jappix for your company."
 msgstr "你公司的Jappix"
@@ -331,6 +328,10 @@ msgstr "頭像"
 msgid "Others"
 msgstr "其他"
 
+#, fuzzy
+msgid "Other"
+msgstr "其他"
+
 msgid "Personal"
 msgstr "個人"
 
@@ -391,9 +392,10 @@ msgstr "自傳"
 msgid "Important notice"
 msgstr "重要通知"
 
+#, fuzzy
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 "注意你輸入的個人資料的資訊，因為它可被每個人取得（甚至是你不想被它看到的"
 "人）。"
@@ -466,6 +468,10 @@ msgstr "舊"
 
 msgid "New (2 times)"
 msgstr "新（2 次）"
+
+#, fuzzy
+msgid "Suggested chatrooms"
+msgstr "建議的好友"
 
 msgid "Continue"
 msgstr "繼續"
@@ -773,6 +779,12 @@ msgstr "加入聊天室"
 msgid "left the chat room"
 msgstr "離開聊天室"
 
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
 msgid "no status"
 msgstr "無狀態"
 
@@ -803,7 +815,6 @@ msgstr "它允許你與幾百萬跟你一樣正在使用 Jappix 的用戶聯繫�
 msgid "Hi there!"
 msgstr "你好！"
 
-#, qt-format
 msgid "Welcome on %1s, “%2s”."
 msgstr "歡迎來到 %1s，“%2s”。"
 
@@ -973,6 +984,27 @@ msgstr "在一張照片中圈了你(%s)。"
 
 msgid "tagged you in a video (%s)."
 msgstr " 在一個視頻中圈了你(%s)。"
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
+msgstr ""
 
 msgid "Show"
 msgstr "表演"
@@ -1211,7 +1243,6 @@ msgstr "主機設置"
 msgid "Services installation"
 msgstr "服務安裝"
 
-#, qt-format
 msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
 "speak %2s it will be saved."
@@ -1234,7 +1265,6 @@ msgstr ""
 "Jappix供應持久性資料（比如分享的檔，聊天記錄，你自己的音樂和其配置）保存在一"
 "個安全的儲存文檔中"
 
-#, qt-format
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
 "If not, you must set the rights to %1s or change the folder owner to %2s "
@@ -1313,14 +1343,18 @@ msgstr "HTTP身份驗證"
 msgid "Registration allowed"
 msgstr "允許註冊"
 
-msgid "Use a proxy"
-msgstr "使用代理伺服器"
+msgid "Use the built-in BOSH proxy"
+msgstr ""
 
 msgid "Manager link"
 msgstr "管理員連結"
 
 msgid "Groupchats to join"
 msgstr "參與小組聊天"
+
+#, fuzzy
+msgid "Suggest groupchats"
+msgstr "你的群"
 
 msgid "Encryption"
 msgstr "加密"
@@ -1411,14 +1445,12 @@ msgstr "資料夾不可寫入，設置正確許可權至 %s 目錄。"
 msgid "%s is installed on your system."
 msgstr "%s 已經安裝在你的系統。"
 
-#, qt-format
 msgid "%1s is not installed on your system, you should install %2s."
 msgstr "%1s 未安裝在你的系統，你需要安裝 %2s。"
 
 msgid "PHP maximum upload size is sufficient (%s)."
 msgstr "PHP 最大上傳已足夠（%s）。"
 
-#, qt-format
 msgid ""
 "PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
 "in %3s."
@@ -1510,7 +1542,8 @@ msgstr "基本統計是由 Jappix 處理關於一些重要事物，你可以在�
 msgid "Change your Jappix node configuration with this tool."
 msgstr "利用此工具改變 Jappix 節點設置。"
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+#, fuzzy
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr "利用此工具變改變 Jappix 節點服務的 XMPP 主機。"
 
 msgid ""
@@ -1737,7 +1770,6 @@ msgstr "有什麼新鮮的？"
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr "你的保存空間資料夾無法寫入，請申請正確許可權！"
 
-#, qt-format
 msgid ""
 "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr "%1可能對於代理造成問題，請增加%2s的值到%3s!"
@@ -1899,9 +1931,10 @@ msgstr "管理"
 msgid "List"
 msgstr "清單"
 
+#, fuzzy
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr "利用此工具刪除用戶。注意你不能刪除僅存的那一位用戶。"
 
 msgid "The user has been added!"
@@ -1934,14 +1967,12 @@ msgstr "你的好友似乎沒收到你的消息！"
 msgid "Static content server"
 msgstr "靜態內容伺服器"
 
-#, qt-format
 msgid "This is the static content server for %1s, “%2s”."
 msgstr "這是 %1s，%2s用的靜態內容伺服器，“”。"
 
 msgid "User uploads server"
 msgstr "使用者上傳主機"
 
-#, qt-format
 msgid "This is the user uploads server for %1s, “%2s”."
 msgstr "這個是%1s，“%2s”的使用者上傳主機"
 
@@ -2052,10 +2083,12 @@ msgstr "%s 給聊天室中的某人發送消息"
 msgid "%s changes the room topic"
 msgstr "%s 更改聊天室主題"
 
-msgid "%s kicks an user of the room"
+#, fuzzy
+msgid "%s kicks a user of the room"
 msgstr "%s 踢出該聊天室用戶"
 
-msgid "%s bans an user of the room"
+#, fuzzy
+msgid "%s bans a user of the room"
 msgstr "%s 禁止該聊天室用戶"
 
 msgid "%s invites someone to join the room"
@@ -2083,15 +2116,17 @@ msgstr ""
 "另外，每一張你在社交頻道張貼的照片被添加在美麗的照片時間表中。你現在可以按照"
 "年份流覽你分享的照片。"
 
+#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 "你還可以使用你的XMPP頭像作為每一個你使用的網站、博客和盧壇的單一頭像。當你在"
 "XMPP上更改時，新的頭像會在每一處都更改你的頭像。這是多麼天才的改進！"
 
-msgid "Yay, let's create my public profile!"
+#, fuzzy
+msgid "Yay, let's create your public profile!"
 msgstr "是的，讓我們一起創建公共資料吧！"
 
 msgid "Enable my public profile"
@@ -2123,33 +2158,67 @@ msgstr "你提供的密碼沒有許可權下載這個檔。"
 msgid "Statistics are currently disabled in the settings."
 msgstr "設置中統計資料目前不能使用。"
 
-#~ msgid ""
-#~ "Jappix is an open-source project from PostPro, a non-profit organization "
-#~ "which provides us a great help."
-#~ msgstr ""
-#~ "Jappix是由後贊成組織而來的可公開資源的專案。後贊成組織是提供與我們很大説明"
-#~ "的非盈利組織"
+msgid "New event!"
+msgstr ""
 
-#~ msgid "Project"
-#~ msgstr "項目"
+msgid "%s is typing..."
+msgstr ""
 
-#~ msgid ""
-#~ "Jappix is a non-profit social platform, that you can access wherever you "
-#~ "are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-#~ "Jappix是一個非盈利的社交平臺，你無論在哪理，在任何時間，都可以訪問它，並與"
-#~ "你想要溝通的人交流。"
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
 
-#~ msgid "See"
-#~ msgstr "看"
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
 
-#~ msgid "Use default logo"
-#~ msgstr "使用預設標誌"
+msgid "There was an error registering your account. Please retry."
+msgstr ""
 
-#~ msgid "Use your own logo"
-#~ msgstr "使用你自己的標誌"
+#, fuzzy
+msgid "Username"
+msgstr "重命名"
 
-#~ msgid ""
-#~ "The recommended image format is PNG. Leave a field empty and the logo "
-#~ "will not be changed."
-#~ msgstr "建議使用PNG格式的圖像。將該領域留空，標誌將不會更改。"
+#, fuzzy
+msgid "Enter password"
+msgstr "變更密碼"
+
+msgid "Once again..."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+#, fuzzy
+msgid "Advertising space available!"
+msgstr "找不到伺服器"
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+#, fuzzy
+msgid "Content ads key"
+msgstr "內容"

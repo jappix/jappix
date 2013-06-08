@@ -5,20 +5,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-03-03 18:14+0100\n"
-"Last-Translator: Vanaryon <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-06-08 12:18+0100\n"
+"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
 
+msgid "default:LTR"
+msgstr "default:LTR"
+
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
-msgstr ""
-
-msgid "An open social network"
 msgstr ""
 
 msgid "Social channel, chat and more."
@@ -43,9 +43,6 @@ msgid "Download Jappix for free."
 msgstr ""
 
 msgid "Contribute to the Jappix code."
-msgstr ""
-
-msgid "Jappix for your mobile phone."
 msgstr ""
 
 msgid "Jappix for your company."
@@ -332,6 +329,9 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
+msgid "Other"
+msgstr ""
+
 msgid "Personal"
 msgstr ""
 
@@ -393,8 +393,8 @@ msgid "Important notice"
 msgstr "Belangrijke mededeling"
 
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 
 msgid ""
@@ -464,6 +464,9 @@ msgstr "Oud"
 
 msgid "New (2 times)"
 msgstr "Nieuw (2 keer)"
+
+msgid "Suggested chatrooms"
+msgstr ""
 
 msgid "Continue"
 msgstr ""
@@ -771,6 +774,12 @@ msgstr ""
 msgid "left the chat room"
 msgstr ""
 
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
 msgid "no status"
 msgstr ""
 
@@ -967,6 +976,27 @@ msgid "tagged you in a photo (%s)."
 msgstr ""
 
 msgid "tagged you in a video (%s)."
+msgstr ""
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
 msgstr ""
 
 msgid "Show"
@@ -1296,13 +1326,16 @@ msgstr ""
 msgid "Registration allowed"
 msgstr ""
 
-msgid "Use a proxy"
+msgid "Use the built-in BOSH proxy"
 msgstr ""
 
 msgid "Manager link"
 msgstr ""
 
 msgid "Groupchats to join"
+msgstr ""
+
+msgid "Suggest groupchats"
 msgstr ""
 
 msgid "Encryption"
@@ -1481,7 +1514,7 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr ""
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
 
 msgid ""
@@ -1858,8 +1891,8 @@ msgid "List"
 msgstr ""
 
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr ""
 
 msgid "The user has been added!"
@@ -2008,10 +2041,10 @@ msgstr ""
 msgid "%s changes the room topic"
 msgstr ""
 
-msgid "%s kicks an user of the room"
+msgid "%s kicks a user of the room"
 msgstr ""
 
-msgid "%s bans an user of the room"
+msgid "%s bans a user of the room"
 msgstr ""
 
 msgid "%s invites someone to join the room"
@@ -2038,10 +2071,10 @@ msgstr ""
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 
-msgid "Yay, let's create my public profile!"
+msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"
@@ -2073,5 +2106,66 @@ msgstr ""
 msgid "Statistics are currently disabled in the settings."
 msgstr ""
 
-#~ msgid "Project"
-#~ msgstr "Project"
+msgid "New event!"
+msgstr ""
+
+msgid "%s is typing..."
+msgstr ""
+
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
+
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
+
+msgid "There was an error registering your account. Please retry."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "Hernoem"
+
+#, fuzzy
+msgid "Enter password"
+msgstr "Paswoord"
+
+msgid "Once again..."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+msgid "Advertising space available!"
+msgstr ""
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+#, fuzzy
+msgid "Content ads key"
+msgstr "Inhoud"

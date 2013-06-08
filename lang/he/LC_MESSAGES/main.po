@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix 0.9.5\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-07 16:15+0100\n"
+"PO-Revision-Date: 2013-06-08 12:16+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Rahut <http://sourceforge.net/projects/rahut/>\n"
 "Language: he\n"
@@ -2353,20 +2353,3 @@ msgstr ""
 
 msgid "Content ads key"
 msgstr ""
-
-#~ msgid "Jappix for your mobile phone."
-#~ msgstr "‫Jappix עבור הטלפון הנייד שלך."
-
-#~ msgid "Use a proxy"
-#~ msgstr "שימוש במתווך (‫Proxy)"
-
-#~ msgid ""
-#~ "The groupchat has been removed, now someone else will be able to recreate "
-#~ "it."
-#~ msgstr "קבוצת השחה הוסרה, כעת מישהו אחר יוכל ליצור אותה מחדש."
-
-#~ msgid "Let's have a look at the installation steps:"
-#~ msgstr "הבא נסתכל על צעדי ההתקנה:"
-
-#~ msgid "An open social network"
-#~ msgstr "רשת חברתית חופשית"

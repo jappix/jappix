@@ -5,22 +5,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-01-16 13:45+0100\n"
+"PO-Revision-Date: 2013-06-08 12:19+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
+
+msgid "default:LTR"
+msgstr "default:LTR"
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
 "JavaScript отключен в вашем браузере, без него Jappix не может работать!"
-
-msgid "An open social network"
-msgstr "Открытая социальная сеть"
 
 msgid "Social channel, chat and more."
 msgstr "Социальный канал, чат и многое другое."
@@ -45,9 +45,6 @@ msgstr "Скачать Jappix бесплатно."
 
 msgid "Contribute to the Jappix code."
 msgstr "Оказать поддержку проекту Jappix."
-
-msgid "Jappix for your mobile phone."
-msgstr "Jappix для вашего мобильного телефона."
 
 #, fuzzy
 msgid "Jappix for your company."
@@ -336,6 +333,10 @@ msgstr "Аватар"
 msgid "Others"
 msgstr "Другие"
 
+#, fuzzy
+msgid "Other"
+msgstr "Другие"
+
 msgid "Personal"
 msgstr "Персональные данные"
 
@@ -396,9 +397,10 @@ msgstr "Биография"
 msgid "Important notice"
 msgstr "Важное сообщение"
 
+#, fuzzy
 msgid ""
-"Be careful of the information you write into your profile, because it could "
-"be accessed by everyone (even someone you don't want to)."
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
 msgstr ""
 "Будьте осторожны с информацией которую вы пишете в вашем профиле, потому что "
 "это доступно каждому."
@@ -472,6 +474,10 @@ msgstr "Старый"
 
 msgid "New (2 times)"
 msgstr "Новый (дважды)"
+
+#, fuzzy
+msgid "Suggested chatrooms"
+msgstr "Рекомендованые друзья"
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -782,6 +788,12 @@ msgstr "присоединится к комнате"
 msgid "left the chat room"
 msgstr "покинул комнату"
 
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
 msgid "no status"
 msgstr "нет статуса"
 
@@ -987,6 +999,27 @@ msgstr "отметил вас на фото (%s)."
 
 msgid "tagged you in a video (%s)."
 msgstr "отметил вас на видео (%s)."
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
+msgstr ""
 
 msgid "Show"
 msgstr "Показать"
@@ -1346,14 +1379,18 @@ msgstr "Аутентификация"
 msgid "Registration allowed"
 msgstr "Регистрация дозволена"
 
-msgid "Use a proxy"
-msgstr "Использовать proxy"
+msgid "Use the built-in BOSH proxy"
+msgstr ""
 
 msgid "Manager link"
 msgstr "Менеджер ссылок"
 
 msgid "Groupchats to join"
 msgstr "Конференции для вступления"
+
+#, fuzzy
+msgid "Suggest groupchats"
+msgstr "Ваша группа"
 
 msgid "Encryption"
 msgstr "Шифрование"
@@ -1557,7 +1594,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Измените конфигурацию узла Jappix, этим инструментом."
 
-msgid "Change the XMPP hosts that this Jappix node serve with this tool."
+#, fuzzy
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
 "Измените XMPP хосты, обслуживаемые этим Jappix узлом, этим инструментом."
 
@@ -1975,9 +2013,10 @@ msgstr "Управление"
 msgid "List"
 msgstr "Список"
 
+#, fuzzy
 msgid ""
-"Remove users with this tool. Note that you cannot remove an user if he is "
-"the only one remaining."
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
 msgstr ""
 "Вы можете удалять пользователей с помощью этого инструмента. Имейте в виду, "
 "что нельзя удалить последнего оставшегося пользователя."
@@ -2130,10 +2169,12 @@ msgstr "%s отправляет сообщение кому-то из комна
 msgid "%s changes the room topic"
 msgstr "%s изменяет тему комнаты"
 
-msgid "%s kicks an user of the room"
+#, fuzzy
+msgid "%s kicks a user of the room"
 msgstr "%s выставляет пользователя из комнаты"
 
-msgid "%s bans an user of the room"
+#, fuzzy
+msgid "%s bans a user of the room"
 msgstr "%s блокирует пользователя в комнате"
 
 msgid "%s invites someone to join the room"
@@ -2163,16 +2204,18 @@ msgstr ""
 "добавляются в красивую галерею. Теперь вы можете просматривать все "
 "опубликованные вами картинки за все время."
 
+#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
-"everywhere. What a genious improvement!"
+"everywhere. What a genius improvement!"
 msgstr ""
 "Вы так-же можете использовать ваш текущий XMPP аватар на любом веб-сайте, "
 "блоге или форуме. Когда вы смените его на XMPP, новый аватар везде обновится "
 "автоматически. Какое гениальное улучшение, не так ли?!"
 
-msgid "Yay, let's create my public profile!"
+#, fuzzy
+msgid "Yay, let's create your public profile!"
 msgstr "Да, давайте сделаем мой публичный профиль!"
 
 msgid "Enable my public profile"
@@ -2207,19 +2250,67 @@ msgstr ""
 msgid "Statistics are currently disabled in the settings."
 msgstr ""
 
-#~ msgid ""
-#~ "Jappix is an open-source project from PostPro, a non-profit organization "
-#~ "which provides us a great help."
-#~ msgstr ""
-#~ "Jappix - это открытый проект от PostPro, некоммерческой организации, "
-#~ "обеспечивающей нам отличную поддержку."
+msgid "New event!"
+msgstr ""
 
-#~ msgid ""
-#~ "Jappix is a non-profit social platform, that you can access wherever you "
-#~ "are, whenever you want and communicate with whovever you want."
-#~ msgstr ""
-#~ "Jappix это некоммерческая общественная платформа, доступная откуда бы ни "
-#~ "было, когда бы ни пожелаете и с кем бы ни решили пообщаться."
+msgid "%s is typing..."
+msgstr ""
 
-#~ msgid "Project"
-#~ msgstr "Проект"
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
+
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
+
+msgid "There was an error registering your account. Please retry."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "Переименовать"
+
+#, fuzzy
+msgid "Enter password"
+msgstr "Изменить пароль"
+
+msgid "Once again..."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+#, fuzzy
+msgid "Advertising space available!"
+msgstr "Сервис недоступен"
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+#, fuzzy
+msgid "Content ads key"
+msgstr "Содержимое"
