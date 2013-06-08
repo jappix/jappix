@@ -80,6 +80,11 @@ Last revision: 21/06/12
 	margin-right: 50px;
 }
 
+html[dir="rtl"] #channel .microblog-body {
+	margin-right: auto;
+	margin-left: 50px;
+}
+
 #channel .microblog-body input {
 	width: 100%;
 	height: 100%;
@@ -90,6 +95,11 @@ Last revision: 21/06/12
 	position: absolute;
 	top: 38px;
 	right: 0;
+}
+
+html[dir="rtl"] #channel .one-microblog-icon {
+	left: 0;
+	right: auto;
 }
 
 #channel div.update .one-microblog-icon,
@@ -189,6 +199,12 @@ Last revision: 21/06/12
 	width: 50px;
 }
 
+html[dir="rtl"] #channel .one-update .avatar-container {
+	margin-right: auto;
+	margin-left: 16px;
+	float: right;
+}
+
 #channel .one-update .avatar-container:hover {
 	cursor: pointer;
 }
@@ -225,6 +241,11 @@ Last revision: 21/06/12
 	margin: 0 12px 5px 0;
 }
 
+html[dir="rtl"] #channel .one-update p {
+	margin-right: auto;
+	margin-left: 12px;
+}
+
 #channel .one-update p b.name:hover {
 	cursor: pointer;
 	text-decoration: underline;
@@ -239,6 +260,10 @@ Last revision: 21/06/12
 	color: #363636;
 	margin-left: 18px;
 	padding-left: 14px;
+}
+
+html[dir="rtl"] #channel .one-update p.infos a.geoloc {
+	float: right;
 }
 
 #channel .one-update p.infos a.geoloc:hover,
@@ -306,10 +331,20 @@ Last revision: 21/06/12
 	border-color: #464646;
 }
 
+#channel .one-update div.comments-container,
+.popup.large div.comments-container {
+	clear: both;
+}
+
 #channel .one-update div.comments,
 .popup.large div.comments {
 	width: 410px;
 	margin: 2px 0 2px 76px;
+}
+
+html[dir="rtl"] #channel .one-update div.comments,
+html[dir="rtl"] .popup.large div.comments {
+	margin-top: 16px;
 }
 
 #channel .one-update div.comments div.arrow,
@@ -345,9 +380,19 @@ Last revision: 21/06/12
 	float: left;
 }
 
+html[dir="rtl"] #channel .one-update div.comments span.icon,
+html[dir="rtl"] .popup.large div.comments span.icon {
+	float: right;
+}
+
 #channel .one-update div.comments .one-comment.loading span.icon,
 .popup.large div.comments .one-comment.loading span.icon {
 	margin: 0 10px 0 0;
+}
+
+html[dir="rtl"] #channel .one-update div.comments .one-comment.loading span.icon,
+html[dir="rtl"] .popup.large div.comments .one-comment.loading span.icon {
+	margin: 0 0 0 10px;
 }
 
 #channel .one-update div.comments .one-comment,
@@ -406,6 +451,13 @@ Last revision: 21/06/12
 	float: left;
 }
 
+html[dir="rtl"] #channel .one-update div.comments .one-comment .avatar-container,
+html[dir="rtl"] .popup.large div.comments .one-comment .avatar-container {
+	margin-right: auto;
+	margin-left: 8px;
+	float: right;
+}
+
 #channel .one-update div.comments .one-comment .avatar-container:hover,
 .popup.large div.comments .one-comment .avatar-container:hover {
 	cursor: pointer;
@@ -431,6 +483,11 @@ Last revision: 21/06/12
 	float: left;
 }
 
+html[dir="rtl"] #channel .one-update div.comments .one-comment a.name,
+html[dir="rtl"] .popup.large div.comments .one-comment a.name {
+	float: right;
+}
+
 #channel .one-update div.comments .one-comment a.name:hover,
 #channel .one-update div.comments .one-comment a.name:focus,
 .popup.large div.comments .one-comment a.name:hover,
@@ -444,6 +501,14 @@ Last revision: 21/06/12
 .popup.large div.comments .one-comment a.remove {
 	font-size: 0.85em;
 	float: right;
+}
+
+html[dir="rtl"] #channel .one-update div.comments .one-comment span.date,
+html[dir="rtl"] #channel .one-update div.comments .one-comment a.remove,
+html[dir="rtl"] .popup.large div.comments .one-comment span.date,
+html[dir="rtl"] .popup.large div.comments .one-comment a.remove {
+	margin-left: 2px;
+	float: left;
 }
 
 #channel .one-update div.comments .one-comment.me:hover span.date,
@@ -490,6 +555,11 @@ Last revision: 21/06/12
 	right: 0;
 }
 
+html[dir="rtl"] #channel a.mbtool {
+	right: auto;
+	left: 0;
+}
+
 #channel .one-update:hover a.mbtool {
 	display: block;
 }
@@ -533,6 +603,10 @@ Last revision: 21/06/12
 	min-height: 16px;
 	font-size: 0.85em;
 	width: auto !important;
+}
+
+html[dir="rtl"] #channel .footer div {
+	float: right;
 }
 
 #channel .footer .sync {

@@ -29,9 +29,17 @@ Last revision: 26/04/11
 	float: left;
 }
 
+html[dir="rtl"] #options .forms select {
+	float: right;
+}
+
 #options .forms a.linked {
 	font-size: 0.9em;
 	float: left;
+}
+
+html[dir="rtl"] #options .forms a.linked {
+	float: right;
 }
 
 #options fieldset.privacy {

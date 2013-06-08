@@ -161,6 +161,20 @@ Last revision: 28/12/10
 	float: left;
 }
 
+html[dir="rtl"] #inbox .inbox-new-text,
+html[dir="rtl"] #inbox .inbox-new-textarea,
+html[dir="rtl"] #inbox .inbox-new input {
+	float: right;
+}
+
+html[dir="rtl"] #inbox .inbox-new-text {
+	margin-right: 20px;
+}
+
+html[dir="rtl"] #inbox .inbox-new input {
+	margin-right: auto;
+}
+
 #inbox .inbox-new-to ul {
 	width: 264px;
 	max-height: 168px;
@@ -199,4 +213,8 @@ Last revision: 28/12/10
 	font-size: 0.85em;
 	float: right;
 	display: block;
+}
+
+html[dir="rtl"] #inbox .inbox-new-send a {
+	margin-right: 18px;
 }

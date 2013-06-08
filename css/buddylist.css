@@ -55,6 +55,10 @@ Last revision: 21/06/12
         overflow: hidden;
         display: block;
 }
+
+html[dir="rtl"] #buddy-list .one-group a.group {
+        float: right;
+}
  
 #buddy-list .one-group a.group.plus {
         background-position: -4px -1143px;
@@ -72,6 +76,10 @@ Last revision: 21/06/12
 #buddy-list .foot-edit-finish,
 .buddy-conf-more-display-available {
         display: none;
+}
+
+#buddy-list .group-buddy {
+        clear: both;
 }
  
 #buddy-list .buddy {
@@ -131,7 +139,7 @@ Last revision: 21/06/12
 #buddy-list .name {
         margin: 4px 3px 5px 56px;
 }
- 
+
 #buddy-list .buddy-name {
         height: 17px;
         font-weight: bold;
@@ -151,6 +159,10 @@ Last revision: 21/06/12
         color: #3a585e;
         padding: 2px 0 0 16px;
         margin-top: -3px;
+}
+
+html[dir="rtl"] #buddy-list .buddy-presence {
+        float: right;
 }
  
 #buddy-list .unavailable,
@@ -357,6 +369,10 @@ Last revision: 21/06/12
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
 }
+
+html[dir="rtl"] #buddy-list .filter a {
+        float: left;
+}
  
 #buddy-list .filter a:hover,
 #buddy-list .filter a:focus {
@@ -456,6 +472,10 @@ Last revision: 21/06/12
         font-weight: bold;
         float: left;
 }
+
+html[dir="rtl"] .buddy-conf-p {
+        float: right;
+}
  
 .buddy-conf-input {
         padding-top: 2px;
@@ -519,7 +539,11 @@ Last revision: 21/06/12
         overflow: hidden;
         float: left;
 }
- 
+
+html[dir="rtl"] .buddy-conf-subitem label span {
+        float: right;
+}
+
 #buddy-conf-join ul {
         width: 224px;
         max-height: 160px;

@@ -60,6 +60,11 @@ Last revision: 20/10/12
 	text-shadow: 0 2px 2px black;
 }
 
+html[dir="rtl"] .popup .top {
+	margin-right: 40px;
+	margin-left: auto;
+}
+
 .popup .tab {
 	width: 620px;
 	height: 25px;
@@ -84,6 +89,11 @@ Last revision: 20/10/12
 	-moz-border-radius-topleft: 3px;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 3px;
+}
+
+html[dir="rtl"] .popup .tab a {
+	padding-left: 4px;
+	padding-right: 16px;
 }
 
 .popup .tab a:hover,
@@ -245,10 +255,21 @@ Last revision: 20/10/12
 	float: left;
 }
 
+html[dir="rtl"] .popup label {
+	margin-left: auto;
+	margin-right: 12px;
+	float: right;
+}
+
 .popup input,
 .popup select {
 	margin: 0 10px 10px 0;
 	float: left;
+}
+
+html[dir="rtl"] .popup input,
+html[dir="rtl"] .popup select {
+	float: right;
 }
 
 .popup input[type="text"] {

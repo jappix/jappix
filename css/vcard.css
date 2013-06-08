@@ -28,6 +28,12 @@ Last revision: 16/01/12
 	max-height: 96px;
 }
 
+html[dir="rtl"] #vcard .avatar-container {
+	margin-right: 35px;
+	margin-left: 0;
+	float: right;
+}
+
 #vcard .avatar {
 	max-width: 96px;
 	max-height: 96px;
@@ -35,10 +41,14 @@ Last revision: 16/01/12
 
 #vcard .avatar-delete {
 	background-position: 3px -1195px;
-	margin: 12px 25px 0 025px;
+	margin: 12px 25px 0 25px;
 	padding-left: 20px;
 	font-size: 0.9em;
 	float: right;
+}
+
+html[dir="rtl"] #vcard .avatar-delete {
+	float: left;
 }
 
 #vcard .no-avatar {
@@ -49,6 +59,11 @@ Last revision: 16/01/12
 	background: #f8cece;
 	border: 1px #ba6d6d solid;
 	font-size: 0.8em;
+}
+
+html[dir="rtl"] #vcard .no-avatar {
+	margin-left: auto;
+	margin-right: 20px;
 }
 
 #vcard .forms textarea {

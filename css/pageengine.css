@@ -302,6 +302,10 @@ html[dir="rtl"] #archives .one-group .avatar-container {
 	padding-left: 0 !important;
 }
 
+html[dir="rtl"] #page-engine .system-message {
+	padding-right: 0 !important;
+}
+
 #page-engine .system-message a {
 	color: #053805 !important;
 }
@@ -377,6 +381,10 @@ html[dir="rtl"] #archives .one-group .avatar-container {
 	float: left;
 }
 
+html[dir="rtl"] #page-engine .chat-tools-content {
+	float: right;
+}
+
 #page-engine .tools-tooltip {
 	display: block;
 	height: 16px;
@@ -387,6 +395,10 @@ html[dir="rtl"] #archives .one-group .avatar-container {
 
 #page-engine .text .chat-tools-smileys {
 	margin-left: 4px;
+}
+
+html[dir="rtl"] #page-engine .text .chat-tools-smileys {
+	margin-left: 0;
 }
 
 #page-engine .text .chat-tools-file {
