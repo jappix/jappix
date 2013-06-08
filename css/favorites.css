@@ -120,6 +120,7 @@ Last revision: 10/04/12
 
 #favorites input[type="checkbox"] {
 	margin-top: 5px;
+	width: auto;
 }
 
 #favorites .fedit-terminate {
@@ -171,6 +172,10 @@ Last revision: 10/04/12
 	margin: 4px 2px 5px;
 	max-width: 210px;
 	float: left;
+}
+
+html[dir="rtl"] #favorites .room-name {
+	float: right;
 }
 
 #favorites .fsearch-noresults {

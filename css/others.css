@@ -41,6 +41,11 @@ Last revision: 07/06/13
         bottom: 0;
         width: 248px;
 }
+
+html[dir="rtl"] #left-content {
+    left: auto;
+    right: 0;
+}
  
 #right-content,
 #suggest {
@@ -58,6 +63,11 @@ Last revision: 07/06/13
         box-shadow: 0 0 6px #5c5c5c;
         -moz-box-shadow: 0 0 6px #5c5c5c;
         -webkit-box-shadow: 0 0 6px #5c5c5c;
+}
+
+html[dir="rtl"] #right-content {
+    left: 0;
+    right: 260px;
 }
  
 #general-wait {

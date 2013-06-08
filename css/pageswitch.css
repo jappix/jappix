@@ -28,10 +28,20 @@ Last revision: 22/05/11
 	overflow: hidden;
 }
 
+html[dir="rtl"] #page-switch .chans {
+	right: 0;
+	left: 40px;
+}
+
 #page-switch .more {
 	position: absolute;
 	right: 0;
 	top: 0;
+}
+
+html[dir="rtl"] #page-switch .more {
+	right: auto;
+	left: 0;
 }
 
 #page-switch .more-button {
@@ -67,6 +77,11 @@ Last revision: 22/05/11
 	-webkit-border-bottom-right-radius: 3px;
 }
 
+html[dir="rtl"] #page-switch .more-content {
+	margin-left: 0;
+	left: 0;
+}
+
 #page-switch .switcher {
 	background-color: #d9e7ea;
 	color: #17353b;
@@ -83,9 +98,13 @@ Last revision: 22/05/11
 	-webkit-border-top-left-radius: 3px;
 }
 
+html[dir="rtl"] #page-switch .switcher {
+	float: right;
+}
+
 #page-switch .more-content .switcher {
 	background-color: #d9e7ea;
-	float: none;
+	float: none !important;
 	margin: 0;
 	font-size: 0.9em;
 	border-radius: 0;

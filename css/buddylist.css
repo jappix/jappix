@@ -130,6 +130,10 @@ html[dir="rtl"] #buddy-list .one-group a.group {
         width: 46px;
         height: 46px;
 }
+
+html[dir="rtl"] #buddy-list .avatar-container {
+        float: right;
+}
  
 #buddy-list .avatar {
         max-width: 44px;
@@ -138,6 +142,11 @@ html[dir="rtl"] #buddy-list .one-group a.group {
  
 #buddy-list .name {
         margin: 4px 3px 5px 56px;
+}
+
+html[dir="rtl"] #buddy-list .name {
+        margin-left: auto;
+        float: right;
 }
 
 #buddy-list .buddy-name {
@@ -393,6 +402,12 @@ html[dir="rtl"] #buddy-list .filter a {
         margin: -3px 5px 0 0;
         float: left;
         position: relative;
+}
+
+html[dir="rtl"] #buddy-list .buddy-list-icon {
+        margin-right: 0;
+        margin-left: 5px;
+        float: right;
 }
  
 #buddy-list .buddy-list-icon a.talk-images {

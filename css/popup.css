@@ -288,6 +288,11 @@ html[dir="rtl"] .popup select {
 	overflow: auto;
 }
 
+html[dir="rtl"] .popup .results {
+	margin-left: auto;
+	margin-right: 10px;
+}
+
 .popup .results .no-results {
 	margin: 6px 0;
 	font-size: 0.85em;
@@ -326,6 +331,12 @@ html[dir="rtl"] .popup select {
 	margin: 5px 12px 5px 9px;
 	text-align: center;
 	background-repeat: no-repeat;
+}
+
+html[dir="rtl"] .popup .results .avatar-container {
+	margin-left: 12px;
+	margin-right: 9px;
+	float: right;
 }
 
 .popup .results img.avatar {
@@ -414,6 +425,12 @@ html[dir="rtl"] .popup select {
 	width: 400px;
 }
 
+html[dir="rtl"] .popup .results .one-jid,
+html[dir="rtl"] .popup .results .one-ctry,
+html[dir="rtl"] .popup .results .one-fn {
+	float: right;
+}
+
 .popup .results .one-fn {
 	font-weight: bold;
 }
@@ -460,9 +477,21 @@ html[dir="rtl"] .popup select {
 	margin-right: 4px;
 }
 
+html[dir="rtl"] .popup .results a.one-button,
+html[dir="rtl"] #inbox .one-message a.one-button {
+	float: left;
+	margin-left: 4px;
+	margin-right: auto;
+}
+
 .popup .results a.one-vjud {
 	position: absolute;
 	right: 4px;
+}
+
+html[dir="rtl"] .popup .results a.one-vjud {
+	left: 4px;
+	right: auto;
 }
 
 .popup .results a.one-add {
