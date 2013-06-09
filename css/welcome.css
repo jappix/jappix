@@ -115,6 +115,12 @@ Last revision: 26/04/11
 	float: right;
 }
 
+html[dir="rtl"] #welcome a.box span.image {
+	margin-right: auto;
+	margin-left: 12px;
+	float: left;
+}
+
 #welcome a.box span.image.sound {
 	background-position: 0 -900px;
 }
@@ -152,6 +158,12 @@ Last revision: 26/04/11
 #welcome a.box span.go {
 	background-position: 0 -1120px;
 	margin: -28px 5px 0 0;
+}
+
+html[dir="rtl"] #welcome a.box span.go {
+	margin-right: auto;
+	margin-left: 5px;
+	float: left;
 }
 
 #welcome a.box.enabled span.tick {

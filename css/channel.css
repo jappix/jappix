@@ -267,6 +267,11 @@ html[dir="rtl"] #channel .one-update p {
 	text-decoration: underline;
 }
 
+html[dir="rtl"] #channel .one-update p b.name {
+	margin-left: 4px;
+	float: right;
+}
+
 #channel .one-update p.infos {
 	font-size: 0.9em;
 }
@@ -353,8 +358,7 @@ html[dir="rtl"] #channel .one-update p.infos a.geoloc {
 	margin: 2px 0 2px 76px;
 }
 
-html[dir="rtl"] #channel .one-update div.comments,
-html[dir="rtl"] .popup.large div.comments {
+html[dir="rtl"] #channel .one-update div.comments {
 	margin-left: auto;
 	margin-right: 76px;
 }

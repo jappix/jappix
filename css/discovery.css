@@ -59,3 +59,7 @@ Last revision: 13/02/11
 #discovery .disco-category-title {
 	font-weight: bold;
 }
+
+#discovery .one-actions .one-button {
+	float: right;
+}

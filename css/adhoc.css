@@ -24,3 +24,7 @@ Last revision: 20/12/10
 	margin: 0 10px 12px 10px;
 	padding: 6px 10px;
 }
+
+#adhoc .one-actions .one-button {
+	float: right;
+}

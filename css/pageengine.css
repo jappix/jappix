@@ -369,6 +369,17 @@ html[dir="rtl"] #page-engine .system-message {
 	-webkit-border-top-right-radius: 3px;
 }
 
+html[dir="rtl"] #page-engine .chatstate {
+	left: auto;
+	right: 0;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 0;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 0;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 0;
+}
+
 #page-engine .text {
 	height: 93px;
 	position: absolute;

@@ -203,6 +203,11 @@ html[dir="rtl"] #inbox .inbox-new input {
 	top: 31px;
 }
 
+html[dir="rtl"] #inbox .inbox-new-to ul {
+	left: auto;
+	right: 130px;
+}
+
 #inbox .inbox-new-to-input {
 	width: 260px;
 }

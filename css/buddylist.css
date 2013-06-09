@@ -594,7 +594,12 @@ html[dir="rtl"] .buddy-conf-subitem label span {
         width: 224px;
         max-height: 160px;
         left: 10px;
-        top: 51px;
+        top: 50px;
+}
+
+html[dir="rtl"] #buddy-conf-join ul {
+        left: auto;
+        right: 10px;
 }
  
 .buddy-conf-join-select {

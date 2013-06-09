@@ -22,6 +22,12 @@ Last revision: 16/02/11
 	float: left;
 }
 
+html[dir="rtl"] #privacy .privacy-head div.list-left,
+html[dir="rtl"] #privacy .privacy-head div.list-center,
+html[dir="rtl"] #privacy .privacy-head div.list-right {
+	float: right;
+}
+
 #privacy .privacy-head div.list-left {
 	margin-left: 5px;
 }
@@ -47,6 +53,12 @@ Last revision: 16/02/11
 	margin: 3px 10px 0 0;
 }
 
+html[dir="rtl"] #privacy .privacy-head span {
+	margin-right: auto;
+	margin-left: 10px;
+	float: right;
+}
+
 #privacy .privacy-head input,
 #privacy .privacy-head select {
 	width: 180px;
@@ -56,7 +68,16 @@ Last revision: 16/02/11
 	margin-top: 1px;
 }
 
-#privacy .privacy-head select,
+#privacy .privacy-head select {
+	margin-bottom: 0;
+	margin-top: 2px;
+}
+
+html[dir="rtl"] #privacy .privacy-head select {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
 #privacy .privacy-item select {
 	margin-top: -2px;
 }
@@ -104,13 +125,28 @@ Last revision: 16/02/11
 	font-weight: bold;
 }
 
+html[dir="rtl"] #privacy .privacy-item span {
+	margin-top: -5px;
+	float: right;
+}
+
 #privacy .privacy-item select {
 	width: 300px;
 	margin: -4px 30px 0 10px;
 }
 
+html[dir="rtl"] #privacy .privacy-item select {
+	margin-right: 10px;
+	margin-left: 30px;
+}
+
 #privacy .privacy-item a {
 	margin: -2px 6px 0 0;
+}
+
+html[dir="rtl"] #privacy .privacy-form input {
+	margin-right: auto;
+	margin-left: 10px;
 }
 
 #privacy .privacy-first,
@@ -122,10 +158,25 @@ Last revision: 16/02/11
 	float: left;
 }
 
+html[dir="rtl"] #privacy .privacy-first,
+html[dir="rtl"] #privacy .privacy-second,
+html[dir="rtl"] #privacy .privacy-third {
+	margin-right: 10px;
+	margin-left: auto;
+	float: right;
+}
+
 #privacy .privacy-first,
 #privacy .privacy-second {
-	border-right: 1px dotted #1b393f;
+	border-width: 0 1px 0 0;
+	border-style: dotted;
+	border-color: #1b393f;
 	padding-right: 14px;
+}
+
+html[dir="rtl"] #privacy .privacy-first,
+html[dir="rtl"] #privacy .privacy-second {
+	border-width: 0 0 0 1px;
 }
 
 #privacy .privacy-first {
@@ -179,10 +230,19 @@ Last revision: 16/02/11
 	float: right;
 }
 
+html[dir="rtl"] #privacy .privacy-active-elements {
+	float: left;
+}
+
 #privacy .privacy-active input[type="text"] {
 	width: 30px;
 	margin: 0 0 0 8px;
 	float: none;
+}
+
+html[dir="rtl"] #privacy .privacy-active input[type="text"] {
+	margin-left: auto;
+	margin-right: 8px;
 }
 
 #privacy .privacy-active input[type="checkbox"] {
@@ -194,4 +254,8 @@ Last revision: 16/02/11
 	width: auto;
 	margin: 0 15px 0 0;
 	clear: none;
+}
+
+html[dir="rtl"] #privacy .privacy-active label {
+	margin-right: 0;
 }
