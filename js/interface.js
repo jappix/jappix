@@ -200,6 +200,7 @@ function generateChatLog(xid, hash) {
 	var nick = $(path + 'top .bc-name').text();
 	var date = getXMPPTime('local');
 	var type = $('#' + hash).attr('data-type');
+	var direction = $('html').attr('dir') || 'ltr';
 	
 	// Filter the content smileys
 	$(content).find('img.emoticon').each(function() {
@@ -223,7 +224,7 @@ function generateChatLog(xid, hash) {
 		avatar = 'none';
 	
 	// POST the values to the server
-	$.post('./php/generate-chat.php', { content: content, xid: xid, nick: nick, avatar: avatar, date: date, type: type }, function(data) {
+	$.post('./php/generate-chat.php', { 'content': content, 'xid': xid, 'nick': nick, 'avatar': avatar, 'date': date, 'type': type, 'direction': direction }, function(data) {
 		// Handled!
 		$(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
 	});

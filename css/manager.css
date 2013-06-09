@@ -61,6 +61,12 @@ Last revision: 04/06/13
 	margin: 0 0 9px 12px;
 }
 
+html[dir="rtl"] #manager label {
+	margin-left: 0;
+	margin-right: 12px;
+	float: right;
+}
+
 #manager label.master {
 	text-decoration: underline;
 }
@@ -71,8 +77,18 @@ Last revision: 04/06/13
 	margin-bottom: 5px;
 }
 
+html[dir="rtl"] #manager input,
+html[dir="rtl"] #manager select {
+	float: right;
+}
+
 #manager input[type="radio"] {
 	margin: 2px 8px 5px 0;
+}
+
+html[dir="rtl"] #manager input[type="radio"] {
+	margin-right: 0;
+	margin-left: 8px;
 }
 
 #manager input[type="text"],
@@ -161,9 +177,19 @@ Last revision: 04/06/13
 	-webkit-box-shadow: 0 0 10px #202020;
 }
 
+html[dir="rtl"] #manager-top .meta {
+	padding-left: 7px;
+	padding-right: 14px;
+}
+
 #manager-top .meta span {
 	margin-right: 10px;
 	color: black;
+}
+
+html[dir="rtl"] #manager-top .meta span {
+	margin-right: 0;
+	margin-left: 10px;
 }
 
 #manager-top .meta a {
@@ -218,6 +244,11 @@ Last revision: 04/06/13
 	-webkit-border-top-left-radius: 3px;
 }
 
+html[dir="rtl"] #manager-tabs a {
+	padding-left: 4px;
+	padding-right: 16px;
+}
+
 #manager-tabs a:hover,
 #manager-tabs a:focus {
 	background-color: #cedee1;
@@ -255,6 +286,11 @@ Last revision: 04/06/13
 #manager-content h3 {
 	padding-left: 24px;
 	margin-bottom: 15px;
+	float: left;
+}
+
+html[dir="rtl"] #manager-content h3 {
+	float: right;
 }
 
 #manager-content h3.login {
@@ -302,8 +338,18 @@ Last revision: 04/06/13
 	margin: 8px 0 20px 18px;
 }
 
+html[dir="rtl"] #manager-content ul,
+html[dir="rtl"] #manager-content ol {
+	margin-left: 0;
+	margin-right: 18px;
+}
+
 #manager-content li {
 	margin-bottom: 3px;
+}
+
+html[dir="rtl"] #manager-content li {
+	margin-right: 15px;
 }
 
 #manager-content li.total {
@@ -336,6 +382,7 @@ Last revision: 04/06/13
 #manager-content p,
 #manager-content div {
 	margin-bottom: 10px;
+	clear: both;
 }
 
 #manager-content .info {
@@ -412,6 +459,11 @@ Last revision: 04/06/13
 	height: 17px;
 }
 
+html[dir="rtl"] #manager-content .browse .one-browse a,
+html[dir="rtl"] #manager-content .browse .one-browse span {
+	float: left;
+}
+
 #manager-content .browse .user {
 	background-position: 9px -111px;
 }
@@ -471,10 +523,18 @@ Last revision: 04/06/13
 }
 
 #manager-content .sub {
-	border-left: 1px solid black;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: black;
 	margin: 5px 0 20px 22px;
 	padding-left: 12px;
 	clear: both;
+}
+
+html[dir="rtl"] #manager-content .sub {
+	border-width: 0 1px 0 0;
+	padding-right: 12px;
+	padding-left: 0;
 }
 
 #manager span.logo_links a {

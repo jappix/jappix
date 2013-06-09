@@ -38,6 +38,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	$avatar = $_POST['avatar'];
 	$date = $_POST['date'];
 	$type = $_POST['type'];
+	$direction = $_POST['direction'];
 	
 	// Generate the XID link
 	$xid_link = 'xmpp:'.$xid;
@@ -50,6 +51,10 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		$avatar = '<div class="avatar-container">'.$avatar.'</div>';
 	else
 		$avatar = '';
+
+	// Filter direction
+	if($direction != 'rtl')
+		$direction = 'ltr';
 	
 	// Generates an human-readable date
 	$date = explode('T', $date);
@@ -67,7 +72,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	// Create the HTML code
 	$new_text_inter = 
 '<!DOCTYPE html>
-<html>	
+<html dir="'.$direction.'">	
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

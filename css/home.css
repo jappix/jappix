@@ -867,3 +867,8 @@ html[dir="rtl"] #home .anonymouser input.nick {
 #home .notice.simple .text {
 	margin-left: 20px;
 }
+
+html[dir="rtl"] #home .notice.simple .text {
+	margin-left: 0;
+	margin-right: 20px;
+}

@@ -62,9 +62,19 @@ body {
 	margin: 0 0 9px 12px;
 }
 
+html[dir="rtl"] #install label {
+	margin-right: 12px;
+	margin-left: 0;
+	float: right;
+}
+
 #install input {
 	float: left;
 	margin-bottom: 5px;
+}
+
+html[dir="rtl"] #install input {
+	float: right;
 }
 
 #install input[type="text"],
@@ -152,6 +162,11 @@ body {
 #install-content h3 {
 	padding-left: 24px;
 	margin-bottom: 15px;
+	float: left;
+}
+
+html[dir="rtl"] #install-content h3 {
+	float: right;
 }
 
 #install-content h3.start {
@@ -180,6 +195,7 @@ body {
 
 #install-content p {
 	margin-bottom: 10px;
+	clear: both;
 }
 
 #install-content .info {

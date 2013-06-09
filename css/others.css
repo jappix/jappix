@@ -135,6 +135,7 @@ html[dir="rtl"] #right-content {
 	margin-top: -175px;
 	margin-left: -175px;
 	left: 50%;
+    right: auto;
 	top: 50%;
 }
 
