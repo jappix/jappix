@@ -53,9 +53,19 @@ Last revision: 20/10/12
 	left: 12px;
 }
 
+html[dir="rtl"] #home .corporation {
+	left: auto;
+	right: 12px;
+}
+
 #home .aboutus {
 	background-position: 9px -351px;
 	left: 52px;
+}
+
+html[dir="rtl"] #home .aboutus {
+	left: auto;
+	right: 52px;
 }
 
 #home .corporation.hovered,
@@ -76,6 +86,18 @@ Last revision: 20/10/12
 	border-top-right-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-webkit-border-top-right-radius: 3px;
+}
+
+html[dir="rtl"] #home .corporation .corp_network,
+html[dir="rtl"] #home .aboutus .aboutus_org {
+	left: auto;
+	right: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-top-left-radius: 3px;
 }
 
 #home .corporation.hovered .corp_network,
@@ -133,6 +155,11 @@ Last revision: 20/10/12
 #home .locale {
 	left: 92px;
 	font-size: 0.85em;
+}
+
+html[dir="rtl"] #home .locale {
+	left: auto;
+	right: 92px;
 }
 
 #home .locale .current {
@@ -282,6 +309,12 @@ Last revision: 20/10/12
 	text-shadow: 0 1px 1px black;
 }
 
+html[dir="rtl"] #home .left {
+	margin-left: 0;
+	margin-right: 15px;
+	float: right;
+}
+
 #home .left .logo {
 	background-position: 0 0;
 	float: left;
@@ -323,6 +356,12 @@ html[dir="rtl"] #home .left p.secondary {
 	box-shadow: 0 0 20px black;
 	-moz-box-shadow: 0 0 20px black;
 	-webkit-box-shadow: 0 0 20px black;
+}
+
+html[dir="rtl"] #home .right {
+	float: left;
+	margin-right: 0;
+	margin-left: 15px;
 }
 
 #home .right h1 {
@@ -372,15 +411,29 @@ html[dir="rtl"] #home .right button {
 	float: left;
 }
 
+html[dir="rtl"] #home .right button span {
+	float: right;
+}
+
 #home .right button span.home-images {
 	height: 16px;
 	width: 16px;
 	margin: 4px 7px 7px 24px;
 }
 
+html[dir="rtl"] #home .right button span.home-images {
+	margin-right: 24px;
+	margin-left: 7px;
+}
+
 #home .right button span.text {
 	padding-left: 20px;
 	font-size: 1.5em;
+}
+
+html[dir="rtl"] #home .right button span.text {
+	padding-left: 0;
+	padding-right: 20px;
 }
 
 #home .right .login {
@@ -464,6 +517,11 @@ html[dir="rtl"] #home .right button {
 	padding-top: 6px;
 }
 
+html[dir="rtl"] #home .right .navigation {
+	right: auto;
+	left: 25px;
+}
+
 #home .right .navigation a {
 	margin-left: 10px;
 	color: black;
@@ -472,6 +530,12 @@ html[dir="rtl"] #home .right button {
 	height: 16px;
 	padding-left: 21px;
 	float: right;
+}
+
+html[dir="rtl"] #home .right .navigation a {
+	margin-left: 0;
+	margin-right: 10px;
+	float: left;
 }
 
 #home .right .navigation a:hover,
@@ -794,8 +858,12 @@ html[dir="rtl"] #home span.jid {
 	margin-right: 22px;
 }
 
-html[dir="rtl"] #home .loginer input.password {
+html[dir="rtl"] #home input.password {
 	margin-right: auto;
+}
+
+html[dir="rtl"] #home input.spassword {
+	margin-right: 22px;
 }
 
 html[dir="rtl"] #home .loginer input.remember,

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-06-10 19:28+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Luxembourgish (http://www.transifex.com/projects/p/jappix/"
 "language/lb/)\n"
@@ -33,16 +33,16 @@ msgstr ""
 "gin! Ännert daat w.e.g."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Social Channel, Chat a méi."
 
 msgid "Create your public profile."
 msgstr "Erstellt ären öffentlechen Profil."
 
 msgid "A mini-chat for your website."
-msgstr "E mini-chat fier äer Internetsäit"
+msgstr "E Mini-Chat fier Äer Internetsäit"
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Besuergt Iech Jappix, kritt Ennerstëtzung."
 
 msgid "Statistics around Jappix."
 msgstr "Statistiken iwwert Jappix."
@@ -54,7 +54,7 @@ msgid "Download Jappix for free."
 msgstr "Lued Jappix gratis erof."
 
 msgid "Contribute to the Jappix code."
-msgstr "Dro eppes zum Jappix Code bäi"
+msgstr "Drot eppes zum Jappix Code bäi"
 
 msgid "Jappix for your company."
 msgstr ""
@@ -107,14 +107,14 @@ msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
 msgstr ""
-"Äert Passwuert gouf geännert, dier kënnt Iech elo mat ären neien "
+"Äert Passwuert gouf geännert, Dier kënnt Iech elo mat Ären neien "
 "Zougangsdonnéen aloggen."
 
 msgid "Your XMPP account has been removed, bye!"
 msgstr "Ären XMPP Kont gouf geläscht, Äddi!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr "Dier hudd Iech aus ärem XMPP-Kont ausgeloggt, e schéinen Daag nach!"
+msgstr "Dier hudd Iech aus ärem XMPP Kont ausgeloggt, e schéinen Daag nach!"
 
 msgid "The room you tried to join doesn't seem to exist."
 msgstr ""
@@ -123,13 +123,13 @@ msgid "The groupchat has been removed."
 msgstr ""
 
 msgid "The user that you want to reach is not present in the room."
-msgstr "De Benotzer deen dier erreechen wëllt as fier de Moment net am Raum."
+msgstr "De Benotzer deen Dier erreechen wëllt as fier de Moment net am Raum."
 
 msgid "Please enter the group chat address to join."
-msgstr "Gitt w.e.g. d'Adress vum Gruppenchat  deem dier bäitrieden wëllt an."
+msgstr "Gitt w.e.g. d'Adress vum Gruppenchat deem der bäitrieden wëllt an."
 
 msgid "Please enter your nickname to join %s."
-msgstr "Gitt w.e.g. ären Benotzernumm an fier %s bäizetrieden."
+msgstr "Gitt w.e.g. Ären Benotzernumm an fier %s bäizetrieden."
 
 msgid "This room (%s) is protected with a password."
 msgstr "Dëse Raum (%s) as mat engem Passwuert geschützt. "
@@ -192,13 +192,13 @@ msgid "Your groupchats"
 msgstr "Äer Gruppenchats"
 
 msgid "Manage your favorite groupchats"
-msgstr "Organiséiert äer Gruppenchats"
+msgstr "Organiséiert Äer Gruppenchats"
 
 msgid "More stuff"
 msgstr "Méi"
 
 msgid "Show all friends"
-msgstr "All meng Kollegen"
+msgstr "All Kollegen"
 
 msgid "Only show connected friends"
 msgstr "Nëmmen déi Kollegen déi grad online sin"
@@ -210,7 +210,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Please select a friend to view the chat history."
-msgstr "Wielt w.e.g. e Kolleg aus fier den Chat-Archiv ze gesin."
+msgstr "Wielt w.e.g. e Kolleg aus fier den Chatarchiv ze gesin."
 
 msgid "Nothing found for: %s"
 msgstr "Näicht fonnt ënnert: %s"
@@ -252,7 +252,7 @@ msgid "Mood"
 msgstr "Laun"
 
 msgid "None"
-msgstr ""
+msgstr "Näicht"
 
 msgid "Crazy"
 msgstr "Verréckt"
@@ -309,7 +309,7 @@ msgid "Relaxing"
 msgstr "Op der Rascht"
 
 msgid "Talking"
-msgstr ""
+msgstr "Amgaang ze schwätzen"
 
 msgid "Traveling"
 msgstr ""
@@ -318,7 +318,7 @@ msgid "Working"
 msgstr "Amgaang ze schaffen"
 
 msgid "View profile"
-msgstr "Profil kucken"
+msgstr "Profil ukucken"
 
 msgid "This is a repeat from %s"
 msgstr ""
@@ -413,7 +413,7 @@ msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
 "profile (vCard)."
 msgstr ""
-"Net alles as privat bei XMPP; daat heiten, ären öffentlechen Profil (vCard), "
+"Net alles as privat bei XMPP; daat heiten, Ären öffentlechen Profil (vCard), "
 "as eng vun deene Saachen, ."
 
 msgid ""
@@ -421,6 +421,9 @@ msgid ""
 "picture of yourself, because that makes you easily recognizable by your "
 "friends."
 msgstr ""
+"Et gëtt staark rekommandéiert e Profilbild eropzelueden (%s Maximum), ewéi z."
+"B. eng Foto vun Iech selwer, esou kennen Äer Kollegen Iech méi einfach "
+"erëmerkennen."
 
 msgid "Save"
 msgstr "Späicheren"
@@ -432,7 +435,7 @@ msgid "Edit options"
 msgstr "Optiounen änneren"
 
 msgid "Channel"
-msgstr ""
+msgstr "Channel"
 
 msgid "Commands"
 msgstr "Kommandoen"
@@ -447,7 +450,7 @@ msgid "Message archiving"
 msgstr "Noriichtenarchivéirung"
 
 msgid "Store a history of your chats"
-msgstr ""
+msgstr "Archivéiert Äer Chats"
 
 msgid "Geolocation"
 msgstr "Geolocalisatioun"
@@ -456,7 +459,7 @@ msgid "Empty"
 msgstr "Eidel"
 
 msgid "Empty channel"
-msgstr ""
+msgstr "Eidelen Channel"
 
 msgid "Persistent"
 msgstr ""
@@ -468,16 +471,16 @@ msgid "Account"
 msgstr "Kont"
 
 msgid "Change password"
-msgstr ""
+msgstr "Passwuert änneren"
 
 msgid "Delete account"
 msgstr "Kont läschen"
 
 msgid "Old"
-msgstr ""
+msgstr "Al"
 
 msgid "New (2 times)"
-msgstr ""
+msgstr "Néi (2 mol)"
 
 msgid "Suggested chatrooms"
 msgstr ""
@@ -501,7 +504,7 @@ msgid "is now"
 msgstr "as elo"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr "Waart w.e.g. während ären avatar eropgelueden gëtt..."
+msgstr "Waart w.e.g. während Ären Avatar eropgelueden gëtt..."
 
 msgid "Here it is! A new beautiful profile image!"
 msgstr "Hei as et! E schéint neit Profilbild!"

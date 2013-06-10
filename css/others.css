@@ -95,7 +95,12 @@ html[dir="rtl"] #right-content {
         -moz-box-shadow: 0 0 2px #000;
         -webkit-box-shadow: 0 0 2px #000;
 }
- 
+
+html[dir="rtl"] .general-wait-content {
+    right: auto;
+    left: 5px;
+}
+
 .inbox-hidable,
 .options-hidable,
 .pep-hidable,
