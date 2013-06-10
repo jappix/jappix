@@ -755,6 +755,11 @@ html[dir="rtl"] #home label {
 	margin-bottom: 5px;
 }
 
+html[dir="rtl"] #home input,
+html[dir="rtl"] #home select {
+	float: right;
+}
+
 #home input[type="text"],
 #home input[type="password"],
 #home select {
@@ -772,6 +777,10 @@ html[dir="rtl"] #home label {
 	display: block;
 	float: left;
 	margin: 0 4px;
+}
+
+html[dir="rtl"] #home span.jid {
+	float: right;
 }
 
 #home input.nick,

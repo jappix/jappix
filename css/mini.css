@@ -7,7 +7,7 @@ This is the Jappix Mini CSS stylesheet
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, Julien, hunterjm, Kloadut
-Last revision: 23/05/13
+Last revision: 10/06/13
 
 */
 
@@ -46,6 +46,11 @@ Last revision: 23/05/13
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+}
+
+#jappix_mini[dir="rtl"] *,
+#jappix_popup[dir="rtl"] * {
+	text-align: right;
 }
 
 #jappix_mini .jm_images {
@@ -196,6 +201,11 @@ Last revision: 23/05/13
 	margin-left: 4px;
 }
 
+#jappix_mini[dir="rtl"] div.jm_conversation.jm_type_groupchat span.jm_name {
+	margin-left: 0;
+	margin-right: 4px;
+}
+
 #jappix_mini div.jm_chat-content {
 	background-color: white;
 	border: 1px solid #999999;
@@ -228,6 +238,10 @@ Last revision: 23/05/13
 	float: left;
 }
 
+#jappix_mini[dir="rtl"] div.jm_actions span.jm_nick {
+	float: right;
+}
+
 #jappix_mini div.jm_actions a.jm_one-action {
 	background-color: #727879;
 	margin: 0 -2px 0 5px;
@@ -256,6 +270,10 @@ Last revision: 23/05/13
 	float: left;
 }
 
+#jappix_mini[dir="rtl"] div.jm_actions a.jm_logo {
+	float: right;
+}
+
 #jappix_mini div.jm_actions a.jm_logo:hover,
 #jappix_mini div.jm_actions a.jm_logo:focus {
 	background-color: #636a6b;
@@ -270,15 +288,30 @@ Last revision: 23/05/13
 	right: 6px;
 }
 
+#jappix_mini[dir="rtl"] div.jm_actions a.jm_close {
+	right: auto;
+	left: 0;
+}
+
 #jappix_mini div.jm_actions a.jm_join {
 	background-position: 0 -327px;
 	right: 6px;
+}
+
+#jappix_mini[dir="rtl"] div.jm_actions a.jm_join {
+	right: auto;
+	left: 18px;
 }
 
 #jappix_mini div.jm_actions a.jm_status {
 	background-color: #727879;
 	overflow: hidden;
 	right: 24px;
+}
+
+#jappix_mini[dir="rtl"] div.jm_actions a.jm_status {
+	right: auto;
+	left: 0;
 }
 
 #jappix_mini div.jm_actions a.active,
@@ -288,8 +321,7 @@ Last revision: 23/05/13
 	background-color: #727879;
 	border: 1px solid #3a3a3a;
 	border-width: 1px 1px 0 1px;
-	height: 15px;
-	width: 14px;
+	margin-left: 4px;
 	top: 3px;
 	z-index: 10;
 }
@@ -313,6 +345,11 @@ Last revision: 23/05/13
 
 #jappix_mini div.jm_chan_suggest {
 	right: 4px;
+}
+
+#jappix_mini[dir="rtl"] div.jm_status_picker,
+#jappix_mini[dir="rtl"] div.jm_chan_suggest {
+	margin-right: 2px;
 }
 
 #jappix_mini div.jm_chan_suggest {
@@ -356,6 +393,12 @@ Last revision: 23/05/13
 	float: left;
 }
 
+#jappix_mini[dir="rtl"] div.jm_chan_suggest a span.jm_chan_icon {
+	margin-right: 4px;
+	margin-left: 8px;
+	float: right;
+}
+
 #jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat span.jm_chan_icon {
 	background-position: 0 -480px;
 }
@@ -378,6 +421,11 @@ Last revision: 23/05/13
 #jappix_mini div.jm_status_picker a span.jm_show_text {
 	color: white;
 	float: left;
+}
+
+#jappix_mini[dir="rtl"] div.jm_chan_suggest a span.jm_chan_name,
+#jappix_mini[dir="rtl"] div.jm_status_picker a span.jm_show_text {
+	float: right;
 }
 
 #jappix_mini div.jm_chan_suggest a span.jm_chan_name {
@@ -444,6 +492,10 @@ Last revision: 23/05/13
 	font-size: 0.8em;
 	float: right;
 	display: none;
+}
+
+#jappix_mini[dir="rtl"] div.jm_received-messages span.jm_date {
+	float: left;
 }
 
 #jappix_mini div.jm_received-messages div.jm_group:hover span.jm_date {
@@ -612,12 +664,22 @@ Last revision: 23/05/13
 	float: left;
 }
 
+#jappix_mini[dir="rtl"] span.jm_presence {
+	margin-right: 0;
+	margin-left: 4px;
+	float: right;
+}
+
 #jappix_mini span.jm_name {
 	color: #272727;
 	height: 14px;
 	width: 105px;
 	overflow: hidden;
 	float: left;
+}
+
+#jappix_mini[dir="rtl"] span.jm_name {
+	float: right;
 }
 
 #jappix_mini .jm_available,

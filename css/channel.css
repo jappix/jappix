@@ -22,6 +22,11 @@ Last revision: 21/06/12
 	-webkit-border-radius: 20px;
 }
 
+html[dir="rtl"] #channel .top div.update {
+	right: 115px;
+	left: 15px;
+}
+
 #channel .top p {
 	font-size: 0.9em;
 	margin-bottom: 10px;

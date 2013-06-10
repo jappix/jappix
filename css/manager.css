@@ -225,6 +225,11 @@ html[dir="rtl"] #manager-top .meta span {
 	margin-left: 12px;
 }
 
+html[dir="rtl"] #manager-tabs {
+	margin-left: 0;
+	margin-right: 12px;
+}
+
 #manager-tabs a {
 	background-color: #d9e7ea;
 	color: #204249;
@@ -245,8 +250,11 @@ html[dir="rtl"] #manager-top .meta span {
 }
 
 html[dir="rtl"] #manager-tabs a {
+	margin-left: 0;
+	margin-right: 4px;
 	padding-left: 4px;
 	padding-right: 16px;
+	float: right;
 }
 
 #manager-tabs a:hover,

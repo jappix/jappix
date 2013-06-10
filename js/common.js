@@ -185,26 +185,22 @@ function getXIDHost(aXID) {
 
 // Checks if we are in developer mode
 function isDeveloper() {
-	if(DEVELOPER == 'on')
-		return true;
-	
-	return false;
+	return (DEVELOPER == 'on');
+}
+
+// Checks if we are RTL (Right-To-Left)
+function isRTL() {
+	return (_e("default:LTR") == 'default:RTL');
 }
 
 // Checks if anonymous mode is allowed
 function allowedAnonymous() {
-	if(ANONYMOUS == 'on')
-		return true;
-	
-	return false;
+	return (ANONYMOUS == 'on');
 }
 
 // Checks if host is locked
 function lockHost() {
-	if(LOCK_HOST == 'on')
-		return true;
-	
-	return false;
+	return (LOCK_HOST == 'on');
 }
 
 // Gets the full XID of the user

@@ -21,14 +21,22 @@ Last revision: 05/02/11
 	float: left;
 }
 
+html[dir="rtl"] #rosterx .rosterx-head a {
+	float: right;
+}
+
 #rosterx .oneresult:hover {
 	cursor: pointer;
 }
 
 #rosterx .oneresult span {
-	margin: 2px 5px 0 5px;
+	margin: 4px 5px 0 5px;
 	overflow: hidden;
 	float: left;
+}
+
+html[dir="rtl"] #rosterx .oneresult span {
+	float: right;
 }
 
 #rosterx .oneresult span.name {
@@ -48,6 +56,15 @@ Last revision: 05/02/11
 	float: right;
 }
 
+html[dir="rtl"] #rosterx .oneresult span.action {
+	float: left;
+}
+
 #rosterx .oneresult span.action.modify {
 	background-position: 0 -1244px;
+}
+
+html[dir="rtl"] #rosterx .oneresult input {
+	margin-right: 10px;
+	margin-left: 10px;
 }

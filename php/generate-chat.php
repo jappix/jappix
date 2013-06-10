@@ -103,10 +103,16 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		
 		#head .avatar-container {
 			text-align: center;
-			float: left;
 			height: 70px;
 			width: 70px;
 			margin-right: 18px;
+			float: left;
+		}
+
+		html[dir="rtl"] #head .avatar-container {
+			margin-left: 18px;
+			margin-right: 0;
+			float: right;
 		}
 		
 		#head .avatar {
@@ -140,7 +146,12 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 			top: 16px;
 			right: 20px;
 		}
-		
+
+		html[dir="rtl"] #head a.logo {
+			left: 20px;
+			right: auto;
+		}
+
 		#content {
 			background-color: #e8f1f3;
 			color: black;
@@ -178,10 +189,14 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 		}
 		
 		#content .one-group span.date {
-			float: right;
 			font-size: 0.9em;
+			float: right;
 		}
-		
+
+		html[dir="rtl"] #content .one-group span.date {
+			float: left;
+		}
+
 		#content .user-message {
 			margin-bottom: 3px;
 		}

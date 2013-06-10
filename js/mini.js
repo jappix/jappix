@@ -7,7 +7,7 @@ These are the Jappix Mini JS scripts for Jappix
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 04/06/13
+Last revision: 10/06/13
 
 */
 
@@ -1108,7 +1108,7 @@ function createMini(domain, user, password) {
 	}
 	
 	// Create the DOM
-	jQuery('body').append('<div id="jappix_mini" style="display: none;">' + dom + '</div>');
+	jQuery('body').append('<div id="jappix_mini" style="display: none;" dir="' + (isRTL() ? 'rtl' : 'ltr') + '">' + dom + '</div>');
 	
 	// Hide the roster picker panels
 	jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').removeClass('active');
@@ -1395,6 +1395,10 @@ function createMini(domain, user, password) {
 		// Avoid buddy navigation to be reseted
 		if((e.keyCode == 38) || (e.keyCode == 40))
 			return;
+		
+		// Escape key pressed?
+		if(e.keyCode == 27)
+			jQuery(this).val('');
 		
 		// Save current value
 		jQuery(this).attr('data-value', jQuery(this).val());
@@ -1807,7 +1811,7 @@ function openPromptMini(text, value) {
 	
 	// Add the prompt
 	jQuery('body').append(
-		'<div id="jappix_popup">' + 
+		'<div id="jappix_popup" dir="' + (isRTL() ? 'rtl' : 'ltr') + '">' + 
 			'<div class="jm_prompt">' + 
 				'<form>' + 
 					text + 

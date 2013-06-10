@@ -20,11 +20,21 @@ Last revision: 11/05/11
 	text-align: justify;
 }
 
+html[dir="rtl"] #mucadmin .mucadmin-head-text {
+	float: right;
+}
+
 #mucadmin .mucadmin-head-jid {
 	text-decoration: underline;
 	font-size: 0.9em;
 	float: right;
-	margin: 1px 4px 1px 1px;
+	margin: 2px 4px 1px 1px;
+}
+
+html[dir="rtl"] #mucadmin .mucadmin-head-jid {
+	margin-left: 4px;
+	margin-right: 1px;
+	float: left;
 }
 
 #mucadmin .mucadmin-forms {
@@ -33,6 +43,11 @@ Last revision: 11/05/11
 	margin: -5px 0 0 10px;
 	padding: 6px 0 0 0;
 	overflow: auto;
+}
+
+html[dir="rtl"] #mucadmin .mucadmin-forms {
+	margin-left: 0;
+	margin-right: 10px;
 }
 
 #mucadmin .mucadmin-forms label {
@@ -51,6 +66,10 @@ Last revision: 11/05/11
 	margin: 5px 12px 10px 0;
 }
 
+html[dir="rtl"] #mucadmin .mucadmin-forms textarea {
+	margin-right: 0;
+}
+
 #mucadmin .results {
 	height: auto;
 	width: auto;
@@ -63,9 +82,18 @@ Last revision: 11/05/11
 	padding-bottom: 4px;
 }
 
+html[dir="rtl"] #mucadmin .aut-group {
+	float: right;
+}
+
 #mucadmin .one-aut {
 	clear: both;
 	margin: 0 10px 5px 0;
+}
+
+html[dir="rtl"] #mucadmin .one-aut {
+	margin-right: 0;
+	margin-left: 10px;
 }
 
 #mucadmin .aut-add {
@@ -75,8 +103,16 @@ Last revision: 11/05/11
 	font-size: 0.9em;
 }
 
+html[dir="rtl"] #mucadmin .aut-add {
+	float: right;
+}
+
 #mucadmin .aut-remove {
 	float: left;
+}
+
+html[dir="rtl"] #mucadmin .aut-remove {
+	float: right;
 }
 
 #mucadmin .aut-remove:hover,
@@ -88,4 +124,8 @@ Last revision: 11/05/11
 #mucadmin .mucadmin-others a {
 	float: left;
 	font-size: 0.9em;
+}
+
+html[dir="rtl"] #mucadmin .mucadmin-others a {
+	float: right;
 }

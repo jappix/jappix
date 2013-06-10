@@ -246,8 +246,14 @@ html[dir="rtl"] #privacy .privacy-active input[type="text"] {
 }
 
 #privacy .privacy-active input[type="checkbox"] {
-	margin: 2px 8px 0 0;
+	margin: 3px 5px 0 0;
 	float: left;
+}
+
+html[dir="rtl"] #privacy .privacy-active input[type="checkbox"] {
+	margin-left: 5px;
+	margin-right: 14px;
+	float: right;
 }
 
 #privacy .privacy-active label {

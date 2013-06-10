@@ -52,6 +52,12 @@ Last revision: 21/06/12
 	float: left;
 }
 
+html[dir="rtl"] #page-engine .top .avatar-container {
+	margin-left: 0;
+	margin-right: 10px;
+	float: right;
+}
+
 #page-engine .top .avatar {
 	max-height: 76px;
 	max-width: 76px;
@@ -60,6 +66,10 @@ Last revision: 21/06/12
 #page-engine .top .name {
 	text-align: right;
 	padding: 7px;
+}
+
+html[dir="rtl"] #page-engine .top .name {
+	text-align: left;
 }
 
 #page-engine p.bc-name {
@@ -74,6 +84,11 @@ Last revision: 21/06/12
 	position: absolute;
 	left: 115px;
 	right: 12px;
+}
+
+html[dir="rtl"] #page-engine p.bc-infos {
+	left: 12px;
+	right: 115px;
 }
 
 #page-engine .page-engine-chan[data-type="groupchat"] p.bc-infos {
@@ -92,11 +107,20 @@ Last revision: 21/06/12
 	float: right;
 }
 
+html[dir="rtl"] #page-engine div.bc-pep {
+	float: left;
+}
+
 #page-engine div.bc-pep a {
 	height: 16px;
 	width: 16px;
 	margin-left: 4px;
 	float: left;
+}
+
+html[dir="rtl"] #page-engine div.bc-pep a {
+	margin-right: 4px;
+	margin-left: 0;
 }
 
 #page-engine div.bc-pep a:hover {
@@ -867,6 +891,11 @@ html[dir="rtl"] #page-engine .tooltip-subarrow {
 	float: left;
 }
 
+html[dir="rtl"] #page-engine .tooltip label input[type="checkbox"] {
+	margin-left: 6px;
+	margin-right: 0;
+}
+
 #page-engine .tooltip label.select {
 	margin-top: 5px;
 }
@@ -874,6 +903,11 @@ html[dir="rtl"] #page-engine .tooltip-subarrow {
 #page-engine .tooltip input,
 #page-engine .tooltip select {
 	float: left;
+}
+
+html[dir="rtl"] #page-engine .tooltip input,
+html[dir="rtl"] #page-engine .tooltip select {
+	float: right;
 }
 
 #page-engine .tooltip select {

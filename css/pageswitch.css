@@ -105,6 +105,8 @@ html[dir="rtl"] #page-switch .more-content {
 }
 
 html[dir="rtl"] #page-switch .switcher {
+	padding-left: 10px;
+	padding-right: 5px;
 	float: right;
 }
 
@@ -152,12 +154,22 @@ html[dir="rtl"] #page-switch .switcher {
 	float: left;
 }
 
+html[dir="rtl"] #page-switch .icon {
+	float: right;
+}
+
 #page-switch .name {
 	float: left;
 	margin-left: 4px;
 	max-height: 16px;
 	max-width: 140px;
 	overflow: hidden;
+}
+
+html[dir="rtl"] #page-switch .name {
+	float: right;
+	margin-left: 0;
+	margin-right: 4px;
 }
 
 #page-switch .exit {
@@ -177,6 +189,12 @@ html[dir="rtl"] #page-switch .switcher {
 	-webkit-border-radius: 2px;
 }
 
+html[dir="rtl"] #page-switch .exit {
+	margin-left: 0;
+	margin-right: 10px;
+	float: left;
+}
+
 #page-switch .exit:hover,
 #page-switch .exit:focus {
 	background-color: #aac7cb;
@@ -189,6 +207,10 @@ html[dir="rtl"] #page-switch .switcher {
 #page-switch .activechan .exit {
 	display: block;
 	float: right;
+}
+
+html[dir="rtl"] #page-switch .activechan .exit {
+	float: left;
 }
 
 #page-switch .chan-newmessage {

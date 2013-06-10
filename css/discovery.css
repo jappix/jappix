@@ -40,6 +40,11 @@ Last revision: 13/02/11
 	margin: 3px;
 }
 
+html[dir="rtl"] #discovery .disco-server-text,
+html[dir="rtl"] #directory .directory-server-text {
+	float: right;
+}
+
 #discovery .disco-server-input,
 #directory .directory-server-input {
 	float: right;
@@ -49,6 +54,13 @@ Last revision: 13/02/11
 	float: right;
 	margin-right: 10px;
 	padding: 2px;
+}
+
+html[dir="rtl"] #discovery .disco-server-input,
+html[dir="rtl"] #directory .directory-server-input {
+	margin-right: 0;
+	margin-left: 10px;
+	float: left;
 }
 
 #discovery .disco-category {
@@ -62,4 +74,8 @@ Last revision: 13/02/11
 
 #discovery .one-actions .one-button {
 	float: right;
+}
+
+html[dir="rtl"] #discovery .one-actions .one-button {
+	float: left;
 }

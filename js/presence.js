@@ -555,14 +555,15 @@ function adaptChatPresence(hash) {
 	// Get values
 	var pep_numb = $('#' + hash + ' .bc-pep').find('a').size();
 	
-	// Process the right position
-	var presence_right = 12;
+	// Process the left/right position
+	var presence_h = 12;
 	
 	if(pep_numb)
-		presence_right = (pep_numb * 20) + 18;
+		presence_h = (pep_numb * 20) + 18;
 	
-	// Apply the right position
-	$('#' + hash + ' p.bc-infos').css('right', presence_right);
+	// Apply the left/right position
+	var presence_h_tag = ($('html').attr('dir') == 'rtl') ? 'left' : 'right';
+	$('#' + hash + ' p.bc-infos').css(presence_h_tag, presence_h);
 }
 
 // Convert the presence "show" element into a human-readable output

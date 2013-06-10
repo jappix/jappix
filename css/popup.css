@@ -92,8 +92,11 @@ html[dir="rtl"] .popup .top {
 }
 
 html[dir="rtl"] .popup .tab a {
+	margin-left: 0;
+	margin-right: 5px;
 	padding-left: 4px;
 	padding-right: 16px;
+	float: right;
 }
 
 .popup .tab a:hover,
@@ -196,9 +199,17 @@ html[dir="rtl"] .popup .tab a {
 	margin: 3px;
 }
 
+html[dir="rtl"] .popup .head-text {
+	float: right;
+}
+
 .popup .head-actions {
 	float: right;
 	margin-top: 2px;
+}
+
+html[dir="rtl"] .popup .head-actions {
+	float: left;
 }
 
 .popup .head-actions a {
@@ -218,9 +229,17 @@ html[dir="rtl"] .popup .tab a {
 	padding: 2px;
 }
 
+html[dir="rtl"] .popup .head .head-input {
+	float: left;
+}
+
 .popup .head .head-select {
 	float: right;
 	height: 24px;
+}
+
+html[dir="rtl"] .popup .head .head-select {
+	float: left;
 }
 
 .popup .forms {
@@ -269,6 +288,8 @@ html[dir="rtl"] .popup label {
 
 html[dir="rtl"] .popup input,
 html[dir="rtl"] .popup select {
+	margin-right: 0;
+	margin-left: 10px;
 	float: right;
 }
 
@@ -351,6 +372,12 @@ html[dir="rtl"] .popup .results .avatar-container {
 	float: left;
 }
 
+html[dir="rtl"] .popup .results .one-icon {
+	margin-left: 3px;
+	margin-right: 8px;
+	float: right;
+}
+
 .popup .results .one-icon.account,
 .popup .results .one-icon.auth {
 	background-position: 0 -777px;
@@ -407,6 +434,10 @@ html[dir="rtl"] .popup .results .avatar-container {
 	width: 170px;
 }
 
+html[dir="rtl"] .popup .results .one-host {
+	float: right;
+}
+
 .popup .results .one-type {
 	width: 210px;
 }
@@ -416,6 +447,11 @@ html[dir="rtl"] .popup .results .avatar-container {
 	float: left;
 	overflow: hidden;
 	margin: 9px 8px;
+}
+
+html[dir="rtl"] .popup .results .one-type,
+html[dir="rtl"] .popup .results .one-host {
+	float: right;
 }
 
 .popup .results .one-jid,
@@ -443,6 +479,10 @@ html[dir="rtl"] .popup .results .one-fn {
 .popup .results .one-name {
 	float: left;
 	margin: 4px;
+}
+
+html[dir="rtl"] .popup .results .one-name {
+	float: right;
 }
 
 .popup a.one-button {
@@ -507,6 +547,12 @@ html[dir="rtl"] .popup .results a.one-vjud {
 	float: right;
 	margin: 4px 8px 4px 4px;
 	font-weight: bold;
+}
+
+html[dir="rtl"] .popup .results .one-next {
+	margin-right: 4px;
+	margin-left: 8px;
+	float: left;
 }
 
 .popup .results .one-actions {

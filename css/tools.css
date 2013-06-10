@@ -324,6 +324,10 @@ html[dir="rtl"] .notifications-content .one-notification .notification-actions s
 	float: left;
 }
 
+html[dir="rtl"] .music-content .player a {
+	float: right;
+}
+
 .music-content .player a:hover,
 .music-content .player a:focus {
 	opacity: 0.8;
