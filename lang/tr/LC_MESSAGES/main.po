@@ -1,0 +1,2289 @@
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
+# Caner BAŞARAN <basaran.caner@gmail.com>, 2013
+# Fatih Malakçı <>, 2012
+# Onur Göker <>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: Jappix\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 10:01+0100\n"
+"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/projects/p/jappix/"
+"language/tr_TR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.5.5\n"
+
+msgid "default:LTR"
+msgstr ""
+
+msgid ""
+"JavaScript is missing in your web browser, so that you will not be able to "
+"launch Jappix! Please fix this."
+msgstr ""
+"Bilgisayarınızda javascript eksik ya da kapalı. Lütfen bu sorunu düzeltin, "
+"aksi halde Jappix çalışmayacaktır."
+
+msgid "Social channel, chat and more."
+msgstr "Sosyal kanal, sohbet ve daha fazlası"
+
+msgid "Create your public profile."
+msgstr "Açık profilinizi oluşturun."
+
+msgid "A mini-chat for your website."
+msgstr "Web siteniz için mini-sohbet."
+
+msgid "Get Jappix, get support."
+msgstr "Jappix'i edinin, destek alın."
+
+msgid "Statistics around Jappix."
+msgstr "Jappix istatistikleri."
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr "Jappix'i ücretsiz indirin."
+
+msgid "Contribute to the Jappix code."
+msgstr "Jappix code'a katkıda bulunun."
+
+msgid "Jappix for your company."
+msgstr "Şirketiniz için Jappix."
+
+msgid "Find a public Jappix node."
+msgstr "Açık bir Jappix ağı bulun."
+
+msgid "Credits"
+msgstr "Katkıda Bulunanlar"
+
+msgid "Association"
+msgstr "İşbirliği"
+
+msgid "Web agency"
+msgstr "Web ajansı"
+
+msgid "Legal"
+msgstr "Yasal"
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr "Kullanım koşulları ve izinler"
+
+msgid "Owner"
+msgstr "Sahibi"
+
+msgid "Node owner"
+msgstr "Ağ sahibi"
+
+msgid "By using our service, you accept %s."
+msgstr "Servisimizi kullanarak bunu kabul etmiş olursunuz: %s."
+
+msgid "our terms of use"
+msgstr "Kullanım koşullarımız"
+
+msgid ""
+"Jappix has been interrupted by a network issue, a bug or bad login (check "
+"that you entered the right credentials), sorry for the inconvenience."
+msgstr ""
+"Jappix bir ağ sorunundan dolayı kesildi, bir bug ya da giriş hatası (doğru "
+"kimlik girilip girilmediğini kontrol edin). Hata için üzgünüz."
+
+msgid "The element list on this server could not be obtained!"
+msgstr "Sunucudaki eleman listesi alınamadı!"
+
+msgid ""
+"Your password has been changed, now you can connect to your account with "
+"your new login data."
+msgstr ""
+"Parolanız değiştirilmiş, artık yeni kullanıcı bilgilerinizle giriş "
+"yapabilirsiniz."
+
+msgid "Your XMPP account has been removed, bye!"
+msgstr "XMPP hesabınız kaldırıldı, güle güle!"
+
+msgid "You have been logged out of your XMPP account, have a nice day!"
+msgstr "XMPP hesabınızın oturumunu sonlandırdınız, iyi günler!"
+
+msgid "The room you tried to join doesn't seem to exist."
+msgstr ""
+
+msgid "The groupchat has been removed."
+msgstr ""
+
+msgid "The user that you want to reach is not present in the room."
+msgstr "Ulaşmaya çalıştığınız kişi odada değil."
+
+msgid "Please enter the group chat address to join."
+msgstr "Katılmak için grup sohbet adresini yazın."
+
+msgid "Please enter your nickname to join %s."
+msgstr "%s 'e bağlanmak için kullanıcı adınızı girin."
+
+msgid "This room (%s) is protected with a password."
+msgstr "(%s) odasına giriş parolalı yapılmaktadır."
+
+msgid "Your browser is out of date!"
+msgstr "Tarayıcınız güncel değil!"
+
+msgid "Last %s version is better!"
+msgstr "Son sürümü %s daha iyidir!"
+
+msgid "Login"
+msgstr "Giriş"
+
+msgid "Register"
+msgstr "Kayıt"
+
+msgid "Here we go!"
+msgstr "Başla!"
+
+msgid "Server"
+msgstr "Sunucu"
+
+msgid "Password"
+msgstr "Parola"
+
+msgid "Remember me"
+msgstr "Beni hatırla"
+
+msgid "This tool has been disabled!"
+msgstr "Bu araç devre dışı bırakıldı!\""
+
+msgid ""
+"Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr ""
+"Bağlantı probleminden dolayı, oturumunuz sonlandırıldı. Şimdi ne yapmak "
+"istersiniz?"
+
+msgid "Reconnect"
+msgstr "Tekrar bağlan"
+
+msgid "Messages"
+msgstr "Mesajlar"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Disconnect"
+msgstr "Bağlantıyı kes"
+
+msgid "Filter"
+msgstr "Filtrele"
+
+msgid "Add a friend"
+msgstr "Arkadaş ekle"
+
+msgid "Your groupchats"
+msgstr "Grup sohbetleriniz"
+
+msgid "Manage your favorite groupchats"
+msgstr "Favori grup sohbetlerinizi düzenleyin"
+
+msgid "More stuff"
+msgstr "Daha fazla şey"
+
+msgid "Show all friends"
+msgstr "Tüm arkadaşları göster"
+
+msgid "Only show connected friends"
+msgstr "Sadece aktif arkadaşları göster"
+
+msgid "Message archives"
+msgstr "Mesaj arşivleri"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Please select a friend to view the chat history."
+msgstr "Sohbet geçmişi görüntülemek için arkadaş seçin."
+
+msgid "Nothing found for: %s"
+msgstr "Bunun için hiçbir şey bulunamadı: %s"
+
+msgid "A short message?"
+msgstr "Kısa bir mesaj?"
+
+msgid "How are you?"
+msgstr "Nasılsın?"
+
+msgid "What are you doing?"
+msgstr "Ne yapıyorsunuz?"
+
+msgid "Join a chat"
+msgstr "Bir sohbete katılın"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Available"
+msgstr "Uygun"
+
+msgid "Talkative"
+msgstr "Konuşkan"
+
+msgid "Away"
+msgstr "Dışarıda"
+
+msgid "Not available"
+msgstr "Uygun değil"
+
+msgid "Busy"
+msgstr "Meşgul"
+
+msgid "Offline"
+msgstr "Çevrimdışı"
+
+msgid "Mood"
+msgstr "Ruh hali"
+
+msgid "None"
+msgstr "Hiçbiri"
+
+msgid "Crazy"
+msgstr "Çılgın"
+
+msgid "Excited"
+msgstr "Heyecanlı"
+
+msgid "Playful"
+msgstr "Oyunsever"
+
+msgid "Happy"
+msgstr "Mutlu"
+
+msgid "Shocked"
+msgstr "Şaşırmış"
+
+msgid "Hot"
+msgstr "Ateşli"
+
+msgid "Sad"
+msgstr "Üzgün"
+
+msgid "Amorous"
+msgstr "Baygın"
+
+msgid "Confident"
+msgstr "Emin"
+
+msgid "Activity"
+msgstr "Aktivite"
+
+msgid "Chores"
+msgstr "Sıkıcı İşler"
+
+msgid "Drinking"
+msgstr "İçmek"
+
+msgid "Eating"
+msgstr "Yemek"
+
+msgid "Exercising"
+msgstr "Egzersiz yapmak"
+
+msgid "Grooming"
+msgstr "Süpürmek"
+
+msgid "Appointment"
+msgstr "Randevu"
+
+msgid "Inactive"
+msgstr "İnaktif"
+
+msgid "Relaxing"
+msgstr "Rahatlıyor"
+
+msgid "Talking"
+msgstr "Konuşuyor"
+
+msgid "Traveling"
+msgstr "Seyahat ediyor"
+
+msgid "Working"
+msgstr "Çalışıyor"
+
+msgid "View profile"
+msgstr "Profili incele"
+
+msgid "This is a repeat from %s"
+msgstr "Bu %s 'den tekrardır."
+
+msgid "Repeat this notice"
+msgstr "Notu tekrarla"
+
+msgid "Remove this notice"
+msgstr "Notu kaldır"
+
+msgid "Your profile"
+msgstr "Profiliniz"
+
+msgid "Identity"
+msgstr "Kimlik"
+
+msgid "Profile image"
+msgstr "Profil resmi"
+
+msgid "Others"
+msgstr "Diğerleri"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Personal"
+msgstr "Kişisel"
+
+msgid "Complete name"
+msgstr "Tam ad"
+
+msgid "Nickname"
+msgstr "Rumuz"
+
+msgid "First name"
+msgstr "Ad"
+
+msgid "Last name"
+msgstr "Soyad"
+
+msgid "Date of birth"
+msgstr "Doğum tarihi"
+
+msgid "Contact"
+msgstr "İletişim"
+
+msgid "E-mail"
+msgstr "E-posta"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Website"
+msgstr "Web Adresi"
+
+msgid "Current"
+msgstr "Şu Anda"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "What a pity! You have no profile image defined in your identity card!"
+msgstr "Ne yazık! Profil imajınız bulunmamakta."
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Street"
+msgstr "Sokak"
+
+msgid "City"
+msgstr "Şehir"
+
+msgid "Postal code"
+msgstr "Posta kodu"
+
+msgid "Country"
+msgstr "Ülke"
+
+msgid "Biography"
+msgstr "Biyografi"
+
+msgid "Important notice"
+msgstr "Önemli not"
+
+msgid ""
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
+msgstr ""
+
+msgid ""
+"Not everything is private on XMPP; this is one of those things, your public "
+"profile (vCard)."
+msgstr ""
+"XMPP'de her şey özel değildir. Bu onlardan birisi olan sizin açık "
+"profilinizdir (vCard)."
+
+msgid ""
+"It is strongly recommended to upload a profile image (%s maximum), like a "
+"picture of yourself, because that makes you easily recognizable by your "
+"friends."
+msgstr ""
+"It is strongly recommended to upload a profile image (%s maximum), like a "
+"picture of yourself, because that makes you easily recognizable by your "
+"friends."
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Edit options"
+msgstr "Düzenleme seçenekleri"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Commands"
+msgstr "Komutlar"
+
+msgid "Sounds"
+msgstr "Sesler"
+
+msgid "Privacy"
+msgstr "Gizlilik"
+
+msgid "Message archiving"
+msgstr "Mesaj arşivleme"
+
+msgid "Store a history of your chats"
+msgstr "Sohbet geçmişinizi saklayın"
+
+msgid "Geolocation"
+msgstr "Coğrafik lokasyon"
+
+msgid "Empty"
+msgstr "Boş"
+
+msgid "Empty channel"
+msgstr "Boş kanal"
+
+msgid "Persistent"
+msgstr "Tutarlı"
+
+msgid "Maximum notices"
+msgstr "Maksimum bildiri"
+
+msgid "Account"
+msgstr "Hesap"
+
+msgid "Change password"
+msgstr "Parola değiştir"
+
+msgid "Delete account"
+msgstr "Hesabı sil"
+
+msgid "Old"
+msgstr "Eski"
+
+msgid "New (2 times)"
+msgstr "Yeni (2 adet)"
+
+msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Continue"
+msgstr "Devam"
+
+msgid "To"
+msgstr "Kime"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "unknown"
+msgstr "bilinmeyen"
+
+msgid "Unavailable"
+msgstr "Uygun değil"
+
+msgid "is now"
+msgstr "şu anda"
+
+msgid "Please wait while your avatar is uploaded..."
+msgstr "Avatarınız yüklenirken lütfen bekleyin..."
+
+msgid "Here it is! A new beautiful profile image!"
+msgstr "İşte burada! Yeni güzel bir profil imajı!"
+
+msgid "The image file is not supported or has a bad size."
+msgstr "Dosya formatı desteklenmiyor ya da hatalı dosya boyutu."
+
+msgid "Reply"
+msgstr "Cevap ver"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Click here to solve the error"
+msgstr "Sorunu çözmek için tıklayın"
+
+msgid "You"
+msgstr "Siz"
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr "Merhaba, ben %s, sizi arkadaşım olarak eklemek istiyorum."
+
+msgid "Smiley insertion"
+msgstr "Smiley ekleme"
+
+msgid "Change style"
+msgstr "Stili değiştir"
+
+msgid "Text in bold"
+msgstr "Kalın yazı"
+
+msgid "Text in italic"
+msgstr "İtalik yazı"
+
+msgid "Underlined text"
+msgstr "Altıçizili"
+
+msgid "Send a file"
+msgstr "Dosya gönder"
+
+msgid ""
+"Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Yüklendiğinde, arkadaşlarınız gönderdiğiniz dosyayı indirebilecek."
+
+msgid "Save chat"
+msgstr "Konuşmayı kaydet"
+
+msgid ""
+"Click on the following link to get the chat log, and wait. Then click again "
+"to get the file."
+msgstr ""
+"Sohbet günlükleri için linke tıklayın ve bekleyin. Daha sonra dosyayı almak "
+"için tekrar tıklayın."
+
+msgid "This chat is empty!"
+msgstr "Sohbet boş!"
+
+msgid "Generate file!"
+msgstr "Dosyayı oluştur!"
+
+msgid "Download file!"
+msgstr "Dosyayı indir!"
+
+msgid "Clean current chat"
+msgstr "Mevcut konuşmayı temizle"
+
+msgid "View chat history"
+msgstr "Sohbet geçmişini görüntüle"
+
+msgid "Show user profile"
+msgstr "Kullanıcı profilini göster"
+
+msgid "Add this contact to your friends"
+msgstr "Bu bağlantıyı arkadaşlarınız arasına ekleyin"
+
+msgid "Add this groupchat to your favorites"
+msgstr "Bu grup sohbetini favorilerinize ekleyin"
+
+msgid "All tabs"
+msgstr "Tüm sekmeler"
+
+msgid "Close this tab"
+msgstr "Bu sekmeyi kapat"
+
+msgid "no subject defined for this room."
+msgstr "bu oda için konu belirlenmedi."
+
+msgid "Administration panel for this room"
+msgstr "Bu oda için yönetici paneli"
+
+msgid "Moderators"
+msgstr "Moderatörler"
+
+msgid "Participants"
+msgstr "Katılımcılar"
+
+msgid "Visitors"
+msgstr "Ziyaretçiler"
+
+msgid "Manage favorite rooms"
+msgstr "Favori odaları düzenle"
+
+msgid "Change favorites"
+msgstr "Favorileri değiştir"
+
+msgid "Search a room"
+msgstr "Oda ara"
+
+msgid "Select a favorite"
+msgstr "Favori seç"
+
+msgid "Getting the name..."
+msgstr "İsmi alıyor..."
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Room"
+msgstr "Oda"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Search a room on"
+msgstr "Bunda oda ara"
+
+msgid "No room found on this server."
+msgstr "Bu sunucuda oda bulunamadı"
+
+msgid "Service discovery"
+msgstr "Servis keşfi"
+
+msgid "Server to query"
+msgstr "Server to query"
+
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "Sorry, but the entity didn't return any result!"
+
+msgid "Accounts"
+msgstr "Accounts"
+
+msgid "Authentications"
+msgstr "Authentications"
+
+msgid "Automation"
+msgstr "Automation"
+
+msgid "Clients"
+msgstr "Clients"
+
+msgid "Collaboration"
+msgstr "Collaboration"
+
+msgid "Components"
+msgstr "Components"
+
+msgid "Rooms"
+msgstr "Rooms"
+
+msgid "Directories"
+msgstr "Directories"
+
+msgid "Gateways"
+msgstr "Gateways"
+
+msgid "News"
+msgstr "News"
+
+msgid "Hierarchy"
+msgstr "Hierarchy"
+
+msgid "Proxies"
+msgstr "Proxies"
+
+msgid "Publication/Subscription"
+msgstr "Publication/Subscription"
+
+msgid "Storage"
+msgstr "Storage"
+
+msgid "Service offline or broken"
+msgstr "Servis çevrimdışı ya da hatalı"
+
+msgid "Your inbox"
+msgstr "Gelen kutunuz"
+
+msgid "Available actions"
+msgstr "Yapılabilecek işlemler"
+
+msgid "Clean"
+msgstr "Temizle"
+
+msgid "New"
+msgstr "Yeni"
+
+msgid "Received"
+msgstr "Alınan"
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "Content"
+msgstr "İçerik"
+
+msgid "Send message"
+msgstr "Mesaj gönder"
+
+msgid "Your inbox is empty."
+msgstr "Gelen kutusu boş."
+
+msgid "MUC administration"
+msgstr "MUC yönetimi"
+
+msgid "You administrate this room"
+msgstr "Bu odayı siz yönetiyorsunuz"
+
+msgid "Enter new subject"
+msgstr "Yeni konu girin"
+
+msgid "Configuration"
+msgstr "Konfigürasyon"
+
+msgid "Authorizations"
+msgstr "Yetkiler"
+
+msgid "Member list"
+msgstr "Üye listesi"
+
+msgid "Owner list"
+msgstr "Sahip listesi"
+
+msgid "Administrator list"
+msgstr "Yönetici listesi"
+
+msgid "Outcast list"
+msgstr "Uzaklaştırılan listesi"
+
+msgid "Add an input"
+msgstr "Bir veri ekleyin"
+
+msgid "Destroy this MUC"
+msgstr "Bu MUC'u kaldırın"
+
+msgid "Yes, let's do it!"
+msgstr "Evet, hadi yapalım!"
+
+msgid "Your friend is paying attention to the conversation."
+msgstr "Arkadaşınız konuşmayı izliyor."
+
+msgid "Your friend is writing a message..."
+msgstr "Arkadaşınız mesaj yazıyor..."
+
+msgid "Your friend stopped writing a message."
+msgstr "Arkadaşınız mesaj yazmayı durdurdu."
+
+msgid "Your friend is doing something else."
+msgstr "Arkadaşınız başka bir şey yapıyor."
+
+msgid "Your friend closed the chat."
+msgstr "Arkadaşınız sohbeti kapattı."
+
+msgid "Requesting this service..."
+msgstr "Servis bekleniyor..."
+
+msgid "Loading"
+msgstr "Yükleniyor"
+
+msgid "changed his/her nickname to %s"
+msgstr "rumuzunu %s olarak değiştirdi"
+
+msgid "joined the chat room"
+msgstr "sohbet odasına katıldı"
+
+msgid "left the chat room"
+msgstr "sohbet odasını terk etti"
+
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
+msgid "no status"
+msgstr "durum yok"
+
+msgid "has been kicked"
+msgstr "atılmış"
+
+msgid "has been banned"
+msgstr "engellenmiş"
+
+msgid "no reason"
+msgstr "sebep yok"
+
+msgid "Communicate with the entire world!"
+msgstr "Tüm dünyayla iletişim kurun!"
+
+msgid ""
+"Jappix is an open social platform, that let's you easily get or keep in "
+"touch with everyone."
+msgstr ""
+
+msgid ""
+"Join the millions of users who are currently using the XMPP Network (Google "
+"Talk, etc), don't stay out!"
+msgstr ""
+
+msgid "Hi there!"
+msgstr "Merhaba!"
+
+msgid "Welcome on %1s, “%2s”."
+msgstr " %1s, “%2s” 'a hoşgeldiniz."
+
+msgid "Login to your existing XMPP account or create a new one for free!"
+msgstr ""
+"Mevcut XMPP hesabınızla giriş yapın ya da ücretsiz yeni bir hesap yaratın."
+
+msgid ""
+"For your account safety, when you login or register, make sure your password "
+"remains secret."
+msgstr ""
+
+msgid ""
+"Login to your existing XMPP account. You can also use the %s to join a "
+"groupchat."
+msgstr ""
+"Mevcut XMPP hesabınızla giriş yapın. Ayrıca grup sohbetleri için bunu da "
+"kullanabilirsiniz: %s"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+msgid "Resource"
+msgstr "Kaynak"
+
+msgid "Priority"
+msgstr "Öncelik"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "High"
+msgstr "High"
+
+msgid ""
+"Enter the groupchat you want to join and the nick you want to have. You can "
+"also go back to the %s."
+msgstr ""
+"Enter the groupchat you want to join and the nick you want to have. You can "
+"also go back to the %s."
+
+msgid "login page"
+msgstr "login page"
+
+msgid "Share this link with your friends:"
+msgstr "Share this link with your friends:"
+
+msgid ""
+"Register a new XMPP account to join your friends on your own social cloud. "
+"That's simple!"
+msgstr ""
+"Register a new XMPP account to join your friends on your own social cloud. "
+"That's simple!"
+
+msgid "Required"
+msgstr "Required"
+
+msgid "You have been registered, here is your XMPP address:"
+msgstr "You have been registered, here is your XMPP address:"
+
+msgid "Manager"
+msgstr "Manager"
+
+msgid "Encrypted"
+msgstr "Encrypted"
+
+msgid "Unencrypted"
+msgstr "Unencrypted"
+
+msgid "Where are you?"
+msgstr "Where are you?"
+
+msgid "What's up with you?"
+msgstr "What's up with you?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Type something you want to share with your friends..."
+
+msgid "Fetching the social channel..."
+msgstr "Fetching the social channel..."
+
+msgid "You are synchronized with your network."
+msgstr "You are synchronized with your network."
+
+msgid "Cannot send anything: you can only receive notices!"
+msgstr "Cannot send anything: you can only receive notices!"
+
+msgid "Media viewer"
+msgstr "Media viewer"
+
+msgid "Browse"
+msgstr "Browse"
+
+msgid "Command"
+msgstr "Command"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Join"
+msgstr "Join"
+
+msgid "Automatic"
+msgstr "Automatic"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "No result!"
+msgstr "No result!"
+
+msgid "No notifications."
+msgstr "No notifications."
+
+msgid "would like to add you as a friend."
+msgstr "would like to add you as a friend."
+
+msgid "would like you to join this chatroom:"
+msgstr "would like you to join this chatroom:"
+
+msgid "Do you accept?"
+msgstr "Do you accept?"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"
+
+msgid "would like to get authorization."
+msgstr "would like to get authorization."
+
+msgid "would like to send you a file: “%s”."
+msgstr "would like to send you a file: “%s”."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "has received a file exchange request: “%s”."
+
+msgid "has accepted to receive your file: “%s”."
+msgstr ""
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "has rejected to receive your file: “%s”."
+
+msgid "could not receive your file: “%s”."
+msgstr "could not receive your file: “%s”."
+
+msgid "Do you want to see the friends %s suggests you?"
+msgstr "Do you want to see the friends %s suggests you?"
+
+msgid "commented an item you follow: “%s”."
+msgstr "commented an item you follow: “%s”."
+
+msgid "liked your post: “%s”."
+msgstr "liked your post: “%s”."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "quoted you somewhere: “%s”."
+
+msgid "published on your wall: “%s”."
+msgstr "published on your wall: “%s”."
+
+msgid "tagged you in a photo (%s)."
+msgstr "tagged you in a photo (%s)."
+
+msgid "tagged you in a video (%s)."
+msgstr "tagged you in a video (%s)."
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "System"
+msgstr "System"
+
+msgid "Local time"
+msgstr "Local time"
+
+msgid "Comments"
+msgstr "Comments"
+
+msgid "User profile"
+msgstr "User profile"
+
+msgid "See his/her position on the globe"
+msgstr "See his/her position on the globe"
+
+msgid "Confirm"
+msgstr "Confirm"
+
+msgid "anonymous mode"
+msgstr "anonymous mode"
+
+msgid "Groups"
+msgstr "Groups"
+
+msgid "Unclassified"
+msgstr "Unclassified"
+
+msgid "Authorize"
+msgstr "Authorize"
+
+msgid "Ask for authorization"
+msgstr "Ask for authorization"
+
+msgid "Unblock"
+msgstr "Unblock"
+
+msgid "Prohibit"
+msgstr "Prohibit"
+
+msgid "Block"
+msgstr "Block"
+
+msgid "Chat"
+msgstr "Chat"
+
+msgid "Groupchat"
+msgstr "Groupchat"
+
+msgid "Jappix Mobile"
+msgstr "Jappix Mobile"
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "Please wait..."
+msgstr "Please wait..."
+
+msgid "Please enable JavaScript"
+msgstr "Please enable JavaScript"
+
+msgid "Show comments"
+msgstr "Show comments"
+
+msgid "Loading comments..."
+msgstr "Loading comments..."
+
+msgid "Could not get the comments!"
+msgstr "Could not get the comments!"
+
+msgid "Comments locked!"
+msgstr "Comments locked!"
+
+msgid "Type your comment here..."
+msgstr "Type your comment here..."
+
+msgid "Your channel"
+msgstr "Your channel"
+
+msgid "Channel of"
+msgstr "Channel of"
+
+msgid "More notices..."
+msgstr "More notices..."
+
+msgid "Attach a file"
+msgstr "Attach a file"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Unattach the file"
+msgstr "Unattach the file"
+
+msgid ""
+"An error occured while uploading your file: maybe it is too big (%s maximum) "
+"or forbidden!"
+msgstr ""
+"An error occured while uploading your file: maybe it is too big (%s maximum) "
+"or forbidden!"
+
+msgid "Authorization failed"
+msgstr "Authorization failed"
+
+msgid "Registration failed, please choose a different username"
+msgstr "Registration failed, please choose a different username"
+
+msgid "Service unavailable"
+msgstr "Service unavailable"
+
+msgid "Internal server error, try later"
+msgstr "Internal server error, try later"
+
+msgid "Your form has been sent."
+msgstr "Your form has been sent."
+
+msgid "Application"
+msgstr "Application"
+
+msgid "Media integration"
+msgstr "Media integration"
+
+msgid "XMPP links"
+msgstr "XMPP links"
+
+msgid "Open XMPP links with Jappix"
+msgstr "Open XMPP links with Jappix"
+
+msgid "changed the subject to:"
+msgstr "changed the subject to:"
+
+msgid "Welcome!"
+msgstr "Welcome!"
+
+msgid "Friends"
+msgstr "Friends"
+
+msgid "Welcome on Jappix, your own social cloud!"
+msgstr "Jappix'e hoşgeldin, sana ait sosyal bulut!"
+
+msgid ""
+"Before you start using it, you will have to change some settings, search for "
+"friends and complete your profile."
+msgstr ""
+"Before you start using it, you will have to change some settings, search for "
+"friends and complete your profile."
+
+msgid "Enable notification sounds"
+msgstr "Enable notification sounds"
+
+msgid "Share your position on the globe"
+msgstr "Share your position on the globe"
+
+msgid "Offline friends"
+msgstr "Offline friends"
+
+msgid "Don't hide offline friends"
+msgstr "Don't hide offline friends"
+
+msgid ""
+"Use this tool to find your friends on the server you are using right now, or "
+"add them later."
+msgstr ""
+"Use this tool to find your friends on the server you are using right now, or "
+"add them later."
+
+msgid "Good job! Now, you can share Jappix with your friends!"
+msgstr "Aferin! Şimdi arkadaşlarınla Jappix'i paylaşabilirsin!"
+
+msgid ""
+"When you will press the save button, the profile editor will be opened. "
+"Happy socializing!"
+msgstr ""
+"When you will press the save button, the profile editor will be opened. "
+"Happy socializing!"
+
+msgid "Share Jappix on %s"
+msgstr "Share Jappix on %s"
+
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr "Using Jappix, an open social platform. I am %s!"
+
+msgid "Unknown name"
+msgstr "Unknown name"
+
+msgid "Unknown country"
+msgstr "Unknown country"
+
+msgid "Click to enable"
+msgstr "Click to enable"
+
+msgid "Click to disable"
+msgstr "Click to disable"
+
+msgid "Installation"
+msgstr "Kurulum"
+
+msgid "Jappix installation"
+msgstr "Jappix kurulumu"
+
+msgid "Welcome to the Jappix installation!"
+msgstr "Jappix kurulumuna hoşgeldiniz!"
+
+msgid ""
+"This tool will help you installing Jappix, the first full-featured XMPP-"
+"based social platform, on your server with ease."
+msgstr ""
+
+msgid "Installation Steps:"
+msgstr "Kurulum Adımları:"
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Storage configuration"
+msgstr "Storage configuration"
+
+msgid "Administrator account"
+msgstr "Administrator account"
+
+msgid "Main configuration"
+msgstr "Main configuration"
+
+msgid "Hosts configuration"
+msgstr "Hosts configuration"
+
+msgid "Services installation"
+msgstr "Services installation"
+
+msgid ""
+"If the current language does not match yours (%1s), you can make Jappix "
+"speak %2s it will be saved."
+msgstr ""
+"If the current language does not match yours (%1s), you can make Jappix "
+"speak %2s it will be saved."
+
+msgid ""
+"If you want to get some help about the Jappix installation and "
+"configuration, you can use our whole documentation, available at:"
+msgstr ""
+"If you want to get some help about the Jappix installation and "
+"configuration, you can use our whole documentation, available at:"
+
+msgid "It's time to build your own social cloud: just go to the next step!"
+msgstr "Sosyal bulutunu oluşturma vakti: sadece sonraki adıma geç!"
+
+msgid ""
+"Jappix stores persistent data (such as shared files, chat logs, your own "
+"music and its configuration) into a single secured storage folder."
+msgstr ""
+"Jappix stores persistent data (such as shared files, chat logs, your own "
+"music and its configuration) into a single secured storage folder."
+
+msgid ""
+"Jappix must be able to write in this folder to create its sub-directories. "
+"If not, you must set the rights to %1s or change the folder owner to %2s "
+"(depending of your configuration)."
+msgstr ""
+"Jappix must be able to write in this folder to create its sub-directories. "
+"If not, you must set the rights to %1s or change the folder owner to %2s "
+"(depending of your configuration)."
+
+msgid "The folder is writable, you can continue!"
+msgstr "The folder is writable, you can continue!"
+
+msgid ""
+"Jappix offers you the possibility to manage your configuration, install new "
+"plugins or search for updates. That's why you must create an administrator "
+"account to access the manager."
+msgstr ""
+"Jappix offers you the possibility to manage your configuration, install new "
+"plugins or search for updates. That's why you must create an administrator "
+"account to access the manager."
+
+msgid ""
+"When Jappix will be installed, just click on the manager link on the home "
+"page to access it."
+msgstr ""
+"When Jappix will be installed, just click on the manager link on the home "
+"page to access it."
+
+msgid "Oops, you missed something or the two passwords do not match!"
+msgstr "Oops, you missed something or the two passwords do not match!"
+
+msgid ""
+"Jappix needs that you specify some values to work. Please correct the "
+"following inputs (or keep the default values, which are sufficient for most "
+"people)."
+msgstr ""
+"Jappix needs that you specify some values to work. Please correct the "
+"following inputs (or keep the default values, which are sufficient for most "
+"people)."
+
+msgid ""
+"Note that if you don't specify a value which is compulsory, it will be "
+"automatically completed with the default one."
+msgstr ""
+"Note that if you don't specify a value which is compulsory, it will be "
+"automatically completed with the default one."
+
+msgid ""
+"Need help? You'd better read our documentation page about how to fill this "
+"form!"
+msgstr ""
+"Need help? You'd better read our documentation page about how to fill this "
+"form!"
+
+msgid "User"
+msgstr "User"
+
+msgid "Service"
+msgstr "Service"
+
+msgid "Service name"
+msgstr "Service name"
+
+msgid "Service description"
+msgstr "Service description"
+
+msgid "Owner name"
+msgstr "Kullanıcı adı"
+
+msgid "Owner website"
+msgstr "Kullanıcı web sayfası"
+
+msgid "Connection"
+msgstr "Connection"
+
+msgid "Lock the host"
+msgstr "Lock the host"
+
+msgid "Anonymous mode"
+msgstr "Anonymous mode"
+
+msgid "HTTP authentication"
+msgstr "HTTP doğrulama"
+
+msgid "Registration allowed"
+msgstr "Registration allowed"
+
+msgid "Use the built-in BOSH proxy"
+msgstr ""
+
+msgid "Manager link"
+msgstr "Manager link"
+
+msgid "Groupchats to join"
+msgstr "Groupchats to join"
+
+msgid "Suggest groupchats"
+msgstr ""
+
+msgid "Encryption"
+msgstr "Encryption"
+
+msgid "HTTPS storage"
+msgstr "HTTPS storage"
+
+msgid "Force HTTPS"
+msgstr "Force HTTPS"
+
+msgid "Compression"
+msgstr "Compression"
+
+msgid ""
+"This page helps you specify the default hosts Jappix will connect to. You "
+"can leave it as it is and continue if you want to use the official service "
+"hosts."
+msgstr ""
+"This page helps you specify the default hosts Jappix will connect to. You "
+"can leave it as it is and continue if you want to use the official service "
+"hosts."
+
+msgid ""
+"Maybe you don't know what a BOSH server is? In fact, this is a relay between "
+"a Jappix client and a XMPP server, which is necessary because of technical "
+"limitations."
+msgstr ""
+"Maybe you don't know what a BOSH server is? In fact, this is a relay between "
+"a Jappix client and a XMPP server, which is necessary because of technical "
+"limitations."
+
+msgid "Main host"
+msgstr "Main host"
+
+msgid "Groupchat host"
+msgstr "Groupchat host"
+
+msgid "Pubsub host"
+msgstr "Pubsub host"
+
+msgid "Anonymous host"
+msgstr "Anonymous host"
+
+msgid "Directory host"
+msgstr "Directory host"
+
+msgid "BOSH host"
+msgstr "BOSH host"
+
+msgid ""
+"You can install some extra softwares on your server, to extend your Jappix "
+"features. Some others might be modified, because of security restrictions "
+"which are set by default."
+msgstr ""
+"You can install some extra softwares on your server, to extend your Jappix "
+"features. Some others might be modified, because of security restrictions "
+"which are set by default."
+
+msgid ""
+"To perform this, you must be able to access your server's shell and be "
+"logged in as root. Remember this is facultative, Jappix will work without "
+"these modules, but some of its features will be unavailable."
+msgstr ""
+"To perform this, you must be able to access your server's shell and be "
+"logged in as root. Remember this is facultative, Jappix will work without "
+"these modules, but some of its features will be unavailable."
+
+msgid ""
+"After you finished the setup, Jappix will generate the cache files. It might "
+"be slow, just wait until the application is displayed and do not press any "
+"button."
+msgstr ""
+"After you finished the setup, Jappix will generate the cache files. It might "
+"be slow, just wait until the application is displayed and do not press any "
+"button."
+
+msgid "Thanks for using Jappix!"
+msgstr "Thanks for using Jappix!"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Finish"
+msgstr "Finish"
+
+msgid "Check again"
+msgstr "Check again"
+
+msgid ""
+"The folder is not writable, set the right permissions to the %s directory."
+msgstr ""
+"The folder is not writable, set the right permissions to the %s directory."
+
+msgid "%s is installed on your system."
+msgstr "%s is installed on your system."
+
+msgid "%1s is not installed on your system, you should install %2s."
+msgstr "%1s is not installed on your system, you should install %2s."
+
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr "PHP maximum upload size is sufficient (%s)."
+
+msgid ""
+"PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
+"in %3s."
+msgstr ""
+"PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
+"in %3s."
+
+msgid "Jappix manager"
+msgstr "Jappix manager"
+
+msgid "Manager access"
+msgstr "Manager access"
+
+msgid "Statistics"
+msgstr "Statistics"
+
+msgid "Hosts"
+msgstr "Hosts"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Repeat"
+msgstr "Repeat"
+
+msgid "All"
+msgstr "All"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertical"
+msgstr "Vertical"
+
+msgid "Center"
+msgstr "Center"
+
+msgid "Left"
+msgstr "Left"
+
+msgid "Right"
+msgstr "Right"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "Bottom"
+msgstr "Bottom"
+
+msgid "Adapt"
+msgstr "Adapt"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid ""
+"This is a restricted area: only the authorized users can manage this Jappix "
+"node."
+msgstr ""
+"This is a restricted area: only the authorized users can manage this Jappix "
+"node."
+
+msgid "Please use the form below to login to the administration panel."
+msgstr "Please use the form below to login to the administration panel."
+
+msgid ""
+"To improve security, sessions are limited in time and when your browser will "
+"be closed, you will be logged out."
+msgstr ""
+"To improve security, sessions are limited in time and when your browser will "
+"be closed, you will be logged out."
+
+msgid "Credentials"
+msgstr "Credentials"
+
+msgid "You have been logged out. Goodbye!"
+msgstr "You have been logged out. Goodbye!"
+
+msgid ""
+"Oops, you could not be recognized as a valid administrator. Check your "
+"credentials!"
+msgstr ""
+"Oops, you could not be recognized as a valid administrator. Check your "
+"credentials!"
+
+msgid ""
+"Basic statistics are processed by Jappix about some important things, you "
+"can find them below."
+msgstr ""
+"Basic statistics are processed by Jappix about some important things, you "
+"can find them below."
+
+msgid "Change your Jappix node configuration with this tool."
+msgstr "Change your Jappix node configuration with this tool."
+
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
+msgstr ""
+
+msgid ""
+"All this Jappix node stored files can be managed with this tool: please "
+"select a sub-folder and start editing its content!"
+msgstr ""
+"All this Jappix node stored files can be managed with this tool: please "
+"select a sub-folder and start editing its content!"
+
+msgid "Jappix is fully customisable: you can change its design right here."
+msgstr "Jappix is fully customisable: you can change its design right here."
+
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
+msgstr "This is not a valid image, please use PNG, GIF or JPG!"
+
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "This is not a valid image, please use the PNG format!"
+
+msgid "The image could not be received, would you mind retry?"
+msgstr "The image could not be received, would you mind retry?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Your service logo has been successfully changed!"
+
+msgid "Your image was added to the list!"
+msgstr "Your image was added to the list!"
+
+msgid "Changes saved!"
+msgstr "Changes saved!"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid ""
+"You can set your own service logo to replace the default one. Take care of "
+"the size and the main color of each logo!"
+msgstr ""
+"You can set your own service logo to replace the default one. Take care of "
+"the size and the main color of each logo!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Upload each logo with the recommended maximum pixel size."
+
+msgid ""
+"Your logo format must be PNG. Leave a field empty and the logo will not be "
+"changed."
+msgstr ""
+"Your logo format must be PNG. Leave a field empty and the logo will not be "
+"changed."
+
+msgid "Remove this logo"
+msgstr "Remove this logo"
+
+msgid "View this logo"
+msgstr "View this logo"
+
+msgid ""
+"You can define more than one administrator for this Jappix node. You can "
+"also change a password with this tool."
+msgstr ""
+"You can define more than one administrator for this Jappix node. You can "
+"also change a password with this tool."
+
+msgid ""
+"Update your Jappix node with this tool, or check if a new one is available. "
+"Informations about the latest version are also displayed (in english)."
+msgstr ""
+"Update your Jappix node with this tool, or check if a new one is available. "
+"Informations about the latest version are also displayed (in english)."
+
+msgid "Access statistics"
+msgstr "Access statistics"
+
+msgid "Share statistics"
+msgstr "Share statistics"
+
+msgid "Other statistics"
+msgstr "Other statistics"
+
+msgid "January"
+msgstr "January"
+
+msgid "February"
+msgstr "February"
+
+msgid "March"
+msgstr "March"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "May"
+
+msgid "June"
+msgstr "June"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "October"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "Monday"
+msgstr "Monday"
+
+msgid "Tuesday"
+msgstr "Tuesday"
+
+msgid "Wednesday"
+msgstr "Wednesday"
+
+msgid "Thursday"
+msgstr "Thursday"
+
+msgid "Friday"
+msgstr "Friday"
+
+msgid "Saturday"
+msgstr "Saturday"
+
+msgid "Sunday"
+msgstr "Sunday"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Cache"
+msgstr "Cache"
+
+msgid "Logs"
+msgstr "Logs"
+
+msgid "Music"
+msgstr "Music"
+
+msgid "Backgrounds"
+msgstr "Backgrounds"
+
+msgid "Share"
+msgstr "Share"
+
+msgid "Background"
+msgstr "Background"
+
+msgid "Notice"
+msgstr "Notice"
+
+msgid "Your design preferences have been saved!"
+msgstr "Your design preferences have been saved!"
+
+msgid "Please check your inputs: something is missing!"
+msgstr "Please check your inputs: something is missing!"
+
+msgid ""
+"Change your Jappix node background with this tool. You can either set a "
+"custom color or an uploaded image. Let your creativity flow!"
+msgstr ""
+"Change your Jappix node background with this tool. You can either set a "
+"custom color or an uploaded image. Let your creativity flow!"
+
+msgid "Use default background"
+msgstr "Use default background"
+
+msgid "Use your own image"
+msgstr "Use your own image"
+
+msgid "Select a background to use and change the display options."
+msgstr "Select a background to use and change the display options."
+
+msgid "Use your own color"
+msgstr "Use your own color"
+
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr "Type the hexadecimal color value you want to use as a background."
+
+msgid "Manage backgrounds"
+msgstr "Manage backgrounds"
+
+msgid ""
+"You can add a new background to the list with this tool. Please send a valid "
+"image."
+msgstr ""
+"You can add a new background to the list with this tool. Please send a valid "
+"image."
+
+msgid "If you want to remove some backgrounds, use the browser below."
+msgstr "If you want to remove some backgrounds, use the browser below."
+
+msgid ""
+"Define a homepage notice for all your users, such as a warn, an important "
+"message or an advert with this tool."
+msgstr ""
+"Define a homepage notice for all your users, such as a warn, an important "
+"message or an advert with this tool."
+
+msgid "Simple notice"
+msgstr "Basit not"
+
+msgid ""
+"This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr "Kod görüntülenemez,Sadece basit bir metin görüntülenebilir."
+
+msgid "Advanced notice"
+msgstr "Gelişmiş not"
+
+msgid ""
+"You can customize your notice with embedded HTML, CSS and JavaScript, but "
+"you need to code the style."
+msgstr ""
+"Bildirimlerinizi Gömülü HTML,CSS ve Javascript  aracılığıyla "
+"kişiselleştirebilirsiniz ancak stili kodlamak zorundasınız."
+
+msgid "Available updates"
+msgstr "Uygun güncellemeler"
+
+msgid "What's new?"
+msgstr "Neler yeni?"
+
+msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr "Depolamanız yazılabilir değil, lütfen gerekli izinleri verin!"
+
+msgid ""
+"%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr ""
+"%1s proxy problemleri oluşturabilir, lütfen %2s değerini %3s değeriyle "
+"değiştirin!"
+
+msgid ""
+"You are using a development version of Jappix. Update it through our "
+"repository by executing: %s."
+msgstr ""
+"Jappix'in geliştirme versiyonunu kullanıyorsunuz. Depolama yerimizden şunu "
+"çalıştırarak güncelleme yapın: %s."
+
+msgid ""
+"A new Jappix version is available! Check what is new and launch the update!"
+msgstr ""
+"Yeni bir Jappix versiyonu mevcut! Nelerin yeni olduğuna bakın ve güncelleyin!"
+
+msgid "Your version is out to date. Update it now to %s by clicking here!"
+msgstr "Sürümünüz güncel değil. Buraya tıklayarak şuna güncelleyin: %s"
+
+msgid ""
+"Your version seems to be up to date, but you can check updates manually by "
+"clicking here."
+msgstr ""
+"Sürümünüz güncel gözüküyor; ama buraya tıklayarak da güncellemeleri manuel "
+"olarak kontrol edebilirsiniz."
+
+msgid "Check for updates"
+msgstr "Güncellemeler için kontrol et"
+
+msgid "Update in progress"
+msgstr "Güncelleme işlemi sürüyor"
+
+msgid ""
+"Jappix has been updated: you are now running the latest version. Have fun!"
+msgstr ""
+"Jappix has been updated: you are now running the latest version. Have fun!"
+
+msgid "The update has failed! Please try again later."
+msgstr "The update has failed! Please try again later."
+
+msgid "Downloading package..."
+msgstr "Downloading package..."
+
+msgid "Removing current Jappix system files..."
+msgstr "Removing current Jappix system files..."
+
+msgid "Extracting package..."
+msgstr "Extracting package..."
+
+msgid "Regenerating storage folder tree..."
+msgstr "Regenerating storage folder tree..."
+
+msgid "Jappix is now up to date!"
+msgstr "Jappix is now up to date!"
+
+msgid "Aborted: socket error!"
+msgstr "Aborted: socket error!"
+
+msgid "Aborted: buffer error!"
+msgstr "Aborted: buffer error!"
+
+msgid "Aborted: everything is not writable!"
+msgstr "Aborted: everything is not writable!"
+
+msgid "Aborted: could not extract the package!"
+msgstr "Aborted: could not extract the package!"
+
+msgid "Visits"
+msgstr "Visits"
+
+msgid "Daily"
+msgstr "Daily"
+
+msgid "Weekly"
+msgstr "Weekly"
+
+msgid "Monthly"
+msgstr "Monthly"
+
+msgid "Yearly"
+msgstr "Yearly"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Clean everything"
+msgstr "Clean everything"
+
+msgid "Purge cache"
+msgstr "Purge cache"
+
+msgid "Purge logs"
+msgstr "Purge logs"
+
+msgid "Purge sent files"
+msgstr "Purge sent files"
+
+msgid "Purge updates"
+msgstr "Purge updates"
+
+msgid "The storage folder you wanted to clean is now empty!"
+msgstr "The storage folder you wanted to clean is now empty!"
+
+msgid ""
+"Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+msgstr ""
+"Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+
+msgid ""
+"Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
+"Jappix!"
+msgstr ""
+"Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
+"Jappix!"
+
+msgid "The file you want to upload must be smaller than %s."
+msgstr "The file you want to upload must be smaller than %s."
+
+msgid ""
+"You can check what your users store on your server and remove undesired "
+"content with this tool."
+msgstr ""
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Artist"
+msgstr "Artist"
+
+msgid "Album"
+msgstr "Album"
+
+msgid "File"
+msgstr "File"
+
+msgid "Upload"
+msgstr "Yükle"
+
+msgid "The folder is empty."
+msgstr "Klasör boş."
+
+msgid "The music could not be received, please retry!"
+msgstr "The music could not be received, please retry!"
+
+msgid ""
+"This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+msgstr ""
+"This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+
+msgid "Your music has been added!"
+msgstr "Müziğiniz eklendi!"
+
+msgid "The selected elements have been removed."
+msgstr "Seçili ögeler kaldırılmış."
+
+msgid "You must select elements to remove!"
+msgstr "Kaldırmak için bir öge seçmelisiniz!"
+
+msgid ""
+"Add a new user with this tool, or change a password (type an existing "
+"username). Please submit a strong password!"
+msgstr ""
+"Bu araçla yeni bir kullanıcı ekleyin yada bir parola değiştirin(geçerli bir "
+"kullanıcı adı girin) Lütfen zor bir parola seçin!"
+
+msgid "Manage"
+msgstr "Düzenle"
+
+msgid "List"
+msgstr "Liste"
+
+msgid ""
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
+msgstr ""
+
+msgid "The user has been added!"
+msgstr "Kullanıcı eklenmiş!"
+
+msgid "The chosen users have been removed."
+msgstr "Seçili kullanıcı kaldırılmış."
+
+msgid "You must select one or more users to be removed!"
+msgstr "Kaldırmak için bir veya daha fazla kullanıcı seçmelisiniz!"
+
+msgid "Yesterday"
+msgstr "Dün"
+
+msgid "%s days ago"
+msgstr "%s gün önce"
+
+msgid "User currently active"
+msgstr "Kullanıcı aktif"
+
+msgid "Last seen: %s"
+msgstr "En son görüldüğü tarih: %s"
+
+msgid "Inactive since: %s"
+msgstr "Şu zamandan beri pasif: %s"
+
+msgid "Your friend seems not to have received your message(s)!"
+msgstr "Arkadaşınız mesaj(lar)ı almamış görünüyor!"
+
+msgid "Static content server"
+msgstr "Statik içerik sunucusu"
+
+msgid "This is the static content server for %1s, “%2s”."
+msgstr "Bu şunun için statik içerik sunucusu %1s, “%2s”."
+
+msgid "User uploads server"
+msgstr "Kullanıcı yükleme sunucusu"
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr "Bu şunun için kullanıcı yükleme sunucusu %1s, “%2s”."
+
+msgid "Suggested friends"
+msgstr "Önerilen arkadaşlar"
+
+msgid "Check all"
+msgstr "Tümünü seç"
+
+msgid "Uncheck all"
+msgstr "Seçilileri kaldır"
+
+msgid "Choose"
+msgstr "Seç"
+
+msgid "List name"
+msgstr "Adı listele"
+
+msgid "Allow"
+msgstr "İzin ver"
+
+msgid "Deny"
+msgstr "Engelle"
+
+msgid "Group"
+msgstr "Grup"
+
+msgid "Subscription"
+msgstr "Başvuru"
+
+msgid "Both"
+msgstr "Hepsi"
+
+msgid "From"
+msgstr "Kimden"
+
+msgid "Everybody"
+msgstr "Herkes"
+
+msgid "Send messages"
+msgstr "Mesaj gönder"
+
+msgid "Send queries"
+msgstr "Sorgu gönder"
+
+msgid "See my status"
+msgstr "Durumuma bak"
+
+msgid "Send his/her status"
+msgstr "Onun durumunu gönder"
+
+msgid "Everything"
+msgstr "Her şey"
+
+msgid "Item"
+msgstr "Nesne"
+
+msgid "Order"
+msgstr "Sıra"
+
+msgid "Active for this session"
+msgstr "Bu oturum için aktif"
+
+msgid "Always active"
+msgstr "Her zaman aktif"
+
+msgid "User directory"
+msgstr "Kullanıcı klasörü"
+
+msgid "Search a friend"
+msgstr "Bir arkadaşı ara"
+
+msgid ""
+"The feature requested is not implemented by the recipient or server and "
+"therefore cannot be processed."
+msgstr ""
+
+msgid "Send him/her a message"
+msgstr "Ona bir mesaj gönder"
+
+msgid "Start a chat with him/her"
+msgstr "Onunla bir konuşma başlat"
+
+msgid "Available shortcuts:"
+msgstr "Uygun kısayollar:"
+
+msgid "%s removes the chat logs"
+msgstr "%s sohbet günlüklerini kaldırdı"
+
+msgid "%s joins a groupchat"
+msgstr "%s grup sohbete katıldı"
+
+msgid "%s closes the chat"
+msgstr "%s sohbeti kapattı"
+
+msgid "%s shows the user profile"
+msgstr "%s kullanıcı profilini gösterdi"
+
+msgid "%s sends a message to the room"
+msgstr "%s odaya mesaj gönderiyor"
+
+msgid "%s changes your nickname"
+msgstr "%s kullanıcı adınızı değiştiriyor"
+
+msgid "%s sends a message to someone in the room"
+msgstr "%s odadaki birine mesaj gönderiyor"
+
+msgid "%s changes the room topic"
+msgstr "%s oda konusunu değiştiriyor"
+
+msgid "%s kicks a user of the room"
+msgstr ""
+
+msgid "%s bans a user of the room"
+msgstr ""
+
+msgid "%s invites someone to join the room"
+msgstr "%s invites someone to join the room"
+
+msgid "Public profile"
+msgstr "Genel"
+
+msgid "Your profile anywhere on the Web."
+msgstr "Profiliniz Web üzerinde her yerde."
+
+msgid ""
+"%s is a Jappix.com service which makes your XMPP profile public. It is "
+"easier to share it. No XMPP account is required to view your social channel, "
+"your current position and your contact details."
+msgstr ""
+"%s is a Jappix.com service which makes your XMPP profile public. It is "
+"easier to share it. No XMPP account is required to view your social channel, "
+"your current position and your contact details."
+
+msgid ""
+"Furthermore, every picture you post in your social channel is added to a "
+"beautiful picture timeline. You can now view the pictures you shared year by "
+"year."
+msgstr ""
+"Furthermore, every picture you post in your social channel is added to a "
+"beautiful picture timeline. You can now view the pictures you shared year by "
+"year."
+
+msgid ""
+"You can also use your XMPP avatar as a single avatar for every website, blog "
+"and forum you use. When you change it on XMPP, the new avatar appears "
+"everywhere. What a genius improvement!"
+msgstr ""
+
+msgid "Yay, let's create your public profile!"
+msgstr ""
+
+msgid "Enable my public profile"
+msgstr "Genel profilimi aktif et"
+
+msgid "Jappix for your phone"
+msgstr "Mobil telefonunuz için Jappix"
+
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
+"Mesajlar,Kanallar,profiller ve daha fazlası için tek bir telefon uygulaması!"
+
+msgid ""
+"This notification is only informative, maybe the data it links to have been "
+"removed."
+msgstr ""
+
+msgid "You haven't provided any file to download"
+msgstr "İndirilecek herhangi bir dosya belirlemediniz"
+
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+"Eğer bir anahtar sağlamazsanız, bir dosya indirme işlemini "
+"gerçekleştiremezsiniz."
+
+msgid "Woah this file isn't found, please double check"
+msgstr "Dosya bulunamadı, lütfen tekrar kontrol edin"
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr "Girdiğiniz anahtar bu dosyayı indirebilme yetkisine sahip değil."
+
+msgid "Statistics are currently disabled in the settings."
+msgstr "İstatistikler, ayarlarda geçici olarak kullanılamamaktadır."
+
+msgid "New event!"
+msgstr "Yeni olay!"
+
+msgid "%s is typing..."
+msgstr ""
+
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
+
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
+
+msgid "There was an error registering your account. Please retry."
+msgstr ""
+
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+msgid "Enter password"
+msgstr "Parola girin"
+
+msgid "Once again..."
+msgstr "Bir kez daha..."
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Security code"
+msgstr "Güvenlik kodu"
+
+msgid "Advertising space available!"
+msgstr ""
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr "Piwik URL"
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+msgid "Content ads key"
+msgstr ""
