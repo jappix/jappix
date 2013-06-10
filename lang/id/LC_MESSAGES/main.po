@@ -1,16 +1,25 @@
-# Indonesia translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
+# Muhammad Panji <sumodirjo@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:16+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/jappix/"
+"language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -24,45 +33,43 @@ msgstr ""
 "membuka Jappix! Harap perbaiki hal ini."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Kanal sosial, obrolan dan lain lain"
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Buat profil publik anda."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Sebuah obrolan mini untuk situs web anda"
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Dapatkan Jappix, dapatkan dukungan."
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Statistik seputar jappix."
 
 msgid "Legal disclaimer for Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Unduh Jappix secara gratis."
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "Kontribusi ke kode Jappix."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix untuk perusahaan anda."
 
 msgid "Find a public Jappix node."
-msgstr ""
+msgstr "Cari sebuah node Jappix publik"
 
-#, fuzzy
 msgid "Credits"
-msgstr "Surat kepercayaan"
+msgstr "Penghargaan"
 
-#, fuzzy
 msgid "Association"
-msgstr "Otomatisasi"
+msgstr "Asosiasi"
 
 msgid "Web agency"
-msgstr ""
+msgstr "Agensi web"
 
 msgid "Legal"
 msgstr ""
@@ -73,12 +80,11 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Daftar pemilik"
+msgstr "Pemilik"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Pemilik node"
 
 msgid "By using our service, you accept %s."
 msgstr ""
@@ -239,9 +245,8 @@ msgstr "Tidak tersedia"
 msgid "Busy"
 msgstr "Sibuk"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Teman offline"
+msgstr "luring"
 
 msgid "Mood"
 msgstr "Suasana hati"
@@ -336,9 +341,8 @@ msgstr "Gambar profil"
 msgid "Others"
 msgstr "Lainnya"
 
-#, fuzzy
 msgid "Other"
-msgstr "Lainnya"
+msgstr ""
 
 msgid "Personal"
 msgstr "Pribadi"
@@ -402,13 +406,10 @@ msgstr "Biografi"
 msgid "Important notice"
 msgstr "Pemberitahuan penting"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Hati-hati dengan informasi yang anda tulis ke profil anda, karena bisa "
-"diakses oleh setiap orang (bahkan seseorang yang anda tidak inginkan)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -483,9 +484,8 @@ msgstr "Tua"
 msgid "New (2 times)"
 msgstr "Baru (2 kali)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Sarankan teman"
+msgstr ""
 
 msgid "Continue"
 msgstr "Lanjutkan"
@@ -1375,13 +1375,11 @@ msgstr "Nama layanan"
 msgid "Service description"
 msgstr "Layanan deskripsi"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Nama tidak diketahui"
+msgstr "Nama pemilik"
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Daftar pemilik"
+msgstr "Situs web pemilik"
 
 msgid "Connection"
 msgstr "Koneksi"
@@ -1392,9 +1390,8 @@ msgstr "Kunci host"
 msgid "Anonymous mode"
 msgstr "Modus anonim"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Otentikasi"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Pendaftaran diperbolehkan"
@@ -1408,9 +1405,8 @@ msgstr "Link manager"
 msgid "Groupchats to join"
 msgstr "Groupchats untuk bergabung"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Groupchats anda"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Enkripsi"
@@ -1614,9 +1610,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Ubah Jappix konfigurasi node dengan alat ini."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Mengubah host XMPP bahwa node ini Jappix melayani dengan alat ini."
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2042,13 +2037,10 @@ msgstr "Mengelola"
 msgid "List"
 msgstr "Daftar"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Hapus pengguna dengan alat ini. Perhatikan bahwa anda tidak dapat menghapus "
-"pengguna jika ia adalah satu-satunya yang tersisa."
 
 msgid "The user has been added!"
 msgstr "Pengguna telah ditambahkan!"
@@ -2198,22 +2190,20 @@ msgstr "%s mengirim pesan kepada seseorang di dalam room"
 msgid "%s changes the room topic"
 msgstr "%s merubah topik di room"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s tendang pengguna room"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s melarang pengguna ke room"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s mengajak seseorang untuk bergabung dalam room"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Profil publik"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Profil anda dimanapun di web"
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
@@ -2237,7 +2227,7 @@ msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Aktifkan profil publik saya"
 
 msgid "Jappix for your phone"
 msgstr ""
@@ -2281,13 +2271,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Ubah nama"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Ubah password"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2298,9 +2286,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Layanan tidak tersedia"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2326,6 +2313,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Konten"
+msgstr ""

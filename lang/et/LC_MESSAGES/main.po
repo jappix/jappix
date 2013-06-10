@@ -1,16 +1,25 @@
-# Estonian translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
+# Rivo Zängov <eraser@eraser.ee>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:14+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Estonian (http://www.transifex.com/projects/p/jappix/language/"
+"et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -24,67 +33,64 @@ msgstr ""
 "Jappixit käivitada! Palun parandage see."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Sotsiaalne kanal, vestlus ja veel muudki"
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Loo oma avalik profiil."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Mini vestlusaken sinu veebisaidile."
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Hangi Jappix, hangi tuge."
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Jappixiga seotud statistika"
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Jappixi juriidiline info"
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Lae Jappix alla tasuta."
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "Panusta Jappixi koodi."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix sinu firma jaoks."
 
 msgid "Find a public Jappix node."
-msgstr ""
+msgstr "Leia avalik Jappixi sõlm."
 
-#, fuzzy
 msgid "Credits"
-msgstr "Isikutunnistus"
+msgstr "Tiitelinfo"
 
-#, fuzzy
 msgid "Association"
-msgstr "Automaatika"
+msgstr "Assotsatsioon"
 
 msgid "Web agency"
-msgstr ""
+msgstr "Veebiagentuur"
 
 msgid "Legal"
-msgstr ""
+msgstr "Juriidiline"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Juriidiline teave"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "Kasutustingimused ja juriidiline info"
 
-#, fuzzy
 msgid "Owner"
-msgstr "Omanike nimekiri"
+msgstr "Omanik"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Sõlme omanik"
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Meie teenuse kasutamiseks pead sa nõustuma %s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "meie kasutustingimustega"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -239,9 +245,8 @@ msgstr "Mitte saadaval"
 msgid "Busy"
 msgstr "Hõivatud"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Ühenduseta sõbrad"
+msgstr "Pole võrgus"
 
 msgid "Mood"
 msgstr "Meeleolu"
@@ -336,9 +341,8 @@ msgstr "Profiili pilt"
 msgid "Others"
 msgstr "Muu"
 
-#, fuzzy
 msgid "Other"
-msgstr "Muu"
+msgstr "Muud"
 
 msgid "Personal"
 msgstr "Personaalne"
@@ -400,14 +404,12 @@ msgstr "Elulugu"
 msgid "Important notice"
 msgstr "Oluline teave"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Olge ettevaatlik millist infot Te oma profiili alla lisate, sest seda "
-"võidakse kergesti näha teiste kasutajate poolt (isegi nende poolt keda Te ei "
-"soovi)."
+"Ole ettevaatlik infoga, mida sa salvestad oma profiilis, kuna see on nähtav "
+"kõigile (ka neile, kellele sa ehk ei sooviks seda näidata)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -481,9 +483,8 @@ msgstr "Vana"
 msgid "New (2 times)"
 msgstr "Uus"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Soovitatud sõbrad"
+msgstr "Soovitatud jututoad"
 
 msgid "Continue"
 msgstr "Jätka"
@@ -844,6 +845,8 @@ msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
+"Et hoida oma kontot turvalisena, hoia sisselogimisel või registreerumisel "
+"parool salajas."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
@@ -1362,13 +1365,11 @@ msgstr "Teenuse nimi"
 msgid "Service description"
 msgstr "Teenuse kirjeldus"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Tundmatu nimi"
+msgstr "Omaniku nimi"
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Omanike nimekiri"
+msgstr "Omaniku veebisait"
 
 msgid "Connection"
 msgstr "Ühendus"
@@ -1379,15 +1380,14 @@ msgstr "Lukusta host"
 msgid "Anonymous mode"
 msgstr "Anonüümne režiim"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Autentimised"
+msgstr "HTTP autentimine"
 
 msgid "Registration allowed"
 msgstr "Registreerimine lubatud"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Kasuta sisseehitatud BOSH proksit"
 
 msgid "Manager link"
 msgstr "Halduri link"
@@ -1395,9 +1395,8 @@ msgstr "Halduri link"
 msgid "Groupchats to join"
 msgstr "Grupivestlused millega liituda"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Minu grupivestlused"
+msgstr "Soovitatud grupivestlused"
 
 msgid "Encryption"
 msgstr "Krüpteering"
@@ -1596,9 +1595,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Muutke oma Jappixi konfiguratsiooni selle tööriista abil."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Muutke XMPP hosti, mida Jappix pakub, selle tööriista abil."
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2010,13 +2008,10 @@ msgstr "Halda"
 msgid "List"
 msgstr "Nimekiri"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Selle tööriistaga saate eemaldada kasutajaid. Viimast kasutajat eemaldada ei "
-"saa, vähemalt üks peab alati alles jääma."
 
 msgid "The user has been added!"
 msgstr "Kasutaja on lisatud!"
@@ -2166,34 +2161,37 @@ msgstr "%s saadab kellegile ruumis olevale sõnumi"
 msgid "%s changes the room topic"
 msgstr "%s muudab ruumi teema"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s lööb kasutaja ruumist välja"
+msgstr "%s lõi ruumi kasutaja välja"
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s paneb kasutajale ruumi keelu"
+msgstr "%s bännis ruumi kasutaja"
 
 msgid "%s invites someone to join the room"
 msgstr "%s kutsub kellegi ruumiga liituma"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Avalik profiil"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Sinu profiil ükskõik kus veebis."
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
 "easier to share it. No XMPP account is required to view your social channel, "
 "your current position and your contact details."
 msgstr ""
+"%s on Jappix.com teenus, mis teeb su XMPP profiili avalikuks. See teeb selle "
+"jagamise lihtsamaks. Sinu sotsiaalse kanali, sinu praeguse asukoha ja sinu "
+"kontaktinfo vaatamiseks pole XMPP konto vajalik."
 
 msgid ""
 "Furthermore, every picture you post in your social channel is added to a "
 "beautiful picture timeline. You can now view the pictures you shared year by "
 "year."
 msgstr ""
+"Veelgi enam, iga pilt sinu sotsiaalses kanalis lisatakse ilusale piltide "
+"ajateljele. Sa saad nüüd enda poolt jagatud pilte vaadata aasta kaupa."
 
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
@@ -2202,98 +2200,98 @@ msgid ""
 msgstr ""
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Jah, teeme mulle avaliku profiili!"
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Luba minu avalik profiil"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix sinu telefoni jaoks"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr ""
+"Lihtne telefonirakendus sõnumite, kanalite, profiilide ja palju muu jaoks!"
 
 msgid ""
 "This notification is only informative, maybe the data it links to have been "
 "removed."
 msgstr ""
+"See teavitus on ainult informatiivne, võimalik, et andmed, millele see "
+"viitab on juba eemaldatud."
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Sa pole sisestanud ühtegi faili, mida alla laadida"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Sa ei saa faili alla laadida, kui sa ei sisesta võtit"
 
 msgid "Woah this file isn't found, please double check"
-msgstr ""
+msgstr "Seda faili ei leitud, palun kontrolli uuesti"
 
 msgid "The key you provided does not have the permission to download this file"
-msgstr ""
+msgstr "Sinu poolt antud võtmel pole luba selle faili allalaadimiseks"
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "Statistika on praegu seadetest välja lülitatud."
 
 msgid "New event!"
-msgstr ""
+msgstr "Uus sündmus!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s kirjutab..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
-msgstr ""
+msgstr "Sisestatud turvakood on vale. Palun proovi mõnda teist."
 
 msgid "The username you picked is not available. Please try another one."
 msgstr ""
+"Sinu poolt valitud kasutajanimi pole saadaval. Palun proovi mõnda teist."
 
 msgid "There was an error registering your account. Please retry."
-msgstr ""
+msgstr "Sinu konto registreerimisel tekkis viga. Proovi uuesti."
 
-#, fuzzy
 msgid "Username"
-msgstr "Nimeta ümber"
+msgstr "Kasutajanimi"
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Muuda parool"
+msgstr "Sisesta parool"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Veel kord..."
 
 msgid "Code"
-msgstr ""
+msgstr "Kood"
 
 msgid "Security code"
-msgstr ""
+msgstr "Turvakood"
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Teenus mitte saadaval"
+msgstr "Saadaval on reklaamiruumi!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Reklaami siin"
 
 msgid "Analytics (%s)"
-msgstr ""
+msgstr "Analytics (%s)"
 
 msgid "Track visits"
-msgstr ""
+msgstr "Jälgi külastusi"
 
 msgid "Piwik URL"
-msgstr ""
+msgstr "Piwiki aadress"
 
 msgid "Piwik tracking ID"
-msgstr ""
+msgstr "Piwick jälgimise ID"
 
 msgid "Advertising (%s)"
-msgstr ""
+msgstr "Reklaam (%s)"
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Luba reklaamid"
 
 msgid "Standard ads key"
-msgstr ""
+msgstr "Stndardne reklaami võti"
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Sisu"
+msgstr "Sisu reklaami võti"

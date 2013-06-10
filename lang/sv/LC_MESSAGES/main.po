@@ -1,20 +1,28 @@
-# Swedish translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:21+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 18:59+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/jappix/language/"
+"sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
-msgstr "default:LTR"
+msgstr ""
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Rättigheter"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Automatik"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Ägarlista"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -109,10 +114,10 @@ msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "Du har blivit utloggad från ditt XMPP konto. Ha en bra dag!"
 
 msgid "The room you tried to join doesn't seem to exist."
-msgstr "Rummet du har gått med i verkar inte existera. Skapa det!"
+msgstr ""
 
 msgid "The groupchat has been removed."
-msgstr "Gruppchatten har blivit borttagen. Nu kan någon annan återskapa den."
+msgstr ""
 
 msgid "The user that you want to reach is not present in the room."
 msgstr "Användaren som du vill nå är inte närvarande i detta rum."
@@ -151,7 +156,7 @@ msgid "Remember me"
 msgstr "Kom ihåg mig"
 
 msgid "This tool has been disabled!"
-msgstr "Detta verktyg är inaktiverat, du kan inte använda det!"
+msgstr ""
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -237,9 +242,8 @@ msgstr "Ej tillgänglig"
 msgid "Busy"
 msgstr "Uppagen"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Ej inloggade vänner"
+msgstr ""
 
 msgid "Mood"
 msgstr "Humör"
@@ -334,9 +338,8 @@ msgstr "Profilbild"
 msgid "Others"
 msgstr "Andra"
 
-#, fuzzy
 msgid "Other"
-msgstr "Andra"
+msgstr ""
 
 msgid "Personal"
 msgstr "Personliga"
@@ -398,13 +401,10 @@ msgstr "Biografi"
 msgid "Important notice"
 msgstr "Viktigt meddelande"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Var försiktig med informationen du skriver in i din profil, det kan läsas av "
-"alla (till och med någon du inte vill ska se)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -478,9 +478,8 @@ msgstr "Gammal"
 msgid "New (2 times)"
 msgstr "Ny"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "lämnade rummet"
+msgstr ""
 
 msgid "Continue"
 msgstr "Fortsätt"
@@ -677,7 +676,7 @@ msgid "Directories"
 msgstr "Kataloger"
 
 msgid "Gateways"
-msgstr ""
+msgstr "Gateway"
 
 msgid "News"
 msgstr "Nyheter"
@@ -1321,13 +1320,11 @@ msgstr "Tjänstnamn"
 msgid "Service description"
 msgstr "Tjänstbeskrivning"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Okänt namn"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Ägarlista"
+msgstr ""
 
 msgid "Connection"
 msgstr "Anslutning"
@@ -1338,9 +1335,8 @@ msgstr "Lås värd"
 msgid "Anonymous mode"
 msgstr "Anonymt läge"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Autentiseringar"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Registrering tillåten"
@@ -1354,9 +1350,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Dina gruppchatter"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Kryptering"
@@ -2078,13 +2073,11 @@ msgstr "%s skickar ett meddelande till någon i rummet"
 msgid "%s changes the room topic"
 msgstr "%s ändrar rummets ämnestext"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s sparkar ut en användare från rummet"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s utesluter en användare från rummet"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s bjuder in någon att gå med i rummet"
@@ -2161,13 +2154,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Byt namn"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Ändra lösenord"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2178,9 +2169,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Tjänsten ej tillgänglig"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2206,6 +2196,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Innehåll"
+msgstr ""

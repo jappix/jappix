@@ -1,16 +1,25 @@
-# Polish translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:18+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/jappix/language/"
+"pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +62,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Uprawnienia"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Automatyzacja"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +80,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Lista właścicieli"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -239,9 +245,8 @@ msgstr "Niedostępny"
 msgid "Busy"
 msgstr "Zajęty"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Rozłączeni znajomi"
+msgstr ""
 
 msgid "Mood"
 msgstr "Nastrój"
@@ -336,9 +341,8 @@ msgstr "Awatar"
 msgid "Others"
 msgstr "Inne"
 
-#, fuzzy
 msgid "Other"
-msgstr "Inne"
+msgstr ""
 
 msgid "Personal"
 msgstr "Personalne"
@@ -400,13 +404,10 @@ msgstr "Biografia"
 msgid "Important notice"
 msgstr "Ważna uwaga"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Uważaj jakie informację wpisujesz w swoim profilu ponieważ każdy może je "
-"zobaczyć (nawet ktoś niepożądany)"
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -481,9 +482,8 @@ msgstr "Stary"
 msgid "New (2 times)"
 msgstr "Nowe (dwa razy)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "opuścił(a) czat"
+msgstr ""
 
 msgid "Continue"
 msgstr "Kontynuuj"
@@ -1357,13 +1357,11 @@ msgstr "Nazwa usługi"
 msgid "Service description"
 msgstr "Opis usługi"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Nazwa nieznana"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Lista właścicieli"
+msgstr ""
 
 msgid "Connection"
 msgstr "Połączenie"
@@ -1374,9 +1372,8 @@ msgstr "Zablokuj hosta"
 msgid "Anonymous mode"
 msgstr "Tryb anonimowy"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Autentykacja"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Rejestracja włączona"
@@ -1390,9 +1387,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Twoje rozmowy grupowe"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Szyfrowanie"
@@ -1594,9 +1590,8 @@ msgid "Change your Jappix node configuration with this tool."
 msgstr ""
 "Za pomocą tego narzędzia możesz zmienić ustawienia instalacji Jappix-a."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Zmień hosty XMPP, z którymi ma współpracować ta instalacja Jappix-a."
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -1999,13 +1994,10 @@ msgstr "Zarządzaj"
 msgid "List"
 msgstr "Lista"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Za pomocą tego narzędzia usuniesz użytkowników. Pamiętaj, że nie możesz "
-"usunąć użytkownika jeśli jest on jedynym pozostałym."
 
 msgid "The user has been added!"
 msgstr "Użytkownik został dodany!"
@@ -2234,13 +2226,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Zmień nazwę"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Zmień hasło"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2251,9 +2241,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Usługa niedostępna"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2279,6 +2268,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Treść"
+msgstr ""

@@ -1,16 +1,25 @@
-# Russian translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:19+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/jappix/language/"
+"ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -46,20 +55,17 @@ msgstr "Скачать Jappix бесплатно."
 msgid "Contribute to the Jappix code."
 msgstr "Оказать поддержку проекту Jappix."
 
-#, fuzzy
 msgid "Jappix for your company."
-msgstr "Jappix для вашего телефона"
+msgstr ""
 
 msgid "Find a public Jappix node."
 msgstr "Найти пубичный узел Jappix."
 
-#, fuzzy
 msgid "Credits"
-msgstr "Полномочия"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Автоматизация"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Список владельцев"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -236,9 +241,8 @@ msgstr "Недоступен"
 msgid "Busy"
 msgstr "Занят"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Друзья оффлайн"
+msgstr ""
 
 msgid "Mood"
 msgstr "Настроение"
@@ -333,9 +337,8 @@ msgstr "Аватар"
 msgid "Others"
 msgstr "Другие"
 
-#, fuzzy
 msgid "Other"
-msgstr "Другие"
+msgstr ""
 
 msgid "Personal"
 msgstr "Персональные данные"
@@ -397,13 +400,10 @@ msgstr "Биография"
 msgid "Important notice"
 msgstr "Важное сообщение"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Будьте осторожны с информацией которую вы пишете в вашем профиле, потому что "
-"это доступно каждому."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -475,9 +475,8 @@ msgstr "Старый"
 msgid "New (2 times)"
 msgstr "Новый (дважды)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Рекомендованые друзья"
+msgstr ""
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -1355,13 +1354,11 @@ msgstr "Имя сервиса"
 msgid "Service description"
 msgstr "Описание сервиса"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Неизвестное имя"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Список владельцев"
+msgstr ""
 
 msgid "Connection"
 msgstr "Сединение"
@@ -1372,9 +1369,8 @@ msgstr "Заблокировать хост"
 msgid "Anonymous mode"
 msgstr "Анонимны режим"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Аутентификация"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Регистрация дозволена"
@@ -1388,9 +1384,8 @@ msgstr "Менеджер ссылок"
 msgid "Groupchats to join"
 msgstr "Конференции для вступления"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Ваша группа"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Шифрование"
@@ -1594,10 +1589,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Измените конфигурацию узла Jappix, этим инструментом."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Измените XMPP хосты, обслуживаемые этим Jappix узлом, этим инструментом."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2013,13 +2006,10 @@ msgstr "Управление"
 msgid "List"
 msgstr "Список"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Вы можете удалять пользователей с помощью этого инструмента. Имейте в виду, "
-"что нельзя удалить последнего оставшегося пользователя."
 
 msgid "The user has been added!"
 msgstr "Пользователь добавлен!"
@@ -2169,13 +2159,11 @@ msgstr "%s отправляет сообщение кому-то из комна
 msgid "%s changes the room topic"
 msgstr "%s изменяет тему комнаты"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s выставляет пользователя из комнаты"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s блокирует пользователя в комнате"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s приглашает кого-то войти в комнату"
@@ -2204,19 +2192,14 @@ msgstr ""
 "добавляются в красивую галерею. Теперь вы можете просматривать все "
 "опубликованные вами картинки за все время."
 
-#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
-"Вы так-же можете использовать ваш текущий XMPP аватар на любом веб-сайте, "
-"блоге или форуме. Когда вы смените его на XMPP, новый аватар везде обновится "
-"автоматически. Какое гениальное улучшение, не так ли?!"
 
-#, fuzzy
 msgid "Yay, let's create your public profile!"
-msgstr "Да, давайте сделаем мой публичный профиль!"
+msgstr ""
 
 msgid "Enable my public profile"
 msgstr "Задействовать мой публичный профиль"
@@ -2266,13 +2249,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Переименовать"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Изменить пароль"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2283,9 +2264,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Сервис недоступен"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2311,6 +2291,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Содержимое"
+msgstr ""

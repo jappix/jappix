@@ -1,16 +1,26 @@
-# German translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
+# Christian Sturm <reezer@reezer.org>, 2012
+# palim <ueblesurmeli-transifex@yahoo.de>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:13+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 18:59+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: German (http://www.transifex.com/projects/p/jappix/language/"
+"de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -24,42 +34,40 @@ msgstr ""
 "von JavaScript."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Soziales Netzwerk, Chat und mehr."
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Erstelle dein öffentliches Profil."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Eine Mini-Chat für deine Website."
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Hol' dir Jappix, hol' dir Unterstützung."
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Statistiken rund um Jappix."
 
 msgid "Legal disclaimer for Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Jappix-Download kostenlos."
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "Leiste deinen Beitrag zum Jappix-Code."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix für ihr Unternehmen."
 
 msgid "Find a public Jappix node."
+msgstr "Finde einen Jappix-Knotenpunkt."
+
+msgid "Credits"
 msgstr ""
 
-#, fuzzy
-msgid "Credits"
-msgstr "Anmeldedaten"
-
-#, fuzzy
 msgid "Association"
-msgstr "Automatisierung"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -68,14 +76,13 @@ msgid "Legal"
 msgstr ""
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Haftungsausschluss"
 
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Besitzerliste"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -84,7 +91,7 @@ msgid "By using our service, you accept %s."
 msgstr ""
 
 msgid "our terms of use"
-msgstr ""
+msgstr "unsere Nutzungsbedingungen"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -242,9 +249,8 @@ msgstr "Nicht verfügbar"
 msgid "Busy"
 msgstr "Beschäftigt"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Freunde (nicht verfügbar)"
+msgstr "Offline"
 
 msgid "Mood"
 msgstr "Laune"
@@ -339,9 +345,8 @@ msgstr "Profilbild"
 msgid "Others"
 msgstr "Andere"
 
-#, fuzzy
 msgid "Other"
-msgstr "Andere"
+msgstr ""
 
 msgid "Personal"
 msgstr "Persönlich"
@@ -403,13 +408,10 @@ msgstr "Biografie"
 msgid "Important notice"
 msgstr "Wichtige Nachricht"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Sei vorsichtig mit Informationen, die du in dein Profil schreibst. Diese "
-"Infos können von allen gelesen werden."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -483,9 +485,8 @@ msgstr "Alt"
 msgid "New (2 times)"
 msgstr "Neu (zwei Mal)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Empfohlene Freunde"
+msgstr ""
 
 msgid "Continue"
 msgstr "Fortsetzen"
@@ -999,13 +1000,13 @@ msgid "commented an item you follow: “%s”."
 msgstr "hat ein Item, dem du folgst, kommentiert: »%s«."
 
 msgid "liked your post: “%s”."
-msgstr ""
+msgstr "mag deinen Post: “%s”."
 
 msgid "quoted you somewhere: “%s”."
 msgstr "hat dich zitiert: »%s«."
 
 msgid "published on your wall: “%s”."
-msgstr ""
+msgstr "hat auf deine Pinnwand gepostet: “%s”."
 
 msgid "tagged you in a photo (%s)."
 msgstr "hat dich in einem Foto markiert (%s)."
@@ -1372,13 +1373,11 @@ msgstr "Name des Dienstes"
 msgid "Service description"
 msgstr "Dienst-Beschreibung"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Unbekannter Name"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Besitzerliste"
+msgstr ""
 
 msgid "Connection"
 msgstr "Verbindung"
@@ -1389,9 +1388,8 @@ msgstr "Sperre den Host"
 msgid "Anonymous mode"
 msgstr "Anonymer Modus"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Genehmigung"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Registrieren erlaubt"
@@ -1405,9 +1403,8 @@ msgstr "Manager Link"
 msgid "Groupchats to join"
 msgstr "Gruppenchats zum Beitreten"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Deine Gruppengespräche"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Verschlüsselung"
@@ -1611,9 +1608,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Ändere die Jappix Node-Konfiguration mit diesem Tool."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Ändere den XMPP-Hosts den dieser Jappix-Node nutzt mit diesem Tool."
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2025,13 +2021,10 @@ msgstr "Verwalten"
 msgid "List"
 msgstr "Liste"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Entferne Benutzer mit diesem Tool. Beachte, dass du keinen Benutzer "
-"entfernen kannst, wenn er der einzig exisierende ist."
 
 msgid "The user has been added!"
 msgstr "Der Benutzer wurde hinzugefügt."
@@ -2182,34 +2175,39 @@ msgstr "%s sendet eine Nachricht zu jemandem im Raum"
 msgid "%s changes the room topic"
 msgstr "%s ändert das Thema des Raumes"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s schmeißt jemanden aus dem Raum"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s bannt jemanden aus dem Raum"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s lädt jemanden ein, den Raum beizutreten"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Öffentliches Profil."
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Dein Profil überall im Netz."
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
 "easier to share it. No XMPP account is required to view your social channel, "
 "your current position and your contact details."
 msgstr ""
+"%s ist ein Jappix.com-Service, der dein XMPP-Profil veröffentlicht. Damit "
+"ist es einfacher, Inhalte zu teilen. Es ist kein XMPP-Konto nötig, um deinen "
+"eigenen Kanal, deinen derzeitige Aufenthaltsort und deine Kontaktdetails "
+"einzusehen."
 
 msgid ""
 "Furthermore, every picture you post in your social channel is added to a "
 "beautiful picture timeline. You can now view the pictures you shared year by "
 "year."
 msgstr ""
+"Außerdem wird jedes Bild, dass du in deinem Kanal postest, deiner tollen "
+"Chronik hinzugefügt. Damit kannst du die Bilder chronologisch geordnet "
+"betrachten."
 
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
@@ -2221,30 +2219,34 @@ msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Öffentliches Profil freigeben"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix für dein Handy"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
-msgstr ""
+msgstr "Eine einzige Handy-App für Nachrichten, Kanäle, Profile und mehr!"
 
 msgid ""
 "This notification is only informative, maybe the data it links to have been "
 "removed."
 msgstr ""
+"Diese Benachrichtigung dient lediglich zu deiner Information. Möglicherweise "
+"sind die verlinkten Daten bereits nicht mehr verfügbar."
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Du hast keine Datei zum Download bereitgestellt"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Du kannst eine Datei nicht ohne Zugangsschlüssel herunterladen"
 
 msgid "Woah this file isn't found, please double check"
 msgstr ""
+"Die Datei konnte leider nicht gefunden werden. Bitte überprüfe deine Angabe."
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr ""
+"Dein Zugangsschlüssel ermöglicht dir den Download dieser Datei leider nicht"
 
 msgid "Statistics are currently disabled in the settings."
 msgstr ""
@@ -2265,13 +2267,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Umbenennen"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Passwort ändern"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2282,9 +2282,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Dienst nicht erreichbar"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2310,6 +2309,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Inhalt"
+msgstr ""

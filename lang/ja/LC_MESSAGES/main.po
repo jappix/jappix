@@ -1,16 +1,24 @@
-# Japanese translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:17+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 18:59+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/jappix/language/"
+"ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -47,20 +55,17 @@ msgstr "Jappixを無料でダウンロード"
 msgid "Contribute to the Jappix code."
 msgstr "Jappixのコードに貢献する"
 
-#, fuzzy
 msgid "Jappix for your company."
-msgstr "電話用Jappix"
+msgstr ""
 
 msgid "Find a public Jappix node."
 msgstr "公開Jappixノードを見つける"
 
-#, fuzzy
 msgid "Credits"
-msgstr "資格情報"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "自動化"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -74,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "主宰者一覧"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -238,9 +242,8 @@ msgstr "不在"
 msgid "Busy"
 msgstr "取り込み中"
 
-#, fuzzy
 msgid "Offline"
-msgstr "オフラインの友達"
+msgstr ""
 
 msgid "Mood"
 msgstr "気分"
@@ -335,9 +338,8 @@ msgstr "プロフィール画像"
 msgid "Others"
 msgstr "その他"
 
-#, fuzzy
 msgid "Other"
-msgstr "その他"
+msgstr ""
 
 msgid "Personal"
 msgstr "個人"
@@ -399,13 +401,10 @@ msgstr "自己紹介"
 msgid "Important notice"
 msgstr "重要なお知らせ"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"プロフィールには誰でも(あなたが望まない人も含む)アクセスできます。書き込む祭"
-"に注意してください。"
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -479,9 +478,8 @@ msgstr "旧"
 msgid "New (2 times)"
 msgstr "新 (2回)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "友達の候補"
+msgstr ""
 
 msgid "Continue"
 msgstr "次"
@@ -1356,13 +1354,11 @@ msgstr "サービス名"
 msgid "Service description"
 msgstr "サービスの説明"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "不明な名前"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "主宰者一覧"
+msgstr ""
 
 msgid "Connection"
 msgstr "コネクション"
@@ -1373,9 +1369,8 @@ msgstr "ホストのロック"
 msgid "Anonymous mode"
 msgstr "匿名モード"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "認証"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "登録を許可"
@@ -1389,9 +1384,8 @@ msgstr "マネージャーリンク"
 msgid "Groupchats to join"
 msgstr "参加するグループチャット"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "グループチャット"
+msgstr ""
 
 msgid "Encryption"
 msgstr "暗号化"
@@ -1587,9 +1581,8 @@ msgstr "重要な情報についてJappixが作成した基本統計です。下
 msgid "Change your Jappix node configuration with this tool."
 msgstr "このツールを使用してJappixノードの設定を変更することが出来ます。"
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Jappixノードが送信するXMPPホストを変更することができます。"
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2002,13 +1995,10 @@ msgstr "管理"
 msgid "List"
 msgstr "リスト"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"ユーザの削除ができます。ただし、登録されているユーザが1人の場合には削除できま"
-"せん。"
 
 msgid "The user has been added!"
 msgstr "ユーザを追加しました。"
@@ -2158,13 +2148,11 @@ msgstr "%s は談話室の誰かにメッセージを送ります"
 msgid "%s changes the room topic"
 msgstr "%s は部屋のトピックを変更します"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s はユーザーを談話室から蹴り出します"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s はユーザーを談話室から締め出します"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s は誰かを談話室に招待します"
@@ -2193,9 +2181,8 @@ msgid ""
 "everywhere. What a genius improvement!"
 msgstr ""
 
-#, fuzzy
 msgid "Yay, let's create your public profile!"
-msgstr "公開プロフィールを作成"
+msgstr ""
 
 msgid "Enable my public profile"
 msgstr ""
@@ -2242,13 +2229,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "名前変更"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "パスワードを変更"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2259,9 +2244,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "サービス不能です。"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2287,6 +2271,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "内容"
+msgstr ""

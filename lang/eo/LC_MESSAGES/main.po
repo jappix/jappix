@@ -1,16 +1,24 @@
-# Esperanto translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:13+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 18:59+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Esperanto (http://www.transifex.com/projects/p/jappix/"
+"language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Legitimaĵo"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Aŭtomatigo"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Posedanta listo"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -237,9 +242,8 @@ msgstr "Nedisponebla"
 msgid "Busy"
 msgstr "Okupata"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Eksterretaj amikoj"
+msgstr ""
 
 msgid "Mood"
 msgstr "Humoro"
@@ -334,9 +338,8 @@ msgstr "Profila bildo"
 msgid "Others"
 msgstr "Aliaj"
 
-#, fuzzy
 msgid "Other"
-msgstr "Aliaj"
+msgstr ""
 
 msgid "Personal"
 msgstr "Persona"
@@ -398,13 +401,10 @@ msgstr "Vivhistorio"
 msgid "Important notice"
 msgstr "Grava avizo"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Estu zorgema pri la informojn vi skribas en via profilo, ĉar ĝi povus esti "
-"alirita de ĉiuj (eĉ iu kiu vi ne deziras montri)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -478,9 +478,8 @@ msgstr "Malnova"
 msgid "New (2 times)"
 msgstr "Nova (2 fojoj)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Proponi amikojn"
+msgstr ""
 
 msgid "Continue"
 msgstr "Daŭri"
@@ -1364,13 +1363,11 @@ msgstr "Serva nomo"
 msgid "Service description"
 msgstr "Serva priskribo"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Nekonata nomo"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Posedanta listo"
+msgstr ""
 
 msgid "Connection"
 msgstr "Konekto"
@@ -1381,9 +1378,8 @@ msgstr "Ŝlozi la gastigon"
 msgid "Anonymous mode"
 msgstr "Sennoma modo"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Aŭtentokontroloj"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Registriĝo permesita"
@@ -1397,9 +1393,8 @@ msgstr "Administra ligilo"
 msgid "Groupchats to join"
 msgstr "Alireblaj retbabilejoj"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Viaj babilejoj"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Ĉifrado"
@@ -1604,11 +1599,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Ŝanĝu vian Jappix-an nodna konfiguracion kun ĉi-tiu ilo."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Ŝanĝu la XMPP-an gastigojn ke ĉi-tiu Jappix-a nodo povas servi kun ĉi-tiu "
-"ilo."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2025,13 +2017,10 @@ msgstr "Administri"
 msgid "List"
 msgstr "Listo"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Forigu uzantojn kun ĉi-tiu ilo. Notu ke vi ne povas forigi uzanton se li "
-"estas la ununura restante."
 
 msgid "The user has been added!"
 msgstr "La uzanto estis aldonita!"
@@ -2181,13 +2170,11 @@ msgstr "%s sendas mesaĝon al iu en la babilejo"
 msgid "%s changes the room topic"
 msgstr "%s ŝanĝas la babilejan subjekton"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s forpelas uzanton el la babilejo"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s ekskludas uzanton el la babilejo"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s invitas iun por aliri la babilejon"
@@ -2264,13 +2251,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Renomi"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Ŝanĝi pasvorton"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2281,9 +2266,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Maldisponebla servo"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2309,6 +2293,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Enhavo"
+msgstr ""

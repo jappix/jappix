@@ -1,16 +1,24 @@
-# Persian translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:15+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Persian (http://www.transifex.com/projects/p/jappix/language/"
+"fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "اختیارات"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "خودکاری"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "فهرست دارنده"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -236,9 +241,8 @@ msgstr "ناحاضر"
 msgid "Busy"
 msgstr "مشغول"
 
-#, fuzzy
 msgid "Offline"
-msgstr "دوستان آفلاین"
+msgstr ""
 
 msgid "Mood"
 msgstr "حالت"
@@ -333,9 +337,8 @@ msgstr "مشخصات شما"
 msgid "Others"
 msgstr "دیگران"
 
-#, fuzzy
 msgid "Other"
-msgstr "دیگران"
+msgstr ""
 
 msgid "Personal"
 msgstr "شخصی"
@@ -470,9 +473,8 @@ msgstr "قدیمی"
 msgid "New (2 times)"
 msgstr "جدید (۲ مرتبه)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "دوستان پیشنهادشده"
+msgstr ""
 
 msgid "Continue"
 msgstr "ادامه"
@@ -1309,13 +1311,11 @@ msgstr "نام خدمت"
 msgid "Service description"
 msgstr "توضیح خدمت"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "نام ناشناخته"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "فهرست دارنده"
+msgstr ""
 
 msgid "Connection"
 msgstr "اتصال"
@@ -1326,9 +1326,8 @@ msgstr "قفل‌کردن میزبان"
 msgid "Anonymous mode"
 msgstr "حالت ناشناس"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "تصدیقات"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "ثبت‌نام اجازه‌داده شده‌است"
@@ -1342,9 +1341,8 @@ msgstr "مدیر پیوند"
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "گروه‌های چت شما"
+msgstr ""
 
 msgid "Encryption"
 msgstr "رمزنگاری"
@@ -2130,13 +2128,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "تغییر نام"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "تغییر گذرواژه"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2147,9 +2143,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "خدمت ناموجود است"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2175,6 +2170,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "محتوا"
+msgstr ""

@@ -1,16 +1,24 @@
-# Occitan translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:18+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/"
+"jappix/language/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: oc\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Corvadas"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Automatizacion"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -239,9 +245,8 @@ msgstr "Pas disponible"
 msgid "Busy"
 msgstr "Ocupat"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Amics fòra linha"
+msgstr ""
 
 msgid "Mood"
 msgstr "Umor"
@@ -336,9 +341,8 @@ msgstr "Imatge de perfil"
 msgid "Others"
 msgstr "Autres"
 
-#, fuzzy
 msgid "Other"
-msgstr "Autres"
+msgstr ""
 
 msgid "Personal"
 msgstr "Personau"
@@ -401,13 +405,10 @@ msgstr "Biografia"
 msgid "Important notice"
 msgstr "Important"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Siatz prudents emb las informacions qu'escrivetz sus vòstre perfil. Son "
-"accesiblas a tot lo monde quitament a los que voletz pas."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -1321,13 +1322,11 @@ msgstr ""
 msgid "Service description"
 msgstr ""
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Renomenar "
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Sit web"
+msgstr ""
 
 msgid "Connection"
 msgstr ""
@@ -1338,9 +1337,8 @@ msgstr ""
 msgid "Anonymous mode"
 msgstr ""
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Autentificacion  ﻿ "
+msgstr ""
 
 msgid "Registration allowed"
 msgstr ""
@@ -1354,9 +1352,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Vòstres charradors"
+msgstr ""
 
 msgid "Encryption"
 msgstr ""
@@ -2142,13 +2139,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Renomenar "
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Chamnhar de senhau"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2186,6 +2181,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Contengut"
+msgstr ""

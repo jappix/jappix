@@ -1,16 +1,25 @@
-# Czech translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
+# jui <appukonrad@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:13+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/jappix/language/"
+"cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -24,67 +33,64 @@ msgstr ""
 "Prosím napravte to."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Sociální kanál, chat a další"
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Vytvořte si svůj veřejný profil."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Mini-chat pro vaše webové stránky."
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Získejte Jappix, získáte podporu."
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Statistika kolem Jappixu."
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Právní upozornění pro Jappix."
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Stáhnout Jappix zdarma."
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "Přispívat do kódu Jappixu."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix pro vaši společnost."
 
 msgid "Find a public Jappix node."
+msgstr "Najít veřejný Jappix uzel."
+
+msgid "Credits"
 msgstr ""
 
-#, fuzzy
-msgid "Credits"
-msgstr "Ověření"
-
-#, fuzzy
 msgid "Association"
-msgstr "Automaticky"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Právo"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Právní upozornění"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "Podmínky používání a právo"
 
-#, fuzzy
 msgid "Owner"
-msgstr "Seznam vlastníků"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Užíváním naší služby, souhlasíte s %s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "naše podmínky používání"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -240,9 +246,8 @@ msgstr "Nedostupný"
 msgid "Busy"
 msgstr "Nerušit"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Odpojení kamarádi"
+msgstr "Offline"
 
 msgid "Mood"
 msgstr "Nálada"
@@ -337,7 +342,6 @@ msgstr "Fotografie k profilu"
 msgid "Others"
 msgstr "Ostatní"
 
-#, fuzzy
 msgid "Other"
 msgstr "Ostatní"
 
@@ -401,13 +405,10 @@ msgstr "O mě"
 msgid "Important notice"
 msgstr "Důležité upozornění"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Buďte opatrní, informace, které vyplníte v profilu jsou přístupné každému (i "
-"tomu, komu nechcete)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -481,9 +482,8 @@ msgstr "Staré"
 msgid "New (2 times)"
 msgstr "Nové (2 krát)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Navrhovaní kamarádi"
+msgstr "Doporučené diskusní místnosti"
 
 msgid "Continue"
 msgstr "Pokračovat"
@@ -501,7 +501,7 @@ msgid "Unavailable"
 msgstr "Odpojen"
 
 msgid "is now"
-msgstr ""
+msgstr "nyní je"
 
 msgid "Please wait while your avatar is uploaded..."
 msgstr "Prosím čekejte, než se váš avatar nahraje ..."
@@ -1367,13 +1367,11 @@ msgstr "Název služby"
 msgid "Service description"
 msgstr "Popis služby"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Neznámé jméno"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Seznam vlastníků"
+msgstr ""
 
 msgid "Connection"
 msgstr "Připojení"
@@ -1384,9 +1382,8 @@ msgstr "Uzamknout hostitele"
 msgid "Anonymous mode"
 msgstr "Anonymní mód"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Ověřování"
+msgstr "HTTP autentizace"
 
 msgid "Registration allowed"
 msgstr "Registrace povolena"
@@ -1400,9 +1397,8 @@ msgstr "Odkaz správce"
 msgid "Groupchats to join"
 msgstr "Připojit skupinové rozhovory"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Vaše skupinové rozhovory"
+msgstr "Doporučené skupinové diskuze"
 
 msgid "Encryption"
 msgstr "Šifrování"
@@ -1602,11 +1598,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Změna konfiguraci vašeho Jabbix uzlu pomocí správce."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Změnit nastavení XMPP hostitelů, které tento Jappix uzel využívá, lze v "
-"tomto panelu."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2014,13 +2007,10 @@ msgstr "Spravovat"
 msgid "List"
 msgstr "Seznam"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"V tomto panelu lze odstranit uživatele. Mějte na paměti, že nelze odstranit "
-"uživatele, pokud je poslední."
 
 msgid "The user has been added!"
 msgstr "Uživatel byl přidán!"
@@ -2170,22 +2160,20 @@ msgstr "%s odešle zprávu  někomu v místnosti"
 msgid "%s changes the room topic"
 msgstr "%s změní téma místnosti"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s vykáže uživatele z místnosti"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s zakáže uživateli přístup do místnosti"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s zve někoho do místnosti"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Veřejný profil"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Váš profil kdekoliv na webu."
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
@@ -2209,13 +2197,13 @@ msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Povolit můj veřejný profil"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix pro váš telefon"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
-msgstr ""
+msgstr "Jedna telefonní aplikace pro zprávy, kanály, profily a mnoho dalšího!"
 
 msgid ""
 "This notification is only informative, maybe the data it links to have been "
@@ -2223,10 +2211,10 @@ msgid ""
 msgstr ""
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Nezadali jste žádný soubor ke stažení"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Nemůžete stahovat soubor, pokud nechcete poskytnout klíč"
 
 msgid "Woah this file isn't found, please double check"
 msgstr ""
@@ -2235,13 +2223,13 @@ msgid "The key you provided does not have the permission to download this file"
 msgstr ""
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "Statistiky jsou v současnosti zakázány v nastavení."
 
 msgid "New event!"
-msgstr ""
+msgstr "Nová událost!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s píše se..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
@@ -2253,13 +2241,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Přejmenovat"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Změnit heslo"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2270,9 +2256,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Služba je nedostupná"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2298,6 +2283,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Obsah"
+msgstr ""

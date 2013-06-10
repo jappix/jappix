@@ -1,16 +1,24 @@
-# Slovak translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:20+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/jappix/language/"
+"sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Overenie"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Automatizácia"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Zoznam vlastníkov"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -239,9 +244,8 @@ msgstr "Neprihlásený"
 msgid "Busy"
 msgstr "Zaneprázdnený"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Odpojení priatelia"
+msgstr ""
 
 msgid "Mood"
 msgstr "Nálada"
@@ -336,9 +340,8 @@ msgstr "Profilová fotka"
 msgid "Others"
 msgstr "Iné"
 
-#, fuzzy
 msgid "Other"
-msgstr "Iné"
+msgstr ""
 
 msgid "Personal"
 msgstr "Osobné"
@@ -400,13 +403,10 @@ msgstr "Biografia"
 msgid "Important notice"
 msgstr "Dôležitý oznam"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Buďte opatrní, informácie ktoré vyplníte v profile sú prístupné každému (aj "
-"niekomu, koho si neželáte)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -480,9 +480,8 @@ msgstr "Staré"
 msgid "New (2 times)"
 msgstr "Nové (2 krát)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Navrhovaní priatelia"
+msgstr ""
 
 msgid "Continue"
 msgstr "Pokračuj"
@@ -1356,13 +1355,11 @@ msgstr "Meno služby"
 msgid "Service description"
 msgstr "Popis služby"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Neznáme meno"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Zoznam vlastníkov"
+msgstr ""
 
 msgid "Connection"
 msgstr "Pripojenie"
@@ -1373,9 +1370,8 @@ msgstr "Uzamknúť host"
 msgid "Anonymous mode"
 msgstr "Anonymný mód"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Autentifikácia"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Registrácia povolená"
@@ -1389,9 +1385,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Vaše skupinové rozhovory"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Šifrovanie"
@@ -1587,9 +1582,8 @@ msgstr "Štatistiky aplikácie Jappix"
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Zmena konfigurácie uzla Jappix"
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "Zmena nastavení XMPP hostiteľov pre tento Jappix uzol"
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -1992,12 +1986,10 @@ msgstr "Spravovať"
 msgid "List"
 msgstr "Zoznam"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Odstráň užívateľa, Pamätajte že nemôžete odstrániť užívateľa ak je posledný."
 
 msgid "The user has been added!"
 msgstr "Užívateľ bol pridaný"
@@ -2226,13 +2218,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Premenovať"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Zmeniť heslo"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2243,9 +2233,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Služba je nedostupná"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2271,6 +2260,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Obsah"
+msgstr ""

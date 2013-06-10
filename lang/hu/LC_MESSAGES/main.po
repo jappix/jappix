@@ -1,16 +1,24 @@
-# Hungarian translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:16+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/jappix/"
+"language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Azonosítók"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Automatikusan"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Tulajdonos lista"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -237,9 +242,8 @@ msgstr "Nem elérhető"
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Kijelentkezett barátok"
+msgstr ""
 
 msgid "Mood"
 msgstr "Hangulat"
@@ -334,9 +338,8 @@ msgstr "Profilkép"
 msgid "Others"
 msgstr "Mások /Egyebek"
 
-#, fuzzy
 msgid "Other"
-msgstr "Mások /Egyebek"
+msgstr ""
 
 msgid "Personal"
 msgstr "Személyes"
@@ -398,13 +401,10 @@ msgstr "Életrajz"
 msgid "Important notice"
 msgstr "Fontos értesítés"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Légy óvatos az információkkal amiket megadsz a profilodban, mert bárki "
-"hozzáférhet (olyan is akit lehet hogy nem akarsz)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -478,9 +478,8 @@ msgstr "Régi"
 msgid "New (2 times)"
 msgstr "Új (2-szer)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Javasolt barátok"
+msgstr ""
 
 msgid "Continue"
 msgstr "Folytatás"
@@ -1364,13 +1363,11 @@ msgstr "Szolgáltatás neve"
 msgid "Service description"
 msgstr "Szolgáltatás leírása"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Ismeretlen név"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Tulajdonos lista"
+msgstr ""
 
 msgid "Connection"
 msgstr "Kapcsolat"
@@ -1381,9 +1378,8 @@ msgstr "Gazda lezárása"
 msgid "Anonymous mode"
 msgstr "Névtelen mód"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Hitelesítések"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Regisztráció engedélyezve"
@@ -1397,9 +1393,8 @@ msgstr "Menedzser link"
 msgid "Groupchats to join"
 msgstr "Csoportos beszélgetéshez csatlakozás"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Csoportos beszélgetéseid"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Titkosítás"
@@ -1601,11 +1596,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Változtasd meg a Jappix csomóponti konfigurációit ezzel az eszközzel."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Változtasd meg az XMPP kiszolgálókat a Jappix csomópont szerveren ezzel az "
-"eszközzel."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2024,13 +2016,10 @@ msgstr "Intézés"
 msgid "List"
 msgstr "Lista"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Felhasználó eltávolítása ezzel az eszközzel. Akkor nem tudsz felhasználót "
-"eltávolítani, ha ő maradt az egyetlen."
 
 msgid "The user has been added!"
 msgstr "Felhasználó hozzáadva!"
@@ -2181,13 +2170,11 @@ msgstr "%s üzenetet küldött valakinek a szobában"
 msgid "%s changes the room topic"
 msgstr "%s megváltoztatta a szoba témáját"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s kidobta az egyik felhasználót a szobából"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s kitiltotta az egyik felhasználót a szobából"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s meghívott valakit a szobába"
@@ -2264,13 +2251,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Átnevezés"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Jelszó módosítása"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2281,9 +2266,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "A szolgáltatás nem elérhető"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2309,6 +2293,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Tartalom"
+msgstr ""

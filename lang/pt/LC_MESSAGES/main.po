@@ -1,14 +1,24 @@
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:18+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 18:59+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
-"Language: pt\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/jappix/"
+"language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -394,13 +404,10 @@ msgstr "Biografia"
 msgid "Important notice"
 msgstr "Aviso importante"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Tenha cuidado com as informações que coloca no seu perfil, porque pode ser "
-"visto por todos (mesmo por alguém que você não queira)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -1598,10 +1605,8 @@ msgstr ""
 msgid "Change your Jappix node configuration with this tool."
 msgstr "Alterar a configuração do nó Jappix com esta ferramenta."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Alterar os anfitriões XMPP que este nó Jappix servem com esta ferramenta."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2018,13 +2023,10 @@ msgstr "Gerir"
 msgid "List"
 msgstr "Lista"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"Remover utilizadores com esta ferramenta. Note que não pode remover um "
-"utilizador, se ele é o único remanescente."
 
 msgid "The user has been added!"
 msgstr "O utilizador foi adicionado!"
@@ -2174,13 +2176,11 @@ msgstr "%s envia uma mensagem para alguém na sala"
 msgid "%s changes the room topic"
 msgstr "%s altera o tópico da sala"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s chuta um utilizador da sala"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s proibe um utilizador da sala"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s convida alguém para entrar na sala"
@@ -2208,19 +2208,14 @@ msgstr ""
 "Além disso, cada foto que colocar no seu canal social é adicionada a um "
 "cronograma de imagens. Agora pode ver as imagens que partilhou ano a ano."
 
-#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
-"Você também pode utilizar o seu avatar XMPP como um avatar único para cada "
-"site, blog e fórum que utiliza. Quando muda-lo no XMPP, o novo avatar "
-"aparece em todos os lugares. Que melhoria de génio!"
 
-#, fuzzy
 msgid "Yay, let's create your public profile!"
-msgstr "Yay, vamos criar o meu perfil público!"
+msgstr ""
 
 msgid "Enable my public profile"
 msgstr "Ativar meu perfil público"
@@ -2270,13 +2265,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Alterar o nome"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Alterar senha"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2287,9 +2280,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Serviço indisponível"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2315,6 +2307,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Conteúdo"
+msgstr ""

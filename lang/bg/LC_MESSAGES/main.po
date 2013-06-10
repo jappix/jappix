@@ -1,16 +1,24 @@
-# Bulgarian translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:12+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/jappix/"
+"language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -53,13 +61,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "Акредитивни пълномощни/права"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "Автоматизация"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -73,9 +79,8 @@ msgstr ""
 msgid "Terms of use and legal"
 msgstr ""
 
-#, fuzzy
 msgid "Owner"
-msgstr "Списък със собственици"
+msgstr ""
 
 msgid "Node owner"
 msgstr ""
@@ -252,9 +257,8 @@ msgstr "не е на разположение"
 msgid "Busy"
 msgstr "зает"
 
-#, fuzzy
 msgid "Offline"
-msgstr "Приятели извън линия"
+msgstr ""
 
 msgid "Mood"
 msgstr "Настроение"
@@ -349,9 +353,8 @@ msgstr "Изображение за профила"
 msgid "Others"
 msgstr "Други"
 
-#, fuzzy
 msgid "Other"
-msgstr "Други"
+msgstr ""
 
 msgid "Personal"
 msgstr "Лични"
@@ -415,13 +418,10 @@ msgstr "Биография"
 msgid "Important notice"
 msgstr "Важно съобщение"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"Внимавайте каква и колко информация вписвате в профила си, защото е достъпна "
-"за всички (дори за хора, които не искате)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -493,9 +493,8 @@ msgstr "Стар(и)"
 msgid "New (2 times)"
 msgstr "Нов(и) (2 пъти)"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "Предложени приятели"
+msgstr ""
 
 msgid "Continue"
 msgstr "Продължаване"
@@ -1390,13 +1389,11 @@ msgstr "Наименование на услугата"
 msgid "Service description"
 msgstr "Описание на услугата"
 
-#, fuzzy
 msgid "Owner name"
-msgstr "Неизвестно име"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "Списък със собственици"
+msgstr ""
 
 msgid "Connection"
 msgstr "Връзка"
@@ -1407,9 +1404,8 @@ msgstr "Заключване на хоста"
 msgid "Anonymous mode"
 msgstr "Режим инкогнито (в анонимност)"
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "Удостоверения за идентификация"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr "Регистрациите са разрешени"
@@ -1423,9 +1419,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "Вашите групови чатове"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Криптиране (шифроване)"
@@ -1636,11 +1631,8 @@ msgid "Change your Jappix node configuration with this tool."
 msgstr ""
 "Променете конфигурацията на вашия Jappix възел с този инструмент/помощник."
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
-"Промяна на XMPP хостовете, които обслужва този Jappix възел, с този "
-"инструмент/помощник."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2069,14 +2061,10 @@ msgstr "Управление"
 msgid "List"
 msgstr "Списък"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
-"С този инструмент/помощник можете да премахвате/изтривате потребители. "
-"Обърнете внимание на това, че не можете да премахнете потребител от "
-"системата, ако той е единственият съществуващ/вписан."
 
 msgid "The user has been added!"
 msgstr "Потребителят е добавен!"
@@ -2309,13 +2297,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "Преименуване"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "Промяна на паролата"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2326,9 +2312,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "Услугата не е на разположение (офлайн, извън линия)"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2354,6 +2339,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "Съдържание"
+msgstr ""

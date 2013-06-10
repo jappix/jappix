@@ -1,20 +1,29 @@
-# Arabic translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:12+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/jappix/language/"
+"ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
-msgstr "default:RTL"
+msgstr ""
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
@@ -51,13 +60,11 @@ msgstr ""
 msgid "Find a public Jappix node."
 msgstr ""
 
-#, fuzzy
 msgid "Credits"
-msgstr "أعمال منزلية"
+msgstr ""
 
-#, fuzzy
 msgid "Association"
-msgstr "تشغيل آلي"
+msgstr ""
 
 msgid "Web agency"
 msgstr ""
@@ -106,10 +113,10 @@ msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "لقد تم تسجيل خروجك من حسابك XMPP, يومًا طيبًا لك!"
 
 msgid "The room you tried to join doesn't seem to exist."
-msgstr "الغرفة التي تحاول الدخول عليها غير متوفرة. قم بإنشاؤها!"
+msgstr ""
 
 msgid "The groupchat has been removed."
-msgstr "لقد تم حذف غرفة الدردشة، الآن بإمكان شخص آخر إنشاؤها."
+msgstr ""
 
 msgid "The user that you want to reach is not present in the room."
 msgstr "المستخدم الذي تحاول الوصول إليه غير متواجد في الغرفة."
@@ -148,7 +155,7 @@ msgid "Remember me"
 msgstr "تذكرني"
 
 msgid "This tool has been disabled!"
-msgstr "هذه الخاصيّة معطلّة، لن تتمكن من إستخدامها!"
+msgstr ""
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -328,9 +335,8 @@ msgstr "صورة الملف الشخصي"
 msgid "Others"
 msgstr "آخرين"
 
-#, fuzzy
 msgid "Other"
-msgstr "آخرين"
+msgstr ""
 
 msgid "Personal"
 msgstr "شخصي"
@@ -392,13 +398,10 @@ msgstr "نبذة شخصية"
 msgid "Important notice"
 msgstr "ملاحظة هامة"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"كن حذرًا عند وضع معلوماتك في ملفك الشخصي، بإمكان الجميع الوصول إليها (حتى "
-"الأشخاص الذين لا تود أن يصلون إليها)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -666,7 +669,7 @@ msgid "Directories"
 msgstr ""
 
 msgid "Gateways"
-msgstr ""
+msgstr "بوابة"
 
 msgid "News"
 msgstr ""
@@ -1308,13 +1311,11 @@ msgstr ""
 msgid "Service description"
 msgstr ""
 
-#, fuzzy
 msgid "Owner name"
-msgstr "إعادة الإسم"
+msgstr ""
 
-#, fuzzy
 msgid "Owner website"
-msgstr "الموقع الشخصي"
+msgstr ""
 
 msgid "Connection"
 msgstr ""
@@ -1325,9 +1326,8 @@ msgstr ""
 msgid "Anonymous mode"
 msgstr ""
 
-#, fuzzy
 msgid "HTTP authentication"
-msgstr "مصادقة"
+msgstr ""
 
 msgid "Registration allowed"
 msgstr ""
@@ -1341,9 +1341,8 @@ msgstr ""
 msgid "Groupchats to join"
 msgstr ""
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "غرفة الدردشة الخاصة بك"
+msgstr ""
 
 msgid "Encryption"
 msgstr ""
@@ -2129,13 +2128,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "إعادة الإسم"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "تغيير كلمة السر"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2173,6 +2170,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "محتوى"
+msgstr ""

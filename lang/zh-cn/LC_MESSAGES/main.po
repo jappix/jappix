@@ -1,19 +1,24 @@
-# Chinese translations for Jappix package.
-# This file is distributed under the same license as the Jappix package.
-# This file was translated from CodingTeam at <http://codingteam.net/>.
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Last revision: 07/06/13
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-08 12:22+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
+"PO-Revision-Date: 2013-06-10 19:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/jappix/"
+"language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Language: zh_CN\n"
-"X-Source-Language: C\n"
+"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
@@ -328,9 +333,8 @@ msgstr "头像"
 msgid "Others"
 msgstr "其他"
 
-#, fuzzy
 msgid "Other"
-msgstr "其他"
+msgstr ""
 
 msgid "Personal"
 msgstr "个人"
@@ -392,13 +396,10 @@ msgstr "自传"
 msgid "Important notice"
 msgstr "重要通知"
 
-#, fuzzy
 msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
-"注意你输入的个人资料的信息，因为它可被每个人取得（甚至是你不想被它看到的"
-"人）。"
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -469,9 +470,8 @@ msgstr "旧"
 msgid "New (2 times)"
 msgstr "新（2 次）"
 
-#, fuzzy
 msgid "Suggested chatrooms"
-msgstr "建议的好友"
+msgstr ""
 
 msgid "Continue"
 msgstr "继续"
@@ -1352,9 +1352,8 @@ msgstr "管理员连结"
 msgid "Groupchats to join"
 msgstr "参与小组聊天"
 
-#, fuzzy
 msgid "Suggest groupchats"
-msgstr "你的群"
+msgstr ""
 
 msgid "Encryption"
 msgstr "加密"
@@ -1542,9 +1541,8 @@ msgstr "基本统计是由 Jappix 处理关于一些重要事物，你可以在�
 msgid "Change your Jappix node configuration with this tool."
 msgstr "利用此工具改变 Jappix 节点设置。"
 
-#, fuzzy
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "利用此工具变改变 Jappix 节点服务的 XMPP 主机。"
+msgstr ""
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -1931,11 +1929,10 @@ msgstr "管理"
 msgid "List"
 msgstr "清单"
 
-#, fuzzy
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
-msgstr "利用此工具删除用户。注意你不能删除仅存的那一位用户。"
+msgstr ""
 
 msgid "The user has been added!"
 msgstr "用户已被加入！"
@@ -2083,13 +2080,11 @@ msgstr "%s 给聊天室中的某人发送消息"
 msgid "%s changes the room topic"
 msgstr "%s 更改聊天室主题"
 
-#, fuzzy
 msgid "%s kicks a user of the room"
-msgstr "%s 踢出该聊天室用户"
+msgstr ""
 
-#, fuzzy
 msgid "%s bans a user of the room"
-msgstr "%s 禁止该聊天室用户"
+msgstr ""
 
 msgid "%s invites someone to join the room"
 msgstr "%s 邀请某人加入该聊天室"
@@ -2116,18 +2111,14 @@ msgstr ""
 "另外，每一张你在社交频道张贴的照片被添加在美丽的照片时间表中。你现在可以按照"
 "年份浏览你分享的照片。"
 
-#, fuzzy
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
-"你还可以使用你的XMPP头像作为每一个你使用的网站、博客和卢坛的单一头像。当你在"
-"XMPP上更改时，新的头像会在每一处都更改你的头像。这是多么天才的改进！"
 
-#, fuzzy
 msgid "Yay, let's create your public profile!"
-msgstr "是的，让我们一起创建公共资料吧！"
+msgstr ""
 
 msgid "Enable my public profile"
 msgstr "启用我的公共资料"
@@ -2174,13 +2165,11 @@ msgstr ""
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
-#, fuzzy
 msgid "Username"
-msgstr "重命名"
+msgstr ""
 
-#, fuzzy
 msgid "Enter password"
-msgstr "变更密码"
+msgstr ""
 
 msgid "Once again..."
 msgstr ""
@@ -2191,9 +2180,8 @@ msgstr ""
 msgid "Security code"
 msgstr ""
 
-#, fuzzy
 msgid "Advertising space available!"
-msgstr "找不到服务器"
+msgstr ""
 
 msgid "Advertise here"
 msgstr ""
@@ -2219,6 +2207,5 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-#, fuzzy
 msgid "Content ads key"
-msgstr "内容"
+msgstr ""
