@@ -94,6 +94,14 @@ function usersConfName() {
    	return $conf_name;
 }
 
+// Remove new lines from a given string
+function removeNewLines($string) {
+	if($string)
+		return trim(preg_replace('/\s+/', ' ', $string));
+
+	return $string;
+}
+
 // The function to write a XML file
 function writeXML($type, $xmlns, $xml) {
 	// Generate the file path
