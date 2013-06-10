@@ -43,19 +43,24 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	// Hack?
 	if(!isSafe($file_id)) {
 		header('Status: 406 Not Acceptable', true, 406);
+
 		exit('HTTP/1.1 406 Not Acceptable');
 	}
 	
 	// File does not exist
 	if(!file_exists($file_path)) {
 		header('Status: 404 Not Found', true, 404);
+
 		exit('HTTP/1.1 404 Not Found');
 	}
 	
 	// Remove a file
 	if(isset($_GET['action']) && ($_GET['action'] == 'remove')) {
 		header('Status: 204 No Content', true, 204);
+
 		unlink($file_path);
+
+		exit('File Removed.');
 	}
 	
 	// Receive a file
@@ -65,7 +70,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	header("Pragma: no-cache");
 	header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
 	header("Expires: 0");
+
 	readfile($file_path);
+
 	unlink($file_path);
 }
 
