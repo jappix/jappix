@@ -28,9 +28,9 @@ function isSameOrigin(url) {
 
     a.href = url;
 
-    return !a.hostname 	|| (a.hostname == loc.hostname)  &&
-           !a.port 		|| (a.port == loc.port) 		 &&
-           !a.protocol 	|| (a.protocol == loc.protocol);
+    return (!a.hostname	|| (a.hostname == loc.hostname))	&&
+           (!a.port		|| (a.port == loc.port))			&&
+           (!a.protocol	|| (a.protocol == loc.protocol));
 }
 
 // Checks if Jappix is connected
