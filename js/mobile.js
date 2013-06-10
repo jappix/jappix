@@ -60,6 +60,9 @@ function doLogin(aForm) {
 			else
 				oArgs.httpbase = HOST_BOSH;
 			
+			// Check BOSH origin
+			BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+
 			// We create the new http-binding connection
 			con = new JSJaCHttpBindingConnection(oArgs);
 			

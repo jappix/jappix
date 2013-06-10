@@ -68,15 +68,16 @@ function XmlHttp() {}
 XmlHttp.create = function () {
   try {
     // Are we cross-domain?
-    if(((BOSH_PROXY == 'on') || (HOST_BOSH_MINI)) && (typeof jXHR == "function")) {
-        // Able to use CORS?
-        if (window.XMLHttpRequest) {
-          var req = new XMLHttpRequest();
-          
-          if (req.withCredentials !== undefined)
-            return req;
-        }
+    if(!BOSH_SAME_ORIGIN) {
+      // Able to use CORS?
+      if (window.XMLHttpRequest) {
+        var req = new XMLHttpRequest();
         
+        if (req.withCredentials !== undefined)
+          return req;
+      }
+      
+      // Fallback on JSONP
     	return new jXHR();
     }
     // Might be local-domain?

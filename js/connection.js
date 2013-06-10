@@ -33,6 +33,9 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		else
 			oArgs.httpbase = HOST_BOSH;
 		
+		// Check BOSH origin
+		BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+
 		// We create the new http-binding connection
 		con = new JSJaCHttpBindingConnection(oArgs);
 		
@@ -181,6 +184,9 @@ function doRegister(username, domain, pass, captcha) {
 			else
 				oArgs.httpbase = HOST_BOSH;
 			
+			// Check BOSH origin
+			BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+
 			// We create the new http-binding connection
 			con = new JSJaCHttpBindingConnection(oArgs);
 			

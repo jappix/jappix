@@ -163,6 +163,7 @@ var ANONYMOUS_NICK = null;
 
 // Node parameters
 var JAPPIX_LOCATION = getJappixLocation();
+var BOSH_SAME_ORIGIN = false;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {
