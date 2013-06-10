@@ -110,9 +110,15 @@ function displayRoster(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 		dGroup = new Array(_e("Gateways"));
 	}
 	
-	// Remove request (empty his social channel)
-	if(dSubscription == 'remove')
+	// Remove request
+	if(dSubscription == 'remove') {
+		// Flush presence
+		flushPresence(dXID);
+		presenceFunnel(dXID, dXIDHash);
+
+		// Empty social channel
 		$('#channel .mixed .one-update.update_' + dXIDHash).remove();
+	}
 	
 	// Other request
 	else {

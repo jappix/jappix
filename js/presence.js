@@ -169,10 +169,9 @@ function handlePresence(presence) {
 	
 	// This presence comes from an user or a gateway
 	else {
-		// Subscribed & unsubscribed stanzas
+		// Subscribed/Unsubscribed stanzas
 		if((type == 'subscribed') || (type == 'unsubscribed'))
 			return;
-		
 		// Subscribe stanza
 		else if(type == 'subscribe') {
 			// This is a buddy we can safely authorize, because we added him to our roster
@@ -637,6 +636,35 @@ function presenceIA(type, show, status, hash, xid, avatar, checksum, caps) {
 				break;
 		}
 	}
+}
+
+// Flush the presence data for a given user
+function flushPresence(xid) {
+	var flushed_marker = false;
+
+	for(var i = 0; i < sessionStorage.length; i++) {
+		// Get the pointer values
+		var current = sessionStorage.key(i);
+		
+		// If the pointer is on a stored presence
+		if(explodeThis('_', current, 0) == 'presence') {
+			// Get the current XID
+			var now_full = explodeThis('_', current, 1);
+			var now_bare = bareXID(now_full);
+			
+			// If the current XID equals the asked XID
+			if(now_bare == xid) {
+				if(removeDB('presence', now_full)) {
+					logThis('Presence data flushed for: ' + now_full, 3);
+
+					flushed_marker = true;
+					i--;
+				}
+			}
+		}
+	}
+
+	return flushed_marker;
 }
 
 // Gets the highest resource priority for an user
