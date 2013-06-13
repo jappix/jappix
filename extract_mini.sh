@@ -179,12 +179,13 @@ echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini-ie.css"
 cat "css/mini-ie.css" >> "$TARGET_DIR/css/mini-ie.css"
 
 # copy artwork
-# mini.png, mini.gif, animate.png and animate.gif are licensed under CC-BY
+# mini.png, mini.gif, animate.png, animate.gif and wait-typing.gif are licensed under CC-BY
 mkdir -p "$TARGET_DIR/img/sprites/"
 cp "img/sprites/mini.gif" "$TARGET_DIR/img/sprites/mini.gif"
 cp "img/sprites/mini.png" "$TARGET_DIR/img/sprites/mini.png"
 cp "img/sprites/animate.png" "$TARGET_DIR/img/sprites/animate.png"
 cp "img/sprites/animate.gif" "$TARGET_DIR/img/sprites/animate.gif"
+cp "img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
 
 # copy blank.gif
 mkdir -p "$TARGET_DIR/img/others/"
@@ -200,7 +201,7 @@ The code is licensed under the $LICENSE, as indicated in the source files.
 Artwork
 -------
 
-The files img/sprites/mini.png, img/sprites/mini.gif, img/sprites/animate.png and img/sprites/animate.gif were created by
+The files img/sprites/mini.png, img/sprites/mini.gif, img/sprites/animate.png, img/sprites/animate.gif and img/wait/wait-typing.gif were created by
 Valérian Saliou and are dual-licensed under the Creative Commons Attribution 2.5
 License and the Creative Commons Attribution 3.0 License.
 They contain work from the FamFamFam Silk icon set by Mark James.
