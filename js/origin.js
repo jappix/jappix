@@ -5,9 +5,9 @@ These are the origin JS script for Jappix
 
 -------------------------------------------------
 
-License: AGPL
+License: dual-licensed under AGPL and MPLv2
 Author: Valérian Saliou
-Last revision: 12/06/13
+Last revision: 13/06/13
 
 */
 
