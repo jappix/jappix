@@ -179,12 +179,15 @@ echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini-ie.css"
 cat "css/mini-ie.css" >> "$TARGET_DIR/css/mini-ie.css"
 
 # copy artwork
-# mini.png, mini.gif, animate.png, animate.gif and wait-typing.gif are licensed under CC-BY
+# mini.png, mini.gif, animate.png and animate.gif are licensed under CC-BY
 mkdir -p "$TARGET_DIR/img/sprites/"
 cp "img/sprites/mini.gif" "$TARGET_DIR/img/sprites/mini.gif"
 cp "img/sprites/mini.png" "$TARGET_DIR/img/sprites/mini.png"
 cp "img/sprites/animate.png" "$TARGET_DIR/img/sprites/animate.png"
 cp "img/sprites/animate.gif" "$TARGET_DIR/img/sprites/animate.gif"
+
+# copy wait-typing.gif
+mkdir -p "$TARGET_DIR/img/wait/"
 cp "img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
 
 # copy blank.gif
