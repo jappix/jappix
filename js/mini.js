@@ -628,8 +628,11 @@ function handlePresenceMini(pr) {
 			var search = jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val();
 			var regex = new RegExp('((^)|( ))' + escapeRegex(search), 'gi');
 			var nick = unescape(jQuery(friend).data('nick'));
+
 			if(search && !nick.match(regex))
 				jQuery(friend).hide();
+			else
+				jQuery(friend).show();
 			
 			// Enable the chat input
 			if(is_groupchat) {
