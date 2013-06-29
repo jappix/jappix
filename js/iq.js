@@ -69,9 +69,9 @@ function handleIQ(iq) {
 		
 		var iqQuery = iqResponse.setQuery(NS_VERSION);
 		
-		iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix'));
-		iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
-		iqQuery.appendChild(iq.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
+		iqQuery.appendChild(iqResponse.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix'));
+		iqQuery.appendChild(iqResponse.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
+		iqQuery.appendChild(iqResponse.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
 		
 		con.send(iqResponse);
 		
@@ -135,7 +135,7 @@ function handleIQ(iq) {
 		var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
 		
 		// We set the name of the client
-		iqQuery.appendChild(iq.buildNode('identity', {
+		iqQuery.appendChild(iqResponse.buildNode('identity', {
 			'category': 'client',
 			'type': 'web',
 			'name': 'Jappix',
@@ -146,7 +146,7 @@ function handleIQ(iq) {
 		var fArray = myDiscoInfos();
 		
 		for(i in fArray)
-			iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
+			iqQuery.appendChild(iqResponse.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
 		
 		con.send(iqResponse);
 		
@@ -158,8 +158,8 @@ function handleIQ(iq) {
 		/* REF: http://xmpp.org/extensions/xep-0202.html */
 		
 		var iqTime = iqResponse.appendNode('time', {'xmlns': NS_URN_TIME});
-		iqTime.appendChild(iq.buildNode('tzo', {'xmlns': NS_URN_TIME}, getDateTZO()));
-		iqTime.appendChild(iq.buildNode('utc', {'xmlns': NS_URN_TIME}, getXMPPTime('utc')));
+		iqTime.appendChild(iqResponse.buildNode('tzo', {'xmlns': NS_URN_TIME}, getDateTZO()));
+		iqTime.appendChild(iqResponse.buildNode('utc', {'xmlns': NS_URN_TIME}, getXMPPTime('utc')));
 		
 		con.send(iqResponse);
 		
@@ -177,14 +177,17 @@ function handleIQ(iq) {
 	
 	// Not implemented
 	else if(!$(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
+		// Change IQ type
+		iqResponse.setType('error');
+		
 		// Append stanza content
 		for(var i = 0; i < iqNode.childNodes.length; i++)
 			iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
 		
 		// Append error content
 		var iqError = iqResponse.appendNode('error', {'xmlns': NS_CLIENT, 'code': '501', 'type': 'cancel'});
-		iqError.appendChild(iq.buildNode('feature-not-implemented', {'xmlns': NS_STANZAS}));
-		iqError.appendChild(iq.buildNode('text', {'xmlns': NS_STANZAS}, _e("The feature requested is not implemented by the recipient or server and therefore cannot be processed.")));
+		iqError.appendChild(iqResponse.buildNode('feature-not-implemented', {'xmlns': NS_STANZAS}));
+		iqError.appendChild(iqResponse.buildNode('text', {'xmlns': NS_STANZAS}, _e("The feature requested is not implemented by the recipient or server and therefore cannot be processed.")));
 		
 		con.send(iqResponse);
 		
