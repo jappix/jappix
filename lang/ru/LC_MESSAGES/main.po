@@ -829,7 +829,7 @@ msgid "Welcome on %1s, “%2s”."
 msgstr "Добро пожаловать в %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
-msgstr "Ввойдите в ваш XMPP аккаунт или создайте новый бесплатно!"
+msgstr "Войдите в ваш XMPP аккаунт или создайте новый бесплатно!"
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -840,7 +840,7 @@ msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"Ввойдите в ваш XMPP аккаунт. Также можете использовать %s для присоединения "
+"Войдите в ваш XMPP аккаунт. Также вы можете использовать %s для присоединения "
 "к общей беседе."
 
 msgid "Previous"
