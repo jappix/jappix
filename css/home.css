@@ -226,11 +226,22 @@ html[dir="rtl"] #home .locale {
 	display: none;
 }
 
+html[dir="rtl"] #home .obsolete {
+	right: auto;
+	left: 12px;
+}
+
 #home .obsolete a {
 	height: 33px;
 	width: 33px;
 	margin: 5px 2px 0 0;
 	float: left;
+}
+
+html[dir="rtl"] #home .obsolete a {
+	margin-right: 0;
+	margin-left: 2px;
+	float: right;
 }
 
 #home .obsolete a:hover,
