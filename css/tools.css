@@ -120,14 +120,11 @@ html[dir="rtl"] #top-content .notify {
 	display: none;
 	position: absolute;
 	top: 25px;
-	right: 0;
-	margin-left: -8px;
 }
 
 html[dir="rtl"] #top-content .tools-content {
 	margin-left: 0;
 	right: auto;
-	left: 0;
 }
 
 .tools-content-subarrow {
@@ -135,14 +132,8 @@ html[dir="rtl"] #top-content .tools-content {
 	opacity: 0.8;
 	height: 10px;
 	width: 18px;
-	margin-right: 4px;
-	float: right;
-}
-
-html[dir="rtl"] .tools-content-subarrow {
-	margin-right: 0;
-	margin-left: 4px;
-	float: left;
+	margin: 0 auto;
+	display: block;
 }
 
 .tools-content-subitem {
@@ -157,6 +148,11 @@ html[dir="rtl"] .tools-content-subarrow {
 
 .notifications-content {
 	width: 240px;
+	right: -107px;
+}
+
+html[dir="rtl"] .notifications-content {
+	left: -107px;
 }
 
 .notifications-content .tools-content-subitem {
@@ -318,6 +314,11 @@ html[dir="rtl"] .notifications-content .one-notification .notification-actions s
 
 .music-content {
 	width: 220px;
+	right: -97px;
+}
+
+html[dir="rtl"] .music-content {
+	left: -97px;
 }
 
 .music-content .tools-content-subitem {
