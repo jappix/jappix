@@ -194,6 +194,12 @@ cp "img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
 mkdir -p "$TARGET_DIR/img/others/"
 cp "img/others/blank.gif" "$TARGET_DIR/img/others/blank.gif"
 
+# copy sounds
+# receive-message.mp3, receive-message.oga are licensed under CC-BY
+mkdir -p "$TARGET_DIR/snd/"
+cp "snd/receive-message.mp3" "$TARGET_DIR/snd/receive-message.mp3"
+cp "snd/receive-message.oga" "$TARGET_DIR/snd/receive-message.oga"
+
 # license information
 cat > "$TARGET_DIR/COPYING" << EOF
 Code
