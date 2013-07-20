@@ -7,7 +7,7 @@ These are the privacy JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/06/11
+Last revision: 20/07/13
 
 */
 
@@ -273,25 +273,33 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 		}
 	}
 	
-	con.send(iq);
+	con.send(iq, function(iq) {
+		if(iq.getType() == 'result')
+			logThis('Sent privacy list.');
+		else
+			logThis('Error sending privacy list.', 1);
+	});
 	
 	logThis('Sending privacy list: ' + list);
 }
 
 // Push a privacy list item to a list
-function pushPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p, hash, special_action) {
+function pushPrivacy(list, type, value, action, presence_in, presence_out, msg, iq_p, hash, special_action) {
 	// Read the stored elements (to add them)
 	var stored = XMLFromString(getDB('privacy', list));
 	
 	// Read the first value
 	var first_val = value[0];
+
+	// Order generation flow
+	var order = [];
+	var highest_order = 0;
 	
 	// Must remove the given value?
 	if(special_action == 'remove') {
 		type = [];
 		value = [];
 		action = [];
-		order = [];
 		presence_in = [];
 		presence_out = [];
 		iq_p = [];
@@ -306,7 +314,7 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 		var c_order = $(this).attr('order');
 		
 		// Generate hash
-		var c_hash = hex_md5(c_type + c_value + c_action + c_order);
+		var c_hash = hex_md5(c_type + c_value);
 		
 		// Do not push it twice!
 		if(((c_hash != hash) && (special_action != 'roster')) || ((first_val != c_value) && (special_action == 'roster'))) {
@@ -319,6 +327,9 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 			if(!c_order)
 				c_order = '';
 			
+			if(!isNaN(c_order) && parseInt(c_order) > highest_order)
+				highest_order = parseInt(c_order);
+
 			type.push(c_type);
 			value.push(c_value);
 			action.push(c_action);
@@ -346,6 +357,8 @@ function pushPrivacy(list, type, value, action, order, presence_in, presence_out
 				iq_p.push(false);
 		}
 	});
+
+	order.unshift((++highest_order) + '');
 	
 	// Send it!
 	setPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p);

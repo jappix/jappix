@@ -316,7 +316,7 @@ function applyBuddyInput(xid) {
 		closeBubbles();
 		
 		// Update privacy settings
-		pushPrivacy('block', ['jid'], [xid], ['allow'], ['1'], [false], [true], [true], [true], '', 'roster');
+		pushPrivacy('block', ['jid'], [xid], ['allow'], [false], [true], [true], [true], '', 'roster');
 		$(path).removeClass('blocked');
 		
 		// Enable the "block" list
@@ -353,7 +353,7 @@ function applyBuddyInput(xid) {
 		closeBubbles();
 		
 		// Update privacy settings
-		pushPrivacy('block', ['jid'], [xid], ['deny'], ['1'], [false], [true], [true], [true], '', 'roster');
+		pushPrivacy('block', ['jid'], [xid], ['deny'], [false], [true], [true], [true], '', 'roster');
 		$(path).addClass('blocked');
 		
 		// Enable the "block" list
