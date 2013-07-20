@@ -642,9 +642,9 @@ function presenceIA(type, show, status, hash, xid, avatar, checksum, caps) {
 function flushPresence(xid) {
 	var flushed_marker = false;
 
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored presence
 		if(explodeThis('_', current, 0) == 'presence') {
@@ -678,9 +678,9 @@ function highestPriority(xid) {
 	
 	// This is a "normal" presence: get the highest priority resource
 	else {
-		for(var i = 0; i < sessionStorage.length; i++) {
+		for(var i = 0; i < storageDB.length; i++) {
 			// Get the pointer values
-			var current = sessionStorage.key(i);
+			var current = storageDB.key(i);
 			
 			// If the pointer is on a stored presence
 			if(explodeThis('_', current, 0) == 'presence') {
@@ -689,7 +689,7 @@ function highestPriority(xid) {
 				
 				// If the current XID equals the asked XID
 				if(now == xid) {
-					var xml = XMLFromString(sessionStorage.getItem(current));
+					var xml = XMLFromString(storageDB.getItem(current));
 					var priority = parseInt($(xml).find('priority').text());
 					
 					// Higher priority

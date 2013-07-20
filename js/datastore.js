@@ -7,20 +7,96 @@ These are the temporary/persistent data store functions
 
 License: dual-licensed under AGPL and MPLv2
 Authors: Valérian Saliou, Maranda
-Last revision: 20/02/13
+Last revision: 20/07/13
 
 */
+
+// Common: storage adapter
+function storageAdapter(storage_native, storage_emulated) {
+	var legacy = !storage_native;
+
+	this.key = function(key) {
+		if(legacy) {
+			if(key >= this.length)
+				return null;
+
+			var c = 0;
+
+			for(name in storage_emulated) {
+				if(c++ == key)  return name;
+			}
+
+			return null;
+		}
+
+		return storage_native.key(key);
+	};
+
+	this.getItem = function(key) {
+		if(legacy) {
+			if(storage_emulated[key] !== undefined)
+				return storage_emulated[key];
+
+			return null;
+		} else {
+			return storage_native.getItem(key);
+		}
+	};
+
+	this.setItem = function(key, data) {
+		if(legacy) {
+			if(!(key in storage_emulated))
+				this.length++;
+
+			storage_emulated[key] = (data + '');
+		} else {
+			storage_native.setItem(key, data);
+			this.length = storage_native.length;
+		}
+	};
+
+	this.removeItem = function(key) {
+		if(legacy) {
+			if(key in storage_emulated) {
+				this.length--;
+				delete storage_emulated[key];
+			}
+		} else {
+			storage_native.removeItem(key);
+			this.length = storage_native.length;
+		}
+	};
+
+	this.clear = function() {
+		if(legacy) {
+			this.length = 0;
+			storage_emulated = {};
+		} else {
+			storage_native.clear();
+			this.length = storage_native.length;
+		}
+	};
+
+	this.length = legacy ? 0 : storage_native.length;
+}
+
+
+// Temporary: sessionStorage emulation
+var DATASTORE_DB_EMULATED = {};
+
+// Temporary: sessionStorage class alias for direct access
+var storageDB = new storageAdapter(
+	(window.sessionStorage ? sessionStorage : null),
+	DATASTORE_DB_EMULATED
+);
 
 // Temporary: returns whether it is available or not
 function hasDB() {
 	// Try to write something
 	try {
-		// Not supported?
-		if(!window.sessionStorage)
-			return false;
-		
-		sessionStorage.setItem('hasdb_check', 'ok');
-		
+		storageDB.setItem('hasdb_check', 'ok');
+		storageDB.removeItem('hasdb_check');
+
 		return true;
 	}
 	
@@ -33,60 +109,55 @@ function hasDB() {
 // Temporary: used to read a database entry
 function getDB(type, id) {
 	try {
-		return sessionStorage.getItem(type + '_' + id);
+		return storageDB.getItem(type + '_' + id);
 	}
 	
 	catch(e) {
 		logThis('Error while getting a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
-		
-		return null;
 	}
+
+	return null;
 }
 
 // Temporary: used to update a database entry
 function setDB(type, id, value) {
 	try {
-		sessionStorage.setItem(type + '_' + id, value);
-		
+		storageDB.setItem(type + '_' + id, value);
+
 		return true;
 	}
 	
 	catch(e) {
 		logThis('Error while writing a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
-		
-		return false;
 	}
+
+	return false;
 }
 
 // Temporary: used to remove a database entry
 function removeDB(type, id) {
 	try {
-		sessionStorage.removeItem(type + '_' + id);
+		storageDB.removeItem(type + '_' + id);
 		
 		return true;
 	}
 	
 	catch(e) {
 		logThis('Error while removing a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
-		
-		return false;
 	}
+
+	return false;
 }
 
 // Temporary: used to check a database entry exists
 function existDB(type, id) {
-	var read = getDB(type, id);
-	
-	if(read != null)
-		return true;
-	
-	return false;
+	return getDB(type, id) != null;
 }
 
 // Temporary: used to clear all the database
 function resetDB() {
 	try {
-		sessionStorage.clear();
+		storageDB.clear();
 		
 		logThis('Temporary database cleared.', 3);
 		
@@ -100,15 +171,22 @@ function resetDB() {
 	}
 }
 
+
+// Persistent: localStorage emulation
+var DATASTORE_PERSISTENT_EMULATED = {};
+
+// Persistent: localStorage class alias for direct access
+var storagePersistent = new storageAdapter(
+	(window.localStorage ? localStorage : null),
+	DATASTORE_PERSISTENT_EMULATED
+);
+
 // Persistent: returns whether it is available or not
 function hasPersistent() {
 	// Try to write something
 	try {
-		// Not supported?
-		if(!window.localStorage)
-			return false;
-		
-		localStorage.setItem('haspersistent_check', 'ok');
+		storagePersistent.setItem('haspersistent_check', 'ok');
+		storagePersistent.removeItem('haspersistent_check');
 		
 		return true;
 	}
@@ -122,7 +200,7 @@ function hasPersistent() {
 // Persistent: used to read a database entry
 function getPersistent(dbID, type, id) {
 	try {
-		return localStorage.getItem(dbID + '_' + type + '_' + id);
+		return storagePersistent.getItem(dbID + '_' + type + '_' + id);
 	}
 	
 	catch(e) {
@@ -135,7 +213,7 @@ function getPersistent(dbID, type, id) {
 // Persistent: used to update a database entry
 function setPersistent(dbID, type, id, value) {
 	try {
-		localStorage.setItem(dbID + '_' + type + '_' + id, value);
+		storagePersistent.setItem(dbID + '_' + type + '_' + id, value);
 		
 		return true;
 	}
@@ -149,7 +227,7 @@ function setPersistent(dbID, type, id, value) {
 		
 		// Set the item again
 		try {
-			localStorage.setItem(dbID + ' -> ' + type + '_' + id, value);
+			storagePersistent.setItem(dbID + ' -> ' + type + '_' + id, value);
 			
 			return true;
 		}
@@ -157,42 +235,37 @@ function setPersistent(dbID, type, id, value) {
 		// New error!
 		catch(e) {
 			logThis('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
-			
-			return false;
 		}
 	}
+
+	return false;
 }
 
 // Persistent: used to remove a database entry
 function removePersistent(dbID, type, id) {
 	try {
-		localStorage.removeItem(dbID + '_' + type + '_' + id);
-		
+		storagePersistent.removeItem(dbID + '_' + type + '_' + id);
+
 		return true;
 	}
 	
 	catch(e) {
 		logThis('Error while removing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
-		
-		return false;
 	}
+
+	return false;
 }
 
 // Persistent: used to check a database entry exists
 function existPersistent(dbID, type, id) {
-	var read = getPersistent(dbID, type, id);
-	
-	if(read != null)
-		return true;
-	
-	return false;
+	return getPersistent(dbID, type, id) != null;
 }
 
 // Persistent: used to clear all the database
 function resetPersistent() {
 	try {
-		localStorage.clear();
-		
+		storagePersistent.clear();
+
 		logThis('Persistent database cleared.', 3);
 		
 		return true;
@@ -200,9 +273,9 @@ function resetPersistent() {
 	
 	catch(e) {
 		logThis('Error while clearing persistent database: ' + e, 1);
-		
-		return false;
 	}
+
+	return false;
 }
 
 // Persistent: used to flush the database
@@ -211,8 +284,8 @@ function flushPersistent() {
 		// Get the stored session entry
 		var session = getPersistent('global', 'session', 1);
 		
-		// Clear the persistent database
-		localStorage.clear();
+		// Reset the persistent database
+		resetPersistent();
 		
 		// Restaure the stored session entry
 		if(session)
@@ -225,8 +298,7 @@ function flushPersistent() {
 	
 	catch(e) {
 		logThis('Error while flushing persistent database: ' + e, 1);
-		
-		return false;
 	}
-}
 
+	return false;
+}

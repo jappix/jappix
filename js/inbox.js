@@ -115,14 +115,14 @@ function storeInbox() {
 	var query = iq.setQuery(NS_PRIVATE);
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_INBOX}));
 	
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Get the values
-			var value = $(XMLFromString(sessionStorage.getItem(current)));
+			var value = $(XMLFromString(storageDB.getItem(current)));
 			
 			// Create the storage node
 			storage.appendChild(iq.buildNode('message', {
@@ -367,9 +367,9 @@ function deleteInboxMessage(id) {
 // Removes all the inbox messages
 function purgeInbox() {
 	// Remove all the messages from the database
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox')
@@ -404,14 +404,14 @@ function checkInboxMessages() {
 	var unread = 0;
 	
 	// Read the local inbox database
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Database pointer
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// Check inbox messages
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Read the current status
-			var status = $(XMLFromString(sessionStorage.getItem(current))).find('status').text();
+			var status = $(XMLFromString(storageDB.getItem(current))).find('status').text();
 			
 			// Found an unread message
 			if(status == 'unread')
@@ -541,14 +541,14 @@ function replyInboxMessage(id, from, subject, body) {
 // Loads the inbox messages
 function loadInbox() {
 	// Read the local database
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox') {
 			// Get the current value
-			var value = $(XMLFromString(sessionStorage.getItem(current)));
+			var value = $(XMLFromString(storageDB.getItem(current)));
 			
 			// Display the current message
 			displayInboxMessage(

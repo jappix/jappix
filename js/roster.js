@@ -364,13 +364,13 @@ function applyBuddyInput(xid) {
 		sendPresence(xid, 'unavailable');
 		
 		// Remove the user presence
-		for(var i = 0; i < sessionStorage.length; i++) {
+		for(var i = 0; i < storageDB.length; i++) {
 			// Get the pointer values
-			var current = sessionStorage.key(i);
+			var current = storageDB.key(i);
 			
 			// If the pointer is on a stored presence
 			if((explodeThis('_', current, 0) == 'presence') && (bareXID(explodeThis('_', current, 1)) == xid))
-				sessionStorage.removeItem(current);
+				storageDB.removeItem(current);
 		}
 		
 		// Manage his new presence

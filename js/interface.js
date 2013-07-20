@@ -152,9 +152,9 @@ function quitThisChat(xid, hash, type) {
 		sendPresence(xid + '/' + getMUCNick(hash), 'unavailable');
 		
 		// Remove all presence database entries for this groupchat
-		for(var i = 0; i < sessionStorage.length; i++) {
+		for(var i = 0; i < storageDB.length; i++) {
 			// Get the pointer values
-			var current = sessionStorage.key(i);
+			var current = storageDB.key(i);
 			var cXID = explodeThis('_', current, 1);
 			
 			// If the pointer is on a presence from this groupchat

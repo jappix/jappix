@@ -359,14 +359,14 @@ function sendBuddyComments() {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_ROSTERNOTES}));
 	
 	// We regenerate the XML
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored rosternote
 		if(explodeThis('_', current, 0) == 'rosternotes') {
 			var xid = explodeThis('_', current, 1);
-			var value = sessionStorage.getItem(current);
+			var value = storageDB.getItem(current);
 			
 			if(xid && value)
 				storage.appendChild(iq.buildNode('note', {'jid': xid, 'xmlns': NS_ROSTERNOTES}, value));

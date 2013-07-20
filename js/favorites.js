@@ -314,13 +314,13 @@ function favoritePublish() {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_BOOKMARKS}));
 	
 	// We generate the XML
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored favorite
 		if(explodeThis('_', current, 0) == 'favorites') {
-			var data = XMLFromString(sessionStorage.getItem(current));
+			var data = XMLFromString(storageDB.getItem(current));
 			var xid = $(data).find('xid').text();
 			var rName = $(data).find('name').text();
 			var nick = $(data).find('nick').text();
@@ -448,13 +448,13 @@ function loadFavorites() {
 	var html = '';
 	
 	// Read the database
-	for(var i = 0; i < sessionStorage.length; i++) {
+	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
-		var current = sessionStorage.key(i);
+		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored favorite
 		if(explodeThis('_', current, 0) == 'favorites') {
-			var data = XMLFromString(sessionStorage.getItem(current));
+			var data = XMLFromString(storageDB.getItem(current));
 			
 			// Add the current favorite to the HTML code
 			html += '<option value="' + encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';
