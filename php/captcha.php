@@ -13,14 +13,17 @@ Last revision: 10/05/13
 
 */
 
-// Let's generate a totally random string using MD5
-$md5_hash = md5(rand(0, 9999999));
+// Import secure random bytes function
+require_once('./srand.php');
+
+// Let's generate a totally random string using SHA-1
+$sha1_hash = sha1(secure_random_bytes(100));
 
 // Start the session so we can store what the security code actually is
 session_start();
 
 // We don't need a 32 character long string so we trim it down to 6
-$security_code = substr($md5_hash, 15, 6);
+$security_code = substr($sha1_hash, 15, 6);
 
 // Set the session to store the security code
 $_SESSION['captcha'] = $security_code;
