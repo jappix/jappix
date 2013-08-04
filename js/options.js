@@ -302,8 +302,7 @@ function saveOptions() {
 		if($('#archiving').filter(':checked').size())
 			aEnabled = true;
 		
-		// TODO
-		//configMAM(aEnabled);
+		setConfigMAM(aEnabled);
 	}
 	
 	// We apply the microblog configuration

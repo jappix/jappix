@@ -240,8 +240,7 @@ function saveWelcome() {
 			aEnabled = true;
 		
 		// Send the archives configuration
-		//TODO
-		//configMAM(aEnabled);
+		setConfigMAM(aEnabled);
 	}
 	
 	// Send the new options

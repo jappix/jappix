@@ -184,12 +184,6 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-msgid "Please select a friend to view the chat history."
-msgstr ""
-
-msgid "Nothing found for: %s"
-msgstr ""
-
 msgid "A short message?"
 msgstr ""
 
@@ -412,7 +406,7 @@ msgstr ""
 msgid "Message archiving"
 msgstr ""
 
-msgid "Store a history of your chats"
+msgid "Store an history of your chats"
 msgstr ""
 
 msgid "Geolocation"
@@ -533,9 +527,6 @@ msgid "Download file!"
 msgstr ""
 
 msgid "Clean current chat"
-msgstr ""
-
-msgid "View chat history"
 msgstr ""
 
 msgid "Show user profile"
