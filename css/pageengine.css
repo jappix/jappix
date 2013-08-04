@@ -259,59 +259,48 @@ html[dir="rtl"] #page-engine .list .user .avatar-container {
 	max-width: 32px;
 }
 
-#page-engine .one-group,
-#archives .one-group {
+#page-engine .one-group {
 	border-bottom: 1px dotted #d0d0d0;
 	padding-bottom: 8px;
 	margin-bottom: 10px;
 }
 
 #page-engine .one-line,
-#archives .one-line,
-#page-engine .one-group b.name,
-#archives .one-group b.name {
+#page-engine .one-group b.name {
 	padding-left: 50px;
 	word-wrap: break-word;
 }
 
 html[dir="rtl"] #page-engine .one-line,
-html[dir="rtl"] #archives .one-line,
-html[dir="rtl"] #page-engine .one-group b.name,
-html[dir="rtl"] #archives .one-group b.name {
+html[dir="rtl"] #page-engine .one-group b.name {
 	padding-left: auto;
 	padding-right: 50px;
 }
 
-#page-engine .one-group b.name,
-#archives .one-group b.name {
+#page-engine .one-group b.name {
 	display: block;
 	margin-bottom: 4px;
 	line-height: 1.4;
 }
 
-#page-engine .one-group b.name.me,
-#archives .one-group b.name.me {
+#page-engine .one-group b.name.me {
 	color: #123a5c;
 }
 
-#page-engine .one-group b.name.him,
-#archives .one-group b.name.him {
+#page-engine .one-group b.name.him {
 	color: #801e1e;
 }
 
-#page-engine .one-group span.date,
-#archives .one-group span.date {
+#page-engine .one-group span.date {
 	float: right;
 	font-size: 0.95em;
 }
 
-html[dir="rtl"] #page-engine .one-group span.date,
-html[dir="rtl"] #archives .one-group span.date {
+html[dir="rtl"] #page-engine .one-group span.date {
 	float: left;
 }
 
-#page-engine .one-group .avatar-container,
-#archives .one-group .avatar-container {
+#page-engine .one-group .avatar-container {
 	text-align: center;
 	margin: 4px 0 0 6px;
 	height: 30px;
@@ -319,15 +308,13 @@ html[dir="rtl"] #archives .one-group span.date {
 	float: left;
 }
 
-html[dir="rtl"] #page-engine .one-group .avatar-container,
-html[dir="rtl"] #archives .one-group .avatar-container {
+html[dir="rtl"] #page-engine .one-group .avatar-container {
 	margin-left: auto;
 	margin-right: 6px;
 	float: right;
 }
 
-#page-engine .one-group .avatar,
-#archives .one-group .avatar {
+#page-engine .one-group .avatar {
 	max-height: 30px;
 	max-width: 30px;
 }
@@ -337,8 +324,7 @@ html[dir="rtl"] #archives .one-group .avatar-container {
 	padding-left: 68px;
 }
 
-#page-engine .user-message,
-#archives .user-message {
+#page-engine .user-message {
 	margin-bottom: 3px;
 	line-height: 1.3;
 }
@@ -502,7 +488,6 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 }
 
 #page-engine .text .tools-add,
-#page-engine .text .tools-archives,
 #page-engine .text .tools-mucadmin {
 	display: none;
 }

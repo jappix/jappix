@@ -1074,10 +1074,6 @@ function launchRoster() {
 						'<a href="#" class="buddy-conf-more-display-available">' + _e("Only show connected friends") +  '</a>' + 
 					'</p>' + 
 					
-					'<p class="buddy-conf-text archives-hidable">' + 
-						'- <a href="#" class="buddy-conf-more-archives">' + _e("Message archives") +  '</a>' + 
-					'</p>' + 
-					
 					'<p class="buddy-conf-text privacy-hidable">' + 
 						'- <a href="#" class="buddy-conf-more-privacy">' + _e("Privacy") +  '</a>' + 
 					'</p>' + 
@@ -1112,9 +1108,6 @@ function launchRoster() {
 			return false;
 		});
 		
-		// When the user click on the archives link
-		$('.buddy-conf-more-archives').click(openArchives);
-		
 		// When the user click on the privacy link
 		$('.buddy-conf-more-privacy').click(openPrivacy);
 		
@@ -1133,9 +1126,6 @@ function launchRoster() {
 			$('.buddy-conf-more-display-unavailable').hide();
 			$('.buddy-conf-more-display-available').show();
 		}
-		
-		if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage'))
-			$('.buddy-conf-more-archives').parent().show();
 		
 		if(enabledCommands())
 			$('.buddy-conf-more-commands').parent().show();

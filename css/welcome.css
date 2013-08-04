@@ -133,8 +133,7 @@ html[dir="rtl"] #welcome a.box span.image {
 	background-position: 0 -990px;
 }
 
-#welcome a.box span.image.archives,
-#page-engine .text .tools-archives {
+#welcome a.box span.image.mam {
 	background-position: 0 -1025px;
 }
 

@@ -54,11 +54,7 @@ function handleFeatures(xml) {
 	var pep = false;
 	var pubsub = false;
 	var pubsub_cn = false;
-	var archive = false;
-	var archive_auto = false;
-	var archive_manual = false;
-	var archive_manage = false;
-	var archive_pref = false;
+	var mam = false;
 	var commands = false;
 	
 	// Scan the features
@@ -68,16 +64,8 @@ function handleFeatures(xml) {
 		pubsub = true;
 	if(selector.find('feature[var="' + NS_PUBSUB_CN + '"]').size())
 		pubsub_cn = true;
-	if(selector.find('feature[var="' + NS_URN_ARCHIVE + '"]').size())
-		archive = true;
-	if(selector.find('feature[var="' + NS_URN_AR_AUTO + '"]').size())
-		archive_auto = true;
-	if(selector.find('feature[var="' + NS_URN_AR_MANUAL + '"]').size())
-		archive_manual = true;
-	if(selector.find('feature[var="' + NS_URN_AR_MANAGE + '"]').size())
-		archive_manage = true;
-	if(selector.find('feature[var="' + NS_URN_AR_PREF + '"]').size())
-		archive_pref = true;
+	if(selector.find('feature[var="' + NS_URN_MAM + '"]').size())
+		mam = true;
 	if(selector.find('feature[var="' + NS_COMMANDS + '"]').size())
 		commands = true;
 	
@@ -118,26 +106,16 @@ function handleFeatures(xml) {
 	if(pubsub_cn)
 		enableFeature(NS_PUBSUB_CN);
 	
-	// Enable the archiving features if available
-	if(archive)
-		enableFeature(NS_URN_ARCHIVE);
-	
-	// Enable the archiving sub-features if available
-	if(archive_pref)
-		enableFeature(NS_URN_AR_PREF);
-	if(archive_auto)
-		enableFeature(NS_URN_AR_AUTO);
-	if(archive_manual)
-		enableFeature(NS_URN_AR_MANUAL);
-	if(archive_manage)
-		enableFeature(NS_URN_AR_MANAGE);
+	// Enable the message MAM management features if available
+	if(mam)
+		enableFeature(NS_URN_MAM);
 	
 	// Enable the commands features if available
 	if(commands)
 		enableFeature(NS_COMMANDS);
 	
 	// Hide the private life fieldset if nothing to show
-	if(!pep && !archive_pref)
+	if(!pep && !mam)
 		$('#options fieldset.privacy').hide();
 	
 	// Apply the features
@@ -167,14 +145,9 @@ function applyFeatures(id) {
 	if(enabledPubSubCN())
 		$(path + 'pubsub-hidable-cn').show();
 	
-	// Archives features
-	if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage')) {
-		$(path + 'archives-hidable:not(.pref)').show();
-		
-		// Sub-feature: archives preferences
-		if(enabledArchives('pref'))
-			$(path + 'archives-hidable.pref').show();
-	}
+	// MAM features
+	if(enabledMAM())
+		$(path + 'mam-hidable').show();
 	
 	// Commands features
 	if(enabledCommands())
@@ -213,15 +186,9 @@ function enabledPubSubCN() {
 	return enabledFeature(NS_PUBSUB_CN);
 }
 
-// Returns the XMPP server archives support
-function enabledArchives(sub) {
-	var xmlns = NS_URN_ARCHIVE;
-	
-	// Any sub element sent?
-	if(sub)
-		xmlns += ':' + sub;
-	
-	return enabledFeature(xmlns);
+// Returns the XMPP server MAM support
+function enabledMAM() {
+	return enabledFeature(NS_URN_MAM);
 }
 
 // Returns the XMPP server commands support

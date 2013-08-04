@@ -34,8 +34,8 @@ function optionsOpen() {
 				'</div>' +
 				
 				'<div class="archiving">' +
-					'<label for="archiving" class="archives-hidable pref">' + _e("Message archiving") + '</label>' + 
-					'<input id="archiving" type="checkbox" class="archives-hidable pref" />' + 
+					'<label for="archiving" class="mam-hidable">' + _e("Message archiving") + '</label>' + 
+					'<input id="archiving" type="checkbox" class="mam-hidable" />' + 
 				'</div>' +
 				
 			'</fieldset>' + 
@@ -207,7 +207,7 @@ function waitOptions(id) {
 	sOptions.removeClass(id);
 	
 	// Hide the waiting items if all was received
-	if(!sOptions.hasClass('microblog') && !sOptions.hasClass('archives')) {
+	if(!sOptions.hasClass('microblog') && !sOptions.hasClass('mam')) {
 		$('#options .wait').hide();
 		$('#options .finish:first').removeClass('disabled');
 	}
@@ -296,13 +296,14 @@ function saveOptions() {
 	setDB('options', 'integratemedias', integratemedias);
 	
 	// We apply the message archiving
-	if(enabledArchives('pref')) {
+	if(enabledMAM()) {
 		var aEnabled = false;
 		
 		if($('#archiving').filter(':checked').size())
 			aEnabled = true;
 		
-		configArchives(aEnabled);
+		// TODO
+		//configMAM(aEnabled);
 	}
 	
 	// We apply the microblog configuration
@@ -503,22 +504,22 @@ function deleteMyAccount() {
 // Loads the user options
 function loadOptions() {
 	// Process the good stuffs, depending of the server features
-	var enabled_archives_pref = enabledArchives('pref');
+	var enabled_mam = enabledMAM();
 	var enabled_pubsub = enabledPubSub();
 	var enabled_pubsub_cn = enabledPubSubCN();
 	var enabled_pep = enabledPEP();
 	var sWait = $('#options .content');
 	
 	// Show the waiting items if necessary
-	if(enabled_archives_pref || (enabled_pep && (enabled_pubsub || enabled_pubsub_cn))) {
+	if(enabled_mam || (enabled_pep && (enabled_pubsub || enabled_pubsub_cn))) {
 		$('#options .wait').show();
 		$('#options .finish:first').addClass('disabled');
 	}
 	
 	// We get the archiving configuration
-	if(enabled_archives_pref) {
-		sWait.addClass('archives');
-		getConfigArchives();
+	if(enabled_mam) {
+		sWait.addClass('mam');
+		getConfigMAM();
 	}
 	
 	// We get the microblog configuration
@@ -528,7 +529,7 @@ function loadOptions() {
 	}
 	
 	// We show the "privacy" form if something is visible into it
-	if(enabled_archives_pref || enabled_pep)
+	if(enabled_mam || enabled_pep)
 		$('#options fieldset.privacy').show();
 	
 	// We get the values of the forms for the sounds

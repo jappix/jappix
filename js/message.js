@@ -971,10 +971,6 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		messageCode = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + messageCode + '</div>';
 	}
 	
-	// Archive message
-	if(hash == 'archives')
-		$('#archives .logs' + group_path).append(messageCode);
-	
 	// Instant message
 	else {
 		// Write the code in the DOM

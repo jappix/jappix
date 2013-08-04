@@ -104,7 +104,7 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
-		specialLink = '<a href="#" class="tools-archives tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
+		specialLink = '<a href="#" class="tools-tooltip talk-images chat-tools-content" title="' + _e("View chat history") + '"></a><a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -282,17 +282,6 @@ function chatCreate(hash, xid, nick, type) {
 				
 				// Send the subscribe request
 				addThisContact(xid, nick);
-			}).show();
-		
-		// Archives button
-		else if(enabledArchives() || enabledArchives('auto') || enabledArchives('manual') || enabledArchives('manage'))
-			$('#' + hash + ' .tools-archives').click(function() {
-				// Open the archives popup
-				openArchives();
-				
-				// Get the archives for this user
-				$('#archives .filter .friend').val(xid);
-				updateArchives();
 			}).show();
 	}
 	
