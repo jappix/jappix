@@ -57,7 +57,6 @@ function myDiscoInfos() {
 		NS_VCARD,
 		NS_URN_TIME,
 		NS_URN_PING,
-		NS_URN_AR_PREF,
 		NS_URN_RECEIPTS,
 		NS_PRIVACY,
 		NS_IQOOB,
