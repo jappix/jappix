@@ -16,17 +16,22 @@ Last revision: 04/08/13
 
 // Gets the MAM configuration
 function getConfigMAM() {
-
+	/* NOT YET IMPLEMENTED IN SPEC */
 }
 
 // Handles the MAM configuration
 function handleConfigMAM(iq) {
-
+	/* NOT YET IMPLEMENTED IN SPEC */
 }
 
 // Sets the MAM configuration
 function setConfigMAM(enabled) {
+	var iq = new JSJaCIQ();
+	iq.setType('set');
 
+	iq.appendNode('prefs', { 'xmlns': NS_URN_MAM, 'default': 'roster' });
+
+	con.send(iq);
 }
 
 
@@ -57,7 +62,11 @@ function getArchivesMAM(args, max) {
 
 // Handles the MAM configuration
 function handleArchivesMAM(iq) {
-	var node = iq.getNode();
+	if(iq.getType() != 'error') {
+		var node = iq.getNode();
 
-	// TODO
+		// TODO: need to map the sent ID to track response JID
+	} else {
+		logThis('Error handing archives (MAM).', 1);
+	}
 }
