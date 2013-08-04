@@ -863,7 +863,7 @@ function launchRoster() {
 					xid = generateXID(xid, 'chat');
 				
 				// Submit the form
-				if(xid && (xid != getXID()))
+				if(xid && getXIDNick(xid) && (xid != getXID()))
 					addThisContact(xid, name);
 				else
 					$(document).oneTime(10, function() {
