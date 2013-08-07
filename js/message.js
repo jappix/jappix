@@ -971,32 +971,29 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 		messageCode = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + messageCode + '</div>';
 	}
 	
-	// Instant message
-	else {
-		// Write the code in the DOM
-		$('#' + hash + ' .content' + group_path).append(messageCode);
+	// Write the code in the DOM
+	$('#' + hash + ' .content' + group_path).append(messageCode);
+	
+	// Store the last 20 message groups
+	if((type == 'chat') && (message_type == 'user-message')) {
+		// Filter the DOM
+		var dom_filter = $('#' + hash + ' .content').clone().contents();
+		var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
 		
-		// Store the last 20 message groups
-		if((type == 'chat') && (message_type == 'user-message')) {
-			// Filter the DOM
-			var dom_filter = $('#' + hash + ' .content').clone().contents();
-			var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
-			
-			$(dom_filter).find('.system-message').parent().remove();
-			$(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
-			$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - 20).remove();
-			
-			var store_html = $(dom_filter).parent().html();
-			
-			// Store the data
-			if(store_html)
-				setPersistent(getXID(), 'history', hash, store_html);
-		}
+		$(dom_filter).find('.system-message').parent().remove();
+		$(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
+		$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - 20).remove();
 		
-		// Must get the avatar?
-		if(has_avatar && xid)
-			getAvatar(xid, 'cache', 'true', 'forget');
+		var store_html = $(dom_filter).parent().html();
+		
+		// Store the data
+		if(store_html)
+			setPersistent(getXID(), 'history', hash, store_html);
 	}
+	
+	// Must get the avatar?
+	if(has_avatar && xid)
+		getAvatar(xid, 'cache', 'true', 'forget');
 	
 	// Scroll to this message
 	if(can_scroll)
