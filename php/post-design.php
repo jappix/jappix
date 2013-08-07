@@ -116,7 +116,7 @@ else if(isset($_POST['background_upload'])) {
 	$path_background_image = JAPPIX_BASE.'/store/backgrounds/'.$name_background_image;
 	
 	// An error occured?
-	if(!isSafe($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>
+	if(!isSafeAllowed($name_background_image) || $_FILES['background_image_upload']['error'] || !move_uploaded_file($temp_background_image, $path_background_image)) { ?>
 	
 		<p class="info smallspace fail"><?php _e("The image could not be received, would you mind retry?"); ?></p>
 	

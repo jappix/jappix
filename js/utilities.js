@@ -211,7 +211,10 @@ function fileCategory(ext) {
 		case 'gif':
 		case 'tif':
 		case 'svg':
+		case 'ico':
 		case 'psp':
+		case 'psd':
+		case 'psb':
 		case 'xcf':
 			cat = 'image';
 			

@@ -63,7 +63,7 @@ if(isset($_POST['upload'])) {
 	$path_music = JAPPIX_BASE.'/store/music/'.$name_music;
 	
 	// An error occured?
-	if(!isSafe($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>
+	if(!isSafeAllowed($name_music) || $_FILES['music_file']['error'] || !move_uploaded_file($temp_music, $path_music)) { ?>
 	
 		<p class="info smallspace fail"><?php _e("The music could not be received, please retry!"); ?></p>
 	

@@ -856,8 +856,12 @@ function getFileType($ext) {
 		case 'bmp':
 		case 'gif':
 		case 'tif':
+		case 'tiff':
 		case 'svg':
+		case 'ico':
 		case 'psp':
+		case 'psd':
+		case 'psb':
 		case 'xcf':
 			$file_type = 'image';
 			
@@ -1064,11 +1068,41 @@ function securityHTML() {
 
 // Checks if a relative server path is safe
 function isSafe($path) {
-	// Mhh, someone is about to nasty stuffs (previous folder, or executable scripts)
-	if(preg_match('/\.\.\//', $path) || preg_match('/index\.html?$/', $path) || preg_match('/(\.)((php([0-9]+)?)|(aspx?)|(cgi)|(rb)|(py)|(pl)|(jsp)|(ssjs)|(lasso)|(dna)|(tpl)|(smx)|(cfm))$/i', $path))
-		return false;
+	return !preg_match('/^\//', $path) && !preg_match('/\.\.\//', $path);
+}
+
+// Checks if a relative server path is safe
+function isAllowedExt($path) {
+	$safe_files = array(
+		'txt', 'md',																			# Text
+		'zip', 'tar', 'tar.gz', 'tar.bz2', 'tar.xz', 'tar.7z',									# Archive
+		'tgz', 'gz', 'bz2', 'xz', 'rar', '7z',													# Archive
+		'jpg', 'jpeg', 'png', 'bmp', 'gif', 'tiff', 'tif', 'ico',								# Image
+		'psd', 'psp', 'psb', 'xcf',																# Image (layered)
+		'mp3', 'mp4', 'ogg', 'oga', 'ogv', 'mov', 'mpeg', 'm4a',								# Audio
+		'flv', 'avi', 'asf', 'wav', 'cda', 'midi', 'aac', 'wma', 'wmv', 'mkv', 'webm', 'm3u',	# Video
+		'odt', 'ods', 'odp',																	# Document (open)
+		'doc', 'xls', 'xlt', 'csv', 'pps', 'ppt',												# Document (closed)
+		'docx', 'xlsx', 'ppsx', 'pptx', 'pot', 'potx', 'xml', 'pdf', 'dotx',					# Document (closed)
+		'dot', 'rtf',																			# Document (closed)
+		'htm', 'html',																			# Web
+		'ai', 'svg',																			# Vectors
+		'ttf', 'otf', 'woff', 'eot',															# Fonts
+		'deb', 'rpm'																			# Packages
+	);
+
+	// Check file is allowed
+	foreach($safe_files as $c_ext) {
+		if(preg_match('/\.'.$c_ext.'$/', $path))
+			return true;
+	}
 	
-	return true;
+	return false;
+}
+
+// Check if file path is safe and its ext is allowed
+function isSafeAllowed($path) {
+	return isSafe($path) && isAllowedExt($path);
 }
 
 // Set the good unity for a size in bytes

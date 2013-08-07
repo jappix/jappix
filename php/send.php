@@ -99,7 +99,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 	$path = JAPPIX_BASE.'/store/send/'.$name.'.'.$ext;
 	
 	// Forbidden file?
-	if(!isSafe($filename) || !isSafe($name.'.'.$ext)) {
+	if(!isSafeAllowed($filename) || !isSafeAllowed($name.'.'.$ext)) {
 		exit(
 '<jappix xmlns=\'jappix:file:send\'>
 	<error>forbidden-type</error>
