@@ -748,7 +748,7 @@ function highestPriorityStanza(xid) {
 	var highest = highestPriority(xid);
 
 	if(highest)  pr = getDB('presence-stanza', highest);
-	if(!pr)      pr = '<presence type="unavailable"></presence>';
+	if(!pr)      pr = '<presence><type>unavailable</type></presence>';
 
 	return XMLFromString(pr);
 }
