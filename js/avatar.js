@@ -17,13 +17,6 @@ var AVATAR_PENDING = [];
 function getAvatar(xid, mode, enabled, photo) {
 	/* REF: http://xmpp.org/extensions/xep-0153.html */
 	
-	console.group('getAvatar()');
-		console.debug('xid', xid);
-		console.debug('mode', mode);
-		console.debug('enabled', enabled);
-		console.debug('photo', photo);
-		console.debug('\n-----\n');
-
 	// No need to get the avatar, another process is yet running
 	if(existArrayValue(AVATAR_PENDING, xid))
 		return false;
@@ -36,12 +29,8 @@ function getAvatar(xid, mode, enabled, photo) {
 	if($(xml).find('forced').text() == 'true')
 		forced = true;
 	
-		console.debug('forced', $(xml).find('forced').text());
-
 	// No avatar in presence
 	if(!photo && !forced && enabled == 'true') {
-		console.groupEnd();
-
 		// Pending marker
 		AVATAR_PENDING.push(xid);
 		
@@ -59,16 +48,9 @@ function getAvatar(xid, mode, enabled, photo) {
 		var checksum = $(xml).find('checksum').text();
 		var updated = false;
 
-			console.debug('type', type);
-			console.debug('binval', binval);
-			console.debug('checksum', checksum);
-		
 		// Process the checksum of the avatar
 		if(checksum == photo || photo == 'forget' || forced)
 			updated = true;
-		
-			console.debug('updated', updated);
-			console.groupEnd();
 
 		// If the avatar is yet stored and a new retrieving is not needed
 		if(mode == 'cache' && type && binval && checksum && updated) {
