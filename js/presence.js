@@ -74,6 +74,7 @@ function handlePresence(presence) {
 	var node = presence.getNode();
 	var xid = bareXID(from);
 	var xidHash = hex_md5(xid);
+	var resource = thisResource(from);
 	
 	// We get the type content
 	var type = presence.getType();
@@ -123,10 +124,11 @@ function handlePresence(presence) {
 		var reason = item.find('reason').text();
 		var iXID = item.attr('jid');
 		var iNick = item.attr('nick');
-		var nick = thisResource(from);
+		var nick = resource;
 		var messageTime = getCompleteTime();
 		var notInitial = true;
-		
+		var resources_obj;
+
 		// Read the status code
 		var status_code = new Array();
 		
@@ -142,7 +144,8 @@ function handlePresence(presence) {
 		if(type && (type == 'unavailable')) {
 			displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
 			
-			removeDB('presence', from);
+			removeDB('presence-stanza', from);
+			resources_obj = removeResourcePresence(xid, resource);
 		}
 		
 		// If one user is joining
@@ -158,12 +161,14 @@ function handlePresence(presence) {
 				displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
 				
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
-				
-				setDB('presence', from, xml);
+
+				setDB('presence-stanza', from, xml);
+				resources_obj = addResourcePresence(xid, resource);
 			}
 		}
 		
 		// Manage the presence
+		processPriority(from, resource, resources_obj);
 		presenceFunnel(from, hash);
 	}
 	
@@ -194,18 +199,24 @@ function handlePresence(presence) {
 		
 		// Other stanzas
 		else {
+			var resources_obj;
+
 			// Unavailable/error presence
-			if(type == 'unavailable')
-				removeDB('presence', from);
+			if(type == 'unavailable') {
+				removeDB('presence-stanza', from);
+				resources_obj = removeResourcePresence(xid, resource);
+			}
 			
 			// Other presence (available, subscribe...)
 			else {
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
-				
-				setDB('presence', from, xml);
+
+				setDB('presence-stanza', from, xml);
+				resources_obj = addResourcePresence(xid, resource);
 			}
-			
+
 			// We manage the presence
+			processPriority(xid, resource, resources_obj);
 			presenceFunnel(xid, xidHash);
 			
 			// We display the presence in the current chat
@@ -530,7 +541,7 @@ function displayPresence(value, type, show, status, hash, xid, avatar, checksum,
 		adaptChatPresence(hash);
 		
 		// Get the disco#infos for this user
-		var highest = getHighestResource(xid);
+		var highest = highestPriority(xid);
 		
 		if(highest)
 			getDiscoInfos(highest, caps);
@@ -654,7 +665,7 @@ function flushPresence(xid) {
 			
 			// If the current XID equals the asked XID
 			if(now_bare == xid) {
-				if(removeDB('presence', now_full)) {
+				if(removeDB('presence-stanza', now_full)) {
 					logThis('Presence data flushed for: ' + now_full, 3);
 
 					flushed_marker = true;
@@ -667,72 +678,134 @@ function flushPresence(xid) {
 	return flushed_marker;
 }
 
-// Gets the highest resource priority for an user
-function highestPriority(xid) {
-	var maximum = null;
-	var selector, priority, type, highest;
-	
-	// This is a groupchat presence
-	if(xid.indexOf('/') != -1)
-		highest = XMLFromString(getDB('presence', xid));
-	
-	// This is a "normal" presence: get the highest priority resource
-	else {
-		for(var i = 0; i < storageDB.length; i++) {
-			// Get the pointer values
-			var current = storageDB.key(i);
-			
-			// If the pointer is on a stored presence
-			if(explodeThis('_', current, 0) == 'presence') {
-				// Get the current XID
-				var now = bareXID(explodeThis('_', current, 1));
-				
-				// If the current XID equals the asked XID
-				if(now == xid) {
-					var xml = XMLFromString(storageDB.getItem(current));
-					var priority = parseInt($(xml).find('priority').text());
-					
-					// Higher priority
-					if((priority >= maximum) || (maximum == null)) {
-						maximum = priority;
-						highest = xml;
+// Process the highest resource priority for an user
+function processPriority(xid, resource, resources_obj) {
+	try {
+		if(!xid) {
+			logThis('processPriority > No XID value', 2);
+			return;
+		}
+
+		// Initialize vars
+		var cur_resource, cur_from, cur_pr,
+		    cur_xml, cur_priority,
+		    from_highest, from_highest;
+
+		from_highest = null;
+		max_priority = null;
+
+		// Groupchat presence? (no priority here)
+		if(xid.indexOf('/') !== -1) {
+			from_highest = xid;
+
+			logThis('Processed presence for groupchat user: ' + xid);
+		} else {
+			if(!highestPriority(xid)) {
+				from_highest = xid + '/' + resource;
+
+				logThis('Processed initial presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
+			} else {
+				for(cur_resource in resources_obj) {
+					// Read presence data
+					cur_from = xid + '/' + cur_resource;
+					cur_pr   = getDB('presence-stanza', cur_from);
+
+					if(cur_pr) {
+						// Parse presence data
+						cur_xml      = XMLFromString(cur_pr);
+						cur_priority = $(cur_xml).find('priority').text();
+						cur_priority = !isNaN(cur_priority) ? parseInt(cur_priority) : 0;
+						
+						// Higher priority?
+						if((cur_priority >= max_priority) || (max_priority == null)) {
+							max_priority = cur_priority;
+							from_highest = cur_from;
+						}
 					}
 				}
+
+				logThis('Processed presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
 			}
 		}
+
+		if(from_highest)
+			setDB('presence-priority', xid, from_highest);
+		else
+			removeDB('presence-priority', xid);
+	} catch(e) {
+		logThis('Error on presence processing: ' + e, 1);
 	}
-	
-	// The user might be offline if no highest
-	if(!highest)
-		highest = XMLFromString('<presence><type>unavailable</type></presence>');
-	
-	return highest;
+}
+
+// Returns the highest presence priority XID for an user
+function highestPriority(xid) {
+	return getDB('presence-priority', xid) || '';
 }
 
 // Gets the resource from a XID which has the highest priority
-function getHighestResource(xid) {
-	var xml = $(highestPriority(xid));
-	var highest = xml.find('presence').attr('from');
-	var type = xml.find('type').text();
-	
-	// If the use is online, we can return its highest resource
-	if(!type || (type == 'available') || (type == 'null'))
-		return highest;
-	else
-		return false;
+function highestPriorityStanza(xid) {
+	var pr;
+	var highest = highestPriority(xid);
+
+	if(highest)  pr = getDB('presence-stanza', highest);
+	if(!pr)      pr = '<presence type="unavailable"></presence>';
+
+	return XMLFromString(pr);
+}
+
+// Lists presence resources for an user
+function resourcesPresence(xid) {
+	try {
+		var resources_obj = {};
+		var resources_db  = getDB('presence-resources', xid);
+
+		if(resources_db) {
+			resources_obj = $.evalJSON(resources_db);
+		}
+
+		return resources_obj;
+	} catch(e) {}
+}
+
+// Adds a given presence resource for an user
+function addResourcePresence(xid, resource) {
+	try {
+		var resources_obj = resourcesPresence(xid);
+
+		resources_obj[resource] = 1;
+		setDB('presence-resources', xid, $.toJSON(resources_obj));
+
+		return resources_obj;
+	} catch(e) {}
+
+	return null;
+}
+
+// Removes a given presence resource for an user
+function removeResourcePresence(xid, resource) {
+	try {
+		var resources_obj = resourcesPresence(xid);
+
+		delete resources_obj[resource];
+		setDB('presence-resources', xid, $.toJSON(resources_obj));
+
+		return resources_obj;
+	} catch(e) {}
+
+	return null;
 }
 
 // Makes something easy to process for the presence IA
 function presenceFunnel(xid, hash) {
 	// Get the highest priority presence value
-	var xml = $(highestPriority(xid));
+	var xml = $(highestPriorityStanza(xid));
 	var type = xml.find('type').text();
 	var show = xml.find('show').text();
 	var status = xml.find('status').text();
 	var avatar = xml.find('avatar').text();
 	var checksum = xml.find('checksum').text();
 	var caps = xml.find('caps').text();
-	
+
 	// Display the presence with that stored value
 	if(!type && !show)
 		presenceIA('', 'available', status, hash, xid, avatar, checksum, caps);

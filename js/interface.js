@@ -166,7 +166,8 @@ function quitThisChat(xid, hash, type) {
 				$('#' + cHash + ' .message-area').attr('disabled', true);
 				
 				// Remove the presence for this XID
-				removeDB('presence', cXID);
+				removeDB('presence-stanza', cXID);
+				removeDB('presence-resources', cXID);
 				presenceFunnel(cXID, cHash);
 			}
 		}
