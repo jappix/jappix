@@ -7,7 +7,8 @@ We would like to thanks the authors of these tools, coming from other projects:
 Projects
 --------
 
-* Base64			http://rumkin.com
+* Base64			https://github.com/dankogai/js-base64
+* CryptoJS			https://code.google.com/p/crypto-js/
 * DrawSVGChart		http://codingteam.net/project/codingteam
 * idzXHR			http://www.iadvize.com/plugin_strophe_xmpp.html
 * JSJaC				http://blog.jwchat.org/jsjac/
