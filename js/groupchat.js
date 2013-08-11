@@ -150,13 +150,17 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 		var value_input = $(this).val();
 		
 		// Enter key pressed
-		if((e.keyCode == 13) && value_input) {
-			if(type == 'nickname')
-				nickname = value_input;
-			else if(type == 'password')
-				password = value_input;
+		if(e.keyCode == 13) {
+			// trim() fixes #304
+			if(type == 'nickname' && trim(value_input)) {
+				nickname = trim(value_input);
+				return getMUC(room, nickname, password);
+			}
 			
-			return getMUC(room, nickname, password);
+			if(type == 'password' && value_input) {
+				password = value_input;
+				return getMUC(room, nickname, password);
+			}
 		}
 	});
 	
