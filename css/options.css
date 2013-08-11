@@ -38,6 +38,11 @@ html[dir="rtl"] #options .forms select {
 	float: left;
 }
 
+#options .forms a.purge-archives {
+	margin-top: -2px;
+	margin-left: 5px;
+}
+
 html[dir="rtl"] #options .forms a.linked {
 	float: right;
 }

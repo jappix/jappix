@@ -35,9 +35,13 @@ function optionsOpen() {
 				
 				'<div class="archiving">' +
 					'<label for="archiving" class="mam-hidable">' + _e("Message archiving") + '</label>' + 
-					'<input id="archiving" type="checkbox" class="mam-hidable" />' + 
+					'<select id="archiving" class="mam-hidable">' + 
+						'<option value="never">' + _e("Disabled") + '</option>' + 
+						'<option value="always">' + _e("Store all chats") + '</option>' + 
+						'<option value="roster">' + _e("Store friend chats") + '</option>' + 
+					'</select>' + 
+					'<a href="#" class="linked purge-archives mam-hidable">' + _e("Remove all archives") + '</a>' + 
 				'</div>' +
-				
 			'</fieldset>' + 
 			
 			'<fieldset class="application">' + 
@@ -297,12 +301,7 @@ function saveOptions() {
 	
 	// We apply the message archiving
 	if(enabledMAM()) {
-		var aEnabled = false;
-		
-		if($('#archiving').filter(':checked').size())
-			aEnabled = true;
-		
-		setConfigMAM(aEnabled);
+		setConfigMAM($('#archiving').val() || 'never');
 	}
 	
 	// We apply the microblog configuration

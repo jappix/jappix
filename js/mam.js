@@ -12,24 +12,63 @@ Last revision: 04/08/13
 */
 
 
+/* -- MAM Variables -- */
+const MAM_PREF_DEFAULTS = {
+	'always' : 1,
+	'never'  : 1,
+	'roster' : 1
+};
+
+
 /* -- MAM Configuration -- */
 
 // Gets the MAM configuration
 function getConfigMAM() {
-	/* NOT YET IMPLEMENTED IN SPEC */
+	// Lock the archiving options
+	$('#archiving').attr('disabled', true);
+	
+	// Get the archiving configuration
+	var iq = new JSJaCIQ();
+	iq.setType('get');
+
+	iq.appendNode('prefs', { 'xmlns': NS_URN_MAM });
+
+	con.send(iq, handleConfigMAM);
 }
 
 // Handles the MAM configuration
 function handleConfigMAM(iq) {
-	/* NOT YET IMPLEMENTED IN SPEC */
+	if(iq.getType() != 'error') {
+		// Read packet
+		var cur_default = $(iq.getNode()).find('prefs[xmlns="' + NS_URN_MAM + '"]').attr('default') || 'never';
+
+		if(!(cur_default in MAM_PREF_DEFAULTS)) {
+			cur_default = 'never';
+		}
+
+		// Apply value to options
+		$('#archiving').val(cur_default);
+	}
+
+	// Unlock the archiving option
+	$('#archiving').removeAttr('disabled');
+
+	// All done.
+	waitOptions('mam');
 }
 
 // Sets the MAM configuration
-function setConfigMAM(enabled) {
+function setConfigMAM(pref_default) {
+	// Check parameters
+	if(!(pref_default in MAM_PREF_DEFAULTS)) {
+		pref_default = 'never';
+	}
+
+	// Send new configuration
 	var iq = new JSJaCIQ();
 	iq.setType('set');
 
-	iq.appendNode('prefs', { 'xmlns': NS_URN_MAM, 'default': 'roster' });
+	iq.appendNode('prefs', { 'xmlns': NS_URN_MAM, 'default': pref_default });
 
 	con.send(iq);
 }
