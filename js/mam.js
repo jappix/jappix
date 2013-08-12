@@ -12,12 +12,19 @@ Last revision: 04/08/13
 */
 
 
-/* -- MAM Variables -- */
+/* -- MAM Constants -- */
+const MAM_REQ_MAX = 25;
+
 const MAM_PREF_DEFAULTS = {
 	'always' : 1,
 	'never'  : 1,
 	'roster' : 1
 };
+
+
+/* -- MAM Variables -- */
+var MAM_MAP_REQS = {};
+var MAM_MAP_STATES = {};
 
 
 /* -- MAM Configuration -- */
@@ -82,8 +89,15 @@ function getArchivesMAM(args, max) {
 		args = {};
 	}
 
+	var req_id = genID();
+
+	if(args['with']) {
+		MAM_MAP_REQS[req_id] = args['with'];
+	}
+
 	var iq = new JSJaCIQ();
 	iq.setType('get');
+	iq.setID(req_id);
 
 	var query = iq.setQuery(NS_URN_MAM);
 
@@ -102,9 +116,35 @@ function getArchivesMAM(args, max) {
 // Handles the MAM configuration
 function handleArchivesMAM(iq) {
 	if(iq.getType() != 'error') {
-		var node = iq.getNode();
+		var res_id = iq.getID();
+		var res_with;
 
-		// TODO: need to map the sent ID to track response JID
+		if(res_id && res_id in MAM_MAP_REQS) {
+			res_with = MAM_MAP_REQS[res_id];
+		}
+
+		if(res_with) {
+			var res_sel = $(iq.getQuery());
+			var res_rsm_sel = res_sel.find('set[xmlns="' + NS_RSM + '"]');
+
+			// Store that data
+			MAM_MAP_STATES[res_with] = {
+				'date': {
+					'start': res_sel.find('start').eq(0).text(),
+					'end': res_sel.find('end').eq(0).text()
+				},
+
+				'rsm': {
+					'first': res_rsm_sel.find('first').eq(0).text(),
+					'last': res_rsm_sel.find('last').eq(0).text(),
+					'count': res_rsm_sel.find('count').eq(0).text()
+				}
+			}
+
+			logThis('Got archives from: ' + res_with, 3);
+		} else {
+			logThis('Could not associate archive response with a known JID.', 2);
+		}
 	} else {
 		logThis('Error handing archives (MAM).', 1);
 	}

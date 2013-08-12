@@ -112,7 +112,7 @@ function handleMessage(message) {
 		}
 	}
 	
-	// Request message
+	// Jappix App message
 	if(message.getChild('app', 'jappix:app')) {
 		// Get notification data
 		var jappix_app_node = $(node).find('app[xmlns="jappix:app"]');
@@ -917,7 +917,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	var filteredMessage = filterThisMessage(body, name, html_escape);
 	
 	// Display the received message in the room
-	var messageCode = '<div class="one-line ' + message_type + nick_quote + '"' + data_id + '>';
+	var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '"' + data_id + '>';
 	
 	// Name color attribute
 	if(type == 'groupchat')
@@ -974,21 +974,22 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	// Write the code in the DOM
 	$('#' + hash + ' .content' + group_path).append(messageCode);
 	
-	// Store the last 20 message groups
-	if((type == 'chat') && (message_type == 'user-message')) {
+	// Store the last MAM_REQ_MAX message groups
+	if((type == 'chat') && (message_type == 'user-message') && !enabledMAM()) {
 		// Filter the DOM
 		var dom_filter = $('#' + hash + ' .content').clone().contents();
 		var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
 		
 		$(dom_filter).find('.system-message').parent().remove();
 		$(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
-		$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - 20).remove();
+		$(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - MAM_REQ_MAX).remove();
 		
 		var store_html = $(dom_filter).parent().html();
 		
 		// Store the data
-		if(store_html)
+		if(store_html) {
 			setPersistent(getXID(), 'history', hash, store_html);
+		}
 	}
 	
 	// Must get the avatar?
