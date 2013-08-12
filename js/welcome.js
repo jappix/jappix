@@ -233,14 +233,10 @@ function saveWelcome() {
 	
 	// If archiving is supported by the server
 	if(enabledMAM()) {
-		var aEnabled = false;
-		
 		// If archiving is enabled
-		if(array[3] == '1')
-			aEnabled = true;
-		
-		// Send the archives configuration
-		setConfigMAM(aEnabled);
+		if(array[3] == '1') {
+			setConfigMAM('roster');
+		}
 	}
 	
 	// Send the new options

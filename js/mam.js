@@ -24,10 +24,11 @@ const MAM_PREF_DEFAULTS = {
 
 /* -- MAM Variables -- */
 var MAM_MAP_REQS = {};
+var MAM_MAP_PENDING = {};
 var MAM_MAP_STATES = {};
 
 
-/* -- MAM Functions -- */
+/* -- MAM Configuration -- */
 
 // Gets the MAM configuration
 function getConfigMAM() {
@@ -81,10 +82,37 @@ function setConfigMAM(pref_default) {
 }
 
 
+/* -- MAM Purge -- */
+
+// Removes all (or given) MAM archives
+function purgeArchivesMAM(args) {
+	if(typeof args != 'object') {
+		args = {};
+	}
+
+	var iq = new JSJaCIQ();
+	iq.setType('set');
+
+	var purge = iq.appendNode('purge', { 'xmlns': NS_URN_MAM });
+
+	for(c in args) {
+		if(args[c])  purge.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
+	}
+	
+	con.send(iq, function(iq) {
+		if(iq.getType() == 'result') {
+			logThis('Archives purged (MAM).', 3);
+		} else {
+			logThis('Error purging archives (MAM).', 1);
+		}
+	});
+}
+
+
 /* -- MAM Retrieval -- */
 
 // Gets the MAM configuration
-function getArchivesMAM(args, max) {
+function getArchivesMAM(args, max, callback) {
 	if(typeof args != 'object') {
 		args = {};
 	}
@@ -92,6 +120,7 @@ function getArchivesMAM(args, max) {
 	var req_id = genID();
 
 	if(args['with']) {
+		MAM_MAP_PENDING[args['with']] = 1;
 		MAM_MAP_REQS[req_id] = args['with'];
 	}
 
@@ -110,20 +139,26 @@ function getArchivesMAM(args, max) {
 		rsm_set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, max));
 	}
 
-	con.send(iq, handleArchivesMAM);
+	con.send(iq, function(res_iq) {
+		handleArchivesMAM(res_iq, callback);
+	});
 }
 
 // Handles the MAM configuration
-function handleArchivesMAM(iq) {
+function handleArchivesMAM(iq, callback) {
+	var res_id = iq.getID();
+	var res_with;
+
+	if(res_id && res_id in MAM_MAP_REQS) {
+		res_with = MAM_MAP_REQS[res_id];
+	}
+
 	if(iq.getType() != 'error') {
-		var res_id = iq.getID();
-		var res_with;
-
-		if(res_id && res_id in MAM_MAP_REQS) {
-			res_with = MAM_MAP_REQS[res_id];
-		}
-
 		if(res_with) {
+			if(res_with in MAM_MAP_PENDING) {
+				delete MAM_MAP_PENDING[res_with];
+			}
+			
 			var res_sel = $(iq.getQuery());
 			var res_rsm_sel = res_sel.find('set[xmlns="' + NS_RSM + '"]');
 
@@ -147,6 +182,11 @@ function handleArchivesMAM(iq) {
 		}
 	} else {
 		logThis('Error handing archives (MAM).', 1);
+	}
+
+	// Execute callback?
+	if(typeof callback == 'function') {
+		callback(iq);
 	}
 }
 

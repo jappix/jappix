@@ -80,7 +80,7 @@ function generateChat(type, id, xid, nick) {
 	var escaped_xid = escape(xid);
 	
 	// Special code
-	var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle;
+	var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle, specialMAM;
 	
 	// Groupchat special code
 	if(type == 'groupchat') {
@@ -100,10 +100,11 @@ function generateChat(type, id, xid, nick) {
 	
 	// Chat (or other things?!) special code
 	else {
+		specialMAM = '<div class="wait-mam wait-small"></div>';
 		specialAttributes = ' data-type="chat"';
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
-		specialCode = '<div class="content" id="chat-content-' + id + '"></div>';
+		specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
 		specialLink = '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
@@ -249,7 +250,7 @@ function chatCreate(hash, xid, nick, type) {
 			}, MAM_REQ_MAX);
 		} else {
 			// Restore the chat history
-			var chat_history = getPersistent(getXID(), "'history'", hash);
+			var chat_history = getPersistent(getXID(), 'history', hash);
 			
 			if(chat_history) {
 				// Generate hashs
@@ -332,6 +333,28 @@ function chatCreate(hash, xid, nick, type) {
 			}
 			
 			return false;
+		}
+	});
+
+	// Scroll in chat content
+	$('#page-engine #' + hash + ' .content').scroll(function() {
+		if(!(xid in MAM_MAP_PENDING)) {
+			var has_state = xid in MAM_MAP_STATES;
+			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : MAM_REQ_MAX;
+			var date_start = has_state ? MAM_MAP_STATES[xid]['date']['start'] : null;
+
+			// Request more archives?
+			if(rsm_count >= MAM_REQ_MAX && $(this).scrollTop() < 200) {
+				var wait_mam = $('#' + hash).find('.wait-mam');
+				wait_mam.show();
+
+				getArchivesMAM({
+					'with': xid,
+					'end': date_start
+				}, MAM_REQ_MAX, function() {
+					wait_mam.hide();
+				});
+			}
 		}
 	});
 	

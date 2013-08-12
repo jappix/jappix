@@ -40,7 +40,7 @@ function optionsOpen() {
 						'<option value="always">' + _e("Store all chats") + '</option>' + 
 						'<option value="roster">' + _e("Store friend chats") + '</option>' + 
 					'</select>' + 
-					'<a href="#" class="linked purge-archives mam-hidable">' + _e("Remove all archives") + '</a>' + 
+					'<a href="#" class="linked empty-archives mam-hidable">' + _e("Remove all archives") + '</a>' + 
 				'</div>' +
 			'</fieldset>' + 
 			
@@ -66,8 +66,21 @@ function optionsOpen() {
 					'<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
 					'<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
 				'</div>' +
-				
 			'</fieldset>' + 
+
+			'<div class="sub-ask sub-ask-mam sub-ask-element">' + 
+				'<div class="sub-ask-top">' + 
+					'<div class="sub-ask-title">' + _e("Remove all archives") + '</div>' + 
+					'<a href="#" class="sub-ask-close">X</a>' + 
+				'</div>' + 
+				
+				'<div class="sub-ask-content">' + 
+					'<label>' + _e("Password") + '</label>' + 
+					'<input type="password" class="purge-archives check-mam" required="" />' + 
+				'</div>' + 
+				
+				'<a href="#" class="sub-ask-bottom">' + _e("Remove") + ' &raquo;</a>' + 
+			'</div>' + 
 		'</div>' + 
 		
 		'<div id="conf2" class="one-lap forms">' + 
@@ -367,9 +380,7 @@ function sendNewPassword() {
 		con.send(iq, handlePwdChange);
 		
 		logThis('Password change sent.', 3);
-	}
-	
-	else {
+	} else {
 		$('.sub-ask-pass input').each(function() {
 			var select = $(this);
 			
@@ -407,10 +418,32 @@ function handleAccDeletion(iq) {
 		logout();
 		
 		logThis('Account deleted.', 3);
+	} else {
+		logThis('Account not deleted.', 2);
+	}
+}
+
+// Purge the user's archives (MAM)
+function purgeMyArchives() {
+	var password = $('#options .check-mam').val();
+	
+	if(password == getPassword()) {
+		purgeArchivesMAM();
+
+		// Hide the tool
+		$('#options .sub-ask').hide();
+	} else {
+		var selector = $('#options .check-mam');
+		
+		if(password != getPassword())
+			$(document).oneTime(10, function() {
+				selector.addClass('please-complete').focus();
+			});
+		else
+			selector.removeClass('please-complete');
 	}
 	
-	else
-		logThis('Account not deleted.', 2);
+	return false;
 }
 
 // Purge the user's microblog items
@@ -433,9 +466,7 @@ function purgeMyMicroblog() {
 		$('#options .sub-ask').hide();
 		
 		logThis('Microblog purge sent.', 3);
-	}
-	
-	else {
+	} else {
 		var selector = $('#options .check-empty');
 		
 		if(password != getPassword())
@@ -578,6 +609,18 @@ function launchOptions() {
 		
 		return false;
 	});
+
+	$('#options .empty-archives').click(function() {
+		var selector = '#options .sub-ask-mam';
+		
+		$(selector).show();
+		
+		$(document).oneTime(10, function() {
+			$(selector + ' input').focus();
+		});
+		
+		return false;
+	});
 	
 	$('#options .empty-channel').click(function() {
 		var selector = '#options .sub-ask-empty';
@@ -619,6 +662,10 @@ function launchOptions() {
 		return sendNewPassword();
 	});
 	
+	$('#options .sub-ask-mam .sub-ask-bottom').click(function() {
+		return purgeMyArchives();
+	});
+
 	$('#options .sub-ask-empty .sub-ask-bottom').click(function() {
 		return purgeMyMicroblog();
 	});
@@ -645,8 +692,12 @@ function launchOptions() {
 	// The keyup events
 	$('#options .sub-ask input').keyup(function(e) {
 		if(e.keyCode == 13) {
+			// Archives purge
+			if($(this).is('.purge-archives'))
+				return purgeMyArchives();
+
 			// Microblog purge
-			if($(this).is('.purge-microblog'))
+			else if($(this).is('.purge-microblog'))
 				return purgeMyMicroblog();
 			
 			// Password change

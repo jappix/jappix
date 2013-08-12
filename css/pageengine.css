@@ -153,6 +153,11 @@ html[dir="rtl"] #page-engine div.bc-pep a {
 	text-decoration: underline;
 }
 
+#page-engine .content .wait-mam {
+	margin: 2px auto 14px auto;
+	display: none;
+}
+
 #page-engine .page-engine-chan {
 	display: none;
 }
