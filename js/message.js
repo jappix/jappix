@@ -21,9 +21,9 @@ function handleMessage(message) {
 	var c_mam = message.getChild('result', NS_URN_MAM);
 
 	if(c_mam) {
-		var c_mam_forward = c_mam.getChild('forwarded', NS_URN_FORWARD);
+		var c_mam_forward = $(c_mam).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
 
-		if(c_mam_forward.getChild('forwarded', NS_URN_FORWARD)) {
+		if(c_mam_forward.size()) {
 			handleMessageMAM(c_mam_forward);
 		}
 
