@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/jappix/"
 "language/hu/)\n"
@@ -205,12 +205,6 @@ msgstr "Archivált üzenetek"
 
 msgid "Date"
 msgstr "Dátum"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Kérlek válassz ki egy barátot, hogy lásd a beszélgetési előzményeket"
-
-msgid "Nothing found for: %s"
-msgstr "Nem található: %s"
 
 msgid "A short message?"
 msgstr "Egy rövid üzenet?"
@@ -445,8 +439,8 @@ msgstr "Adatvédelem"
 msgid "Message archiving"
 msgstr "Üzenet archiválása"
 
-msgid "Store a history of your chats"
-msgstr "Korábbi beszélgetések tárolása"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Tartózkodási hely"
@@ -572,9 +566,6 @@ msgstr "Fájl letöltése!"
 
 msgid "Clean current chat"
 msgstr "Aktuális beszélgetés törlése"
-
-msgid "View chat history"
-msgstr "Beszélgetés előzményeinek megnézése"
 
 msgid "Show user profile"
 msgstr "Felhasználói profil megmutatása"

@@ -54,7 +54,7 @@ function openWelcome() {
 				'<span class="tick talk-images"></span>' + 
 			'</a>' + 
 			
-			'<a href="#" class="box enabled mam-hidable pref" title="' + _e("Click to enable") + '">' + 
+			'<a href="#" class="box mam-hidable pref" title="' + _e("Click to enable") + '">' + 
 				'<span class="option">' + _e("Message archiving") + '</span>' + 
 				'<span class="description">' + _e("Store a history of your chats") + '</span>' + 
 				'<span class="image mam talk-images"></span>' + 

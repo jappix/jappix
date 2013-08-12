@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 18:59+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/jappix/language/"
 "sv/)\n"
@@ -205,12 +205,6 @@ msgstr "Meddelandearkiv"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Var god välj en vän för att se chathistoriken."
-
-msgid "Nothing found for: %s"
-msgstr "Inget hittades med: %s"
 
 msgid "A short message?"
 msgstr "Kort meddelande?"
@@ -445,8 +439,8 @@ msgstr "Integritet"
 msgid "Message archiving"
 msgstr "Meddelande arkivering"
 
-msgid "Store a history of your chats"
-msgstr "Spara en historik av dina chatter"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolocation"
@@ -572,9 +566,6 @@ msgstr "Ladda ner fil!"
 
 msgid "Clean current chat"
 msgstr "Rensa nuvarande chat"
-
-msgid "View chat history"
-msgstr "Visa chathistorik"
 
 msgid "Show user profile"
 msgstr "Visa användarprofil"

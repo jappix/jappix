@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/projects/p/jappix/language/"
 "fa/)\n"
@@ -204,12 +204,6 @@ msgstr "بایگانی‌های پیغام"
 
 msgid "Date"
 msgstr "تاریخ"
-
-msgid "Please select a friend to view the chat history."
-msgstr ""
-
-msgid "Nothing found for: %s"
-msgstr "چیزی یافت نشد برای: %s"
 
 msgid "A short message?"
 msgstr "یک پیغام کوتاه؟"
@@ -440,8 +434,8 @@ msgstr "حریم خصوصی"
 msgid "Message archiving"
 msgstr "بایگانی پیام"
 
-msgid "Store a history of your chats"
-msgstr "ذخیرهٔ تاریخچهٔ گفتگوهای شما"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "منطقهٔ جغرافیایی"
@@ -565,9 +559,6 @@ msgstr "بارگیری پرونده!"
 
 msgid "Clean current chat"
 msgstr "پاکسازی گفتگوی فعلی"
-
-msgid "View chat history"
-msgstr "دیدن تاریخچهٔ گفتگو"
 
 msgid "Show user profile"
 msgstr "نمایش پروفایل کاربری"

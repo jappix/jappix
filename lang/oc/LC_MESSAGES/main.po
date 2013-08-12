@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/"
 "jappix/language/oc/)\n"
@@ -208,12 +208,6 @@ msgstr "Archius de messatges"
 
 msgid "Date"
 msgstr "Data"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Si vos plai, seleccionatz un amic per veire l'istoric de la charrada."
-
-msgid "Nothing found for: %s"
-msgstr "Se trobet pas ren per : %s"
 
 msgid "A short message?"
 msgstr "Un pitit messatge ?"
@@ -447,8 +441,8 @@ msgstr "Vita privada"
 msgid "Message archiving"
 msgstr "Archivatge daus messatges"
 
-msgid "Store a history of your chats"
-msgstr "Gardar un istoric de vòstras charradas"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolocalizacion"
@@ -574,9 +568,6 @@ msgstr "Descharjar lo fichier !"
 
 msgid "Clean current chat"
 msgstr "Netiar la charrada "
-
-msgid "View chat history"
-msgstr "Veire l'istoric de la charrada"
 
 msgid "Show user profile"
 msgstr "Mostrar lo perfil de l'utilizaire"

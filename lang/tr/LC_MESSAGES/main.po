@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/jappix/language/"
 "tr/)\n"
@@ -57,7 +57,7 @@ msgid "Download Jappix for free."
 msgstr "Jappix'i ücretsiz indirin."
 
 msgid "Contribute to the Jappix code."
-msgstr "Jappix code'a katkıda bulunun."
+msgstr "Jappix koduna katkıda bulunun."
 
 msgid "Jappix for your company."
 msgstr "Şirketiniz için Jappix."
@@ -109,7 +109,7 @@ msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
 msgstr ""
-"Parolanız değiştirilmiş, artık yeni kullanıcı bilgilerinizle giriş "
+"Parolanız değiştirildi, artık yeni kullanıcı bilgilerinizle giriş "
 "yapabilirsiniz."
 
 msgid "Your XMPP account has been removed, bye!"
@@ -131,7 +131,7 @@ msgid "Please enter the group chat address to join."
 msgstr "Katılmak için grup sohbet adresini yazın."
 
 msgid "Please enter your nickname to join %s."
-msgstr "%s 'e bağlanmak için kullanıcı adınızı girin."
+msgstr "%s 'e bağlanmak için rumuzunuzu girin."
 
 msgid "This room (%s) is protected with a password."
 msgstr "(%s) odasına giriş parolalı yapılmaktadır."
@@ -210,12 +210,6 @@ msgstr "Mesaj arşivleri"
 
 msgid "Date"
 msgstr "Tarih"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Sohbet geçmişi görüntülemek için arkadaş seçin."
-
-msgid "Nothing found for: %s"
-msgstr "Bunun için hiçbir şey bulunamadı: %s"
 
 msgid "A short message?"
 msgstr "Kısa bir mesaj?"
@@ -326,10 +320,10 @@ msgid "This is a repeat from %s"
 msgstr "Bu %s 'den tekrardır."
 
 msgid "Repeat this notice"
-msgstr "Notu tekrarla"
+msgstr "Bildirimi tekrarla"
 
 msgid "Remove this notice"
-msgstr "Notu kaldır"
+msgstr "Bildirimi kaldır"
 
 msgid "Your profile"
 msgstr "Profiliniz"
@@ -404,7 +398,7 @@ msgid "Biography"
 msgstr "Biyografi"
 
 msgid "Important notice"
-msgstr "Önemli not"
+msgstr "Önemli bildirim"
 
 msgid ""
 "Be careful with the information you store into your profile, because it "
@@ -423,9 +417,8 @@ msgid ""
 "picture of yourself, because that makes you easily recognizable by your "
 "friends."
 msgstr ""
-"It is strongly recommended to upload a profile image (%s maximum), like a "
-"picture of yourself, because that makes you easily recognizable by your "
-"friends."
+"Arkadaşlarınızın kolayca tanıması için, kendinizin profil fotoğrafınızı "
+"yüklemenizi tavsiye ederiz (%s en fazla)."
 
 msgid "Save"
 msgstr "Kaydet"
@@ -451,8 +444,8 @@ msgstr "Gizlilik"
 msgid "Message archiving"
 msgstr "Mesaj arşivleme"
 
-msgid "Store a history of your chats"
-msgstr "Sohbet geçmişinizi saklayın"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Coğrafik lokasyon"
@@ -467,7 +460,7 @@ msgid "Persistent"
 msgstr "Tutarlı"
 
 msgid "Maximum notices"
-msgstr "Maksimum bildiri"
+msgstr "En fazla bildirim"
 
 msgid "Account"
 msgstr "Hesap"
@@ -509,7 +502,7 @@ msgid "Please wait while your avatar is uploaded..."
 msgstr "Avatarınız yüklenirken lütfen bekleyin..."
 
 msgid "Here it is! A new beautiful profile image!"
-msgstr "İşte burada! Yeni güzel bir profil imajı!"
+msgstr "İşte burada! Yeni güzel bir profil fotoğrafı!"
 
 msgid "The image file is not supported or has a bad size."
 msgstr "Dosya formatı desteklenmiyor ya da hatalı dosya boyutu."
@@ -536,7 +529,7 @@ msgid "Hi, I am %s, I would like to add you as my friend."
 msgstr "Merhaba, ben %s, sizi arkadaşım olarak eklemek istiyorum."
 
 msgid "Smiley insertion"
-msgstr "Smiley ekleme"
+msgstr "Gülenyüz ekleme"
 
 msgid "Change style"
 msgstr "Stili değiştir"
@@ -564,8 +557,8 @@ msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
-"Sohbet günlükleri için linke tıklayın ve bekleyin. Daha sonra dosyayı almak "
-"için tekrar tıklayın."
+"Sohbet günlükleri için bağlantıya tıklayın ve bekleyin. Daha sonra dosyayı "
+"almak için tekrar tıklayın."
 
 msgid "This chat is empty!"
 msgstr "Sohbet boş!"
@@ -578,9 +571,6 @@ msgstr "Dosyayı indir!"
 
 msgid "Clean current chat"
 msgstr "Mevcut konuşmayı temizle"
-
-msgid "View chat history"
-msgstr "Sohbet geçmişini görüntüle"
 
 msgid "Show user profile"
 msgstr "Kullanıcı profilini göster"
@@ -628,7 +618,7 @@ msgid "Getting the name..."
 msgstr "İsmi alıyor..."
 
 msgid "Gateway"
-msgstr "Gateway"
+msgstr "Ağ Geçidi"
 
 msgid "Name"
 msgstr "Ad"
@@ -652,52 +642,52 @@ msgid "Service discovery"
 msgstr "Servis keşfi"
 
 msgid "Server to query"
-msgstr "Server to query"
+msgstr "Sorgu için sunucu"
 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr "Sorry, but the entity didn't return any result!"
+msgstr "Üzgünüz, giriş herhangi bir sonuç dönmedi!"
 
 msgid "Accounts"
-msgstr "Accounts"
+msgstr "Hesaplar"
 
 msgid "Authentications"
-msgstr "Authentications"
+msgstr "Doğrulamalar"
 
 msgid "Automation"
-msgstr "Automation"
+msgstr "Otomasyon"
 
 msgid "Clients"
-msgstr "Clients"
+msgstr "İstemciler"
 
 msgid "Collaboration"
-msgstr "Collaboration"
+msgstr "İşbirliği"
 
 msgid "Components"
-msgstr "Components"
+msgstr "Bileşenler"
 
 msgid "Rooms"
-msgstr "Rooms"
+msgstr "Odalar"
 
 msgid "Directories"
-msgstr "Directories"
+msgstr "Klasörler"
 
 msgid "Gateways"
-msgstr "Gateways"
+msgstr "Ağ geçitleri"
 
 msgid "News"
-msgstr "News"
+msgstr "Haberler"
 
 msgid "Hierarchy"
-msgstr "Hierarchy"
+msgstr "Hiyerarşi"
 
 msgid "Proxies"
-msgstr "Proxies"
+msgstr "Vekil sunucular"
 
 msgid "Publication/Subscription"
-msgstr "Publication/Subscription"
+msgstr "Yayınlama/Abonelik"
 
 msgid "Storage"
-msgstr "Storage"
+msgstr "Depolama"
 
 msgid "Service offline or broken"
 msgstr "Servis çevrimdışı ya da hatalı"
@@ -739,7 +729,7 @@ msgid "Enter new subject"
 msgstr "Yeni konu girin"
 
 msgid "Configuration"
-msgstr "Konfigürasyon"
+msgstr "Yapılandırma"
 
 msgid "Authorizations"
 msgstr "Yetkiler"
@@ -834,7 +824,7 @@ msgstr " %1s, “%2s” 'a hoşgeldiniz."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
-"Mevcut XMPP hesabınızla giriş yapın ya da ücretsiz yeni bir hesap yaratın."
+"Mevcut XMPP hesabınızla giriş yapın ya da ücretsiz yeni bir hesap oluşturun."
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -870,20 +860,20 @@ msgid "Medium"
 msgstr "Orta"
 
 msgid "High"
-msgstr "High"
+msgstr "Yüksek"
 
 msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
-"Enter the groupchat you want to join and the nick you want to have. You can "
-"also go back to the %s."
+"Katılmak istediğiniz grup sohbeti ve istediğiniz rumuzu girin. Ayrıca %s "
+"geri dönebilirsiniz."
 
 msgid "login page"
-msgstr "login page"
+msgstr "giriş sayfası"
 
 msgid "Share this link with your friends:"
-msgstr "Share this link with your friends:"
+msgstr "Arkadaşınla bu bağlantıyı paylaş:"
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
@@ -893,118 +883,118 @@ msgstr ""
 "That's simple!"
 
 msgid "Required"
-msgstr "Required"
+msgstr "Gerekli"
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr "You have been registered, here is your XMPP address:"
+msgstr "Kaydoldunuz, işte XMPP adresiniz:"
 
 msgid "Manager"
-msgstr "Manager"
+msgstr "Müdür"
 
 msgid "Encrypted"
-msgstr "Encrypted"
+msgstr "Şifreli"
 
 msgid "Unencrypted"
-msgstr "Unencrypted"
+msgstr "Şifresiz"
 
 msgid "Where are you?"
-msgstr "Where are you?"
+msgstr "Nerdesiniz?"
 
 msgid "What's up with you?"
-msgstr "What's up with you?"
+msgstr "Naber?"
 
 msgid "Type something you want to share with your friends..."
-msgstr "Type something you want to share with your friends..."
+msgstr "Arkadaşlarınızla paylamak istediğiniz bir şey yazın..."
 
 msgid "Fetching the social channel..."
-msgstr "Fetching the social channel..."
+msgstr "Sosyal kanal getiriliyor..."
 
 msgid "You are synchronized with your network."
-msgstr "You are synchronized with your network."
+msgstr "Ağınızla eşitlenmiştir."
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr "Cannot send anything: you can only receive notices!"
+msgstr "Hiçbir şey gönderemezsiniz: sadece bildirim alabilirsiniz!"
 
 msgid "Media viewer"
-msgstr "Media viewer"
+msgstr "Medya görüntüleyici"
 
 msgid "Browse"
-msgstr "Browse"
+msgstr "Gözat"
 
 msgid "Command"
-msgstr "Command"
+msgstr "Komut"
 
 msgid "Subscribe"
-msgstr "Subscribe"
+msgstr "Abone ol"
 
 msgid "Join"
-msgstr "Join"
+msgstr "Katıl"
 
 msgid "Automatic"
-msgstr "Automatic"
+msgstr "Otomatik"
 
 msgid "Search"
-msgstr "Search"
+msgstr "Ara"
 
 msgid "No result!"
-msgstr "No result!"
+msgstr "Sonuç yok!"
 
 msgid "No notifications."
 msgstr "No notifications."
 
 msgid "would like to add you as a friend."
-msgstr "would like to add you as a friend."
+msgstr "bir arkadaş eklemek istersiniz."
 
 msgid "would like you to join this chatroom:"
-msgstr "would like you to join this chatroom:"
+msgstr "bu sohbet odasına katılmak istersiniz:"
 
 msgid "Do you accept?"
-msgstr "Do you accept?"
+msgstr "Kabul ediyor musun?"
 
 msgid "Yes"
-msgstr "Yes"
+msgstr "Evet"
 
 msgid "No"
-msgstr "No"
+msgstr "Hayır"
 
 msgid "would like to get authorization."
-msgstr "would like to get authorization."
+msgstr "yetki almak istersiniz."
 
 msgid "would like to send you a file: “%s”."
-msgstr "would like to send you a file: “%s”."
+msgstr "bir dosya göndermek istersiniz: “%s”."
 
 msgid "has received a file exchange request: “%s”."
-msgstr "has received a file exchange request: “%s”."
+msgstr "bir dosya alışverişi isteği alındı: “%s”."
 
 msgid "has accepted to receive your file: “%s”."
 msgstr ""
 
 msgid "has rejected to receive your file: “%s”."
-msgstr "has rejected to receive your file: “%s”."
+msgstr "dosya alımınız reddedildi: “%s”."
 
 msgid "could not receive your file: “%s”."
-msgstr "could not receive your file: “%s”."
+msgstr "dosyanız alınamadı: “%s”."
 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr "Do you want to see the friends %s suggests you?"
+msgstr "Arkadaşların sana %s önerilerini görmek ister misin?"
 
 msgid "commented an item you follow: “%s”."
-msgstr "commented an item you follow: “%s”."
+msgstr "takip ettiğin öğeye yorum yapıldı: “%s”."
 
 msgid "liked your post: “%s”."
-msgstr "liked your post: “%s”."
+msgstr "gönderiniz beğenildi: “%s”."
 
 msgid "quoted you somewhere: “%s”."
-msgstr "quoted you somewhere: “%s”."
+msgstr "bir yerde alıntılandınız: “%s”."
 
 msgid "published on your wall: “%s”."
-msgstr "published on your wall: “%s”."
+msgstr "duvarınızda yayınlandı: “%s”."
 
 msgid "tagged you in a photo (%s)."
-msgstr "tagged you in a photo (%s)."
+msgstr "bir fotoğraf içinde etiketlendiniz (%s)."
 
 msgid "tagged you in a video (%s)."
-msgstr "tagged you in a video (%s)."
+msgstr "bir video içinde etiketlendiniz (%s)."
 
 msgid ""
 "validated your account. Your public profile will be available in a few "
@@ -1028,28 +1018,28 @@ msgid "Open"
 msgstr ""
 
 msgid "Show"
-msgstr "Show"
+msgstr "Göster"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Gizle"
 
 msgid "Submit"
-msgstr "Submit"
+msgstr "Gönder"
 
 msgid "Client"
-msgstr "Client"
+msgstr "İstemci"
 
 msgid "System"
-msgstr "System"
+msgstr "Sistem"
 
 msgid "Local time"
-msgstr "Local time"
+msgstr "Yerel zaman"
 
 msgid "Comments"
-msgstr "Comments"
+msgstr "Yorumlar"
 
 msgid "User profile"
-msgstr "User profile"
+msgstr "Kullanıcı profili"
 
 msgid "See his/her position on the globe"
 msgstr "See his/her position on the globe"
@@ -1124,7 +1114,7 @@ msgid "Channel of"
 msgstr "Channel of"
 
 msgid "More notices..."
-msgstr "More notices..."
+msgstr "Daha fazla bildirim..."
 
 msgid "Attach a file"
 msgstr "Attach a file"
@@ -1754,7 +1744,7 @@ msgid "Background"
 msgstr "Background"
 
 msgid "Notice"
-msgstr "Notice"
+msgstr "Bildirim"
 
 msgid "Your design preferences have been saved!"
 msgstr "Your design preferences have been saved!"
@@ -2072,7 +2062,7 @@ msgid "Group"
 msgstr "Grup"
 
 msgid "Subscription"
-msgstr "Başvuru"
+msgstr "Abonelik"
 
 msgid "Both"
 msgstr "Hepsi"
@@ -2099,7 +2089,7 @@ msgid "Everything"
 msgstr "Her şey"
 
 msgid "Item"
-msgstr "Nesne"
+msgstr "Öğe"
 
 msgid "Order"
 msgstr "Sıra"
@@ -2146,7 +2136,7 @@ msgid "%s sends a message to the room"
 msgstr "%s odaya mesaj gönderiyor"
 
 msgid "%s changes your nickname"
-msgstr "%s kullanıcı adınızı değiştiriyor"
+msgstr "%s rumuzunuzu değiştiriyor"
 
 msgid "%s sends a message to someone in the room"
 msgstr "%s odadaki birine mesaj gönderiyor"

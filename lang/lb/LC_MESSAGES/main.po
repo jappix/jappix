@@ -5,12 +5,14 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Last revision: 07/06/13
 # Translators:
+# DonIncognito <joe.brendel.ronck@gmail.com>, 2013
 # kahpa <patrick@nerds.lu>, 2013
+# Tullius, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:28+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Luxembourgish (http://www.transifex.com/projects/p/jappix/"
 "language/lb/)\n"
@@ -23,7 +25,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
-msgstr ""
+msgstr "Standart:LTR"
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
@@ -48,7 +50,7 @@ msgid "Statistics around Jappix."
 msgstr "Statistiken iwwert Jappix."
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Disclaimer fier Jappix"
 
 msgid "Download Jappix for free."
 msgstr "Lued Jappix gratis erof."
@@ -57,40 +59,40 @@ msgid "Contribute to the Jappix code."
 msgstr "Drot eppes zum Jappix Code bäi"
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix fier Äer Firma."
 
 msgid "Find a public Jappix node."
 msgstr "Fannt en öffentlechen Jappix node."
 
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 msgid "Association"
-msgstr ""
+msgstr "Associatioun"
 
 msgid "Web agency"
-msgstr ""
+msgstr "Webagentur"
 
 msgid "Legal"
-msgstr ""
+msgstr "Rechtleches"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Disclaimer"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "Benotzerbedingungen a Rechtleches"
 
 msgid "Owner"
-msgstr ""
+msgstr "Besëtzer"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Noder Besëtzer"
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Wann dier éisen Service benotzt, stëmmt dier %s zou."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "eis Benotzerbedingungen"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -101,7 +103,7 @@ msgstr ""
 "hudd) ënnerbrach, entschëllegt d'Stéirung."
 
 msgid "The element list on this server could not be obtained!"
-msgstr ""
+msgstr "Konnt d'Lëscht vun den Elementer op dësem Server net kréien!"
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
@@ -117,10 +119,10 @@ msgid "You have been logged out of your XMPP account, have a nice day!"
 msgstr "Dier hudd Iech aus ärem XMPP Kont ausgeloggt, e schéinen Daag nach!"
 
 msgid "The room you tried to join doesn't seem to exist."
-msgstr ""
+msgstr "Den Chat-Raum deem dier bäitrieden wollt, schéngt et net ze ginn."
 
 msgid "The groupchat has been removed."
-msgstr ""
+msgstr "Den Gruppenchat ass geläscht ginn."
 
 msgid "The user that you want to reach is not present in the room."
 msgstr "De Benotzer deen Dier erreechen wëllt as fier de Moment net am Raum."
@@ -159,7 +161,7 @@ msgid "Remember me"
 msgstr "Errënner dech u mech"
 
 msgid "This tool has been disabled!"
-msgstr ""
+msgstr "Dësen Tool as desaktivéiert gin!"
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -171,7 +173,7 @@ msgid "Reconnect"
 msgstr "Frësch verbannen"
 
 msgid "Messages"
-msgstr "Noriichten"
+msgstr "Messagen"
 
 msgid "Profile"
 msgstr "Profil"
@@ -209,12 +211,6 @@ msgstr "Noriichtenarchiv"
 msgid "Date"
 msgstr "Datum"
 
-msgid "Please select a friend to view the chat history."
-msgstr "Wielt w.e.g. e Kolleg aus fier den Chatarchiv ze gesin."
-
-msgid "Nothing found for: %s"
-msgstr "Näicht fonnt ënnert: %s"
-
 msgid "A short message?"
 msgstr "Eng kuerz Noriicht?"
 
@@ -246,7 +242,7 @@ msgid "Busy"
 msgstr "Beschäftegt"
 
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 msgid "Mood"
 msgstr "Laun"
@@ -261,7 +257,7 @@ msgid "Excited"
 msgstr "Opgereegt"
 
 msgid "Playful"
-msgstr ""
+msgstr "Verspillt"
 
 msgid "Happy"
 msgstr "Frou"
@@ -270,37 +266,37 @@ msgid "Shocked"
 msgstr "Schockéiert"
 
 msgid "Hot"
-msgstr ""
+msgstr "Hot"
 
 msgid "Sad"
 msgstr "Traureg"
 
 msgid "Amorous"
-msgstr ""
+msgstr "Verléiwt"
 
 msgid "Confident"
-msgstr ""
+msgstr "Zouversiichtlech"
 
 msgid "Activity"
 msgstr "Aktivitéit"
 
 msgid "Chores"
-msgstr ""
+msgstr "Aufgaben"
 
 msgid "Drinking"
-msgstr ""
+msgstr "Amgaang ze drénken"
 
 msgid "Eating"
-msgstr ""
+msgstr "Amgaang z'iessen"
 
 msgid "Exercising"
-msgstr ""
+msgstr "Amgaang Sport ze maachen"
 
 msgid "Grooming"
-msgstr ""
+msgstr "Grooming"
 
 msgid "Appointment"
-msgstr ""
+msgstr "Rendez-Vous"
 
 msgid "Inactive"
 msgstr "Inaktiv"
@@ -312,7 +308,7 @@ msgid "Talking"
 msgstr "Amgaang ze schwätzen"
 
 msgid "Traveling"
-msgstr ""
+msgstr "Op der Rees "
 
 msgid "Working"
 msgstr "Amgaang ze schaffen"
@@ -321,13 +317,13 @@ msgid "View profile"
 msgstr "Profil ukucken"
 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "Dëst ass eng Widderhuelung vum %s"
 
 msgid "Repeat this notice"
-msgstr ""
+msgstr "Dës Notiz widderhuelen"
 
 msgid "Remove this notice"
-msgstr ""
+msgstr "Dës Notiz läschen"
 
 msgid "Your profile"
 msgstr "Ären Profil"
@@ -342,7 +338,7 @@ msgid "Others"
 msgstr "Anerer"
 
 msgid "Other"
-msgstr ""
+msgstr "Aaneres"
 
 msgid "Personal"
 msgstr "Perséinlech"
@@ -375,7 +371,7 @@ msgid "Website"
 msgstr "Internetsäit"
 
 msgid "Current"
-msgstr ""
+msgstr "Aktuell"
 
 msgid "Delete"
 msgstr "Läschen"
@@ -408,6 +404,9 @@ msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
+"Sidd virsiichteg mat den Informatiounen dei der an Äerem Profil ugitt, se "
+"kéinnten  fier Jiddereen zougänglech sin (och fier Leit, bei deenen der et "
+"nët wëllt)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -449,8 +448,8 @@ msgstr "Privatsphär"
 msgid "Message archiving"
 msgstr "Noriichtenarchivéirung"
 
-msgid "Store a history of your chats"
-msgstr "Archivéiert Äer Chats"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolocalisatioun"
@@ -462,10 +461,10 @@ msgid "Empty channel"
 msgstr "Eidelen Channel"
 
 msgid "Persistent"
-msgstr ""
+msgstr "Dauerhaft"
 
 msgid "Maximum notices"
-msgstr ""
+msgstr "Maximum un Notizen"
 
 msgid "Account"
 msgstr "Kont"
@@ -483,7 +482,7 @@ msgid "New (2 times)"
 msgstr "Néi (2 mol)"
 
 msgid "Suggested chatrooms"
-msgstr ""
+msgstr "Fiergeschloen Chat-Raim"
 
 msgid "Continue"
 msgstr "Weiderfueren"
@@ -532,13 +531,13 @@ msgid "Rename"
 msgstr "Numm änneren"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Moien, mäin Numm as %s, ech géif Iech gäer als Kolleg adden."
 
 msgid "Smiley insertion"
-msgstr ""
+msgstr "Insertioun vun Smiley'en"
 
 msgid "Change style"
-msgstr ""
+msgstr "Style änneren"
 
 msgid "Text in bold"
 msgstr "Text fëttgedréckt"
@@ -555,6 +554,8 @@ msgstr "eng Datei schécken"
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr ""
+"Soubal se eropgelueden as, kritt Ären Kolleg daat ugewisen a kann d'Datei "
+"eroflueden."
 
 msgid "Save chat"
 msgstr "Chat späicheren"
@@ -563,727 +564,763 @@ msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
+"Klickt op folgenden Link fier den Chatprotokoll ze kréien, dann waart. "
+"Klickt duerno nach eng Kéier fier en erofzelueden."
 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Dësen Chat as eidel."
 
 msgid "Generate file!"
-msgstr ""
+msgstr "Datei generéieren!"
 
 msgid "Download file!"
-msgstr ""
+msgstr "Datei eroflueden!"
 
 msgid "Clean current chat"
-msgstr ""
-
-msgid "View chat history"
-msgstr ""
+msgstr "Momentanen Chat eidel maachen"
 
 msgid "Show user profile"
-msgstr ""
+msgstr "Benotzerprofil kucken"
 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "Dësen Kontakt bei Äer Kollegen derbäisetzten"
 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "Dësen Gruppenchat bei Äer Favoriten derbäisetzten"
 
 msgid "All tabs"
-msgstr ""
+msgstr "All d'Reiteren"
 
 msgid "Close this tab"
-msgstr ""
+msgstr "Dëse Reiter zoumaachen"
 
 msgid "no subject defined for this room."
-msgstr ""
+msgstr "Fier dësen Raum gouf keen Sujet festgeluet."
 
 msgid "Administration panel for this room"
-msgstr ""
+msgstr "Administratiounsberäich fier dësen Raum."
 
 msgid "Moderators"
-msgstr ""
+msgstr "Moderatoren"
 
 msgid "Participants"
-msgstr ""
+msgstr "Participanten"
 
 msgid "Visitors"
-msgstr ""
+msgstr "Visiteuren"
 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr "Organiséiert Äer favoriséiert Räim"
 
 msgid "Change favorites"
-msgstr ""
+msgstr "Favoriten änneren"
 
 msgid "Search a room"
-msgstr ""
+msgstr "E Raum sichen"
 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Wielt e Favorit aus"
 
 msgid "Getting the name..."
-msgstr ""
+msgstr "Numm sichen..."
 
 msgid "Gateway"
-msgstr ""
+msgstr "Gateway"
 
 msgid "Name"
-msgstr ""
+msgstr "Numm"
 
 msgid "Room"
-msgstr ""
+msgstr "Raum"
 
 msgid "Add"
-msgstr ""
+msgstr "Bäisetzen"
 
 msgid "Edit"
-msgstr ""
+msgstr "Änneren"
 
 msgid "Search a room on"
-msgstr ""
+msgstr "E Raum sichen"
 
 msgid "No room found on this server."
-msgstr ""
+msgstr "Kee Raum op dësem Server fonnt."
 
 msgid "Service discovery"
-msgstr ""
+msgstr "Service Entdecken"
 
 msgid "Server to query"
-msgstr ""
+msgstr "Server "
 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr ""
+msgstr "Et deet eis Leed, keen Resultat!"
 
 msgid "Accounts"
 msgstr "Konten"
 
 msgid "Authentications"
-msgstr ""
+msgstr "Bestätegungen"
 
 msgid "Automation"
-msgstr ""
+msgstr "Automatiséierung"
 
 msgid "Clients"
-msgstr ""
+msgstr "Clients"
 
 msgid "Collaboration"
-msgstr ""
+msgstr "Kollaboratioun"
 
 msgid "Components"
-msgstr ""
+msgstr "Komponenten"
 
 msgid "Rooms"
-msgstr ""
+msgstr "Raim"
 
 msgid "Directories"
-msgstr ""
+msgstr "Uerdner"
 
 msgid "Gateways"
-msgstr ""
+msgstr "Gateways"
 
 msgid "News"
-msgstr ""
+msgstr "Noriichten"
 
 msgid "Hierarchy"
-msgstr ""
+msgstr "Hierarchie"
 
 msgid "Proxies"
-msgstr ""
+msgstr "Proxy'en"
 
 msgid "Publication/Subscription"
-msgstr ""
+msgstr "Publikatioun/Abonnement"
 
 msgid "Storage"
-msgstr ""
+msgstr "Speicher"
 
 msgid "Service offline or broken"
-msgstr ""
+msgstr "Service offline oder fehlerhaft"
 
 msgid "Your inbox"
-msgstr ""
+msgstr "Äer Bréifkëscht"
 
 msgid "Available actions"
-msgstr ""
+msgstr "Verfügbar Aktiounen"
 
 msgid "Clean"
-msgstr ""
+msgstr "Eidel machen"
 
 msgid "New"
-msgstr ""
+msgstr "Nei"
 
 msgid "Received"
-msgstr ""
+msgstr "Kritt"
 
 msgid "Subject"
-msgstr ""
+msgstr "Sujet"
 
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 msgid "Send message"
-msgstr ""
+msgstr "Message schécken"
 
 msgid "Your inbox is empty."
-msgstr ""
+msgstr "Äer Bréifkëscht as eidel."
 
 msgid "MUC administration"
-msgstr ""
+msgstr "MUC Administartioun"
 
 msgid "You administrate this room"
-msgstr ""
+msgstr "Dier administréiert dëse Raum"
 
 msgid "Enter new subject"
-msgstr ""
+msgstr "Neie Sujet androen"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguratioun"
 
 msgid "Authorizations"
-msgstr ""
+msgstr "Authorisatiounen"
 
 msgid "Member list"
-msgstr ""
+msgstr "Memberslëscht"
 
 msgid "Owner list"
-msgstr ""
+msgstr "Besëtzerlëscht"
 
 msgid "Administrator list"
-msgstr ""
+msgstr "Administratorlëscht"
 
 msgid "Outcast list"
-msgstr ""
+msgstr "Outcast list"
 
 msgid "Add an input"
-msgstr ""
+msgstr "En Antrag bäisetzen"
 
 msgid "Destroy this MUC"
-msgstr ""
+msgstr "Dësen MUC läschen"
 
 msgid "Yes, let's do it!"
-msgstr ""
+msgstr "Jo, looss ons dat maachen!"
 
 msgid "Your friend is paying attention to the conversation."
-msgstr ""
+msgstr "Äre Kolleg beuecht d'Konversatioun grad."
 
 msgid "Your friend is writing a message..."
-msgstr ""
+msgstr "Äre Kolleg schréift grad e Message..."
 
 msgid "Your friend stopped writing a message."
-msgstr ""
+msgstr "Äre Kolleg huet grad opgehalen e Message ze schreiwen."
 
 msgid "Your friend is doing something else."
-msgstr ""
+msgstr "Äre Kolleg mecht grad eppes Aneres."
 
 msgid "Your friend closed the chat."
-msgstr ""
+msgstr "Äre Kolleg huet den Chat zougemaach."
 
 msgid "Requesting this service..."
-msgstr ""
+msgstr "Service ufroen..."
 
 msgid "Loading"
-msgstr ""
+msgstr "Amgaang ze lueden"
 
 msgid "changed his/her nickname to %s"
-msgstr ""
+msgstr "huet säin Benotzernumm op %s geännert"
 
 msgid "joined the chat room"
-msgstr ""
+msgstr "as dem Chat-Raum bäigetrueden"
 
 msgid "left the chat room"
-msgstr ""
+msgstr "huet den Chat Raum verlooss"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s ass fortgaangen "
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s ass derbäikomm"
 
 msgid "no status"
-msgstr ""
+msgstr "kee Status"
 
 msgid "has been kicked"
-msgstr ""
+msgstr "krut e Fouss hannebäi"
 
 msgid "has been banned"
-msgstr ""
+msgstr "gouf verbannt"
 
 msgid "no reason"
-msgstr ""
+msgstr "kee Grond"
 
 msgid "Communicate with the entire world!"
-msgstr ""
+msgstr "Kommunizéier mat där ganzer Welt!"
 
 msgid ""
 "Jappix is an open social platform, that let's you easily get or keep in "
 "touch with everyone."
 msgstr ""
+"Jappix as eng oppen sozial Plattform déi Iech et erméiglecht mat Äeren Frënn "
+"a Kontakt ze bleiwen."
 
 msgid ""
 "Join the millions of users who are currently using the XMPP Network (Google "
 "Talk, etc), don't stay out!"
 msgstr ""
+"Erreecht déi Milloiunen vun Benotzer déi fier de Moment XMPP benotzen "
+"(Google Talk, asw.), kommt eran!"
 
 msgid "Hi there!"
-msgstr ""
+msgstr "Moien!"
 
 msgid "Welcome on %1s, “%2s”."
-msgstr ""
+msgstr "Wëllkomm op %1s, \"%2s\"."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
-"Logt Iech an ären bestehenden XMPP-Kont an oder maacht gratis en neien op!"
+"Logt Iech an Ären bestehenden XMPP  Kont an oder maacht gratis en neien op!"
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
+"Stellt sécher, vir d'Sécherheet vun Äerem Account, dass, wann dier iech "
+"umëllt oder registréiert, dass Äert Passwuert geheim bléiwt. "
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"Logt Iech an ären bestehenden XMPP-Kont an. Dier kënnt och den %s benotzen "
+"Logt Iech an Ären bestehenden XMPP Kont an. Dier kënnt och den %s benotzen "
 "fier engem Gruppenchat bäizetrieden."
 
 msgid "Previous"
-msgstr ""
+msgstr "Zerèck"
 
 msgid "General"
-msgstr ""
+msgstr "Allgemeng"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Fortgeschratt"
 
 msgid "Resource"
-msgstr ""
+msgstr "Resource"
 
 msgid "Priority"
-msgstr ""
+msgstr "Prioritéit"
 
 msgid "Low"
-msgstr ""
+msgstr "Niddereg"
 
 msgid "Medium"
-msgstr ""
+msgstr "Mëttel"
 
 msgid "High"
-msgstr ""
+msgstr "Héich"
 
 msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
+"Gitt de Gruppenchat an deem der wëllt bäitrieden an dee gewënschten "
+"Spëtznumm. Dier kënnt och zerèck an den %s goen."
 
 msgid "login page"
-msgstr ""
+msgstr "Login Säit"
 
 msgid "Share this link with your friends:"
-msgstr ""
+msgstr "Deelt dësen Link mat Ären Kollegen:"
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
 "That's simple!"
 msgstr ""
-"Maacht en neien XMPP-Kont op fier Kontakt mat äeren Kollegen an ärer eegener "
-"sozialer Cloud opzehuelen.\n"
-"Daat as net schwéier!"
+"Maacht en neien XMPP Kont op fier Kontakt mat Äeren Kollegen an Äerer "
+"eegener Social Cloud opzehuelen.\n"
+"Daat as ganz einfach!"
 
 msgid "Required"
-msgstr ""
+msgstr "Erfuerderlech"
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "Dier gouft registréiert, hei as Äer XMPP Adress:"
 
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 msgid "Encrypted"
-msgstr ""
+msgstr "Verschlësselt"
 
 msgid "Unencrypted"
-msgstr ""
+msgstr "Onverschlësselt"
 
 msgid "Where are you?"
-msgstr ""
+msgstr "Wou sidd Dier?"
 
 msgid "What's up with you?"
-msgstr ""
+msgstr "Waat leeft bei Iech?"
 
 msgid "Type something you want to share with your friends..."
-msgstr ""
+msgstr "Schréiwt eppes, daat Dier mat Äeren Kollegen deelen wëllt..."
 
 msgid "Fetching the social channel..."
-msgstr ""
+msgstr "Social Channel ofruffen..."
 
 msgid "You are synchronized with your network."
-msgstr ""
+msgstr "Dier sidd mat Ärem Netzwierk synchroniséiert."
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr ""
+msgstr "Et konnt näicht verschéckt gin: Dier kënnt nëmmen Notizen kréien!"
 
 msgid "Media viewer"
-msgstr ""
+msgstr "Media viewer"
 
 msgid "Browse"
-msgstr ""
+msgstr "Duerchsichen"
 
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonnéieren"
 
 msgid "Join"
-msgstr ""
+msgstr "Bäitrieden"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatesch"
 
 msgid "Search"
-msgstr ""
+msgstr "Sichen"
 
 msgid "No result!"
-msgstr ""
+msgstr "Kee Resultat!"
 
 msgid "No notifications."
-msgstr ""
+msgstr "Keng Meldungen."
 
 msgid "would like to add you as a friend."
-msgstr ""
+msgstr "géif Iech gäer als Kolleg adden."
 
 msgid "would like you to join this chatroom:"
-msgstr ""
+msgstr "géif gäer dësem chat-Raum bäitrieden:"
 
 msgid "Do you accept?"
-msgstr ""
+msgstr "Akzeptéiert Dier daat?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Jo"
 
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 msgid "would like to get authorization."
-msgstr ""
+msgstr "freet no Erlabnis."
 
 msgid "would like to send you a file: “%s”."
-msgstr ""
+msgstr "géif Iech gäer eng Datei schécken: \"%s\"."
 
 msgid "has received a file exchange request: “%s”."
-msgstr ""
+msgstr "huet eng Ufro kritt fier d'Datei ze tauschen: \"%s\"."
 
 msgid "has accepted to receive your file: “%s”."
-msgstr ""
+msgstr "huet Äer Ufro fier eng Datei ze erhaalen ugeholl: \"%s\"."
 
 msgid "has rejected to receive your file: “%s”."
-msgstr ""
+msgstr "huet Äer Ufro fier eng Datei ze tauschen ofgelehnt: \"%s\"."
 
 msgid "could not receive your file: “%s”."
-msgstr ""
+msgstr "huet Äer Datei net kritt: \"%s\"."
 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr ""
+msgstr "Wëllt Dier gesin wéieng Kollegen %s Iech fierschléit?"
 
 msgid "commented an item you follow: “%s”."
-msgstr ""
+msgstr "huet en Antrag deen dier Abonnéiert hudd kommentéiert: \"%s\"."
 
 msgid "liked your post: “%s”."
-msgstr ""
+msgstr "huet Äeren post geliked: \"%s\"."
 
 msgid "quoted you somewhere: “%s”."
-msgstr ""
+msgstr "huet Iech zitéiert: “%s”."
 
 msgid "published on your wall: “%s”."
-msgstr ""
+msgstr "huet eppes op Ärer Wall publizéiert: \"%s\"."
 
 msgid "tagged you in a photo (%s)."
-msgstr ""
+msgstr "huet Iech op enger Foto getagged (%s)."
 
 msgid "tagged you in a video (%s)."
-msgstr ""
+msgstr "huet Iech an engem Video getagged (%s)."
 
 msgid ""
 "validated your account. Your public profile will be available in a few "
 "moments."
 msgstr ""
+"huet Äeren Kont validéiert. Äeren öffentlechen Profil as an engem klengen "
+"Moment prett."
 
 msgid "has removed your public profile after your request. We will miss you!"
 msgstr ""
+"huet Ären öffentlechen Profil no Äerem Wonsch geläscht. Mier wäerten Iech "
+"vermëssen!"
 
 msgid ""
 "has saved your new public profile settings. They will be applied in a few "
 "moments."
 msgstr ""
+"huet Äer nei Profil-Astellungen gespäichert. Se wäerten an engem klengen "
+"Moment applizéiert gin."
 
 msgid ""
 "could not validate your account to create or update your public profile. "
 "Check your credentials."
 msgstr ""
+"konnt Äeren Kont net validéieren fier en öffentlechen Profil ze updaten oder "
+"ze erstellen. Kontrolléiert Äer Zougangsdonnéen"
 
 msgid "Open"
-msgstr ""
+msgstr "Opmaachen"
 
 msgid "Show"
-msgstr ""
+msgstr "Weisen"
 
 msgid "Hide"
-msgstr ""
+msgstr "Verstoppen"
 
 msgid "Submit"
-msgstr ""
+msgstr "Schécken"
 
 msgid "Client"
-msgstr ""
+msgstr "Client"
 
 msgid "System"
-msgstr ""
+msgstr "System"
 
 msgid "Local time"
-msgstr ""
+msgstr "Lokalzäit"
 
 msgid "Comments"
-msgstr ""
+msgstr "Kommentarer"
 
 msgid "User profile"
-msgstr ""
+msgstr "Benotzerprofil"
 
 msgid "See his/her position on the globe"
-msgstr ""
+msgstr "Geografesch Positioun kucken"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Confirméieren"
 
 msgid "anonymous mode"
-msgstr ""
+msgstr "anonymen Modus"
 
 msgid "Groups"
-msgstr ""
+msgstr "Gruppen"
 
 msgid "Unclassified"
-msgstr ""
+msgstr "Ongeuerdent"
 
 msgid "Authorize"
-msgstr ""
+msgstr "Authoriséieren"
 
 msgid "Ask for authorization"
-msgstr ""
+msgstr "Em Erlaabnis froen"
 
 msgid "Unblock"
-msgstr ""
+msgstr "Deblockéieren"
 
 msgid "Prohibit"
-msgstr ""
+msgstr "Verbidden"
 
 msgid "Block"
-msgstr ""
+msgstr "Blockéieren"
 
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 msgid "Groupchat"
-msgstr ""
+msgstr "Gruppenchat"
 
 msgid "Jappix Mobile"
-msgstr ""
+msgstr "Jappix Mobile"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Please wait..."
-msgstr ""
+msgstr "Waart w.e.g. e Moment..."
 
 msgid "Please enable JavaScript"
-msgstr ""
+msgstr "Schalt w.e.g. JavaScript un"
 
 msgid "Show comments"
-msgstr ""
+msgstr "Kommentarer uweisen"
 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Kommentarer gin gelueden..."
 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "D'Kommentarer konnten net gelueden gin!"
 
 msgid "Comments locked!"
-msgstr ""
+msgstr "Kommentarer gespaart!"
 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Gitt Ären Kommentar hei an..."
 
 msgid "Your channel"
-msgstr ""
+msgstr "Äeren Channel"
 
 msgid "Channel of"
-msgstr ""
+msgstr "Channel vum"
 
 msgid "More notices..."
-msgstr ""
+msgstr "Méi Noriichten..."
 
 msgid "Attach a file"
-msgstr ""
+msgstr "En Dokument unhängken"
 
 msgid "Send"
-msgstr ""
+msgstr "Geschéckt"
 
 msgid "Unattach the file"
-msgstr ""
+msgstr "Datei eraushuelen"
 
 msgid ""
 "An error occured while uploading your file: maybe it is too big (%s maximum) "
 "or forbidden!"
 msgstr ""
+"Beim eroplueden vun Ärer Datei as e Fehler opgetrueden: vläit as se ze "
+"grouss (%s Maximum) oder verbueden!"
 
 msgid "Authorization failed"
-msgstr ""
+msgstr "Authorisatioun fehlgeschloen"
 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "Registréierung fehlgeschloen, wielt w.e.g. en aneren Benotzernumm"
 
 msgid "Service unavailable"
-msgstr ""
+msgstr "Service net ze errechen"
 
 msgid "Internal server error, try later"
-msgstr ""
+msgstr "Internen Server Fehler, probéiert méi spéit nach eng Kéier"
 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Äre Formular gouf fortgeschéckt."
 
 msgid "Application"
-msgstr ""
+msgstr "Applikatioun"
 
 msgid "Media integration"
-msgstr ""
+msgstr "Media integratioun"
 
 msgid "XMPP links"
-msgstr ""
+msgstr "XMPP-Linken"
 
 msgid "Open XMPP links with Jappix"
-msgstr ""
+msgstr "XMPP-Linken mat Jappix opmaachen"
 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "huet de Sujet geännert op:"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Moien!"
 
 msgid "Friends"
-msgstr ""
+msgstr "Kollegen"
 
 msgid "Welcome on Jappix, your own social cloud!"
-msgstr ""
+msgstr "Wëllkomm op Jappix, Äerer eegener Social Cloud!"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
 "friends and complete your profile."
 msgstr ""
+"Ier der ufänkt en ze beontzen, muss der nach e puer Astellungen änneren, no "
+"Kollegen sichen an Ären Profil vervollstännegen."
 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "D'Téin fir d'Meldungen uschalten"
 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "Deelt Äer geografesch Positioun"
 
 msgid "Offline friends"
-msgstr ""
+msgstr "Offline Kollegen"
 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Vergiesst Äer offline Kollegen net"
 
 msgid ""
 "Use this tool to find your friends on the server you are using right now, or "
 "add them later."
 msgstr ""
+"Benotzt dësen Tool fir Äer Kollegen op dem Server ze fannen deen der grad "
+"benotzt, oder fir se spéider ze adden."
 
 msgid "Good job! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "Gutt gemaach! Elo kënnt Dier Jappix mat Äeren Kollegen deelen!"
 
 msgid ""
 "When you will press the save button, the profile editor will be opened. "
 "Happy socializing!"
 msgstr ""
+"Wann dier op Späicheren dréckt geet den Profileditor op. Happy socializing!"
 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "Deelt Jappix op %s"
 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr ""
+msgstr "Benotzen Jappix, eng oppen sozial Plattform. Ech sin %s!"
 
 msgid "Unknown name"
-msgstr ""
+msgstr "Onbekannten Numm"
 
 msgid "Unknown country"
-msgstr ""
+msgstr "Onbekannt Land"
 
 msgid "Click to enable"
-msgstr ""
+msgstr "Klick fir ze aktivéieren"
 
 msgid "Click to disable"
-msgstr ""
+msgstr "Klick fir ze desaktivéieren"
 
 msgid "Installation"
-msgstr ""
+msgstr "Installatioun"
 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Jappix-Installatioun"
 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Moien fir d'Installatioun vun Jappix!"
 
 msgid ""
 "This tool will help you installing Jappix, the first full-featured XMPP-"
 "based social platform, on your server with ease."
 msgstr ""
+"Dësne Tool hëlleft Iech Jappix, déi éischten vollwäerteg XMPP baséierten "
+"sozial Plattform, ganz einfach op Äerem Server ze installéieren."
 
 msgid "Installation Steps:"
-msgstr ""
+msgstr "Schrëtter vun der Installatioun:"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Moien"
 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Späicher Konfiguratioun"
 
 msgid "Administrator account"
 msgstr "Administrator-Kont"
 
 msgid "Main configuration"
-msgstr ""
+msgstr "Haapt Konfiguratioun"
 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "Hosts Konfiguréieren"
 
 msgid "Services installation"
-msgstr ""
+msgstr "Servicer Installéieren"
 
 msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
 "speak %2s it will be saved."
 msgstr ""
+"Wann di aktuell Sprooch net Ärer entsprecht (%1s), dann kënnt Der Jappix %s2 "
+"schwätzen loossen, et wäert gespeichert ginn."
 
 msgid ""
 "If you want to get some help about the Jappix installation and "
 "configuration, you can use our whole documentation, available at:"
 msgstr ""
+"Wann Der Hëllef braucht bei der Installatioun an der Konfiguratioun vun "
+"Jappix, dann kënnt der di komplett Dokumentatioun benotzen, ze fannen op:"
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
+"Et as Zäit fier Äer eegen Social Cloud opzebauen: weider bei dee nächste "
+"Schrëtt!"
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
 "music and its configuration) into a single secured storage folder."
 msgstr ""
+"Jappix späichert Donnéen (wéi gedeelten Dateien, Chat Protokoller, Äer Musek "
+"an d'Konfiguratiounen) an engem eenzegen gesëcherten Uerdner."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
 "If not, you must set the rights to %1s or change the folder owner to %2s "
 "(depending of your configuration)."
 msgstr ""
+"Jappix muss d'Méiglechkeet hun an dësen Uerdner ze schreiwen fier seng "
+"Ënneruerdner ze erstellen. Wann daat net de Fall as muss Dier d'Rechter op "
+"%1s änneren oder de Besëtzer vum Uerdner op %2s änneren (hängt vun Ärer "
+"Konfiguratioun of)."
 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "An desen Uerdner kënnt Der schreiwen, Dier kënnt weidermaachen!"
 
 msgid ""
 "Jappix offers you the possibility to manage your configuration, install new "
@@ -1298,788 +1335,880 @@ msgid ""
 "When Jappix will be installed, just click on the manager link on the home "
 "page to access it."
 msgstr ""
+"Wann Jappix installéiert gëtt, klickt op de Manager-Link op der Haaptsäit "
+"fier eranzekommen."
 
 msgid "Oops, you missed something or the two passwords do not match!"
 msgstr ""
+"Oh, Dier hutt eppes vergiess oder di zwee Passwierder sinn net identesch!"
 
 msgid ""
 "Jappix needs that you specify some values to work. Please correct the "
 "following inputs (or keep the default values, which are sufficient for most "
 "people)."
 msgstr ""
+"Jappix brauch e puer vun Iech festgelueten Wäerter fier ze fonktionnéieren. "
+"Passt w.e.g. déi folgend Saachen un (oder behaalt d'Standartwäerter bäi, "
+"fier déi meescht Leit geet daat duer)."
 
 msgid ""
 "Note that if you don't specify a value which is compulsory, it will be "
 "automatically completed with the default one."
 msgstr ""
+"Et sief bemierkt datt obligatoresch Wäerter déi Dier net festsetzt "
+"automatesch mat de Standartwäerter vervollstännegt gin."
 
 msgid ""
 "Need help? You'd better read our documentation page about how to fill this "
 "form!"
 msgstr ""
+"Dier braucht Hellëf? Dier hätt besser eis Dokumentatiounssäiten iwwert "
+"d'Ausfllen vun dësem Formulaire ze liesen!"
 
 msgid "User"
-msgstr ""
+msgstr "Benotzer"
 
 msgid "Service"
-msgstr ""
+msgstr "Service"
 
 msgid "Service name"
-msgstr ""
+msgstr "Numm vum Service"
 
 msgid "Service description"
-msgstr ""
+msgstr "Beschreiwung vum Service"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Numm vum Besëtzer"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Internetsäit vum Besëtzer"
 
 msgid "Connection"
-msgstr ""
+msgstr "Verbindung"
 
 msgid "Lock the host"
-msgstr ""
+msgstr "op dësen Host beschränken"
 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Anonymen Modus"
 
 msgid "HTTP authentication"
-msgstr ""
+msgstr "per HTTP aloggen"
 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Registréierung erlaabt"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Deen agebautenen BOSH-Proxy benotzen"
 
 msgid "Manager link"
-msgstr ""
+msgstr "Manager Link"
 
 msgid "Groupchats to join"
-msgstr ""
+msgstr "Gruppenchats fier bäizetrieden"
 
 msgid "Suggest groupchats"
-msgstr ""
+msgstr "Schlot Gruppenchats fier"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Verschlësselung"
 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "HTTPS Späicher"
 
 msgid "Force HTTPS"
-msgstr ""
+msgstr "HTTPS Forcéieren"
 
 msgid "Compression"
-msgstr ""
+msgstr "Kompriméirung"
 
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
 "can leave it as it is and continue if you want to use the official service "
 "hosts."
 msgstr ""
+"Dës Säit hëlleft Iech fier den Host festzeleeen mat deem Jappix sech wäert "
+"standartméisseg verbannen. Dier kënnt och all Astellungen loosen wéi se sin "
+"fier deen offiziellen Host ze benotzen."
 
 msgid ""
 "Maybe you don't know what a BOSH server is? In fact, this is a relay between "
 "a Jappix client and a XMPP server, which is necessary because of technical "
 "limitations."
 msgstr ""
+"Vläi wësst der net waat e BOSH server as? Eigentlech as et eng Bréck "
+"tëschent Jappix an engem XMPP Server. Dëst as neideg wéinst e puer "
+"techneschen Limitatiounen."
 
 msgid "Main host"
-msgstr ""
+msgstr "Haapt Host"
 
 msgid "Groupchat host"
-msgstr ""
+msgstr "Gruppenchat Host"
 
 msgid "Pubsub host"
-msgstr ""
+msgstr "Pubsub Host"
 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Anonymen Host"
 
 msgid "Directory host"
-msgstr ""
+msgstr "Haapt Host"
 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH host"
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
 "which are set by default."
 msgstr ""
+"Dier kënnt nach zousätzlech Software op Ären Server installéieren fier "
+"d'Funktiounen vun Jappix ze erweideren. Anerer keinnten wéinst "
+"standartméissegen Sëcherheetsrestriktiounen geännert gin "
 
 msgid ""
 "To perform this, you must be able to access your server's shell and be "
 "logged in as root. Remember this is facultative, Jappix will work without "
 "these modules, but some of its features will be unavailable."
 msgstr ""
+"Fier daat doten duerchzeféieren musst Dier Iech kënnen als Root Benotzer op "
+"dem Server senger Shell aloggen. Daat heiten as fajultativ, Jappix leeft och "
+"ouni, e puer Funktiounen wäerten allerdings net verfügbar sin."
 
 msgid ""
 "After you finished the setup, Jappix will generate the cache files. It might "
 "be slow, just wait until the application is displayed and do not press any "
 "button."
 msgstr ""
+"Wann der mat der Installatioun fäerdeg sidd, leet Jappix cache Dateien un. "
+"Dësen Viergang kéint ënner Emstänn lues sin, waart einfach bis alles "
+"ugewisen gëtt an dréckt op keng Tast."
 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "Merci, dass Dir Jappix benotzt!"
 
 msgid "Next"
-msgstr ""
+msgstr "Weider"
 
 msgid "Finish"
-msgstr ""
+msgstr "Fäerdeg"
 
 msgid "Check again"
-msgstr ""
+msgstr "Nach eng Kéier préifen"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
 msgstr ""
+"Dësen Uerdner as read-only, sétzt w.e.g. déi richteg Rechter fier den "
+"Uerdner %s."
 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s as op Ären System installéiert."
 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s as net op Ärem System installéiert, Dier misst %2s installéieren."
 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr ""
+msgstr "D'PHP Maximum Upload Gréisst geet net duer (%s)"
 
 msgid ""
 "PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
 "in %3s."
 msgstr ""
+"Déi maximal Upload-Gréisst fier PHP as ze kleng (%1s), dier sollt et an %3s "
+"op %2s setzen."
 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix Manager"
 
 msgid "Manager access"
-msgstr ""
+msgstr "Manageraccés"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiken"
 
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 msgid "Repeat"
-msgstr ""
+msgstr "Widderhuelen"
 
 msgid "All"
-msgstr ""
+msgstr "Alleguer"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 msgid "Center"
-msgstr ""
+msgstr "Zentréiert"
 
 msgid "Left"
-msgstr ""
+msgstr "Lénks"
 
 msgid "Right"
-msgstr ""
+msgstr "Riets"
 
 msgid "Top"
-msgstr ""
+msgstr "Uewen"
 
 msgid "Bottom"
-msgstr ""
+msgstr "Ënnen"
 
 msgid "Adapt"
-msgstr ""
+msgstr "Upassen"
 
 msgid "Color"
-msgstr ""
+msgstr "Faarf"
 
 msgid "Users"
-msgstr ""
+msgstr "Benotzer"
 
 msgid "Updates"
-msgstr ""
+msgstr "Updates"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
 "node."
 msgstr ""
+"Dëst as en geschützten Beräich: Nëmmen autoriséiert Benotzer kënnen dësen "
+"Jappix noder administréieren."
 
 msgid "Please use the form below to login to the administration panel."
 msgstr ""
+"Benotzt w.e.g. d'Feld ënnen fier Iech an den Administratiounsberäich "
+"anzeloggen."
 
 msgid ""
 "To improve security, sessions are limited in time and when your browser will "
 "be closed, you will be logged out."
 msgstr ""
+"Fier d'Sëcherheet ze verbesseren sin d'Sëtzungen zäitlech begrenzt. Wann "
+"Dier Äeren Browser zoumat gidd der ausgeloggt."
 
 msgid "Credentials"
-msgstr ""
+msgstr "Zougangsdonnéen"
 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "Dier gouft ausgeloggt. Äddi!"
 
 msgid ""
 "Oops, you could not be recognized as a valid administrator. Check your "
 "credentials!"
 msgstr ""
+"Ups, Dier konnt net als Administrator erkannt gin. Kontrolléiert Äer "
+"Zougangsdonnéen!"
 
 msgid ""
 "Basic statistics are processed by Jappix about some important things, you "
 "can find them below."
 msgstr ""
+"Jappix erhiewt iwwert e puer wichteg Saachen Basis-Statistiken, Dier fannt "
+"se hei drënner."
 
 msgid "Change your Jappix node configuration with this tool."
 msgstr ""
+"Mat dësem Tool kënnt dier d'Konfigutatioun vun Ärem Jappix Noder änneren."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
+"Mat dësem Tool kënnt Dier den XMPP Host deen dësen Jappix Noder zervéiert "
+"änneren."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
 "select a sub-folder and start editing its content!"
 msgstr ""
+"Alleguer d'Dateien op dësem Jappix Node kënnen mat dësem Toll administréiert "
+"gin: wielt w.e.g. en Ënneruerdner aus a fänkt un säin Inhalt ze editéieren!"
 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr ""
+msgstr "Jappix as komplett upassbar: Dier kënnt den Design direkt hei änneren"
 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr ""
+msgstr "Dëst ass keen valabelt Bild, benotzt w.e.g. PNG, GIF oder JPG!"
 
 msgid "This is not a valid image, please use the PNG format!"
-msgstr ""
+msgstr "Dëst ass keen valabelt Bild, benotzt w.e.g. PNG!"
 
 msgid "The image could not be received, would you mind retry?"
 msgstr ""
+"D'Bild konnt net empfaangen ginn, wëllt Der et nach eng Kéier probéieren?"
 
 msgid "Your service logo has been successfully changed!"
-msgstr ""
+msgstr "De Logo vun Ärem Service as erfollegräich geännert gin!"
 
 msgid "Your image was added to the list!"
-msgstr ""
+msgstr "Äert Bild as an d'Lëscht bäigesaat gin!"
 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Ännerungen gespäichert!"
 
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 msgid ""
 "You can set your own service logo to replace the default one. Take care of "
 "the size and the main color of each logo!"
 msgstr ""
+"Dier kënnt Äeren eegenen Logo definéieren fier den Standart-Logo ze "
+"ersetzen. Passt op d'Gréisst an d'Haaptfaarw vun all Logo op!"
 
 msgid "Upload each logo with the recommended maximum pixel size."
-msgstr ""
+msgstr "Lued all Logo mat däer fiergeschloener Pixel-Gréisst erop."
 
 msgid ""
 "Your logo format must be PNG. Leave a field empty and the logo will not be "
 "changed."
 msgstr ""
+"Äeren Logo muss am PNG-Format sin. Wann der dëst Feld eidel loosst gëtt en "
+"net geännert"
 
 msgid "Remove this logo"
-msgstr ""
+msgstr "Dëse Logo läschen"
 
 msgid "View this logo"
-msgstr ""
+msgstr "Dëse Logo ukucken"
 
 msgid ""
 "You can define more than one administrator for this Jappix node. You can "
 "also change a password with this tool."
 msgstr ""
+"Dier kënnt och méi wéi een Administrator fir desen Jappix-Knuet definéieren. "
+"Dier kënnt och d'Passwuert mat desem Tool änneren."
 
 msgid ""
 "Update your Jappix node with this tool, or check if a new one is available. "
 "Informations about the latest version are also displayed (in english)."
 msgstr ""
+"Mat dësem Tool kënnt Dier Äeren Jappix Node updaten, oder kucken op en "
+"Update verfügbar as. Informatiounen iwwert déi neitsten Versioun gin och "
+"ugewisen (op Englesch)."
 
 msgid "Access statistics"
-msgstr ""
+msgstr "Accés-Statistiken"
 
 msgid "Share statistics"
-msgstr ""
+msgstr "Statistiken deelen"
 
 msgid "Other statistics"
-msgstr ""
+msgstr "Aaner Statistiken"
 
 msgid "January"
-msgstr ""
+msgstr "Januar"
 
 msgid "February"
-msgstr ""
+msgstr "Februar"
 
 msgid "March"
-msgstr ""
+msgstr "Mäerz"
 
 msgid "April"
-msgstr ""
+msgstr "Abrëll"
 
 msgid "May"
-msgstr ""
+msgstr "Mee"
 
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 msgid "August"
-msgstr ""
+msgstr "August"
 
 msgid "September"
-msgstr ""
+msgstr "September"
 
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 msgid "November"
-msgstr ""
+msgstr "November"
 
 msgid "December"
-msgstr ""
+msgstr "Dezember"
 
 msgid "Monday"
-msgstr ""
+msgstr "Méindeg"
 
 msgid "Tuesday"
-msgstr ""
+msgstr "Dënschdeg"
 
 msgid "Wednesday"
-msgstr ""
+msgstr "Mëttwoch"
 
 msgid "Thursday"
-msgstr ""
+msgstr "Donneschdeg"
 
 msgid "Friday"
-msgstr ""
+msgstr "Freideg"
 
 msgid "Saturday"
-msgstr ""
+msgstr "Samsdeg"
 
 msgid "Sunday"
-msgstr ""
+msgstr "Sonndeg"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Cache"
-msgstr ""
+msgstr "Späicher"
 
 msgid "Logs"
-msgstr ""
+msgstr "Protokoll"
 
 msgid "Music"
-msgstr ""
+msgstr "Musek"
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Hannergrënn"
 
 msgid "Share"
-msgstr ""
+msgstr "Deelen"
 
 msgid "Background"
-msgstr ""
+msgstr "Hannergrond"
 
 msgid "Notice"
-msgstr ""
+msgstr "Notiz"
 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "Äer Design-Astellunegn goufen gespäichert!"
 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "Kontrolléiert w.e.g. Äer Agaben: et fehlt eppes!"
 
 msgid ""
 "Change your Jappix node background with this tool. You can either set a "
 "custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
+"Mat dem Tool kënnt der den Hannergrond vun Ärem Jappix Node änneren. Dier "
+"kënnt entweder eng eegen Faarw auswielen oder e ild eroplueden. Loosst Äerer "
+"Kreativitéit fräien Laaf!"
 
 msgid "Use default background"
-msgstr ""
+msgstr "Den Standart-Hannergrong benotzen"
 
 msgid "Use your own image"
-msgstr ""
+msgstr "Benotzt Äer egen Foto"
 
 msgid "Select a background to use and change the display options."
-msgstr ""
+msgstr "Wielt en Hannergrond aus an Ännert d'optiounen vum Affichage."
 
 msgid "Use your own color"
-msgstr ""
+msgstr "Benotzt Äer egen Faarw"
 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr ""
+"Gidd den Hexadezimal-Wäert vun der Faarw an déi der als Hannergrond wëllt "
+"benotzen."
 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "Hannergrondbiller administréieren"
 
 msgid ""
 "You can add a new background to the list with this tool. Please send a valid "
 "image."
 msgstr ""
+"Mat dësem Tool kënnt der en neien Hannergrond an d'Lëscht bäifügen. Wielt w."
+"e.g. eng gülteg Bilddatei aus."
 
 msgid "If you want to remove some backgrounds, use the browser below."
-msgstr ""
+msgstr "Wann der Hannergrënn wëllt läschen, benotzt de Browser hei drënner."
 
 msgid ""
 "Define a homepage notice for all your users, such as a warn, an important "
 "message or an advert with this tool."
 msgstr ""
+"Mat dësem Tool kënnt der eng Notiz fier all d'Benotzer op d'Haaptsäit "
+"setzen, wéi z.B. eng wichteg Noriicht oder eng Warnung."
 
 msgid "Simple notice"
-msgstr ""
+msgstr "Einfach Notiz"
 
 msgid ""
 "This notice only needs simple text to be displayed, but no code is allowed!"
 msgstr ""
+"Fier dës Notiz braucht der nëmmen normalen Text anzegin, Coder as net "
+"erlaabt!"
 
 msgid "Advanced notice"
-msgstr ""
+msgstr "Ugepassten Notiz"
 
 msgid ""
 "You can customize your notice with embedded HTML, CSS and JavaScript, but "
 "you need to code the style."
 msgstr ""
+"Dier kënnt Äer Notiz mat HTML, CSS a JavaScript upassen, mee Dier musst de "
+"style selwer definéieren"
 
 msgid "Available updates"
-msgstr ""
+msgstr "Vervügbar Updates"
 
 msgid "What's new?"
-msgstr ""
+msgstr "Waat gëtt et Neits?"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
-msgstr ""
+msgstr "Äer Uerdner sin read-only, setzt w.e.g. déi richteg Rechter!"
 
 msgid ""
 "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr ""
+"%1s kéinnt dem Proxy Problemer bereeden, erhéischt w.e.g. den %2s Wäert op "
+"%3s!"
 
 msgid ""
 "You are using a development version of Jappix. Update it through our "
 "repository by executing: %s."
 msgstr ""
+"Dier benotz eng Entwécklerversioun vun Jappix. Dier kënnt se mat folgendem "
+"Kommando iwwert eis Répertoiren updaten: %s."
 
 msgid ""
 "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
+"Eng nei Versioun vun Jappix as verfügbar! Gitt gewuer waat nei as an start "
+"den Update!"
 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr ""
+"Äer Versioun as net méi aktuell. Dier kënnt se op %s updaten andeems der hei "
+"klickt!"
 
 msgid ""
 "Your version seems to be up to date, but you can check updates manually by "
 "clicking here."
 msgstr ""
+"Äer Versioun schéngt aktuell ze sin, mee dier kënnt awer och manuell no "
+"Updates sichen andeems der hei klickt."
 
 msgid "Check for updates"
-msgstr ""
+msgstr "No Updates sichen"
 
 msgid "Update in progress"
-msgstr ""
+msgstr "amgaang ze updaten"
 
 msgid ""
 "Jappix has been updated: you are now running the latest version. Have fun!"
 msgstr ""
+"Jappix gouf geupdate: dier benotz elo déi aktuellsten Versioun. Vill Spaaß!"
 
 msgid "The update has failed! Please try again later."
 msgstr ""
+"Den Update as fehlgeschloen! Probéiert w.e.g. méi spéit nach eng Kéier."
 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Package eroflueden..."
 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Aktuell Jappix Dateisystemer läschen..."
 
 msgid "Extracting package..."
-msgstr ""
+msgstr "Datei entpacken..."
 
 msgid "Regenerating storage folder tree..."
-msgstr ""
+msgstr "Uerdner-Struktur erëm hierstellen..."
 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix as elo um neitste Stand!"
 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "Ofbroch: socket error!"
 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "Ofbroch: buffer error!"
 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "Ofbroch: net alles as schreifbar!"
 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "Ofgebrach: konnt den Package net extrahéieren!"
 
 msgid "Visits"
-msgstr ""
+msgstr "Visiten"
 
 msgid "Daily"
-msgstr ""
+msgstr "Deeglech"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Wöchentlech"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Monatlech"
 
 msgid "Yearly"
-msgstr ""
+msgstr "Jährlech"
 
 msgid "Size"
-msgstr ""
+msgstr "Gréisst"
 
 msgid "Clean everything"
-msgstr ""
+msgstr "Alles läschen"
 
 msgid "Purge cache"
-msgstr ""
+msgstr "Cache eidel maachen"
 
 msgid "Purge logs"
-msgstr ""
+msgstr "Protokoll läschen"
 
 msgid "Purge sent files"
-msgstr ""
+msgstr "Verschéckten Dateien läschen"
 
 msgid "Purge updates"
-msgstr ""
+msgstr "Updates läschen"
 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "Den Uerdner deen dier wollt eidel maachen as elo eidel!"
 
 msgid ""
 "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
 msgstr ""
+"Halt Äeren Jappix Node propper a séier, maacht d'Uerdner regelmässeg eidel!"
 
 msgid ""
 "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
 "Jappix!"
 msgstr ""
+"Lued Äer Musek erop (Ogg Vorbis, MP3 oder WAV) fier se kënnen an Jappix ze "
+"lauschteren!"
 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "D'Datei déi Dier eroplueden wëllt, muss méi kleng wéi %s sin."
 
 msgid ""
 "You can check what your users store on your server and remove undesired "
 "content with this tool."
 msgstr ""
+"Mat dësem tool kënnt dier iwwerpréifen waat Äer Benotzer op Äerem Server "
+"späicheren an onerwënschtenen Inhalt läschen."
 
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 msgid "Artist"
-msgstr ""
+msgstr "Kënschtler"
 
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 msgid "Upload"
-msgstr ""
+msgstr "Eroplueden"
 
 msgid "The folder is empty."
-msgstr ""
+msgstr "Den Uerdner as eidel."
 
 msgid "The music could not be received, please retry!"
-msgstr ""
+msgstr "D#Musek konnt net gelueden gin, probéiert nach eng Kéier w.e.g.!"
 
 msgid ""
 "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr ""
+"Daat heiten as keng valabel Musek-Datei, encodéiert w.e.g. an Ogg, MP3 oder "
+"WAV!"
 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Äer Musek gouf derbäigesaat!"
 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "Déi ausgewielten Elementer goufen geläscht."
 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "Dier musst en Element fier ze läschen auswielen!"
 
 msgid ""
 "Add a new user with this tool, or change a password (type an existing "
 "username). Please submit a strong password!"
 msgstr ""
+"Mat dësem Tool kënnt der nei Benotzer derbäisetzen oder e Passwuert änneren "
+"(aktuellen Benotzernumm a Passwuert agin). Wielt w.e.g. e staarkt Passwuert!"
 
 msgid "Manage"
-msgstr ""
+msgstr "Administréieren"
 
 msgid "List"
-msgstr ""
+msgstr "Lëscht"
 
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
+"Mat dësem Tool kënnt Dier Benotzer läschen. Et sief bemierkt datt e Benotzer "
+"net kann geläacht gin wann nëmmen nach een iwwreg bleiwt."
 
 msgid "The user has been added!"
-msgstr ""
+msgstr "De Benotzer as derbäigesaat gin!"
 
 msgid "The chosen users have been removed."
-msgstr ""
+msgstr "Deen ausgewielten Benotzer as geläscht gin!"
 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "Dier musst een oder méi Benotzer fier ze läschen auswielen!"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Gëschter"
 
 msgid "%s days ago"
-msgstr ""
+msgstr "virun %s Deeg"
 
 msgid "User currently active"
-msgstr ""
+msgstr "Benotzer momentan aktiv"
 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Fier d'läscht gesin: %s"
 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Inaktiv zënter: %s"
 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "Ären Kolleg schéngt de Message net kritt ze hun!"
 
 msgid "Static content server"
-msgstr ""
+msgstr "Server fier stateschen Inhalt"
 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr ""
+msgstr "Dëst as de Server fier stateschen Inhalt fier %1s, \"%2s\"."
 
 msgid "User uploads server"
-msgstr ""
+msgstr "Benotzer Upload-Server"
 
 msgid "This is the user uploads server for %1s, “%2s”."
-msgstr ""
+msgstr "Dëst as de Benotzer Upload-Server fier %1s, \"%2s\"."
 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Fiergeschloen Kollegen"
 
 msgid "Check all"
-msgstr ""
+msgstr "Alleguer auswielen"
 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Alleguer déselectionnéieren"
 
 msgid "Choose"
-msgstr ""
+msgstr "Wielen"
 
 msgid "List name"
-msgstr ""
+msgstr "Lëschtennumm"
 
 msgid "Allow"
-msgstr ""
+msgstr "Erlaben"
 
 msgid "Deny"
-msgstr ""
+msgstr "Verbidden"
 
 msgid "Group"
-msgstr ""
+msgstr "Grupp"
 
 msgid "Subscription"
-msgstr ""
+msgstr "Abonnement"
 
 msgid "Both"
-msgstr ""
+msgstr "Déi zwee"
 
 msgid "From"
-msgstr ""
+msgstr "Vum"
 
 msgid "Everybody"
-msgstr ""
+msgstr "Jiddereen"
 
 msgid "Send messages"
-msgstr ""
+msgstr "Message schécken"
 
 msgid "Send queries"
-msgstr ""
+msgstr "Ufro schécken"
 
 msgid "See my status"
-msgstr ""
+msgstr "Mäin Status kucken"
 
 msgid "Send his/her status"
-msgstr ""
+msgstr "Säin Status schécken"
 
 msgid "Everything"
-msgstr ""
+msgstr "Alles"
 
 msgid "Item"
-msgstr ""
+msgstr "Element"
 
 msgid "Order"
-msgstr ""
+msgstr "Reihenfolg"
 
 msgid "Active for this session"
-msgstr ""
+msgstr "Aktiv fier dës Sëtzung"
 
 msgid "Always active"
-msgstr ""
+msgstr "Ëmmer aktiv"
 
 msgid "User directory"
-msgstr ""
+msgstr "Benotzer Répertoire"
 
 msgid "Search a friend"
-msgstr ""
+msgstr "E Kolleg sichen"
 
 msgid ""
 "The feature requested is not implemented by the recipient or server and "
 "therefore cannot be processed."
 msgstr ""
+"Déi ugefroten Funktioun gëtt net vum Empfänger oder vum Server ennerstëzt a "
+"kann dofier net benotzt gin."
 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Him e Message schécken"
 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "En Chat mat him ufänken"
 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "Verfügbar Ofkierzungen:"
 
 msgid "%s removes the chat logs"
-msgstr ""
+msgstr "%s läscht den Chat Protokoll"
 
 msgid "%s joins a groupchat"
-msgstr ""
+msgstr "%s trëtt engem Gruppenchat bäi"
 
 msgid "%s closes the chat"
-msgstr ""
+msgstr "%s huet den Chat zougemat"
 
 msgid "%s shows the user profile"
-msgstr ""
+msgstr "%s weist de Benotzerprofil"
 
 msgid "%s sends a message to the room"
-msgstr ""
+msgstr "%s schéckt e Message un den Chat-Raum"
 
 msgid "%s changes your nickname"
-msgstr ""
+msgstr "%s ännert Ären Benotzernumm"
 
 msgid "%s sends a message to someone in the room"
-msgstr ""
+msgstr "%s schéckt e Message un eng Persoun aus dem Chat-Raum"
 
 msgid "%s changes the room topic"
-msgstr ""
+msgstr "%s ännert d'Thema vum Chat-Raum"
 
 msgid "%s kicks a user of the room"
-msgstr ""
+msgstr "%s geheit en Benotzer aus dem Chat-Raum"
 
 msgid "%s bans a user of the room"
-msgstr ""
+msgstr "%s verbannt en Benotzer aus dem Chat-Raum"
 
 msgid "%s invites someone to join the room"
-msgstr ""
+msgstr "%s invitéiert eng Persoun an den Chat-Raum"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Öffentlechen Profil"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Äeren Profil iwwerall um Internet"
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
@@ -2095,102 +2224,119 @@ msgid ""
 "beautiful picture timeline. You can now view the pictures you shared year by "
 "year."
 msgstr ""
+"Doriwwer eraus gëtt all Foto déi Dier an Äeren Channel post an eng "
+"wonnerschéin Timeline bäigesaat. Dier kënnt elo d'Fotoen déi der gedeelt "
+"hudd Joër fier Joër duerchsichen."
 
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
+"Dier kënnt Äeren XMPP-Avatar och als eenzegen Avatar fier all Internetsäit, "
+"Blog an Forum benotzen. Wann dier en op XMPP verännert, gëtt dës Verännerung "
+"iwwerall duerchgefouert. Waat vir eng Verbesserung!"
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Jo, erstellt Äeren öffentlechen Profil."
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Mäin öffentlechen Profil aktivéieren"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix op Äerem Handy"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
-msgstr ""
+msgstr "Eng eenzeg App fier Messagen, Channelen, Profiler a vill méi!"
 
 msgid ""
 "This notification is only informative, maybe the data it links to have been "
 "removed."
 msgstr ""
+"Dës Norricht as nëmmen informativ, méglecherweis goufen d'Donnéen op déi se "
+"verweist geläscht"
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Dier hudd nach kee Profilbild eropgelueden"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Dier kënnt keng Datei erofluesen wann Dier kee Schlëssel vierweist"
 
 msgid "Woah this file isn't found, please double check"
 msgstr ""
+"Ups, dës Datei konnt net fonnt gin, kontrolléiert nach eng Kéier w.e.g."
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr ""
+"De Schlëssel deen Dier ugin hudd, huet net d'Erlabnis fier dës Datei "
+"erofzelueden"
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "D'Statistiken sin momentan net aktivéiert."
 
 msgid "New event!"
-msgstr ""
+msgstr "Néit Evenement!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s ass amgaang mat tippen..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
 msgstr ""
+"Den Sécherheetscode deen Dier uginn hutt ass net valabel. Probéiert mat "
+"engem Aaneren w.e.g. "
 
 msgid "The username you picked is not available. Please try another one."
 msgstr ""
+"Den Benotzernomm, deen Dier gewielt hutt ass net verfügbar. Probéiert mat "
+"engem Aaneren w.e.g."
 
 msgid "There was an error registering your account. Please retry."
 msgstr ""
+"Beim Registréieren vun Äerem Kont as e Fehler opgetrueden. Probéiert w.e.g. "
+"nach eng  Kéier."
 
 msgid "Username"
-msgstr ""
+msgstr "Benotzernumm"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Passwuert aginn"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Nees erem..."
 
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 msgid "Security code"
-msgstr ""
+msgstr "Sécherheetscode"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Plaatz vir Reklam ze maachen fräi!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Maacht héi Reklam"
 
 msgid "Analytics (%s)"
-msgstr ""
+msgstr "Statistiken (%s)"
 
 msgid "Track visits"
-msgstr ""
+msgstr "Visiten protokolléiern"
 
 msgid "Piwik URL"
-msgstr ""
+msgstr "Piwik URL"
 
 msgid "Piwik tracking ID"
-msgstr ""
+msgstr "Piwik Tracking ID"
 
 msgid "Advertising (%s)"
-msgstr ""
+msgstr "Reklammen (%s)"
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Reklammen aktivéieren"
 
 msgid "Standard ads key"
-msgstr ""
+msgstr "Standart Reklammen-Schlëssel"
 
 msgid "Content ads key"
-msgstr ""
+msgstr "Inhalts Reklammen-Schlëssel"

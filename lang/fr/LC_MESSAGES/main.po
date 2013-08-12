@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/jappix/language/"
 "fr/)\n"
@@ -215,12 +215,6 @@ msgstr "Archives des messages"
 
 msgid "Date"
 msgstr "Date"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Sélectionnez un ami pour voir l'historique de discussion."
-
-msgid "Nothing found for: %s"
-msgstr "Rien de trouvé pour : %s"
 
 msgid "A short message?"
 msgstr "Un petit message ?"
@@ -459,8 +453,8 @@ msgstr "Vie privée"
 msgid "Message archiving"
 msgstr "Archivage des messages"
 
-msgid "Store a history of your chats"
-msgstr "Garder un historique des conversations"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Géolocalisation"
@@ -586,9 +580,6 @@ msgstr "Télécharger le fichier !"
 
 msgid "Clean current chat"
 msgstr "Nettoyer la discussion courante"
-
-msgid "View chat history"
-msgstr "Voir l'historique de discussion"
 
 msgid "Show user profile"
 msgstr "Afficher le profil de l'utilisateur"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/jappix/language/"
 "ru/)\n"
@@ -47,7 +47,7 @@ msgid "Statistics around Jappix."
 msgstr "Статистика по Jappix."
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Отказ от ответственности."
 
 msgid "Download Jappix for free."
 msgstr "Скачать Jappix бесплатно."
@@ -56,7 +56,7 @@ msgid "Contribute to the Jappix code."
 msgstr "Оказать поддержку проекту Jappix."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix для Вашей компании."
 
 msgid "Find a public Jappix node."
 msgstr "Найти пубичный узел Jappix."
@@ -74,22 +74,22 @@ msgid "Legal"
 msgstr ""
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Отказ от ответственности."
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "Условия использования"
 
 msgid "Owner"
-msgstr ""
+msgstr "Владелец"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Владелец узла"
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Используя наш сервис, Вы принимаете %s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "наши условия использования"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -205,12 +205,6 @@ msgstr "Архив сообщений"
 msgid "Date"
 msgstr "Дата"
 
-msgid "Please select a friend to view the chat history."
-msgstr "Выберите историю общения с кем хотите увидеть."
-
-msgid "Nothing found for: %s"
-msgstr "Для %s ничего не найдено"
-
 msgid "A short message?"
 msgstr "Статусное сообщение?"
 
@@ -242,7 +236,7 @@ msgid "Busy"
 msgstr "Занят"
 
 msgid "Offline"
-msgstr ""
+msgstr "Отключён"
 
 msgid "Mood"
 msgstr "Настроение"
@@ -338,7 +332,7 @@ msgid "Others"
 msgstr "Другие"
 
 msgid "Other"
-msgstr ""
+msgstr "Другое"
 
 msgid "Personal"
 msgstr "Персональные данные"
@@ -404,6 +398,9 @@ msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
+"Будьте осторожны с информацией, которую Вы храните в Вашем профиле, так как "
+"она может быть доступна кому угодно (даже кому-то, кому Вы не хотите её "
+"доверять)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -442,8 +439,8 @@ msgstr "Приватность"
 msgid "Message archiving"
 msgstr "Архив сообщений"
 
-msgid "Store a history of your chats"
-msgstr "Сохранять историю разговоров"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Местоположение"
@@ -476,7 +473,7 @@ msgid "New (2 times)"
 msgstr "Новый (дважды)"
 
 msgid "Suggested chatrooms"
-msgstr ""
+msgstr "Предлагаемые комнаты"
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -570,9 +567,6 @@ msgstr "Скачать файл!"
 
 msgid "Clean current chat"
 msgstr "Очистить текущий чат"
-
-msgid "View chat history"
-msgstr "Просмотр истории разговора"
 
 msgid "Show user profile"
 msgstr "Показать профиль пользователя"
@@ -788,10 +782,10 @@ msgid "left the chat room"
 msgstr "покинул комнату"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s вышел"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s пришёл"
 
 msgid "no status"
 msgstr "нет статуса"
@@ -835,6 +829,8 @@ msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
+"Для обеспечения безопасности Вашей учётной записи, убедитесь, что Ваш пароль "
+"остаётся в тайне, когда Вы входите или регистрируетесь."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
@@ -1018,7 +1014,7 @@ msgid ""
 msgstr ""
 
 msgid "Open"
-msgstr ""
+msgstr "Открыть"
 
 msgid "Show"
 msgstr "Показать"
@@ -1355,10 +1351,10 @@ msgid "Service description"
 msgstr "Описание сервиса"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Имя владельца"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Веб-сайт владельца"
 
 msgid "Connection"
 msgstr "Сединение"
@@ -1376,7 +1372,7 @@ msgid "Registration allowed"
 msgstr "Регистрация дозволена"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Использовать встроенный BOSH-прокси"
 
 msgid "Manager link"
 msgstr "Менеджер ссылок"
@@ -1385,7 +1381,7 @@ msgid "Groupchats to join"
 msgstr "Конференции для вступления"
 
 msgid "Suggest groupchats"
-msgstr ""
+msgstr "Предлагать конференции"
 
 msgid "Encryption"
 msgstr "Шифрование"
@@ -1590,7 +1586,7 @@ msgid "Change your Jappix node configuration with this tool."
 msgstr "Измените конфигурацию узла Jappix, этим инструментом."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr ""
+msgstr "Измените XMPP-хосты, обслуживаемые этим Jappix-узлом."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2010,6 +2006,8 @@ msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
+"Это инструмент для удаления пользователей. Обратите внимание, Вы не можете "
+"удалить единственного оставшегося пользователя."
 
 msgid "The user has been added!"
 msgstr "Пользователь добавлен!"
@@ -2160,10 +2158,10 @@ msgid "%s changes the room topic"
 msgstr "%s изменяет тему комнаты"
 
 msgid "%s kicks a user of the room"
-msgstr ""
+msgstr "%s выгоняет пользователя из комнаты"
 
 msgid "%s bans a user of the room"
-msgstr ""
+msgstr "%s не пускает пользователя в комнату"
 
 msgid "%s invites someone to join the room"
 msgstr "%s приглашает кого-то войти в комнату"
@@ -2197,9 +2195,12 @@ msgid ""
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
+"Вы также можете использовать Ваш XMPP-аватар в качестве единого аватарана "
+"всех сайтах, блогах и форумах. При изменении его в XMPP, новый аватар "
+"появляется везде. Здорово, не правда ли?"
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Конечно! Создать публичный профиль!"
 
 msgid "Enable my public profile"
 msgstr "Задействовать мой публичный профиль"
@@ -2219,74 +2220,75 @@ msgstr ""
 "недоступны."
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Вы не предоставили на одного файла для скачивания"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Вы не можете скачать файл, если не предоставите ключ"
 
 msgid "Woah this file isn't found, please double check"
-msgstr ""
+msgstr "Ой, этот файл не найден. Пожалуйста, перепроверьте"
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr ""
+"Ключ, которые Вы предоставили, не даёт разрешения на скачивание этого файла"
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "Статистика выключена в настройках."
 
 msgid "New event!"
-msgstr ""
+msgstr "Новое событие!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s набирает..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
-msgstr ""
+msgstr "Вы ввели неверный код безопасности. Попытайтесь ввести другой."
 
 msgid "The username you picked is not available. Please try another one."
-msgstr ""
+msgstr "Имя, которые Вы выбрали, недоступно. Попробуйте другое."
 
 msgid "There was an error registering your account. Please retry."
-msgstr ""
+msgstr "Ошибка при регистрации Вашей учётной записи. Попробуйте ещё раз."
 
 msgid "Username"
-msgstr ""
+msgstr "Имя пользователя"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Введите пароль"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Ещё раз..."
 
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 msgid "Security code"
-msgstr ""
+msgstr "Код доступа"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Доступно рекламное пространство!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Поместить рекламу здесь"
 
 msgid "Analytics (%s)"
-msgstr ""
+msgstr "Аналитика (%s)"
 
 msgid "Track visits"
-msgstr ""
+msgstr "Отслеживать посещения"
 
 msgid "Piwik URL"
-msgstr ""
+msgstr "Piwik URL"
 
 msgid "Piwik tracking ID"
-msgstr ""
+msgstr "Piwik tracking ID"
 
 msgid "Advertising (%s)"
-msgstr ""
+msgstr "Реклама (%s)"
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Включить рекламу"
 
 msgid "Standard ads key"
 msgstr ""

@@ -5,11 +5,12 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Last revision: 07/06/13
 # Translators:
+# Midgard, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/jappix/language/"
 "nl/)\n"
@@ -28,36 +29,38 @@ msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
+"JavaScript is niet aanwezig in je browser, je kan Jappix niet gebruiken! Los "
+"dit alsjeblieft op."
 
 msgid "Social channel, chat and more."
-msgstr ""
+msgstr "Sociaal kanaal, chat en meer."
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "Je openbaar profiel maken."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "Een minichat voor je website."
 
 msgid "Get Jappix, get support."
 msgstr ""
 
 msgid "Statistics around Jappix."
-msgstr ""
+msgstr "Statistieken in verband met Jappix."
 
 msgid "Legal disclaimer for Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Download Jappix gratis."
 
 msgid "Contribute to the Jappix code."
-msgstr ""
+msgstr "Draag bij aan de Jappixcode."
 
 msgid "Jappix for your company."
 msgstr ""
 
 msgid "Find a public Jappix node."
-msgstr ""
+msgstr "Zoek een openbare Jappix-node."
 
 msgid "Credits"
 msgstr ""
@@ -98,7 +101,7 @@ msgstr ""
 "ongemak."
 
 msgid "The element list on this server could not be obtained!"
-msgstr ""
+msgstr "De lijst van elementen op deze server kon niet worden opgevraagd!"
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
@@ -106,10 +109,10 @@ msgid ""
 msgstr "Uw paswoord is gewijzigd, U kan nu aanmelden met de nieuwe gegevens."
 
 msgid "Your XMPP account has been removed, bye!"
-msgstr ""
+msgstr "Je XMPP-account is verwijderd, daag!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr ""
+msgstr "Je bent uitgelogd van je XMPP-account, prettige dag verder!"
 
 msgid "The room you tried to join doesn't seem to exist."
 msgstr ""
@@ -121,21 +124,22 @@ msgstr ""
 
 msgid "The user that you want to reach is not present in the room."
 msgstr ""
+"De gebruiker die je probeert te bereiken, is niet aanwezig in de kamer."
 
 msgid "Please enter the group chat address to join."
-msgstr ""
+msgstr "Geef alsjeblieft het groepschatadres in om erbij te komen."
 
 msgid "Please enter your nickname to join %s."
-msgstr ""
+msgstr "Gelieve je nickname in te geven om je bij %s te voegen."
 
 msgid "This room (%s) is protected with a password."
-msgstr ""
+msgstr "Deze kamer (%s) is beveiligd met een wachtwoord."
 
 msgid "Your browser is out of date!"
-msgstr ""
+msgstr "Je browser is verouderd!"
 
 msgid "Last %s version is better!"
-msgstr ""
+msgstr "De laatste versie van %s is beter!"
 
 msgid "Login"
 msgstr "Log in"
@@ -160,10 +164,10 @@ msgstr ""
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr ""
+msgstr "Door een netwerkfout is de verbinding verbroken. Wat wil je doen?"
 
 msgid "Reconnect"
-msgstr ""
+msgstr "Opnieuw verbinden"
 
 msgid "Messages"
 msgstr "Berichten"
@@ -178,37 +182,31 @@ msgid "Disconnect"
 msgstr "Verbreek de verbinding"
 
 msgid "Filter"
-msgstr ""
+msgstr "Filteren"
 
 msgid "Add a friend"
-msgstr ""
+msgstr "Een vriend toevoegen"
 
 msgid "Your groupchats"
-msgstr ""
+msgstr "Jouw groepschats"
 
 msgid "Manage your favorite groupchats"
 msgstr "Beheer je favoriete groepsgesprekken"
 
 msgid "More stuff"
-msgstr ""
+msgstr "Meer"
 
 msgid "Show all friends"
 msgstr "Toon alle vrienden"
 
 msgid "Only show connected friends"
-msgstr ""
+msgstr "Toon alleen vrienden die verbonden zijn"
 
 msgid "Message archives"
 msgstr "Berichten archief"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "Please select a friend to view the chat history."
-msgstr ""
-
-msgid "Nothing found for: %s"
-msgstr ""
 
 msgid "A short message?"
 msgstr "Een kort bericht?"
@@ -220,10 +218,10 @@ msgid "What are you doing?"
 msgstr "Wat ben je aan het doen?"
 
 msgid "Join a chat"
-msgstr ""
+msgstr "Een chat binnengaan"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Available"
 msgstr "Beschikbaar"
@@ -244,7 +242,7 @@ msgid "Offline"
 msgstr ""
 
 msgid "Mood"
-msgstr ""
+msgstr "Gemoedstoestand"
 
 msgid "None"
 msgstr "Geen"
@@ -277,10 +275,10 @@ msgid "Confident"
 msgstr "Zelfverzekerd"
 
 msgid "Activity"
-msgstr ""
+msgstr "Activiteit"
 
 msgid "Chores"
-msgstr ""
+msgstr "Klusjes"
 
 msgid "Drinking"
 msgstr "Drinken"
@@ -289,10 +287,10 @@ msgid "Eating"
 msgstr "Eten"
 
 msgid "Exercising"
-msgstr ""
+msgstr "Oefenen"
 
 msgid "Grooming"
-msgstr ""
+msgstr "Persoonlijke hygiëne aan het verzorgen"
 
 msgid "Appointment"
 msgstr "Afspraak"
@@ -313,10 +311,10 @@ msgid "Working"
 msgstr "Werken"
 
 msgid "View profile"
-msgstr ""
+msgstr "Profiel bekijken"
 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "Dit is een herhaling van %s"
 
 msgid "Repeat this notice"
 msgstr "Herhaal deze melding"
@@ -325,13 +323,13 @@ msgid "Remove this notice"
 msgstr "Verwijder deze melding"
 
 msgid "Your profile"
-msgstr ""
+msgstr "Jouw profiel"
 
 msgid "Identity"
 msgstr "Identiteit"
 
 msgid "Profile image"
-msgstr ""
+msgstr "Profielfoto"
 
 msgid "Others"
 msgstr ""
@@ -340,22 +338,22 @@ msgid "Other"
 msgstr ""
 
 msgid "Personal"
-msgstr ""
+msgstr "Persoonlijk"
 
 msgid "Complete name"
 msgstr "Volledige naam"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Nickname"
 
 msgid "First name"
-msgstr ""
+msgstr "Voornaam"
 
 msgid "Last name"
-msgstr ""
+msgstr "Achternaam"
 
 msgid "Date of birth"
-msgstr ""
+msgstr "Geboortedatum"
 
 msgid "Contact"
 msgstr "Contact"
@@ -364,7 +362,7 @@ msgid "E-mail"
 msgstr "E-mail"
 
 msgid "Phone"
-msgstr ""
+msgstr "Telefoon"
 
 msgid "Website"
 msgstr "Website"
@@ -376,10 +374,10 @@ msgid "Delete"
 msgstr "Verwijder"
 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr ""
+msgstr "Jammer, er is geen profielfoto ingesteld in je visitekaartje!"
 
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 msgid "Street"
 msgstr "Straat"
@@ -408,12 +406,16 @@ msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
 "profile (vCard)."
 msgstr ""
+"Niet alles is privé in XMPP; dit is zoiets, je openbaar profiel (vCard)."
 
 msgid ""
 "It is strongly recommended to upload a profile image (%s maximum), like a "
 "picture of yourself, because that makes you easily recognizable by your "
 "friends."
 msgstr ""
+"Het is ten zeerste aangeraden een profielfoto te uploaden (maximaal %s), "
+"zoals een foto van jezelf, want dat maakt je gemakkelijk herkenbaar voor je "
+"vrienden."
 
 msgid "Save"
 msgstr "Opslaan"
@@ -425,10 +427,10 @@ msgid "Edit options"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanaal"
 
 msgid "Commands"
-msgstr ""
+msgstr "Commando's"
 
 msgid "Sounds"
 msgstr "Geluiden"
@@ -439,7 +441,7 @@ msgstr "Privacy"
 msgid "Message archiving"
 msgstr "Bericht archivering"
 
-msgid "Store a history of your chats"
+msgid "Store an history of your chats"
 msgstr ""
 
 msgid "Geolocation"
@@ -449,7 +451,7 @@ msgid "Empty"
 msgstr "Leeg"
 
 msgid "Empty channel"
-msgstr ""
+msgstr "Leeg kanaal"
 
 msgid "Persistent"
 msgstr "Blijvend"
@@ -458,13 +460,13 @@ msgid "Maximum notices"
 msgstr "Maximale meldingen"
 
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 msgid "Change password"
-msgstr ""
+msgstr "Wachtwoord veranderen"
 
 msgid "Delete account"
-msgstr ""
+msgstr "Account verwijderen"
 
 msgid "Old"
 msgstr "Oud"
@@ -476,7 +478,7 @@ msgid "Suggested chatrooms"
 msgstr ""
 
 msgid "Continue"
-msgstr ""
+msgstr "Doorgaan"
 
 msgid "To"
 msgstr "Naar"
@@ -491,16 +493,17 @@ msgid "Unavailable"
 msgstr "Niet beschikbaar"
 
 msgid "is now"
-msgstr ""
+msgstr "is nu"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Gelieve te wachten terwijl je avatar wordt geüpload..."
 
 msgid "Here it is! A new beautiful profile image!"
-msgstr ""
+msgstr "Hier is-ie! Een mooie, nieuwe profielfoto!"
 
 msgid "The image file is not supported or has a bad size."
 msgstr ""
+"Dit afbeeldingsbestand wordt niet ondersteund of heeft een slecht formaat."
 
 msgid "Reply"
 msgstr "Antwoord"
@@ -509,10 +512,10 @@ msgid "Error"
 msgstr "Fout"
 
 msgid "Click here to solve the error"
-msgstr ""
+msgstr "Klik hier om het probleem op te lossen"
 
 msgid "You"
-msgstr ""
+msgstr "Jij"
 
 msgid "Remove"
 msgstr "Verwijder"
@@ -521,13 +524,13 @@ msgid "Rename"
 msgstr "Hernoem"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "Hallo, ik ben %s, ik zou je willen toevoegen als vriend."
 
 msgid "Smiley insertion"
 msgstr "Emoticon invoegen"
 
 msgid "Change style"
-msgstr ""
+msgstr "Stijl veranderen"
 
 msgid "Text in bold"
 msgstr "Tekst vetgedrukt"
@@ -539,55 +542,56 @@ msgid "Underlined text"
 msgstr "Tekst onderstreept"
 
 msgid "Send a file"
-msgstr ""
+msgstr "Bestand verzenden"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr ""
+"Eens het is geüpload, zal je vriend worden gevraagd om het bestand dat je "
+"verzend te downloaden."
 
 msgid "Save chat"
-msgstr ""
+msgstr "Chat opslaan"
 
 msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
+"Klik op de volgende link om de chatlog aan te vragen, en wacht. Klik dan "
+"opnieuw om het bestand te krijgen."
 
 msgid "This chat is empty!"
-msgstr ""
+msgstr "Deze chat is leeg!"
 
 msgid "Generate file!"
-msgstr ""
+msgstr "Genereer bestand!"
 
 msgid "Download file!"
-msgstr ""
+msgstr "Download bestand!"
 
 msgid "Clean current chat"
-msgstr ""
-
-msgid "View chat history"
-msgstr ""
+msgstr "Huidige chat wissen"
 
 msgid "Show user profile"
-msgstr ""
+msgstr "Toon gebruikersprofiel"
 
 msgid "Add this contact to your friends"
-msgstr ""
+msgstr "Voeg dit contact toe als vriend"
 
 msgid "Add this groupchat to your favorites"
-msgstr ""
+msgstr "Voeg deze groupschat toe aan je favorieten"
 
 msgid "All tabs"
-msgstr ""
+msgstr "Alle tabs"
 
 msgid "Close this tab"
-msgstr ""
+msgstr "Sluit deze tab"
 
 msgid "no subject defined for this room."
 msgstr "Deze kamer heeft geen onderwerp"
 
 msgid "Administration panel for this room"
-msgstr ""
+msgstr "Beheer voor deze kamer"
 
 msgid "Moderators"
 msgstr ""

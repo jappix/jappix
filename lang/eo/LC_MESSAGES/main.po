@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 18:59+0100\n"
+"PO-Revision-Date: 2013-08-12 21:24+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/jappix/"
 "language/eo/)\n"
@@ -205,12 +205,6 @@ msgstr "Mesaĝaj arkivoj"
 
 msgid "Date"
 msgstr "Dato"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Bonvolu elekti amikon por vidi la konversacian historion."
-
-msgid "Nothing found for: %s"
-msgstr "Nenion trovita por: %s"
 
 msgid "A short message?"
 msgstr "Mallonga mesaĝo?"
@@ -445,8 +439,8 @@ msgstr "Privateco"
 msgid "Message archiving"
 msgstr "Mesaĝa enarkivago"
 
-msgid "Store a history of your chats"
-msgstr "Entenas historion de viaj konversacioj"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Surtera loko"
@@ -573,9 +567,6 @@ msgstr "Elŝuti dosieron!"
 
 msgid "Clean current chat"
 msgstr "Forviŝi nun babilon"
-
-msgid "View chat history"
-msgstr "Vidi konversacio historio"
 
 msgid "Show user profile"
 msgstr "Montri uzatan profilon"

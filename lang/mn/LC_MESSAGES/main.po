@@ -5,31 +5,31 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Last revision: 07/06/13
 # Translators:
+# Оч Оюука <o_4BOSS@yahoo.com>, 2013
+# Оч Оюука <o_4BOSS@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
 "PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/jappix/language/"
-"es/)\n"
+"Language-Team: Mongolian (http://www.transifex.com/projects/p/jappix/"
+"language/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
 "X-Generator: Poedit 1.5.5\n"
 
 msgid "default:LTR"
-msgstr "default:LTR"
+msgstr ""
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
-"Javascript no se encuentra activado en tu navegador, de modo que no podrás "
-"poner en marcha Jappix! Por favor, corrige esto."
 
 msgid "Social channel, chat and more."
 msgstr ""
@@ -71,7 +71,7 @@ msgid "Web agency"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Хууль ёсны"
 
 msgid "Legal disclaimer"
 msgstr ""
@@ -95,307 +95,300 @@ msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
 "that you entered the right credentials), sorry for the inconvenience."
 msgstr ""
-"Jappix ha sido interrumpido por un problema de red, un fallo o un acceso "
-"incorrecto (comprueba que has introducido las credenciales correctas). "
-"Lamentamos el inconveniente."
 
 msgid "The element list on this server could not be obtained!"
-msgstr "¡No se pudo conseguir la lista de elementos de este servidor!"
+msgstr ""
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
-msgstr ""
-"Tu contraseña ha sido cambiada, ahora puedes conectarte a tu cuenta con los "
-"nuevos datos de acceso."
+msgstr "Таны нууц үг солигдлоо, та одоо өөрийн шинэ нууц үгээр нэвтэрнэ үү."
 
 msgid "Your XMPP account has been removed, bye!"
-msgstr "Tu cuenta XMPP ha sido suprimida... ¡Adiós!"
+msgstr "Таны чатнаас гарлаа. Түр баяртай!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr "Ya saliste de tu cuenta de XMPP, ¡que disfrutes el resto del día!"
+msgstr ""
 
 msgid "The room you tried to join doesn't seem to exist."
-msgstr "La sala a la que te has unido no existe. ¡La deberías crear primero!"
+msgstr ""
 
 msgid "The groupchat has been removed."
 msgstr ""
-"El grupo de charla ha sido eliminado, ahora culquiera puede volver a crearla."
 
 msgid "The user that you want to reach is not present in the room."
-msgstr "El usuario no se encuentra en esta sala."
+msgstr ""
 
 msgid "Please enter the group chat address to join."
-msgstr "Escribe el nombre de la sala donde quieres entrar."
+msgstr ""
 
 msgid "Please enter your nickname to join %s."
-msgstr "¿Qué apodo quieres tener en la sala %s?"
+msgstr ""
 
 msgid "This room (%s) is protected with a password."
-msgstr "La sala %s está protegida por una clave."
+msgstr ""
 
 msgid "Your browser is out of date!"
-msgstr "¡Necesita actualizar tu navegador!"
+msgstr ""
 
 msgid "Last %s version is better!"
-msgstr "¡La última versión de %s es mejor!"
+msgstr ""
 
 msgid "Login"
-msgstr "Acceder"
+msgstr "Нэвтрэх"
 
 msgid "Register"
-msgstr "Registrarse"
+msgstr "Бүртгүүлэх"
 
 msgid "Here we go!"
-msgstr "¡Allá vamos!"
+msgstr "Нэвтрэх"
 
 msgid "Server"
-msgstr "Servidor"
+msgstr "Сервер"
 
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Нууц үг"
 
 msgid "Remember me"
-msgstr "Recordarme"
+msgstr "Намайг сана"
 
 msgid "This tool has been disabled!"
-msgstr "No se puede usar esta herramienta porque no está activada."
+msgstr ""
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr ""
-"Debido a un problema de red, se le ha desconectado. ¿Qué quieres hacer ahora?"
+msgstr "Серверт алдаа гарлаа!"
 
 msgid "Reconnect"
-msgstr "Volver a conectar"
+msgstr "Дахин холбогдох"
 
 msgid "Messages"
-msgstr "Mensajes"
+msgstr "Зурвас"
 
 msgid "Profile"
-msgstr "Perfil"
+msgstr "Профайл"
 
 msgid "Options"
-msgstr "Opciones"
+msgstr "Тохиргоо"
 
 msgid "Disconnect"
-msgstr "Desconectar"
+msgstr "Гарах"
 
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Шүүлтүүр"
 
 msgid "Add a friend"
-msgstr "Agregar a un amigo"
+msgstr "Найз нэмэх"
 
 msgid "Your groupchats"
-msgstr "Tus salas de conversación"
+msgstr "Таны Групп чат"
 
 msgid "Manage your favorite groupchats"
-msgstr "Gestiona tus grupos de chat favoritos"
+msgstr "Таны групп чатын тохиргоо"
 
 msgid "More stuff"
-msgstr "Más cosas"
+msgstr "Бусад тохиргоо"
 
 msgid "Show all friends"
-msgstr "Mostrar a todos los amigos"
+msgstr "Бүх найзаа харах"
 
 msgid "Only show connected friends"
-msgstr "Mostrar sólo a los amigos conectados"
+msgstr "Зөвхөн идвэхтэй байгаа найзаа харах"
 
 msgid "Message archives"
-msgstr "Archivos de mensajes"
+msgstr "Захианы архив"
 
 msgid "Date"
-msgstr "Fecha"
+msgstr "Огноо"
 
 msgid "A short message?"
-msgstr "¿Un mensaje corto?"
+msgstr "Богино захиа?"
 
 msgid "How are you?"
-msgstr "¿Cómo estás?"
+msgstr "Юу байна?"
 
 msgid "What are you doing?"
-msgstr "¿Qué estás haciendo?"
+msgstr "Та юу хийж байна?"
 
 msgid "Join a chat"
-msgstr "Unirse al chat"
+msgstr "Чатруу орох"
 
 msgid "Status"
-msgstr "Estado"
+msgstr "Статус"
 
 msgid "Available"
-msgstr "Disponible"
+msgstr "Нээлттэй"
 
 msgid "Talkative"
-msgstr "Hablador"
+msgstr "Идвэхтэй"
 
 msgid "Away"
-msgstr "Ausente"
+msgstr "Ипвэхгүй байгаа"
 
 msgid "Not available"
-msgstr "No disponible"
+msgstr "Хаалттай"
 
 msgid "Busy"
-msgstr "Ocupado"
+msgstr "Завгүй"
 
 msgid "Offline"
-msgstr ""
+msgstr "Байхгүй байгаа"
 
 msgid "Mood"
-msgstr "Humor"
+msgstr "Төлөв"
 
 msgid "None"
-msgstr "Ninguno"
+msgstr "Хоосон"
 
 msgid "Crazy"
-msgstr "Loco"
+msgstr "Галзуу"
 
 msgid "Excited"
-msgstr "Excitado"
+msgstr "Сэтгэл нь хөдөлсөн"
 
 msgid "Playful"
-msgstr "Juguetón"
+msgstr "Хөгжилтэй"
 
 msgid "Happy"
-msgstr "Feliz"
+msgstr "Аз жаргалтай"
 
 msgid "Shocked"
-msgstr "Conmocionado"
+msgstr "Шоконд орсон"
 
 msgid "Hot"
-msgstr "Caliente"
+msgstr "Халуухан"
 
 msgid "Sad"
-msgstr "Triste"
+msgstr "Уйтгартай"
 
 msgid "Amorous"
-msgstr "Amoroso"
+msgstr "Дурласан"
 
 msgid "Confident"
-msgstr "Seguro"
+msgstr "Өөртөө итгэлтэй"
 
 msgid "Activity"
-msgstr "Actividad"
+msgstr "Эрч хүчтэй"
 
 msgid "Chores"
-msgstr "Tareas"
+msgstr "Дэлгүүр гарсан"
 
 msgid "Drinking"
-msgstr "Bebiendo"
+msgstr "Согтуу"
 
 msgid "Eating"
-msgstr "Comiendo"
+msgstr "Идэж байна"
 
 msgid "Exercising"
-msgstr "Haciendo ejercicio"
+msgstr "Дасгал хийж байна"
 
 msgid "Grooming"
-msgstr "Aseando"
+msgstr "Гэрийн ажилтай"
 
 msgid "Appointment"
-msgstr "Cita"
+msgstr "Уулзалттай"
 
 msgid "Inactive"
-msgstr "Inactivos"
+msgstr "Идэвхгүй"
 
 msgid "Relaxing"
-msgstr "Relajando"
+msgstr "Тайвширч байна"
 
 msgid "Talking"
-msgstr "Hablando"
+msgstr "Ярьж байна"
 
 msgid "Traveling"
-msgstr "Viajando"
+msgstr "Зугаалж байна"
 
 msgid "Working"
-msgstr "Trabajando"
+msgstr "Ажиллаж байна"
 
 msgid "View profile"
-msgstr "Ver el perfil"
+msgstr "Профайл үзэх"
 
 msgid "This is a repeat from %s"
-msgstr ""
+msgstr "%s шинжилсэн"
 
 msgid "Repeat this notice"
-msgstr "Repetir este aviso"
+msgstr "мэдээллийг шинжлэх"
 
 msgid "Remove this notice"
-msgstr "Eliminar este aviso"
+msgstr "мэдээлэл устгах"
 
 msgid "Your profile"
-msgstr "Tu perfil"
+msgstr "Таны Профайл"
 
 msgid "Identity"
-msgstr "Identidad"
+msgstr "Миний тухай"
 
 msgid "Profile image"
-msgstr "Imagen del perfil"
+msgstr "Таны зураг"
 
 msgid "Others"
-msgstr "Otros"
+msgstr "Бусад"
 
 msgid "Other"
-msgstr ""
+msgstr "Бусад"
 
 msgid "Personal"
-msgstr "Personal"
+msgstr "Хувийн хэрэг"
 
 msgid "Complete name"
-msgstr "Nombre completo"
+msgstr "Жинхэнэ нэр"
 
 msgid "Nickname"
-msgstr "Apodo"
+msgstr "Хоч"
 
 msgid "First name"
-msgstr "Nombre"
+msgstr "Нэр"
 
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Овог"
 
 msgid "Date of birth"
-msgstr "Fecha de nacimiento"
+msgstr "Төрсөн өдөр"
 
 msgid "Contact"
-msgstr "Contacto"
+msgstr "Холбоо барих"
 
 msgid "E-mail"
-msgstr "E-mail"
+msgstr "И-майл хаяг"
 
 msgid "Phone"
-msgstr "Teléfono"
+msgstr "Утас"
 
 msgid "Website"
-msgstr "Sitio web"
+msgstr "Вэб сайт"
 
 msgid "Current"
-msgstr "Actual"
+msgstr "Сонгосон зураг"
 
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Устгах"
 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr "Qué pena, no tienes imagen en tu tarjeta de visita..."
+msgstr "Та өөрийн профайл зургаа сонгоогүй байна. "
 
 msgid "Address"
-msgstr "Dirección"
+msgstr "Хаяг"
 
 msgid "Street"
-msgstr "Calle"
+msgstr "Гудамж"
 
 msgid "City"
-msgstr "Ciudad"
+msgstr "Хот"
 
 msgid "Postal code"
-msgstr "Código postal"
+msgstr "Постал код"
 
 msgid "Country"
-msgstr "País"
+msgstr "Улс"
 
 msgid "Biography"
-msgstr "Biografía"
+msgstr "Намтар"
 
 msgid "Important notice"
-msgstr "Aviso importante"
+msgstr "Чухал мэдээлэл"
 
 msgid ""
 "Be careful with the information you store into your profile, because it "
@@ -405,7 +398,7 @@ msgstr ""
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
 "profile (vCard)."
-msgstr "No todo es privado en XMPP. Por ejemplo tu tarjeta de visita no lo es."
+msgstr ""
 
 msgid ""
 "It is strongly recommended to upload a profile image (%s maximum), like a "
@@ -414,390 +407,388 @@ msgid ""
 msgstr ""
 
 msgid "Save"
-msgstr "Guardar"
+msgstr "Хадгадах"
 
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Болих"
 
 msgid "Edit options"
-msgstr "Editar opciones"
+msgstr "Тохиргоог өөрчлөх"
 
 msgid "Channel"
-msgstr "Canal"
+msgstr "Суваг"
 
 msgid "Commands"
-msgstr "Comandos"
+msgstr "Коммандууд"
 
 msgid "Sounds"
-msgstr "Sonidos"
+msgstr "Дуу"
 
 msgid "Privacy"
-msgstr "Privacidad"
+msgstr "Хувийн нууц"
 
 msgid "Message archiving"
-msgstr "Archivado de mensajes"
+msgstr "Захианы архив"
 
 msgid "Store an history of your chats"
 msgstr ""
 
 msgid "Geolocation"
-msgstr "Geolocalización"
+msgstr ""
 
 msgid "Empty"
-msgstr "Vaciar"
+msgstr "Хоосон"
 
 msgid "Empty channel"
-msgstr "Canal vacío"
+msgstr "Суваг хоосон"
 
 msgid "Persistent"
-msgstr "Persistente"
+msgstr "Тогтвортой"
 
 msgid "Maximum notices"
-msgstr "Máximo de avisos"
+msgstr "Дээд хэмжээний мэдээлэл"
 
 msgid "Account"
-msgstr "Cuenta"
+msgstr "Гишүүнчлэл"
 
 msgid "Change password"
-msgstr "Cambiar la contraseña"
+msgstr "Нууц үг солих"
 
 msgid "Delete account"
-msgstr "Eliminar cuenta"
+msgstr "Гишүүнлэлийг устгах"
 
 msgid "Old"
-msgstr "Antigua"
+msgstr "Хуучин"
 
 msgid "New (2 times)"
-msgstr "Nueva (2 veces)"
+msgstr "Шинэ"
 
 msgid "Suggested chatrooms"
 msgstr ""
 
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Үргэлжүүлэх"
 
 msgid "To"
-msgstr "A"
+msgstr "Илгээх гишүүний хаяг"
 
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Хаах"
 
 msgid "unknown"
-msgstr "desconocido"
+msgstr "Мэдэгдэхгүй"
 
 msgid "Unavailable"
-msgstr "No disponible"
+msgstr "Идвэхгүй"
 
 msgid "is now"
-msgstr "es ahora"
+msgstr "Яг одоо"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr ""
+msgstr "Түр хүлээнэ үү. Таны зураг ачааллаж байна."
 
 msgid "Here it is! A new beautiful profile image!"
-msgstr "Ya está! Una nueva y bonita imagen en tu tarjeta de visita!"
+msgstr "Таны шинэ профайл зураг!"
 
 msgid "The image file is not supported or has a bad size."
-msgstr "No se maneja este tipo de imagen, o tal vez sea un problema de tamaño."
+msgstr "Зургийн файлыг дэмжэхгүй байна. "
 
 msgid "Reply"
-msgstr "Responder"
+msgstr "Хариу захиа илгээх"
 
 msgid "Error"
-msgstr "Error"
+msgstr "Алдаа"
 
 msgid "Click here to solve the error"
-msgstr "Dale clic aquí para solucionar el problema"
+msgstr "Энд дарж алдааг засна уу"
 
 msgid "You"
-msgstr "Tú"
+msgstr "Та"
 
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Устгах"
 
 msgid "Rename"
-msgstr "Renombrar"
+msgstr "Солих"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Hola, soy %s. Me gustaría tenerte como amigo en mi lista."
+msgstr "Сайн уу? Намайг %s гэдэг та миний найз болох уу?"
 
 msgid "Smiley insertion"
-msgstr "Inserción de emoticono"
+msgstr "Smile оруулах"
 
 msgid "Change style"
-msgstr "Cambio de estilo"
+msgstr "Загвар солих"
 
 msgid "Text in bold"
-msgstr "Texto en negrita"
+msgstr "Текстийг тодоор бичих"
 
 msgid "Text in italic"
-msgstr "Texto en cursiva"
+msgstr "Текстийг налуугаар бичих"
 
 msgid "Underlined text"
-msgstr "Texto subrayado"
+msgstr ""
 
 msgid "Send a file"
-msgstr ""
+msgstr "Файл илгээх"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr ""
 
 msgid "Save chat"
-msgstr "Chat guardado"
+msgstr "Чатаа хадгалх"
 
 msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
-"Haz click en el siguiente enlace para guardar la conversación, y espera un "
-"momento. Luego haz click de nuevo para descargar el archivo."
 
 msgid "This chat is empty!"
-msgstr "¡La sala está vacía!"
+msgstr "Чат хоосон байна"
 
 msgid "Generate file!"
-msgstr "¡Generar archivo!"
+msgstr "Файл үүсгэх"
 
 msgid "Download file!"
-msgstr "¡Bajar el archivo!"
+msgstr "Файл хуулах"
 
 msgid "Clean current chat"
-msgstr "Limpieza del chat"
+msgstr "Одоогийн чатаа устгах"
 
 msgid "Show user profile"
-msgstr "Visualizar el perfil del usuario"
+msgstr "Хэрэглэгчийн профайл харах"
 
 msgid "Add this contact to your friends"
-msgstr "Añadir a este contacto como amigo"
+msgstr "Найзаа болгох"
 
 msgid "Add this groupchat to your favorites"
-msgstr "Añadir este grupo de chat a tus favoritos"
+msgstr "Дуртай групп чатаа болгох"
 
 msgid "All tabs"
-msgstr "Todas las pestañas"
+msgstr "Бүх табууд"
 
 msgid "Close this tab"
-msgstr "Cerrar esta pestaña"
+msgstr "Табыг хаах"
 
 msgid "no subject defined for this room."
-msgstr "no se especificó un tema para esta sala."
+msgstr "Өрөөнд гарчиггүй байна"
 
 msgid "Administration panel for this room"
-msgstr "Panel de administración de la sala"
+msgstr "Өрөөний админ хэсэг"
 
 msgid "Moderators"
-msgstr "Moderadores"
+msgstr "Тохируулагч"
 
 msgid "Participants"
-msgstr "Participantes"
+msgstr "Оролцогч"
 
 msgid "Visitors"
-msgstr "Visitantes"
+msgstr "Зочид"
 
 msgid "Manage favorite rooms"
-msgstr "Organiza tus salas favoritas"
+msgstr "Өрөөний удирдлага"
 
 msgid "Change favorites"
-msgstr "Cambiar tus favoritos"
+msgstr "Өөрчлөх"
 
 msgid "Search a room"
-msgstr "Buscar una sala"
+msgstr "Өрөө хайх"
 
 msgid "Select a favorite"
-msgstr "Seleccionar un favorito"
+msgstr "Дуртайгаа сонгох"
 
 msgid "Getting the name..."
-msgstr "Consiguiendo el nombre..."
+msgstr "Нэр оноох"
 
 msgid "Gateway"
-msgstr "Pasarela"
+msgstr "Гарц"
 
 msgid "Name"
-msgstr "Nombre"
+msgstr "Нэр"
 
 msgid "Room"
-msgstr "Sala"
+msgstr "Өрөө"
 
 msgid "Add"
-msgstr "Añadir"
+msgstr "Нэмэх"
 
 msgid "Edit"
-msgstr "Editar"
+msgstr "Засах"
 
 msgid "Search a room on"
-msgstr "Buscar una sala en"
+msgstr "Өрөөнөөс хайх"
 
 msgid "No room found on this server."
-msgstr "No se encontraron salas en este servidor."
+msgstr "Өрөө олдсонгой"
 
 msgid "Service discovery"
-msgstr "Descubrir servicios"
+msgstr "Үйлчилгээ илрүүлэх"
 
 msgid "Server to query"
-msgstr "Servidor que consultar"
+msgstr ""
 
 msgid "Sorry, but the entity didn't return any result!"
-msgstr "Esta entidad no mandó ningún resultado..."
+msgstr ""
 
 msgid "Accounts"
-msgstr "Cuentas"
+msgstr "Гишүүнчлэл"
 
 msgid "Authentications"
-msgstr "Autentificaciones"
+msgstr "Гэрчилгээ"
 
 msgid "Automation"
-msgstr "Automatización"
+msgstr "Автоматжуулах"
 
 msgid "Clients"
-msgstr "Clientes"
+msgstr "Хэрэглэгчид"
 
 msgid "Collaboration"
-msgstr "Colaboración"
+msgstr "Хамтын ажиллагаа"
 
 msgid "Components"
-msgstr "Componentes"
+msgstr "Нэг хэсэг"
 
 msgid "Rooms"
-msgstr "Salas"
+msgstr "Өрөөнүүд"
 
 msgid "Directories"
-msgstr "Directorios"
+msgstr "Удирдлага"
 
 msgid "Gateways"
-msgstr "Pasarelas"
+msgstr "Гарцнууд"
 
 msgid "News"
-msgstr "Noticias"
+msgstr "Мэдээ"
 
 msgid "Hierarchy"
-msgstr "Jerarquía"
+msgstr ""
 
 msgid "Proxies"
-msgstr "Servidores proxy"
+msgstr "Итгэмжлэл"
 
 msgid "Publication/Subscription"
-msgstr "Publicación/Suscripción"
+msgstr "Зарлал"
 
 msgid "Storage"
-msgstr "Almacenamiento"
+msgstr "Агуулах"
 
 msgid "Service offline or broken"
-msgstr "Servidor fuera de línea o roto"
+msgstr "Сервис эвдэрлээ"
 
 msgid "Your inbox"
-msgstr "Tu bandeja de entrada"
+msgstr "Таньд ирсэн захианууд"
 
 msgid "Available actions"
-msgstr "Acciones disponibles"
+msgstr "Идвэхтэй үйл ажиллагаа"
 
 msgid "Clean"
-msgstr "Limpiar"
+msgstr "Арилгах"
 
 msgid "New"
-msgstr "Nuevo"
+msgstr "Шинэ"
 
 msgid "Received"
-msgstr "Recibido"
+msgstr "Хүлээн авсан"
 
 msgid "Subject"
-msgstr "Asunto"
+msgstr "Гарчиг"
 
 msgid "Content"
-msgstr "Contenido"
+msgstr "Агуулга"
 
 msgid "Send message"
-msgstr "Enviar mensaje"
+msgstr "Илгээх"
 
 msgid "Your inbox is empty."
-msgstr "Tu bandeja de entrada está vacía"
+msgstr "Таны захиа алга"
 
 msgid "MUC administration"
-msgstr "Administración de MUC"
+msgstr "Өрөөний удирдлагын хэсэг"
 
 msgid "You administrate this room"
-msgstr "Tú administras esta sala"
+msgstr "Та өрөөг удирдах боломжтой"
 
 msgid "Enter new subject"
-msgstr "Introduce el nuevo asunto"
+msgstr "Шинэ гарчиг оруулах"
 
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "Гадаад хэлбэр"
 
 msgid "Authorizations"
-msgstr "Autorizaciones"
+msgstr "Зөвшөөрөл олгох"
 
 msgid "Member list"
-msgstr "Lista de miembros"
+msgstr "Гишүүн"
 
 msgid "Owner list"
-msgstr "Lista de propietarios"
+msgstr "Эзэмшигч"
 
 msgid "Administrator list"
-msgstr "Lista de administradores"
+msgstr "Удирдлага"
 
 msgid "Outcast list"
-msgstr "Lista de rechazados"
+msgstr "Хөөгдөгч"
 
 msgid "Add an input"
-msgstr "Añadir una entrada"
+msgstr "Нэмэх"
 
 msgid "Destroy this MUC"
-msgstr "Destruir este MUC"
+msgstr "Өрөөг устгах"
 
 msgid "Yes, let's do it!"
-msgstr "Sí, ¡hagámoslo!"
+msgstr "Устгах"
 
 msgid "Your friend is paying attention to the conversation."
-msgstr "Tu amigo está prestando atención a la conversación."
+msgstr ""
 
 msgid "Your friend is writing a message..."
-msgstr "Tu amigo está escribiendo un mensaje..."
+msgstr ""
 
 msgid "Your friend stopped writing a message."
-msgstr "Tu amigo dejó de escribir un mensaje."
+msgstr ""
 
 msgid "Your friend is doing something else."
-msgstr "Tu amigo está haciendo otra cosa."
+msgstr ""
 
 msgid "Your friend closed the chat."
-msgstr "Tu amigo cerró el chat."
+msgstr ""
 
 msgid "Requesting this service..."
-msgstr "Solicitando este servicio..."
+msgstr ""
 
 msgid "Loading"
-msgstr "Cargando"
+msgstr "Уншиж байна"
 
 msgid "changed his/her nickname to %s"
-msgstr ""
+msgstr "%s нэрээ солилоо."
 
 msgid "joined the chat room"
-msgstr "se unió al chat"
+msgstr "Өрөөнд нэвтэрлээ"
 
 msgid "left the chat room"
-msgstr "ha dejado el chat"
+msgstr "Өрөөнөөс гарлаа"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s гарлаа"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s нэвтэрлээ"
 
 msgid "no status"
-msgstr "no tiene estado"
+msgstr "статус алга"
 
 msgid "has been kicked"
-msgstr "ha sido expulsado"
+msgstr "Гаргалаа"
 
 msgid "has been banned"
-msgstr "ha sido prohibido"
+msgstr "Хорьсон"
 
 msgid "no reason"
-msgstr "ninguna razón"
+msgstr "Шалтгаангүй"
 
 msgid "Communicate with the entire world!"
-msgstr "¡Comunícate con el mundo entero!"
+msgstr "E-office!"
 
 msgid ""
 "Jappix is an open social platform, that let's you easily get or keep in "
@@ -808,18 +799,15 @@ msgid ""
 "Join the millions of users who are currently using the XMPP Network (Google "
 "Talk, etc), don't stay out!"
 msgstr ""
-"Te permite mantenerte en contacto con los millones de usuarios que en la "
-"actualidad usan la red XMPP como tú con Jappix. ¡Únete a la comunidad y "
-"sigue libre!"
 
 msgid "Hi there!"
-msgstr "¡Hola!"
+msgstr "Тавтай морил!"
 
 msgid "Welcome on %1s, “%2s”."
-msgstr "Bienvenida en %1s: “%2s”."
+msgstr "%1s, “%2s”"
 
 msgid "Login to your existing XMPP account or create a new one for free!"
-msgstr "Entra a tu cuenta de XMPP existente, o crea una nueva!"
+msgstr ""
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -830,130 +818,124 @@ msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"Entra a tu cuenta de XMPP existente. También se puede usar el %s para entrar "
-"a una sala de charla."
 
 msgid "Previous"
-msgstr "Atrás"
+msgstr "Буцах"
 
 msgid "General"
-msgstr "General"
+msgstr "Ерөнхий"
 
 msgid "Advanced"
-msgstr "Avanzado"
+msgstr "Дэлгэрэнгүй"
 
 msgid "Resource"
-msgstr "Recurso"
+msgstr "Боломж"
 
 msgid "Priority"
-msgstr "Prioridad"
+msgstr "Давуу эрх"
 
 msgid "Low"
-msgstr "Bajo"
+msgstr "Бага хэмжээ"
 
 msgid "Medium"
-msgstr "Medio"
+msgstr "Дунд хэмжээ"
 
 msgid "High"
-msgstr "Alto"
+msgstr "Дээд хэмжээ"
 
 msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
-"Introduce el grupo de chat al que deseas unirte y el nick que quieres tener. "
-"También puedes volver a la %s."
 
 msgid "login page"
-msgstr "Página de acceso"
+msgstr "нэвтрэх хуудас"
 
 msgid "Share this link with your friends:"
-msgstr "Comparte este enlace con tus amigos"
+msgstr ""
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
 "That's simple!"
 msgstr ""
-"Crea una nueva cuenta XMPP para unirte a tus amigos en vuestra propia nube "
-"social. ¡Es fácil!"
 
 msgid "Required"
-msgstr "Requerido"
+msgstr "Хэрэгцээтэй"
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr "Ya creaste tu cuenta, aquí viene tu dirección de XMPP:"
+msgstr "Та бүртгүүллээ, таны хаяг:"
 
 msgid "Manager"
-msgstr "Gerente"
+msgstr "Удирдагч"
 
 msgid "Encrypted"
-msgstr "Encriptado"
-
-msgid "Unencrypted"
-msgstr "No cifrado."
-
-msgid "Where are you?"
-msgstr "¿Dónde estás?"
-
-msgid "What's up with you?"
-msgstr "¿Que pasa contigo?"
-
-msgid "Type something you want to share with your friends..."
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
+msgid "Where are you?"
+msgstr "Та хаана байна?"
+
+msgid "What's up with you?"
+msgstr "Таниар сонин сайхан?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Та өөрийнхөө бодлыг найзуудтайгаа хуваалцана уу?"
+
 msgid "Fetching the social channel..."
-msgstr "Consiguiendo el canal social..."
+msgstr ""
 
 msgid "You are synchronized with your network."
-msgstr "Estás sincronizadx con tu red."
+msgstr ""
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr "No puedes enviar nada: ¡solo puedes recibir avisos!"
+msgstr ""
 
 msgid "Media viewer"
-msgstr "Visor de medios"
+msgstr "Бичлэг үзэгч"
 
 msgid "Browse"
-msgstr "Examinar"
+msgstr "Нэмэх"
 
 msgid "Command"
-msgstr "Comando"
+msgstr "Комманд"
 
 msgid "Subscribe"
-msgstr "Suscribirse"
+msgstr "нэгдэх"
 
 msgid "Join"
-msgstr "Unirse"
+msgstr "нэвтрэх"
 
 msgid "Automatic"
-msgstr "Automático"
+msgstr "автомат"
 
 msgid "Search"
-msgstr "Buscar"
+msgstr "Хайх"
 
 msgid "No result!"
-msgstr "¡Sin resultados!"
+msgstr "Үр дүн олдсонгүй"
 
 msgid "No notifications."
-msgstr "Ninguna notificación."
+msgstr "Мэдээлэл алга"
 
 msgid "would like to add you as a friend."
-msgstr "le gustaría añadirte como amigo/a."
+msgstr ""
 
 msgid "would like you to join this chatroom:"
-msgstr "le gustaría que te unieras a esta sala:"
+msgstr ""
 
 msgid "Do you accept?"
-msgstr "¿Aceptas?"
+msgstr "Та зөвшөөрөх үү?"
 
 msgid "Yes"
-msgstr "Si"
+msgstr "Тийм"
 
 msgid "No"
-msgstr "No"
+msgstr "Үгүй"
 
 msgid "would like to get authorization."
-msgstr "quisiera tener autorización de ver tu estado."
+msgstr ""
 
 msgid "would like to send you a file: “%s”."
 msgstr ""
@@ -971,7 +953,7 @@ msgid "could not receive your file: “%s”."
 msgstr ""
 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr "¿Quiere ver las amistades que %s te sugiere?"
+msgstr ""
 
 msgid "commented an item you follow: “%s”."
 msgstr ""
@@ -1010,88 +992,88 @@ msgid ""
 msgstr ""
 
 msgid "Open"
-msgstr ""
+msgstr "Нээх"
 
 msgid "Show"
-msgstr ""
+msgstr "Харах"
 
 msgid "Hide"
-msgstr ""
+msgstr "Нуух"
 
 msgid "Submit"
-msgstr "Enviar"
+msgstr "Орох"
 
 msgid "Client"
-msgstr "Cliente"
+msgstr "Хэрэглэгч"
 
 msgid "System"
-msgstr "Sistema"
+msgstr "Систем"
 
 msgid "Local time"
-msgstr "Hora local"
+msgstr ""
 
 msgid "Comments"
-msgstr "Comentarios"
+msgstr "Коммент"
 
 msgid "User profile"
-msgstr "Perfil de usuaria/o"
+msgstr "Хэрэглчэгийн профайл"
 
 msgid "See his/her position on the globe"
-msgstr "Ver su ubicación el el mapa mundial"
+msgstr ""
 
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr "Зөвшөөрөх"
 
 msgid "anonymous mode"
-msgstr "modo anónimo"
+msgstr ""
 
 msgid "Groups"
-msgstr "Grupos"
+msgstr "Группууд"
 
 msgid "Unclassified"
-msgstr "Sin clasificar"
+msgstr "Нууцлаагүй"
 
 msgid "Authorize"
-msgstr "Autorizar"
+msgstr "Зөвшөөрөх"
 
 msgid "Ask for authorization"
-msgstr "Pedir autorización"
+msgstr "Зөвшөөрсөн эсэхийг асуух"
 
 msgid "Unblock"
-msgstr "Desbloquear"
+msgstr "Хаагаагүй"
 
 msgid "Prohibit"
-msgstr "Prohibir"
+msgstr "Хориглох"
 
 msgid "Block"
-msgstr "Bloque"
+msgstr "Хаасан"
 
 msgid "Chat"
-msgstr "Chat"
+msgstr "Чат"
 
 msgid "Groupchat"
-msgstr "Chat en grupo"
+msgstr "Групп чат"
 
 msgid "Jappix Mobile"
-msgstr "Jappix Móvil"
+msgstr "Утас"
 
 msgid "Desktop"
-msgstr "Escritorio"
+msgstr "Компьютер"
 
 msgid "Mobile"
-msgstr "Móvil"
+msgstr "Утас"
 
 msgid "Please wait..."
-msgstr "Por favor, espera..."
+msgstr "Түр хүлээнэ үү..."
 
 msgid "Please enable JavaScript"
-msgstr "Por favor, habilita JavaScript"
+msgstr "Javascript-г идвэхжүүлнэ үү"
 
 msgid "Show comments"
-msgstr ""
+msgstr "Сэтгэгдлүүдийг харах"
 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Сэтгэгдлийг уншиж байна..."
 
 msgid "Could not get the comments!"
 msgstr ""
@@ -1100,236 +1082,204 @@ msgid "Comments locked!"
 msgstr ""
 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Сэтгэгдлээ бичнэ үү..."
 
 msgid "Your channel"
-msgstr "Tu canal"
+msgstr "Таны суваг"
 
 msgid "Channel of"
-msgstr "Canal de"
+msgstr "Сувагын"
 
 msgid "More notices..."
-msgstr "Más avisos..."
+msgstr "Бусад мэдээлэл"
 
 msgid "Attach a file"
-msgstr "Adjuntar un archivo"
+msgstr "Файл хавсаргах"
 
 msgid "Send"
-msgstr "Enviar"
+msgstr "Илгээх"
 
 msgid "Unattach the file"
-msgstr "Ya no adjuntar el archivo"
+msgstr "Файл хавсаргахаа болих"
 
 msgid ""
 "An error occured while uploading your file: maybe it is too big (%s maximum) "
 "or forbidden!"
 msgstr ""
-"Hubo un error al tratar de enviar tu archivo: a lo mejor pesa demasiado (el "
-"máximo es %s), o está prohibido!"
 
 msgid "Authorization failed"
-msgstr "Falló la autorización"
+msgstr ""
 
 msgid "Registration failed, please choose a different username"
-msgstr "Falló el registro, por favor, elije otro nombre de usuario"
+msgstr ""
 
 msgid "Service unavailable"
-msgstr "Servicio no disponible"
+msgstr ""
 
 msgid "Internal server error, try later"
-msgstr "Error interno del servidor, intentar más tarde"
+msgstr ""
 
 msgid "Your form has been sent."
-msgstr "Ya se envió tu formulario."
+msgstr ""
 
 msgid "Application"
-msgstr "Aplicación"
+msgstr ""
 
 msgid "Media integration"
 msgstr ""
 
 msgid "XMPP links"
-msgstr "Enlaces XMPP"
+msgstr ""
 
 msgid "Open XMPP links with Jappix"
-msgstr "Abrir enlaces XMPP con Jappix"
+msgstr ""
 
 msgid "changed the subject to:"
-msgstr "asunto cambiado a:"
+msgstr ""
 
 msgid "Welcome!"
-msgstr "¡Bienvenido!"
+msgstr "Тавтай морил!"
 
 msgid "Friends"
-msgstr "Amigos"
+msgstr "Найзууд"
 
 msgid "Welcome on Jappix, your own social cloud!"
-msgstr "¡Bienvenido a Jappix, tu propia nube social!"
+msgstr ""
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
 "friends and complete your profile."
 msgstr ""
-"Antes de que lo empiezes a usar, tendrás que cambiar unos parametros, buscar "
-"a amigxs, y completar tu perfil."
 
 msgid "Enable notification sounds"
-msgstr "Habilitar notificación por sonidos"
+msgstr ""
 
 msgid "Share your position on the globe"
-msgstr "Comparte tu ubicación geográfica"
+msgstr ""
 
 msgid "Offline friends"
-msgstr "Amigos fuera de línea"
+msgstr "Идвэхгүй байгаа найзууд"
 
 msgid "Don't hide offline friends"
-msgstr "Que aparezcan mis amigos no conectados"
+msgstr ""
 
 msgid ""
 "Use this tool to find your friends on the server you are using right now, or "
 "add them later."
 msgstr ""
-"Usa esta herramienta para encontrar a tus amigos en el servidor que estás "
-"usando ahora mismo, o añádelos más tarde."
 
 msgid "Good job! Now, you can share Jappix with your friends!"
-msgstr "Muy bien! Ahora puedes compartir Jappix con tus amigxs!"
+msgstr ""
 
 msgid ""
 "When you will press the save button, the profile editor will be opened. "
 "Happy socializing!"
 msgstr ""
-"Cuando uses el botón “Guardar”, el editor de perfil se abrirá. ¡Te deseamos "
-"buena socialización!"
 
 msgid "Share Jappix on %s"
-msgstr "Comparte Jappix en %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
-msgstr "Soy %s, y estoy usando Jappix, una plataforma social abierta."
+msgstr ""
 
 msgid "Unknown name"
-msgstr "Nombre desconocido"
+msgstr ""
 
 msgid "Unknown country"
-msgstr "País desconocido"
+msgstr ""
 
 msgid "Click to enable"
-msgstr "Haz click para habilitar"
+msgstr ""
 
 msgid "Click to disable"
-msgstr "Haz click para deshabilitar"
+msgstr ""
 
 msgid "Installation"
-msgstr "Instalación"
+msgstr ""
 
 msgid "Jappix installation"
-msgstr "Instalación de Jappix"
+msgstr ""
 
 msgid "Welcome to the Jappix installation!"
-msgstr "¡Bienvenido a la instalación de Jappix!"
+msgstr ""
 
 msgid ""
 "This tool will help you installing Jappix, the first full-featured XMPP-"
 "based social platform, on your server with ease."
 msgstr ""
-"Esta herramienta te ayudará a instalar Jappix más rápidamente, la primera "
-"plataforma social con todas las funciones y basada en XMPP, en tu servidor. "
-"Ni siquiera necesitas conocimientos técnicos."
 
 msgid "Installation Steps:"
-msgstr "Vamos a ver los pasos de instalación:"
+msgstr ""
 
 msgid "Welcome"
-msgstr "Bienvenido"
+msgstr "Тавтай морил"
 
 msgid "Storage configuration"
-msgstr "Configuración de almacenamiento"
+msgstr ""
 
 msgid "Administrator account"
-msgstr "Cuenta de administrador"
+msgstr ""
 
 msgid "Main configuration"
-msgstr "Configuración principal"
+msgstr ""
 
 msgid "Hosts configuration"
-msgstr "Configuración de los huéspedes"
+msgstr ""
 
 msgid "Services installation"
-msgstr "Instalación de servicios"
+msgstr ""
 
 msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
 "speak %2s it will be saved."
 msgstr ""
-"Si el idioma actual no coincide con el tuyo (%1s), puedes hacer que Jappix "
-"hable en %2s. Esta opción se guardará."
 
 msgid ""
 "If you want to get some help about the Jappix installation and "
 "configuration, you can use our whole documentation, available at:"
 msgstr ""
-"Si deseas obtener ayuda sobre la instalación y configuración de Jappix, "
-"puedes utilizar toda nuestra documentación, disponible en:"
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
-"Es hora de construir nuestra propia nube social: ¡solo tienes que ir al "
-"siguiente paso! "
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
 "music and its configuration) into a single secured storage folder."
 msgstr ""
-"Jappix almacena información permanente (archivos compartidos, historial de "
-"conversaciones, su música, y la configuración) dentro de una carpeta segura."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
 "If not, you must set the rights to %1s or change the folder owner to %2s "
 "(depending of your configuration)."
 msgstr ""
-"Jappix debe ser capaz de escribir en esta carpeta para crear sus sub-"
-"directorios. Si no es así, debes establecer los derechos a 1s% o cambiar el "
-"propietario de la carpeta a 2s% (dependiendo de tu configuración)."
 
 msgid "The folder is writable, you can continue!"
-msgstr "La carpeta es escribible, ¡puedes continuar!"
+msgstr ""
 
 msgid ""
 "Jappix offers you the possibility to manage your configuration, install new "
 "plugins or search for updates. That's why you must create an administrator "
 "account to access the manager."
 msgstr ""
-"Jappix te ofrece la posibilidad de gestionar tu configuración, instalar "
-"nuevos plugins y buscar actualizaciones. Por eso tienes que crear una cuenta "
-"de administración para acceder al gerente."
 
 msgid ""
 "When Jappix will be installed, just click on the manager link on the home "
 "page to access it."
 msgstr ""
-"Cuando Jappix esté instalado, basta con hacer clic en el enlace de gerente "
-"en la página principal para acceder."
 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr "Uy, ¡se olvidó algo o las dos contraseñas no coinciden!"
+msgstr ""
 
 msgid ""
 "Jappix needs that you specify some values to work. Please correct the "
 "following inputs (or keep the default values, which are sufficient for most "
 "people)."
 msgstr ""
-"Jappix necesita que especifiques algunos valores para trabajar. Por favor, "
-"corrije las siguientes entradas (o mantén los valores por defecto, que "
-"bastan para la mayoría de la gente)."
 
 msgid ""
 "Note that if you don't specify a value which is compulsory, it will be "
 "automatically completed with the default one."
 msgstr ""
-"Ten en cuenta que si no especificas un valor que es obligatorio, se "
-"completará automáticamente con la opción por defecto."
 
 msgid ""
 "Need help? You'd better read our documentation page about how to fill this "
@@ -1337,16 +1287,16 @@ msgid ""
 msgstr ""
 
 msgid "User"
-msgstr "Usuario"
+msgstr "Хэрэглэгч"
 
 msgid "Service"
-msgstr "Servicio"
+msgstr "Сервис"
 
 msgid "Service name"
-msgstr "Nombre del servicio"
+msgstr "Сервисийн нэр"
 
 msgid "Service description"
-msgstr "Descripción del servicio"
+msgstr "Сервисийн мэдээлэл"
 
 msgid "Owner name"
 msgstr ""
@@ -1355,19 +1305,19 @@ msgid "Owner website"
 msgstr ""
 
 msgid "Connection"
-msgstr "Conexión"
+msgstr "Холболт"
 
 msgid "Lock the host"
-msgstr "Bloquear el anfitrión "
+msgstr ""
 
 msgid "Anonymous mode"
-msgstr "Modo anónimo"
+msgstr ""
 
 msgid "HTTP authentication"
 msgstr ""
 
 msgid "Registration allowed"
-msgstr "Permitir la creación de cuentas"
+msgstr ""
 
 msgid "Use the built-in BOSH proxy"
 msgstr ""
@@ -1382,210 +1332,180 @@ msgid "Suggest groupchats"
 msgstr ""
 
 msgid "Encryption"
-msgstr "Cifrado"
+msgstr ""
 
 msgid "HTTPS storage"
-msgstr "Almacenamiento con HTTPS"
+msgstr ""
 
 msgid "Force HTTPS"
-msgstr "Forzar el uso de HTTPS"
+msgstr ""
 
 msgid "Compression"
-msgstr "Compresión"
+msgstr ""
 
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
 "can leave it as it is and continue if you want to use the official service "
 "hosts."
 msgstr ""
-"Esta página te ayuda a especificar los hosts por defecto a los que Jappix se "
-"conectará. Puedes dejarlo como está y continuar si quieres usar los hosts "
-"oficiales del servicio."
 
 msgid ""
 "Maybe you don't know what a BOSH server is? In fact, this is a relay between "
 "a Jappix client and a XMPP server, which is necessary because of technical "
 "limitations."
 msgstr ""
-"Quizá no sepas lo que es un servidor BOSH. De hecho, hay un enlace entre un "
-"cliente Jappix y un servidor XMPP, que es necesario debido a limitaciones "
-"técnicas."
 
 msgid "Main host"
-msgstr "Host principal"
+msgstr ""
 
 msgid "Groupchat host"
-msgstr "Host de chat en grupo"
+msgstr ""
 
 msgid "Pubsub host"
 msgstr ""
 
 msgid "Anonymous host"
-msgstr "Host anónimo"
+msgstr ""
 
 msgid "Directory host"
-msgstr "Host directorio"
+msgstr ""
 
 msgid "BOSH host"
-msgstr "Host BOSH"
+msgstr ""
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
 "which are set by default."
 msgstr ""
-"Puedes instalar algunos programas adicionales en tu servidor, para ampliar "
-"las funciones de Jappix. Otros podrían ser modificados, debido a las "
-"restricciones de seguridad que se establecen de forma predeterminada."
 
 msgid ""
 "To perform this, you must be able to access your server's shell and be "
 "logged in as root. Remember this is facultative, Jappix will work without "
 "these modules, but some of its features will be unavailable."
 msgstr ""
-"Para realizar esto, debes poder acceder al shell de tu servidor e iniciar "
-"una sesión como root. Recuerda que esto es facultativo, Jappix funcionará "
-"sin estos módulos, pero algunas de sus características no estarán "
-"disponibles."
 
 msgid ""
 "After you finished the setup, Jappix will generate the cache files. It might "
 "be slow, just wait until the application is displayed and do not press any "
 "button."
 msgstr ""
-"Después de terminar la instalación, Jappix generará los archivos de cache. "
-"Puede ser lento, sólo tienes que esperar hasta que se muestre la aplicación, "
-"sin presionar ningún botón."
 
 msgid "Thanks for using Jappix!"
-msgstr "¡Gracias por usar Jappix!"
+msgstr ""
 
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Дараах"
 
 msgid "Finish"
-msgstr "Terminar"
+msgstr "Төгсгөл"
 
 msgid "Check again"
-msgstr "Comprobar otra vez"
+msgstr "Дахин шалгах"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
 msgstr ""
-"La carpeta no tiene permisos de escritura, configura correctamente los "
-"permisos al directorio %s."
 
 msgid "%s is installed on your system."
-msgstr "%s está instalado en tu sistema."
+msgstr ""
 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr "%1s no está instalado en tu sistema, debes instalar %2s."
+msgstr ""
 
 msgid "PHP maximum upload size is sufficient (%s)."
-msgstr "El peso máximo de envío que acepta PHP es suficiente (%s)."
+msgstr ""
 
 msgid ""
 "PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
 "in %3s."
 msgstr ""
-"El peso máximo de envío que acepta PHP no es suficiente (%1s). Le deberías "
-"indicar un valor de %2s en el archivo %3s."
 
 msgid "Jappix manager"
-msgstr "Gerente de Jappix"
+msgstr ""
 
 msgid "Manager access"
-msgstr "Administrador de acceso"
+msgstr ""
 
 msgid "Statistics"
-msgstr "Estadísticas"
+msgstr ""
 
 msgid "Hosts"
-msgstr "Anfitriones"
+msgstr ""
 
 msgid "Design"
-msgstr "Diseño"
+msgstr "Загвар"
 
 msgid "Repeat"
-msgstr "Repita"
+msgstr "Засах"
 
 msgid "All"
-msgstr "Todo"
+msgstr "Бүгд"
 
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr "Хөндлөн"
 
 msgid "Vertical"
-msgstr "Vertical"
+msgstr "Босоо"
 
 msgid "Center"
-msgstr "Centro"
+msgstr "Төв"
 
 msgid "Left"
-msgstr "Izquierda"
+msgstr "Зүүн"
 
 msgid "Right"
-msgstr "Derecha"
+msgstr "Баруун"
 
 msgid "Top"
-msgstr "Arriba"
+msgstr "Дээр"
 
 msgid "Bottom"
-msgstr "Abajo"
+msgstr "Доор"
 
 msgid "Adapt"
-msgstr "Adaptar"
+msgstr "Тааруулах"
 
 msgid "Color"
-msgstr "Color"
+msgstr "Өнгө"
 
 msgid "Users"
-msgstr "Usuarios"
+msgstr "Хэрэглэгчид"
 
 msgid "Updates"
-msgstr "Actualizaciones"
+msgstr "Шинчлэх"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
 "node."
 msgstr ""
-"Ésta es un área restringida: sólo los usuarios autorizados pueden gestionar "
-"este nodo Jappix."
 
 msgid "Please use the form below to login to the administration panel."
 msgstr ""
-"Por favor, utiliza el formulario de abajo para acceder al panel de "
-"administración."
 
 msgid ""
 "To improve security, sessions are limited in time and when your browser will "
 "be closed, you will be logged out."
 msgstr ""
-"Para mejorar la seguridad, las sesiones son limitadas en tiempo y cuando se "
-"cierre el navegador, la sesión se cerrará."
 
 msgid "Credentials"
-msgstr "Credenciales"
+msgstr ""
 
 msgid "You have been logged out. Goodbye!"
-msgstr "Se ha cerrado la sesión. ¡Adiós!"
+msgstr "Та чатаас гарлаа. Баяртай!"
 
 msgid ""
 "Oops, you could not be recognized as a valid administrator. Check your "
 "credentials!"
 msgstr ""
-"Uy, no ha sido posible reconocerte como administrador válido. Comprueba tus "
-"credenciales!"
 
 msgid ""
 "Basic statistics are processed by Jappix about some important things, you "
 "can find them below."
 msgstr ""
-"Las estadísticas básicas son procesadas por Jappix sobre algunas cosas "
-"importantes, Las puedes encontrar más abajo."
 
 msgid "Change your Jappix node configuration with this tool."
-msgstr "Modifica la configuración de tu nodo Jappix con esta herramienta"
+msgstr ""
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
@@ -1594,29 +1514,27 @@ msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
 "select a sub-folder and start editing its content!"
 msgstr ""
-"Todos los archivos de almacenamiento dentro de Jappix se pueden organizar "
-"con esta herramienta: selecciona una carpeta para ir editando su contenido!"
 
 msgid "Jappix is fully customisable: you can change its design right here."
-msgstr "Jappix es totalmente configurable: aquí se puede cambiar su diseño."
+msgstr ""
 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
-msgstr "Ésta no es una imagen válida, por favor usa PNG, GIF o JPG!"
+msgstr ""
 
 msgid "This is not a valid image, please use the PNG format!"
 msgstr ""
 
 msgid "The image could not be received, would you mind retry?"
-msgstr "La imagen no se pudo recibir. ¿Sería posible intentarlo nuevamente?"
+msgstr ""
 
 msgid "Your service logo has been successfully changed!"
 msgstr ""
 
 msgid "Your image was added to the list!"
-msgstr "¡Tu imagen se agregó a la lista!"
+msgstr ""
 
 msgid "Changes saved!"
-msgstr "Los cambios han sido guardados!"
+msgstr "Өөрчлөлт хадгалагдлаа"
 
 msgid "Logo"
 msgstr ""
@@ -1644,365 +1562,326 @@ msgid ""
 "You can define more than one administrator for this Jappix node. You can "
 "also change a password with this tool."
 msgstr ""
-"Se puede definir más de un administrador de Jappix. También se puede cambiar "
-"contraseñas."
 
 msgid ""
 "Update your Jappix node with this tool, or check if a new one is available. "
 "Informations about the latest version are also displayed (in english)."
 msgstr ""
-"Actualiza tu nodo de Jappix aquí, o revisa si existe alguna nueva versión. "
-"También aparece información sobre la versión más reciente (en inglés)."
 
 msgid "Access statistics"
-msgstr "Acceder a las estadísticas"
+msgstr ""
 
 msgid "Share statistics"
-msgstr "Compartir estadísticas"
+msgstr ""
 
 msgid "Other statistics"
-msgstr "Otras estadísticas"
+msgstr ""
 
 msgid "January"
-msgstr "Enero"
+msgstr ""
 
 msgid "February"
-msgstr "Febrero"
+msgstr ""
 
 msgid "March"
-msgstr "Marzo"
+msgstr ""
 
 msgid "April"
-msgstr "Abril"
+msgstr ""
 
 msgid "May"
-msgstr "Mayo"
+msgstr ""
 
 msgid "June"
-msgstr "Junio"
+msgstr ""
 
 msgid "July"
-msgstr "Julio"
+msgstr ""
 
 msgid "August"
-msgstr "Agosto"
+msgstr ""
 
 msgid "September"
-msgstr "Septiembre"
+msgstr ""
 
 msgid "October"
-msgstr "Octubre"
+msgstr ""
 
 msgid "November"
-msgstr "Noviembre"
+msgstr ""
 
 msgid "December"
-msgstr "Diciembre"
+msgstr ""
 
 msgid "Monday"
-msgstr "Lunes"
+msgstr ""
 
 msgid "Tuesday"
-msgstr "Martes"
+msgstr ""
 
 msgid "Wednesday"
-msgstr "Miércoles"
+msgstr ""
 
 msgid "Thursday"
-msgstr "Jueves"
+msgstr ""
 
 msgid "Friday"
-msgstr "Viernes"
+msgstr ""
 
 msgid "Saturday"
-msgstr "Sábado"
+msgstr ""
 
 msgid "Sunday"
-msgstr "Domingo"
+msgstr ""
 
 msgid "Total"
-msgstr "Total"
+msgstr "Бүгд"
 
 msgid "Cache"
-msgstr "Cache"
+msgstr "Кэш"
 
 msgid "Logs"
-msgstr "Registros"
+msgstr ""
 
 msgid "Music"
-msgstr "Música"
+msgstr "Дуу"
 
 msgid "Backgrounds"
-msgstr "Fondos de pantalla"
+msgstr ""
 
 msgid "Share"
-msgstr "Compartir"
+msgstr "Хуваах"
 
 msgid "Background"
-msgstr "Fondo de pantalla"
+msgstr "Арын зураг"
 
 msgid "Notice"
-msgstr "Aviso"
+msgstr "Мэдээлэл"
 
 msgid "Your design preferences have been saved!"
-msgstr "¡Ya se guardaron tus preferencias de diseño!"
+msgstr ""
 
 msgid "Please check your inputs: something is missing!"
-msgstr "Por favor comprueba los datos introducidos: ¡falta algo!"
+msgstr ""
 
 msgid ""
 "Change your Jappix node background with this tool. You can either set a "
 "custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
-"Aquí puedes cambiar el fondo de pantalla de Jappix. Puede ser el color que "
-"quieras, o una imagen. ¡Deja que tu creatividad fluya!"
 
 msgid "Use default background"
-msgstr "Usar el fondo de pantalla por defecto"
+msgstr ""
 
 msgid "Use your own image"
-msgstr "Usa tu propia imagen"
+msgstr ""
 
 msgid "Select a background to use and change the display options."
 msgstr ""
-"Seleccione un fondo para usar y modificar las opciones de visualización."
 
 msgid "Use your own color"
-msgstr "Usa tu propio color"
+msgstr ""
 
 msgid "Type the hexadecimal color value you want to use as a background."
-msgstr "Escribe el valor en hexadecimal del color que deseas tener como fondo."
+msgstr ""
 
 msgid "Manage backgrounds"
-msgstr "Organizar los fondos de pantalla"
+msgstr ""
 
 msgid ""
 "You can add a new background to the list with this tool. Please send a valid "
 "image."
 msgstr ""
-"Aquí puedes agregarle imágenes de fondo a la lista. Gracias por enviar una "
-"imagen válida."
 
 msgid "If you want to remove some backgrounds, use the browser below."
-msgstr "Si deseas quitar algunos fondos, utiliza el navegador a continuación."
+msgstr ""
 
 msgid ""
 "Define a homepage notice for all your users, such as a warn, an important "
 "message or an advert with this tool."
 msgstr ""
-"Define un aviso de inicio que vean todxs lxs usuarixs. Puede ser una alerta, "
-"un mensaje importante, o una publicidad."
 
 msgid "Simple notice"
-msgstr "Aviso simple "
+msgstr "Энгийн мэдээлэл"
 
 msgid ""
 "This notice only needs simple text to be displayed, but no code is allowed!"
 msgstr ""
-"Este aviso sólo necesita un texto simple para ser visualizado, pero no se "
-"permite código!"
 
 msgid "Advanced notice"
-msgstr "Aviso avanzado"
+msgstr "Чухал мэдээлэл"
 
 msgid ""
 "You can customize your notice with embedded HTML, CSS and JavaScript, but "
 "you need to code the style."
 msgstr ""
-"Puedes personalizar tu aviso con código HTML, CSS y Javascript, pero "
-"necesitarás programar el estilo."
 
 msgid "Available updates"
-msgstr "Actualizaciones disponibles"
+msgstr ""
 
 msgid "What's new?"
-msgstr "¿Qué hay de nuevo?"
+msgstr "Шинэ юм?"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
-"No se puede escribir en tu carpeta de almacenamiento. Gracias por otorgarle "
-"al servidor los permisos adecuados."
 
 msgid ""
 "%1s may cause problems to the proxy, please increase %2s value up to %3s!"
 msgstr ""
-"%1s le puede causar problemas al proxy. Por favor, sube el valor de %2s a "
-"%3s."
 
 msgid ""
 "You are using a development version of Jappix. Update it through our "
 "repository by executing: %s."
 msgstr ""
-"Estas utilizando una versión de desarrollo de Jappix. Actualizala con "
-"nuestro repositorio ejecutando: %s"
 
 msgid ""
 "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
-"Una nueva versión de Jappix está disponible! Comprueba las novedades y "
-"ejecuta la actualización!"
 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr ""
-"Esta versión ya no es la más reciente. Actualízala ahora a %s haciendo clic "
-"aquí!"
 
 msgid ""
 "Your version seems to be up to date, but you can check updates manually by "
 "clicking here."
 msgstr ""
-"Esta versión parece ser la más reciente, pero todavía puedes buscar "
-"actualizaciones manualmente con este enlace."
 
 msgid "Check for updates"
-msgstr "Buscar actualizaciones"
+msgstr ""
 
 msgid "Update in progress"
-msgstr "Actualización en curso"
+msgstr ""
 
 msgid ""
 "Jappix has been updated: you are now running the latest version. Have fun!"
 msgstr ""
-"Jappix ha sido actualizado: ahora estás ejecutando la última versión. Que te "
-"diviertas!"
 
 msgid "The update has failed! Please try again later."
 msgstr ""
-"La actualización ha fallado! Por favor, inténtalo nuevamente más tarde."
 
 msgid "Downloading package..."
-msgstr "Descargando el paquete..."
+msgstr ""
 
 msgid "Removing current Jappix system files..."
-msgstr "Eliminación de archivos del sistema actual de Jappix ..."
+msgstr ""
 
 msgid "Extracting package..."
-msgstr "Extrayendo el paquete..."
+msgstr ""
 
 msgid "Regenerating storage folder tree..."
-msgstr "Generando otra vez la jerarquía de almacenamiento..."
+msgstr ""
 
 msgid "Jappix is now up to date!"
-msgstr "Jappix está actualizado!"
+msgstr ""
 
 msgid "Aborted: socket error!"
-msgstr "Abortada: error de socket!"
+msgstr ""
 
 msgid "Aborted: buffer error!"
-msgstr "Abortada: Error de buffer!"
+msgstr ""
 
 msgid "Aborted: everything is not writable!"
-msgstr "Abortada: faltan algunos permisos de escritura!"
+msgstr ""
 
 msgid "Aborted: could not extract the package!"
-msgstr "Abortado: no se pudo extraer el paquete!"
+msgstr ""
 
 msgid "Visits"
-msgstr "Visitas"
+msgstr "зочид"
 
 msgid "Daily"
-msgstr "Diario"
+msgstr "өдөр бүр"
 
 msgid "Weekly"
-msgstr "Semanal"
+msgstr "долоо хоног бүр"
 
 msgid "Monthly"
-msgstr "Mensual"
+msgstr "сар бүр"
 
 msgid "Yearly"
-msgstr "Anual"
+msgstr "жил бүр"
 
 msgid "Size"
-msgstr "Tamaño"
+msgstr "хэмжээ"
 
 msgid "Clean everything"
-msgstr "Limpiar todo"
+msgstr ""
 
 msgid "Purge cache"
-msgstr "Purgar caché"
+msgstr ""
 
 msgid "Purge logs"
-msgstr "Purgar registros"
+msgstr ""
 
 msgid "Purge sent files"
 msgstr ""
 
 msgid "Purge updates"
-msgstr "Purgar actualizaciones"
+msgstr ""
 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr "La carpeta de almacenamiento que querías limpiar está vacía ahora!"
+msgstr ""
 
 msgid ""
 "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
 msgstr ""
-"Mantén tu nodo de Jappix fresco y dinámico, limpiando las carpetas de "
-"almacenamiento regularmente!"
 
 msgid ""
 "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
 "Jappix!"
 msgstr ""
-"Carga tu música (Ogg Vorbis, MP3 o WAV) para poder escucharla en Jappix!"
 
 msgid "The file you want to upload must be smaller than %s."
-msgstr "El archivo que quieres subir tiene que pesar menos de %s."
+msgstr ""
 
 msgid ""
 "You can check what your users store on your server and remove undesired "
 "content with this tool."
 msgstr ""
-"Aquí puedes quedarte al tanto de lo que tus usuarios guarden en el servidor, "
-"y quitarle cualquier contenido no deseable."
 
 msgid "Title"
-msgstr "Título"
+msgstr "Нэр"
 
 msgid "Artist"
-msgstr "Artista"
+msgstr "Дуучин"
 
 msgid "Album"
-msgstr "Album"
+msgstr "Цомог"
 
 msgid "File"
-msgstr "Archivo"
+msgstr "Файл"
 
 msgid "Upload"
-msgstr "Cargar"
+msgstr "Байршуулах"
 
 msgid "The folder is empty."
-msgstr "La carpeta está vacía."
+msgstr "Хавтас хоосон байна."
 
 msgid "The music could not be received, please retry!"
-msgstr "La música no se pudo recibir, por favor intenta otra vez!"
+msgstr ""
 
 msgid ""
 "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr ""
-"Éste no es un archivo de música válida. Por favor, ¡codifícalo en formato "
-"Ogg Vorbis, MP3 o WAV!"
 
 msgid "Your music has been added!"
-msgstr "¡Ya se agregó tu música!"
+msgstr "Таны дуу нэмгдлээ"
 
 msgid "The selected elements have been removed."
-msgstr "Los elementos seleccionados han sido suprimidos."
+msgstr ""
 
 msgid "You must select elements to remove!"
-msgstr "Debes seleccionar elementos que quitar!"
+msgstr ""
 
 msgid ""
 "Add a new user with this tool, or change a password (type an existing "
 "username). Please submit a strong password!"
 msgstr ""
-"Aquí puedes agregar un nuevo usuario, o cambiar contraseñas (introduce un "
-"nombre de usuario existente). Por favor, ¡usa una contraseña fuerte!"
 
 msgid "Manage"
-msgstr "Administrar"
+msgstr "Удирдах"
 
 msgid "List"
-msgstr "Lista"
+msgstr "Жагсаалт"
 
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
@@ -2010,37 +1889,37 @@ msgid ""
 msgstr ""
 
 msgid "The user has been added!"
-msgstr "El usuario ha sido agregado!"
+msgstr "Хэрэглэгч нэмэгдлээ"
 
 msgid "The chosen users have been removed."
-msgstr "Los usuarios seleccionados han sido suprimidos"
+msgstr "Сонгосон хэрэглэгч устсан байна"
 
 msgid "You must select one or more users to be removed!"
-msgstr "Debes seleccionar por lo menos un usuario que quitar!"
+msgstr ""
 
 msgid "Yesterday"
-msgstr "Ayer"
+msgstr "Өчигдөр"
 
 msgid "%s days ago"
-msgstr "hace %s días"
+msgstr "%s хоногийн өмнө"
 
 msgid "User currently active"
-msgstr "Usuario activo actualmente"
+msgstr ""
 
 msgid "Last seen: %s"
-msgstr "Se vió por última vez: %s"
+msgstr ""
 
 msgid "Inactive since: %s"
-msgstr "Inactivo desde: %s"
+msgstr ""
 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr "Parece que tu amigo no recibió el mensaje!"
+msgstr ""
 
 msgid "Static content server"
-msgstr "Servidor de contenido estático"
+msgstr ""
 
 msgid "This is the static content server for %1s, “%2s”."
-msgstr "Éste es el servidor de contenido estático para %1s: “%2s”."
+msgstr ""
 
 msgid "User uploads server"
 msgstr ""
@@ -2049,73 +1928,73 @@ msgid "This is the user uploads server for %1s, “%2s”."
 msgstr ""
 
 msgid "Suggested friends"
-msgstr "Amistades recomendadas"
+msgstr "Санал болгосон найзууд"
 
 msgid "Check all"
-msgstr "Activar todo"
+msgstr "Бүгдийг сонгох"
 
 msgid "Uncheck all"
-msgstr "Deactivar todo"
+msgstr "Бүгдийг сонгохоо болих"
 
 msgid "Choose"
-msgstr "Escoga"
+msgstr "Сонгох"
 
 msgid "List name"
-msgstr ""
+msgstr "Жагсаалтны нэр"
 
 msgid "Allow"
-msgstr "Permitir"
+msgstr "Зөвшөөрөх"
 
 msgid "Deny"
-msgstr "prohibir"
+msgstr "Татгалзах"
 
 msgid "Group"
-msgstr "Grupo"
+msgstr "Групп"
 
 msgid "Subscription"
-msgstr "suscripción"
+msgstr "Батлах"
 
 msgid "Both"
-msgstr "Ambos"
+msgstr "аль аль нь"
 
 msgid "From"
-msgstr "De"
+msgstr "- с"
 
 msgid "Everybody"
-msgstr "Todo el mundo"
+msgstr "Бүгд"
 
 msgid "Send messages"
-msgstr "Enviar mensajes"
+msgstr "Захиа илгээх"
 
 msgid "Send queries"
-msgstr "Enviar peticiones"
+msgstr ""
 
 msgid "See my status"
-msgstr "Ver mi estado"
+msgstr "Миний статусыг харах"
 
 msgid "Send his/her status"
-msgstr "Enviar su estado"
+msgstr "Статусаа илгээх"
 
 msgid "Everything"
-msgstr "Todo"
+msgstr "Бүгд"
 
 msgid "Item"
-msgstr "Artículo"
+msgstr "Хэсэг"
 
 msgid "Order"
-msgstr "Orden"
+msgstr "Захиалга"
 
 msgid "Active for this session"
-msgstr "Activo en esta sesión"
+msgstr "Идвэхтэй session"
 
 msgid "Always active"
-msgstr "Siempre activo"
+msgstr "Үргэлж идвэхтэй"
 
 msgid "User directory"
-msgstr "Directorio del usuario"
+msgstr "Хэрэглэгчийн удирглага"
 
 msgid "Search a friend"
-msgstr "Buscar a un amigo"
+msgstr "Найзаа хайх"
 
 msgid ""
 "The feature requested is not implemented by the recipient or server and "
@@ -2123,31 +2002,31 @@ msgid ""
 msgstr ""
 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Захиай илгээх"
 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "Түүнтэй чатлах"
 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "Идвэхтэй shortcuts"
 
 msgid "%s removes the chat logs"
 msgstr ""
 
 msgid "%s joins a groupchat"
-msgstr ""
+msgstr "%s групп чатад нэвтэрлээ"
 
 msgid "%s closes the chat"
-msgstr ""
+msgstr "%s групп чатаас гарлаа"
 
 msgid "%s shows the user profile"
-msgstr ""
+msgstr "%s - н профайл харах"
 
 msgid "%s sends a message to the room"
-msgstr ""
+msgstr "%s - руу захиа илгээх"
 
 msgid "%s changes your nickname"
-msgstr ""
+msgstr "%s таны нэрийн сольсон"
 
 msgid "%s sends a message to someone in the room"
 msgstr ""
@@ -2165,7 +2044,7 @@ msgid "%s invites someone to join the room"
 msgstr ""
 
 msgid "Public profile"
-msgstr ""
+msgstr "Нээлттэй профайл"
 
 msgid "Your profile anywhere on the Web."
 msgstr ""
@@ -2221,10 +2100,10 @@ msgid "Statistics are currently disabled in the settings."
 msgstr ""
 
 msgid "New event!"
-msgstr ""
+msgstr "Шинэ мэдээ!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s бичиж байна..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
@@ -2237,25 +2116,25 @@ msgid "There was an error registering your account. Please retry."
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Хэрэглэгчийн нэр"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Нууц үг оруулах"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Дахин оролдох"
 
 msgid "Code"
-msgstr ""
+msgstr "Зод"
 
 msgid "Security code"
-msgstr ""
+msgstr "Нууцлалын код"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Рекламны орон зай идвэхжлээ!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Зарлал"
 
 msgid "Analytics (%s)"
 msgstr ""

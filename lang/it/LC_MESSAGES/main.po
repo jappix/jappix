@@ -5,11 +5,12 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Last revision: 07/06/13
 # Translators:
+# camaran <camaran@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/jappix/language/"
 "it/)\n"
@@ -62,10 +63,10 @@ msgid "Find a public Jappix node."
 msgstr "Trova un nodo Jappix pubblico."
 
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 msgid "Association"
-msgstr ""
+msgstr "Associazione"
 
 msgid "Web agency"
 msgstr "Web agency"
@@ -80,7 +81,7 @@ msgid "Terms of use and legal"
 msgstr "Termini di utilizzo"
 
 msgid "Owner"
-msgstr ""
+msgstr "Gestore"
 
 msgid "Node owner"
 msgstr "Proprietario del nodo"
@@ -211,12 +212,6 @@ msgstr "Archivii messaggi"
 msgid "Date"
 msgstr "Data"
 
-msgid "Please select a friend to view the chat history."
-msgstr "Selezionare un amico per visualizzare la cronologia della chat"
-
-msgid "Nothing found for: %s"
-msgstr "Nessun risultato per: %s"
-
 msgid "A short message?"
 msgstr "Un piccolo messaggio?"
 
@@ -248,7 +243,7 @@ msgid "Busy"
 msgstr "Occupato"
 
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 msgid "Mood"
 msgstr "Umore"
@@ -344,7 +339,7 @@ msgid "Others"
 msgstr "Altri"
 
 msgid "Other"
-msgstr ""
+msgstr "Altro"
 
 msgid "Personal"
 msgstr "Personale"
@@ -452,8 +447,8 @@ msgstr "Privacy"
 msgid "Message archiving"
 msgstr "Archiviazione messaggi"
 
-msgid "Store a history of your chats"
-msgstr "Salva la cronologia delle tue chats"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolocazione"
@@ -486,7 +481,7 @@ msgid "New (2 times)"
 msgstr "Nuovo (2 volte)"
 
 msgid "Suggested chatrooms"
-msgstr ""
+msgstr "Chatroom Suggerite"
 
 msgid "Continue"
 msgstr "Continua"
@@ -583,9 +578,6 @@ msgstr "Scarica il file!"
 
 msgid "Clean current chat"
 msgstr "Pulisci la discussione corrente"
-
-msgid "View chat history"
-msgstr "Visualizza la cronologia della chat"
 
 msgid "Show user profile"
 msgstr "Mostra il profilo utente"
@@ -1381,10 +1373,10 @@ msgid "Service description"
 msgstr "Descrizione del servizio"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Nome del gestore"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Sito Web del gestore"
 
 msgid "Connection"
 msgstr "Connessione"
@@ -1396,7 +1388,7 @@ msgid "Anonymous mode"
 msgstr "Modalità anonima"
 
 msgid "HTTP authentication"
-msgstr ""
+msgstr "Autenticazione HTTP"
 
 msgid "Registration allowed"
 msgstr "Registrazione permessa"
@@ -1411,7 +1403,7 @@ msgid "Groupchats to join"
 msgstr "Chat di gruppo a cui ti puoi unire"
 
 msgid "Suggest groupchats"
-msgstr ""
+msgstr "Chat di Gruppo Suggerite"
 
 msgid "Encryption"
 msgstr "Crittografia"
@@ -1616,7 +1608,7 @@ msgid "Change your Jappix node configuration with this tool."
 msgstr "Cambia qui la configurazione del tuo nodo Jappix."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr ""
+msgstr "Cambia qui gli hosts XMPP serviti da questo nodo Jappix."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -2234,7 +2226,7 @@ msgstr ""
 "e forum. Quando lo cambi su XMPP, il nuovo avatar appare ovunque. Geniale eh?"
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Yay, crea il mio profilo pubblico!"
 
 msgid "Enable my public profile"
 msgstr "Attiva il mio profilo pubblico"
@@ -2287,10 +2279,10 @@ msgid "There was an error registering your account. Please retry."
 msgstr "C'è stato un errore durante la registrazione. Per piacere riprova."
 
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Inserisci Password"
 
 msgid "Once again..."
 msgstr "Ancora una volta..."
@@ -2302,7 +2294,7 @@ msgid "Security code"
 msgstr "Codice di sicurezza"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Spazio Pubblicitario Disponibile"
 
 msgid "Advertise here"
 msgstr "Inserite qui i vostri annunci"
@@ -2329,4 +2321,4 @@ msgid "Standard ads key"
 msgstr "Standard ads key"
 
 msgid "Content ads key"
-msgstr ""
+msgstr "Content ads key"

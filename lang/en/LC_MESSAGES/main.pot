@@ -412,6 +412,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr ""
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr ""
 

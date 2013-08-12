@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/jappix/"
 "language/zh_TW/)\n"
@@ -200,12 +200,6 @@ msgstr "消息存檔"
 
 msgid "Date"
 msgstr "日期"
-
-msgid "Please select a friend to view the chat history."
-msgstr "請選取要查看聊天記錄的朋友。"
-
-msgid "Nothing found for: %s"
-msgstr "找不到：%s"
 
 msgid "A short message?"
 msgstr "短消息？"
@@ -437,8 +431,8 @@ msgstr "隱私"
 msgid "Message archiving"
 msgstr "消息存檔"
 
-msgid "Store a history of your chats"
-msgstr "保存你的聊天記錄"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "地理位置"
@@ -562,9 +556,6 @@ msgstr "下載檔案！"
 
 msgid "Clean current chat"
 msgstr "清除目前的聊天"
-
-msgid "View chat history"
-msgstr "查看聊天記錄"
 
 msgid "Show user profile"
 msgstr "顯示使用者個人資料"

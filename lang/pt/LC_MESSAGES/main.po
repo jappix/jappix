@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 18:59+0100\n"
+"PO-Revision-Date: 2013-08-12 21:30+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/jappix/"
 "language/pt/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -206,12 +206,6 @@ msgstr "Mensagem arquivos"
 
 msgid "Date"
 msgstr "Data"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Por favor seleccione um amigo para ver o histórico de conversas."
-
-msgid "Nothing found for: %s"
-msgstr "Nada foi encontrado para: %s"
 
 msgid "A short message?"
 msgstr "Uma mensagem curta?"
@@ -449,8 +443,8 @@ msgstr "Privacidade"
 msgid "Message archiving"
 msgstr "Arquivamento de mensagens"
 
-msgid "Store a history of your chats"
-msgstr "Armazenar um histórico das suas conversas"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolocalização"
@@ -578,9 +572,6 @@ msgstr "Fazer download do arquivo!"
 
 msgid "Clean current chat"
 msgstr "Limpar conversas atuais"
-
-msgid "View chat history"
-msgstr "Ver histórico das conversas"
 
 msgid "Show user profile"
 msgstr "Ver perfil do utilizador"

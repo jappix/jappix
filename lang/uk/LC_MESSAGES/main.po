@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/jappix/"
 "language/uk/)\n"
@@ -206,12 +206,6 @@ msgstr "Архів повідомлень"
 
 msgid "Date"
 msgstr "Дата"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Будь ласка, виберіть друга для перегляду історії переписки."
-
-msgid "Nothing found for: %s"
-msgstr "Нічого не знайдено про %s"
 
 msgid "A short message?"
 msgstr "Коротке повідомлення?"
@@ -442,8 +436,8 @@ msgstr "Приватність"
 msgid "Message archiving"
 msgstr "Архів повідомлень"
 
-msgid "Store a history of your chats"
-msgstr "зберігати історію ваших розмов"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Географічне положення"
@@ -567,9 +561,6 @@ msgstr "Завантажити файл!"
 
 msgid "Clean current chat"
 msgstr "Очистити бесіду"
-
-msgid "View chat history"
-msgstr ""
 
 msgid "Show user profile"
 msgstr "Показати профіль користувача"

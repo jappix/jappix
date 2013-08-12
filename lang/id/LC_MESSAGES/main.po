@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:25+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/jappix/"
 "language/id/)\n"
@@ -208,12 +208,6 @@ msgstr "Arsip pesan"
 
 msgid "Date"
 msgstr "Tanggal"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Silahkan pilih seorang teman untuk melihat riwayat chatting."
-
-msgid "Nothing found for: %s"
-msgstr "Tidak ada hasil untuk: %s"
 
 msgid "A short message?"
 msgstr "Sebuah pesan singkat?"
@@ -451,8 +445,8 @@ msgstr "Privasi"
 msgid "Message archiving"
 msgstr "Pengarsipan pesan"
 
-msgid "Store a history of your chats"
-msgstr "Menyimpan riwayat chatting anda"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geolokasi"
@@ -580,9 +574,6 @@ msgstr "Download file!"
 
 msgid "Clean current chat"
 msgstr "Bersihkan obrolan saat ini"
-
-msgid "View chat history"
-msgstr "Lihat riwayat obrolan"
 
 msgid "Show user profile"
 msgstr "Tampilkan profil pengguna"

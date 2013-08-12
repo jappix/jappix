@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:24+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/jappix/language/"
 "cs/)\n"
@@ -209,12 +209,6 @@ msgstr "Archiv zpráv"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "Please select a friend to view the chat history."
-msgstr "Prosím, vyperte kamaráda pro zobrazení historie rozhovoru."
-
-msgid "Nothing found for: %s"
-msgstr "Žádný výsledek pro: %s"
 
 msgid "A short message?"
 msgstr "Krátká zpráva?"
@@ -449,8 +443,8 @@ msgstr "Soukromí"
 msgid "Message archiving"
 msgstr "Archivace zpráv"
 
-msgid "Store a history of your chats"
-msgstr "Ukládat historii vašich rozhovorů"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Geologická poloha"
@@ -578,9 +572,6 @@ msgstr "Stažení souboru!"
 
 msgid "Clean current chat"
 msgstr "Vyčistit probíhající rozhovor"
-
-msgid "View chat history"
-msgstr "Zobrazit historii rozhovoru"
 
 msgid "Show user profile"
 msgstr "Zobrazit profil uživatele"

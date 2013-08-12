@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-13 06:33+0100\n"
+"PO-Revision-Date: 2013-08-12 21:29+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Latin (http://www.transifex.com/projects/p/jappix/language/"
 "la/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: la\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 
 msgid "default:LTR"
 msgstr ""
@@ -199,12 +199,6 @@ msgstr "Praeclusio epistularum"
 
 msgid "Date"
 msgstr "Dies"
-
-msgid "Please select a friend to view the chat history."
-msgstr ""
-
-msgid "Nothing found for: %s"
-msgstr "Nihil repertum pro: %s"
 
 msgid "A short message?"
 msgstr "Epistula brevis?"
@@ -435,7 +429,7 @@ msgstr ""
 msgid "Message archiving"
 msgstr ""
 
-msgid "Store a history of your chats"
+msgid "Store an history of your chats"
 msgstr ""
 
 msgid "Geolocation"
@@ -559,9 +553,6 @@ msgid "Download file!"
 msgstr ""
 
 msgid "Clean current chat"
-msgstr ""
-
-msgid "View chat history"
 msgstr ""
 
 msgid "Show user profile"

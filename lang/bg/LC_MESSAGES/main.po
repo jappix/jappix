@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-06-10 19:00+0100\n"
+"PO-Revision-Date: 2013-08-12 21:24+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/jappix/"
 "language/bg/)\n"
@@ -218,14 +218,6 @@ msgstr "Архив на съобщенията"
 
 msgid "Date"
 msgstr "Дата"
-
-msgid "Please select a friend to view the chat history."
-msgstr ""
-"Моля, изберете приятел, за да видите историята на чата (архива на "
-"съобщенията)."
-
-msgid "Nothing found for: %s"
-msgstr "Не е намерено нищо за/относно: %s"
 
 msgid "A short message?"
 msgstr "Кратко съобщение?"
@@ -460,8 +452,8 @@ msgstr "Поверителност"
 msgid "Message archiving"
 msgstr "Архивиране на съобщенията"
 
-msgid "Store a history of your chats"
-msgstr "Запазване на история (водене на архив) на вашите чатове"
+msgid "Store an history of your chats"
+msgstr ""
 
 msgid "Geolocation"
 msgstr "Геолокация"
@@ -588,9 +580,6 @@ msgstr "Изтегляне (даунлоуд) на файл!"
 
 msgid "Clean current chat"
 msgstr "Изчистване на настоящия чат"
-
-msgid "View chat history"
-msgstr "Преглед на историята на чата"
 
 msgid "Show user profile"
 msgstr "Показване на потребителския профил"
