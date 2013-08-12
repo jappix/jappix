@@ -338,7 +338,7 @@ function chatCreate(hash, xid, nick, type) {
 
 	// Scroll in chat content
 	$('#page-engine #' + hash + ' .content').scroll(function() {
-		if(!(xid in MAM_MAP_PENDING)) {
+		if(enabledMAM() && !(xid in MAM_MAP_PENDING)) {
 			var has_state = xid in MAM_MAP_STATES;
 			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : MAM_REQ_MAX;
 			var date_start = has_state ? MAM_MAP_STATES[xid]['date']['start'] : null;

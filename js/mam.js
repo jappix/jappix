@@ -176,6 +176,22 @@ function handleArchivesMAM(iq, callback) {
 				}
 			}
 
+			// Generate stamps for easy operations
+			var start_stamp = extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['start']));
+			var start_end = extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['end']));
+
+			// Create MAM messages target
+			var target_html = '<div class="mam-chunk" data-start="' + encodeQuotes(start_stamp) + '" data-end="' + encodeQuotes(start_end) + '"></div>';
+			
+			var target_content_sel = $('#' + hex_md5(res_with) + ' .content');
+			var target_wait_sel = target_content_sel.find('.wait-mam');
+
+			if(target_wait_sel.size()) {
+				target_wait_sel.after(target_html);
+			} else {
+				target_content_sel.prepend(target_html);
+			}
+
 			logThis('Got archives from: ' + res_with, 3);
 		} else {
 			logThis('Could not associate archive response with a known JID.', 2);
@@ -223,8 +239,15 @@ function handleMessageMAM(fwd_stanza) {
 			
 			// Last-minute checks before display
 			if(time && stamp && body) {
-				// Param 'autosort' is 'true' because we don't know the date order in which MAM messages are coming...
-				displayMessage(type, xid, hash, b_name.htmlEnc(), body, time, stamp, 'user-message', true, null, mode, null, true);
+				// Select the custom target
+				var c_target_sel = $('#' + hash + ' .mam-chunk').filter(function() {
+        			return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp
+        		}).filter(':first');
+
+				if(exists(c_target)) {
+					// Display the message in that target
+					displayMessage(type, xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel);
+				}
 			}
 		}
 	}
