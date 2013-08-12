@@ -27,7 +27,7 @@ var MAM_MAP_REQS = {};
 var MAM_MAP_STATES = {};
 
 
-/* -- MAM Configuration -- */
+/* -- MAM Functions -- */
 
 // Gets the MAM configuration
 function getConfigMAM() {
@@ -147,5 +147,45 @@ function handleArchivesMAM(iq) {
 		}
 	} else {
 		logThis('Error handing archives (MAM).', 1);
+	}
+}
+
+// Handles a MAM-forwarded message stanza
+function handleMessageMAM(fwd_stanza) {
+	// Build message node
+	var c_message = fwd_stanza.getChild('message', NS_CLIENT);
+
+	if(c_message && c_message[0]) {
+		// Re-build a proper JSJaC message stanza
+		var message = JSJaCPacket.wrapNode(c_message[0]);
+
+		// Check message type
+		var type = message.getType() || 'chat';
+
+		if(type == 'chat') {
+			// Read message data
+			var xid = bareXID(getStanzaFrom(message));
+			var hash = hex_md5(xid);
+			var body = message.getBody();
+			var b_name = getBuddyName(xid);
+
+			// Generate the mode marker
+			var mode = (xid == getXID()) ? 'me': 'him';
+
+			// Read delay (required since we deal w/ a past message!)
+			var time, stamp;
+			var delay = readMessageDelay(node);
+
+			if(delay) {
+				time = relativeDate(delay);
+				stamp = extractStamp(Date.jab2date(delay));
+			}
+			
+			// Last-minute checks before display
+			if(time && stamp && body) {
+				// Param 'autosort' is 'true' because we don't know the date order in which MAM messages are coming...
+				displayMessage(type, xid, hash, b_name.htmlEnc(), body, time, stamp, 'user-message', true, null, mode, null, true);
+			}
+		}
 	}
 }

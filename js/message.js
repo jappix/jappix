@@ -17,6 +17,19 @@ function handleMessage(message) {
 	if(handleErrorReply(message))
 		return;
 	
+	// MAM-forwarded message?
+	var c_mam = message.getChild('result', NS_URN_MAM);
+
+	if(c_mam) {
+		var c_mam_forward = c_mam.getChild('forwarded', NS_URN_FORWARD);
+
+		if(c_mam_forward.getChild('forwarded', NS_URN_FORWARD)) {
+			handleMessageMAM(c_mam_forward);
+		}
+
+		return;
+	}
+
 	// We get the message items
 	var from = fullXID(getStanzaFrom(message));
 	var id = message.getID();
@@ -43,25 +56,17 @@ function handleMessage(message) {
 	}
 	
 	// Get message date
-	var time, stamp, d_stamp;
-	
-	// Read the delay
+	var time, stamp;
 	var delay = readMessageDelay(node);
 	
 	// Any delay?
 	if(delay) {
 		time = relativeDate(delay);
-		d_stamp = Date.jab2date(delay);
-	}
-	
-	// No delay: get actual time
-	else {
+		stamp = extractStamp(Date.jab2date(delay));
+	} else {
 		time = getCompleteTime();
-		d_stamp = new Date();
+		stamp = extractStamp(new Date());
 	}
-	
-	// Get the date stamp
-	stamp = extractStamp(d_stamp);
 	
 	// Received message
 	if(hasReceived(message))
@@ -887,7 +892,7 @@ function generateMessage(aMsg, body, hash) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id) {
+function displayMessage(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, autosort) {
 	// Generate some stuffs
 	var has_avatar = false;
 	var xid_hash = '';
