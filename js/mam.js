@@ -26,6 +26,7 @@ const MAM_PREF_DEFAULTS = {
 var MAM_MAP_REQS = {};
 var MAM_MAP_PENDING = {};
 var MAM_MAP_STATES = {};
+var MAM_MSG_QUEUE = {};
 
 
 /* -- MAM Configuration -- */
@@ -213,6 +214,15 @@ function handleArchivesMAM(iq, callback) {
 					target_content_sel.prepend(target_html);
 				}
 
+				// Any enqueued message to display?
+				if(typeof MAM_MSG_QUEUE[res_with] == 'object') {
+					for(i in MAM_MSG_QUEUE[res_with]) {
+						(MAM_MSG_QUEUE[res_with][i])();
+					}
+
+					delete MAM_MSG_QUEUE[res_with];
+				}
+
 				logThis('Got archives from: ' + res_with, 3);
 			} else {
 				logThis('Could not associate archive response with a known JID.', 2);
@@ -231,7 +241,7 @@ function handleArchivesMAM(iq, callback) {
 }
 
 // Handles a MAM-forwarded message stanza
-function handleMessageMAM(fwd_stanza) {
+function handleMessageMAM(fwd_stanza, c_delay) {
 	try {
 		// Build message node
 		var c_message = fwd_stanza.find('message');
@@ -245,18 +255,22 @@ function handleMessageMAM(fwd_stanza) {
 
 			if(type == 'chat') {
 				// Read message data
-				var node = message.getNode();
 				var xid = bareXID(getStanzaFrom(message));
+				var from_xid = xid;
+				var b_name = getBuddyName(xid);
+				var mode = (xid == getXID()) ? 'me': 'him';
+
+				// Refactor chat XID (in case we were the sender of the archived message)
+				if(mode == 'me') {
+					xid = bareXID(message.getTo())
+				}
+
 				var hash = hex_md5(xid);
 				var body = message.getBody();
-				var b_name = getBuddyName(xid);
-
-				// Generate the mode marker
-				var mode = (xid == getXID()) ? 'me': 'him';
 
 				// Read delay (required since we deal w/ a past message!)
 				var time, stamp;
-				var delay = readMessageDelay(node);
+				var delay = c_delay.attr('stamp');
 
 				if(delay) {
 					time = relativeDate(delay);
@@ -266,13 +280,27 @@ function handleMessageMAM(fwd_stanza) {
 				// Last-minute checks before display
 				if(time && stamp && body) {
 					// Select the custom target
-					var c_target_sel = $('#' + hash + ' .mam-chunk').filter(function() {
-	        			return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp
-	        		}).filter(':first');
+					var c_target_sel = function() {
+						return $('#' + hash + ' .mam-chunk').filter(function() {
+		        			return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp
+		        		}).filter(':first');
+					};
 
-					if(exists(c_target)) {
+					// Display the message in that target
+					var c_msg_display = function() {
+						displayMessage(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel());
+					};
+
+					if(c_target_sel().size()) {
 						// Display the message in that target
-						displayMessage(type, xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel);
+						c_msg_display();
+					} else {
+						// Delay display (we may not have received the MAM reply ATM)
+						if(typeof MAM_MSG_QUEUE[xid] != 'object') {
+							MAM_MSG_QUEUE[xid] = [];
+						}
+
+						MAM_MSG_QUEUE[xid].push(c_msg_display);
 					}
 				}
 			}

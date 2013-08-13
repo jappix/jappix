@@ -17,7 +17,7 @@ function sendOOB(to, type, url, desc) {
 	if(type == 'iq') {
 		// Get some values
 		var id = hex_md5(genID() + to + url + desc);
-		to = getHighestResource(to);
+		to = highestPriority(to);
 		
 		// IQs cannot be sent to offline users
 		if(!to)

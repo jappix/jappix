@@ -21,10 +21,11 @@ function handleMessage(message) {
 	var c_mam = message.getChild('result', NS_URN_MAM);
 
 	if(c_mam) {
+		var c_mam_delay = $(c_mam).find('delay[xmlns="' + NS_URN_DELAY + '"]');
 		var c_mam_forward = $(c_mam).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
 
 		if(c_mam_forward.size()) {
-			handleMessageMAM(c_mam_forward);
+			handleMessageMAM(c_mam_forward, c_mam_delay);
 		}
 
 		return;
@@ -1012,7 +1013,7 @@ function displayMessage(type, xid, hash, name, body, time, stamp, message_type, 
 	}
 	
 	// Must get the avatar?
-	if(has_avatar && xid) {
+	if(has_avatar && xid && !grouped) {
 		getAvatar(xid, 'cache', 'true', 'forget');
 	}
 	

@@ -55,7 +55,7 @@ function retrieveAdHoc(xid) {
 	$('#adhoc .adhoc-head').html('<b>' + getBuddyName(xid).htmlEnc() + '</b> (' + xid.htmlEnc() + ')');
 	
 	// Get the highest entity resource
-	var highest = getHighestResource(xid);
+	var highest = highestPriority(xid);
 	
 	if(highest)
 		xid = highest;

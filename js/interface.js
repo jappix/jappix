@@ -171,10 +171,14 @@ function quitThisChat(xid, hash, type) {
 				presenceFunnel(cXID, cHash);
 			}
 		}
-	}
-	
-	else
+	} else {
 		chatStateSend('gone', xid, hash);
+	}
+
+	// Clear MAM storage for this chat
+	if(xid in MAM_MAP_STATES) {
+		delete MAM_MAP_STATES[xid];
+	}
 	
 	// Get the chat ID which is before
 	var previous = $('#' + hash).prev().attr('id');
@@ -183,8 +187,9 @@ function quitThisChat(xid, hash, type) {
 	deleteThisChat(hash);
 	
 	// Reset the switcher
-	if(!exists('#page-switch .switcher.activechan'))
+	if(!exists('#page-switch .switcher.activechan')) {
 		switchChan(previous);
+	}
 	
 	// Reset the notifications
 	chanCleanNotify(hash);

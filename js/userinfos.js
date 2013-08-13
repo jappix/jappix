@@ -129,7 +129,7 @@ function retrieveUserInfos(xid) {
 	getVCard(xid, 'buddy');
 	
 	// Get the highest resource for this XID
-	var cXID = getHighestResource(xid);
+	var cXID = highestPriority(xid);
 	var pXID = xid;
 	
 	// If the user is logged in

@@ -246,7 +246,8 @@ function chatCreate(hash, xid, nick, type) {
 		// MAM? Get archives from there!
 		if(enabledMAM()) {
 			getArchivesMAM({
-				'with': xid
+				'with': xid,
+				'end': getXMPPTime('utc')
 			}, MAM_REQ_MAX);
 		} else {
 			// Restore the chat history
