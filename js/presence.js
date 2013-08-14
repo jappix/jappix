@@ -237,7 +237,7 @@ function handlePresence(presence) {
 					can_display = false;
 				
 				if(can_display)
-					displayMessage('chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
+					displayMessage('pr-' + genID(), 'chat', xid, xidHash, dName, dBody, getCompleteTime(), getTimeStamp(), 'system-message', false);
 			}
 		}
 	}
@@ -407,7 +407,7 @@ function displayMucPresence(from, roomHash, hash, type, show, status, affiliatio
 	
 	// Must notify something
 	if(notify)
-		displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, getTimeStamp(), 'system-message', false);
+		displayMessage('pr-' + genID(), 'groupchat', from, roomHash, nick_html, write, messageTime, getTimeStamp(), 'system-message', false);
 	
 	// Set the good status show icon
 	switch(show) {

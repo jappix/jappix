@@ -430,6 +430,9 @@ function purgeMyArchives() {
 	if(password == getPassword()) {
 		purgeArchivesMAM();
 
+		// Clear archives in UI
+		$('.page-engine-chan[data-type="chat"] .tools-clear').click();
+
 		// Hide the tool
 		$('#options .sub-ask').hide();
 	} else {

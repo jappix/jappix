@@ -246,9 +246,11 @@ function chatCreate(hash, xid, nick, type) {
 		// MAM? Get archives from there!
 		if(enabledMAM()) {
 			getArchivesMAM({
-				'with': xid,
-				'end': getXMPPTime('utc')
-			}, MAM_REQ_MAX);
+				'with': xid
+			}, {
+				'max': MAM_REQ_MAX,
+				'before': ''
+			});
 		} else {
 			// Restore the chat history
 			var chat_history = getPersistent(getXID(), 'history', hash);
@@ -341,18 +343,20 @@ function chatCreate(hash, xid, nick, type) {
 	$('#page-engine #' + hash + ' .content').scroll(function() {
 		if(enabledMAM() && !(xid in MAM_MAP_PENDING)) {
 			var has_state = xid in MAM_MAP_STATES;
-			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : MAM_REQ_MAX;
-			var date_start = has_state ? MAM_MAP_STATES[xid]['date']['start'] : null;
+			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : 1;
+			var rsm_before = has_state ? MAM_MAP_STATES[xid]['rsm']['last'] : '';
 
 			// Request more archives?
-			if(rsm_count >= MAM_REQ_MAX && $(this).scrollTop() < 200) {
+			if(rsm_count > 0 && $(this).scrollTop() < 200) {
 				var wait_mam = $('#' + hash).find('.wait-mam');
 				wait_mam.show();
 
 				getArchivesMAM({
-					'with': xid,
-					'end': date_start
-				}, MAM_REQ_MAX, function() {
+					'with': xid
+				}, {
+					'max': MAM_REQ_MAX,
+					'before': rsm_before
+				}, function() {
 					wait_mam.hide();
 				});
 			}

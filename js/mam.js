@@ -13,9 +13,11 @@ Last revision: 04/08/13
 
 
 /* -- MAM Constants -- */
-const MAM_REQ_MAX = 25;
+// Note: Internet Explorer does not support 'const'
+//       We use vars as a fix...
+var MAM_REQ_MAX = 50;
 
-const MAM_PREF_DEFAULTS = {
+var MAM_PREF_DEFAULTS = {
 	'always' : 1,
 	'never'  : 1,
 	'roster' : 1
@@ -129,7 +131,7 @@ function purgeArchivesMAM(args) {
 /* -- MAM Retrieval -- */
 
 // Gets the MAM configuration
-function getArchivesMAM(args, max, callback) {
+function getArchivesMAM(args, rsm_args, callback) {
 	try {
 		if(typeof args != 'object') {
 			args = {};
@@ -149,12 +151,15 @@ function getArchivesMAM(args, max, callback) {
 		var query = iq.setQuery(NS_URN_MAM);
 
 		for(c in args) {
-			if(args[c])  query.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
+			if(args[c] != null)  query.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
 		}
 
-		if(max && typeof max == 'number') {
+		if(rsm_args && typeof rsm_args == 'object') {
 			var rsm_set = query.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
-			rsm_set.appendChild(iq.buildNode('max', {'xmlns': NS_RSM}, max));
+
+			for(r in rsm_args) {
+				if(rsm_args[r] != null)  rsm_set.appendChild(iq.buildNode(r, {'xmlns': NS_RSM}, rsm_args[r]));
+			}
 		}
 
 		con.send(iq, function(res_iq) {
@@ -177,10 +182,6 @@ function handleArchivesMAM(iq, callback) {
 
 		if(iq.getType() != 'error') {
 			if(res_with) {
-				if(res_with in MAM_MAP_PENDING) {
-					delete MAM_MAP_PENDING[res_with];
-				}
-				
 				var res_sel = $(iq.getQuery());
 				var res_rsm_sel = res_sel.find('set[xmlns="' + NS_RSM + '"]');
 
@@ -194,7 +195,7 @@ function handleArchivesMAM(iq, callback) {
 					'rsm': {
 						'first': res_rsm_sel.find('first').eq(0).text(),
 						'last': res_rsm_sel.find('last').eq(0).text(),
-						'count': res_rsm_sel.find('count').eq(0).text()
+						'count': parseInt(res_rsm_sel.find('count').eq(0).text() || 0)
 					}
 				}
 
@@ -221,6 +222,11 @@ function handleArchivesMAM(iq, callback) {
 					}
 
 					delete MAM_MSG_QUEUE[res_with];
+				}
+
+				// Remove XID from pending list
+				if(res_with in MAM_MAP_PENDING) {
+					delete MAM_MAP_PENDING[res_with];
 				}
 
 				logThis('Got archives from: ' + res_with, 3);
@@ -256,6 +262,7 @@ function handleMessageMAM(fwd_stanza, c_delay) {
 			if(type == 'chat') {
 				// Read message data
 				var xid = bareXID(getStanzaFrom(message));
+				var id = message.getID();
 				var from_xid = xid;
 				var b_name = getBuddyName(xid);
 				var mode = (xid == getXID()) ? 'me': 'him';
@@ -279,17 +286,28 @@ function handleMessageMAM(fwd_stanza, c_delay) {
 				
 				// Last-minute checks before display
 				if(time && stamp && body) {
+					var mam_chunk_path = '#' + hash + ' .mam-chunk';
+
+					// No chat auto-scroll?
+					var no_scroll = exists(mam_chunk_path);
+
 					// Select the custom target
 					var c_target_sel = function() {
-						return $('#' + hash + ' .mam-chunk').filter(function() {
+						return $(mam_chunk_path).filter(function() {
 		        			return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp
 		        		}).filter(':first');
 					};
 
 					// Display the message in that target
 					var c_msg_display = function() {
-						displayMessage(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel());
+						displayMessage(id, type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
 					};
+
+					// Hack: do not display the message in case we would duplicate it w/ current session messages
+					//       only used when initiating a new chat, avoids collisions
+					if(!(xid in MAM_MAP_STATES) && $('#' + hash).find('.one-line.user-message:last').text() == body) {
+						return;
+					}
 
 					if(c_target_sel().size()) {
 						// Display the message in that target
