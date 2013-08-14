@@ -37,8 +37,8 @@ function optionsOpen() {
 					'<label for="archiving" class="mam-hidable">' + _e("Message archiving") + '</label>' + 
 					'<select id="archiving" class="mam-hidable">' + 
 						'<option value="never">' + _e("Disabled") + '</option>' + 
-						'<option value="always">' + _e("Store all chats") + '</option>' + 
 						'<option value="roster">' + _e("Store friend chats") + '</option>' + 
+						'<option value="always">' + _e("Store all chats") + '</option>' + 
 					'</select>' + 
 					'<a href="#" class="linked empty-archives mam-hidable">' + _e("Remove all archives") + '</a>' + 
 				'</div>' +

@@ -344,7 +344,7 @@ function chatCreate(hash, xid, nick, type) {
 		if(enabledMAM() && !(xid in MAM_MAP_PENDING)) {
 			var has_state = xid in MAM_MAP_STATES;
 			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : 1;
-			var rsm_before = has_state ? MAM_MAP_STATES[xid]['rsm']['last'] : '';
+			var rsm_before = has_state ? MAM_MAP_STATES[xid]['rsm']['first'] : '';
 
 			// Request more archives?
 			if(rsm_count > 0 && $(this).scrollTop() < 200) {
