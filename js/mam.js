@@ -15,7 +15,7 @@ Last revision: 04/08/13
 /* -- MAM Constants -- */
 // Note: Internet Explorer does not support 'const'
 //       We use vars as a fix...
-var MAM_REQ_MAX = 50;
+var MAM_REQ_MAX = 25;
 
 var MAM_PREF_DEFAULTS = {
 	'always' : 1,
@@ -300,7 +300,7 @@ function handleMessageMAM(fwd_stanza, c_delay) {
 
 					// Display the message in that target
 					var c_msg_display = function() {
-						displayMessage(id, type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
+						displayMessage(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
 					};
 
 					// Hack: do not display the message in case we would duplicate it w/ current session messages

@@ -356,7 +356,7 @@ function handleMessage(message) {
 		// Display the new subject as a system message
 		if(resource) {
 			var topic_body = filteredName + ' ' + _e("changed the subject to:") + ' ' + filterThisMessage(subject, resource, true);
-			displayMessage(id, type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
+			displayMessage(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
 		}
 	}
 	
@@ -422,7 +422,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(id, type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
+			displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
 		}
 		
 		// Chat message
@@ -453,7 +453,7 @@ function handleMessage(message) {
 			}
 			
 			// Display the received message
-			displayMessage(id, type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
+			displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
 			
 			// We notify the user
 			messageNotify(hash, 'personal');
@@ -521,7 +521,7 @@ function sendMessage(hash, type) {
 			help_text += '</p>';
 			
 			// Display the message
-			displayMessage(id, type, xid, hash, 'help', help_text, getCompleteTime(), getTimeStamp(), 'system-message', false);
+			displayMessage(type, xid, hash, 'help', help_text, getCompleteTime(), getTimeStamp(), 'system-message', false);
 			
 			// Reset chatstate
 			chatStateSend('active', xid, hash);
@@ -604,7 +604,7 @@ function sendMessage(hash, type) {
 			// Finally we display the message we just sent
 			var my_xid = getXID();
 			
-			displayMessage(id, 'chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', html_escape, '', 'me', id);
+			displayMessage('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, getCompleteTime(), getTimeStamp(), 'user-message', html_escape, '', 'me', id);
 			
 			// Receipt timer
 			if(receipt_request)
@@ -893,7 +893,7 @@ function generateMessage(aMsg, body, hash) {
 }
 
 // Displays a given message in a chat tab
-function displayMessage(stanza_id, type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll) {
+function displayMessage(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll) {
 	// Target
 	if(typeof c_target_sel === 'undefined') {
 		c_target_sel = $('#' + hash + ' .content');
@@ -929,18 +929,9 @@ function displayMessage(stanza_id, type, xid, hash, name, body, time, stamp, mes
 	
 	// Filter the message
 	var filteredMessage = filterThisMessage(body, name, html_escape);
-	
-	// Generate the message trace (avoids message duplicates)
-	var trace = '';
-	var trace_attr = '';
-
-	if(type == 'chat') {
-		trace = hex_md5(stanza_id + xid + hash + body + stamp);
-		trace_attr = ' data-trace="' + trace + '"';
-	}
 
 	// Display the received message in the room
-	var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '"' + data_id + trace_attr + '>';
+	var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '"' + data_id + '>';
 	
 	// Name color attribute
 	if(type == 'groupchat') {
@@ -994,11 +985,6 @@ function displayMessage(stanza_id, type, xid, hash, name, body, time, stamp, mes
 		
 		// Generate message code
 		messageCode = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + messageCode + '</div>';
-	}
-	
-	// Message already in-DOM?
-	if(trace && exists('#' + hash + ' .one-line[data-trace="' + trace + '"]')) {
-		return;
 	}
 
 	// Write the code in the DOM
