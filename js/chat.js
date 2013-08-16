@@ -7,7 +7,7 @@ These are the chat JS scripts for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Eric, Maranda
-Last revision: 20/02/13
+Last revision: 16/08/13
 
 */
 
@@ -341,13 +341,16 @@ function chatCreate(hash, xid, nick, type) {
 
 	// Scroll in chat content
 	$('#page-engine #' + hash + ' .content').scroll(function() {
+		var self = this;
+
 		if(enabledMAM() && !(xid in MAM_MAP_PENDING)) {
 			var has_state = xid in MAM_MAP_STATES;
 			var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : 1;
 			var rsm_before = has_state ? MAM_MAP_STATES[xid]['rsm']['first'] : '';
 
 			// Request more archives?
-			if(rsm_count > 0 && $(this).scrollTop() < 200) {
+			if(rsm_count > 0 && $(this).scrollTop() < MAM_SCROLL_THRESHOLD) {
+				var was_scroll_top = $(self).scrollTop() <= 32;
 				var wait_mam = $('#' + hash).find('.wait-mam');
 				wait_mam.show();
 
@@ -357,7 +360,19 @@ function chatCreate(hash, xid, nick, type) {
 					'max': MAM_REQ_MAX,
 					'before': rsm_before
 				}, function() {
+					var wait_mam_height = was_scroll_top ? 0 : wait_mam.height();
 					wait_mam.hide();
+
+					// Restore scroll?
+					if($(self).scrollTop() < MAM_SCROLL_THRESHOLD) {
+						var sel_mam_chunk = $(self).find('.mam-chunk:first');
+
+						var cont_padding_top = parseInt($(self).css('padding-top').replace(/[^-\d\.]/g, ''));
+						var cont_one_group_margin_bottom = parseInt(sel_mam_chunk.find('.one-group:last').css('margin-bottom').replace(/[^-\d\.]/g, ''));
+						var cont_mam_chunk_height = sel_mam_chunk.height();
+
+						$(self).scrollTop(wait_mam_height + cont_padding_top + cont_one_group_margin_bottom + cont_mam_chunk_height);
+					}
 				});
 			}
 		}

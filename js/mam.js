@@ -15,7 +15,8 @@ Last revision: 04/08/13
 /* -- MAM Constants -- */
 // Note: Internet Explorer does not support 'const'
 //       We use vars as a fix...
-var MAM_REQ_MAX = 25;
+var MAM_REQ_MAX = 50;
+var MAM_SCROLL_THRESHOLD = 200;
 
 var MAM_PREF_DEFAULTS = {
 	'always' : 1,
