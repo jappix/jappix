@@ -1,6 +1,9 @@
 Jappix - An open social platform
 ================================
 
+<img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" />
+
+
 License
 -------
 
