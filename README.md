@@ -1,4 +1,4 @@
-<img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" />
+<img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" style="text-align: center;" />
 
 
 License
