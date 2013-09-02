@@ -323,11 +323,9 @@ function chatCreate(hash, xid, nick, type) {
 		// Enter key
 		if(e.keyCode == 13) {
 			// Add a new line
-			if(e.shiftKey)
+			if(e.shiftKey || e.ctrlKey) {
 				inputDetect.val(inputDetect.val() + '\n');
-			
-			// Send the message
-			else {
+			} else {
 				// Send the message
 				sendMessage(hash, 'chat');
 				
