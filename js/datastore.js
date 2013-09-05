@@ -107,50 +107,50 @@ function hasDB() {
 }
 
 // Temporary: used to read a database entry
-function getDB(type, id) {
+function getDB(dbID, type, id) {
 	try {
-		return storageDB.getItem(type + '_' + id);
+		return storageDB.getItem(dbID + '_' + type + '_' + id);
 	}
 	
 	catch(e) {
-		logThis('Error while getting a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		Console.error('Error while getting a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 	}
 
 	return null;
 }
 
 // Temporary: used to update a database entry
-function setDB(type, id, value) {
+function setDB(dbID, type, id, value) {
 	try {
-		storageDB.setItem(type + '_' + id, value);
+		storageDB.setItem(dbID + '_' + type + '_' + id, value);
 
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while writing a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		Console.error('Error while writing a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 	}
 
 	return false;
 }
 
 // Temporary: used to remove a database entry
-function removeDB(type, id) {
+function removeDB(dbID, type, id) {
 	try {
-		storageDB.removeItem(type + '_' + id);
+		storageDB.removeItem(dbID + '_' + type + '_' + id);
 		
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while removing a temporary database entry (' + type + ' -> ' + id + '): ' + e, 1);
+		Console.error('Error while removing a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 	}
 
 	return false;
 }
 
 // Temporary: used to check a database entry exists
-function existDB(type, id) {
+function existDB(dbID, type, id) {
 	return getDB(type, id) != null;
 }
 
@@ -159,13 +159,13 @@ function resetDB() {
 	try {
 		storageDB.clear();
 		
-		logThis('Temporary database cleared.', 3);
+		Console.info('Temporary database cleared.');
 		
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while clearing temporary database: ' + e, 1);
+		Console.error('Error while clearing temporary database', e);
 		
 		return false;
 	}
@@ -204,7 +204,7 @@ function getPersistent(dbID, type, id) {
 	}
 	
 	catch(e) {
-		logThis('Error while getting a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
+		Console.error('Error while getting a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 		
 		return null;
 	}
@@ -220,7 +220,7 @@ function setPersistent(dbID, type, id, value) {
 	
 	// Database might be full
 	catch(e) {
-		logThis('Retrying: could not write a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 2);
+		Console.warn('Retrying: could not write a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 		
 		// Flush it!
 		flushPersistent();
@@ -234,7 +234,7 @@ function setPersistent(dbID, type, id, value) {
 		
 		// New error!
 		catch(e) {
-			logThis('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
+			Console.error('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 		}
 	}
 
@@ -250,7 +250,7 @@ function removePersistent(dbID, type, id) {
 	}
 	
 	catch(e) {
-		logThis('Error while removing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + '): ' + e, 1);
+		Console.error('Error while removing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
 	}
 
 	return false;
@@ -266,13 +266,13 @@ function resetPersistent() {
 	try {
 		storagePersistent.clear();
 
-		logThis('Persistent database cleared.', 3);
+		Console.info('Persistent database cleared.');
 		
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while clearing persistent database: ' + e, 1);
+		Console.error('Error while clearing persistent database', e);
 	}
 
 	return false;
@@ -291,13 +291,13 @@ function flushPersistent() {
 		if(session)
 			setPersistent('global', 'session', 1, session);
 		
-		logThis('Persistent database flushed.', 3);
+		Console.info('Persistent database flushed.');
 		
 		return true;
 	}
 	
 	catch(e) {
-		logThis('Error while flushing persistent database: ' + e, 1);
+		Console.error('Error while flushing persistent database', e);
 	}
 
 	return false;

@@ -237,7 +237,7 @@ function checkInboxMessage() {
 			// We clean the inputs
 			cleanNewInboxMessage();
 			
-			logThis('Inbox message sent: ' + current, 3);
+			Console.info('Inbox message sent: ' + current);
 		}
 		
 		// Close the inbox
@@ -344,7 +344,7 @@ function storeInboxMessage(from, subject, content, status, id, date) {
 	xml += '</message>';
 	
 	// Store this message!
-	setDB('inbox', id, xml);
+	setDB(DESKTOP_HASH, 'inbox', id, xml);
 }
 
 // Removes a given normal message
@@ -353,7 +353,7 @@ function deleteInboxMessage(id) {
 	$('#inbox .one-message.' + id).remove();
 	
 	// Remove the message from the database
-	removeDB('inbox', id);
+	removeDB(DESKTOP_HASH, 'inbox', id);
 	
 	// Check the unread messages
 	checkInboxMessages();
@@ -373,7 +373,7 @@ function purgeInbox() {
 		
 		// If the pointer is on a stored message
 		if(explodeThis('_', current, 0) == 'inbox')
-			removeDB('inbox', explodeThis('_', current, 1));
+			removeDB(DESKTOP_HASH, 'inbox', explodeThis('_', current, 1));
 	}
 	
 	// Prevent the database lag
@@ -491,8 +491,8 @@ function revealInboxMessage(id, from, subject, content, name, date, status) {
 	// Unread message
 	if(status == 'unread') {
 		// Update our database
-		var xml = getDB('inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
-		setDB('inbox', id, xml);
+		var xml = getDB(DESKTOP_HASH, 'inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
+		setDB(DESKTOP_HASH, 'inbox', id, xml);
 		
 		// Remove the unread class
 		$(one_message).removeClass('message-unread');
@@ -580,7 +580,7 @@ function handleInboxAttach(responseXML) {
 	if(dData.find('error').size()) {
 		openThisError(4);
 		
-		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
+		Console.error('Error while attaching the file', dData.find('error').text());
 	}
 	
 	else {
@@ -605,7 +605,7 @@ function handleInboxAttach(responseXML) {
 			return false;
 		});
 		
-		logThis('File attached.', 3);
+		Console.info('File attached.');
 	}
 	
 	// Reset the attach bubble

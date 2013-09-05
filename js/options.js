@@ -233,11 +233,11 @@ function waitOptions(id) {
 // Sends the options to the XMPP server
 function storeOptions() {
 	// Get the values
-	var sounds = getDB('options', 'sounds');
-	var geolocation = getDB('options', 'geolocation');
-	var showall = getDB('options', 'roster-showall');
-	var integratemedias = getDB('options', 'integratemedias');
-	var status = getDB('options', 'presence-status');
+	var sounds = getDB(DESKTOP_HASH, 'options', 'sounds');
+	var geolocation = getDB(DESKTOP_HASH, 'options', 'geolocation');
+	var showall = getDB(DESKTOP_HASH, 'options', 'roster-showall');
+	var integratemedias = getDB(DESKTOP_HASH, 'options', 'integratemedias');
+	var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 	
 	// Create an array to be looped
 	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'integratemedias', 'presence-status');
@@ -256,15 +256,15 @@ function storeOptions() {
 	
 	con.send(iq, handleStoreOptions);
 	
-	logThis('Storing options...', 3);
+	Console.info('Storing options...');
 }
 
 // Handles the option storing
 function handleStoreOptions(iq) {
 	if(!iq || (iq.getType() != 'result'))
-		logThis('Options not stored.', 2);
+		Console.warn('Options not stored.');
 	else
-		logThis('Options stored.', 3);
+		Console.info('Options stored.');
 }
 
 // Saves the user options
@@ -275,32 +275,32 @@ function saveOptions() {
 	if($('#sounds').filter(':checked').size())
 		sounds = '1';
 	
-	setDB('options', 'sounds', sounds);
+	setDB(DESKTOP_HASH, 'options', 'sounds', sounds);
 	
 	// We apply the geolocation
 	if($('#geolocation').filter(':checked').size()) {
-		setDB('options', 'geolocation', '1');
+		setDB(DESKTOP_HASH, 'options', 'geolocation', '1');
 		
 		// We geolocate the user on the go
 		geolocate();
 	}
 	
 	else {
-		setDB('options', 'geolocation', '0');
+		setDB(DESKTOP_HASH, 'options', 'geolocation', '0');
 		
 		// We delete the geolocation informations
 		sendPosition();
-		removeDB('geolocation', 'now');
+		removeDB(DESKTOP_HASH, 'geolocation', 'now');
 	}
 	
 	// We apply the roster show all
 	if($('#showall').filter(':checked').size()) {
-		setDB('options', 'roster-showall', '1');
+		setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
 		showAllBuddies('options');
 	}
 	
 	else {
-		setDB('options', 'roster-showall', '0');
+		setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
 		showOnlineBuddies('options');
 	}
 	
@@ -310,7 +310,7 @@ function saveOptions() {
 	if($('#integratemedias').filter(':checked').size())
 		integratemedias = '1';
 	
-	setDB('options', 'integratemedias', integratemedias);
+	setDB(DESKTOP_HASH, 'options', 'integratemedias', integratemedias);
 	
 	// We apply the message archiving
 	if(enabledMAM()) {
@@ -347,11 +347,11 @@ function handlePwdChange(iq) {
 		quit();
 		openThisInfo(1);
 		
-		logThis('Password changed.', 3);
+		Console.info('Password changed.');
 	}
 	
 	else
-		logThis('Password not changed.', 2);
+		Console.warn('Password not changed.');
 }
 
 // Sends the new account password
@@ -379,7 +379,7 @@ function sendNewPassword() {
 		
 		con.send(iq, handlePwdChange);
 		
-		logThis('Password change sent.', 3);
+		Console.info('Password change sent.');
 	} else {
 		$('.sub-ask-pass input').each(function() {
 			var select = $(this);
@@ -417,9 +417,9 @@ function handleAccDeletion(iq) {
 		openThisInfo(2);
 		logout();
 		
-		logThis('Account deleted.', 3);
+		Console.info('Account deleted.');
 	} else {
-		logThis('Account not deleted.', 2);
+		Console.warn('Account not deleted.');
 	}
 }
 
@@ -468,7 +468,7 @@ function purgeMyMicroblog() {
 		// Hide the tool
 		$('#options .sub-ask').hide();
 		
-		logThis('Microblog purge sent.', 3);
+		Console.info('Microblog purge sent.');
 	} else {
 		var selector = $('#options .check-empty');
 		
@@ -490,11 +490,11 @@ function handleMicroblogPurge(iq) {
 		// Remove the microblog items
 		$('.one-update.update_' + hex_md5(getXID())).remove();
 		
-		logThis('Microblog purged.', 3);
+		Console.info('Microblog purged.');
 	}
 	
 	else
-		logThis('Microblog not purged.', 2);
+		Console.warn('Microblog not purged.');
 }
 
 // Deletes the user's account
@@ -516,7 +516,7 @@ function deleteMyAccount() {
 		
 		con.send(iq, handleAccDeletion);
 		
-		logThis('Delete account sent.', 3);
+		Console.info('Delete account sent.');
 	}
 	
 	else {
@@ -565,25 +565,25 @@ function loadOptions() {
 		$('#options fieldset.privacy').show();
 	
 	// We get the values of the forms for the sounds
-	if(getDB('options', 'sounds') == '0')
+	if(getDB(DESKTOP_HASH, 'options', 'sounds') == '0')
 		$('#sounds').attr('checked', false);
 	else
 		$('#sounds').attr('checked', true);
 	
 	// We get the values of the forms for the geolocation
-	if(getDB('options', 'geolocation') == '1')
+	if(getDB(DESKTOP_HASH, 'options', 'geolocation') == '1')
 		$('#geolocation').attr('checked', true);
 	else
 		$('#geolocation').attr('checked', false);
 	
 	// We get the values of the forms for the roster show all
-	if(getDB('options', 'roster-showall') == '1')
+	if(getDB(DESKTOP_HASH, 'options', 'roster-showall') == '1')
 		$('#showall').attr('checked', true);
 	else
 		$('#showall').attr('checked', false);
 	
 	// We get the values of the forms for the integratemedias
-	if(getDB('options', 'integratemedias') == '0')
+	if(getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
 		$('#integratemedias').attr('checked', false);
 	else
 		$('#integratemedias').attr('checked', true);

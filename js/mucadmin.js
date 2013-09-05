@@ -207,7 +207,7 @@ function handleMucAdminAuth(iq) {
 	// Hide the wait icon
 	$('#mucadmin .wait').hide();
 	
-	logThis('MUC admin items received: ' + fullXID(getStanzaFrom(iq)));
+	Console.log('MUC admin items received: ' + fullXID(getStanzaFrom(iq)));
 }
 
 // Queries the MUC admin form
@@ -240,7 +240,7 @@ function sendMucAdminTopic(xid) {
 		m.setSubject(topic);
 		con.send(m);
 		
-		logThis('MUC admin topic sent: ' + topic, 3);
+		Console.info('MUC admin topic sent: ' + topic);
 	}
 }
 
@@ -282,7 +282,7 @@ function sendMucAdminAuth(xid) {
 		});
 	}	
 	
-	logThis('MUC admin authorizations form sent: ' + xid, 3);
+	Console.info('MUC admin authorizations form sent: ' + xid);
 }
 
 // Checks if the MUC room was destroyed
@@ -303,7 +303,7 @@ function handleDestroyMucAdminIQ(iq) {
 		if(existDB('favorites', room))
 			removeThisFavorite(room, explodeThis('@', room, 0));
 		
-		logThis('MUC admin destroyed: ' + room, 3);
+		Console.info('MUC admin destroyed: ' + room);
 	}
 	
 	// We hide the wait icon
@@ -322,7 +322,7 @@ function destroyMucAdminIQ(xid) {
 	
 	con.send(iq, handleDestroyMucAdminIQ);
 	
-	logThis('MUC admin destroy sent: ' + xid, 3);
+	Console.info('MUC admin destroy sent: ' + xid);
 	
 	return false;
 }

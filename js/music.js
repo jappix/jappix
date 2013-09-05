@@ -144,7 +144,7 @@ function actionMusic(action) {
 				actionMusic('stop');
 			}, true);  
 			
-			logThis('Music is now playing.');
+			Console.log('Music is now playing.');
 		}
 		
 		// User stop the song or the song came to its end
@@ -156,7 +156,7 @@ function actionMusic(action) {
 			$('.music-audio').remove();
 			publishMusic();
 			
-			logThis('Music is now stopped.');
+			Console.log('Music is now stopped.');
 		}
 	}
 	
@@ -210,7 +210,7 @@ function publishMusic(title, artist, source, duration, uri) {
 		
 		con.send(iq);
 		
-		logThis('New tune sent: ' + title, 3);
+		Console.info('New tune sent: ' + title);
 	}
 }
 

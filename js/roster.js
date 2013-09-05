@@ -41,7 +41,7 @@ function handleRoster(iq) {
 	// Update our avatar (if changed), and send our presence
 	getAvatar(getXID(), 'force', 'true', 'forget');
 	
-	logThis('Roster received.');
+	Console.log('Roster received.');
 }
 
 // Parses the group XML and display the roster
@@ -519,7 +519,7 @@ function thisBuddyGroups(xid) {
 
 // Adds a given contact to our roster
 function addThisContact(xid, name) {
-	logThis('Add this contact: ' + xid + ', as ' + name, 3);
+	Console.info('Add this contact: ' + xid + ', as ' + name);
 	
 	// Cut the resource of this XID
 	xid = bareXID(xid);
@@ -551,7 +551,7 @@ function getAllGroups() {
 
 // Edits buddy informations
 function buddyEdit(xid, nick, subscription, groups) {
-	logThis('Buddy edit: ' + xid, 3);
+	Console.info('Buddy edit: ' + xid);
 	
 	// Initialize
 	var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] .';
@@ -559,7 +559,7 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Get the privacy state
 	var privacy_state = statusPrivacy('block', xid);
-	var privacy_active = getDB('privacy-marker', 'available');
+	var privacy_active = getDB(DESKTOP_HASH, 'privacy-marker', 'available');
 	
 	// Get the group privacy state
 	for(g in groups) {
@@ -695,7 +695,7 @@ function sendRoster(xid, subscription, name, group) {
 	
 	con.send(iq);
 	
-	logThis('Roster item sent: ' + xid, 3);
+	Console.info('Roster item sent: ' + xid);
 }
 
 // Adapts the roster height, depending of the window size
@@ -1130,7 +1130,7 @@ function launchRoster() {
 		if(enabledCommands())
 			$('.buddy-conf-more-commands').parent().show();
 		
-		if(getDB('privacy-marker', 'available'))
+		if(getDB(DESKTOP_HASH, 'privacy-marker', 'available'))
 			$('.buddy-conf-more-privacy').parent().show();
 		
 		return false;

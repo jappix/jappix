@@ -46,7 +46,7 @@ function handleStorage(iq) {
 		var value = $(this).text();
 		
 		// We display the storage
-		setDB('options', type, value);
+		setDB(DESKTOP_HASH, 'options', type, value);
 		
 		// If this is the buddy list show status
 		if((type == 'roster-showall') && (value == '1'))
@@ -93,12 +93,12 @@ function handleStorage(iq) {
 	
 	// Parse the roster notes xml
 	rosternotes.find('note').each(function() {
-		setDB('rosternotes', $(this).attr('jid'), $(this).text());
+		setDB(DESKTOP_HASH, 'rosternotes', $(this).attr('jid'), $(this).text());
 	});
 	
 	// Options received
 	if(options.size()) {
-		logThis('Options received.');
+		Console.log('Options received.');
 		
 		// Now, get the inbox
 		getStorage(NS_INBOX);
@@ -111,10 +111,10 @@ function handleStorage(iq) {
 	
 	// Inbox received
 	else if(inbox.size()) {
-		logThis('Inbox received.');
+		Console.log('Inbox received.');
 		
 		// Send the first presence!
-		firstPresence(getDB('checksum', 1));
+		firstPresence(getDB(DESKTOP_HASH, 'checksum', 1));
 		
 		// Check we have new messages (play a sound if any unread messages)
 		if(checkInboxMessages())
@@ -128,10 +128,10 @@ function handleStorage(iq) {
 		// Join the groupchats the admin defined (if any)
 		joinConfGroupchats();
 		
-		logThis('Bookmarks received.');
+		Console.log('Bookmarks received.');
 	}
 	
 	// Roster notes received (for logger)
 	else if(rosternotes.size())
-		logThis('Roster notes received.');
+		Console.log('Roster notes received.');
 }

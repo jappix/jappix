@@ -40,11 +40,11 @@ function storePEP(xid, type, value1, value2, value3, value4) {
 		xml += '</pep>';
 		
 		// Update the input with the new value
-		setDB('pep-' + type, xid, xml);
+		setDB(DESKTOP_HASH, 'pep-' + type, xid, xml);
 	}
 	
 	else
-		removeDB('pep-' + type, xid);
+		removeDB(DESKTOP_HASH, 'pep-' + type, xid);
 	
 	// Display the PEP event
 	displayPEP(xid, type);
@@ -53,7 +53,7 @@ function storePEP(xid, type, value1, value2, value3, value4) {
 // Displays a PEP item
 function displayPEP(xid, type) {
 	// Read the target input for values
-	var value = $(XMLFromString(getDB('pep-' + type, xid)));
+	var value = $(XMLFromString(getDB(DESKTOP_HASH, 'pep-' + type, xid)));
 	var dText;
 	var aLink = ''
 	
@@ -239,8 +239,8 @@ function displayPEP(xid, type) {
 					dVal = dText;
 				
 				// Store this user event in our database
-				setDB(type + '-value', 1, dAttr);
-				setDB(type + '-text', 1, dVal);
+				setDB(DESKTOP_HASH, type + '-value', 1, dAttr);
+				setDB(DESKTOP_HASH, type + '-text', 1, dVal);
 				
 				// Apply this PEP event
 				$('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
@@ -468,7 +468,7 @@ function sendMood(value, text) {
 	// And finally we send the mood that is set
 	con.send(iq);
 	
-	logThis('New mood sent: ' + value + ' (' + text + ')', 3);
+	Console.info('New mood sent: ' + value + ' (' + text + ')');
 }
 
 // Sends the user's activity
@@ -496,7 +496,7 @@ function sendActivity(main, sub, text) {
 	// And finally we send the mood that is set
 	con.send(iq);
 	
-	logThis('New activity sent: ' + main + ' (' + text + ')', 3);
+	Console.info('New activity sent: ' + main + ' (' + text + ')');
 }
 
 // Sends the user's geographic position
@@ -527,9 +527,9 @@ function sendPosition(vLat, vLon, vAlt, vCountry, vCountrycode, vRegion, vPostal
 	
 	// For logger
 	if(vLat && vLon)
-		logThis('Geolocated.', 3);
+		Console.info('Geolocated.');
 	else
-		logThis('Not geolocated.', 2);
+		Console.warn('Not geolocated.');
 }
 
 // Parses the user's geographic position
@@ -615,18 +615,18 @@ function getPosition(position) {
 		            );
 		
 		// Store data
-		setDB('geolocation', 'now', xmlToString(data));
+		setDB(DESKTOP_HASH, 'geolocation', 'now', xmlToString(data));
 		
-		logThis('Position details got from Google Maps API.');
+		Console.log('Position details got from Google Maps API.');
 	});
 	
-	logThis('Position got: latitude > ' + vLat + ' / longitude > ' + vLon + ' / altitude > ' + vAlt);
+	Console.log('Position got: latitude > ' + vLat + ' / longitude > ' + vLon + ' / altitude > ' + vAlt);
 }
 
 // Geolocates the user
 function geolocate() {
 	// Don't fire it until options & features are not retrieved!
-	if(!getDB('options', 'geolocation') || (getDB('options', 'geolocation') == '0') || !enabledPEP())
+	if(!getDB(DESKTOP_HASH, 'options', 'geolocation') || (getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !enabledPEP())
 		return;
 	
 	// We publish the user location if allowed
@@ -636,12 +636,12 @@ function geolocate() {
 			navigator.geolocation.getCurrentPosition(getPosition);
 		});
 		
-		logThis('Geolocating...', 3);
+		Console.info('Geolocating...');
 	}
 	
 	// Any error?
 	else
-		logThis('Not geolocated: browser does not support it.', 1);
+		Console.error('Not geolocated: browser does not support it.');
 }
 
 // Gets the user's microblog to check it exists
@@ -664,7 +664,7 @@ function handleInitGeoloc(iq) {
 		// The node may not exist, create it!
 		setupMicroblog('', NS_GEOLOC, '1', '1', '', '', true);
 		
-		logThis('Error while getting geoloc, trying to reconfigure the PubSub node!', 2);
+		Console.warn('Error while getting geoloc, trying to reconfigure the PubSub node!');
 	}
 }
 
@@ -679,10 +679,10 @@ function displayAllPEP(xid) {
 // Plugin launcher
 function launchPEP() {
 	// Apply empty values to the PEP database
-	setDB('mood-value', 1, '');
-	setDB('mood-text', 1, '');
-	setDB('activity-value', 1, '');
-	setDB('activity-text', 1, '');
+	setDB(DESKTOP_HASH, 'mood-value', 1, '');
+	setDB(DESKTOP_HASH, 'mood-text', 1, '');
+	setDB(DESKTOP_HASH, 'activity-value', 1, '');
+	setDB(DESKTOP_HASH, 'activity-text', 1, '');
 	
 	// Click event for user mood
 	$('#my-infos .f-mood a.picker').click(function() {
@@ -812,10 +812,10 @@ function launchPEP() {
 		var text = $(this).val();
 		
 		// Must send the mood?
-		if((value != getDB('mood-value', 1)) || (text != getDB('mood-text', 1))) {
+		if((value != getDB(DESKTOP_HASH, 'mood-value', 1)) || (text != getDB(DESKTOP_HASH, 'mood-text', 1))) {
 			// Update the local stored values
-			setDB('mood-value', 1, value);
-			setDB('mood-text', 1, text);
+			setDB(DESKTOP_HASH, 'mood-value', 1, value);
+			setDB(DESKTOP_HASH, 'mood-text', 1, text);
 			
 			// Send it!
 			sendMood(value, text);
@@ -834,10 +834,10 @@ function launchPEP() {
 		var text = $(this).val();
 		
 		// Must send the activity?
-		if((value != getDB('activity-value', 1)) || (text != getDB('activity-text', 1))) {
+		if((value != getDB(DESKTOP_HASH, 'activity-value', 1)) || (text != getDB(DESKTOP_HASH, 'activity-text', 1))) {
 			// Update the local stored values
-			setDB('activity-value', 1, value);
-			setDB('activity-text', 1, text);
+			setDB(DESKTOP_HASH, 'activity-value', 1, value);
+			setDB(DESKTOP_HASH, 'activity-text', 1, text);
 			
 			// Send it!
 			sendActivity(value, '', text);

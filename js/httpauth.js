@@ -39,7 +39,7 @@ function doHttpLogin(lNick, lPass, lServer, lPriority) {
 		setupCon(con);
 		
 		// Generate a resource
-		var random_resource = getDB('session', 'resource');
+		var random_resource = getDB(DESKTOP_HASH, 'session', 'resource');
 		
 		if(!random_resource)
 			random_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
@@ -57,7 +57,7 @@ function doHttpLogin(lNick, lPass, lServer, lPriority) {
 		oArgs.xmllang = XML_LANG;
 		
 		// Store the resource (for reconnection)
-		setDB('session', 'resource', random_resource);
+		setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
 		
 		// Generate a session XML to be stored
 		session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + random_resource + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + (lPriority + '').htmlEnc() + '</priority></session>';
@@ -66,7 +66,7 @@ function doHttpLogin(lNick, lPass, lServer, lPriority) {
 		CURRENT_SESSION = session_xml;
 		
 		// We store the infos of the user into the data-base
-		setDB('priority', 1, 10);
+		setDB(DESKTOP_HASH, 'priority', 1, 10);
 		
 		// We connect !
 		con.connect(oArgs);
@@ -74,12 +74,12 @@ function doHttpLogin(lNick, lPass, lServer, lPriority) {
 		// Change the page title
 		pageTitle('wait');
 		
-		logThis('Jappix is connecting...', 3);
+		Console.info('Jappix is connecting...');
 	}
 	
 	catch(e) {
 		// Logs errors
-		logThis('Error while logging in: ' + e, 1);
+		Console.error('doHttpLogin', e);
 		
 		// Reset Jappix
 		destroyTalkPage();

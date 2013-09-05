@@ -105,7 +105,7 @@ function getBuddyName(xid) {
 function getNick() {
 	try {
 		// Try to read the user nickname
-		var nick = getDB('profile', 'nick');
+		var nick = getDB(DESKTOP_HASH, 'profile', 'nick');
 		
 		// No nick?
 		if(!nick)
@@ -118,7 +118,7 @@ function getNick() {
 // Gets the full name of the user
 function getName() {
 	// Try to read the user name
-	var name = getDB('profile', 'name');
+	var name = getDB(DESKTOP_HASH, 'profile', 'name');
 	
 	// No name? Use the nickname instead!
 	if(!name)

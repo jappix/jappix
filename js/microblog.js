@@ -624,7 +624,7 @@ function handleCommentsMicroblog(iq) {
 		$(path).everyTime('60s', function() {
 			getCommentsMicroblog(server, node, id);
 			
-			logThis('Updating comments node: ' + node + ' on ' + server + '...');
+			Console.log('Updating comments node: ' + node + ' on ' + server + '...');
 		});
 		
 		// Input key event
@@ -832,7 +832,7 @@ function handleMicroblog(iq) {
 		}
 	}
 	
-	logThis('Microblog got: ' + from, 3);
+	Console.info('Microblog got: ' + from);
 }
 
 // Handles the microblog of an user (from roster)
@@ -872,7 +872,7 @@ function handleInitMicroblog(iq) {
 		// The node may not exist, create it!
 		setupMicroblog('', NS_URN_MBLOG, '1', '1000000', '', '', true);
 		
-		logThis('Error while getting microblog, trying to reconfigure the PubSub node!', 2);
+		Console.warn('Error while getting microblog, trying to reconfigure the PubSub node!');
 	}
 }
 
@@ -904,7 +904,7 @@ function requestMicroblog(xid, items, get_item, handler) {
 function getMicroblog(xid, hash, check) {
 	/* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve */
 	
-	logThis('Get the microblog: ' + xid, 3);
+	Console.info('Get the microblog: ' + xid);
 	
 	// Fire the wait event
 	waitMicroblog('fetch');
@@ -1147,7 +1147,7 @@ function handleMyMicroblog(packet) {
 
 // Performs the microblog sender checks
 function sendMicroblog() {
-	logThis('Send a new microblog item', 3);
+	Console.info('Send a new microblog item');
 	
 	// Avoid nasty errors
 	try {
@@ -1302,7 +1302,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'replies', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
 	
 	// Create the geoloc child
-	var geoloc_xml = getDB('geolocation', 'now');
+	var geoloc_xml = getDB(DESKTOP_HASH, 'geolocation', 'now');
 	
 	if(geoloc_xml) {
 		// Create two position arrays
@@ -1423,7 +1423,7 @@ function handleMicroblogAttach(responseXML) {
 			return unattachMicroblog(fID);
 		});
 		
-		logThis('File attached.', 3);
+		Console.info('File attached.');
 	}
 	
 	// Any error?
@@ -1438,7 +1438,7 @@ function handleMicroblogAttach(responseXML) {
 			showBubble('#attach');
 		}
 		
-		logThis('Error while attaching the file: ' + dData.find('error').text(), 1);
+		Console.error('Error while attaching the file', dData.find('error').text());
 	}
 	
 	// Reset the attach bubble

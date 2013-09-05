@@ -90,31 +90,31 @@ function handleMessage(message) {
 			// Tell Jappix the entity supports chatstates
 			$('#' + chatstate_hash + ' .message-area').attr('data-chatstates', 'true');
 			
-			logThis('Active chatstate received from: ' + from);
+			Console.log('Active chatstate received from: ' + from);
 		}
 		
 		else if($(node).find('composing').size()) {
 			displayChatState('composing', chatstate_hash, type);
 
-			logThis('Composing chatstate received from: ' + from);
+			Console.log('Composing chatstate received from: ' + from);
 		}
 		
 		else if($(node).find('paused').size()) {
 			displayChatState('paused', chatstate_hash, type);
 
-			logThis('Paused chatstate received from: ' + from);
+			Console.log('Paused chatstate received from: ' + from);
 		}
 		
 		else if($(node).find('inactive').size()){
 			displayChatState('inactive', chatstate_hash, type);
 
-			logThis('Inactive chatstate received from: ' + from);
+			Console.log('Inactive chatstate received from: ' + from);
 		}
 		
 		else if($(node).find('gone').size()){
 			displayChatState('gone', chatstate_hash, type);
 
-			logThis('Gone chatstate received from: ' + from);
+			Console.log('Gone chatstate received from: ' + from);
 		}
 	}
 	
@@ -150,7 +150,7 @@ function handleMessage(message) {
 				// Open a new notification
 				newNotification(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
 				
-				logThis('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
+				Console.log('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
 				
 				return false;
 			}
@@ -170,7 +170,7 @@ function handleMessage(message) {
 		// We display the notification
 		newNotification('invite_room', iFrom, [iRoom], body);
 		
-		logThis('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
+		Console.log('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
 		
 		return false;
 	}
@@ -180,7 +180,7 @@ function handleMessage(message) {
 		// Open a new notification
 		newNotification('request', xid, [message], body);
 		
-		logThis('HTTP Request from: ' + xid);
+		Console.log('HTTP Request from: ' + xid);
 		
 		return false;
 	}
@@ -189,7 +189,7 @@ function handleMessage(message) {
 	if(message.getChild('x', NS_XOOB)) {
 		handleOOB(from, id, 'x', node);
 		
-		logThis('Message OOB request from: ' + xid);
+		Console.log('Message OOB request from: ' + xid);
 		
 		return false;
 	}
@@ -199,7 +199,7 @@ function handleMessage(message) {
 		// Open a new notification
 		newNotification('rosterx', xid, [message], body);
 		
-		logThis('Roster Item Exchange from: ' + xid);
+		Console.log('Roster Item Exchange from: ' + xid);
 		
 		return false;
 	}
@@ -781,7 +781,7 @@ function sendMessage(hash, type) {
 				
 				con.send(aMsg, handleMessageError);
 				
-				logThis('Message sent to: ' + xid + ' / ' + type, 3);
+				Console.info('Message sent to: ' + xid + ' / ' + type);
 			}
 		}
 		

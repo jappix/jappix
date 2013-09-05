@@ -48,7 +48,7 @@ function getConfigMAM() {
 
 		con.send(iq, handleConfigMAM);
 	} catch(e) {
-		logThis('getConfigMAM > ' + e, 1);
+		Console.error('getConfigMAM', e);
 	}
 }
 
@@ -73,7 +73,7 @@ function handleConfigMAM(iq) {
 		// All done.
 		waitOptions('mam');
 	} catch(e) {
-		logThis('handleConfigMAM > ' + e, 1);
+		Console.error('handleConfigMAM', e);
 	}
 }
 
@@ -93,7 +93,7 @@ function setConfigMAM(pref_default) {
 
 		con.send(iq);
 	} catch(e) {
-		logThis('setConfigMAM > ' + e, 1);
+		Console.error('setConfigMAM', e);
 	}
 }
 
@@ -118,13 +118,13 @@ function purgeArchivesMAM(args) {
 		
 		con.send(iq, function(iq) {
 			if(iq.getType() == 'result') {
-				logThis('Archives purged (MAM).', 3);
+				Console.info('Archives purged (MAM).');
 			} else {
-				logThis('Error purging archives (MAM).', 1);
+				Console.error('Error purging archives (MAM).');
 			}
 		});
 	} catch(e) {
-		logThis('purgeArchivesMAM > ' + e, 1);
+		Console.error('purgeArchivesMAM', e);
 	}
 }
 
@@ -167,7 +167,7 @@ function getArchivesMAM(args, rsm_args, callback) {
 			handleArchivesMAM(res_iq, callback);
 		});
 	} catch(e) {
-		logThis('getArchivesMAM > ' + e, 1);
+		Console.error('getArchivesMAM', e);
 	}
 }
 
@@ -230,12 +230,12 @@ function handleArchivesMAM(iq, callback) {
 					delete MAM_MAP_PENDING[res_with];
 				}
 
-				logThis('Got archives from: ' + res_with, 3);
+				Console.info('Got archives from: ' + res_with);
 			} else {
-				logThis('Could not associate archive response with a known JID.', 2);
+				Console.warn('Could not associate archive response with a known JID.');
 			}
 		} else {
-			logThis('Error handing archives (MAM).', 1);
+			Console.error('Error handing archives (MAM).');
 		}
 
 		// Execute callback?
@@ -243,7 +243,7 @@ function handleArchivesMAM(iq, callback) {
 			callback(iq);
 		}
 	} catch(e) {
-		logThis('handleArchivesMAM > ' + e, 1);
+		Console.error('handleArchivesMAM', e);
 	}
 }
 
@@ -325,6 +325,6 @@ function handleMessageMAM(fwd_stanza, c_delay) {
 			}
 		}
 	} catch(e) {
-		logThis('handleMessageMAM > ' + e, 1);
+		Console.error('handleMessageMAM', e);
 	}
 }

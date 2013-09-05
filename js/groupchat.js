@@ -56,8 +56,8 @@ function getMUC(room, nickname, password) {
 	// Got our nickname?
 	if(nickname) {
 		// Get our general presence
-		var show = getDB('presence-show', 1);
-		var status = getDB('options', 'presence-status');
+		var show = getDB(DESKTOP_HASH, 'presence-show', 1);
+		var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 	
 		// Set my nick
 		$('#' + hash).attr('data-nick', escape(nickname));
@@ -82,7 +82,7 @@ function handleMUC(presence) {
 	if(presence.getID() == null)
 		presence.setID(1);
 	
-	logThis('First MUC presence: ' + from, 3);
+	Console.info('First MUC presence: ' + from);
 	
 	// Catch the errors
 	if(!handleError(xml)) {
@@ -174,7 +174,7 @@ function generateMUCAsk(type, room, hash, nickname, password) {
 function groupchatCreate(hash, room, chan, nickname, password) {
 	/* REF: http://xmpp.org/extensions/xep-0045.html */
 	
-	logThis('New groupchat: ' + room, 3);
+	Console.info('New groupchat: ' + room);
 	
 	// Create the chat content
 	generateChat('groupchat', hash, room, chan);
@@ -233,7 +233,7 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 				sendMessage(hash, 'groupchat');
 				
 				// Reset the composing database entry
-				setDB('chatstate', room, 'off');
+				setDB(DESKTOP_HASH, 'chatstate', room, 'off');
 			}
 			
 			return false;

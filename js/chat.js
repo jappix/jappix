@@ -49,7 +49,7 @@ function checkChatCreate(xid, type, nickname, password, title) {
 			// Try to read the room stored configuration
 			if(!isAnonymous() && (!nickname || !password || !title)) {
 				// Catch the room data
-				var fData = $(XMLFromString(getDB('favorites', xid)));
+				var fData = $(XMLFromString(getDB(DESKTOP_HASH, 'favorites', xid)));
 				var fNick = fData.find('nick').text();
 				var fPwd = fData.find('password').text();
 				var fName = fData.find('name').text();
@@ -233,7 +233,7 @@ function cleanChat(chat) {
 
 // Creates a new chat
 function chatCreate(hash, xid, nick, type) {
-	logThis('New chat: ' + xid, 3);
+	Console.info('New chat: ' + xid);
 	
 	// Create the chat content
 	generateChat(type, hash, xid, nick);
@@ -330,7 +330,7 @@ function chatCreate(hash, xid, nick, type) {
 				sendMessage(hash, 'chat');
 				
 				// Reset the composing database entry
-				setDB('chatstate', xid, 'off');
+				setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
 			}
 			
 			return false;

@@ -134,7 +134,7 @@ function openWelcome() {
 	// Associate the events
 	launchWelcome();
 	
-	logThis('Welcome assistant opened.');
+	Console.log('Welcome assistant opened.');
 }
 
 // Closes the welcome tools
@@ -196,7 +196,7 @@ function sendWelcome(array) {
 		
 		if((i != 2) && (i != 3) && tag && value) {
 			storage.appendChild(iq.buildNode('option', {'type': tag, 'xmlns': NS_OPTIONS}, value));
-			setDB('options', tag, value);
+			setDB(DESKTOP_HASH, 'options', tag, value);
 		}
 	}
 	

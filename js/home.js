@@ -388,10 +388,10 @@ function launchHome() {
 			$(this).slideDown();
 		});
 		
-		logThis('Jappix does not support this browser!', 2);
+		Console.warn('Jappix does not support this browser!');
 	}
 	
-	logThis('Welcome to Jappix! Happy coding in developer mode!');
+	Console.log('Welcome to Jappix! Happy coding in developer mode!');
 }
 
 // Launch this plugin!

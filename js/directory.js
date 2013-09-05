@@ -61,7 +61,7 @@ function startDirectory() {
 	// Launch the search!
 	dataForm($('#directory .directory-server-input').val(), 'search', '', '', 'directory');
 	
-	logThis('Directory search launched: ' + server);
+	Console.log('Directory search launched: ' + server);
 	
 	return false;
 }

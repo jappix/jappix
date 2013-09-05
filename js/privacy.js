@@ -120,7 +120,7 @@ function closePrivacy() {
 // Sets the received state for privacy block list
 function receivedPrivacy() {
 	// Store marker
-	setDB('privacy-marker', 'available', 'true');
+	setDB(DESKTOP_HASH, 'privacy-marker', 'available', 'true');
 	
 	// Show privacy elements
 	$('.privacy-hidable').show();
@@ -136,20 +136,20 @@ function listPrivacy() {
 	
 	con.send(iq, handleListPrivacy);
 	
-	logThis('Getting available privacy list(s)...');
+	Console.log('Getting available privacy list(s)...');
 }
 
 // Handles available privacy lists
 function handleListPrivacy(iq) {
 	// Error?
 	if(iq.getType() == 'error')
-		return logThis('Privacy lists not supported!', 2);
+		return Console.warn('Privacy lists not supported!');
 	
 	// Get IQ query content
 	var iqQuery = iq.getQuery();
 	
 	// Save the content
-	setDB('privacy-lists', 'available', xmlToString(iqQuery));
+	setDB(DESKTOP_HASH, 'privacy-lists', 'available', xmlToString(iqQuery));
 	
 	// Any block list?
 	if($(iqQuery).find('list[name="block"]').size()) {
@@ -157,13 +157,13 @@ function handleListPrivacy(iq) {
 		if(!$(iqQuery).find('default[name="block"]').size())
 			changePrivacy('block', 'default');
 		else
-			setDB('privacy-marker', 'default', 'block');
+			setDB(DESKTOP_HASH, 'privacy-marker', 'default', 'block');
 		
 		// Not the active one?
 		if(!$(iqQuery).find('active[name="block"]').size())
 			changePrivacy('block', 'active');
 		else
-			setDB('privacy-marker', 'active', 'block');
+			setDB(DESKTOP_HASH, 'privacy-marker', 'active', 'block');
 		
 		// Get the block list rules
 		getPrivacy('block');
@@ -173,7 +173,7 @@ function handleListPrivacy(iq) {
 	else
 		receivedPrivacy();
 	
-	logThis('Got available privacy list(s).', 3);
+	Console.info('Got available privacy list(s).');
 }
 
 // Gets privacy lists
@@ -192,7 +192,7 @@ function getPrivacy(list) {
 	if(exists('#privacy'))
 		$('#privacy .wait').show();
 	
-	logThis('Getting privacy list(s): ' + list);
+	Console.log('Getting privacy list(s): ' + list);
 }
 
 // Handles privacy lists
@@ -206,7 +206,7 @@ function handleGetPrivacy(iq) {
 		var list_name = $(this).attr('name');
 		
 		// Store list content
-		setDB('privacy', list_name, xmlToString(this));
+		setDB(DESKTOP_HASH, 'privacy', list_name, xmlToString(this));
 		
 		// Is this a block list?
 		if(list_name == 'block') {
@@ -232,7 +232,7 @@ function handleGetPrivacy(iq) {
 		$('#privacy .wait').hide();
 	}
 	
-	logThis('Got privacy list(s).', 3);
+	Console.info('Got privacy list(s).');
 }
 
 // Sets a privacy list
@@ -275,18 +275,18 @@ function setPrivacy(list, types, values, actions, orders, presence_in, presence_
 	
 	con.send(iq, function(iq) {
 		if(iq.getType() == 'result')
-			logThis('Sent privacy list.');
+			Console.log('Sent privacy list.');
 		else
-			logThis('Error sending privacy list.', 1);
+			Console.error('Error sending privacy list.');
 	});
 	
-	logThis('Sending privacy list: ' + list);
+	Console.log('Sending privacy list: ' + list);
 }
 
 // Push a privacy list item to a list
 function pushPrivacy(list, type, value, action, presence_in, presence_out, msg, iq_p, hash, special_action) {
 	// Read the stored elements (to add them)
-	var stored = XMLFromString(getDB('privacy', list));
+	var stored = XMLFromString(getDB(DESKTOP_HASH, 'privacy', list));
 	
 	// Read the first value
 	var first_val = value[0];
@@ -367,11 +367,11 @@ function pushPrivacy(list, type, value, action, presence_in, presence_out, msg, 
 // Change a privacy list status
 function changePrivacy(list, status) {
 	// Yet sent?
-	if(getDB('privacy-marker', status) == list)
+	if(getDB(DESKTOP_HASH, 'privacy-marker', status) == list)
 		return;
 	
 	// Write a marker
-	setDB('privacy-marker', status, list);
+	setDB(DESKTOP_HASH, 'privacy-marker', status, list);
 	
 	// Build query
 	var iq = new JSJaCIQ();
@@ -387,12 +387,12 @@ function changePrivacy(list, status) {
 	
 	con.send(iq);
 	
-	logThis('Changing privacy list status: ' + list + ' to: ' + status);
+	Console.log('Changing privacy list status: ' + list + ' to: ' + status);
 }
 
 // Checks the privacy status (action) of a value
 function statusPrivacy(list, value) {
-	return $(XMLFromString(getDB('privacy', list))).find('item[value="' + value + '"]').attr('action');
+	return $(XMLFromString(getDB(DESKTOP_HASH, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
 }
 
 // Converts the groups array into a <option /> string
@@ -413,7 +413,7 @@ function displayListsPrivacy() {
 	// Initialize
 	var code = '';
 	var select = $('#privacy .privacy-head .list-left select');
-	var data = XMLFromString(getDB('privacy-lists', 'available'));
+	var data = XMLFromString(getDB(DESKTOP_HASH, 'privacy-lists', 'available'));
 	
 	// Parse the XML data!
 	$(data).find('list').each(function() {
@@ -460,12 +460,12 @@ function displayItemsPrivacy() {
 	var status = ['active', 'default'];
 	
 	for(s in status) {
-		if(getDB('privacy-marker', status[s]) == list)
+		if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
 			$('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
 	}
 	
 	// Try to read the stored items
-	var items = XMLFromString(getDB('privacy', list));
+	var items = XMLFromString(getDB(DESKTOP_HASH, 'privacy', list));
 	
 	// Must retrieve the data?
 	if(!items) {
@@ -689,7 +689,7 @@ function launchPrivacy() {
 		var status = ['active', 'default'];
 		
 		for(s in status) {
-			if(getDB('privacy-marker', status[s]) == list)
+			if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
 				changePrivacy('', status[s]);
 		}
 		
@@ -810,7 +810,7 @@ function launchPrivacy() {
 			var status = ['active', 'default'];
 			
 			for(s in status) {
-				if(getDB('privacy-marker', status[s]) == list)
+				if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
 					changePrivacy('', status[s]);
 			}
 		}

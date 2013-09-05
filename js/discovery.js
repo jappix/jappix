@@ -131,7 +131,7 @@ function startDiscovery() {
 	// We launch the items query
 	dataForm(discoServer, 'browse', '', '', 'discovery');
 	
-	logThis('Service discovery launched: ' + discoServer);
+	Console.log('Service discovery launched: ' + discoServer);
 	
 	return false;
 }

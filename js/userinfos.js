@@ -198,7 +198,7 @@ function vCardBuddyInfos() {
 // Displays the buddy comments
 function displayBuddyComments(xid) {
 	// We get the value in the database
-	var value = getDB('rosternotes', xid);
+	var value = getDB(DESKTOP_HASH, 'rosternotes', xid);
 	
 	// Display the value
 	if(value)
@@ -251,7 +251,7 @@ function lastActivityUserInfos(iq) {
 			$('#userinfos .buddy-last').text(last);
 		}
 		
-		logThis('Last activity received: ' + from);
+		Console.log('Last activity received: ' + from);
 	}
 	
 	$('#userinfos .content').removeClass('last');
@@ -286,7 +286,7 @@ function versionUserInfos(iq) {
 		if(os)
 			$(path + ' #BUDDY-SYSTEM').text(os);
 		
-		logThis('Software version received: ' + fullXID(getStanzaFrom(iq)));
+		Console.log('Software version received: ' + fullXID(getStanzaFrom(iq)));
 	}
 	
 	$('#userinfos .content').removeClass('version');
@@ -322,7 +322,7 @@ function localTimeUserInfos(iq) {
 			$(path + ' #BUDDY-TIME').text(local_string);
 		}
 		
-		logThis('Local time received: ' + fullXID(getStanzaFrom(iq)));
+		Console.log('Local time received: ' + fullXID(getStanzaFrom(iq)));
 	}
 	
 	$('#userinfos .content').removeClass('time');
@@ -344,13 +344,13 @@ function sendBuddyComments() {
 	var xid = $('#userinfos .buddy-xid').text();
 	
 	// Necessary to update?
-	var old_value = getDB('rosternotes', xid);
+	var old_value = getDB(DESKTOP_HASH, 'rosternotes', xid);
 	
 	if((old_value == value) || (!old_value && !value))
 		return false;
 	
 	// Update the database
-	setDB('rosternotes', xid, value);
+	setDB(DESKTOP_HASH, 'rosternotes', xid, value);
 	
 	// Send the new buddy storage values
 	var iq = new JSJaCIQ();

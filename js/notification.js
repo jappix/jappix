@@ -268,7 +268,7 @@ function newNotification(type, from, data, body, id, inverse) {
 	// We tell the user he has a new pending notification
 	checkNotifications();
 	
-	logThis('New notification: ' + from, 3);
+	Console.info('New notification: ' + from);
 }
 
 // Performs an action on a given notification
@@ -339,7 +339,7 @@ function getNotifications() {
 	
 	con.send(iq, handleNotifications);
 	
-	logThis('Getting social notifications...');
+	Console.log('Getting social notifications...');
 }
 
 // Handles the social notifications
@@ -349,7 +349,7 @@ function handleNotifications(iq) {
 		// The node may not exist, create it!
 		setupMicroblog('', NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
 		
-		logThis('Error while getting social notifications, trying to reconfigure the Pubsub node!', 2);
+		Console.warn('Error while getting social notifications, trying to reconfigure the Pubsub node!');
 	}
 	
 	// Selector
@@ -382,7 +382,7 @@ function handleNotifications(iq) {
 		newNotification(current_type, current_xid, [current_name, current_href, current_parent_href, current_item], current_text, current_id, inverse);
 	});
 	
-	logThis(items.size() + ' social notification(s) got!', 3);
+	Console.info(items.size() + ' social notification(s) got!');
 }
 
 // Sends a social notification
@@ -421,7 +421,7 @@ function sendNotification(xid, type, href, text, parent) {
 	
 	con.send(iq);
 	
-	logThis('Sending a social notification to ' + xid + ' (type: ' + type + ')...');
+	Console.log('Sending a social notification to ' + xid + ' (type: ' + type + ')...');
 }
 
 // Removes a social notification

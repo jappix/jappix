@@ -24,8 +24,8 @@ function sendOOB(to, type, url, desc) {
 			return;
 		
 		// Register the ID
-		setDB('send/url', id, url);
-		setDB('send/desc', id, desc);
+		setDB(DESKTOP_HASH, 'send/url', id, url);
+		setDB(DESKTOP_HASH, 'send/desc', id, desc);
 		
 		var aIQ = new JSJaCIQ();
 		aIQ.setTo(fullXID(to));
@@ -53,7 +53,7 @@ function sendOOB(to, type, url, desc) {
 		con.send(aMsg);
 	}
 	
-	logThis('Sent OOB request to: ' + to + ' (' + desc + ')');
+	Console.log('Sent OOB request to: ' + to + ' (' + desc + ')');
 }
 
 // Handles an OOB request
@@ -98,7 +98,7 @@ function replyOOB(to, id, choice, type, node) {
 	if(choice == 'accept') {
 		aIQ.setType('result');
 		
-		logThis('Accepted file request from: ' + to, 3);
+		Console.info('Accepted file request from: ' + to);
 	}
 	
 	// OOB request rejected
@@ -113,7 +113,7 @@ function replyOOB(to, id, choice, type, node) {
 		var aError = aIQ.appendNode('error', {'xmlns': NS_CLIENT, 'code': '406', 'type': 'modify'});
 		aError.appendChild(aIQ.buildNode('not-acceptable', {'xmlns': NS_STANZAS}));
 		
-		logThis('Rejected file request from: ' + to, 3);
+		Console.info('Rejected file request from: ' + to);
 	}
 	
 	con.send(aIQ);
@@ -172,13 +172,13 @@ function handleUploadOOB(responseXML) {
 		// Notify the sender
 		newNotification('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
 		
-		logThis('File request sent.', 3);
+		Console.info('File request sent.');
 	}
 	
 	// Upload error?
 	else {
 		openThisError(4);
 		
-		logThis('Error while sending the file: ' + dData.find('error').text(), 1);
+		Console.error('Error while sending the file', dData.find('error').text());
 	}
 }

@@ -13,7 +13,7 @@ Last revision: 02/10/11
 
 // Connected to an anonymous session
 function anonymousConnected(con) {
-	logThis('Jappix (anonymous) is now connected.', 3);
+	Console.info('Jappix (anonymous) is now connected.');
 	
 	// Connected marker
 	CONNECTED = true;
@@ -54,7 +54,7 @@ function anonymousConnected(con) {
 
 // Disconnected from an anonymous session
 function anonymousDisconnected() {
-	logThis('Jappix (anonymous) is now disconnected.', 3);
+	Console.info('Jappix (anonymous) is now disconnected.');
 }
 
 // Logins to a anonymous account
@@ -99,7 +99,7 @@ function anonymousLogin(server) {
 	
 	catch(e) {
 		// Logs errors
-		logThis('Error while anonymous loggin in: ' + e, 1);
+		Console.error('anonymousLogin', e);
 		
 		// Reset Jappix
 		anonymousDisconnected();
@@ -115,7 +115,7 @@ function anonymousLogin(server) {
 
 // Plugin launcher
 function launchAnonymous() {
-	logThis('Anonymous mode detected, connecting...', 3);
+	Console.info('Anonymous mode detected, connecting...');
 	
 	// We add the login wait div
 	showGeneralWait();

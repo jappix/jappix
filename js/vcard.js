@@ -223,7 +223,7 @@ function handleAvatarUpload(responseXML) {
 			$(this).hide();
 		});
 		
-		logThis('Error while uploading the avatar: ' + dData.find('error').text(), 1);
+		Console.error('Error while uploading the avatar', dData.find('error').text());
 	}
 }
 
@@ -452,7 +452,7 @@ function handleVCard(iq, type) {
 	else
 		vCardBuddyInfos();
 	
-	logThis('vCard received: ' + iqFrom);
+	Console.log('vCard received: ' + iqFrom);
 }
 
 // Sends the vCard of the user
@@ -566,7 +566,7 @@ function sendVCard() {
 	// Get our new avatar
 	getAvatar(getXID(), 'force', 'true', 'forget');
 	
-	logThis('vCard sent.');
+	Console.log('vCard sent.');
 	
 	return false;
 }

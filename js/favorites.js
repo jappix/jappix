@@ -202,7 +202,7 @@ function editFavorite() {
 	
 	// We retrieve the values
 	var xid = $(favorites + 'fedit-head-select').val();
-	var data = XMLFromString(getDB('favorites', xid));
+	var data = XMLFromString(getDB(DESKTOP_HASH, 'favorites', xid));
 	
 	// If this is not the default room
 	if(xid != 'none') {
@@ -289,7 +289,7 @@ function terminateThisFavorite(type) {
 	// Publish the new favorites
 	favoritePublish();
 	
-	logThis('Action on this bookmark: ' + room + '@' + server + ' / ' + type, 3);
+	Console.info('Action on this bookmark: ' + room + '@' + server + ' / ' + type);
 	
 	return false;
 }
@@ -302,7 +302,7 @@ function removeFavorite(xid, database) {
 	
 	// Must remove it from database?
 	if(database)
-		removeDB('favorites', xid);
+		removeDB(DESKTOP_HASH, 'favorites', xid);
 }
 
 // Sends a favorite to the XMPP server
@@ -334,7 +334,7 @@ function favoritePublish() {
 			if(password)
 				item.appendChild(iq.buildNode('password', {xmlns: NS_BOOKMARKS}, password));
 			
-			logThis('Bookmark sent: ' + xid, 3);
+			Console.info('Bookmark sent: ' + xid);
 		}
 	}
 	
@@ -365,12 +365,12 @@ function handleGCList(iq) {
 	var path = '#favorites .';
 	var from = fullXID(getStanzaFrom(iq));
 	
-	if (!iq || (iq.getType() != 'result')) {
+	if(!iq || (iq.getType() != 'result')) {
 		openThisError(3);
 		
 		$(path + 'wait').hide();
 		
-		logThis('Error while retrieving the rooms: ' + from, 1);
+		Console.error('Error while retrieving the rooms: ' + from);
 	}
 	
 	else {
@@ -412,7 +412,7 @@ function handleGCList(iq) {
 		else
 			$(path + 'fsearch-noresults').show();
 		
-		logThis('Rooms retrieved: ' + from, 3);
+		Console.info('Rooms retrieved: ' + from);
 	}
 	
 	$(path + 'wait').hide();
@@ -439,7 +439,7 @@ function displayFavorites(xid, name, nick, autojoin, password) {
 	
 	// We store the informations
 	var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
-	setDB('favorites', xid, value);
+	setDB(DESKTOP_HASH, 'favorites', xid, value);
 }
 
 // Loads the favorites for the popup

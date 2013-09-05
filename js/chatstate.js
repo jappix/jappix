@@ -18,11 +18,11 @@ function chatStateSend(state, xid, hash) {
 	// If the friend client supports chatstates and is online
 	if((user_type == 'groupchat') || ((user_type == 'chat') && $('#' + hash + ' .message-area').attr('data-chatstates') && !exists('#page-switch .' + hash + ' .unavailable'))) {
 		// Already sent?
-		if(getDB('currentchatstate', xid) == state)
+		if(getDB(DESKTOP_HASH, 'currentchatstate', xid) == state)
 			return;
 		
 		// Write the state
-		setDB('currentchatstate', xid, state);
+		setDB(DESKTOP_HASH, 'currentchatstate', xid, state);
 		
 		// New message stanza
 		var aMsg = new JSJaCMessage();
@@ -120,18 +120,18 @@ function eventsChatState(target, xid, hash, type) {
 	target.keyup(function(e) {
 		if(e.keyCode != 13) {
 			// Composing a message
-			if($(this).val() && (getDB('chatstate', xid) != 'on')) {
+			if($(this).val() && (getDB(DESKTOP_HASH, 'chatstate', xid) != 'on')) {
 				// We change the state detect input
-				setDB('chatstate', xid, 'on');
+				setDB(DESKTOP_HASH, 'chatstate', xid, 'on');
 				
 				// We send the friend a "composing" chatstate
 				chatStateSend('composing', xid, hash);
 			}
 			
 			// Flushed the message which was being composed
-			else if(!$(this).val() && (getDB('chatstate', xid) == 'on')) {
+			else if(!$(this).val() && (getDB(DESKTOP_HASH, 'chatstate', xid) == 'on')) {
 				// We change the state detect input
-				setDB('chatstate', xid, 'off');
+				setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
 				
 				// We send the friend an "active" chatstate
 				chatStateSend('active', xid, hash);
@@ -141,7 +141,7 @@ function eventsChatState(target, xid, hash, type) {
 	
 	target.change(function() {
 		// Reset the composing database entry
-		setDB('chatstate', xid, 'off');
+		setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
 	});
 	
 	target.focus(function() {

@@ -252,48 +252,6 @@ function getStanzaFrom(stanza) {
 	return from;
 }
 
-// Logs a given data in the console
-function logThis(data, level) {
-	// Console not available
-	if(!isDeveloper() || (typeof(console) == 'undefined'))
-		return false;
-	
-	// Switch the log level
-	switch(level) {
-		// Debug
-		case 0:
-			console.debug(data);
-			
-			break;
-		
-		// Error
-		case 1:
-			console.error(data);
-			
-			break;
-		
-		// Warning
-		case 2:
-			console.warn(data);
-			
-			break;
-		
-		// Information
-		case 3:
-			console.info(data);
-			
-			break;
-		
-		// Default log level
-		default:
-			console.log(data);
-			
-			break;
-	}
-	
-	return true;
-}
-
 // Gets the current Jappix app. location
 function getJappixLocation() {
 	var url = window.location.href;
@@ -346,5 +304,52 @@ function isMobile() {
 		return /Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|Bada|Maemo|Meego|webOS/i.test(navigator.userAgent);
 	} catch(e) {
 		return false;
+	}
+}
+
+// Converts a XML document to a string
+function xmlToString(xmlData) {
+	try {
+		// For Mozilla, Firefox, Opera, etc.
+		if(window.XMLSerializer)
+			return (new XMLSerializer()).serializeToString(xmlData);
+		
+		// For Internet Explorer
+		if(window.ActiveXObject)
+			return xmlData.xml;
+		
+		return null;
+	}
+	
+	catch(e) {
+		return null;
+	}
+}
+
+// Converts a string to a XML document
+function XMLFromString(sXML) {
+	try {
+		// No data?
+		if(!sXML)
+			return '';
+		
+		// Add the XML tag
+		if(!sXML.match(/^<\?xml/i))
+			sXML = '<?xml version="1.0"?>' + sXML;
+		
+		// Parse it!
+		if(window.DOMParser)
+			return (new DOMParser()).parseFromString(sXML, 'text/xml');
+		
+		if(window.ActiveXObject) {
+			var oXML = new ActiveXObject('Microsoft.XMLDOM');
+			oXML.loadXML(sXML);
+			
+	 		return oXML;
+		}
+	}
+	
+	catch(e) {
+		return '';
 	}
 }

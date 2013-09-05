@@ -53,7 +53,7 @@ function sendReceived(type, to, id) {
 	
 	con.send(aMsg);
 	
-	logThis('Sent received to: ' + to);
+	Console.log('Sent received to: ' + to);
 }
 
 // Tells the message has been received

@@ -2751,7 +2751,7 @@ JSJaCConnection.prototype.disconnect = function() {
   this._req[slot].r.send(request);
  
   try {
-    removeDB('jsjac', 'state');
+    removeDB(MINI_HASH, 'jsjac', 'state');
   } catch (e) {}
  
   this.oDbg.log("Disconnected: "+this._req[slot].r.responseText,2);
@@ -2926,9 +2926,9 @@ JSJaCConnection.prototype.registerIQSet = function(childName, childNS, handler) 
  */
 JSJaCConnection.prototype.resume = function() {
   try {
-    var json = getDB('jsjac', 'state');
+    var json = getDB(MINI_HASH, 'jsjac', 'state');
     this.oDbg.log('read cookie: '+json,2);
-    removeDB('jsjac', 'state');
+    removeDB(MINI_HASH, 'jsjac', 'state');
 
     return this.resumeFromData(JSJaCJSON.parse(json));
   } catch (e) {}
@@ -3100,7 +3100,7 @@ JSJaCConnection.prototype.suspend = function(has_pause) {
   var data = this.suspendToData(has_pause);
   
   try {
-    var c = setDB('jsjac', 'state', JSJaCJSON.toString(data));
+    var c = setDB(MINI_HASH, 'jsjac', 'state', JSJaCJSON.toString(data));
     return c;
   } catch (e) {
     this.oDbg.log("Failed creating cookie '"+this._cookie_prefix+
@@ -4298,7 +4298,7 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
       clearInterval(this._inQto);
 
       try {
-        removeDB('jsjac', 'state');
+        removeDB(MINI_HASH, 'jsjac', 'state');
       } catch (e) {}
 
       this._connected = false;

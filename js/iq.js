@@ -34,14 +34,14 @@ function handleIQ(iq) {
 		
 		handleOOB(iqFrom, iqID, 'iq', iqNode);
 		
-		logThis('Received IQ OOB request: ' + iqFrom);
+		Console.log('Received IQ OOB request: ' + iqFrom);
 	}
 	
 	// OOB reply
-	else if(getDB('send/url', iqID)) {
+	else if(getDB(DESKTOP_HASH, 'send/url', iqID)) {
 		// Get the values
-		var oob_url = getDB('send/url', iqID);
-		var oob_desc = getDB('send/desc', iqID);
+		var oob_url = getDB(DESKTOP_HASH, 'send/url', iqID);
+		var oob_desc = getDB(DESKTOP_HASH, 'send/desc', iqID);
 		var notif_id = hex_md5(oob_url + oob_desc + iqType + iqFrom + iqID);
 		
 		// Error?
@@ -75,7 +75,7 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received software version query: ' + iqFrom);
+		Console.log('Received software version query: ' + iqFrom);
 	}
 	
 	// Last activity query
@@ -87,7 +87,7 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received last activity query: ' + iqFrom);
+		Console.log('Received last activity query: ' + iqFrom);
 	}
 	
 	// Privacy lists push
@@ -102,7 +102,7 @@ function handleIQ(iq) {
 			getPrivacy($(this).attr('name'));
 		});
 		
-		logThis('Received privacy lists push: ' + iqFrom);
+		Console.log('Received privacy lists push: ' + iqFrom);
 	}
 	
 	// Roster push
@@ -117,7 +117,7 @@ function handleIQ(iq) {
 			parseRoster($(this), 'presence');
 		});
 		
-		logThis('Received roster push: ' + iqFrom);
+		Console.log('Received roster push: ' + iqFrom);
 	}
 	
 	// Roster Item Exchange query
@@ -125,7 +125,7 @@ function handleIQ(iq) {
 		// Open a new notification
 		newNotification('rosterx', iqFrom, [iqNode], '');
 		
-		logThis('Roster Item Exchange from: ' + iqFrom);
+		Console.log('Roster Item Exchange from: ' + iqFrom);
 	}
 	
 	// Disco info query
@@ -150,7 +150,7 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received disco#infos query: ' + iqFrom);
+		Console.log('Received disco#infos query: ' + iqFrom);
 	}
 	
 	// User time query
@@ -163,7 +163,7 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received local time query: ' + iqFrom);
+		Console.log('Received local time query: ' + iqFrom);
 	}
 	
 	// Ping
@@ -172,7 +172,7 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received a ping: ' + iqFrom);
+		Console.log('Received a ping: ' + iqFrom);
 	}
 	
 	// Not implemented
@@ -191,6 +191,6 @@ function handleIQ(iq) {
 		
 		con.send(iqResponse);
 		
-		logThis('Received an unsupported IQ query from: ' + iqFrom);
+		Console.log('Received an unsupported IQ query from: ' + iqFrom);
 	}
 }

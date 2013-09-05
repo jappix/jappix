@@ -105,7 +105,7 @@ function applyIntegrateBox(url, service, url_list, services_list, comments_e_lis
 	closeIntegrateBox();
 	
 	// Media integration not wanted?
-	if(getDB('options', 'integratemedias') == '0')
+	if(getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
 		return true;
 	
 	// Apply the HTML code

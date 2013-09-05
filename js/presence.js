@@ -15,7 +15,7 @@ Last revision: 21/06/12
 var FIRST_PRESENCE_SENT = false;
 
 function firstPresence(checksum) {
-	logThis('First presence sent.', 3);
+	Console.info('First presence sent.');
 	
 	// Jappix is now ready: change the title
 	pageTitle('talk');
@@ -27,7 +27,7 @@ function firstPresence(checksum) {
 	FIRST_PRESENCE_SENT = true;
 	
 	// Try to use the last status message
-	var status = getDB('options', 'presence-status');
+	var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 	
 	if(!status)
 		status = '';
@@ -48,7 +48,7 @@ function firstPresence(checksum) {
 	PRESENCE_LAST_ACTIVITY = getTimeStamp();
 	
 	// We store our presence
-	setDB('presence-show', 1, 'available');
+	setDB(DESKTOP_HASH, 'presence-show', 1, 'available');
 	
 	// Not anonymous
 	if(!is_anonymous) {
@@ -112,7 +112,7 @@ function handlePresence(presence) {
 		caps = '';
 	
 	// This presence comes from another resource of my account with a difference avatar checksum
-	if((xid == getXID()) && (hasPhoto == 'true') && (checksum != getDB('checksum', 1)))
+	if((xid == getXID()) && (hasPhoto == 'true') && (checksum != getDB(DESKTOP_HASH, 'checksum', 1)))
 		getAvatar(getXID(), 'force', 'true', 'forget');
 	
 	// This presence comes from a groupchat
@@ -144,7 +144,7 @@ function handlePresence(presence) {
 		if(type && (type == 'unavailable')) {
 			displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
 			
-			removeDB('presence-stanza', from);
+			removeDB(DESKTOP_HASH, 'presence-stanza', from);
 			resources_obj = removeResourcePresence(xid, resource);
 		}
 		
@@ -154,7 +154,7 @@ function handlePresence(presence) {
 			if((nick == getMUCNick(xidHash)) && (presence.getID() == null) && !exists('#page-engine #' + xidHash + ' .list .' + hash)) {
 				handleMUC(presence);
 				
-				logThis('Passed M-Link MUC first presence handling.', 2);
+				Console.warn('Passed M-Link MUC first presence handling.');
 			}
 			
 			else {
@@ -162,7 +162,7 @@ function handlePresence(presence) {
 				
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
-				setDB('presence-stanza', from, xml);
+				setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
 				resources_obj = addResourcePresence(xid, resource);
 			}
 		}
@@ -203,7 +203,7 @@ function handlePresence(presence) {
 
 			// Unavailable/error presence
 			if(type == 'unavailable') {
-				removeDB('presence-stanza', from);
+				removeDB(DESKTOP_HASH, 'presence-stanza', from);
 				resources_obj = removeResourcePresence(xid, resource);
 			}
 			
@@ -211,7 +211,7 @@ function handlePresence(presence) {
 			else {
 				var xml = '<presence from="' + encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
-				setDB('presence-stanza', from, xml);
+				setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
 				resources_obj = addResourcePresence(xid, resource);
 			}
 
@@ -250,7 +250,7 @@ function handlePresence(presence) {
 			show = 'unavailable';
 	}
 	
-	logThis('Presence received: ' + show + ', from ' + from);
+	Console.log('Presence received: ' + show + ', from ' + from);
 }
 
 // Displays a MUC presence
@@ -665,8 +665,8 @@ function flushPresence(xid) {
 			
 			// If the current XID equals the asked XID
 			if(now_bare == xid) {
-				if(removeDB('presence-stanza', now_full)) {
-					logThis('Presence data flushed for: ' + now_full, 3);
+				if(removeDB(DESKTOP_HASH, 'presence-stanza', now_full)) {
+					Console.info('Presence data flushed for: ' + now_full);
 
 					flushed_marker = true;
 					i--;
@@ -682,7 +682,7 @@ function flushPresence(xid) {
 function processPriority(xid, resource, resources_obj) {
 	try {
 		if(!xid) {
-			logThis('processPriority > No XID value', 2);
+			Console.warn('processPriority', 'No XID value');
 			return;
 		}
 
@@ -698,17 +698,17 @@ function processPriority(xid, resource, resources_obj) {
 		if(xid.indexOf('/') !== -1) {
 			from_highest = xid;
 
-			logThis('Processed presence for groupchat user: ' + xid);
+			Console.log('Processed presence for groupchat user: ' + xid);
 		} else {
 			if(!highestPriority(xid)) {
 				from_highest = xid + '/' + resource;
 
-				logThis('Processed initial presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
+				Console.log('Processed initial presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
 			} else {
 				for(cur_resource in resources_obj) {
 					// Read presence data
 					cur_from = xid + '/' + cur_resource;
-					cur_pr   = getDB('presence-stanza', cur_from);
+					cur_pr   = getDB(DESKTOP_HASH, 'presence-stanza', cur_from);
 
 					if(cur_pr) {
 						// Parse presence data
@@ -724,22 +724,22 @@ function processPriority(xid, resource, resources_obj) {
 					}
 				}
 
-				logThis('Processed presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
+				Console.log('Processed presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
 			}
 		}
 
 		if(from_highest)
-			setDB('presence-priority', xid, from_highest);
+			setDB(DESKTOP_HASH, 'presence-priority', xid, from_highest);
 		else
-			removeDB('presence-priority', xid);
+			removeDB(DESKTOP_HASH, 'presence-priority', xid);
 	} catch(e) {
-		logThis('Error on presence processing: ' + e, 1);
+		Console.error('processPriority', e);
 	}
 }
 
 // Returns the highest presence priority XID for an user
 function highestPriority(xid) {
-	return getDB('presence-priority', xid) || '';
+	return getDB(DESKTOP_HASH, 'presence-priority', xid) || '';
 }
 
 // Gets the resource from a XID which has the highest priority
@@ -747,7 +747,7 @@ function highestPriorityStanza(xid) {
 	var pr;
 	var highest = highestPriority(xid);
 
-	if(highest)  pr = getDB('presence-stanza', highest);
+	if(highest)  pr = getDB(DESKTOP_HASH, 'presence-stanza', highest);
 	if(!pr)      pr = '<presence><type>unavailable</type></presence>';
 
 	return XMLFromString(pr);
@@ -757,7 +757,7 @@ function highestPriorityStanza(xid) {
 function resourcesPresence(xid) {
 	try {
 		var resources_obj = {};
-		var resources_db  = getDB('presence-resources', xid);
+		var resources_db  = getDB(DESKTOP_HASH, 'presence-resources', xid);
 
 		if(resources_db) {
 			resources_obj = $.evalJSON(resources_db);
@@ -773,7 +773,7 @@ function addResourcePresence(xid, resource) {
 		var resources_obj = resourcesPresence(xid);
 
 		resources_obj[resource] = 1;
-		setDB('presence-resources', xid, $.toJSON(resources_obj));
+		setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
 
 		return resources_obj;
 	} catch(e) {}
@@ -787,7 +787,7 @@ function removeResourcePresence(xid, resource) {
 		var resources_obj = resourcesPresence(xid);
 
 		delete resources_obj[resource];
-		setDB('presence-resources', xid, $.toJSON(resources_obj));
+		setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
 
 		return resources_obj;
 	} catch(e) {}
@@ -816,12 +816,12 @@ function presenceFunnel(xid, hash) {
 // Sends a defined presence packet
 function sendPresence(to, type, show, status, checksum, limit_history, password, handle) {
 	// Get some stuffs
-	var priority = getDB('priority', 1);
+	var priority = getDB(DESKTOP_HASH, 'priority', 1);
 	
 	if(!priority)
 		priority = '1';
 	if(!checksum)
-		checksum = getDB('checksum', 1);
+		checksum = getDB(DESKTOP_HASH, 'checksum', 1);
 	if(show == 'available')
 		show = '';
 	if(type == 'available')
@@ -895,7 +895,7 @@ function sendPresence(to, type, show, status, checksum, limit_history, password,
 	if(!type)
 		type = 'available';
 	
-	logThis('Presence sent: ' + type, 3);
+	Console.info('Presence sent: ' + type);
 }
 
 // Performs all the actions to get the presence data
@@ -913,7 +913,7 @@ function presenceSend(checksum, autoidle) {
 	
 	// We store our presence
 	if(!autoidle)
-		setDB('presence-show', 1, show);
+		setDB(DESKTOP_HASH, 'presence-show', 1, show);
 	
 	// We send the presence to our active MUC
 	$('.page-engine-chan[data-type="groupchat"]').each(function() {
@@ -1002,7 +1002,7 @@ function autoIdle() {
 		AUTO_IDLE = true;
 		
 		// Get the old status message
-		var status = getDB('options', 'presence-status');
+		var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 		
 		if(!status)
 			status = '';
@@ -1014,7 +1014,7 @@ function autoIdle() {
 		// Then send the xa presence
 		presenceSend('', true);
 		
-		logThis('Auto-idle presence sent: ' + idle_presence, 3);
+		Console.info('Auto-idle presence sent: ' + idle_presence);
 	}
 }
 
@@ -1023,8 +1023,8 @@ function eventIdle() {
 	// If we were idle, restore our old presence
 	if(AUTO_IDLE) {
 		// Get the values
-		var show = getDB('presence-show', 1);
-		var status = getDB('options', 'presence-status');
+		var show = getDB(DESKTOP_HASH, 'presence-show', 1);
+		var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 		
 		// Change the presence input
 		$('#my-infos .f-presence a.picker').attr('data-value', show);
@@ -1037,7 +1037,7 @@ function eventIdle() {
 		if(!show)
 			show = 'available';
 		
-		logThis('Presence restored: ' + show, 3);
+		Console.info('Presence restored: ' + show);
 	}
 	
 	// Apply some values
@@ -1153,13 +1153,13 @@ function launchPresence() {
 		var status = getUserStatus();
 		
 		// Read the old parameters
-		var old_show = getDB('presence-show', 1);
-		var old_status = getDB('options', 'presence-status');
+		var old_show = getDB(DESKTOP_HASH, 'presence-show', 1);
+		var old_status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 		
 		// Must send the presence?
 		if((show != old_show) || (status != old_status)) {
 			// Update the local stored status
-			setDB('options', 'presence-status', status);
+			setDB(DESKTOP_HASH, 'options', 'presence-status', status);
 			
 			// Update the server stored status
 			if(status != old_status)

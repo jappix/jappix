@@ -40,7 +40,7 @@ function openMe() {
 	// Associate the events
 	launchMe();
 	
-	logThis('Public profile tool opened.');
+	Console.log('Public profile tool opened.');
 }
 
 // Closes the Me tools

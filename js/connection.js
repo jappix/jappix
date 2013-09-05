@@ -13,6 +13,7 @@ Last revision: 20/02/12
 
 // Does the user login
 var CURRENT_SESSION = false;
+var DESKTOP_HASH = null;
 
 function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOpts) {
 	try {
@@ -43,7 +44,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		setupCon(con,oExtend);
 		
 		// Generate a resource
-		var random_resource = getDB('session', 'resource');
+		var random_resource = getDB(DESKTOP_HASH, 'session', 'resource');
 		
 		if(!random_resource)
 			random_resource = lResource + ' (' + (new Date()).getTime() + ')';
@@ -56,15 +57,17 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		oArgs.pass = lPass;
 		oArgs.secure = true;
 		oArgs.xmllang = XML_LANG;
+
+		DESKTOP_HASH = 'jd.' + hex_md5(oArgs.username + '@' + oArgs.domain);
 		
 		// Store the resource (for reconnection)
-		setDB('session', 'resource', random_resource);
+		setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
 		
 		// Store session XML in temporary database
 		storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember);
 		
 		// We store the infos of the user into the data-base
-		setDB('priority', 1, lPriority);
+		setDB(DESKTOP_HASH, 'priority', 1, lPriority);
 		
 		// We connect !
 		con.connect(oArgs);
@@ -72,12 +75,12 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 		// Change the page title
 		pageTitle('wait');
 		
-		logThis('Jappix is connecting...', 3);
+		Console.info('Jappix is connecting...');
 	}
 	
 	catch(e) {
 		// Logs errors
-		logThis('Error while logging in: ' + e, 1);
+		Console.error('doLogin', e);
 		
 		// Reset Jappix
 		destroyTalkPage();
@@ -93,7 +96,7 @@ function doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember, loginOp
 
 // Handles the user registration
 function handleRegistered() {
-	logThis('A new account has been registered.', 3);
+	Console.info('A new account has been registered.');
 	
 	// We remove the waiting image
 	removeGeneralWait();
@@ -111,7 +114,7 @@ function handleRegistered() {
 
 // Does the user registration
 function doRegister(username, domain, pass, captcha) {
-	logThis('Trying to register an account...', 3);
+	Console.info('Trying to register an account...');
 	
 	// We change the registered information text
 	$('#home .homediv.registerer').append(
@@ -215,7 +218,7 @@ function doRegister(username, domain, pass, captcha) {
 		
 		catch(e) {
 			// Logs errors
-			logThis(e, 1);
+			Console.error('doRegister', e);
 		}
 	}
 	
@@ -224,7 +227,7 @@ function doRegister(username, domain, pass, captcha) {
 
 // Does the user anonymous login
 function doAnonymous() {
-	logThis('Trying to login anonymously...', 3);
+	Console.info('Trying to login anonymously...');
 	
 	var aPath = '#home .anonymouser ';
 	var room = $(aPath + '.room').val();
@@ -260,7 +263,7 @@ function doAnonymous() {
 var CONNECTED = false;
 
 function handleConnected() {
-	logThis('Jappix is now connected.', 3);
+	Console.info('Jappix is now connected.');
 	
 	// Connection markers
 	CONNECTED = true;
@@ -283,7 +286,7 @@ function triggerConnected() {
 		// Not resumed?
 		if(!RESUME) {
 			// Remember the session?
-			if(getDB('remember', 'session'))
+			if(getDB(DESKTOP_HASH, 'remember', 'session'))
 				setPersistent('global', 'session', 1, CURRENT_SESSION);
 			
 			// We show the chatting app.
@@ -308,17 +311,19 @@ function triggerConnected() {
 			updateTitle();
 		}
 	} catch(e) {
-		logThis('Error in triggerConnected() with message: ' + e, 1);
+		Console.error('triggerConnected', e);
 	}
 }
 
 // Handles the user disconnected event
 function handleDisconnected() {
-	logThis('Jappix is now disconnected.', 3);
+	Console.info('Jappix is now disconnected.');
 	
 	// Normal disconnection
-	if(!CURRENT_SESSION && !CONNECTED)
+	if(!CURRENT_SESSION && !CONNECTED) {
 		destroyTalkPage();
+		DESKTOP_HASH = null;
+	}
 }
 
 // Setups the normal connection
@@ -348,7 +353,7 @@ function logout() {
 	// Disconnect from the XMPP server
 	con.disconnect();
 	
-	logThis('Jappix is disconnecting...', 3);
+	Console.info('Jappix is disconnecting...');
 }
 
 // Terminates a session
@@ -389,7 +394,7 @@ var RECONNECT_TRY = 0;
 var RECONNECT_TIMER = 0;
 
 function createReconnect(mode) {
-	logThis('This is not a normal disconnection, show the reconnect pane...', 1);
+	Console.error('This is not a normal disconnection, show the reconnect pane...');
 	
 	// Reconnect pane not yet displayed?
 	if(!exists('#reconnect')) {
@@ -453,7 +458,7 @@ function createReconnect(mode) {
 var RESUME = false;
 
 function acceptReconnect(mode) {
-	logThis('Trying to reconnect the user...', 3);
+	Console.info('Trying to reconnect the user...');
 	
 	// Resume marker
 	RESUME = true;
@@ -484,7 +489,7 @@ function acceptReconnect(mode) {
 
 // Cancel the reconnection of user account (network issue)
 function cancelReconnect() {
-	logThis('User has canceled automatic reconnection...', 3);
+	Console.info('User has canceled automatic reconnection...');
 	
 	// Stop the timer
 	$('#reconnect a.finish.reconnect').stopTime();
@@ -568,7 +573,7 @@ function storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember) {
 	
 	// Remember me?
 	if(lRemember)
-		setDB('remember', 'session', 1);
+		setDB(DESKTOP_HASH, 'remember', 'session', 1);
 	
 	return session_xml;
 }
@@ -628,14 +633,14 @@ function launchConnection() {
 		// Login!
 		loginFromSession(session);
 		
-		logThis('Saved session found, resuming it...', 3);
+		Console.info('Saved session found, resuming it...');
 	}
 	
 	// Not connected, maybe a XMPP link is submitted?
 	else if((parent.location.hash != '#OK') && LINK_VARS['x']) {
 		switchHome('loginer');
 		
-		logThis('A XMPP link is set, switch to login page.', 3);
+		Console.info('A XMPP link is set, switch to login page.');
 	}
 }
 

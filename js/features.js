@@ -28,7 +28,7 @@ function getFeatures() {
 	if(xml) {
 		handleFeatures(xml);
 		
-		logThis('Read server CAPS from cache.');
+		Console.log('Read server CAPS from cache.');
 	}
 	
 	// Not stored (or no CAPS)!
@@ -41,7 +41,7 @@ function getFeatures() {
 		
 		con.send(iq, handleDiscoInfos);
 		
-		logThis('Read server CAPS from network.');
+		Console.log('Read server CAPS from network.');
 	}
 }
 
@@ -88,14 +88,14 @@ function handleFeatures(xml) {
 		waitMicroblog('sync');
 		$('.postit.attach').css('display', 'block');
 		
-		logThis('XMPP server supports PEP.', 3);
+		Console.info('XMPP server supports PEP.');
 	}
 	
 	// Disable microblogging send tools (no PEP!)
 	else {
 		waitMicroblog('unsync');
 		
-		logThis('XMPP server does not support PEP.', 2);
+		Console.warn('XMPP server does not support PEP.');
 	}
 	
 	// Enable the pubsub features if available
@@ -160,12 +160,12 @@ function applyFeatures(id) {
 
 // Enables a feature
 function enableFeature(feature) {
-	setDB('feature', feature, 'true');
+	setDB(DESKTOP_HASH, 'feature', feature, 'true');
 }
 
 // Checks if a feature is enabled
 function enabledFeature(feature) {
-	if(getDB('feature', feature) == 'true')
+	if(getDB(DESKTOP_HASH, 'feature', feature) == 'true')
 		return true;
 	else
 		return false;

@@ -40,7 +40,7 @@ function openRosterX(data) {
 	// Parse the data
 	parseRosterX(data);
 	
-	logThis('Roster Item Exchange popup opened.');
+	Console.log('Roster Item Exchange popup opened.');
 }
 
 // Closes the rosterx tools

@@ -166,8 +166,8 @@ function quitThisChat(xid, hash, type) {
 				$('#' + cHash + ' .message-area').attr('disabled', true);
 				
 				// Remove the presence for this XID
-				removeDB('presence-stanza', cXID);
-				removeDB('presence-resources', cXID);
+				removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
+				removeDB(DESKTOP_HASH, 'presence-resources', cXID);
 				presenceFunnel(cXID, cHash);
 			}
 		}
@@ -342,7 +342,7 @@ function showAllBuddies(from) {
 	
 	// Store this in the options
 	if((from == 'roster') && loadedOptions()) {
-		setDB('options', 'roster-showall', '1');
+		setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
 		storeOptions();
 	}
 }
@@ -371,7 +371,7 @@ function showOnlineBuddies(from) {
 	
 	// Store this in the options
 	if((from == 'roster') && loadedOptions()) {
-		setDB('options', 'roster-showall', '0');
+		setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
 		storeOptions();
 	}
 }

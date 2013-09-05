@@ -37,7 +37,7 @@ function getAvatar(xid, mode, enabled, photo) {
 		// Reset the avatar
 		resetAvatar(xid, hex_md5(xid));
 		
-		logThis('No avatar for: ' + xid, 2);
+		Console.warn('No avatar for: ' + xid);
 	}
 	
 	// Try to catch the avatar
@@ -60,7 +60,7 @@ function getAvatar(xid, mode, enabled, photo) {
 			// Display the cache avatar
 			displayAvatar(xid, hex_md5(xid), type, binval);
 			
-			logThis('Read avatar from cache: ' + xid, 3);
+			Console.info('Read avatar from cache: ' + xid);
 		}
 		
 		// Else if the request has not yet been fired, we get it
@@ -77,7 +77,7 @@ function getAvatar(xid, mode, enabled, photo) {
 			
 			con.send(iq, handleAvatar);
 			
-			logThis('Get avatar from server: ' + xid, 3);
+			Console.info('Get avatar from server: ' + xid);
 		}
 	}
 	
@@ -102,7 +102,7 @@ function handleAvatar(iq) {
 	
 	// Read our own checksum
 	if(handleFrom == getXID()) {
-		oChecksum = getDB('checksum', 1);
+		oChecksum = getDB(DESKTOP_HASH, 'checksum', 1);
 		
 		// Avoid the "null" value
 		if(!oChecksum)
@@ -117,8 +117,8 @@ function handleAvatar(iq) {
 			var names = generateBuddyName(iq);
 			
 			// Write the values to the database
-			setDB('profile', 'name', names[0]);
-			setDB('profile', 'nick', names[1]);
+			setDB(DESKTOP_HASH, 'profile', 'name', names[0]);
+			setDB(DESKTOP_HASH, 'profile', 'nick', names[1]);
 		}
 		
 		// We get the avatar
@@ -148,7 +148,7 @@ function handleAvatar(iq) {
 		// Store the avatar
 		setPersistent('global', 'avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
 		
-		logThis('Avatar retrieved from server: ' + handleFrom, 3);
+		Console.info('Avatar retrieved from server: ' + handleFrom);
 	}
 	
 	// vCard is empty
@@ -164,7 +164,7 @@ function handleAvatar(iq) {
 			pChecksum = '';
 		
 		// Update our temp. checksum
-		setDB('checksum', 1, pChecksum);
+		setDB(DESKTOP_HASH, 'checksum', 1, pChecksum);
 		
 		// Send the stanza
 		if(!FIRST_PRESENCE_SENT)

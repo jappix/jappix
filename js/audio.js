@@ -19,7 +19,7 @@ function soundPlay(num) {
 			return false;
 		
 		// If the sounds are enabled
-		if(getDB('options', 'sounds') == '1') {
+		if(getDB(DESKTOP_HASH, 'options', 'sounds') == '1') {
 			// If the audio elements aren't yet in the DOM
 			if(!exists('#audio')) {
 				$('body').append(
