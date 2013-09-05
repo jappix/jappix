@@ -1012,11 +1012,7 @@ function presenceMini(type, show, priority, status, to, password, limit_history,
 		else
 			con.send(pr);
 		
-		// No type?
-		if(!type)
-			type = 'available';
-		
-		Console.info('Presence sent (show: ' + show + ', type: ' + type + ')');
+		Console.info('Presence sent (to: ' + (to || 'none') + ', show: ' + (show || 'none') + ', type: ' + (type || 'none') + ')');
 	} catch(e) {
 		Console.error('presenceMini', e);
 	}
@@ -1569,7 +1565,7 @@ function createMini(domain, user, password) {
 				var pr_xid = [''];
 				
 				jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').each(function() {
-					pr_xid.push(unescape(jQuery(this).attr('data-xid')));
+					pr_xid.push(unescape(jQuery(this).attr('data-xid')) + '/' + unescape(jQuery(this).attr('data-nick')));
 				});
 				
 				// Loop on XIDs
