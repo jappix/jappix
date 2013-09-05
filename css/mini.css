@@ -321,7 +321,7 @@ Last revision: 10/06/13
 	background-color: #727879;
 	border: 1px solid #3a3a3a;
 	border-width: 1px 1px 0 1px;
-	margin-left: 4px;
+	margin-right: -3px;
 	top: 3px;
 	z-index: 10;
 }
@@ -340,7 +340,7 @@ Last revision: 10/06/13
 }
 
 #jappix_mini div.jm_status_picker {
-	right: 22px;
+	right: 21px;
 }
 
 #jappix_mini div.jm_chan_suggest {
