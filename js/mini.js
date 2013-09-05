@@ -1335,14 +1335,16 @@ function updateOverflowMini() {
 function overflowEventsMini() {
 	try {
 		jQuery('#jappix_mini a.jm_switch').click(function() {
+			var this_sel = jQuery(this);
+
 			// Nothing to do?
-			if(jQuery(this).hasClass('jm_nonav'))
+			if(this_sel.hasClass('jm_nonav'))
 				return false;
 			
 			var hide_this = show_this = '';
 			
 			// Go left?
-			if(jQuery(this).is('.jm_left')) {
+			if(this_sel.is('.jm_left')) {
 				show_this = jQuery('#jappix_mini div.jm_conversation:visible:first').prev();
 				
 				if(show_this.size())
@@ -1374,8 +1376,8 @@ function overflowEventsMini() {
 				// Update navigation buttons
 				jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
 				
-				if((jQuery(this).is('.jm_right') && !show_this.next().size()) || (jQuery(this).is('.jm_left') && !show_this.prev().size()))
-					jQuery(this).addClass('jm_nonav');
+				if((this_sel.is('.jm_right') && !show_this.next().size()) || (this_sel.is('.jm_left') && !show_this.prev().size()))
+					this_sel.addClass('jm_nonav');
 				
 				// Update notification counters
 				notifyCountersMini();
@@ -1480,10 +1482,12 @@ function createMini(domain, user, password) {
 
 		// Delay to fix DOM lag bug (CSS file not yet loaded)
 		jQuery('#jappix_mini').everyTime(10, function() {
-			if(jQuery(this).is(':visible')) {
+			var this_sel = jQuery(this);
+
+			if(this_sel.is(':visible')) {
 				Console.info('CSS loaded asynchronously.');
 
-				jQuery(this).stopTime();
+				this_sel.stopTime();
 
 				// Re-process chat overflow
 				updateOverflowMini();
@@ -1539,7 +1543,9 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini a.jm_status').click(function() {
 			// Using a try/catch override IE issues
 			try {
-				var is_active = jQuery(this).hasClass('active');
+				var this_sel = jQuery(this);
+				var is_active = this_sel.hasClass('active');
+
 				jQuery('#jappix_mini div.jm_actions a').blur().removeClass('active');
 				
 				if(is_active) {
@@ -1547,7 +1553,7 @@ function createMini(domain, user, password) {
 				} else {
 					jQuery('#jappix_mini div.jm_chan_suggest').remove();
 					jQuery('#jappix_mini div.jm_status_picker').show();
-					jQuery(this).addClass('active');
+					this_sel.addClass('active');
 				}
 			}
 			
@@ -1561,15 +1567,17 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini div.jm_status_picker a').click(function() {
 			// Using a try/catch override IE issues
 			try {
+				var this_sel = jQuery(this);
+
 				// Generate an array of presence change XIDs
 				var pr_xid = [''];
 				
 				jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').each(function() {
-					pr_xid.push(unescape(jQuery(this).attr('data-xid')) + '/' + unescape(jQuery(this).attr('data-nick')));
+					pr_xid.push(unescape(this_sel.attr('data-xid')) + '/' + unescape(this_sel.attr('data-nick')));
 				});
 				
 				// Loop on XIDs
-				var new_status = jQuery(this).data('status');
+				var new_status = this_sel.data('status');
 				
 				jQuery.each(pr_xid, function(key, value) {
 					switch(new_status) {
@@ -1598,7 +1606,7 @@ function createMini(domain, user, password) {
 				// Switch the status
 				if(new_status != 'unavailable') {
 					jQuery('#jappix_mini a.jm_status span').removeClass('jm_available jm_away jm_dnd jm_unavailable')
-					                                       .addClass('jm_' + jQuery(this).data('status'));
+					                                       .addClass('jm_' + this_sel.data('status'));
 					
 					jQuery('#jappix_mini div.jm_status_picker').hide();
 					jQuery('#jappix_mini a.jm_status').blur().removeClass('active');
@@ -1615,9 +1623,11 @@ function createMini(domain, user, password) {
 		jQuery('#jappix_mini div.jm_actions a.jm_join').click(function() {
 			// Using a try/catch override IE issues
 			try {
+				var this_sel = jQuery(this);
+
 				// Any suggested chat/groupchat?
 				if((MINI_SUGGEST_CHATS && MINI_SUGGEST_CHATS.length) || (MINI_SUGGEST_GROUPCHATS && MINI_SUGGEST_GROUPCHATS.length)) {
-					var is_active = jQuery(this).hasClass('active');
+					var is_active = this_sel.hasClass('active');
 					jQuery('#jappix_mini div.jm_actions a').blur().removeClass('active');
 					
 					if(is_active) {
@@ -1625,7 +1635,7 @@ function createMini(domain, user, password) {
 					} else {
 						// Button style
 						jQuery('#jappix_mini div.jm_status_picker').hide();
-						jQuery(this).addClass('active');
+						this_sel.addClass('active');
 						
 						// Generate selector code
 						var chans_html = '';
@@ -1703,22 +1713,24 @@ function createMini(domain, user, password) {
 						jQuery('#jappix_mini div.jm_chan_suggest a').click(function() {
 							// Using a try/catch override IE issues
 							try {
+								var this_sub_sel = jQuery(this);
+
 								// Chat?
-								if(jQuery(this).is('.jm_suggest_chat')) {
-									var current_chat = unescape(jQuery(this).attr('data-xid'));
+								if(this_sub_sel.is('.jm_suggest_chat')) {
+									var current_chat = unescape(this_sub_sel.attr('data-xid'));
 									
-									chatMini('chat', current_chat, jQuery(this).find('span.jm_chan_name').text(), hex_md5(current_chat));
+									chatMini('chat', current_chat, this_sub_sel.find('span.jm_chan_name').text(), hex_md5(current_chat));
 								}
 								
 								// Groupchat?
-								else if(jQuery(this).is('.jm_suggest_groupchat')) {
-									var current_groupchat = unescape(jQuery(this).attr('data-xid'));
-									var current_password = jQuery(this).attr('data-pwd') || null;
+								else if(this_sub_sel.is('.jm_suggest_groupchat')) {
+									var current_groupchat = unescape(this_sub_sel.attr('data-xid'));
+									var current_password = this_sub_sel.attr('data-pwd') || null;
 									
 									if(current_password)
 										current_password = unescape(current_password);
 									
-									chatMini('groupchat', current_groupchat, jQuery(this).find('span.jm_chan_name').text(), hex_md5(current_groupchat), current_password);
+									chatMini('groupchat', current_groupchat, this_sub_sel.find('span.jm_chan_name').text(), hex_md5(current_groupchat), current_password);
 								}
 								
 								// Default prompt?
@@ -1752,16 +1764,18 @@ function createMini(domain, user, password) {
 		
 		// Updates the roster with only searched terms
 		jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').keyup(function(e) {
+			var this_sel = jQuery(this);
+
 			// Avoid buddy navigation to be reseted
 			if((e.keyCode == 38) || (e.keyCode == 40))
 				return;
 			
 			// Escape key pressed?
 			if(e.keyCode == 27)
-				jQuery(this).val('');
+				this_sel.val('');
 			
 			// Save current value
-			jQuery(this).attr('data-value', jQuery(this).val());
+			this_sel.attr('data-value', this_sel.val());
 			
 			// Don't filter at each key up (faster for computer)
 			var self = this;
@@ -1786,18 +1800,21 @@ function createMini(domain, user, password) {
 					
 					// Filter buddies
 					jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
-						var nick = unescape(jQuery(this).data('nick'));
+						var this_sub_sel = jQuery(this);
+						var nick = unescape(this_sub_sel.data('nick'));
 						
 						if(nick.match(regex))
-							jQuery(this).show();
+							this_sub_sel.show();
 						else
-							jQuery(this).hide();
+							this_sub_sel.hide();
 					});
 					
 					// Filter groups
 					jQuery('#jappix_mini div.jm_roster div.jm_grouped').each(function() {
-						if(!jQuery(this).find('a.jm_online:visible').size())
-							jQuery(this).hide();
+						var this_sub_sel = jQuery(this);
+
+						if(!this_sub_sel.find('a.jm_online:visible').size())
+							this_sub_sel.hide();
 					});
 					
 					// Focus on the first buddy
@@ -1937,10 +1954,11 @@ function createMini(domain, user, password) {
 			
 			// Restore chat input values
 			jQuery('#jappix_mini div.jm_conversation input.jm_send-messages').each(function() {
-				var chat_value = jQuery(this).attr('data-value');
+				var this_sub_sel = jQuery(this);
+				var chat_value = this_sub_sel.attr('data-value');
 				
 				if(chat_value)
-					jQuery(this).val(chat_value);
+					this_sub_sel.val(chat_value);
 			});
 			
 			// Restore roster filter value
@@ -1955,7 +1973,8 @@ function createMini(domain, user, password) {
 			
 			// Restore chat click events
 			jQuery('#jappix_mini div.jm_conversation').each(function() {
-				chatEventsMini(jQuery(this).attr('data-type'), unescape(jQuery(this).attr('data-xid')), jQuery(this).attr('data-hash'));
+				var this_sub_sel = jQuery(this);
+				chatEventsMini(this_sub_sel.attr('data-type'), unescape(this_sub_sel.attr('data-xid')), this_sub_sel.attr('data-hash'));
 			});
 
 			// Restore init marker on all groupchats
@@ -2010,7 +2029,8 @@ function eventsBuddyMini(path) {
 	selector.click(function() {
 		// Using a try/catch override IE issues
 		try {
-			chatMini('chat', unescape(jQuery(this).attr('data-xid')), unescape(jQuery(this).attr('data-nick')), jQuery(this).attr('data-hash'));
+			var this_sel = jQuery(this);
+			chatMini('chat', unescape(this_sel.attr('data-xid')), unescape(this_sel.attr('data-nick')), this_sel.attr('data-hash'));
 		}
 		
 		catch(e) {}
@@ -2456,15 +2476,15 @@ function chatMini(type, xid, nick, hash, pwd, show_pane) {
 // Events on the chat tool
 function chatEventsMini(type, xid, hash) {
 	try {
-		var current = '#jappix_mini #chat-' + hash;
+		var current_sel = jQuery('#jappix_mini #chat-' + hash);
 		
 		// Submit the form
-		jQuery(current + ' form').submit(function() {
+		current_sel.find('form').submit(function() {
 			return sendMessageMini(this);
 		});
 		
 		// Click on the tab
-		jQuery(current + ' a.jm_chat-tab').click(function() {
+		current_sel.find('a.jm_chat-tab').click(function() {
 			// Using a try/catch override IE issues
 			try {
 				// Not yet opened: open it!
@@ -2487,7 +2507,7 @@ function chatEventsMini(type, xid, hash) {
 		});
 		
 		// Click on the close button
-		jQuery(current + ' div.jm_actions').click(function(e) {
+		current_sel.find('div.jm_actions').click(function(e) {
 			// Using a try/catch override IE issues
 			try {
 				// Close button?
@@ -2496,12 +2516,12 @@ function chatEventsMini(type, xid, hash) {
 					if(type != 'groupchat')
 						sendChatstateMini('gone', xid, hash);
 					
-					jQuery(current).stopTime().remove();
+					current_sel.stopTime().remove();
 					
 					// Quit the groupchat?
 					if(type == 'groupchat') {
 						// Send an unavailable presence
-						presenceMini('unavailable', '', '', '', xid + '/' + unescape(jQuery(current).attr('data-nick')));
+						presenceMini('unavailable', '', '', '', xid + '/' + unescape(current_sel.attr('data-nick')));
 						
 						// Remove this groupchat!
 						removeGroupchatMini(xid);
@@ -2511,7 +2531,7 @@ function chatEventsMini(type, xid, hash) {
 					updateOverflowMini();
 				} else {
 					// Minimize current chat
-					jQuery(current + ' a.jm_chat-tab.jm_clicked').click();
+					current_sel.find('a.jm_chat-tab.jm_clicked').click();
 				}
 			}
 			
@@ -2523,13 +2543,14 @@ function chatEventsMini(type, xid, hash) {
 		});
 		
 		// Focus on the chat input
-		jQuery(current + ' input.jm_send-messages').focus(function() {
+		current_sel.find('input.jm_send-messages').focus(function() {
 			clearNotificationsMini(hash);
 		})
 		
 		// Change on the chat input
 		.keyup(function() {
-			jQuery(this).attr('data-value', jQuery(this).val());
+			var this_sel = jQuery(this);
+			this_sel.attr('data-value', this_sel.val());
 		})
 		
 		// Chat tabulate or escape press
@@ -2543,15 +2564,15 @@ function chatEventsMini(type, xid, hash) {
 			
 			// Escape?
 			if(e.keyCode == 27) {
-				if(jQuery(current + ' a.jm_close').size()) {
+				if(current_sel.find('a.jm_close').size()) {
 					// Open next/previous chat
-					if(jQuery(current).next('div.jm_conversation').size())
-						jQuery(current).next('div.jm_conversation').find('a.jm_pane').click();
-					else if(jQuery(current).prev('div.jm_conversation').size())
-						jQuery(current).prev('div.jm_conversation').find('a.jm_pane').click();
+					if(current_sel.next('div.jm_conversation').size())
+						current_sel.next('div.jm_conversation').find('a.jm_pane').click();
+					else if(current_sel.prev('div.jm_conversation').size())
+						current_sel.prev('div.jm_conversation').find('a.jm_pane').click();
 					
 					// Close current chat
-					jQuery(current + ' a.jm_close').click();
+					current_sel.find('a.jm_close').click();
 				}
 				
 				return false;
@@ -2906,8 +2927,10 @@ function handleRosterMini(iq) {
 		
 		// Parse the roster
 		jQuery(iq.getQuery()).find('item').each(function() {
+			var this_sub_sel = jQuery(this);
+
 			// Get the values
-			current = jQuery(this);
+			current = this_sub_sel;
 			xid = current.attr('jid');
 			subscription = current.attr('subscription');
 			
@@ -2931,8 +2954,8 @@ function handleRosterMini(iq) {
 	            // Append to groups this buddy belongs to
 	            cur_groups = {};
 
-	            if(jQuery(this).find('group').size()) {
-		            jQuery(this).find('group').each(function() {
+	            if(this_sub_sel.find('group').size()) {
+		            this_sub_sel.find('group').each(function() {
 		            	cur_group = jQuery(this).text();
 
 		            	if(cur_group)  cur_groups[cur_group] = 1;
@@ -3154,20 +3177,22 @@ function eventsChatstateMini(xid, hash, type) {
 			return;
 		
 		jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').keyup(function(e) {
+			var this_sel = jQuery(this);
+
 			if(e.keyCode != 13) {
 				// Composing a message
-				if(jQuery(this).val() && (jQuery(this).attr('data-composing') != 'on')) {
+				if(this_sel.val() && (this_sel.attr('data-composing') != 'on')) {
 					// We change the state detect input
-					jQuery(this).attr('data-composing', 'on');
+					this_sel.attr('data-composing', 'on');
 					
 					// We send the friend a "composing" chatstate
 					sendChatstateMini('composing', xid, hash);
 				}
 				
 				// Stopped composing a message
-				else if(!jQuery(this).val() && (jQuery(this).attr('data-composing') == 'on')) {
+				else if(!this_sel.val() && (this_sel.attr('data-composing') == 'on')) {
 					// We change the state detect input
-					jQuery(this).attr('data-composing', 'off');
+					this_sel.attr('data-composing', 'off');
 					
 					// We send the friend an "active" chatstate
 					sendChatstateMini('active', xid, hash);
@@ -3181,24 +3206,28 @@ function eventsChatstateMini(xid, hash, type) {
 		})
 		
 		.focus(function() {
+			var this_sel = jQuery(this);
+
 			// Not needed
-			if(jQuery(this).is(':disabled'))
+			if(this_sel.is(':disabled'))
 				return;
 			
 			// Nothing in the input, user is active
-			if(!jQuery(this).val())
+			if(!this_sel.val())
 				sendChatstateMini('active', xid, hash);
 			else
 				sendChatstateMini('composing', xid, hash);
 		})
 		
 		.blur(function() {
+			var this_sel = jQuery(this);
+
 			// Not needed
-			if(jQuery(this).is(':disabled'))
+			if(this_sel.is(':disabled'))
 				return;
 			
 			// Nothing in the input, user is inactive
-			if(!jQuery(this).val())
+			if(!this_sel.val())
 				sendChatstateMini('inactive', xid, hash);
 			else
 				sendChatstateMini('paused', xid, hash);
@@ -3326,9 +3355,11 @@ function launchMini(autoconnect, show_pane, domain, user, password, priority) {
 		if(BrowserDetect.browser == 'Opera') {
 			// Emulates onbeforeunload on Opera (link clicked)
 			jQuery('a[href]:not([onclick])').click(function() {
+				var this_sel = jQuery(this);
+
 				// Link attributes
-				var href = jQuery(this).attr('href') || '';
-				var target = jQuery(this).attr('target') || '';
+				var href = this_sel.attr('href') || '';
+				var target = this_sel.attr('target') || '';
 				
 				// Not new window or JS link
 				if(href && !href.match(/^#/i) && !target.match(/_blank|_new/i))
