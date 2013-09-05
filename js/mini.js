@@ -31,6 +31,9 @@ var MINI_PASSWORD				= null;
 var MINI_HASH					= null;
 var MINI_ACTIVE					= null;
 var MINI_RECONNECT				= 0;
+var MINI_RECONNECT_MAX			= 100;
+var MINI_RECONNECT_INTERVAL     = 1;
+var MINI_QUEUE					= [];
 var MINI_CHATS					= [];
 var MINI_GROUPCHATS				= [];
 var MINI_SUGGEST_CHATS			= [];
@@ -157,33 +160,57 @@ function connectMini(domain, user, password) {
 // When the user is connected
 function connectedMini() {
 	try {
-		// Update the roster
-		jQuery('#jappix_mini a.jm_pane.jm_button span.jm_counter').text('0');
-		
 		// Do not get the roster if anonymous
-		if(MINI_ANONYMOUS)
-			initializeMini();
-		else
-			getRosterMini();
-		
-		// For logger
-		if(MINI_RECONNECT)
-			Console.info('Jappix Mini is now reconnected.');
-		else
+		if(!MINI_RECONNECT) {
+			// Update the roster
+			jQuery('#jappix_mini a.jm_pane.jm_button span.jm_counter').text('0');
+
+			if(MINI_ANONYMOUS)
+				initializeMini();
+			else
+				getRosterMini();
+
 			Console.info('Jappix Mini is now connected.');
-		
+		} else {
+			reconnectedMini();
+
+			Console.info('Jappix Mini is now reconnected.');
+		}
+
 		// Reset reconnect var
 		MINI_RECONNECT = 0;
+		removeDB(MINI_HASH, 'jappix-mini', 'reconnect');
+
+		// Execute enqueued events
+		dequeueMini();
 	} catch(e) {
 		Console.error('connectedMini', e);
+	}
+}
+
+// When the user is reconnected
+function reconnectedMini() {
+	try {
+		var last_presence = getDB(MINI_HASH, 'jappix-mini', 'presence-last') || 'available';
+
+		// Flush presence storage
+		flushStorageMini('presence');
+
+		// Empty groupchat messages
+		jQuery('#jappix_mini div.jm_conversation.jm_type_groupchat div.jm_received-messages div.jm_group').remove();
+
+		// Re-send all presences
+		jQuery('#jappix_mini div.jm_status_picker a[data-status="' + encodeQuotes(last_presence) + '"]').click();
+	} catch(e) {
+		Console.error('reconnectedMini', e);
 	}
 }
 
 // When the user disconnects
 function saveSessionMini() {
 	try {
-		// Not connected?
-		if(!isConnected())
+		// Not initialized?
+		if(!MINI_INITIALIZED)
 			return;
 		
 		// Save the actual Jappix Mini DOM
@@ -199,15 +226,38 @@ function saveSessionMini() {
 		
 		setDB(MINI_HASH, 'jappix-mini', 'scroll', scroll_position);
 		
-		// Save the session stamp
-		setDB(MINI_HASH, 'jappix-mini', 'stamp', getTimeStamp());
-		
 		// Suspend connection
-		con.suspend(false);
+		if(isConnected()) {
+			con.suspend(false);
+		} else {
+			setDB(MINI_HASH, 'jappix-mini', 'reconnect', ((MINI_RECONNECT == 0) ? 0 : (MINI_RECONNECT - 1)));
+			serializeQueueMini();
+		}
 		
 		Console.info('Jappix Mini session save tool launched.');
 	} catch(e) {
 		Console.error('saveSessionMini', e);
+	}
+}
+
+// Flushes Jappix Mini storage database
+function flushStorageMini(r_override) {
+	try {
+		var i,
+		    db_regex, db_current;
+
+		db_regex = new RegExp(('^' + MINI_HASH + '_') + 'jappix\-mini' + (r_override ? ('_' + r_override) : ''));
+
+		for(i = 0; i < storageDB.length; i++) {
+			db_current = storageDB.key(i);
+
+			if(db_regex.exec(db_current))
+				storageDB.removeItem(db_current);
+		}
+
+		Console.log('Jappix Mini DB has been successfully flushed (' + (r_override ? 'partly' : 'completely') + ').');
+	} catch(e) {
+		Console.error('flushStorageMini', e);
 	}
 }
 
@@ -223,9 +273,14 @@ function disconnectMini() {
 		// Change markers
 		MINI_DISCONNECT = true;
 		MINI_INITIALIZED = false;
+
+		// Flush storage
+		flushStorageMini();
 		
 		// Add disconnection handler
-		con.registerHandler('ondisconnect', disconnectedMini);
+		con.registerHandler('ondisconnect', function() {
+			disconnectedMini();
+		});
 		
 		// Disconnect the user
 		con.disconnect();
@@ -239,46 +294,47 @@ function disconnectMini() {
 // When the user is disconnected
 function disconnectedMini() {
 	try {
-		// Remove the stored items
-		removeDB(MINI_HASH, 'jappix-mini', 'dom');
-		removeDB(MINI_HASH, 'jappix-mini', 'nickname');
-		removeDB(MINI_HASH, 'jappix-mini', 'scroll');
-		removeDB(MINI_HASH, 'jappix-mini', 'stamp');
-		
 		// Connection error?
 		if(!MINI_DISCONNECT || MINI_INITIALIZED) {
-			// Browser error?
-			notifyErrorMini();
-			
 			// Reset reconnect timer
 			jQuery('#jappix_mini').stopTime();
 			
 			// Try to reconnect after a while
-			if(MINI_INITIALIZED && (MINI_RECONNECT < 5)) {
-				// Reconnect interval
-				var reconnect_interval = 10;
-				
-				if(MINI_RECONNECT)
-					reconnect_interval = (5 + (5 * MINI_RECONNECT)) * 1000;
-				
-				MINI_RECONNECT++;
-				
+			if(MINI_INITIALIZED && (MINI_RECONNECT++ < MINI_RECONNECT_MAX)) {
 				// Set timer
-				jQuery('#jappix_mini').oneTime(reconnect_interval, function() {
-					launchMini(true, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
+				jQuery('#jappix_mini').oneTime(MINI_RECONNECT_INTERVAL * 1000, function() {
+					Console.debug('Trying to reconnect... (attempt: ' + MINI_RECONNECT + ' / ' + MINI_RECONNECT_MAX + ')');
+
+					// Silently reconnect user
+					connectMini(MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
 				});
+
+				Console.info('Jappix Mini is encountering connectivity issues.');
+			} else {
+				// Remove the stored items
+				flushStorageMini();
+
+				// Notify this error
+				notifyErrorMini();
+
+				// Reset markers
+				MINI_DISCONNECT = false;
+				MINI_INITIALIZED = false;
+
+				Console.info('Jappix Mini is giving up. Server seems to be down.');
 			}
 		}
 		
 		// Normal disconnection?
-		else
+		else {
 			launchMini(false, MINI_SHOWPANE, MINI_DOMAIN, MINI_USER, MINI_PASSWORD);
-		
-		// Reset markers
-		MINI_DISCONNECT = false;
-		MINI_INITIALIZED = false;
-		
-		Console.info('Jappix Mini is now disconnected.');
+
+			// Reset markers
+			MINI_DISCONNECT = false;
+			MINI_INITIALIZED = false;
+
+			Console.info('Jappix Mini is now disconnected.');
+		}
 	} catch(e) {
 		Console.error('disconnectedMini', e);
 	}
@@ -998,7 +1054,8 @@ function sendMessageMini(aForm) {
 			// Chatstate
 			aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
 			
-			con.send(aMsg);
+			// Send it!
+			enqueueMini(aMsg);
 			
 			// Clear the input
 			aForm.body.value = '';
@@ -1014,6 +1071,71 @@ function sendMessageMini(aForm) {
 	} finally {
 		return false;
 	}
+}
+
+// Enqueues a stanza (to be sent over the network)
+function enqueueMini(stanza) {
+	try {
+		// Send stanza over the network or enqueue it?
+		if(isConnected()) {
+			con.send(stanza);
+		} else {
+			MINI_QUEUE.push(
+				stanza.xml()
+			);
+
+			Console.log('Enqueued an event (to be sent when connectivity is back).');
+		}
+	} catch(e) {
+		Console.error('enqueueMini', e);
+	}
+}
+
+// Dequeues stanzas and send them over the network
+function dequeueMini() {
+	try {
+		var stanza_str, stanza_childs,
+		    stanza;
+
+		// Execute deferred tasks
+		while(MINI_QUEUE.length) {
+			stanza_str = MINI_QUEUE.shift();
+			stanza_childs = XMLFromString(stanza_str).childNodes;
+
+			if(stanza_childs && stanza_childs[0]) {
+				stanza = JSJaCPacket.wrapNode(stanza_childs[0]);
+				con.send(stanza);
+			}
+
+			Console.log('Dequeued a stanza.');
+		}
+	} catch(e) {
+		Console.error('dequeueMini', e);
+	}
+}
+
+// Serializes and store the queue storage
+function serializeQueueMini() {
+	try {
+		setDB(MINI_HASH, 'jappix-mini', 'queue', jQuery.toJSON(MINI_QUEUE));
+	} catch(e) {
+		Console.error('serializeQueueMini', e);
+	}
+}
+
+// Unserializes and update the queue storage
+function unserializeQueueMini() {
+	try {
+		var start_body, end_body,
+		    start_args, end_args;
+
+		var s_queue = getDB(MINI_HASH, 'jappix-mini', 'queue');
+		removeDB(MINI_HASH, 'jappix-mini', 'queue');
+
+		if(s_queue) {
+			MINI_QUEUE = jQuery.evalJSON(s_queue);
+		}
+	} catch(e) {}
 }
 
 // Generates the asked smiley image
@@ -1275,19 +1397,23 @@ function createMini(domain, user, password) {
 	try {
 		// Try to restore the DOM
 	    var dom = getDB(MINI_HASH, 'jappix-mini', 'dom');
-	    var stamp = parseInt(getDB(MINI_HASH, 'jappix-mini', 'stamp'));
 		var suspended = false;
+		var resumed = false;
+
+		// Reset DOM storage (free memory)
+		removeDB(MINI_HASH, 'jappix-mini', 'dom');
 		
 		// Invalid stored DOM?
 		if(dom && isNaN(jQuery(dom).find('a.jm_pane.jm_button span.jm_counter').text()))
 			dom = null;
 		
-		// Can resume a session?
-		con = new JSJaCHttpBindingConnection();
-		setupConMini(con);
-		
-		// Old DOM?
-		if(dom && ((getTimeStamp() - stamp) < JSJACHBC_MAX_WAIT) && con.resume()) {
+		// Old DOM? (saved session)
+		if(dom) {
+			// Attempt to resume connection
+			con = new JSJaCHttpBindingConnection();
+			setupConMini(con);
+			resumed = con.resume();
+
 			// Read the old nickname
 			MINI_NICKNAME = getDB(MINI_HASH, 'jappix-mini', 'nickname');
 			
@@ -1797,6 +1923,21 @@ function createMini(domain, user, password) {
 		if(suspended) {
 			// Initialized marker
 			MINI_INITIALIZED = true;
+
+			// Not resumed? (need to reconnect)
+			if(!resumed) {
+				// Restore previous reconnect counter
+				var reconnect = getDB(MINI_HASH, 'jappix-mini', 'reconnect');
+
+				if(!isNaN(reconnect))
+					MINI_RECONNECT = parseInt(reconnect);
+
+				// Restore queued functions
+				unserializeQueueMini();
+
+				// Simulate a network error to get the same silent reconnect effect
+				disconnectedMini();
+			}
 			
 			// Restore chat input values
 			jQuery('#jappix_mini div.jm_conversation input.jm_send-messages').each(function() {
