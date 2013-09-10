@@ -314,12 +314,14 @@ function favoritePublish() {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_BOOKMARKS}));
 	
 	// We generate the XML
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored favorite
-		if(explodeThis('_', current, 0) == 'favorites') {
+		if(current.match(db_regex)) {
 			var data = XMLFromString(storageDB.getItem(current));
 			var xid = $(data).find('xid').text();
 			var rName = $(data).find('name').text();
@@ -448,12 +450,14 @@ function loadFavorites() {
 	var html = '';
 	
 	// Read the database
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored favorite
-		if(explodeThis('_', current, 0) == 'favorites') {
+		if(current.match(db_regex)) {
 			var data = XMLFromString(storageDB.getItem(current));
 			
 			// Add the current favorite to the HTML code

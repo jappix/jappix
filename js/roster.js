@@ -364,13 +364,17 @@ function applyBuddyInput(xid) {
 		sendPresence(xid, 'unavailable');
 		
 		// Remove the user presence
+		var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
+
 		for(var i = 0; i < storageDB.length; i++) {
 			// Get the pointer values
 			var current = storageDB.key(i);
 			
 			// If the pointer is on a stored presence
-			if((explodeThis('_', current, 0) == 'presence') && (bareXID(explodeThis('_', current, 1)) == xid))
-				storageDB.removeItem(current);
+			if(current.match(db_regex)) {
+				if(bareXID(RegExp.$1) == xid)
+					storageDB.removeItem(current);
+			}
 		}
 		
 		// Manage his new presence

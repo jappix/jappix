@@ -115,12 +115,14 @@ function storeInbox() {
 	var query = iq.setQuery(NS_PRIVATE);
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_INBOX}));
 	
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
-		if(explodeThis('_', current, 0) == 'inbox') {
+		if(current.match(db_regex)) {
 			// Get the values
 			var value = $(XMLFromString(storageDB.getItem(current)));
 			
@@ -367,13 +369,15 @@ function deleteInboxMessage(id) {
 // Removes all the inbox messages
 function purgeInbox() {
 	// Remove all the messages from the database
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
-		if(explodeThis('_', current, 0) == 'inbox')
-			removeDB(DESKTOP_HASH, 'inbox', explodeThis('_', current, 1));
+		if(current.match(db_regex))
+			removeDB(DESKTOP_HASH, 'inbox', RegExp.$1);
 	}
 	
 	// Prevent the database lag
@@ -404,12 +408,14 @@ function checkInboxMessages() {
 	var unread = 0;
 	
 	// Read the local inbox database
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Database pointer
 		var current = storageDB.key(i);
 		
 		// Check inbox messages
-		if(explodeThis('_', current, 0) == 'inbox') {
+		if(current.match(db_regex)) {
 			// Read the current status
 			var status = $(XMLFromString(storageDB.getItem(current))).find('status').text();
 			
@@ -541,12 +547,14 @@ function replyInboxMessage(id, from, subject, body) {
 // Loads the inbox messages
 function loadInbox() {
 	// Read the local database
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored message
-		if(explodeThis('_', current, 0) == 'inbox') {
+		if(current.match(db_regex)) {
 			// Get the current value
 			var value = $(XMLFromString(storageDB.getItem(current)));
 			

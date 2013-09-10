@@ -359,13 +359,15 @@ function sendBuddyComments() {
 	var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_ROSTERNOTES}));
 	
 	// We regenerate the XML
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'rosternotes' + ('_(.+)'));
+
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored rosternote
-		if(explodeThis('_', current, 0) == 'rosternotes') {
-			var xid = explodeThis('_', current, 1);
+		if(current.match(db_regex)) {
+			var xid = RegExp.$1;
 			var value = storageDB.getItem(current);
 			
 			if(xid && value)

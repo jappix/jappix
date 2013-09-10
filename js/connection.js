@@ -557,10 +557,14 @@ function normalQuit() {
 
 // Gets all the users stuffs
 function getEverything() {
-	getFeatures();
-	getRoster();
-	listPrivacy();
-	getStorage(NS_ROSTERNOTES);
+	try {
+		getFeatures();
+		getRoster();
+		listPrivacy();
+		getStorage(NS_ROSTERNOTES);
+	} catch(e) {
+		Console.error('getEverything', e);
+	}
 }
 
 // Generates session data to store

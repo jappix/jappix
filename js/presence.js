@@ -652,15 +652,16 @@ function presenceIA(type, show, status, hash, xid, avatar, checksum, caps) {
 // Flush the presence data for a given user
 function flushPresence(xid) {
 	var flushed_marker = false;
+	var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
 
 	for(var i = 0; i < storageDB.length; i++) {
 		// Get the pointer values
 		var current = storageDB.key(i);
 		
 		// If the pointer is on a stored presence
-		if(explodeThis('_', current, 0) == 'presence') {
+		if(current.match(db_regex)) {
 			// Get the current XID
-			var now_full = explodeThis('_', current, 1);
+			var now_full = RegExp.$1;
 			var now_bare = bareXID(now_full);
 			
 			// If the current XID equals the asked XID

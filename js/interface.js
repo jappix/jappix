@@ -152,23 +152,28 @@ function quitThisChat(xid, hash, type) {
 		sendPresence(xid + '/' + getMUCNick(hash), 'unavailable');
 		
 		// Remove all presence database entries for this groupchat
+		var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
+
 		for(var i = 0; i < storageDB.length; i++) {
 			// Get the pointer values
 			var current = storageDB.key(i);
-			var cXID = explodeThis('_', current, 1);
-			
-			// If the pointer is on a presence from this groupchat
-			if((explodeThis('_', current, 0) == 'presence') && (bareXID(cXID) == xid)) {
-				// Generate the hash for the current XID
-				var cHash = hex_md5(cXID);
+
+			if(current.match(db_regex)) {
+				var cXID = RegExp.$1;
 				
-				// Disable the message textarea
-				$('#' + cHash + ' .message-area').attr('disabled', true);
-				
-				// Remove the presence for this XID
-				removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
-				removeDB(DESKTOP_HASH, 'presence-resources', cXID);
-				presenceFunnel(cXID, cHash);
+				// If the pointer is on a presence from this groupchat
+				if(bareXID(cXID) == xid) {
+					// Generate the hash for the current XID
+					var cHash = hex_md5(cXID);
+					
+					// Disable the message textarea
+					$('#' + cHash + ' .message-area').attr('disabled', true);
+					
+					// Remove the presence for this XID
+					removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
+					removeDB(DESKTOP_HASH, 'presence-resources', cXID);
+					presenceFunnel(cXID, cHash);
+				}
 			}
 		}
 	} else {
