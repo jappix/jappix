@@ -6,8 +6,8 @@ These are the Jappix Mini JS scripts for Jappix
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: ValÃ©rian Saliou, hunterjm, Camaran, regilero, Kloadut
-Last revision: 05/09/13
+Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut, Maranda
+Last revision: 20/09/13
 
 */
 
@@ -2684,8 +2684,7 @@ function initializeMini() {
 		MINI_INITIALIZED = true;
 		
 		// Send the initial presence
-		if(!MINI_ANONYMOUS)
-			presenceMini();
+		presenceMini();
 		
 		// Join the groupchats (first)
 		for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
