@@ -6,8 +6,8 @@ These are the microblog JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: ValÃ©rian Saliou, Maranda
-Last revision: 16/05/13
+Authors: Valérian Saliou, Maranda
+Last revision: 07/10/13
 
 */
 
@@ -1248,6 +1248,7 @@ function publishMicroblog(body, attachedname, attachedurl, attachedtype, attache
 	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
 	var item = publish.appendChild(iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
+	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}));
 	
 	// Create the XML author childs
 	var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
