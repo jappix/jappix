@@ -6,7 +6,7 @@ These are the microblog JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Authors: Valérian Saliou, Maranda
+Authors: ValÃ©rian Saliou, Maranda
 Last revision: 07/10/13
 
 */
