@@ -710,6 +710,7 @@ function sendCommentMicroblog(value, server, node, id, notifiy_arr, parent_data)
 	var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node, 'xmlns': NS_PUBSUB}));
 	var item = publish.appendChild(iq.buildNode('item', {'id': hash, 'xmlns': NS_PUBSUB}));
 	var entry = item.appendChild(iq.buildNode('entry', {'xmlns': NS_ATOM}));
+	entry.appendChild(iq.buildNode('title', {'xmlns': NS_ATOM}));
 	
 	// Author infos
 	var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
