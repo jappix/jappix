@@ -1018,8 +1018,22 @@ function keepGet($current, $no_get) {
 		$get = $uri[1];
 	}
 	
+	// We now sanitize get variables
+	$sanitized = preg_split('/[&]/', preg_replace("/(^&)/", "", $get));
+	foreach ($sanitized as &$get_var) { 
+		$get_var = preg_replace_callback(
+			'/^(.*=)(.+)$/',
+			function($m) { $data = urldecode($m[2]); return '&' . $m[1] . urlencode($data); },
+			$get_var
+		); 
+	}
+	
+	// Merge the sanitized array
+	$proper = '';
+	foreach ($sanitized as &$get_var) { $proper = $proper . $get_var; }
+	
 	// Remove the items we don't want here
-	$proper = str_replace('&', '&amp;', $get);
+	$proper = str_replace('&', '&amp;', $proper);
 	$proper = preg_replace('/((^)|(&amp;))(('.$current.'=)([^&]+))/i', '', $proper);
 	
 	// Nothing at the end?
