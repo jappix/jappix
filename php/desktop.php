@@ -181,15 +181,15 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 						<span class="name">Jappix Download</span>
 						<span class="desc"><?php _e("Get Jappix, get support."); ?></span>
 					</a>
-					<a href="http://developer.jappix.org/">
-						<span class="name">Jappix Developer</span>
+					<a href="https://github.com/jappix/jappix">
+						<span class="name">Jappix (GitHub)</span>
 						<span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
 					</a>
 				</div>
 				
 				<h2>Jappix.pro</h2>
 				<div class="tabulate">
-					<a href="http://jappix.pro/">
+					<a href="https://jappix.pro/">
 						<span class="name">Jappix Pro</span>
 						<span class="desc"><?php _e("Jappix for your company."); ?></span>
 					</a>
@@ -220,19 +220,19 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 				</span>
 				
 				<?php if(hasLegal()) { ?>
-				<h2><?php _e("Legal"); ?></h2>
-				<span class="one">
-					<a class="name" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal disclaimer"); ?></a>
-					<a class="desc" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Terms of use and legal"); ?></a>
-				</span>
+					<h2><?php _e("Legal"); ?></h2>
+					<span class="one">
+						<a class="name" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal disclaimer"); ?></a>
+						<a class="desc" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Terms of use and legal"); ?></a>
+					</span>
 				<?php } ?>
 				
 				<?php if(hasOwner()) { ?>
-				<h2><?php _e("Owner"); ?></h2>
-				<span class="one">
-					<a class="name" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php echo htmlspecialchars(OWNER_NAME); ?></a>
-					<a class="desc" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php _e("Node owner"); ?></a>
-				</span>
+					<h2><?php _e("Owner"); ?></h2>
+					<span class="one">
+						<a class="name" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php echo htmlspecialchars(OWNER_NAME); ?></a>
+						<a class="desc" href="<?php echo htmlspecialchars(OWNER_WEBSITE); ?>"><?php _e("Node owner"); ?></a>
+					</span>
 				<?php } ?>
 			</div>
 		</div>

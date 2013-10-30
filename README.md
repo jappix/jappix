@@ -28,7 +28,7 @@ Links
 * Jappix project dev panel: https://github.com/jappix/jappix
 * Jappix nodes list: http://jappix.net/
 * Jappix main service: https://jappix.com/
-* Jappix commercial support: http://jappix.pro/
+* Jappix commercial support: https://jappix.pro/
 
 
 Mirrors
