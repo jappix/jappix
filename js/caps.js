@@ -13,7 +13,7 @@ Last revision: 20/02/13
 
 // Returns an array of the Jappix disco#infos
 function myDiscoInfos() {
-	var fArray = new Array(
+	var disco_base = [
 		NS_MUC,
 		NS_MUC_USER,
 		NS_MUC_ADMIN,
@@ -61,9 +61,12 @@ function myDiscoInfos() {
 		NS_PRIVACY,
 		NS_IQOOB,
 		NS_XOOB
-	);
+	];
+
+	var disco_jingle = JSJaCJingle_disco();
+	var disco_all = disco_base.concat(disco_jingle);
 	
-	return fArray;
+	return disco_all;
 }
 
 // Gets the disco#infos of an entity
@@ -237,32 +240,16 @@ function displayDiscoInfos(from, xml) {
 		xid = from;
 	
 	hash = hex_md5(xid);
-	
-	// Support indicators
-	var xhtml_im = false;
-	var iq_oob = false;
-	var x_oob = false;
-	var receipts = false;
-	
+
 	// Display the supported features
+	var features = {}
+
 	$(xml).find('feature').each(function() {
 		var current = $(this).attr('var');
-		
-		// xHTML-IM
-		if(current == NS_XHTML_IM)
-			xhtml_im = true;
-		
-		// Out of Band Data (IQ)
-		if(current == NS_IQOOB)
-			iq_oob = true;
-		
-		// Out of Band Data (X)
-		if(current == NS_XOOB)
-			x_oob = true;
-		
-		// Receipts
-		else if(current == NS_URN_RECEIPTS)
-			receipts = true;
+
+		if(current) {
+			features[current] = 1;
+		}
 	});
 	
 	// Paths
@@ -272,9 +259,9 @@ function displayDiscoInfos(from, xml) {
 	var file = path.find('.chat-tools-file');
 	
 	// Apply xHTML-IM
-	if(xhtml_im)
+	if(NS_XHTML_IM in features) {
 		style.show();
-	else {
+	} else {
 		// Remove the tooltip elements
 		style.hide();
 		style.find('.bubble-style').remove();
@@ -290,14 +277,14 @@ function displayDiscoInfos(from, xml) {
 	}
 	
 	// Apply Out of Band Data
-	if(iq_oob || x_oob) {
+	if(NS_IQOOB in features || NS_XOOB in features) {
 		file.show();
 		
 		// Set a marker
-		if(iq_oob)
-			file.attr('data-oob', 'iq');
-		else
-			file.attr('data-oob', 'x');
+		file.attr(
+			'data-oob',
+			NS_IQOOB in features ? 'iq' : 'x'
+		);
 	}
 	
 	else {
@@ -310,10 +297,11 @@ function displayDiscoInfos(from, xml) {
 	}
 	
 	// Apply receipts
-	if(receipts)
+	if(NS_URN_RECEIPTS in features) {
 		message_area.attr('data-receipts', 'true');
-	else
+	} else {
 		message_area.removeAttr('data-receipts');
+	}
 }
 
 // Generates the CAPS hash
@@ -327,16 +315,19 @@ function processCaps(cIdentities, cFeatures, cDataForms) {
 	cDataForms = cDataForms.sort();
 	
 	// Process the sorted identity string
-	for(a in cIdentities)
+	for(a in cIdentities) {
 		cString += cIdentities[a] + '<';
+	}
 	
 	// Process the sorted feature string
-	for(b in cFeatures)
+	for(b in cFeatures) {
 		cString += cFeatures[b] + '<';
+	}
 	
 	// Process the sorted data-form string
-	for(c in cDataForms)
+	for(c in cDataForms) {
 		cString += cDataForms[c] + '<';
+	}
 	
 	// Process the SHA-1 hash
 	var cHash = b64_sha1(cString);
@@ -348,4 +339,3 @@ function processCaps(cIdentities, cFeatures, cDataForms) {
 function myCaps() {
 	return processCaps(new Array('client/web//Jappix'), myDiscoInfos(), new Array());
 }
-
