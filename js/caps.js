@@ -63,7 +63,7 @@ function myDiscoInfos() {
 		NS_XOOB
 	];
 
-	var disco_jingle = JSJaCJingle_disco();
+	var disco_jingle = []; // RESTORE THIS: JSJaCJingle_disco();
 	var disco_all = disco_base.concat(disco_jingle);
 	
 	return disco_all;
