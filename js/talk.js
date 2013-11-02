@@ -87,6 +87,11 @@ function createTalkPage() {
 					'</div>' + 
 				'</div>' + 
 			'</div>';
+
+			if(!anonymous) html += 
+			'<div class="tools-all ibubble">' + 
+				'<div class="tools jingle talk-images"></div>' + 
+			'</div>';
 		
 		html +=
 		'</div>' + 

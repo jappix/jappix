@@ -62,6 +62,10 @@ html[dir="rtl"] #top-content .tools-all {
 	float: left;
 }
 
+#top-content .jingle {
+	background-position: 7px -2114px;
+}
+
 #top-content .notifications {
 	background-position: 7px -1264px;
 }
@@ -70,6 +74,7 @@ html[dir="rtl"] #top-content .tools-all {
 	background-position: 6px -1286px;
 }
 
+#top-content .jingle:hover,
 #top-content .notifications:hover,
 #top-content .music:hover {
 	cursor: pointer;
@@ -77,14 +82,17 @@ html[dir="rtl"] #top-content .tools-all {
 
 #top-content .music:hover,
 #top-content .notifications:hover,
+#top-content .jingle:hover,
 #top-content .music:focus,
-#top-content .notifications:focus {
+#top-content .notifications:focus,
+#top-content .jingle:focus {
 	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.7);
 }
 
 #top-content .music:active,
-#top-content .notifications:active {
+#top-content .notifications:active,
+#top-content .jingle:active {
 	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.8);
 }

@@ -418,6 +418,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 			$(bPath).append(
 				'<div class="buddy-infos bubble removable">' + 
 					'<div class="buddy-infos-subarrow talk-images"></div>' + 
+
 					'<div class="buddy-infos-subitem">' + 
 						'<div class="pep-infos">' + 
 							'<p class="bi-status talk-images unavailable">' + _e("unknown") + '</p>' + 
@@ -425,6 +426,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
+							'<p class="bi-view talk-images call-jingle"><a href="#" class="audio">' + _e("Audio Call") + '</a> / <a href="#" class="video">' + _e("Video Call") + '</a>' + 
 							'<p class="bi-view talk-images view-individual"><a href="#" class="profile">' + _e("Profile") + '</a> / <a href="#" class="channel">' + _e("Channel") + '</a> / <a href="#" class="commands">' + _e("Commands") + '</a></p>' + 
 							'<p class="bi-edit talk-images edit-buddy"><a href="#">' + _e("Edit") + '</a></p>' + 
 						'</div>' + 

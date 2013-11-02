@@ -350,7 +350,11 @@ html[dir="rtl"] .manage-infos p.bm-group input {
 .location-world {
         background-position: 0 -658px;
 }
- 
+
+.call-jingle {
+        background-position: 0 -2047px;
+}
+
 .view-individual {
         background-position: 0 -34px;
 }

@@ -492,6 +492,14 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 	background-position: 0 -758px;
 }
 
+#page-engine .text .tools-jingle-video {
+	background-position: 0 -2048px;
+}
+
+#page-engine .text .tools-jingle-audio {
+	background-position: 0 -2080px;
+}
+
 #page-engine .text .tools-add,
 #page-engine .text .tools-mucadmin {
 	display: none;

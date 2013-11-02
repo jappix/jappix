@@ -20,6 +20,9 @@ function handleIQ(iq) {
 	var iqQueryXMLNS = iq.getQueryXMLNS();
 	var iqQuery = iq.getQuery();
 	var iqType = iq.getType();
+
+	// Handle Jingle packet?
+	JSJaCJingle_route(iq);
 	
 	// Build the response
 	var iqResponse = new JSJaCIQ();
@@ -173,6 +176,15 @@ function handleIQ(iq) {
 		con.send(iqResponse);
 		
 		Console.log('Received a ping: ' + iqFrom);
+	}
+
+	// Jingle
+	else if($(iqNode).find('jingle').size()) {
+		/* REF: http://xmpp.org/extensions/xep-0166.html */
+		
+		// Handled via JSJaCJingle_route() (see above)
+		
+		logThis('Received a Jingle packet: ' + iqFrom);
 	}
 	
 	// Not implemented

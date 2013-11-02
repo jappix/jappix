@@ -278,6 +278,9 @@ function handleConnected() {
 	
 	// Remove the waiting item
 	removeGeneralWait();
+
+	// Init Jingle
+	Jingle.init();
 }
 
 // Triggers the connected state
