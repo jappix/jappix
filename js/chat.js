@@ -105,9 +105,9 @@ function generateChat(type, id, xid, nick) {
 		specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
 		specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
 		specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
-		specialLink = '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>'
-		            + '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + _e("Call (audio only)") + '"></a>'
-		            + '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + _e("Call (video)") + '"></a>';
+		specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + _e("Call (audio only)") + '"></a>'
+		            + '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + _e("Call (video)") + '"></a>'
+		            + '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
 		specialStyle = ' style="display: none;"';
 		specialDisabled = '';
 	}
@@ -177,6 +177,16 @@ function generateChat(type, id, xid, nick) {
 	// Click event: chat cleaner
 	$(path + 'tools-clear').click(function() {
 		cleanChat(id);
+	});
+
+	// Click event: call (audio)
+	$(path + 'tools-jingle-audio').click(function() {
+		Jingle.start(xid, 'audio');
+	});
+
+	// Click event: call (video)
+	$(path + 'tools-jingle-video').click(function() {
+		Jingle.start(xid, 'video');
 	});
 	
 	// Click event: user-infos

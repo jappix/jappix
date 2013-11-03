@@ -426,7 +426,7 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 							'<p class="bi-activity talk-images activity-exercising">' + _e("unknown") + '</p>' + 
 							'<p class="bi-tune talk-images tune-note">' + _e("unknown") + '</p>' + 
 							'<p class="bi-geoloc talk-images location-world">' + _e("unknown") + '</p>' + 
-							'<p class="bi-view talk-images call-jingle"><a href="#" class="audio">' + _e("Audio Call") + '</a> / <a href="#" class="video">' + _e("Video Call") + '</a>' + 
+							'<p class="bi-jingle talk-images call-jingle"><a href="#" class="audio">' + _e("Audio Call") + '</a> / <a href="#" class="video">' + _e("Video Call") + '</a>' + 
 							'<p class="bi-view talk-images view-individual"><a href="#" class="profile">' + _e("Profile") + '</a> / <a href="#" class="channel">' + _e("Channel") + '</a> / <a href="#" class="commands">' + _e("Commands") + '</a></p>' + 
 							'<p class="bi-edit talk-images edit-buddy"><a href="#">' + _e("Edit") + '</a></p>' + 
 						'</div>' + 
@@ -459,6 +459,22 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				// Command
 				else if($(this).is('.commands'))
 					retrieveAdHoc(xid);
+				
+				return false;
+			});
+
+			// Jingle events
+			$(bPath + ' .bi-jingle a').click(function() {
+				// Renitialize the buddy infos
+				closeBubbles();
+				
+				// Audio call?
+				if($(this).is('.audio'))
+					Jingle.start(xid, 'audio');
+				
+				// Video call?
+				else if($(this).is('.video'))
+					Jingle.start(xid, 'video');
 				
 				return false;
 			});

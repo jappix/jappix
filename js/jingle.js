@@ -243,6 +243,24 @@ var Jingle = new function () {
     };
 
     /**
+     * Start a Jingle call
+     * @public
+     * @return {boolean}
+     */
+    self.start = function (xid, mode) {
+        try {
+            if(!self.in_call()) {
+                // TODO
+                alert('Call: ' + xid + ' (' + mode + ')');
+            }
+        } catch(e) {
+            Console.error('Jingle.start', e);
+        } finally {
+            return false;
+        }
+    };
+
+    /**
      * Stops current Jingle call
      * @public
      * @return {boolean}
@@ -277,6 +295,23 @@ var Jingle = new function () {
             }
         } catch(e) {
             Console.error('Jingle.mute', e);
+        }
+    };
+
+    /**
+     * Checks whether user is in call or not
+     * @public
+     * @return {boolean}
+     */
+    self.in_call = function () {
+        in_call = false;
+
+        try {
+            in_call = self.__jingle_current && true;
+        } catch(e) {
+            Console.error('Jingle.in_call', e);
+        } finally {
+            return in_call;
         }
     };
 
