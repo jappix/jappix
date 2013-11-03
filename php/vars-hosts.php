@@ -23,6 +23,7 @@ $host_muc = htmlspecialchars(HOST_MUC);
 $host_pubsub = htmlspecialchars(HOST_PUBSUB);
 $host_vjud = htmlspecialchars(HOST_VJUD);
 $host_anonymous = htmlspecialchars(HOST_ANONYMOUS);
+$host_stun = htmlspecialchars(HOST_STUN);
 $host_bosh = htmlspecialchars(HOST_BOSH);
 $host_bosh_main = htmlspecialchars(HOST_BOSH_MAIN);
 $host_bosh_mini = htmlspecialchars(HOST_BOSH_MINI);

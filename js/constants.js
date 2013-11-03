@@ -148,6 +148,7 @@ var HOST_MUC = null;
 var HOST_PUBSUB = null;
 var HOST_VJUD = null;
 var HOST_ANONYMOUS = null;
+var HOST_STUN = null;
 var HOST_BOSH = null;
 var HOST_BOSH_MAIN = null;
 var HOST_BOSH_MINI = null;

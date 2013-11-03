@@ -46,6 +46,8 @@ else
 	
 	<label for="host_vjud"><?php _e("Directory host"); ?></label><input id="host_vjud" type="text" name="host_vjud" value="<?php echo $host_vjud; ?>" pattern="[^@/]+" />
 	
+	<label for="host_stun"><?php _e("STUN host"); ?></label><input id="host_stun" type="text" name="host_stun" value="<?php echo $host_stun; ?>" />
+
 	<label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="text" name="host_bosh" value="<?php echo $host_bosh; ?>" />
 	
 	<label for="bosh_proxy"><?php _e("Use the built-in BOSH proxy"); ?></label><input id="bosh_proxy" type="checkbox" name="bosh_proxy"<?php echo $check_bosh_proxy; ?> />

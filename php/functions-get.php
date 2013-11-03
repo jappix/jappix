@@ -185,6 +185,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'HOST_PUBSUB'			=> HOST_PUBSUB,
 		      	'HOST_VJUD'				=> HOST_VJUD,
 		      	'HOST_ANONYMOUS'		=> HOST_ANONYMOUS,
+		      	'HOST_STUN'				=> HOST_STUN,
 		      	'HOST_BOSH'				=> $bosh_special,
 		      	'HOST_BOSH_MAIN'		=> HOST_BOSH_MAIN,
 		      	'HOST_BOSH_MINI'		=> HOST_BOSH_MINI,

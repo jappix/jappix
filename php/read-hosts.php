@@ -41,6 +41,7 @@ $hosts_conf = array(
 	      	'pubsub'		=> 'pubsub.'.$http_host,
 	      	'vjud'			=> 'vjud.'.$http_host,
 	      	'anonymous'		=> 'anonymous.'.$http_host,
+	      	'stun'			=> 'stun.'.$http_host,
 	      	'bosh'			=> 'http://'.$http_host.':5280/http-bind',
 	      	'bosh_main'		=> '',
 	      	'bosh_mini'		=> '',
@@ -85,6 +86,7 @@ define('HOST_MUC', $hosts_conf['muc']);
 define('HOST_PUBSUB', $hosts_conf['pubsub']);
 define('HOST_VJUD', $hosts_conf['vjud']);
 define('HOST_ANONYMOUS', $hosts_conf['anonymous']);
+define('HOST_STUN', $hosts_conf['stun']);
 define('HOST_BOSH', $hosts_conf['bosh']);
 define('HOST_BOSH_MAIN', $hosts_conf['bosh_main']);
 define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);

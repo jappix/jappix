@@ -47,6 +47,12 @@ if(isset($_POST['host_anonymous']) && !empty($_POST['host_anonymous']))
 else
 	$host_anonymous = stripslashes(htmlspecialchars($hosts_default['anonymous']));
 
+// STUN host
+if(isset($_POST['host_stun']) && !empty($_POST['host_stun']))
+	$host_stun = stripslashes(htmlspecialchars($_POST['host_stun']));
+else
+	$host_stun = stripslashes(htmlspecialchars($hosts_default['stun']));
+
 // BOSH host
 if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh']))
 	$host_bosh = stripslashes(htmlspecialchars($_POST['host_bosh']));
@@ -90,6 +96,7 @@ $hosts_xml =
 	<pubsub>'.$host_pubsub.'</pubsub>
 	<vjud>'.$host_vjud.'</vjud>
 	<anonymous>'.$host_anonymous.'</anonymous>
+	<stun>'.$host_stun.'</stun>
 	<bosh>'.$host_bosh.'</bosh>
 	<bosh_main>'.$host_bosh_main.'</bosh_main>
 	<bosh_mini>'.$host_bosh_mini.'</bosh_mini>

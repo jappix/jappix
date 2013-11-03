@@ -36,94 +36,115 @@ var Jingle = new function () {
         args = {};
 
         try {
+            var stun = {};
+            stun[HOST_STUN] = {};
+
             args = {
                 // Configuration (required)
                 connection: connection,
                 to: xid,
                 local_view: local_view,
                 remote_view: remote_view,
+                stun: stun,
                 debug: Console,
 
                 // Custom handlers (optional)
-                session_initiate_pending: function(self) {
+                session_initiate_pending: function(jingle) {
                     // TODO
 
                     Console.log('session_initiate_pending');
                 },
 
-                session_initiate_success: function(self, stanza) {
-                    // TODO
+                session_initiate_success: function(jingle, stanza) {
+                    // Already in a call?
+                    if(self.in_call()) {
+                        jingle.terminate(JSJAC_JINGLE_REASON_BUSY);
 
+                        Console.warn('session_initiate_success', 'Dropped incoming call (already in a call)');
+                    } else {
+                        // TODO
+                    }
+                    
                     Console.log('session_initiate_success');
                 },
 
-                session_initiate_error: function(self, stanza) {
+                session_initiate_error: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_initiate_error');
                 },
 
-                session_initiate_request: function(self, stanza) {
+                session_initiate_request: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_initiate_request');
                 },
 
-                session_accept_pending: function(self) {
+                session_accept_pending: function(jingle) {
                     // TODO
 
                     Console.log('session_accept_pending');
                 },
 
-                session_accept_success: function(self, stanza) {
+                session_accept_success: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_accept_success');
                 },
 
-                session_accept_error: function(self, stanza) {
+                session_accept_error: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_accept_error');
                 },
 
-                session_accept_request: function(self, stanza) {
+                session_accept_request: function(jingle, stanza) {
                     Console.log('session_accept_request');
                 },
 
-                session_info_success: function(self, stanza) {
+                session_info_success: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_info_success');
                 },
 
-                session_info_error: function(self, stanza) {
+                session_info_error: function(jingle, stanza) {
                     Console.log('session_info_error');
                 },
 
-                session_info_request: function(self, stanza) {
+                session_info_request: function(jingle, stanza) {
                     Console.log('session_info_request');
                 },
 
-                session_terminate_pending: function(self) {
+                session_terminate_pending: function(jingle) {
                     // TODO
 
                     Console.log('session_terminate_pending');
                 },
 
-                session_terminate_success: function(self, stanza) {
-                    // TODO
+                session_terminate_success: function(jingle, stanza) {
+                    // Ensure we this is the same call session ID (SID)
+                    if(self.__jingle_current.get_sid() == jingle.get_sid()) {
+                        // TODO
+                    } else {
+                        Console.warn('session_terminate_success', 'Dropped stanza with unmatching SID');
+                    }
 
                     Console.log('session_terminate_success');
                 },
 
-                session_terminate_error: function(self, stanza) {
-                    // TODO
+                session_terminate_error: function(jingle, stanza) {
+                     // Ensure we this is the same call session ID (SID)
+                    if(self.__jingle_current.get_sid() == jingle.get_sid()) {
+                        // TODO
+                    } else {
+                        Console.warn('session_terminate_error', 'Dropped stanza with unmatching SID');
+                    }
 
                     Console.log('session_terminate_error');
                 },
 
-                session_terminate_request: function(self, stanza) {
+                session_terminate_request: function(jingle, stanza) {
                     // TODO
 
                     Console.log('session_terminate_request');
@@ -219,20 +240,20 @@ var Jingle = new function () {
             JSJAC_JINGLE_STORE_INITIATE   = function(stanza) {
                 try {
                     // Already in a call?
-                    if(!slotCall()) {
+                    if(self.in_call()) {
                         (new JSJaCJingle({ to: stanza.getFrom(), debug: JSJAC_JINGLE_STORE_DEBUG })).terminate(JSJAC_JINGLE_REASON_BUSY);
 
-                        Console.warn('session_initiate_success', 'Dropped incoming Jingle call because already in a call.');
+                        Console.warn('session_initiate_success', 'Dropped incoming call because already in a call.');
 
                         return;
                     }
 
                     var xid  = fullXID(getStanzaFrom(stanza));
 
-                    Console.info('Incoming Jingle call from: ' + xid);
+                    Console.info('Incoming call from: ' + xid);
 
                     // Session values
-                    newJingle(xid, 'video', true, stanza);
+                    self.start(xid, 'video');
                 } catch(e) {
                     Console.error('JSJAC_JINGLE_STORE_INITIATE', e);
                 }
