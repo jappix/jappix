@@ -172,6 +172,7 @@ var Jingle = new function () {
         try {
             if(!xid) return false;
 
+            var jingle_sel = $('#jingle');
             var bare_xid    = bareXID(xid);
             var full_xid    = null;
             var bare_hash   = hex_md5(bare_xid);
@@ -190,8 +191,8 @@ var Jingle = new function () {
                                    con,
                                    full_xid,
                                    bare_hash,
-                                   $('#video_local_' + bare_hash)[0],
-                                   $('#video_remote_' + bare_hash)[0]
+                                   jingle_sel.find('.local_video')[0],
+                                   jingle_sel.find('.remote_video')[0]
                                  );
 
             self.__jingle_current = new JSJaCJingle(args);
@@ -333,6 +334,77 @@ var Jingle = new function () {
             Console.error('Jingle.in_call', e);
         } finally {
             return in_call;
+        }
+    };
+
+    /**
+     * Create the Jingle interface
+     * @public
+     * @return {undefined}
+     */
+    self.create_interface = function (xid, mode) {
+        try {
+            $('#talk').append(
+                '<div id="jingle" data-xid="" data-mode="">' + 
+                    '<div class="sidebar">' + 
+                        '<span class="logo jingle-images"></span>' + 
+
+                        '<div class="controls">' + 
+                            '<a href="#" class="chat control-button jingle-images" data-type="chat">Go to chat</a>' + 
+                            '<a href="#" class="stop control-button jingle-images" data-type="stop">Stop call</a>' + 
+                            '<a href="#" class="mute control-button jingle-images" data-type="mute">Mute audio</a>' + 
+                        '</div>' + 
+                    '</div>' + 
+
+                    '<video class="local_video" src="" alt=""></video>' + 
+                    '<video class="remote_video" src="" alt=""></video>' + 
+                '</div>'
+            )
+
+            $('#jingle').find('.sidebar .controls a').click(function() {
+                try {
+                    switch($(this).data('type')) {
+                        case 'chat':
+                            self.hide_interface(); break;
+                        case 'stop':
+                            self.stop(); break;
+                        case 'mute':
+                            self.mute(); break;
+                    }
+                } catch(e) {
+                    Console.error('Jingle.create_interface[async]', e);
+                } finally {
+                    return false;
+                }
+            })
+        } catch(e) {
+            Console.error('Jingle.create_interface', e);
+        }
+    };
+
+    /**
+     * Show the Jingle interface
+     * @public
+     * @return {undefined}
+     */
+    self.show_interface = function () {
+        try {
+            $('#jingle:hidden').stop(true).show();
+        } catch(e) {
+            Console.error('Jingle.show_interface', e);
+        }
+    };
+
+    /**
+     * Hide the Jingle interface
+     * @public
+     * @return {undefined}
+     */
+    self.hide_interface = function () {
+        try {
+            $('#jingle:visible').stop(true).hide();
+        } catch(e) {
+            Console.error('Jingle.hide_interface', e);
         }
     };
 

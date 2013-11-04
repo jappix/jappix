@@ -57,6 +57,11 @@ Last revision: 22/08/12
 	background-repeat: no-repeat;
 }
 
+.jingle-images {
+	background-image: url(../img/sprites/jingle.png);
+	background-repeat: no-repeat;
+}
+
 .manager-images {
 	background-image: url(../img/sprites/manager.png);
 	background-repeat: no-repeat;
