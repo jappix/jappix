@@ -6,8 +6,8 @@ These are the options JS scripts for Jappix
 -------------------------------------------------
 
 License: AGPL
-Author: Valérian Saliou
-Last revision: 07/06/13
+Author: Valérian Saliou, Maranda
+Last revision: 23/11/13
 
 */
 
@@ -55,6 +55,11 @@ function optionsOpen() {
 				'<div class="showall">' +
 					'<label for="showall">' + _e("Show all friends") + '</label>' + 
 					'<input id="showall" type="checkbox" />' + 
+				'</div>' +
+				
+				'<div class="noxhtmlimg">' +
+					'<label for="noxhtmlimg">' + _e("Filter XHTML-IM Images") + '</label>' + 
+					'<input id="noxhtmlimg" type="checkbox" />' + 
 				'</div>' +
 				
 				'<div class="integratemedias">' +
@@ -236,12 +241,13 @@ function storeOptions() {
 	var sounds = getDB(DESKTOP_HASH, 'options', 'sounds');
 	var geolocation = getDB(DESKTOP_HASH, 'options', 'geolocation');
 	var showall = getDB(DESKTOP_HASH, 'options', 'roster-showall');
+	var noxhtmlimg = getDB(DESKTOP_HASH, 'options', 'no-xhtml-images');
 	var integratemedias = getDB(DESKTOP_HASH, 'options', 'integratemedias');
 	var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
 	
 	// Create an array to be looped
-	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'integratemedias', 'presence-status');
-	var oContent = new Array(sounds, geolocation, showall, integratemedias, status);
+	var oType = new Array('sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'presence-status');
+	var oContent = new Array(sounds, geolocation, showall, noxhtmlimg, integratemedias, status);
 	
 	// New IQ
 	var iq = new JSJaCIQ();
@@ -302,6 +308,15 @@ function saveOptions() {
 	else {
 		setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
 		showOnlineBuddies('options');
+	}
+	
+	// We apply the XHTML-IM images filter
+	if($('#noxhtmlimg').filter(':checked').size()) {
+		setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '1');
+	}
+	
+	else {
+		setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '0');
 	}
 	
 	// We apply the media integration
@@ -581,6 +596,12 @@ function loadOptions() {
 		$('#showall').attr('checked', true);
 	else
 		$('#showall').attr('checked', false);
+		
+	// We get the values of the forms for the XHTML-IM images filter
+	if(getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') == '1')
+		$('#noxhtmlimg').attr('checked', true);
+	else
+		$('#noxhtmlimg').attr('checked', false);
 	
 	// We get the values of the forms for the integratemedias
 	if(getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')

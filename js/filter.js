@@ -7,7 +7,7 @@ These are the filtering JS script for Jappix
 
 License: AGPL
 Authors: Valérian Saliou, Maranda
-Last revision: 13/02/12
+Last revision: 23/11/13
 
 */
 
@@ -92,14 +92,14 @@ function filterThisMessage(neutralMessage, nick, html_escape) {
 function filterThisXHTML(code) {
 	// Allowed elements array
 	var elements = new Array(
-					'a',
-					'abbr',
-					'acronym',
+				'a',
+				'abbr',
+				'acronym',
 			        'address',
 			        'blockquote',
-					'body',
-					'br',
-					'cite',
+				'body',
+				'br',
+				'cite',
 			        'code',
 			        'dd',
 			        'dfn',
@@ -114,7 +114,6 @@ function filterThisXHTML(code) {
 			        'h6',
 			        'head',
 			        'html',
-			        'img',
 			        'kbd',
 			        'li',
 			        'ol',
@@ -155,6 +154,11 @@ function filterThisXHTML(code) {
 				   'xml:lang',
 				   'xmlns'
 				  );
+				  
+	// Check if Filter for XHTML-IM images is enabled
+	if(getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') != '1') {
+		elements.push("img");
+	};
 	
 	// Remove forbidden elements
 	$(code).find('html body *').each(function() {
