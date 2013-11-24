@@ -2,17 +2,18 @@
 # These are the default english strings of Jappix
 # -------------------------------------------------
 # License: AGPL
-# Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
+# Authors: Valérian Saliou, JanCBorchardt, Dominik George
+# Last revision: 24/11/13
 # Translators:
 # Christian Sturm <reezer@reezer.org>, 2012
 # palim <ueblesurmeli-transifex@yahoo.de>, 2012
+# Dominik George <nik@naturalnet.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:24+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2013-11-24 21:53+0100\n"
+"Last-Translator: Dominik George <nik@naturalnet.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/jappix/language/"
 "de/)\n"
 "MIME-Version: 1.0\n"
@@ -49,46 +50,46 @@ msgid "Statistics around Jappix."
 msgstr "Statistiken rund um Jappix."
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Rechtsbelehrung zu Jappix."
 
 msgid "Download Jappix for free."
-msgstr "Jappix-Download kostenlos."
+msgstr "Jappix kostenlos herunterladen"
 
 msgid "Contribute to the Jappix code."
 msgstr "Leiste deinen Beitrag zum Jappix-Code."
 
 msgid "Jappix for your company."
-msgstr "Jappix für ihr Unternehmen."
+msgstr "Jappix für Ihr Unternehmen."
 
 msgid "Find a public Jappix node."
 msgstr "Finde einen Jappix-Knotenpunkt."
 
 msgid "Credits"
-msgstr ""
+msgstr "Dank"
 
 msgid "Association"
-msgstr ""
+msgstr "Vereinigung"
 
 msgid "Web agency"
-msgstr ""
+msgstr "Webagentur"
 
 msgid "Legal"
-msgstr ""
+msgstr "Rechtliches"
 
 msgid "Legal disclaimer"
 msgstr "Haftungsausschluss"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "Nutzungsbedingungen und Haftungsausschluss"
 
 msgid "Owner"
-msgstr ""
+msgstr "Besitzer"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Knotenbesitzer"
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Durch die Nutzung unseres Dienstes stimmst du %s zu."
 
 msgid "our terms of use"
 msgstr "unsere Nutzungsbedingungen"
@@ -340,7 +341,7 @@ msgid "Others"
 msgstr "Andere"
 
 msgid "Other"
-msgstr ""
+msgstr "Anderes"
 
 msgid "Personal"
 msgstr "Persönlich"
@@ -406,6 +407,8 @@ msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
+"Sei vorsichtig, welche Informationen du in deinem Profil speicherst,"
+"da sie allen (auch einigen, von denen du das nicht wünschst) zugänglich sind."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -447,7 +450,7 @@ msgid "Message archiving"
 msgstr "Nachrichtenarchivierung"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "Nachrichtenverlauf speichern"
 
 msgid "Geolocation"
 msgstr "Geodaten"
@@ -480,7 +483,7 @@ msgid "New (2 times)"
 msgstr "Neu (zwei Mal)"
 
 msgid "Suggested chatrooms"
-msgstr ""
+msgstr "Vorgeschlagene Räume"
 
 msgid "Continue"
 msgstr "Fortsetzen"
@@ -790,10 +793,10 @@ msgid "left the chat room"
 msgstr "hat den Raum verlassen"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s hat den Raum verlassen"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s hat den Raum betreten"
 
 msgid "no status"
 msgstr "kein Status"
@@ -839,6 +842,8 @@ msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
+"Um dein Konto sicher zu halten, achte darauf, dass dein Passwort beim Registrieren "
+"und Anmelden geheim bleibt."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
@@ -1009,22 +1014,28 @@ msgid ""
 "validated your account. Your public profile will be available in a few "
 "moments."
 msgstr ""
+"hat dein Konto überprüft. Dein öffentliches Profil wird gleich "
+"verfügbar sein."
 
 msgid "has removed your public profile after your request. We will miss you!"
-msgstr ""
+msgstr "hat dein öffentliches Profil entfernt. Wir werden dich vermissen!"
 
 msgid ""
 "has saved your new public profile settings. They will be applied in a few "
 "moments."
 msgstr ""
+"hat die neuen Einstellungen für dein öffentliches Profil gespeichert."
+"Sie werden in ein paar Minuten angewandt."
 
 msgid ""
 "could not validate your account to create or update your public profile. "
 "Check your credentials."
 msgstr ""
+"konnte dein Konto nicht überprüfen, um dein öffentliches Profil "
+"zu erstellen oder zu aktualisieren. Prüfe deine Daten!"
 
 msgid "Open"
-msgstr ""
+msgstr "Öffnen"
 
 msgid "Show"
 msgstr "Zeigen"
@@ -1365,10 +1376,10 @@ msgid "Service description"
 msgstr "Dienst-Beschreibung"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Name des Besitzers"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Website des Besitzers"
 
 msgid "Connection"
 msgstr "Verbindung"
@@ -1380,13 +1391,13 @@ msgid "Anonymous mode"
 msgstr "Anonymer Modus"
 
 msgid "HTTP authentication"
-msgstr ""
+msgstr "HTTP-Anmeldung"
 
 msgid "Registration allowed"
 msgstr "Registrieren erlaubt"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Den eingebauten BOSH-Proxy benutzen"
 
 msgid "Manager link"
 msgstr "Manager Link"
@@ -1395,7 +1406,7 @@ msgid "Groupchats to join"
 msgstr "Gruppenchats zum Beitreten"
 
 msgid "Suggest groupchats"
-msgstr ""
+msgstr "Räume vorschlagen"
 
 msgid "Encryption"
 msgstr "Verschlüsselung"
@@ -1600,7 +1611,7 @@ msgid "Change your Jappix node configuration with this tool."
 msgstr "Ändere die Jappix Node-Konfiguration mit diesem Tool."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr ""
+msgstr "Ändere die XMPP-Hosts, die dieser Jappix-Knoten benutzt, mit diesem Tool."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -1997,7 +2008,7 @@ msgid "The selected elements have been removed."
 msgstr "Die ausgewählten Elemente wurden entfernt."
 
 msgid "You must select elements to remove!"
-msgstr "Sie müssen Elemente auswählen um welche zu entfernen!"
+msgstr "Du musst Elemente auswählen um welche zu entfernen!"
 
 msgid ""
 "Add a new user with this tool, or change a password (type an existing "
@@ -2134,10 +2145,10 @@ msgstr ""
 "und kann daher nicht ausgeführt werden."
 
 msgid "Send him/her a message"
-msgstr "Sende Ihm/Ihr eine Nachricht"
+msgstr "Sende ihm/ihr eine Nachricht"
 
 msgid "Start a chat with him/her"
-msgstr "Starte Chat mit Ihm/Ihr"
+msgstr "Starte Chat mit ihm/ihr"
 
 msgid "Available shortcuts:"
 msgstr "Verfügbare Tastenkombinationen:"
@@ -2240,65 +2251,68 @@ msgstr ""
 "Dein Zugangsschlüssel ermöglicht dir den Download dieser Datei leider nicht"
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "Statistiken sind in den Einstellungen deaktiviert."
 
 msgid "New event!"
-msgstr ""
+msgstr "Neues Ereignis!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s tippt..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
-msgstr ""
+msgstr "Der eingegebene Sicherheitscode ist falsch. Bitte versuche einen anderen."
 
 msgid "The username you picked is not available. Please try another one."
-msgstr ""
+msgstr "Der gewählte Benutyername ist nicht verfügbar. Bitte versuche einen anderen."
 
 msgid "There was an error registering your account. Please retry."
-msgstr ""
+msgstr "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuche es noch einmal."
 
 msgid "Username"
-msgstr ""
+msgstr "Benutzername"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Passwort eingeben"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Nochmal..."
 
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 msgid "Security code"
-msgstr ""
+msgstr "Sicherheitscode"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Werbefläche frei!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Wirb hier"
 
 msgid "Analytics (%s)"
-msgstr ""
+msgstr "Analyse (%s)"
 
 msgid "Track visits"
-msgstr ""
+msgstr "Besuche verfolgen"
 
 msgid "Piwik URL"
-msgstr ""
+msgstr "Piwik-URL"
 
 msgid "Piwik tracking ID"
-msgstr ""
+msgstr "Piwik-Tracking-ID"
 
 msgid "Advertising (%s)"
-msgstr ""
+msgstr "Werbung (%s)"
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Werbung aktivieren"
 
 msgid "Standard ads key"
-msgstr ""
+msgstr "Schlüssel für Standard-Werbung"
 
 msgid "Content ads key"
-msgstr ""
+msgstr "Schlüssel für Inhaltswerbung"
+
+msgid "Filter XHTML-IM Images"
+msgstr "Bilder in XHTML-IM filtern"
