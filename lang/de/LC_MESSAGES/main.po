@@ -50,7 +50,7 @@ msgid "Statistics around Jappix."
 msgstr "Statistiken rund um Jappix."
 
 msgid "Legal disclaimer for Jappix."
-msgstr "Rechtsbelehrung zu Jappix."
+msgstr "Haftungsausschluss zu Jappix."
 
 msgid "Download Jappix for free."
 msgstr "Jappix kostenlos herunterladen"
