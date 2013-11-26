@@ -173,8 +173,7 @@ function displayPEP(xid, type) {
 				
 				// Generate the text to be displayed
 				if(tLat && tLon) {
-					aLink = ' href="http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon) + '" target="_blank"';
-					fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
+					fText = '<a data-lat="' + escape(tLat) + '" data-lon="' + escape(tLon) + '">' + tHuman.htmlEnc() + '</a>';
 					
 					if(tReal)
 						dText = tReal;
