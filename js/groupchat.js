@@ -224,8 +224,8 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 	inputDetect.keydown(function(e) {
 		// Enter key
 		if(e.keyCode == 13) {
-			// Add a new line
-			if(e.shiftKey)
+			// If shift key (without any others modifiers) was pressed, add a new line
+			if(e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey)
 				inputDetect.val(inputDetect.val() + '\n');
 			
 			// Send the message
@@ -239,8 +239,8 @@ function groupchatCreate(hash, room, chan, nickname, password) {
 			return false;
 		}
 		
-		// Tabulation key
-		else if(e.keyCode == 9) {
+		// Tabulation key (without any modifiers)
+		else if(!e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey && e.keyCode == 9) {
 			createAutocompletion(hash);
 			
 			return false;
