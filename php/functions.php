@@ -754,7 +754,13 @@ function httpAuthEnabled() {
 
 // The function to authenticate with HTTP
 function httpAuthentication() {
-    $host = (isset($_SERVER['HTTP_EMAIL'])) ? substr(strrchr($_SERVER['HTTP_EMAIL'], "@"), 1) : HOST_MAIN;
+    if (isset($_SERVER['HTTP_EMAIL'])) {
+        $user = strstr($_SERVER['HTTP_EMAIL'], "@", true);
+        $host = substr(strrchr($_SERVER['HTTP_EMAIL'], "@"), 1);
+    } else {
+        $user = $_SERVER['PHP_AUTH_USER'];
+        $host = HOST_MAIN;
+    }
     echo '<script type="text/javascript">
             jQuery(document).ready(function() {
                 doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$host.'", 10);
