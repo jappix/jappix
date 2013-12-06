@@ -136,7 +136,7 @@ function switchHome(div) {
 						'<label for="rpassword">' + _e("Password") + '</label>' + 
 						'<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + _e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + _e("Once again...") + '" />';
 			
-			if(REGISTER_API == 'on')
+			if(REGISTRATION == 'on')
 				code += '<div class="captcha_grp">' + 
 							'<label for="captcha">' + _e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + _e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />' + 
 						'</div>';
