@@ -178,6 +178,13 @@ function doRegister(username, domain, pass, captcha) {
 			}
 		});
 	} else {
+		
+			// Show the waiting image
+			showGeneralWait();
+			
+			// Change the page title
+			pageTitle('wait');
+		
 		try {
 			// We define the http binding parameters
 			oArgs = new Object();
@@ -208,12 +215,8 @@ function doRegister(username, domain, pass, captcha) {
 			oArgs.xmllang = XML_LANG;
 			
 			con.connect(oArgs);
-			
-			// Show the waiting image
-			showGeneralWait();
-			
-			// Change the page title
-			pageTitle('wait');
+			//let's assume it's ok if no errors in try/catch
+			handleRegistered();
 		}
 		
 		catch(e) {
