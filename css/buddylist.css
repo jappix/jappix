@@ -298,6 +298,10 @@ html[dir="rtl"] .buddy-infos-subitem {
         clear: both;
 }
  
+.manage-infos div.map-mini {
+        height: 250px;
+}
+
 .manage-infos p.bm-rename,
 .manage-infos p.bm-group {
         height: 26px;

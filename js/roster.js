@@ -484,6 +484,12 @@ function applyBuddyHover(xid, hash, nick, subscription, groups, group_hash) {
 				
 				return false;
 			});
+
+			$(bPath + ' .bi-geoloc a').click(function() {
+				buddyGeolocMap(xid, nick);
+
+				return false;
+			});
 		});
 	}, function() {
 		if(!exists(iPath + ' .manage-infos'))
@@ -678,6 +684,35 @@ function buddyEdit(xid, nick, subscription, groups) {
 	
 	// Apply the editing input events
 	applyBuddyInput(xid);
+}
+
+// Show buddy geolocation map
+function buddyGeolocMap(xid, nick) {
+	Console.info('Buddy geoloc map: ' + xid);
+
+	// Initialize
+	var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] .';
+
+	// Get location data
+	var lat = $(path + 'bi-geoloc a').attr("data-lat");
+	var lon = $(path + 'bi-geoloc a').attr("data-lon");
+
+	// Create new container in the style of the old one
+	var html = '<div class="manage-infos">';
+	html += '<div class="map-mini" id="map-mini-' + escape(xid) + '"></div>';
+	html += '</div>';
+
+	// We update the DOM elements
+	$(path + 'pep-infos').replaceWith(html);
+
+	// Update the new map to point to the right location
+	L.Icon.Default.imagePath = './img/sources/icons/';
+	var map = L.map('map-mini-' + escape(xid)).setView([lat, lon], 13);
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="http://opendatacommons.org/licenses/odbl/">ODbL</a>',
+			maxZoom: 18
+		}).addTo(map);
+	var marker = L.marker([lat, lon]).addTo(map);
 }
 
 // Unregisters from a given gateway
