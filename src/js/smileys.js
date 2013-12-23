@@ -21,34 +21,127 @@ var Smileys = (function () {
 
 
 	/**
-     * XXXXXX
+     * Generates the correct HTML code for an emoticon insertion tool
      * @public
-     * @param {type} name
+     * @param {string} smiley
+     * @param {string} image
+     * @param {string} hash
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.emoteLink = function(smiley, image, hash) {
 
         try {
-            // CODE
+            return '<a href="#" class="emoticon emoticon-' + image + ' smileys-images" data-smiley="' + smiley + '"></a>';
         } catch(e) {
-            Console.error('Smileys.xxxx', e);
+            Console.error('Smileys.emoteLink', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Emoticon links arrays
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} hash
+     * @return {object}
      */
-    self.xxxx = function() {
+    self.links = function(hash) {
 
         try {
-            // CODE
+            var links = '';
+            
+            var sArray = new Array(
+                ':-D',
+                ']:->',
+                '8-)',
+                ':-P',
+                ':-)',
+                ';-)',
+                ':-$',
+                ':-|',
+                ':-/',
+                '=-O',
+                ':-(',
+                ':\'-(',
+                ':-@',
+                ':-!',
+                '({)',
+                '(})',
+                ':3',
+                '(@)',
+                ':-[',
+                ':-{}',
+                '<3',
+                '</3',
+                '@}->--',
+                '(W)',
+                '(Y)',
+                '(N)',
+                '(I)',
+                '(C)',
+                '(D)',
+                '(B)',
+                '(Z)',
+                '(X)',
+                '(P)',
+                '(T)',
+                '(8)',
+                '(%)',
+                '(E)',
+                '(R)',
+                '(*)',
+                '(S)'
+            );
+            
+            var cArray = new Array(
+                'biggrin',
+                'devil',
+                'coolglasses',
+                'tongue',
+                'smile',
+                'wink',
+                'blush',
+                'stare',
+                'frowning',
+                'oh',
+                'unhappy',
+                'cry',
+                'angry',
+                'puke',
+                'hugright',
+                'hugleft',
+                'lion',
+                'pussy',
+                'bat',
+                'kiss',
+                'heart',
+                'brheart',
+                'flower',
+                'brflower',
+                'thumbup',
+                'thumbdown',
+                'lamp',
+                'coffee',
+                'drink',
+                'beer',
+                'boy',
+                'girl',
+                'photo',
+                'phone',
+                'music',
+                'cuffs',
+                'mail',
+                'rainbow',
+                'star',
+                'moon'
+            );
+            
+            for(i in sArray)
+                links += emoteLink(sArray[i], cArray[i], hash);
+            
+            return links;
         } catch(e) {
-            Console.error('Smileys.xxxx', e);
+            Console.error('Smileys.links', e);
         }
 
     };

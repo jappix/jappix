@@ -21,102 +21,167 @@ var Receipts = (function () {
 
 
 	/**
-     * XXXXXX
+     * Checks if we can send a receipt request
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} hash
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.receiptRequest = function(hash) {
+
+        has_support = false;
 
         try {
-            // CODE
+            // Entity have support for receipt?
+            if($('#' + hash + ' .message-area').attr('data-receipts') == 'true') {
+                has_support = true;
+            }
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.request', e);
+        } finally {
+            return has_support;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if there is a receipt request
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} packet
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.hasReceipt = function(packet) {
+
+        has_receipt = false;
 
         try {
-            // CODE
+            // Any receipt request?
+            if(packet.getChild('request', NS_URN_RECEIPTS)) {
+                has_receipt = true;
+            }
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.has', e);
+        } finally {
+            return has_receipt;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if there is a received reply
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} packet
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.hasReceived = function(packet) {
+
+        has_received = false;
 
         try {
-            // CODE
+            // Any received reply?
+            if(packet.getChild('received', NS_URN_RECEIPTS)) {
+                has_received = true;
+            }
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.received', e);
+        } finally {
+            return has_received;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Sends a received notification
      * @public
-     * @param {type} name
+     * @param {string} type
+     * @param {string} to
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendReceived = function(type, to, id) {
 
         try {
-            // CODE
+            var aMsg = new JSJaCMessage();
+            aMsg.setTo(to);
+            aMsg.setID(id);
+            
+            // Any type?
+            if(type)
+                aMsg.setType(type);
+            
+            // Append the received node
+            aMsg.appendNode('received', {'xmlns': NS_URN_RECEIPTS, 'id': id});
+            
+            con.send(aMsg);
+            
+            Console.log('Sent received to: ' + to);
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.sendReceived', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Tells the message has been received
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} hash
+     * @param {string} id
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.messageReceived = function(hash, id) {
 
         try {
-            // CODE
+            // Line selector
+            var path = $('#' + hash + ' .one-line[data-id="' + id + '"]');
+            
+            // Add a received marker
+            path.attr('data-received', 'true')
+                .removeAttr('data-lost');
+            
+            // Group selector
+            var group = path.parent();
+            
+            // Remove the group marker
+            if(!group.find('.one-line[data-lost]').size()) {
+                group.find('b.name').removeClass('talk-images')
+                            .removeAttr('title');
+            }
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.messageReceived', e);
+        } finally {
+            return false;
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Checks if the message has been received
      * @public
-     * @param {type} name
+     * @param {string} hash
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.checkReceived = function(hash, id) {
 
         try {
-            // CODE
+            // Fire a check 10 seconds later
+            $('#' + hash + ' .one-line[data-id="' + id + '"]').oneTime('10s', function() {
+                // Not received?
+                if($(this).attr('data-received') != 'true') {
+                    // Add a "lost" marker
+                    $(this).attr('data-lost', 'true');
+                    
+                    // Add a warn on the buddy-name
+                    $(this).parent().find('b.name').addClass('talk-images')
+                                       .attr('title', _e("Your friend seems not to have received your message(s)!"));
+                }
+            });
         } catch(e) {
-            Console.error('Receipts.xxxx', e);
+            Console.error('Receipts.checkReceived', e);
         }
 
     };

@@ -21,17 +21,26 @@ var Origin = (function () {
 
 
     /**
-     * XXXXXX
+     * Checks if the URL passed has the same origin than Jappix itself
      * @public
-     * @param {type} name
+     * @param {string} url
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.isSameOrigin = function(url) {
+
+        /* Source: http://stackoverflow.com/questions/9404793/check-if-same-origin-policy-applies */
 
         try {
-            // CODE
+            var loc = window.location,
+            a = document.createElement('a');
+
+            a.href = url;
+
+            return (!a.hostname || (a.hostname == loc.hostname))    &&
+                   (!a.port     || (a.port == loc.port))            &&
+                   (!a.protocol || (a.protocol == loc.protocol));
         } catch(e) {
-            Console.error('Origin.xxxx', e);
+            Console.error('Origin.isSame', e);
         }
 
     };

@@ -21,17 +21,42 @@ var HTTPReply = (function () {
 
 
     /**
-     * XXXXXX
+     * Replies to a HTTP request
      * @public
-     * @param {type} name
+     * @param {string} value
+     * @param {object} xml
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.do = function(value, xml) {
 
         try {
-            // CODE
+            // We parse the xml content
+            var from = fullXID(getStanzaFrom(xml));
+            var confirm = $(xml.getNode()).find('confirm');
+            var xmlns = confirm.attr('xmlns');
+            var id = confirm.attr('id');
+            var method = confirm.attr('method');
+            var url = confirm.attr('url');
+            
+            // We generate the reply message
+            var aMsg = new JSJaCMessage();
+            aMsg.setTo(from);
+            
+            // If "no"
+            if(value == 'no') {
+                aMsg.setType('error');
+                aMsg.appendNode('error', {'code': '401', 'type': 'auth'});
+            }
+            
+            // We set the confirm node
+            aMsg.appendNode('confirm', {'xmlns': xmlns, 'url': url, 'id': id, 'method': method});
+            
+            // We send the message
+            con.send(aMsg, handleErrorReply);
+            
+            Console.info('Replying HTTP auth request: ' + from);
         } catch(e) {
-            Console.error('HTTPReply.xxxx', e);
+            Console.error('HTTPReply.do', e);
         }
 
     };

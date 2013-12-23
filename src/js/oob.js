@@ -21,85 +21,243 @@ var OOB = (function () {
 
 
 	/**
-     * XXXXXX
+     * Sends an OOB request to someone
      * @public
-     * @param {type} name
+     * @param {string} to
+     * @param {string} type
+     * @param {string} url
+     * @param {string} desc
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendOOB = function(to, type, url, desc) {
 
         try {
-            // CODE
+            // IQ stanza?
+            if(type == 'iq') {
+                // Get some values
+                var id = hex_md5(genID() + to + url + desc);
+                to = highestPriority(to);
+                
+                // IQs cannot be sent to offline users
+                if(!to)
+                    return;
+                
+                // Register the ID
+                setDB(DESKTOP_HASH, 'send/url', id, url);
+                setDB(DESKTOP_HASH, 'send/desc', id, desc);
+                
+                var aIQ = new JSJaCIQ();
+                aIQ.setTo(fullXID(to));
+                aIQ.setType('set');
+                aIQ.setID(id);
+                
+                // Append the query content
+                var aQuery = aIQ.setQuery(NS_IQOOB);
+                aQuery.appendChild(aIQ.buildNode('url', {'xmlns': NS_IQOOB}, url));
+                aQuery.appendChild(aIQ.buildNode('desc', {'xmlns': NS_IQOOB}, desc));
+                
+                con.send(aIQ);
+            }
+            
+            // Message stanza?
+            else {
+                var aMsg = new JSJaCMessage();
+                aMsg.setTo(bareXID(to));
+                
+                // Append the content
+                aMsg.setBody(desc);
+                var aX = aMsg.appendNode('x', {'xmlns': NS_XOOB});
+                aX.appendChild(aMsg.buildNode('url', {'xmlns': NS_XOOB}, url));
+                
+                con.send(aMsg);
+            }
+            
+            Console.log('Sent OOB request to: ' + to + ' (' + desc + ')');
         } catch(e) {
-            Console.error('OOB.xxxx', e);
+            Console.error('OOB.send', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles an OOB request
      * @public
-     * @param {type} name
+     * @param {string} from
+     * @param {string} id
+     * @param {string} type
+     * @param {string} node
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleOOB = function(from, id, type, node) {
 
         try {
-            // CODE
+            var xid = url = desc = '';
+            
+            // IQ stanza?
+            if(type == 'iq') {
+                xid = fullXID(from);
+                url = $(node).find('url').text();
+                desc = $(node).find('desc').text();
+            }
+            
+            // Message stanza?
+            else {
+                xid = bareXID(from);
+                url = $(node).find('url').text();
+                desc = $(node).find('body').text();
+            }
+            
+            // No desc?
+            if(!desc) {
+                desc = url;
+            }
+            
+            // Open a new notification
+            if(type && xid && url && desc) {
+                newNotification('send', xid, [xid, url, type, id, node], desc, hex_md5(xid + url + desc + id));
+            }
         } catch(e) {
-            Console.error('OOB.xxxx', e);
+            Console.error('OOB.handle', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Replies to an OOB request
      * @public
-     * @param {type} name
+     * @param {string} to
+     * @param {string} id
+     * @param {string} choice
+     * @param {string} type
+     * @param {object} node
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.replyOOB = function(to, id, choice, type, node) {
 
         try {
-            // CODE
+            // Not IQ type?
+            if(type != 'iq')
+                return;
+            
+            // New IQ
+            var aIQ = new JSJaCIQ();
+            aIQ.setTo(to);
+            aIQ.setID(id);
+            
+            // OOB request accepted
+            if(choice == 'accept') {
+                aIQ.setType('result');
+                
+                Console.info('Accepted file request from: ' + to);
+            }
+            
+            // OOB request rejected
+            else {
+                aIQ.setType('error');
+                
+                // Append stanza content
+                for(var i = 0; i < node.childNodes.length; i++)
+                    aIQ.getNode().appendChild(node.childNodes.item(i).cloneNode(true));
+                
+                // Append error content
+                var aError = aIQ.appendNode('error', {'xmlns': NS_CLIENT, 'code': '406', 'type': 'modify'});
+                aError.appendChild(aIQ.buildNode('not-acceptable', {'xmlns': NS_STANZAS}));
+                
+                Console.info('Rejected file request from: ' + to);
+            }
+            
+            con.send(aIQ);
         } catch(e) {
-            Console.error('OOB.xxxx', e);
+            Console.error('OOB.reply', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Wait event for OOB upload
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.waitUploadOOB = function() {
 
         try {
-            // CODE
+            // Append the wait icon
+            $('#page-engine .chat-tools-file:not(.mini) .tooltip-subitem *').hide();
+            $('#page-engine .chat-tools-file:not(.mini) .tooltip-subitem').append('<div class="wait wait-medium"></div>');
+            
+            // Lock the bubble
+            $('#page-engine .chat-tools-file:not(.mini)').addClass('mini');
         } catch(e) {
-            Console.error('OOB.xxxx', e);
+            Console.error('OOB.waitUpload', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Success event for OOB upload
      * @public
-     * @param {type} name
+     * @param {string} responseXML
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleUploadOOB = function(responseXML) {
 
         try {
-            // CODE
+            // Data selector
+            var dData = $(responseXML).find('jappix');
+            
+            // Get the values
+            var fID = dData.find('id').text();
+            var fURL = dData.find('url').text();
+            var fDesc = dData.find('desc').text();
+            
+            // Get the OOB values
+            var oob_has;
+            
+            // No ID provided?
+            if(!fID)
+                oob_has = ':has(.wait)';
+            else
+                oob_has = ':has(#oob-upload input[value="' + fID + '"])';
+            
+            var xid = $('#page-engine .page-engine-chan' + oob_has).attr('data-xid');
+            var oob_type = $('#page-engine .chat-tools-file' + oob_has).attr('data-oob');
+            
+            // Reset the file send tool
+            $('#page-engine .chat-tools-file' + oob_has).removeClass('mini');
+            $('#page-engine .bubble-file' + oob_has).remove();
+            
+            // Not available?
+            if($('#page-engine .chat-tools-file' + oob_has).is(':hidden') && (oob_type == 'iq')) {
+                openThisError(4);
+                
+                // Remove the file we sent
+                if(fURL)
+                    $.get(fURL + '&action=remove');
+            }
+            
+            // Everything okay?
+            else if(fURL && fDesc && !dData.find('error').size()) {
+                // Send the OOB request
+                sendOOB(xid, oob_type, fURL, fDesc);
+                
+                // Notify the sender
+                newNotification('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
+                
+                Console.info('File request sent.');
+            }
+            
+            // Upload error?
+            else {
+                openThisError(4);
+                
+                Console.error('Error while sending the file', dData.find('error').text());
+            }
         } catch(e) {
-            Console.error('OOB.xxxx', e);
+            Console.error('OOB.handleUpload', e);
         }
 
     };

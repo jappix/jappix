@@ -21,391 +21,689 @@ var Utils = (function () {
 
 
 	/**
-     * XXXXXX
+     * Checks if a function exists
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {function} func
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.functionExists = function(func) {
+
+        fn_exists = false;
 
         try {
-            // CODE
+            if(typeof func == 'function') {
+                fn_exists = true;
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.functionExists', e);
+        } finally {
+            return fn_exists;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns whether using HTTPS or not
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isHTTPS = function() {
+
+        is_https = false;
 
         try {
-            // CODE
+            if(window.location.href && (window.location.href).match(/^https/i)) {
+                is_https = true;
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.isHTTPS', e);
+        } finally {
+            return is_https;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Generates the good storage URL
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} url
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.generateURL = function(url) {
 
         try {
-            // CODE
+            // HTTPS not allowed
+            if((HTTPS_STORAGE != 'on') && url.match(/^https(.+)/))
+                url = 'http' + RegExp.$1;
+            
+            return url;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.generateURL', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Disables an input if needed
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} value
+     * @param {string} condition
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.disableInput = function(value, condition) {
 
         try {
-            // CODE
+            if(value == condition) {
+                return ' disabled=""';
+            }
+            
+            return '';
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.disableInput', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Cuts a string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @param {number} limit
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.cut = function(string, limit) {
 
         try {
-            // CODE
+            return string.substr(0, limit);
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.cut', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Truncates a string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @param {number} limit
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.truncate = function(string, limit) {
 
         try {
-            // CODE
+            // Must truncate the string
+            if(string.length > limit) {
+                string = string.substr(0, limit) + '...';
+            }
+            
+            return string;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.truncate', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Removes the new lines
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.noLines = function(string) {
 
         try {
-            // CODE
+            return string.replace(/\n/g, ' ');
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.noLines', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Encodes a string for onclick attribute
      * @public
-     * @param {type} name
+     * @param {string} str
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.encodeOnclick = function(str) {
 
         try {
-            // CODE
+            return (encodeQuotes(str)).replace(/'/g, '\\$&');
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.encodeOnclick', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks whether the passed parameter is a number or not
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {number} n
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isNumber = function(n) {
 
         try {
-            // CODE
+            return !isNaN(parseFloat(n)) && isFinite(n);
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.isNumber', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if we are in the anonymous mode
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isAnonymous = function() {
+
+        var is_anonymous = false;
 
         try {
-            // CODE
+            if(allowedAnonymous() && LINK_VARS['r']) {
+                is_anonymous = true;
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.isAnonymous', e);
+        } finally {
+            return is_anonymous;
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Checks if this is a private chat user
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isPrivate = function(xid) {
+
+        var is_private = false;
 
         try {
-            // CODE
+            if(exists('[data-xid="' + escape(xid) + '"][data-type="groupchat"]')) {
+                return true;
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.isPrivate', e);
+        } finally {
+            return is_private;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if the user browser is obsolete
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isObsolete = function() {
 
         try {
-            // CODE
+            // Get browser name & version
+            var browser_name = BrowserDetect.browser;
+            var browser_version = BrowserDetect.version;
+            
+            // No DOM storage
+            if(!hasDB() || !hasPersistent())
+                return true;
+            
+            // Obsolete IE
+            if((browser_name == 'Explorer') && (browser_version < 8))
+                return true;
+            
+            // Obsolete Chrome
+            if((browser_name == 'Chrome') && (browser_version < 7))
+                return true;
+            
+            // Obsolete Safari
+            if((browser_name == 'Safari') && (browser_version < 4))
+                return true;
+            
+            // Obsolete Firefox
+            if((browser_name == 'Firefox') && (browser_version < 3.5))
+                return true;
+            
+            // Obsolete Opera
+            if((browser_name == 'Opera') && (browser_version < 9))
+                return true;
+            
+            return false;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.isObsolete', e);
+
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets a MUC user XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} room
+     * @param {string} nick
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getMUCUserXID = function(room, nick) {
 
         try {
-            // CODE
+            return $('div.chat[data-xid="' + escape(room) + '"] div[data-nick="' + escape(nick) + '"]').attr('data-xid');
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.getMUCUserXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets a MUC user read XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} room
+     * @param {string} nick
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getMUCUserRealXID = function(room, nick) {
 
         try {
-            // CODE
+            return $('div.chat[data-xid="' + escape(room) + '"] div[data-nick="' + escape(nick) + '"]').attr('data-realxid');
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.getMUCUserRealXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the server of the user
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getServer = function() {
 
         try {
-            // CODE
+            // Return the domain of the user
+            return con.domain;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.getServer', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Gets the password of the user
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getPassword = function() {
 
         try {
-            // CODE
+            // Return the password of the user
+            return con.pass;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.getPassword', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Quotes the nick of an user
      * @public
-     * @param {type} name
+     * @param {string} hash
+     * @param {string} nick
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.quoteMyNick = function(hash, nick) {
 
         try {
-            // CODE
+            $(document).oneTime(10, function() {
+                $('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+            });
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.quoteMyNick', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Return the file category
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} ext
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.fileCategory = function(ext) {
 
         try {
-            // CODE
+            var cat;
+            
+            switch(ext) {
+                // Images
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'bmp':
+                case 'gif':
+                case 'tif':
+                case 'svg':
+                case 'ico':
+                case 'psp':
+                case 'psd':
+                case 'psb':
+                case 'xcf':
+                    cat = 'image';
+                    
+                    break;
+                
+                // Videos
+                case 'ogv':
+                case 'ogg':
+                case 'mkv':
+                case 'avi':
+                case 'mov':
+                case 'mp4':
+                case 'm4v':
+                case 'wmv':
+                case 'asf':
+                case 'mpg':
+                case 'mpeg':
+                case 'ogm':
+                case 'rmvb':
+                case 'rmv':
+                case 'qt':
+                case 'flv':
+                case 'ram':
+                case '3gp':
+                case 'avc':
+                    cat = 'video';
+                    
+                    break;
+                
+                // Sounds
+                case 'oga':
+                case 'mka':
+                case 'flac':
+                case 'mp3':
+                case 'wav':
+                case 'm4a':
+                case 'wma':
+                case 'rmab':
+                case 'rma':
+                case 'bwf':
+                case 'aiff':
+                case 'caf':
+                case 'cda':
+                case 'atrac':
+                case 'vqf':
+                case 'au':
+                case 'aac':
+                case 'm3u':
+                case 'mid':
+                case 'mp2':
+                case 'snd':
+                case 'voc':
+                    cat = 'audio';
+                    
+                    break;
+                
+                // Documents
+                case 'pdf':
+                case 'odt':
+                case 'ott':
+                case 'sxw':
+                case 'stw':
+                case 'ots':
+                case 'sxc':
+                case 'stc':
+                case 'sxi':
+                case 'sti':
+                case 'pot':
+                case 'odp':
+                case 'ods':
+                case 'doc':
+                case 'docx':
+                case 'docm':
+                case 'xls':
+                case 'xlsx':
+                case 'xlsm':
+                case 'xlt':
+                case 'ppt':
+                case 'pptx':
+                case 'pptm':
+                case 'pps':
+                case 'odg':
+                case 'otp':
+                case 'sxd':
+                case 'std':
+                case 'std':
+                case 'rtf':
+                case 'txt':
+                case 'htm':
+                case 'html':
+                case 'shtml':
+                case 'dhtml':
+                case 'mshtml':
+                    cat = 'document';
+                    
+                    break;
+                
+                // Packages
+                case 'tgz':
+                case 'gz':
+                case 'tar':
+                case 'ar':
+                case 'cbz':
+                case 'jar':
+                case 'tar.7z':
+                case 'tar.bz2':
+                case 'tar.gz':
+                case 'tar.lzma':
+                case 'tar.xz':
+                case 'zip':
+                case 'xz':
+                case 'rar':
+                case 'bz':
+                case 'deb':
+                case 'rpm':
+                case '7z':
+                case 'ace':
+                case 'cab':
+                case 'arj':
+                case 'msi':
+                    cat = 'package';
+                    
+                    break;
+                
+                // Others
+                default:
+                    cat = 'other';
+                    
+                    break;
+            }
+            
+            return cat;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.fileCategory', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Registers Jappix as the default XMPP links handler
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.xmppLinksHandler = function() {
 
         try {
-            // CODE
+            navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
+            
+            return true;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.xmppLinksHandler', e);
+
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if a value exists in array
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} array
+     * @param {string} value
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.existArrayValue = function(array, value) {
+
+        val_exists = false;
 
         try {
-            // CODE
+            // Loop in the array
+            for(i in array) {
+                if(array[i] == value) {
+                    val_exists = true;
+                    break;
+                }
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.existArrayValue', e);
+        } finally {
+            return val_exists;
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Removes a value from an array
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} array
+     * @param {string} value
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.removeArrayValue = function(array, value) {
+
+        was_removed = false;
 
         try {
-            // CODE
+            for(i in array) {
+                // It matches, remove it!
+                if(array[i] == value) {
+                    array.splice(i, 1);
+
+                    was_removed = true;
+                }
+            }
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.removeArrayValue', e);
+        } finally {
+            return was_removed;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Converts a string to an array
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @return {object}
      */
-    self.xxxx = function() {
+    self.stringToArray = function(string) {
 
         try {
-            // CODE
+            var array = [];
+            
+            // Any string to convert?
+            if(string) {
+                // More than one item
+                if(string.match(/,/gi)) {
+                    var string_split = string.split(',');
+                    
+                    for(i in string_split) {
+                        if(string_split[i])
+                            array.push(string_split[i]);
+                        else
+                            array.push('');
+                    }
+                }
+                
+                // Only one item
+                else
+                    array.push(string);
+            }
+            
+            return array;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.stringToArray', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Get the index of an array value
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} array
+     * @param {string} value
+     * @return {number}
      */
-    self.xxxx = function() {
+    self.indexArrayValue = function(array, value) {
 
         try {
-            // CODE
+            // Nothing?
+            if(!array || !array.length)
+                return 0;
+            
+            // Read the index of the value
+            var index = 0;
+            
+            for(var i = 0; i < array.length; i++) {
+                if(array[i] == value) {
+                    index = i;
+                    
+                    break;
+                }
+            }
+            
+            return index;
         } catch(e) {
-            Console.error('Utils.xxxx', e);
+            Console.error('Utils.indexArrayValue', e);
+        }
+
+    };
+
+
+    /**
+     * Capitalizes the first letter of a string
+     * @public
+     * @param {string} string
+     * @return {string}
+     */
+    self.capitaliseFirstLetter = function(string) {
+
+        try {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        } catch(e) {
+            Console.error('Utils.capitaliseFirstLetter', e);
         }
 
     };

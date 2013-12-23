@@ -21,51 +21,91 @@ var Popup = (function () {
 
 
 	/**
-     * XXXXXX
+     * Creates a popup code
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} id
+     * @param {string} content
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.createPopup = function(id, content) {
 
         try {
-            // CODE
+            // Popup exists?
+            if(exists('#' + id))
+                return false;
+            
+            // Popop on top of another one?
+            var top_of = exists('div.lock:has(div.popup)');
+            
+            // Append the popup code
+            $('body').append(
+                '<div id="' + id + '" class="lock removable">' + 
+                    '<div class="popup">' + 
+                        content + 
+                    '</div>' + 
+                '</div>'
+            );
+            
+            // Avoids darker popup background (if on top of another popup)
+            if(top_of)
+                $('#' + id).css('background', 'transparent');
+            
+            // Attach popup events
+            launchPopup(id);
+            
+            return true;
         } catch(e) {
-            Console.error('Popup.xxxx', e);
+            Console.error('Popup.create', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Destroys a popup code
      * @public
-     * @param {type} name
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.destroyPopup = function(id) {
 
         try {
-            // CODE
+            // Stop the popup timers
+            $('#' + id + ' *').stopTime();
+            
+            // Remove the popup
+            $('#' + id).remove();
+            
+            // Manage input focus
+            inputFocus();
         } catch(e) {
-            Console.error('Popup.xxxx', e);
+            Console.error('Popup.destroy', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Attaches popup events
      * @public
-     * @param {type} name
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.launchPopup = function(id) {
 
         try {
-            // CODE
+            // Click events
+            $('#' + id).click(function(evt) {
+                // Click on lock background?
+                if($(evt.target).is('.lock:not(.unavoidable)')) {
+                    // Destroy the popup
+                    destroyPopup(id);
+                    
+                    return false;
+                }
+            });
         } catch(e) {
-            Console.error('Popup.xxxx', e);
+            Console.error('Popup.launch', e);
         }
 
     };

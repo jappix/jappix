@@ -21,187 +21,809 @@ var PEP = (function () {
 
 
 	/**
-     * XXXXXX
+     * Stores the PEP items
      * @public
-     * @param {type} name
+     * @param {string} xid
+     * @param {string} type
+     * @param {string} value1
+     * @param {string} value2
+     * @param {string} value3
+     * @param {string} value4
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.storePEP = function(xid, type, value1, value2, value3, value4) {
 
         try {
-            // CODE
+            // Handle the correct values
+            if(!value1)
+                value1 = '';
+            if(!value2)
+                value2 = '';
+            if(!value3)
+                value3 = '';
+            if(!value4)
+                value4 = '';
+            
+            // If one value
+            if(value1 || value2 || value3 || value4) {
+                // Define the XML variable
+                var xml = '<pep type="' + type + '">';
+                
+                // Generate the correct XML
+                if(type == 'tune')
+                    xml += '<artist>' + value1.htmlEnc() + '</artist><title>' + value2.htmlEnc() + '</title><album>' + value3.htmlEnc() + '</album><uri>' + value4.htmlEnc() + '</uri>';
+                else if(type == 'geoloc')
+                    xml += '<lat>' + value1.htmlEnc() + '</lat><lon>' + value2.htmlEnc() + '</lon><human>' + value3.htmlEnc() + '</human>';
+                else
+                    xml += '<value>' + value1.htmlEnc() + '</value><text>' + value2.htmlEnc() + '</text>';
+                
+                // End the XML node
+                xml += '</pep>';
+                
+                // Update the input with the new value
+                setDB(DESKTOP_HASH, 'pep-' + type, xid, xml);
+            } else {
+                removeDB(DESKTOP_HASH, 'pep-' + type, xid);
+            }
+            
+            // Display the PEP event
+            displayPEP(xid, type);
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.store', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Displays a PEP item
      * @public
-     * @param {type} name
+     * @param {string} xid
+     * @param {string} type
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.displayPEP = function(xid, type) {
 
         try {
-            // CODE
+            // Read the target input for values
+            var value = $(XMLFromString(getDB(DESKTOP_HASH, 'pep-' + type, xid)));
+            var dText;
+            var aLink = ''
+            
+            // If the PEP element exists
+            if(type) {
+                // Get the user hash
+                var hash = hex_md5(xid);
+                
+                // Initialize
+                var fText, fValue;
+                var dText = '';
+                
+                // Parse the XML for mood and activity
+                if((type == 'mood') || (type == 'activity')) {
+                    if(value) {
+                        var pepValue = value.find('value').text();
+                        var pepText = value.find('text').text();
+                        
+                        // No value?
+                        if(!pepValue)
+                            pepValue = 'none';
+                        
+                        // Apply the good values
+                        if(type == 'mood')
+                            fValue = moodIcon(pepValue);
+                        else if(type == 'activity')
+                            fValue = activityIcon(pepValue);
+                        if(!pepText)
+                            fText = _e("unknown");
+                        else
+                            fText = pepText;
+                    }
+                    
+                    else {
+                        if(type == 'mood')
+                            fValue = moodIcon('undefined');
+                        else if(type == 'activity')
+                            fValue = activityIcon('exercising');
+                        
+                        fText = _e("unknown");
+                    }
+                    
+                    dText = fText;
+                    fText = fText.htmlEnc();
+                }
+                
+                else if(type == 'tune') {
+                    fValue = 'tune-note';
+                    
+                    if(value) {
+                        // Parse the tune XML
+                        var tArtist = value.find('artist').text();
+                        var tTitle = value.find('title').text();
+                        var tAlbum = value.find('album').text();
+                        var tURI = value.find('uri').text();
+                        var fArtist, fTitle, fAlbum, fURI;
+                        
+                        // Apply the good values
+                        if(!tArtist && !tAlbum && !tTitle) {
+                            fText = _e("unknown");
+                            dText = fText;
+                        }
+                        
+                        else {
+                            // URI element
+                            if(!tURI)
+                                fURI = 'http://grooveshark.com/search?q=' + encodeURIComponent(tArtist + ' ' + tTitle + ' ' + tAlbum);
+                            else
+                                fURI = tURI;
+                            
+                            // Artist element
+                            if(!tArtist)
+                                fArtist = _e("unknown");
+                            else
+                                fArtist = tArtist;
+                            
+                            // Title element
+                            if(!tTitle)
+                                fTitle = _e("unknown");
+                            else
+                                fTitle = tTitle;
+                            
+                            // Album element
+                            if(!tAlbum)
+                                fAlbum = _e("unknown");
+                            else
+                                fAlbum = tAlbum;
+                            
+                            // Generate the link to the title
+                            aLink = ' href="' + fURI + '" target="_blank"';
+                            
+                            // Generate the text to be displayed
+                            dText = fArtist + ' - ' + fTitle + ' (' + fAlbum + ')';
+                            fText =  '<a' + aLink + '>' + dText + '</a>';
+                        }
+                    }
+                    
+                    else {
+                        fText = _e("unknown");
+                        dText = fText;
+                    }
+                }
+                
+                else if(type == 'geoloc') {
+                    fValue = 'location-world';
+                    
+                    if(value) {
+                        // Parse the geoloc XML
+                        var tLat = value.find('lat').text();
+                        var tLon = value.find('lon').text();
+                        var tHuman = value.find('human').text();
+                        var tReal = tHuman;
+                        
+                        // No human location?
+                        if(!tHuman)
+                            tHuman = _e("See his/her position on the globe");
+                        
+                        // Generate the text to be displayed
+                        if(tLat && tLon) {
+                            aLink = ' href="http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon) + '" target="_blank"';
+                            fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
+                            
+                            if(tReal)
+                                dText = tReal;
+                            else
+                                dText = tLat + '; ' + tLon;
+                        }
+                        
+                        else {
+                            fText = _e("unknown");
+                            dText = fText;
+                        }
+                    }
+                    
+                    else {
+                        fText = _e("unknown");
+                        dText = fText;
+                    }
+                }
+                
+                // Apply the text to the buddy infos
+                var this_buddy = '#buddy-list .buddy[data-xid="' + escape(xid) + '"]';
+                
+                if(exists(this_buddy))
+                    $(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '">' + fText + '</p>');
+                
+                // Apply the text to the buddy chat
+                if(exists('#' + hash)) {
+                    // Selector
+                    var bc_pep = $('#' + hash + ' .bc-pep');
+                    
+                    // We remove the old PEP item
+                    bc_pep.find('a.bi-' + type).remove();
+                    
+                    // If the new PEP item is not null, create a new one
+                    if(fText != _e("unknown"))
+                        bc_pep.prepend(
+                            '<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '"></a>'
+                        );
+                    
+                    // Process the new status position
+                    adaptChatPresence(hash);
+                }
+                
+                // If this is the PEP values of the logged in user
+                if(xid == getXID()) {
+                    // Change the icon/value of the target element
+                    if((type == 'mood') || (type == 'activity')) {
+                        // Change the input value
+                        var dVal = '';
+                        var dAttr = pepValue;
+                        
+                        // Must apply default values?
+                        if(pepValue == 'none') {
+                            if(type == 'mood')
+                                dAttr = 'happy';
+                            else
+                                dAttr = 'exercising';
+                        }
+                        
+                        // No text?
+                        if(dText != _e("unknown"))
+                            dVal = dText;
+                        
+                        // Store this user event in our database
+                        setDB(DESKTOP_HASH, type + '-value', 1, dAttr);
+                        setDB(DESKTOP_HASH, type + '-text', 1, dVal);
+                        
+                        // Apply this PEP event
+                        $('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
+                        $('#my-infos .f-' + type + ' input').val(dVal);
+                        $('#my-infos .f-' + type + ' input').placeholder();
+                    }
+                    
+                    else if((type == 'tune') || (type == 'geoloc')) {
+                        // Reset the values
+                        $('#my-infos .f-others a.' + type).remove();
+                        
+                        // Not empty?
+                        if(dText != _e("unknown")) {
+                            // Specific stuffs
+                            var href, title, icon_class;
+                            
+                            if(type == 'tune') {
+                                href = fURI;
+                                title = dText;
+                                icon_class = 'tune-note';
+                            }
+                            
+                            else {
+                                href = 'http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon);
+                                title = _e("Where are you?") + ' (' + dText + ')';
+                                icon_class = 'location-world';
+                            }
+                            
+                            // Must create the container?
+                            if(!exists('#my-infos .f-others'))
+                                $('#my-infos .content').append('<div class="element f-others"></div>');
+                            
+                            // Create the element
+                            $('#my-infos .f-others').prepend(
+                                '<a class="icon ' + type + '" href="' + encodeQuotes(href) + '" target="_blank" title="' + encodeQuotes(title) +  '">' + 
+                                    '<span class="talk-images ' + icon_class + '"></span>' + 
+                                '</a>'
+                            );
+                        }
+                        
+                        // Empty?
+                        else if(!exists('#my-infos .f-others a.icon'))
+                            $('#my-infos .f-others').remove();
+                        
+                        // Process the buddy-list height again
+                        adaptRoster();
+                    }
+                }
+            }
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.display', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Changes the mood icon
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} value
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.moodIcon = function(value) {
 
         try {
-            // CODE
+            // The main var
+            var icon;
+            
+            // Switch the values
+            switch(value) {
+                case 'angry':
+                case 'cranky':
+                case 'hot':
+                case 'invincible':
+                case 'mean':
+                case 'restless':
+                case 'serious':
+                case 'strong':
+                    icon = 'mood-one';
+                    break;
+                
+                case 'contemplative':
+                case 'happy':
+                case 'playful':
+                    icon = 'mood-two';
+                    break;
+                
+                case 'aroused':
+                case 'envious':
+                case 'excited':
+                case 'interested':
+                case 'lucky':
+                case 'proud':
+                case 'relieved':
+                case 'satisfied':
+                case 'shy':
+                    icon = 'mood-three';
+                    break;
+                
+                case 'calm':
+                case 'cautious':
+                case 'contented':
+                case 'creative':
+                case 'humbled':
+                case 'lonely':
+                case 'undefined':
+                case 'none':
+                    icon = 'mood-four';
+                    break;
+                
+                case 'afraid':
+                case 'amazed':
+                case 'confused':
+                case 'dismayed':
+                case 'hungry':
+                case 'in_awe':
+                case 'indignant':
+                case 'jealous':
+                case 'lost':
+                case 'offended':
+                case 'outraged':
+                case 'shocked':
+                case 'surprised':
+                case 'embarrassed':
+                case 'impressed':
+                    icon = 'mood-five';
+                    break;
+                
+                case 'crazy':
+                case 'distracted':
+                case 'neutral':
+                case 'relaxed':
+                case 'thirsty':
+                    icon = 'mood-six';
+                    break;
+                
+                case 'amorous':
+                case 'curious':
+                case 'in_love':
+                case 'nervous':
+                case 'sarcastic':
+                    icon = 'mood-eight';
+                    break;
+                
+                case 'brave':
+                case 'confident':
+                case 'hopeful':
+                case 'grateful':
+                case 'spontaneous':
+                case 'thankful':
+                    icon = 'mood-nine';
+                    break;
+                
+                default:
+                    icon = 'mood-seven';
+                    break;
+            }
+            
+            // Return the good icon name
+            return icon;
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.moodIcon', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Changes the activity icon
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} value
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.activityIcon = function(value) {
 
         try {
-            // CODE
+            // The main var
+            var icon;
+            
+            // Switch the values
+            switch(value) {
+                case 'doing_chores':
+                    icon = 'activity-doing_chores';
+                    break;
+                
+                case 'drinking':
+                    icon = 'activity-drinking';
+                    break;
+                
+                case 'eating':
+                    icon = 'activity-eating';
+                    break;
+                
+                case 'grooming':
+                    icon = 'activity-grooming';
+                    break;
+                
+                case 'having_appointment':
+                    icon = 'activity-having_appointment';
+                    break;
+                
+                case 'inactive':
+                    icon = 'activity-inactive';
+                    break;
+                
+                case 'relaxing':
+                    icon = 'activity-relaxing';
+                    break;
+                
+                case 'talking':
+                    icon = 'activity-talking';
+                    break;
+                
+                case 'traveling':
+                    icon = 'activity-traveling';
+                    break;
+                
+                case 'working':
+                    icon = 'activity-working';
+                    break;
+                default:
+                    icon = 'activity-exercising';
+                    break;
+            }
+            
+            // Return the good icon name
+            return icon;
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.activityIcon', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Sends the user's mood
      * @public
-     * @param {type} name
+     * @param {string} value
+     * @param {string} text
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendMood = function(value, text) {
+
+        /* REF: http://xmpp.org/extensions/xep-0107.html */
 
         try {
-            // CODE
+            // We propagate the mood on the xmpp network
+            var iq = new JSJaCIQ();
+            iq.setType('set');
+            
+            // We create the XML document
+            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+            var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_MOOD, 'xmlns': NS_PUBSUB}));
+            var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+            var mood = item.appendChild(iq.buildNode('mood', {'xmlns': NS_MOOD}));
+            
+            if(value != 'none') {
+                mood.appendChild(iq.buildNode(value, {'xmlns': NS_MOOD}));
+                mood.appendChild(iq.buildNode('text', {'xmlns': NS_MOOD}, text));
+            }
+            
+            // And finally we send the mood that is set
+            con.send(iq);
+            
+            Console.info('New mood sent: ' + value + ' (' + text + ')');
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.sendMood', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Sends the user's activity
      * @public
-     * @param {type} name
+     * @param {string} main
+     * @param {string} sub
+     * @param {string} text
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendActivity = function(main, sub, text) {
 
         try {
-            // CODE
+            // We propagate the mood on the xmpp network
+            var iq = new JSJaCIQ();
+            iq.setType('set');
+            
+            // We create the XML document
+            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+            var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_ACTIVITY, 'xmlns': NS_PUBSUB}));
+            var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+            var activity = item.appendChild(iq.buildNode('activity', {'xmlns': NS_ACTIVITY}));
+            
+            if(main != 'none') {
+                var mainType = activity.appendChild(iq.buildNode(main, {'xmlns': NS_ACTIVITY}));
+                
+                // Child nodes
+                if(sub)
+                    mainType.appendChild(iq.buildNode(sub, {'xmlns': NS_ACTIVITY}));
+                if(text)
+                    activity.appendChild(iq.buildNode('text', {'xmlns': NS_ACTIVITY}, text));
+            }
+            
+            // And finally we send the mood that is set
+            con.send(iq);
+            
+            Console.info('New activity sent: ' + main + ' (' + text + ')');
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.sendActivity', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Sends the user's geographic position
      * @public
-     * @param {type} name
+     * @param {string} vLat
+     * @param {string} vLon
+     * @param {string} vAlt
+     * @param {string} vCountry
+     * @param {string} vCountrycode
+     * @param {string} vRegion
+     * @param {string} vPostalcode
+     * @param {string} vLocality
+     * @param {string} vStreet
+     * @param {string} vBuilding
+     * @param {string} vText
+     * @param {string} vURI
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendPosition = function(vLat, vLon, vAlt, vCountry, vCountrycode, vRegion, vPostalcode, vLocality, vStreet, vBuilding, vText, vURI) {
+
+        /* REF: http://xmpp.org/extensions/xep-0080.html */
 
         try {
-            // CODE
+            // We propagate the position on pubsub
+            var iq = new JSJaCIQ();
+            iq.setType('set');
+            
+            // We create the XML document
+            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+            var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_GEOLOC, 'xmlns': NS_PUBSUB}));
+            var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+            var geoloc = item.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
+            
+            // Create two position arrays
+            var pos_names  = ['lat', 'lon', 'alt', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
+            var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  getXMPPTime('utc')];
+            
+            for(var i = 0; i < pos_names.length; i++) {
+                if(pos_names[i] && pos_values[i])
+                    geoloc.appendChild(iq.buildNode(pos_names[i], {'xmlns': NS_GEOLOC}, pos_values[i]));
+            }
+            
+            // And finally we send the XML
+            con.send(iq);
+            
+            // For logger
+            if(vLat && vLon) {
+                Console.info('Geolocated.');
+            } else {
+                Console.warn('Not geolocated.');
+            }
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.sendPosition', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Parses the user's geographic position
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} data
+     * @return {object}
      */
-    self.xxxx = function() {
+    self.parsePosition = function(data) {
 
         try {
-            // CODE
+            var result = $(data).find('result:first');
+    
+            // Get latitude and longitude
+            var lat = result.find('geometry:first location:first lat').text();
+            var lng = result.find('geometry:first location:first lng').text();
+            
+            var array = [
+                         lat,
+                         lng,
+                         result.find('address_component:has(type:contains("country")):first long_name').text(),
+                         result.find('address_component:has(type:contains("country")):first short_name').text(),
+                         result.find('address_component:has(type:contains("administrative_area_level_1")):first long_name').text(),
+                         result.find('address_component:has(type:contains("postal_code")):first long_name').text(),
+                         result.find('address_component:has(type:contains("locality")):first long_name').text(),
+                         result.find('address_component:has(type:contains("route")):first long_name').text(),
+                         result.find('address_component:has(type:contains("street_number")):first long_name').text(),
+                         result.find('formatted_address:first').text(),
+                         'http://maps.google.com/?q=' + encodeQuotes(lat) + ',' + encodeQuotes(lng)
+                        ];
+            
+            return array;
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.parsePosition', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Converts a position into an human-readable one
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} tLocality
+     * @param {string} tRegion
+     * @param {string} tCountry
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.humanPosition = function(tLocality, tRegion, tCountry) {
 
         try {
-            // CODE
+            var tHuman = '';
+            
+            // Any locality?
+            if(tLocality) {
+                tHuman += tLocality;
+                
+                if(tRegion)
+                    tHuman += ', ' + tRegion;
+                if(tCountry)
+                    tHuman += ', ' + tCountry;
+            }
+            
+            // Any region?
+            else if(tRegion) {
+                tHuman += tRegion;
+                
+                if(tCountry)
+                    tHuman += ', ' + tCountry;
+            }
+            
+            // Any country?
+            else if(tCountry)
+                tHuman += tCountry;
+            
+            return tHuman;
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.humanPosition', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the user's geographic position
      * @public
-     * @param {type} name
+     * @param {object} position
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.getPosition = function(position) {
 
         try {
-            // CODE
+            // Convert integers to strings
+            var vLat = '' + position.coords.latitude;
+            var vLon = '' + position.coords.longitude;
+            var vAlt = '' + position.coords.altitude;
+            
+            // Get full position (from Google Maps API)
+            $.get('./php/geolocation.php', {latitude: vLat, longitude: vLon, language: XML_LANG}, function(data) {
+                // Parse data!
+                var results = parsePosition(data);
+                
+                // Handled!
+                sendPosition(
+                             isNumber(vLat) ? vLat : null,
+                             isNumber(vLon) ? vLon : null,
+                             isNumber(vAlt) ? vAlt : null,
+                             results[2],
+                             results[3],
+                             results[4],
+                             results[5],
+                             results[6],
+                             results[7],
+                             results[8],
+                             results[9],
+                             results[10]
+                            );
+                
+                // Store data
+                setDB(DESKTOP_HASH, 'geolocation', 'now', xmlToString(data));
+                
+                Console.log('Position details got from Google Maps API.');
+            });
+            
+            Console.log('Position got: latitude > ' + vLat + ' / longitude > ' + vLon + ' / altitude > ' + vAlt);
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.getPosition', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Geolocates the user
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.geolocate = function() {
 
         try {
-            // CODE
+            // Don't fire it until options & features are not retrieved!
+            if(!getDB(DESKTOP_HASH, 'options', 'geolocation') || (getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !enabledPEP()) {
+                return;
+            }
+            
+            // We publish the user location if allowed
+            if(navigator.geolocation) {
+                // Wait a bit... (to fix a bug)
+                $('#my-infos').stopTime().oneTime('1s', function() {
+                    navigator.geolocation.getCurrentPosition(getPosition);
+                });
+                
+                Console.info('Geolocating...');
+            } else {
+                Console.error('Not geolocated: browser does not support it.');
+            }
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.geolocate', e);
+        }
+
+    };
+
+
+    /**
+     * Gets the user's microblog to check it exists
+     * @public
+     * @return {undefined}
+     */
+    self.getInitGeoloc = function() {
+
+        try {
+            var iq = new JSJaCIQ();
+            iq.setType('get');
+            
+            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+            var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_GEOLOC, 'xmlns': NS_PUBSUB}));
+            
+            ps_items.setAttribute('max_items', '0');
+            
+            con.send(iq, handleInitGeoloc);
+        } catch(e) {
+            Console.error('PEP.getInitGeoloc', e);
         }
 
     };
@@ -225,51 +847,227 @@ var PEP = (function () {
 
 
     /**
-     * XXXXXX
+     * Handles the user's microblog to create it in case of error
      * @public
-     * @param {type} name
+     * @param {object} iq
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleInitGeoloc = function(iq) {
 
         try {
-            // CODE
+            // Any error?
+            if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
+                // The node may not exist, create it!
+                setupMicroblog('', NS_GEOLOC, '1', '1', '', '', true);
+                
+                Console.warn('Error while getting geoloc, trying to reconfigure the PubSub node!');
+            }
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.handleInitGeoloc', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Displays all the supported PEP events for a given XID
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.displayAllPEP = function() {
 
         try {
-            // CODE
+            displayPEP(xid, 'mood');
+            displayPEP(xid, 'activity');
+            displayPEP(xid, 'tune');
+            displayPEP(xid, 'geoloc');
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.displayAll', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Plugin launcher
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.launchPEP = function() {
 
         try {
-            // CODE
+            // Apply empty values to the PEP database
+            setDB(DESKTOP_HASH, 'mood-value', 1, '');
+            setDB(DESKTOP_HASH, 'mood-text', 1, '');
+            setDB(DESKTOP_HASH, 'activity-value', 1, '');
+            setDB(DESKTOP_HASH, 'activity-text', 1, '');
+            
+            // Click event for user mood
+            $('#my-infos .f-mood a.picker').click(function() {
+                // Initialize some vars
+                var path = '#my-infos .f-mood div.bubble';
+                var mood_id = ['crazy', 'excited', 'playful', 'happy', 'shocked', 'hot', 'sad', 'amorous', 'confident'];
+                var mood_lang = [_e("Crazy"), _e("Excited"), _e("Playful"), _e("Happy"), _e("Shocked"), _e("Hot"), _e("Sad"), _e("Amorous"), _e("Confident")];
+                var mood_val = $('#my-infos .f-mood a.picker').attr('data-value');
+                
+                // Yet displayed?
+                var can_append = true;
+                
+                if(exists(path))
+                    can_append = false;
+                
+                // Add this bubble!
+                showBubble(path);
+                
+                if(!can_append)
+                    return false;
+                
+                // Generate the HTML code
+                var html = '<div class="bubble removable">';
+                
+                for(i in mood_id) {
+                    // Yet in use: no need to display it!
+                    if(mood_id[i] == mood_val)
+                        continue;
+                    
+                    html += '<a href="#" class="talk-images" data-value="' + mood_id[i] + '" title="' + mood_lang[i] + '"></a>';
+                }
+                
+                html += '</div>';
+                
+                // Append the HTML code
+                $('#my-infos .f-mood').append(html);
+                
+                // Click event
+                $(path + ' a').click(function() {
+                    // Update the mood marker
+                    $('#my-infos .f-mood a.picker').attr('data-value', $(this).attr('data-value'));
+                    
+                    // Close the bubble
+                    closeBubbles();
+                    
+                    // Focus on the status input
+                    $(document).oneTime(10, function() {
+                        $('#mood-text').focus();
+                    });
+                    
+                    return false;
+                });
+                
+                return false;
+            });
+            
+            // Click event for user activity
+            $('#my-infos .f-activity a.picker').click(function() {
+                // Initialize some vars
+                var path = '#my-infos .f-activity div.bubble';
+                var activity_id = ['doing_chores', 'drinking', 'eating', 'exercising', 'grooming', 'having_appointment', 'inactive', 'relaxing', 'talking', 'traveling', 'working'];
+                var activity_lang = [_e("Chores"), _e("Drinking"), _e("Eating"), _e("Exercising"), _e("Grooming"), _e("Appointment"), _e("Inactive"), _e("Relaxing"), _e("Talking"), _e("Traveling"), _e("Working")];
+                var activity_val = $('#my-infos .f-activity a.picker').attr('data-value');
+                
+                // Yet displayed?
+                var can_append = true;
+                
+                if(exists(path))
+                    can_append = false;
+                
+                // Add this bubble!
+                showBubble(path);
+                
+                if(!can_append)
+                    return false;
+                
+                // Generate the HTML code
+                var html = '<div class="bubble removable">';
+                
+                for(i in activity_id) {
+                    // Yet in use: no need to display it!
+                    if(activity_id[i] == activity_val)
+                        continue;
+                    
+                    html += '<a href="#" class="talk-images" data-value="' + activity_id[i] + '" title="' + activity_lang[i] + '"></a>';
+                }
+                
+                html += '</div>';
+                
+                // Append the HTML code
+                $('#my-infos .f-activity').append(html);
+                
+                // Click event
+                $(path + ' a').click(function() {
+                    // Update the activity marker
+                    $('#my-infos .f-activity a.picker').attr('data-value', $(this).attr('data-value'));
+                    
+                    // Close the bubble
+                    closeBubbles();
+                    
+                    // Focus on the status input
+                    $(document).oneTime(10, function() {
+                        $('#activity-text').focus();
+                    });
+                    
+                    return false;
+                });
+                
+                return false;
+            });
+            
+            // Submit events for PEP inputs
+            $('#mood-text, #activity-text').placeholder()
+            
+            .keyup(function(e) {
+                if(e.keyCode == 13) {
+                    $(this).blur();
+                    
+                    return false;
+                }
+            });
+            
+            // Input blur handler
+            $('#mood-text').blur(function() {
+                // Read the parameters
+                var value = $('#my-infos .f-mood a.picker').attr('data-value');
+                var text = $(this).val();
+                
+                // Must send the mood?
+                if((value != getDB(DESKTOP_HASH, 'mood-value', 1)) || (text != getDB(DESKTOP_HASH, 'mood-text', 1))) {
+                    // Update the local stored values
+                    setDB(DESKTOP_HASH, 'mood-value', 1, value);
+                    setDB(DESKTOP_HASH, 'mood-text', 1, text);
+                    
+                    // Send it!
+                    sendMood(value, text);
+                }
+            })
+            
+            // Input focus handler
+            .focus(function() {
+                closeBubbles();
+            });
+            
+            // Input blur handler
+            $('#activity-text').blur(function() {
+                // Read the parameters
+                var value = $('#my-infos .f-activity a.picker').attr('data-value');
+                var text = $(this).val();
+                
+                // Must send the activity?
+                if((value != getDB(DESKTOP_HASH, 'activity-value', 1)) || (text != getDB(DESKTOP_HASH, 'activity-text', 1))) {
+                    // Update the local stored values
+                    setDB(DESKTOP_HASH, 'activity-value', 1, value);
+                    setDB(DESKTOP_HASH, 'activity-text', 1, text);
+                    
+                    // Send it!
+                    sendActivity(value, '', text);
+                }
+            })
+            
+            // Input focus handler
+            .focus(function() {
+                closeBubbles();
+            });
         } catch(e) {
-            Console.error('PEP.xxxx', e);
+            Console.error('PEP.launch', e);
         }
 
     };
