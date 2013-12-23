@@ -9,7 +9,6 @@ These are the main configuration variables
 
 License: AGPL
 Author: Valérian Saliou, Maranda
-Last revision: 31/01/13
 
 */
 

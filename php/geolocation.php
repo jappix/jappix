@@ -9,7 +9,6 @@ This is the Jappix geolocation script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 15/01/12
 
 */
 

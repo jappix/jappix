@@ -23,7 +23,6 @@
 
 /**
  * MODIFIED FOR THE JAPPIX PROJECT
- * Last revision: 10/11/10
  */
 
   // Simple class to wrap file streams, string streams, etc.

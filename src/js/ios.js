@@ -7,7 +7,6 @@ This is the iOS add to home JS script for Jappix
 
 License: AGPL
 Author: Camaran
-Last revision: 06/09/13
 
 */
 

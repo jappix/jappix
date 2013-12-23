@@ -9,7 +9,6 @@ This is the Jappix analytics tracking code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/12
 
 */
 

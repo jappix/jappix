@@ -7,53 +7,109 @@ These are the bubble JS scripts for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/12/10
 
 */
 
-// Closes all the opened bubbles
-function closeBubbles() {
-	// Destroy all the elements
-	$('.bubble.hidable:visible').hide();
-	$('.bubble.removable').remove();
-	$('body').off('click');
-	
-	return false;
-}
+// Bundle
+var Bubble = (function () {
 
-// Click function when a bubble is opened
-function showBubble(selector) {
-	// Hidable bubbles special things
-	if($(selector).is('.hidable')) {
-		// This bubble is yet displayed? So abort!
-		if($(selector).is(':visible'))
-			return closeBubbles();
+    /**
+     * Alias of this
+     * @private
+     */
+    var self = {};
+
+
+	// Closes all the opened bubbles
+	function closeBubbles() {
+		// Destroy all the elements
+		$('.bubble.hidable:visible').hide();
+		$('.bubble.removable').remove();
+		$('body').off('click');
 		
-		// Close all the bubbles
-		closeBubbles();
-		
-		// Show the requested bubble
-		$(selector).show();
+		return false;
 	}
-	
-	// Removable bubbles special things
-	else {
-		// This bubble is yet added? So abort!
-		if(exists(selector))
-			return closeBubbles();
-		
-		// Close all the bubbles
-		closeBubbles();
-	}
-	
-	// Creates a new click event to close the bubble
-	$('body').on('click', function(evt) {
-		var target = evt.target;
-		
-		// If this is a click away from a bubble
-		if(!$(target).parents('.ibubble').size())
+
+	// Click function when a bubble is opened
+	function showBubble(selector) {
+		// Hidable bubbles special things
+		if($(selector).is('.hidable')) {
+			// This bubble is yet displayed? So abort!
+			if($(selector).is(':visible'))
+				return closeBubbles();
+			
+			// Close all the bubbles
 			closeBubbles();
-	});
-	
-	return false;
-}
+			
+			// Show the requested bubble
+			$(selector).show();
+		}
+		
+		// Removable bubbles special things
+		else {
+			// This bubble is yet added? So abort!
+			if(exists(selector))
+				return closeBubbles();
+			
+			// Close all the bubbles
+			closeBubbles();
+		}
+		
+		// Creates a new click event to close the bubble
+		$('body').on('click', function(evt) {
+			var target = evt.target;
+			
+			// If this is a click away from a bubble
+			if(!$(target).parents('.ibubble').size())
+				closeBubbles();
+		});
+		
+		return false;
+	}
+
+
+
+
+
+
+
+	/**
+     * XXXXXX
+     * @public
+     * @param {type} name
+     * @return {undefined}
+     */
+    self.xxxx = function() {
+
+        try {
+            // CODE
+        } catch(e) {
+            Console.error('YYYYY.xxxx', e);
+        }
+
+    };
+
+
+    /**
+     * XXXXXX
+     * @public
+     * @param {type} name
+     * @return {undefined}
+     */
+    self.xxxx = function() {
+
+        try {
+            // CODE
+        } catch(e) {
+            Console.error('YYYYY.xxxx', e);
+        }
+
+    };
+
+
+    /**
+     * Return class scope
+     */
+    return self;
+
+})();

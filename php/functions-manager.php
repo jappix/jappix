@@ -9,7 +9,6 @@ These are the PHP functions for Jappix manager
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, olivierm, Vinilox, regilero, Cyril "Kyriog" Glapa
-Last revision: 15/05/12
 
 */
 

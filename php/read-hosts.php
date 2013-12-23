@@ -9,7 +9,6 @@ This is the hosts configuration reader
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 15/05/13
 
 */
 

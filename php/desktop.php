@@ -9,7 +9,6 @@ This is the Jappix Desktop PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou, Maranda
-Last revision: 05/04/13
 
 */
 

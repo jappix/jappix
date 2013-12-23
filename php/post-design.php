@@ -9,7 +9,6 @@ This is the design configuration POST handler (manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
 
 */
 

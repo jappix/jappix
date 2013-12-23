@@ -9,7 +9,6 @@ This is the main configuration POST handler (install & manager)
 
 License: AGPL
 Author: Valérian Saliou, Maranda
-Last revision: 31/01/13
 
 */
 

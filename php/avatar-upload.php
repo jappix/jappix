@@ -9,7 +9,6 @@ This is the avatar upload PHP script for Jappix
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
 
 */
 

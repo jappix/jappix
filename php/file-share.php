@@ -9,7 +9,6 @@ This is the Jappix file share script
 
 License: AGPL
 Authors: Valérian Saliou, regilero
-Last revision: 03/03/13
 
 */
 

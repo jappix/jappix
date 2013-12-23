@@ -9,7 +9,6 @@ This is the Jappix Mobile PHP/HTML code
 
 License: AGPL
 Authors: Valérian Saliou, Camaran
-Last revision: 31/08/12
 
 */
 

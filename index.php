@@ -9,7 +9,6 @@ This is the Jappix PHP application launcher
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 01/06/12
 
 */
 

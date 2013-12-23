@@ -11,7 +11,6 @@ NOTICE: THIS SCRIPT USES THE THIRD-PARTY SERVICE BACKLINKS.COM
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 05/03/13
 
 */
 

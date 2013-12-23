@@ -9,7 +9,6 @@ Simple CAPTCHA generator
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 23/07/13
 
 */
 

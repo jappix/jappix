@@ -9,7 +9,6 @@ These are the hosts configuration variables
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 27/05/11
 
 */
 

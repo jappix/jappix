@@ -9,7 +9,6 @@ This is the main configuration form (install & manager)
 
 License: AGPL
 Authors: Valérian Saliou, LinkMauve, Maranda
-Last revision: 05/03/13
 
 */
 

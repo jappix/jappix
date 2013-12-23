@@ -9,7 +9,6 @@ These are the design configuration variables
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
 
 */
 

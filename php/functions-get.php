@@ -9,7 +9,6 @@ These are the PHP functions for Jappix Get API
 
 License: AGPL
 Authors: Valérian Saliou, Mathieui, olivierm, regilero, Maranda
-Last revision: 14/05/13
 
 */
 

@@ -9,7 +9,6 @@ This is the main configuration reader
 
 License: AGPL
 Author: Valérian Saliou, Maranda
-Last revision: 31/01/13
 
 */
 

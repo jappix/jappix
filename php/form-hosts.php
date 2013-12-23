@@ -9,7 +9,6 @@ This is the hosts configuration form (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 11/06/11
 
 */
 

@@ -9,7 +9,6 @@ The SVG loader for Jappix statistics
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 28/12/10
 
 */
 

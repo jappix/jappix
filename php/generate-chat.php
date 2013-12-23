@@ -9,7 +9,6 @@ This is the PHP script used to generate a chat log
 
 License: AGPL
 Authors: Valérian Saliou, regilero
-Last revision: 11/02/12
 
 */
 

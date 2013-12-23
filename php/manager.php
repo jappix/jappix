@@ -9,7 +9,6 @@ This is the Jappix Manager PHP/HTML code
 
 License: AGPL
 Authors: Valérian Saliou, Cyril "Kyriog" Glapa
-Last revision: 21/06/12
 
 */
 

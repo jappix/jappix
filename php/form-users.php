@@ -9,7 +9,6 @@ This is the user add form (install & manager)
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 08/05/11
 
 */
 

@@ -7,13 +7,17 @@ These are the Jingle helpers & launchers
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 02/11/13
 
 */
 
-var Jingle = new function () {
+// Bundle
+var Jingle = (function () {
 
-    var self = this;
+    /**
+     * Alias of this
+     * @private
+     */
+    var self = {};
 
 
     /* Variables */
@@ -33,6 +37,7 @@ var Jingle = new function () {
      * @return {object}
      */
     self.__args = function (connection, xid, hash, local_view, remote_view) {
+
         args = {};
 
         try {
@@ -155,6 +160,7 @@ var Jingle = new function () {
         } finally {
             return args;
         }
+
     };
 
     /**
@@ -167,6 +173,7 @@ var Jingle = new function () {
      * @return {boolean}
      */
     self.__new = function (xid, mode, is_callee, stanza) {
+
         var status = false;
 
         try {
@@ -210,6 +217,7 @@ var Jingle = new function () {
         } finally {
             return status;
         }
+
     };
 
     /**
@@ -218,11 +226,13 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.__adapt = function () {
+
         try {
             // TODO
         } catch(e) {
             Console.error('Jingle.__adapt', e);
         }
+
     };
 
 
@@ -234,6 +244,7 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.init = function () {
+
         try {
             // JSJaCJingle.js custom init configuration
             JSJAC_JINGLE_STORE_CONNECTION = con;
@@ -262,6 +273,7 @@ var Jingle = new function () {
         } catch(e) {
             Console.error('Jingle.init', e);
         }
+
     };
 
     /**
@@ -270,6 +282,7 @@ var Jingle = new function () {
      * @return {boolean}
      */
     self.start = function (xid, mode) {
+
         try {
             if(!self.in_call()) {
                 // TODO
@@ -280,6 +293,7 @@ var Jingle = new function () {
         } finally {
             return false;
         }
+
     };
 
     /**
@@ -288,6 +302,7 @@ var Jingle = new function () {
      * @return {boolean}
      */
     self.stop = function () {
+
         try {
             if(self.__jingle_current) {
                 self.__jingle_current.terminate();
@@ -297,6 +312,7 @@ var Jingle = new function () {
         } finally {
             return false;
         }
+
     };
 
     /**
@@ -305,6 +321,7 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.mute = function () {
+
         try {
             if(self.__jingle_current) {
                 if(self.__jingle_current.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) == true) {
@@ -318,6 +335,7 @@ var Jingle = new function () {
         } catch(e) {
             Console.error('Jingle.mute', e);
         }
+
     };
 
     /**
@@ -326,6 +344,7 @@ var Jingle = new function () {
      * @return {boolean}
      */
     self.in_call = function () {
+
         in_call = false;
 
         try {
@@ -335,6 +354,7 @@ var Jingle = new function () {
         } finally {
             return in_call;
         }
+
     };
 
     /**
@@ -343,6 +363,7 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.create_interface = function (xid, mode) {
+
         try {
             $('#talk').append(
                 '<div id="jingle" data-xid="" data-mode="">' + 
@@ -380,6 +401,7 @@ var Jingle = new function () {
         } catch(e) {
             Console.error('Jingle.create_interface', e);
         }
+
     };
 
     /**
@@ -388,11 +410,13 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.show_interface = function () {
+
         try {
             $('#jingle:hidden').stop(true).show();
         } catch(e) {
             Console.error('Jingle.show_interface', e);
         }
+
     };
 
     /**
@@ -401,11 +425,13 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.hide_interface = function () {
+
         try {
             $('#jingle:visible').stop(true).hide();
         } catch(e) {
             Console.error('Jingle.hide_interface', e);
         }
+
     };
 
     /**
@@ -414,12 +440,21 @@ var Jingle = new function () {
      * @return {undefined}
      */
     self.launch = function () {
+
         try {
             $(window).resize(self.__adapt());
         } catch(e) {
             Console.error('Jingle.launch', e);
         }
+    
     };
-};
+
+
+    /**
+     * Return class scope
+     */
+    return self;
+
+})();
 
 Jingle.launch();

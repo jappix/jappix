@@ -9,7 +9,6 @@ This is the Register API
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/05/13
 
 */
 

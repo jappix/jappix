@@ -9,7 +9,6 @@ This is the file get script
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/05/13
 
 */
 

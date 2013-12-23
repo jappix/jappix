@@ -12,7 +12,6 @@ WARNING: THIS FILE IS DEPRECATED!
 
 License: AGPL
 Author: Cyril "Kyriog" Glapa
-Last revision: 03/03/2012
 
 */
 

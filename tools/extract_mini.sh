@@ -8,7 +8,7 @@
 # -------------------------------------------------
 #
 # License: WTFPL
-# Author: Leberwurscht
+# Authors: Leberwurscht, Valérian Saliou
 #
 
 #

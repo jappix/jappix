@@ -9,7 +9,6 @@ This is the Jappix Install PHP/HTML code
 
 License: AGPL
 Author: Valérian Saliou
-Last revision: 25/08/11
 
 */
 
