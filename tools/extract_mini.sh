@@ -29,8 +29,13 @@
 #     </script>
 #
 
+# absolute path to script
+ABSPATH=$(cd "$(dirname "$0")"; pwd)
+
 # standard settings
-TARGET_DIR=mini/
+BASE_DIR="$ABSPATH/.."
+SOURCE_DIR="$BASE_DIR/src"
+TARGET_DIR="$BASE_DIR/mini"
 LICENSE=MPL
 
 # parse command line options
@@ -145,12 +150,12 @@ check_license()
 # create compound javascript file
 echo "$LICENSE_HEADER" > "$TARGET_DIR/js/mini.js"
 
-JS_FILES="`cat xml/mini.xml | sed -n "s/.*<js>\(.*\)<\/js>.*/\1/p" | sed "s/~/ /g"`"
+JS_FILES="`cat $SOURCE_DIR/xml/mini.xml | sed -n "s/.*<js>\(.*\)<\/js>.*/\1/p" | sed "s/~/ /g"`"
 for js_file in $JS_FILES; do
-  check_license "js/$js_file" "$COMPATIBLE_LICENSES"
+  check_license "$SOURCE_DIR/js/$js_file" "$COMPATIBLE_LICENSES"
 
   # add to compound file removing UTF-8 byte order mark
-  cat "js/$js_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/js/mini.js"
+  cat "$SOURCE_DIR/js/$js_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/js/mini.js"
 done
 
 # simple configuraton
@@ -158,47 +163,47 @@ cat >> "$TARGET_DIR/js/mini.js" << EOF
 
 // Configuration
 XML_LANG = 'en';
-JAPPIX_VERSION = jQuery.trim('`cat VERSION`');
+JAPPIX_VERSION = jQuery.trim('`cat $BASE_DIR/VERSION`');
 JAPPIX_STATIC = '/mini/';
 EOF
 
 # create compound style sheet file
 echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini.css"
 
-CSS_FILES="`cat xml/mini.xml | sed -n "s/.*<css>\(.*\)<\/css>.*/\1/p" | sed "s/~/ /g"`"
+CSS_FILES="`cat $SOURCE_DIR/xml/mini.xml | sed -n "s/.*<css>\(.*\)<\/css>.*/\1/p" | sed "s/~/ /g"`"
 for css_file in $CSS_FILES; do
-  check_license "css/$css_file" "$COMPATIBLE_LICENSES"
+  check_license "$SOURCE_DIR/css/$css_file" "$COMPATIBLE_LICENSES"
 
   # add to compound file removing UTF-8 byte order mark
-  cat "css/$css_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/css/mini.css"
+  cat "$SOURCE_DIR/css/$css_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/css/mini.css"
 done
 
 # copy additional style sheets
-check_license "css/mini-ie.css" "$COMPATIBLE_LICENSES"
+check_license "$SOURCE_DIR/css/mini-ie.css" "$COMPATIBLE_LICENSES"
 echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini-ie.css"
-cat "css/mini-ie.css" >> "$TARGET_DIR/css/mini-ie.css"
+cat "$SOURCE_DIR/css/mini-ie.css" >> "$TARGET_DIR/css/mini-ie.css"
 
 # copy artwork
 # mini.png, mini.gif, animate.png and animate.gif are licensed under CC-BY
 mkdir -p "$TARGET_DIR/img/sprites/"
-cp "img/sprites/mini.gif" "$TARGET_DIR/img/sprites/mini.gif"
-cp "img/sprites/mini.png" "$TARGET_DIR/img/sprites/mini.png"
-cp "img/sprites/animate.png" "$TARGET_DIR/img/sprites/animate.png"
-cp "img/sprites/animate.gif" "$TARGET_DIR/img/sprites/animate.gif"
+cp "$SOURCE_DIR/img/sprites/mini.gif" "$TARGET_DIR/img/sprites/mini.gif"
+cp "$SOURCE_DIR/img/sprites/mini.png" "$TARGET_DIR/img/sprites/mini.png"
+cp "$SOURCE_DIR/img/sprites/animate.png" "$TARGET_DIR/img/sprites/animate.png"
+cp "$SOURCE_DIR/img/sprites/animate.gif" "$TARGET_DIR/img/sprites/animate.gif"
 
 # copy wait-typing.gif
 mkdir -p "$TARGET_DIR/img/wait/"
-cp "img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
+cp "$SOURCE_DIR/img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
 
 # copy blank.gif
 mkdir -p "$TARGET_DIR/img/others/"
-cp "img/others/blank.gif" "$TARGET_DIR/img/others/blank.gif"
+cp "$SOURCE_DIR/img/others/blank.gif" "$TARGET_DIR/img/others/blank.gif"
 
 # copy sounds
 # receive-message.mp3, receive-message.oga are licensed under CC-BY
 mkdir -p "$TARGET_DIR/snd/"
-cp "snd/receive-message.mp3" "$TARGET_DIR/snd/receive-message.mp3"
-cp "snd/receive-message.oga" "$TARGET_DIR/snd/receive-message.oga"
+cp "$SOURCE_DIR/snd/receive-message.mp3" "$TARGET_DIR/snd/receive-message.mp3"
+cp "$SOURCE_DIR/snd/receive-message.oga" "$TARGET_DIR/snd/receive-message.oga"
 
 # license information
 cat > "$TARGET_DIR/COPYING" << EOF

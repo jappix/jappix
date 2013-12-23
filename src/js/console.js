@@ -1,3 +1,5 @@
+// License: MIT
+
 /*
  *  Console.js
  *

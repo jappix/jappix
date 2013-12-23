@@ -1,3 +1,5 @@
+// License: MIT
+
 /**
  * jQuery JSON plugin 2.4.0
  *
