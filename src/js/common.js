@@ -20,894 +20,731 @@ var Common = (function () {
     var self = {};
 
 
-	// Checks if an element exists in the DOM
-	function exists(selector) {
-		if(jQuery(selector).size() > 0)
-			return true;
-		else
-			return false;
-	}
-
-	// Checks if Jappix is connected
-	function isConnected() {
-		if((typeof con != 'undefined') && con && con.connected())
-			return true;
-		
-		return false;
-	}
-
-	// Checks if Jappix has focus
-	function isFocused() {
-		try {
-			if(document.hasFocus())
-				return true;
-			
-			return false;
-		}
-		
-		catch(e) {
-			return true;
-		}
-	}
-
-	// Generates the good XID
-	function generateXID(xid, type) {
-		// XID needs to be transformed
-		// .. and made lowercase (uncertain though this is the right place...)
-		xid = xid.toLowerCase();
-
-		if(xid && (xid.indexOf('@') == -1)) {
-			// Groupchat
-			if(type == 'groupchat')
-				return xid + '@' + HOST_MUC;
-			
-			// One-to-one chat
-			if(xid.indexOf('.') == -1)
-				return xid + '@' + HOST_MAIN;
-			
-			// It might be a gateway?
-			return xid;
-		}
-		
-		// Nothing special (yet bare XID)
-		return xid;
-	}
-
-	// Gets the asked translated string
-	function _e(string) {
-		return string;
-	}
-
-	// Replaces '%s' to a given value for a translated string
-	function printf(string, value) {
-		return string.replace('%s', value);
-	}
-
-	// Returns the string after the last given char
-	function strAfterLast(given_char, str) {
-		if(!given_char || !str)
-			return '';
-		
-		var char_index = str.lastIndexOf(given_char);
-		var str_return = str;
-		
-		if(char_index >= 0)
-			str_return = str.substr(char_index + 1);
-		
-		return str_return;
-	}
-
-	// Properly explodes a string with a given character
-	function explodeThis(toEx, toStr, i) {
-		// Get the index of our char to explode
-		var index = toStr.indexOf(toEx);
-		
-		// We split if necessary the string
-		if(index != -1) {
-			if(i == 0)
-				toStr = toStr.substr(0, index);
-			else
-				toStr = toStr.substr(index + 1);
-		}
-		
-		// We return the value
-		return toStr;
-	}
-
-	// Cuts the resource of a XID
-	function cutResource(aXID) {
-		return explodeThis('/', aXID, 0);
-	}
-
-	// Gets the resource of a XID
-	function thisResource(aXID) {
-		// Any resource?
-		if(aXID.indexOf('/') != -1)
-			return explodeThis('/', aXID, 1);
-		
-		// No resource
-		return '';
-	}
-
-	// nodepreps an XMPP node
-	function nodeprep(node) {
-		// Spec: http://tools.ietf.org/html/rfc6122#appendix-A
-
-		if(!node)
-			return node;
-
-		// Remove prohibited chars
-		var prohibited_chars = ['"', '&', '\'', '/', ':', '<', '>', '@'];
-
-		for(j in prohibited_chars)
-			node = node.replace(prohibited_chars[j], '');
-
-		// Lower case
-		node = node.toLowerCase();
-
-		return node;
-	}
-
-	// Encodes quotes in a string
-	function encodeQuotes(str) {
-		return (str + '').htmlEnc();
-	}
-
-	// Gets the bare XID from a XID
-	function bareXID(xid) {
-		// Cut the resource
-		xid = cutResource(xid);
-		
-		// Launch nodeprep
-		if(xid.indexOf('@') != -1)
-			xid = nodeprep(getXIDNick(xid)) + '@' + getXIDHost(xid);
-		
-		return xid;
-	}
-
-	// Gets the full XID from a XID
-	function fullXID(xid) {
-		// Normalizes the XID
-		var full = bareXID(xid);
-		var resource = thisResource(xid);
-		
-		// Any resource?
-		if(resource)
-			full += '/' + resource;
-		
-		return full;
-	}
-
-	// Gets the nick from a XID
-	function getXIDNick(aXID) {
-		// Gateway nick?
-		if(aXID.match(/\\40/))
-			return explodeThis('\\40', aXID, 0);
-		
-		return explodeThis('@', aXID, 0);
-	}
-
-	// Gets the host from a XID
-	function getXIDHost(aXID) {
-		return explodeThis('@', aXID, 1);
-	}
-
-	// Checks if we are in developer mode
-	function isDeveloper() {
-		return (DEVELOPER == 'on');
-	}
-
-	// Checks if we are RTL (Right-To-Left)
-	function isRTL() {
-		return (_e("default:LTR") == 'default:RTL');
-	}
-
-	// Checks if anonymous mode is allowed
-	function allowedAnonymous() {
-		return (ANONYMOUS == 'on');
-	}
-
-	// Checks if host is locked
-	function lockHost() {
-		return (LOCK_HOST == 'on');
-	}
-
-	// Gets the full XID of the user
-	function getXID() {
-		// Return the XID of the user
-		if(con.username && con.domain)
-			return con.username + '@' + con.domain;
-		
-		return '';
-	}
-
-	// Generates the colors for a given user XID
-	function generateColor(xid) {
-		var colors = new Array(
-				'ac0000',
-				'a66200',
-				'007703',
-				'00705f',
-				'00236b',
-				'4e005c'
-			     );
-		
-		var number = 0;
-		
-		for(var i = 0; i < xid.length; i++)
-			number += xid.charCodeAt(i);
-		
-		var color = '#' + colors[number % (colors.length)];
-		
-		return color;
-	}
-
-	// Checks if the XID is a gateway
-	function isGateway(xid) {
-		if(xid.indexOf('@') != -1)
-			return false;
-		
-		return true;
-	}
-
-	// Gets the from attribute of a stanza (overrides some servers like Prosody missing from attributes)
-	function getStanzaFrom(stanza) {
-		var from = stanza.getFrom();
-		
-		// No from, we assume this is our XID
-		if(!from)
-			from = getXID();
-		
-		return from;
-	}
-
-	// Gets the current Jappix app. location
-	function getJappixLocation() {
-		var url = window.location.href;
-		
-		// If the URL has variables, remove them
-		if(url.indexOf('?') != -1)
-			url = url.split('?')[0];
-		if(url.indexOf('#') != -1)
-			url = url.split('#')[0];
-		
-		// No "/" at the end
-		if(!url.match(/(.+)\/$/))
-			url += '/';
-		
-		return url;
-	}
-
-	// Removes spaces at the beginning & the end of a string
-	function trim(str) {
-		return str.replace(/^\s+/g,'').replace(/\s+$/g,'');
-	}
-
-	// Adds a zero to a date when needed
-	function padZero(i) {
-		// Negative number (without first 0)
-		if(i > -10 && i < 0)
-			return '-0' + (i * -1);
-		
-		// Positive number (without first 0)
-		if(i < 10 && i >= 0)
-			return '0' + i;
-		
-		// All is okay
-		return i;
-	}
-
-	// Escapes a string for a regex usage
-	function escapeRegex(query) {
-		return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-	}
-
-	// Returns a random array value
-	function randomArrayValue(arr) {
-		return arr[Math.floor(Math.random() * arr.length)];
-	}
-
-	// Returns whether the browser is mobile or not
-	function isMobile() {
-		try {
-			return /Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|Bada|Maemo|Meego|webOS/i.test(navigator.userAgent);
-		} catch(e) {
-			return false;
-		}
-	}
-
-	// Converts a XML document to a string
-	function xmlToString(xmlData) {
-		try {
-			// For Mozilla, Firefox, Opera, etc.
-			if(window.XMLSerializer)
-				return (new XMLSerializer()).serializeToString(xmlData);
-			
-			// For Internet Explorer
-			if(window.ActiveXObject)
-				return xmlData.xml;
-			
-			return null;
-		}
-		
-		catch(e) {
-			return null;
-		}
-	}
-
-	// Converts a string to a XML document
-	function XMLFromString(sXML) {
-		try {
-			// No data?
-			if(!sXML)
-				return '';
-			
-			// Add the XML tag
-			if(!sXML.match(/^<\?xml/i))
-				sXML = '<?xml version="1.0"?>' + sXML;
-			
-			// Parse it!
-			if(window.DOMParser)
-				return (new DOMParser()).parseFromString(sXML, 'text/xml');
-			
-			if(window.ActiveXObject) {
-				var oXML = new ActiveXObject('Microsoft.XMLDOM');
-				oXML.loadXML(sXML);
-				
-		 		return oXML;
-			}
-		}
-		
-		catch(e) {
-			return '';
-		}
-	}
-
-
-
-
-
-
-
 	/**
-     * XXXXXX
+     * Checks if an element exists in the DOM
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} path
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.exists = function(path) {
+
+        var exists = false;
 
         try {
-            // CODE
+            if(jQuery(path).size() > 0) {
+                exists = true;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.exists', e);
+        } finally {
+            return exists;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if Jappix is connected
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isConnected = function() {
+
+        connected = false;
 
         try {
-            // CODE
+            if((typeof con != 'undefined') && con && con.connected()) {
+                connected = true;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isConnected', e);
+        } finally {
+            return connected;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if Jappix has focus
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isFocused = function() {
+
+        has_focus = true;
 
         try {
-            // CODE
+            if(!document.hasFocus()) {
+                has_focus = false;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isFocused', e);
+        } finally {
+            return has_focus;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Generates the good XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @param {string} type
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.generateXID = function(xid, type) {
 
         try {
-            // CODE
+            // XID needs to be transformed
+            // .. and made lowercase (uncertain though this is the right place...)
+            xid = xid.toLowerCase();
+
+            if(xid && (xid.indexOf('@') == -1)) {
+                // Groupchat
+                if(type == 'groupchat')
+                    return xid + '@' + HOST_MUC;
+                
+                // One-to-one chat
+                if(xid.indexOf('.') == -1)
+                    return xid + '@' + HOST_MAIN;
+                
+                // It might be a gateway?
+                return xid;
+            }
+            
+            // Nothing special (yet bare XID)
+            return xid;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.generateXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the asked translated string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @return {string}
      */
-    self.xxxx = function() {
+    self._e = function(string) {
 
         try {
-            // CODE
+            return string;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common._e', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Replaces '%s' to a given value for a translated string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @param {string} value
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.printf = function(string, value) {
 
         try {
-            // CODE
+            return string.replace('%s', value);
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.printf', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns the string after the last given char
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} given_char
+     * @param {string} str
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.strAfterLast = function(given_char, str) {
 
         try {
-            // CODE
+            if(!given_char || !str)
+                return '';
+            
+            var char_index = str.lastIndexOf(given_char);
+            var str_return = str;
+            
+            if(char_index >= 0)
+                str_return = str.substr(char_index + 1);
+            
+            return str_return;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.strAfterLast', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Properly explodes a string with a given character
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} toEx
+     * @param {string} toStr
+     * @param {number} i
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.explodeThis = function(toEx, toStr, i) {
 
         try {
-            // CODE
+            // Get the index of our char to explode
+            var index = toStr.indexOf(toEx);
+            
+            // We split if necessary the string
+            if(index != -1) {
+                if(i == 0)
+                    toStr = toStr.substr(0, index);
+                else
+                    toStr = toStr.substr(index + 1);
+            }
+            
+            // We return the value
+            return toStr;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.explodeThis', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Cuts the resource of a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.cutResource = function(aXID) {
 
         try {
-            // CODE
+            return explodeThis('/', aXID, 0);
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.cutResource', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the resource of a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.thisResource = function(aXID) {
+
+        resource = '';
 
         try {
-            // CODE
+            // Any resource?
+            if(aXID.indexOf('/') != -1) {
+                resource = explodeThis('/', aXID, 1);
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.thisResource', e);
+        } finally {
+            return resource;
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * nodepreps an XMPP node
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} node
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.nodeprep = function(node) {
+
+        // Spec: http://tools.ietf.org/html/rfc6122#appendix-A
 
         try {
-            // CODE
+            if(!node)
+                return node;
+
+            // Remove prohibited chars
+            var prohibited_chars = ['"', '&', '\'', '/', ':', '<', '>', '@'];
+
+            for(j in prohibited_chars)
+                node = node.replace(prohibited_chars[j], '');
+
+            // Lower case
+            node = node.toLowerCase();
+
+            return node;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.nodeprep', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Encodes quotes in a string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} str
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.encodeQuotes = function(str) {
 
         try {
-            // CODE
+            return (str + '').htmlEnc();
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.encodeQuotes', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the bare XID from a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.bareXID = function(xid) {
 
         try {
-            // CODE
+            // Cut the resource
+            xid = cutResource(xid);
+            
+            // Launch nodeprep
+            if(xid.indexOf('@') != -1)
+                xid = nodeprep(getXIDNick(xid)) + '@' + getXIDHost(xid);
+            
+            return xid;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.bareXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the full XID from a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.fullXID = function(xid) {
 
         try {
-            // CODE
+            // Normalizes the XID
+            var full = bareXID(xid);
+            var resource = thisResource(xid);
+            
+            // Any resource?
+            if(resource)
+                full += '/' + resource;
+            
+            return full;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.fullXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the nick from a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getXIDNick = function(aXID) {
 
         try {
-            // CODE
+            // Gateway nick?
+            if(aXID.match(/\\40/))
+                return explodeThis('\\40', aXID, 0);
+            
+            return explodeThis('@', aXID, 0);
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.getXIDNick', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Gets the host from a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getXIDHost = function(aXID) {
 
         try {
-            // CODE
+            return explodeThis('@', aXID, 1);
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.getXIDHost', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if we are in developer mode
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isDeveloper = function() {
 
         try {
-            // CODE
+            return (DEVELOPER == 'on');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isDeveloper', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if we are RTL (Right-To-Left)
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isRTL = function() {
 
         try {
-            // CODE
+            return (_e("default:LTR") == 'default:RTL');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isRTL', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if anonymous mode is allowed
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.allowedAnonymous = function() {
 
         try {
-            // CODE
+            return (ANONYMOUS == 'on');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.allowedAnonymous', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if host is locked
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.lockHost = function() {
 
         try {
-            // CODE
+            return (LOCK_HOST == 'on');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.lockHost', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Gets the full XID of the user
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getXID = function() {
 
         try {
-            // CODE
+            // Return the XID of the user
+            if(con.username && con.domain) {
+                return con.username + '@' + con.domain;
+            }
+            
+            return '';
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.getXID', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Generates the colors for a given user XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {type} xid
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.generateColor = function(xid) {
 
         try {
-            // CODE
+            var colors = new Array(
+                'ac0000',
+                'a66200',
+                '007703',
+                '00705f',
+                '00236b',
+                '4e005c'
+            );
+            
+            var number = 0;
+            
+            for(var i = 0; i < xid.length; i++) {
+                number += xid.charCodeAt(i);
+            }
+            
+            var color = '#' + colors[number % (colors.length)];
+            
+            return color;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.generateColor', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Checks if the XID is a gateway
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isGateway = function() {
+
+        is_gateway = true;
 
         try {
-            // CODE
+            if(xid.indexOf('@') != -1) {
+                is_gateway = false;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isGateway', e);
+        } finally {
+            return is_gateway;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the from attribute of a stanza (overrides some servers like Prosody missing from attributes)
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} stanza
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getStanzaFrom = function(stanza) {
 
         try {
-            // CODE
+            var from = stanza.getFrom();
+            
+            // No from, we assume this is our XID
+            if(!from)
+                from = getXID();
+            
+            return from;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.getStanzaFrom', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the current Jappix app. location
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getJappixLocation = function() {
 
         try {
-            // CODE
+            var url = window.location.href;
+            
+            // If the URL has variables, remove them
+            if(url.indexOf('?') != -1)
+                url = url.split('?')[0];
+            if(url.indexOf('#') != -1)
+                url = url.split('#')[0];
+            
+            // No "/" at the end
+            if(!url.match(/(.+)\/$/))
+                url += '/';
+            
+            return url;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.getJappixLocation', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Removes spaces at the beginning & the end of a string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} str
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.trim = function(str) {
 
         try {
-            // CODE
+            return str.replace(/^\s+/g,'').replace(/\s+$/g,'');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.trim', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Adds a zero to a date when needed
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {number} i
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.padZero = function(i) {
 
         try {
-            // CODE
+            // Negative number (without first 0)
+            if(i > -10 && i < 0)
+                return '-0' + (i * -1);
+            
+            // Positive number (without first 0)
+            if(i < 10 && i >= 0)
+                return '0' + i;
+            
+            // All is okay
+            return i;
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.padZero', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Escapes a string for a regex usage
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} query
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.escapeRegex = function(query) {
 
         try {
-            // CODE
+            return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.escapeRegex', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns a random array value
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} arr
+     * @return {object}
      */
-    self.xxxx = function() {
+    self.randomArrayValue = function(arr) {
 
         try {
-            // CODE
+            return arr[Math.floor(Math.random() * arr.length)];
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.randomArrayValue', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns whether the browser is mobile or not
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.isMobile = function() {
+
+        is_mobile = false;
 
         try {
-            // CODE
+            is_mobile = /Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|Bada|Maemo|Meego|webOS/i.test(navigator.userAgent);
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.isMobile', e);
+        } finally {
+            return is_mobile;
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Converts a XML document to a string
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} xmlData
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.xmlToString = function(xmlData) {
+
+        xml_str = null;
 
         try {
-            // CODE
+            // For Mozilla, Firefox, Opera, etc.
+            if(window.XMLSerializer) {
+                xml_str = (new XMLSerializer()).serializeToString(xmlData);
+            }
+            
+            // For Internet Explorer
+            if(window.ActiveXObject) {
+                xml_str = xmlData.xml;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.xmlToString', e);
+        } finally {
+            return xml_str;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Converts a string to a XML document
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} sXML
+     * @return {object}
      */
-    self.xxxx = function() {
+    self.XMLFromString = function(sXML) {
 
         try {
-            // CODE
+            // No data?
+            if(!sXML) {
+                return '';
+            }
+            
+            // Add the XML tag
+            if(!sXML.match(/^<\?xml/i)) {
+                sXML = '<?xml version="1.0"?>' + sXML;
+            }
+            
+            // Parse it!
+            if(window.DOMParser) {
+                return (new DOMParser()).parseFromString(sXML, 'text/xml');
+            }
+            
+            if(window.ActiveXObject) {
+                var oXML = new ActiveXObject('Microsoft.XMLDOM');
+                oXML.loadXML(sXML);
+                
+                return oXML;
+            }
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Common.XMLFromString', e);
+
+            return '';
         }
 
     };

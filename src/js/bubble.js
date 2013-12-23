@@ -20,88 +20,71 @@ var Bubble = (function () {
     var self = {};
 
 
-	// Closes all the opened bubbles
-	function closeBubbles() {
-		// Destroy all the elements
-		$('.bubble.hidable:visible').hide();
-		$('.bubble.removable').remove();
-		$('body').off('click');
-		
-		return false;
-	}
-
-	// Click function when a bubble is opened
-	function showBubble(selector) {
-		// Hidable bubbles special things
-		if($(selector).is('.hidable')) {
-			// This bubble is yet displayed? So abort!
-			if($(selector).is(':visible'))
-				return closeBubbles();
-			
-			// Close all the bubbles
-			closeBubbles();
-			
-			// Show the requested bubble
-			$(selector).show();
-		}
-		
-		// Removable bubbles special things
-		else {
-			// This bubble is yet added? So abort!
-			if(exists(selector))
-				return closeBubbles();
-			
-			// Close all the bubbles
-			closeBubbles();
-		}
-		
-		// Creates a new click event to close the bubble
-		$('body').on('click', function(evt) {
-			var target = evt.target;
-			
-			// If this is a click away from a bubble
-			if(!$(target).parents('.ibubble').size())
-				closeBubbles();
-		});
-		
-		return false;
-	}
-
-
-
-
-
-
-
 	/**
-     * XXXXXX
+     * Closes all the opened bubbles
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.closeBubbles = function() {
 
         try {
-            // CODE
+            // Destroy all the elements
+            $('.bubble.hidable:visible').hide();
+            $('.bubble.removable').remove();
+            $('body').off('click');
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Bubble.close', e);
+        } finally {
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Click function when a bubble is opened
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} selector
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.showBubble = function(selector) {
 
         try {
-            // CODE
+            // Hidable bubbles special things
+            if($(selector).is('.hidable')) {
+                // This bubble is yet displayed? So abort!
+                if($(selector).is(':visible'))
+                    return closeBubbles();
+                
+                // Close all the bubbles
+                closeBubbles();
+                
+                // Show the requested bubble
+                $(selector).show();
+            }
+            
+            // Removable bubbles special things
+            else {
+                // This bubble is yet added? So abort!
+                if(exists(selector))
+                    return closeBubbles();
+                
+                // Close all the bubbles
+                closeBubbles();
+            }
+            
+            // Creates a new click event to close the bubble
+            $('body').on('click', function(evt) {
+                var target = evt.target;
+                
+                // If this is a click away from a bubble
+                if(!$(target).parents('.ibubble').size())
+                    closeBubbles();
+            });
         } catch(e) {
-            Console.error('YYYYY.xxxx', e);
+            Console.error('Bubble.show', e);
+        } finally {
+            return false;
         }
 
     };
