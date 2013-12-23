@@ -21,595 +21,988 @@ var Mobile = (function () {
 
 
 	/**
-     * XXXXXX
+     * Proceeds connection
      * @public
-     * @param {type} name
+     * @param {object} aForm
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.doLogin = function(aForm) {
 
         try {
-            // CODE
+            // Reset the panels
+            resetPanel();
+            
+            // Get the values
+            var xid = aForm.xid.value;
+            var username, domain;
+            
+            // A domain is specified
+            if(xid.indexOf('@') != -1) {
+                username = getXIDNick(xid);
+                domain = getXIDHost(xid);
+                
+                // Domain is locked and not the same
+                if((LOCK_HOST == 'on') && (domain != HOST_MAIN)) {
+                    showThis('error');
+                    
+                    return false;
+                }
+            }
+            
+            // No "@" in the XID, we should add the default domain
+            else {
+                username = xid;
+                domain = HOST_MAIN;
+            }
+            
+            var pwd = aForm.pwd.value;
+            var reg = false;
+            
+            if(aForm.reg)
+                reg = aForm.reg.checked;
+            
+            // Enough parameters
+            if(username && domain && pwd) {
+                // Show the info notification
+                showThis('info');
+                
+                // We define the http binding parameters
+                oArgs = new Object();
+                
+                if(HOST_BOSH_MAIN)
+                    oArgs.httpbase = HOST_BOSH_MAIN;
+                else
+                    oArgs.httpbase = HOST_BOSH;
+                
+                // Check BOSH origin
+                BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+
+                // We create the new http-binding connection
+                con = new JSJaCHttpBindingConnection(oArgs);
+                
+                // And we handle everything that happen
+                con.registerHandler('message', handleMessage);
+                con.registerHandler('presence', handlePresence);
+                con.registerHandler('iq', handleIQ);
+                con.registerHandler('onconnect', handleConnected);
+                con.registerHandler('onerror', handleError);
+                con.registerHandler('ondisconnect', handleDisconnected);
+                
+                // We retrieve what the user typed in the login inputs
+                oArgs = new Object();
+                oArgs.username = username;
+                oArgs.domain = domain;
+                oArgs.resource = JAPPIX_RESOURCE + ' Mobile (' + (new Date()).getTime() + ')';
+                oArgs.pass = pwd;
+                oArgs.secure = true;
+                oArgs.xmllang = XML_LANG;
+                
+                // Register?
+                if(reg)
+                    oArgs.register = true;
+                
+                // We connect !
+                con.connect(oArgs);
+            }
+            
+            // Not enough parameters
+            else {
+                showThis('error');
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.doLogin', e);
+
+            // An error happened
+            resetPanel('error');
+        } finally {
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Proceeds disconnection
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.doLogout = function() {
 
         try {
-            // CODE
+            con.disconnect();
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.doLogout', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Shows target element
      * @public
-     * @param {type} name
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.showThis = function(id) {
 
         try {
-            // CODE
+            document.getElementById(id).style.display = 'block';
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.showThis', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Hides target element
      * @public
-     * @param {type} name
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.hideThis = function(id) {
 
         try {
-            // CODE
+            document.getElementById(id).style.display = 'none';
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.hideThis', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Resets notification panel
      * @public
-     * @param {type} name
+     * @param {string} id
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.resetPanel = function(id) {
 
         try {
-            // CODE
+            // Hide the opened panels
+            hideThis('info');
+            hideThis('error');
+            
+            //Show the target panel
+            if(id) {
+                showThis(id);
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.resetPanel', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Resets DOM to its initial state
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.resetDOM = function() {
 
         try {
-            // CODE
+            // Reset the "secret" input values
+            document.getElementById('pwd').value = '';
+            
+            // Remove the useless DOM elements
+            var body = document.getElementsByTagName('body')[0];
+            body.removeChild(document.getElementById('talk'));
+            body.removeChild(document.getElementById('chat'));
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.resetDOM', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns whether target item exists or not
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {type} id
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.exists = function(id) {
+
+        does_exist = false;
 
         try {
-            // CODE
+            if(document.getElementById(id)) {
+                does_exist = true;
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.exists', e);
+        } finally {
+            return does_exist;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns translated string (placeholder function for Get API)
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} string
+     * @return {string}
      */
-    self.xxxx = function() {
+    self._e = function(string) {
 
         try {
-            // CODE
+            return string;
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile._e', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Escapes a string for onclick usage
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} str
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.encodeOnclick = function(str) {
 
         try {
-            // CODE
+            return str.replace(/'/g, '\\$&').replace(/"/g, '&quot;');
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.encodeOnclick', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Returns Jappix location
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getJappixLocation = function() {
 
         try {
-            // CODE
+            var url = window.location.href;
+    
+            // If the URL has variables, remove them
+            if(url.indexOf('?') != -1)
+                url = url.split('?')[0];
+            if(url.indexOf('#') != -1)
+                url = url.split('#')[0];
+            
+            // No "/" at the end
+            if(!url.match(/(.+)\/$/))
+                url += '/';
+            
+            return url;
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getJappixLocation', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Handles message stanza
      * @public
-     * @param {type} name
+     * @param {object} msg
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleMessage = function(msg) {
 
         try {
-            // CODE
+            var type = msg.getType();
+            
+            if(type == 'chat' || type == 'normal') {
+                // Get the body
+                var body = msg.getBody();
+                
+                if(body) {
+                    // Get the values
+                    var xid = cutResource(msg.getFrom());
+                    var hash = hex_md5(xid);
+                    var nick = getNick(xid, hash);
+                    
+                    // No nickname?
+                    if(!nick)
+                        nick = xid;
+                
+                    // Create the chat if it does not exist
+                    chat(xid, nick);
+                
+                    // Display the message
+                    displayMessage(xid, body, nick, hash);
+                }
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleMessage', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles presence stanza
      * @public
-     * @param {type} name
+     * @param {object} pre
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handlePresence = function(pre) {
 
         try {
-            // CODE
+            // Define the variables
+            var xid = cutResource(pre.getFrom());
+            var hash = hex_md5(xid);
+            var type = pre.getType();
+            var show = pre.getShow();
+            
+            // Online buddy: show it!
+            if(!type) {
+                showThis('buddy-' + hash);
+                
+                // Display the correct presence
+                switch(show) {
+                    case 'chat':
+                        displayPresence(hash, show);
+                        break;
+                    
+                    case 'away':
+                        displayPresence(hash, show);
+                        break;
+                    
+                    case 'xa':
+                        displayPresence(hash, show);
+                        break;
+                    
+                    case 'dnd':
+                        displayPresence(hash, show);
+                        break;
+                    
+                    default:
+                        displayPresence(hash, 'available');
+                        break;
+                }
+            } else {
+                hideThis('buddy-' + hash);
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handlePresence', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles IQ stanza
      * @public
-     * @param {type} name
+     * @param {object} iq
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleIQ = function(iq) {
 
         try {
-            // CODE
+            // Get the content
+            var iqFrom = iq.getFrom();
+            var iqID = iq.getID();
+            var iqQueryXMLNS = iq.getQueryXMLNS();
+            var iqType = iq.getType();
+            
+            // Create the response
+            if((iqType == 'get') && ((iqQueryXMLNS == NS_DISCO_INFO) || (iqQueryXMLNS == NS_VERSION))) {
+                var iqResponse = new JSJaCIQ();
+                iqResponse.setID(iqID);
+                iqResponse.setTo(iqFrom);
+                iqResponse.setType('result');
+            }
+            
+            // Disco#infos query
+            if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
+                /* REF: http://xmpp.org/extensions/xep-0030.html */
+                
+                var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
+                
+                // We set the name of the client
+                iqQuery.appendChild(iq.appendNode('identity', {
+                    'category': 'client',
+                    'type': 'mobile',
+                    'name': 'Jappix Mobile'
+                }));
+                
+                // We set all the supported features
+                var fArray = new Array(
+                    NS_DISCO_INFO,
+                    NS_VERSION
+                );
+                
+                for(i in fArray)
+                    iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
+                
+                con.send(iqResponse);
+            }
+            
+            // Software version query
+            else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
+                /* REF: http://xmpp.org/extensions/xep-0092.html */
+                
+                var iqQuery = iqResponse.setQuery(NS_VERSION);
+                
+                iqQuery.appendChild(iq.buildNode('name', 'Jappix Mobile'));
+                iqQuery.appendChild(iq.buildNode('version', JAPPIX_VERSION));
+                iqQuery.appendChild(iq.buildNode('os', BrowserDetect.OS));
+                
+                con.send(iqResponse);
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleIQ', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles connected state
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleConnected = function() {
 
         try {
-            // CODE
+            // Reset the elements
+            hideThis('home');
+            resetPanel();
+            
+            // Create the talk page
+            document.getElementsByTagName('body')[0].innerHTML +=
+            '<div id="talk">' + 
+                '<div class="header">' + 
+                    '<div class="mobile-images"></div>' + 
+                    '<button onclick="doLogout();">' + _e("Disconnect") + '</button>' + 
+                '</div>' + 
+                
+                '<div id="roster"></div>' + 
+            '</div>' + 
+            
+            '<div id="chat">' + 
+                '<div class="header">' + 
+                    '<div class="mobile-images"></div>' + 
+                    '<button onclick="returnToRoster();">' + _e("Previous") + '</button>' + 
+                '</div>' + 
+                
+                '<div id="chans"></div>' + 
+            '</div>';
+            
+            // Get the roster items
+            getRoster();
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleConnected', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles error stanza
      * @public
-     * @param {type} name
+     * @param {object} error
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleError = function(error) {
 
         try {
-            // CODE
+            resetPanel('error');
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleError', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Handles disconnected state
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleDisconnected = function() {
 
         try {
-            // CODE
+            // Reset the elements
+            resetDOM();
+            
+            // Show the home page
+            showThis('home');
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleDisconnected', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Handles roster response
      * @public
-     * @param {type} name
+     * @param {object} iq
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.handleRoster = function(iq) {
 
         try {
-            // CODE
+            // Error: send presence anyway
+            if(!iq || (iq.getType() != 'result'))
+                return sendPresence('', 'available', 1);
+            
+            // Define some pre-vars
+            var current, xid, nick, oneBuddy, oneID, hash;
+            var roster = document.getElementById('roster');
+            
+            // Get roster items
+            var iqNode = iq.getNode();
+            var bItems = iqNode.getElementsByTagName('item');
+            
+            // Display each elements from the roster
+            for(var i = 0; i < bItems.length; i++) {
+                // Get the values
+                current = iqNode.getElementsByTagName('item').item(i);
+                xid = current.getAttribute('jid').htmlEnc();
+                nick = current.getAttribute('name');
+                hash = hex_md5(xid);
+                
+                // No defined nick?
+                if(!nick)
+                    nick = getDirectNick(xid);
+                
+                // Display the values
+                oneBuddy = document.createElement('a');
+                oneID = 'buddy-' + hash;
+                oneBuddy.setAttribute('href', '#');
+                oneBuddy.setAttribute('id', oneID);
+                oneBuddy.setAttribute('class', 'one-buddy');
+                oneBuddy.setAttribute('onclick', 'return chat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(nick) + '\');');
+                oneBuddy.innerHTML = nick.htmlEnc();
+                roster.appendChild(oneBuddy);
+            }
+            
+            // Start handling buddies presence
+            sendPresence('', 'available', 1);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.handleRoster', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Sends message w/ provided data
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {object} aForm
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.sendMessage = function(aForm) {
 
         try {
-            // CODE
+            var body = aForm.body.value;
+            var xid = aForm.xid.value;
+            var hash = hex_md5(xid);
+            
+            if(body && xid) {
+                // Send the message
+                var aMsg = new JSJaCMessage();
+                aMsg.setTo(xid);
+                aMsg.setType('chat');
+                aMsg.setBody(body);
+                con.send(aMsg);
+                
+                // Clear our input
+                aForm.body.value = '';
+                
+                // Display the message we sent
+                displayMessage(xid, body, 'me', hash);
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.sendMessage', e);
+        } finally {
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Sends presence w/ provided data
      * @public
-     * @param {type} name
+     * @param {string} type
+     * @param {string} show
+     * @param {number} priority
+     * @param {string} status
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.sendPresence = function(type, show, priority, status) {
 
         try {
-            // CODE
+            var presence = new JSJaCPresence();
+            
+            if(type)
+                presence.setType(type);
+            if(show)
+                presence.setShow(show);
+            if(priority)
+                presence.setPriority(priority);
+            if(status)
+                presence.setStatus(status);
+            
+            con.send(presence);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.sendPresence', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Requests the user roster
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.getRoster = function() {
 
         try {
-            // CODE
+            iq = new JSJaCIQ();
+            iq.setType('get');
+            iq.setQuery(NS_ROSTER);
+            
+            con.send(iq, handleRoster);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getRoster', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Gets user nick (the dumb way)
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getDirectNick = function(xid) {
 
         try {
-            // CODE
+            return explodeThis('@', xid, 0);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getDirectNick', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets user nick (the smarter way)
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @param {string} hash
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getNick = function(xid, hash) {
 
         try {
-            // CODE
+            var path = 'buddy-' + hash;
+            
+            if(exists(path)) {
+                return document.getElementById(path).innerHTML;
+            } else {
+                getDirectNick(xid);
+            }
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getNick', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Explodes a string w/ given character
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} toEx
+     * @param {string} toStr
+     * @param {number} i
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.explodeThis = function(toEx, toStr, i) {
 
         try {
-            // CODE
+            // Get the index of our char to explode
+            var index = toStr.indexOf(toEx);
+            
+            // We split if necessary the string
+            if(index != -1) {
+                if(i == 0)
+                    toStr = toStr.substr(0, index);
+                else
+                    toStr = toStr.substr(index + 1);
+            }
+            
+            // We return the value
+            return toStr;
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.explodeThis', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Removes the resource part from a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.cutResource = function(aXID) {
 
         try {
-            // CODE
+            return explodeThis('/', aXID, 0);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.cutResource', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Gets the nick part of a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getXIDNick = function(aXID) {
 
         try {
-            // CODE
+            return explodeThis('@', aXID, 0);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getXIDNick', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Gets the host part of a XID
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} aXID
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.getXIDHost = function(aXID) {
 
         try {
-            // CODE
+            return explodeThis('@', aXID, 1);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.getXIDHost', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Filters message for display
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} msg
+     * @return {string}
      */
-    self.xxxx = function() {
+    self.filter = function(msg) {
 
         try {
-            // CODE
+            var msg = msg
+    
+            // Encode in HTML
+            .htmlEnc()
+            
+            // Highlighted text
+            .replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
+            
+            // Links
+            msg = applyLinks(msg, 'mini');
+            
+            return msg;
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.filter', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Displays message into chat view
      * @public
-     * @param {type} name
+     * @param {string} xid
+     * @param {string} body
+     * @param {string} nick
+     * @param {string} hash
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.displayMessage = function(xid, body, nick, hash) {
 
         try {
-            // CODE
+            // Get the path
+            var path = 'content-' + hash;
+            
+            // Display the message
+            html = '<span><b';
+            
+            if(nick == 'me')
+                html += ' class="me">' + _e("You");
+            else
+                html += ' class="him">' + nick;
+            
+            html += '</b> ' + filter(body) + '</span>';
+            
+            document.getElementById(path).innerHTML += html;
+            
+            // Scroll to the last element
+            document.getElementById(path).lastChild.scrollIntoView();
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.displayMessage', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Goes back to roster view
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.returnToRoster = function() {
 
         try {
-            // CODE
+            // Hide the chats
+            hideThis('chat');
+            
+            // Show the roster
+            showThis('talk');
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.returnToRoster', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Switches view to target chat
      * @public
-     * @param {type} name
+     * @param {string} hash
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.chatSwitch = function(hash) {
 
         try {
-            // CODE
+            // Hide the roster page
+            hideThis('talk');
+            
+            // Hide the other chats
+            var divs = document.getElementsByTagName('div');
+            
+            for(var i = 0; i < divs.length; i++) {
+                if(divs.item(i).getAttribute('class') == 'one-chat')
+                    divs.item(i).style.display = 'none';
+            }
+            
+            // Show the chat
+            showThis('chat');
+            showThis(hash);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.chatSwitch', e);
         }
 
     };
 
 
 	/**
-     * XXXXXX
+     * Creates given chat
      * @public
-     * @param {type} name
+     * @param {string} xid
+     * @param {string} nick
+     * @param {string} hash
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.createChat = function(xid, nick, hash) {
 
         try {
-            // CODE
+            // Define the variables
+            var chat = document.getElementById('chans');
+            var oneChat = document.createElement('div');
+            
+            // Apply the DOM modification
+            oneChat.setAttribute('id', 'chat-' + hash);
+            oneChat.setAttribute('class', 'one-chat');
+            oneChat.innerHTML = '<p>' + nick + '</p><div id="content-' + hash + '"></div><form action="#" method="post" onsubmit="return sendMessage(this);"><input type="text" name="body" /><input type="hidden" name="xid" value="' + xid + '" /><input type="submit" class="submit" value="OK" /></form>';
+            chat.appendChild(oneChat);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.createChat', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Launches a chat
      * @public
-     * @param {type} name
-     * @return {undefined}
+     * @param {string} xid
+     * @param {string} nick
+     * @return {boolean}
      */
-    self.xxxx = function() {
+    self.chat = function(xid, nick) {
 
         try {
-            // CODE
+            var hash = hex_md5(xid);
+            
+            // If the chat was not yet opened
+            if(!exists('chat-' + hash)) {
+                // No nick?
+                if(!nick)
+                    nick = getNick(xid, hash);
+                
+                // Create the chat
+                createChat(xid, nick, hash);
+            }
+            
+            // Switch to the chat
+            chatSwitch('chat-' + hash);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.chat', e);
+        } finally {
+            return false;
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Displays given presence
      * @public
-     * @param {type} name
+     * @param {string} hash
+     * @param {string} show
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.displayPresence = function(hash, show) {
 
         try {
-            // CODE
+            document.getElementById('buddy-' + hash).setAttribute('class', 'one-buddy ' + show);
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.displayPresence', e);
         }
 
     };
 
 
     /**
-     * XXXXXX
+     * Plugin launcher
      * @public
-     * @param {type} name
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.launch = function() {
 
         try {
-            // CODE
+            onbeforeunload = doLogout;
         } catch(e) {
-            Console.error('Mobile.xxxx', e);
-        }
-
-    };
-
-
-    /**
-     * XXXXXX
-     * @public
-     * @param {type} name
-     * @return {undefined}
-     */
-    self.xxxx = function() {
-
-        try {
-            // CODE
-        } catch(e) {
-            Console.error('Mobile.xxxx', e);
+            Console.error('Mobile.launch', e);
         }
 
     };
@@ -622,9 +1015,4 @@ var Mobile = (function () {
 
 })();
 
-
-/* BEGIN DOCUMENT EVENTS FUNCTIONS */
-
-onbeforeunload = doLogout;
-
-/* END DOCUMENT EVENTS FUNCTIONS */
+Mobile.launch();
