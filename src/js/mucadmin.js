@@ -269,12 +269,12 @@ var MUCAdmin = (function () {
 
 
 	/**
-     * XXXXXX
+     * Handles the MUC admin form
      * @public
      * @param {object} iq
      * @return {undefined}
      */
-    self.xxxx = function(iq) {
+    self.handleMucAdminAuth = function(iq) {
 
         try {
             // We got the authorizations results
@@ -292,7 +292,7 @@ var MUCAdmin = (function () {
             
             Console.log('MUC admin items received: ' + fullXID(getStanzaFrom(iq)));
         } catch(e) {
-            Console.error('MUCAdmin.xxxx', e);
+            Console.error('MUCAdmin.handleAuth', e);
         }
 
     };

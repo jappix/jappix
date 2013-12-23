@@ -1483,12 +1483,12 @@ var Microblog = (function () {
 
 
     /**
-     * XXXXXX
+     * Performs the microblog sender checks
      * @public
      * @param {type} name
      * @return {boolean}
      */
-    self.xxxx = function() {
+    self.sendMicroblog = function() {
 
         try {
             // Get the values
@@ -1532,7 +1532,7 @@ var Microblog = (function () {
                 publishMicroblog(body, fName, fURL, fType, fLength, fThumb);
             }
         } catch(e) {
-            Console.error('Microblog.xxxx', e);
+            Console.error('Microblog.send', e);
         } finally {
             return false;
         }

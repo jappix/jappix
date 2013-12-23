@@ -998,7 +998,7 @@ var Presence = (function () {
      * @param {string} resource
      * @return {object}
      */
-    self.xxxx = function(xid, resource) {
+    self.removeResourcePresence = function(xid, resource) {
 
         var resources_obj = null;
 
@@ -1008,7 +1008,7 @@ var Presence = (function () {
             delete resources_obj[resource];
             setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
         } catch(e) {
-            Console.error('Presence.xxxx', e);
+            Console.error('Presence.removeResource', e);
         } finally {
             return resources_obj;
         }

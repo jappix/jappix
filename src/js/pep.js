@@ -830,23 +830,6 @@ var PEP = (function () {
 
 
     /**
-     * XXXXXX
-     * @public
-     * @param {type} name
-     * @return {undefined}
-     */
-    self.xxxx = function() {
-
-        try {
-            // CODE
-        } catch(e) {
-            Console.error('PEP.xxxx', e);
-        }
-
-    };
-
-
-    /**
      * Handles the user's microblog to create it in case of error
      * @public
      * @param {object} iq

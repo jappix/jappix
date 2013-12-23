@@ -80,12 +80,14 @@ var ChatState = (function () {
 
 
     /**
-     * XXXXXX
+     * Displays a given chatstate in a given chat
      * @public
-     * @param {type} name
+     * @param {string} state
+     * @param {string} hash
+     * @param {string} type
      * @return {undefined}
      */
-    self.xxxx = function() {
+    self.displayChatState = function(state, hash, type) {
 
         try {
             // Groupchat?
@@ -145,7 +147,7 @@ var ChatState = (function () {
                 $('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
             }
         } catch(e) {
-            Console.error('ChatState.xxxx', e);
+            Console.error('ChatState.display', e);
         }
 
     };
