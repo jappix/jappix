@@ -180,7 +180,7 @@ var Jingle = (function () {
             if(!xid) return false;
 
             var jingle_sel = $('#jingle');
-            var bare_xid    = bareXID(xid);
+            var bare_xid    = Common.bareXID(xid);
             var full_xid    = null;
             var bare_hash   = hex_md5(bare_xid);
 
@@ -260,7 +260,7 @@ var Jingle = (function () {
                         return;
                     }
 
-                    var xid  = fullXID(getStanzaFrom(stanza));
+                    var xid  = Common.fullXID(Common.getStanzaFrom(stanza));
 
                     Console.info('Incoming call from: ' + xid);
 

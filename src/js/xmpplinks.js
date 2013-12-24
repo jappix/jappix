@@ -32,21 +32,21 @@ var XMPPLinks = (function () {
 
         try {
             // Remove the "xmpp:" string
-            link = explodeThis(':', link, 1);
+            link = Common.explodeThis(':', link, 1);
             
             // The XMPP URI has no "?"
             if(link.indexOf('?') == -1)
-                checkChatCreate(link, 'chat');
+                Chat.checkCreate(link, 'chat');
             
             // Parse the URI
             else {
-                var xid = explodeThis('?', link, 0);
-                var action = explodeThis('?', link, 1);
+                var xid = Common.explodeThis('?', link, 0);
+                var action = Common.explodeThis('?', link, 1);
                 
                 switch(action) {
                     // Groupchat
                     case 'join':
-                        checkChatCreate(xid, 'groupchat');
+                        Chat.checkCreate(xid, 'groupchat');
                         
                         break;
                     
@@ -70,7 +70,7 @@ var XMPPLinks = (function () {
                     
                     // Private chat
                     default:
-                        checkChatCreate(xid, 'chat');
+                        Chat.checkCreate(xid, 'chat');
                         
                         break;
                 }
@@ -94,7 +94,7 @@ var XMPPLinks = (function () {
         for(var i = 0; i < hashes.length; i++) {
             var hash = hashes[i].split('=');
             vars.push(hash[0]);
-            vars[hash[0]] = trim(decodeURIComponent(hash[1]));
+            vars[hash[0]] = $.trim(decodeURIComponent(hash[1]));
         }
         
         return vars;

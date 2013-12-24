@@ -68,18 +68,18 @@ var Connection = (function () {
             con = new JSJaCHttpBindingConnection(oArgs);
             
             // And we handle everything that happen
-            setupCon(con,oExtend);
+            self.setupCon(con,oExtend);
             
             // Generate a resource
-            var random_resource = getDB(DESKTOP_HASH, 'session', 'resource');
+            var random_resource = DataStore.getDB(DESKTOP_HASH, 'session', 'resource');
             
             if(!random_resource)
                 random_resource = lResource + ' (' + (new Date()).getTime() + ')';
             
             // We retrieve what the user typed in the login inputs
             oArgs = new Object();
-            oArgs.domain = trim(lServer);
-            oArgs.username = trim(lNick);
+            oArgs.domain = $.trim(lServer);
+            oArgs.username = $.trim(lNick);
             oArgs.resource = random_resource;
             oArgs.pass = lPass;
             oArgs.secure = true;
@@ -88,13 +88,13 @@ var Connection = (function () {
             DESKTOP_HASH = 'jd.' + hex_md5(oArgs.username + '@' + oArgs.domain);
             
             // Store the resource (for reconnection)
-            setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
+            DataStore.setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
             
             // Store session XML in temporary database
-            storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember);
+            self.storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember);
             
             // We store the infos of the user into the data-base
-            setDB(DESKTOP_HASH, 'priority', 1, lPriority);
+            DataStore.setDB(DESKTOP_HASH, 'priority', 1, lPriority);
             
             // We connect !
             con.connect(oArgs);
@@ -110,7 +110,7 @@ var Connection = (function () {
             destroyTalkPage();
             
             // Open an unknown error
-            openThisError(2);
+            Board.openThisError(2);
         } finally {
             return false;
         }
@@ -138,8 +138,8 @@ var Connection = (function () {
             $('#home .registerer .success').fadeIn('fast');
             
             // We quit the session
-            if(isConnected()) {
-                logout();
+            if(Common.isConnected)) {
+                self.logout();
             }
         } catch(e) {
             Console.error('Connection.handleRegistered', e);
@@ -165,13 +165,13 @@ var Connection = (function () {
             // We change the registered information text
             $('#home .homediv.registerer').append(
                 '<div class="info success">' + 
-                    _e("You have been registered, here is your XMPP address:") + ' <b>' + username.htmlEnc() + '@' + domain.htmlEnc() + '</b> - <a href="#">' + _e("Login") + '</a>' + 
+                    Common._e("You have been registered, here is your XMPP address:") + ' <b>' + username.htmlEnc() + '@' + domain.htmlEnc() + '</b> - <a href="#">' + Common._e("Login") + '</a>' + 
                 '</div>'
             );
             
             // Login link
             $('#home .homediv.registerer .success a').click(function() {
-                return doLogin(username, domain, pass, '', '10', false);
+                return self.doLogin(username, domain, pass, '', '10', false);
             });
             
             if((REGISTER_API == 'on') && (domain == HOST_MAIN) && captcha) {
@@ -193,28 +193,28 @@ var Connection = (function () {
                     
                     // Registration okay
                     if($(data).find('query status').text() == '1') {
-                        handleRegistered();
+                        self.handleRegistered();
                     } else {
                         // Show error message
                         var error_message = '';
                         
                         switch($(data).find('query message').text()) {
                             case 'CAPTCHA Not Matching':
-                                error_message = _e("The security code you entered is invalid. Please retry with another one.");
+                                error_message = Common._e("The security code you entered is invalid. Please retry with another one.");
                                 
                                 $('#home input.captcha').focus();
                                 
                                 break;
                             
                             case 'Username Unavailable':
-                                error_message = _e("The username you picked is not available. Please try another one.");
+                                error_message = Common._e("The username you picked is not available. Please try another one.");
                                 
                                 $('#home input.nick').focus();
                                 
                                 break;
                             
                             default:
-                                error_message = _e("There was an error registering your account. Please retry.");
+                                error_message = Common._e("There was an error registering your account. Please retry.");
                                 
                                 break;
                         }
@@ -240,13 +240,13 @@ var Connection = (function () {
                     con = new JSJaCHttpBindingConnection(oArgs);
                     
                     // We setup the connection !
-                    con.registerHandler('onconnect', handleRegistered);
+                    con.registerHandler('onconnect', self.handleRegistered);
                     con.registerHandler('onerror', handleError);
                     
                     // We retrieve what the user typed in the register inputs
                     oArgs = new Object();
-                    oArgs.domain = trim(domain);
-                    oArgs.username = trim(username);
+                    oArgs.domain = $.trim(domain);
+                    oArgs.username = $.trim(username);
                     oArgs.resource = JAPPIX_RESOURCE + ' Register (' + (new Date()).getTime() + ')';
                     oArgs.pass = pass;
                     oArgs.register = true;
@@ -365,8 +365,8 @@ var Connection = (function () {
             // Not resumed?
             if(!RESUME) {
                 // Remember the session?
-                if(getDB(DESKTOP_HASH, 'remember', 'session'))
-                    setPersistent('global', 'session', 1, CURRENT_SESSION);
+                if(DataStore.getDB(DESKTOP_HASH, 'remember', 'session'))
+                    DataStore.setPersistent('global', 'session', 1, CURRENT_SESSION);
                 
                 // We show the chatting app.
                 createTalkPage();
@@ -375,10 +375,10 @@ var Connection = (function () {
                 switchHome('default');
                 
                 // We get all the other things
-                getEverything();
+                self.getEverything();
                 
                 // Set last activity stamp
-                LAST_ACTIVITY = getTimeStamp();
+                LAST_ACTIVITY = DateUtils.getTimeStamp();
             }
             
             // Resumed
@@ -432,9 +432,9 @@ var Connection = (function () {
             con.registerHandler('message', handleMessage);
             con.registerHandler('presence', handlePresence);
             con.registerHandler('iq', handleIQ);
-            con.registerHandler('onconnect', handleConnected);
+            con.registerHandler('onconnect', self.handleConnected);
             con.registerHandler('onerror', handleError);
-            con.registerHandler('ondisconnect', handleDisconnected);
+            con.registerHandler('ondisconnect', self.handleDisconnected);
             
             // Extended handlers
             oExtend = oExtend || {};
@@ -459,7 +459,7 @@ var Connection = (function () {
         logout_done = false;
 
         try {
-            if(isConnected()) {
+            if(Common.isConnected)) {
                 Console.info('Jappix is disconnecting...');
 
                 // Disconnect from the XMPP server
@@ -476,36 +476,6 @@ var Connection = (function () {
     };
 
 
-    /**
-     * Terminates a session
-     * @public
-     * @return {undefined}
-     */
-    self.terminate = function() {
-
-        try {
-            if(!isConnected()) {
-                return;
-            }
-            
-            // Clear temporary session storage
-            resetConMarkers();
-            
-            // Show the waiting item (useful if BOSH is sloooow)
-            showGeneralWait();
-            
-            // Change the page title
-            pageTitle('wait');
-            
-            // Disconnect from the XMPP server
-            logout();
-        } catch(e) {
-            Console.error('Connection.terminate', e);
-        }
-
-    };
-
-
 	/**
      * Quits a session
      * @public
@@ -515,7 +485,7 @@ var Connection = (function () {
     self.quit = function() {
 
         try {
-            if(!isConnected()) {
+            if(!Common.isConnected)) {
                 return;
             }
             
@@ -526,7 +496,7 @@ var Connection = (function () {
             pageTitle('wait');
             
             // We disconnect from the XMPP server
-            logout();
+            self.logout();
         } catch(e) {
             Console.error('Connection.quit', e);
         }
@@ -546,20 +516,20 @@ var Connection = (function () {
             Console.error('This is not a normal disconnection, show the reconnect pane...');
     
             // Reconnect pane not yet displayed?
-            if(!exists('#reconnect')) {
+            if(!Common.exists('#reconnect')) {
                 // Blur the focused input/textarea/select
                 $('input, select, textarea').blur();
                 
                 // Create the HTML code
                 var html = '<div id="reconnect" class="lock">' + 
                         '<div class="pane">' + 
-                            _e("Due to a network issue, you were disconnected. What do you want to do now?");
+                            Common._e("Due to a network issue, you were disconnected. What do you want to do now?");
                 
                 // Can we cancel reconnection?
                 if(mode == 'normal')
-                    html += '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>';
+                    html += '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>';
                 
-                html += '<a href="#" class="finish reconnect">' + _e("Reconnect") + '</a>' + 
+                html += '<a href="#" class="finish reconnect">' + Common._e("Reconnect") + '</a>' + 
                     '</div></div>';
                 
                 // Append the code
@@ -568,11 +538,11 @@ var Connection = (function () {
                 // Click events
                 if(mode == 'normal')
                     $('#reconnect a.finish.cancel').click(function() {
-                        return cancelReconnect();
+                        return self.cancelReconnect();
                     });
                 
                 $('#reconnect a.finish.reconnect').click(function() {
-                    return acceptReconnect(mode);
+                    return self.acceptReconnect(mode);
                 });
                 
                 // Try to reconnect automatically after a while
@@ -588,11 +558,11 @@ var Connection = (function () {
                 $('#reconnect a.finish.reconnect').everyTime('1s', function() {
                     // We can reconnect!
                     if(RECONNECT_TIMER == 0)
-                        return acceptReconnect(mode);
+                        return self.acceptReconnect(mode);
                     
                     // Button text
                     if(RECONNECT_TIMER <= 10)
-                        $(this).text(_e("Reconnect") + ' (' + RECONNECT_TIMER + ')');
+                        $(this).text(Common._e("Reconnect") + ' (' + RECONNECT_TIMER + ')');
                     
                     // Remove 1 second
                     RECONNECT_TIMER--;
@@ -639,9 +609,9 @@ var Connection = (function () {
             
             // Try to login again
             if(mode == 'normal')
-                loginFromSession(XMLFromString(CURRENT_SESSION));
+                self.loginFromSession(Common.XMLFromString(CURRENT_SESSION));
             else if(mode == 'anonymous')
-                anonymousLogin(HOST_ANONYMOUS);
+                Anonymous.login(HOST_ANONYMOUS);
         } catch(e) {
             Console.error('Connection.acceptReconnect', e);
         } finally {
@@ -671,7 +641,7 @@ var Connection = (function () {
             destroyTalkPage();
             
             // Renitialize the previous session parameters
-            resetConMarkers();
+            self.resetConMarkers();
         } catch(e) {
             Console.error('Connection.cancelReconnect', e);
         } finally {
@@ -690,11 +660,11 @@ var Connection = (function () {
 
         try {
             // Clear temporary storage
-            resetConMarkers();
+            self.resetConMarkers();
             
             // Clear persistent storage
-            if($(XMLFromString(getPersistent('global', 'session', 1))).find('stored').text() == 'true') {
-                removePersistent('global', 'session', 1);
+            if($(Common.XMLFromString(DataStore.getPersistent('global', 'session', 1))).find('stored').text() == 'true') {
+                DataStore.removePersistent('global', 'session', 1);
             }
         } catch(e) {
             Console.error('Connection.clearLastSession', e);
@@ -736,7 +706,7 @@ var Connection = (function () {
             var session = $(data);
             
             // Fire the login event
-            doLogin(
+            self.doLogin(
                 session.find('username').text(),
                 session.find('domain').text(),
                 session.find('password').text(),
@@ -760,13 +730,13 @@ var Connection = (function () {
 
         try {
             // Reset our database
-            clearLastSession();
+            self.clearLastSession();
             
             // We quit the current session
-            quit();
+            self.quit();
             
             // We show an info
-            openThisInfo(3);
+            Board.openThisInfo(3);
         } catch(e) {
             Console.error('Connection.normalQuit', e);
         } finally {
@@ -817,7 +787,7 @@ var Connection = (function () {
             
             // Remember me?
             if(lRemember)
-                setDB(DESKTOP_HASH, 'remember', 'session', 1);
+                DataStore.setDB(DESKTOP_HASH, 'remember', 'session', 1);
             
             return session_xml;
         } catch(e) {
@@ -846,9 +816,9 @@ var Connection = (function () {
                 // Connection params submitted in URL?
                 if(LINK_VARS['u'] && LINK_VARS['q']) {
                     // Generate login data
-                    var login_xid = bareXID(generateXID(LINK_VARS['u'], 'chat'));
-                    var login_nick = getXIDNick(login_xid);
-                    var login_server = getXIDHost(login_xid);
+                    var login_xid = Common.bareXID(Common.generateXID(LINK_VARS['u'], 'chat'));
+                    var login_nick = Common.getXIDNick(login_xid);
+                    var login_server = Common.getXIDHost(login_xid);
                     var login_pwd = LINK_VARS['q'];
                     var login_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
                     var login_priority = '10';
@@ -857,8 +827,8 @@ var Connection = (function () {
                     // Must store session?
                     if(LINK_VARS['h'] && (LINK_VARS['h'] == '1')) {
                         // Store session
-                        var session_xml = storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
-                        setPersistent('global', 'session', 1, session_xml);
+                        var session_xml = self.storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
+                        DataStore.setPersistent('global', 'session', 1, session_xml);
                         
                         // Redirect to a clean URL
                         document.location.href = './';
@@ -870,14 +840,16 @@ var Connection = (function () {
                         showGeneralWait();
                         
                         // Proceed login
-                        doLogin(login_nick, login_server, login_pwd, login_resource, login_priority, login_remember);
+                        self.doLogin(login_nick, login_server, login_pwd, login_resource, login_priority, login_remember);
                     }
                     
                     return;
                 }
                 
                 // Try to resume a stored session, if not anonymous
-                var session = XMLFromString(getPersistent('global', 'session', 1));
+                var session = Common.XMLFromString(
+                    DataStore.getPersistent('global', 'session', 1)
+                );
                 
                 if($(session).find('stored').text() == 'true') {
                     // Hide the homepage
@@ -887,7 +859,7 @@ var Connection = (function () {
                     showGeneralWait();
                     
                     // Login!
-                    loginFromSession(session);
+                    self.loginFromSession(session);
                     
                     Console.info('Saved session found, resuming it...');
                 }

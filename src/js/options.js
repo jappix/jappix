@@ -30,95 +30,95 @@ var Options = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Edit options") + '</div>' + 
+            '<div class="top">' + Common._e("Edit options") + '</div>' + 
             
             '<div class="tab">' + 
-                '<a href="#" class="tab-general tab-active" data-key="1">' + _e("General") + '</a>' + 
-                '<a href="#" class="tab-channel pubsub-hidable pubsub-hidable-cn" data-key="2">' + _e("Channel") + '</a>' + 
-                '<a href="#" class="tab-account" data-key="3">' + _e("Account") + '</a>' + 
+                '<a href="#" class="tab-general tab-active" data-key="1">' + Common._e("General") + '</a>' + 
+                '<a href="#" class="tab-channel pubsub-hidable pubsub-hidable-cn" data-key="2">' + Common._e("Channel") + '</a>' + 
+                '<a href="#" class="tab-account" data-key="3">' + Common._e("Account") + '</a>' + 
             '</div>' + 
             
             '<div class="content">' + 
                 '<div id="conf1" class="lap-active one-lap forms">' + 
                     '<fieldset class="privacy">' + 
-                        '<legend>' + _e("Privacy") + '</legend>' + 
+                        '<legend>' + Common._e("Privacy") + '</legend>' + 
                         
                         '<div class="geolocation">' +
-                            '<label for="geolocation" class="pep-hidable">' + _e("Geolocation") + '</label>' + 
+                            '<label for="geolocation" class="pep-hidable">' + Common._e("Geolocation") + '</label>' + 
                             '<input id="geolocation" type="checkbox" class="pep-hidable" />' + 
                         '</div>' +
                         
                         '<div class="archiving">' +
-                            '<label for="archiving" class="mam-hidable">' + _e("Message archiving") + '</label>' + 
+                            '<label for="archiving" class="mam-hidable">' + Common._e("Message archiving") + '</label>' + 
                             '<select id="archiving" class="mam-hidable">' + 
-                                '<option value="never">' + _e("Disabled") + '</option>' + 
-                                '<option value="roster">' + _e("Store friend chats") + '</option>' + 
-                                '<option value="always">' + _e("Store all chats") + '</option>' + 
+                                '<option value="never">' + Common._e("Disabled") + '</option>' + 
+                                '<option value="roster">' + Common._e("Store friend chats") + '</option>' + 
+                                '<option value="always">' + Common._e("Store all chats") + '</option>' + 
                             '</select>' + 
-                            '<a href="#" class="linked empty-archives mam-hidable">' + _e("Remove all archives") + '</a>' + 
+                            '<a href="#" class="linked empty-archives mam-hidable">' + Common._e("Remove all archives") + '</a>' + 
                         '</div>' +
                     '</fieldset>' + 
                     
                     '<fieldset class="application">' + 
-                        '<legend>' + _e("Application") + '</legend>' + 
+                        '<legend>' + Common._e("Application") + '</legend>' + 
                         
                         '<div class="sounds">' +
-                            '<label for="sounds">' + _e("Sounds") + '</label>' + 
+                            '<label for="sounds">' + Common._e("Sounds") + '</label>' + 
                             '<input id="sounds" type="checkbox" />' + 
                         '</div>' +
                         
                         '<div class="showall">' +
-                            '<label for="showall">' + _e("Show all friends") + '</label>' + 
+                            '<label for="showall">' + Common._e("Show all friends") + '</label>' + 
                             '<input id="showall" type="checkbox" />' + 
                         '</div>' +
                         
                         '<div class="noxhtmlimg">' +
-                            '<label for="noxhtmlimg">' + _e("Filter XHTML-IM Images") + '</label>' + 
+                            '<label for="noxhtmlimg">' + Common._e("Filter XHTML-IM Images") + '</label>' + 
                             '<input id="noxhtmlimg" type="checkbox" />' + 
                         '</div>' +
                         
                         '<div class="integratemedias">' +
-                            '<label for="integratemedias">' + _e("Media integration") + '</label>' + 
+                            '<label for="integratemedias">' + Common._e("Media integration") + '</label>' + 
                             '<input id="integratemedias" type="checkbox" />' + 
                         '</div>' +
                         
                         '<div class="xmpplinks">' +
-                            '<label class="xmpplinks-hidable">' + _e("XMPP links") + '</label>' + 
-                            '<a href="#" class="linked xmpp-links xmpplinks-hidable">' + _e("Open XMPP links with Jappix") + '</a>' + 
+                            '<label class="xmpplinks-hidable">' + Common._e("XMPP links") + '</label>' + 
+                            '<a href="#" class="linked xmpp-links xmpplinks-hidable">' + Common._e("Open XMPP links with Jappix") + '</a>' + 
                         '</div>' +
                     '</fieldset>' + 
 
                     '<div class="sub-ask sub-ask-mam sub-ask-element">' + 
                         '<div class="sub-ask-top">' + 
-                            '<div class="sub-ask-title">' + _e("Remove all archives") + '</div>' + 
+                            '<div class="sub-ask-title">' + Common._e("Remove all archives") + '</div>' + 
                             '<a href="#" class="sub-ask-close">X</a>' + 
                         '</div>' + 
                         
                         '<div class="sub-ask-content">' + 
-                            '<label>' + _e("Password") + '</label>' + 
+                            '<label>' + Common._e("Password") + '</label>' + 
                             '<input type="password" class="purge-archives check-mam" required="" />' + 
                         '</div>' + 
                         
-                        '<a href="#" class="sub-ask-bottom">' + _e("Remove") + ' &raquo;</a>' + 
+                        '<a href="#" class="sub-ask-bottom">' + Common._e("Remove") + ' &raquo;</a>' + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div id="conf2" class="one-lap forms">' + 
                     '<fieldset class="channel">' + 
-                        '<legend>' + _e("Channel") + '</legend>' + 
+                        '<legend>' + Common._e("Channel") + '</legend>' + 
                         
                         '<div class="empty-channel">' +
-                            '<label>' + _e("Empty") + '</label>' + 
-                            '<a href="#" class="linked empty-channel">' + _e("Empty channel") + '</a>' + 
+                            '<label>' + Common._e("Empty") + '</label>' + 
+                            '<a href="#" class="linked empty-channel">' + Common._e("Empty channel") + '</a>' + 
                         '</div>' +
                         
                         '<div class="persistent">' +
-                            '<label>' + _e("Persistent") + '</label>' + 
+                            '<label>' + Common._e("Persistent") + '</label>' + 
                             '<input id="persistent" type="checkbox" />' + 
                         '</div>' +
                         
                         '<div class="maxnotices">' +
-                            '<label>' + _e("Maximum notices") + '</label>' + 
+                            '<label>' + Common._e("Maximum notices") + '</label>' + 
                             '<select id="maxnotices">' + 
                                 '<option value="1">1</option>' + 
                                 '<option value="100">100</option>' + 
@@ -133,60 +133,60 @@ var Options = (function () {
                     
                     '<div class="sub-ask sub-ask-empty sub-ask-element">' + 
                         '<div class="sub-ask-top">' + 
-                            '<div class="sub-ask-title">' + _e("Empty channel") + '</div>' + 
+                            '<div class="sub-ask-title">' + Common._e("Empty channel") + '</div>' + 
                             '<a href="#" class="sub-ask-close">X</a>' + 
                         '</div>' + 
                         
                         '<div class="sub-ask-content">' + 
-                            '<label>' + _e("Password") + '</label>' + 
+                            '<label>' + Common._e("Password") + '</label>' + 
                             '<input type="password" class="purge-microblog check-empty" required="" />' + 
                         '</div>' + 
                         
-                        '<a href="#" class="sub-ask-bottom">' + _e("Empty") + ' &raquo;</a>' + 
+                        '<a href="#" class="sub-ask-bottom">' + Common._e("Empty") + ' &raquo;</a>' + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div id="conf3" class="one-lap forms">' + 
                     '<fieldset>' + 
-                        '<legend>' + _e("Account") + '</legend>' + 
+                        '<legend>' + Common._e("Account") + '</legend>' + 
                         
-                        '<label>' + _e("Password") + '</label>' + 
-                        '<a href="#" class="linked change-password">' + _e("Change password") + '</a>' + 
+                        '<label>' + Common._e("Password") + '</label>' + 
+                        '<a href="#" class="linked change-password">' + Common._e("Change password") + '</a>' + 
                         
-                        '<label>' + _e("Delete") + '</label>' + 
-                        '<a href="#" class="linked delete-account">' + _e("Delete account") + '</a>' + 
+                        '<label>' + Common._e("Delete") + '</label>' + 
+                        '<a href="#" class="linked delete-account">' + Common._e("Delete account") + '</a>' + 
                     '</fieldset>' + 
                         
                     '<div class="sub-ask sub-ask-pass sub-ask-element">' + 
                         '<div class="sub-ask-top">' + 
-                            '<div class="sub-ask-title">' + _e("Change password") + '</div>' + 
+                            '<div class="sub-ask-title">' + Common._e("Change password") + '</div>' + 
                             '<a href="#" class="sub-ask-close">X</a>' + 
                         '</div>' + 
                         
                         '<div class="sub-ask-content">' + 
-                            '<label>' + _e("Old") + '</label>' + 
+                            '<label>' + Common._e("Old") + '</label>' + 
                             '<input type="password" class="password-change old" required="" />' + 
                             
-                            '<label>' + _e("New (2 times)") + '</label>' + 
+                            '<label>' + Common._e("New (2 times)") + '</label>' + 
                             '<input type="password" class="password-change new1" required="" />' + 
                             '<input type="password" class="password-change new2" required="" />' + 
                         '</div>' + 
                         
-                        '<a href="#" class="sub-ask-bottom">' + _e("Continue") + ' &raquo;</a>' + 
+                        '<a href="#" class="sub-ask-bottom">' + Common._e("Continue") + ' &raquo;</a>' + 
                     '</div>' + 
                     
                     '<div class="sub-ask sub-ask-delete sub-ask-element">' + 
                         '<div class="sub-ask-top">' + 
-                            '<div class="sub-ask-title">' + _e("Delete account") + '</div>' + 
+                            '<div class="sub-ask-title">' + Common._e("Delete account") + '</div>' + 
                             '<a href="#" class="sub-ask-close">X</a>' + 
                         '</div>' + 
                         
                         '<div class="sub-ask-content">' + 
-                            '<label>' + _e("Password") + '</label>' + 
+                            '<label>' + Common._e("Password") + '</label>' + 
                             '<input type="password" class="delete-account check-password" required="" />' + 
                         '</div>' + 
                         
-                        '<a href="#" class="sub-ask-bottom">' + _e("Delete") + ' &raquo;</a>' + 
+                        '<a href="#" class="sub-ask-bottom">' + Common._e("Delete") + ' &raquo;</a>' + 
                     '</div>' + 
                 '</div>' + 
             '</div>' + 
@@ -194,8 +194,8 @@ var Options = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish save">' + _e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -313,12 +313,12 @@ var Options = (function () {
 
         try {
             // Get the values
-            var sounds = getDB(DESKTOP_HASH, 'options', 'sounds');
-            var geolocation = getDB(DESKTOP_HASH, 'options', 'geolocation');
-            var showall = getDB(DESKTOP_HASH, 'options', 'roster-showall');
-            var noxhtmlimg = getDB(DESKTOP_HASH, 'options', 'no-xhtml-images');
-            var integratemedias = getDB(DESKTOP_HASH, 'options', 'integratemedias');
-            var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
+            var sounds = DataStore.getDB(DESKTOP_HASH, 'options', 'sounds');
+            var geolocation = DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation');
+            var showall = DataStore.getDB(DESKTOP_HASH, 'options', 'roster-showall');
+            var noxhtmlimg = DataStore.getDB(DESKTOP_HASH, 'options', 'no-xhtml-images');
+            var integratemedias = DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias');
+            var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
             
             // Create an array to be looped
             var oType = new Array('sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'presence-status');
@@ -380,42 +380,42 @@ var Options = (function () {
             if($('#sounds').filter(':checked').size())
                 sounds = '1';
             
-            setDB(DESKTOP_HASH, 'options', 'sounds', sounds);
+            DataStore.setDB(DESKTOP_HASH, 'options', 'sounds', sounds);
             
             // We apply the geolocation
             if($('#geolocation').filter(':checked').size()) {
-                setDB(DESKTOP_HASH, 'options', 'geolocation', '1');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '1');
                 
                 // We geolocate the user on the go
                 geolocate();
             }
             
             else {
-                setDB(DESKTOP_HASH, 'options', 'geolocation', '0');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '0');
                 
                 // We delete the geolocation informations
                 sendPosition();
-                removeDB(DESKTOP_HASH, 'geolocation', 'now');
+                DataStore.removeDB(DESKTOP_HASH, 'geolocation', 'now');
             }
             
             // We apply the roster show all
             if($('#showall').filter(':checked').size()) {
-                setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
                 showAllBuddies('options');
             }
             
             else {
-                setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
                 showOnlineBuddies('options');
             }
             
             // We apply the XHTML-IM images filter
             if($('#noxhtmlimg').filter(':checked').size()) {
-                setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '1');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '1');
             }
             
             else {
-                setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '0');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '0');
             }
             
             // We apply the media integration
@@ -424,7 +424,7 @@ var Options = (function () {
             if($('#integratemedias').filter(':checked').size())
                 integratemedias = '1';
             
-            setDB(DESKTOP_HASH, 'options', 'integratemedias', integratemedias);
+            DataStore.setDB(DESKTOP_HASH, 'options', 'integratemedias', integratemedias);
             
             // We apply the message archiving
             if(enabledMAM()) {
@@ -469,9 +469,9 @@ var Options = (function () {
             
             // If no errors
             if(!handleErrorReply(iq)) {
-                clearLastSession();
-                quit();
-                openThisInfo(1);
+                Connection.clearLastSession();
+                Connection.quit();
+                Board.openThisInfo(1);
                 
                 Console.info('Password changed.');
             } else {
@@ -560,10 +560,10 @@ var Options = (function () {
             
             // If no errors
             if(!handleErrorReply(iq)) {
-                clearLastSession();
+                Connection.clearLastSession();
                 destroyTalkPage();
-                openThisInfo(2);
-                logout();
+                Board.openThisInfo(2);
+                Connection.logout();
                 
                 Console.info('Account deleted.');
             } else {
@@ -670,7 +670,7 @@ var Options = (function () {
             // If no errors
             if(!handleErrorReply(iq)) {
                 // Remove the microblog items
-                $('.one-update.update_' + hex_md5(getXID())).remove();
+                $('.one-update.update_' + hex_md5(Common.getXID())).remove();
                 
                 Console.info('Microblog purged.');
             } else {
@@ -768,31 +768,31 @@ var Options = (function () {
                 $('#options fieldset.privacy').show();
             
             // We get the values of the forms for the sounds
-            if(getDB(DESKTOP_HASH, 'options', 'sounds') == '0')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'sounds') == '0')
                 $('#sounds').attr('checked', false);
             else
                 $('#sounds').attr('checked', true);
             
             // We get the values of the forms for the geolocation
-            if(getDB(DESKTOP_HASH, 'options', 'geolocation') == '1')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '1')
                 $('#geolocation').attr('checked', true);
             else
                 $('#geolocation').attr('checked', false);
             
             // We get the values of the forms for the roster show all
-            if(getDB(DESKTOP_HASH, 'options', 'roster-showall') == '1')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'roster-showall') == '1')
                 $('#showall').attr('checked', true);
             else
                 $('#showall').attr('checked', false);
                 
             // We get the values of the forms for the XHTML-IM images filter
-            if(getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') == '1')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') == '1')
                 $('#noxhtmlimg').attr('checked', true);
             else
                 $('#noxhtmlimg').attr('checked', false);
             
             // We get the values of the forms for the integratemedias
-            if(getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
                 $('#integratemedias').attr('checked', false);
             else
                 $('#integratemedias').attr('checked', true);

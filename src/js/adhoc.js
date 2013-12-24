@@ -25,12 +25,12 @@ var AdHoc = (function () {
      * @public
      * @return {boolean}
      */
-    self.openAdHoc = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Commands") + '</div>' + 
+            '<div class="top">' + Common._e("Commands") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="adhoc-head"></div>' + 
@@ -41,14 +41,14 @@ var AdHoc = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
             createPopup('adhoc', html);
             
             // Associate the events
-            launchAdHoc();
+            self.launch();
         } catch(e) {
             Console.error('AdHoc.open', e);
         } finally {
@@ -63,7 +63,7 @@ var AdHoc = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeAdHoc = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -83,11 +83,11 @@ var AdHoc = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.retrieveAdHoc = function(xid) {
+    self.retrieve = function(xid) {
 
         try {
             // Open the popup
-            openAdHoc();
+            self.open();
             
             // Add a XID marker
             $('#adhoc .adhoc-head').html('<b>' + getBuddyName(xid).htmlEnc() + '</b> (' + xid.htmlEnc() + ')');
@@ -99,7 +99,7 @@ var AdHoc = (function () {
                 xid = highest;
             
             // Start a new adhoc command
-            dataForm(xid, 'command', '', '', 'adhoc');
+            DataForm.go(xid, 'command', '', '', 'adhoc');
         } catch(e) {
             Console.error('AdHoc.retrieve', e);
         } finally {
@@ -115,17 +115,17 @@ var AdHoc = (function () {
      * @param {string} server
      * @return {undefined}
      */
-    self.serverAdHoc = function(server) {
+    self.server = function(server) {
 
         try {
             // Open the popup
-            openAdHoc();
+            self.open();
             
             // Add a XID marker
             $('#adhoc .adhoc-head').html('<b>' + server.htmlEnc() + '</b>');
             
             // Start a new adhoc command
-            dataForm(server, 'command', '', '', 'adhoc');
+            DataForm.go(server, 'command', '', '', 'adhoc');
         } catch(e) {
             Console.error('AdHoc.server', e);
         }
@@ -138,11 +138,13 @@ var AdHoc = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchAdHoc = function() {
+    self.launch = function() {
 
         try {
             // Click event
-            $('#adhoc .bottom .finish').click(closeAdHoc);
+            $('#adhoc .bottom .finish').click(
+                self.close()
+            );
         } catch(e) {
             Console.error('AdHoc.launch', e);
         }

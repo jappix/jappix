@@ -51,7 +51,7 @@ var Talk = (function () {
 
         try {
             // Talkpage exists?
-            if(exists('#talk'))
+            if(Common.exists('#talk'))
                 return false;
             
             // Anonymous detector
@@ -66,13 +66,13 @@ var Talk = (function () {
                     '<div class="tools tools-all">';
                         
                         if(!anonymous) html += 
-                        '<a href="#" onclick="return openInbox();" class="inbox-hidable">' + _e("Messages") +  '</a>' + 
-                        '<a href="#" onclick="return openVCard();" class="vcard">' + _e("Profile") +  '</a>' + 
-                        '<a href="#" onclick="return optionsOpen();" class="options-hidable">' + _e("Options") +  '</a>' + 
-                        '<a href="#" onclick="return normalQuit();" class="quit">' + _e("Disconnect") +  '</a>';
+                        '<a href="#" onclick="return openInbox();" class="inbox-hidable">' + Common._e("Messages") +  '</a>' + 
+                        '<a href="#" onclick="return openVCard();" class="vcard">' + Common._e("Profile") +  '</a>' + 
+                        '<a href="#" onclick="return optionsOpen();" class="options-hidable">' + Common._e("Options") +  '</a>' + 
+                        '<a href="#" onclick="return Connection.normalQuit();" class="quit">' + Common._e("Disconnect") +  '</a>';
                         
                         else html +=
-                        '<a href="./">' + _e("Disconnect") +  '</a>';
+                        '<a href="./">' + Common._e("Disconnect") +  '</a>';
                     
                     html +=
                     '</div>';
@@ -90,7 +90,7 @@ var Talk = (function () {
                                 '</div>' + 
                                 
                                 '<div class="list">' + 
-                                    '<p class="no-results">' + _e("No result!") +  '</p>' + 
+                                    '<p class="no-results">' + Common._e("No result!") +  '</p>' + 
                                 '</div>' + 
                                 
                                 '<div class="search">' + 
@@ -102,14 +102,14 @@ var Talk = (function () {
                     
                     if(!anonymous) html += 
                     '<div class="tools-all ibubble">' + 
-                        '<div class="tools notifications talk-images" onclick="return showBubble(\'.notifications-content\');"></div>' + 
+                        '<div class="tools notifications talk-images" onclick="return Bubble.show(\'.notifications-content\');"></div>' + 
                         
                         '<div class="notifications-content tools-content bubble hidable">' + 
                             '<div class="tools-content-subarrow talk-images"></div>' + 
                             
                             '<div class="tools-content-subitem">' + 
-                                '<a class="empty" href="#" onclick="return clearNotifications();">' + _e("Empty") +  '</a>' + 
-                                '<p class="nothing">' + _e("No notifications.") +  '</p>' + 
+                                '<a class="empty" href="#" onclick="return clearNotifications();">' + Common._e("Empty") +  '</a>' + 
+                                '<p class="nothing">' + Common._e("No notifications.") +  '</p>' + 
                             '</div>' + 
                         '</div>' + 
                     '</div>';
@@ -129,25 +129,25 @@ var Talk = (function () {
                             '<div class="content"></div>' + 
                             
                             '<div class="filter">' + 
-                                '<input type="text" placeholder="' + _e("Filter") +  '" />' + 
+                                '<input type="text" placeholder="' + Common._e("Filter") +  '" />' + 
                                 '<a href="#">x</a>' + 
                             '</div>' + 
                             
                             '<div class="foot ibubble">' + 
                                 '<div class="buddy-list-add buddy-list-icon">' + 
-                                    '<a href="#" class="add talk-images" title="' + _e("Add a friend") +  '"></a>' + 
+                                    '<a href="#" class="add talk-images" title="' + Common._e("Add a friend") +  '"></a>' + 
                                 '</div>' + 
                                 
                                 '<div class="buddy-list-join buddy-list-icon">' + 
-                                    '<a href="#" class="join talk-images" title="' + _e("Join a chat") +  '"></a>' + 
+                                    '<a href="#" class="join talk-images" title="' + Common._e("Join a chat") +  '"></a>' + 
                                 '</div>' + 
                                 
                                 '<div class="buddy-list-groupchat buddy-list-icon">' + 
-                                    '<a href="#" class="groupchat talk-images" title="' + _e("Your groupchats") +  '"></a>' + 
+                                    '<a href="#" class="groupchat talk-images" title="' + Common._e("Your groupchats") +  '"></a>' + 
                                 '</div>' + 
                                 
                                 '<div class="buddy-list-more buddy-list-icon">' + 
-                                    '<a href="#" class="more talk-images" title="' + _e("More stuff") +  '"></a>' + 
+                                    '<a href="#" class="more talk-images" title="' + Common._e("More stuff") +  '"></a>' + 
                                 '</div>' + 
                                 
                                 '<div style="clear: both;"></div>' + 
@@ -162,7 +162,7 @@ var Talk = (function () {
                                         '<span class="talk-images"></span>' + 
                                     '</a>' + 
                                     
-                                    '<input id="presence-status" type="text" placeholder="' + _e("Status") + '" disabled="" />' + 
+                                    '<input id="presence-status" type="text" placeholder="' + Common._e("Status") + '" disabled="" />' + 
                                 '</div>';
                                 
                                 if(!anonymous) html += 
@@ -171,7 +171,7 @@ var Talk = (function () {
                                         '<span class="talk-images"></span>' + 
                                     '</a>' + 
                                     
-                                    '<input id="mood-text" type="text" placeholder="' + _e("Mood") + '" />' + 
+                                    '<input id="mood-text" type="text" placeholder="' + Common._e("Mood") + '" />' + 
                                 '</div>' + 
                                 
                                 '<div class="element f-activity pep-hidable ibubble">' + 
@@ -179,7 +179,7 @@ var Talk = (function () {
                                         '<span class="talk-images activity-exercising"></span>' + 
                                     '</a>' + 
                                     
-                                    '<input id="activity-text" type="text" placeholder="' + _e("Activity") + '" />' + 
+                                    '<input id="activity-text" type="text" placeholder="' + Common._e("Activity") + '" />' + 
                                 '</div>';
                             
                             html +=
@@ -194,40 +194,40 @@ var Talk = (function () {
                                 '<div class="channel switcher activechan" onclick="return switchChan(\'channel\');">' + 
                                     '<div class="icon talk-images"></div>' + 
                                 
-                                    '<div class="name">' + _e("Channel") +  '</div>' + 
+                                    '<div class="name">' + Common._e("Channel") +  '</div>' + 
                                 '</div>';
                             
                             html +=
                             '</div>' + 
                             
                             '<div class="more ibubble">' + 
-                                '<div class="more-button talk-images" onclick="return loadChatSwitch();" title="' + _e("All tabs") +  '"></div>' + 
+                                '<div class="more-button talk-images" onclick="return loadChatSwitch();" title="' + Common._e("All tabs") +  '"></div>' + 
                             '</div>' + 
                         '</div>' + 
                         
                         '<div id="page-engine">';
                             if(!anonymous) html += 
                             '<div id="channel" class="page-engine-chan" style="display: block;">' + 
-                                '<div class="top mixed ' + hex_md5(getXID()) + '">' + 
+                                '<div class="top mixed ' + hex_md5(Common.getXID()) + '">' + 
                                     '<div class="avatar-container">' + 
                                         '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
                                     '</div>' + 
                                     
                                     '<div class="update">' + 
-                                        '<p>' + _e("What\'s up with you?") +  '</p>' + 
+                                        '<p>' + Common._e("What\'s up with you?") +  '</p>' + 
                                         
                                         '<div class="microblog-body">' + 
-                                            '<input class="focusable" type="text" name="microblog_body" placeholder="' + _e("Type something you want to share with your friends...") + '" disabled="" />' + 
+                                            '<input class="focusable" type="text" name="microblog_body" placeholder="' + Common._e("Type something you want to share with your friends...") + '" disabled="" />' + 
                                         '</div>' + 
                                         
                                         '<div class="one-microblog-icon ibubble">' + 
-                                            '<a href="#" onclick="return showBubble(\'#attach\');" title="' + _e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
+                                            '<a href="#" onclick="return Bubble.show(\'#attach\');" title="' + Common._e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
                                             
                                             '<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
                                                 '<div class="attach-subarrow talk-images"></div>' + 
                                                 
                                                 '<div class="attach-subitem">' + 
-                                                    '<p class="attach-p">' + _e("Attach a file") +  '</p>' + 
+                                                    '<p class="attach-p">' + Common._e("Attach a file") +  '</p>' + 
                                                     generateFileShare() + 
                                                 '</div>' + 
                                             '</form>' + 
@@ -238,11 +238,11 @@ var Talk = (function () {
                                 '<div class="content mixed"></div>' + 
                                 
                                 '<div class="footer">' + 
-                                    '<div class="sync talk-images">' + _e("You are synchronized with your network.") +  '</div>' + 
+                                    '<div class="sync talk-images">' + Common._e("You are synchronized with your network.") +  '</div>' + 
                                     
-                                    '<div class="unsync talk-images">' + _e("Cannot send anything: you can only receive notices!") +  '</div>' + 
+                                    '<div class="unsync talk-images">' + Common._e("Cannot send anything: you can only receive notices!") +  '</div>' + 
                                     
-                                    '<div class="fetch wait-small">' + _e("Fetching the social channel...") +  '</div>' + 
+                                    '<div class="fetch wait-small">' + Common._e("Fetching the social channel...") +  '</div>' + 
                                 '</div>' + 
                             '</div>';
                         
@@ -281,7 +281,7 @@ var Talk = (function () {
 
         try {
             // Reset our database
-            resetDB();
+            DataStore.resetDB();
             
             // Reset some vars
             STANZA_ID = 1;

@@ -25,7 +25,7 @@ var Bubble = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeBubbles = function() {
+    self.close = function() {
 
         try {
             // Destroy all the elements
@@ -47,17 +47,17 @@ var Bubble = (function () {
      * @param {object} selector
      * @return {boolean}
      */
-    self.showBubble = function(selector) {
+    self.show = function(selector) {
 
         try {
             // Hidable bubbles special things
             if($(selector).is('.hidable')) {
                 // This bubble is yet displayed? So abort!
                 if($(selector).is(':visible'))
-                    return closeBubbles();
+                    return self.close();
                 
                 // Close all the bubbles
-                closeBubbles();
+                self.close();
                 
                 // Show the requested bubble
                 $(selector).show();
@@ -66,11 +66,11 @@ var Bubble = (function () {
             // Removable bubbles special things
             else {
                 // This bubble is yet added? So abort!
-                if(exists(selector))
-                    return closeBubbles();
+                if(Common.exists(selector))
+                    return self.close();
                 
                 // Close all the bubbles
-                closeBubbles();
+                self.close();
             }
             
             // Creates a new click event to close the bubble
@@ -79,7 +79,7 @@ var Bubble = (function () {
                 
                 // If this is a click away from a bubble
                 if(!$(target).parents('.ibubble').size())
-                    closeBubbles();
+                    self.close();
             });
         } catch(e) {
             Console.error('Bubble.show', e);

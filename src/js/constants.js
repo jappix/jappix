@@ -106,8 +106,8 @@ var NS_FEATURE_COMPRESS = NS_FEATURES + 'compress';
 var NS_COMPRESS =     NS_PROTOCOL + 'compress';
 
 // Available locales
-var LOCALES_AVAILABLE_ID = new Array();
-var LOCALES_AVAILABLE_NAMES = new Array();
+var LOCALES_AVAILABLE_ID = [];
+var LOCALES_AVAILABLE_NAMES = [];
 
 // XML lang
 var XML_LANG = null;
@@ -159,13 +159,14 @@ var ANONYMOUS_ROOM = null;
 var ANONYMOUS_NICK = null;
 
 // Node parameters
-var JAPPIX_LOCATION = getJappixLocation();
+var JAPPIX_LOCATION = JappixSystem.location();
 var BOSH_SAME_ORIGIN = false;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {
-	if (window == this)
+	if(window == this) {
 		return new STANZA_ERROR(code, type, cond);
+	}
 	
 	this.code = code;
 	this.type = type;

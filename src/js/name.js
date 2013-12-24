@@ -53,7 +53,7 @@ var Name = (function () {
 
         try {
             // Was it an obsolete request?
-            if(!exists('.add-contact-name-get[data-for="' + escape(bareXID(getStanzaFrom(iq))) + '"]'))
+            if(!Common.exists('.add-contact-name-get[data-for="' + escape(Common.bareXID(Common.getStanzaFrom(iq))) + '"]'))
                 return false;
             
             // Reset the waiting item
@@ -129,12 +129,12 @@ var Name = (function () {
             var cname, bname;
             
             // Cut the XID resource
-            xid = bareXID(xid);
+            xid = Common.bareXID(xid);
             
             // This is me?
             if(isAnonymous() && !xid)
-                bname = _e("You");
-            else if(xid == getXID())
+                bname = Common._e("You");
+            else if(xid == Common.getXID())
                 bname = getName();
             
             // Not me!
@@ -147,7 +147,7 @@ var Name = (function () {
                 
                 // Else, we just get the nickname of the buddy
                 else
-                    bname = getXIDNick(xid);
+                    bname = Common.getXIDNick(xid);
             }
             
             return bname;
@@ -167,7 +167,7 @@ var Name = (function () {
 
         try {
             // Try to read the user nickname
-            var nick = getDB(DESKTOP_HASH, 'profile', 'nick');
+            var nick = DataStore.getDB(DESKTOP_HASH, 'profile', 'nick');
             
             // No nick?
             if(!nick)
@@ -190,7 +190,7 @@ var Name = (function () {
 
         try {
             // Try to read the user name
-            var name = getDB(DESKTOP_HASH, 'profile', 'name');
+            var name = DataStore.getDB(DESKTOP_HASH, 'profile', 'name');
             
             // No name? Use the nickname instead!
             if(!name)

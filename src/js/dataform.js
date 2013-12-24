@@ -30,11 +30,11 @@ var DataForm = (function () {
      * @param {string} target
      * @return {boolean}
      */
-    self.dataForm = function(host, type, node, action, target) {
+    self.go = function(host, type, node, action, target) {
 
         try {
             // Clean the current session
-            cleanDataForm(target);
+            self.clean(target);
             
             // We tell the user that a search has been launched
             $('#' + target + ' .wait').show();
@@ -55,7 +55,7 @@ var DataForm = (function () {
                 // MUC admin query
                 if(type == 'muc') {
                     iq.setQuery(NS_MUC_OWNER);
-                    con.send(iq, handleDataFormMuc);
+                    con.send(iq, self.handleMUC);
                 }
                 
                 // Browse query
@@ -65,7 +65,7 @@ var DataForm = (function () {
                     if(node)
                         iqQuery.setAttribute('node', node);
                     
-                    con.send(iq, handleDataFormBrowse);
+                    con.send(iq, self.handleBrowse);
                 }
                 
                 // Command
@@ -85,27 +85,27 @@ var DataForm = (function () {
                         items.setAttribute('action', action);
                     }
                     
-                    con.send(iq, handleDataFormCommand);
+                    con.send(iq, self.handleCommand);
                 }
                 
                 // Search query
                 else if(type == 'search') {
                     iq.setQuery(NS_SEARCH);
-                    con.send(iq, handleDataFormSearch);
+                    con.send(iq, self.handleSearch);
                 }
                 
                 // Subscribe query
                 else if(type == 'subscribe') {
                     iq.setQuery(NS_REGISTER);
-                    con.send(iq, handleDataFormSubscribe);
+                    con.send(iq, self.handleSubscribe);
                 }
                 
                 // Join
                 else if(type == 'join') {
                     if(target == 'discovery')
-                        closeDiscovery();
+                        Discovery.close();
                     
-                    checkChatCreate(host, 'groupchat');
+                    Chat.checkCreate(host, 'groupchat');
                 }
             }
         } catch(e) {
@@ -130,7 +130,7 @@ var DataForm = (function () {
      * @param {string} target
      * @return {boolean}
      */
-    self.sendDataForm = function(type, action, x_type, id, xid, node, sessionid, target) {
+    self.send = function(type, action, x_type, id, xid, node, sessionid, target) {
 
         try {
             // Path
@@ -156,7 +156,7 @@ var DataForm = (function () {
             // Build the XML document
             if(action != 'cancel') {
                 // No X node
-                if(exists('input.register-special') && (type == 'subscribe')) {
+                if(Common.exists('input.register-special') && (type == 'subscribe')) {
                     $('input.register-special').each(function() {
                         var iName = $(this).attr('name');
                         var iValue = $(this).val();
@@ -200,7 +200,7 @@ var DataForm = (function () {
                             // Append each value to the XML document
                             for(i in xid_arr) {
                                 // Get the current value
-                                xid_current = trim(xid_arr[i]);
+                                xid_current = $.trim(xid_arr[i]);
                                 
                                 // No current value?
                                 if(!xid_current)
@@ -231,7 +231,7 @@ var DataForm = (function () {
             }
             
             // Clean the current session
-            cleanDataForm(target);
+            self.clean(target);
             
             // Show the waiting item
             $('#' + target + ' .wait').show();
@@ -243,11 +243,11 @@ var DataForm = (function () {
             
             // Send the IQ
             if(type == 'subscribe')
-                con.send(iq, handleDataFormSubscribe);
+                con.send(iq, self.handleSubscribe);
             else if(type == 'search')
-                con.send(iq, handleDataFormSearch);
+                con.send(iq, self.handleSearch);
             else if(type == 'command')
-                con.send(iq, handleDataFormCommand);
+                con.send(iq, self.handleCommand);
             else
                 con.send(iq);
         } catch(e) {
@@ -272,7 +272,7 @@ var DataForm = (function () {
      * @param {string} pathID
      * @return {undefined}
      */
-    self.buttonsDataForm = function(type, action, id, xid, node, sessionid, target, pathID) {
+    self.buttons = function(type, action, id, xid, node, sessionid, target, pathID) {
 
         try {
             // No need to use buttons?
@@ -294,12 +294,12 @@ var DataForm = (function () {
             
             if(action == 'submit') {
                 if((target == 'adhoc') && (type == 'command')) {
-                    buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
                         if(e.keyCode == 13) {
-                            sendDataForm(type, 'execute', 'submit', id, xid, node, sessionid, target);
+                            self.send(type, 'execute', 'submit', id, xid, node, sessionid, target);
                             
                             return false;
                         }
@@ -307,12 +307,12 @@ var DataForm = (function () {
                 }
                 
                 else {
-                    buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
                         if(e.keyCode == 13) {
-                            sendDataForm(type, 'submit', 'submit', id, xid, node, sessionid, target);
+                            self.send(type, 'submit', 'submit', id, xid, node, sessionid, target);
                             
                             return false;
                         }
@@ -321,16 +321,16 @@ var DataForm = (function () {
             }
             
             if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-                buttonsCode += '<a href="#" class="submit" onclick="return sendDataForm(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + _e("Cancel") + '</a>';
+                buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
             
             if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
-                buttonsCode += '<a href="#" class="back" onclick="return startDiscovery();">' + _e("Close") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return Discovery.start();">' + Common._e("Close") + '</a>';
             
             if((action == 'back') && ((target == 'welcome') || (target == 'directory')))
-                buttonsCode += '<a href="#" class="back" onclick="return dataForm(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + _e("Previous") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return self.go(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + Common._e("Previous") + '</a>';
             
             if((action == 'back') && (target == 'adhoc'))
-                buttonsCode += '<a href="#" class="back" onclick="return dataForm(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + _e("Previous") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return self.go(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
             
             buttonsCode += '</div>';
             
@@ -338,7 +338,7 @@ var DataForm = (function () {
             $(pathID).append(buttonsCode);
             
             // If no submit link, lock the form
-            if(!exists(pathID + ' a.submit'))
+            if(!Common.exists(pathID + ' a.submit'))
                 $(pathID + ' input, ' + pathID + ' textarea').attr('readonly', true);
         } catch(e) {
             Console.error('DataForm.buttons', e);
@@ -353,11 +353,11 @@ var DataForm = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDataFormMuc = function(iq) {
+    self.handleMUC = function(iq) {
 
         try {
             handleErrorReply(iq);
-            handleDataFormContent(iq, 'muc');
+            self.handleContent(iq, 'muc');
         } catch(e) {
             Console.error('DataForm.handleMUC', e);
         }
@@ -371,11 +371,11 @@ var DataForm = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDataFormBrowse = function(iq) {
+    self.handleBrowse = function(iq) {
 
         try {
             handleErrorReply(iq);
-            handleDataFormContent(iq, 'browse');
+            self.handleContent(iq, 'browse');
         } catch(e) {
             Console.error('DataForm.handleBrowse', e);
         }
@@ -389,11 +389,11 @@ var DataForm = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDataFormCommand = function(iq) {
+    self.handleCommand = function(iq) {
 
         try {
             handleErrorReply(iq);
-            handleDataFormContent(iq, 'command');
+            self.handleContent(iq, 'command');
         } catch(e) {
             Console.error('DataForm.handleCommand', e);
         }
@@ -407,11 +407,11 @@ var DataForm = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDataFormSubscribe = function(iq) {
+    self.handleSubscribe = function(iq) {
 
         try {
             handleErrorReply(iq);
-            handleDataFormContent(iq, 'subscribe');
+            self.handleContent(iq, 'subscribe');
         } catch(e) {
             Console.error('DataForm.handleSubscribe', e);
         }
@@ -425,11 +425,11 @@ var DataForm = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDataFormSearch = function(iq) {
+    self.handleSearch = function(iq) {
 
         try {
             handleErrorReply(iq);
-            handleDataFormContent(iq, 'search');
+            self.handleContent(iq, 'search');
         } catch(e) {
             Console.error('DataForm.handleSearch', e);
         }
@@ -444,7 +444,7 @@ var DataForm = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.handleDataFormContent = function(iq, type) {
+    self.handleContent = function(iq, type) {
 
         try {
             // Get the ID
@@ -454,12 +454,12 @@ var DataForm = (function () {
             var splitted = sID.split('-');
             var target = splitted[0];
             var sessionID = target + '-' + splitted[1];
-            var from = fullXID(getStanzaFrom(iq));
+            var from = Common.fullXID(Common.getStanzaFrom(iq));
             var pathID = '#' + target + ' .results[data-session="' + sessionID + '"]';
             
             // If an error occured
             if(!iq || (iq.getType() != 'result'))
-                noResultDataForm(pathID);
+                self.noResult(pathID);
             
             // If we got something okay
             else {
@@ -480,7 +480,7 @@ var DataForm = (function () {
                             // Node
                             if(itemNode)
                                 $(pathID).append(
-                                    '<div class="oneresult ' + target + '-oneresult" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + 
+                                    '<div class="oneresult ' + target + '-oneresult" onclick="return self.go(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + 
                                         '<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
                                     '</div>'
                                 );
@@ -500,7 +500,7 @@ var DataForm = (function () {
                                     '<div class="oneresult ' + target + '-oneresult ' + itemHash + '">' + 
                                         '<div class="one-icon loading talk-images"></div>' + 
                                         '<div class="one-host">' + itemHost + '</div>' + 
-                                        '<div class="one-type">' + _e("Requesting this service...") + '</div>' + 
+                                        '<div class="one-type">' + Common._e("Requesting this service...") + '</div>' + 
                                     '</div>'
                                 );
                                 
@@ -508,14 +508,14 @@ var DataForm = (function () {
                                 $('#' + target + ' .disco-wait').show();
                                 
                                 // We ask the server what's the service type
-                                getDataFormType(itemHost, itemNode, sessionID);
+                                self.getType(itemHost, itemNode, sessionID);
                             }
                         });
                     }
                     
                     // Else, there are no items for this query
                     else
-                        noResultDataForm(pathID);
+                        self.noResult(pathID);
                 }
                 
                 else if((type == 'muc') || (type == 'search') || (type == 'subscribe') || ((type == 'command') && $(handleXML).find('command').attr('xmlns'))) {
@@ -562,9 +562,9 @@ var DataForm = (function () {
                             if(!bXID)
                                 bXID = '';
                             if(!bName)
-                                bName = _e("Unknown name");
+                                bName = Common._e("Unknown name");
                             if(!bCountry)
-                                bCountry = _e("Unknown country");
+                                bCountry = Common._e("Unknown country");
                             
                             // User hash
                             var bHash = hex_md5(bXID);
@@ -580,16 +580,16 @@ var DataForm = (function () {
                                     '<div class="buttons-container">';
                             
                             // The buddy is not in our buddy list?
-                            if(!exists('#buddy-list .buddy[data-xid="' + escape(bXID) + '"]'))
-                                bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + _e("Add") + '</a>';
+                            if(!Common.exists('#buddy-list .buddy[data-xid="' + escape(bXID) + '"]'))
+                                bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + Common._e("Add") + '</a>';
                             
                             // Chat button, if not in welcome/directory mode
                             if(target == 'discovery')
-                                bHTML += '<a href="#" class="one-chat one-vjud one-button talk-images">' + _e("Chat") + '</a>';
+                                bHTML += '<a href="#" class="one-chat one-vjud one-button talk-images">' + Common._e("Chat") + '</a>';
                             
                             // Profile button, if not in discovery mode
                             else
-                                bHTML += '<a href="#" class="one-profile one-vjud one-button talk-images">' + _e("Profile") + '</a>';
+                                bHTML += '<a href="#" class="one-profile one-vjud one-button talk-images">' + Common._e("Profile") + '</a>';
                             
                             // Close the HTML element
                             bHTML += '</div></div>';
@@ -608,9 +608,9 @@ var DataForm = (function () {
                                 // Buddy chat
                                 if($(this).is('.one-chat')) {
                                     if(target == 'discovery')
-                                        closeDiscovery();
+                                        Discovery.close();
                                     
-                                    checkChatCreate(bXID, 'chat', '', '', dName);
+                                    Chat.checkCreate(bXID, 'chat', '', '', dName);
                                 }
                                 
                                 // Buddy profile
@@ -622,27 +622,27 @@ var DataForm = (function () {
                             
                             // Get the user's avatar
                             if(bXID)
-                                getAvatar(bXID, 'cache', 'true', 'forget');
+                                Avatar.get(bXID, 'cache', 'true', 'forget');
                         });
                         
                         // No result?
                         if(!$(handleXML).find('item').size())
-                            noResultDataForm(pathID);
+                            self.noResult(pathID);
                         
                         // Previous button
-                        buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, target, pathID);
+                        self.buttons(type, 'back', sessionID, from, bNode, bSession, target, pathID);
                     }
                     
                     // Command to complete
                     else if(xElement.attr('xmlns') || ((type == 'subscribe') && xRegister)) {
                         // We display the elements
-                        fillDataForm(handleXML, sessionID);
+                        self.fill(handleXML, sessionID);
                         
                         // We display the buttons
                         if(bStatus != 'completed')
-                            buttonsDataForm(type, 'submit', sessionID, from, bNode, bSession, target, pathID);
+                            self.buttons(type, 'submit', sessionID, from, bNode, bSession, target, pathID);
                         else
-                            buttonsDataForm(type, 'back', sessionID, from, bNode, bSession, target, pathID);
+                            self.buttons(type, 'back', sessionID, from, bNode, bSession, target, pathID);
                     }
                     
                     // Command completed or subscription done
@@ -661,10 +661,10 @@ var DataForm = (function () {
                         
                         // Default text
                         else
-                            $(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + _e("Your form has been sent.") + '</div>');
+                            $(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + Common._e("Your form has been sent.") + '</div>');
                         
                         // Display the back button
-                        buttonsDataForm(type, 'back', sessionID, from, '', '', target, pathID);
+                        self.buttons(type, 'back', sessionID, from, '', '', target, pathID);
                         
                         // Add the gateway to our roster if subscribed
                         if(type == 'subscribe')
@@ -674,14 +674,14 @@ var DataForm = (function () {
                     // Command canceled
                     else if((bStatus == 'canceled') && (type == 'command')) {
                         if(target == 'discovery')
-                            startDiscovery();
+                            Discovery.start();
                         else if(target == 'adhoc')
                             dataForm(from, 'command', '', '', 'adhoc');
                     }
                     
                     // No items for this query
                     else
-                        noResultDataForm(pathID);
+                        self.noResult(pathID);
                 }
                 
                 else if(type == 'command') {
@@ -696,7 +696,7 @@ var DataForm = (function () {
                             
                             // We display the waiting element
                             $(pathID).prepend(
-                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return dataForm(\'' + encodeOnclick(itemHost) + '\', \'command\', \'' + encodeOnclick(itemNode) + '\', \'execute\', \'' + encodeOnclick(target) + '\');">' + 
+                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return self.go(\'' + encodeOnclick(itemHost) + '\', \'command\', \'' + encodeOnclick(itemNode) + '\', \'execute\', \'' + encodeOnclick(target) + '\');">' + 
                                     '<div class="one-name">' + itemName + '</div>' + 
                                     '<div class="one-next">»</div>' + 
                                 '</div>'
@@ -706,7 +706,7 @@ var DataForm = (function () {
                     
                     // Else, there are no items for this query
                     else
-                        noResultDataForm(pathID);
+                        self.noResult(pathID);
                 }
             }
             
@@ -731,7 +731,7 @@ var DataForm = (function () {
      * @param {type} id
      * @return {boolean}
      */
-    self.fillDataForm = function(xml, id) {
+    self.fill = function(xml, id) {
 
         /* REF: http://xmpp.org/extensions/xep-0004.html */
 
@@ -770,7 +770,7 @@ var DataForm = (function () {
             // Register?
             if(!is_dataform) {
                 // Items to detect
-                var reg_names = [_e("Nickname"), _e("Name"), _e("Password"), _e("E-mail")];
+                var reg_names = [Common._e("Nickname"), Common._e("Name"), Common._e("Password"), Common._e("E-mail")];
                 var reg_ids = ['username', 'name', 'password', 'email'];
                 
                 // Append these inputs
@@ -824,7 +824,7 @@ var DataForm = (function () {
                     // Hidden field
                     if(type == 'hidden') {
                         hideThis = ' style="display: none;"';
-                        input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="hidden" class="dataform-i" value="' + encodeQuotes(value) + '" ' + required + ' />';
+                        input = '<input name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" type="hidden" class="dataform-i" value="' + Common.encodeQuotes(value) + '" ' + required + ' />';
                     }
 
                     // Boolean field
@@ -836,7 +836,7 @@ var DataForm = (function () {
                         else
                             checked = '';
                         
-                        input = '<input name="' + encodeQuotes(field) + '" type="checkbox" data-type="' + encodeQuotes(type) + '" class="dataform-i df-checkbox" ' + checked + required + ' />';
+                        input = '<input name="' + Common.encodeQuotes(field) + '" type="checkbox" data-type="' + Common.encodeQuotes(type) + '" class="dataform-i df-checkbox" ' + checked + required + ' />';
                     }
                     
                     // List-single/list-multi field
@@ -848,7 +848,7 @@ var DataForm = (function () {
                             multiple = ' multiple=""';
                         
                         // Append the select field
-                        input = '<select name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" class="dataform-i"' + required + multiple + '>';
+                        input = '<select name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" class="dataform-i"' + required + multiple + '>';
                         var selected;
                         
                         // Append the available options
@@ -866,7 +866,7 @@ var DataForm = (function () {
                             else
                                 selected = '';
                             
-                            input += '<option ' + selected + ' value="' + encodeQuotes(nValue) + '">' + nLabel.htmlEnc() + '</option>';
+                            input += '<option ' + selected + ' value="' + Common.encodeQuotes(nValue) + '">' + nLabel.htmlEnc() + '</option>';
                         });
                         
                         input += '</select>';
@@ -874,7 +874,7 @@ var DataForm = (function () {
                     
                     // Text-multi field
                     else if(type == 'text-multi')
-                        input = '<textarea rows="8" cols="60" data-type="' + encodeQuotes(type) + '" name="' + encodeQuotes(field) + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
+                        input = '<textarea rows="8" cols="60" data-type="' + Common.encodeQuotes(type) + '" name="' + Common.encodeQuotes(field) + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
                     
                     // JID-multi field
                     else if(type == 'jid-multi') {
@@ -905,7 +905,7 @@ var DataForm = (function () {
                             }
                         }
                         
-                        input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="text" class="dataform-i" value="' + encodeQuotes(xid_value) + '" placeholder="jack@jappix.com, jones@jappix.com"' + required + ' />';
+                        input = '<input name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" type="text" class="dataform-i" value="' + Common.encodeQuotes(xid_value) + '" placeholder="jack@jappix.com, jones@jappix.com"' + required + ' />';
                     }
                     
                     // Other stuffs that are similar
@@ -921,7 +921,7 @@ var DataForm = (function () {
                         else if(type == 'jid-single')
                             iType = 'email';
                         
-                        input = '<input name="' + encodeQuotes(field) + '" data-type="' + encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + encodeQuotes(value) + '"' + required + ' />';
+                        input = '<input name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + Common.encodeQuotes(value) + '"' + required + ' />';
                     }
                     
                     // Append the HTML markup for this field
@@ -950,7 +950,7 @@ var DataForm = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.getDataFormType = function(host, node, id) {
+    self.getType = function(host, node, id) {
 
         try {
             var iq = new JSJaCIQ();
@@ -965,7 +965,7 @@ var DataForm = (function () {
             
             con.send(iq, handleThisBrowse);
         } catch(e) {
-            Console.error('DataForm.getDataFormType', e);
+            Console.error('DataForm.getType', e);
         }
 
     };
@@ -986,7 +986,7 @@ var DataForm = (function () {
             var splitted = id.split('-');
             var target = splitted[0];
             var sessionID = target + '-' + splitted[1];
-            var from = fullXID(getStanzaFrom(iq));
+            var from = Common.fullXID(Common.getStanzaFrom(iq));
             var hash = hex_md5(from);
             var handleXML = iq.getQuery();
             var pathID = '#' + target + ' .results[data-session="' + sessionID + '"]';
@@ -1043,11 +1043,11 @@ var DataForm = (function () {
                 // We define the toolbox links depending on the supported features
                 var tools = '';
                 var aTools = Array('search', 'join', 'subscribe', 'command', 'browse');
-                var bTools = Array(_e("Search"), _e("Join"), _e("Subscribe"), _e("Command"), _e("Browse"));
+                var bTools = Array(Common._e("Search"), Common._e("Join"), Common._e("Subscribe"), Common._e("Command"), Common._e("Browse"));
                 
                 for(i in buttons) {
                     if(buttons[i])
-                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return dataForm(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
+                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return self.go(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
                 }
                 
                 // As defined in the ref, we detect the type of each category to put an icon
@@ -1092,7 +1092,7 @@ var DataForm = (function () {
                     '<div class="oneresult ' + target + '-oneresult">' + 
                         '<div class="one-icon down talk-images"></div>' + 
                         '<div class="one-host">' + from + '</div>' + 
-                        '<div class="one-type">' + _e("Service offline or broken") + '</div>' + 
+                        '<div class="one-type">' + Common._e("Service offline or broken") + '</div>' + 
                     '</div>'
                 );
                 
@@ -1117,11 +1117,11 @@ var DataForm = (function () {
      * @param {string} target
      * @return {undefined}
      */
-    self.cleanDataForm = function(target) {
+    self.clean = function(target) {
 
         try {
             if(target == 'discovery') {
-                cleanDiscovery();
+                Discovery.clean();
             } else {
                 $('#' + target + ' div.results').empty();
             }
@@ -1138,10 +1138,10 @@ var DataForm = (function () {
      * @param {string} path
      * @return {undefined}
      */
-    self.noResultDataForm = function(path) {
+    self.noResult = function(path) {
 
         try {
-            $(path).prepend('<p class="no-results">' + _e("Sorry, but the entity didn't return any result!") + '</p>');
+            $(path).prepend('<p class="no-results">' + Common._e("Sorry, but the entity didn't return any result!") + '</p>');
         } catch(e) {
             Console.error('DataForm.noResult', e);
         }

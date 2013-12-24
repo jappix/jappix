@@ -61,9 +61,9 @@ var PEP = (function () {
                 xml += '</pep>';
                 
                 // Update the input with the new value
-                setDB(DESKTOP_HASH, 'pep-' + type, xid, xml);
+                DataStore.setDB(DESKTOP_HASH, 'pep-' + type, xid, xml);
             } else {
-                removeDB(DESKTOP_HASH, 'pep-' + type, xid);
+                DataStore.removeDB(DESKTOP_HASH, 'pep-' + type, xid);
             }
             
             // Display the PEP event
@@ -86,7 +86,7 @@ var PEP = (function () {
 
         try {
             // Read the target input for values
-            var value = $(XMLFromString(getDB(DESKTOP_HASH, 'pep-' + type, xid)));
+            var value = $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'pep-' + type, xid)));
             var dText;
             var aLink = ''
             
@@ -115,7 +115,7 @@ var PEP = (function () {
                         else if(type == 'activity')
                             fValue = activityIcon(pepValue);
                         if(!pepText)
-                            fText = _e("unknown");
+                            fText = Common._e("unknown");
                         else
                             fText = pepText;
                     }
@@ -126,7 +126,7 @@ var PEP = (function () {
                         else if(type == 'activity')
                             fValue = activityIcon('exercising');
                         
-                        fText = _e("unknown");
+                        fText = Common._e("unknown");
                     }
                     
                     dText = fText;
@@ -146,7 +146,7 @@ var PEP = (function () {
                         
                         // Apply the good values
                         if(!tArtist && !tAlbum && !tTitle) {
-                            fText = _e("unknown");
+                            fText = Common._e("unknown");
                             dText = fText;
                         }
                         
@@ -159,19 +159,19 @@ var PEP = (function () {
                             
                             // Artist element
                             if(!tArtist)
-                                fArtist = _e("unknown");
+                                fArtist = Common._e("unknown");
                             else
                                 fArtist = tArtist;
                             
                             // Title element
                             if(!tTitle)
-                                fTitle = _e("unknown");
+                                fTitle = Common._e("unknown");
                             else
                                 fTitle = tTitle;
                             
                             // Album element
                             if(!tAlbum)
-                                fAlbum = _e("unknown");
+                                fAlbum = Common._e("unknown");
                             else
                                 fAlbum = tAlbum;
                             
@@ -185,7 +185,7 @@ var PEP = (function () {
                     }
                     
                     else {
-                        fText = _e("unknown");
+                        fText = Common._e("unknown");
                         dText = fText;
                     }
                 }
@@ -202,11 +202,11 @@ var PEP = (function () {
                         
                         // No human location?
                         if(!tHuman)
-                            tHuman = _e("See his/her position on the globe");
+                            tHuman = Common._e("See his/her position on the globe");
                         
                         // Generate the text to be displayed
                         if(tLat && tLon) {
-                            aLink = ' href="http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon) + '" target="_blank"';
+                            aLink = ' href="http://maps.google.com/?q=' + Common.encodeQuotes(tLat) + ',' + Common.encodeQuotes(tLon) + '" target="_blank"';
                             fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
                             
                             if(tReal)
@@ -216,13 +216,13 @@ var PEP = (function () {
                         }
                         
                         else {
-                            fText = _e("unknown");
+                            fText = Common._e("unknown");
                             dText = fText;
                         }
                     }
                     
                     else {
-                        fText = _e("unknown");
+                        fText = Common._e("unknown");
                         dText = fText;
                     }
                 }
@@ -230,11 +230,11 @@ var PEP = (function () {
                 // Apply the text to the buddy infos
                 var this_buddy = '#buddy-list .buddy[data-xid="' + escape(xid) + '"]';
                 
-                if(exists(this_buddy))
-                    $(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '">' + fText + '</p>');
+                if(Common.exists(this_buddy))
+                    $(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + Common.encodeQuotes(dText) + '">' + fText + '</p>');
                 
                 // Apply the text to the buddy chat
-                if(exists('#' + hash)) {
+                if(Common.exists('#' + hash)) {
                     // Selector
                     var bc_pep = $('#' + hash + ' .bc-pep');
                     
@@ -242,9 +242,9 @@ var PEP = (function () {
                     bc_pep.find('a.bi-' + type).remove();
                     
                     // If the new PEP item is not null, create a new one
-                    if(fText != _e("unknown"))
+                    if(fText != Common._e("unknown"))
                         bc_pep.prepend(
-                            '<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + encodeQuotes(dText) + '"></a>'
+                            '<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + Common.encodeQuotes(dText) + '"></a>'
                         );
                     
                     // Process the new status position
@@ -252,7 +252,7 @@ var PEP = (function () {
                 }
                 
                 // If this is the PEP values of the logged in user
-                if(xid == getXID()) {
+                if(xid == Common.getXID()) {
                     // Change the icon/value of the target element
                     if((type == 'mood') || (type == 'activity')) {
                         // Change the input value
@@ -268,12 +268,12 @@ var PEP = (function () {
                         }
                         
                         // No text?
-                        if(dText != _e("unknown"))
+                        if(dText != Common._e("unknown"))
                             dVal = dText;
                         
                         // Store this user event in our database
-                        setDB(DESKTOP_HASH, type + '-value', 1, dAttr);
-                        setDB(DESKTOP_HASH, type + '-text', 1, dVal);
+                        DataStore.setDB(DESKTOP_HASH, type + '-value', 1, dAttr);
+                        DataStore.setDB(DESKTOP_HASH, type + '-text', 1, dVal);
                         
                         // Apply this PEP event
                         $('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
@@ -286,7 +286,7 @@ var PEP = (function () {
                         $('#my-infos .f-others a.' + type).remove();
                         
                         // Not empty?
-                        if(dText != _e("unknown")) {
+                        if(dText != Common._e("unknown")) {
                             // Specific stuffs
                             var href, title, icon_class;
                             
@@ -297,25 +297,25 @@ var PEP = (function () {
                             }
                             
                             else {
-                                href = 'http://maps.google.com/?q=' + encodeQuotes(tLat) + ',' + encodeQuotes(tLon);
-                                title = _e("Where are you?") + ' (' + dText + ')';
+                                href = 'http://maps.google.com/?q=' + Common.encodeQuotes(tLat) + ',' + Common.encodeQuotes(tLon);
+                                title = Common._e("Where are you?") + ' (' + dText + ')';
                                 icon_class = 'location-world';
                             }
                             
                             // Must create the container?
-                            if(!exists('#my-infos .f-others'))
+                            if(!Common.exists('#my-infos .f-others'))
                                 $('#my-infos .content').append('<div class="element f-others"></div>');
                             
                             // Create the element
                             $('#my-infos .f-others').prepend(
-                                '<a class="icon ' + type + '" href="' + encodeQuotes(href) + '" target="_blank" title="' + encodeQuotes(title) +  '">' + 
+                                '<a class="icon ' + type + '" href="' + Common.encodeQuotes(href) + '" target="_blank" title="' + Common.encodeQuotes(title) +  '">' + 
                                     '<span class="talk-images ' + icon_class + '"></span>' + 
                                 '</a>'
                             );
                         }
                         
                         // Empty?
-                        else if(!exists('#my-infos .f-others a.icon'))
+                        else if(!Common.exists('#my-infos .f-others a.icon'))
                             $('#my-infos .f-others').remove();
                         
                         // Process the buddy-list height again
@@ -622,7 +622,7 @@ var PEP = (function () {
             
             // Create two position arrays
             var pos_names  = ['lat', 'lon', 'alt', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
-            var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  getXMPPTime('utc')];
+            var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  DateUtils.getXMPPTime('utc')];
             
             for(var i = 0; i < pos_names.length; i++) {
                 if(pos_names[i] && pos_values[i])
@@ -671,7 +671,7 @@ var PEP = (function () {
                          result.find('address_component:has(type:contains("route")):first long_name').text(),
                          result.find('address_component:has(type:contains("street_number")):first long_name').text(),
                          result.find('formatted_address:first').text(),
-                         'http://maps.google.com/?q=' + encodeQuotes(lat) + ',' + encodeQuotes(lng)
+                         'http://maps.google.com/?q=' + Common.encodeQuotes(lat) + ',' + Common.encodeQuotes(lng)
                         ];
             
             return array;
@@ -761,7 +761,7 @@ var PEP = (function () {
                             );
                 
                 // Store data
-                setDB(DESKTOP_HASH, 'geolocation', 'now', xmlToString(data));
+                DataStore.setDB(DESKTOP_HASH, 'geolocation', 'now', Common.xmlToString(data));
                 
                 Console.log('Position details got from Google Maps API.');
             });
@@ -783,7 +783,7 @@ var PEP = (function () {
 
         try {
             // Don't fire it until options & features are not retrieved!
-            if(!getDB(DESKTOP_HASH, 'options', 'geolocation') || (getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !enabledPEP()) {
+            if(!DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') || (DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !enabledPEP()) {
                 return;
             }
             
@@ -880,27 +880,27 @@ var PEP = (function () {
 
         try {
             // Apply empty values to the PEP database
-            setDB(DESKTOP_HASH, 'mood-value', 1, '');
-            setDB(DESKTOP_HASH, 'mood-text', 1, '');
-            setDB(DESKTOP_HASH, 'activity-value', 1, '');
-            setDB(DESKTOP_HASH, 'activity-text', 1, '');
+            DataStore.setDB(DESKTOP_HASH, 'mood-value', 1, '');
+            DataStore.setDB(DESKTOP_HASH, 'mood-text', 1, '');
+            DataStore.setDB(DESKTOP_HASH, 'activity-value', 1, '');
+            DataStore.setDB(DESKTOP_HASH, 'activity-text', 1, '');
             
             // Click event for user mood
             $('#my-infos .f-mood a.picker').click(function() {
                 // Initialize some vars
                 var path = '#my-infos .f-mood div.bubble';
                 var mood_id = ['crazy', 'excited', 'playful', 'happy', 'shocked', 'hot', 'sad', 'amorous', 'confident'];
-                var mood_lang = [_e("Crazy"), _e("Excited"), _e("Playful"), _e("Happy"), _e("Shocked"), _e("Hot"), _e("Sad"), _e("Amorous"), _e("Confident")];
+                var mood_lang = [Common._e("Crazy"), Common._e("Excited"), Common._e("Playful"), Common._e("Happy"), Common._e("Shocked"), Common._e("Hot"), Common._e("Sad"), Common._e("Amorous"), Common._e("Confident")];
                 var mood_val = $('#my-infos .f-mood a.picker').attr('data-value');
                 
                 // Yet displayed?
                 var can_append = true;
                 
-                if(exists(path))
+                if(Common.exists(path))
                     can_append = false;
                 
                 // Add this bubble!
-                showBubble(path);
+                Bubble.show(path);
                 
                 if(!can_append)
                     return false;
@@ -927,7 +927,7 @@ var PEP = (function () {
                     $('#my-infos .f-mood a.picker').attr('data-value', $(this).attr('data-value'));
                     
                     // Close the bubble
-                    closeBubbles();
+                    Bubble.close();
                     
                     // Focus on the status input
                     $(document).oneTime(10, function() {
@@ -945,17 +945,17 @@ var PEP = (function () {
                 // Initialize some vars
                 var path = '#my-infos .f-activity div.bubble';
                 var activity_id = ['doing_chores', 'drinking', 'eating', 'exercising', 'grooming', 'having_appointment', 'inactive', 'relaxing', 'talking', 'traveling', 'working'];
-                var activity_lang = [_e("Chores"), _e("Drinking"), _e("Eating"), _e("Exercising"), _e("Grooming"), _e("Appointment"), _e("Inactive"), _e("Relaxing"), _e("Talking"), _e("Traveling"), _e("Working")];
+                var activity_lang = [Common._e("Chores"), Common._e("Drinking"), Common._e("Eating"), Common._e("Exercising"), Common._e("Grooming"), Common._e("Appointment"), Common._e("Inactive"), Common._e("Relaxing"), Common._e("Talking"), Common._e("Traveling"), Common._e("Working")];
                 var activity_val = $('#my-infos .f-activity a.picker').attr('data-value');
                 
                 // Yet displayed?
                 var can_append = true;
                 
-                if(exists(path))
+                if(Common.exists(path))
                     can_append = false;
                 
                 // Add this bubble!
-                showBubble(path);
+                Bubble.show(path);
                 
                 if(!can_append)
                     return false;
@@ -982,7 +982,7 @@ var PEP = (function () {
                     $('#my-infos .f-activity a.picker').attr('data-value', $(this).attr('data-value'));
                     
                     // Close the bubble
-                    closeBubbles();
+                    Bubble.close();
                     
                     // Focus on the status input
                     $(document).oneTime(10, function() {
@@ -1013,10 +1013,10 @@ var PEP = (function () {
                 var text = $(this).val();
                 
                 // Must send the mood?
-                if((value != getDB(DESKTOP_HASH, 'mood-value', 1)) || (text != getDB(DESKTOP_HASH, 'mood-text', 1))) {
+                if((value != DataStore.getDB(DESKTOP_HASH, 'mood-value', 1)) || (text != DataStore.getDB(DESKTOP_HASH, 'mood-text', 1))) {
                     // Update the local stored values
-                    setDB(DESKTOP_HASH, 'mood-value', 1, value);
-                    setDB(DESKTOP_HASH, 'mood-text', 1, text);
+                    DataStore.setDB(DESKTOP_HASH, 'mood-value', 1, value);
+                    DataStore.setDB(DESKTOP_HASH, 'mood-text', 1, text);
                     
                     // Send it!
                     sendMood(value, text);
@@ -1025,7 +1025,7 @@ var PEP = (function () {
             
             // Input focus handler
             .focus(function() {
-                closeBubbles();
+                Bubble.close();
             });
             
             // Input blur handler
@@ -1035,10 +1035,10 @@ var PEP = (function () {
                 var text = $(this).val();
                 
                 // Must send the activity?
-                if((value != getDB(DESKTOP_HASH, 'activity-value', 1)) || (text != getDB(DESKTOP_HASH, 'activity-text', 1))) {
+                if((value != DataStore.getDB(DESKTOP_HASH, 'activity-value', 1)) || (text != DataStore.getDB(DESKTOP_HASH, 'activity-text', 1))) {
                     // Update the local stored values
-                    setDB(DESKTOP_HASH, 'activity-value', 1, value);
-                    setDB(DESKTOP_HASH, 'activity-text', 1, text);
+                    DataStore.setDB(DESKTOP_HASH, 'activity-value', 1, value);
+                    DataStore.setDB(DESKTOP_HASH, 'activity-text', 1, text);
                     
                     // Send it!
                     sendActivity(value, '', text);
@@ -1047,7 +1047,7 @@ var PEP = (function () {
             
             // Input focus handler
             .focus(function() {
-                closeBubbles();
+                Bubble.close();
             });
         } catch(e) {
             Console.error('PEP.launch', e);

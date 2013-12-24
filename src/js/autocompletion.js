@@ -53,13 +53,13 @@ var Autocompletion = (function () {
      * @param {string} id
      * @return {object}
      */
-    self.processAutocompletion = function(query, id) {
+    self.process = function(query, id) {
 
         var results = new Array();
 
         try {
             // Replace forbidden characters in regex
-            query = escapeRegex(query);
+            query = Common.escapeRegex(query);
             
             // Search in the roster
             $('#' + id + ' .user').each(function() {
@@ -71,7 +71,7 @@ var Autocompletion = (function () {
             });
             
             // Sort the array
-            results = results.sort(caseInsensitiveSort);
+            results = results.sort(self.caseInsensitiveSort);
         } catch(e) {
             Console.error('Autocompletion.process', e);
         } finally {
@@ -87,7 +87,7 @@ var Autocompletion = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.resetAutocompletion = function(hash) {
+    self.reset = function(hash) {
 
         try {
             $('#' + hash + ' .message-area').removeAttr('data-autocompletion-pointer').removeAttr('data-autocompletion-query');
@@ -104,14 +104,17 @@ var Autocompletion = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.createAutocompletion = function(hash) {
+    self.create = function(hash) {
 
         try {
             // Initialize
             var vSelector = $('#' + hash + ' .message-area');
             var value = vSelector.val();
-            if(!value)
-                resetAutocompletion(hash);
+
+            if(!value) {
+                self.reset(hash);
+            }
+
             var query = vSelector.attr('data-autocompletion-query');
             
             // The autocompletion has not been yet launched
@@ -128,7 +131,7 @@ var Autocompletion = (function () {
                 i = parseInt(pointer);
             
             // We get the nickname
-            var nick = processAutocompletion(query, hash)[i];
+            var nick = self.process(query, hash)[i];
             
             // Shit, this is my nick!
             if((nick != undefined) && (nick.toLowerCase() == getMUCNick(hash).toLowerCase())) {
@@ -136,7 +139,7 @@ var Autocompletion = (function () {
                 i++;
                 
                 // Get the next nick
-                nick = processAutocompletion(query, hash)[i];
+                nick = self.process(query, hash)[i];
             }
             
             // We quote the nick

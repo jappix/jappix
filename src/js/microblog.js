@@ -136,7 +136,7 @@ var Microblog = (function () {
                 });
                 
                 // Get the repeat value
-                var uRepeat = [$(this).find('author name').text(), explodeThis(':', $(this).find('author uri').text(), 1)];
+                var uRepeat = [$(this).find('author name').text(), Common.explodeThis(':', $(this).find('author uri').text(), 1)];
                 var uRepeated = false;
                 
                 if(!uRepeat[0])
@@ -167,12 +167,12 @@ var Microblog = (function () {
                 
                 // Get the stamp & time
                 if(tDate) {
-                    tStamp = extractStamp(Date.jab2date(tDate));
-                    tTime = relativeDate(tDate);
+                    tStamp = DateUtils.extractStamp(Date.jab2date(tDate));
+                    tTime = DateUtils.relative(tDate);
                 }
                 
                 else {
-                    tStamp = getTimeStamp();
+                    tStamp = DateUtils.getTimeStamp();
                     tTime = '';
                 }
                 
@@ -183,7 +183,7 @@ var Microblog = (function () {
                 var gLon = sGeoloc.find('lon').text();
                 
                 if(gLat && gLon) {
-                    tGeoloc += '<a class="geoloc talk-images" href="http://maps.google.com/?q=' + encodeQuotes(gLat) + ',' + encodeQuotes(gLon) + '" target="_blank">';
+                    tGeoloc += '<a class="geoloc talk-images" href="http://maps.google.com/?q=' + Common.encodeQuotes(gLat) + ',' + Common.encodeQuotes(gLon) + '" target="_blank">';
                     
                     // Human-readable name?
                     var gHuman = humanPosition(
@@ -221,7 +221,7 @@ var Microblog = (function () {
                     }
                     
                     // Trim the content
-                    tContent = trim(tContent);
+                    tContent = $.trim(tContent);
                     tHTMLEscape = true;
                 }
 
@@ -231,7 +231,7 @@ var Microblog = (function () {
                     tFiltered = filterThisMessage(tContent, tName.htmlEnc(), tHTMLEscape);
                     
                     // Display the received message
-                    var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + encodeQuotes(tStamp) + '" data-id="' + encodeQuotes(tID) + '" data-xid="' + encodeQuotes(from) + '">' + 
+                    var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + Common.encodeQuotes(tStamp) + '" data-id="' + Common.encodeQuotes(tID) + '" data-xid="' + Common.encodeQuotes(from) + '">' + 
                             '<div class="' + hash + '">' + 
                                 '<div class="avatar-container">' + 
                                     '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
@@ -243,7 +243,7 @@ var Microblog = (function () {
                     
                     // Is it a repeat?
                     if(uRepeated)
-                        html += '<a href="#" class="repeat talk-images" title="' + encodeQuotes(printf(_e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return checkChatCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');" data-xid="' + encodeQuotes(uRepeat[1]) + '"></a>';
+                        html += '<a href="#" class="repeat talk-images" title="' + Common.encodeQuotes(Common.printf(Common._e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return Chat.checkCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');" data-xid="' + Common.encodeQuotes(uRepeat[1]) + '"></a>';
                     
                     html += '<b title="' + from + '" class="name">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
                         '<p class="infos">' + tTime + tGeoloc + '</p>';
@@ -260,13 +260,13 @@ var Microblog = (function () {
                         
                         // Push the current URL! (YouTube or file)
                         if(tFURL[a].match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
-                            aFURL.push(trim(RegExp.$8));
+                            aFURL.push($.trim(RegExp.$8));
                             aFCat.push('youtube');
                         }
                         
-                        else if(canIntegrateBox(strAfterLast('.', tFURL[a]))) {
+                        else if(canIntegrateBox(Common.strAfterLast('.', tFURL[a]))) {
                             aFURL.push(tFURL[a]);
-                            aFCat.push(fileCategory(strAfterLast('.', tFURL[a])));
+                            aFCat.push(fileCategory(Common.strAfterLast('.', tFURL[a])));
                         }
                     }
                     
@@ -278,12 +278,12 @@ var Microblog = (function () {
                         
                         // Get the file type
                         var tFLink = tFURL[f];
-                        var tFExt = strAfterLast('.', tFLink);
+                        var tFExt = Common.strAfterLast('.', tFLink);
                         var tFCat = fileCategory(tFExt);
                         
                         // Youtube video?
                         if(tFLink.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
-                            tFLink = trim(RegExp.$8);
+                            tFLink = $.trim(RegExp.$8);
                             tFCat = 'youtube';
                         }
                         
@@ -295,32 +295,32 @@ var Microblog = (function () {
                         
                         // Any thumbnail?
                         if(tFThumb[f])
-                            html += '<a class="thumb" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" title="' + encodeQuotes(tFName[f]) + '" data-node="' + encodeQuotes(tFNComments[f]) + '"><img src="' + encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
+                            html += '<a class="thumb" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" title="' + Common.encodeQuotes(tFName[f]) + '" data-node="' + Common.encodeQuotes(tFNComments[f]) + '"><img src="' + Common.encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
                         else
-                            html += '<a class="' + encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + encodeQuotes(tFNComments[f]) + '">' + tFName[f].htmlEnc() + '</a>';
+                            html += '<a class="' + Common.encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + Common.encodeQuotes(tFNComments[f]) + '">' + tFName[f].htmlEnc() + '</a>';
                     }
                     
                     if(tFURL.length)
                         html += '</p>';
                     
                     // It's my own notice, we can remove it!
-                    if(from == getXID())
-                        html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + _e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+                    if(from == Common.getXID())
+                        html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + Common._e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
                     
                     // Notice from another user
                     else {
                         // User profile
-                        html += '<a href="#" title="' + _e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
+                        html += '<a href="#" title="' + Common._e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
                         
                         // If PEP is enabled
                         if(enabledPEP() && tHTMLEscape)
-                            html += '<a href="#" title="' + _e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
+                            html += '<a href="#" title="' + Common._e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
                     }
                     
-                    html += '</div><div class="comments-container" data-node="' + encodeQuotes(nodeComments) + '"></div></div>';
+                    html += '</div><div class="comments-container" data-node="' + Common.encodeQuotes(nodeComments) + '"></div></div>';
                     
                     // Mixed mode
-                    if((mode == 'mixed') && !exists('.mixed .' + tHash)) {
+                    if((mode == 'mixed') && !Common.exists('.mixed .' + tHash)) {
                         // Remove the old element
                         if(way == 'push')
                             $('#channel .content.mixed .one-update.update_' + hash).remove();
@@ -358,10 +358,10 @@ var Microblog = (function () {
                     // Can append individual content?
                     var can_individual = true;
                     
-                    if($('#channel .top.individual input[name="comments"]').val() && exists(tIndividual + ' .one-update'))
+                    if($('#channel .top.individual input[name="comments"]').val() && Common.exists(tIndividual + ' .one-update'))
                         can_individual = false;
                     
-                    if(can_individual && exists(tIndividual) && !exists('.individual .' + tHash)) {
+                    if(can_individual && Common.exists(tIndividual) && !Common.exists('.individual .' + tHash)) {
                         if(mode == 'mixed')
                             $(tIndividual).prepend(html);
                         else
@@ -377,9 +377,9 @@ var Microblog = (function () {
                         $(tIndividual + ' a.more').css('visibility', 'visible');
                         
                         // Click event on name (if not me!)
-                        if(from != getXID())
+                        if(from != Common.getXID())
                             $('.individual .' + tHash + ' .avatar-container, .individual .' + tHash + ' .body b').click(function() {
-                                checkChatCreate(from, 'chat');
+                                Chat.checkCreate(from, 'chat');
                             });
                     }
                     
@@ -403,7 +403,7 @@ var Microblog = (function () {
             });
             
             // Display the avatar of this buddy
-            getAvatar(from, 'cache', 'true', 'forget');
+            Avatar.get(from, 'cache', 'true', 'forget');
         } catch(e) {
             Console.error('Microblog.display', e);
         }
@@ -430,7 +430,7 @@ var Microblog = (function () {
             var get_last = false;
             
             // Get the latest item for the mixed mode
-            if(exists('#channel .content.mixed .' + hash))
+            if(Common.exists('#channel .content.mixed .' + hash))
                 get_last = true;
             
             // Remove the item from our DOM
@@ -481,7 +481,7 @@ var Microblog = (function () {
             handleErrorReply(iq);
             
             // Get the latest item
-            requestMicroblog(getXID(), '1', false, handleUpdateRemoveMicroblog);
+            requestMicroblog(Common.getXID(), '1', false, handleUpdateRemoveMicroblog);
         } catch(e) {
             Console.error('Microblog.handleRemove', e);
         }
@@ -503,7 +503,7 @@ var Microblog = (function () {
                 return;
             
             // Initialize
-            var xid = bareXID(getStanzaFrom(iq));
+            var xid = Common.bareXID(Common.getStanzaFrom(iq));
             var hash = hex_md5(xid);
             
             // Display the item!
@@ -556,23 +556,23 @@ var Microblog = (function () {
 
         try {
             // Path
-            var id = explodeThis('-', iq.getID(), 1);
+            var id = Common.explodeThis('-', iq.getID(), 1);
             var path = 'div.comments[data-id="' + id + '"] div.comments-content';
             
             // Does not exist?
-            if(!exists(path))
+            if(!Common.exists(path))
                 return false;
             
             // Any error?
             if(handleErrorReply(iq)) {
-                $(path).html('<div class="one-comment loading">' + _e("Could not get the comments!") + '</div>');
+                $(path).html('<div class="one-comment loading">' + Common._e("Could not get the comments!") + '</div>');
                 
                 return false;
             }
             
             // Initialize
             var data = iq.getNode();
-            var server = bareXID(getStanzaFrom(iq));
+            var server = Common.bareXID(Common.getStanzaFrom(iq));
             var node = $(data).find('items:first').attr('node');
             var users_xid = [];
             var code = '';
@@ -598,14 +598,14 @@ var Microblog = (function () {
             // Add the comment tool
             if(complete)
                 code += '<div class="one-comment compose">' + 
-                        '<span class="icon talk-images"></span><input type="text" placeholder="' + _e("Type your comment here...") + '" />' + 
+                        '<span class="icon talk-images"></span><input type="text" placeholder="' + Common._e("Type your comment here...") + '" />' + 
                     '</div>';
             
             // Append the comments
             $(data).find('item').each(function() {
                 // Get comment
                 var current_id = $(this).attr('id');
-                var current_xid = explodeThis(':', $(this).find('author uri').text(), 1);
+                var current_xid = Common.explodeThis(':', $(this).find('author uri').text(), 1);
                 var current_name = $(this).find('author name').text();
                 var current_date = $(this).find('published').text();
                 var current_body = $(this).find('content[type="text"]').text();
@@ -624,33 +624,33 @@ var Microblog = (function () {
                     current_xid = '';
                     
                     if(!current_name)
-                        current_name = _e("unknown");
+                        current_name = Common._e("unknown");
                 }
                 
-                else if(!current_name || (current_bname != getXIDNick(current_xid)))
+                else if(!current_name || (current_bname != Common.getXIDNick(current_xid)))
                     current_name = current_bname;
                 
                 // Any date?
                 if(current_date)
-                    current_date = relativeDate(current_date);
+                    current_date = DateUtils.relative(current_date);
                 else
-                    current_date = getCompleteTime();
+                    current_date = DateUtils.getCompleteTime();
                 
                 // Click event
                 var onclick = 'false';
                 
-                if(current_xid != getXID())
-                    onclick = 'checkChatCreate(\'' + encodeOnclick(current_xid) + '\', \'chat\')';
+                if(current_xid != Common.getXID())
+                    onclick = 'Chat.checkCreate(\'' + encodeOnclick(current_xid) + '\', \'chat\')';
                 
                 // If this is my comment, add a marker
                 var type = 'him';
                 var marker = '';
                 var remove = '';
                 
-                if(current_xid == getXID()) {
+                if(current_xid == Common.getXID()) {
                     type = 'me';
                     marker = '<div class="marker"></div>';
-                    remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeOnclick(server) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(current_id) + '\');">' + _e("Remove") + '</a>';
+                    remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeOnclick(server) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(current_id) + '\');">' + Common._e("Remove") + '</a>';
                 }
                 
                 // New comment?
@@ -666,7 +666,7 @@ var Microblog = (function () {
                         users_xid.push(current_xid);
                     
                     // Add the HTML code
-                    code += '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + encodeQuotes(current_id) + '">' + 
+                    code += '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + Common.encodeQuotes(current_id) + '">' + 
                             marker + 
                             
                             '<div class="avatar-container" onclick="return ' + onclick + ';">' + 
@@ -674,7 +674,7 @@ var Microblog = (function () {
                             '</div>' + 
                             
                             '<div class="comment-container">' + 
-                                '<a href="#" onclick="return ' + onclick + ';" title="' + encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
+                                '<a href="#" onclick="return ' + onclick + ';" title="' + Common.encodeQuotes(current_xid) + '" class="name">' + current_name.htmlEnc() + '</a>' + 
                                 '<span class="date">' + current_date.htmlEnc() + '</span>' + 
                                 remove + 
                             
@@ -710,7 +710,7 @@ var Microblog = (function () {
             
             // Get the avatars
             for(a in users_xid)
-                getAvatar(users_xid[a], 'cache', 'true', 'forget');
+                Avatar.get(users_xid[a], 'cache', 'true', 'forget');
             
             // Add the owner XID
             if(owner_xid && owner_xid.match('@') && !existArrayValue(users_xid, owner_xid))
@@ -721,7 +721,7 @@ var Microblog = (function () {
                 users_xid.push(repeat_xid);
             
             // Remove my own XID
-            removeArrayValue(users_xid, getXID());
+            removeArrayValue(users_xid, Common.getXID());
             
             // DOM events
             if(complete) {
@@ -774,10 +774,10 @@ var Microblog = (function () {
             
             // Create comments container
             path.find('div.comments-container').append(
-                '<div class="comments" data-id="' + encodeQuotes(idComments) + '">' + 
+                '<div class="comments" data-id="' + Common.encodeQuotes(idComments) + '">' + 
                     '<div class="arrow talk-images"></div>' + 
                     '<div class="comments-content">' + 
-                        '<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + _e("Show comments") + '</a>' + 
+                        '<a href="#" class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Show comments") + '</a>' + 
                     '</div>' + 
                 '</div>'
             );
@@ -785,7 +785,7 @@ var Microblog = (function () {
             // Click event
             path.find('div.comments a.one-comment').click(function() {
                 // Set loading info
-                $(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>');
+                $(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Loading comments...") + '</div>');
                 
                 // Request comments
                 getCommentsMicroblog(entityComments, nodeComments, idComments);
@@ -833,7 +833,7 @@ var Microblog = (function () {
                 return false;
             
             // Get some values
-            var date = getXMPPTime('utc');
+            var date = DateUtils.getXMPPTime('utc');
             var hash = hex_md5(value + date);
             
             // New IQ
@@ -852,7 +852,7 @@ var Microblog = (function () {
             // Author infos
             var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
             author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
-            author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
+            author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + Common.getXID()));
             
             // Create the comment
             entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, value));
@@ -958,7 +958,7 @@ var Microblog = (function () {
 
         try {
             // Get the from attribute of this IQ
-            var from = bareXID(getStanzaFrom(iq));
+            var from = Common.bareXID(Common.getStanzaFrom(iq));
             
             // Define the selector path
             var selector = '#channel .top.individual input[name=';
@@ -1026,7 +1026,7 @@ var Microblog = (function () {
 
         try {
             // Get the from attribute of this IQ
-            var from = bareXID(getStanzaFrom(iq));
+            var from = Common.bareXID(Common.getStanzaFrom(iq));
 
             // Display the microblog
             displayMicroblog(iq, from, hex_md5(from), 'mixed', 'push');
@@ -1073,7 +1073,7 @@ var Microblog = (function () {
     self.getInitMicroblog = function() {
 
         try {
-            getMicroblog(getXID(), hex_md5(getXID()), true);
+            getMicroblog(Common.getXID(), hex_md5(Common.getXID()), true);
         } catch(e) {
             Console.error('Microblog.getInit', e);
         }
@@ -1172,7 +1172,7 @@ var Microblog = (function () {
                 hash = hex_md5(xid);
             
             // Can display the individual channel?
-            if(!check && !exists('#channel .individual')) {
+            if(!check && !Common.exists('#channel .individual')) {
                 // Hide the mixed channel
                 $('#channel .mixed').hide();
                 
@@ -1180,22 +1180,22 @@ var Microblog = (function () {
                 var cTitle;
                 var cShortcuts = '';
                 
-                if(xid == getXID())
-                    cTitle = _e("Your channel");
+                if(xid == Common.getXID())
+                    cTitle = Common._e("Your channel");
                 else {
-                    cTitle = _e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
+                    cTitle = Common._e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
                     cShortcuts = '<div class="shortcuts">' + 
-                                '<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                                '<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="return checkChatCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
-                                '<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="return retrieveAdHoc(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                                '<a href="#" class="profile talk-images" title="' + _e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+                                '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="profile talk-images" title="' + Common._e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeOnclick(xid) + '\');"></a>' + 
                                  '</div>';
                 }
                 
                 // Create a new individual channel
                 $('#channel .content.mixed').after(
                         '<div class="content individual microblog-' + hash + '">' + 
-                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\'); } return false;">' + _e("More notices...") + '</a>' + 
+                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\'); } return false;">' + Common._e("More notices...") + '</a>' + 
                         '</div>'
                                  )
                                
@@ -1207,12 +1207,12 @@ var Microblog = (function () {
                             
                             '<div class="update">' + 
                                 '<h2>' + cTitle + '</h2>' + 
-                                '<a href="#" onclick="return resetMicroblog();">« ' + _e("Previous") + '</a>' + 
+                                '<a href="#" onclick="return resetMicroblog();">« ' + Common._e("Previous") + '</a>' + 
                             '</div>' + 
                             
                             cShortcuts + 
                             
-                            '<input type="hidden" name="jid" value="' + encodeQuotes(xid) + '" />' + 
+                            '<input type="hidden" name="jid" value="' + Common.encodeQuotes(xid) + '" />' + 
                             '<input type="hidden" name="counter" value="20" />' + 
                         '</div>'
                                  );
@@ -1224,7 +1224,7 @@ var Microblog = (function () {
                 });
 
                 // Display the user avatar
-                getAvatar(xid, 'cache', 'true', 'forget');
+                Avatar.get(xid, 'cache', 'true', 'forget');
             }
             
             // Get the number of items to retrieve
@@ -1493,7 +1493,7 @@ var Microblog = (function () {
         try {
             // Get the values
             var selector = $('#channel .top input[name="microblog_body"]');
-            var body = trim(selector.val());
+            var body = $.trim(selector.val());
             
             // Sufficient parameters
             if(body) {
@@ -1524,8 +1524,8 @@ var Microblog = (function () {
                     fName.push('');
                     fType.push('text/html');
                     fLength.push('');
-                    fURL.push(trim(yt_matches[y]));
-                    fThumb.push('https://img.youtube.com/vi/' + trim(yt_matches[y].replace(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim, '$8')) + '/0.jpg');
+                    fURL.push($.trim(yt_matches[y]));
+                    fThumb.push('https://img.youtube.com/vi/' + $.trim(yt_matches[y].replace(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim, '$8')) + '/0.jpg');
                 }
                 
                 // Send the message on the XMPP network
@@ -1562,10 +1562,10 @@ var Microblog = (function () {
 
         try {
             // Generate some values
-            var time = getXMPPTime('utc');
+            var time = DateUtils.getXMPPTime('utc');
             var id = hex_md5(body + time);
             var nick = getName();
-            var xid = getXID();
+            var xid = Common.getXID();
             
             // Define repeat options
             var author_nick = nick;
@@ -1661,12 +1661,12 @@ var Microblog = (function () {
             entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'replies', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
             
             // Create the geoloc child
-            var geoloc_xml = getDB(DESKTOP_HASH, 'geolocation', 'now');
+            var geoloc_xml = DataStore.getDB(DESKTOP_HASH, 'geolocation', 'now');
             
             if(geoloc_xml) {
                 // Create two position arrays
                 var geo_names  = ['lat', 'lon', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
-                var geo_values = parsePosition(XMLFromString(geoloc_xml));
+                var geo_values = parsePosition(Common.XMLFromString(geoloc_xml));
                 
                 // New geoloc child
                 var geoloc = entry.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
@@ -1711,7 +1711,7 @@ var Microblog = (function () {
             
             // Upload form submit event
             $('#attach').submit(function() {
-                if(!exists('#attach .wait') && $('#attach input[type="file"]').val())
+                if(!Common.exists('#attach .wait') && $('#attach input[type="file"]').val())
                     $(this).ajaxSubmit(attach_options);
                 
                 return false;
@@ -1719,7 +1719,7 @@ var Microblog = (function () {
             
             // Upload input change event
             $('#attach input[type="file"]').change(function() {
-                if(!exists('#attach .wait') && $(this).val())
+                if(!Common.exists('#attach .wait') && $(this).val())
                     $('#attach').ajaxSubmit(attach_options);
                 
                 return false;
@@ -1747,18 +1747,18 @@ var Microblog = (function () {
                 $('#attach .one-file').remove();
             
             // Must enable the popup again?
-            if(!exists('#attach .one-file')) {
+            if(!Common.exists('#attach .one-file')) {
                 // Restore the bubble class
                 $('#attach').addClass('bubble');
                 
                 // Enable the bubble click events
                 if(id) {
                     $('#attach').hide();
-                    showBubble('#attach');
+                    Bubble.show('#attach');
                 }
                 
                 else
-                    closeBubbles();
+                    Bubble.close();
             }
         } catch(e) {
             Console.error('Microblog.unattach', e);
@@ -1818,9 +1818,9 @@ var Microblog = (function () {
                 
                 // Add this file
                 $('#attach .attach-subitem').append(
-                    '<div class="one-file" data-type="' + encodeQuotes(fType) + '" data-length="' + encodeQuotes(fLength) + '" data-thumb="' + encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
-                        '<a class="remove talk-images" href="#" title="' + encodeQuotes(_e("Unattach the file")) + '"></a>' + 
-                        '<a class="link" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a>' + 
+                    '<div class="one-file" data-type="' + Common.encodeQuotes(fType) + '" data-length="' + Common.encodeQuotes(fLength) + '" data-thumb="' + Common.encodeQuotes(fThumb) + '" data-id="' + fID + '">' + 
+                        '<a class="remove talk-images" href="#" title="' + Common.encodeQuotes(Common._e("Unattach the file")) + '"></a>' + 
+                        '<a class="link" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a>' + 
                     '</div>'
                 );
                 
@@ -1834,14 +1834,14 @@ var Microblog = (function () {
             
             // Any error?
             else {
-                openThisError(4);
+                Board.openThisError(4);
                 
                 // Unlock the bubble?
-                if(!exists('#attach .one-file')) {
+                if(!Common.exists('#attach .one-file')) {
                     $('#attach').addClass('bubble').hide();
                     
                     // Show the bubble again!
-                    showBubble('#attach');
+                    Bubble.show('#attach');
                 }
                 
                 Console.error('Error while attaching the file', dData.find('error').text());
@@ -1898,7 +1898,7 @@ var Microblog = (function () {
             // Keyboard event
             $('#channel .top input[name="microblog_body"]').keyup(function(e) {
                 // Enter pressed: send the microblog notice
-                if((e.keyCode == 13) && !exists('#attach .wait'))
+                if((e.keyCode == 13) && !Common.exists('#attach .wait'))
                     return sendMicroblog();
             })
             

@@ -30,52 +30,52 @@ var vCard = (function () {
         try {
             // Popup HTML content
             var html =
-            '<div class="top">' + _e("Your profile") + '</div>' + 
+            '<div class="top">' + Common._e("Your profile") + '</div>' + 
             
             '<div class="tab">' + 
-                '<a href="#" class="tab-active" data-key="1">' + _e("Identity") + '</a>' + 
-                '<a href="#" data-key="2">' + _e("Profile image") + '</a>' + 
-                '<a href="#" data-key="3">' + _e("Others") + '</a>' + 
+                '<a href="#" class="tab-active" data-key="1">' + Common._e("Identity") + '</a>' + 
+                '<a href="#" data-key="2">' + Common._e("Profile image") + '</a>' + 
+                '<a href="#" data-key="3">' + Common._e("Others") + '</a>' + 
             '</div>' + 
             
             '<div class="content">' + 
                 '<div id="lap1" class="lap-active one-lap forms">' + 
                     '<fieldset>' + 
-                        '<legend>' + _e("Personal") + '</legend>' + 
+                        '<legend>' + Common._e("Personal") + '</legend>' + 
                         
-                        '<label for="USER-FN">' + _e("Complete name") + '</label>' + 
+                        '<label for="USER-FN">' + Common._e("Complete name") + '</label>' + 
                         '<input type="text" id="USER-FN" class="vcard-item" placeholder="John Locke" />' + 
                         
-                        '<label for="USER-NICKNAME">' + _e("Nickname") + '</label>' + 
+                        '<label for="USER-NICKNAME">' + Common._e("Nickname") + '</label>' + 
                         '<input type="text" id="USER-NICKNAME" class="vcard-item" placeholder="Jo" />' + 
                         
-                        '<label for="USER-N-GIVEN">' + _e("First name") + '</label>' + 
+                        '<label for="USER-N-GIVEN">' + Common._e("First name") + '</label>' + 
                         '<input type="text" id="USER-N-GIVEN" class="vcard-item" placeholder="John" />' + 
                         
-                        '<label for="USER-N-FAMILY">' + _e("Last name") + '</label>' + 
+                        '<label for="USER-N-FAMILY">' + Common._e("Last name") + '</label>' + 
                         '<input type="text" id="USER-N-FAMILY" class="vcard-item" placeholder="Locke" />' + 
                         
-                        '<label for="USER-BDAY">' + _e("Date of birth") + '</label>' + 
+                        '<label for="USER-BDAY">' + Common._e("Date of birth") + '</label>' + 
                         '<input type="text" id="USER-BDAY" class="vcard-item" pattern="^[0-9]{2}-[0-9]{2}-[0-9]{4}$" placeholder="16-02-1974" />' + 
                     '</fieldset>' + 
                     
                     '<fieldset>' + 
-                        '<legend>' + _e("Contact") + '</legend>' + 
+                        '<legend>' + Common._e("Contact") + '</legend>' + 
                         
-                        '<label for="USER-EMAIL-USERID">' + _e("E-mail") + '</label>' + 
+                        '<label for="USER-EMAIL-USERID">' + Common._e("E-mail") + '</label>' + 
                         '<input type="text" id="USER-EMAIL-USERID" class="vcard-item" placeholder="john@locke.fam" />' + 
                         
-                        '<label for="USER-TEL-NUMBER">' + _e("Phone") + '</label>' + 
+                        '<label for="USER-TEL-NUMBER">' + Common._e("Phone") + '</label>' + 
                         '<input type="text" id="USER-TEL-NUMBER" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
                         
-                        '<label for="USER-URL">' + _e("Website") + '</label>' + 
+                        '<label for="USER-URL">' + Common._e("Website") + '</label>' + 
                         '<input type="text" id="USER-URL" class="vcard-item" placeholder="john.locke.fam" />' + 
                     '</fieldset>' + 
                 '</div>' + 
                 
                 '<div id="lap2" class="one-lap forms">' + 
                     '<fieldset>' + 
-                        '<legend>' + _e("New") + '</legend>' + 
+                        '<legend>' + Common._e("New") + '</legend>' + 
                         
                         '<input type="hidden" id="USER-PHOTO-TYPE" class="vcard-item" />' + 
                         '<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
@@ -86,58 +86,58 @@ var vCard = (function () {
                     '</fieldset>' + 
                     
                     '<fieldset>' + 
-                        '<legend>' + _e("Current") + '</legend>' + 
+                        '<legend>' + Common._e("Current") + '</legend>' + 
                         
                         '<div class="avatar-container"></div>' + 
                         
-                        '<a href="#" class="one-button avatar-delete talk-images">' + _e("Delete") + '</a>' + 
-                        '<div class="no-avatar">' + _e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
+                        '<a href="#" class="one-button avatar-delete talk-images">' + Common._e("Delete") + '</a>' + 
+                        '<div class="no-avatar">' + Common._e("What a pity! You have no profile image defined in your identity card!") + '</div>' + 
                     '</fieldset>' + 
                     
-                    '<div class="avatar-wait avatar-info">' + _e("Please wait while your avatar is uploaded...") + '</div>' + 
-                    '<div class="avatar-ok avatar-info">' + _e("Here it is! A new beautiful profile image!") + '</div>' + 
-                    '<div class="avatar-error avatar-info">' + _e("The image file is not supported or has a bad size.") + '</div>' + 
+                    '<div class="avatar-wait avatar-info">' + Common._e("Please wait while your avatar is uploaded...") + '</div>' + 
+                    '<div class="avatar-ok avatar-info">' + Common._e("Here it is! A new beautiful profile image!") + '</div>' + 
+                    '<div class="avatar-error avatar-info">' + Common._e("The image file is not supported or has a bad size.") + '</div>' + 
                 '</div>' + 
                 
                 '<div id="lap3" class="one-lap forms">' + 
                     '<fieldset>' + 
-                        '<legend>' + _e("Address") + '</legend>' + 
+                        '<legend>' + Common._e("Address") + '</legend>' + 
                         
-                        '<label for="USER-ADR-STREET">' + _e("Street") + '</label>' + 
+                        '<label for="USER-ADR-STREET">' + Common._e("Street") + '</label>' + 
                         '<input type="text" id="USER-ADR-STREET" class="vcard-item" placeholder="Manhattan" />' + 
                         
-                        '<label for="USER-ADR-LOCALITY">' + _e("City") + '</label>' + 
+                        '<label for="USER-ADR-LOCALITY">' + Common._e("City") + '</label>' + 
                         '<input type="text" id="USER-ADR-LOCALITY" class="vcard-item" placeholder="New-York" />' + 
                         
-                        '<label for="USER-ADR-PCODE">' + _e("Postal code") + '</label>' + 
+                        '<label for="USER-ADR-PCODE">' + Common._e("Postal code") + '</label>' + 
                         '<input type="text" id="USER-ADR-PCODE" class="vcard-item" placeholder="10002" />' + 
                         
-                        '<label for="USER-ADR-CTRY">' + _e("Country") + '</label>' + 
+                        '<label for="USER-ADR-CTRY">' + Common._e("Country") + '</label>' + 
                         '<input type="text" id="USER-ADR-CTRY" class="vcard-item" placeholder="USA" />' + 
                     '</fieldset>' + 
                     
                     '<fieldset>' + 
-                        '<legend>' + _e("Biography") + '</legend>' + 
+                        '<legend>' + Common._e("Biography") + '</legend>' + 
                         
                         '<textarea id="USER-DESC" rows="8" cols="60" class="vcard-item"></textarea>' + 
                     '</fieldset>' + 
                 '</div>' + 
                 
                 '<div class="infos">' + 
-                    '<p class="infos-title">' + _e("Important notice") + '</p>' + 
+                    '<p class="infos-title">' + Common._e("Important notice") + '</p>' + 
                     
-                    '<p>' + _e("Be careful with the information you store into your profile, because it might be accessible by everyone (even someone you don't want to).") + '</p>' + 
-                    '<p>' + _e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
-                    '<p>' + printf(_e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
-                    '<p><b><a href="https://me.jappix.com/new" target="_blank">' + _e("Enable my public profile") + ' »</a></b></p>' + 
+                    '<p>' + Common._e("Be careful with the information you store into your profile, because it might be accessible by everyone (even someone you don't want to).") + '</p>' + 
+                    '<p>' + Common._e("Not everything is private on XMPP; this is one of those things, your public profile (vCard).") + '</p>' + 
+                    '<p>' + Common.printf(Common._e("It is strongly recommended to upload a profile image (%s maximum), like a picture of yourself, because that makes you easily recognizable by your friends."), JAPPIX_MAX_UPLOAD) + '</p>' + 
+                    '<p><b><a href="https://me.jappix.com/new" target="_blank">' + Common._e("Enable my public profile") + ' »</a></b></p>' + 
                 '</div>' + 
             '</div>' + 
             
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish save disabled">' + _e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
+                '<a href="#" class="finish save disabled">' + Common._e("Save") + '</a>' + 
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -147,7 +147,7 @@ var vCard = (function () {
             launchVCard();
             
             // We get the VCard informations
-            getVCard(getXID(), 'user');
+            getVCard(Common.getXID(), 'user');
         } catch(e) {
             Console.error('vCard.open', e);
         } finally {
@@ -334,7 +334,7 @@ var vCard = (function () {
             id = 'USER-' + id;
             
             // Can append the content
-            if((type == 'user') && !exists('#vcard #' + id)) {
+            if((type == 'user') && !Common.exists('#vcard #' + id)) {
                 $('#vcard .content').append('<input id="' + id + '" class="vcard-item" type="hidden" />');
             }
         } catch(e) {
@@ -439,7 +439,7 @@ var vCard = (function () {
         try {
             // Extract the data
             var iqID = iq.getID();
-            var iqFrom = fullXID(getStanzaFrom(iq));
+            var iqFrom = Common.fullXID(Common.getStanzaFrom(iq));
             var iqNode = iq.getNode();
             
             // Define some paths
@@ -447,7 +447,7 @@ var vCard = (function () {
             var path_userInfos = '#userinfos[data-vcard="' + iqID + '"]';
             
             // End if the session does not exist
-            if(((type == 'user') && !exists(path_vCard)) || ((type == 'buddy') && !exists(path_userInfos)))
+            if(((type == 'user') && !Common.exists(path_vCard)) || ((type == 'buddy') && !Common.exists(path_userInfos)))
                 return;
             
             // We retrieve main values
@@ -532,16 +532,16 @@ var vCard = (function () {
             // Update the stored avatar
             if(type == 'buddy') {
                 // Get the avatar XML
-                var xml = getPersistent('global', 'avatar', iqFrom);
+                var xml = DataStore.getPersistent('global', 'avatar', iqFrom);
                 
                 // If there were no stored avatar previously
-                if($(XMLFromString(xml)).find('type').text() == 'none') {
+                if($(Common.XMLFromString(xml)).find('type').text() == 'none') {
                     xml = xml.replace(/<forced>false<\/forced>/gi, '<forced>true</forced>');
-                    setPersistent(getXID(), 'avatar', iqFrom, xml);
+                    DataStore.setPersistent(Common.getXID(), 'avatar', iqFrom, xml);
                 }
                 
                 // Handle the user avatar
-                handleAvatar(iq);
+                Avatar.handle(iq);
             }
             
             // The avatar values targets
@@ -617,7 +617,7 @@ var vCard = (function () {
                 
                 if(itemVal && itemID) {
                     if(itemID.indexOf('-') != -1) {
-                        var tagname = explodeThis('-', itemID, 0);
+                        var tagname = Common.explodeThis('-', itemID, 0);
                         var aNode;
                         
                         if(vCard.getElementsByTagName(tagname).length > 0)
@@ -625,7 +625,7 @@ var vCard = (function () {
                         else
                             aNode = vCard.appendChild(iq.buildNode(tagname, {'xmlns': NS_VCARD}));
                         
-                        aNode.appendChild(iq.buildNode(explodeThis('-', itemID, 1), {'xmlns': NS_VCARD}, itemVal));
+                        aNode.appendChild(iq.buildNode(Common.explodeThis('-', itemID, 1), {'xmlns': NS_VCARD}, itemVal));
                     }
                     
                     else
@@ -711,7 +711,7 @@ var vCard = (function () {
             closeVCard();
             
             // Get our new avatar
-            getAvatar(getXID(), 'force', 'true', 'forget');
+            Avatar.get(Common.getXID(), 'force', 'true', 'forget');
             
             Console.log('vCard sent.');
         } catch(e) {

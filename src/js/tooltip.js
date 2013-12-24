@@ -37,7 +37,7 @@ var Tooltip = (function () {
             var path_bubble = path_tooltip + ' .bubble-' + type;
             
             // Yet exists?
-            if(exists(path_bubble))
+            if(Common.exists(path_bubble))
                 return false;
             
             // Generates special tooltip HTML code
@@ -47,14 +47,14 @@ var Tooltip = (function () {
             switch(type) {
                 // Smileys
                 case 'smileys':
-                    title = _e("Smiley insertion");
+                    title = Common._e("Smiley insertion");
                     content = smileyLinks(hash);
                     
                     break;
                 
                 // Style
                 case 'style':
-                    title = _e("Change style");
+                    title = Common._e("Change style");
                     
                     // Generate fonts list
                     var fonts = {
@@ -84,7 +84,7 @@ var Tooltip = (function () {
                     var fonts_html = '<div class="font-list">';
                     
                     // No fonts
-                    fonts_html += '<a href="#">' + _e("None") + '</a>';
+                    fonts_html += '<a href="#">' + Common._e("None") + '</a>';
                     
                     // Available fonts
                     $.each(fonts, function(id_name, full_name) {
@@ -93,13 +93,13 @@ var Tooltip = (function () {
                         
                         if(short_name.match(/,/)) {
                             var name_split = short_name.split(',');
-                            short_name = trim(name_split[0]);
+                            short_name = $.trim(name_split[0]);
                         }
                         
                         short_name = short_name.replace(/([^a-z0-9\s]+)/gi, '');
                         
                         // Add this to the HTML
-                        fonts_html += '<a href="#" data-value="' + encodeQuotes(id_name) + '" data-font="' + encodeQuotes(full_name) + '" style="font-family: ' + encodeQuotes(full_name) + ';">' + short_name.htmlEnc() + '</a>';
+                        fonts_html += '<a href="#" data-value="' + Common.encodeQuotes(id_name) + '" data-font="' + Common.encodeQuotes(full_name) + '" style="font-family: ' + Common.encodeQuotes(full_name) + ';">' + short_name.htmlEnc() + '</a>';
                     });
                     fonts_html += '</div>';
                     
@@ -120,13 +120,13 @@ var Tooltip = (function () {
                             '</div>' + 
                             
                             '<div class="font-change">' + 
-                                '<a class="font-current" href="#">' + _e("None") + '</a>' + 
+                                '<a class="font-current" href="#">' + Common._e("None") + '</a>' + 
                                 fonts_html + 
                             '</div>' + 
                         '</label>' + 
-                        '<label class="bold"><input type="checkbox" class="bold" />' + _e("Text in bold") + '</label>' + 
-                        '<label class="italic"><input type="checkbox" class="italic" />' + _e("Text in italic") + '</label>' + 
-                        '<label class="underline"><input type="checkbox" class="underline" />' + _e("Underlined text") + '</label>' + 
+                        '<label class="bold"><input type="checkbox" class="bold" />' + Common._e("Text in bold") + '</label>' + 
+                        '<label class="italic"><input type="checkbox" class="italic" />' + Common._e("Text in italic") + '</label>' + 
+                        '<label class="underline"><input type="checkbox" class="underline" />' + Common._e("Underlined text") + '</label>' + 
                         '<a href="#" class="color" style="background-color: #b10808; clear: both;" data-color="b10808"></a>' + 
                         '<a href="#" class="color" style="background-color: #e5860c;" data-color="e5860c"></a>' + 
                         '<a href="#" class="color" style="background-color: #f0f30e;" data-color="f0f30e"></a>' + 
@@ -146,22 +146,22 @@ var Tooltip = (function () {
                 
                 // File send
                 case 'file':
-                    title = _e("Send a file");
-                    content = '<p style="margin-bottom: 8px;">' + _e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
+                    title = Common._e("Send a file");
+                    content = '<p style="margin-bottom: 8px;">' + Common._e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
                     content += '<form id="oob-upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
                     
                     break;
                 
                 // Chat log
                 case 'save':
-                    title = _e("Save chat");
-                    content = '<p style="margin-bottom: 8px;">' + _e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>';
+                    title = Common._e("Save chat");
+                    content = '<p style="margin-bottom: 8px;">' + Common._e("Click on the following link to get the chat log, and wait. Then click again to get the file.") + '</p>';
                     
                     // Possible to generate any log?
                     if($(path + ' .one-line').size())
-                        content += '<a href="#" class="tooltip-actionlog">' + _e("Generate file!") + '</a>';
+                        content += '<a href="#" class="tooltip-actionlog">' + Common._e("Generate file!") + '</a>';
                     else
-                        content += '<span class="tooltip-nolog">' + _e("This chat is empty!") + '</span>';
+                        content += '<span class="tooltip-nolog">' + Common._e("This chat is empty!") + '</span>';
                     
                     break;
             }
@@ -240,7 +240,7 @@ var Tooltip = (function () {
                         if(!$(this).attr('data-value')) {
                             $(font_current).removeAttr('data-font')
                                            .removeAttr('data-value')
-                                           .text(_e("None"));
+                                           .text(Common._e("None"));
                             
                             $(message_area).removeAttr('data-font');
                         }
@@ -272,7 +272,7 @@ var Tooltip = (function () {
                     $(fontsize_select).click(function() {
                         // No font-size selected
                         if(!$(this).attr('data-value')) {
-                            $(fontsize_current).removeAttr('data-value').text(_e("16"));
+                            $(fontsize_current).removeAttr('data-value').text(Common._e("16"));
                             $(message_area).removeAttr('data-fontsize');
                         }
                         
@@ -426,14 +426,14 @@ var Tooltip = (function () {
                     
                     // Input click event
                     $(path_tooltip + ' #oob-upload input[type="file"], ' + path_tooltip + ' #oob-upload input[type="submit"]').click(function() {
-                        if(exists(path_tooltip + ' #oob-upload input[type="reset"]'))
+                        if(Common.exists(path_tooltip + ' #oob-upload input[type="reset"]'))
                             return;
                         
                         // Lock the bubble
                         $(path_bubble).addClass('locked');
                         
                         // Add a cancel button
-                        $(this).after('<input type="reset" value="' + _e("Cancel") + '" />');
+                        $(this).after('<input type="reset" value="' + Common._e("Cancel") + '" />');
                         
                         // Cancel button click event
                         $(path_tooltip + ' #oob-upload input[type="reset"]').click(function() {
@@ -450,7 +450,7 @@ var Tooltip = (function () {
                     // Chat log generation click event
                     $(path_tooltip + ' .tooltip-actionlog').click(function() {
                         // Replace it with a waiting notice
-                        $(this).replaceWith('<span class="tooltip-waitlog">' + _e("Please wait...") + '</span>');
+                        $(this).replaceWith('<span class="tooltip-waitlog">' + Common._e("Please wait...") + '</span>');
                         
                         generateChatLog(xid, hash);
                         

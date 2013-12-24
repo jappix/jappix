@@ -30,52 +30,52 @@ var Inbox = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Your inbox") + '</div>' + 
+            '<div class="top">' + Common._e("Your inbox") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="head inbox-head">' + 
-                    '<div class="head-text inbox-head-text">' + _e("Available actions") + '</div>' + 
+                    '<div class="head-text inbox-head-text">' + Common._e("Available actions") + '</div>' + 
                     
                     '<div class="head-actions inbox-head-actions">' + 
-                        '<a href="#" class="a-delete-messages">' + _e("Clean") + '</a>' + 
-                        '<a href="#" class="a-new-message">' + _e("New") + '</a>' + 
-                        '<a href="#" class="a-show-messages">' + _e("Received") + '</a>' + 
+                        '<a href="#" class="a-delete-messages">' + Common._e("Clean") + '</a>' + 
+                        '<a href="#" class="a-new-message">' + Common._e("New") + '</a>' + 
+                        '<a href="#" class="a-show-messages">' + Common._e("Received") + '</a>' + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div class="inbox-results">' + 
-                    '<p class="inbox-noresults">' + _e("Your inbox is empty.") + '</p>' + 
+                    '<p class="inbox-noresults">' + Common._e("Your inbox is empty.") + '</p>' + 
                     
                     '<div class="inbox"></div>' + 
                 '</div>' + 
                 
                 '<div class="inbox-new">' + 
                     '<div class="inbox-new-to inbox-new-block search">' + 
-                        '<p class="inbox-new-text">' + _e("To") + '</p>' + 
+                        '<p class="inbox-new-text">' + Common._e("To") + '</p>' + 
                         
                         '<input name="inbox-new-to-input" class="inbox-new-input inbox-new-to-input" type="text" required="" />' + 
                     '</div>' + 
                     
                     '<div class="inbox-new-topic inbox-new-block">' + 
-                        '<p class="inbox-new-text">' + _e("Subject") + '</p>' + 
+                        '<p class="inbox-new-text">' + Common._e("Subject") + '</p>' + 
                         
                         '<input name="inbox-new-subject-input" class="inbox-new-input inbox-new-subject-input" type="text" required="" />' + 
                     '</div>' + 
                     
                     '<div class="inbox-new-body inbox-new-block">' + 
-                        '<p class="inbox-new-text">' + _e("Content") + '</p>' + 
+                        '<p class="inbox-new-text">' + Common._e("Content") + '</p>' + 
                         
                         '<textarea class="inbox-new-textarea" rows="8" cols="60" required=""></textarea>' + 
                     '</div>' + 
                     
                     '<form class="inbox-new-file inbox-new-block" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
-                        '<p class="inbox-new-text">' + _e("File") + '</p>' + 
+                        '<p class="inbox-new-text">' + Common._e("File") + '</p>' + 
                         
                         generateFileShare() + 
                     '</form>' + 
                     
                     '<div class="inbox-new-send inbox-new-block">' + 
-                        '<a href="#" class="send one-button talk-images">' + _e("Send message") + '</a>' + 
+                        '<a href="#" class="send one-button talk-images">' + Common._e("Send message") + '</a>' + 
                     '</div>' + 
                 '</div>' + 
             '</div>' + 
@@ -83,7 +83,7 @@ var Inbox = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -166,14 +166,14 @@ var Inbox = (function () {
             
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored message
                 if(current.match(db_regex)) {
                     // Get the values
-                    var value = $(XMLFromString(storageDB.getItem(current)));
+                    var value = $(Common.XMLFromString(DataStore.storageDB.getItem(current)));
                     
                     // Create the storage node
                     storage.appendChild(iq.buildNode('message', {
@@ -280,7 +280,7 @@ var Inbox = (function () {
             // Any file to attach?
             var attached = '#inbox .inbox-new-file a.file';
             
-            if(exists(attached))
+            if(Common.exists(attached))
                 body += '\n' + 
                     '\n' + 
                     $(attached).attr('data-attachedtitle') + ' - ' + $(attached).attr('data-attachedhref');
@@ -327,7 +327,7 @@ var Inbox = (function () {
                     
                     // Edit the XID if needed
                     current = current.replace(/ /g, '');
-                    current = generateXID(current, 'chat');
+                    current = Common.generateXID(current, 'chat');
                     
                     // We send the message
                     sendInboxMessage(current, subject, body);
@@ -415,12 +415,12 @@ var Inbox = (function () {
             var one_message = inbox + 'one-message.' + id;
             
             // Message yet displayed!
-            if(exists(one_message)) {
+            if(Common.exists(one_message)) {
                 return false;
             }
             
             // Get the nearest element
-            var stamp = extractStamp(Date.jab2date(date));
+            var stamp = DateUtils.extractStamp(Date.jab2date(date));
             var nearest = sortElementByStamp(stamp, '#inbox .one-message');
             
             // Get the buddy name
@@ -448,7 +448,7 @@ var Inbox = (function () {
             
             // Click events
             $(one_message + ' .message-head').click(function() {
-                if(!exists(one_message + ' .message-content'))
+                if(!Common.exists(one_message + ' .message-content'))
                     revealInboxMessage(id, from, subject, content, name, date, status);
                 else
                     hideInboxMessage(id);
@@ -457,7 +457,7 @@ var Inbox = (function () {
             });
             
             // Get the user avatar
-            getAvatar(from, 'cache', 'true', 'forget');
+            Avatar.get(from, 'cache', 'true', 'forget');
 
             return true;
         } catch(e) {
@@ -488,7 +488,7 @@ var Inbox = (function () {
             xml += '</message>';
             
             // Store this message!
-            setDB(DESKTOP_HASH, 'inbox', id, xml);
+            DataStore.setDB(DESKTOP_HASH, 'inbox', id, xml);
         } catch(e) {
             Console.error('Inbox.storeMessage', e);
         }
@@ -509,7 +509,7 @@ var Inbox = (function () {
             $('#inbox .one-message.' + id).remove();
             
             // Remove the message from the database
-            removeDB(DESKTOP_HASH, 'inbox', id);
+            DataStore.removeDB(DESKTOP_HASH, 'inbox', id);
             
             // Check the unread messages
             checkInboxMessages();
@@ -536,13 +536,13 @@ var Inbox = (function () {
             // Remove all the messages from the database
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored message
                 if(current.match(db_regex))
-                    removeDB(DESKTOP_HASH, 'inbox', RegExp.$1);
+                    DataStore.removeDB(DESKTOP_HASH, 'inbox', RegExp.$1);
             }
             
             // Prevent the database lag
@@ -586,14 +586,14 @@ var Inbox = (function () {
             // Read the local inbox database
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Database pointer
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // Check inbox messages
                 if(current.match(db_regex)) {
                     // Read the current status
-                    var status = $(XMLFromString(storageDB.getItem(current))).find('status').text();
+                    var status = $(Common.XMLFromString(DataStore.storageDB.getItem(current))).find('status').text();
                     
                     // Found an unread message
                     if(status == 'unread')
@@ -665,10 +665,10 @@ var Inbox = (function () {
                     '<div class="message-body">' + filterThisMessage(content, name, true) + '</div>' + 
                     
                     '<div class="message-meta">' + 
-                        '<span class="date">' + parseDate(date) + '</span>' + 
+                        '<span class="date">' + DateUtils.parse(date) + '</span>' + 
                         
-                        '<a href="#" class="reply one-button talk-images">' + _e("Reply") + '</a>' + 
-                        '<a href="#" class="remove one-button talk-images">' + _e("Delete") + '</a>' + 
+                        '<a href="#" class="reply one-button talk-images">' + Common._e("Reply") + '</a>' + 
+                        '<a href="#" class="remove one-button talk-images">' + Common._e("Delete") + '</a>' + 
                         
                         '<div class="clear">' + 
                     '</div>' + 
@@ -691,8 +691,8 @@ var Inbox = (function () {
             // Unread message
             if(status == 'unread') {
                 // Update our database
-                var xml = getDB(DESKTOP_HASH, 'inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
-                setDB(DESKTOP_HASH, 'inbox', id, xml);
+                var xml = DataStore.getDB(DESKTOP_HASH, 'inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
+                DataStore.setDB(DESKTOP_HASH, 'inbox', id, xml);
                 
                 // Remove the unread class
                 $(one_message).removeClass('message-unread');
@@ -778,14 +778,14 @@ var Inbox = (function () {
             // Read the local database
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored message
                 if(current.match(db_regex)) {
                     // Get the current value
-                    var value = $(XMLFromString(storageDB.getItem(current)));
+                    var value = $(Common.XMLFromString(DataStore.storageDB.getItem(current)));
                     
                     // Display the current message
                     displayInboxMessage(
@@ -838,7 +838,7 @@ var Inbox = (function () {
             
             // Process the returned data
             if(dData.find('error').size()) {
-                openThisError(4);
+                Board.openThisError(4);
                 
                 Console.error('Error while attaching the file', dData.find('error').text());
             }
@@ -851,7 +851,7 @@ var Inbox = (function () {
                 
                 // Hide the attach link, show the unattach one
                 $('#inbox .inbox-new-file input').hide();
-                $('#inbox .inbox-new-file').append('<a class="file ' + encodeQuotes(fileCategory(explodeThis('/', fType, 1))) + ' talk-images" href="' + encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + _e("Remove") + '</a>');
+                $('#inbox .inbox-new-file').append('<a class="file ' + Common.encodeQuotes(fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + Common._e("Remove") + '</a>');
                 
                 // Set values to the file link
                 $('#inbox .inbox-new-file a.file').attr('data-attachedtitle', fName)
@@ -896,7 +896,7 @@ var Inbox = (function () {
             // Send the message when enter pressend
             $(inbox + 'inbox-new input').keyup(function(e) {
                 if(e.keyCode == 13) {
-                    if(exists(dHovered))
+                    if(Common.exists(dHovered))
                         addBuddySearch(destination, $(dHovered).attr('data-xid'));
                     else
                         checkInboxMessage();

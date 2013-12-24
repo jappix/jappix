@@ -55,7 +55,7 @@ var Storage = (function () {
 
         try {
             var handleXML = iq.getQuery();
-            var handleFrom = fullXID(getStanzaFrom(iq));
+            var handleFrom = Common.fullXID(Common.getStanzaFrom(iq));
             
             // Define some vars
             var options = $(handleXML).find('storage[xmlns="' + NS_OPTIONS + '"]');
@@ -74,7 +74,7 @@ var Storage = (function () {
                 var value = $(this).text();
                 
                 // We display the storage
-                setDB(DESKTOP_HASH, 'options', type, value);
+                DataStore.setDB(DESKTOP_HASH, 'options', type, value);
                 
                 // If this is the buddy list show status
                 if((type == 'roster-showall') && (value == '1'))
@@ -116,12 +116,12 @@ var Storage = (function () {
                 
                 // Join the chat if autojoin is enabled
                 if(autojoin == 'true')
-                    checkChatCreate(xid, 'groupchat', nick, password, name);
+                    Chat.checkCreate(xid, 'groupchat', nick, password, name);
             });
             
             // Parse the roster notes xml
             rosternotes.find('note').each(function() {
-                setDB(DESKTOP_HASH, 'rosternotes', $(this).attr('jid'), $(this).text());
+                DataStore.setDB(DESKTOP_HASH, 'rosternotes', $(this).attr('jid'), $(this).text());
             });
             
             // Options received
@@ -142,11 +142,12 @@ var Storage = (function () {
                 Console.log('Inbox received.');
                 
                 // Send the first presence!
-                firstPresence(getDB(DESKTOP_HASH, 'checksum', 1));
+                firstPresence(DataStore.getDB(DESKTOP_HASH, 'checksum', 1));
                 
                 // Check we have new messages (play a sound if any unread messages)
-                if(checkInboxMessages())
-                    soundPlay(2);
+                if(checkInboxMessages()) {
+                    Audio.play(2);
+                }
                 
                 $('.inbox-hidable').show();
             }

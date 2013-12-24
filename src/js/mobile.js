@@ -38,8 +38,8 @@ var Mobile = (function () {
             
             // A domain is specified
             if(xid.indexOf('@') != -1) {
-                username = getXIDNick(xid);
-                domain = getXIDHost(xid);
+                username = self.getXIDNick(xid);
+                domain = self.getXIDHost(xid);
                 
                 // Domain is locked and not the same
                 if((LOCK_HOST == 'on') && (domain != HOST_MAIN)) {
@@ -84,9 +84,9 @@ var Mobile = (function () {
                 con.registerHandler('message', handleMessage);
                 con.registerHandler('presence', handlePresence);
                 con.registerHandler('iq', handleIQ);
-                con.registerHandler('onconnect', handleConnected);
+                con.registerHandler('onconnect', self.handleConnected);
                 con.registerHandler('onerror', handleError);
-                con.registerHandler('ondisconnect', handleDisconnected);
+                con.registerHandler('ondisconnect', self.handleDisconnected);
                 
                 // We retrieve what the user typed in the login inputs
                 oArgs = new Object();
@@ -274,34 +274,6 @@ var Mobile = (function () {
     };
 
 
-    /**
-     * Returns Jappix location
-     * @public
-     * @return {string}
-     */
-    self.getJappixLocation = function() {
-
-        try {
-            var url = window.location.href;
-    
-            // If the URL has variables, remove them
-            if(url.indexOf('?') != -1)
-                url = url.split('?')[0];
-            if(url.indexOf('#') != -1)
-                url = url.split('#')[0];
-            
-            // No "/" at the end
-            if(!url.match(/(.+)\/$/))
-                url += '/';
-            
-            return url;
-        } catch(e) {
-            Console.error('Mobile.getJappixLocation', e);
-        }
-
-    };
-
-
 	/**
      * Handles message stanza
      * @public
@@ -319,7 +291,7 @@ var Mobile = (function () {
                 
                 if(body) {
                     // Get the values
-                    var xid = cutResource(msg.getFrom());
+                    var xid = self.cutResource(msg.getFrom());
                     var hash = hex_md5(xid);
                     var nick = getNick(xid, hash);
                     
@@ -351,7 +323,7 @@ var Mobile = (function () {
 
         try {
             // Define the variables
-            var xid = cutResource(pre.getFrom());
+            var xid = self.cutResource(pre.getFrom());
             var hash = hex_md5(xid);
             var type = pre.getType();
             var show = pre.getShow();
@@ -476,7 +448,7 @@ var Mobile = (function () {
             '<div id="talk">' + 
                 '<div class="header">' + 
                     '<div class="mobile-images"></div>' + 
-                    '<button onclick="doLogout();">' + _e("Disconnect") + '</button>' + 
+                    '<button onclick="doLogout();">' + self._e("Disconnect") + '</button>' + 
                 '</div>' + 
                 
                 '<div id="roster"></div>' + 
@@ -485,7 +457,7 @@ var Mobile = (function () {
             '<div id="chat">' + 
                 '<div class="header">' + 
                     '<div class="mobile-images"></div>' + 
-                    '<button onclick="returnToRoster();">' + _e("Previous") + '</button>' + 
+                    '<button onclick="returnToRoster();">' + self._e("Previous") + '</button>' + 
                 '</div>' + 
                 
                 '<div id="chans"></div>' + 
@@ -686,7 +658,7 @@ var Mobile = (function () {
     self.getDirectNick = function(xid) {
 
         try {
-            return explodeThis('@', xid, 0);
+            return self.explodeThis('@', xid, 0);
         } catch(e) {
             Console.error('Mobile.getDirectNick', e);
         }
@@ -706,7 +678,7 @@ var Mobile = (function () {
         try {
             var path = 'buddy-' + hash;
             
-            if(exists(path)) {
+            if(Common.exists(path)) {
                 return document.getElementById(path).innerHTML;
             } else {
                 getDirectNick(xid);
@@ -758,7 +730,7 @@ var Mobile = (function () {
     self.cutResource = function(aXID) {
 
         try {
-            return explodeThis('/', aXID, 0);
+            return self.explodeThis('/', aXID, 0);
         } catch(e) {
             Console.error('Mobile.cutResource', e);
         }
@@ -775,7 +747,7 @@ var Mobile = (function () {
     self.getXIDNick = function(aXID) {
 
         try {
-            return explodeThis('@', aXID, 0);
+            return self.explodeThis('@', aXID, 0);
         } catch(e) {
             Console.error('Mobile.getXIDNick', e);
         }
@@ -792,7 +764,7 @@ var Mobile = (function () {
     self.getXIDHost = function(aXID) {
 
         try {
-            return explodeThis('@', aXID, 1);
+            return self.explodeThis('@', aXID, 1);
         } catch(e) {
             Console.error('Mobile.getXIDHost', e);
         }
@@ -847,7 +819,7 @@ var Mobile = (function () {
             html = '<span><b';
             
             if(nick == 'me')
-                html += ' class="me">' + _e("You");
+                html += ' class="me">' + self._e("You");
             else
                 html += ' class="him">' + nick;
             
@@ -954,7 +926,7 @@ var Mobile = (function () {
             var hash = hex_md5(xid);
             
             // If the chat was not yet opened
-            if(!exists('chat-' + hash)) {
+            if(!Common.exists('chat-' + hash)) {
                 // No nick?
                 if(!nick)
                     nick = getNick(xid, hash);

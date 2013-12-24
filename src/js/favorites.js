@@ -30,85 +30,85 @@ var Favorites = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Manage favorite rooms") + '</div>' + 
+            '<div class="top">' + Common._e("Manage favorite rooms") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="switch-fav">' + 
                     '<div class="room-switcher room-list">' + 
                         '<div class="icon list-icon talk-images"></div>' + 
                         
-                        _e("Change favorites") + 
+                        Common._e("Change favorites") + 
                     '</div>' + 
                     
                     '<div class="room-switcher room-search">' + 
                         '<div class="icon search-icon talk-images"></div>' + 
                         
-                        _e("Search a room") + 
+                        Common._e("Search a room") + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div class="static-fav">' + 
                     '<div class="favorites-edit favorites-content">' + 
                         '<div class="head fedit-head static-fav-head">' + 
-                            '<div class="head-text fedit-head-text">' + _e("Select a favorite") + '</div>' + 
+                            '<div class="head-text fedit-head-text">' + Common._e("Select a favorite") + '</div>' + 
                             
                             '<select name="fedit-head-select" class="head-select fedit-head-select"></select>' + 
                         '</div>' + 
                         
                         '<div class="results fedit-results static-fav-results">' + 
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Name") + '</label>' + 
+                                '<label>' + Common._e("Name") + '</label>' + 
                                 
                                 '<input class="fedit-title" type="text" required="" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Nickname") + '</label>' + 
+                                '<label>' + Common._e("Nickname") + '</label>' + 
                                 
                                 '<input class="fedit-nick" type="text" value="' + getNick() + '" required="" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Room") + '</label>' + 
+                                '<label>' + Common._e("Room") + '</label>' + 
                                 
                                 '<input class="fedit-chan" type="text" required="" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Server") + '</label>' + 
+                                '<label>' + Common._e("Server") + '</label>' + 
                                 
                                 '<input class="fedit-server" type="text" value="' + HOST_MUC + '" required="" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Password") + '</label>' + 
+                                '<label>' + Common._e("Password") + '</label>' + 
                                 
                                 '<input class="fedit-password" type="password" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
-                                '<label>' + _e("Automatic") + '</label>' + 
+                                '<label>' + Common._e("Automatic") + '</label>' + 
                                 
                                 '<input type="checkbox" class="fedit-autojoin" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-actions">' + 
-                                '<a href="#" class="fedit-terminate fedit-add add one-button talk-images">' + _e("Add") + '</a>' + 
-                                '<a href="#" class="fedit-terminate fedit-edit one-button talk-images">' + _e("Edit") + '</a>' + 
-                                '<a href="#" class="fedit-terminate fedit-remove remove one-button talk-images">' + _e("Remove") + '</a>' + 
+                                '<a href="#" class="fedit-terminate fedit-add add one-button talk-images">' + Common._e("Add") + '</a>' + 
+                                '<a href="#" class="fedit-terminate fedit-edit one-button talk-images">' + Common._e("Edit") + '</a>' + 
+                                '<a href="#" class="fedit-terminate fedit-remove remove one-button talk-images">' + Common._e("Remove") + '</a>' + 
                             '</div>' + 
                         '</div>' + 
                     '</div>' + 
                     
                     '<div class="favorites-search favorites-content">' + 
                         '<div class="head fsearch-head static-fav-head">' + 
-                            '<div class="head-text fsearch-head-text">' + _e("Search a room on") + '</div>' + 
+                            '<div class="head-text fsearch-head-text">' + Common._e("Search a room on") + '</div>' + 
                             
                             '<input type="text" class="head-input fsearch-head-server" value="' + HOST_MUC + '" />' + 
                         '</div>' + 
                         
                         '<div class="results fsearch-results static-fav-results">' + 
-                            '<p class="fsearch-noresults">' + _e("No room found on this server.") + '</p>' + 
+                            '<p class="fsearch-noresults">' + Common._e("No room found on this server.") + '</p>' + 
                         '</div>' + 
                     '</div>' + 
                 '</div>' + 
@@ -117,7 +117,7 @@ var Favorites = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -193,7 +193,7 @@ var Favorites = (function () {
             var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
             
             // Add a remove button instead of the add one
-            $(button + '.add').replaceWith('<a href="#" class="one-button remove talk-images">' + _e("Remove") + '</a>');
+            $(button + '.add').replaceWith('<a href="#" class="one-button remove talk-images">' + Common._e("Remove") + '</a>');
             
             // Click event
             $(button + '.remove').click(function() {
@@ -204,7 +204,7 @@ var Favorites = (function () {
             $('#' + hex_md5(roomXID) + ' .tools-add').hide();
             
             // Add the database entry
-            displayFavorites(roomXID, explodeThis(' (', roomName, 0), getNick(), '0', '');
+            displayFavorites(roomXID, Common.explodeThis(' (', roomName, 0), getNick(), '0', '');
             
             // Publish the favorites
             favoritePublish();
@@ -231,7 +231,7 @@ var Favorites = (function () {
             var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
             
             // Add a remove button instead of the add one
-            $(button + '.remove').replaceWith('<a href="#" class="one-button add talk-images">' + _e("Add") + '</a>');
+            $(button + '.remove').replaceWith('<a href="#" class="one-button add talk-images">' + Common._e("Add") + '</a>');
             
             // Click event
             $(button + '.add').click(function() {
@@ -276,15 +276,15 @@ var Favorites = (function () {
             
             // We retrieve the values
             var xid = $(favorites + 'fedit-head-select').val();
-            var data = XMLFromString(getDB(DESKTOP_HASH, 'favorites', xid));
+            var data = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'favorites', xid));
             
             // If this is not the default room
             if(xid != 'none') {
                 // We apply the values
                 $(favorites + 'fedit-title').val($(data).find('name').text());
                 $(favorites + 'fedit-nick').val($(data).find('nick').text());
-                $(favorites + 'fedit-chan').val(getXIDNick(xid));
-                $(favorites + 'fedit-server').val(getXIDHost(xid));
+                $(favorites + 'fedit-chan').val(Common.getXIDNick(xid));
+                $(favorites + 'fedit-server').val(Common.getXIDHost(xid));
                 $(favorites + 'fedit-password').val($(data).find('password').text());
                 
                 if($(data).find('autojoin').text() == 'true')
@@ -410,7 +410,7 @@ var Favorites = (function () {
             
             // Must remove it from database?
             if(database) {
-                removeDB(DESKTOP_HASH, 'favorites', xid);
+                DataStore.removeDB(DESKTOP_HASH, 'favorites', xid);
             }
         } catch(e) {
             Console.error('Favorites.remove', e);
@@ -436,13 +436,13 @@ var Favorites = (function () {
             // We generate the XML
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored favorite
                 if(current.match(db_regex)) {
-                    var data = XMLFromString(storageDB.getItem(current));
+                    var data = Common.XMLFromString(DataStore.storageDB.getItem(current));
                     var xid = $(data).find('xid').text();
                     var rName = $(data).find('name').text();
                     var nick = $(data).find('nick').text();
@@ -508,10 +508,10 @@ var Favorites = (function () {
 
         try {
             var path = '#favorites .';
-            var from = fullXID(getStanzaFrom(iq));
+            var from = Common.fullXID(Common.getStanzaFrom(iq));
             
             if(!iq || (iq.getType() != 'result')) {
-                openThisError(3);
+                Board.openThisError(3);
                 
                 $(path + 'wait').hide();
                 
@@ -537,13 +537,13 @@ var Favorites = (function () {
                             // Initialize the room HTML
                             html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 
                                     '<div class="room-name">' + roomName.htmlEnc() + '</div>' + 
-                                    '<a href="#" class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + _e("Join") + '</a>';
+                                    '<a href="#" class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
                             
                             // This room is yet a favorite
-                            if(existDB('favorites', roomXID))
-                                html += '<a href="#" class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Remove") + '</a>';
+                            if(DataStore.existDB('favorites', roomXID))
+                                html += '<a href="#" class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
                             else
-                                html += '<a href="#" class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + _e("Add") + '</a>';
+                                html += '<a href="#" class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';
                             
                             // Close the room HTML
                             html += '</div>';
@@ -578,7 +578,7 @@ var Favorites = (function () {
 
         try {
             quitFavorites();
-            checkChatCreate(room, 'groupchat', '', '', getXIDNick(room));
+            Chat.checkCreate(room, 'groupchat', '', '', Common.getXIDNick(room));
         } catch(e) {
             Console.error('Favorites.join', e);
         } finally {
@@ -602,7 +602,7 @@ var Favorites = (function () {
 
         try {
             // Generate the HTML code
-            var html = '<option value="' + encodeQuotes(xid) + '">' + name.htmlEnc() + '</option>';
+            var html = '<option value="' + Common.encodeQuotes(xid) + '">' + name.htmlEnc() + '</option>';
             
             // Remove the existing favorite
             removeFavorite(xid, false);
@@ -612,7 +612,7 @@ var Favorites = (function () {
             
             // We store the informations
             var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
-            setDB(DESKTOP_HASH, 'favorites', xid, value);
+            DataStore.setDB(DESKTOP_HASH, 'favorites', xid, value);
         } catch(e) {
             Console.error('Favorites.display', e);
         }
@@ -634,22 +634,22 @@ var Favorites = (function () {
             // Read the database
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored favorite
                 if(current.match(db_regex)) {
-                    var data = XMLFromString(storageDB.getItem(current));
+                    var data = Common.XMLFromString(DataStore.storageDB.getItem(current));
                     
                     // Add the current favorite to the HTML code
-                    html += '<option value="' + encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';
+                    html += '<option value="' + Common.encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';
                 }
             }
             
             // Generate specific HTML code
-            var favorites_bubble = '<option value="none" class="gc-join-first-option" selected="">' + _e("Select a favorite") +  '</option>' + html;
-            var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + _e("Select a favorite") + '</option>' + html;
+            var favorites_bubble = '<option value="none" class="gc-join-first-option" selected="">' + Common._e("Select a favorite") +  '</option>' + html;
+            var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + Common._e("Select a favorite") + '</option>' + html;
             
             // Append the HTML code
             $('#buddy-list .buddy-conf-groupchat-select').html(favorites_bubble);

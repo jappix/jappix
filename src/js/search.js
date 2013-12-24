@@ -42,7 +42,7 @@ var Search = (function () {
                 query = '';
             
             // Replace forbidden characters in regex
-            query = escapeRegex(query);
+            query = Common.escapeRegex(query);
             
             // Create an empty array
             var results = new Array();
@@ -164,7 +164,7 @@ var Search = (function () {
                     current = current.replace(regex, '<b>$&</b>');
                     
                     // Add the current element to the global code
-                    code += '<li onclick="return addBuddySearch(\'' + encodeOnclick(destination) + '\', \'' + encodeOnclick(entered[b]) + '\');" data-xid="' + encodeQuotes(entered[b]) + '">' + current + '</li>';
+                    code += '<li onclick="return addBuddySearch(\'' + encodeOnclick(destination) + '\', \'' + encodeOnclick(entered[b]) + '\');" data-xid="' + Common.encodeQuotes(entered[b]) + '">' + current + '</li>';
                 }
                 
                 // Finish the code generation
@@ -228,7 +228,7 @@ var Search = (function () {
             var i = 0;
             
             // Switching yet launched
-            if(exists(path + '.hovered')) {
+            if(Common.exists(path + '.hovered')) {
                 var index = $(path).attr('data-hovered');
                 
                 if(index)

@@ -25,7 +25,7 @@ var Anonymous = (function () {
      * @public
      * @return {undefined}
      */
-    self.anonymousConnected = function() {
+    self.connected = function() {
 
         try {
             Console.info('Jappix (anonymous) is now connected.');
@@ -45,10 +45,10 @@ var Anonymous = (function () {
                 firstPresence('');
                 
                 // Set last activity stamp
-                LAST_ACTIVITY = getTimeStamp();
+                LAST_ACTIVITY = DateUtils.getTimeStamp();
                 
                 // Create the new groupchat
-                checkChatCreate(generateXID(ANONYMOUS_ROOM, 'groupchat'), 'groupchat');
+                Chat.checkCreate(Common.generateXID(ANONYMOUS_ROOM, 'groupchat'), 'groupchat');
                 
                 // Remove some nasty elements for the anonymous mode
                 $('.tools-mucadmin, .tools-add').remove();
@@ -77,7 +77,7 @@ var Anonymous = (function () {
      * @public
      * @return {undefined}
      */
-    self.anonymousDisconnected = function() {
+    self.disconnected = function() {
 
         try {
             Console.info('Jappix (anonymous) is now disconnected.');
@@ -94,7 +94,7 @@ var Anonymous = (function () {
      * @param {string} server
      * @return {boolean}
      */
-    self.anonymousLogin = function(server) {
+    self.login = function(server) {
 
         try {
             // We define the http binding parameters
@@ -115,9 +115,9 @@ var Anonymous = (function () {
             con.registerHandler('message', handleMessage);
             con.registerHandler('presence', handlePresence);
             con.registerHandler('iq', handleIQ);
-            con.registerHandler('onconnect', anonymousConnected);
+            con.registerHandler('onconnect', self.connected);
             con.registerHandler('onerror', handleError);
-            con.registerHandler('ondisconnect', anonymousDisconnected);
+            con.registerHandler('ondisconnect', self.disconnected);
             
             // We set the anonymous connection parameters
             oArgs = new Object();
@@ -136,10 +136,10 @@ var Anonymous = (function () {
             Console.error('Anonymous.login', e);
 
             // Reset Jappix
-            anonymousDisconnected();
+            self.disconnected();
             
             // Open an unknown error
-            openThisError(2);
+            Board.openThisError(2);
         } finally {
             return false;
         }
@@ -152,22 +152,24 @@ var Anonymous = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchAnonymous = function() {
+    self.launch = function() {
 
         try {
-            Console.info('Anonymous mode detected, connecting...');
-            
-            // We add the login wait div
-            showGeneralWait();
-            
-            // Get the vars
-            if(LINK_VARS['r'])
-                ANONYMOUS_ROOM = LINK_VARS['r'];
-            if(LINK_VARS['n'])
-                ANONYMOUS_NICK = LINK_VARS['n'];
-            
-            // Fire the login action
-            anonymousLogin(HOST_ANONYMOUS);
+            $(document).ready(function() {
+                Console.info('Anonymous mode detected, connecting...');
+                
+                // We add the login wait div
+                showGeneralWait();
+                
+                // Get the vars
+                if(LINK_VARS['r'])
+                    ANONYMOUS_ROOM = LINK_VARS['r'];
+                if(LINK_VARS['n'])
+                    ANONYMOUS_NICK = LINK_VARS['n'];
+                
+                // Fire the login action
+                self.login(HOST_ANONYMOUS);
+            });
         } catch(e) {
             Console.error('Anonymous.launch', e);
         }
@@ -182,5 +184,4 @@ var Anonymous = (function () {
 
 })();
 
-// Launch this plugin!
-$(document).ready(Anonymous.launchAnonymous);
+Anonymous.launch();

@@ -31,7 +31,7 @@ var Filter = (function () {
     self.emoteImage = function(image, text, after) {
 
         try {
-            return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + encodeQuotes(text) + '" src="' + './img/others/blank.gif' + '" /> ' + after;
+            return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + Common.encodeQuotes(text) + '" src="' + './img/others/blank.gif' + '" /> ' + after;
         } catch(e) {
             Console.error('Filter.emoteImage', e);
         }
@@ -200,7 +200,7 @@ var Filter = (function () {
                           );
                           
             // Check if Filter for XHTML-IM images is enabled
-            if(getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') != '1') {
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') != '1') {
                 elements.push("img");
             };
             

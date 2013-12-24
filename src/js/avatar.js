@@ -33,7 +33,7 @@ var Avatar = (function () {
      * @param {boolean} photo
      * @return {boolean}
      */
-    self.getAvatar = function(xid, mode, enabled, photo) {
+    self.get = function(xid, mode, enabled, photo) {
 
         /* REF: http://xmpp.org/extensions/xep-0153.html */
 
@@ -43,7 +43,9 @@ var Avatar = (function () {
                 return false;
             
             // Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
-            var xml = XMLFromString(getPersistent('global', 'avatar', xid));
+            var xml = Common.XMLFromString(
+                DataStore.getPersistent('global', 'avatar', xid)
+            );
             var forced = false;
             
             // Retrieving forced?
@@ -56,7 +58,7 @@ var Avatar = (function () {
                 AVATAR_PENDING.push(xid);
                 
                 // Reset the avatar
-                resetAvatar(xid, hex_md5(xid));
+                self.reset(xid, hex_md5(xid));
                 
                 Console.warn('No avatar for: ' + xid);
             }
@@ -79,7 +81,7 @@ var Avatar = (function () {
                     AVATAR_PENDING.push(xid);
                     
                     // Display the cache avatar
-                    displayAvatar(xid, hex_md5(xid), type, binval);
+                    self.display(xid, hex_md5(xid), type, binval);
                     
                     Console.info('Read avatar from cache: ' + xid);
                 }
@@ -96,7 +98,7 @@ var Avatar = (function () {
                     
                     iq.appendNode('vCard', {'xmlns': NS_VCARD});
                     
-                    con.send(iq, handleAvatar);
+                    con.send(iq, self.handle);
                     
                     Console.info('Get avatar from server: ' + xid);
                 }
@@ -116,16 +118,16 @@ var Avatar = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleAvatar = function(iq) {
+    self.handle = function(iq) {
 
         try {
             // Extract the XML values
             var handleXML = iq.getNode();
-            var handleFrom = fullXID(getStanzaFrom(iq));
+            var handleFrom = Common.fullXID(Common.getStanzaFrom(iq));
             
             // Is this me? Remove the resource!
-            if(bareXID(handleFrom) == getXID())
-                handleFrom = bareXID(handleFrom);
+            if(Common.bareXID(handleFrom) == Common.getXID())
+                handleFrom = Common.bareXID(handleFrom);
             
             // Get some other values
             var hash = hex_md5(handleFrom);
@@ -134,8 +136,8 @@ var Avatar = (function () {
             var oChecksum = null;
             
             // Read our own checksum
-            if(handleFrom == getXID()) {
-                oChecksum = getDB(DESKTOP_HASH, 'checksum', 1);
+            if(handleFrom == Common.getXID()) {
+                oChecksum = DataStore.getDB(DESKTOP_HASH, 'checksum', 1);
                 
                 // Avoid the "null" value
                 if(!oChecksum)
@@ -145,13 +147,13 @@ var Avatar = (function () {
             // vCard not empty?
             if(find.size()) {
                 // We get our profile details
-                if(handleFrom == getXID()) {
+                if(handleFrom == Common.getXID()) {
                     // Get the names
                     var names = generateBuddyName(iq);
                     
                     // Write the values to the database
-                    setDB(DESKTOP_HASH, 'profile', 'name', names[0]);
-                    setDB(DESKTOP_HASH, 'profile', 'nick', names[1]);
+                    DataStore.setDB(DESKTOP_HASH, 'profile', 'name', names[0]);
+                    DataStore.setDB(DESKTOP_HASH, 'profile', 'nick', names[1]);
                 }
                 
                 // We get the avatar
@@ -176,17 +178,17 @@ var Avatar = (function () {
                 }
                 
                 // We display the user avatar
-                displayAvatar(handleFrom, hash, aType, aBinval);
+                self.display(handleFrom, hash, aType, aBinval);
                 
                 // Store the avatar
-                setPersistent('global', 'avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
+                DataStore.setPersistent('global', 'avatar', handleFrom, '<avatar><type>' + aType + '</type><binval>' + aBinval + '</binval><checksum>' + aChecksum + '</checksum><forced>false</forced></avatar>');
                 
                 Console.info('Avatar retrieved from server: ' + handleFrom);
             }
             
             // vCard is empty
             else
-                resetAvatar(handleFrom);
+                self.reset(handleFrom);
             
             // We got a new checksum for us?
             if(((oChecksum != null) && (oChecksum != aChecksum)) || !FIRST_PRESENCE_SENT) {
@@ -197,12 +199,12 @@ var Avatar = (function () {
                     pChecksum = '';
                 
                 // Update our temp. checksum
-                setDB(DESKTOP_HASH, 'checksum', 1, pChecksum);
+                DataStore.setDB(DESKTOP_HASH, 'checksum', 1, pChecksum);
                 
                 // Send the stanza
                 if(!FIRST_PRESENCE_SENT)
                     getStorage(NS_OPTIONS);
-                else if(hasPersistent())
+                else if(DataStore.hasPersistent())
                     presenceSend(pChecksum);
             }
         } catch(e) {
@@ -219,14 +221,14 @@ var Avatar = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.resetAvatar = function(xid, hash) {
+    self.reset = function(xid, hash) {
 
         try {
             // Store the empty avatar
-            setPersistent('global', 'avatar', xid, '<avatar><type>none</type><binval>none</binval><checksum>none</checksum><forced>false</forced></avatar>');
+            DataStore.setPersistent('global', 'avatar', xid, '<avatar><type>none</type><binval>none</binval><checksum>none</checksum><forced>false</forced></avatar>');
             
             // Display the empty avatar
-            displayAvatar(xid, hash, 'none', 'none');
+            self.display(xid, hash, 'none', 'none');
         } catch(e) {
             Console.error('Avatar.reset', e);
         }
@@ -243,7 +245,7 @@ var Avatar = (function () {
      * @param {string} binval
      * @return {undefined}
      */
-    self.displayAvatar = function(xid, hash, type, binval) {
+    self.display = function(xid, hash, type, binval) {
 
         try {
             // Initialize the vars

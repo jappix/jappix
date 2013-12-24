@@ -225,7 +225,7 @@ var Common = (function () {
     self.cutResource = function(aXID) {
 
         try {
-            return explodeThis('/', aXID, 0);
+            return self.explodeThis('/', aXID, 0);
         } catch(e) {
             Console.error('Common.cutResource', e);
         }
@@ -246,7 +246,7 @@ var Common = (function () {
         try {
             // Any resource?
             if(aXID.indexOf('/') != -1) {
-                resource = explodeThis('/', aXID, 1);
+                resource = self.explodeThis('/', aXID, 1);
             }
         } catch(e) {
             Console.error('Common.thisResource', e);
@@ -315,11 +315,11 @@ var Common = (function () {
 
         try {
             // Cut the resource
-            xid = cutResource(xid);
+            xid = self.cutResource(xid);
             
             // Launch nodeprep
             if(xid.indexOf('@') != -1)
-                xid = nodeprep(getXIDNick(xid)) + '@' + getXIDHost(xid);
+                xid = self.nodeprep(self.getXIDNick(xid)) + '@' + self.getXIDHost(xid);
             
             return xid;
         } catch(e) {
@@ -339,8 +339,8 @@ var Common = (function () {
 
         try {
             // Normalizes the XID
-            var full = bareXID(xid);
-            var resource = thisResource(xid);
+            var full = self.bareXID(xid);
+            var resource = self.thisResource(xid);
             
             // Any resource?
             if(resource)
@@ -365,9 +365,9 @@ var Common = (function () {
         try {
             // Gateway nick?
             if(aXID.match(/\\40/))
-                return explodeThis('\\40', aXID, 0);
+                return self.explodeThis('\\40', aXID, 0);
             
-            return explodeThis('@', aXID, 0);
+            return self.explodeThis('@', aXID, 0);
         } catch(e) {
             Console.error('Common.getXIDNick', e);
         }
@@ -384,7 +384,7 @@ var Common = (function () {
     self.getXIDHost = function(aXID) {
 
         try {
-            return explodeThis('@', aXID, 1);
+            return self.explodeThis('@', aXID, 1);
         } catch(e) {
             Console.error('Common.getXIDHost', e);
         }
@@ -416,7 +416,7 @@ var Common = (function () {
     self.isRTL = function() {
 
         try {
-            return (_e("default:LTR") == 'default:RTL');
+            return (self._e("default:LTR") == 'default:RTL');
         } catch(e) {
             Console.error('Common.isRTL', e);
         }
@@ -547,56 +547,11 @@ var Common = (function () {
             
             // No from, we assume this is our XID
             if(!from)
-                from = getXID();
+                from = self.getXID();
             
             return from;
         } catch(e) {
             Console.error('Common.getStanzaFrom', e);
-        }
-
-    };
-
-
-    /**
-     * Gets the current Jappix app. location
-     * @public
-     * @return {string}
-     */
-    self.getJappixLocation = function() {
-
-        try {
-            var url = window.location.href;
-            
-            // If the URL has variables, remove them
-            if(url.indexOf('?') != -1)
-                url = url.split('?')[0];
-            if(url.indexOf('#') != -1)
-                url = url.split('#')[0];
-            
-            // No "/" at the end
-            if(!url.match(/(.+)\/$/))
-                url += '/';
-            
-            return url;
-        } catch(e) {
-            Console.error('Common.getJappixLocation', e);
-        }
-
-    };
-
-
-	/**
-     * Removes spaces at the beginning & the end of a string
-     * @public
-     * @param {string} str
-     * @return {string}
-     */
-    self.trim = function(str) {
-
-        try {
-            return str.replace(/^\s+/g,'').replace(/\s+$/g,'');
-        } catch(e) {
-            Console.error('Common.trim', e);
         }
 
     };

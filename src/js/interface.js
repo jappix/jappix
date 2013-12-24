@@ -37,7 +37,7 @@ var Interface = (function () {
             var head_name = getName();
             
             if(isAnonymous())
-                head_name = ANONYMOUS_ROOM + ' (' + _e("anonymous mode") + ')';
+                head_name = ANONYMOUS_ROOM + ' (' + Common._e("anonymous mode") + ')';
             
             // We change the title to give essential informations
             switch(title) {
@@ -57,7 +57,7 @@ var Interface = (function () {
                     break;
                 
                 case 'wait':
-                    document.title = SERVICE_NAME + ' • ' + _e("Please wait...");
+                    document.title = SERVICE_NAME + ' • ' + Common._e("Please wait...");
                     
                     break;
             }
@@ -77,7 +77,7 @@ var Interface = (function () {
 
         try {
             // Item exists?
-            if(exists('#general-wait'))
+            if(Common.exists('#general-wait'))
                 return false;
             
             // Generate the HTML code
@@ -121,12 +121,12 @@ var Interface = (function () {
     self.generateFileShare = function() {
 
         try {
-            return  '<input type="hidden" name="MAX_FILE_SIZE" value="' + encodeQuotes(JAPPIX_MAX_FILE_SIZE) + '">' + 
-                    '<input type="hidden" name="user" value="' + encodeQuotes(getXID()) + '" />' + 
-                    '<input type="hidden" name="location" value="' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" />' + 
+            return  '<input type="hidden" name="MAX_FILE_SIZE" value="' + Common.encodeQuotes(JAPPIX_MAX_FILE_SIZE) + '">' + 
+                    '<input type="hidden" name="user" value="' + Common.encodeQuotes(Common.getXID()) + '" />' + 
+                    '<input type="hidden" name="location" value="' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" />' + 
                     '<input type="hidden" name="id" value="' + (new Date()).getTime() + '" />' + 
                     '<input type="file" name="file" required="" />' + 
-                    '<input type="submit" value="' + _e("Send") + '" />';
+                    '<input type="submit" value="' + Common._e("Send") + '" />';
         } catch(e) {
             Console.error('Interface.generateFileShare', e);
         }
@@ -143,7 +143,7 @@ var Interface = (function () {
     self.switchChan = function(id) {
 
         try {
-            if(exists('#' + id)) {
+            if(Common.exists('#' + id)) {
                 // We show the page-engine content
                 $('.page-engine-chan').hide();
                 $('#' + id).show();
@@ -180,11 +180,11 @@ var Interface = (function () {
             var more_content = '#page-switch .more-content';
             
             // Yet displayed?
-            if(exists(more_content))
-                return closeBubbles();
+            if(Common.exists(more_content))
+                return Bubble.close();
             
             // Add the bubble
-            showBubble(more_content);
+            Bubble.show(more_content);
             
             // Append the content
             $('#page-switch .more').append(
@@ -267,15 +267,15 @@ var Interface = (function () {
                 // Remove all presence database entries for this groupchat
                 var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
 
-                for(var i = 0; i < storageDB.length; i++) {
+                for(var i = 0; i < DataStore.storageDB.length; i++) {
                     // Get the pointer values
-                    var current = storageDB.key(i);
+                    var current = DataStore.storageDB.key(i);
 
                     if(current.match(db_regex)) {
                         var cXID = RegExp.$1;
                         
                         // If the pointer is on a presence from this groupchat
-                        if(bareXID(cXID) == xid) {
+                        if(Common.bareXID(cXID) == xid) {
                             // Generate the hash for the current XID
                             var cHash = hex_md5(cXID);
                             
@@ -283,14 +283,14 @@ var Interface = (function () {
                             $('#' + cHash + ' .message-area').attr('disabled', true);
                             
                             // Remove the presence for this XID
-                            removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
-                            removeDB(DESKTOP_HASH, 'presence-resources', cXID);
+                            DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
+                            DataStore.removeDB(DESKTOP_HASH, 'presence-resources', cXID);
                             presenceFunnel(cXID, cHash);
                         }
                     }
                 }
             } else {
-                chatStateSend('gone', xid, hash);
+                ChatState.send('gone', xid, hash);
             }
 
             // Clear MAM storage for this chat
@@ -305,7 +305,7 @@ var Interface = (function () {
             deleteThisChat(hash);
             
             // Reset the switcher
-            if(!exists('#page-switch .switcher.activechan')) {
+            if(!Common.exists('#page-switch .switcher.activechan')) {
                 switchChan(previous);
             }
             
@@ -335,7 +335,7 @@ var Interface = (function () {
             var content = $(path + 'content').clone().contents();
             var avatar = $(path + 'top .avatar-container:first').html();
             var nick = $(path + 'top .bc-name').text();
-            var date = getXMPPTime('local');
+            var date = DateUtils.getXMPPTime('local');
             var type = $('#' + hash).attr('data-type');
             var direction = $('html').attr('dir') || 'ltr';
             
@@ -363,7 +363,7 @@ var Interface = (function () {
             // POST the values to the server
             $.post('./php/generate-chat.php', { 'content': content, 'xid': xid, 'nick': nick, 'avatar': avatar, 'date': date, 'type': type, 'direction': direction }, function(data) {
                 // Handled!
-                $(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + _e("Download file!") + '</a>');
+                $(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + Common._e("Download file!") + '</a>');
             });
         } catch(e) {
             Console.error('Interface.generateChatLog', e);
@@ -390,7 +390,7 @@ var Interface = (function () {
             var active = $(tested).hasClass('activechan');
             
             // We notify the user if he has not the focus on the chat
-            if(!active || !isFocused() || (CHAT_FOCUS_HASH != hash)) {
+            if(!active || !Common.isFocused() || (CHAT_FOCUS_HASH != hash)) {
                 if(!active) {
                     if(type == 'personal')
                         $(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
@@ -401,7 +401,7 @@ var Interface = (function () {
                 // Count the number of pending messages
                 var pending = 1;
                 
-                if(exists('#' + hash + '[data-counter]'))
+                if(Common.exists('#' + hash + '[data-counter]'))
                     pending = parseInt($('#' + hash).attr('data-counter')) + 1;
                 
                 $('#' + hash).attr('data-counter', pending);
@@ -448,7 +448,7 @@ var Interface = (function () {
 
         try {
             // Any pending events?
-            if(exists('.one-counter[data-counter]'))
+            if(Common.exists('.one-counter[data-counter]'))
                 pageTitle('new');
             else
                 pageTitle('talk');
@@ -498,7 +498,7 @@ var Interface = (function () {
 
         try {
             // Avoid a JS error
-            if(exists('#' + hash)) {
+            if(Common.exists('#' + hash)) {
                 var container = document.getElementById('chat-content-' + hash);
                 
                 // Scroll down!
@@ -542,7 +542,7 @@ var Interface = (function () {
             
             // Store this in the options
             if((from == 'roster') && loadedOptions()) {
-                setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
                 storeOptions();
             }
         } catch(e) {
@@ -583,7 +583,7 @@ var Interface = (function () {
             
             // Store this in the options
             if((from == 'roster') && loadedOptions()) {
-                setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
+                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
                 storeOptions();
             }
         } catch(e) {
@@ -602,7 +602,7 @@ var Interface = (function () {
 
         try {
             // No popup shown
-            if(!exists('.popup')) {
+            if(!Common.exists('.popup')) {
                 $(document).oneTime(10, function() {
                     $('.focusable:visible:first').focus();
                 });

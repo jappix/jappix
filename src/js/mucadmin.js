@@ -32,11 +32,11 @@ var MUCAdmin = (function () {
         try {
             // Popup HTML content
             var html_full = 
-            '<div class="top">' + _e("MUC administration") + '</div>' + 
+            '<div class="top">' + Common._e("MUC administration") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="head mucadmin-head">' + 
-                    '<div class="head-text mucadmin-head-text">' + _e("You administrate this room") + '</div>' + 
+                    '<div class="head-text mucadmin-head-text">' + Common._e("You administrate this room") + '</div>' + 
                     
                     '<div class="mucadmin-head-jid">' + xid + '</div>' + 
                 '</div>' + 
@@ -44,16 +44,16 @@ var MUCAdmin = (function () {
                 '<div class="mucadmin-forms">' + 
                     '<div class="mucadmin-topic">' + 
                         '<fieldset>' + 
-                            '<legend>' + _e("Subject") + '</legend>' + 
+                            '<legend>' + Common._e("Subject") + '</legend>' + 
                             
-                            '<label for="topic-text">' + _e("Enter new subject") + '</label>' + 
+                            '<label for="topic-text">' + Common._e("Enter new subject") + '</label>' + 
                             '<textarea id="topic-text" name="room-topic" rows="8" cols="60" ></textarea>' + 
                         '</fieldset>' + 
                     '</div>' + 
                     
                     '<div class="mucadmin-conf">' + 
                         '<fieldset>' + 
-                            '<legend>' + _e("Configuration") + '</legend>' + 
+                            '<legend>' + Common._e("Configuration") + '</legend>' + 
                             
                             '<div class="results mucadmin-results"></div>' + 
                         '</fieldset>' + 
@@ -61,36 +61,36 @@ var MUCAdmin = (function () {
                     
                     '<div class="mucadmin-aut">' + 
                         '<fieldset>' + 
-                            '<legend>' + _e("Authorizations") + '</legend>' + 
+                            '<legend>' + Common._e("Authorizations") + '</legend>' + 
                             
-                            '<label>' + _e("Member list") + '</label>' + 
+                            '<label>' + Common._e("Member list") + '</label>' + 
                             '<div class="aut-member aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
-                            '<label>' + _e("Owner list") + '</label>' + 
+                            '<label>' + Common._e("Owner list") + '</label>' + 
                             '<div class="aut-owner aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
-                            '<label>' + _e("Administrator list") + '</label>' + 
+                            '<label>' + Common._e("Administrator list") + '</label>' + 
                             '<div class="aut-admin aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
-                            '<label>' + _e("Outcast list") + '</label>' + 
+                            '<label>' + Common._e("Outcast list") + '</label>' + 
                             '<div class="aut-outcast aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                         '</fieldset>' + 
                     '</div>' + 
                     
                     '<div class="mucadmin-others">' + 
                         '<fieldset>' + 
-                            '<legend>' + _e("Others") + '</legend>' + 
+                            '<legend>' + Common._e("Others") + '</legend>' + 
                             
-                            '<label>' + _e("Destroy this MUC") + '</label>' + 
-                            '<a href="#" onclick="return destroyMucAdmin();">' + _e("Yes, let's do it!") + '</a>' + 
+                            '<label>' + Common._e("Destroy this MUC") + '</label>' + 
+                            '<a href="#" onclick="return destroyMucAdmin();">' + Common._e("Yes, let's do it!") + '</a>' + 
                         '</fieldset>' + 
                     '</div>' + 
                 '</div>' + 
@@ -99,16 +99,16 @@ var MUCAdmin = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish save">' + _e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
             '</div>';
             
             var html_partial = 
-            '<div class="top">' + _e("MUC administration") + '</div>' + 
+            '<div class="top">' + Common._e("MUC administration") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="head mucadmin-head">' + 
-                    '<div class="head-text mucadmin-head-text">' + _e("You administrate this room") + '</div>' + 
+                    '<div class="head-text mucadmin-head-text">' + Common._e("You administrate this room") + '</div>' + 
                     
                     '<div class="mucadmin-head-jid">' + xid + '</div>' + 
                 '</div>' + 
@@ -116,16 +116,16 @@ var MUCAdmin = (function () {
                 '<div class="mucadmin-forms">' + 
                     '<div class="mucadmin-aut">' + 
                         '<fieldset>' + 
-                            '<legend>' + _e("Authorizations") + '</legend>' + 
+                            '<legend>' + Common._e("Authorizations") + '</legend>' + 
                             
-                            '<label>' + _e("Member list") + '</label>' + 
+                            '<label>' + Common._e("Member list") + '</label>' + 
                             '<div class="aut-member aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
-                            '<label>' + _e("Outcast list") + '</label>' + 
+                            '<label>' + Common._e("Outcast list") + '</label>' + 
                             '<div class="aut-outcast aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + _e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                         '</fieldset>' + 
                     '</div>' + 
@@ -135,8 +135,8 @@ var MUCAdmin = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish save">' + _e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
             '</div>';   
             
             // Create the popup
@@ -155,7 +155,7 @@ var MUCAdmin = (function () {
                 queryMucAdmin(xid, 'admin');
                 queryMucAdmin(xid, 'outcast');
                 // We query the room to edit
-                dataForm(xid, 'muc', '', '', 'mucadmin');
+                DataForm.go(xid, 'muc', '', '', 'mucadmin');
             } else if(aff == 'admin') {
                 queryMucAdmin(xid, 'member');
                 queryMucAdmin(xid, 'outcast');
@@ -290,7 +290,7 @@ var MUCAdmin = (function () {
             // Hide the wait icon
             $('#mucadmin .wait').hide();
             
-            Console.log('MUC admin items received: ' + fullXID(getStanzaFrom(iq)));
+            Console.log('MUC admin items received: ' + Common.fullXID(Common.getStanzaFrom(iq)));
         } catch(e) {
             Console.error('MUCAdmin.handleAuth', e);
         }
@@ -421,7 +421,7 @@ var MUCAdmin = (function () {
         try {
             if(!handleErrorReply(iq)) {
                 // We close the groupchat
-                var room = fullXID(getStanzaFrom(iq));
+                var room = Common.fullXID(Common.getStanzaFrom(iq));
                 var hash = hex_md5(room);
                 quitThisChat(room, hash, 'groupchat');
                 
@@ -429,11 +429,11 @@ var MUCAdmin = (function () {
                 closeMucAdmin();
                 
                 // We tell the user that all is okay
-                openThisInfo(5);
+                Board.openThisInfo(5);
                 
                 // We remove the user's favorite
-                if(existDB('favorites', room))
-                    removeThisFavorite(room, explodeThis('@', room, 0));
+                if(DataStore.existDB('favorites', room))
+                    removeThisFavorite(room, Common.explodeThis('@', room, 0));
                 
                 Console.info('MUC admin destroyed: ' + room);
             }
@@ -514,7 +514,7 @@ var MUCAdmin = (function () {
             sendMucAdminTopic(xid);
             
             // We send the needed queries
-            sendDataForm('x', 'submit', 'submit', $('#mucadmin .mucadmin-results').attr('data-session'), xid, '', '', 'mucadmin');
+            DataForm.send('x', 'submit', 'submit', $('#mucadmin .mucadmin-results').attr('data-session'), xid, '', '', 'mucadmin');
             sendMucAdminAuth(xid);
         } catch(e) {
             Console.error('MUCAdmin.send', e);

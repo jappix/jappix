@@ -25,87 +25,87 @@ var Discovery = (function () {
      * @public
      * @return {boolean}
      */
-    self.openDiscovery = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Service discovery") + '</div>' + 
+            '<div class="top">' + Common._e("Service discovery") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="discovery-head">' + 
-                    '<div class="disco-server-text">' + _e("Server to query") + '</div>' + 
+                    '<div class="disco-server-text">' + Common._e("Server to query") + '</div>' + 
                     
-                    '<input name="disco-server-input" class="disco-server-input" value="' + encodeQuotes(HOST_MAIN) + '" />' + 
+                    '<input name="disco-server-input" class="disco-server-input" value="' + Common.encodeQuotes(HOST_MAIN) + '" />' + 
                 '</div>' + 
                 
                 '<div class="results discovery-results">' + 
                     '<div class="disco-category disco-account">' + 
-                        '<p class="disco-category-title">' + _e("Accounts") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Accounts") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-auth">' + 
-                        '<p class="disco-category-title">' + _e("Authentications") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Authentications") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-automation">' + 
-                        '<p class="disco-category-title">' + _e("Automation") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Automation") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-client">' + 
-                        '<p class="disco-category-title">' + _e("Clients") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Clients") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-collaboration">' + 
-                        '<p class="disco-category-title">' + _e("Collaboration") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Collaboration") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-component">' + 
-                        '<p class="disco-category-title">' + _e("Components") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Components") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-conference">' + 
-                        '<p class="disco-category-title">' + _e("Rooms") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Rooms") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-directory">' + 
-                        '<p class="disco-category-title">' + _e("Directories") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Directories") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-gateway">' + 
-                        '<p class="disco-category-title">' + _e("Gateways") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Gateways") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-headline">' + 
-                        '<p class="disco-category-title">' + _e("News") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("News") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-hierarchy">' + 
-                        '<p class="disco-category-title">' + _e("Hierarchy") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Hierarchy") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-proxy">' + 
-                        '<p class="disco-category-title">' + _e("Proxies") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Proxies") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-pubsub">' + 
-                        '<p class="disco-category-title">' + _e("Publication/Subscription") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Publication/Subscription") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-server">' + 
-                        '<p class="disco-category-title">' + _e("Server") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Server") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-store">' + 
-                        '<p class="disco-category-title">' + _e("Storage") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Storage") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-others">' + 
-                        '<p class="disco-category-title">' + _e("Others") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Others") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="disco-category disco-wait">' + 
-                        '<p class="disco-category-title">' + _e("Loading") + '</p>' + 
+                        '<p class="disco-category-title">' + Common._e("Loading") + '</p>' + 
                     '</div>' + 
                 '</div>' + 
             '</div>' + 
@@ -113,17 +113,17 @@ var Discovery = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
             createPopup('discovery', html);
             
             // Associate the events
-            launchDiscovery();
+            self.instance();
             
             // We request a disco to the default server
-            startDiscovery();
+            self.start();
         } catch(e) {
             Console.error('Discovery.open', e);
         } finally {
@@ -138,7 +138,7 @@ var Discovery = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeDiscovery = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -157,7 +157,7 @@ var Discovery = (function () {
      * @public
      * @return {boolean}
      */
-    self.startDiscovery = function() {
+    self.start = function() {
 
         /* REF: http://xmpp.org/extensions/xep-0030.html */
 
@@ -166,7 +166,7 @@ var Discovery = (function () {
             var discoServer = $('#discovery .disco-server-input').val();
             
             // We launch the items query
-            dataForm(discoServer, 'browse', '', '', 'discovery');
+            DataForm.go(discoServer, 'browse', '', '', 'discovery');
             
             Console.log('Service discovery launched: ' + discoServer);
         } catch(e) {
@@ -183,7 +183,7 @@ var Discovery = (function () {
      * @public
      * @return {boolean}
      */
-    self.cleanDiscovery = function() {
+    self.clean = function() {
 
         try {
             // We remove the results
@@ -206,11 +206,11 @@ var Discovery = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchDiscovery = function() {
+    self.instance = function() {
 
         try {
             // Click event
-            $('#discovery .bottom .finish').click(closeDiscovery);
+            $('#discovery .bottom .finish').click(self.close);
             
             // Keyboard event
             $('#discovery .disco-server-input').keyup(function(e) {
@@ -220,13 +220,13 @@ var Discovery = (function () {
                         $(this).val(HOST_MAIN);
                     
                     // Start the discovery
-                    startDiscovery();
+                    self.start();
                     
                     return false;
                 }
             });
         } catch(e) {
-            Console.error('Discovery.launch', e);
+            Console.error('Discovery.instance', e);
         }
 
     };

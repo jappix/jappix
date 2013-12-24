@@ -67,7 +67,7 @@ var DateUtils = (function () {
     self.getTimeStamp = function() {
 
         try {
-            return extractStamp(new Date());
+            return self.extractStamp(new Date());
         } catch(e) {
             Console.error('DateUtils.getTimeStamp', e);
         }
@@ -87,7 +87,7 @@ var DateUtils = (function () {
             if(LAST_ACTIVITY == 0)
                 return 0;
             
-            return getTimeStamp() - LAST_ACTIVITY;
+            return self.getTimeStamp() - LAST_ACTIVITY;
         } catch(e) {
             Console.error('DateUtils.getLastActivity', e);
         }
@@ -107,7 +107,7 @@ var DateUtils = (function () {
             if(PRESENCE_LAST_ACTIVITY == 0)
                 return 0;
             
-            return getTimeStamp() - PRESENCE_LAST_ACTIVITY;
+            return self.getTimeStamp() - PRESENCE_LAST_ACTIVITY;
         } catch(e) {
             Console.error('DateUtils.getPresenceLast', e);
         }
@@ -152,11 +152,11 @@ var DateUtils = (function () {
             
             // Generates the date string
             var jDate = year + '-';
-            jDate += padZero(month + 1) + '-';
-            jDate += padZero(day) + 'T';
-            jDate += padZero(hours) + ':';
-            jDate += padZero(minutes) + ':';
-            jDate += padZero(seconds) + 'Z';
+            jDate += Common.padZero(month + 1) + '-';
+            jDate += Common.padZero(day) + 'T';
+            jDate += Common.padZero(hours) + ':';
+            jDate += Common.padZero(minutes) + ':';
+            jDate += Common.padZero(seconds) + 'Z';
             
             // Returns the date string
             return jDate;
@@ -176,9 +176,9 @@ var DateUtils = (function () {
 
         try {
             var init = new Date();
-            var time = padZero(init.getHours()) + ':';
-            time += padZero(init.getMinutes()) + ':';
-            time += padZero(init.getSeconds());
+            var time = Common.padZero(init.getHours()) + ':';
+            time += Common.padZero(init.getMinutes()) + ':';
+            time += Common.padZero(init.getSeconds());
             
             return time;
         } catch(e) {
@@ -193,7 +193,7 @@ var DateUtils = (function () {
      * @public
      * @return {string}
      */
-    self.getDateTZO = function() {
+    self.getTZO = function() {
 
         try {
             // Get the date
@@ -217,12 +217,12 @@ var DateUtils = (function () {
             minutes = n_date.getMinutes();
             
             // Process the TZO
-            tzo = sign + padZero(hours) + ':' + padZero(minutes);
+            tzo = sign + Common.padZero(hours) + ':' + Common.padZero(minutes);
             
             // Return the processed value
             return tzo;
         } catch(e) {
-            Console.error('DateUtils.getDateTZO', e);
+            Console.error('DateUtils.getTZO', e);
         }
 
     };
@@ -234,7 +234,7 @@ var DateUtils = (function () {
      * @param {string} to_parse
      * @return {string}
      */
-    self.parseDate = function(to_parse) {
+    self.parse = function(to_parse) {
 
         try {
             var date = Date.jab2date(to_parse);
@@ -294,11 +294,11 @@ var DateUtils = (function () {
      * @param {string} to_parse
      * @return {string}
      */
-    self.relativeDate = function(to_parse) {
+    self.relative = function(to_parse) {
 
         try {
             // Get the current date
-            var current_date = Date.jab2date(getXMPPTime('utc'));
+            var current_date = Date.jab2date(self.getXMPPTime('utc'));
             var current_day = current_date.getDate();
             var current_stamp = current_date.getTime();
             
@@ -313,7 +313,7 @@ var DateUtils = (function () {
             
             // Invalid date?
             if(isNaN(old_stamp) || isNaN(days))
-                return getCompleteTime();
+                return self.getCompleteTime();
             
             // Is it today?
             if(current_day == old_day)
@@ -321,11 +321,11 @@ var DateUtils = (function () {
             
             // It is yesterday?
             if(days <= 1)
-                return _e("Yesterday") + ' - ' + old_time;
+                return Common._e("Yesterday") + ' - ' + old_time;
             
             // Is it less than a week ago?
             if(days <= 7)
-                return printf(_e("%s days ago"), days) + ' - ' + old_time;
+                return Common.printf(Common._e("%s days ago"), days) + ' - ' + old_time;
             
             // Another longer period
             return old_date.toLocaleDateString() + ' - ' + old_time;

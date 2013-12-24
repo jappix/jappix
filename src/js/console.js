@@ -18,7 +18,7 @@ var Console = new function () {
 
   /* Variables */
   self._available = typeof(window.console) != 'undefined';
-  self._has = self._available && isDeveloper();
+  self._has = self._available && Common.isDeveloper();
   self._console = self._available ? console : {};
 
 
@@ -56,4 +56,5 @@ var Console = new function () {
   self.info = self._adapter(2);
   self.log = self._adapter(3);
   self.debug = self._adapter(4);
+
 };

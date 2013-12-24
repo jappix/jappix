@@ -29,7 +29,7 @@ var Notification = (function () {
 
         try {
             if(!$('.one-notification').size()) {
-                closeBubbles();
+                Bubble.close();
             }
         } catch(e) {
             Console.error('Notification.closeEmpty', e);
@@ -108,7 +108,7 @@ var Notification = (function () {
             var yes_path = 'href="#"';
             
             // User things
-            from = bareXID(from);
+            from = Common.bareXID(from);
             var hash = hex_md5(from);
             
             switch(type) {
@@ -119,107 +119,107 @@ var Notification = (function () {
                     if(!display_name)
                         display_name = data[0];
                     
-                    text = '<b>' + display_name.htmlEnc() + '</b> ' + _e("would like to add you as a friend.") + ' ' + _e("Do you accept?");
+                    text = '<b>' + display_name.htmlEnc() + '</b> ' + Common._e("would like to add you as a friend.") + ' ' + Common._e("Do you accept?");
                     
                     break;
                 
                 case 'invite_room':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + _e("would like you to join this chatroom:") + ' <em>' + data[0].htmlEnc() + '</em> ' + _e("Do you accept?");
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common._e("would like you to join this chatroom:") + ' <em>' + data[0].htmlEnc() + '</em> ' + Common._e("Do you accept?");
                     
                     break;
                 
                 case 'request':
-                    text = '<b>' + from.htmlEnc() + '</b> ' + _e("would like to get authorization.") + ' ' + _e("Do you accept?");
+                    text = '<b>' + from.htmlEnc() + '</b> ' + Common._e("would like to get authorization.") + ' ' + Common._e("Do you accept?");
                     
                     break;
                 
                 case 'send':
-                    yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+                    yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
                     
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("would like to send you a file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>') + ' ' + _e("Do you accept?");
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("would like to send you a file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>') + ' ' + Common._e("Do you accept?");
                     
                     break;
                 
                 case 'send_pending':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has received a file exchange request: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has received a file exchange request: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_accept':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has accepted to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has accepted to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_reject':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("has rejected to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has rejected to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_fail':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + printf(_e("could not receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("could not receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'rosterx':
-                    text = printf(_e("Do you want to see the friends %s suggests you?").htmlEnc(), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
+                    text = Common.printf(Common._e("Do you want to see the friends %s suggests you?").htmlEnc(), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
                     
                     break;
                 
                 case 'comment':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("commented an item you follow: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("commented an item you follow: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'like':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("liked your post: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("liked your post: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'quote':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("quoted you somewhere: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("quoted you somewhere: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'wall':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("published on your wall: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("published on your wall: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'photo':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a photo (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a photo (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'video':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + printf(_e("tagged you in a video (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a video (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
 
                 case 'me_profile_new_success':
-                    yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+                    yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
 
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("validated your account. Your public profile will be available in a few moments.").htmlEnc();
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common._e("validated your account. Your public profile will be available in a few moments.").htmlEnc();
                     
                     break;
 
                 case 'me_profile_remove_success':
-                    yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+                    yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
 
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("has removed your public profile after your request. We will miss you!").htmlEnc();
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common._e("has removed your public profile after your request. We will miss you!").htmlEnc();
                     
                     break;
 
                 case 'me_profile_update_success':
-                    yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+                    yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
 
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("has saved your new public profile settings. They will be applied in a few moments.").htmlEnc();
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common._e("has saved your new public profile settings. They will be applied in a few moments.").htmlEnc();
                     
                     break;
 
                 case 'me_profile_check_error':
-                    yes_path = 'href="' + encodeQuotes(data[1]) + '" target="_blank"';
+                    yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
 
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + _e("could not validate your account to create or update your public profile. Check your credentials.").htmlEnc();
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common._e("could not validate your account to create or update your public profile. Check your credentials.").htmlEnc();
                     
                     break;
                 
@@ -244,11 +244,11 @@ var Notification = (function () {
                 case 'wall':
                 case 'photo':
                 case 'video':
-                    action = '<a href="#" class="no">' + _e("Hide") + '</a>';
+                    action = '<a href="#" class="no">' + Common._e("Hide") + '</a>';
 
                     // Any parent link?
                     if((type == 'comment') && data[2])
-                        action = '<a href="#" class="yes">' + _e("Show") + '</a>' + action;
+                        action = '<a href="#" class="yes">' + Common._e("Show") + '</a>' + action;
 
                     break;
 
@@ -257,20 +257,20 @@ var Notification = (function () {
                 case 'me_profile_remove_success':
                 case 'me_profile_update_success':
                 case 'me_profile_check_error':
-                    action = '<a ' + yes_path + ' class="yes">' + _e("Open") + '</a><a href="#" class="no">' + _e("Hide") + '</a>';
+                    action = '<a ' + yes_path + ' class="yes">' + Common._e("Open") + '</a><a href="#" class="no">' + Common._e("Hide") + '</a>';
 
                     break;
 
                 // Default actions
                 default:
-                    action = '<a ' + yes_path + ' class="yes">' + _e("Yes") + '</a><a href="#" class="no">' + _e("No") + '</a>';
+                    action = '<a ' + yes_path + ' class="yes">' + Common._e("Yes") + '</a><a href="#" class="no">' + Common._e("No") + '</a>';
             }
             
             if(text) {
                 // We display the notification
-                if(!exists('.notifications-content .' + id)) {
+                if(!Common.exists('.notifications-content .' + id)) {
                     // We create the html markup depending of the notification type
-                    code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + encodeQuotes(body) + ' - ' + _e("This notification is only informative, maybe the data it links to have been removed.") + '" data-type="' + encodeQuotes(type) + '">' + 
+                    code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + Common.encodeQuotes(body) + ' - ' + Common._e("This notification is only informative, maybe the data it links to have been removed.") + '" data-type="' + Common.encodeQuotes(type) + '">' + 
                             '<div class="avatar-container">' + 
                                 '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
@@ -289,7 +289,7 @@ var Notification = (function () {
                         $('.notifications-content .empty').after(code);
                     
                     // Play a sound to alert the user
-                    soundPlay(2);
+                    Audio.play(2);
                     
                     // The yes click function
                     $('.' + id + ' a.yes').click(function() {
@@ -305,7 +305,7 @@ var Notification = (function () {
                     });
                     
                     // Get the user avatar
-                    getAvatar(from, 'cache', 'true', 'forget');
+                    Avatar.get(from, 'cache', 'true', 'forget');
                 }
             }
             
@@ -340,7 +340,7 @@ var Notification = (function () {
                 sendSubscribe(data[0], 'unsubscribed');
             
             else if((type == 'invite_room') && (value == 'yes'))
-                checkChatCreate(data[0], 'groupchat');
+                Chat.checkCreate(data[0], 'groupchat');
             
             else if(type == 'request')
                 requestReply(value, data[0]);
@@ -360,7 +360,7 @@ var Notification = (function () {
                     fromInfosMicroblog(data[2]);
                     
                     // Append the marker
-                    $('#channel .top.individual').append('<input type="hidden" name="comments" value="' + encodeQuotes(data[1]) + '" />');
+                    $('#channel .top.individual').append('<input type="hidden" name="comments" value="' + Common.encodeQuotes(data[1]) + '" />');
                 }
                 
                 removeNotification(data[3]);
@@ -461,14 +461,14 @@ var Notification = (function () {
                 var current_type = $(this).find('link[rel="via"]:first').attr('title');
                 var current_href = $(this).find('link[rel="via"]:first').attr('href');
                 var current_parent_href = $(this).find('link[rel="related"]:first').attr('href');
-                var current_xid = explodeThis(':', $(this).find('author uri').text(), 1);
+                var current_xid = Common.explodeThis(':', $(this).find('author uri').text(), 1);
                 var current_name = $(this).find('author name').text();
                 var current_text = $(this).find('content[type="text"]:first').text();
                 var current_bname = getBuddyName(current_xid);
                 var current_id = hex_md5(current_type + current_xid + current_href + current_text);
                 
                 // Choose the good name!
-                if(!current_name || (current_bname != getXIDNick(current_xid)))
+                if(!current_name || (current_bname != Common.getXIDNick(current_xid)))
                     current_name = current_bname;
                 
                 // Create it!
@@ -497,7 +497,7 @@ var Notification = (function () {
 
         try {
             // Notification ID
-            var id = hex_md5(xid + text + getTimeStamp());
+            var id = hex_md5(xid + text + DateUtils.getTimeStamp());
             
             // IQ
             var iq = new JSJaCIQ();
@@ -513,10 +513,10 @@ var Notification = (function () {
             // Notification author (us)
             var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
             author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
-            author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + getXID()));
+            author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + Common.getXID()));
             
             // Notification content
-            entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, getXMPPTime('utc')));
+            entry.appendChild(iq.buildNode('published', {'xmlns': NS_ATOM}, DateUtils.getXMPPTime('utc')));
             entry.appendChild(iq.buildNode('content', {'type': 'text', 'xmlns': NS_ATOM}, text));
             entry.appendChild(iq.buildNode('link', {'rel': 'via', 'title': type, 'href': href, 'xmlns': NS_ATOM}));
             

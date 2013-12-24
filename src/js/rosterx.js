@@ -31,20 +31,20 @@ var RosterX = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Suggested friends") + '</div>' + 
+            '<div class="top">' + Common._e("Suggested friends") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="rosterx-head">' + 
-                    '<a href="#" class="uncheck">' + _e("Uncheck all") + '</a>' + 
-                    '<a href="#" class="check">' + _e("Check all") + '</a>' + 
+                    '<a href="#" class="uncheck">' + Common._e("Uncheck all") + '</a>' + 
+                    '<a href="#" class="check">' + Common._e("Check all") + '</a>' + 
                 '</div>' + 
                 
                 '<div class="results"></div>' + 
             '</div>' + 
             
             '<div class="bottom">' + 
-                '<a href="#" class="finish save">' + _e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + _e("Cancel") + '</a>' + 
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -160,7 +160,7 @@ var RosterX = (function () {
             // Display it
             $('#rosterx .results').append(
                 '<div class="oneresult">' + 
-                    '<input type="checkbox" checked="" data-name="' + encodeQuotes(nick) + '" data-xid="' + encodeQuotes(xid) + '" data-action="' + encodeQuotes(action) + '" data-group="' + encodeQuotes(group) + '" />' + 
+                    '<input type="checkbox" checked="" data-name="' + Common.encodeQuotes(nick) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-action="' + Common.encodeQuotes(action) + '" data-group="' + Common.encodeQuotes(group) + '" />' + 
                     '<span class="name">' + nick.htmlEnc() + '</span>' + 
                     '<span class="xid">' + xid.htmlEnc() + '</span>' + 
                     '<span class="action ' + action + ' talk-images"></span>' + 
@@ -206,7 +206,7 @@ var RosterX = (function () {
                 switch(action) {
                     // Buddy add
                     case 'add':
-                        if(!exists(roster_item)) {
+                        if(!Common.exists(roster_item)) {
                             sendSubscribe(xid, 'subscribe');
                             sendRoster(xid, '', nick, group_arr);
                         }
@@ -215,14 +215,14 @@ var RosterX = (function () {
                     
                     // Buddy edit
                     case 'modify':
-                        if(exists(roster_item))
+                        if(Common.exists(roster_item))
                             sendRoster(xid, '', nick, group_arr);
                         
                         break;
                     
                     // Buddy delete
                     case 'delete':
-                        if(exists(roster_item))
+                        if(Common.exists(roster_item))
                             sendRoster(xid, 'remove');
                         
                         break;

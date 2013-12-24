@@ -25,18 +25,18 @@ var Directory = (function () {
      * @public
      * @return {boolean}
      */
-    self.openDirectory = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("User directory") + '</div>' + 
+            '<div class="top">' + Common._e("User directory") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="directory-head">' + 
-                    '<div class="directory-server-text">' + _e("Server to query") + '</div>' + 
+                    '<div class="directory-server-text">' + Common._e("Server to query") + '</div>' + 
                     
-                    '<input name="directory-server-input" class="directory-server-input" value="' + encodeQuotes(HOST_VJUD) + '" />' + 
+                    '<input name="directory-server-input" class="directory-server-input" value="' + Common.encodeQuotes(HOST_VJUD) + '" />' + 
                 '</div>' + 
                 
                 '<div class="results directory-results"></div>' + 
@@ -45,17 +45,17 @@ var Directory = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
             createPopup('directory', html);
             
             // Associate the events
-            launchDirectory();
+            self.instance();
             
             // Start a search!
-            startDirectory();
+            self.start();
         } catch(e) {
             Console.error('Directory.open', e);
         } finally {
@@ -70,7 +70,7 @@ var Directory = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeDirectory = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -89,14 +89,14 @@ var Directory = (function () {
      * @public
      * @return {boolean}
      */
-    self.startDirectory = function() {
+    self.start = function() {
 
         try {
             // Get the server to query
             var server = $('#directory .directory-server-input').val();
             
             // Launch the search!
-            dataForm($('#directory .directory-server-input').val(), 'search', '', '', 'directory');
+            DataForm.go($('#directory .directory-server-input').val(), 'search', '', '', 'directory');
             
             Console.log('Directory search launched: ' + server);
         } catch(e) {
@@ -113,11 +113,11 @@ var Directory = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchDirectory = function() {
+    self.instance = function() {
 
         try {
             // Click event
-            $('#directory .bottom .finish').click(closeDirectory);
+            $('#directory .bottom .finish').click(self.close);
             
             // Keyboard event
             $('#directory .directory-server-input').keyup(function(e) {
@@ -127,13 +127,13 @@ var Directory = (function () {
                         $(this).val(HOST_VJUD);
                     
                     // Start the directory search
-                    startDirectory();
+                    self.start();
                     
                     return false;
                 }
             });
         } catch(e) {
-            Console.error('Directory.launch', e);
+            Console.error('Directory.instance', e);
         }
 
     };

@@ -249,11 +249,11 @@ var MAM = (function () {
                     }
 
                     // Generate stamps for easy operations
-                    var start_stamp = extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['start']));
-                    var start_end = extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['end']));
+                    var start_stamp = DateUtils.extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['start']));
+                    var start_end = DateUtils.extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['end']));
 
                     // Create MAM messages target
-                    var target_html = '<div class="mam-chunk" data-start="' + encodeQuotes(start_stamp) + '" data-end="' + encodeQuotes(start_end) + '"></div>';
+                    var target_html = '<div class="mam-chunk" data-start="' + Common.encodeQuotes(start_stamp) + '" data-end="' + Common.encodeQuotes(start_end) + '"></div>';
                     
                     var target_content_sel = $('#' + hex_md5(res_with) + ' .content');
                     var target_wait_sel = target_content_sel.find('.wait-mam');
@@ -319,15 +319,15 @@ var MAM = (function () {
 
                 if(type == 'chat') {
                     // Read message data
-                    var xid = bareXID(getStanzaFrom(message));
+                    var xid = Common.bareXID(Common.getStanzaFrom(message));
                     var id = message.getID();
                     var from_xid = xid;
                     var b_name = getBuddyName(xid);
-                    var mode = (xid == getXID()) ? 'me': 'him';
+                    var mode = (xid == Common.getXID()) ? 'me': 'him';
 
                     // Refactor chat XID (in case we were the sender of the archived message)
                     if(mode == 'me') {
-                        xid = bareXID(message.getTo())
+                        xid = Common.bareXID(message.getTo())
                     }
 
                     var hash = hex_md5(xid);
@@ -338,8 +338,8 @@ var MAM = (function () {
                     var delay = c_delay.attr('stamp');
 
                     if(delay) {
-                        time = relativeDate(delay);
-                        stamp = extractStamp(Date.jab2date(delay));
+                        time = DateUtils.relative(delay);
+                        stamp = DateUtils.extractStamp(Date.jab2date(delay));
                     }
                     
                     // Last-minute checks before display
@@ -347,7 +347,7 @@ var MAM = (function () {
                         var mam_chunk_path = '#' + hash + ' .mam-chunk';
 
                         // No chat auto-scroll?
-                        var no_scroll = exists(mam_chunk_path);
+                        var no_scroll = Common.exists(mam_chunk_path);
 
                         // Select the custom target
                         var c_target_sel = function() {

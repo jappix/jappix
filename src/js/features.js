@@ -37,7 +37,9 @@ var Features = (function () {
             
             // Try to get the stored data
             if(caps)
-                xml = XMLFromString(getPersistent('global', 'caps', caps));
+                xml = Common.XMLFromString(
+                    DataStore.getPersistent('global', 'caps', caps)
+                );
             
             // Any stored data?
             if(xml) {
@@ -54,7 +56,7 @@ var Features = (function () {
                 iq.setType('get');
                 iq.setQuery(NS_DISCO_INFO);
                 
-                con.send(iq, handleDiscoInfos);
+                con.send(iq, Caps.handleDiscoInfos);
                 
                 Console.log('Read server CAPS from network.');
             }
@@ -217,7 +219,7 @@ var Features = (function () {
     self.enableFeature = function(feature) {
 
         try {
-            setDB(DESKTOP_HASH, 'feature', feature, 'true');
+            DataStore.setDB(DESKTOP_HASH, 'feature', feature, 'true');
         } catch(e) {
             Console.error('Features.enable', e);
         }
@@ -234,7 +236,7 @@ var Features = (function () {
     self.enabledFeature = function(feature) {
 
         try {
-            return getDB(DESKTOP_HASH, 'feature', feature) === 'true';
+            return DataStore.getDB(DESKTOP_HASH, 'feature', feature) === 'true';
         } catch(e) {
             Console.error('Features.enabled', e);
         }

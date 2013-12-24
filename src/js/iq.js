@@ -31,7 +31,7 @@ var IQ = (function () {
         try {
             // Gets the IQ content
             var iqNode = iq.getNode();
-            var iqFrom = fullXID(getStanzaFrom(iq));
+            var iqFrom = Common.fullXID(Common.getStanzaFrom(iq));
             var iqID = iq.getID();
             var iqQueryXMLNS = iq.getQueryXMLNS();
             var iqQuery = iq.getQuery();
@@ -57,10 +57,10 @@ var IQ = (function () {
             }
             
             // OOB reply
-            else if(getDB(DESKTOP_HASH, 'send/url', iqID)) {
+            else if(DataStore.getDB(DESKTOP_HASH, 'send/url', iqID)) {
                 // Get the values
-                var oob_url = getDB(DESKTOP_HASH, 'send/url', iqID);
-                var oob_desc = getDB(DESKTOP_HASH, 'send/desc', iqID);
+                var oob_url = DataStore.getDB(DESKTOP_HASH, 'send/url', iqID);
+                var oob_desc = DataStore.getDB(DESKTOP_HASH, 'send/desc', iqID);
                 var notif_id = hex_md5(oob_url + oob_desc + iqType + iqFrom + iqID);
                 
                 // Error?
@@ -102,7 +102,7 @@ var IQ = (function () {
                 /* REF: http://xmpp.org/extensions/xep-0012.html */
                 
                 var iqQuery = iqResponse.setQuery(NS_LAST);
-                iqQuery.setAttribute('seconds', getLastActivity());
+                iqQuery.setAttribute('seconds', DateUtils.getLastActivity());
                 
                 con.send(iqResponse);
                 
@@ -162,7 +162,7 @@ var IQ = (function () {
                 }));
                 
                 // We set all the supported features
-                var fArray = myDiscoInfos();
+                var fArray = Caps.myDiscoInfos();
                 
                 for(i in fArray)
                     iqQuery.appendChild(iqResponse.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
@@ -177,8 +177,8 @@ var IQ = (function () {
                 /* REF: http://xmpp.org/extensions/xep-0202.html */
                 
                 var iqTime = iqResponse.appendNode('time', {'xmlns': NS_URN_TIME});
-                iqTime.appendChild(iqResponse.buildNode('tzo', {'xmlns': NS_URN_TIME}, getDateTZO()));
-                iqTime.appendChild(iqResponse.buildNode('utc', {'xmlns': NS_URN_TIME}, getXMPPTime('utc')));
+                iqTime.appendChild(iqResponse.buildNode('tzo', {'xmlns': NS_URN_TIME}, DateUtils.getTZO()));
+                iqTime.appendChild(iqResponse.buildNode('utc', {'xmlns': NS_URN_TIME}, DateUtils.getXMPPTime('utc')));
                 
                 con.send(iqResponse);
                 
@@ -215,7 +215,7 @@ var IQ = (function () {
                 // Append error content
                 var iqError = iqResponse.appendNode('error', {'xmlns': NS_CLIENT, 'code': '501', 'type': 'cancel'});
                 iqError.appendChild(iqResponse.buildNode('feature-not-implemented', {'xmlns': NS_STANZAS}));
-                iqError.appendChild(iqResponse.buildNode('text', {'xmlns': NS_STANZAS}, _e("The feature requested is not implemented by the recipient or server and therefore cannot be processed.")));
+                iqError.appendChild(iqResponse.buildNode('text', {'xmlns': NS_STANZAS}, Common._e("The feature requested is not implemented by the recipient or server and therefore cannot be processed.")));
                 
                 con.send(iqResponse);
                 

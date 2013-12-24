@@ -30,7 +30,7 @@ var Chat = (function () {
      * @param {string} title
      * @return {boolean}
      */
-    self.checkChatCreate = function(xid, type, nickname, password, title) {
+    self.checkCreate = function(xid, type, nickname, password, title) {
 
         try {
             // No XID?
@@ -48,7 +48,7 @@ var Chat = (function () {
             else {
                 // Private groupchat chat
                 if(type == 'private')
-                    name = thisResource(xid);
+                    name = Common.thisResource(xid);
                 
                 // XMPP-ID
                 else if(xid.indexOf('@') != -1)
@@ -60,16 +60,16 @@ var Chat = (function () {
             }
             
             // If the target div does not exist
-            if(!exists('#' + hash)) {
+            if(!Common.exists('#' + hash)) {
                 // We check the type of the chat to open
                 if((type == 'chat') || (type == 'private'))
-                    chatCreate(hash, xid, name, type);
+                    self.create(hash, xid, name, type);
                 
                 else if(type == 'groupchat') {
                     // Try to read the room stored configuration
                     if(!isAnonymous() && (!nickname || !password || !title)) {
                         // Catch the room data
-                        var fData = $(XMLFromString(getDB(DESKTOP_HASH, 'favorites', xid)));
+                        var fData = $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'favorites', xid)));
                         var fNick = fData.find('nick').text();
                         var fPwd = fData.find('password').text();
                         var fName = fData.find('name').text();
@@ -107,7 +107,7 @@ var Chat = (function () {
      * @param {string} nick
      * @return {undefined}
      */
-    self.generateChat = function(type, id, xid, nick) {
+    self.generate = function(type, id, xid, nick) {
 
         try {
             // Generate some stuffs
@@ -121,9 +121,9 @@ var Chat = (function () {
             if(type == 'groupchat') {
                 specialAttributes = ' data-type="groupchat"';
                 specialAvatar = '';
-                specialName = '<p class="bc-infos"><b>' + _e("Subject") + '</b> <span class="muc-topic">' + _e("no subject defined for this room.") + '</span></p>';
-                specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + _e("Moderators") + '</p></div><div class="participant role"><p class="title">' + _e("Participants") + '</p></div><div class="visitor role"><p class="title">' + _e("Visitors") + '</p></div><div class="none role"><p class="title">' + _e("Others") + '</p></div></div>';
-                specialLink = '<a href="#" class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + _e("Administration panel for this room") + '"></a>';
+                specialName = '<p class="bc-infos"><b>' + Common._e("Subject") + '</b> <span class="muc-topic">' + Common._e("no subject defined for this room.") + '</span></p>';
+                specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + Common._e("Moderators") + '</p></div><div class="participant role"><p class="title">' + Common._e("Participants") + '</p></div><div class="visitor role"><p class="title">' + Common._e("Visitors") + '</p></div><div class="none role"><p class="title">' + Common._e("Others") + '</p></div></div>';
+                specialLink = '<a href="#" class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + Common._e("Administration panel for this room") + '"></a>';
                 specialStyle = '';
                 
                 // Is this a gateway?
@@ -140,9 +140,9 @@ var Chat = (function () {
                 specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
                 specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
                 specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
-                specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + _e("Call (audio only)") + '"></a>'
-                            + '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + _e("Call (video)") + '"></a>'
-                            + '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + _e("Show user profile") + '"></a>';
+                specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>'
+                            + '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (video)") + '"></a>'
+                            + '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + Common._e("Show user profile") + '"></a>';
                 specialStyle = ' style="display: none;"';
                 specialDisabled = '';
             }
@@ -152,9 +152,9 @@ var Chat = (function () {
                 var addTitle;
                 
                 if(type == 'chat')
-                    addTitle = _e("Add this contact to your friends");
+                    addTitle = Common._e("Add this contact to your friends");
                 else
-                    addTitle = _e("Add this groupchat to your favorites");
+                    addTitle = Common._e("Add this groupchat to your favorites");
                 
                 specialLink += '<a href="#" class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
             }
@@ -197,7 +197,7 @@ var Chat = (function () {
                                 '<a href="#" class="tools-save tools-tooltip talk-images"></a>' + 
                             '</div>' + 
                             
-                            '<a href="#" class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + _e("Clean current chat") + '"></a>' + 
+                            '<a href="#" class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + Common._e("Clean current chat") + '"></a>' + 
                             
                             specialLink + 
                         '</div>' + 
@@ -211,7 +211,7 @@ var Chat = (function () {
             
             // Click event: chat cleaner
             $(path + 'tools-clear').click(function() {
-                cleanChat(id);
+                self.clean(id);
             });
 
             // Click event: call (audio)
@@ -258,7 +258,7 @@ var Chat = (function () {
             if(type == 'groupchat') {
                 specialClass = ' groupchat-default';
                 
-                if(isAnonymous() && (xid == generateXID(ANONYMOUS_ROOM, 'groupchat')))
+                if(isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))
                     show_close = false;
             }
             
@@ -270,7 +270,7 @@ var Chat = (function () {
             
             // Show the close button if not MUC and not anonymous
             if(show_close)
-                html += '<div class="exit" title="' + _e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
+                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
             
             // Close the HTML
             html += '</div>';
@@ -297,7 +297,7 @@ var Chat = (function () {
             $('#page-engine #' + chat + ' .content .one-group').remove();
             
             // Clear the history database
-            removePersistent(getXID(), 'history', chat);
+            DataStore.removePersistent(Common.getXID(), 'history', chat);
             
             // Focus again
             $(document).oneTime(10, function() {
@@ -319,16 +319,16 @@ var Chat = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.chatCreate = function(hash, xid, nick, type) {
+    self.create = function(hash, xid, nick, type) {
 
         try {
             Console.info('New chat: ' + xid);
             
             // Create the chat content
-            generateChat(type, hash, xid, nick);
+            self.generate(type, hash, xid, nick);
             
             // Create the chat switcher
-            generateSwitch(type, hash, xid, nick);
+            self.generateSwitch(type, hash, xid, nick);
             
             // If the user is not in our buddy-list
             if(type == 'chat') {
@@ -342,11 +342,11 @@ var Chat = (function () {
                     });
                 } else {
                     // Restore the chat history
-                    var chat_history = getPersistent(getXID(), 'history', hash);
+                    var chat_history = DataStore.getPersistent(Common.getXID(), 'history', hash);
                     
                     if(chat_history) {
                         // Generate hashs
-                        var my_hash = hex_md5(getXID());
+                        var my_hash = hex_md5(Common.getXID());
                         var friend_hash = hex_md5(xid);
                         
                         // Add chat history HTML
@@ -357,25 +357,25 @@ var Chat = (function () {
                         $('#' + hash + ' .user-message').removeClass('user-message').addClass('old-message');
                         
                         // Regenerate user names
-                        $('#' + hash + ' .one-group.' + my_hash + ' b.name').text(getBuddyName(getXID()));
+                        $('#' + hash + ' .one-group.' + my_hash + ' b.name').text(getBuddyName(Common.getXID()));
                         $('#' + hash + ' .one-group.' + friend_hash + ' b.name').text(getBuddyName(xid));
                         
                         // Regenerate group dates
                         $('#' + hash + ' .one-group').each(function() {
                             var current_stamp = parseInt($(this).attr('data-stamp'));
-                            $(this).find('span.date').text(relativeDate(current_stamp));
+                            $(this).find('span.date').text(DateUtils.relative(current_stamp));
                         });
                         
                         // Regenerate avatars
-                        if(exists('#' + hash + ' .one-group.' + my_hash + ' .avatar-container'))
-                            getAvatar(getXID(), 'cache', 'true', 'forget');
-                        if(exists('#' + hash + ' .one-group.' + friend_hash + ' .avatar-container'))
-                            getAvatar(xid, 'cache', 'true', 'forget');
+                        if(Common.exists('#' + hash + ' .one-group.' + my_hash + ' .avatar-container'))
+                            Avatar.get(Common.getXID(), 'cache', 'true', 'forget');
+                        if(Common.exists('#' + hash + ' .one-group.' + friend_hash + ' .avatar-container'))
+                            Avatar.get(xid, 'cache', 'true', 'forget');
                     }
                 }
 
                 // Add button
-                if(!exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
+                if(!Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
                     $('#' + hash + ' .tools-add').click(function() {
                         // Hide the icon (to tell the user all is okay)
                         $(this).hide();
@@ -419,7 +419,7 @@ var Chat = (function () {
                         sendMessage(hash, 'chat');
                         
                         // Reset the composing database entry
-                        setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
+                        DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
                     }
                     
                     return false;

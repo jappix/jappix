@@ -43,11 +43,11 @@ var OOB = (function () {
                     return;
                 
                 // Register the ID
-                setDB(DESKTOP_HASH, 'send/url', id, url);
-                setDB(DESKTOP_HASH, 'send/desc', id, desc);
+                DataStore.setDB(DESKTOP_HASH, 'send/url', id, url);
+                DataStore.setDB(DESKTOP_HASH, 'send/desc', id, desc);
                 
                 var aIQ = new JSJaCIQ();
-                aIQ.setTo(fullXID(to));
+                aIQ.setTo(Common.fullXID(to));
                 aIQ.setType('set');
                 aIQ.setID(id);
                 
@@ -62,7 +62,7 @@ var OOB = (function () {
             // Message stanza?
             else {
                 var aMsg = new JSJaCMessage();
-                aMsg.setTo(bareXID(to));
+                aMsg.setTo(Common.bareXID(to));
                 
                 // Append the content
                 aMsg.setBody(desc);
@@ -96,14 +96,14 @@ var OOB = (function () {
             
             // IQ stanza?
             if(type == 'iq') {
-                xid = fullXID(from);
+                xid = Common.fullXID(from);
                 url = $(node).find('url').text();
                 desc = $(node).find('desc').text();
             }
             
             // Message stanza?
             else {
-                xid = bareXID(from);
+                xid = Common.bareXID(from);
                 url = $(node).find('url').text();
                 desc = $(node).find('body').text();
             }
@@ -232,7 +232,7 @@ var OOB = (function () {
             
             // Not available?
             if($('#page-engine .chat-tools-file' + oob_has).is(':hidden') && (oob_type == 'iq')) {
-                openThisError(4);
+                Board.openThisError(4);
                 
                 // Remove the file we sent
                 if(fURL)
@@ -252,7 +252,7 @@ var OOB = (function () {
             
             // Upload error?
             else {
-                openThisError(4);
+                Board.openThisError(4);
                 
                 Console.error('Error while sending the file', dData.find('error').text());
             }

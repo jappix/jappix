@@ -27,7 +27,7 @@ var Board = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.createBoard = function(type, id) {
+    self.create = function(type, id) {
 
         try {
             // Text var
@@ -38,37 +38,37 @@ var Board = (function () {
                 switch(id) {
                     // Password change
                     case 1:
-                        text = _e("Your password has been changed, now you can connect to your account with your new login data.");
+                        text = Common._e("Your password has been changed, now you can connect to your account with your new login data.");
                         
                         break;
                     
                     // Account deletion
                     case 2:
-                        text = _e("Your XMPP account has been removed, bye!");
+                        text = Common._e("Your XMPP account has been removed, bye!");
                         
                         break;
                     
                     // Account logout
                     case 3:
-                        text = _e("You have been logged out of your XMPP account, have a nice day!");
+                        text = Common._e("You have been logged out of your XMPP account, have a nice day!");
                         
                         break;
                     
                     // Groupchat join
                     case 4:
-                        text = _e("The room you tried to join doesn't seem to exist.");
+                        text = Common._e("The room you tried to join doesn't seem to exist.");
                         
                         break;
                     
                     // Groupchat removal
                     case 5:
-                        text = _e("The groupchat has been removed.");
+                        text = Common._e("The groupchat has been removed.");
                         
                         break;
                     
                     // Non-existant groupchat user
                     case 6:
-                        text = _e("The user that you want to reach is not present in the room.");
+                        text = Common._e("The user that you want to reach is not present in the room.");
                         
                         break;
                 }
@@ -79,25 +79,25 @@ var Board = (function () {
                 switch(id) {
                     // Custom error
                     case 1:
-                        text = '<b>' + _e("Error") + '</b> &raquo; <span></span>';
+                        text = '<b>' + Common._e("Error") + '</b> &raquo; <span></span>';
                         
                         break;
                     
                     // Network error
                     case 2:
-                        text = _e("Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience.");
+                        text = Common._e("Jappix has been interrupted by a network issue, a bug or bad login (check that you entered the right credentials), sorry for the inconvenience.");
                         
                         break;
                     
                     // List retrieving error
                     case 3:
-                        text = _e("The element list on this server could not be obtained!");
+                        text = Common._e("The element list on this server could not be obtained!");
                         
                         break;
                     
                     // Attaching error
                     case 4:
-                        text = printf(_e("An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"), JAPPIX_MAX_UPLOAD);
+                        text = Common.printf(Common._e("An error occured while uploading your file: maybe it is too big (%s maximum) or forbidden!"), JAPPIX_MAX_UPLOAD);
                         
                         break;
                 }
@@ -114,11 +114,11 @@ var Board = (function () {
             $('#board .one-board.' + type + '[data-id="' + id + '"]')
             
             .click(function() {
-                closeThisBoard(this);
+                self.closeThis(this);
             })
             
             .oneTime('5s', function() {
-                closeThisBoard(this);
+                self.closeThis(this);
             })
             
             .slideDown();
@@ -136,7 +136,7 @@ var Board = (function () {
      * @public
      * @return {undefined}
      */
-    self.destroyBoard = function() {
+    self.destroy = function() {
 
         try {
             $('#board').empty();
@@ -153,14 +153,14 @@ var Board = (function () {
      * @param {type} name
      * @return {undefined}
      */
-    self.actionBoard = function(id, type) {
+    self.action = function(id, type) {
 
         try {
             // In a first, we destroy other boards
-            destroyBoard();
+            self.destroy();
             
             // Then we display the board
-            createBoard(type, id);
+            self.create(type, id);
         } catch(e) {
             Console.error('Board.action', e);
         }
@@ -177,7 +177,7 @@ var Board = (function () {
     self.openThisError = function(id) {
 
         try {
-            actionBoard(id, 'error');
+            self.action(id, 'error');
         } catch(e) {
             Console.error('Board.openThisError', e);
         }
@@ -194,7 +194,7 @@ var Board = (function () {
     self.openThisInfo = function(id) {
 
         try {
-            actionBoard(id, 'info');
+            self.action(id, 'info');
         } catch(e) {
             Console.error('Board.openThisInfo', e);
         }
@@ -208,7 +208,7 @@ var Board = (function () {
      * @param {string} board
      * @return {undefined}
      */
-    self.closeThisBoard = function(board) {
+    self.closeThis = function(board) {
 
         try {
             $(board).slideUp('normal', function() {
@@ -231,11 +231,11 @@ var Board = (function () {
      * @param {string} icon
      * @return {object}
      */
-    self.quickBoard = function(xid, type, content, title, icon) {
+    self.quick = function(xid, type, content, title, icon) {
 
         try {
             // Cannot process?
-            if(isFocused() || !content || !window.webkitNotifications)
+            if(Common.isFocused() || !content || !window.webkitNotifications)
                 return;
             
             // Default icon?
@@ -244,7 +244,9 @@ var Board = (function () {
                 
                 // Avatar icon?
                 if(xid) {
-                    var avatar_xml = XMLFromString(getPersistent('global', 'avatar', xid));
+                    var avatar_xml = Common.XMLFromString(
+                        DataStore.getPersistent('global', 'avatar', xid)
+                    );
                     var avatar_type = $(avatar_xml).find('type').text() || 'image/png';
                     var avatar_binval = $(avatar_xml).find('binval').text();
                     
@@ -255,7 +257,7 @@ var Board = (function () {
             
             // Default title?
             if(!title)
-                title = _e("New event!");
+                title = Common._e("New event!");
             
             // Check for notification permission
             if(window.webkitNotifications.checkPermission() == 0) {
@@ -278,7 +280,7 @@ var Board = (function () {
                             break;
                         
                         case 'groupchat':
-                            switchChan(hex_md5(bareXID(xid)));
+                            switchChan(hex_md5(Common.bareXID(xid)));
                             break;
                         
                         default:
@@ -309,7 +311,7 @@ var Board = (function () {
      * @public
      * @return {undefined}
      */
-    self.quickBoardPermission = function() {
+    self.quickPermission = function() {
 
         try {
             if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() == 0))
@@ -332,11 +334,11 @@ var Board = (function () {
     self.launch = function() {
 
         try {
-            // Fires quickBoardPermission() on document click
+            // Fires quickPermission() on document click
             $(document).click(function() {
                 // Ask for permission to use quick boards
                 if((typeof con != 'undefined') && con.connected())
-                    quickBoardPermission();
+                    quickPermission();
             });
         } catch(e) {
             Console.error('Board.launch', e);

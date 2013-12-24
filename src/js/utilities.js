@@ -175,7 +175,7 @@ var Utils = (function () {
     self.encodeOnclick = function(str) {
 
         try {
-            return (encodeQuotes(str)).replace(/'/g, '\\$&');
+            return (Common.encodeQuotes(str)).replace(/'/g, '\\$&');
         } catch(e) {
             Console.error('Utils.encodeOnclick', e);
         }
@@ -210,7 +210,7 @@ var Utils = (function () {
         var is_anonymous = false;
 
         try {
-            if(allowedAnonymous() && LINK_VARS['r']) {
+            if(Common.allowedAnonymous() && LINK_VARS['r']) {
                 is_anonymous = true;
             }
         } catch(e) {
@@ -233,7 +233,7 @@ var Utils = (function () {
         var is_private = false;
 
         try {
-            if(exists('[data-xid="' + escape(xid) + '"][data-type="groupchat"]')) {
+            if(Common.exists('[data-xid="' + escape(xid) + '"][data-type="groupchat"]')) {
                 return true;
             }
         } catch(e) {
@@ -258,7 +258,7 @@ var Utils = (function () {
             var browser_version = BrowserDetect.version;
             
             // No DOM storage
-            if(!hasDB() || !hasPersistent())
+            if(!DataStore.hasDB() || !DataStore.hasPersistent())
                 return true;
             
             // Obsolete IE

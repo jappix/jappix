@@ -103,19 +103,21 @@ var Caps = (function () {
             if(!caps) {
                 Console.warn('No CAPS: ' + to);
                 
-                displayDiscoInfos(to, '');
+                self.displayDiscoInfos(to, '');
                 
                 return false;
             }
             
             // Get the stored disco infos
-            var xml = XMLFromString(getPersistent('global', 'caps', caps));
+            var xml = Common.XMLFromString(
+                DataStore.getPersistent('global', 'caps', caps)
+            );
             
             // Yet stored
             if(xml) {
                 Console.info('CAPS from cache: ' + to);
                 
-                displayDiscoInfos(to, xml);
+                self.displayDiscoInfos(to, xml);
                 
                 return true;
             }
@@ -129,7 +131,7 @@ var Caps = (function () {
             iq.setType('get');
             iq.setQuery(NS_DISCO_INFO);
             
-            con.send(iq, handleDiscoInfos);
+            con.send(iq, self.handleDiscoInfos);
             
             return true;
         } catch(e) {
@@ -152,7 +154,7 @@ var Caps = (function () {
                 return;
             
             // IQ received, get some values
-            var from = fullXID(getStanzaFrom(iq));
+            var from = Common.fullXID(Common.getStanzaFrom(iq));
             var query = iq.getQuery();
             
             // Generate the CAPS-processing values
@@ -246,13 +248,13 @@ var Caps = (function () {
             });
             
             // Process the CAPS
-            var caps = processCaps(identities, features, data_forms);
+            var caps = self.process(identities, features, data_forms);
             
             // Get the XML string
-            var xml = xmlToString(query);
+            var xml = Common.xmlToString(query);
             
             // Store the disco infos
-            setPersistent('global', 'caps', caps, xml);
+            DataStore.setPersistent('global', 'caps', caps, xml);
             
             // This is our server
             if(from == getServer()) {
@@ -264,7 +266,7 @@ var Caps = (function () {
             
             else {
                 // Display the disco infos
-                displayDiscoInfos(from, xml);
+                self.displayDiscoInfos(from, xml);
                 
                 Console.info('Got CAPS: ' + from);
             }
@@ -286,7 +288,7 @@ var Caps = (function () {
 
         try {
             // Generate the chat path
-            var xid = bareXID(from);
+            var xid = Common.bareXID(from);
             
             // This comes from a private groupchat chat?
             if(isPrivate(xid))
@@ -370,7 +372,7 @@ var Caps = (function () {
      * @param {object} cDataForms
      * @return {string}
      */
-    self.processCaps = function(cIdentities, cFeatures, cDataForms) {
+    self.process = function(cIdentities, cFeatures, cDataForms) {
 
         try {
             // Initialize
@@ -412,16 +414,16 @@ var Caps = (function () {
      * @public
      * @return {string}
      */
-    self.my = function() {
+    self.mine = function() {
 
         try {
-            return processCaps(
+            return self.process(
                 new Array('client/web//Jappix'),
-                myDiscoInfos(),
+                self.myDiscoInfos(),
                 new Array()
             );
         } catch(e) {
-            Console.error('Caps.my', e);
+            Console.error('Caps.mine', e);
         }
 
     };

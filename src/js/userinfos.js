@@ -32,22 +32,22 @@ var UserInfos = (function () {
             // Can show shortcuts?
             var shortcuts = '';
             
-            if(xid != getXID()) {
+            if(xid != Common.getXID()) {
                 shortcuts = '<div class="shortcuts">' + 
-                            '<a href="#" class="message talk-images" title="' + _e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                            '<a href="#" class="chat talk-images" title="' + _e("Start a chat with him/her") + '" onclick="closeUserInfos(); return checkChatCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
-                            '<a href="#" class="command talk-images" title="' + _e("Command") + '" onclick="closeUserInfos(); return retrieveAdHoc(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                            '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                            '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="closeUserInfos(); return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+                            '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="closeUserInfos(); return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
                              '</div>';
             }
             
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("User profile") + '</div>' + 
+            '<div class="top">' + Common._e("User profile") + '</div>' + 
             
             '<div class="tab">' + 
-                '<a href="#" class="tab-active" data-key="1">' + _e("General") + '</a>' + 
-                '<a href="#" data-key="2">' + _e("Advanced") + '</a>' + 
-                '<a href="#" data-key="3">' + _e("Comments") + '</a>' + 
+                '<a href="#" class="tab-active" data-key="1">' + Common._e("General") + '</a>' + 
+                '<a href="#" data-key="2">' + Common._e("Advanced") + '</a>' + 
+                '<a href="#" data-key="3">' + Common._e("Comments") + '</a>' + 
             '</div>' + 
             
             '<div class="content">' + 
@@ -57,45 +57,45 @@ var UserInfos = (function () {
                             '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
                         '</div>' + 
                         
-                        '<h1 id="BUDDY-FN" class="reset-info">' + _e("unknown") + '</h1>' + 
-                        '<h2 class="buddy-xid" class="reset-info">' + _e("unknown") + '</h2>' + 
-                        '<h3 class="buddy-last" class="reset-info">' + _e("unknown") + '</h3>' + 
+                        '<h1 id="BUDDY-FN" class="reset-info">' + Common._e("unknown") + '</h1>' + 
+                        '<h2 class="buddy-xid" class="reset-info">' + Common._e("unknown") + '</h2>' + 
+                        '<h3 class="buddy-last" class="reset-info">' + Common._e("unknown") + '</h3>' + 
                         
                         shortcuts + 
                     '</div>' + 
                     
                     '<div class="block-infos">' + 
-                        '<div class="one-line"><b class="line-label">' + _e("Date of birth") + '</b><span id="BUDDY-BDAY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Date of birth") + '</b><span id="BUDDY-BDAY" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("E-mail") + '</b><span id="BUDDY-EMAIL-USERID" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("E-mail") + '</b><span id="BUDDY-EMAIL-USERID" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("Phone") + '</b><span id="BUDDY-TEL-NUMBER" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Phone") + '</b><span id="BUDDY-TEL-NUMBER" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("Website") + '</b><span id="BUDDY-URL" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Website") + '</b><span id="BUDDY-URL" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                     '</div>' + 
                     
                     '<div class="block-infos">' + 
-                        '<div class="one-line"><b class="line-label">' + _e("Client") + '</b><span id="BUDDY-CLIENT" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Client") + '</b><span id="BUDDY-CLIENT" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("System") + '</b><span id="BUDDY-SYSTEM" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("System") + '</b><span id="BUDDY-SYSTEM" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("Local time") + '</b><span id="BUDDY-TIME" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Local time") + '</b><span id="BUDDY-TIME" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div class="one-lap info2">' + 
                     '<div class="block-infos">' + 
-                        '<div class="one-line"><b class="line-label">' + _e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Street") + '</b><span id="BUDDY-ADR-STREET" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("City") + '</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("City") + '</b><span id="BUDDY-ADR-LOCALITY" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("Postal code") + '</b><span id="BUDDY-ADR-PCODE" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Postal code") + '</b><span id="BUDDY-ADR-PCODE" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                         
-                        '<div class="one-line"><b class="line-label">' + _e("Country") + '</b><span id="BUDDY-ADR-CTRY" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Country") + '</b><span id="BUDDY-ADR-CTRY" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                     '</div>' + 
                     
                     '<div class="block-infos">' + 
-                        '<div class="one-line"><b class="line-label">' + _e("Biography") + '</b><span id="BUDDY-DESC" class="reset-info">' + _e("unknown") + '</span></div>' + 
+                        '<div class="one-line"><b class="line-label">' + Common._e("Biography") + '</b><span id="BUDDY-DESC" class="reset-info">' + Common._e("unknown") + '</span></div>' + 
                     '</div>' + 
                 '</div>' + 
                 
@@ -107,7 +107,7 @@ var UserInfos = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -272,7 +272,7 @@ var UserInfos = (function () {
     self.displayBuddyComments = function() {
 
         try {
-            var value = getDB(DESKTOP_HASH, 'rosternotes', xid);
+            var value = DataStore.getDB(DESKTOP_HASH, 'rosternotes', xid);
             
             if(value) {
                 $('#userinfos .rosternotes').val(value);
@@ -298,12 +298,12 @@ var UserInfos = (function () {
             var path = '#userinfos[data-last="' + id + '"]';
             
             // End if session does not exist
-            if(!exists(path))
+            if(!Common.exists(path))
                 return;
             
             if(iq && (iq.getType() == 'result')) {
                 // Get the values
-                var from = fullXID(getStanzaFrom(iq));
+                var from = Common.fullXID(Common.getStanzaFrom(iq));
                 var seconds = $(iq.getNode()).find('query').attr('seconds');
                 
                 // Any seconds?
@@ -314,7 +314,7 @@ var UserInfos = (function () {
                     
                     // Active user
                     if(seconds <= 60)
-                        last = _e("User currently active");
+                        last = Common._e("User currently active");
                     
                     // Inactive user
                     else {
@@ -326,11 +326,11 @@ var UserInfos = (function () {
                         
                         // Offline user
                         if(from.indexOf('/') == -1)
-                            last = printf(_e("Last seen: %s"), date);
+                            last = Common.printf(Common._e("Last seen: %s"), date);
                         
                         // Online user
                         else
-                            last = printf(_e("Inactive since: %s"), date);
+                            last = Common.printf(Common._e("Inactive since: %s"), date);
                     }
                     
                     // Append this text
@@ -363,7 +363,7 @@ var UserInfos = (function () {
             var path = '#userinfos[data-version="' + id + '"]';
             
             // End if session does not exist
-            if(!exists(path))
+            if(!Common.exists(path))
                 return;
             
             // Extract the reply data
@@ -384,7 +384,7 @@ var UserInfos = (function () {
                 if(os)
                     $(path + ' #BUDDY-SYSTEM').text(os);
                 
-                Console.log('Software version received: ' + fullXID(getStanzaFrom(iq)));
+                Console.log('Software version received: ' + Common.fullXID(Common.getStanzaFrom(iq)));
             }
             
             $('#userinfos .content').removeClass('version');
@@ -410,7 +410,7 @@ var UserInfos = (function () {
             var path = '#userinfos[data-time="' + id + '"]';
             
             // End if session does not exist
-            if(!exists(path))
+            if(!Common.exists(path))
                 return;
             
             if(iq && (iq.getType() == 'result')) {
@@ -432,7 +432,7 @@ var UserInfos = (function () {
                     $(path + ' #BUDDY-TIME').text(local_string);
                 }
                 
-                Console.log('Local time received: ' + fullXID(getStanzaFrom(iq)));
+                Console.log('Local time received: ' + Common.fullXID(Common.getStanzaFrom(iq)));
             }
             
             $('#userinfos .content').removeClass('time');
@@ -476,13 +476,13 @@ var UserInfos = (function () {
             var xid = $('#userinfos .buddy-xid').text();
             
             // Necessary to update?
-            var old_value = getDB(DESKTOP_HASH, 'rosternotes', xid);
+            var old_value = DataStore.getDB(DESKTOP_HASH, 'rosternotes', xid);
             
             if((old_value == value) || (!old_value && !value))
                 return false;
             
             // Update the database
-            setDB(DESKTOP_HASH, 'rosternotes', xid, value);
+            DataStore.setDB(DESKTOP_HASH, 'rosternotes', xid, value);
             
             // Send the new buddy storage values
             var iq = new JSJaCIQ();
@@ -493,14 +493,14 @@ var UserInfos = (function () {
             // We regenerate the XML
             var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'rosternotes' + ('_(.+)'));
 
-            for(var i = 0; i < storageDB.length; i++) {
+            for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
-                var current = storageDB.key(i);
+                var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored rosternote
                 if(current.match(db_regex)) {
                     var xid = RegExp.$1;
-                    var value = storageDB.getItem(current);
+                    var value = DataStore.storageDB.getItem(current);
                     
                     if(xid && value)
                         storage.appendChild(iq.buildNode('note', {'jid': xid, 'xmlns': NS_ROSTERNOTES}, value));

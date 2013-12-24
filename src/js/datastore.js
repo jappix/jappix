@@ -21,8 +21,8 @@ var DataStore = (function () {
 
 
     /* Variables */
-    var DATASTORE_DB_EMULATED = {};
-    var DATASTORE_PERSISTENT_EMULATED = {};
+    var _db_emulated = {};
+    var _persistent_emulated = {};
 
 
 	/**
@@ -32,7 +32,7 @@ var DataStore = (function () {
      * @param {object} storage_emulated
      * @return {undefined}
      */
-    self.storageAdapter = function(storage_native, storage_emulated) {
+    self._adapter = function(storage_native, storage_emulated) {
 
         try {
             var legacy = !storage_native;
@@ -101,7 +101,7 @@ var DataStore = (function () {
 
             this.length = legacy ? 0 : storage_native.length;
         } catch(e) {
-            Console.error('DataStore.storageAdapter', e);
+            Console.error('DataStore._adapter', e);
         }
 
     };
@@ -110,18 +110,18 @@ var DataStore = (function () {
     /**
      * Temporary: sessionStorage class alias for direct access
      */
-    var storageDB = new storageAdapter(
+    var storageDB = new self._adapter(
         (window.sessionStorage ? sessionStorage : null),
-        DATASTORE_DB_EMULATED
+        self._db_emulated
     );
 
 
     /**
      * Persistent: localStorage class alias for direct access
      */
-    var storagePersistent = new storageAdapter(
+    var storagePersistent = new self._adapter(
         (window.localStorage ? localStorage : null),
-        DATASTORE_PERSISTENT_EMULATED
+        self._persistent_emulated
     );
 
 
@@ -245,7 +245,7 @@ var DataStore = (function () {
     self.existDB = function(dbID, type, id) {
 
         try {
-            return getDB(dbID, type, id) != null;
+            return self.getDB(dbID, type, id) != null;
         } catch(e) {
             Console.error('DataStore.existDB', e);
         }
@@ -355,7 +355,7 @@ var DataStore = (function () {
                 Console.warn('Retrying: could not write a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
                 
                 // Flush it!
-                flushPersistent();
+                self.flushPersistent();
                 
                 // Set the item again
                 try {
@@ -418,7 +418,7 @@ var DataStore = (function () {
     self.existPersistent = function(dbID, type, id) {
 
         try {
-            return getPersistent(dbID, type, id) != null;
+            return self.getPersistent(dbID, type, id) != null;
         } catch(e) {
             Console.error('DataStore.existPersistent', e);
         }
@@ -466,14 +466,14 @@ var DataStore = (function () {
         try {
             try {
                 // Get the stored session entry
-                var session = getPersistent('global', 'session', 1);
+                var session = self.getPersistent('global', 'session', 1);
                 
                 // Reset the persistent database
-                resetPersistent();
+                self.resetPersistent();
                 
                 // Restaure the stored session entry
                 if(session)
-                    setPersistent('global', 'session', 1, session);
+                    self.setPersistent('global', 'session', 1, session);
                 
                 Console.info('Persistent database flushed.');
                 

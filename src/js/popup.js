@@ -31,11 +31,11 @@ var Popup = (function () {
 
         try {
             // Popup exists?
-            if(exists('#' + id))
+            if(Common.exists('#' + id))
                 return false;
             
             // Popop on top of another one?
-            var top_of = exists('div.lock:has(div.popup)');
+            var top_of = Common.exists('div.lock:has(div.popup)');
             
             // Append the popup code
             $('body').append(

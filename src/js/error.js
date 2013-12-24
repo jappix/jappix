@@ -53,7 +53,7 @@ var Error = (function () {
                 }
                 
                 // We reveal the error
-                openThisError(1);
+                Board.openThisError(1);
                 
                 // Create the error text
                 $('#board .one-board.error[data-id="1"] span').text(eText);
@@ -61,7 +61,7 @@ var Error = (function () {
             
             // Not enough data to output the error: output a generic board
             else {
-                openThisError(2);
+                Board.openThisError(2);
             }
         } catch(e) {
             Console.error('Error.show', e);
@@ -93,19 +93,19 @@ var Error = (function () {
                 // Specific error reason
                 switch(code) {
                     case '401':
-                        reason = _e("Authorization failed");
+                        reason = Common._e("Authorization failed");
                         break;
                     
                     case '409':
-                        reason = _e("Registration failed, please choose a different username");
+                        reason = Common._e("Registration failed, please choose a different username");
                         break;
                     
                     case '503':
-                        reason = _e("Service unavailable");
+                        reason = Common._e("Service unavailable");
                         break;
                     
                     case '500':
-                        reason = _e("Internal server error, try later");
+                        reason = Common._e("Internal server error, try later");
                         break;
                     
                     default:
@@ -120,9 +120,9 @@ var Error = (function () {
                 if(CURRENT_SESSION && CONNECTED) {
                     // Anonymous?
                     if(isAnonymous())
-                        createReconnect('anonymous');
+                        Connection.createReconnect('anonymous');
                     else
-                        createReconnect('normal');
+                        Connection.createReconnect('normal');
                 }
                 
                 // Show the homepage (security)
@@ -132,7 +132,7 @@ var Error = (function () {
                 }
                 
                 // Still connected? (security)
-                if(isConnected())
+                if(Common.isConnected))
                     con.disconnect();
                 
                 Console.error('First level error received.');

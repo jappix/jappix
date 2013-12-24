@@ -30,75 +30,75 @@ var Privacy = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Privacy") + '</div>' + 
+            '<div class="top">' + Common._e("Privacy") + '</div>' + 
             
             '<div class="content">' + 
                 '<div class="privacy-head">' + 
                     '<div class="list-left">' + 
-                        '<span>' + _e("Choose") + '</span>' + 
+                        '<span>' + Common._e("Choose") + '</span>' + 
                         '<select disabled=""></select>' + 
-                        '<a href="#" class="list-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
+                        '<a href="#" class="list-remove one-button talk-images" title="' + Common._e("Remove") + '"></a>' + 
                     '</div>' + 
                     
                     '<div class="list-center"></div>' + 
                     
                     '<div class="list-right">' + 
-                        '<span>' + _e("Add") + '</span>' + 
-                        '<input type="text" placeholder="' + _e("List name") + '" />' + 
+                        '<span>' + Common._e("Add") + '</span>' + 
+                        '<input type="text" placeholder="' + Common._e("List name") + '" />' + 
                     '</div>' + 
                 '</div>' + 
                 
                 '<div class="privacy-item">' + 
-                    '<span>' + _e("Item") + '</span>' + 
+                    '<span>' + Common._e("Item") + '</span>' + 
                     '<select disabled=""></select>' + 
-                    '<a href="#" class="item-add one-button talk-images" title="' + _e("Add") + '"></a>' + 
-                    '<a href="#" class="item-remove one-button talk-images" title="' + _e("Remove") + '"></a>' + 
-                    '<a href="#" class="item-save one-button talk-images">' + _e("Save") + '</a>' + 
+                    '<a href="#" class="item-add one-button talk-images" title="' + Common._e("Add") + '"></a>' + 
+                    '<a href="#" class="item-remove one-button talk-images" title="' + Common._e("Remove") + '"></a>' + 
+                    '<a href="#" class="item-save one-button talk-images">' + Common._e("Save") + '</a>' + 
                     
                     '<div class="clear"></div>' + 
                 '</div>' + 
                 
                 '<div class="privacy-form">' + 
                     '<div class="privacy-first">' + 
-                        '<label><input type="radio" name="action" value="allow" disabled="" />' + _e("Allow") + '</label>' + 
-                        '<label><input type="radio" name="action" value="deny" disabled="" />' + _e("Deny") + '</label>' + 
+                        '<label><input type="radio" name="action" value="allow" disabled="" />' + Common._e("Allow") + '</label>' + 
+                        '<label><input type="radio" name="action" value="deny" disabled="" />' + Common._e("Deny") + '</label>' + 
                     '</div>' + 
                     
                     '<div class="privacy-second">' + 
-                        '<label><input type="radio" name="type" value="jid" disabled="" />' + _e("Address") + '</label>' + 
+                        '<label><input type="radio" name="type" value="jid" disabled="" />' + Common._e("Address") + '</label>' + 
                         '<input type="text" name="jid" disabled="" />' + 
                         
-                        '<label><input type="radio" name="type" value="group" disabled="" />' + _e("Group") + '</label>' + 
+                        '<label><input type="radio" name="type" value="group" disabled="" />' + Common._e("Group") + '</label>' + 
                         '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select>' + 
                         
-                        '<label><input type="radio" name="type" value="subscription" disabled="" />' + _e("Subscription") + '</label>' + 
+                        '<label><input type="radio" name="type" value="subscription" disabled="" />' + Common._e("Subscription") + '</label>' + 
                         '<select name="subscription" disabled="">' + 
-                            '<option value="none">' + _e("None") + '</option>' + 
-                            '<option value="both">' + _e("Both") + '</option>' + 
-                            '<option value="from">' + _e("From") + '</option>' + 
-                            '<option value="to">' + _e("To") + '</option>' + 
+                            '<option value="none">' + Common._e("None") + '</option>' + 
+                            '<option value="both">' + Common._e("Both") + '</option>' + 
+                            '<option value="from">' + Common._e("From") + '</option>' + 
+                            '<option value="to">' + Common._e("To") + '</option>' + 
                         '</select>' + 
                         
-                        '<label><input type="radio" name="type" value="everybody" disabled="" />' + _e("Everybody") + '</label>' + 
+                        '<label><input type="radio" name="type" value="everybody" disabled="" />' + Common._e("Everybody") + '</label>' + 
                     '</div>' + 
                     
                     '<div class="privacy-third">' + 
-                        '<label><input type="checkbox" name="send-messages" disabled="" />' + _e("Send messages") + '</label>' + 
-                        '<label><input type="checkbox" name="send-queries" disabled="" />' + _e("Send queries") + '</label>' + 
-                        '<label><input type="checkbox" name="see-status" disabled="" />' + _e("See my status") + '</label>' + 
-                        '<label><input type="checkbox" name="send-status" disabled="" />' + _e("Send his/her status") + '</label>' + 
-                        '<label><input type="checkbox" name="everything" disabled="" />' + _e("Everything") + '</label>' + 
+                        '<label><input type="checkbox" name="send-messages" disabled="" />' + Common._e("Send messages") + '</label>' + 
+                        '<label><input type="checkbox" name="send-queries" disabled="" />' + Common._e("Send queries") + '</label>' + 
+                        '<label><input type="checkbox" name="see-status" disabled="" />' + Common._e("See my status") + '</label>' + 
+                        '<label><input type="checkbox" name="send-status" disabled="" />' + Common._e("Send his/her status") + '</label>' + 
+                        '<label><input type="checkbox" name="everything" disabled="" />' + Common._e("Everything") + '</label>' + 
                     '</div>' + 
                     
                     '<div class="clear"></div>' + 
                 '</div>' + 
                 
                 '<div class="privacy-active">' + 
-                    '<label>' + _e("Order") + '<input type="text" name="order" value="1" disabled="" /></label>' + 
+                    '<label>' + Common._e("Order") + '<input type="text" name="order" value="1" disabled="" /></label>' + 
                     
                     '<div class="privacy-active-elements">' + 
-                        '<label><input type="checkbox" name="active" disabled="" />' + _e("Active for this session") + '</label>' + 
-                        '<label><input type="checkbox" name="default" disabled="" />' + _e("Always active") + '</label>' + 
+                        '<label><input type="checkbox" name="active" disabled="" />' + Common._e("Active for this session") + '</label>' + 
+                        '<label><input type="checkbox" name="default" disabled="" />' + Common._e("Always active") + '</label>' + 
                     '</div>' + 
                 '</div>' + 
             '</div>' + 
@@ -106,7 +106,7 @@ var Privacy = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish">' + _e("Close") + '</a>' + 
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -157,7 +157,7 @@ var Privacy = (function () {
 
         try {
             // Store marker
-            setDB(DESKTOP_HASH, 'privacy-marker', 'available', 'true');
+            DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'available', 'true');
             
             // Show privacy elements
             $('.privacy-hidable').show();
@@ -209,7 +209,7 @@ var Privacy = (function () {
             var iqQuery = iq.getQuery();
             
             // Save the content
-            setDB(DESKTOP_HASH, 'privacy-lists', 'available', xmlToString(iqQuery));
+            DataStore.setDB(DESKTOP_HASH, 'privacy-lists', 'available', Common.xmlToString(iqQuery));
             
             // Any block list?
             if($(iqQuery).find('list[name="block"]').size()) {
@@ -217,13 +217,13 @@ var Privacy = (function () {
                 if(!$(iqQuery).find('default[name="block"]').size())
                     changePrivacy('block', 'default');
                 else
-                    setDB(DESKTOP_HASH, 'privacy-marker', 'default', 'block');
+                    DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'default', 'block');
                 
                 // Not the active one?
                 if(!$(iqQuery).find('active[name="block"]').size())
                     changePrivacy('block', 'active');
                 else
-                    setDB(DESKTOP_HASH, 'privacy-marker', 'active', 'block');
+                    DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'active', 'block');
                 
                 // Get the block list rules
                 getPrivacy('block');
@@ -261,7 +261,7 @@ var Privacy = (function () {
             con.send(iq, handleGetPrivacy);
             
             // Must show the wait item?
-            if(exists('#privacy'))
+            if(Common.exists('#privacy'))
                 $('#privacy .wait').show();
             
             Console.log('Getting privacy list(s): ' + list);
@@ -290,7 +290,7 @@ var Privacy = (function () {
                 var list_name = $(this).attr('name');
                 
                 // Store list content
-                setDB(DESKTOP_HASH, 'privacy', list_name, xmlToString(this));
+                DataStore.setDB(DESKTOP_HASH, 'privacy', list_name, Common.xmlToString(this));
                 
                 // Is this a block list?
                 if(list_name == 'block') {
@@ -310,7 +310,7 @@ var Privacy = (function () {
             });
             
             // Must display it to the popup?
-            if(exists('#privacy')) {
+            if(Common.exists('#privacy')) {
                 displayItemsPrivacy();
                 
                 $('#privacy .wait').hide();
@@ -411,7 +411,7 @@ var Privacy = (function () {
 
         try {
             // Read the stored elements (to add them)
-            var stored = XMLFromString(getDB(DESKTOP_HASH, 'privacy', list));
+            var stored = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list));
             
             // Read the first value
             var first_val = value[0];
@@ -505,11 +505,11 @@ var Privacy = (function () {
 
         try {
             // Yet sent?
-            if(getDB(DESKTOP_HASH, 'privacy-marker', status) == list)
+            if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status) == list)
                 return;
             
             // Write a marker
-            setDB(DESKTOP_HASH, 'privacy-marker', status, list);
+            DataStore.setDB(DESKTOP_HASH, 'privacy-marker', status, list);
             
             // Build query
             var iq = new JSJaCIQ();
@@ -543,7 +543,7 @@ var Privacy = (function () {
     self.statusPrivacy = function(list, value) {
 
         try {
-            return $(XMLFromString(getDB(DESKTOP_HASH, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
+            return $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
         } catch(e) {
             Console.error('Privacy.status', e);
         }
@@ -565,7 +565,7 @@ var Privacy = (function () {
             
             // Generate HTML
             for(i in groups) {
-                html += '<option value="' + encodeQuotes(groups[i]) +'">' + groups[i].htmlEnc() + '</option>';
+                html += '<option value="' + Common.encodeQuotes(groups[i]) +'">' + groups[i].htmlEnc() + '</option>';
             }
         } catch(e) {
             Console.error('Privacy.groupsToHTML', e);
@@ -587,14 +587,14 @@ var Privacy = (function () {
             // Initialize
             var code = '';
             var select = $('#privacy .privacy-head .list-left select');
-            var data = XMLFromString(getDB(DESKTOP_HASH, 'privacy-lists', 'available'));
+            var data = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy-lists', 'available'));
             
             // Parse the XML data!
             $(data).find('list').each(function() {
                 var list_name = $(this).attr('name');
                 
                 if(list_name)
-                    code += '<option value="' + encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>';
+                    code += '<option value="' + Common.encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>';
             });
             
             // Apply HTML code
@@ -645,12 +645,12 @@ var Privacy = (function () {
             var status = ['active', 'default'];
             
             for(s in status) {
-                if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
                     $('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
             }
             
             // Try to read the stored items
-            var items = XMLFromString(getDB(DESKTOP_HASH, 'privacy', list));
+            var items = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list));
             
             // Must retrieve the data?
             if(!items) {
@@ -726,7 +726,7 @@ var Privacy = (function () {
                 }
                 
                 // Add the select option
-                code += '<option data-type="' + encodeQuotes(item_type) + '" data-value="' + encodeQuotes(item_value) + '" data-action="' + encodeQuotes(item_action) + '" data-order="' + encodeQuotes(item_order) + '" data-presence_in="' + encodeQuotes(item_presencein) + '" data-presence_out="' + encodeQuotes(item_presenceout) + '" data-message="' + encodeQuotes(item_message) + '" data-iq="' + encodeQuotes(item_iq) + '" data-hash="' + encodeQuotes(item_hash) + '">' + 
+                code += '<option data-type="' + Common.encodeQuotes(item_type) + '" data-value="' + Common.encodeQuotes(item_value) + '" data-action="' + Common.encodeQuotes(item_action) + '" data-order="' + Common.encodeQuotes(item_order) + '" data-presence_in="' + Common.encodeQuotes(item_presencein) + '" data-presence_out="' + Common.encodeQuotes(item_presenceout) + '" data-message="' + Common.encodeQuotes(item_message) + '" data-iq="' + Common.encodeQuotes(item_iq) + '" data-hash="' + Common.encodeQuotes(item_hash) + '">' + 
                         desc + 
                     '</option>';
             });
@@ -928,7 +928,7 @@ var Privacy = (function () {
                 $('#privacy .privacy-head .list-left select option[value="' + list + '"]').remove();
                 
                 // Nothing remaining?
-                if(!exists('#privacy .privacy-head .list-left select option'))
+                if(!Common.exists('#privacy .privacy-head .list-left select option'))
                     $('#privacy .privacy-head .list-left select option').attr('disabled', true);
                 
                 // Empty the item select
@@ -938,7 +938,7 @@ var Privacy = (function () {
                 var status = ['active', 'default'];
                 
                 for(s in status) {
-                    if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                    if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
                         changePrivacy('', status[s]);
                 }
                 
@@ -963,12 +963,12 @@ var Privacy = (function () {
                 var existed = true;
                 
                 // Create the new element
-                if(!exists(select + ' option[value="' + list + '"]')) {
+                if(!Common.exists(select + ' option[value="' + list + '"]')) {
                     // Marker
                     existed = false;
                     
                     // Create a new option
-                    $(select).append('<option value="' + encodeQuotes(list) + '">' + list.htmlEnc() + '</option>');
+                    $(select).append('<option value="' + Common.encodeQuotes(list) + '">' + list.htmlEnc() + '</option>');
                     
                     // Reset the item select
                     $('#privacy .privacy-item select').attr('disabled', true).html('');
@@ -1012,7 +1012,7 @@ var Privacy = (function () {
             
             $('#privacy .privacy-item a.item-add').click(function() {
                 // Cannot add anything?
-                if(!exists('#privacy .privacy-head .list-left select option:selected'))
+                if(!Common.exists('#privacy .privacy-head .list-left select option:selected'))
                     return false;
                 
                 // Disable item select
@@ -1031,7 +1031,7 @@ var Privacy = (function () {
             
             $('#privacy .privacy-item a.item-remove').click(function() {
                 // Cannot add anything?
-                if(!exists('#privacy .privacy-head .list-left select option:selected'))
+                if(!Common.exists('#privacy .privacy-head .list-left select option:selected'))
                     return false;
                 
                 // Get values
@@ -1044,7 +1044,7 @@ var Privacy = (function () {
                 $('#privacy .privacy-item select option:selected').remove();
                 
                 // No more items in this list?
-                if(!exists('#privacy .privacy-item select option')) {
+                if(!Common.exists('#privacy .privacy-item select option')) {
                     // Disable this select
                     $('#privacy .privacy-item select').attr('disabled', true);
                     
@@ -1052,14 +1052,14 @@ var Privacy = (function () {
                     $('#privacy .privacy-head .list-left select option[value="' + list + '"]').remove();
                     
                     // No more privacy lists?
-                    if(!exists('#privacy .privacy-head .list-left select option'))
+                    if(!Common.exists('#privacy .privacy-head .list-left select option'))
                         $('#privacy .privacy-head .list-left select').attr('disabled', true);
                     
                     // Disable this list before removing it
                     var status = ['active', 'default'];
                     
                     for(s in status) {
-                        if(getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                        if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
                             changePrivacy('', status[s]);
                     }
                 }
@@ -1076,7 +1076,7 @@ var Privacy = (function () {
             
             $('#privacy .privacy-item a.item-save').click(function() {
                 // Canot push item?
-                if(exists('#privacy .privacy-form input:disabled'))
+                if(Common.exists('#privacy .privacy-form input:disabled'))
                     return false;
                 
                 // Get the hash

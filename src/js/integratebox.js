@@ -30,16 +30,16 @@ var IntegrateBox = (function () {
         try {
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Media viewer") + '</div>' + 
+            '<div class="top">' + Common._e("Media viewer") + '</div>' + 
             
             '<div class="content"></div>' + 
             
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish close">' + _e("Close") + '</a>' + 
-                '<a href="#" class="finish next disabled" title="' + _e("Next") + '">&gt;</a>' + 
-                '<a href="#" class="finish previous disabled" title="' + _e("Previous") + '">&lt;</a>' + 
+                '<a href="#" class="finish close">' + Common._e("Close") + '</a>' + 
+                '<a href="#" class="finish next disabled" title="' + Common._e("Next") + '">&gt;</a>' + 
+                '<a href="#" class="finish previous disabled" title="' + Common._e("Previous") + '">&lt;</a>' + 
             '</div>';
             
             // Create the popup
@@ -101,36 +101,36 @@ var IntegrateBox = (function () {
             switch(serv) {
                 case 'youtube':
                     if(legacy)
-                        code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + encodeQuotes(url) + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
+                        code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + Common.encodeQuotes(url) + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
                     else
-                        code = '<object width="640" height="385" data="' + encodeQuotes(protocol) + '://www.youtube.com/embed/' + encodeQuotes(url) + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + encodeQuotes(url) + '" target="_blank">http://www.youtube.com/watch?v=' + encodeQuotes(url) + '</a></object>';
+                        code = '<object width="640" height="385" data="' + Common.encodeQuotes(protocol) + '://www.youtube.com/embed/' + Common.encodeQuotes(url) + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + Common.encodeQuotes(url) + '" target="_blank">http://www.youtube.com/watch?v=' + Common.encodeQuotes(url) + '</a></object>';
                     
                     break;
                 
                 case 'dailymotion':
-                    code = '<object width="640" height="385"><param name="movie" value="http://www.dailymotion.com/swf/video/' + url + '&amp;autoplay=1"></param><param name="allowFullScreen" value="false"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/' + encodeQuotes(url) + '&amp;autoplay=1" width="640" height="385" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
+                    code = '<object width="640" height="385"><param name="movie" value="http://www.dailymotion.com/swf/video/' + url + '&amp;autoplay=1"></param><param name="allowFullScreen" value="false"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/' + Common.encodeQuotes(url) + '&amp;autoplay=1" width="640" height="385" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
                     
                     break;
                 
                 case 'vimeo':
-                    code = '<object width="640" height="385"><param name="allowfullscreen" value="true" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' + encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=' + encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="640" height="385"></embed></object>';
+                    code = '<object width="640" height="385"><param name="allowfullscreen" value="true" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' + Common.encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=' + Common.encodeQuotes(url) + '&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1&amp;autoplay=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="640" height="385"></embed></object>';
                     
                     break;
                 
                 case 'theora':
                 case 'video':
-                    code = '<video width="640" height="385" src="' + encodeQuotes(url) + '" controls autoplay><a href="' + encodeQuotes(url) + '" target="_blank">' + encodeQuotes(url) + '</a></video>';
+                    code = '<video width="640" height="385" src="' + Common.encodeQuotes(url) + '" controls autoplay><a href="' + Common.encodeQuotes(url) + '" target="_blank">' + Common.encodeQuotes(url) + '</a></video>';
                     
                     break;
                 
                 case 'vorbis':
                 case 'audio':
-                    code = '<audio src="' + encodeQuotes(url) + '" controls autoplay><a href="' + encodeQuotes(url) + '" target="_blank">' + encodeQuotes(url) + '</a></audio>';
+                    code = '<audio src="' + Common.encodeQuotes(url) + '" controls autoplay><a href="' + Common.encodeQuotes(url) + '" target="_blank">' + Common.encodeQuotes(url) + '</a></audio>';
                     
                     break;
                 
                 case 'image':
-                    code = '<a href="' + encodeQuotes(url) + '" target="_blank"><img alt="" src="' + encodeQuotes(url) + '" /></a>';
+                    code = '<a href="' + Common.encodeQuotes(url) + '" target="_blank"><img alt="" src="' + Common.encodeQuotes(url) + '" /></a>';
                 
                     break;
             }
@@ -162,7 +162,7 @@ var IntegrateBox = (function () {
             closeIntegrateBox();
             
             // Media integration not wanted?
-            if(getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
                 return true;
             
             // Apply the HTML code
@@ -203,9 +203,9 @@ var IntegrateBox = (function () {
                     
                     // Add the right content
                     $('#integratebox .content').after(
-                        '<div class="comments" data-id="' + encodeQuotes(comments_id) + '">' + 
+                        '<div class="comments" data-id="' + Common.encodeQuotes(comments_id) + '">' + 
                             '<div class="comments-content">' + 
-                                '<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Loading comments...") + '</div>' + 
+                                '<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Loading comments...") + '</div>' + 
                             '</div>' + 
                         '</div>'
                     );
@@ -219,11 +219,11 @@ var IntegrateBox = (function () {
                 var index = indexArrayValue(url_array, url);
                 
                 // Any comments?
-                if(exists('#integratebox .comments')) {
+                if(Common.exists('#integratebox .comments')) {
                     if(comments_e_array[index] && comments_n_array[index])
                         getCommentsMicroblog(comments_e_array[index], comments_n_array[index], comments_id);
                     else
-                        $('#integratebox .comments .comments-content').html('<div class="one-comment loading"><span class="icon talk-images"></span>' + _e("Comments locked!") + '</div>');
+                        $('#integratebox .comments .comments-content').html('<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Comments locked!") + '</div>');
                 }
                     
                 // Get the previous values
@@ -379,7 +379,7 @@ var IntegrateBox = (function () {
                         var current_attr = element_a.attributes[index];
                         
                         // Apply the current attribute
-                        new_a += ' ' + encodeQuotes(current_attr.name) + '="' + encodeQuotes(current_attr.value) + '"';
+                        new_a += ' ' + Common.encodeQuotes(current_attr.name) + '="' + Common.encodeQuotes(current_attr.value) + '"';
                     });
                     
                     // Add onclick attribute
@@ -431,14 +431,14 @@ var IntegrateBox = (function () {
         try {
             $(document).keyup(function(e) {
                 // Previous item?
-                if((exists('#integratebox .bottom .finish.previous:not(.disabled)')) && (e.keyCode == 37)) {
+                if((Common.exists('#integratebox .bottom .finish.previous:not(.disabled)')) && (e.keyCode == 37)) {
                     $('#integratebox .bottom .finish.previous').click();
                     
                     return false;
                 }
                 
                 // Next item?
-                if((exists('#integratebox .bottom .finish.next:not(.disabled)')) && (e.keyCode == 39)) {
+                if((Common.exists('#integratebox .bottom .finish.next:not(.disabled)')) && (e.keyCode == 39)) {
                     $('#integratebox .bottom .finish.next').click();
                     
                     return false;

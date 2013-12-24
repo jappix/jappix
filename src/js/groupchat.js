@@ -46,7 +46,7 @@ var Groupchat = (function () {
             
             // We check if the room hasn't been yet created
             if(statuscode == 201)
-                openThisInfo(4);
+                Board.openThisInfo(4);
             
             // We add the click event
             $('#' + id + ' .tools-mucadmin').click(function() {
@@ -93,8 +93,8 @@ var Groupchat = (function () {
             // Got our nickname?
             if(nickname) {
                 // Get our general presence
-                var show = getDB(DESKTOP_HASH, 'presence-show', 1);
-                var status = getDB(DESKTOP_HASH, 'options', 'presence-status');
+                var show = DataStore.getDB(DESKTOP_HASH, 'presence-show', 1);
+                var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
             
                 // Set my nick
                 $('#' + hash).attr('data-nick', escape(nickname));
@@ -122,9 +122,9 @@ var Groupchat = (function () {
         try {
             // We get the xml content
             var xml = presence.getNode();
-            var from = fullXID(getStanzaFrom(presence));
-            var room = bareXID(from);
-            var nickname = thisResource(from);
+            var from = Common.fullXID(Common.getStanzaFrom(presence));
+            var room = Common.bareXID(from);
+            var nickname = Common.thisResource(from);
             var hash = hex_md5(room);
             
             // No ID: must fix M-Link bug
@@ -195,11 +195,11 @@ var Groupchat = (function () {
             
             switch(type) {
                 case 'nickname':
-                    label_text = _e("Nickname");
+                    label_text = Common._e("Nickname");
                     break;
                 
                 case 'password':
-                    label_text = _e("Password");
+                    label_text = Common._e("Password");
                     break;
             }
             
@@ -219,9 +219,9 @@ var Groupchat = (function () {
                 
                 // Enter key pressed
                 if(e.keyCode == 13) {
-                    // trim() fixes #304
-                    if(type == 'nickname' && trim(value_input)) {
-                        nickname = trim(value_input);
+                    // $.trim() fixes #304
+                    if(type == 'nickname' && $.trim(value_input)) {
+                        nickname = $.trim(value_input);
                         return getMUC(room, nickname, password);
                     }
                     
@@ -261,10 +261,10 @@ var Groupchat = (function () {
             Console.info('New groupchat: ' + room);
     
             // Create the chat content
-            generateChat('groupchat', hash, room, chan);
+            Chat.generate('groupchat', hash, room, chan);
             
             // Create the chat switcher
-            generateSwitch('groupchat', hash, room, chan);
+            Chat.generateSwitch('groupchat', hash, room, chan);
             
             // The icons-hover functions
             tooltipIcons(room, hash);
@@ -279,7 +279,7 @@ var Groupchat = (function () {
             });
             
             // Must show the add button?
-            if(!existDB('favorites', room))
+            if(!DataStore.existDB('favorites', room))
                 $('#' + hash + ' .tools-add').show();
             
             // The event handlers
@@ -301,7 +301,7 @@ var Groupchat = (function () {
                     CHAT_FOCUS_HASH = null;
 
                 // Reset autocompletion
-                resetAutocompletion(hash);
+                Autocompletion.reset(hash);
             })
             
             // Lock to the input
@@ -317,7 +317,7 @@ var Groupchat = (function () {
                         sendMessage(hash, 'groupchat');
                         
                         // Reset the composing database entry
-                        setDB(DESKTOP_HASH, 'chatstate', room, 'off');
+                        DataStore.setDB(DESKTOP_HASH, 'chatstate', room, 'off');
                     }
                     
                     return false;
@@ -325,14 +325,15 @@ var Groupchat = (function () {
                 
                 // Tabulation key (without any modifiers)
                 else if(!e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey && e.keyCode == 9) {
-                    createAutocompletion(hash);
+                    Autocompletion.create(hash);
                     
                     return false;
                 }
                 
                 // Reset the autocompleter
-                else
-                    resetAutocompletion(hash);
+                else {
+                    Autocompletion.reset(hash);
+                }
             });
             
             // Chatstate events
@@ -365,14 +366,14 @@ var Groupchat = (function () {
             
             for(i in muc_arr) {
                 // Get the current value
-                var muc_current = trim(muc_arr[i]);
+                var muc_current = $.trim(muc_arr[i]);
                 
                 // No current value?
                 if(!muc_current)
                     continue;
                 
                 // Filter the current value
-                muc_current = generateXID(muc_current, 'groupchat');
+                muc_current = Common.generateXID(muc_current, 'groupchat');
                 
                 // Add the current value
                 if(!existArrayValue(new_arr, muc_current))
@@ -402,7 +403,7 @@ var Groupchat = (function () {
             // Join the chats
             if(JOIN_SUGGEST.length) {
                 for(g in JOIN_SUGGEST)
-                    checkChatCreate(JOIN_SUGGEST[g], 'groupchat');
+                    Chat.checkCreate(JOIN_SUGGEST[g], 'groupchat');
             }
         } catch(e) {
             Console.error('Groupchat.joinConf', e);
@@ -423,25 +424,25 @@ var Groupchat = (function () {
     
             // Must suggest the user?
             if((GROUPCHATS_SUGGEST == 'on') && groupchat_arr.length) {
-                if(exists('#suggest'))
+                if(Common.exists('#suggest'))
                     return;
                 
                 // Create HTML code
                 var html = '<div id="suggest">';
-                    html += '<div class="title">' + _e("Suggested chatrooms") + '</div>';
+                    html += '<div class="title">' + Common._e("Suggested chatrooms") + '</div>';
                     
                     html += '<div class="content">';
                         for(g in groupchat_arr) {
-                            html += '<a class="one" href="#" data-xid="' + encodeQuotes(groupchat_arr[g]) + '">';
+                            html += '<a class="one" href="#" data-xid="' + Common.encodeQuotes(groupchat_arr[g]) + '">';
                                 html += '<span class="icon talk-images"></span>';
-                                html += '<span class="name">' + capitaliseFirstLetter(getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
+                                html += '<span class="name">' + capitaliseFirstLetter(Common.getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
                                 html += '<span class="state talk-images"></span>';
                                 html += '<span class="clear"></span>';
                             html += '</a>';
                         }
                     html += '</div>';
                     
-                    html += '<a class="next disabled" href="#">' + _e("Continue") + '</a>';
+                    html += '<a class="next disabled" href="#">' + Common._e("Continue") + '</a>';
                 html += '</div>';
                 
                 // Append HTML code
@@ -453,7 +454,7 @@ var Groupchat = (function () {
                     $(this).toggleClass('active');
                     
                     // We require at least one room to be chosen
-                    if(exists('#suggest .content a.one.active'))
+                    if(Common.exists('#suggest .content a.one.active'))
                         $('#suggest a.next').removeClass('disabled');
                     else
                         $('#suggest a.next').addClass('disabled');
@@ -473,14 +474,14 @@ var Groupchat = (function () {
                     
                     // Switch to talk UI
                     $('#suggest').remove();
-                    triggerConnected();
+                    Connection.triggerConnected();
                     
                     return false;
                 });
             } else {
                 JOIN_SUGGEST = groupchat_arr;
                 
-                triggerConnected();
+                Connection.triggerConnected();
             }
         } catch(e) {
             Console.error('Groupchat.suggestCheck', e);

@@ -177,7 +177,7 @@ var Receipts = (function () {
                     
                     // Add a warn on the buddy-name
                     $(this).parent().find('b.name').addClass('talk-images')
-                                       .attr('title', _e("Your friend seems not to have received your message(s)!"));
+                                       .attr('title', Common._e("Your friend seems not to have received your message(s)!"));
                 }
             });
         } catch(e) {

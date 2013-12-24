@@ -33,56 +33,56 @@ var Welcome = (function () {
 
         try {
             // Share message
-            var share_msg = printf(_e("Using Jappix, an open social platform. I am %s!"), getXID());
+            var share_msg = Common.printf(Common._e("Using Jappix, an open social platform. I am %s!"), Common.getXID());
             
             // Popup HTML content
             var html = 
-            '<div class="top">' + _e("Welcome!") + '</div>' + 
+            '<div class="top">' + Common._e("Welcome!") + '</div>' + 
             
             '<div class="tab">' + 
-                '<a href="#" class="tab-active" data-step="1">' + _e("Options") + '</a>' + 
-                '<a href="#" class="tab-missing" data-step="2">' + _e("Friends") + '</a>' + 
-                '<a href="#" class="tab-missing" data-step="3">' + _e("Share") + '</a>' + 
+                '<a href="#" class="tab-active" data-step="1">' + Common._e("Options") + '</a>' + 
+                '<a href="#" class="tab-missing" data-step="2">' + Common._e("Friends") + '</a>' + 
+                '<a href="#" class="tab-missing" data-step="3">' + Common._e("Share") + '</a>' + 
             '</div>' + 
             
             '<div class="content">' + 
                 '<div class="lap-active one-lap welcome1">' + 
                     '<div class="infos">' + 
-                        '<p class="infos-title">' + _e("Welcome on Jappix, your own social cloud!") + '</p>' + 
-                        '<p>' + _e("Before you start using it, you will have to change some settings, search for friends and complete your profile.") + '</p>' + 
+                        '<p class="infos-title">' + Common._e("Welcome on Jappix, your own social cloud!") + '</p>' + 
+                        '<p>' + Common._e("Before you start using it, you will have to change some settings, search for friends and complete your profile.") + '</p>' + 
                     '</div>' + 
                     
-                    '<a href="#" class="box enabled" title="' + _e("Click to disable") + '">' + 
-                        '<span class="option">' + _e("Sounds") + '</span>' + 
-                        '<span class="description">' + _e("Enable notification sounds") + '</span>' + 
+                    '<a href="#" class="box enabled" title="' + Common._e("Click to disable") + '">' + 
+                        '<span class="option">' + Common._e("Sounds") + '</span>' + 
+                        '<span class="description">' + Common._e("Enable notification sounds") + '</span>' + 
                         '<span class="image sound talk-images"></span>' + 
                         '<span class="tick talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a href="#" class="box enabled pep-hidable" title="' + _e("Click to disable") + '">' + 
-                        '<span class="option">' + _e("Geolocation") + '</span>' + 
-                        '<span class="description">' + _e("Share your position on the globe") + '</span>' + 
+                    '<a href="#" class="box enabled pep-hidable" title="' + Common._e("Click to disable") + '">' + 
+                        '<span class="option">' + Common._e("Geolocation") + '</span>' + 
+                        '<span class="description">' + Common._e("Share your position on the globe") + '</span>' + 
                         '<span class="image geolocation talk-images"></span>' + 
                         '<span class="tick talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a href="#" class="box xmpplinks-hidable" title="' + _e("Click to enable") + '">' + 
-                        '<span class="option">' + _e("XMPP links") + '</span>' + 
-                        '<span class="description">' + _e("Open XMPP links with Jappix") + '</span>' + 
+                    '<a href="#" class="box xmpplinks-hidable" title="' + Common._e("Click to enable") + '">' + 
+                        '<span class="option">' + Common._e("XMPP links") + '</span>' + 
+                        '<span class="description">' + Common._e("Open XMPP links with Jappix") + '</span>' + 
                         '<span class="image xmpp talk-images"></span>' + 
                         '<span class="tick talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a href="#" class="box mam-hidable pref" title="' + _e("Click to enable") + '">' + 
-                        '<span class="option">' + _e("Message archiving") + '</span>' + 
-                        '<span class="description">' + _e("Store a history of your chats") + '</span>' + 
+                    '<a href="#" class="box mam-hidable pref" title="' + Common._e("Click to enable") + '">' + 
+                        '<span class="option">' + Common._e("Message archiving") + '</span>' + 
+                        '<span class="description">' + Common._e("Store a history of your chats") + '</span>' + 
                         '<span class="image mam talk-images"></span>' + 
                         '<span class="tick talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a href="#" class="box" title="' + _e("Click to enable") + '">' + 
-                        '<span class="option">' + _e("Offline friends") + '</span>' + 
-                        '<span class="description">' + _e("Don\'t hide offline friends") + '</span>' + 
+                    '<a href="#" class="box" title="' + Common._e("Click to enable") + '">' + 
+                        '<span class="option">' + Common._e("Offline friends") + '</span>' + 
+                        '<span class="description">' + Common._e("Don\'t hide offline friends") + '</span>' + 
                         '<span class="image offline talk-images"></span>' + 
                         '<span class="tick talk-images"></span>' + 
                     '</a>' + 
@@ -90,8 +90,8 @@ var Welcome = (function () {
                 
                 '<div class="one-lap welcome2">' + 
                     '<div class="infos">' + 
-                        '<p class="infos-title">' + _e("Friends") + '</p>' + 
-                        '<p>' + _e("Use this tool to find your friends on the server you are using right now, or add them later.") + '</p>' + 
+                        '<p class="infos-title">' + Common._e("Friends") + '</p>' + 
+                        '<p>' + Common._e("Use this tool to find your friends on the server you are using right now, or add them later.") + '</p>' + 
                     '</div>' + 
                     
                     '<div class="results welcome-results"></div>' + 
@@ -99,36 +99,36 @@ var Welcome = (function () {
                 
                 '<div class="one-lap welcome3">' + 
                     '<div class="infos">' + 
-                        '<p class="infos-title">' + _e("Share") + '</p>' + 
-                        '<p>' + _e("Good job! Now, you can share Jappix with your friends!") + '</p>' + 
-                        '<p>' + _e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
+                        '<p class="infos-title">' + Common._e("Share") + '</p>' + 
+                        '<p>' + Common._e("Good job! Now, you can share Jappix with your friends!") + '</p>' + 
+                        '<p>' + Common._e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
                     '</div>' + 
                     
-                    '<a class="box share first" href="http://www.facebook.com/sharer/sharer.php?u=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share first" href="http://www.facebook.com/sharer/sharer.php?u=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo facebook welcome-images"></span>' + 
                         '<span class="name">Facebook</span>' + 
-                        '<span class="description">' + printf(_e("Share Jappix on %s"), 'Facebook') + '</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Facebook') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://twitter.com/intent/tweet?text=' + encodeQuotes(share_msg) + '&amp;url=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://twitter.com/intent/tweet?text=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo twitter welcome-images"></span>' + 
                         '<span class="name">Twitter</span>' + 
-                        '<span class="description">' + printf(_e("Share Jappix on %s"), 'Twitter') + '</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Twitter') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://www.google.com/buzz/post?message=' + encodeQuotes(share_msg) + '&amp;url=' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://www.google.com/buzz/post?message=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo buzz welcome-images"></span>' + 
                         '<span class="name">Google Buzz</span>' + 
-                        '<span class="description">' + printf(_e("Share Jappix on %s"), 'Google Buzz') + '</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Google Buzz') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + encodeQuotes(share_msg) + ' ' + encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + Common.encodeQuotes(share_msg) + ' ' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo identica welcome-images"></span>' + 
                         '<span class="name">Identi.ca</span>' + 
-                        '<span class="description">' + printf(_e("Share Jappix on %s"), 'Identi.ca') + '</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Identi.ca') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                 '</div>' + 
@@ -137,8 +137,8 @@ var Welcome = (function () {
             '<div class="bottom">' + 
                 '<div class="wait wait-medium"></div>' + 
                 
-                '<a href="#" class="finish next">' + _e("Next") + ' »</a>' + 
-                '<a href="#" class="finish save">' + _e("Save") + '</a>' + 
+                '<a href="#" class="finish next">' + Common._e("Next") + ' »</a>' + 
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
             '</div>';
             
             // Create the popup
@@ -201,7 +201,7 @@ var Welcome = (function () {
             $(tab + 'a[data-step="' + id + '"]').addClass('tab-active').removeClass('tab-missing');
             
             // Update the "save" button if all is okay
-            if(!exists(tab + '.tab-missing')) {
+            if(!Common.exists(tab + '.tab-missing')) {
                 var finish = welcome + '.finish.';
                 $(finish + 'save').show();
                 $(finish + 'next').hide();
@@ -210,7 +210,7 @@ var Welcome = (function () {
             // If this is ID 2: vJUD search
             if(id == 2) {
                 wait.show();
-                dataForm(HOST_VJUD, 'search', '', '', 'welcome');
+                DataForm.go(HOST_VJUD, 'search', '', '', 'welcome');
             } else {
                 wait.hide();
             }
@@ -249,7 +249,7 @@ var Welcome = (function () {
                 
                 if((i != 2) && (i != 3) && tag && value) {
                     storage.appendChild(iq.buildNode('option', {'type': tag, 'xmlns': NS_OPTIONS}, value));
-                    setDB(DESKTOP_HASH, 'options', tag, value);
+                    DataStore.setDB(DESKTOP_HASH, 'options', tag, value);
                 }
             }
             
@@ -336,7 +336,7 @@ var Welcome = (function () {
             var next = 1;
             var missing = '#welcome .tab a.tab-missing';
             
-            if(exists(missing))
+            if(Common.exists(missing))
                 next = parseInt($(missing + ':first').attr('data-step'));
             
             // Switch to the next step
@@ -368,9 +368,9 @@ var Welcome = (function () {
             
             $('#welcome a.box:not(.share)').click(function() {
                 if($(this).hasClass('enabled'))
-                    $(this).removeClass('enabled').attr('title', _e("Click to enable"));
+                    $(this).removeClass('enabled').attr('title', Common._e("Click to enable"));
                 else
-                    $(this).addClass('enabled').attr('title', _e("Click to disable"));
+                    $(this).addClass('enabled').attr('title', Common._e("Click to disable"));
                 
                 return false;
             });

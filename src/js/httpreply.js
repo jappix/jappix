@@ -31,7 +31,7 @@ var HTTPReply = (function () {
 
         try {
             // We parse the xml content
-            var from = fullXID(getStanzaFrom(xml));
+            var from = Common.fullXID(Common.getStanzaFrom(xml));
             var confirm = $(xml.getNode()).find('confirm');
             var xmlns = confirm.attr('xmlns');
             var id = confirm.attr('id');

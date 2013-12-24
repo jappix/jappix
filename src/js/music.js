@@ -31,7 +31,7 @@ var Music = (function () {
             var path = '.music-content';
     
             // Show the music bubble
-            showBubble(path);
+            Bubble.show(path);
             
             $(document).oneTime(10, function() {
                 $(path + ' input').focus();
@@ -60,7 +60,7 @@ var Music = (function () {
             var path_type = content + ' .' + type;
             
             // Create the result container
-            if(!exists(path_type)) {
+            if(!Common.exists(path_type)) {
                 var code = '<div class="' + type + '"></div>';
                 
                 if(type == 'local')
@@ -98,7 +98,7 @@ var Music = (function () {
                 // Current playing song?
                 var current_song = $(path_type + ' a[data-id="' + id + '"]');
                 
-                if(exists('.music-audio[data-id="' + id + '"]'))
+                if(Common.exists('.music-audio[data-id="' + id + '"]'))
                     current_song.addClass('playing');
                 
                 // Click event
@@ -108,7 +108,7 @@ var Music = (function () {
             });
             
             // The search is finished
-            if(exists(content + ' .jamendo') && exists(content + ' .local')) {
+            if(Common.exists(content + ' .jamendo') && Common.exists(content + ' .local')) {
                 // Get the result values
                 var jamendo = $(content + ' .jamendo').text();
                 var local = $(content + ' .local').text();
@@ -346,7 +346,7 @@ var Music = (function () {
                 
                 // Escape : quit
                 if(e.keyCode == 27)
-                    closeBubbles();
+                    Bubble.close();
             });
         } catch(e) {
             Console.error('Music.launch', e);

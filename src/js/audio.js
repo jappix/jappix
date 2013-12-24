@@ -26,7 +26,7 @@ var Audio = (function () {
      * @param {number} num
      * @return {boolean}
      */
-    self.soundPlay = function(num) {
+    self.play = function(num) {
 
         try {
             // Not supported!
@@ -34,9 +34,9 @@ var Audio = (function () {
                 return false;
             
             // If the sounds are enabled
-            if(getDB(DESKTOP_HASH, 'options', 'sounds') == '1') {
+            if(DataStore.getDB(DESKTOP_HASH, 'options', 'sounds') == '1') {
                 // If the audio elements aren't yet in the DOM
-                if(!exists('#audio')) {
+                if(!Common.exists('#audio')) {
                     $('body').append(
                         '<div id="audio">' + 
                             '<audio id="new-chat" preload="auto">' + 
@@ -61,7 +61,7 @@ var Audio = (function () {
                 var playThis = document.getElementById('audio').getElementsByTagName('audio')[num];
 
                 // Fixes Chrome audio bug when Get API serves expired files (for development work purposes)
-                if(window.chrome && isDeveloper())
+                if(window.chrome && Common.isDeveloper())
                     playThis.load();
 
                 playThis.play();

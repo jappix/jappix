@@ -51,9 +51,9 @@ var Home = (function () {
                 case 'loginer':
                 case 'anonymouser':
                 case 'registerer':
-                    if(!exists(right + '.top.sub')) {
+                    if(!Common.exists(right + '.top.sub')) {
                         // Append the HTML code for previous link
-                        $(right + '.top.default').after('<h1 class="top sub loginer anonymouser registerer">&laquo; <a href="#" class="previous">' + _e("Previous") + '</a></h1>');
+                        $(right + '.top.default').after('<h1 class="top sub loginer anonymouser registerer">&laquo; <a href="#" class="previous">' + Common._e("Previous") + '</a></h1>');
                         
                         // Click event on previous link
                         $(home + 'top.sub a.previous').click(function() {
@@ -69,36 +69,36 @@ var Home = (function () {
                 // Login tool
                 case 'loginer':
                     lock_host = disableInput(LOCK_HOST, 'on');
-                    code = '<p>' + printf(_e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a href="#" class="to-anonymous">' + _e("anonymous mode") + '</a>') + '</p>' + 
+                    code = '<p>' + Common.printf(Common._e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a href="#" class="to-anonymous">' + Common._e("anonymous mode") + '</a>') + '</p>' + 
                         
                         '<form action="#" method="post">' + 
                             '<fieldset>' + 
-                                '<legend>' + _e("Required") + '</legend>' + 
+                                '<legend>' + Common._e("Required") + '</legend>' + 
                                 
-                                '<label for="lnick">' + _e("Address") + '</label>' + 
+                                '<label for="lnick">' + Common._e("Address") + '</label>' + 
                                 '<input type="text" class="nick" id="lnick" pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + ' pattern="[^@/]+" required="" />' + 
-                                '<label for="lpassword">' + _e("Password") + '</label>' + 
+                                '<label for="lpassword">' + Common._e("Password") + '</label>' + 
                                 '<input type="password" class="password" id="lpassword" required="" />' + 
-                                '<label for="lremember">' + _e("Remember me") + '</label>' + 
+                                '<label for="lremember">' + Common._e("Remember me") + '</label>' + 
                                 '<input type="checkbox" class="remember" id="lremember" />' + 
                             '</fieldset>' + 
                             
-                            '<a href="#" class="advanced home-images">' + _e("Advanced") + '</a>' + 
+                            '<a href="#" class="advanced home-images">' + Common._e("Advanced") + '</a>' + 
                             
                             '<fieldset class="advanced">' + 
-                                '<legend>' + _e("Advanced") + '</legend>' + 
+                                '<legend>' + Common._e("Advanced") + '</legend>' + 
                                 
-                                '<label for="lresource">' + _e("Resource") + '</label>' + 
+                                '<label for="lresource">' + Common._e("Resource") + '</label>' + 
                                 '<input type="text" class="resource" id="lresource" value="' + JAPPIX_RESOURCE + '" />' + 
-                                '<label for="lpriority">' + _e("Priority") + '</label>' + 
+                                '<label for="lpriority">' + Common._e("Priority") + '</label>' + 
                                 '<select class="priority" id="lpriority">' + 
-                                    '<option value="1">' + _e("Low") + '</option>' + 
-                                    '<option value="10" selected="">' + _e("Medium") + '</option>' + 
-                                    '<option value="100">' + _e("High") + '</option>' + 
+                                    '<option value="1">' + Common._e("Low") + '</option>' + 
+                                    '<option value="10" selected="">' + Common._e("Medium") + '</option>' + 
+                                    '<option value="100">' + Common._e("High") + '</option>' + 
                                 '</select>' + 
                             '</fieldset>' + 
                             
-                            '<input type="submit" value="' + _e("Here we go!") + '" />' + 
+                            '<input type="submit" value="' + Common._e("Here we go!") + '" />' + 
                         '</form>';
                     
                     break;
@@ -106,27 +106,27 @@ var Home = (function () {
                 // Anonymous login tool
                 case 'anonymouser':
                     disable_form = disableInput(ANONYMOUS, 'off');
-                    code = '<p>' + printf(_e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + _e("login page") + '</a>') + '</p>';
+                    code = '<p>' + Common.printf(Common._e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + Common._e("login page") + '</a>') + '</p>';
                     
                     if(LEGAL)
-                        code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '" target="_blank">' + _e("our terms of use") + '</a></b>') + '</p>';
+                        code += '<p>' + Common.printf(Common._e("By using our service, you accept %s."), '<b><a href="' + Common.encodeQuotes(LEGAL) + '" target="_blank">' + Common._e("our terms of use") + '</a></b>') + '</p>';
                     
                     code += '<form action="#" method="post">' + 
                             '<fieldset>' + 
-                                '<legend>' + _e("Required") + '</legend>' + 
+                                '<legend>' + Common._e("Required") + '</legend>' + 
                                 
-                                '<label>' + _e("Room") + '</label>' + 
+                                '<label>' + Common._e("Room") + '</label>' + 
                                 '<input type="text" class="room"' + disable_form + ' pattern="[^/]+" required="" />' + 
                                 
-                                '<label>' + _e("Nickname") + '</label>' + 
+                                '<label>' + Common._e("Nickname") + '</label>' + 
                                 '<input type="text" class="nick"' + disable_form + ' required="" />' + 
                             '</fieldset>' + 
                             
-                            '<input type="submit" value="' + _e("Here we go!") + '"' + disable_form + ' />' + 
+                            '<input type="submit" value="' + Common._e("Here we go!") + '"' + disable_form + ' />' + 
                         '</form>' + 
                         
                         '<div class="info report">' + 
-                            _e("Share this link with your friends:") + ' <span></span>' + 
+                            Common._e("Share this link with your friends:") + ' <span></span>' + 
                         '</div>';
                     
                     break;
@@ -138,28 +138,28 @@ var Home = (function () {
                     if(!disable_form)
                         lock_host = disableInput(LOCK_HOST, 'on');
                     
-                    code = '<p>' + _e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
+                    code = '<p>' + Common._e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
                     
                     if(LEGAL)
-                        code += '<p>' + printf(_e("By using our service, you accept %s."), '<b><a href="' + encodeQuotes(LEGAL) + '" target="_blank">' + _e("our terms of use") + '</a></b>') + '</p>';
+                        code += '<p>' + Common.printf(Common._e("By using our service, you accept %s."), '<b><a href="' + Common.encodeQuotes(LEGAL) + '" target="_blank">' + Common._e("our terms of use") + '</a></b>') + '</p>';
                     
                     code += '<form action="#" method="post">' + 
                             '<fieldset>' + 
-                                '<legend>' + _e("Required") + '</legend>' + 
+                                '<legend>' + Common._e("Required") + '</legend>' + 
                                 
-                                '<label for="rnick">' + _e("Address") + '</label>' + 
-                                '<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" placeholder="' + _e("Username") + '" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" placeholder="' + _e("Server") + '" />' + 
-                                '<label for="rpassword">' + _e("Password") + '</label>' + 
-                                '<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + _e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + _e("Once again...") + '" />';
+                                '<label for="rnick">' + Common._e("Address") + '</label>' + 
+                                '<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" placeholder="' + Common._e("Username") + '" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" placeholder="' + Common._e("Server") + '" />' + 
+                                '<label for="rpassword">' + Common._e("Password") + '</label>' + 
+                                '<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + Common._e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + Common._e("Once again...") + '" />';
                     
                     if(REGISTER_API == 'on')
                         code += '<div class="captcha_grp">' + 
-                                    '<label for="captcha">' + _e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + _e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />' + 
+                                    '<label for="captcha">' + Common._e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />' + 
                                 '</div>';
                     
                     code += '</fieldset>' + 
                             
-                            '<input type="submit" value="' + _e("Here we go!") + '" ' + disable_form + '/>' + 
+                            '<input type="submit" value="' + Common._e("Here we go!") + '" ' + disable_form + '/>' + 
                         '</form>';
                     
                     break;
@@ -168,11 +168,11 @@ var Home = (function () {
             // Form disabled?
             if(disable_form)
                 code += '<div class="info fail">' + 
-                        _e("This tool has been disabled!") + 
+                        Common._e("This tool has been disabled!") + 
                     '</div>';
             
             // Create this HTML code
-            if(code && !exists(current)) {
+            if(code && !Common.exists(current)) {
                 // Append it!
                 $(right + '.homediv.default').after('<div class="' + div + ' homediv">' + code + '</div>');
                 
@@ -196,7 +196,7 @@ var Home = (function () {
                             return switchHome('loginer');
                         });
                         
-                        $(current + ' form').submit(doAnonymous);
+                        $(current + ' form').submit(Connection.doAnonymous);
                         
                         // Keyup event on anonymous join's room input
                         $(current + ' input.room').keyup(function() {
@@ -221,7 +221,7 @@ var Home = (function () {
                     case 'registerer':
                         // Server input change
                         $('#home input.server').keyup(function(e) {
-                            if(trim($(this).val()) == HOST_MAIN) {
+                            if($.trim($(this).val()) == HOST_MAIN) {
                                 $('#home .captcha_grp').show();
                                 $('#home input.captcha').removeAttr('disabled');
                             } else {
@@ -287,7 +287,7 @@ var Home = (function () {
             // We get the values
             var lPath = '#home .loginer ';
             var lServer = $(lPath + '.server').val();
-            var lNick = nodeprep($(lPath + '.nick').val());
+            var lNick = Common.nodeprep($(lPath + '.nick').val());
             var lPass = $(lPath + '.password').val();
             var lResource = $(lPath + '.resource').val();
             var lPriority = $(lPath + '.priority').val();
@@ -295,7 +295,7 @@ var Home = (function () {
             
             // Enough values?
             if(lServer && lNick && lPass && lResource && lPriority) {
-                doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember);
+                Connection.doLogin(lNick, lServer, lPass, lResource, lPriority, lRemember);
             } else {
                 $(lPath + 'input[type="text"], ' + lPath + 'input[type="password"]').each(function() {
                     var select = $(this);
@@ -331,7 +331,7 @@ var Home = (function () {
             $(rPath + '.success').remove();
             
             // Get the values
-            var username = nodeprep($(rPath + '.nick').val());
+            var username = Common.nodeprep($(rPath + '.nick').val());
             var domain = $(rPath + '.server').val();
             var pass = $(rPath + '.password').val();
             var spass = $(rPath + '.spassword').val();
@@ -343,7 +343,7 @@ var Home = (function () {
                 $('#home .registerer input').removeClass('please-complete');
                 
                 // Fire the register event!
-                doRegister(username, domain, pass, captcha);
+                Connection.doRegister(username, domain, pass, captcha);
             }
             
             // Something is missing?
@@ -426,7 +426,7 @@ var Home = (function () {
                 
                 // Disables the browser HTTP-requests stopper
                 $(document).keydown(function(e) {
-                    if((e.keyCode == 27) && !isDeveloper())
+                    if((e.keyCode == 27) && !Common.isDeveloper())
                         return false;
                 });
                 
@@ -435,13 +435,13 @@ var Home = (function () {
                     // Add the code
                     $(locale).after(
                         '<div class="obsolete">' + 
-                            '<p>' + _e("Your browser is out of date!") + '</p>' + 
+                            '<p>' + Common._e("Your browser is out of date!") + '</p>' + 
                             
-                            '<a class="firefox browsers-images" title="' + printf(_e("Last %s version is better!"), 'Mozilla Firefox') + '" href="http://www.mozilla.com/firefox/"></a>' + 
-                            '<a class="chrome browsers-images" title="' + printf(_e("Last %s version is better!"), 'Google Chrome') + '" href="http://www.google.com/chrome"></a>' + 
-                            '<a class="safari browsers-images" title="' + printf(_e("Last %s version is better!"), 'Safari') + '" href="http://www.apple.com/safari/"></a>' + 
-                            '<a class="opera browsers-images" title="' + printf(_e("Last %s version is better!"), 'Opera') + '" href="http://www.opera.com/"></a>' + 
-                            '<a class="ie browsers-images" title="' + printf(_e("Last %s version is better!"), 'Internet Explorer') + '" href="http://www.microsoft.com/hk/windows/internet-explorer/"></a>' + 
+                            '<a class="firefox browsers-images" title="' + Common.printf(Common._e("Last %s version is better!"), 'Mozilla Firefox') + '" href="http://www.mozilla.com/firefox/"></a>' + 
+                            '<a class="chrome browsers-images" title="' + Common.printf(Common._e("Last %s version is better!"), 'Google Chrome') + '" href="http://www.google.com/chrome"></a>' + 
+                            '<a class="safari browsers-images" title="' + Common.printf(Common._e("Last %s version is better!"), 'Safari') + '" href="http://www.apple.com/safari/"></a>' + 
+                            '<a class="opera browsers-images" title="' + Common.printf(Common._e("Last %s version is better!"), 'Opera') + '" href="http://www.opera.com/"></a>' + 
+                            '<a class="ie browsers-images" title="' + Common.printf(Common._e("Last %s version is better!"), 'Internet Explorer') + '" href="http://www.microsoft.com/hk/windows/internet-explorer/"></a>' + 
                         '</div>'
                     );
                     
