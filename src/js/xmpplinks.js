@@ -26,7 +26,7 @@ var XMPPLinks = (function () {
      * @param {string} link
      * @return {boolean}
      */
-    self.xmppLink = function(link) {
+    self.go = function(link) {
 
         /* REF: http://xmpp.org/registrar/querytypes.html */
 
@@ -52,19 +52,19 @@ var XMPPLinks = (function () {
                     
                     // Profile
                     case 'vcard':
-                        openUserInfos(xid);
+                        UserInfos.open(xid);
                         
                         break;
                     
                     // Subscription
                     case 'subscribe':
-                        addThisContact(xid);
+                        Roster.addThisContact(xid);
                         
                         break;
                     
                     // Unsubscription
                     case 'unsubscribe':
-                        sendRoster(xid, 'remove');
+                        Roster.send(xid, 'remove');
                         
                         break;
                     

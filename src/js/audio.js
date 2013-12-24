@@ -61,7 +61,7 @@ var Audio = (function () {
                 var playThis = document.getElementById('audio').getElementsByTagName('audio')[num];
 
                 // Fixes Chrome audio bug when Get API serves expired files (for development work purposes)
-                if(window.chrome && Common.isDeveloper())
+                if(window.chrome && System.isDeveloper())
                     playThis.load();
 
                 playThis.play();

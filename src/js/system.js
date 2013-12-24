@@ -49,6 +49,22 @@ var System = (function () {
 
 
     /**
+     * Checks if we are in developer mode
+     * @public
+     * @return {boolean}
+     */
+    self.isDeveloper = function() {
+
+        try {
+            return (DEVELOPER === 'on');
+        } catch(e) {
+            Console.error('System.isDeveloper', e);
+        }
+
+    };
+
+
+    /**
      * Return class scope
      */
     return self;

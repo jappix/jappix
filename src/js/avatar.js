@@ -39,7 +39,7 @@ var Avatar = (function () {
 
         try {
             // No need to get the avatar, another process is yet running
-            if(existArrayValue(AVATAR_PENDING, xid))
+            if(Utils.existArrayValue(AVATAR_PENDING, xid))
                 return false;
             
             // Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
@@ -149,7 +149,7 @@ var Avatar = (function () {
                 // We get our profile details
                 if(handleFrom == Common.getXID()) {
                     // Get the names
-                    var names = generateBuddyName(iq);
+                    var names = Name.generateBuddy(iq);
                     
                     // Write the values to the database
                     DataStore.setDB(DESKTOP_HASH, 'profile', 'name', names[0]);
@@ -203,9 +203,9 @@ var Avatar = (function () {
                 
                 // Send the stanza
                 if(!FIRST_PRESENCE_SENT)
-                    getStorage(NS_OPTIONS);
+                    Storage.get(NS_OPTIONS);
                 else if(DataStore.hasPersistent())
-                    presenceSend(pChecksum);
+                    Presence.sendActions(pChecksum);
             }
         } catch(e) {
             Console.error('Avatar.handle', e);
@@ -264,7 +264,7 @@ var Avatar = (function () {
             $('.' + container).html(code);
             
             // We can remove the pending marker
-            removeArrayValue(AVATAR_PENDING, xid);
+            Utils.removeArrayValue(AVATAR_PENDING, xid);
         } catch(e) {
             Console.error('Avatar.display', e);
         }

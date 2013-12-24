@@ -26,7 +26,7 @@ var Origin = (function () {
      * @param {string} url
      * @return {undefined}
      */
-    self.isSameOrigin = function(url) {
+    self.isSame = function(url) {
 
         /* Source: http://stackoverflow.com/questions/9404793/check-if-same-origin-policy-applies */
 
@@ -52,3 +52,5 @@ var Origin = (function () {
     return self;
 
 })();
+
+var JappixOrigin = Origin;

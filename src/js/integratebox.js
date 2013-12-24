@@ -43,7 +43,7 @@ var IntegrateBox = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('integratebox', html);
+            Popup.create('integratebox', html);
             
             // Associate the events
             self.instance();
@@ -63,7 +63,7 @@ var IntegrateBox = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('integratebox');
+            Popup.destroy('integratebox');
         } catch(e) {
             Console.error('IntegrateBox.close', e);
         } finally {
@@ -88,7 +88,7 @@ var IntegrateBox = (function () {
             // Protocol to use
             var protocol = 'http';
             
-            if(isHTTPS())
+            if(Utils.isHTTPS())
                 protocol = 'https';
             
             // Legacy browser
@@ -212,16 +212,16 @@ var IntegrateBox = (function () {
                 }
                 
                 // Previous and next items?
-                var url_array = stringToArray(url_list);
-                var services_array = stringToArray(services_list);
-                var comments_e_array = stringToArray(comments_e_list);
-                var comments_n_array = stringToArray(comments_n_list);
-                var index = indexArrayValue(url_array, url);
+                var url_array = Utils.stringToArray(url_list);
+                var services_array = Utils.stringToArray(services_list);
+                var comments_e_array = Utils.stringToArray(comments_e_list);
+                var comments_n_array = Utils.stringToArray(comments_n_list);
+                var index = Utils.indexArrayValue(url_array, url);
                 
                 // Any comments?
                 if(Common.exists('#integratebox .comments')) {
                     if(comments_e_array[index] && comments_n_array[index])
-                        getCommentsMicroblog(comments_e_array[index], comments_n_array[index], comments_id);
+                        self.getComments(comments_e_array[index], comments_n_array[index], comments_id);
                     else
                         $('#integratebox .comments .comments-content').html('<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Comments locked!") + '</div>');
                 }
@@ -363,9 +363,9 @@ var IntegrateBox = (function () {
                 
                 // Define the good event
                 if(to)
-                    event = 'xmppLink(\'' + encodeOnclick(to) + '\')';
+                    event = 'XMPPLinks.go(\'' + Utils.encodeOnclick(to) + '\')';
                 else if(url && service)
-                    event = 'IntegrateBox.apply(\'' + encodeOnclick(url) + '\', \'' + encodeOnclick(service) + '\')';
+                    event = 'IntegrateBox.apply(\'' + Utils.encodeOnclick(url) + '\', \'' + Utils.encodeOnclick(service) + '\')';
                 
                 // Any click event to apply?
                 if(event) {

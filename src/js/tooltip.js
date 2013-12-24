@@ -28,7 +28,7 @@ var Tooltip = (function () {
      * @param {string} type
      * @return {boolean}
      */
-    self.createTooltip = function(xid, hash, type) {
+    self.create = function(xid, hash, type) {
 
         try {
             // Path to the element
@@ -48,7 +48,7 @@ var Tooltip = (function () {
                 // Smileys
                 case 'smileys':
                     title = Common._e("Smiley insertion");
-                    content = smileyLinks(hash);
+                    content = Smileys.links(hash);
                     
                     break;
                 
@@ -395,7 +395,7 @@ var Tooltip = (function () {
                     });
                     
                     // Load current style
-                    loadStyleSelector(hash);
+                    self.loadStyleSelector(hash);
                     
                     break;
                 
@@ -403,9 +403,9 @@ var Tooltip = (function () {
                 case 'file':
                     // File upload vars
                     var oob_upload_options = {
-                        dataType:   'xml',
-                        beforeSubmit:   waitUploadOOB,
-                        success:    handleUploadOOB
+                        dataType:       'xml',
+                        beforeSubmit:   OOB.waitUpload,
+                        success:        OOB.handleUpload
                     };
                     
                     // Upload form submit event
@@ -439,7 +439,7 @@ var Tooltip = (function () {
                         $(path_tooltip + ' #oob-upload input[type="reset"]').click(function() {
                             // Remove the bubble
                             $(path_bubble).removeClass('locked');
-                            destroyTooltip(hash, 'file');
+                            self.destroy(hash, 'file');
                         });
                     });
                     
@@ -475,7 +475,7 @@ var Tooltip = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.destroyTooltip = function(hash, type) {
+    self.destroy = function(hash, type) {
 
         try {
             $('#' + hash + ' .chat-tools-content:not(.mini) .bubble-' + type + ':not(.locked)').remove();
@@ -494,13 +494,13 @@ var Tooltip = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.hoverTooltip = function(xid, hash, type) {
+    self.hover = function(xid, hash, type) {
 
         try {
             $('#' + hash + ' .chat-tools-' + type).hover(function() {
-                createTooltip(xid, hash, type);
+                self.create(xid, hash, type);
             }, function() {
-                destroyTooltip(hash, type)
+                self.destroy(hash, type)
             });
         } catch(e) {
             Console.error('Tooltip.hover', e);
@@ -510,20 +510,20 @@ var Tooltip = (function () {
 
 
     /**
-     * Applies the hoverTooltip function to the needed things
+     * Applies the hover function to the needed things
      * @public
      * @param {string} xid
      * @param {string} hash
      * @return {undefined}
      */
-    self.tooltipIcons = function(xid, hash) {
+    self.icons = function(xid, hash) {
 
         try {
             // Hover events
-            hoverTooltip(xid, hash, 'smileys');
-            hoverTooltip(xid, hash, 'style');
-            hoverTooltip(xid, hash, 'file');
-            hoverTooltip(xid, hash, 'save');
+            self.hover(xid, hash, 'smileys');
+            self.hover(xid, hash, 'style');
+            self.hover(xid, hash, 'file');
+            self.hover(xid, hash, 'save');
             
             // Click events
             $('#' + hash + ' a.chat-tools-content, #' + hash + ' .chat-tools-content a').click(function() {

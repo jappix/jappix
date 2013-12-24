@@ -50,7 +50,7 @@ var Me = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('me', html);
+            Popup.create('me', html);
             
             // Associate the events
             self.instance();
@@ -72,7 +72,7 @@ var Me = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('me');
+            Popup.destroy('me');
             
             // We finished
             END_WELCOME = false;

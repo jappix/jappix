@@ -30,7 +30,7 @@ var Search = (function () {
      * @param {string} query
      * @return {object}
      */
-    self.processBuddySearch = function(query) {
+    self.processBuddy = function(query) {
 
         try {
             // No query submitted?
@@ -51,14 +51,14 @@ var Search = (function () {
             var regex = new RegExp('((^)|( ))' + query, 'gi');
             
             // Search in the roster
-            var buddies = getAllBuddies();
+            var buddies = self.getAllBuddies();
             
             for(i in buddies) {
                 var xid = buddies[i];
-                var nick = getBuddyName(xid);
+                var nick = Name.getBuddy(xid);
                 
                 // Buddy match our search, and not yet in the array
-                if(nick.match(regex) && !existArrayValue(results, xid))
+                if(nick.match(regex) && !Utils.existArrayValue(results, xid))
                     results.push(xid);
             }
             
@@ -77,7 +77,7 @@ var Search = (function () {
      * @param {string} destination
      * @return {undefined}
      */
-    self.resetBuddySearch = function(destination) {
+    self.resetBuddy = function(destination) {
 
         try {
             $(destination + ' ul').remove();
@@ -96,11 +96,11 @@ var Search = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.addBuddySearch = function(destination, xid) {
+    self.addBuddy = function(destination, xid) {
 
         try {
             // Remove the search tool
-            resetBuddySearch(destination);
+            self.resetBuddy(destination);
             
             // Define a selector
             var input = $(destination + ' input');
@@ -131,11 +131,11 @@ var Search = (function () {
      * @param {string} destination
      * @return {undefined}
      */
-    self.createBuddySearch = function(destination) {
+    self.createBuddy = function(destination) {
 
         try {
             // Reset the search engine
-            resetBuddySearch(destination);
+            self.resetBuddy(destination);
             
             // Get the entered value
             var value = $(destination + ' input').val();
@@ -145,7 +145,7 @@ var Search = (function () {
                 value = RegExp.$5;
             
             // Get the result array
-            var entered = processBuddySearch(value);
+            var entered = self.processBuddy(value);
             
             // Display each result (if any)
             if(entered && entered.length) {
@@ -160,11 +160,11 @@ var Search = (function () {
                 
                 for(b in entered) {
                     // Get some values from the XID
-                    var current = getBuddyName(entered[b]).htmlEnc();
+                    var current = Name.getBuddy(entered[b]).htmlEnc();
                     current = current.replace(regex, '<b>$&</b>');
                     
                     // Add the current element to the global code
-                    code += '<li onclick="return addBuddySearch(\'' + encodeOnclick(destination) + '\', \'' + encodeOnclick(entered[b]) + '\');" data-xid="' + Common.encodeQuotes(entered[b]) + '">' + current + '</li>';
+                    code += '<li onclick="return Search.addBuddy(\'' + Utils.encodeOnclick(destination) + '\', \'' + Utils.encodeOnclick(entered[b]) + '\');" data-xid="' + Common.encodeQuotes(entered[b]) + '">' + current + '</li>';
                 }
                 
                 // Finish the code generation
@@ -204,7 +204,7 @@ var Search = (function () {
      * @param {string} destination
      * @return {boolean}
      */
-    self.arrowsBuddySearch = function(e, destination) {
+    self.arrowsBuddy = function(e, destination) {
 
         try {
             // Down arrow: 40
@@ -272,14 +272,14 @@ var Search = (function () {
      * @param {object} vFilter
      * @return {undefined}
      */
-    self.goFilterBuddySearch = function(vFilter) {
+    self.goFilterBuddy = function(vFilter) {
 
         try {
             // Put a marker
             SEARCH_FILTERED = true;
             
             // Show the buddies that match the search string
-            var rFilter = processBuddySearch(vFilter);
+            var rFilter = self.processBuddy(vFilter);
             
             // Hide all the buddies
             $('#buddy-list .buddy').hide();
@@ -304,7 +304,7 @@ var Search = (function () {
      * @public
      * @return {undefined}
      */
-    self.resetFilterBuddySearch = function() {
+    self.resetFilterBuddy = function() {
 
         try {
             // Remove the marker
@@ -318,7 +318,7 @@ var Search = (function () {
                 $('#buddy-list .buddy.hidden-buddy').hide();
             
             // Update the groups
-            updateGroups();
+            Roster.updateGroups();
         } catch(e) {
             Console.error('Search.resetFilterBuddy', e);
         }
@@ -332,7 +332,7 @@ var Search = (function () {
      * @param {number} keycode
      * @return {undefined}
      */
-    self.funnelFilterBuddySearch = function(keycode) {
+    self.funnelFilterBuddy = function(keycode) {
 
         try {
             // Get the input value
@@ -349,18 +349,18 @@ var Search = (function () {
                 if(keycode == 27)
                     input.val('');
                 
-                resetFilterBuddySearch();
+                self.resetFilterBuddy();
                 cancel.hide();
             }
             
             // Process the filtering
             else {
                 cancel.show();
-                goFilterBuddySearch(value);
+                self.goFilterBuddy(value);
             }
             
             // Update the groups
-            updateGroups();
+            Roster.updateGroups();
         } catch(e) {
             Console.error('Search.funnelFilterBuddy', e);
         }

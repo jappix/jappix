@@ -88,7 +88,7 @@ var MAM = (function () {
             $('#archiving').removeAttr('disabled');
 
             // All done.
-            waitOptions('mam');
+            Options.wait('mam');
         } catch(e) {
             Console.error('MAM.handleConfig', e);
         }
@@ -320,7 +320,7 @@ var MAM = (function () {
                     var xid = Common.bareXID(Common.getStanzaFrom(message));
                     var id = message.getID();
                     var from_xid = xid;
-                    var b_name = getBuddyName(xid);
+                    var b_name = Name.getBuddy(xid);
                     var mode = (xid == Common.getXID()) ? 'me': 'him';
 
                     // Refactor chat XID (in case we were the sender of the archived message)

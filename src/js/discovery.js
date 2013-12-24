@@ -117,7 +117,7 @@ var Discovery = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('discovery', html);
+            Popup.create('discovery', html);
             
             // Associate the events
             self.instance();
@@ -142,7 +142,7 @@ var Discovery = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('discovery');
+            Popup.destroy('discovery');
         } catch(e) {
             Console.error('Discovery.close', e);
         } finally {

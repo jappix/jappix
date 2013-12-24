@@ -111,31 +111,31 @@ var ChatState = (function () {
                 switch(state) {
                     // Active
                     case 'active':
-                        text = Common._e(("Your friend is paying attention to the conversation.");
+                        text = Common._e("Your friend is paying attention to the conversation.");
                         
                         break;
                     
                     // Composing
                     case 'composing':
-                        text = Common._e(("Your friend is writing a message...");
+                        text = Common._e("Your friend is writing a message...");
                         
                         break;
                     
                     // Paused
                     case 'paused':
-                        text = Common._e(("Your friend stopped writing a message.");
+                        text = Common._e("Your friend stopped writing a message.");
                         
                         break;
                     
                     // Inactive
                     case 'inactive':
-                        text = Common._e(("Your friend is doing something else.");
+                        text = Common._e("Your friend is doing something else.");
                         
                         break;
                     
                     // Gone
                     case 'gone':
-                        text = Common._e(("Your friend closed the chat.");
+                        text = Common._e("Your friend closed the chat.");
                         
                         break;
                 }

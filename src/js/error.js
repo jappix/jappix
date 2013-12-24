@@ -119,7 +119,7 @@ var Error = (function () {
                 // Show reconnect pane
                 if(CURRENT_SESSION && CONNECTED) {
                     // Anonymous?
-                    if(isAnonymous())
+                    if(Utils.isAnonymous())
                         Connection.createReconnect('anonymous');
                     else
                         Connection.createReconnect('normal');
@@ -132,7 +132,7 @@ var Error = (function () {
                 }
                 
                 // Still connected? (security)
-                if(Common.isConnected))
+                if(Common.isConnected())
                     con.disconnect();
                 
                 Console.error('First level error received.');

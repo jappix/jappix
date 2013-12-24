@@ -26,7 +26,7 @@ var Name = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.getAddUserName = function(xid) {
+    self.getAddUser = function(xid) {
 
         try {
             var iq = new JSJaCIQ();
@@ -35,7 +35,7 @@ var Name = (function () {
             
             iq.appendNode('vCard', {'xmlns': NS_VCARD});
             
-            con.send(iq, handleAddUserName);
+            con.send(iq, self.handleAddUser);
         } catch(e) {
             Console.error('Name.getAddUser', e);
         }
@@ -49,7 +49,7 @@ var Name = (function () {
      * @param {object} iq
      * @return {boolean}
      */
-    self.handleAddUserName = function(iq) {
+    self.handleAddUser = function(iq) {
 
         try {
             // Was it an obsolete request?
@@ -61,7 +61,7 @@ var Name = (function () {
             
             // Get the names
             if(iq.getType() == 'result') {
-                var full_name = generateBuddyName(iq)[0];
+                var full_name = self.generateBuddy(iq)[0];
                 
                 if(full_name)
                     $('.add-contact-name').val(full_name);
@@ -81,7 +81,7 @@ var Name = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.generateBuddyName = function(iq) {
+    self.generateBuddy = function(iq) {
 
         try {
             // Get the IQ content
@@ -122,7 +122,7 @@ var Name = (function () {
      * @param {string} xid
      * @return {string}
      */
-    self.getBuddyName = function(xid) {
+    self.getBuddy = function(xid) {
 
         try {
             // Initialize
@@ -132,10 +132,10 @@ var Name = (function () {
             xid = Common.bareXID(xid);
             
             // This is me?
-            if(isAnonymous() && !xid)
+            if(Utils.isAnonymous() && !xid)
                 bname = Common._e("You");
             else if(xid == Common.getXID())
-                bname = getName();
+                bname = self.get();
             
             // Not me!
             else {
@@ -194,7 +194,7 @@ var Name = (function () {
             
             // No name? Use the nickname instead!
             if(!name)
-                name = getNick();
+                name = self.getNick();
             
             return name;
         } catch(e) {

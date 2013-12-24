@@ -29,14 +29,14 @@ var OOB = (function () {
      * @param {string} desc
      * @return {undefined}
      */
-    self.sendOOB = function(to, type, url, desc) {
+    self.send = function(to, type, url, desc) {
 
         try {
             // IQ stanza?
             if(type == 'iq') {
                 // Get some values
                 var id = hex_md5(genID() + to + url + desc);
-                to = highestPriority(to);
+                to = Presence.highestPriority(to);
                 
                 // IQs cannot be sent to offline users
                 if(!to)
@@ -89,7 +89,7 @@ var OOB = (function () {
      * @param {string} node
      * @return {undefined}
      */
-    self.handleOOB = function(from, id, type, node) {
+    self.handle = function(from, id, type, node) {
 
         try {
             var xid = url = desc = '';
@@ -134,7 +134,7 @@ var OOB = (function () {
      * @param {object} node
      * @return {undefined}
      */
-    self.replyOOB = function(to, id, choice, type, node) {
+    self.reply = function(to, id, choice, type, node) {
 
         try {
             // Not IQ type?
@@ -181,7 +181,7 @@ var OOB = (function () {
      * @public
      * @return {undefined}
      */
-    self.waitUploadOOB = function() {
+    self.waitUpload = function() {
 
         try {
             // Append the wait icon
@@ -203,7 +203,7 @@ var OOB = (function () {
      * @param {string} responseXML
      * @return {undefined}
      */
-    self.handleUploadOOB = function(responseXML) {
+    self.handleUpload = function(responseXML) {
 
         try {
             // Data selector
@@ -242,7 +242,7 @@ var OOB = (function () {
             // Everything okay?
             else if(fURL && fDesc && !dData.find('error').size()) {
                 // Send the OOB request
-                sendOOB(xid, oob_type, fURL, fDesc);
+                self.send(xid, oob_type, fURL, fDesc);
                 
                 // Notify the sender
                 newNotification('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));

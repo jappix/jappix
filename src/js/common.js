@@ -393,22 +393,6 @@ var Common = (function () {
 
 
     /**
-     * Checks if we are in developer mode
-     * @public
-     * @return {boolean}
-     */
-    self.isDeveloper = function() {
-
-        try {
-            return (DEVELOPER == 'on');
-        } catch(e) {
-            Console.error('Common.isDeveloper', e);
-        }
-
-    };
-
-
-    /**
      * Checks if we are RTL (Right-To-Left)
      * @public
      * @return {boolean}

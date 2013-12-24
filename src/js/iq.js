@@ -51,7 +51,7 @@ var IQ = (function () {
             if((iqQueryXMLNS == NS_IQOOB) && (iqType == 'set')) {
                 /* REF: http://xmpp.org/extensions/xep-0066.html */
                 
-                handleOOB(iqFrom, iqID, 'iq', iqNode);
+                OOB.handle(iqFrom, iqID, 'iq', iqNode);
                 
                 Console.log('Received IQ OOB request: ' + iqFrom);
             }
@@ -118,7 +118,7 @@ var IQ = (function () {
                 
                 // Get the lists
                 $(iqQuery).find('list').each(function() {
-                    getPrivacy($(this).attr('name'));
+                    Privacy.get($(this).attr('name'));
                 });
                 
                 Console.log('Received privacy lists push: ' + iqFrom);
@@ -133,7 +133,7 @@ var IQ = (function () {
                 
                 // Get the values
                 $(iqQuery).find('item').each(function() {
-                    parseRoster($(this), 'presence');
+                    Roster.parse($(this), 'presence');
                 });
                 
                 Console.log('Received roster push: ' + iqFrom);

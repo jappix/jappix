@@ -37,7 +37,7 @@ var Groupchat = (function () {
 
         try {
             // We must be in the "login" mode
-            if(isAnonymous())
+            if(Utils.isAnonymous())
                 return;
             
             // We check if the user is a room owner or administrator to give him privileges
@@ -50,7 +50,7 @@ var Groupchat = (function () {
             
             // We add the click event
             $('#' + id + ' .tools-mucadmin').click(function() {
-                openMucAdmin(xid, affiliation);
+                MUCAdmin.open(xid, affiliation);
             });
         } catch(e) {
             Console.error('Groupchat.openAdmin', e);
@@ -80,8 +80,8 @@ var Groupchat = (function () {
             // No nickname?
             if(!nickname) {
                 // Get some values
-                if(!isAnonymous())
-                    nickname = getNick();
+                if(!Utils.isAnonymous())
+                    nickname = Name.getNick();
                 else
                     nickname = ANONYMOUS_NICK;
                 
@@ -100,7 +100,7 @@ var Groupchat = (function () {
                 $('#' + hash).attr('data-nick', escape(nickname));
             
                 // Send the appropriate presence
-                sendPresence(room + '/' + nickname, '', show, status, '', true, password, self.handleMUC);
+                Presence.send(room + '/' + nickname, '', show, status, '', true, password, self.handleMUC);
             }
         } catch(e) {
             Console.error('Groupchat.getMUC', e);
@@ -142,7 +142,7 @@ var Groupchat = (function () {
                         var statuscode = parseInt(muc_user.find('status').attr('code'));
                 
                 // Handle my presence
-                handlePresence(presence);
+                Presence.handle(presence);
                 
                 // Check if I am a room owner
                 self.openAdmin(affiliation, hash, room, statuscode);
@@ -267,7 +267,7 @@ var Groupchat = (function () {
             Chat.generateSwitch('groupchat', hash, room, chan);
             
             // The icons-hover functions
-            tooltipIcons(room, hash);
+            Tooltip.icons(room, hash);
             
             // Click event on the add tool
             $('#' + hash + ' .tools-add').click(function() {
@@ -376,7 +376,7 @@ var Groupchat = (function () {
                 muc_current = Common.generateXID(muc_current, 'groupchat');
                 
                 // Add the current value
-                if(!existArrayValue(new_arr, muc_current))
+                if(!Utils.existArrayValue(new_arr, muc_current))
                     new_arr.push(muc_current);
             }
             
@@ -435,7 +435,7 @@ var Groupchat = (function () {
                         for(g in groupchat_arr) {
                             html += '<a class="one" href="#" data-xid="' + Common.encodeQuotes(groupchat_arr[g]) + '">';
                                 html += '<span class="icon talk-images"></span>';
-                                html += '<span class="name">' + capitaliseFirstLetter(Common.getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
+                                html += '<span class="name">' + Utils.capitaliseFirstLetter(Common.getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
                                 html += '<span class="state talk-images"></span>';
                                 html += '<span class="clear"></span>';
                             html += '</a>';

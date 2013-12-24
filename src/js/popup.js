@@ -27,7 +27,7 @@ var Popup = (function () {
      * @param {string} content
      * @return {boolean}
      */
-    self.createPopup = function(id, content) {
+    self.create = function(id, content) {
 
         try {
             // Popup exists?
@@ -51,7 +51,7 @@ var Popup = (function () {
                 $('#' + id).css('background', 'transparent');
             
             // Attach popup events
-            launchPopup(id);
+            self.instance(id);
             
             return true;
         } catch(e) {
@@ -67,7 +67,7 @@ var Popup = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.destroyPopup = function(id) {
+    self.destroy = function(id) {
 
         try {
             // Stop the popup timers
@@ -91,7 +91,7 @@ var Popup = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.launchPopup = function(id) {
+    self.instance = function(id) {
 
         try {
             // Click events
@@ -99,13 +99,13 @@ var Popup = (function () {
                 // Click on lock background?
                 if($(evt.target).is('.lock:not(.unavoidable)')) {
                     // Destroy the popup
-                    destroyPopup(id);
+                    self.destroy(id);
                     
                     return false;
                 }
             });
         } catch(e) {
-            Console.error('Popup.launch', e);
+            Console.error('Popup.instance', e);
         }
 
     };

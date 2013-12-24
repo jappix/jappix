@@ -26,7 +26,7 @@ var Receipts = (function () {
      * @param {string} hash
      * @return {boolean}
      */
-    self.receiptRequest = function(hash) {
+    self.request = function(hash) {
 
         has_support = false;
 
@@ -50,7 +50,7 @@ var Receipts = (function () {
      * @param {object} packet
      * @return {boolean}
      */
-    self.hasReceipt = function(packet) {
+    self.has = function(packet) {
 
         has_receipt = false;
 

@@ -31,7 +31,7 @@ var Features = (function () {
 
         try {
             // Get the main values
-            var to = getServer();
+            var to = Utils.getServer();
             var caps = con.server_caps;
             var xml = null;
             
@@ -104,17 +104,17 @@ var Features = (function () {
                 self.enable('pep');
                 
                 // Get the PEP nodes to initiate
-                getInitMicroblog();
-                getInitGeoloc();
+                Microblog.getInit();
+                PEP.getInitGeoloc();
                 
                 // Get the notifications
-                getNotifications();
+                Notification.get();
                 
                 // Geolocate the user
-                geolocate();
+                PEP.geolocate();
                 
                 // Enable microblogging send tools
-                waitMicroblog('sync');
+                Microblog.wait('sync');
                 $('.postit.attach').css('display', 'block');
                 
                 Console.info('XMPP server supports PEP.');
@@ -122,7 +122,7 @@ var Features = (function () {
             
             // Disable microblogging send tools (no PEP!)
             else {
-                waitMicroblog('unsync');
+                Microblog.wait('unsync');
                 
                 Console.warn('XMPP server does not support PEP.');
             }
@@ -152,7 +152,7 @@ var Features = (function () {
             
             // Process the buddy-list height
             if(pep)
-                adaptRoster();
+                Roster.adapt();
         } catch(e) {
             Console.error('Features.handle', e);
         } finally {

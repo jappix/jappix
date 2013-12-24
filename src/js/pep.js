@@ -31,7 +31,7 @@ var PEP = (function () {
      * @param {string} value4
      * @return {undefined}
      */
-    self.storePEP = function(xid, type, value1, value2, value3, value4) {
+    self.store = function(xid, type, value1, value2, value3, value4) {
 
         try {
             // Handle the correct values
@@ -67,7 +67,7 @@ var PEP = (function () {
             }
             
             // Display the PEP event
-            displayPEP(xid, type);
+            self.display(xid, type);
         } catch(e) {
             Console.error('PEP.store', e);
         }
@@ -82,7 +82,7 @@ var PEP = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.displayPEP = function(xid, type) {
+    self.display = function(xid, type) {
 
         try {
             // Read the target input for values
@@ -111,9 +111,9 @@ var PEP = (function () {
                         
                         // Apply the good values
                         if(type == 'mood')
-                            fValue = moodIcon(pepValue);
+                            fValue = self.moodIcon(pepValue);
                         else if(type == 'activity')
-                            fValue = activityIcon(pepValue);
+                            fValue = self.activityIcon(pepValue);
                         if(!pepText)
                             fText = Common._e("unknown");
                         else
@@ -122,9 +122,9 @@ var PEP = (function () {
                     
                     else {
                         if(type == 'mood')
-                            fValue = moodIcon('undefined');
+                            fValue = self.moodIcon('undefined');
                         else if(type == 'activity')
-                            fValue = activityIcon('exercising');
+                            fValue = self.activityIcon('exercising');
                         
                         fText = Common._e("unknown");
                     }
@@ -248,7 +248,7 @@ var PEP = (function () {
                         );
                     
                     // Process the new status position
-                    adaptChatPresence(hash);
+                    Presence.adaptChat(hash);
                 }
                 
                 // If this is the PEP values of the logged in user
@@ -319,7 +319,7 @@ var PEP = (function () {
                             $('#my-infos .f-others').remove();
                         
                         // Process the buddy-list height again
-                        adaptRoster();
+                        Roster.adapt();
                     }
                 }
             }
@@ -742,13 +742,13 @@ var PEP = (function () {
             // Get full position (from Google Maps API)
             $.get('./php/geolocation.php', {latitude: vLat, longitude: vLon, language: XML_LANG}, function(data) {
                 // Parse data!
-                var results = parsePosition(data);
+                var results = self.parsePosition(data);
                 
                 // Handled!
-                sendPosition(
-                             isNumber(vLat) ? vLat : null,
-                             isNumber(vLon) ? vLon : null,
-                             isNumber(vAlt) ? vAlt : null,
+                self.sendPosition(
+                             Utils.isNumber(vLat) ? vLat : null,
+                             Utils.isNumber(vLon) ? vLon : null,
+                             Utils.isNumber(vAlt) ? vAlt : null,
                              results[2],
                              results[3],
                              results[4],
@@ -791,7 +791,7 @@ var PEP = (function () {
             if(navigator.geolocation) {
                 // Wait a bit... (to fix a bug)
                 $('#my-infos').stopTime().oneTime('1s', function() {
-                    navigator.geolocation.getCurrentPosition(getPosition);
+                    navigator.geolocation.getCurrentPosition(self.getPosition);
                 });
                 
                 Console.info('Geolocating...');
@@ -821,7 +821,7 @@ var PEP = (function () {
             
             ps_items.setAttribute('max_items', '0');
             
-            con.send(iq, handleInitGeoloc);
+            con.send(iq, self.handleInitGeoloc);
         } catch(e) {
             Console.error('PEP.getInitGeoloc', e);
         }
@@ -841,7 +841,7 @@ var PEP = (function () {
             // Any error?
             if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                setupMicroblog('', NS_GEOLOC, '1', '1', '', '', true);
+                Microblog.setup('', NS_GEOLOC, '1', '1', '', '', true);
                 
                 Console.warn('Error while getting geoloc, trying to reconfigure the PubSub node!');
             }
@@ -857,13 +857,13 @@ var PEP = (function () {
      * @public
      * @return {undefined}
      */
-    self.displayAllPEP = function() {
+    self.displayAll = function() {
 
         try {
-            displayPEP(xid, 'mood');
-            displayPEP(xid, 'activity');
-            displayPEP(xid, 'tune');
-            displayPEP(xid, 'geoloc');
+            self.display(xid, 'mood');
+            self.display(xid, 'activity');
+            self.display(xid, 'tune');
+            self.display(xid, 'geoloc');
         } catch(e) {
             Console.error('PEP.displayAll', e);
         }
@@ -876,7 +876,7 @@ var PEP = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchPEP = function() {
+    self.instance = function() {
 
         try {
             // Apply empty values to the PEP database
@@ -1019,7 +1019,7 @@ var PEP = (function () {
                     DataStore.setDB(DESKTOP_HASH, 'mood-text', 1, text);
                     
                     // Send it!
-                    sendMood(value, text);
+                    self.sendMood(value, text);
                 }
             })
             
@@ -1041,7 +1041,7 @@ var PEP = (function () {
                     DataStore.setDB(DESKTOP_HASH, 'activity-text', 1, text);
                     
                     // Send it!
-                    sendActivity(value, '', text);
+                    self.sendActivity(value, '', text);
                 }
             })
             
@@ -1050,7 +1050,7 @@ var PEP = (function () {
                 Bubble.close();
             });
         } catch(e) {
-            Console.error('PEP.launch', e);
+            Console.error('PEP.instance', e);
         }
 
     };

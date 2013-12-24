@@ -33,7 +33,7 @@ var Microblog = (function () {
      * @param {object} tFNComments
      * @return {undefined}
      */
-    self.attachedMicroblog = function(selector, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments) {
+    self.attached = function(selector, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments) {
 
         try {
             if($(selector).attr('title'))
@@ -95,7 +95,7 @@ var Microblog = (function () {
      * @param {string} way
      * @return {undefined}
      */
-    self.displayMicroblog = function(packet, from, hash, mode, way) {
+    self.display = function(packet, from, hash, mode, way) {
 
         try {
             // Get some values
@@ -122,17 +122,17 @@ var Microblog = (function () {
                 tDate = $(this).find('published').text();
                 tBody = $(this).find('body').text();
                 tID = $(this).attr('id');
-                tName = getBuddyName(from);
+                tName = Name.getBuddy(from);
                 tHash = 'update-' + hex_md5(tName + tDate + tID);
                 
                 // Read attached files with a thumb (place them at first)
                 $(this).find('link[rel="enclosure"]:has(link[rel="self"][title="thumb"])').each(function() {
-                    attachedMicroblog(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
+                    self.attached(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
                 });
                 
                 // Read attached files without any thumb
                 $(this).find('link[rel="enclosure"]:not(:has(link[rel="self"][title="thumb"]))').each(function() {
-                    attachedMicroblog(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
+                    self.attached(this, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments);
                 });
                 
                 // Get the repeat value
@@ -140,7 +140,7 @@ var Microblog = (function () {
                 var uRepeated = false;
                 
                 if(!uRepeat[0])
-                    uRepeat = [getBuddyName(from), uRepeat[1]];
+                    uRepeat = [Name.getBuddy(from), uRepeat[1]];
                 if(!uRepeat[1])
                     uRepeat = [uRepeat[0], from];
                 
@@ -186,7 +186,7 @@ var Microblog = (function () {
                     tGeoloc += '<a class="geoloc talk-images" href="http://maps.google.com/?q=' + Common.encodeQuotes(gLat) + ',' + Common.encodeQuotes(gLon) + '" target="_blank">';
                     
                     // Human-readable name?
-                    var gHuman = humanPosition(
+                    var gHuman = PEP.humanPosition(
                                            sGeoloc.find('locality').text(),
                                            sGeoloc.find('region').text(),
                                            sGeoloc.find('country').text()
@@ -243,7 +243,7 @@ var Microblog = (function () {
                     
                     // Is it a repeat?
                     if(uRepeated)
-                        html += '<a href="#" class="repeat talk-images" title="' + Common.encodeQuotes(Common.printf(Common._e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return Chat.checkCreate(\'' + encodeOnclick(uRepeat[1]) + '\', \'chat\');" data-xid="' + Common.encodeQuotes(uRepeat[1]) + '"></a>';
+                        html += '<a href="#" class="repeat talk-images" title="' + Common.encodeQuotes(Common.printf(Common._e("This is a repeat from %s"), uRepeat[0] + ' (' + uRepeat[1] + ')')) + '" onclick="return Chat.checkCreate(\'' + Utils.encodeOnclick(uRepeat[1]) + '\', \'chat\');" data-xid="' + Common.encodeQuotes(uRepeat[1]) + '"></a>';
                     
                     html += '<b title="' + from + '" class="name">' + tName.htmlEnc() + '</b> <span>' + tFiltered + '</span></p>' + 
                         '<p class="infos">' + tTime + tGeoloc + '</p>';
@@ -266,7 +266,7 @@ var Microblog = (function () {
                         
                         else if(IntegrateBox.can(Common.strAfterLast('.', tFURL[a]))) {
                             aFURL.push(tFURL[a]);
-                            aFCat.push(fileCategory(Common.strAfterLast('.', tFURL[a])));
+                            aFCat.push(Utils.fileCategory(Common.strAfterLast('.', tFURL[a])));
                         }
                     }
                     
@@ -279,7 +279,7 @@ var Microblog = (function () {
                         // Get the file type
                         var tFLink = tFURL[f];
                         var tFExt = Common.strAfterLast('.', tFLink);
-                        var tFCat = fileCategory(tFExt);
+                        var tFCat = Utils.fileCategory(tFExt);
                         
                         // Youtube video?
                         if(tFLink.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
@@ -289,7 +289,7 @@ var Microblog = (function () {
                         
                         // Supported image/video/sound
                         if(IntegrateBox.can(tFExt) || (tFCat == 'youtube'))
-                            tFEClick = 'onclick="return IntegrateBox.apply(\'' + encodeOnclick(tFLink) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
+                            tFEClick = 'onclick="return IntegrateBox.apply(\'' + Utils.encodeOnclick(tFLink) + '\', \'' + Utils.encodeOnclick(tFCat) + '\', \'' + Utils.encodeOnclick(aFURL) + '\', \'' + Utils.encodeOnclick(aFCat) + '\', \'' + Utils.encodeOnclick(tFEComments) + '\', \'' + Utils.encodeOnclick(tFNComments) + '\', \'large\');" ';
                         else
                             tFEClick = '';
                         
@@ -305,12 +305,12 @@ var Microblog = (function () {
                     
                     // It's my own notice, we can remove it!
                     if(from == Common.getXID())
-                        html += '<a href="#" onclick="return removeMicroblog(\'' + encodeOnclick(tID) + '\', \'' + encodeOnclick(tHash) + '\', \'' + encodeOnclick(entityComments) + '\', \'' + encodeOnclick(nodeComments) + '\');" title="' + Common._e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+                        html += '<a href="#" onclick="return Microblog.remove(\'' + Utils.encodeOnclick(tID) + '\', \'' + Utils.encodeOnclick(tHash) + '\', \'' + Utils.encodeOnclick(entityComments) + '\', \'' + Utils.encodeOnclick(nodeComments) + '\');" title="' + Common._e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
                     
                     // Notice from another user
                     else {
                         // User profile
-                        html += '<a href="#" title="' + Common._e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
+                        html += '<a href="#" title="' + Common._e("View profile") + '" class="mbtool profile talk-images" onclick="return UserInfos.open(\'' + Utils.encodeOnclick(from) + '\');"></a>';
                         
                         // If PEP is enabled
                         if(Features.enabledPEP() && tHTMLEscape)
@@ -326,7 +326,7 @@ var Microblog = (function () {
                             $('#channel .content.mixed .one-update.update_' + hash).remove();
                         
                         // Get the nearest element
-                        var nearest = sortElementByStamp(tStamp, '#channel .mixed .one-update');
+                        var nearest = Search.sortElementByStamp(tStamp, '#channel .mixed .one-update');
                         
                         // Append the content at the right position (date relative)
                         if(nearest == 0)
@@ -348,7 +348,7 @@ var Microblog = (function () {
                         
                         // Click event on avatar/name
                         $('.mixed .' + tHash + ' .avatar-container, .mixed .' + tHash + ' .body b').click(function() {
-                            getMicroblog(from, hash);
+                            self.get(from, hash);
                         });
                     }
                     
@@ -385,7 +385,7 @@ var Microblog = (function () {
                     
                     // Apply the click event
                     $('.' + tHash + ' a.repost:not([data-event="true"])').click(function() {
-                        return publishMicroblog(tContent, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments, tFEComments, tFNComments);
+                        return self.publish(tContent, tFName, tFURL, tFType, tFLength, tFThumb, uRepeat, entityComments, nodeComments, tFEComments, tFNComments);
                     })
                     
                     .attr('data-event', 'true');
@@ -393,7 +393,7 @@ var Microblog = (function () {
                     // Apply the hover event
                     if(nodeComments) {
                         $('.' + mode + ' .' + tHash).hover(function() {
-                            showCommentsMicroblog($(this), entityComments, nodeComments, tHash);
+                            self.showComments($(this), entityComments, nodeComments, tHash);
                         }, function() {
                             if($(this).find('div.comments a.one-comment.loading').size())
                                 $(this).find('div.comments').remove();
@@ -420,7 +420,7 @@ var Microblog = (function () {
      * @param {string} cnode
      * @return {boolean}
      */
-    self.removeMicroblog = function(id, hash, pserver, cnode) {
+    self.remove = function(id, hash, pserver, cnode) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 
@@ -454,7 +454,7 @@ var Microblog = (function () {
             
             if(get_last) {
                 if (comm_delete_iq) { con.send(comm_delete_iq); }
-                con.send(retract_iq, handleRemoveMicroblog);
+                con.send(retract_iq, self.handleRemove);
             } else {
                 if (comm_delete_iq) { con.send(comm_delete_iq); }
                 con.send(retract_iq, Error.handleReply);
@@ -474,14 +474,14 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleRemoveMicroblog = function(iq) {
+    self.handleRemove = function(iq) {
 
         try {
             // Handle the error reply
             Error.handleReply(iq);
             
             // Get the latest item
-            requestMicroblog(Common.getXID(), '1', false, handleUpdateRemoveMicroblog);
+            self.request(Common.getXID(), '1', false, self.handleUpdateRemove);
         } catch(e) {
             Console.error('Microblog.handleRemove', e);
         }
@@ -495,7 +495,7 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleUpdateRemoveMicroblog = function(iq) {
+    self.handleUpdateRemove = function(iq) {
 
         try {
             // Error?
@@ -507,7 +507,7 @@ var Microblog = (function () {
             var hash = hex_md5(xid);
             
             // Display the item!
-            displayMicroblog(iq, xid, hash, 'mixed', 'push');
+            self.display(iq, xid, hash, 'mixed', 'push');
         } catch(e) {
             Console.error('Microblog.handleUpdateRemove', e);
         }
@@ -523,7 +523,7 @@ var Microblog = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.getCommentsMicroblog = function(server, node, id) {
+    self.getComments = function(server, node, id) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve-requestall */
 
@@ -536,7 +536,7 @@ var Microblog = (function () {
             var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
             pubsub.appendChild(iq.buildNode('items', {'node': node, 'xmlns': NS_PUBSUB}));
             
-            con.send(iq, handleCommentsMicroblog);
+            con.send(iq, self.handleComments);
         } catch(e) {
             Console.error('Microblog.getComments', e);
         } finally {
@@ -552,7 +552,7 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleCommentsMicroblog = function(iq) {
+    self.handleComments = function(iq) {
 
         try {
             // Path
@@ -609,7 +609,7 @@ var Microblog = (function () {
                 var current_name = $(this).find('author name').text();
                 var current_date = $(this).find('published').text();
                 var current_body = $(this).find('content[type="text"]').text();
-                var current_bname = getBuddyName(current_xid);
+                var current_bname = Name.getBuddy(current_xid);
                 
                 // Legacy?
                 if(!current_body)
@@ -640,7 +640,7 @@ var Microblog = (function () {
                 var onclick = 'false';
                 
                 if(current_xid != Common.getXID())
-                    onclick = 'Chat.checkCreate(\'' + encodeOnclick(current_xid) + '\', \'chat\')';
+                    onclick = 'Chat.checkCreate(\'' + Utils.encodeOnclick(current_xid) + '\', \'chat\')';
                 
                 // If this is my comment, add a marker
                 var type = 'him';
@@ -650,7 +650,7 @@ var Microblog = (function () {
                 if(current_xid == Common.getXID()) {
                     type = 'me';
                     marker = '<div class="marker"></div>';
-                    remove = '<a href="#" class="remove" onclick="return removeCommentMicroblog(\'' + encodeOnclick(server) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(current_id) + '\');">' + Common._e("Remove") + '</a>';
+                    remove = '<a href="#" class="remove" onclick="return Microblog.removeComment(\'' + Utils.encodeOnclick(server) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(current_id) + '\');">' + Common._e("Remove") + '</a>';
                 }
                 
                 // New comment?
@@ -662,7 +662,7 @@ var Microblog = (function () {
                 // Add the comment
                 if(current_body) {
                     // Add the XID
-                    if(!existArrayValue(users_xid, current_xid))
+                    if(!Utils.existArrayValue(users_xid, current_xid))
                         users_xid.push(current_xid);
                     
                     // Add the HTML code
@@ -701,33 +701,33 @@ var Microblog = (function () {
                 
                 // Beautiful effect
                 $(path).find('.one-comment.new').slideDown('fast', function() {
-                    adaptCommentMicroblog(id);
+                    self.adaptComment(id);
                 }).removeClass('new');
             }
             
             // Set the good widths
-            adaptCommentMicroblog(id);
+            self.adaptComment(id);
             
             // Get the avatars
             for(a in users_xid)
                 Avatar.get(users_xid[a], 'cache', 'true', 'forget');
             
             // Add the owner XID
-            if(owner_xid && owner_xid.match('@') && !existArrayValue(users_xid, owner_xid))
+            if(owner_xid && owner_xid.match('@') && !Utils.existArrayValue(users_xid, owner_xid))
                 users_xid.push(owner_xid);
             
             // Add the repeated from XID
-            if(repeat_xid && repeat_xid.match('@') && !existArrayValue(users_xid, repeat_xid))
+            if(repeat_xid && repeat_xid.match('@') && !Utils.existArrayValue(users_xid, repeat_xid))
                 users_xid.push(repeat_xid);
             
             // Remove my own XID
-            removeArrayValue(users_xid, Common.getXID());
+            Utils.removeArrayValue(users_xid, Common.getXID());
             
             // DOM events
             if(complete) {
                 // Update timer
                 $(path).everyTime('60s', function() {
-                    getCommentsMicroblog(server, node, id);
+                    self.getComments(server, node, id);
                     
                     Console.log('Updating comments node: ' + node + ' on ' + server + '...');
                 });
@@ -737,7 +737,7 @@ var Microblog = (function () {
                                  .keyup(function(e) {
                                         if((e.keyCode == 13) && $(this).val()) {
                                             // Send the comment!
-                                            sendCommentMicroblog($(this).val(), server, node, id, users_xid, parent_data);
+                                            self.sendComment($(this).val(), server, node, id, users_xid, parent_data);
                                             
                                             // Reset the input value
                                             $(this).val('');
@@ -762,7 +762,7 @@ var Microblog = (function () {
      * @param {string} tHash
      * @return {undefined}
      */
-    self.showCommentsMicroblog = function(path, entityComments, nodeComments, tHash) {
+    self.showComments = function(path, entityComments, nodeComments, tHash) {
 
         try {
             // Do not display it twice!
@@ -788,7 +788,7 @@ var Microblog = (function () {
                 $(this).parent().html('<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Loading comments...") + '</div>');
                 
                 // Request comments
-                getCommentsMicroblog(entityComments, nodeComments, idComments);
+                self.getComments(entityComments, nodeComments, idComments);
                 
                 // Remove the comments from the DOM if click away
                 if(tHash) {
@@ -823,7 +823,7 @@ var Microblog = (function () {
      * @param {string} parent_data
      * @return {boolean}
      */
-    self.sendCommentMicroblog = function(value, server, node, id, notifiy_arr, parent_data) {
+    self.sendComment = function(value, server, node, id, notifiy_arr, parent_data) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#publisher-publish */
 
@@ -851,7 +851,7 @@ var Microblog = (function () {
             
             // Author infos
             var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
-            author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
+            author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, Name.get()));
             author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + Common.getXID()));
             
             // Create the comment
@@ -862,7 +862,7 @@ var Microblog = (function () {
             
             // Handle this comment!
             iq.setFrom(server);
-            handleCommentsMicroblog(iq);
+            self.handleComments(iq);
             
             // Notify users
             if(notifiy_arr && notifiy_arr.length) {
@@ -871,7 +871,7 @@ var Microblog = (function () {
                 
                 // Loop!
                 for(n in notifiy_arr)
-                    sendNotification(notifiy_arr[n], 'comment', href, value, parent_data);
+                    Notification.send(notifiy_arr[n], 'comment', href, value, parent_data);
             }
         } catch(e) {
             Console.error('Microblog.sendComment', e);
@@ -890,7 +890,7 @@ var Microblog = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.removeCommentMicroblog = function(server, node, id) {
+    self.removeComment = function(server, node, id) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#publisher-delete */
 
@@ -904,7 +904,7 @@ var Microblog = (function () {
                 $(this).remove();
                 
                 // Adapt the width
-                adaptCommentMicroblog(parent_id);
+                self.adaptComment(parent_id);
             });
             
             // Send the IQ to remove the item (and get eventual error callback)
@@ -932,7 +932,7 @@ var Microblog = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.adaptCommentMicroblog = function(id) {
+    self.adaptComment = function(id) {
 
         try {
             var selector = $('div.comments[data-id="' + id + '"] div.comments-content');
@@ -954,7 +954,7 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleMicroblog = function(iq) {
+    self.handle = function(iq) {
 
         try {
             // Get the from attribute of this IQ
@@ -972,13 +972,13 @@ var Microblog = (function () {
                 $(selector + 'counter]').val(old_count + 20);
                 
                 // Display the microblog
-                displayMicroblog(iq, from, hash, 'individual', 'request');
+                self.display(iq, from, hash, 'individual', 'request');
                 
                 // Hide the waiting icon
                 if(Features.enabledPEP())
-                    waitMicroblog('sync');
+                    self.wait('sync');
                 else
-                    waitMicroblog('unsync');
+                    self.wait('unsync');
                 
                 // Hide the 'more items' link?
                 if($(iq.getNode()).find('item').size() < old_count)
@@ -998,7 +998,7 @@ var Microblog = (function () {
                     
                     // Is it a microblog entry (or a lonely entry file)?
                     if(entry_link.size()) {
-                        showCommentsMicroblog(entry_link, comments_entity, comments_node);
+                        self.showComments(entry_link, comments_entity, comments_node);
                         entry_link.find('a.one-comment').click();
                     }
                     
@@ -1022,14 +1022,14 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleRosterMicroblog = function(iq) {
+    self.handleRoster = function(iq) {
 
         try {
             // Get the from attribute of this IQ
             var from = Common.bareXID(Common.getStanzaFrom(iq));
 
             // Display the microblog
-            displayMicroblog(iq, from, hex_md5(from), 'mixed', 'push');
+            self.display(iq, from, hex_md5(from), 'mixed', 'push');
         } catch(e) {
             Console.error('Microblog.handleRoster', e);
         }
@@ -1042,7 +1042,7 @@ var Microblog = (function () {
      * @public
      * @return {boolean}
      */
-    self.resetMicroblog = function() {
+    self.reset = function() {
 
         try {
             // Reset everything
@@ -1052,9 +1052,9 @@ var Microblog = (function () {
             
             // Hide the waiting icon
             if(Features.enabledPEP()) {
-                waitMicroblog('sync');
+                self.wait('sync');
             } else {
-                waitMicroblog('unsync');
+                self.wait('unsync');
             }
         } catch(e) {
             Console.error('Microblog.reset', e);
@@ -1070,10 +1070,10 @@ var Microblog = (function () {
      * @public
      * @return {undefined}
      */
-    self.getInitMicroblog = function() {
+    self.getInit = function() {
 
         try {
-            getMicroblog(Common.getXID(), hex_md5(Common.getXID()), true);
+            self.get(Common.getXID(), hex_md5(Common.getXID()), true);
         } catch(e) {
             Console.error('Microblog.getInit', e);
         }
@@ -1087,13 +1087,13 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleInitMicroblog = function(iq) {
+    self.handleInit = function(iq) {
 
         try {
             // Any error?
             if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                setupMicroblog('', NS_URN_MBLOG, '1', '1000000', '', '', true);
+                self.setup('', NS_URN_MBLOG, '1', '1000000', '', '', true);
                 
                 Console.warn('Error while getting microblog, trying to reconfigure the PubSub node!');
             }
@@ -1110,7 +1110,7 @@ var Microblog = (function () {
      * @param {type} name
      * @return {undefined}
      */
-    self.requestMicroblog = function(xid, items, get_item, handler) {
+    self.request = function(xid, items, get_item, handler) {
 
         try {
             // Ask the server the user's microblog 
@@ -1130,7 +1130,7 @@ var Microblog = (function () {
             if(handler) {
                 con.send(iq, handler);
             } else {
-                con.send(iq, handleMicroblog);
+                con.send(iq, self.handle);
             }
         } catch(e) {
             Console.error('Microblog.request', e);
@@ -1149,7 +1149,7 @@ var Microblog = (function () {
      * @param {boolean} check
      * @return {boolean}
      */
-    self.getMicroblog = function(xid, hash, check) {
+    self.get = function(xid, hash, check) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#subscriber-retrieve */
 
@@ -1157,7 +1157,7 @@ var Microblog = (function () {
             Console.info('Get the microblog: ' + xid);
             
             // Fire the wait event
-            waitMicroblog('fetch');
+            self.wait('fetch');
             
             // XMPP URI?
             var get_item = '';
@@ -1183,19 +1183,19 @@ var Microblog = (function () {
                 if(xid == Common.getXID())
                     cTitle = Common._e("Your channel");
                 else {
-                    cTitle = Common._e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
+                    cTitle = Common._e("Channel of") + ' ' + Name.getBuddy(xid).htmlEnc();
                     cShortcuts = '<div class="shortcuts">' + 
-                                '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return Inbox.composeMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                                '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
-                                '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                                '<a href="#" class="profile talk-images" title="' + Common._e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return Inbox.composeMessage(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="return Chat.checkCreate(\'' + Utils.encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+                                '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="return AdHoc.retrieve(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="profile talk-images" title="' + Common._e("Show user profile") + '" onclick="return UserInfos.open(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
                                  '</div>';
                 }
                 
                 // Create a new individual channel
                 $('#channel .content.mixed').after(
                         '<div class="content individual microblog-' + hash + '">' + 
-                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return getMicroblog(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(hash) + '\'); } return false;">' + Common._e("More notices...") + '</a>' + 
+                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return self.get(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(hash) + '\'); } return false;">' + Common._e("More notices...") + '</a>' + 
                         '</div>'
                                  )
                                
@@ -1207,7 +1207,7 @@ var Microblog = (function () {
                             
                             '<div class="update">' + 
                                 '<h2>' + cTitle + '</h2>' + 
-                                '<a href="#" onclick="return resetMicroblog();">« ' + Common._e("Previous") + '</a>' + 
+                                '<a href="#" onclick="return Microblog.reset();">« ' + Common._e("Previous") + '</a>' + 
                             '</div>' + 
                             
                             cShortcuts + 
@@ -1235,9 +1235,9 @@ var Microblog = (function () {
             
             // Request
             if(check)
-                requestMicroblog(xid, items, get_item, handleInitMicroblog);
+                self.request(xid, items, get_item, self.handleInit);
             else
-                requestMicroblog(xid, items, get_item, handleMicroblog);
+                self.request(xid, items, get_item, self.handle);
         } catch(e) {
             Console.error('Microblog.get', e);
         } finally {
@@ -1253,7 +1253,7 @@ var Microblog = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.waitMicroblog = function(type) {
+    self.wait = function(type) {
 
         try {
             // First hide all the infos elements
@@ -1291,7 +1291,7 @@ var Microblog = (function () {
      * @param {string} create
      * @return {undefined}
      */
-    self.setupMicroblog = function(entity, node, persist, maximum, access, publish, create) {
+    self.setup = function(entity, node, persist, maximum, access, publish, create) {
 
         /* REF: http://xmpp.org/extensions/xep-0060.html#owner-create-and-configure */
 
@@ -1357,7 +1357,7 @@ var Microblog = (function () {
      * @public
      * @return {undefined}
      */
-    self.getConfigMicroblog = function() {
+    self.getConfig = function() {
 
         try {
             // Lock the microblog options
@@ -1370,7 +1370,7 @@ var Microblog = (function () {
             var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
             pubsub.appendChild(iq.buildNode('configure', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB_OWNER}));
             
-            con.send(iq, handleGetConfigMicroblog);
+            con.send(iq, self.handleGetConfig);
         } catch(e) {
             Console.error('Microblog.getConfig', e);
         }
@@ -1384,11 +1384,11 @@ var Microblog = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleGetConfigMicroblog = function(iq) {
+    self.handleGetConfig = function(iq) {
 
         try {
             // Reset the options stuffs
-            waitOptions('microblog');
+            Options.wait('microblog');
             
             // Unlock the microblog options
             $('#persistent, #maxnotices').removeAttr('disabled');
@@ -1449,13 +1449,13 @@ var Microblog = (function () {
      * @param {object} packet
      * @return {undefined}
      */
-    self.handleMyMicroblog = function(packet) {
+    self.handleMine = function(packet) {
 
         try {
             // Reset the entire form
             $('#channel .top input[name="microblog_body"]').removeAttr('disabled').val('');
             $('#channel .top input[name="microblog_body"]').placeholder();
-            unattachMicroblog();
+            self.unattach();
             
             // Check for errors
             Error.handleReply(packet);
@@ -1469,26 +1469,10 @@ var Microblog = (function () {
     /**
      * Performs the microblog sender checks
      * @public
-     * @return {undefined}
-     */
-    self.sendMicroblog = function() {
-
-        try {
-            // CODE
-        } catch(e) {
-            Console.error('Microblog.send', e);
-        }
-
-    };
-
-
-    /**
-     * Performs the microblog sender checks
-     * @public
      * @param {type} name
      * @return {boolean}
      */
-    self.sendMicroblog = function() {
+    self.send = function() {
 
         try {
             // Get the values
@@ -1529,7 +1513,7 @@ var Microblog = (function () {
                 }
                 
                 // Send the message on the XMPP network
-                publishMicroblog(body, fName, fURL, fType, fLength, fThumb);
+                self.publish(body, fName, fURL, fType, fLength, fThumb);
             }
         } catch(e) {
             Console.error('Microblog.send', e);
@@ -1556,7 +1540,7 @@ var Microblog = (function () {
      * @param {type} comments_node_file
      * @return {boolean}
      */
-    self.publishMicroblog = function(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node, comments_entity_file, comments_node_file) {
+    self.publish = function(body, attachedname, attachedurl, attachedtype, attachedlength, attachedthumb, repeat, comments_entity, comments_node, comments_entity_file, comments_node_file) {
 
         /* REF: http://xmpp.org/extensions/xep-0277.html */
 
@@ -1564,7 +1548,7 @@ var Microblog = (function () {
             // Generate some values
             var time = DateUtils.getXMPPTime('utc');
             var id = hex_md5(body + time);
-            var nick = getName();
+            var nick = Name.get();
             var xid = Common.getXID();
             
             // Define repeat options
@@ -1651,7 +1635,7 @@ var Microblog = (function () {
                     comments_node_file[i] = NS_URN_MBLOG + ':comments/' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
                     
                     // Create the node
-                    setupMicroblog(comments_entity_file[i], comments_node_file[i], '1', '1000000', 'open', 'open', true);
+                    self.setup(comments_entity_file[i], comments_node_file[i], '1', '1000000', 'open', 'open', true);
                 }
                 
                 file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'replies', 'title': 'comments_file', 'href': 'xmpp:' + comments_entity_file[i] + '?;node=' + encodeURIComponent(comments_node_file[i])}));
@@ -1666,7 +1650,7 @@ var Microblog = (function () {
             if(geoloc_xml) {
                 // Create two position arrays
                 var geo_names  = ['lat', 'lon', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
-                var geo_values = parsePosition(Common.XMLFromString(geoloc_xml));
+                var geo_values = PEP.parsePosition(Common.XMLFromString(geoloc_xml));
                 
                 // New geoloc child
                 var geoloc = entry.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
@@ -1679,11 +1663,11 @@ var Microblog = (function () {
             }
             
             // Send the IQ
-            con.send(iq, handleMyMicroblog);
+            con.send(iq, self.handleMine);
             
             // Create the XML comments PubSub nodes
             if(node_create) {
-                setupMicroblog(comments_entity, comments_node, '1', '1000000', 'open', 'open', true);
+                self.setup(comments_entity, comments_node, '1', '1000000', 'open', 'open', true);
             }
         } catch(e) {
             Console.error('Microblog.publish', e);
@@ -1699,14 +1683,14 @@ var Microblog = (function () {
      * @public
      * @return {undefined}
      */
-    self.attachMicroblog = function() {
+    self.attach = function() {
 
         try {
             // File upload vars
             var attach_options = {
-                dataType:   'xml',
-                beforeSubmit:   waitMicroblogAttach,
-                success:    handleMicroblogAttach
+                dataType:      'xml',
+                beforeSubmit:   self.waitAttach,
+                success:        self.handleAttach
             };
             
             // Upload form submit event
@@ -1737,7 +1721,7 @@ var Microblog = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.unattachMicroblog = function(id) {
+    self.unattach = function(id) {
 
         try {
             // Individual removal?
@@ -1774,7 +1758,7 @@ var Microblog = (function () {
      * @public
      * @return {undefined}
      */
-    self.waitMicroblogAttach = function() {
+    self.waitAttach = function() {
 
         try {
             // Append the wait icon
@@ -1795,7 +1779,7 @@ var Microblog = (function () {
      * @param {string} responseXML
      * @return {undefined}
      */
-    self.handleMicroblogAttach = function(responseXML) {
+    self.handleAttach = function(responseXML) {
 
         try {
             // Data selector
@@ -1826,7 +1810,7 @@ var Microblog = (function () {
                 
                 // Click event
                 $('#attach .one-file[data-id="' + fID + '"] a.remove').click(function() {
-                    return unattachMicroblog(fID);
+                    return self.unattach(fID);
                 });
                 
                 Console.info('File attached.');
@@ -1869,17 +1853,17 @@ var Microblog = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.fromInfosMicroblog = function(xid, hash) {
+    self.fromInfos = function(xid, hash) {
 
         try {
             // Renitialize the channel
-            resetMicroblog();
+            self.reset();
             
             // Switch to the channel
             Interface.switchChan('channel');
             
             // Get the microblog
-            getMicroblog(xid, hash);
+            self.get(xid, hash);
         } catch(e) {
             Console.error('Microblog.fromInfos', e);
         }
@@ -1892,23 +1876,23 @@ var Microblog = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchMicroblog = function() {
+    self.instance = function() {
 
         try {
             // Keyboard event
             $('#channel .top input[name="microblog_body"]').keyup(function(e) {
                 // Enter pressed: send the microblog notice
                 if((e.keyCode == 13) && !Common.exists('#attach .wait'))
-                    return sendMicroblog();
+                    return self.send();
             })
             
             // Placeholder
             .placeholder();
             
             // Microblog file attacher
-            attachMicroblog();
+            self.attach();
         } catch(e) {
-            Console.error('Microblog.launch', e);
+            Console.error('Microblog.instance', e);
         }
 
     };

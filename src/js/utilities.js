@@ -20,29 +20,6 @@ var Utils = (function () {
     var self = {};
 
 
-	/**
-     * Checks if a function exists
-     * @public
-     * @param {function} func
-     * @return {boolean}
-     */
-    self.functionExists = function(func) {
-
-        fn_exists = false;
-
-        try {
-            if(typeof func == 'function') {
-                fn_exists = true;
-            }
-        } catch(e) {
-            Console.error('Utils.functionExists', e);
-        } finally {
-            return fn_exists;
-        }
-
-    };
-
-
     /**
      * Returns whether using HTTPS or not
      * @public
@@ -103,24 +80,6 @@ var Utils = (function () {
             return '';
         } catch(e) {
             Console.error('Utils.disableInput', e);
-        }
-
-    };
-
-
-    /**
-     * Cuts a string
-     * @public
-     * @param {string} string
-     * @param {number} limit
-     * @return {string}
-     */
-    self.cut = function(string, limit) {
-
-        try {
-            return string.substr(0, limit);
-        } catch(e) {
-            Console.error('Utils.cut', e);
         }
 
     };

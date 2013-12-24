@@ -30,7 +30,7 @@ var Mobile = (function () {
 
         try {
             // Reset the panels
-            resetPanel();
+            self.resetPanel();
             
             // Get the values
             var xid = aForm.xid.value;
@@ -43,7 +43,7 @@ var Mobile = (function () {
                 
                 // Domain is locked and not the same
                 if((LOCK_HOST == 'on') && (domain != HOST_MAIN)) {
-                    showThis('error');
+                    self.showThis('error');
                     
                     return false;
                 }
@@ -64,7 +64,7 @@ var Mobile = (function () {
             // Enough parameters
             if(username && domain && pwd) {
                 // Show the info notification
-                showThis('info');
+                self.showThis('info');
                 
                 // We define the http binding parameters
                 oArgs = new Object();
@@ -75,17 +75,17 @@ var Mobile = (function () {
                     oArgs.httpbase = HOST_BOSH;
                 
                 // Check BOSH origin
-                BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+                BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
 
                 // We create the new http-binding connection
                 con = new JSJaCHttpBindingConnection(oArgs);
                 
                 // And we handle everything that happen
-                con.registerHandler('message', handleMessage);
-                con.registerHandler('presence', handlePresence);
-                con.registerHandler('iq', handleIQ);
+                con.registerHandler('message', self.handleMessage);
+                con.registerHandler('presence', self.handlePresence);
+                con.registerHandler('iq', self.handleIQ);
                 con.registerHandler('onconnect', self.handleConnected);
-                con.registerHandler('onerror', handleError);
+                con.registerHandler('onerror', self.handleError);
                 con.registerHandler('ondisconnect', self.handleDisconnected);
                 
                 // We retrieve what the user typed in the login inputs
@@ -107,13 +107,13 @@ var Mobile = (function () {
             
             // Not enough parameters
             else {
-                showThis('error');
+                self.showThis('error');
             }
         } catch(e) {
             Console.error('Mobile.doLogin', e);
 
             // An error happened
-            resetPanel('error');
+            self.resetPanel('error');
         } finally {
             return false;
         }
@@ -146,7 +146,11 @@ var Mobile = (function () {
     self.showThis = function(id) {
 
         try {
-            document.getElementById(id).style.display = 'block';
+            var element = document.getElementById(id);
+
+            if(element) {
+                element.style.display = 'block';
+            }
         } catch(e) {
             Console.error('Mobile.showThis', e);
         }
@@ -163,7 +167,11 @@ var Mobile = (function () {
     self.hideThis = function(id) {
 
         try {
-            document.getElementById(id).style.display = 'none';
+            var element = document.getElementById(id);
+
+            if(element) {
+                element.style.display = 'none';
+            }
         } catch(e) {
             Console.error('Mobile.hideThis', e);
         }
@@ -181,12 +189,12 @@ var Mobile = (function () {
 
         try {
             // Hide the opened panels
-            hideThis('info');
-            hideThis('error');
+            self.hideThis('info');
+            self.hideThis('error');
             
             //Show the target panel
             if(id) {
-                showThis(id);
+                self.showThis(id);
             }
         } catch(e) {
             Console.error('Mobile.resetPanel', e);
@@ -293,17 +301,17 @@ var Mobile = (function () {
                     // Get the values
                     var xid = self.cutResource(msg.getFrom());
                     var hash = hex_md5(xid);
-                    var nick = getNick(xid, hash);
+                    var nick = self.getNick(xid, hash);
                     
                     // No nickname?
                     if(!nick)
                         nick = xid;
                 
                     // Create the chat if it does not exist
-                    chat(xid, nick);
+                    self.chat(xid, nick);
                 
                     // Display the message
-                    displayMessage(xid, body, nick, hash);
+                    self.displayMessage(xid, body, nick, hash);
                 }
             }
         } catch(e) {
@@ -330,32 +338,32 @@ var Mobile = (function () {
             
             // Online buddy: show it!
             if(!type) {
-                showThis('buddy-' + hash);
+                self.showThis('buddy-' + hash);
                 
                 // Display the correct presence
                 switch(show) {
                     case 'chat':
-                        displayPresence(hash, show);
+                        self.displayPresence(hash, show);
                         break;
                     
                     case 'away':
-                        displayPresence(hash, show);
+                        self.displayPresence(hash, show);
                         break;
                     
                     case 'xa':
-                        displayPresence(hash, show);
+                        self.displayPresence(hash, show);
                         break;
                     
                     case 'dnd':
-                        displayPresence(hash, show);
+                        self.displayPresence(hash, show);
                         break;
                     
                     default:
-                        displayPresence(hash, 'available');
+                        self.displayPresence(hash, 'available');
                         break;
                 }
             } else {
-                hideThis('buddy-' + hash);
+                self.hideThis('buddy-' + hash);
             }
         } catch(e) {
             Console.error('Mobile.handlePresence', e);
@@ -440,15 +448,15 @@ var Mobile = (function () {
 
         try {
             // Reset the elements
-            hideThis('home');
-            resetPanel();
+            self.hideThis('home');
+            self.resetPanel();
             
             // Create the talk page
             document.getElementsByTagName('body')[0].innerHTML +=
             '<div id="talk">' + 
                 '<div class="header">' + 
                     '<div class="mobile-images"></div>' + 
-                    '<button onclick="doLogout();">' + self._e("Disconnect") + '</button>' + 
+                    '<button onclick="Mobile.doLogout();">' + self._e("Disconnect") + '</button>' + 
                 '</div>' + 
                 
                 '<div id="roster"></div>' + 
@@ -457,14 +465,14 @@ var Mobile = (function () {
             '<div id="chat">' + 
                 '<div class="header">' + 
                     '<div class="mobile-images"></div>' + 
-                    '<button onclick="returnToRoster();">' + self._e("Previous") + '</button>' + 
+                    '<button onclick="Mobile.returnToRoster();">' + self._e("Previous") + '</button>' + 
                 '</div>' + 
                 
                 '<div id="chans"></div>' + 
             '</div>';
             
             // Get the roster items
-            getRoster();
+            self.getRoster();
         } catch(e) {
             Console.error('Mobile.handleConnected', e);
         }
@@ -481,7 +489,7 @@ var Mobile = (function () {
     self.handleError = function(error) {
 
         try {
-            resetPanel('error');
+            self.resetPanel('error');
         } catch(e) {
             Console.error('Mobile.handleError', e);
         }
@@ -498,10 +506,10 @@ var Mobile = (function () {
 
         try {
             // Reset the elements
-            resetDOM();
+            self.resetDOM();
             
             // Show the home page
-            showThis('home');
+            self.showThis('home');
         } catch(e) {
             Console.error('Mobile.handleDisconnected', e);
         }
@@ -520,7 +528,7 @@ var Mobile = (function () {
         try {
             // Error: send presence anyway
             if(!iq || (iq.getType() != 'result'))
-                return sendPresence('', 'available', 1);
+                return self.sendPresence('', 'available', 1);
             
             // Define some pre-vars
             var current, xid, nick, oneBuddy, oneID, hash;
@@ -540,7 +548,7 @@ var Mobile = (function () {
                 
                 // No defined nick?
                 if(!nick)
-                    nick = getDirectNick(xid);
+                    nick = self.getDirectNick(xid);
                 
                 // Display the values
                 oneBuddy = document.createElement('a');
@@ -548,13 +556,13 @@ var Mobile = (function () {
                 oneBuddy.setAttribute('href', '#');
                 oneBuddy.setAttribute('id', oneID);
                 oneBuddy.setAttribute('class', 'one-buddy');
-                oneBuddy.setAttribute('onclick', 'return chat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(nick) + '\');');
+                oneBuddy.setAttribute('onclick', 'return Mobile.chat(\'' + self.encodeOnclick(xid) + '\', \'' + self.encodeOnclick(nick) + '\');');
                 oneBuddy.innerHTML = nick.htmlEnc();
                 roster.appendChild(oneBuddy);
             }
             
             // Start handling buddies presence
-            sendPresence('', 'available', 1);
+            self.sendPresence('', 'available', 1);
         } catch(e) {
             Console.error('Mobile.handleRoster', e);
         }
@@ -587,7 +595,7 @@ var Mobile = (function () {
                 aForm.body.value = '';
                 
                 // Display the message we sent
-                displayMessage(xid, body, 'me', hash);
+                self.displayMessage(xid, body, 'me', hash);
             }
         } catch(e) {
             Console.error('Mobile.sendMessage', e);
@@ -641,7 +649,7 @@ var Mobile = (function () {
             iq.setType('get');
             iq.setQuery(NS_ROSTER);
             
-            con.send(iq, handleRoster);
+            con.send(iq, self.handleRoster);
         } catch(e) {
             Console.error('Mobile.getRoster', e);
         }
@@ -678,10 +686,10 @@ var Mobile = (function () {
         try {
             var path = 'buddy-' + hash;
             
-            if(Common.exists(path)) {
+            if(self.exists(path)) {
                 return document.getElementById(path).innerHTML;
             } else {
-                getDirectNick(xid);
+                self.getDirectNick(xid);
             }
         } catch(e) {
             Console.error('Mobile.getNick', e);
@@ -823,7 +831,7 @@ var Mobile = (function () {
             else
                 html += ' class="him">' + nick;
             
-            html += '</b> ' + filter(body) + '</span>';
+            html += '</b> ' + self.filter(body) + '</span>';
             
             document.getElementById(path).innerHTML += html;
             
@@ -845,10 +853,10 @@ var Mobile = (function () {
 
         try {
             // Hide the chats
-            hideThis('chat');
+            self.hideThis('chat');
             
             // Show the roster
-            showThis('talk');
+            self.showThis('talk');
         } catch(e) {
             Console.error('Mobile.returnToRoster', e);
         }
@@ -866,7 +874,7 @@ var Mobile = (function () {
 
         try {
             // Hide the roster page
-            hideThis('talk');
+            self.hideThis('talk');
             
             // Hide the other chats
             var divs = document.getElementsByTagName('div');
@@ -877,8 +885,8 @@ var Mobile = (function () {
             }
             
             // Show the chat
-            showThis('chat');
-            showThis(hash);
+            self.showThis('chat');
+            self.showThis(hash);
         } catch(e) {
             Console.error('Mobile.chatSwitch', e);
         }
@@ -904,7 +912,7 @@ var Mobile = (function () {
             // Apply the DOM modification
             oneChat.setAttribute('id', 'chat-' + hash);
             oneChat.setAttribute('class', 'one-chat');
-            oneChat.innerHTML = '<p>' + nick + '</p><div id="content-' + hash + '"></div><form action="#" method="post" onsubmit="return sendMessage(this);"><input type="text" name="body" /><input type="hidden" name="xid" value="' + xid + '" /><input type="submit" class="submit" value="OK" /></form>';
+            oneChat.innerHTML = '<p>' + nick + '</p><div id="content-' + hash + '"></div><form action="#" method="post" onsubmit="return Mobile.sendMessage(this);"><input type="text" name="body" /><input type="hidden" name="xid" value="' + xid + '" /><input type="submit" class="submit" value="OK" /></form>';
             chat.appendChild(oneChat);
         } catch(e) {
             Console.error('Mobile.createChat', e);
@@ -926,17 +934,17 @@ var Mobile = (function () {
             var hash = hex_md5(xid);
             
             // If the chat was not yet opened
-            if(!Common.exists('chat-' + hash)) {
+            if(!self.exists('chat-' + hash)) {
                 // No nick?
                 if(!nick)
-                    nick = getNick(xid, hash);
+                    nick = self.getNick(xid, hash);
                 
                 // Create the chat
-                createChat(xid, nick, hash);
+                self.createChat(xid, nick, hash);
             }
             
             // Switch to the chat
-            chatSwitch('chat-' + hash);
+            self.chatSwitch('chat-' + hash);
         } catch(e) {
             Console.error('Mobile.chat', e);
         } finally {
@@ -956,7 +964,11 @@ var Mobile = (function () {
     self.displayPresence = function(hash, show) {
 
         try {
-            document.getElementById('buddy-' + hash).setAttribute('class', 'one-buddy ' + show);
+            var element = document.getElementById('buddy-' + hash);
+
+            if(element) {
+                element.setAttribute('class', 'one-buddy ' + show);
+            }
         } catch(e) {
             Console.error('Mobile.displayPresence', e);
         }
@@ -972,7 +984,7 @@ var Mobile = (function () {
     self.launch = function() {
 
         try {
-            onbeforeunload = doLogout;
+            onbeforeunload = self.doLogout;
         } catch(e) {
             Console.error('Mobile.launch', e);
         }

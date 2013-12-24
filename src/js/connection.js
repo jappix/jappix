@@ -62,7 +62,7 @@ var Connection = (function () {
                 oArgs.httpbase = HOST_BOSH;
             
             // Check BOSH origin
-            BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
 
             // We create the new http-binding connection
             con = new JSJaCHttpBindingConnection(oArgs);
@@ -107,7 +107,7 @@ var Connection = (function () {
             Console.error('Connection.doLogin', e);
 
             // Reset Jappix
-            destroyTalkPage();
+            Talk.destroy();
             
             // Open an unknown error
             Board.openThisError(2);
@@ -138,7 +138,7 @@ var Connection = (function () {
             $('#home .registerer .success').fadeIn('fast');
             
             // We quit the session
-            if(Common.isConnected)) {
+            if(Common.isConnected()) {
                 self.logout();
             }
         } catch(e) {
@@ -234,7 +234,7 @@ var Connection = (function () {
                         oArgs.httpbase = HOST_BOSH;
                     
                     // Check BOSH origin
-                    BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+                    BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
 
                     // We create the new http-binding connection
                     con = new JSJaCHttpBindingConnection(oArgs);
@@ -369,7 +369,7 @@ var Connection = (function () {
                     DataStore.setPersistent('global', 'session', 1, CURRENT_SESSION);
                 
                 // We show the chatting app.
-                createTalkPage();
+                Talk.create();
                 
                 // We reset the homepage
                 Home.change('default');
@@ -384,7 +384,7 @@ var Connection = (function () {
             // Resumed
             else {
                 // Send our presence
-                presenceSend();
+                Presence.sendActions();
                 
                 // Change the title
                 Interface.updateTitle();
@@ -408,7 +408,7 @@ var Connection = (function () {
             
             // Normal disconnection
             if(!CURRENT_SESSION && !CONNECTED) {
-                destroyTalkPage();
+                Talk.destroy();
                 DESKTOP_HASH = null;
             }
         } catch(e) {
@@ -430,7 +430,7 @@ var Connection = (function () {
         try {
             // Setup connection handlers
             con.registerHandler('message', Message.handle);
-            con.registerHandler('presence', handlePresence);
+            con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.handleConnected);
             con.registerHandler('onerror', handleError);
@@ -459,7 +459,7 @@ var Connection = (function () {
         logout_done = false;
 
         try {
-            if(Common.isConnected)) {
+            if(Common.isConnected()) {
                 Console.info('Jappix is disconnecting...');
 
                 // Disconnect from the XMPP server
@@ -485,7 +485,7 @@ var Connection = (function () {
     self.quit = function() {
 
         try {
-            if(!Common.isConnected)) {
+            if(!Common.isConnected()) {
                 return;
             }
             
@@ -638,7 +638,7 @@ var Connection = (function () {
             $('#reconnect').remove();
             
             // Destroy the talk page
-            destroyTalkPage();
+            Talk.destroy();
             
             // Renitialize the previous session parameters
             self.resetConMarkers();
@@ -755,9 +755,9 @@ var Connection = (function () {
 
         try {
             Features.get();
-            getRoster();
-            listPrivacy();
-            getStorage(NS_ROSTERNOTES);
+            Roster.get();
+            Privacy.list();
+            Storage.get(NS_ROSTERNOTES);
         } catch(e) {
             Console.error('Connection.getEverything', e);
         }
@@ -810,7 +810,7 @@ var Connection = (function () {
                 $(window).bind('beforeunload', terminate);
                 
                 // Nothing to do when anonymous!
-                if(isAnonymous())
+                if(Utils.isAnonymous())
                     return;
                 
                 // Connection params submitted in URL?

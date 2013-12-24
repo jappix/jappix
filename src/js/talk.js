@@ -25,16 +25,16 @@ var Talk = (function () {
      * @public
      * @return {undefined}
      */
-    self.eventsTalkPage = function() {
+    self.events = function() {
 
         try {
             // Launch all associated bundles
-            launchMicroblog();
+            Microblog.instance();
             launchRoster();
-            launchPresence();
-            launchPEP();
+            Presence.instance();
+            PEP.instance();
             launchNotifications();
-            launchMusic();
+            Music.instance();
         } catch(e) {
             Console.error('Talk.events', e);
         }
@@ -47,7 +47,7 @@ var Talk = (function () {
      * @public
      * @return {boolean}
      */
-    self.createTalkPage = function() {
+    self.create = function() {
 
         try {
             // Talkpage exists?
@@ -55,7 +55,7 @@ var Talk = (function () {
                 return false;
             
             // Anonymous detector
-            var anonymous = isAnonymous();
+            var anonymous = Utils.isAnonymous();
             
             // Generate the HTML code
             var html = 
@@ -79,14 +79,14 @@ var Talk = (function () {
                     
                     if(!anonymous && document.createElement('audio').canPlayType) html += 
                     '<div class="tools-all ibubble">' + 
-                        '<div class="tools music talk-images" onclick="return openMusic();"></div>' + 
+                        '<div class="tools music talk-images" onclick="return Music.open();"></div>' + 
                         
                         '<div class="music-content tools-content bubble hidable">' + 
                             '<div class="tools-content-subarrow talk-images"></div>' + 
                             
                             '<div class="tools-content-subitem">' + 
                                 '<div class="player">' + 
-                                    '<a href="#" class="stop talk-images" onclick="return actionMusic(\'stop\');"></a>' + 
+                                    '<a href="#" class="stop talk-images" onclick="return Music.action(\'stop\');"></a>' + 
                                 '</div>' + 
                                 
                                 '<div class="list">' + 
@@ -108,7 +108,7 @@ var Talk = (function () {
                             '<div class="tools-content-subarrow talk-images"></div>' + 
                             
                             '<div class="tools-content-subitem">' + 
-                                '<a class="empty" href="#" onclick="return clearNotifications();">' + Common._e("Empty") +  '</a>' + 
+                                '<a class="empty" href="#" onclick="return Notification.clear();">' + Common._e("Empty") +  '</a>' + 
                                 '<p class="nothing">' + Common._e("No notifications.") +  '</p>' + 
                             '</div>' + 
                         '</div>' + 
@@ -256,13 +256,13 @@ var Talk = (function () {
             $('body').prepend(html);
             
             // Adapt the buddy-list size
-            adaptRoster();
+            Roster.adapt();
             
             // Create JS events
-            eventsTalkPage();
+            self.events();
             
             // Start the auto idle functions
-            liveIdle();
+            Presence.liveIdle();
             
             return true;
         } catch(e) {
@@ -277,7 +277,7 @@ var Talk = (function () {
      * @public
      * @return {undefined}
      */
-    self.destroyTalkPage = function() {
+    self.destroy = function() {
 
         try {
             // Reset our database
@@ -295,7 +295,7 @@ var Talk = (function () {
             $('*:not(#board .one-board)').stopTime();
             
             // Kill the auto idle functions
-            dieIdle();
+            Presence.dieIdle();
             
             // We renitalise the html markup as its initiale look
             $('.removable').remove();

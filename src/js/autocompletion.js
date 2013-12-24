@@ -134,7 +134,7 @@ var Autocompletion = (function () {
             var nick = self.process(query, hash)[i];
             
             // Shit, this is my nick!
-            if((nick != undefined) && (nick.toLowerCase() == getMUCNick(hash).toLowerCase())) {
+            if((nick != undefined) && (nick.toLowerCase() == Name.getMUCNick(hash).toLowerCase())) {
                 // Increment
                 i++;
                 
@@ -146,7 +146,7 @@ var Autocompletion = (function () {
             if(nick != undefined) {
                 // Increment
                 i++;
-                quoteMyNick(hash, nick);
+                Utils.quoteMyNick(hash, nick);
                 
                 // Put a pointer
                 vSelector.attr('data-autocompletion-pointer', i);

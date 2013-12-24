@@ -29,7 +29,7 @@ var Roster = (function () {
      * @public
      * @return {undefined}
      */
-    self.getRoster = function() {
+    self.get = function() {
 
         try {
             var iq = new JSJaCIQ();
@@ -37,7 +37,7 @@ var Roster = (function () {
             iq.setType('get');
             iq.setQuery(NS_ROSTER);
             
-            con.send(iq, handleRoster);
+            con.send(iq, self.handle);
         } catch(e) {
             Console.error('Roster.get', e);
         }
@@ -51,7 +51,7 @@ var Roster = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleRoster = function(iq) {
+    self.handle = function(iq) {
 
         try {
             // Parse the roster xml
@@ -62,11 +62,11 @@ var Roster = (function () {
                 var user_subscription = self.attr('subscription');
 
                 // Parse roster data & display user
-                parseRoster($(this), 'load');
+                self.parse($(this), 'load');
 
                 // Request user microblog (populates channel)
                 if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to')))
-                    requestMicroblog(user_xid, 1, null, handleRosterMicroblog);
+                    Microblog.request(user_xid, 1, null, Microblog.handleRoster);
             });
             
             // Update our avatar (if changed), and send our presence
@@ -87,7 +87,7 @@ var Roster = (function () {
      * @param {string} mode
      * @return {undefined}
      */
-    self.parseRoster = function(current, mode) {
+    self.parse = function(current, mode) {
 
         try {
             // Get the values
@@ -114,7 +114,7 @@ var Roster = (function () {
             if(!dName)
                 dName = Common.getXIDNick(xid);
             
-            displayRoster(xid, xidHash, dName, subscription, groups, mode);
+            self.display(xid, xidHash, dName, subscription, groups, mode);
         } catch(e) {
             Console.error('Roster.parse', e);
         }
@@ -167,7 +167,7 @@ var Roster = (function () {
      * @param {string} dMode
      * @return {undefined}
      */
-    self.displayRoster = function(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
+    self.display = function(dXID, dXIDHash, dName, dSubscription, dGroup, dMode) {
 
         try {
             // First remove the buddy
@@ -185,8 +185,8 @@ var Roster = (function () {
             // Remove request
             if(dSubscription == 'remove') {
                 // Flush presence
-                flushPresence(dXID);
-                presenceFunnel(dXID, dXIDHash);
+                Presence.flush(dXID);
+                Presence.funnel(dXID, dXIDHash);
 
                 // Empty social channel
                 $('#channel .mixed .one-update.update_' + dXIDHash).remove();
@@ -196,7 +196,7 @@ var Roster = (function () {
             else {
                 // Is this buddy blocked?
                 var privacy_class = '';
-                var privacy_state = statusPrivacy('block', dXID);
+                var privacy_state = Privacy.status('block', dXID);
                 
                 if(privacy_state == 'deny')
                     privacy_class = ' blocked';
@@ -212,7 +212,7 @@ var Roster = (function () {
                         var groupBuddies = groupContent + ' .group-buddies';
                         
                         // Is this group blocked?
-                        if((statusPrivacy('block', cGroup) == 'deny') && (privacy_state != 'allow'))
+                        if((Privacy.status('block', cGroup) == 'deny') && (privacy_state != 'allow'))
                             privacy_class = ' blocked';
                         
                         // Group not yet displayed
@@ -283,7 +283,7 @@ var Roster = (function () {
                         $(groupBuddies).append(html);
                         
                         // Apply the hover event
-                        applyBuddyHover(dXID, dXIDHash, dName, dSubscription, dGroup, groupHash);
+                        self.applyBuddyHover(dXID, dXIDHash, dName, dSubscription, dGroup, groupHash);
                     }
                 }
                 
@@ -294,7 +294,7 @@ var Roster = (function () {
                 
                 // We get the user presence if necessary
                 if(dMode == 'presence')
-                    presenceFunnel(dXID, dXIDHash);
+                    Presence.funnel(dXID, dXIDHash);
                 
                 // If the buddy must be shown
                 if(BLIST_ALL)
@@ -303,9 +303,9 @@ var Roster = (function () {
             
             // We update our groups
             if(!SEARCH_FILTERED)
-                updateGroups();
+                self.updateGroups();
             else
-                funnelFilterBuddySearch();
+                Search.funnelFilterBuddy();
         } catch(e) {
             Console.error('Roster.display', e);
         }
@@ -333,7 +333,7 @@ var Roster = (function () {
             $(rename).keyup(function(e) {
                 if(e.keyCode == 13) {
                     // Send the item
-                    sendRoster(xid, '', $.trim($(rename).val()), thisBuddyGroups(xid));
+                    self.send(xid, '', $.trim($(rename).val()), self.thisBuddyGroups(xid));
                     
                     // Remove the buddy editor
                     Bubble.close();
@@ -347,7 +347,7 @@ var Roster = (function () {
                     // Empty input?
                     if(!$.trim($(this).val())) {
                         // Send the item
-                        sendRoster(xid, '', $.trim($(rename).val()), thisBuddyGroups(xid));
+                        self.send(xid, '', $.trim($(rename).val()), self.thisBuddyGroups(xid));
                         
                         // Remove the buddy editor
                         Bubble.close();
@@ -384,14 +384,14 @@ var Roster = (function () {
             // Click events
             $(manage_infos + ' p.bm-authorize a.to').click(function() {
                 Bubble.close();
-                sendSubscribe(xid, 'subscribed');
+                Presence.sendSubscribe(xid, 'subscribed');
                 
                 return false;
             });
             
             $(manage_infos + ' p.bm-authorize a.from').click(function() {
                 Bubble.close();
-                sendSubscribe(xid, 'subscribe');
+                Presence.sendSubscribe(xid, 'subscribe');
                 
                 return false;
             });
@@ -400,15 +400,15 @@ var Roster = (function () {
                 Bubble.close();
                 
                 // Update privacy settings
-                pushPrivacy('block', ['jid'], [xid], ['allow'], [false], [true], [true], [true], '', 'roster');
+                Privacy.push('block', ['jid'], [xid], ['allow'], [false], [true], [true], [true], '', 'roster');
                 $(path).removeClass('blocked');
                 
                 // Enable the "block" list
-                changePrivacy('block', 'active');
-                changePrivacy('block', 'default');
+                Privacy.change('block', 'active');
+                Privacy.change('block', 'default');
                 
                 // Send an available presence
-                sendPresence(xid, 'available', getUserShow(), getUserStatus());
+                Presence.send(xid, 'available', Presence.getUserShow(), getUserStatus());
                 
                 return false;
             });
@@ -418,17 +418,17 @@ var Roster = (function () {
                 
                 // First unregister if gateway
                 if(Common.isGateway(xid))
-                    unregisterGatewayRoster(xid);
+                    self.unregisterGateway(xid);
                 
                 // Then send roster removal query
-                sendRoster(xid, 'remove');
+                self.send(xid, 'remove');
                 
                 return false;
             });
             
             $(manage_infos + ' p.bm-remove a.prohibit').click(function() {
                 Bubble.close();
-                sendSubscribe(xid, 'unsubscribed');
+                Presence.sendSubscribe(xid, 'unsubscribed');
                 
                 return false;
             });
@@ -437,15 +437,15 @@ var Roster = (function () {
                 Bubble.close();
                 
                 // Update privacy settings
-                pushPrivacy('block', ['jid'], [xid], ['deny'], [false], [true], [true], [true], '', 'roster');
+                Privacy.push('block', ['jid'], [xid], ['deny'], [false], [true], [true], [true], '', 'roster');
                 $(path).addClass('blocked');
                 
                 // Enable the "block" list
-                changePrivacy('block', 'active');
-                changePrivacy('block', 'default');
+                Privacy.change('block', 'active');
+                Privacy.change('block', 'default');
                 
                 // Send an unavailable presence
-                sendPresence(xid, 'unavailable');
+                Presence.send(xid, 'unavailable');
                 
                 // Remove the user presence
                 var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
@@ -462,14 +462,14 @@ var Roster = (function () {
                 }
                 
                 // Manage his new presence
-                presenceFunnel(xid, hex_md5(xid));
+                Presence.funnel(xid, hex_md5(xid));
                 
                 return false;
             });
             
             $(manage_infos + ' a.save').click(function() {
                 // Send the item
-                sendRoster(xid, '', $.trim($(rename).val()), thisBuddyGroups(xid));
+                self.send(xid, '', $.trim($(rename).val()), self.thisBuddyGroups(xid));
                 
                 // Remove the buddy editor
                 Bubble.close();
@@ -536,13 +536,13 @@ var Roster = (function () {
                     );
                     
                     // Sets the good position
-                    buddyInfosPosition(xid, group_hash);
+                    self.buddyInfosPosition(xid, group_hash);
                     
                     // Get the presence
-                    presenceFunnel(xid, hash);
+                    Presence.funnel(xid, hash);
                     
                     // Get the PEP infos
-                    displayAllPEP(xid);
+                    PEP.displayAll(xid);
                     
                     // Click events
                     $(bPath + ' .bi-view a').click(function() {
@@ -551,11 +551,11 @@ var Roster = (function () {
                         
                         // Profile
                         if($(this).is('.profile'))
-                            openUserInfos(xid);
+                            UserInfos.open(xid);
                         
                         // Channel
                         else if($(this).is('.channel'))
-                            fromInfosMicroblog(xid, hash);
+                            Microblog.fromInfos(xid, hash);
                         
                         // Command
                         else if($(this).is('.commands'))
@@ -581,7 +581,7 @@ var Roster = (function () {
                     });
                     
                     $(bPath + ' .bi-edit a').click(function() {
-                        buddyEdit(xid, nick, subscription, groups);
+                        self.buddyEdit(xid, nick, subscription, groups);
                         
                         return false;
                     });
@@ -659,7 +659,7 @@ var Roster = (function () {
             // Entered input value (and not yet in the array)
             var value = $.trim($(path + 'p.bm-group input').val());
             
-            if(value && !existArrayValue(array, value))
+            if(value && !Utils.existArrayValue(array, value))
                 array.push(value);
             
             return array;
@@ -688,8 +688,8 @@ var Roster = (function () {
             // If the form is complete
             if(xid) {
                 // We send the subscription
-                sendSubscribe(xid, 'subscribe');
-                sendRoster(xid, '', name);
+                Presence.sendSubscribe(xid, 'subscribe');
+                self.send(xid, '', name);
                 
                 // We hide the bubble
                 Bubble.close();
@@ -746,12 +746,12 @@ var Roster = (function () {
             var html = '<div class="manage-infos">';
             
             // Get the privacy state
-            var privacy_state = statusPrivacy('block', xid);
+            var privacy_state = Privacy.status('block', xid);
             var privacy_active = DataStore.getDB(DESKTOP_HASH, 'privacy-marker', 'available');
             
             // Get the group privacy state
             for(g in groups) {
-                if((statusPrivacy('block', groups[g]) == 'deny') && (privacy_state != 'allow'))
+                if((Privacy.status('block', groups[g]) == 'deny') && (privacy_state != 'allow'))
                     privacy_state = 'deny';
             }
             
@@ -820,7 +820,7 @@ var Roster = (function () {
             $(path + 'pep-infos').replaceWith(html);
             
             // Gets all the existing groups
-            var all_groups = getAllGroups();
+            var all_groups = self.getAllGroups();
             var all_groups_dom = '';
             
             for(a in all_groups) {
@@ -830,7 +830,7 @@ var Roster = (function () {
                 // Is the current group checked?
                 var checked = '';
                 
-                if(existArrayValue(groups, all_groups_current))
+                if(Utils.existArrayValue(groups, all_groups_current))
                     checked = ' checked="true"';
                 
                 // Add the current group HTML
@@ -843,7 +843,7 @@ var Roster = (function () {
             $(bm_choose).prepend(all_groups_dom);
             
             // Apply the editing input events
-            applyBuddyInput(xid);
+            self.applyBuddyInput(xid);
         } catch(e) {
             Console.error('Roster.buddyEdit', e);
         }
@@ -857,7 +857,7 @@ var Roster = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.unregisterGatewayRoster = function(xid) {
+    self.unregisterGateway = function(xid) {
 
         try {
             var iq = new JSJaCIQ();
@@ -884,7 +884,7 @@ var Roster = (function () {
      * @param {string} group
      * @return {undefined}
      */
-    self.sendRoster = function(xid, subscription, name, group) {
+    self.send = function(xid, subscription, name, group) {
 
         try {
             // We send the new buddy name
@@ -923,7 +923,7 @@ var Roster = (function () {
      * @public
      * @return {undefined}
      */
-    self.adaptRoster = function() {
+    self.adapt = function() {
 
         try {
             // Process the new height
@@ -977,7 +977,7 @@ var Roster = (function () {
         try {
             // New array
             var gateways = new Array();
-            var buddies = getAllBuddies();
+            var buddies = self.getAllBuddies();
             
             // Get the gateways
             for(c in buddies) {
@@ -998,7 +998,7 @@ var Roster = (function () {
      * @public
      * @return {undefined}
      */
-    self.instanceRoster = function() {
+    self.instance = function() {
 
         try {
             // Filtering tool
@@ -1016,7 +1016,7 @@ var Roster = (function () {
             })
             
             .keyup(function(e) {
-                funnelFilterBuddySearch(e.keyCode);
+                Search.funnelFilterBuddy(e.keyCode);
             });
             
             aFilter.click(function() {
@@ -1029,7 +1029,7 @@ var Roster = (function () {
                 $('#buddy-list .one-group').show();
                 
                 // Reset the filtering tool
-                resetFilterBuddySearch();
+                Search.resetFilterBuddy();
                 
                 return false;
             });
@@ -1069,7 +1069,7 @@ var Roster = (function () {
                 );
                 
                 // Add the gateways
-                var gateways = getGateways();
+                var gateways = self.getGateways();
                 
                 // Any gateway?
                 if(gateways.length) {
@@ -1099,7 +1099,7 @@ var Roster = (function () {
                         $('.add-contact-name-get').attr('data-for', escape(xid)).show();
                         
                         // Request the user vCard
-                        getAddUserName(xid);
+                        Name.getAddUser(xid);
                     }
                 });
                 
@@ -1120,7 +1120,7 @@ var Roster = (function () {
                         
                         // Submit the form
                         if(xid && Common.getXIDNick(xid) && (xid != Common.getXID()))
-                            addThisContact(xid, name);
+                            self.addThisContact(xid, name);
                         else
                             $(document).oneTime(10, function() {
                                 $('.add-contact-jid').addClass('please-complete').focus();
@@ -1184,7 +1184,7 @@ var Roster = (function () {
                     if(e.keyCode == 13) {
                         // Select something from the search
                         if(Common.exists(dHovered))
-                            addBuddySearch(destination, $(dHovered).attr('data-xid'));
+                            Search.addBuddy(destination, $(dHovered).attr('data-xid'));
                         
                         // Join something
                         else {
@@ -1224,17 +1224,17 @@ var Roster = (function () {
                     else if($('.buddy-conf-join-select').val() == 'chat') {
                         // New buddy search
                         if((e.keyCode != 40) && (e.keyCode != 38))
-                            createBuddySearch(destination);
+                            Search.createBuddy(destination);
                         
                         // Navigating with keyboard in the results
-                        arrowsBuddySearch(e, destination);
+                        Search.arrowsBuddy(e, destination);
                     }
                 });
                 
                 // Buddy search lost focus
                 $('#buddy-conf-join input').blur(function() {
                     if(!$(destination + ' ul').attr('mouse-hover'))
-                        resetBuddySearch(destination);
+                        Search.resetBuddy(destination);
                 });
                 
                 // Re-focus on the text input
@@ -1365,7 +1365,7 @@ var Roster = (function () {
                 });
                 
                 // When the user click on the privacy link
-                $('.buddy-conf-more-privacy').click(openPrivacy);
+                $('.buddy-conf-more-privacy').click(Privacy.open);
                 
                 // When the user click on the service discovery link
                 $('.buddy-conf-more-service-disco').click(Discovery.open);
@@ -1413,7 +1413,7 @@ var Roster = (function () {
 
         try {
             // Window resize event handler
-            $(window).resize(adaptRoster);
+            $(window).resize(self.adapt);
         } catch(e) {
             Console.error('Roster.launch', e);
         }

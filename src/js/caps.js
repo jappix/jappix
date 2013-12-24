@@ -257,7 +257,7 @@ var Caps = (function () {
             DataStore.setPersistent('global', 'caps', caps, xml);
             
             // This is our server
-            if(from == getServer()) {
+            if(from == Utils.getServer()) {
                 // Handle the features
                 Features.handle(xml);
                 
@@ -291,7 +291,7 @@ var Caps = (function () {
             var xid = Common.bareXID(from);
             
             // This comes from a private groupchat chat?
-            if(isPrivate(xid))
+            if(Utils.isPrivate(xid))
                 xid = from;
             
             hash = hex_md5(xid);

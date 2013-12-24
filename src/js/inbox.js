@@ -87,7 +87,7 @@ var Inbox = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('inbox', html);
+            Popup.create('inbox', html);
             
             // Associate the events
             self.instance();
@@ -112,7 +112,7 @@ var Inbox = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('inbox');
+            Popup.destroy('inbox');
         } catch(e) {
             Console.error('Inbox.close', e);
         } finally {
@@ -210,7 +210,7 @@ var Inbox = (function () {
             var mPath = '#inbox .';
             
             // Reset the previous buddy search
-            resetBuddySearch('#inbox .inbox-new-to');
+            Search.resetBuddy('#inbox .inbox-new-to');
             
             // We switch the divs
             $(mPath + 'inbox-results, #inbox .a-new-message, #inbox .a-delete-messages').hide();
@@ -421,10 +421,10 @@ var Inbox = (function () {
             
             // Get the nearest element
             var stamp = DateUtils.extractStamp(Date.jab2date(date));
-            var nearest = sortElementByStamp(stamp, '#inbox .one-message');
+            var nearest = Search.sortElementByStamp(stamp, '#inbox .one-message');
             
             // Get the buddy name
-            var name = getBuddyName(from).htmlEnc();
+            var name = Name.getBuddy(from).htmlEnc();
             
             // We generate the html code
             var nContent = '<div class="one-message message-' + status + ' ' + id + ' ' + hex_md5(from) + '" data-stamp="' + stamp + '">' + 
@@ -436,7 +436,7 @@ var Inbox = (function () {
                             '<div class="message-jid">' + name + '</div>' + 
                             '<div class="message-subject">' + subject.htmlEnc() + '</div>' + 
                             
-                            '<div class="message-truncated">' + truncate(noLines(content), 90).htmlEnc() + '</div>' + 
+                            '<div class="message-truncated">' + Utils.truncate(Utils.noLines(content), 90).htmlEnc() + '</div>' + 
                         '</div>' + 
                     '</div>';
             
@@ -749,7 +749,7 @@ var Inbox = (function () {
             var inbox = '#inbox .';
             
             // Generate the body
-            var body = '\n' + '____________' + '\n\n' + truncate(body, 120);
+            var body = '\n' + '____________' + '\n\n' + Utils.truncate(body, 120);
             
             // We apply the generated values to the form
             $(inbox + 'inbox-new-to-input').val(from);
@@ -851,7 +851,7 @@ var Inbox = (function () {
                 
                 // Hide the attach link, show the unattach one
                 $('#inbox .inbox-new-file input').hide();
-                $('#inbox .inbox-new-file').append('<a class="file ' + Common.encodeQuotes(fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + Common._e("Remove") + '</a>');
+                $('#inbox .inbox-new-file').append('<a class="file ' + Common.encodeQuotes(Utils.fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + Common._e("Remove") + '</a>');
                 
                 // Set values to the file link
                 $('#inbox .inbox-new-file a.file').attr('data-attachedtitle', fName)
@@ -897,7 +897,7 @@ var Inbox = (function () {
             $(inbox + 'inbox-new input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     if(Common.exists(dHovered))
-                        addBuddySearch(destination, $(dHovered).attr('data-xid'));
+                        Search.addBuddy(destination, $(dHovered).attr('data-xid'));
                     else
                         self.checkMessage();
                 }
@@ -908,17 +908,17 @@ var Inbox = (function () {
                 if(e.keyCode != 13) {
                     // New buddy search
                     if((e.keyCode != 40) && (e.keyCode != 38))
-                        createBuddySearch(destination);
+                        Search.createBuddy(destination);
                     
                     // Navigating with keyboard in the results
-                    arrowsBuddySearch(e, destination);
+                    Search.arrowsBuddy(e, destination);
                 }
             })
             
             // Buddy search lost focus
             .blur(function() {
                 if(!$(destination + ' ul').attr('mouse-hover'))
-                    resetBuddySearch(destination);
+                    Search.resetBuddy(destination);
             })
             
             // Buddy search got focus

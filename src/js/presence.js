@@ -31,7 +31,7 @@ var Presence = (function () {
      * @param {string} checksum
      * @return {undefined}
      */
-    self.firstPresence = function(checksum) {
+    self.sendFirst = function(checksum) {
 
         try {
             Console.info('First presence sent.');
@@ -40,7 +40,7 @@ var Presence = (function () {
             Interface.title('talk');
             
             // Anonymous check
-            var is_anonymous = isAnonymous();
+            var is_anonymous = Utils.isAnonymous();
             
             // Update our marker
             FIRST_PRESENCE_SENT = true;
@@ -53,7 +53,7 @@ var Presence = (function () {
             
             // We tell the world that we are online
             if(!is_anonymous)
-                sendPresence('', '', '', status, checksum);
+                self.send('', '', '', status, checksum);
             
             // Any status to apply?
             if(status)
@@ -72,19 +72,19 @@ var Presence = (function () {
             // Not anonymous
             if(!is_anonymous) {
                 // We get the stored bookmarks (because of the photo hash and some other stuffs, we must get it later)
-                getStorage(NS_BOOKMARKS);
+                Storage.get(NS_BOOKMARKS);
                 
                 // We open a new chat if a XMPP link was submitted
                 if((parent.location.hash != '#OK') && LINK_VARS['x']) {
                     // A link is submitted in the URL
-                    xmppLink(LINK_VARS['x']);
+                    XMPPLinks.go(LINK_VARS['x']);
                     
                     // Set a OK status
                     parent.location.hash = 'OK';
                 }
             }
         } catch(e) {
-            Console.error('Presence.first', e);
+            Console.error('Presence.sendFirst', e);
         }
 
     };
@@ -96,7 +96,7 @@ var Presence = (function () {
      * @param {object} presence
      * @return {undefined}
      */
-    self.handlePresence = function(presence) {
+    self.handle = function(presence) {
 
         try {
             // We define everything needed here
@@ -147,7 +147,7 @@ var Presence = (function () {
                 Avatar.get(Common.getXID(), 'force', 'true', 'forget');
             
             // This presence comes from a groupchat
-            if(isPrivate(xid)) {
+            if(Utils.isPrivate(xid)) {
                 var x_muc = $(node).find('x[xmlns="' + NS_MUC_USER + '"]:first');
                 var item = x_muc.find('item');
                 var affiliation = item.attr('affiliation');
@@ -173,34 +173,34 @@ var Presence = (function () {
                 
                 // If one user is quitting
                 if(type && (type == 'unavailable')) {
-                    displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
+                    self.displayMUC(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
                     
                     DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', from);
-                    resources_obj = removeResourcePresence(xid, resource);
+                    resources_obj = self.removeResource(xid, resource);
                 }
                 
                 // If one user is joining
                 else {
                     // Fixes M-Link first presence bug (missing ID!)
-                    if((nick == getMUCNick(xidHash)) && (presence.getID() == null) && !Common.exists('#page-engine #' + xidHash + ' .list .' + hash)) {
+                    if((nick == Name.getMUCNick(xidHash)) && (presence.getID() == null) && !Common.exists('#page-engine #' + xidHash + ' .list .' + hash)) {
                         Groupchat.handleMUC(presence);
                         
                         Console.warn('Passed M-Link MUC first presence handling.');
                     }
                     
                     else {
-                        displayMucPresence(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
+                        self.displayMUC(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
                         
                         var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
                         DataStore.setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
-                        resources_obj = addResourcePresence(xid, resource);
+                        resources_obj = self.addResource(xid, resource);
                     }
                 }
                 
                 // Manage the presence
-                processPriority(from, resource, resources_obj);
-                presenceFunnel(from, hash);
+                self.processPriority(from, resource, resources_obj);
+                self.funnel(from, hash);
             }
             
             // This presence comes from an user or a gateway
@@ -212,7 +212,7 @@ var Presence = (function () {
                 else if(type == 'subscribe') {
                     // This is a buddy we can safely authorize, because we added him to our roster
                     if(Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
-                        acceptSubscribe(xid);
+                        self.acceptSubscribe(xid);
                     
                     // We do not know this entity, we'd be better ask the user
                     else {
@@ -226,7 +226,7 @@ var Presence = (function () {
                 
                 // Unsubscribe stanza
                 else if(type == 'unsubscribe')
-                    sendRoster(xid, 'remove');
+                    Roster.send(xid, 'remove');
                 
                 // Other stanzas
                 else {
@@ -235,7 +235,7 @@ var Presence = (function () {
                     // Unavailable/error presence
                     if(type == 'unavailable') {
                         DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', from);
-                        resources_obj = removeResourcePresence(xid, resource);
+                        resources_obj = self.removeResource(xid, resource);
                     }
                     
                     // Other presence (available, subscribe...)
@@ -243,23 +243,23 @@ var Presence = (function () {
                         var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
                         DataStore.setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
-                        resources_obj = addResourcePresence(xid, resource);
+                        resources_obj = self.addResource(xid, resource);
                     }
 
                     // We manage the presence
-                    processPriority(xid, resource, resources_obj);
-                    presenceFunnel(xid, xidHash);
+                    self.processPriority(xid, resource, resources_obj);
+                    self.funnel(xid, xidHash);
                     
                     // We display the presence in the current chat
                     if(Common.exists('#' + xidHash)) {
-                        var dStatus = filterStatus(xid, status, false);
+                        var dStatus = self.filterStatus(xid, status, false);
                         
                         if(dStatus)
                             dStatus = ' (' + dStatus + ')';
                         
                         // Generate the presence-in-chat code
-                        var dName = getBuddyName(from).htmlEnc();
-                        var dBody = dName + ' (' + from + ') ' + Common._e("is now") + ' ' + humanShow(show, type) + dStatus;
+                        var dName = Name.getBuddy(from).htmlEnc();
+                        var dBody = dName + ' (' + from + ') ' + Common._e("is now") + ' ' + self.humanShow(show, type) + dStatus;
                         
                         // Check whether it has been previously displayed
                         var can_display = true;
@@ -309,7 +309,7 @@ var Presence = (function () {
      * @param {boolean} initial
      * @return {undefined}
      */
-    self.displayMucPresence = function(from, roomHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, initial) {
+    self.displayMUC = function(from, roomHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, initial) {
 
         try {
             // Generate the values
@@ -334,7 +334,7 @@ var Presence = (function () {
             if(iXID) {
                 real_xid = ' data-realxid="' + iXID + '"';
                 iXID = Common.bareXID(iXID);
-                write += ' (<a onclick="return Chat.checkCreate(\'' + encodeOnclick(iXID) + '\', \'chat\');" href="xmpp:' + encodeOnclick(iXID) + '">' + iXID + '</a>) ';
+                write += ' (<a onclick="return Chat.checkCreate(\'' + Utils.encodeOnclick(iXID) + '\', \'chat\');" href="xmpp:' + Utils.encodeOnclick(iXID) + '">' + iXID + '</a>) ';
             }
             
             // User does not exists yet
@@ -342,7 +342,7 @@ var Presence = (function () {
                 var myself = '';
                 
                 // Is it me?
-                if(nick == getMUCNick(roomHash)) {
+                if(nick == Name.getMUCNick(roomHash)) {
                     // Enable the room
                     $('#' + roomHash + ' .message-area').removeAttr('disabled');
                     
@@ -362,7 +362,7 @@ var Presence = (function () {
                 );
                 
                 // Click event
-                if(nick != getMUCNick(roomHash))
+                if(nick != Name.getMUCNick(roomHash))
                     $(thisUser).on('click', function() {
                         Chat.checkCreate(from, 'private');
                     });
@@ -385,7 +385,7 @@ var Presence = (function () {
             
             else if((type == 'unavailable') || (type == 'error')) {
                 // Is it me?
-                if(nick == getMUCNick(roomHash)) {
+                if(nick == Name.getMUCNick(roomHash)) {
                     $(thisUser).remove();
                     
                     // Disable the groupchat input
@@ -396,16 +396,16 @@ var Presence = (function () {
                 }
                 
                 // Someone has been kicked or banned?
-                if(existArrayValue(status_code, 301) || existArrayValue(status_code, 307)) {
+                if(Utils.existArrayValue(status_code, 301) || Utils.existArrayValue(status_code, 307)) {
                     $(thisUser).remove();
                     notify = true;
                     
                     // Kicked?
-                    if(existArrayValue(status_code, 307))
+                    if(Utils.existArrayValue(status_code, 307))
                         write += Common._e("has been kicked");
                     
                     // Banned?
-                    if(existArrayValue(status_code, 301))
+                    if(Utils.existArrayValue(status_code, 301))
                         write += Common._e("has been banned");
                     
                     // Any reason?
@@ -416,7 +416,7 @@ var Presence = (function () {
                 }
                 
                 // Nickname change?
-                else if(existArrayValue(status_code, 303) && iNick) {
+                else if(Utils.existArrayValue(status_code, 303) && iNick) {
                     notify = true;
                     write += Common.printf(Common._e("changed his/her nickname to %s"), iNick.htmlEnc());
                     
@@ -527,12 +527,12 @@ var Presence = (function () {
             
             else {
                 if(cut) {
-                    dStatus = truncate(status, 50);
+                    dStatus = Utils.truncate(status, 50);
                 } else {
                     dStatus = status;
                 }
                 
-                dStatus = Filter.message(dStatus, getBuddyName(xid).htmlEnc(), true);
+                dStatus = Filter.message(dStatus, Name.getBuddy(xid).htmlEnc(), true);
             }
             
             return dStatus;
@@ -557,13 +557,13 @@ var Presence = (function () {
      * @param {string} caps
      * @return {undefined}
      */
-    self.displayPresence = function(value, type, show, status, hash, xid, avatar, checksum, caps) {
+    self.display = function(value, type, show, status, hash, xid, avatar, checksum, caps) {
 
         try {
             // Display the presence in the roster
             var path = '#buddy-list .' + hash;
             var buddy = $('#buddy-list .content .' + hash);
-            var dStatus = filterStatus(xid, status, false);
+            var dStatus = self.filterStatus(xid, status, false);
             var tStatus = Common.encodeQuotes(status);
             var biStatus;
             
@@ -631,10 +631,10 @@ var Presence = (function () {
                 $('#' + hash + ' .bc-infos').replaceWith('<p class="bc-infos" title="' + tStatus + '"><span class="' + type + ' show talk-images">' + value + '</span>' + dStatus + '</p>');
                 
                 // Process the new status position
-                adaptChatPresence(hash);
+                self.adaptChat(hash);
                 
                 // Get the disco#infos for this user
-                var highest = highestPriority(xid);
+                var highest = self.highestPriority(xid);
                 
                 if(highest)
                     Caps.getDiscoInfos(highest, caps);
@@ -648,9 +648,9 @@ var Presence = (function () {
             
             // Update roster groups
             if(!SEARCH_FILTERED)
-                updateGroups();
+                Roster.updateGroups();
             else
-                funnelFilterBuddySearch();
+                Search.funnelFilterBuddy();
         } catch(e) {
             Console.error('Presence.display', e);
         }
@@ -664,7 +664,7 @@ var Presence = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.adaptChatPresence = function(hash) {
+    self.adaptChat = function(hash) {
 
         try {
             // Get values
@@ -747,40 +747,40 @@ var Presence = (function () {
      * @param {string} caps
      * @return {undefined}
      */
-    self.presenceIA = function(type, show, status, hash, xid, avatar, checksum, caps) {
+    self.IA = function(type, show, status, hash, xid, avatar, checksum, caps) {
 
         try {
             // Is there a status defined?
             if(!status)
-                status = humanShow(show, type);
+                status = self.humanShow(show, type);
             
             // Then we can handle the events
             if(type == 'error')
-                displayPresence(Common._e("Error"), 'error', show, status, hash, xid, avatar, checksum, caps);
+                self.display(Common._e("Error"), 'error', show, status, hash, xid, avatar, checksum, caps);
             
             else if(type == 'unavailable')
-                displayPresence(Common._e("Unavailable"), 'unavailable', show, status, hash, xid, avatar, checksum, caps);
+                self.display(Common._e("Unavailable"), 'unavailable', show, status, hash, xid, avatar, checksum, caps);
             
             else {
                 switch(show) {
                     case 'chat':
-                        displayPresence(Common._e("Talkative"), 'available', show, status, hash, xid, avatar, checksum, caps);
+                        self.display(Common._e("Talkative"), 'available', show, status, hash, xid, avatar, checksum, caps);
                         break;
                     
                     case 'away':
-                        displayPresence(Common._e("Away"), 'away', show, status, hash, xid, avatar, checksum, caps);
+                        self.display(Common._e("Away"), 'away', show, status, hash, xid, avatar, checksum, caps);
                         break;
                     
                     case 'xa':
-                        displayPresence(Common._e("Not available"), 'busy', show, status, hash, xid, avatar, checksum, caps);
+                        self.display(Common._e("Not available"), 'busy', show, status, hash, xid, avatar, checksum, caps);
                         break;
                     
                     case 'dnd':
-                        displayPresence(Common._e("Busy"), 'busy', show, status, hash, xid, avatar, checksum, caps);
+                        self.display(Common._e("Busy"), 'busy', show, status, hash, xid, avatar, checksum, caps);
                         break;
                     
                     default:
-                        displayPresence(Common._e("Available"), 'available', show, status, hash, xid, avatar, checksum, caps);
+                        self.display(Common._e("Available"), 'available', show, status, hash, xid, avatar, checksum, caps);
                         break;
                 }
             }
@@ -797,7 +797,7 @@ var Presence = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.flushPresence = function(xid) {
+    self.flush = function(xid) {
 
         try {
             var flushed_marker = false;
@@ -845,7 +845,7 @@ var Presence = (function () {
 
         try {
             if(!xid) {
-                Console.warn('processPriority', 'No XID value');
+                Console.warn('No XID value');
                 return;
             }
 
@@ -863,7 +863,7 @@ var Presence = (function () {
 
                 Console.log('Processed presence for groupchat user: ' + xid);
             } else {
-                if(!highestPriority(xid)) {
+                if(!self.highestPriority(xid)) {
                     from_highest = xid + '/' + resource;
 
                     Console.log('Processed initial presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
@@ -929,7 +929,7 @@ var Presence = (function () {
 
         try {
             var pr;
-            var highest = highestPriority(xid);
+            var highest = self.highestPriority(xid);
 
             if(highest)  pr = DataStore.getDB(DESKTOP_HASH, 'presence-stanza', highest);
             if(!pr)      pr = '<presence><type>unavailable</type></presence>';
@@ -948,7 +948,7 @@ var Presence = (function () {
      * @param {string} xid
      * @return {object}
      */
-    self.resourcesPresence = function(xid) {
+    self.resources = function(xid) {
 
         try {
             var resources_obj = {};
@@ -973,12 +973,12 @@ var Presence = (function () {
      * @param {string} resource
      * @return {object}
      */
-    self.addResourcePresence = function(xid, resource) {
+    self.addResource = function(xid, resource) {
 
         var resources_obj = null;
 
         try {
-            resources_obj = resourcesPresence(xid);
+            resources_obj = self.resources(xid);
 
             resources_obj[resource] = 1;
             DataStore.setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
@@ -998,12 +998,12 @@ var Presence = (function () {
      * @param {string} resource
      * @return {object}
      */
-    self.removeResourcePresence = function(xid, resource) {
+    self.removeResource = function(xid, resource) {
 
         var resources_obj = null;
 
         try {
-            resources_obj = resourcesPresence(xid);
+            resources_obj = self.resources(xid);
 
             delete resources_obj[resource];
             DataStore.setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
@@ -1023,11 +1023,11 @@ var Presence = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.presenceFunnel = function(xid, hash) {
+    self.funnel = function(xid, hash) {
 
         try {
             // Get the highest priority presence value
-            var xml = $(highestPriorityStanza(xid));
+            var xml = $(self.highestPriorityStanza(xid));
             var type = xml.find('type').text();
             var show = xml.find('show').text();
             var status = xml.find('status').text();
@@ -1037,11 +1037,11 @@ var Presence = (function () {
 
             // Display the presence with that stored value
             if(!type && !show)
-                presenceIA('', 'available', status, hash, xid, avatar, checksum, caps);
+                self.IA('', 'available', status, hash, xid, avatar, checksum, caps);
             else
-                presenceIA(type, show, status, hash, xid, avatar, checksum, caps);
+                self.IA(type, show, status, hash, xid, avatar, checksum, caps);
         } catch(e) {
-            Console.error('Presence.presenceFunnel', e);
+            Console.error('Presence.funnel', e);
         }
 
     };
@@ -1060,7 +1060,7 @@ var Presence = (function () {
      * @param {function} handle
      * @return {undefined}
      */
-    self.sendPresence = function(to, type, show, status, checksum, limit_history, password, handle) {
+    self.send = function(to, type, show, status, checksum, limit_history, password, handle) {
 
         try {
             // Get some stuffs
@@ -1098,7 +1098,7 @@ var Presence = (function () {
             presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'http://jappix.org/', 'ver': Caps.mine()});
             
             // Nickname
-            var nickname = getName();
+            var nickname = Name.get();
             
             if(nickname && !limit_history)
                 presence.appendNode('nick', {'xmlns': NS_NICK}, nickname);
@@ -1158,19 +1158,19 @@ var Presence = (function () {
      * @param {boolean} autoidle
      * @return {undefined}
      */
-    self.presenceSend = function(checksum, autoidle) {
+    self.sendActions = function(checksum, autoidle) {
 
         try {
             // We get the values of the inputs
-            var show = getUserShow();
-            var status = getUserStatus();
+            var show = self.getUserShow();
+            var status = self.getUserStatus();
             
             // Send the presence
-            if(!isAnonymous())
-                sendPresence('', '', show, status, checksum);
+            if(!Utils.isAnonymous())
+                self.send('', '', show, status, checksum);
             
             // We set the good icon
-            presenceIcon(show);
+            self.icon(show);
             
             // We store our presence
             if(!autoidle)
@@ -1192,7 +1192,7 @@ var Presence = (function () {
                 
                 // Not disabled?
                 else if(!$(this).find('.message-area').attr('disabled'))
-                    sendPresence(room + '/' + nick, '', show, status, '', true);
+                    self.send(room + '/' + nick, '', show, status, '', true);
             });
         } catch(e) {
             Console.error('Presence.quickSend', e);
@@ -1207,7 +1207,7 @@ var Presence = (function () {
      * @param {string} value
      * @return {undefined}
      */
-    self.presenceIcon = function(value) {
+    self.icon = function(value) {
 
         try {
             $('#my-infos .f-presence a.picker').attr('data-value', value);
@@ -1232,9 +1232,9 @@ var Presence = (function () {
             
             // Subscribe request?
             if(type == 'subscribe')
-                status = Common.printf(Common._e("Hi, I am %s, I would like to add you as my friend."), getName());
+                status = Common.printf(Common._e("Hi, I am %s, I would like to add you as my friend."), Name.get());
             
-            sendPresence(to, type, '', status);
+            self.send(to, type, '', status);
         } catch(e) {
             Console.error('Presence.sendSubscribe', e);
         }
@@ -1256,14 +1256,14 @@ var Presence = (function () {
             $('#' + hex_md5(xid) + ' .tools-add').hide();
             
             // We send a subsribed presence (to confirm)
-            sendSubscribe(xid, 'subscribed');
+            self.sendSubscribe(xid, 'subscribed');
             
             // We send a subscription request (subscribe both sides)
-            sendSubscribe(xid, 'subscribe');
+            self.sendSubscribe(xid, 'subscribe');
             
             // Specify the buddy name (if any)
             if(name) {
-                sendRoster(xid, '', name);
+                Roster.send(xid, '', name);
             }
         } catch(e) {
             Console.error('Presence.acceptSubscribe', e);
@@ -1281,11 +1281,11 @@ var Presence = (function () {
 
         try {
             // Not connected?
-            if(!Common.isConnected))
+            if(!Common.isConnected())
                 return;
             
             // Stop if an xa presence was set manually
-            var last_presence = getUserShow();
+            var last_presence = self.getUserShow();
             
             if(!AUTO_IDLE && ((last_presence == 'away') || (last_presence == 'xa')))
                 return;
@@ -1321,7 +1321,7 @@ var Presence = (function () {
                 $('#presence-status').val(status);
                 
                 // Then send the xa presence
-                presenceSend('', true);
+                self.sendActions('', true);
                 
                 Console.info('Auto-idle presence sent: ' + idle_presence);
             }
@@ -1352,7 +1352,7 @@ var Presence = (function () {
                 $('#presence-status').placeholder();
                 
                 // Then restore the old presence
-                presenceSend('', true);
+                self.sendActions('', true);
                 
                 if(!show)
                     show = 'available';
@@ -1380,12 +1380,12 @@ var Presence = (function () {
         try {
             // Apply the autoIdle function every minute
             AUTO_IDLE = false;
-            $('#my-infos .f-presence').everyTime('30s', autoIdle);
+            $('#my-infos .f-presence').everyTime('30s', self.autoIdle);
             
             // On body bind (click & key event)
-            $('body').on('mousedown', eventIdle)
-                     .on('mousemove', eventIdle)
-                     .on('keydown', eventIdle);
+            $('body').on('mousedown', self.eventIdle)
+                     .on('mousemove', self.eventIdle)
+                     .on('keydown', self.eventIdle);
         } catch(e) {
             Console.error('Presence.liveIdle', e);
         }
@@ -1402,9 +1402,9 @@ var Presence = (function () {
 
         try {
             // Remove the event detector
-            $('body').off('mousedown', eventIdle)
-                     .off('mousemove', eventIdle)
-                     .off('keydown', eventIdle);
+            $('body').off('mousedown', self.eventIdle)
+                     .off('mousemove', self.eventIdle)
+                     .off('keydown', self.eventIdle);
         } catch(e) {
             Console.error('Presence.dieIdle', e);
         }
@@ -1449,7 +1449,7 @@ var Presence = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchPresence = function() {
+    self.instance = function() {
 
         try {
             // Click event for user presence show
@@ -1462,7 +1462,7 @@ var Presence = (function () {
                 var path = '#my-infos .f-presence div.bubble';
                 var show_id = ['xa', 'away', 'available'];
                 var show_lang = [Common._e("Not available"), Common._e("Away"), Common._e("Available")];
-                var show_val = getUserShow();
+                var show_val = self.getUserShow();
                 
                 // Yet displayed?
                 var can_append = true;
@@ -1524,8 +1524,8 @@ var Presence = (function () {
             
             .blur(function() {
                 // Read the parameters
-                var show = getUserShow();
-                var status = getUserStatus();
+                var show = self.getUserShow();
+                var status = self.getUserStatus();
                 
                 // Read the old parameters
                 var old_show = DataStore.getDB(DESKTOP_HASH, 'presence-show', 1);
@@ -1538,10 +1538,10 @@ var Presence = (function () {
                     
                     // Update the server stored status
                     if(status != old_status)
-                        storeOptions();
+                        Options.store();
                     
                     // Send the presence
-                    presenceSend();
+                    self.sendActions();
                 }
             })
             
@@ -1550,7 +1550,7 @@ var Presence = (function () {
                 Bubble.close();
             });
         } catch(e) {
-            Console.error('Presence.launch', e);
+            Console.error('Presence.instance', e);
         }
 
     };

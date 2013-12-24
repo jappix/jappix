@@ -68,7 +68,7 @@ var Home = (function () {
             switch(div) {
                 // Login tool
                 case 'loginer':
-                    lock_host = disableInput(LOCK_HOST, 'on');
+                    lock_host = Utils.disableInput(LOCK_HOST, 'on');
                     code = '<p>' + Common.printf(Common._e("Login to your existing XMPP account. You can also use the %s to join a groupchat."), '<a href="#" class="to-anonymous">' + Common._e("anonymous mode") + '</a>') + '</p>' + 
                         
                         '<form action="#" method="post">' + 
@@ -105,7 +105,7 @@ var Home = (function () {
                 
                 // Anonymous login tool
                 case 'anonymouser':
-                    disable_form = disableInput(ANONYMOUS, 'off');
+                    disable_form = Utils.disableInput(ANONYMOUS, 'off');
                     code = '<p>' + Common.printf(Common._e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + Common._e("login page") + '</a>') + '</p>';
                     
                     if(LEGAL)
@@ -133,10 +133,10 @@ var Home = (function () {
                 
                 // Register tool
                 case 'registerer':
-                    disable_form = disableInput(REGISTRATION, 'off');
+                    disable_form = Utils.disableInput(REGISTRATION, 'off');
                     
                     if(!disable_form)
-                        lock_host = disableInput(LOCK_HOST, 'on');
+                        lock_host = Utils.disableInput(LOCK_HOST, 'on');
                     
                     code = '<p>' + Common._e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
                     
@@ -426,12 +426,12 @@ var Home = (function () {
                 
                 // Disables the browser HTTP-requests stopper
                 $(document).keydown(function(e) {
-                    if((e.keyCode == 27) && !Common.isDeveloper())
+                    if((e.keyCode == 27) && !System.isDeveloper())
                         return false;
                 });
                 
                 // Warns for an obsolete browser
-                if(isObsolete()) {
+                if(Utils.isObsolete()) {
                     // Add the code
                     $(locale).after(
                         '<div class="obsolete">' + 

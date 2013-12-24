@@ -39,10 +39,10 @@ var Anonymous = (function () {
             // Not resumed?
             if(!RESUME) {
                 // Create the app
-                createTalkPage();
+                Talk.create();
                 
                 // Send our first presence
-                firstPresence('');
+                Presence.sendFirst('');
                 
                 // Set last activity stamp
                 LAST_ACTIVITY = DateUtils.getTimeStamp();
@@ -57,7 +57,7 @@ var Anonymous = (function () {
             // Resumed
             else {
                 // Send again our presence
-                presenceSend();
+                Presence.sendActions();
                 
                 // Change the title
                 Interface.updateTitle();
@@ -106,14 +106,14 @@ var Anonymous = (function () {
                 oArgs.httpbase = HOST_BOSH;
 
             // Check BOSH origin
-            BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
             
             // We create the new http-binding connection
             con = new JSJaCHttpBindingConnection(oArgs);
             
             // And we handle everything that happen
             con.registerHandler('message', Message.handle);
-            con.registerHandler('presence', handlePresence);
+            con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.connected);
             con.registerHandler('onerror', handleError);

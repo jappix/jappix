@@ -26,7 +26,7 @@ var UserInfos = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.openUserInfos = function(xid) {
+    self.open = function(xid) {
 
         try {
             // Can show shortcuts?
@@ -34,9 +34,9 @@ var UserInfos = (function () {
             
             if(xid != Common.getXID()) {
                 shortcuts = '<div class="shortcuts">' + 
-                            '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="closeUserInfos(); return Inbox.composeMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
-                            '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="closeUserInfos(); return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
-                            '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="closeUserInfos(); return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                            '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="UserInfos.close(); return Inbox.composeMessage(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
+                            '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="UserInfos.close(); return Chat.checkCreate(\'' + Utils.encodeOnclick(xid) + '\', \'chat\');"></a>' + 
+                            '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="UserInfos.close(); return AdHoc.retrieve(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
                              '</div>';
             }
             
@@ -111,13 +111,13 @@ var UserInfos = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('userinfos', html);
+            Popup.create('userinfos', html);
             
             // Associate the events
-            launchUserInfos();
+            UserInfos.instance();
             
             // We retrieve the user's vcard
-            retrieveUserInfos(xid);
+            self.retrieve(xid);
         } catch(e) {
             Console.error('UserInfos.open', e);
         } finally {
@@ -132,14 +132,14 @@ var UserInfos = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeUserInfos = function() {
+    self.close = function() {
 
         try {
             // Send the buddy comments
-            sendBuddyComments();
+            self.sendBuddyComments();
             
             // Destroy the popup
-            destroyPopup('userinfos');
+            Popup.destroy('userinfos');
         } catch(e) {
             Console.error('UserInfos.close', e);
         } finally {
@@ -155,7 +155,7 @@ var UserInfos = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.retrieveUserInfos = function() {
+    self.retrieve = function() {
 
         try {
             // We setup the waiting indicator
@@ -165,10 +165,10 @@ var UserInfos = (function () {
             $('#userinfos .buddy-xid').text(xid);
             
             // We get the vCard
-            getVCard(xid, 'buddy');
+            vCard.get(xid, 'buddy');
             
             // Get the highest resource for this XID
-            var cXID = highestPriority(xid);
+            var cXID = Presence.highestPriority(xid);
             var pXID = xid;
             
             // If the user is logged in
@@ -177,23 +177,23 @@ var UserInfos = (function () {
                 pXID = cXID;
                 
                 // We request the user's system infos
-                queryUserInfos(cXID, 'version')
+                self.query(cXID, 'version')
                 
                 // We request the user's local time
-                queryUserInfos(cXID, 'time')
+                self.query(cXID, 'time')
                 
                 // Add these to the markers
                 markers += ' version time';
             }
             
             // We request the user's last activity
-            queryUserInfos(pXID, 'last');
+            self.query(pXID, 'last');
             
             // Add the markers
             $('#userinfos .content').addClass(markers);
             
             // We request all the user's comments
-            displayBuddyComments(xid);
+            self.displayBuddyComments(xid);
         } catch(e) {
             Console.error('UserInfos.retrieve', e);
         }
@@ -208,7 +208,7 @@ var UserInfos = (function () {
      * @param {string} mode
      * @return {undefined}
      */
-    self.queryUserInfos = function(xid, mode) {
+    self.query = function(xid, mode) {
 
         try {
             // Generate a session ID
@@ -225,19 +225,19 @@ var UserInfos = (function () {
             // Last activity query
             if(mode == 'last') {
                 iq.setQuery(NS_LAST);
-                con.send(iq, lastActivityUserInfos);
+                con.send(iq, self.lastActivityUserInfos);
             }
             
             // Time query
             else if(mode == 'time') {
                 iq.appendNode('time', {'xmlns': NS_URN_TIME});
-                con.send(iq, localTimeUserInfos);
+                con.send(iq, self.localTime);
             }
             
             // Version query
             else if(mode == 'version') {
                 iq.setQuery(NS_VERSION);
-                con.send(iq, versionUserInfos);
+                con.send(iq, self.version);
             }
         } catch(e) {
             Console.error('UserInfos.query', e);
@@ -251,13 +251,13 @@ var UserInfos = (function () {
      * @public
      * @return {undefined}
      */
-    self.vCardBuddyInfos = function() {
+    self.vCard = function() {
 
         try {
             $('#userinfos .content').removeClass('vcard');
-            wUserInfos();
+            self.wait();
         } catch(e) {
-            Console.error('UserInfos.vCardBuddyInfos', e);
+            Console.error('UserInfos.vCard', e);
         }
 
     };
@@ -290,7 +290,7 @@ var UserInfos = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.lastActivityUserInfos = function(iq) {
+    self.lastActivity = function(iq) {
 
         try {
             // Extract the request ID
@@ -341,9 +341,9 @@ var UserInfos = (function () {
             }
             
             $('#userinfos .content').removeClass('last');
-            wUserInfos();
+            self.wait();
         } catch(e) {
-            Console.error('UserInfos.lastActivityUserInfos', e);
+            Console.error('UserInfos.lastActivity', e);
         }
 
     };
@@ -355,7 +355,7 @@ var UserInfos = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.versionUserInfos = function(iq) {
+    self.version = function(iq) {
 
         try {
             // Extract the request ID
@@ -388,9 +388,9 @@ var UserInfos = (function () {
             }
             
             $('#userinfos .content').removeClass('version');
-            wUserInfos();
+            self.wait();
         } catch(e) {
-            Console.error('UserInfos.versionUserInfos', e);
+            Console.error('UserInfos.version', e);
         }
 
     };
@@ -402,7 +402,7 @@ var UserInfos = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.localTimeUserInfos = function(iq) {
+    self.localTime = function(iq) {
 
         try {
             // Extract the request ID
@@ -436,9 +436,9 @@ var UserInfos = (function () {
             }
             
             $('#userinfos .content').removeClass('time');
-            wUserInfos();
+            self.wait();
         } catch(e) {
-            Console.error('UserInfos.localTimeUserInfos', e);
+            Console.error('UserInfos.localTime', e);
         }
 
     };
@@ -449,7 +449,7 @@ var UserInfos = (function () {
      * @public
      * @return {undefined}
      */
-    self.wUserInfos = function() {
+    self.wait = function() {
 
         try {
             var selector = $('#userinfos .content');
@@ -457,7 +457,7 @@ var UserInfos = (function () {
             if(!selector.hasClass('vcard') && !selector.hasClass('last') && !selector.hasClass('version') && !selector.hasClass('time'))
                 $('#userinfos .wait').hide();
         } catch(e) {
-            Console.error('UserInfos.wUserInfos', e);
+            Console.error('UserInfos.wait', e);
         }
 
     };
@@ -523,7 +523,7 @@ var UserInfos = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.switchUInfos = function(id) {
+    self.switchTab = function(id) {
 
         try {
             $('#userinfos .content .one-lap').hide();
@@ -531,7 +531,7 @@ var UserInfos = (function () {
             $('#userinfos .tab a').removeClass('tab-active');
             $('#userinfos .tab a[data-key="' + id + '"]').addClass('tab-active');
         } catch(e) {
-            Console.error('UserInfos.switch', e);
+            Console.error('UserInfos.switchTab', e);
         } finally {
             return false;
         }
@@ -548,7 +548,7 @@ var UserInfos = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.getUserInfos = function(hash, xid, nick, type) {
+    self.get = function(hash, xid, nick, type) {
 
         try {
             // This is a normal chat
@@ -560,11 +560,11 @@ var UserInfos = (function () {
                 }
                 
                 // Get the buddy PEP informations
-                displayAllPEP(xid);
+                PEP.displayAll(xid);
             }
             
             // Display the buddy presence
-            presenceFunnel(xid, hash);
+            Presence.funnel(xid, hash);
         } catch(e) {
             Console.error('UserInfos.get', e);
         }
@@ -577,7 +577,7 @@ var UserInfos = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchUserInfos = function() {
+    self.instance = function() {
 
         try {
             // Click events
@@ -589,14 +589,14 @@ var UserInfos = (function () {
                 // Switch to the good tab
                 var key = parseInt($(this).attr('data-key'));
                 
-                return switchUInfos(key);
+                return self.switchTab(key);
             });
             
             $('#userinfos .bottom .finish').click(function() {
-                return closeUserInfos();
+                return self.close();
             });
         } catch(e) {
-            Console.error('UserInfos.launch', e);
+            Console.error('UserInfos.instance', e);
         }
 
     };

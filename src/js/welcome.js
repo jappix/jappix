@@ -29,7 +29,7 @@ var Welcome = (function () {
      * @public
      * @return {undefined}
      */
-    self.openWelcome = function() {
+    self.open = function() {
 
         try {
             // Share message
@@ -104,28 +104,28 @@ var Welcome = (function () {
                         '<p>' + Common._e("When you will press the save button, the profile editor will be opened. Happy socializing!") + '</p>' + 
                     '</div>' + 
                     
-                    '<a class="box share first" href="http://www.facebook.com/sharer/sharer.php?u=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share first" href="http://www.facebook.com/sharer/sharer.php?u=' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo facebook welcome-images"></span>' + 
                         '<span class="name">Facebook</span>' + 
                         '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Facebook') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://twitter.com/intent/tweet?text=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://twitter.com/intent/tweet?text=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo twitter welcome-images"></span>' + 
                         '<span class="name">Twitter</span>' + 
                         '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Twitter') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://www.google.com/buzz/post?message=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://www.google.com/buzz/post?message=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo buzz welcome-images"></span>' + 
                         '<span class="name">Google Buzz</span>' + 
                         '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Google Buzz') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + Common.encodeQuotes(share_msg) + ' ' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                    '<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + Common.encodeQuotes(share_msg) + ' ' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
                         '<span class="logo identica welcome-images"></span>' + 
                         '<span class="name">Identi.ca</span>' + 
                         '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Identi.ca') + '</span>' + 
@@ -142,7 +142,7 @@ var Welcome = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('welcome', html);
+            Popup.create('welcome', html);
             
             // Unavoidable popup
             $('#welcome').addClass('unavoidable');
@@ -151,7 +151,7 @@ var Welcome = (function () {
             Features.apply('welcome');
             
             // Associate the events
-            launchWelcome();
+            self.instance();
             
             Console.log('Welcome assistant opened.');
         } catch(e) {
@@ -166,11 +166,11 @@ var Welcome = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeWelcome = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('welcome');
+            Popup.destroy('welcome');
         } catch(e) {
             Console.error('Welcome.close', e);
         } finally {
@@ -186,7 +186,7 @@ var Welcome = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.switchWelcome = function(id) {
+    self.switchTab = function(id) {
 
         try {
             // Path to
@@ -215,7 +215,7 @@ var Welcome = (function () {
                 wait.hide();
             }
         } catch(e) {
-            Console.error('Welcome.switch', e);
+            Console.error('Welcome.switchTab', e);
         } finally {
             return false;
         }
@@ -229,7 +229,7 @@ var Welcome = (function () {
      * @param {object} array
      * @return {undefined}
      */
-    self.sendWelcome = function(array) {
+    self.send = function(array) {
 
         try {
             // Sends the options
@@ -257,7 +257,7 @@ var Welcome = (function () {
             
             // If geolocation is enabled
             if(array[1] == '1') {
-                geolocate();
+                PEP.geolocate();
             }
         } catch(e) {
             Console.error('Welcome.send', e);
@@ -271,7 +271,7 @@ var Welcome = (function () {
      * @public
      * @return {boolean}
      */
-    self.saveWelcome = function() {
+    self.save = function() {
 
         try {
             // Get the new options
@@ -288,7 +288,7 @@ var Welcome = (function () {
             
             // If XMPP links is enabled
             if(array[2] == '1')
-                xmppLinksHandler();
+                Utils.xmppLinksHandler();
             
             // If offline buddies showing is enabled
             if(array[4] == '1')
@@ -303,13 +303,13 @@ var Welcome = (function () {
             }
             
             // Send the new options
-            sendWelcome(array);
+            self.send(array);
             
             // Close the welcome tool
-            closeWelcome();
+            self.close();
             
             // Open the profile editor
-            openVCard();
+            vCard.open();
             
             // Unavoidable popup
             $('#vcard').addClass('unavoidable');
@@ -329,7 +329,7 @@ var Welcome = (function () {
      * @public
      * @return {boolean}
      */
-    self.nextWelcome = function() {
+    self.next = function() {
 
         try {
             // Check the next step to go to
@@ -340,7 +340,7 @@ var Welcome = (function () {
                 next = parseInt($(missing + ':first').attr('data-step'));
             
             // Switch to the next step
-            switchWelcome(next);
+            self.switchTab(next);
         } catch(e) {
             Console.error('Welcome.next', e);
         } finally {
@@ -355,7 +355,7 @@ var Welcome = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchWelcome = function() {
+    self.instance = function() {
 
         try {
             // Click events
@@ -363,7 +363,7 @@ var Welcome = (function () {
                 // Switch to the good tab
                 var key = parseInt($(this).attr('data-step'));
                 
-                return switchWelcome(key);
+                return self.switchTab(key);
             });
             
             $('#welcome a.box:not(.share)').click(function() {
@@ -377,14 +377,14 @@ var Welcome = (function () {
             
             $('#welcome .bottom .finish').click(function() {
                 if($(this).is('.next'))
-                    return nextWelcome();
+                    return self.next();
                 if($(this).is('.save'))
-                    return saveWelcome();
+                    return self.save();
                 
                 return false;
             });
         } catch(e) {
-            Console.error('Welcome.launch', e);
+            Console.error('Welcome.instance', e);
         }
 
     };

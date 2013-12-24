@@ -207,7 +207,7 @@ var Filter = (function () {
             // Remove forbidden elements
             $(code).find('html body *').each(function() {
                 // This element is not authorized
-                if(!existArrayValue(elements, (this).nodeName.toLowerCase()))
+                if(!Utils.existArrayValue(elements, (this).nodeName.toLowerCase()))
                     $(this).remove();
             });
             
@@ -225,7 +225,7 @@ var Filter = (function () {
                     var cVal = cAttr.value;
                     
                     // This attribute is not authorized, or contains JS code
-                    if(!existArrayValue(attributes, cName.toLowerCase()) || ((cVal.toLowerCase()).match(/(^|"|')javascript:/)))
+                    if(!Utils.existArrayValue(attributes, cName.toLowerCase()) || ((cVal.toLowerCase()).match(/(^|"|')javascript:/)))
                         cSelector.removeAttr(cName);
                 });
             });

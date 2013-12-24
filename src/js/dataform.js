@@ -207,7 +207,7 @@ var DataForm = (function () {
                                     continue;
                                 
                                 // Add the current value
-                                if(!existArrayValue(xid_check, xid_current)) {
+                                if(!Utils.existArrayValue(xid_check, xid_current)) {
                                     xid_check.push(xid_current);
                                     field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, xid_current));
                                 }
@@ -294,7 +294,7 @@ var DataForm = (function () {
             
             if(action == 'submit') {
                 if((target == 'adhoc') && (type == 'command')) {
-                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
@@ -307,7 +307,7 @@ var DataForm = (function () {
                 }
                 
                 else {
-                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
@@ -321,7 +321,7 @@ var DataForm = (function () {
             }
             
             if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-                buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(node) + '\', \'' + encodeOnclick(sessionid) + '\', \'' + encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
+                buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
             
             if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
                 buttonsCode += '<a href="#" class="back" onclick="return Discovery.start();">' + Common._e("Close") + '</a>';
@@ -330,7 +330,7 @@ var DataForm = (function () {
                 buttonsCode += '<a href="#" class="back" onclick="return self.go(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + Common._e("Previous") + '</a>';
             
             if((action == 'back') && (target == 'adhoc'))
-                buttonsCode += '<a href="#" class="back" onclick="return self.go(\'' + encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return self.go(\'' + Utils.encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
             
             buttonsCode += '</div>';
             
@@ -480,7 +480,7 @@ var DataForm = (function () {
                             // Node
                             if(itemNode)
                                 $(pathID).append(
-                                    '<div class="oneresult ' + target + '-oneresult" onclick="return self.go(\'' + encodeOnclick(itemHost) + '\', \'browse\', \'' + encodeOnclick(itemNode) + '\', \'\', \'' + encodeOnclick(target) + '\');">' + 
+                                    '<div class="oneresult ' + target + '-oneresult" onclick="return self.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'browse\', \'' + Utils.encodeOnclick(itemNode) + '\', \'\', \'' + Utils.encodeOnclick(target) + '\');">' + 
                                         '<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
                                     '</div>'
                                 );
@@ -602,7 +602,7 @@ var DataForm = (function () {
                                 if($(this).is('.one-add')) {
                                     $(this).hide();
                                     
-                                    addThisContact(bXID, dName);
+                                    Roster.addThisContact(bXID, dName);
                                 }
                                 
                                 // Buddy chat
@@ -615,7 +615,7 @@ var DataForm = (function () {
                                 
                                 // Buddy profile
                                 if($(this).is('.one-profile'))
-                                    openUserInfos(bXID);
+                                    UserInfos.open(bXID);
                                 
                                 return false;
                             });
@@ -668,7 +668,7 @@ var DataForm = (function () {
                         
                         // Add the gateway to our roster if subscribed
                         if(type == 'subscribe')
-                            addThisContact(from);
+                            Roster.addThisContact(from);
                     }
                     
                     // Command canceled
@@ -696,7 +696,7 @@ var DataForm = (function () {
                             
                             // We display the waiting element
                             $(pathID).prepend(
-                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return self.go(\'' + encodeOnclick(itemHost) + '\', \'command\', \'' + encodeOnclick(itemNode) + '\', \'execute\', \'' + encodeOnclick(target) + '\');">' + 
+                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return self.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'command\', \'' + Utils.encodeOnclick(itemNode) + '\', \'execute\', \'' + Utils.encodeOnclick(target) + '\');">' + 
                                     '<div class="one-name">' + itemName + '</div>' + 
                                     '<div class="one-next">»</div>' + 
                                 '</div>'
@@ -884,7 +884,7 @@ var DataForm = (function () {
                         $(this).find('value').each(function() {
                             var cValue = $(this).text();
                             
-                            if(!existArrayValue(xid_arr, cValue))
+                            if(!Utils.existArrayValue(xid_arr, cValue))
                                 xid_arr.push(cValue);
                         });
                         
@@ -1047,7 +1047,7 @@ var DataForm = (function () {
                 
                 for(i in buttons) {
                     if(buttons[i])
-                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return self.go(\'' + encodeOnclick(from) + '\', \'' + encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + encodeOnclick(target) + '\');" title="' + encodeOnclick(bTools[i]) + '"></a>';
+                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return self.go(\'' + Utils.encodeOnclick(from) + '\', \'' + Utils.encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + Utils.encodeOnclick(target) + '\');" title="' + Utils.encodeOnclick(bTools[i]) + '"></a>';
                 }
                 
                 // As defined in the ref, we detect the type of each category to put an icon

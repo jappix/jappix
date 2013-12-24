@@ -25,7 +25,7 @@ var Music = (function () {
      * @public
      * @return {boolean}
      */
-    self.openMusic = function() {
+    self.open = function() {
 
         try {
             var path = '.music-content';
@@ -52,7 +52,7 @@ var Music = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.parseMusic = function(xml, type) {
+    self.parse = function(xml, type) {
 
         try {
             var path = '.music-content ';
@@ -90,7 +90,7 @@ var Music = (function () {
                 
                 // Local URL?
                 if(type == 'local')
-                    uri = generateURL(uri);
+                    uri = Utils.generateURL(uri);
                 
                 // Append the HTML code
                 $(path_type).append('<a href="#" class="song" data-id="' + id + '">' + title + '</a>');
@@ -103,7 +103,7 @@ var Music = (function () {
                 
                 // Click event
                 current_song.click(function() {
-                    return addMusic(id,  title, artist, source, duration, uri, mime, type);
+                    return self.add(id,  title, artist, source, duration, uri, mime, type);
                 });
             });
             
@@ -136,7 +136,7 @@ var Music = (function () {
      * @public
      * @return {undefined}
      */
-    self.searchMusic = function() {
+    self.search = function() {
 
         try {
             var path = '.music-content ';
@@ -153,12 +153,12 @@ var Music = (function () {
             
             // Get the Jamendo results
             $.get('./php/music-search.php', {searchquery: string, location: 'jamendo'}, function(data) {
-                parseMusic(data, 'jamendo');
+                self.parse(data, 'jamendo');
             });
             
             // Get the local results
             $.get('./php/music-search.php', {searchquery: string, location: JAPPIX_LOCATION}, function(data) {
-                parseMusic(data, 'local');
+                self.parse(data, 'local');
             });
         } catch(e) {
             Console.error('Music.search', e);
@@ -173,7 +173,7 @@ var Music = (function () {
      * @param {string} action
      * @return {boolean}
      */
-    self.actionMusic = function() {
+    self.action = function() {
 
         try {
             // Initialize
@@ -191,7 +191,7 @@ var Music = (function () {
                 playThis.load();
                 playThis.play();
                 playThis.addEventListener('ended', function() {
-                    actionMusic('stop');
+                    self.action('stop');
                 }, true);  
                 
                 Console.log('Music is now playing.');
@@ -204,7 +204,7 @@ var Music = (function () {
                 $('#top-content .music').removeClass('actived');
                 $('.music-content .list a').removeClass('playing');
                 $('.music-audio').remove();
-                publishMusic();
+                self.publish();
                 
                 Console.log('Music is now stopped.');
             }
@@ -227,7 +227,7 @@ var Music = (function () {
      * @param {string} uri
      * @return {undefined}
      */
-    self.publishMusic = function(title, artist, source, duration, uri) {
+    self.publish = function(title, artist, source, duration, uri) {
 
         /* REF: http://xmpp.org/extensions/xep-0118.html */
 
@@ -293,7 +293,7 @@ var Music = (function () {
      * @param {string} type
      * @return {boolean}
      */
-    self.addMusic = function(id, title, artist, source, duration, uri, mime, type) {
+    self.add = function(id, title, artist, source, duration, uri, mime, type) {
 
         try {
             var path = '.music-content ';
@@ -309,7 +309,7 @@ var Music = (function () {
                 $('.music-audio').attr('src', uri);
             
             // We play the target sound
-            actionMusic('play');
+            self.action('play');
             
             // We set the actived class
             $('#top-content .music').addClass('actived');
@@ -319,7 +319,7 @@ var Music = (function () {
             $(path + 'a[data-id="' + id + '"]').addClass('playing');
             
             // We publish what we listen
-            publishMusic(title, artist, source, duration, uri);
+            self.publish(title, artist, source, duration, uri);
         } catch(e) {
             Console.error('Music.add', e);
         } finally {
@@ -335,21 +335,21 @@ var Music = (function () {
      * @param {type} name
      * @return {undefined}
      */
-    self.launchMusic = function() {
+    self.instance = function() {
 
         try {
             // When music search string submitted
             $('.music-content input').keyup(function(e) {
                 // Enter : send
                 if(e.keyCode == 13 && $(this).val())
-                    searchMusic();
+                    self.search();
                 
                 // Escape : quit
                 if(e.keyCode == 27)
                     Bubble.close();
             });
         } catch(e) {
-            Console.error('Music.launch', e);
+            Console.error('Music.instance', e);
         }
 
     };

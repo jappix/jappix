@@ -48,7 +48,7 @@ var HTTPAuth = (function () {
                 oArgs.httpbase = HOST_BOSH;
             
             // Check BOSH origin
-            BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
             
             // We create the new http-binding connection
             con = new JSJaCHttpBindingConnection(oArgs);
@@ -97,7 +97,7 @@ var HTTPAuth = (function () {
             Console.error('HTTPAuth.go', e);
 
             // Reset Jappix
-            destroyTalkPage();
+            Talk.destroy();
             
             // Open an unknown error
             Board.openThisError(2);

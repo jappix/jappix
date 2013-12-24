@@ -25,7 +25,7 @@ var Options = (function () {
      * @public
      * @return {boolean}
      */
-    self.optionsOpen = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -199,13 +199,13 @@ var Options = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('options', html);
+            Popup.create('options', html);
             
             // Apply the features
             Features.apply('options');
             
             // Associate the events
-            launchOptions();
+            self.instance();
         } catch(e) {
             Console.error('Options.open', e);
         } finally {
@@ -220,11 +220,11 @@ var Options = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeOptions = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('options');
+            Popup.destroy('options');
         } catch(e) {
             Console.error('Options.close', e);
         } finally {
@@ -239,7 +239,7 @@ var Options = (function () {
      * @public
      * @return {boolean}
      */
-    self.loadedOptions = function() {
+    self.loaded = function() {
 
         is_loaded = false;
 
@@ -262,7 +262,7 @@ var Options = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.switchOptions = function(id) {
+    self.switchTab = function(id) {
 
         try {
             $('#options .one-lap').hide();
@@ -270,7 +270,7 @@ var Options = (function () {
             $('#options .tab a').removeClass('tab-active');
             $('#options .tab a[data-key="' + id + '"]').addClass('tab-active');
         } catch(e) {
-            Console.error('Options.switch', e);
+            Console.error('Options.switchTab', e);
         } finally {
             return false;
         }
@@ -284,7 +284,7 @@ var Options = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.waitOptions = function(id) {
+    self.wait = function(id) {
 
         try {
             var sOptions = $('#options .content');
@@ -309,7 +309,7 @@ var Options = (function () {
      * @public
      * @return {undefined}
      */
-    self.storeOptions = function() {
+    self.store = function() {
 
         try {
             // Get the values
@@ -335,7 +335,7 @@ var Options = (function () {
             for(i in oType)
                 storage.appendChild(iq.buildNode('option', {'type': oType[i], 'xmlns': NS_OPTIONS}, oContent[i]));
             
-            con.send(iq, handleStoreOptions);
+            con.send(iq, self.handleStore);
             
             Console.info('Storing options...');
         } catch(e) {
@@ -351,7 +351,7 @@ var Options = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleStoreOptions = function(iq) {
+    self.handleStore = function(iq) {
 
         try {
             if(!iq || (iq.getType() != 'result')) {
@@ -371,7 +371,7 @@ var Options = (function () {
      * @public
      * @return {boolean}
      */
-    self.saveOptions = function() {
+    self.save = function() {
 
         try {
             // We apply the sounds
@@ -387,14 +387,14 @@ var Options = (function () {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '1');
                 
                 // We geolocate the user on the go
-                geolocate();
+                PEP.geolocate();
             }
             
             else {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '0');
                 
                 // We delete the geolocation informations
-                sendPosition();
+                PEP.sendPosition();
                 DataStore.removeDB(DESKTOP_HASH, 'geolocation', 'now');
             }
             
@@ -439,13 +439,13 @@ var Options = (function () {
                 persist = '1';
             
             if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN()))
-                setupMicroblog('', NS_URN_MBLOG, persist, maximum, '', '', false);
+                Microblog.setup('', NS_URN_MBLOG, persist, maximum, '', '', false);
             
             // We send the options to the database
-            storeOptions();
+            self.store();
             
             // Close the options
-            closeOptions();
+            self.close();
         } catch(e) {
             Console.error('Options.save', e);
         } finally {
@@ -498,14 +498,14 @@ var Options = (function () {
             var password1 = $('#options .new1').val();
             var password2 = $('#options .new2').val();
             
-            if ((password1 == password2) && (password0 == getPassword())) {
+            if ((password1 == password2) && (password0 == Utils.getPassword())) {
                 // We show the waiting image
                 Interface.showGeneralWait();
                 
                 // We send the IQ
                 var iq = new JSJaCIQ();
                 
-                iq.setTo(getServer());
+                iq.setTo(Utils.getServer());
                 iq.setType('set');
                 
                 var iqQuery = iq.setQuery(NS_REGISTER);
@@ -513,7 +513,7 @@ var Options = (function () {
                 iqQuery.appendChild(iq.buildNode('username', {'xmlns': NS_REGISTER}, con.username));
                 iqQuery.appendChild(iq.buildNode('password', {'xmlns': NS_REGISTER}, password1));
                 
-                con.send(iq, handlePwdChange);
+                con.send(iq, self.handlePwdChange);
                 
                 Console.info('Password change sent.');
             } else {
@@ -528,7 +528,7 @@ var Options = (function () {
                         select.removeClass('please-complete');  
                 });
                 
-                if(password0 != getPassword())
+                if(password0 != Utils.getPassword())
                     $(document).oneTime(10, function() {
                         $('#options .old').addClass('please-complete').focus();
                     });
@@ -561,7 +561,7 @@ var Options = (function () {
             // If no errors
             if(!Error.handleReply(iq)) {
                 Connection.clearLastSession();
-                destroyTalkPage();
+                Talk.destroy();
                 Board.openThisInfo(2);
                 Connection.logout();
                 
@@ -586,7 +586,7 @@ var Options = (function () {
         try {
             var password = $('#options .check-mam').val();
             
-            if(password == getPassword()) {
+            if(password == Utils.getPassword()) {
                 MAM.purgeArchives();
 
                 // Clear archives in UI
@@ -597,7 +597,7 @@ var Options = (function () {
             } else {
                 var selector = $('#options .check-mam');
                 
-                if(password != getPassword())
+                if(password != Utils.getPassword())
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
@@ -625,7 +625,7 @@ var Options = (function () {
         try {
             var password = $('#options .check-empty').val();
             
-            if(password == getPassword()) {
+            if(password == Utils.getPassword()) {
                 // Send the IQ to remove the item (and get eventual error callback)
                 var iq = new JSJaCIQ();
                 iq.setType('set');
@@ -633,7 +633,7 @@ var Options = (function () {
                 var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
                 pubsub.appendChild(iq.buildNode('purge', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB_OWNER}));
                 
-                con.send(iq, handleMicroblogPurge);
+                con.send(iq, self.handleMicroblogPurge);
                 
                 // Hide the tool
                 $('#options .sub-ask').hide();
@@ -642,7 +642,7 @@ var Options = (function () {
             } else {
                 var selector = $('#options .check-empty');
                 
-                if(password != getPassword())
+                if(password != Utils.getPassword())
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
@@ -695,7 +695,7 @@ var Options = (function () {
         try {
             var password = $('#options .check-password').val();
             
-            if(password == getPassword()) {
+            if(password == Utils.getPassword()) {
                 // We show the waiting image
                 Interface.showGeneralWait();
                 
@@ -706,7 +706,7 @@ var Options = (function () {
                 var iqQuery = iq.setQuery(NS_REGISTER);
                 iqQuery.appendChild(iq.buildNode('remove', {'xmlns': NS_REGISTER}));
                 
-                con.send(iq, handleAccDeletion);
+                con.send(iq, self.handleAccDeletion);
                 
                 Console.info('Delete account sent.');
             }
@@ -714,7 +714,7 @@ var Options = (function () {
             else {
                 var selector = $('#options .check-password');
                 
-                if(password != getPassword())
+                if(password != Utils.getPassword())
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
@@ -735,7 +735,7 @@ var Options = (function () {
      * @public
      * @return {undefined}
      */
-    self.loadOptions = function() {
+    self.load = function() {
 
         try {
             // Process the good stuffs, depending of the server features
@@ -760,7 +760,7 @@ var Options = (function () {
             // We get the microblog configuration
             if((enabled_pubsub || enabled_pubsub_cn) && enabled_pep) {
                 sWait.addClass('microblog');
-                getConfigMicroblog();
+                Microblog.getConfig();
             }
             
             // We show the "privacy" form if something is visible into it
@@ -808,7 +808,7 @@ var Options = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchOptions = function() {
+    self.instance = function() {
 
         try {
             // Click events
@@ -820,7 +820,7 @@ var Options = (function () {
                 // Switch to the good tab
                 var key = parseInt($(this).attr('data-key'));
                 
-                return switchOptions(key);
+                return self.switchTab(key);
             });
             
             $('#options .linked').click(function() {
@@ -828,7 +828,7 @@ var Options = (function () {
             });
             
             $('#options .xmpp-links').click(function() {
-                xmppLinksHandler();
+                Utils.xmppLinksHandler();
                 
                 return false;
             });
@@ -882,19 +882,19 @@ var Options = (function () {
             });
             
             $('#options .sub-ask-pass .sub-ask-bottom').click(function() {
-                return sendNewPassword();
+                return self.sendNewPassword();
             });
             
             $('#options .sub-ask-mam .sub-ask-bottom').click(function() {
-                return purgeMyArchives();
+                return self.purgeMyArchives();
             });
 
             $('#options .sub-ask-empty .sub-ask-bottom').click(function() {
-                return purgeMyMicroblog();
+                return self.purgeMyMicroblog();
             });
             
             $('#options .sub-ask-delete .sub-ask-bottom').click(function() {
-                return deleteMyAccount();
+                return self.deleteMyAccount();
             });
             
             $('#options .sub-ask-close').click(function() {
@@ -905,9 +905,9 @@ var Options = (function () {
             
             $('#options .bottom .finish').click(function() {
                 if($(this).is('.save') && !$(this).hasClass('disabled'))
-                    return saveOptions();
+                    return self.save();
                 if($(this).is('.cancel'))
-                    return closeOptions();
+                    return self.close();
                 
                 return false;
             });
@@ -917,26 +917,26 @@ var Options = (function () {
                 if(e.keyCode == 13) {
                     // Archives purge
                     if($(this).is('.purge-archives'))
-                        return purgeMyArchives();
+                        return self.purgeMyArchives();
 
                     // Microblog purge
                     else if($(this).is('.purge-microblog'))
-                        return purgeMyMicroblog();
+                        return self.purgeMyMicroblog();
                     
                     // Password change
                     else if($(this).is('.password-change'))
-                        return sendNewPassword();
+                        return self.sendNewPassword();
                     
                     // Account deletion
                     else if($(this).is('.delete-account'))
-                        return deleteMyAccount();
+                        return self.deleteMyAccount();
                 }
             });
             
             // Load the options
-            loadOptions();
+            self.load();
         } catch(e) {
-            Console.error('Options.launchOptions', e);
+            Console.error('Options.instance', e);
         }
 
     };

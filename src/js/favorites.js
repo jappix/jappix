@@ -65,7 +65,7 @@ var Favorites = (function () {
                             '<div class="fedit-line">' + 
                                 '<label>' + Common._e("Nickname") + '</label>' + 
                                 
-                                '<input class="fedit-nick" type="text" value="' + getNick() + '" required="" />' + 
+                                '<input class="fedit-nick" type="text" value="' + Name.getNick() + '" required="" />' + 
                             '</div>' + 
                             
                             '<div class="fedit-line">' + 
@@ -121,7 +121,7 @@ var Favorites = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('favorites', html);
+            Popup.create('favorites', html);
             
             // Load the favorites
             self.load();
@@ -150,7 +150,7 @@ var Favorites = (function () {
             $(path + '.fsearch-oneresult').remove();
             $(path + 'input').val('');
             $(path + '.please-complete').removeClass('please-complete');
-            $(path + '.fedit-nick').val(getNick());
+            $(path + '.fedit-nick').val(Name.getNick());
             $(path + '.fsearch-head-server, ' + path + '.fedit-server').val(HOST_MUC);
             $(path + '.fedit-autojoin').removeAttr('checked');
         } catch(e) {
@@ -169,7 +169,7 @@ var Favorites = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('favorites');
+            Popup.destroy('favorites');
         } catch(e) {
             Console.error('Favorites.quit', e);
         } finally {
@@ -204,7 +204,7 @@ var Favorites = (function () {
             $('#' + hex_md5(roomXID) + ' .tools-add').hide();
             
             // Add the database entry
-            self.display(roomXID, Common.explodeThis(' (', roomName, 0), getNick(), '0', '');
+            self.display(roomXID, Common.explodeThis(' (', roomName, 0), Name.getNick(), '0', '');
             
             // Publish the favorites
             self.publish();
@@ -507,8 +507,8 @@ var Favorites = (function () {
                         
                         if(roomXID && roomName) {
                             // Escaped values
-                            var escaped_xid = encodeOnclick(roomXID);
-                            var escaped_name = encodeOnclick(roomName);
+                            var escaped_xid = Utils.encodeOnclick(roomXID);
+                            var escaped_name = Utils.encodeOnclick(roomName);
                             
                             // Initialize the room HTML
                             html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 

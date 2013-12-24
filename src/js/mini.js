@@ -95,7 +95,7 @@ var JappixMini = (function () {
                 oArgs.httpbase = HOST_BOSH;
             
             // Check BOSH origin
-            BOSH_SAME_ORIGIN = isSameOrigin(oArgs.httpbase);
+            BOSH_SAME_ORIGIN = JappixOrigin.isSame(oArgs.httpbase);
             
             // We create the new http-binding connection
             con = new JSJaCHttpBindingConnection(oArgs);
@@ -3897,7 +3897,7 @@ var JappixMini = (function () {
             
             // Disables the browser HTTP-requests stopper
             jQuery(document).keydown(function(e) {
-                if((e.keyCode == 27) && !Common.isDeveloper())
+                if((e.keyCode == 27) && !JappixSystem.isDeveloper())
                     return false;
             });
             

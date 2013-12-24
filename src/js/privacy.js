@@ -25,7 +25,7 @@ var Privacy = (function () {
      * @public
      * @return {boolean}
      */
-    self.openPrivacy = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -69,7 +69,7 @@ var Privacy = (function () {
                         '<input type="text" name="jid" disabled="" />' + 
                         
                         '<label><input type="radio" name="type" value="group" disabled="" />' + Common._e("Group") + '</label>' + 
-                        '<select name="group" disabled="">' + groupsToHtmlPrivacy() + '</select>' + 
+                        '<select name="group" disabled="">' + self.groupsToHTML() + '</select>' + 
                         
                         '<label><input type="radio" name="type" value="subscription" disabled="" />' + Common._e("Subscription") + '</label>' + 
                         '<select name="subscription" disabled="">' + 
@@ -110,16 +110,16 @@ var Privacy = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('privacy', html);
+            Popup.create('privacy', html);
             
             // Associate the events
             launchPrivacy();
             
             // Display the available privacy lists
-            displayListsPrivacy();
+            self.displayLists();
             
             // Get the first list items
-            displayItemsPrivacy();
+            self.displayItems();
         } catch(e) {
             Console.error('Privacy.open', e);
         } finally {
@@ -134,11 +134,11 @@ var Privacy = (function () {
      * @public
      * @return {boolean}
      */
-    self.closePrivacy = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('privacy');
+            Popup.destroy('privacy');
         } catch(e) {
             Console.error('Privacy.close', e);
         } finally {
@@ -153,7 +153,7 @@ var Privacy = (function () {
      * @public
      * @return {undefined}
      */
-    self.receivedPrivacy = function() {
+    self.received = function() {
 
         try {
             // Store marker
@@ -173,7 +173,7 @@ var Privacy = (function () {
      * @public
      * @return {undefined}
      */
-    self.listPrivacy = function() {
+    self.list = function() {
 
         try {
             // Build query
@@ -182,7 +182,7 @@ var Privacy = (function () {
             
             iq.setQuery(NS_PRIVACY);
             
-            con.send(iq, handleListPrivacy);
+            con.send(iq, self.handleList);
             
             Console.log('Getting available privacy list(s)...');
         } catch(e) {
@@ -198,7 +198,7 @@ var Privacy = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleListPrivacy = function(iq) {
+    self.handleList = function(iq) {
 
         try {
             // Error?
@@ -215,23 +215,23 @@ var Privacy = (function () {
             if($(iqQuery).find('list[name="block"]').size()) {
                 // Not the default one?
                 if(!$(iqQuery).find('default[name="block"]').size())
-                    changePrivacy('block', 'default');
+                    self.change('block', 'default');
                 else
                     DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'default', 'block');
                 
                 // Not the active one?
                 if(!$(iqQuery).find('active[name="block"]').size())
-                    changePrivacy('block', 'active');
+                    self.change('block', 'active');
                 else
                     DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'active', 'block');
                 
                 // Get the block list rules
-                getPrivacy('block');
+                self.getPrivacy('block');
             }
             
             // Apply the received marker here
             else
-                receivedPrivacy();
+                Privacy.received();
             
             Console.info('Got available privacy list(s).');
         } catch(e) {
@@ -247,7 +247,7 @@ var Privacy = (function () {
      * @param {object} list
      * @return {undefined}
      */
-    self.getPrivacy = function(list) {
+    self.get = function(list) {
 
         try {
             // Build query
@@ -258,7 +258,7 @@ var Privacy = (function () {
             var iqQuery = iq.setQuery(NS_PRIVACY);
             iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': list}));
             
-            con.send(iq, handleGetPrivacy);
+            con.send(iq, handleGet);
             
             // Must show the wait item?
             if(Common.exists('#privacy'))
@@ -278,11 +278,11 @@ var Privacy = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleGetPrivacy = function(iq) {
+    self.handleGet = function(iq) {
 
         try {
             // Apply a "received" marker
-            receivedPrivacy();
+            Privacy.received();
             
             // Store the data for each list
             $(iq.getQuery()).find('list').each(function() {
@@ -311,7 +311,7 @@ var Privacy = (function () {
             
             // Must display it to the popup?
             if(Common.exists('#privacy')) {
-                displayItemsPrivacy();
+                self.displayItems();
                 
                 $('#privacy .wait').hide();
             }
@@ -338,7 +338,7 @@ var Privacy = (function () {
      * @param {object} iq_p
      * @return {undefined}
      */
-    self.setPrivacy = function(list, types, values, actions, orders, presence_in, presence_out, msg, iq_p) {
+    self.set = function(list, types, values, actions, orders, presence_in, presence_out, msg, iq_p) {
 
         try {
             // Build query
@@ -407,7 +407,7 @@ var Privacy = (function () {
      * @param {string} special_action
      * @return {undefined}
      */
-    self.pushPrivacy = function(list, type, value, action, presence_in, presence_out, msg, iq_p, hash, special_action) {
+    self.push = function(list, type, value, action, presence_in, presence_out, msg, iq_p, hash, special_action) {
 
         try {
             // Read the stored elements (to add them)
@@ -486,7 +486,7 @@ var Privacy = (function () {
             order.unshift((++highest_order) + '');
             
             // Send it!
-            setPrivacy(list, type, value, action, order, presence_in, presence_out, msg, iq_p);
+            self.set(list, type, value, action, order, presence_in, presence_out, msg, iq_p);
         } catch(e) {
             Console.error('Privacy.push', e);
         }
@@ -501,7 +501,7 @@ var Privacy = (function () {
      * @param {string} status
      * @return {undefined}
      */
-    self.changePrivacy = function(list, status) {
+    self.change = function(list, status) {
 
         try {
             // Yet sent?
@@ -540,7 +540,7 @@ var Privacy = (function () {
      * @param {string} value
      * @return {undefined}
      */
-    self.statusPrivacy = function(list, value) {
+    self.status = function(list, value) {
 
         try {
             return $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
@@ -556,12 +556,12 @@ var Privacy = (function () {
      * @public
      * @return {string}
      */
-    self.groupsToHtmlPrivacy = function() {
+    self.groupsToHTML = function() {
 
         var html = '';
 
         try {
-            var groups = getAllGroups();
+            var groups = Roster.getAllGroups();
             
             // Generate HTML
             for(i in groups) {
@@ -581,7 +581,7 @@ var Privacy = (function () {
      * @public
      * @return {boolean}
      */
-    self.displayListsPrivacy = function() {
+    self.displayLists = function() {
 
         try {
             // Initialize
@@ -619,12 +619,12 @@ var Privacy = (function () {
      * @public
      * @return {boolean}
      */
-    self.displayItemsPrivacy = function() {
+    self.displayItems = function() {
 
         try {
             // Reset the form
-            clearFormPrivacy();
-            disableFormPrivacy();
+            self.clearForm();
+            self.disableForm();
             
             // Initialize
             var code = '';
@@ -656,7 +656,7 @@ var Privacy = (function () {
             if(!items) {
                 select.attr('disabled', true);
                 
-                return getPrivacy(list);
+                return self.get(list);
             }
             
             else
@@ -736,7 +736,7 @@ var Privacy = (function () {
             
             // Display the first item form
             var first_item = select.find('option:first');
-            displayFormPrivacy(
+            self.displayForm(
                        first_item.attr('data-type'),
                        first_item.attr('data-value'),
                        first_item.attr('data-action'),
@@ -768,11 +768,11 @@ var Privacy = (function () {
      * @param {string} iq
      * @return {undefined}
      */
-    self.displayFormPrivacy = function(type, value, action, order, presence_in, presence_out, message, iq) {
+    self.displayForm = function(type, value, action, order, presence_in, presence_out, message, iq) {
 
         try {
             // Reset the form
-            clearFormPrivacy();
+            self.clearForm();
             
             // Apply the action
             $('#privacy .privacy-first input[name="action"][value="' + action + '"]').attr('checked', true);
@@ -846,7 +846,7 @@ var Privacy = (function () {
      * @public
      * @return {undefined}
      */
-    self.clearFormPrivacy = function() {
+    self.clearForm = function() {
 
         try {
             // Uncheck checkboxes & radio inputs
@@ -873,7 +873,7 @@ var Privacy = (function () {
      * @public
      * @return {undefined}
      */
-    self.disableFormPrivacy = function() {
+    self.disableForm = function() {
 
         try {
             $('#privacy .privacy-form input, #privacy .privacy-form select, #privacy .privacy-active input').attr('disabled', true);
@@ -890,7 +890,7 @@ var Privacy = (function () {
      * @param {string} rank
      * @return {undefined}
      */
-    self.enableFormPrivacy = function(rank) {
+    self.enableForm = function(rank) {
 
         try {
             $('#privacy .privacy-' + rank + ' input, #privacy .privacy-' + rank + ' select').removeAttr('disabled');
@@ -906,11 +906,11 @@ var Privacy = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchPrivacy = function() {
+    self.instance = function() {
 
         try {
             // Click events
-            $('#privacy .bottom .finish').click(closePrivacy);
+            $('#privacy .bottom .finish').click(Privacy.close);
             
             // Placeholder events
             $('#privacy input[placeholder]').placeholder();
@@ -939,15 +939,15 @@ var Privacy = (function () {
                 
                 for(s in status) {
                     if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
-                        changePrivacy('', status[s]);
+                        self.change('', status[s]);
                 }
                 
                 // Remove from server
-                setPrivacy(list);
+                self.set(list);
                 
                 // Reset the form
-                clearFormPrivacy();
-                disableFormPrivacy();
+                self.clearForm();
+                self.disableForm();
                 
                 return false;
             });
@@ -981,24 +981,24 @@ var Privacy = (function () {
                 $(this).val('');
                 
                 // Reset the form
-                clearFormPrivacy();
-                disableFormPrivacy();
+                self.clearForm();
+                self.disableForm();
                 
                 // Must reload the list items?
                 if(existed) {
-                    displayItemsPrivacy();
+                    self.displayItems();
                     $('#privacy .privacy-item select').removeAttr('disabled');
                 }
             });
             
-            $('#privacy .privacy-head .list-left select').change(displayItemsPrivacy);
+            $('#privacy .privacy-head .list-left select').change(self.displayItems);
             
             $('#privacy .privacy-item select').change(function() {
                 // Get the selected item
                 var item = $(this).find('option:selected');
                 
                 // Display the data!
-                displayFormPrivacy(
+                self.displayForm(
                        item.attr('data-type'),
                        item.attr('data-value'),
                        item.attr('data-action'),
@@ -1019,12 +1019,12 @@ var Privacy = (function () {
                 $('#privacy .privacy-item select').attr('disabled', true);
                 
                 // Reset the form
-                clearFormPrivacy();
-                disableFormPrivacy();
+                self.clearForm();
+                self.disableForm();
                 
                 // Enable first form item
-                enableFormPrivacy('first');
-                enableFormPrivacy('active');
+                self.enableForm('first');
+                self.enableForm('active');
                 
                 return false;
             });
@@ -1060,16 +1060,16 @@ var Privacy = (function () {
                     
                     for(s in status) {
                         if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
-                            changePrivacy('', status[s]);
+                            self.change('', status[s]);
                     }
                 }
                 
                 // Synchronize it with server
-                pushPrivacy(list, [], [item], [], [], [], [], [], [], hash, 'remove');
+                self.push(list, [], [item], [], [], [], [], [], [], hash, 'remove');
                 
                 // Reset the form
-                clearFormPrivacy();
-                disableFormPrivacy();
+                self.clearForm();
+                self.disableForm();
                 
                 return false;
             });
@@ -1138,7 +1138,7 @@ var Privacy = (function () {
                 }
                 
                 // Push item to the server!
-                pushPrivacy(
+                self.push(
                         item_list,
                         [item_type],
                         [item_value],
@@ -1155,11 +1155,11 @@ var Privacy = (function () {
             });
             
             $('#privacy .privacy-first input').change(function() {
-                enableFormPrivacy('second');
+                self.enableForm('second');
             });
             
             $('#privacy .privacy-second input').change(function() {
-                enableFormPrivacy('third');
+                self.enableForm('third');
             });
             
             $('#privacy .privacy-third input[type="checkbox"]').change(function() {
@@ -1218,12 +1218,12 @@ var Privacy = (function () {
                 
                 // Change the current list status
                 if($(this).filter(':checked').size())
-                    changePrivacy(list_name, state_name);
+                    self.change(list_name, state_name);
                 else
-                    changePrivacy('', state_name);
+                    self.change('', state_name);
             });
         } catch(e) {
-            Console.error('Privacy.launch', e);
+            Console.error('Privacy.instance', e);
         }
 
     };

@@ -52,7 +52,7 @@ var Chat = (function () {
                 
                 // XMPP-ID
                 else if(xid.indexOf('@') != -1)
-                    name = getBuddyName(xid);
+                    name = Name.getBuddy(xid);
                 
                 // Gateway
                 else
@@ -67,7 +67,7 @@ var Chat = (function () {
                 
                 else if(type == 'groupchat') {
                     // Try to read the room stored configuration
-                    if(!isAnonymous() && (!nickname || !password || !title)) {
+                    if(!Utils.isAnonymous() && (!nickname || !password || !title)) {
                         // Catch the room data
                         var fData = $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'favorites', xid)));
                         var fNick = fData.find('nick').text();
@@ -226,7 +226,7 @@ var Chat = (function () {
             
             // Click event: user-infos
             $(path + 'tools-infos').click(function() {
-                openUserInfos(xid);
+                UserInfos.open(xid);
             });
         } catch(e) {
             Console.error('Chat.generate', e);
@@ -258,19 +258,19 @@ var Chat = (function () {
             if(type == 'groupchat') {
                 specialClass = ' groupchat-default';
                 
-                if(isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))
+                if(Utils.isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))
                     show_close = false;
             }
             
             // Generate the HTML code
-            var html = '<div class="' + id + ' switcher chan" onclick="return Interface.switchChan(\'' + encodeOnclick(id) + '\')">' + 
+            var html = '<div class="' + id + ' switcher chan" onclick="return Interface.switchChan(\'' + Utils.encodeOnclick(id) + '\')">' + 
                     '<div class="icon talk-images' + specialClass + '"></div>' + 
                     
                     '<div class="name">' + nick.htmlEnc() + '</div>';
             
             // Show the close button if not MUC and not anonymous
             if(show_close)
-                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return Interface.quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
+                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return Interface.quitThisChat(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(type) + '\');">x</div>';
             
             // Close the HTML
             html += '</div>';
@@ -357,8 +357,8 @@ var Chat = (function () {
                         $('#' + hash + ' .user-message').removeClass('user-message').addClass('old-message');
                         
                         // Regenerate user names
-                        $('#' + hash + ' .one-group.' + my_hash + ' b.name').text(getBuddyName(Common.getXID()));
-                        $('#' + hash + ' .one-group.' + friend_hash + ' b.name').text(getBuddyName(xid));
+                        $('#' + hash + ' .one-group.' + my_hash + ' b.name').text(Name.getBuddy(Common.getXID()));
+                        $('#' + hash + ' .one-group.' + friend_hash + ' b.name').text(Name.getBuddy(xid));
                         
                         // Regenerate group dates
                         $('#' + hash + ' .one-group').each(function() {
@@ -381,15 +381,15 @@ var Chat = (function () {
                         $(this).hide();
                         
                         // Send the subscribe request
-                        addThisContact(xid, nick);
+                        Roster.addThisContact(xid, nick);
                     }).show();
             }
             
             // We catch the user's informations (like this avatar, vcard, and so on...)
-            getUserInfos(hash, xid, nick, type);
+            UserInfos.get(hash, xid, nick, type);
             
             // The icons-hover functions
-            tooltipIcons(xid, hash);
+            Tooltip.icons(xid, hash);
             
             // The event handlers
             var inputDetect = $('#page-engine #' + hash + ' .message-area');

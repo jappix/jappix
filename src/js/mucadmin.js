@@ -27,7 +27,7 @@ var MUCAdmin = (function () {
      * @param {string} aff
      * @return {undefined}
      */
-    self.openMucAdmin = function(xid, aff) {
+    self.open = function(xid, aff) {
 
         try {
             // Popup HTML content
@@ -65,22 +65,22 @@ var MUCAdmin = (function () {
                             
                             '<label>' + Common._e("Member list") + '</label>' + 
                             '<div class="aut-member aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
                             '<label>' + Common._e("Owner list") + '</label>' + 
                             '<div class="aut-owner aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'owner\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'owner\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
                             '<label>' + Common._e("Administrator list") + '</label>' + 
                             '<div class="aut-admin aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'admin\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'admin\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
                             '<label>' + Common._e("Outcast list") + '</label>' + 
                             '<div class="aut-outcast aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                         '</fieldset>' + 
                     '</div>' + 
@@ -90,7 +90,7 @@ var MUCAdmin = (function () {
                             '<legend>' + Common._e("Others") + '</legend>' + 
                             
                             '<label>' + Common._e("Destroy this MUC") + '</label>' + 
-                            '<a href="#" onclick="return destroyMucAdmin();">' + Common._e("Yes, let's do it!") + '</a>' + 
+                            '<a href="#" onclick="return MUCAdmin.destroy();">' + Common._e("Yes, let's do it!") + '</a>' + 
                         '</fieldset>' + 
                     '</div>' + 
                 '</div>' + 
@@ -120,12 +120,12 @@ var MUCAdmin = (function () {
                             
                             '<label>' + Common._e("Member list") + '</label>' + 
                             '<div class="aut-member aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'member\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                             
                             '<label>' + Common._e("Outcast list") + '</label>' + 
                             '<div class="aut-outcast aut-group">' + 
-                                '<a href="#" class="aut-add" onclick="return addInputMucAdmin(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
+                                '<a href="#" class="aut-add" onclick="return MUCAdmin.addInput(\'\', \'outcast\');">' + Common._e("Add an input") + '</a>' + 
                             '</div>' + 
                         '</fieldset>' + 
                     '</div>' + 
@@ -141,24 +141,24 @@ var MUCAdmin = (function () {
             
             // Create the popup
             if(aff == 'owner')
-                createPopup('mucadmin', html_full);
+                Popup.create('mucadmin', html_full);
             if(aff == 'admin')
-                createPopup('mucadmin', html_partial);
+                Popup.create('mucadmin', html_partial);
             
             // Associate the events
-            launchMucAdmin();
+            self.instance();
                 
             // We get the affiliated user's privileges
             if(aff == 'owner') {
-                queryMucAdmin(xid, 'member');
-                queryMucAdmin(xid, 'owner');
-                queryMucAdmin(xid, 'admin');
-                queryMucAdmin(xid, 'outcast');
+                self.query(xid, 'member');
+                self.query(xid, 'owner');
+                self.query(xid, 'admin');
+                self.query(xid, 'outcast');
                 // We query the room to edit
                 DataForm.go(xid, 'muc', '', '', 'mucadmin');
             } else if(aff == 'admin') {
-                queryMucAdmin(xid, 'member');
-                queryMucAdmin(xid, 'outcast');
+                self.query(xid, 'member');
+                self.query(xid, 'outcast');
             }
         } catch(e) {
             Console.error('MUCAdmin.open', e);
@@ -172,11 +172,11 @@ var MUCAdmin = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeMucAdmin = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('mucadmin');
+            Popup.destroy('mucadmin');
         } catch(e) {
             Console.error('MUCAdmin.close', e);
         } finally {
@@ -192,7 +192,7 @@ var MUCAdmin = (function () {
      * @param {string} element
      * @return {boolean}
      */
-    self.removeInputMucAdmin = function(element) {
+    self.removeInput = function(element) {
 
         try {
             var path = $(element).parent();
@@ -203,7 +203,7 @@ var MUCAdmin = (function () {
             // Then, we add a special class to the input
             path.find('input').addClass('aut-dustbin');
         } catch(e) {
-            Console.error('MUCAdmin.removeInputMucAdmin', e);
+            Console.error('MUCAdmin.removeInput', e);
         } finally {
             return false;
         }
@@ -218,7 +218,7 @@ var MUCAdmin = (function () {
      * @param {type} affiliation
      * @return {boolean}
      */
-    self.addInputMucAdmin = function(xid, affiliation) {
+    self.addInput = function(xid, affiliation) {
 
         try {
             var hash = hex_md5(xid + affiliation);
@@ -233,7 +233,7 @@ var MUCAdmin = (function () {
             
             // Click event
             $('#mucadmin .' + hash + ' .aut-remove').click(function() {
-                return removeInputMucAdmin(this);
+                return self.removeInput(this);
             });
             
             // Focus on the input we added
@@ -251,30 +251,13 @@ var MUCAdmin = (function () {
     };
 
 
-    /**
-     * Handles the MUC admin form
-     * @public
-     * @param {type} name
-     * @return {undefined}
-     */
-    self.handleMucAdminAuth = function() {
-
-        try {
-            // CODE
-        } catch(e) {
-            Console.error('MUCAdmin.handleAuth', e);
-        }
-
-    };
-
-
 	/**
      * Handles the MUC admin form
      * @public
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleMucAdminAuth = function(iq) {
+    self.handleAuth = function(iq) {
 
         try {
             // We got the authorizations results
@@ -284,7 +267,7 @@ var MUCAdmin = (function () {
                 var affiliation = $(this).attr('affiliation');
                 
                 // We create one input for one XID
-                addInputMucAdmin(xid, affiliation);
+                self.addInput(xid, affiliation);
             });
             
             // Hide the wait icon
@@ -305,7 +288,7 @@ var MUCAdmin = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.queryMucAdmin = function(xid, type) {
+    self.query = function(xid, type) {
 
         try {
             // Show the wait icon
@@ -320,7 +303,7 @@ var MUCAdmin = (function () {
             var iqQuery = iq.setQuery(NS_MUC_ADMIN);
             iqQuery.appendChild(iq.buildNode('item', {'affiliation': type, 'xmlns': NS_MUC_ADMIN}));
             
-            con.send(iq, handleMucAdminAuth);
+            con.send(iq, self.handleAuth);
         } catch(e) {
             Console.error('MUCAdmin.query', e);
         }
@@ -334,7 +317,7 @@ var MUCAdmin = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.sendMucAdminTopic = function(xid) {
+    self.sendTopic = function(xid) {
 
         try {
             // We get the new topic
@@ -363,7 +346,7 @@ var MUCAdmin = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.sendMucAdminAuth = function(xid) {
+    self.sendAuth = function(xid) {
 
         try {
             // We define the values array
@@ -416,7 +399,7 @@ var MUCAdmin = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleDestroyMucAdminIQ = function(iq) {
+    self.handleDestroyIQ = function(iq) {
 
         try {
             if(!Error.handleReply(iq)) {
@@ -426,7 +409,7 @@ var MUCAdmin = (function () {
                 Interface.quitThisChat(room, hash, 'groupchat');
                 
                 // We close the muc admin popup
-                closeMucAdmin();
+                self.close();
                 
                 // We tell the user that all is okay
                 Board.openThisInfo(5);
@@ -453,7 +436,7 @@ var MUCAdmin = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.destroyMucAdminIQ = function(xid) {
+    self.destroyIQ = function(xid) {
 
         try {
             // We ask the server to delete the room
@@ -464,7 +447,7 @@ var MUCAdmin = (function () {
             var iqQuery = iq.setQuery(NS_MUC_OWNER);
             iqQuery.appendChild(iq.buildNode('destroy', {'xmlns': NS_MUC_OWNER}));
             
-            con.send(iq, handleDestroyMucAdminIQ);
+            con.send(iq, self.handleDestroyIQ);
             
             Console.info('MUC admin destroy sent: ' + xid);
         } catch(e) {
@@ -481,7 +464,7 @@ var MUCAdmin = (function () {
      * @public
      * @return {undefined}
      */
-    self.destroyMucAdmin = function() {
+    self.destroy = function() {
 
         try {
             // We get the XID of the current room
@@ -491,7 +474,7 @@ var MUCAdmin = (function () {
             $('#mucadmin .wait').show();
             
             // We send the iq
-            destroyMucAdminIQ(xid);
+            self.destroyIQ(xid);
         } catch(e) {
             Console.error('MUCAdmin.destroy', e);
         }
@@ -504,18 +487,18 @@ var MUCAdmin = (function () {
      * @public
      * @return {undefined}
      */
-    self.sendMucAdmin = function() {
+    self.send = function() {
 
         try {
             // We get the XID of the current room
             var xid = $('#mucadmin .mucadmin-head-jid').text();
             
             // We change the room topic
-            sendMucAdminTopic(xid);
+            self.sendTopic(xid);
             
             // We send the needed queries
             DataForm.send('x', 'submit', 'submit', $('#mucadmin .mucadmin-results').attr('data-session'), xid, '', '', 'mucadmin');
-            sendMucAdminAuth(xid);
+            self.sendAuth(xid);
         } catch(e) {
             Console.error('MUCAdmin.send', e);
         }
@@ -528,14 +511,14 @@ var MUCAdmin = (function () {
      * @public
      * @return {boolean}
      */
-    self.saveMucAdmin = function() {
+    self.save = function() {
 
         try {
             // We send the new options
-            sendMucAdmin();
+            self.send();
             
             // And we quit the popup
-            return closeMucAdmin();
+            return self.close();
         } catch(e) {
             Console.error('MUCAdmin.save', e);
         }
@@ -548,18 +531,18 @@ var MUCAdmin = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchMucAdmin = function() {
+    self.instance = function() {
 
         try {
             // Click events
             $('#mucadmin .bottom .finish').click(function() {
                 if($(this).is('.cancel'))
-                    return closeMucAdmin();
+                    return self.close();
                 if($(this).is('.save'))
-                    return saveMucAdmin();
+                    return self.save();
             });
         } catch(e) {
-            Console.error('MUCAdmin.launch', e);
+            Console.error('MUCAdmin.instance', e);
         }
 
     };

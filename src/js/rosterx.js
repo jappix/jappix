@@ -26,7 +26,7 @@ var RosterX = (function () {
      * @param {string} data
      * @return {undefined}
      */
-    self.openRosterX = function(data) {
+    self.open = function(data) {
 
         try {
             // Popup HTML content
@@ -48,13 +48,13 @@ var RosterX = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('rosterx', html);
+            Popup.create('rosterx', html);
             
             // Associate the events
-            launchRosterX();
+            self.instance();
             
             // Parse the data
-            parseRosterX(data);
+            self.parse(data);
             
             Console.log('Roster Item Exchange popup opened.');
         } catch(e) {
@@ -69,11 +69,11 @@ var RosterX = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeRosterX = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('rosterx');
+            Popup.destroy('rosterx');
         } catch(e) {
             Console.error('RosterX.close', e);
         } finally {
@@ -89,7 +89,7 @@ var RosterX = (function () {
      * @param {string} data
      * @return {undefined}
      */
-    self.parseRosterX = function(data) {
+    self.parse = function(data) {
 
         try {
             // Main selector
@@ -108,7 +108,7 @@ var RosterX = (function () {
                     group = '<groups>' + group + '</groups>';
                 
                 // Display it!
-                displayRosterX($(this).attr('jid'), $(this).attr('name'), group, $(this).attr('action'));
+                self.display($(this).attr('jid'), $(this).attr('name'), group, $(this).attr('action'));
             });
             
             // Click to check/uncheck
@@ -142,7 +142,7 @@ var RosterX = (function () {
      * @param {string} action
      * @return {boolean}
      */
-    self.displayRosterX = function(xid, nick, group, action) {
+    self.display = function(xid, nick, group, action) {
 
         try {
             // End if no XID
@@ -180,7 +180,7 @@ var RosterX = (function () {
      * @public
      * @return {undefined}
      */
-    self.saveRosterX = function() {
+    self.save = function() {
 
         try {
             // Send the requests
@@ -207,8 +207,8 @@ var RosterX = (function () {
                     // Buddy add
                     case 'add':
                         if(!Common.exists(roster_item)) {
-                            sendSubscribe(xid, 'subscribe');
-                            sendRoster(xid, '', nick, group_arr);
+                            Presence.sendSubscribe(xid, 'subscribe');
+                            Roster.send(xid, '', nick, group_arr);
                         }
                         
                         break;
@@ -216,21 +216,21 @@ var RosterX = (function () {
                     // Buddy edit
                     case 'modify':
                         if(Common.exists(roster_item))
-                            sendRoster(xid, '', nick, group_arr);
+                            Roster.send(xid, '', nick, group_arr);
                         
                         break;
                     
                     // Buddy delete
                     case 'delete':
                         if(Common.exists(roster_item))
-                            sendRoster(xid, 'remove');
+                            Roster.send(xid, 'remove');
                         
                         break;
                 }
             });
             
             // Close the popup
-            closeRosterX();
+            self.close();
         } catch(e) {
             Console.error('RosterX.save', e);
         }
@@ -243,15 +243,15 @@ var RosterX = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchRosterX = function() {
+    self.instance = function() {
 
         try {
             // Click events
             $('#rosterx .bottom .finish').click(function() {
                 if($(this).is('.save'))
-                    return saveRosterX();
+                    return self.save();
                 if($(this).is('.cancel'))
-                    return closeRosterX();
+                    return self.close();
             });
             
             $('#rosterx .rosterx-head a').click(function() {
@@ -263,7 +263,7 @@ var RosterX = (function () {
                 return false;
             });
         } catch(e) {
-            Console.error('RosterX.launch', e);
+            Console.error('RosterX.instance', e);
         }
 
     };

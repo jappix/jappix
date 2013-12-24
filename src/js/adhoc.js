@@ -45,7 +45,7 @@ var AdHoc = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('adhoc', html);
+            Popup.create('adhoc', html);
             
             // Associate the events
             self.launch();
@@ -67,7 +67,7 @@ var AdHoc = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('adhoc');
+            Popup.destroy('adhoc');
         } catch(e) {
             Console.error('AdHoc.close', e);
         } finally {
@@ -90,10 +90,10 @@ var AdHoc = (function () {
             self.open();
             
             // Add a XID marker
-            $('#adhoc .adhoc-head').html('<b>' + getBuddyName(xid).htmlEnc() + '</b> (' + xid.htmlEnc() + ')');
+            $('#adhoc .adhoc-head').html('<b>' + Name.getBuddy(xid).htmlEnc() + '</b> (' + xid.htmlEnc() + ')');
             
             // Get the highest entity resource
-            var highest = highestPriority(xid);
+            var highest = Presence.highestPriority(xid);
             
             if(highest)
                 xid = highest;

@@ -49,7 +49,7 @@ var Directory = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('directory', html);
+            Popup.create('directory', html);
             
             // Associate the events
             self.instance();
@@ -74,7 +74,7 @@ var Directory = (function () {
 
         try {
             // Destroy the popup
-            destroyPopup('directory');
+            Popup.destroy('directory');
         } catch(e) {
             Console.error('Directory.close', e);
         } finally {

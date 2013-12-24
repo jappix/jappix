@@ -18,7 +18,7 @@ var Console = new function () {
 
   /* Variables */
   self._available = typeof(window.console) != 'undefined';
-  self._has = self._available && Common.isDeveloper();
+  self._has = self._available && System.isDeveloper();
   self._console = self._available ? console : {};
 
 

@@ -34,9 +34,9 @@ var Interface = (function () {
 
         try {
             // Anonymous mode?
-            var head_name = getName();
+            var head_name = Name.get();
             
-            if(isAnonymous())
+            if(Utils.isAnonymous())
                 head_name = ANONYMOUS_ROOM + ' (' + Common._e("anonymous mode") + ')';
             
             // We change the title to give essential informations
@@ -123,7 +123,7 @@ var Interface = (function () {
         try {
             return  '<input type="hidden" name="MAX_FILE_SIZE" value="' + Common.encodeQuotes(JAPPIX_MAX_FILE_SIZE) + '">' + 
                     '<input type="hidden" name="user" value="' + Common.encodeQuotes(Common.getXID()) + '" />' + 
-                    '<input type="hidden" name="location" value="' + Common.encodeQuotes(generateURL(JAPPIX_LOCATION)) + '" />' + 
+                    '<input type="hidden" name="location" value="' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" />' + 
                     '<input type="hidden" name="id" value="' + (new Date()).getTime() + '" />' + 
                     '<input type="file" name="file" required="" />' + 
                     '<input type="submit" value="' + Common._e("Send") + '" />';
@@ -262,7 +262,7 @@ var Interface = (function () {
         try {
             if(type == 'groupchat') {
                 // Send our unavailable presence
-                sendPresence(xid + '/' + getMUCNick(hash), 'unavailable');
+                Presence.send(xid + '/' + Name.getMUCNick(hash), 'unavailable');
                 
                 // Remove all presence database entries for this groupchat
                 var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
@@ -285,7 +285,7 @@ var Interface = (function () {
                             // Remove the presence for this XID
                             DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
                             DataStore.removeDB(DESKTOP_HASH, 'presence-resources', cXID);
-                            presenceFunnel(cXID, cHash);
+                            Presence.funnel(cXID, cHash);
                         }
                     }
                 }
@@ -538,12 +538,12 @@ var Interface = (function () {
             $('#buddy-list .one-group').show();
             
             if(SEARCH_FILTERED)
-                funnelFilterBuddySearch();
+                Search.funnelFilterBuddy();
             
             // Store this in the options
-            if((from == 'roster') && loadedOptions()) {
+            if((from == 'roster') && Options.loaded()) {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
-                storeOptions();
+                Options.store();
             }
         } catch(e) {
             Console.error('Interface.showAllBuddies', e);
@@ -576,15 +576,15 @@ var Interface = (function () {
             $('.hidden-buddy').hide();
             
             // We check the groups to hide
-            updateGroups();
+            Roster.updateGroups();
             
             if(SEARCH_FILTERED)
-                funnelFilterBuddySearch();
+                Search.funnelFilterBuddy();
             
             // Store this in the options
-            if((from == 'roster') && loadedOptions()) {
+            if((from == 'roster') && Options.loaded()) {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
-                storeOptions();
+                Options.store();
             }
         } catch(e) {
             Console.error('Interface.showOnlineBuddies', e);

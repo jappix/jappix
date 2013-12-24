@@ -66,7 +66,7 @@ var Message = (function () {
             var GCUser = false;
             
             // This message comes from a groupchat user
-            if(isPrivate(xid) && ((type == 'chat') || !type) && resource) {
+            if(Utils.isPrivate(xid) && ((type == 'chat') || !type) && resource) {
                 GCUser = true;
                 xid = from;
                 hash = hex_md5(xid);
@@ -86,8 +86,8 @@ var Message = (function () {
             }
             
             // Received message
-            if(hasReceived(message))
-                return messageReceived(hash, id);
+            if(Receipts.hasReceived(message))
+                return Receipts.messageReceived(hash, id);
             
             // Chatstate message
             if(node && !delay && ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
@@ -203,7 +203,7 @@ var Message = (function () {
             
             // OOB message
             if(message.getChild('x', NS_XOOB)) {
-                handleOOB(from, id, 'x', node);
+                OOB.handle(from, id, 'x', node);
                 
                 Console.log('Message OOB request from: ' + xid);
                 
@@ -279,7 +279,7 @@ var Message = (function () {
                             }
                             
                             // Store the PEP event (and display it)
-                            storePEP(xid, 'mood', fValue, tText);
+                            PEP.store(xid, 'mood', fValue, tText);
                             
                             break;
                         
@@ -304,7 +304,7 @@ var Message = (function () {
                             }
                             
                             // Store the PEP event (and display it)
-                            storePEP(xid, 'activity', fValue, tText);
+                            PEP.store(xid, 'activity', fValue, tText);
                             
                             break;
                         
@@ -318,7 +318,7 @@ var Message = (function () {
                             var tURI = iTune.find('uri').text();
                             
                             // Store the PEP event (and display it)
-                            storePEP(xid, 'tune', tArtist, tTitle, tSource, tURI);
+                            PEP.store(xid, 'tune', tArtist, tTitle, tSource, tURI);
                             
                             break;
                         
@@ -333,16 +333,16 @@ var Message = (function () {
                             var tLocality = iGeoloc.find('locality').text();
                             var tRegion = iGeoloc.find('region').text();
                             var tCountry = iGeoloc.find('country').text();
-                            var tHuman = humanPosition(tLocality, tRegion, tCountry);
+                            var tHuman = PEP.humanPosition(tLocality, tRegion, tCountry);
                             
                             // Store the PEP event (and display it)
-                            storePEP(xid, 'geoloc', tLat, tLon, tHuman);
+                            PEP.store(xid, 'geoloc', tLat, tLon, tHuman);
                             
                             break;
                         
                         // Microblog
                         case NS_URN_MBLOG:
-                            displayMicroblog(message, xid, hash, 'mixed', 'push');
+                            Microblog.display(message, xid, hash, 'mixed', 'push');
                             
                             break;
                         
@@ -350,7 +350,7 @@ var Message = (function () {
                         case NS_URN_INBOX:
                             // Do not handle friend's notifications
                             if(xid == Common.getXID())
-                                handleNotifications(message);
+                                Notification.handle(message);
                             
                             break;
                     }
@@ -412,7 +412,7 @@ var Message = (function () {
                     
                     // If this is not an old message
                     if(message_type == 'user-message') {
-                        var myNick = getMUCNick(hash);
+                        var myNick = Name.getMUCNick(hash);
                         
                         // If an user quoted our nick (with some checks)
                         var regex = new RegExp('((^)|( )|(@))' + Common.escapeRegex(myNick) + '(($)|(:)|(,)|( ))', 'gi');
@@ -448,12 +448,12 @@ var Message = (function () {
                     var chatType = 'chat';
                     
                     // Must send a receipt notification?
-                    if(hasReceipt(message) && (id != null))
-                        sendReceived(type, from, id);
+                    if(Receipts.has(message) && (id != null))
+                        Receipts.sendReceived(type, from, id);
                     
                     // It does not come from a groupchat user, get the full name
                     if(!GCUser)
-                        fromName = getBuddyName(xid);
+                        fromName = Name.getBuddy(xid);
                     else
                         chatType = 'private';
                     
@@ -576,7 +576,7 @@ var Message = (function () {
             }
             
             // /part shortcut
-            else if(body.match(/^\/part\s*(.*)/) && (!isAnonymous() || (isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))))
+            else if(body.match(/^\/part\s*(.*)/) && (!Utils.isAnonymous() || (Utils.isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))))
                 Interface.quitThisChat(xid, hex_md5(xid), type);
             
             // /whois shortcut
@@ -585,20 +585,20 @@ var Message = (function () {
                 
                 // Groupchat WHOIS
                 if(type == 'groupchat') {
-                    var nXID = getMUCUserXID(xid, whois_xid);
+                    var nXID = Utils.getMUCUserXID(xid, whois_xid);
                     
                     if(!nXID)
                         Board.openThisInfo(6);
                     else
-                        openUserInfos(nXID);
+                        UserInfos.open(nXID);
                 }
                 
                 // Chat or private WHOIS
                 else {
                     if(!whois_xid)
-                        openUserInfos(xid);
+                        UserInfos.open(xid);
                     else
-                        openUserInfos(whois_xid);
+                        UserInfos.open(whois_xid);
                 }
                 
                 // Reset chatstate
@@ -614,7 +614,7 @@ var Message = (function () {
                 var html_escape = genMsg != 'XHTML';
                 
                 // Receipt request
-                var receipt_request = receiptRequest(hash);
+                var receipt_request = Receipts.request(hash);
                 
                 if(receipt_request)
                     aMsg.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
@@ -632,11 +632,11 @@ var Message = (function () {
                 // Finally we display the message we just sent
                 var my_xid = Common.getXID();
                 
-                self.display('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
+                self.display('chat', my_xid, hash, Name.getBuddy(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
                 
                 // Receipt timer
                 if(receipt_request)
-                    checkReceived(hash, id);
+                    Receipts.checkReceived(hash, id);
             }
             
             // Groupchat message type
@@ -656,9 +656,9 @@ var Message = (function () {
                     var nick = body.replace(/^\/nick (.+)/, '$1');
                     
                     // Does not exist yet?
-                    if(!getMUCUserXID(xid, nick)) {
+                    if(!Utils.getMUCUserXID(xid, nick)) {
                         // Send a new presence
-                        sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, Error.handleReply);
+                        Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Error.handleReply);
                         
                         // Change the stored nickname
                         $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
@@ -672,7 +672,7 @@ var Message = (function () {
                 else if(body.match(/^\/msg (\S+)\s+(.+)/)) {
                     var nick = RegExp.$1;
                     var body = RegExp.$2;
-                    var nXID = getMUCUserXID(xid, nick);
+                    var nXID = Utils.getMUCUserXID(xid, nick);
                     
                     // We check if the user exists
                     if(!nXID)
@@ -705,7 +705,7 @@ var Message = (function () {
                 else if(body.match(/^\/ban (.*)/)) {
                                     nick = $.trim(RegExp.$1);
                                     reason='';
-                    var nXID = getMUCUserRealXID(xid, nick);
+                    var nXID = Utils.getMUCUserRealXID(xid, nick);
                                     // We check if the user exists, if not it may be because a reason is given
                                     // we do not check it at first because the nickname could contain ':'
                                     if(!nXID && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
@@ -715,7 +715,7 @@ var Message = (function () {
                                             nick = reason;
                                             reason='';
                                         }
-                                        var nXID = getMUCUserXID(xid, nick);
+                                        var nXID = Utils.getMUCUserXID(xid, nick);
                                     }
                     
                     // We check if the user exists
@@ -745,7 +745,7 @@ var Message = (function () {
                 else if(body.match(/^\/kick (.*)/)) {
                                     nick = $.trim(RegExp.$1);
                                     reason='';
-                    var nXID = getMUCUserRealXID(xid, nick);
+                    var nXID = Utils.getMUCUserRealXID(xid, nick);
                                     // We check if the user exists, if not it may be because a reason is given
                                     // we do not check it at first because the nickname could contain ':'
                                     if(!nXID && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
@@ -755,7 +755,7 @@ var Message = (function () {
                                             nick = reason;
                                             reason='';
                                         }
-                                        var nXID = getMUCUserXID(xid, nick);
+                                        var nXID = Utils.getMUCUserXID(xid, nick);
                                     }
                     
                     // We check if the user exists

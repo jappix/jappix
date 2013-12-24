@@ -25,7 +25,7 @@ var vCard = (function () {
      * @public
      * @return {boolean}
      */
-    self.openVCard = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -141,13 +141,13 @@ var vCard = (function () {
             '</div>';
             
             // Create the popup
-            createPopup('vcard', html);
+            Popup.create('vcard', html);
             
             // Associate the events
-            launchVCard();
+            self.instance();
             
             // We get the VCard informations
-            getVCard(Common.getXID(), 'user');
+            self.get(Common.getXID(), 'user');
         } catch(e) {
             Console.error('vCard.open', e);
         } finally {
@@ -162,11 +162,11 @@ var vCard = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeVCard = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
-            destroyPopup('vcard');
+            Popup.destroy('vcard');
             
             // Create the welcome end popup?
             if(END_WELCOME) {
@@ -191,7 +191,7 @@ var vCard = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.switchVCard = function(id) {
+    self.switchTab = function(id) {
 
         try {
             $('#vcard .one-lap').removeClass('lap-active');
@@ -199,7 +199,7 @@ var vCard = (function () {
             $('#vcard .tab a').removeClass('tab-active');
             $('#vcard .tab a[data-key="' + id + '"]').addClass('tab-active');
         } catch(e) {
-            Console.error('vCard.switch', e);
+            Console.error('vCard.switchTab', e);
         } finally {
             return false;
         }
@@ -327,7 +327,7 @@ var vCard = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.createInputVCard = function(id, type) {
+    self.createInput = function(id, type) {
 
         try {
             // Generate the new ID
@@ -351,7 +351,7 @@ var vCard = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.getVCard = function(to, type) {
+    self.get = function(to, type) {
 
         try {
             // Generate a special ID
@@ -372,7 +372,7 @@ var vCard = (function () {
                 $('#vcard').attr('data-vcard', id);
                 
                 // Send the IQ
-                con.send(iq, handeUVCard);
+                con.send(iq, self.handleUser);
             }
             
             else {
@@ -384,7 +384,7 @@ var vCard = (function () {
                 
                 // Send the IQ
                 iq.setTo(to);
-                con.send(iq, handeBVCard);
+                con.send(iq, self.handleBuddy);
             }
         } catch(e) {
             Console.error('vCard.get', e);
@@ -399,10 +399,10 @@ var vCard = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handeUVCard = function(iq) {
+    self.handleUser = function(iq) {
 
         try {
-            handleVCard(iq, 'user');
+            self.handle(iq, 'user');
         } catch(e) {
             Console.error('vCard.handleUser', e);
         }
@@ -416,10 +416,10 @@ var vCard = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handeBVCard = function(iq) {
+    self.handleBuddy = function(iq) {
 
         try {
-            handleVCard(iq, 'buddy');
+            self.handle(iq, 'buddy');
         } catch(e) {
             Console.error('vCard.handleBuddy', e);
         }
@@ -434,7 +434,7 @@ var vCard = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.handleVCard = function(iq, type) {
+    self.handle = function(iq, type) {
 
         try {
             // Extract the data
@@ -465,9 +465,9 @@ var vCard = (function () {
                         var currentText = $(this).text();
                         
                         // Not yet added?
-                        if(!existArrayValue(values_yet, currentID)) {
+                        if(!Utils.existArrayValue(values_yet, currentID)) {
                             // Create an input if it does not exist
-                            createInputVCard(values_yet, type);
+                            self.createInput(values_yet, type);
                             
                             // Userinfos viewer popup
                             if((type == 'buddy') && currentText) {
@@ -493,9 +493,9 @@ var vCard = (function () {
                     var currentText = $(this).text();
                     
                     // Not yet added?
-                    if(!existArrayValue(values_yet, tokenname)) {
+                    if(!Utils.existArrayValue(values_yet, tokenname)) {
                         // Create an input if it does not exist
-                        createInputVCard(tokenname, type);
+                        self.createInput(tokenname, type);
                         
                         // Userinfos viewer popup
                         if((type == 'buddy') && currentText) {
@@ -510,7 +510,7 @@ var vCard = (function () {
                             
                             // Description modification
                             else if(tokenname == 'DESC')
-                                currentText = Filter.message(currentText, getBuddyName(iqFrom).htmlEnc(), true);
+                                currentText = Filter.message(currentText, Name.getBuddy(iqFrom).htmlEnc(), true);
                             
                             // Other stuffs
                             else
@@ -583,10 +583,9 @@ var vCard = (function () {
             if(type == 'user') {
                 $(path_vCard + ' .wait').hide();
                 $(path_vCard + ' .finish:first').removeClass('disabled');
+            } else {
+                BuddyInfos.vCard();
             }
-            
-            else
-                vCardBuddyInfos();
             
             Console.log('vCard received: ' + iqFrom);
         } catch(e) {
@@ -601,7 +600,7 @@ var vCard = (function () {
      * @public
      * @return {boolean}
      */
-    self.sendVCard = function() {
+    self.send = function() {
 
         try {
             // Initialize the IQ
@@ -708,7 +707,7 @@ var vCard = (function () {
             }
             
             // Close the vCard stuffs
-            closeVCard();
+            self.close();
             
             // Get our new avatar
             Avatar.get(Common.getXID(), 'force', 'true', 'forget');
@@ -728,7 +727,7 @@ var vCard = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchVCard = function() {
+    self.instance = function() {
 
         try {
             // Focus on the first input
@@ -740,7 +739,7 @@ var vCard = (function () {
             $('#vcard input[type="text"]').keyup(function(e) {
                 // Enter pressed: send the vCard
                 if((e.keyCode == 13) && !$('#vcard .finish.save').hasClass('disabled'))
-                    return sendVCard();
+                    return self.send();
             });
             
             // Click events
@@ -752,27 +751,27 @@ var vCard = (function () {
                 // Switch to the good tab
                 var key = parseInt($(this).attr('data-key'));
                 
-                return switchVCard(key);
+                return self.switchTab(key);
             });
             
             $('#vcard .avatar-delete').click(function() {
-                return deleteAvatar();
+                return self.deleteAvatar();
             });
             
             $('#vcard .bottom .finish').click(function() {
                 if($(this).is('.cancel'))
-                    return closeVCard();
+                    return self.close();
                 if($(this).is('.save') && !$(this).hasClass('disabled'))
-                    return sendVCard();
+                    return self.send();
                 
                 return false;
             });
             
             // Avatar upload vars
             var avatar_options = {
-                dataType:   'xml',
-                beforeSubmit:   waitAvatarUpload,
-                success:    handleAvatarUpload
+                dataType:       'xml',
+                beforeSubmit:   self.waitAvatarUpload,
+                success:        self.handleAvatarUpload
             };
             
             // Avatar upload form submit event
@@ -794,7 +793,7 @@ var vCard = (function () {
             // Placeholders
             $('#vcard-avatar input[type="text"]').placeholder();
         } catch(e) {
-            Console.error('vCard.launch', e);
+            Console.error('vCard.instance', e);
         }
 
     };

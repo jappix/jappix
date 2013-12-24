@@ -25,7 +25,7 @@ var Notification = (function () {
      * @public
      * @return {undefined}
      */
-    self.closeEmptyNotifications = function() {
+    self.closeEmpty = function() {
 
         try {
             if(!$('.one-notification').size()) {
@@ -43,7 +43,7 @@ var Notification = (function () {
      * @public
      * @return {undefined}
      */
-    self.checkNotifications = function() {
+    self.check = function() {
 
         try {
             // Define the selectors
@@ -70,7 +70,7 @@ var Notification = (function () {
                 $(nothing).show();
                 
                 // Purge the social inbox node
-                purgeNotifications();
+                self.purge();
             }
             
             // Update the page title
@@ -124,7 +124,7 @@ var Notification = (function () {
                     break;
                 
                 case 'invite_room':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common._e("would like you to join this chatroom:") + ' <em>' + data[0].htmlEnc() + '</em> ' + Common._e("Do you accept?");
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common._e("would like you to join this chatroom:") + ' <em>' + data[0].htmlEnc() + '</em> ' + Common._e("Do you accept?");
                     
                     break;
                 
@@ -136,62 +136,62 @@ var Notification = (function () {
                 case 'send':
                     yes_path = 'href="' + Common.encodeQuotes(data[1]) + '" target="_blank"';
                     
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("would like to send you a file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>') + ' ' + Common._e("Do you accept?");
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common.printf(Common._e("would like to send you a file: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>') + ' ' + Common._e("Do you accept?");
                     
                     break;
                 
                 case 'send_pending':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has received a file exchange request: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has received a file exchange request: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_accept':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has accepted to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has accepted to receive your file: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_reject':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has rejected to receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common.printf(Common._e("has rejected to receive your file: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'send_fail':
-                    text = '<b>' + getBuddyName(from).htmlEnc() + '</b> ' + Common.printf(Common._e("could not receive your file: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + Name.getBuddy(from).htmlEnc() + '</b> ' + Common.printf(Common._e("could not receive your file: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'rosterx':
-                    text = Common.printf(Common._e("Do you want to see the friends %s suggests you?").htmlEnc(), '<b>' + getBuddyName(from).htmlEnc() + '</b>');
+                    text = Common.printf(Common._e("Do you want to see the friends %s suggests you?").htmlEnc(), '<b>' + Name.getBuddy(from).htmlEnc() + '</b>');
                     
                     break;
                 
                 case 'comment':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("commented an item you follow: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("commented an item you follow: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'like':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("liked your post: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("liked your post: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'quote':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("quoted you somewhere: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("quoted you somewhere: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'wall':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("published on your wall: “%s”.").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("published on your wall: “%s”.").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'photo':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a photo (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a photo (%s).").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
                 
                 case 'video':
-                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a video (%s).").htmlEnc(), '<em>' + truncate(body, 25).htmlEnc() + '</em>');
+                    text = '<b>' + data[0].htmlEnc() + '</b> ' + Common.printf(Common._e("tagged you in a video (%s).").htmlEnc(), '<em>' + Utils.truncate(body, 25).htmlEnc() + '</em>');
                     
                     break;
 
@@ -293,7 +293,7 @@ var Notification = (function () {
                     
                     // The yes click function
                     $('.' + id + ' a.yes').click(function() {
-                        actionNotification(type, data, 'yes', id);
+                        self.action(type, data, 'yes', id);
                         
                         if(($(this).attr('href') == '#') && ($(this).attr('target') != '_blank'))
                             return false;
@@ -301,7 +301,7 @@ var Notification = (function () {
                     
                     // The no click function
                     $('.' + id + ' a.no').click(function() {
-                        return actionNotification(type, data, 'no', id);
+                        return self.action(type, data, 'no', id);
                     });
                     
                     // Get the user avatar
@@ -310,7 +310,7 @@ var Notification = (function () {
             }
             
             // We tell the user he has a new pending notification
-            checkNotifications();
+            self.check();
             
             Console.info('New notification: ' + from);
         } catch(e) {
@@ -329,15 +329,15 @@ var Notification = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.actionNotification = function(type, data, value, id) {
+    self.action = function(type, data, value, id) {
 
         try {
             // We launch a function depending of the type
             if((type == 'subscribe') && (value == 'yes'))
-                acceptSubscribe(data[0], data[1]);
+                Presence.acceptSubscribe(data[0], data[1]);
             
             else if((type == 'subscribe') && (value == 'no'))
-                sendSubscribe(data[0], 'unsubscribed');
+                Presence.sendSubscribe(data[0], 'unsubscribed');
             
             else if((type == 'invite_room') && (value == 'yes'))
                 Chat.checkCreate(data[0], 'groupchat');
@@ -346,32 +346,32 @@ var Notification = (function () {
                 HTTPReply.go(value, data[0]);
             
             if((type == 'send') && (value == 'yes'))
-                replyOOB(data[0], data[3], 'accept', data[2], data[4]);
+                OOB.reply(data[0], data[3], 'accept', data[2], data[4]);
             
             else if((type == 'send') && (value == 'no'))
-                replyOOB(data[0], data[3], 'reject', data[2], data[4]);
+                OOB.reply(data[0], data[3], 'reject', data[2], data[4]);
             
             else if((type == 'rosterx') && (value == 'yes'))
-                openRosterX(data[0]);
+                RosterX.open(data[0]);
             
             else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
                 if(value == 'yes') {
                     // Get the microblog item
-                    fromInfosMicroblog(data[2]);
+                    Microblog.fromInfos(data[2]);
                     
                     // Append the marker
                     $('#channel .top.individual').append('<input type="hidden" name="comments" value="' + Common.encodeQuotes(data[1]) + '" />');
                 }
                 
-                removeNotification(data[3]);
+                self.remove(data[3]);
             }
             
             // We remove the notification
             $('.notifications-content .' + id).remove();
             
             // We check if there's any other pending notification
-            closeEmptyNotifications();
-            checkNotifications();
+            self.closeEmpty();
+            self.check();
         } catch(e) {
             Console.error('Notification.action', e);
         } finally {
@@ -386,15 +386,15 @@ var Notification = (function () {
      * @public
      * @return {undefined}
      */
-    self.clearNotifications = function() {
+    self.clear = function() {
 
         try {
             // Remove notifications
             $('.one-notification').remove();
             
             // Refresh
-            closeEmptyNotifications();
-            checkNotifications();
+            self.closeEmpty();
+            self.check();
         } catch(e) {
             Console.error('Notification.clear', e);
         } finally {
@@ -409,7 +409,7 @@ var Notification = (function () {
      * @public
      * @return {undefined}
      */
-    self.getNotifications = function() {
+    self.get = function() {
 
         try {
             var iq = new JSJaCIQ();
@@ -418,7 +418,7 @@ var Notification = (function () {
             var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
             pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_INBOX, 'xmlns': NS_PUBSUB}));
             
-            con.send(iq, handleNotifications);
+            con.send(iq, self.handle);
             
             Console.log('Getting social notifications...');
         } catch(e) {
@@ -431,22 +431,22 @@ var Notification = (function () {
     /**
      * Handles the social notifications
      * @public
-     * @param {object} iq
+     * @param {object} stanza
      * @return {undefined}
      */
-    self.handleNotifications = function(iq) {
+    self.handle = function(stanza) {
 
         try {
             // Any error?
-            if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
+            if((stanza.getType() == 'error') && $(stanza.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                setupMicroblog('', NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
+                Microblog.setup('', NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
                 
                 Console.warn('Error while getting social notifications, trying to reconfigure the Pubsub node!');
             }
             
             // Selector
-            var items = $(iq.getNode()).find('item');
+            var items = $(stanza.getNode()).find('item');
             
             // Should we inverse?
             var inverse = true;
@@ -464,7 +464,7 @@ var Notification = (function () {
                 var current_xid = Common.explodeThis(':', $(this).find('author uri').text(), 1);
                 var current_name = $(this).find('author name').text();
                 var current_text = $(this).find('content[type="text"]:first').text();
-                var current_bname = getBuddyName(current_xid);
+                var current_bname = Name.getBuddy(current_xid);
                 var current_id = hex_md5(current_type + current_xid + current_href + current_text);
                 
                 // Choose the good name!
@@ -493,7 +493,7 @@ var Notification = (function () {
      * @param {object} parent
      * @return {undefined}
      */
-    self.sendNotification = function(xid, type, href, text, parent) {
+    self.send = function(xid, type, href, text, parent) {
 
         try {
             // Notification ID
@@ -512,7 +512,7 @@ var Notification = (function () {
             
             // Notification author (us)
             var author = entry.appendChild(iq.buildNode('author', {'xmlns': NS_ATOM}));
-            author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, getName()));
+            author.appendChild(iq.buildNode('name', {'xmlns': NS_ATOM}, Name.get()));
             author.appendChild(iq.buildNode('uri', {'xmlns': NS_ATOM}, 'xmpp:' + Common.getXID()));
             
             // Notification content
@@ -544,7 +544,7 @@ var Notification = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.removeNotification = function(id) {
+    self.remove = function(id) {
 
         try {
             var iq = new JSJaCIQ();
@@ -568,7 +568,7 @@ var Notification = (function () {
      * @param {type} name
      * @return {boolean}
      */
-    self.purgeNotifications = function() {
+    self.purge = function() {
 
         try {
             var iq = new JSJaCIQ();
@@ -592,7 +592,7 @@ var Notification = (function () {
      * @public
      * @return {undefined}
      */
-    self.adaptNotifications = function() {
+    self.adapt = function() {
 
         try {
             // Process the new height
@@ -621,7 +621,7 @@ var Notification = (function () {
 
         try {
             // Adapt the notifications height
-            $(window).resize(adaptNotifications);
+            $(window).resize(self.adapt);
         } catch(e) {
             Console.error('Notification.launch', e);
         }

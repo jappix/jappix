@@ -26,7 +26,7 @@ var Storage = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.getStorage = function(type) {
+    self.get = function(type) {
 
         /* REF: http://xmpp.org/extensions/xep-0049.html */
 
@@ -37,7 +37,7 @@ var Storage = (function () {
             var iqQuery = iq.setQuery(NS_PRIVATE);
             iqQuery.appendChild(iq.buildNode('storage', {'xmlns': type}));
             
-            con.send(iq, handleStorage);
+            con.send(iq, self.handle);
         } catch(e) {
             Console.error('Storage.get', e);
         }
@@ -51,7 +51,7 @@ var Storage = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleStorage = function(iq) {
+    self.handle = function(iq) {
 
         try {
             var handleXML = iq.getQuery();
@@ -65,7 +65,7 @@ var Storage = (function () {
             
             // No options and node not yet configured
             if(options.size() && !options.find('option').size() && (iq.getType() != 'error'))
-                openWelcome();
+                Welcome.open();
             
             // Parse the options xml
             options.find('option').each(function() {
@@ -129,10 +129,10 @@ var Storage = (function () {
                 Console.log('Options received.');
                 
                 // Now, get the inbox
-                getStorage(NS_INBOX);
+                self.get(NS_INBOX);
                 
                 // Geolocate the user
-                geolocate();
+                PEP.geolocate();
                 
                 $('.options-hidable').show();
             }
@@ -142,7 +142,7 @@ var Storage = (function () {
                 Console.log('Inbox received.');
                 
                 // Send the first presence!
-                firstPresence(DataStore.getDB(DESKTOP_HASH, 'checksum', 1));
+                Presence.sendFirst(DataStore.getDB(DESKTOP_HASH, 'checksum', 1));
                 
                 // Check we have new messages (play a sound if any unread messages)
                 if(Inbox.checkMessages()) {
