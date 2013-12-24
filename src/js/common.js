@@ -751,6 +751,28 @@ var Common = (function () {
 
 
     /**
+     * Watches for input value change (delays callback)
+     * @public
+     * @param {function} cb
+     * @return {function}
+     */
+    self.typewatch = function(cb) {
+
+        try {
+            var timer = 0;
+            
+            return function(callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            }
+        } catch(e) {
+            Console.error('Common.typewatch', e);
+        }
+
+    };
+
+
+    /**
      * Return class scope
      */
     return self;
