@@ -342,7 +342,7 @@ var DateUtils = (function () {
      * @param {string} node
      * @return {string}
      */
-    self.readMessageDelay = function() {
+    self.readMessageDelay = function(node) {
 
         try {
             // Initialize

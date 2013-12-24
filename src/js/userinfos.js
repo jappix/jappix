@@ -272,7 +272,7 @@ var UserInfos = (function () {
     self.displayBuddyComments = function() {
 
         try {
-            var value = DataStore.getDB(DESKTOP_HASH, 'rosternotes', xid);
+            var value = DataStore.getDB(Connection.desktop_hash, 'rosternotes', xid);
             
             if(value) {
                 $('#userinfos .rosternotes').val(value);
@@ -476,13 +476,13 @@ var UserInfos = (function () {
             var xid = $('#userinfos .buddy-xid').text();
             
             // Necessary to update?
-            var old_value = DataStore.getDB(DESKTOP_HASH, 'rosternotes', xid);
+            var old_value = DataStore.getDB(Connection.desktop_hash, 'rosternotes', xid);
             
             if((old_value == value) || (!old_value && !value))
                 return false;
             
             // Update the database
-            DataStore.setDB(DESKTOP_HASH, 'rosternotes', xid, value);
+            DataStore.setDB(Connection.desktop_hash, 'rosternotes', xid, value);
             
             // Send the new buddy storage values
             var iq = new JSJaCIQ();
@@ -491,7 +491,7 @@ var UserInfos = (function () {
             var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_ROSTERNOTES}));
             
             // We regenerate the XML
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'rosternotes' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'rosternotes' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values

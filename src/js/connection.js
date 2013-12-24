@@ -21,12 +21,12 @@ var Connection = (function () {
 
 
     /* Variables */
-    var CURRENT_SESSION = false;
-    var DESKTOP_HASH = null;
-    var CONNECTED = false;
-    var RECONNECT_TRY = 0;
-    var RECONNECT_TIMER = 0;
-    var RESUME = false;
+    self.current_session = false;
+    self.desktop_hash = null;
+    self.connected = false;
+    self.reconnect_try = 0;
+    self.reconnect_timer = 0;
+    self.resume = false;
 
 
 	/**
@@ -71,7 +71,7 @@ var Connection = (function () {
             self.setupCon(con,oExtend);
             
             // Generate a resource
-            var random_resource = DataStore.getDB(DESKTOP_HASH, 'session', 'resource');
+            var random_resource = DataStore.getDB(self.desktop_hash, 'session', 'resource');
             
             if(!random_resource)
                 random_resource = lResource + ' (' + (new Date()).getTime() + ')';
@@ -332,9 +332,9 @@ var Connection = (function () {
             Console.info('Jappix is now connected.');
             
             // Connection markers
-            CONNECTED = true;
-            RECONNECT_TRY = 0;
-            RECONNECT_TIMER = 0;
+            self.connected = true;
+            self.reconnect_try = 0;
+            self.reconnect_timer = 0;
             
             // We hide the home page
             $('#home').hide();
@@ -363,10 +363,10 @@ var Connection = (function () {
 
         try {
             // Not resumed?
-            if(!RESUME) {
+            if(!self.resume) {
                 // Remember the session?
                 if(DataStore.getDB(DESKTOP_HASH, 'remember', 'session'))
-                    DataStore.setPersistent('global', 'session', 1, CURRENT_SESSION);
+                    DataStore.setPersistent('global', 'session', 1, self.current_session);
                 
                 // We show the chatting app.
                 Talk.create();
@@ -407,7 +407,7 @@ var Connection = (function () {
             Console.info('Jappix is now disconnected.');
             
             // Normal disconnection
-            if(!CURRENT_SESSION && !CONNECTED) {
+            if(!self.current_session && !self.connected) {
                 Talk.destroy();
                 DESKTOP_HASH = null;
             }
@@ -433,7 +433,7 @@ var Connection = (function () {
             con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.handleConnected);
-            con.registerHandler('onerror', handleError);
+            con.registerHandler('onerror', Error.handle);
             con.registerHandler('ondisconnect', self.handleDisconnected);
             
             // Extended handlers
@@ -574,26 +574,26 @@ var Connection = (function () {
                 });
                 
                 // Try to reconnect automatically after a while
-                if(RECONNECT_TRY < 5)
-                    RECONNECT_TIMER = 5 + (5 * RECONNECT_TRY);
+                if(self.reconnect_try < 5)
+                    self.reconnect_timer = 5 + (5 * self.reconnect_try);
                 else
-                    RECONNECT_TIMER = 120;
+                    self.reconnect_timer = 120;
                 
                 // Change the try number
-                RECONNECT_TRY++;
+                self.reconnect_try++;
                 
                 // Fire the event!
                 $('#reconnect a.finish.reconnect').everyTime('1s', function() {
                     // We can reconnect!
-                    if(RECONNECT_TIMER == 0)
+                    if(self.reconnect_timer == 0)
                         return self.acceptReconnect(mode);
                     
                     // Button text
-                    if(RECONNECT_TIMER <= 10)
-                        $(this).text(Common._e("Reconnect") + ' (' + RECONNECT_TIMER + ')');
+                    if(self.reconnect_timer <= 10)
+                        $(this).text(Common._e("Reconnect") + ' (' + self.reconnect_timer + ')');
                     
                     // Remove 1 second
-                    RECONNECT_TIMER--;
+                    self.reconnect_timer--;
                 });
                 
                 // Page title
@@ -618,7 +618,7 @@ var Connection = (function () {
             Console.info('Trying to reconnect the user...');
             
             // Resume marker
-            RESUME = true;
+            self.resume = true;
             
             // Show waiting item
             Interface.showGeneralWait();
@@ -637,7 +637,7 @@ var Connection = (function () {
             
             // Try to login again
             if(mode == 'normal')
-                self.loginFromSession(Common.XMLFromString(CURRENT_SESSION));
+                self.loginFromSession(Common.XMLFromString(self.current_session));
             else if(mode == 'anonymous')
                 Anonymous.login(HOST_ANONYMOUS);
         } catch(e) {
@@ -709,11 +709,11 @@ var Connection = (function () {
     self.resetConMarkers = function() {
 
         try {
-            CURRENT_SESSION = false;
-            CONNECTED = false;
-            RESUME = false;
-            RECONNECT_TRY = 0;
-            RECONNECT_TIMER = 0;
+            self.current_session = false;
+            self.connected = false;
+            self.resume = false;
+            self.reconnect_try = 0;
+            self.reconnect_timer = 0;
         } catch(e) {
             Console.error('Connection.resetConMarkers', e);
         }
@@ -811,7 +811,7 @@ var Connection = (function () {
             session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + lResource.htmlEnc() + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + lPriority.htmlEnc() + '</priority></session>';
             
             // Save the session parameters (for reconnect if network issue)
-            CURRENT_SESSION = session_xml;
+            self.current_session = session_xml;
             
             // Remember me?
             if(lRemember)

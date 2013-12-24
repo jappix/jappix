@@ -21,16 +21,16 @@ var Interface = (function () {
 
 
     /* Variables */
-    var CHAT_FOCUS_HASH = null;
+    self.chat_focus_hash = null;
 
 
 	/**
      * Changes the title of the document
      * @public
-     * @param {string} title
+     * @param {string} new_title
      * @return {undefined}
      */
-    self.title = function(title) {
+    self.title = function(title_type) {
 
         try {
             // Anonymous mode?
@@ -40,7 +40,7 @@ var Interface = (function () {
                 head_name = ANONYMOUS_ROOM + ' (' + Common._e("anonymous mode") + ')';
             
             // We change the title to give essential informations
-            switch(title) {
+            switch(title_type) {
                 case 'home':
                     document.title = SERVICE_NAME + ' • ' + SERVICE_DESC;
                     
@@ -265,7 +265,7 @@ var Interface = (function () {
                 Presence.send(xid + '/' + Name.getMUCNick(hash), 'unavailable');
                 
                 // Remove all presence database entries for this groupchat
-                var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
+                var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'presence' + ('_(.+)'));
 
                 for(var i = 0; i < DataStore.storageDB.length; i++) {
                     // Get the pointer values
@@ -283,8 +283,8 @@ var Interface = (function () {
                             $('#' + cHash + ' .message-area').attr('disabled', true);
                             
                             // Remove the presence for this XID
-                            DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', cXID);
-                            DataStore.removeDB(DESKTOP_HASH, 'presence-resources', cXID);
+                            DataStore.removeDB(Connection.desktop_hash, 'presence-stanza', cXID);
+                            DataStore.removeDB(Connection.desktop_hash, 'presence-resources', cXID);
                             Presence.funnel(cXID, cHash);
                         }
                     }
@@ -390,7 +390,7 @@ var Interface = (function () {
             var active = $(tested).hasClass('activechan');
             
             // We notify the user if he has not the focus on the chat
-            if(!active || !Common.isFocused() || (CHAT_FOCUS_HASH != hash)) {
+            if(!active || !Common.isFocused() || (self.chat_focus_hash != hash)) {
                 if(!active) {
                     if(type == 'personal')
                         $(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
@@ -521,7 +521,7 @@ var Interface = (function () {
 
         try {
             // Put a marker
-            BLIST_ALL = true;
+            Roster.blist_all = true;
             
             // We switch the two modes
             $('.buddy-conf-more-display-unavailable').hide();
@@ -537,12 +537,12 @@ var Interface = (function () {
             // We show all the groups
             $('#buddy-list .one-group').show();
             
-            if(SEARCH_FILTERED)
+            if(Search.search_filtered)
                 Search.funnelFilterBuddy();
             
             // Store this in the options
             if((from == 'roster') && Options.loaded()) {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '1');
                 Options.store();
             }
         } catch(e) {
@@ -562,7 +562,7 @@ var Interface = (function () {
 
         try {
             // Remove the marker
-            BLIST_ALL = false;
+            Roster.blist_all = false;
             
             // We switch the two modes
             $('.buddy-conf-more-display-available').hide();
@@ -578,12 +578,12 @@ var Interface = (function () {
             // We check the groups to hide
             Roster.updateGroups();
             
-            if(SEARCH_FILTERED)
+            if(Search.search_filtered)
                 Search.funnelFilterBuddy();
             
             // Store this in the options
             if((from == 'roster') && Options.loaded()) {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '0');
                 Options.store();
             }
         } catch(e) {

@@ -21,7 +21,7 @@ var Roster = (function () {
 
 
     /* Variables */
-    var BLIST_ALL = false;
+    self.blist_all = false;
 
 
 	/**
@@ -57,16 +57,17 @@ var Roster = (function () {
             // Parse the roster xml
             $(iq.getQuery()).find('item').each(function() {
                 // Get user data
-                var self = $(this);
-                var user_xid = self.attr('jid');
-                var user_subscription = self.attr('subscription');
+                var _this = $(this);
+                var user_xid = _this.attr('jid');
+                var user_subscription = _this.attr('subscription');
 
                 // Parse roster data & display user
                 self.parse($(this), 'load');
 
                 // Request user microblog (populates channel)
-                if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to')))
+                if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to'))) {
                     Microblog.request(user_xid, 1, null, Microblog.handleRoster);
+                }
             });
             
             // Update our avatar (if changed), and send our presence
@@ -136,7 +137,7 @@ var Roster = (function () {
                 var hidden = $(this).find('.buddy:not(.hidden-buddy:hidden)').size();
                 
                 // Special case: the filtering tool
-                if(SEARCH_FILTERED)
+                if(Search.search_filtered)
                     hidden = $(this).find('.buddy:visible').size();
                 
                 // If the group is empty
@@ -261,10 +262,11 @@ var Roster = (function () {
                                 '<div class="buddy-click">';
                         
                         // Display avatar if not gateway
-                        if(!is_gateway)
+                        if(!is_gateway) {
                             html += '<div class="avatar-container">' + 
                                     '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
                                 '</div>';
+                        }
                         
                         html += '<div class="name">';
                         
@@ -293,19 +295,22 @@ var Roster = (function () {
                 });
                 
                 // We get the user presence if necessary
-                if(dMode == 'presence')
+                if(dMode == 'presence') {
                     Presence.funnel(dXID, dXIDHash);
+                }
                 
                 // If the buddy must be shown
-                if(BLIST_ALL)
+                if(self.blist_all) {
                     $('#buddy-list .' + dXIDHash).show();
+                }
             }
             
             // We update our groups
-            if(!SEARCH_FILTERED)
+            if(!Search.search_filtered) {
                 self.updateGroups();
-            else
+            } else {
                 Search.funnelFilterBuddy();
+            }
         } catch(e) {
             Console.error('Roster.display', e);
         }
@@ -448,7 +453,7 @@ var Roster = (function () {
                 Presence.send(xid, 'unavailable');
                 
                 // Remove the user presence
-                var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
+                var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'presence' + ('_(.+)'));
 
                 for(var i = 0; i < DataStore.storageDB.length; i++) {
                     // Get the pointer values
@@ -747,7 +752,7 @@ var Roster = (function () {
             
             // Get the privacy state
             var privacy_state = Privacy.status('block', xid);
-            var privacy_active = DataStore.getDB(DESKTOP_HASH, 'privacy-marker', 'available');
+            var privacy_active = DataStore.getDB(Connection.desktop_hash, 'privacy-marker', 'available');
             
             // Get the group privacy state
             for(g in groups) {
@@ -1378,7 +1383,7 @@ var Roster = (function () {
                 });
                 
                 // Manage the displayed links
-                if(BLIST_ALL) {
+                if(self.blist_all) {
                     $('.buddy-conf-more-display-unavailable').hide();
                     $('.buddy-conf-more-display-available').show();
                 }
@@ -1386,7 +1391,7 @@ var Roster = (function () {
                 if(Features.enabledCommands())
                     $('.buddy-conf-more-commands').parent().show();
                 
-                if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', 'available'))
+                if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', 'available'))
                     $('.buddy-conf-more-privacy').parent().show();
                 
                 return false;

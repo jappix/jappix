@@ -61,9 +61,9 @@ var PEP = (function () {
                 xml += '</pep>';
                 
                 // Update the input with the new value
-                DataStore.setDB(DESKTOP_HASH, 'pep-' + type, xid, xml);
+                DataStore.setDB(Connection.desktop_hash, 'pep-' + type, xid, xml);
             } else {
-                DataStore.removeDB(DESKTOP_HASH, 'pep-' + type, xid);
+                DataStore.removeDB(Connection.desktop_hash, 'pep-' + type, xid);
             }
             
             // Display the PEP event
@@ -86,7 +86,7 @@ var PEP = (function () {
 
         try {
             // Read the target input for values
-            var value = $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'pep-' + type, xid)));
+            var value = $(Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'pep-' + type, xid)));
             var dText;
             var aLink = ''
             
@@ -272,8 +272,8 @@ var PEP = (function () {
                             dVal = dText;
                         
                         // Store this user event in our database
-                        DataStore.setDB(DESKTOP_HASH, type + '-value', 1, dAttr);
-                        DataStore.setDB(DESKTOP_HASH, type + '-text', 1, dVal);
+                        DataStore.setDB(Connection.desktop_hash, type + '-value', 1, dAttr);
+                        DataStore.setDB(Connection.desktop_hash, type + '-text', 1, dVal);
                         
                         // Apply this PEP event
                         $('#my-infos .f-' + type + ' a.picker').attr('data-value', dAttr);
@@ -761,7 +761,7 @@ var PEP = (function () {
                             );
                 
                 // Store data
-                DataStore.setDB(DESKTOP_HASH, 'geolocation', 'now', Common.xmlToString(data));
+                DataStore.setDB(Connection.desktop_hash, 'geolocation', 'now', Common.xmlToString(data));
                 
                 Console.log('Position details got from Google Maps API.');
             });
@@ -783,7 +783,7 @@ var PEP = (function () {
 
         try {
             // Don't fire it until options & features are not retrieved!
-            if(!DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') || (DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !Features.enabledPEP()) {
+            if(!DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') || (DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '0') || !Features.enabledPEP()) {
                 return;
             }
             
@@ -880,10 +880,10 @@ var PEP = (function () {
 
         try {
             // Apply empty values to the PEP database
-            DataStore.setDB(DESKTOP_HASH, 'mood-value', 1, '');
-            DataStore.setDB(DESKTOP_HASH, 'mood-text', 1, '');
-            DataStore.setDB(DESKTOP_HASH, 'activity-value', 1, '');
-            DataStore.setDB(DESKTOP_HASH, 'activity-text', 1, '');
+            DataStore.setDB(Connection.desktop_hash, 'mood-value', 1, '');
+            DataStore.setDB(Connection.desktop_hash, 'mood-text', 1, '');
+            DataStore.setDB(Connection.desktop_hash, 'activity-value', 1, '');
+            DataStore.setDB(Connection.desktop_hash, 'activity-text', 1, '');
             
             // Click event for user mood
             $('#my-infos .f-mood a.picker').click(function() {
@@ -1013,10 +1013,10 @@ var PEP = (function () {
                 var text = $(this).val();
                 
                 // Must send the mood?
-                if((value != DataStore.getDB(DESKTOP_HASH, 'mood-value', 1)) || (text != DataStore.getDB(DESKTOP_HASH, 'mood-text', 1))) {
+                if((value != DataStore.getDB(Connection.desktop_hash, 'mood-value', 1)) || (text != DataStore.getDB(Connection.desktop_hash, 'mood-text', 1))) {
                     // Update the local stored values
-                    DataStore.setDB(DESKTOP_HASH, 'mood-value', 1, value);
-                    DataStore.setDB(DESKTOP_HASH, 'mood-text', 1, text);
+                    DataStore.setDB(Connection.desktop_hash, 'mood-value', 1, value);
+                    DataStore.setDB(Connection.desktop_hash, 'mood-text', 1, text);
                     
                     // Send it!
                     self.sendMood(value, text);
@@ -1035,10 +1035,10 @@ var PEP = (function () {
                 var text = $(this).val();
                 
                 // Must send the activity?
-                if((value != DataStore.getDB(DESKTOP_HASH, 'activity-value', 1)) || (text != DataStore.getDB(DESKTOP_HASH, 'activity-text', 1))) {
+                if((value != DataStore.getDB(Connection.desktop_hash, 'activity-value', 1)) || (text != DataStore.getDB(Connection.desktop_hash, 'activity-text', 1))) {
                     // Update the local stored values
-                    DataStore.setDB(DESKTOP_HASH, 'activity-value', 1, value);
-                    DataStore.setDB(DESKTOP_HASH, 'activity-text', 1, text);
+                    DataStore.setDB(Connection.desktop_hash, 'activity-value', 1, value);
+                    DataStore.setDB(Connection.desktop_hash, 'activity-text', 1, text);
                     
                     // Send it!
                     self.sendActivity(value, '', text);

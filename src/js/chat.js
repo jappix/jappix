@@ -69,7 +69,7 @@ var Chat = (function () {
                     // Try to read the room stored configuration
                     if(!Utils.isAnonymous() && (!nickname || !password || !title)) {
                         // Catch the room data
-                        var fData = $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'favorites', xid)));
+                        var fData = $(Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'favorites', xid)));
                         var fNick = fData.find('nick').text();
                         var fPwd = fData.find('password').text();
                         var fName = fData.find('name').text();
@@ -399,13 +399,13 @@ var Chat = (function () {
                 Interface.chanCleanNotify(hash);
                 
                 // Store focus on this chat!
-                CHAT_FOCUS_HASH = hash;
+                Interface.chat_focus_hash = hash;
             });
             
             inputDetect.blur(function() {
                 // Reset storage about focus on this chat!
-                if(CHAT_FOCUS_HASH == hash)
-                    CHAT_FOCUS_HASH = null;
+                if(Interface.chat_focus_hash == hash)
+                    Interface.chat_focus_hash = null;
             });
             
             inputDetect.keypress(function(e) {
@@ -419,7 +419,7 @@ var Chat = (function () {
                         Message.send(hash, 'chat');
                         
                         // Reset the composing database entry
-                        DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
+                        DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
                     }
                     
                     return false;

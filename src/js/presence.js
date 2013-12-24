@@ -46,7 +46,7 @@ var Presence = (function () {
             FIRST_PRESENCE_SENT = true;
             
             // Try to use the last status message
-            var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+            var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
             if(!status)
                 status = '';
@@ -67,7 +67,7 @@ var Presence = (function () {
             PRESENCE_LAST_ACTIVITY = DateUtils.getTimeStamp();
             
             // We store our presence
-            DataStore.setDB(DESKTOP_HASH, 'presence-show', 1, 'available');
+            DataStore.setDB(Connection.desktop_hash, 'presence-show', 1, 'available');
             
             // Not anonymous
             if(!is_anonymous) {
@@ -143,7 +143,7 @@ var Presence = (function () {
                 caps = '';
             
             // This presence comes from another resource of my account with a difference avatar checksum
-            if((xid == Common.getXID()) && (hasPhoto == 'true') && (checksum != DataStore.getDB(DESKTOP_HASH, 'checksum', 1)))
+            if((xid == Common.getXID()) && (hasPhoto == 'true') && (checksum != DataStore.getDB(Connection.desktop_hash, 'checksum', 1)))
                 Avatar.get(Common.getXID(), 'force', 'true', 'forget');
             
             // This presence comes from a groupchat
@@ -175,7 +175,7 @@ var Presence = (function () {
                 if(type && (type == 'unavailable')) {
                     self.displayMUC(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
                     
-                    DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', from);
+                    DataStore.removeDB(Connection.desktop_hash, 'presence-stanza', from);
                     resources_obj = self.removeResource(xid, resource);
                 }
                 
@@ -193,7 +193,7 @@ var Presence = (function () {
                         
                         var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
-                        DataStore.setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
+                        DataStore.setDB(Connection.desktop_hash, 'presence-stanza', from, xml);
                         resources_obj = self.addResource(xid, resource);
                     }
                 }
@@ -234,7 +234,7 @@ var Presence = (function () {
 
                     // Unavailable/error presence
                     if(type == 'unavailable') {
-                        DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', from);
+                        DataStore.removeDB(Connection.desktop_hash, 'presence-stanza', from);
                         resources_obj = self.removeResource(xid, resource);
                     }
                     
@@ -242,7 +242,7 @@ var Presence = (function () {
                     else {
                         var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
-                        DataStore.setDB(DESKTOP_HASH, 'presence-stanza', from, xml);
+                        DataStore.setDB(Connection.desktop_hash, 'presence-stanza', from, xml);
                         resources_obj = self.addResource(xid, resource);
                     }
 
@@ -584,11 +584,11 @@ var Presence = (function () {
                 buddy.addClass('hidden-buddy');
                 
                 // No filtering is launched?
-                if(!SEARCH_FILTERED)
+                if(!Search.search_filtered)
                     buddy.hide();
                 
                 // All the buddies are shown?
-                if(BLIST_ALL)
+                if(Roster.blist_all)
                     buddy.show();
                 
                 // Chat stuffs
@@ -609,7 +609,7 @@ var Presence = (function () {
                 buddy.removeClass('hidden-buddy');
                 
                 // No filtering is launched?
-                if(!SEARCH_FILTERED)
+                if(!Search.search_filtered)
                     buddy.show();
                 
                 // Get the online buddy avatar if not a gateway
@@ -647,7 +647,7 @@ var Presence = (function () {
                 $('#page-switch .' + hash + ' .icon').removeClass('available unavailable error away busy').addClass(type);
             
             // Update roster groups
-            if(!SEARCH_FILTERED)
+            if(!Search.search_filtered)
                 Roster.updateGroups();
             else
                 Search.funnelFilterBuddy();
@@ -801,7 +801,7 @@ var Presence = (function () {
 
         try {
             var flushed_marker = false;
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'presence' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'presence' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
@@ -815,7 +815,7 @@ var Presence = (function () {
                     
                     // If the current XID equals the asked XID
                     if(now_bare == xid) {
-                        if(DataStore.removeDB(DESKTOP_HASH, 'presence-stanza', now_full)) {
+                        if(DataStore.removeDB(Connection.desktop_hash, 'presence-stanza', now_full)) {
                             Console.info('Presence data flushed for: ' + now_full);
 
                             flushed_marker = true;
@@ -871,7 +871,7 @@ var Presence = (function () {
                     for(cur_resource in resources_obj) {
                         // Read presence data
                         cur_from = xid + '/' + cur_resource;
-                        cur_pr   = DataStore.getDB(DESKTOP_HASH, 'presence-stanza', cur_from);
+                        cur_pr   = DataStore.getDB(Connection.desktop_hash, 'presence-stanza', cur_from);
 
                         if(cur_pr) {
                             // Parse presence data
@@ -892,9 +892,9 @@ var Presence = (function () {
             }
 
             if(from_highest)
-                DataStore.setDB(DESKTOP_HASH, 'presence-priority', xid, from_highest);
+                DataStore.setDB(Connection.desktop_hash, 'presence-priority', xid, from_highest);
             else
-                DataStore.removeDB(DESKTOP_HASH, 'presence-priority', xid);
+                DataStore.removeDB(Connection.desktop_hash, 'presence-priority', xid);
         } catch(e) {
             Console.error('Presence.processPriority', e);
         }
@@ -911,7 +911,7 @@ var Presence = (function () {
     self.highestPriority = function(xid) {
 
         try {
-            return DataStore.getDB(DESKTOP_HASH, 'presence-priority', xid) || '';
+            return DataStore.getDB(Connection.desktop_hash, 'presence-priority', xid) || '';
         } catch(e) {
             Console.error('Presence.highestPriority', e);
         }
@@ -931,7 +931,7 @@ var Presence = (function () {
             var pr;
             var highest = self.highestPriority(xid);
 
-            if(highest)  pr = DataStore.getDB(DESKTOP_HASH, 'presence-stanza', highest);
+            if(highest)  pr = DataStore.getDB(Connection.desktop_hash, 'presence-stanza', highest);
             if(!pr)      pr = '<presence><type>unavailable</type></presence>';
 
             return Common.XMLFromString(pr);
@@ -952,7 +952,7 @@ var Presence = (function () {
 
         try {
             var resources_obj = {};
-            var resources_db  = DataStore.getDB(DESKTOP_HASH, 'presence-resources', xid);
+            var resources_db  = DataStore.getDB(Connection.desktop_hash, 'presence-resources', xid);
 
             if(resources_db) {
                 resources_obj = $.evalJSON(resources_db);
@@ -981,7 +981,7 @@ var Presence = (function () {
             resources_obj = self.resources(xid);
 
             resources_obj[resource] = 1;
-            DataStore.setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
+            DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
         } catch(e) {
             Console.error('Presence.addResource', e);
         } finally {
@@ -1006,7 +1006,7 @@ var Presence = (function () {
             resources_obj = self.resources(xid);
 
             delete resources_obj[resource];
-            DataStore.setDB(DESKTOP_HASH, 'presence-resources', xid, $.toJSON(resources_obj));
+            DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
         } catch(e) {
             Console.error('Presence.removeResource', e);
         } finally {
@@ -1064,12 +1064,12 @@ var Presence = (function () {
 
         try {
             // Get some stuffs
-            var priority = DataStore.getDB(DESKTOP_HASH, 'priority', 1);
+            var priority = DataStore.getDB(Connection.desktop_hash, 'priority', 1);
             
             if(!priority)
                 priority = '1';
             if(!checksum)
-                checksum = DataStore.getDB(DESKTOP_HASH, 'checksum', 1);
+                checksum = DataStore.getDB(Connection.desktop_hash, 'checksum', 1);
             if(show == 'available')
                 show = '';
             if(type == 'available')
@@ -1174,7 +1174,7 @@ var Presence = (function () {
             
             // We store our presence
             if(!autoidle)
-                DataStore.setDB(DESKTOP_HASH, 'presence-show', 1, show);
+                DataStore.setDB(Connection.desktop_hash, 'presence-show', 1, show);
             
             // We send the presence to our active MUC
             $('.page-engine-chan[data-type="groupchat"]').each(function() {
@@ -1311,7 +1311,7 @@ var Presence = (function () {
                 AUTO_IDLE = true;
                 
                 // Get the old status message
-                var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+                var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
                 
                 if(!status)
                     status = '';
@@ -1343,8 +1343,8 @@ var Presence = (function () {
             // If we were idle, restore our old presence
             if(AUTO_IDLE) {
                 // Get the values
-                var show = DataStore.getDB(DESKTOP_HASH, 'presence-show', 1);
-                var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+                var show = DataStore.getDB(Connection.desktop_hash, 'presence-show', 1);
+                var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
                 
                 // Change the presence input
                 $('#my-infos .f-presence a.picker').attr('data-value', show);
@@ -1528,13 +1528,13 @@ var Presence = (function () {
                 var status = self.getUserStatus();
                 
                 // Read the old parameters
-                var old_show = DataStore.getDB(DESKTOP_HASH, 'presence-show', 1);
-                var old_status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+                var old_show = DataStore.getDB(Connection.desktop_hash, 'presence-show', 1);
+                var old_status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
                 
                 // Must send the presence?
                 if((show != old_show) || (status != old_status)) {
                     // Update the local stored status
-                    DataStore.setDB(DESKTOP_HASH, 'options', 'presence-status', status);
+                    DataStore.setDB(Connection.desktop_hash, 'options', 'presence-status', status);
                     
                     // Update the server stored status
                     if(status != old_status)

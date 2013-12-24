@@ -276,7 +276,7 @@ var Favorites = (function () {
             
             // We retrieve the values
             var xid = $(favorites + 'fedit-head-select').val();
-            var data = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'favorites', xid));
+            var data = Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'favorites', xid));
             
             // If this is not the default room
             if(xid != 'none') {
@@ -386,7 +386,7 @@ var Favorites = (function () {
             
             // Must remove it from database?
             if(database) {
-                DataStore.removeDB(DESKTOP_HASH, 'favorites', xid);
+                DataStore.removeDB(Connection.desktop_hash, 'favorites', xid);
             }
         } catch(e) {
             Console.error('Favorites.remove', e);
@@ -410,7 +410,7 @@ var Favorites = (function () {
             var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_BOOKMARKS}));
             
             // We generate the XML
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'favorites_(.+)');
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
@@ -588,7 +588,7 @@ var Favorites = (function () {
             
             // We store the informations
             var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
-            DataStore.setDB(DESKTOP_HASH, 'favorites', xid, value);
+            DataStore.setDB(Connection.desktop_hash, 'favorites', xid, value);
         } catch(e) {
             Console.error('Favorites.display', e);
         }
@@ -608,7 +608,7 @@ var Favorites = (function () {
             var html = '';
             
             // Read the database
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'favorites_(.+)');
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'favorites_(.+)');
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values

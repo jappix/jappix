@@ -164,7 +164,7 @@ var Inbox = (function () {
             var query = iq.setQuery(NS_PRIVATE);
             var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_INBOX}));
             
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'inbox' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
@@ -488,7 +488,7 @@ var Inbox = (function () {
             xml += '</message>';
             
             // Store this message!
-            DataStore.setDB(DESKTOP_HASH, 'inbox', id, xml);
+            DataStore.setDB(Connection.desktop_hash, 'inbox', id, xml);
         } catch(e) {
             Console.error('Inbox.storeMessage', e);
         }
@@ -509,7 +509,7 @@ var Inbox = (function () {
             $('#inbox .one-message.' + id).remove();
             
             // Remove the message from the database
-            DataStore.removeDB(DESKTOP_HASH, 'inbox', id);
+            DataStore.removeDB(Connection.desktop_hash, 'inbox', id);
             
             // Check the unread messages
             self.checkMessages();
@@ -534,7 +534,7 @@ var Inbox = (function () {
 
         try {
             // Remove all the messages from the database
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'inbox' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values
@@ -542,7 +542,7 @@ var Inbox = (function () {
                 
                 // If the pointer is on a stored message
                 if(current.match(db_regex))
-                    DataStore.removeDB(DESKTOP_HASH, 'inbox', RegExp.$1);
+                    DataStore.removeDB(Connection.desktop_hash, 'inbox', RegExp.$1);
             }
             
             // Prevent the database lag
@@ -584,7 +584,7 @@ var Inbox = (function () {
             var unread = 0;
             
             // Read the local inbox database
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'inbox' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Database pointer
@@ -691,8 +691,8 @@ var Inbox = (function () {
             // Unread message
             if(status == 'unread') {
                 // Update our database
-                var xml = DataStore.getDB(DESKTOP_HASH, 'inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
-                DataStore.setDB(DESKTOP_HASH, 'inbox', id, xml);
+                var xml = DataStore.getDB(Connection.desktop_hash, 'inbox', id).replace(/<status>unread<\/status>/i,'<status>read</status>');
+                DataStore.setDB(Connection.desktop_hash, 'inbox', id, xml);
                 
                 // Remove the unread class
                 $(one_message).removeClass('message-unread');
@@ -776,7 +776,7 @@ var Inbox = (function () {
 
         try {
             // Read the local database
-            var db_regex = new RegExp(('^' + DESKTOP_HASH + '_') + 'inbox' + ('_(.+)'));
+            var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'inbox' + ('_(.+)'));
 
             for(var i = 0; i < DataStore.storageDB.length; i++) {
                 // Get the pointer values

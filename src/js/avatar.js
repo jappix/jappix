@@ -137,7 +137,7 @@ var Avatar = (function () {
             
             // Read our own checksum
             if(handleFrom == Common.getXID()) {
-                oChecksum = DataStore.getDB(DESKTOP_HASH, 'checksum', 1);
+                oChecksum = DataStore.getDB(Connection.desktop_hash, 'checksum', 1);
                 
                 // Avoid the "null" value
                 if(!oChecksum)
@@ -152,8 +152,8 @@ var Avatar = (function () {
                     var names = Name.generateBuddy(iq);
                     
                     // Write the values to the database
-                    DataStore.setDB(DESKTOP_HASH, 'profile', 'name', names[0]);
-                    DataStore.setDB(DESKTOP_HASH, 'profile', 'nick', names[1]);
+                    DataStore.setDB(Connection.desktop_hash, 'profile', 'name', names[0]);
+                    DataStore.setDB(Connection.desktop_hash, 'profile', 'nick', names[1]);
                 }
                 
                 // We get the avatar
@@ -199,7 +199,7 @@ var Avatar = (function () {
                     pChecksum = '';
                 
                 // Update our temp. checksum
-                DataStore.setDB(DESKTOP_HASH, 'checksum', 1, pChecksum);
+                DataStore.setDB(Connection.desktop_hash, 'checksum', 1, pChecksum);
                 
                 // Send the stanza
                 if(!FIRST_PRESENCE_SENT)

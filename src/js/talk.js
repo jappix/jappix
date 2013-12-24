@@ -30,10 +30,10 @@ var Talk = (function () {
         try {
             // Launch all associated bundles
             Microblog.instance();
-            launchRoster();
+            Roster.instance();
             Presence.instance();
             PEP.instance();
-            launchNotifications();
+            Notification.instance();
             Music.instance();
         } catch(e) {
             Console.error('Talk.events', e);
@@ -285,9 +285,9 @@ var Talk = (function () {
             
             // Reset some vars
             STANZA_ID = 1;
-            BLIST_ALL = false;
+            Roster.blist_all = false;
             FIRST_PRESENCE_SENT = false;
-            SEARCH_FILTERED = false;
+            Search.search_filtered = false;
             AVATAR_PENDING = [];
             JOIN_SUGGEST = [];
             

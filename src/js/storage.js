@@ -74,7 +74,7 @@ var Storage = (function () {
                 var value = $(this).text();
                 
                 // We display the storage
-                DataStore.setDB(DESKTOP_HASH, 'options', type, value);
+                DataStore.setDB(Connection.desktop_hash, 'options', type, value);
                 
                 // If this is the buddy list show status
                 if((type == 'roster-showall') && (value == '1'))
@@ -121,7 +121,7 @@ var Storage = (function () {
             
             // Parse the roster notes xml
             rosternotes.find('note').each(function() {
-                DataStore.setDB(DESKTOP_HASH, 'rosternotes', $(this).attr('jid'), $(this).text());
+                DataStore.setDB(Connection.desktop_hash, 'rosternotes', $(this).attr('jid'), $(this).text());
             });
             
             // Options received
@@ -142,7 +142,7 @@ var Storage = (function () {
                 Console.log('Inbox received.');
                 
                 // Send the first presence!
-                Presence.sendFirst(DataStore.getDB(DESKTOP_HASH, 'checksum', 1));
+                Presence.sendFirst(DataStore.getDB(Connection.desktop_hash, 'checksum', 1));
                 
                 // Check we have new messages (play a sound if any unread messages)
                 if(Inbox.checkMessages()) {

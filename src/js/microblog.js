@@ -1645,7 +1645,7 @@ var Microblog = (function () {
             entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'replies', 'title': 'comments', 'href': 'xmpp:' + comments_entity + '?;node=' + encodeURIComponent(comments_node)}));
             
             // Create the geoloc child
-            var geoloc_xml = DataStore.getDB(DESKTOP_HASH, 'geolocation', 'now');
+            var geoloc_xml = DataStore.getDB(Connection.desktop_hash, 'geolocation', 'now');
             
             if(geoloc_xml) {
                 // Create two position arrays

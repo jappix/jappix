@@ -21,7 +21,7 @@ var Search = (function () {
 
 
     /* Variables */
-    var SEARCH_FILTERED = false;
+    self.search_filtered = false;
 
 
 	/**
@@ -276,7 +276,7 @@ var Search = (function () {
 
         try {
             // Put a marker
-            SEARCH_FILTERED = true;
+            self.search_filtered = true;
             
             // Show the buddies that match the search string
             var rFilter = self.processBuddy(vFilter);
@@ -285,7 +285,7 @@ var Search = (function () {
             $('#buddy-list .buddy').hide();
             
             // Only show the buddies which match the search
-            if(!BLIST_ALL) {
+            if(!Roster.blist_all) {
                 for(i in rFilter)
                     $('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
             } else {
@@ -308,13 +308,13 @@ var Search = (function () {
 
         try {
             // Remove the marker
-            SEARCH_FILTERED = false;
+            self.search_filtered = false;
             
             // Show all the buddies
             $('#buddy-list .buddy').show();
             
             // Only show available buddies
-            if(!BLIST_ALL)
+            if(!Roster.blist_all)
                 $('#buddy-list .buddy.hidden-buddy').hide();
             
             // Update the groups

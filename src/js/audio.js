@@ -34,7 +34,7 @@ var Audio = (function () {
                 return false;
             
             // If the sounds are enabled
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'sounds') == '1') {
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') == '1') {
                 // If the audio elements aren't yet in the DOM
                 if(!Common.exists('#audio')) {
                     $('body').append(

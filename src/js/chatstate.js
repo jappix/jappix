@@ -36,11 +36,11 @@ var ChatState = (function () {
             // If the friend client supports chatstates and is online
             if((user_type == 'groupchat') || ((user_type == 'chat') && $('#' + hash + ' .message-area').attr('data-chatstates') && !Common.exists('#page-switch .' + hash + ' .unavailable'))) {
                 // Already sent?
-                if(DataStore.getDB(DESKTOP_HASH, 'currentchatstate', xid) == state)
+                if(DataStore.getDB(Connection.desktop_hash, 'currentchatstate', xid) == state)
                     return;
                 
                 // Write the state
-                DataStore.setDB(DESKTOP_HASH, 'currentchatstate', xid, state);
+                DataStore.setDB(Connection.desktop_hash, 'currentchatstate', xid, state);
                 
                 // New message stanza
                 var aMsg = new JSJaCMessage();
@@ -199,18 +199,18 @@ var ChatState = (function () {
             target.keyup(function(e) {
                 if(e.keyCode != 13) {
                     // Composing a message
-                    if($(this).val() && (DataStore.getDB(DESKTOP_HASH, 'chatstate', xid) != 'on')) {
+                    if($(this).val() && (DataStore.getDB(Connection.desktop_hash, 'chatstate', xid) != 'on')) {
                         // We change the state detect input
-                        DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'on');
+                        DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'on');
                         
                         // We send the friend a "composing" chatstate
                         self.send('composing', xid, hash);
                     }
                     
                     // Flushed the message which was being composed
-                    else if(!$(this).val() && (DataStore.getDB(DESKTOP_HASH, 'chatstate', xid) == 'on')) {
+                    else if(!$(this).val() && (DataStore.getDB(Connection.desktop_hash, 'chatstate', xid) == 'on')) {
                         // We change the state detect input
-                        DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
+                        DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
                         
                         // We send the friend an "active" chatstate
                         self.send('active', xid, hash);
@@ -220,7 +220,7 @@ var ChatState = (function () {
             
             target.change(function() {
                 // Reset the composing database entry
-                DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
+                DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
             });
             
             target.focus(function() {

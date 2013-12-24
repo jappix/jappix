@@ -338,7 +338,7 @@ var Board = (function () {
             $(document).click(function() {
                 // Ask for permission to use quick boards
                 if((typeof con != 'undefined') && con.connected())
-                    quickPermission();
+                    self.quickPermission();
             });
         } catch(e) {
             Console.error('Board.launch', e);

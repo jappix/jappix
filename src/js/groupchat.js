@@ -93,8 +93,8 @@ var Groupchat = (function () {
             // Got our nickname?
             if(nickname) {
                 // Get our general presence
-                var show = DataStore.getDB(DESKTOP_HASH, 'presence-show', 1);
-                var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+                var show = DataStore.getDB(Connection.desktop_hash, 'presence-show', 1);
+                var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
                 // Set my nick
                 $('#' + hash).attr('data-nick', escape(nickname));
@@ -291,14 +291,14 @@ var Groupchat = (function () {
                 Interface.chanCleanNotify(hash);
                 
                 // Store focus on this chat!
-                CHAT_FOCUS_HASH = hash;
+                Interface.chat_focus_hash = hash;
             })
             
             // Blur event
             inputDetect.blur(function() {
                 // Reset storage about focus on this chat!
-                if(CHAT_FOCUS_HASH == hash)
-                    CHAT_FOCUS_HASH = null;
+                if(Interface.chat_focus_hash == hash)
+                    Interface.chat_focus_hash = null;
 
                 // Reset autocompletion
                 Autocompletion.reset(hash);
@@ -317,7 +317,7 @@ var Groupchat = (function () {
                         Message.send(hash, 'groupchat');
                         
                         // Reset the composing database entry
-                        DataStore.setDB(DESKTOP_HASH, 'chatstate', room, 'off');
+                        DataStore.setDB(Connection.desktop_hash, 'chatstate', room, 'off');
                     }
                     
                     return false;

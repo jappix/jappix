@@ -167,7 +167,7 @@ var Name = (function () {
 
         try {
             // Try to read the user nickname
-            var nick = DataStore.getDB(DESKTOP_HASH, 'profile', 'nick');
+            var nick = DataStore.getDB(Connection.desktop_hash, 'profile', 'nick');
             
             // No nick?
             if(!nick)
@@ -186,11 +186,11 @@ var Name = (function () {
      * @public
      * @return {string}
      */
-    self.getName = function() {
+    self.get = function() {
 
         try {
             // Try to read the user name
-            var name = DataStore.getDB(DESKTOP_HASH, 'profile', 'name');
+            var name = DataStore.getDB(Connection.desktop_hash, 'profile', 'name');
             
             // No name? Use the nickname instead!
             if(!name)

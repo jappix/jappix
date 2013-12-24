@@ -157,7 +157,7 @@ var Privacy = (function () {
 
         try {
             // Store marker
-            DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'available', 'true');
+            DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'available', 'true');
             
             // Show privacy elements
             $('.privacy-hidable').show();
@@ -209,7 +209,7 @@ var Privacy = (function () {
             var iqQuery = iq.getQuery();
             
             // Save the content
-            DataStore.setDB(DESKTOP_HASH, 'privacy-lists', 'available', Common.xmlToString(iqQuery));
+            DataStore.setDB(Connection.desktop_hash, 'privacy-lists', 'available', Common.xmlToString(iqQuery));
             
             // Any block list?
             if($(iqQuery).find('list[name="block"]').size()) {
@@ -217,21 +217,22 @@ var Privacy = (function () {
                 if(!$(iqQuery).find('default[name="block"]').size())
                     self.change('block', 'default');
                 else
-                    DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'default', 'block');
+                    DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'default', 'block');
                 
                 // Not the active one?
                 if(!$(iqQuery).find('active[name="block"]').size())
                     self.change('block', 'active');
                 else
-                    DataStore.setDB(DESKTOP_HASH, 'privacy-marker', 'active', 'block');
+                    DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'active', 'block');
                 
                 // Get the block list rules
                 self.getPrivacy('block');
             }
             
             // Apply the received marker here
-            else
+            else {
                 Privacy.received();
+            }
             
             Console.info('Got available privacy list(s).');
         } catch(e) {
@@ -290,7 +291,7 @@ var Privacy = (function () {
                 var list_name = $(this).attr('name');
                 
                 // Store list content
-                DataStore.setDB(DESKTOP_HASH, 'privacy', list_name, Common.xmlToString(this));
+                DataStore.setDB(Connection.desktop_hash, 'privacy', list_name, Common.xmlToString(this));
                 
                 // Is this a block list?
                 if(list_name == 'block') {
@@ -411,7 +412,7 @@ var Privacy = (function () {
 
         try {
             // Read the stored elements (to add them)
-            var stored = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list));
+            var stored = Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'privacy', list));
             
             // Read the first value
             var first_val = value[0];
@@ -505,11 +506,11 @@ var Privacy = (function () {
 
         try {
             // Yet sent?
-            if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status) == list)
+            if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status) == list)
                 return;
             
             // Write a marker
-            DataStore.setDB(DESKTOP_HASH, 'privacy-marker', status, list);
+            DataStore.setDB(Connection.desktop_hash, 'privacy-marker', status, list);
             
             // Build query
             var iq = new JSJaCIQ();
@@ -543,7 +544,7 @@ var Privacy = (function () {
     self.status = function(list, value) {
 
         try {
-            return $(Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
+            return $(Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'privacy', list))).find('item[value="' + value + '"]').attr('action');
         } catch(e) {
             Console.error('Privacy.status', e);
         }
@@ -587,7 +588,7 @@ var Privacy = (function () {
             // Initialize
             var code = '';
             var select = $('#privacy .privacy-head .list-left select');
-            var data = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy-lists', 'available'));
+            var data = Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'privacy-lists', 'available'));
             
             // Parse the XML data!
             $(data).find('list').each(function() {
@@ -645,12 +646,12 @@ var Privacy = (function () {
             var status = ['active', 'default'];
             
             for(s in status) {
-                if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                     $('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
             }
             
             // Try to read the stored items
-            var items = Common.XMLFromString(DataStore.getDB(DESKTOP_HASH, 'privacy', list));
+            var items = Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'privacy', list));
             
             // Must retrieve the data?
             if(!items) {
@@ -938,7 +939,7 @@ var Privacy = (function () {
                 var status = ['active', 'default'];
                 
                 for(s in status) {
-                    if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                    if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                         self.change('', status[s]);
                 }
                 
@@ -1059,7 +1060,7 @@ var Privacy = (function () {
                     var status = ['active', 'default'];
                     
                     for(s in status) {
-                        if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', status[s]) == list)
+                        if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                             self.change('', status[s]);
                     }
                 }

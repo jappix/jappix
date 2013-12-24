@@ -43,8 +43,8 @@ var OOB = (function () {
                     return;
                 
                 // Register the ID
-                DataStore.setDB(DESKTOP_HASH, 'send/url', id, url);
-                DataStore.setDB(DESKTOP_HASH, 'send/desc', id, desc);
+                DataStore.setDB(Connection.desktop_hash, 'send/url', id, url);
+                DataStore.setDB(Connection.desktop_hash, 'send/desc', id, desc);
                 
                 var aIQ = new JSJaCIQ();
                 aIQ.setTo(Common.fullXID(to));

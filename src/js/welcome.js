@@ -249,7 +249,7 @@ var Welcome = (function () {
                 
                 if((i != 2) && (i != 3) && tag && value) {
                     storage.appendChild(iq.buildNode('option', {'type': tag, 'xmlns': NS_OPTIONS}, value));
-                    DataStore.setDB(DESKTOP_HASH, 'options', tag, value);
+                    DataStore.setDB(Connection.desktop_hash, 'options', tag, value);
                 }
             }
             

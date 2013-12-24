@@ -313,12 +313,12 @@ var Options = (function () {
 
         try {
             // Get the values
-            var sounds = DataStore.getDB(DESKTOP_HASH, 'options', 'sounds');
-            var geolocation = DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation');
-            var showall = DataStore.getDB(DESKTOP_HASH, 'options', 'roster-showall');
-            var noxhtmlimg = DataStore.getDB(DESKTOP_HASH, 'options', 'no-xhtml-images');
-            var integratemedias = DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias');
-            var status = DataStore.getDB(DESKTOP_HASH, 'options', 'presence-status');
+            var sounds = DataStore.getDB(Connection.desktop_hash, 'options', 'sounds');
+            var geolocation = DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation');
+            var showall = DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall');
+            var noxhtmlimg = DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images');
+            var integratemedias = DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias');
+            var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
             // Create an array to be looped
             var oType = new Array('sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'presence-status');
@@ -380,42 +380,42 @@ var Options = (function () {
             if($('#sounds').filter(':checked').size())
                 sounds = '1';
             
-            DataStore.setDB(DESKTOP_HASH, 'options', 'sounds', sounds);
+            DataStore.setDB(Connection.desktop_hash, 'options', 'sounds', sounds);
             
             // We apply the geolocation
             if($('#geolocation').filter(':checked').size()) {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '1');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'geolocation', '1');
                 
                 // We geolocate the user on the go
                 PEP.geolocate();
             }
             
             else {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'geolocation', '0');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'geolocation', '0');
                 
                 // We delete the geolocation informations
                 PEP.sendPosition();
-                DataStore.removeDB(DESKTOP_HASH, 'geolocation', 'now');
+                DataStore.removeDB(Connection.desktop_hash, 'geolocation', 'now');
             }
             
             // We apply the roster show all
             if($('#showall').filter(':checked').size()) {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '1');
                 Interface.showAllBuddies('options');
             }
             
             else {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '0');
                 Interface.showOnlineBuddies('options');
             }
             
             // We apply the XHTML-IM images filter
             if($('#noxhtmlimg').filter(':checked').size()) {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '1');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '1');
             }
             
             else {
-                DataStore.setDB(DESKTOP_HASH, 'options', 'no-xhtml-images', '0');
+                DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '0');
             }
             
             // We apply the media integration
@@ -424,7 +424,7 @@ var Options = (function () {
             if($('#integratemedias').filter(':checked').size())
                 integratemedias = '1';
             
-            DataStore.setDB(DESKTOP_HASH, 'options', 'integratemedias', integratemedias);
+            DataStore.setDB(Connection.desktop_hash, 'options', 'integratemedias', integratemedias);
             
             // We apply the message archiving
             if(Features.enabledMAM()) {
@@ -768,31 +768,31 @@ var Options = (function () {
                 $('#options fieldset.privacy').show();
             
             // We get the values of the forms for the sounds
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'sounds') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') == '0')
                 $('#sounds').attr('checked', false);
             else
                 $('#sounds').attr('checked', true);
             
             // We get the values of the forms for the geolocation
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '1')
                 $('#geolocation').attr('checked', true);
             else
                 $('#geolocation').attr('checked', false);
             
             // We get the values of the forms for the roster show all
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'roster-showall') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall') == '1')
                 $('#showall').attr('checked', true);
             else
                 $('#showall').attr('checked', false);
                 
             // We get the values of the forms for the XHTML-IM images filter
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'no-xhtml-images') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') == '1')
                 $('#noxhtmlimg').attr('checked', true);
             else
                 $('#noxhtmlimg').attr('checked', false);
             
             // We get the values of the forms for the integratemedias
-            if(DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias') == '0')
                 $('#integratemedias').attr('checked', false);
             else
                 $('#integratemedias').attr('checked', true);

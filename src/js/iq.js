@@ -57,10 +57,10 @@ var IQ = (function () {
             }
             
             // OOB reply
-            else if(DataStore.getDB(DESKTOP_HASH, 'send/url', iqID)) {
+            else if(DataStore.getDB(Connection.desktop_hash, 'send/url', iqID)) {
                 // Get the values
-                var oob_url = DataStore.getDB(DESKTOP_HASH, 'send/url', iqID);
-                var oob_desc = DataStore.getDB(DESKTOP_HASH, 'send/desc', iqID);
+                var oob_url = DataStore.getDB(Connection.desktop_hash, 'send/url', iqID);
+                var oob_desc = DataStore.getDB(Connection.desktop_hash, 'send/desc', iqID);
                 var notif_id = hex_md5(oob_url + oob_desc + iqType + iqFrom + iqID);
                 
                 // Error?

@@ -613,6 +613,23 @@ var Notification = (function () {
 
 
     /**
+     * Plugin instance launcher
+     * @public
+     * @return {undefined}
+     */
+    self.instance = function() {
+
+        try {
+            // Adapt the notifications height
+            self.adapt();
+        } catch(e) {
+            Console.error('Notification.instance', e);
+        }
+
+    };
+
+
+    /**
      * Plugin launcher
      * @public
      * @return {undefined}

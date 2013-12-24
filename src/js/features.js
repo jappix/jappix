@@ -219,7 +219,7 @@ var Features = (function () {
     self.enable = function(feature) {
 
         try {
-            DataStore.setDB(DESKTOP_HASH, 'feature', feature, 'true');
+            DataStore.setDB(Connection.desktop_hash, 'feature', feature, 'true');
         } catch(e) {
             Console.error('Features.enable', e);
         }
@@ -236,7 +236,7 @@ var Features = (function () {
     self.isEnabled = function(feature) {
 
         try {
-            return DataStore.getDB(DESKTOP_HASH, 'feature', feature) === 'true';
+            return DataStore.getDB(Connection.desktop_hash, 'feature', feature) === 'true';
         } catch(e) {
             Console.error('Features.isEnabled', e);
         }

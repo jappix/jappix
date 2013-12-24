@@ -57,7 +57,7 @@ var HTTPAuth = (function () {
             self.setupCon(con);
             
             // Generate a resource
-            var random_resource = DataStore.getDB(DESKTOP_HASH, 'session', 'resource');
+            var random_resource = DataStore.getDB(Connection.desktop_hash, 'session', 'resource');
             
             if(!random_resource)
                 random_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
@@ -75,7 +75,7 @@ var HTTPAuth = (function () {
             oArgs.xmllang = XML_LANG;
             
             // Store the resource (for reconnection)
-            DataStore.setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
+            DataStore.setDB(Connection.desktop_hash, 'session', 'resource', random_resource);
             
             // Generate a session XML to be stored
             session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + random_resource + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + (lPriority + '').htmlEnc() + '</priority></session>';
@@ -84,7 +84,7 @@ var HTTPAuth = (function () {
             CURRENT_SESSION = session_xml;
             
             // We store the infos of the user into the data-base
-            DataStore.setDB(DESKTOP_HASH, 'priority', 1, 10);
+            DataStore.setDB(Connection.desktop_hash, 'priority', 1, 10);
             
             // We connect !
             con.connect(oArgs);
