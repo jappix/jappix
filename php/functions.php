@@ -762,7 +762,7 @@ function httpAuthentication() {
     }
     echo '<script type="text/javascript">
             jQuery(document).ready(function() {
-                doHttpLogin("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$host.'", 10);
+                HTTPAuth.go("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$host.'", 10);
             });
           </script>';
 }

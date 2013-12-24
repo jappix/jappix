@@ -26,11 +26,11 @@ var Message = (function () {
      * @param {object} message
      * @return {boolean}
      */
-    self.handleMessage = function(message) {
+    self.handle = function(message) {
 
         try {
             // Error packet? Stop!
-            if(handleErrorReply(message))
+            if(Error.handleReply(message))
                 return;
             
             // MAM-forwarded message?
@@ -41,7 +41,7 @@ var Message = (function () {
                 var c_mam_forward = $(c_mam).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
 
                 if(c_mam_forward.size()) {
-                    handleMessageMAM(c_mam_forward, c_mam_delay);
+                    MAM.handleMessage(c_mam_forward, c_mam_delay);
                 }
 
                 return;
@@ -233,18 +233,18 @@ var Message = (function () {
                 var messageID = hex_md5(xid + subject + messageDate);
                 
                 // We store the received message
-                storeInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+                Inbox.storeMessage(xid, subject, body, 'unread', messageID, messageDate);
                 
                 // Display the inbox message
                 if(Common.exists('#inbox'))
-                    displayInboxMessage(xid, subject, body, 'unread', messageID, messageDate);
+                    Inbox.displayMessage(xid, subject, body, 'unread', messageID, messageDate);
                 
                 // Check we have new messages (play a sound if any unread messages)
-                if(checkInboxMessages())
+                if(Inbox.checkMessages())
                     Audio.play(2);
                 
                 // Send it to the server
-                storeInbox();
+                Inbox.store();
                 
                 return false;
             }
@@ -363,7 +363,7 @@ var Message = (function () {
             if(subject && (type == 'groupchat')) {
                 // Filter the vars
                 var filter_subject = subject.replace(/\n+/g, ' ');
-                var filteredSubject = filterThisMessage(filter_subject, resource, true);
+                var filteredSubject = Filter.message(filter_subject, resource, true);
                 var filteredName = resource.htmlEnc();
                 
                 // Display the new subject at the top
@@ -371,8 +371,8 @@ var Message = (function () {
                 
                 // Display the new subject as a system message
                 if(resource) {
-                    var topic_body = filteredName + ' ' + Common._e("changed the subject to:") + ' ' + filterThisMessage(subject, resource, true);
-                    displayMessage(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
+                    var topic_body = filteredName + ' ' + Common._e("changed the subject to:") + ' ' + Filter.message(subject, resource, true);
+                    self.display(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
                 }
             }
             
@@ -390,7 +390,7 @@ var Message = (function () {
                     html_escape = false;
                     
                     // Filter the xHTML message
-                    body = filterThisXHTML(node);
+                    body = Filter.xhtml(node);
                 }
                 
                 // Groupchat message
@@ -422,14 +422,14 @@ var Message = (function () {
                         
                         // We notify the user if there's a new personal message
                         if(nickQuote) {
-                            messageNotify(hash, 'personal');
+                            Interface.messageNotify(hash, 'personal');
                             Board.quick(from, 'groupchat', raw_body, resource);
                             Audio.play(1);
                         }
                         
                         // We notify the user there's a new unread MUC message
                         else {
-                            messageNotify(hash, 'unread');
+                            Interface.messageNotify(hash, 'unread');
                             
                             // Play sound to all users in the MUC, except user who sent the message.
                             if(myNick != resource)
@@ -438,7 +438,7 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    displayMessage(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
+                    self.display(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
                 }
                 
                 // Chat message
@@ -469,10 +469,10 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    displayMessage(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
+                    self.display(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
                     
                     // We notify the user
-                    messageNotify(hash, 'personal');
+                    Interface.messageNotify(hash, 'personal');
                     Board.quick(xid, 'chat', raw_body, fromName);
                 }
                 
@@ -494,7 +494,7 @@ var Message = (function () {
      * @param {string} type
      * @return {boolean}
      */
-    self.sendMessage = function(hash, type) {
+    self.send = function(hash, type) {
 
         try {
             // Get the values
@@ -549,7 +549,7 @@ var Message = (function () {
                 help_text += '</p>';
                 
                 // Display the message
-                displayMessage(type, xid, hash, 'help', help_text, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
+                self.display(type, xid, hash, 'help', help_text, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
                 
                 // Reset chatstate
                 ChatState.send('active', xid, hash);
@@ -577,7 +577,7 @@ var Message = (function () {
             
             // /part shortcut
             else if(body.match(/^\/part\s*(.*)/) && (!isAnonymous() || (isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))))
-                quitThisChat(xid, hex_md5(xid), type);
+                Interface.quitThisChat(xid, hex_md5(xid), type);
             
             // /whois shortcut
             else if(body.match(/^\/whois(( (\S+))|($))/)) {
@@ -610,7 +610,7 @@ var Message = (function () {
                 aMsg.setType('chat');
                 
                 // Generates the correct message depending of the choosen style
-                var genMsg = generateMessage(aMsg, body, hash);
+                var genMsg = self.generate(aMsg, body, hash);
                 var html_escape = genMsg != 'XHTML';
                 
                 // Receipt request
@@ -623,16 +623,16 @@ var Message = (function () {
                 aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
                 
                 // Send it!
-                con.send(aMsg, handleErrorReply);
+                con.send(aMsg, Error.handleReply);
                 
                 // Filter the xHTML message (for us!)
                 if(!html_escape)
-                    body = filterThisXHTML(aMsg.getNode());
+                    body = Filter.xhtml(aMsg.getNode());
                 
                 // Finally we display the message we just sent
                 var my_xid = Common.getXID();
                 
-                displayMessage('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
+                self.display('chat', my_xid, hash, getBuddyName(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
                 
                 // Receipt timer
                 if(receipt_request)
@@ -646,9 +646,9 @@ var Message = (function () {
                     body = body.replace(/^\/say (.+)/, '$1');
                     
                     aMsg.setType('groupchat');
-                    generateMessage(aMsg, body, hash);
+                    self.generate(aMsg, body, hash);
                     
-                    con.send(aMsg, handleErrorReply);
+                    con.send(aMsg, Error.handleReply);
                 }
                 
                 // /nick shortcut
@@ -658,7 +658,7 @@ var Message = (function () {
                     // Does not exist yet?
                     if(!getMUCUserXID(xid, nick)) {
                         // Send a new presence
-                        sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, handleErrorReply);
+                        sendPresence(xid + '/' + nick, '', getUserShow(), getUserStatus(), '', false, false, Error.handleReply);
                         
                         // Change the stored nickname
                         $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
@@ -682,9 +682,9 @@ var Message = (function () {
                     else if(body) {
                         aMsg.setType('chat');
                         aMsg.setTo(nXID);
-                        generateMessage(aMsg, body, hash);
+                        self.generate(aMsg, body, hash);
                         
-                        con.send(aMsg, handleErrorReply);
+                        con.send(aMsg, Error.handleReply);
                     }
                 }
                 
@@ -695,7 +695,7 @@ var Message = (function () {
                     aMsg.setType('groupchat');
                     aMsg.setSubject(topic);
                     
-                    con.send(aMsg, handleMessageError);
+                    con.send(aMsg, Error.handleMessage);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -734,7 +734,7 @@ var Message = (function () {
                         if(reason)
                             item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
                         
-                        con.send(iq, handleErrorReply);
+                        con.send(iq, Error.handleReply);
                     }
                     
                     // Reset chatstate
@@ -774,7 +774,7 @@ var Message = (function () {
                         if(reason)
                             item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
                         
-                        con.send(iq, handleErrorReply);
+                        con.send(iq, Error.handleReply);
                     }
                     
                     // Reset chatstate
@@ -792,7 +792,7 @@ var Message = (function () {
                     if(reason)
                         aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, reason));
                     
-                    con.send(aMsg, handleErrorReply);
+                    con.send(aMsg, Error.handleReply);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -805,9 +805,9 @@ var Message = (function () {
                     // Chatstate
                     aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
                     
-                    generateMessage(aMsg, body, hash);
+                    self.generate(aMsg, body, hash);
                     
-                    con.send(aMsg, handleMessageError);
+                    con.send(aMsg, Error.handleMessage);
                     
                     Console.info('Message sent to: ' + xid + ' / ' + type);
                 }
@@ -892,7 +892,7 @@ var Message = (function () {
      * @param {type} name
      * @return {string}
      */
-    self.generateMessage = function(aMsg, body, hash) {
+    self.generate = function(aMsg, body, hash) {
 
         try {
             // Create the classical body
@@ -928,7 +928,7 @@ var Message = (function () {
                         cLine = cLine.htmlEnc();
                         
                         // Filter the links
-                        cLine = applyLinks(cLine, 'xhtml-im', style);
+                        cLine = Links.apply(cLine, 'xhtml-im', style);
                         
                         // Append the filtered line
                         $(aBody).append($('<p style="' + style + '">' + cLine + '</p>'));
@@ -965,7 +965,7 @@ var Message = (function () {
      * @param {boolean} no_scroll
      * @return {undefined}
      */
-    self.displayMessage = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll) {
+    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll) {
 
         try {
             // Target
@@ -1002,7 +1002,7 @@ var Message = (function () {
             }
             
             // Filter the message
-            var filteredMessage = filterThisMessage(body, name, html_escape);
+            var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
             var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '"' + data_id + '>';
@@ -1069,7 +1069,7 @@ var Message = (function () {
             }
 
             // Store the last MAM_REQ_MAX message groups
-            if(!enabledMAM() && (type == 'chat') && (message_type == 'user-message')) {
+            if(!Features.enabledMAM() && (type == 'chat') && (message_type == 'user-message')) {
                 // Filter the DOM
                 var dom_filter = $('#' + hash + ' .content').clone().contents();
                 var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
@@ -1093,7 +1093,7 @@ var Message = (function () {
             
             // Scroll to this message
             if(can_scroll) {
-                autoScroll(hash);
+                Interface.autoScroll(hash);
             }
         } catch(e) {
             Console.error('Message.display', e);

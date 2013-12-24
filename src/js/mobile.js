@@ -790,7 +790,7 @@ var Mobile = (function () {
             .replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
             
             // Links
-            msg = applyLinks(msg, 'mini');
+            msg = Links.apply(msg, 'mini');
             
             return msg;
         } catch(e) {

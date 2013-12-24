@@ -202,7 +202,7 @@ var Options = (function () {
             createPopup('options', html);
             
             // Apply the features
-            applyFeatures('options');
+            Features.apply('options');
             
             // Associate the events
             launchOptions();
@@ -401,12 +401,12 @@ var Options = (function () {
             // We apply the roster show all
             if($('#showall').filter(':checked').size()) {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '1');
-                showAllBuddies('options');
+                Interface.showAllBuddies('options');
             }
             
             else {
                 DataStore.setDB(DESKTOP_HASH, 'options', 'roster-showall', '0');
-                showOnlineBuddies('options');
+                Interface.showOnlineBuddies('options');
             }
             
             // We apply the XHTML-IM images filter
@@ -427,8 +427,8 @@ var Options = (function () {
             DataStore.setDB(DESKTOP_HASH, 'options', 'integratemedias', integratemedias);
             
             // We apply the message archiving
-            if(enabledMAM()) {
-                setConfigMAM($('#archiving').val() || 'never');
+            if(Features.enabledMAM()) {
+                MAM.setConfig($('#archiving').val() || 'never');
             }
             
             // We apply the microblog configuration
@@ -438,7 +438,7 @@ var Options = (function () {
             if($('#persistent').filter(':checked').size())
                 persist = '1';
             
-            if(enabledPEP() && (enabledPubSub() || enabledPubSubCN()))
+            if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN()))
                 setupMicroblog('', NS_URN_MBLOG, persist, maximum, '', '', false);
             
             // We send the options to the database
@@ -465,10 +465,10 @@ var Options = (function () {
 
         try {
             // Remove the general wait item
-            removeGeneralWait();
+            Interface.removeGeneralWait();
             
             // If no errors
-            if(!handleErrorReply(iq)) {
+            if(!Error.handleReply(iq)) {
                 Connection.clearLastSession();
                 Connection.quit();
                 Board.openThisInfo(1);
@@ -500,7 +500,7 @@ var Options = (function () {
             
             if ((password1 == password2) && (password0 == getPassword())) {
                 // We show the waiting image
-                showGeneralWait();
+                Interface.showGeneralWait();
                 
                 // We send the IQ
                 var iq = new JSJaCIQ();
@@ -556,10 +556,10 @@ var Options = (function () {
 
         try {
             // Remove the general wait item
-            removeGeneralWait();
+            Interface.removeGeneralWait();
             
             // If no errors
-            if(!handleErrorReply(iq)) {
+            if(!Error.handleReply(iq)) {
                 Connection.clearLastSession();
                 destroyTalkPage();
                 Board.openThisInfo(2);
@@ -587,7 +587,7 @@ var Options = (function () {
             var password = $('#options .check-mam').val();
             
             if(password == getPassword()) {
-                purgeArchivesMAM();
+                MAM.purgeArchives();
 
                 // Clear archives in UI
                 $('.page-engine-chan[data-type="chat"] .tools-clear').click();
@@ -668,7 +668,7 @@ var Options = (function () {
 
         try {
             // If no errors
-            if(!handleErrorReply(iq)) {
+            if(!Error.handleReply(iq)) {
                 // Remove the microblog items
                 $('.one-update.update_' + hex_md5(Common.getXID())).remove();
                 
@@ -697,7 +697,7 @@ var Options = (function () {
             
             if(password == getPassword()) {
                 // We show the waiting image
-                showGeneralWait();
+                Interface.showGeneralWait();
                 
                 // We send the IQ
                 var iq = new JSJaCIQ();
@@ -739,10 +739,10 @@ var Options = (function () {
 
         try {
             // Process the good stuffs, depending of the server features
-            var enabled_mam = enabledMAM();
-            var enabled_pubsub = enabledPubSub();
-            var enabled_pubsub_cn = enabledPubSubCN();
-            var enabled_pep = enabledPEP();
+            var enabled_mam = Features.enabledMAM();
+            var enabled_pubsub = Features.enabledPubSub();
+            var enabled_pubsub_cn = Features.enabledPubSubCN();
+            var enabled_pep = Features.enabledPEP();
             var sWait = $('#options .content');
             
             // Show the waiting items if necessary
@@ -754,7 +754,7 @@ var Options = (function () {
             // We get the archiving configuration
             if(enabled_mam) {
                 sWait.addClass('mam');
-                getConfigMAM();
+                MAM.getConfig();
             }
             
             // We get the microblog configuration

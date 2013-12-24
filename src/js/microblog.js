@@ -203,7 +203,7 @@ var Microblog = (function () {
                 // Entry content: HTML, parse!
                 if($(this).find('content[type="html"]').size()) {
                     // Filter the xHTML message
-                    tContent = filterThisXHTML(this);
+                    tContent = Filter.xhtml(this);
                     tHTMLEscape = false;
                 }
 
@@ -228,7 +228,7 @@ var Microblog = (function () {
                 // Any content?
                 if(tContent) {
                     // Apply links to message body
-                    tFiltered = filterThisMessage(tContent, tName.htmlEnc(), tHTMLEscape);
+                    tFiltered = Filter.message(tContent, tName.htmlEnc(), tHTMLEscape);
                     
                     // Display the received message
                     var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + Common.encodeQuotes(tStamp) + '" data-id="' + Common.encodeQuotes(tID) + '" data-xid="' + Common.encodeQuotes(from) + '">' + 
@@ -264,7 +264,7 @@ var Microblog = (function () {
                             aFCat.push('youtube');
                         }
                         
-                        else if(canIntegrateBox(Common.strAfterLast('.', tFURL[a]))) {
+                        else if(IntegrateBox.can(Common.strAfterLast('.', tFURL[a]))) {
                             aFURL.push(tFURL[a]);
                             aFCat.push(fileCategory(Common.strAfterLast('.', tFURL[a])));
                         }
@@ -288,8 +288,8 @@ var Microblog = (function () {
                         }
                         
                         // Supported image/video/sound
-                        if(canIntegrateBox(tFExt) || (tFCat == 'youtube'))
-                            tFEClick = 'onclick="return applyIntegrateBox(\'' + encodeOnclick(tFLink) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
+                        if(IntegrateBox.can(tFExt) || (tFCat == 'youtube'))
+                            tFEClick = 'onclick="return IntegrateBox.apply(\'' + encodeOnclick(tFLink) + '\', \'' + encodeOnclick(tFCat) + '\', \'' + encodeOnclick(aFURL) + '\', \'' + encodeOnclick(aFCat) + '\', \'' + encodeOnclick(tFEComments) + '\', \'' + encodeOnclick(tFNComments) + '\', \'large\');" ';
                         else
                             tFEClick = '';
                         
@@ -313,7 +313,7 @@ var Microblog = (function () {
                         html += '<a href="#" title="' + Common._e("View profile") + '" class="mbtool profile talk-images" onclick="return openUserInfos(\'' + encodeOnclick(from) + '\');"></a>';
                         
                         // If PEP is enabled
-                        if(enabledPEP() && tHTMLEscape)
+                        if(Features.enabledPEP() && tHTMLEscape)
                             html += '<a href="#" title="' + Common._e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
                     }
                     
@@ -457,7 +457,7 @@ var Microblog = (function () {
                 con.send(retract_iq, handleRemoveMicroblog);
             } else {
                 if (comm_delete_iq) { con.send(comm_delete_iq); }
-                con.send(retract_iq, handleErrorReply);
+                con.send(retract_iq, Error.handleReply);
             }
         } catch(e) {
             Console.error('Microblog.remove', e);
@@ -478,7 +478,7 @@ var Microblog = (function () {
 
         try {
             // Handle the error reply
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             
             // Get the latest item
             requestMicroblog(Common.getXID(), '1', false, handleUpdateRemoveMicroblog);
@@ -564,7 +564,7 @@ var Microblog = (function () {
                 return false;
             
             // Any error?
-            if(handleErrorReply(iq)) {
+            if(Error.handleReply(iq)) {
                 $(path).html('<div class="one-comment loading">' + Common._e("Could not get the comments!") + '</div>');
                 
                 return false;
@@ -678,7 +678,7 @@ var Microblog = (function () {
                                 '<span class="date">' + current_date.htmlEnc() + '</span>' + 
                                 remove + 
                             
-                                '<p class="body">' + filterThisMessage(current_body, current_name, true) + '</p>' + 
+                                '<p class="body">' + Filter.message(current_body, current_name, true) + '</p>' + 
                             '</div>' + 
                             
                             '<div class="clear"></div>' + 
@@ -975,7 +975,7 @@ var Microblog = (function () {
                 displayMicroblog(iq, from, hash, 'individual', 'request');
                 
                 // Hide the waiting icon
-                if(enabledPEP())
+                if(Features.enabledPEP())
                     waitMicroblog('sync');
                 else
                     waitMicroblog('unsync');
@@ -1051,7 +1051,7 @@ var Microblog = (function () {
             $('#channel .mixed').show();
             
             // Hide the waiting icon
-            if(enabledPEP()) {
+            if(Features.enabledPEP()) {
                 waitMicroblog('sync');
             } else {
                 waitMicroblog('unsync');
@@ -1185,7 +1185,7 @@ var Microblog = (function () {
                 else {
                     cTitle = Common._e("Channel of") + ' ' + getBuddyName(xid).htmlEnc();
                     cShortcuts = '<div class="shortcuts">' + 
-                                '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                                '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return Inbox.composeMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
                                 '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
                                 '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
                                 '<a href="#" class="profile talk-images" title="' + Common._e("Show user profile") + '" onclick="return openUserInfos(\'' + encodeOnclick(xid) + '\');"></a>' + 
@@ -1458,7 +1458,7 @@ var Microblog = (function () {
             unattachMicroblog();
             
             // Check for errors
-            handleErrorReply(packet);
+            Error.handleReply(packet);
         } catch(e) {
             Console.error('Microblog.handleMy', e);
         }
@@ -1876,7 +1876,7 @@ var Microblog = (function () {
             resetMicroblog();
             
             // Switch to the channel
-            switchChan('channel');
+            Interface.switchChan('channel');
             
             // Get the microblog
             getMicroblog(xid, hash);

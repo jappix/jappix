@@ -27,7 +27,7 @@ var HTTPReply = (function () {
      * @param {object} xml
      * @return {undefined}
      */
-    self.do = function(value, xml) {
+    self.go = function(value, xml) {
 
         try {
             // We parse the xml content
@@ -52,11 +52,11 @@ var HTTPReply = (function () {
             aMsg.appendNode('confirm', {'xmlns': xmlns, 'url': url, 'id': id, 'method': method});
             
             // We send the message
-            con.send(aMsg, handleErrorReply);
+            con.send(aMsg, Error.handleReply);
             
             Console.info('Replying HTTP auth request: ' + from);
         } catch(e) {
-            Console.error('HTTPReply.do', e);
+            Console.error('HTTPReply.go', e);
         }
 
     };

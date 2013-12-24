@@ -78,12 +78,12 @@ var Storage = (function () {
                 
                 // If this is the buddy list show status
                 if((type == 'roster-showall') && (value == '1'))
-                    showAllBuddies('storage');
+                    Interface.showAllBuddies('storage');
             });
             
             // Parse the inbox xml
             inbox.find('message').each(function() {
-                storeInboxMessage(
+                Inbox.storeMessage(
                           $(this).attr('from'),
                           $(this).attr('subject'),
                           $(this).text(),
@@ -112,7 +112,7 @@ var Storage = (function () {
                 autojoin = ((autojoin == 'true') || (autojoin == '1')) ? 'true' : 'false';
 
                 // We display the storage
-                displayFavorites(xid, name, nick, autojoin, password);
+                Favorites.display(xid, name, nick, autojoin, password);
                 
                 // Join the chat if autojoin is enabled
                 if(autojoin == 'true')
@@ -145,7 +145,7 @@ var Storage = (function () {
                 firstPresence(DataStore.getDB(DESKTOP_HASH, 'checksum', 1));
                 
                 // Check we have new messages (play a sound if any unread messages)
-                if(checkInboxMessages()) {
+                if(Inbox.checkMessages()) {
                     Audio.play(2);
                 }
                 
@@ -155,7 +155,7 @@ var Storage = (function () {
             // Bookmarks received
             else if(bookmarks.size()) {
                 // Join the groupchats the admin defined (if any)
-                joinConfGroupchats();
+                Groupchat.joinConf();
                 
                 Console.log('Bookmarks received.');
             }

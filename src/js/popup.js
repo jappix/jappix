@@ -77,7 +77,7 @@ var Popup = (function () {
             $('#' + id).remove();
             
             // Manage input focus
-            inputFocus();
+            Interface.inputFocus();
         } catch(e) {
             Console.error('Popup.destroy', e);
         }

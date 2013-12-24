@@ -398,7 +398,7 @@ var MUCAdmin = (function () {
                         item.setAttribute('affiliation', tType);
             
                     // We send the iq !
-                    con.send(iq, handleErrorReply);
+                    con.send(iq, Error.handleReply);
                 });
             }   
             
@@ -419,11 +419,11 @@ var MUCAdmin = (function () {
     self.handleDestroyMucAdminIQ = function(iq) {
 
         try {
-            if(!handleErrorReply(iq)) {
+            if(!Error.handleReply(iq)) {
                 // We close the groupchat
                 var room = Common.fullXID(Common.getStanzaFrom(iq));
                 var hash = hex_md5(room);
-                quitThisChat(room, hash, 'groupchat');
+                Interface.quitThisChat(room, hash, 'groupchat');
                 
                 // We close the muc admin popup
                 closeMucAdmin();
@@ -433,7 +433,7 @@ var MUCAdmin = (function () {
                 
                 // We remove the user's favorite
                 if(DataStore.existDB('favorites', room))
-                    removeThisFavorite(room, Common.explodeThis('@', room, 0));
+                    Favorites.removeThis(room, Common.explodeThis('@', room, 0));
                 
                 Console.info('MUC admin destroyed: ' + room);
             }

@@ -21,12 +21,10 @@ var MAM = (function () {
 
 
     /* Constants */
-    // Note: Internet Explorer does not support 'const'
-    //       We use vars as a fix...
-    var MAM_REQ_MAX = 50;
-    var MAM_SCROLL_THRESHOLD = 200;
+    self.REQ_MAX = 50;
+    self.SCROLL_THRESHOLD = 200;
 
-    var MAM_PREF_DEFAULTS = {
+    self.PREF_DEFAULTS = {
         'always' : 1,
         'never'  : 1,
         'roster' : 1
@@ -34,10 +32,10 @@ var MAM = (function () {
 
 
     /* Variables */
-    var MAM_MAP_REQS = {};
-    var MAM_MAP_PENDING = {};
-    var MAM_MAP_STATES = {};
-    var MAM_MSG_QUEUE = {};
+    self.map_reqs = {};
+    self.map_pending = {};
+    self.map_states = {};
+    self.msg_queue = {};
 
 
 	/**
@@ -45,7 +43,7 @@ var MAM = (function () {
      * @public
      * @return {undefined}
      */
-    self.getConfigMAM = function() {
+    self.getConfig = function() {
 
         try {
             // Lock the archiving options
@@ -57,7 +55,7 @@ var MAM = (function () {
 
             iq.appendNode('prefs', { 'xmlns': NS_URN_MAM });
 
-            con.send(iq, handleConfigMAM);
+            con.send(iq, self.handleConfig);
         } catch(e) {
             Console.error('MAM.getConfig', e);
         }
@@ -71,14 +69,14 @@ var MAM = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleConfigMAM = function(iq) {
+    self.handleConfig = function(iq) {
 
         try {
             if(iq.getType() != 'error') {
                 // Read packet
                 var cur_default = $(iq.getNode()).find('prefs[xmlns="' + NS_URN_MAM + '"]').attr('default') || 'never';
 
-                if(!(cur_default in MAM_PREF_DEFAULTS)) {
+                if(!(cur_default in self.PREF_DEFAULTS)) {
                     cur_default = 'never';
                 }
 
@@ -104,11 +102,11 @@ var MAM = (function () {
      * @param {string} pref_default
      * @return {undefined}
      */
-    self.setConfigMAM = function(pref_default) {
+    self.setConfig = function(pref_default) {
 
         try {
             // Check parameters
-            if(!(pref_default in MAM_PREF_DEFAULTS)) {
+            if(!(pref_default in self.PREF_DEFAULTS)) {
                 pref_default = 'never';
             }
 
@@ -132,7 +130,7 @@ var MAM = (function () {
      * @param {object} args
      * @return {undefined}
      */
-    self.purgeArchivesMAM = function(args) {
+    self.purgeArchives = function(args) {
 
         try {
             if(typeof args != 'object') {
@@ -170,7 +168,7 @@ var MAM = (function () {
      * @param {function} callback
      * @return {undefined}
      */
-    self.getArchivesMAM = function(args, rsm_args, callback) {
+    self.getArchives = function(args, rsm_args, callback) {
 
         try {
             if(typeof args != 'object') {
@@ -180,8 +178,8 @@ var MAM = (function () {
             var req_id = genID();
 
             if(args['with']) {
-                MAM_MAP_PENDING[args['with']] = 1;
-                MAM_MAP_REQS[req_id] = args['with'];
+                self.map_pending[args['with']] = 1;
+                self.map_reqs[req_id] = args['with'];
             }
 
             var iq = new JSJaCIQ();
@@ -203,7 +201,7 @@ var MAM = (function () {
             }
 
             con.send(iq, function(res_iq) {
-                handleArchivesMAM(res_iq, callback);
+                self.handleArchives(res_iq, callback);
             });
         } catch(e) {
             Console.error('MAM.getArchives', e);
@@ -219,14 +217,14 @@ var MAM = (function () {
      * @param {function} callback
      * @return {undefined}
      */
-    self.handleArchivesMAM = function(iq, callback) {
+    self.handleArchives = function(iq, callback) {
 
         try {
             var res_id = iq.getID();
             var res_with;
 
-            if(res_id && res_id in MAM_MAP_REQS) {
-                res_with = MAM_MAP_REQS[res_id];
+            if(res_id && res_id in self.map_reqs) {
+                res_with = self.map_reqs[res_id];
             }
 
             if(iq.getType() != 'error') {
@@ -235,7 +233,7 @@ var MAM = (function () {
                     var res_rsm_sel = res_sel.find('set[xmlns="' + NS_RSM + '"]');
 
                     // Store that data
-                    MAM_MAP_STATES[res_with] = {
+                    self.map_states[res_with] = {
                         'date': {
                             'start': res_sel.find('start').eq(0).text(),
                             'end': res_sel.find('end').eq(0).text()
@@ -249,8 +247,8 @@ var MAM = (function () {
                     }
 
                     // Generate stamps for easy operations
-                    var start_stamp = DateUtils.extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['start']));
-                    var start_end = DateUtils.extractStamp(Date.jab2date(MAM_MAP_STATES[res_with]['date']['end']));
+                    var start_stamp = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with]['date']['start']));
+                    var start_end = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with]['date']['end']));
 
                     // Create MAM messages target
                     var target_html = '<div class="mam-chunk" data-start="' + Common.encodeQuotes(start_stamp) + '" data-end="' + Common.encodeQuotes(start_end) + '"></div>';
@@ -265,17 +263,17 @@ var MAM = (function () {
                     }
 
                     // Any enqueued message to display?
-                    if(typeof MAM_MSG_QUEUE[res_with] == 'object') {
-                        for(i in MAM_MSG_QUEUE[res_with]) {
-                            (MAM_MSG_QUEUE[res_with][i])();
+                    if(typeof self.msg_queue[res_with] == 'object') {
+                        for(i in self.msg_queue[res_with]) {
+                            (self.msg_queue[res_with][i])();
                         }
 
-                        delete MAM_MSG_QUEUE[res_with];
+                        delete self.msg_queue[res_with];
                     }
 
                     // Remove XID from pending list
-                    if(res_with in MAM_MAP_PENDING) {
-                        delete MAM_MAP_PENDING[res_with];
+                    if(res_with in self.map_pending) {
+                        delete self.map_pending[res_with];
                     }
 
                     Console.info('Got archives from: ' + res_with);
@@ -304,7 +302,7 @@ var MAM = (function () {
      * @param {object} c_delay
      * @return {undefined}
      */
-    self.handleMessageMAM = function(fwd_stanza, c_delay) {
+    self.handleMessage = function(fwd_stanza, c_delay) {
 
         try {
             // Build message node
@@ -358,12 +356,12 @@ var MAM = (function () {
 
                         // Display the message in that target
                         var c_msg_display = function() {
-                            displayMessage(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
+                            Message.display(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
                         };
 
                         // Hack: do not display the message in case we would duplicate it w/ current session messages
                         //       only used when initiating a new chat, avoids collisions
-                        if(!(xid in MAM_MAP_STATES) && $('#' + hash).find('.one-line.user-message:last').text() == body) {
+                        if(!(xid in self.map_states) && $('#' + hash).find('.one-line.user-message:last').text() == body) {
                             return;
                         }
 
@@ -372,11 +370,11 @@ var MAM = (function () {
                             c_msg_display();
                         } else {
                             // Delay display (we may not have received the MAM reply ATM)
-                            if(typeof MAM_MSG_QUEUE[xid] != 'object') {
-                                MAM_MSG_QUEUE[xid] = [];
+                            if(typeof self.msg_queue[xid] != 'object') {
+                                self.msg_queue[xid] = [];
                             }
 
-                            MAM_MSG_QUEUE[xid].push(c_msg_display);
+                            self.msg_queue[xid].push(c_msg_display);
                         }
                     }
                 }

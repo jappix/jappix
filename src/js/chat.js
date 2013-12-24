@@ -83,12 +83,12 @@ var Chat = (function () {
                             name = fName;
                     }
                     
-                    groupchatCreate(hash, xid, name, nickname, password);
+                    Groupchat.create(hash, xid, name, nickname, password);
                 }
             }
             
             // Switch to the newly-created chat
-            switchChan(hash);
+            Interface.switchChan(hash);
         } catch(e) {
             Console.error('Chat.checkCreate', e);
         } finally {
@@ -263,14 +263,14 @@ var Chat = (function () {
             }
             
             // Generate the HTML code
-            var html = '<div class="' + id + ' switcher chan" onclick="return switchChan(\'' + encodeOnclick(id) + '\')">' + 
+            var html = '<div class="' + id + ' switcher chan" onclick="return Interface.switchChan(\'' + encodeOnclick(id) + '\')">' + 
                     '<div class="icon talk-images' + specialClass + '"></div>' + 
                     
                     '<div class="name">' + nick.htmlEnc() + '</div>';
             
             // Show the close button if not MUC and not anonymous
             if(show_close)
-                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
+                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return Interface.quitThisChat(\'' + encodeOnclick(xid) + '\', \'' + encodeOnclick(id) + '\', \'' + encodeOnclick(type) + '\');">x</div>';
             
             // Close the HTML
             html += '</div>';
@@ -333,11 +333,11 @@ var Chat = (function () {
             // If the user is not in our buddy-list
             if(type == 'chat') {
                 // MAM? Get archives from there!
-                if(enabledMAM()) {
-                    getArchivesMAM({
+                if(Features.enabledMAM()) {
+                    MAM.getArchives({
                         'with': xid
                     }, {
-                        'max': MAM_REQ_MAX,
+                        'max': MAM.REQ_MAX,
                         'before': ''
                     });
                 } else {
@@ -396,7 +396,7 @@ var Chat = (function () {
             
             inputDetect.focus(function() {
                 // Clean notifications for this chat
-                chanCleanNotify(hash);
+                Interface.chanCleanNotify(hash);
                 
                 // Store focus on this chat!
                 CHAT_FOCUS_HASH = hash;
@@ -416,7 +416,7 @@ var Chat = (function () {
                         inputDetect.val(inputDetect.val() + '\n');
                     } else {
                         // Send the message
-                        sendMessage(hash, 'chat');
+                        Message.send(hash, 'chat');
                         
                         // Reset the composing database entry
                         DataStore.setDB(DESKTOP_HASH, 'chatstate', xid, 'off');
@@ -430,28 +430,28 @@ var Chat = (function () {
             $('#page-engine #' + hash + ' .content').scroll(function() {
                 var self = this;
 
-                if(enabledMAM() && !(xid in MAM_MAP_PENDING)) {
-                    var has_state = xid in MAM_MAP_STATES;
-                    var rsm_count = has_state ? MAM_MAP_STATES[xid]['rsm']['count'] : 1;
-                    var rsm_before = has_state ? MAM_MAP_STATES[xid]['rsm']['first'] : '';
+                if(Features.enabledMAM() && !(xid in MAM.map_pending)) {
+                    var has_state = xid in MAM.map_states;
+                    var rsm_count = has_state ? MAM.map_states[xid]['rsm']['count'] : 1;
+                    var rsm_before = has_state ? MAM.map_states[xid]['rsm']['first'] : '';
 
                     // Request more archives?
-                    if(rsm_count > 0 && $(this).scrollTop() < MAM_SCROLL_THRESHOLD) {
+                    if(rsm_count > 0 && $(this).scrollTop() < MAM.SCROLL_THRESHOLD) {
                         var was_scroll_top = $(self).scrollTop() <= 32;
                         var wait_mam = $('#' + hash).find('.wait-mam');
                         wait_mam.show();
 
-                        getArchivesMAM({
+                        MAM.getArchives({
                             'with': xid
                         }, {
-                            'max': MAM_REQ_MAX,
+                            'max': MAM.REQ_MAX,
                             'before': rsm_before
                         }, function() {
                             var wait_mam_height = was_scroll_top ? 0 : wait_mam.height();
                             wait_mam.hide();
 
                             // Restore scroll?
-                            if($(self).scrollTop() < MAM_SCROLL_THRESHOLD) {
+                            if($(self).scrollTop() < MAM.SCROLL_THRESHOLD) {
                                 var sel_mam_chunk = $(self).find('.mam-chunk:first');
 
                                 var cont_padding_top = parseInt($(self).css('padding-top').replace(/[^-\d\.]/g, ''));

@@ -356,7 +356,7 @@ var DataForm = (function () {
     self.handleMUC = function(iq) {
 
         try {
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             self.handleContent(iq, 'muc');
         } catch(e) {
             Console.error('DataForm.handleMUC', e);
@@ -374,7 +374,7 @@ var DataForm = (function () {
     self.handleBrowse = function(iq) {
 
         try {
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             self.handleContent(iq, 'browse');
         } catch(e) {
             Console.error('DataForm.handleBrowse', e);
@@ -392,7 +392,7 @@ var DataForm = (function () {
     self.handleCommand = function(iq) {
 
         try {
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             self.handleContent(iq, 'command');
         } catch(e) {
             Console.error('DataForm.handleCommand', e);
@@ -410,7 +410,7 @@ var DataForm = (function () {
     self.handleSubscribe = function(iq) {
 
         try {
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             self.handleContent(iq, 'subscribe');
         } catch(e) {
             Console.error('DataForm.handleSubscribe', e);
@@ -428,7 +428,7 @@ var DataForm = (function () {
     self.handleSearch = function(iq) {
 
         try {
-            handleErrorReply(iq);
+            Error.handleReply(iq);
             self.handleContent(iq, 'search');
         } catch(e) {
             Console.error('DataForm.handleSearch', e);

@@ -60,11 +60,11 @@ var Anonymous = (function () {
                 presenceSend();
                 
                 // Change the title
-                updateTitle();
+                Interface.updateTitle();
             }
             
             // Remove the waiting icon
-            removeGeneralWait();
+            Interface.removeGeneralWait();
         } catch(e) {
             Console.error('Anonymous.connected', e);
         }
@@ -112,9 +112,9 @@ var Anonymous = (function () {
             con = new JSJaCHttpBindingConnection(oArgs);
             
             // And we handle everything that happen
-            con.registerHandler('message', handleMessage);
+            con.registerHandler('message', Message.handle);
             con.registerHandler('presence', handlePresence);
-            con.registerHandler('iq', handleIQ);
+            con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.connected);
             con.registerHandler('onerror', handleError);
             con.registerHandler('ondisconnect', self.disconnected);
@@ -131,7 +131,7 @@ var Anonymous = (function () {
             con.connect(oArgs);
             
             // Change the page title
-            pageTitle('wait');
+            Interface.title('wait');
         } catch(e) {
             Console.error('Anonymous.login', e);
 
@@ -159,7 +159,7 @@ var Anonymous = (function () {
                 Console.info('Anonymous mode detected, connecting...');
                 
                 // We add the login wait div
-                showGeneralWait();
+                Interface.showGeneralWait();
                 
                 // Get the vars
                 if(LINK_VARS['r'])

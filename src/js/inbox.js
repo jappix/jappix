@@ -25,7 +25,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.openInbox = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -71,7 +71,7 @@ var Inbox = (function () {
                     '<form class="inbox-new-file inbox-new-block" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
                         '<p class="inbox-new-text">' + Common._e("File") + '</p>' + 
                         
-                        generateFileShare() + 
+                        Interface.generateFileShare() + 
                     '</form>' + 
                     
                     '<div class="inbox-new-send inbox-new-block">' + 
@@ -90,10 +90,10 @@ var Inbox = (function () {
             createPopup('inbox', html);
             
             // Associate the events
-            launchInbox();
+            self.instance();
             
             // Load the messages
-            loadInbox();
+            self.load();
         } catch(e) {
             Console.error('Inbox.open', e);
         } finally {
@@ -108,7 +108,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeInbox = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -128,12 +128,12 @@ var Inbox = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.composeInboxMessage = function(xid) {
+    self.composeMessage = function(xid) {
 
         try {
             // Open things
-            openInbox();
-            newInboxMessage();
+            self.open();
+            self.newMessage();
             
             // Apply XID
             $('#inbox .inbox-new-to-input').val(xid);
@@ -156,7 +156,7 @@ var Inbox = (function () {
      * @public
      * @return {undefined}
      */
-    self.storeInbox = function() {
+    self.store = function() {
 
         try {
             var iq = new JSJaCIQ();
@@ -203,7 +203,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.newInboxMessage = function() {
+    self.newMessage = function() {
 
         try {
             // Init
@@ -222,7 +222,7 @@ var Inbox = (function () {
             });
             
             // We reset some stuffs
-            cleanNewInboxMessage();
+            self.cleanNewMessage();
         } catch(e) {
             Console.error('Inbox.newMessage', e);
         } finally {
@@ -237,7 +237,7 @@ var Inbox = (function () {
      * @public
      * @return {undefined}
      */
-    self.cleanNewInboxMessage = function() {
+    self.cleanNewMessage = function() {
 
         try {
             // Init
@@ -266,7 +266,7 @@ var Inbox = (function () {
      * @param {string} body
      * @return {undefined}
      */
-    self.sendInboxMessage = function(to, subject, body) {
+    self.sendMessage = function(to, subject, body) {
 
         try {
             // We send the message
@@ -288,7 +288,7 @@ var Inbox = (function () {
             // Set body
             mess.setBody(body);
             
-            con.send(mess, handleErrorReply);
+            con.send(mess, Error.handleReply);
         } catch(e) {
             Console.error('Inbox.sendMessage', e);
         }
@@ -301,7 +301,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.checkInboxMessage = function() {
+    self.checkMessage = function() {
 
         try {
             // We get some informations
@@ -330,16 +330,16 @@ var Inbox = (function () {
                     current = Common.generateXID(current, 'chat');
                     
                     // We send the message
-                    sendInboxMessage(current, subject, body);
+                    self.sendMessage(current, subject, body);
                     
                     // We clean the inputs
-                    cleanNewInboxMessage();
+                    self.cleanNewMessage();
                     
                     Console.info('Inbox message sent: ' + current);
                 }
                 
                 // Close the inbox
-                closeInbox();
+                self.close();
             }
             
             else {
@@ -370,7 +370,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.showInboxMessages = function() {
+    self.showMessage = function() {
 
         try {
             // Init
@@ -386,7 +386,7 @@ var Inbox = (function () {
             $(mPath + 'a-new-message').show();
             
             // We reset some stuffs
-            cleanNewInboxMessage();
+            self.cleanNewMessage();
         } catch(e) {
             Console.error('Inbox.showMessage', e);
         } finally {
@@ -407,7 +407,7 @@ var Inbox = (function () {
      * @param {string} date
      * @return {boolean}
      */
-    self.displayInboxMessage = function(from, subject, content, status, id, date) {
+    self.displayMessage = function(from, subject, content, status, id, date) {
 
         try {
             // Generate some paths
@@ -449,9 +449,9 @@ var Inbox = (function () {
             // Click events
             $(one_message + ' .message-head').click(function() {
                 if(!Common.exists(one_message + ' .message-content'))
-                    revealInboxMessage(id, from, subject, content, name, date, status);
+                    self.revealMessage(id, from, subject, content, name, date, status);
                 else
-                    hideInboxMessage(id);
+                    self.hideMessage(id);
                 
                 return false;
             });
@@ -478,7 +478,7 @@ var Inbox = (function () {
      * @param {string} date
      * @return {undefined}
      */
-    self.storeInboxMessage = function(from, subject, content, status, id, date) {
+    self.storeMessage = function(from, subject, content, status, id, date) {
 
         try {
             // Initialize the XML data
@@ -502,7 +502,7 @@ var Inbox = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.deleteInboxMessage = function() {
+    self.deleteMessage = function() {
 
         try {
             // Remove the message from the inbox
@@ -512,10 +512,10 @@ var Inbox = (function () {
             DataStore.removeDB(DESKTOP_HASH, 'inbox', id);
             
             // Check the unread messages
-            checkInboxMessages();
+            self.checkMessages();
             
             // Store the new inbox
-            storeInbox();
+            self.store();
         } catch(e) {
             Console.error('Inbox.deleteMessage', e);
         } finally {
@@ -530,7 +530,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.purgeInbox = function() {
+    self.purge = function() {
 
         try {
             // Remove all the messages from the database
@@ -548,13 +548,13 @@ var Inbox = (function () {
             // Prevent the database lag
             $(document).oneTime(100, function() {
                 // Store the new inbox
-                storeInbox();
+                self.store();
                 
                 // Remove all the messages from the inbox
                 $('#inbox .one-message').remove();
                 
                 // Reload the inbox
-                loadInbox();
+                self.load();
             });
         } catch(e) {
             Console.error('Inbox.purge', e);
@@ -570,7 +570,7 @@ var Inbox = (function () {
      * @public
      * @return {boolean}
      */
-    self.checkInboxMessages = function() {
+    self.checkMessages = function() {
 
         try {
             // Selectors
@@ -619,15 +619,15 @@ var Inbox = (function () {
                 $(inbox_link).prepend('<div class="notify one-counter" data-counter="' + unread + '">' + unread + '</div>');
                 
                 // Update the title
-                updateTitle();
+                Interface.updateTitle();
                 
                 return true;
             }
             
             // Anyway, update the title
-            updateTitle();
+            Interface.updateTitle();
         } catch(e) {
-            Console.error('Inbox.checkMessage', e);
+            Console.error('Inbox.checkMessages', e);
         } finally {
             return false;
         }
@@ -647,7 +647,7 @@ var Inbox = (function () {
      * @param {string} status
      * @return {undefined}
      */
-    self.revealInboxMessage = function(id, from, subject, content, name, date, status) {
+    self.revealMessage = function(id, from, subject, content, name, date, status) {
 
         try {
             // Message path
@@ -662,7 +662,7 @@ var Inbox = (function () {
             // Message content
             var html = 
                 '<div class="message-content">' + 
-                    '<div class="message-body">' + filterThisMessage(content, name, true) + '</div>' + 
+                    '<div class="message-body">' + Filter.message(content, name, true) + '</div>' + 
                     
                     '<div class="message-meta">' + 
                         '<span class="date">' + DateUtils.parse(date) + '</span>' + 
@@ -681,11 +681,11 @@ var Inbox = (function () {
             
             // Click events
             $(one_content + ' a.reply').click(function() {
-                return replyInboxMessage(id, from, subject, content);
+                return self.replyMessage(id, from, subject, content);
             });
             
             $(one_content + ' a.remove').click(function() {
-                return deleteInboxMessage(id);
+                return self.deleteMessage(id);
             });
             
             // Unread message
@@ -698,11 +698,11 @@ var Inbox = (function () {
                 $(one_message).removeClass('message-unread');
                 
                 // Send it to the server!
-                storeInbox();
+                self.store();
             }
             
             // Check the unread messages
-            checkInboxMessages();
+            self.checkMessages();
         } catch(e) {
             Console.error('Inbox.revealMessage', e);
         }
@@ -716,7 +716,7 @@ var Inbox = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.hideInboxMessage = function(id) {
+    self.hideMessage = function(id) {
 
         try {
             // Define the paths
@@ -739,11 +739,11 @@ var Inbox = (function () {
      * @param {type} name
      * @return {boolean}
      */
-    self.replyInboxMessage = function(id, from, subject, body) {
+    self.replyMessage = function(id, from, subject, body) {
 
         try {
             // We switch to the writing div
-            newInboxMessage();
+            self.newMessage();
             
             // Inbox path
             var inbox = '#inbox .';
@@ -772,7 +772,7 @@ var Inbox = (function () {
      * @public
      * @return {undefined}
      */
-    self.loadInbox = function() {
+    self.load = function() {
 
         try {
             // Read the local database
@@ -788,7 +788,7 @@ var Inbox = (function () {
                     var value = $(Common.XMLFromString(DataStore.storageDB.getItem(current)));
                     
                     // Display the current message
-                    displayInboxMessage(
+                    self.displayMessage(
                                 value.find('from').text().revertHtmlEnc(),
                                 value.find('subject').text().revertHtmlEnc(),
                                 value.find('content').text().revertHtmlEnc(),
@@ -800,7 +800,7 @@ var Inbox = (function () {
             }
             
             // Check new messages
-            checkInboxMessages();
+            self.checkMessages();
         } catch(e) {
             Console.error('Inbox.load', e);
         }
@@ -813,7 +813,7 @@ var Inbox = (function () {
      * @public
      * @return {undefined}
      */
-    self.waitInboxAttach = function() {
+    self.waitAttach = function() {
 
         try {
             $('#inbox .wait').show();
@@ -830,7 +830,7 @@ var Inbox = (function () {
      * @param {string} responseXML
      * @return {undefined}
      */
-    self.handleInboxAttach = function(responseXML) {
+    self.handleAttach = function(responseXML) {
 
         try {
             // Data selector
@@ -883,7 +883,7 @@ var Inbox = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchInbox = function() {
+    self.instance = function() {
 
         try {
             // Define the pats
@@ -899,7 +899,7 @@ var Inbox = (function () {
                     if(Common.exists(dHovered))
                         addBuddySearch(destination, $(dHovered).attr('data-xid'));
                     else
-                        checkInboxMessage();
+                        self.checkMessage();
                 }
             });
             
@@ -931,20 +931,20 @@ var Inbox = (function () {
             });
             
             // Click events
-            $(inbox + 'a-delete-messages').click(purgeInbox);
-            $(inbox + 'a-new-message').click(newInboxMessage);
-            $(inbox + 'a-show-messages').click(showInboxMessages);
-            $(inbox + 'inbox-new-send a').click(checkInboxMessage);
+            $(inbox + 'a-delete-messages').click(self.purge);
+            $(inbox + 'a-new-message').click(self.newMessage);
+            $(inbox + 'a-show-messages').click(self.showMessage);
+            $(inbox + 'inbox-new-send a').click(self.checkMessage);
             
             $(inbox + 'bottom .finish').click(function() {
-                return closeInbox();
+                return self.close();
             });
             
             // File upload
             var attach_options = {
                 dataType:   'xml',
-                beforeSubmit:   waitInboxAttach,
-                success:    handleInboxAttach
+                beforeSubmit:   self.waitAttach,
+                success:        self.handleAttach
             };
             
             // Upload form submit event
@@ -963,7 +963,7 @@ var Inbox = (function () {
                 return false;
             });
         } catch(e) {
-            Console.error('Inbox.launch', e);
+            Console.error('Inbox.instance', e);
         }
 
     };

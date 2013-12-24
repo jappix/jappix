@@ -148,7 +148,7 @@ var Tooltip = (function () {
                 case 'file':
                     title = Common._e("Send a file");
                     content = '<p style="margin-bottom: 8px;">' + Common._e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
-                    content += '<form id="oob-upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + generateFileShare() + '</form>';
+                    content += '<form id="oob-upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + Interface.generateFileShare() + '</form>';
                     
                     break;
                 
@@ -186,7 +186,7 @@ var Tooltip = (function () {
                 case 'smileys':
                     // Apply click event on smiley links
                     $(path_tooltip + ' a.emoticon').click(function() {
-                        return insertSmiley($(this).attr('data-smiley'), hash);
+                        return Interface.insertSmiley($(this).attr('data-smiley'), hash);
                     });
                     
                     break;
@@ -357,7 +357,7 @@ var Tooltip = (function () {
                             $(message_area).attr('data-color', new_value);
                         
                         // Regenerate style
-                        var style = generateStyle(hash);
+                        var style = Message.generateStyle(hash);
                         
                         // Any style to apply?
                         if(style)
@@ -380,7 +380,7 @@ var Tooltip = (function () {
                     
                     // Update the textarea style when it is changed
                     $(style + ', ' + colors + ', ' + font_select + ', ' + fontsize_select).click(function() {
-                        var style = generateStyle(hash);
+                        var style = Message.generateStyle(hash);
                         
                         // Any style to apply?
                         if(style)
@@ -452,7 +452,7 @@ var Tooltip = (function () {
                         // Replace it with a waiting notice
                         $(this).replaceWith('<span class="tooltip-waitlog">' + Common._e("Please wait...") + '</span>');
                         
-                        generateChatLog(xid, hash);
+                        Interface.generateChatLog(xid, hash);
                         
                         return false;
                     });

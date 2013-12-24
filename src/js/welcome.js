@@ -148,7 +148,7 @@ var Welcome = (function () {
             $('#welcome').addClass('unavoidable');
             
             // Apply the features
-            applyFeatures('welcome');
+            Features.apply('welcome');
             
             // Associate the events
             launchWelcome();
@@ -292,13 +292,13 @@ var Welcome = (function () {
             
             // If offline buddies showing is enabled
             if(array[4] == '1')
-                showAllBuddies('welcome');
+                Interface.showAllBuddies('welcome');
             
             // If archiving is supported by the server
-            if(enabledMAM()) {
+            if(Features.enabledMAM()) {
                 // If archiving is enabled
                 if(array[3] == '1') {
-                    setConfigMAM('roster');
+                    MAM.setConfig('roster');
                 }
             }
             

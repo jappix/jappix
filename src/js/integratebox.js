@@ -25,7 +25,7 @@ var IntegrateBox = (function () {
      * @public
      * @return {undefined}
      */
-    self.openIntegrateBox = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -46,7 +46,7 @@ var IntegrateBox = (function () {
             createPopup('integratebox', html);
             
             // Associate the events
-            instanceIntegrateBox();
+            self.instance();
         } catch(e) {
             Console.error('IntegrateBox.open', e);
         }
@@ -59,7 +59,7 @@ var IntegrateBox = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeIntegrateBox = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -80,7 +80,7 @@ var IntegrateBox = (function () {
      * @param {string} url
      * @return {string}
      */
-    self.codeIntegrateBox = function(serv, url) {
+    self.code = function(serv, url) {
 
         try {
             var code = '';
@@ -155,23 +155,23 @@ var IntegrateBox = (function () {
      * @param {string} width_style
      * @return {boolean}
      */
-    self.applyIntegrateBox = function(url, service, url_list, services_list, comments_e_list, comments_n_list, width_style) {
+    self.apply = function(url, service, url_list, services_list, comments_e_list, comments_n_list, width_style) {
 
         try {
             // Close the integratebox
-            closeIntegrateBox();
+            self.close();
             
             // Media integration not wanted?
             if(DataStore.getDB(DESKTOP_HASH, 'options', 'integratemedias') == '0')
                 return true;
             
             // Apply the HTML code
-            var dom_code = codeIntegrateBox(service, url);
+            var dom_code = self.code(service, url);
             
             // Any code: apply it!
             if(dom_code) {
                 // We show the integratebox
-                openIntegrateBox();
+                self.open();
                 
                 // We add the code to the DOM
                 $('#integratebox .content').prepend('<div class="one-media">' + dom_code + '</div>');
@@ -253,9 +253,9 @@ var IntegrateBox = (function () {
                     
                     // Apply the event!
                     if($(this).is('.previous'))
-                        applyIntegrateBox(previous_url, previous_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+                        self.apply(previous_url, previous_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
                     else
-                        applyIntegrateBox(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+                        self.apply(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
                     
                     return false;
                 });
@@ -263,7 +263,7 @@ var IntegrateBox = (function () {
                 if(width_style == 'large')
                     $('#integratebox .content a:has(img)').click(function() {
                         if(next_url && next_services)
-                            applyIntegrateBox(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+                            self.apply(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
                         
                         return false;
                     });
@@ -285,7 +285,7 @@ var IntegrateBox = (function () {
      * @public
      * @return {boolean}
      */
-    self.canIntegrateBox = function() {
+    self.can = function() {
 
         can_use = false;
 
@@ -309,7 +309,7 @@ var IntegrateBox = (function () {
      * @param {string} data
      * @return {string}
      */
-    self.filterIntegrateBox = function(data) {
+    self.filter = function(data) {
 
         try {
             // Encapsulates the string into two <div /> elements
@@ -365,7 +365,7 @@ var IntegrateBox = (function () {
                 if(to)
                     event = 'xmppLink(\'' + encodeOnclick(to) + '\')';
                 else if(url && service)
-                    event = 'applyIntegrateBox(\'' + encodeOnclick(url) + '\', \'' + encodeOnclick(service) + '\')';
+                    event = 'IntegrateBox.apply(\'' + encodeOnclick(url) + '\', \'' + encodeOnclick(service) + '\')';
                 
                 // Any click event to apply?
                 if(event) {
@@ -409,11 +409,11 @@ var IntegrateBox = (function () {
      * @public
      * @return {undefined}
      */
-    self.instanceIntegrateBox = function() {
+    self.instance = function() {
 
         try {
             // Click event
-            $('#integratebox .bottom .finish.close').click(closeIntegrateBox);
+            $('#integratebox .bottom .finish.close').click(self.close);
         } catch(e) {
             Console.error('IntegrateBox.instance', e);
         }

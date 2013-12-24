@@ -51,7 +51,7 @@ var Connection = (function () {
             $('#home .loginer input').removeClass('please-complete');
             
             // We add the login wait div
-            showGeneralWait();
+            Interface.showGeneralWait();
             
             // We define the http binding parameters
             oArgs = new Object();
@@ -100,7 +100,7 @@ var Connection = (function () {
             con.connect(oArgs);
             
             // Change the page title
-            pageTitle('wait');
+            Interface.title('wait');
             
             Console.info('Jappix is connecting...');
         } catch(e) {
@@ -129,10 +129,10 @@ var Connection = (function () {
             Console.info('A new account has been registered.');
             
             // We remove the waiting image
-            removeGeneralWait();
+            Interface.removeGeneralWait();
             
             // Reset the title
-            pageTitle('home');
+            Interface.title('home');
             
             // We show the success information
             $('#home .registerer .success').fadeIn('fast');
@@ -176,16 +176,16 @@ var Connection = (function () {
             
             if((REGISTER_API == 'on') && (domain == HOST_MAIN) && captcha) {
                 // Show the waiting image
-                showGeneralWait();
+                Interface.showGeneralWait();
                 
                 // Change the page title
-                pageTitle('wait');
+                Interface.title('wait');
                 
                 // Send request
                 $.post('./php/register.php', {username: username, domain: domain, password: pass, captcha: captcha}, function(data) {
                     // Error registering
-                    removeGeneralWait();
-                    pageTitle('home');
+                    Interface.removeGeneralWait();
+                    Interface.title('home');
                     
                     // In all case, update CAPTCHA
                     $('#home img.captcha_img').attr('src', './php/captcha.php?id=' + genID());
@@ -220,7 +220,7 @@ var Connection = (function () {
                         }
                         
                         if(error_message)
-                            showError('', error_message, '');
+                            Error.show('', error_message, '');
                     }
                 });
             } else {
@@ -256,10 +256,10 @@ var Connection = (function () {
                     con.connect(oArgs);
                     
                     // Show the waiting image
-                    showGeneralWait();
+                    Interface.showGeneralWait();
                     
                     // Change the page title
-                    pageTitle('wait');
+                    Interface.title('wait');
                 }
                 
                 catch(e) {
@@ -340,10 +340,10 @@ var Connection = (function () {
             $('#home').hide();
             
             // Any suggest to do before triggering connected event?
-            suggestCheck();
+            Groupchat.suggestCheck();
             
             // Remove the waiting item
-            removeGeneralWait();
+            Interface.removeGeneralWait();
 
             // Init Jingle
             Jingle.init();
@@ -372,7 +372,7 @@ var Connection = (function () {
                 createTalkPage();
                 
                 // We reset the homepage
-                switchHome('default');
+                Home.change('default');
                 
                 // We get all the other things
                 self.getEverything();
@@ -387,7 +387,7 @@ var Connection = (function () {
                 presenceSend();
                 
                 // Change the title
-                updateTitle();
+                Interface.updateTitle();
             }
         } catch(e) {
             Console.error('Connection.triggerConnected', e);
@@ -429,9 +429,9 @@ var Connection = (function () {
 
         try {
             // Setup connection handlers
-            con.registerHandler('message', handleMessage);
+            con.registerHandler('message', Message.handle);
             con.registerHandler('presence', handlePresence);
-            con.registerHandler('iq', handleIQ);
+            con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.handleConnected);
             con.registerHandler('onerror', handleError);
             con.registerHandler('ondisconnect', self.handleDisconnected);
@@ -490,10 +490,10 @@ var Connection = (function () {
             }
             
             // We show the waiting image
-            showGeneralWait();
+            Interface.showGeneralWait();
             
             // Change the page title
-            pageTitle('wait');
+            Interface.title('wait');
             
             // We disconnect from the XMPP server
             self.logout();
@@ -569,7 +569,7 @@ var Connection = (function () {
                 });
                 
                 // Page title
-                updateTitle();
+                Interface.updateTitle();
             }
         } catch(e) {
             Console.error('Connection.createReconnect', e);
@@ -593,7 +593,7 @@ var Connection = (function () {
             RESUME = true;
             
             // Show waiting item
-            showGeneralWait();
+            Interface.showGeneralWait();
             
             // Reset some various stuffs
             var groupchats = '#page-engine .page-engine-chan[data-type="groupchat"]';
@@ -754,7 +754,7 @@ var Connection = (function () {
     self.getEverything = function() {
 
         try {
-            getFeatures();
+            Features.get();
             getRoster();
             listPrivacy();
             getStorage(NS_ROSTERNOTES);
@@ -837,7 +837,7 @@ var Connection = (function () {
                         $('#home').hide();
                         
                         // Show the waiting icon
-                        showGeneralWait();
+                        Interface.showGeneralWait();
                         
                         // Proceed login
                         self.doLogin(login_nick, login_server, login_pwd, login_resource, login_priority, login_remember);
@@ -856,7 +856,7 @@ var Connection = (function () {
                     $('#home').hide();
                     
                     // Show the waiting icon
-                    showGeneralWait();
+                    Interface.showGeneralWait();
                     
                     // Login!
                     self.loginFromSession(session);
@@ -866,7 +866,7 @@ var Connection = (function () {
                 
                 // Not connected, maybe a XMPP link is submitted?
                 else if((parent.location.hash != '#OK') && LINK_VARS['x']) {
-                    switchHome('loginer');
+                    Home.change('loginer');
                     
                     Console.info('A XMPP link is set, switch to login page.');
                 }

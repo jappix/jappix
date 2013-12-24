@@ -37,7 +37,7 @@ var Presence = (function () {
             Console.info('First presence sent.');
             
             // Jappix is now ready: change the title
-            pageTitle('talk');
+            Interface.title('talk');
             
             // Anonymous check
             var is_anonymous = isAnonymous();
@@ -183,7 +183,7 @@ var Presence = (function () {
                 else {
                     // Fixes M-Link first presence bug (missing ID!)
                     if((nick == getMUCNick(xidHash)) && (presence.getID() == null) && !Common.exists('#page-engine #' + xidHash + ' .list .' + hash)) {
-                        handleMUC(presence);
+                        Groupchat.handleMUC(presence);
                         
                         Console.warn('Passed M-Link MUC first presence handling.');
                     }
@@ -268,7 +268,7 @@ var Presence = (function () {
                             can_display = false;
                         
                         if(can_display)
-                            displayMessage('chat', xid, xidHash, dName, dBody, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
+                            Message.display('chat', xid, xidHash, dName, dBody, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
                     }
                 }
             }
@@ -374,7 +374,7 @@ var Presence = (function () {
                     
                     // Any status?
                     if(status)
-                        write += ' (' + filterThisMessage(status, nick_html, true) + ')';
+                        write += ' (' + Filter.message(status, nick_html, true) + ')';
                     else
                         write += ' (' + Common._e("no status") + ')';
                 }
@@ -410,7 +410,7 @@ var Presence = (function () {
                     
                     // Any reason?
                     if(reason)
-                        write += ' (' + filterThisMessage(reason, nick_html, true) + ')';
+                        write += ' (' + Filter.message(reason, nick_html, true) + ')';
                     else
                         write += ' (' + Common._e("no reason") + ')';
                 }
@@ -453,7 +453,7 @@ var Presence = (function () {
                     
                     // Any status?
                     if(status)
-                        write += ' (' + filterThisMessage(status, nick_html, true) + ')';
+                        write += ' (' + Filter.message(status, nick_html, true) + ')';
                     else
                         write += ' (' + Common._e("no status") + ')';
                 }
@@ -464,7 +464,7 @@ var Presence = (function () {
             
             // Must notify something
             if(notify)
-                displayMessage('groupchat', from, roomHash, nick_html, write, messageTime, DateUtils.getTimeStamp(), 'system-message', false);
+                Message.display('groupchat', from, roomHash, nick_html, write, messageTime, DateUtils.getTimeStamp(), 'system-message', false);
             
             // Set the good status show icon
             switch(show) {
@@ -532,7 +532,7 @@ var Presence = (function () {
                     dStatus = status;
                 }
                 
-                dStatus = filterThisMessage(dStatus, getBuddyName(xid).htmlEnc(), true);
+                dStatus = Filter.message(dStatus, getBuddyName(xid).htmlEnc(), true);
             }
             
             return dStatus;
@@ -1188,7 +1188,7 @@ var Presence = (function () {
                 
                 // Must re-initialize?
                 if(RESUME)
-                    getMUC(room, nick);
+                    Groupchat.getMUC(room, nick);
                 
                 // Not disabled?
                 else if(!$(this).find('.message-area').attr('disabled'))

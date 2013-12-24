@@ -783,7 +783,7 @@ var PEP = (function () {
 
         try {
             // Don't fire it until options & features are not retrieved!
-            if(!DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') || (DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !enabledPEP()) {
+            if(!DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') || (DataStore.getDB(DESKTOP_HASH, 'options', 'geolocation') == '0') || !Features.enabledPEP()) {
                 return;
             }
             

@@ -28,7 +28,7 @@ var Links = (function () {
      * @param {string} style
      * @return {string}
      */
-    self.applyLinks = function(string, mode, style) {
+    self.apply = function(string, mode, style) {
 
         try {
             // Special stuffs

@@ -81,7 +81,7 @@ var vCard = (function () {
                         '<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
                         
                         '<form id="vcard-avatar" action="./php/avatar-upload.php" method="post" enctype="multipart/form-data">' + 
-                            generateFileShare() + 
+                            Interface.generateFileShare() + 
                         '</form>' + 
                     '</fieldset>' + 
                     
@@ -171,7 +171,7 @@ var vCard = (function () {
             // Create the welcome end popup?
             if(END_WELCOME) {
                 // Open popup
-                openMe();
+                Me.open();
                 
                 // Unavoidable popup
                 $('#me').addClass('unavoidable');
@@ -510,7 +510,7 @@ var vCard = (function () {
                             
                             // Description modification
                             else if(tokenname == 'DESC')
-                                currentText = filterThisMessage(currentText, getBuddyName(iqFrom).htmlEnc(), true);
+                                currentText = Filter.message(currentText, getBuddyName(iqFrom).htmlEnc(), true);
                             
                             // Other stuffs
                             else
@@ -637,7 +637,7 @@ var vCard = (function () {
             con.send(iq);
             
             // Send the user nickname & avatar over PEP
-            if(enabledPEP()) {
+            if(Features.enabledPEP()) {
                 // Read values
                 var user_nick = $('#USER-NICKNAME').val();
                 var photo_bin = $('#USER-PHOTO-BINVAL').val();

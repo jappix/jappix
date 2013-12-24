@@ -259,7 +259,7 @@ var Caps = (function () {
             // This is our server
             if(from == getServer()) {
                 // Handle the features
-                handleFeatures(xml);
+                Features.handle(xml);
                 
                 Console.info('Got our server CAPS');
             }

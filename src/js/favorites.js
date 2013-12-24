@@ -25,7 +25,7 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.openFavorites = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -124,10 +124,10 @@ var Favorites = (function () {
             createPopup('favorites', html);
             
             // Load the favorites
-            loadFavorites();
+            self.load();
             
             // Associate the events
-            launchFavorites();
+            self.instance();
         } catch(e) {
             Console.error('Favorites.open', e);
         }
@@ -140,7 +140,7 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.resetFavorites = function() {
+    self.reset = function() {
 
         try {
             var path = '#favorites ';
@@ -165,7 +165,7 @@ var Favorites = (function () {
      * @public
      * @return {boolean}
      */
-    self.quitFavorites = function() {
+    self.quit = function() {
 
         try {
             // Destroy the popup
@@ -186,7 +186,7 @@ var Favorites = (function () {
      * @param {string} roomName
      * @return {boolean}
      */
-    self.addThisFavorite = function(roomXID, roomName) {
+    self.addThis = function(roomXID, roomName) {
 
         try {
             // Button path
@@ -197,17 +197,17 @@ var Favorites = (function () {
             
             // Click event
             $(button + '.remove').click(function() {
-                return removeThisFavorite(roomXID, roomName);
+                return self.removeThis(roomXID, roomName);
             });
             
             // Hide the add button in the (opened?) groupchat
             $('#' + hex_md5(roomXID) + ' .tools-add').hide();
             
             // Add the database entry
-            displayFavorites(roomXID, Common.explodeThis(' (', roomName, 0), getNick(), '0', '');
+            self.display(roomXID, Common.explodeThis(' (', roomName, 0), getNick(), '0', '');
             
             // Publish the favorites
-            favoritePublish();
+            self.publish();
         } catch(e) {
             Console.error('Favorites.addThis', e);
         } finally {
@@ -224,7 +224,7 @@ var Favorites = (function () {
      * @param {string} roomName
      * @return {boolean}
      */
-    self.removeThisFavorite = function(roomXID, roomName) {
+    self.removeThis = function(roomXID, roomName) {
 
         try {
             // Button path
@@ -235,19 +235,19 @@ var Favorites = (function () {
             
             // Click event
             $(button + '.add').click(function() {
-                return addThisFavorite(roomXID, roomName);
+                return self.addThis(roomXID, roomName);
             });
             
             // Show the add button in the (opened?) groupchat
             $('#' + hex_md5(roomXID) + ' .tools-add').show();
             
             // Remove the favorite
-            removeFavorite(roomXID, true);
+            self.remove(roomXID, true);
             
             // Publish the favorites
-            favoritePublish();
+            self.publish();
         } catch(e) {
-            Console.error('Favorites.remove', e);
+            Console.error('Favorites.removeThis', e);
         } finally {
             return false;
         }
@@ -260,14 +260,14 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.editFavorite = function() {
+    self.edit = function() {
 
         try {
             // Path to favorites
             var favorites = '#favorites .';
             
             // Reset the favorites
-            resetFavorites();
+            self.reset();
             
             // Show the edit/remove button, hide the others
             $(favorites + 'fedit-terminate').hide();
@@ -298,36 +298,12 @@ var Favorites = (function () {
 
 
     /**
-     * Adds a favorite
-     * @public
-     * @return {undefined}
-     */
-    self.addFavorite = function() {
-
-        try {
-            // Path to favorites
-            var favorites = '#favorites .';
-            
-            // We reset the inputs
-            $(favorites + 'fedit-title, ' + favorites + 'fedit-nick, ' + favorites + 'fedit-chan, ' + favorites + 'fedit-server, ' + favorites + 'fedit-password').val('');
-            
-            // Show the add button, hide the others
-            $(favorites + 'fedit-terminate').hide();
-            $(favorites + 'fedit-add').show();
-        } catch(e) {
-            Console.error('Favorites.add', e);
-        }
-
-    };
-
-
-    /**
      * Terminate a favorite editing
      * @public
      * @param {string} type
      * @return {boolean}
      */
-    self.terminateThisFavorite = function(type) {
+    self.terminateThis = function(type) {
 
         try {
             // Path to favorites
@@ -352,13 +328,13 @@ var Favorites = (function () {
                 if(title && nick && room && server) {
                     // Remove the edited room
                     if(type == 'edit')
-                        removeFavorite(old_xid, true);
+                        self.remove(old_xid, true);
                     
                     // Display the favorites
-                    displayFavorites(xid, title, nick, autojoin, password);
+                    self.display(xid, title, nick, autojoin, password);
                     
                     // Reset the inputs
-                    resetFavorites();
+                    self.reset();
                 }
                 
                 else {
@@ -377,14 +353,14 @@ var Favorites = (function () {
             
             // Must remove a favorite?
             else if(type == 'remove') {
-                removeFavorite(old_xid, true);
+                self.remove(old_xid, true);
                 
                 // Reset the inputs
-                resetFavorites();
+                self.reset();
             }
             
             // Publish the new favorites
-            favoritePublish();
+            self.publish();
             
             Console.info('Action on this bookmark: ' + room + '@' + server + ' / ' + type);
         } catch(e) {
@@ -401,7 +377,7 @@ var Favorites = (function () {
      * @param {boolean} database
      * @return {undefined}
      */
-    self.removeFavorite = function(xid, database) {
+    self.remove = function(xid, database) {
 
         try {
             // We remove the target favorite everywhere needed
@@ -424,7 +400,7 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.favoritePublish = function() {
+    self.publish = function() {
 
         try {
             var iq = new JSJaCIQ();
@@ -490,7 +466,7 @@ var Favorites = (function () {
             
             iq.setQuery(NS_DISCO_ITEMS);
             
-            con.send(iq, handleGCList);
+            con.send(iq, self.handleGCList);
         } catch(e) {
             Console.error('Favorites.getGCList', e);
         }
@@ -537,13 +513,13 @@ var Favorites = (function () {
                             // Initialize the room HTML
                             html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 
                                     '<div class="room-name">' + roomName.htmlEnc() + '</div>' + 
-                                    '<a href="#" class="one-button join talk-images" onclick="return joinFavorite(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
+                                    '<a href="#" class="one-button join talk-images" onclick="return Favorites.join(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
                             
                             // This room is yet a favorite
                             if(DataStore.existDB('favorites', roomXID))
-                                html += '<a href="#" class="one-button remove talk-images" onclick="return removeThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
+                                html += '<a href="#" class="one-button remove talk-images" onclick="return Favorites.removeThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
                             else
-                                html += '<a href="#" class="one-button add talk-images" onclick="return addThisFavorite(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';
+                                html += '<a href="#" class="one-button add talk-images" onclick="return Favorites.addThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';
                             
                             // Close the room HTML
                             html += '</div>';
@@ -574,10 +550,10 @@ var Favorites = (function () {
      * @param {string} room
      * @return {boolean}
      */
-    self.joinFavorite = function() {
+    self.join = function() {
 
         try {
-            quitFavorites();
+            self.quit();
             Chat.checkCreate(room, 'groupchat', '', '', Common.getXIDNick(room));
         } catch(e) {
             Console.error('Favorites.join', e);
@@ -598,14 +574,14 @@ var Favorites = (function () {
      * @param {string} password
      * @return {undefined}
      */
-    self.displayFavorites = function(xid, name, nick, autojoin, password) {
+    self.display = function(xid, name, nick, autojoin, password) {
 
         try {
             // Generate the HTML code
             var html = '<option value="' + Common.encodeQuotes(xid) + '">' + name.htmlEnc() + '</option>';
             
             // Remove the existing favorite
-            removeFavorite(xid, false);
+            self.remove(xid, false);
             
             // We complete the select forms
             $('#buddy-list .gc-join-first-option, #favorites .fedit-head-select-first-option').after(html);
@@ -625,7 +601,7 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.loadFavorites = function() {
+    self.load = function() {
 
         try {
             // Initialize the HTML code
@@ -666,7 +642,7 @@ var Favorites = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchFavorites = function() {
+    self.instance = function() {
 
         try {
             var path = '#favorites .';
@@ -679,7 +655,7 @@ var Favorites = (function () {
                         $(this).val(HOST_MUC);
                     
                     // Get the list
-                    getGCList();
+                    self.getGCList();
                 }
             });
             
@@ -687,21 +663,21 @@ var Favorites = (function () {
                 if(e.keyCode == 13) {
                     // Edit a favorite
                     if($(path + 'fedit-edit').is(':visible'))
-                        terminateThisFavorite('edit');
+                        terminateThis('edit');
                     
                     // Add a favorite
                     else
-                        terminateThisFavorite('add');
+                        terminateThis('add');
                 }
             });
             
             // Change events
-            $('.fedit-head-select').change(editFavorite);
+            $('.fedit-head-select').change(self.edit);
             
             // Click events
             $(path + 'room-switcher').click(function() {
                 $(path + 'favorites-content').hide();
-                resetFavorites();
+                self.reset();
             });
             
             $(path + 'room-list').click(function() {
@@ -710,26 +686,26 @@ var Favorites = (function () {
             
             $(path + 'room-search').click(function() {
                 $(path + 'favorites-search').show();
-                getGCList();
+                self.getGCList();
             });
             
             $(path + 'fedit-add').click(function() {
-                return terminateThisFavorite('add');
+                return terminateThis('add');
             });
             
             $(path + 'fedit-edit').click(function() {
-                return terminateThisFavorite('edit');
+                return terminateThis('edit');
             });
             
             $(path + 'fedit-remove').click(function() {
-                return terminateThisFavorite('remove');
+                return terminateThis('remove');
             });
             
             $(path + 'bottom .finish').click(function() {
-                return quitFavorites();
+                return self.quit();
             });
         } catch(e) {
-            Console.error('Favorites.launch', e);
+            Console.error('Favorites.instance', e);
         }
 
     };

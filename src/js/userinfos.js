@@ -34,7 +34,7 @@ var UserInfos = (function () {
             
             if(xid != Common.getXID()) {
                 shortcuts = '<div class="shortcuts">' + 
-                            '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="closeUserInfos(); return composeInboxMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
+                            '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="closeUserInfos(); return Inbox.composeMessage(\'' + encodeOnclick(xid) + '\');"></a>' + 
                             '<a href="#" class="chat talk-images" title="' + Common._e("Start a chat with him/her") + '" onclick="closeUserInfos(); return Chat.checkCreate(\'' + encodeOnclick(xid) + '\', \'chat\');"></a>' + 
                             '<a href="#" class="command talk-images" title="' + Common._e("Command") + '" onclick="closeUserInfos(); return AdHoc.retrieve(\'' + encodeOnclick(xid) + '\');"></a>' + 
                              '</div>';

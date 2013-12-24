@@ -25,7 +25,7 @@ var Me = (function () {
      * @public
      * @return {undefined}
      */
-    self.openMe = function() {
+    self.open = function() {
 
         try {
             // Popup HTML content
@@ -53,7 +53,7 @@ var Me = (function () {
             createPopup('me', html);
             
             // Associate the events
-            launchMe();
+            self.instance();
             
             Console.log('Public profile tool opened.');
         } catch(e) {
@@ -68,7 +68,7 @@ var Me = (function () {
      * @public
      * @return {boolean}
      */
-    self.closeMe = function() {
+    self.close = function() {
 
         try {
             // Destroy the popup
@@ -90,17 +90,17 @@ var Me = (function () {
      * @public
      * @return {undefined}
      */
-    self.launchMe = function() {
+    self.instance = function() {
 
         try {
             // Click events
             $('#me .content a.go').click(function() {
-                closeMe();
+                self.close();
             });
             
-            $('#me .bottom .finish').click(closeMe);
+            $('#me .bottom .finish').click(self.close);
         } catch(e) {
-            Console.error('Me.launch', e);
+            Console.error('Me.instance', e);
         }
 
     };

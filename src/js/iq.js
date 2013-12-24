@@ -26,7 +26,7 @@ var IQ = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleIQ = function(iq) {
+    self.handle = function(iq) {
 
         try {
             // Gets the IQ content

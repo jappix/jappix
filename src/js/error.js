@@ -28,7 +28,7 @@ var Error = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.showError = function(condition, reason, type) {
+    self.show = function(condition, reason, type) {
 
         try {
             // Enough data to output the error
@@ -76,7 +76,7 @@ var Error = (function () {
      * @param {object} packet
      * @return {boolean}
      */
-    self.handleError = function(packet) {
+    self.handle = function(packet) {
 
         /* REF: http://xmpp.org/extensions/xep-0086.html */
 
@@ -114,7 +114,7 @@ var Error = (function () {
                 }
                 
                 // Remove the general wait item (security)
-                removeGeneralWait();
+                Interface.removeGeneralWait();
                 
                 // Show reconnect pane
                 if(CURRENT_SESSION && CONNECTED) {
@@ -128,7 +128,7 @@ var Error = (function () {
                 // Show the homepage (security)
                 else if(!CURRENT_SESSION || !CONNECTED) {
                     $('#home').show();
-                    pageTitle('home');
+                    Interface.title('home');
                 }
                 
                 // Still connected? (security)
@@ -152,7 +152,7 @@ var Error = (function () {
                 return false;
             
             // Show the error board
-            showError(condition, reason, type);
+            self.show(condition, reason, type);
             
             // Return there's an error
             return true;
@@ -169,10 +169,10 @@ var Error = (function () {
      * @param {object} packet
      * @return {boolean}
      */
-    self.handleErrorReply = function(packet) {
+    self.handleReply = function(packet) {
 
         try {
-            return handleError(packet.getNode());
+            return self.handle(packet.getNode());
         } catch(e) {
             Console.error('Error.handleReply', e);
         }
@@ -186,11 +186,11 @@ var Error = (function () {
      * @param {object} packet
      * @return {boolean}
      */
-    self.handleMessageError = function(packet) {
+    self.handleMessage = function(packet) {
 
         try {
-            if(!handleErrorReply(packet)) {
-                handleMessage(packet);
+            if(!self.handleReply(packet)) {
+                Message.handle(packet);
             }
         } catch(e) {
             Console.error('Error.handleMessage', e);

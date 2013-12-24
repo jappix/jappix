@@ -66,9 +66,9 @@ var Talk = (function () {
                     '<div class="tools tools-all">';
                         
                         if(!anonymous) html += 
-                        '<a href="#" onclick="return openInbox();" class="inbox-hidable">' + Common._e("Messages") +  '</a>' + 
-                        '<a href="#" onclick="return openVCard();" class="vcard">' + Common._e("Profile") +  '</a>' + 
-                        '<a href="#" onclick="return optionsOpen();" class="options-hidable">' + Common._e("Options") +  '</a>' + 
+                        '<a href="#" onclick="return Inbox.open();" class="inbox-hidable">' + Common._e("Messages") +  '</a>' + 
+                        '<a href="#" onclick="return vCard.open();" class="vcard">' + Common._e("Profile") +  '</a>' + 
+                        '<a href="#" onclick="return Options.open();" class="options-hidable">' + Common._e("Options") +  '</a>' + 
                         '<a href="#" onclick="return Connection.normalQuit();" class="quit">' + Common._e("Disconnect") +  '</a>';
                         
                         else html +=
@@ -191,7 +191,7 @@ var Talk = (function () {
                         '<div id="page-switch">' + 
                             '<div class="chans">';
                                 if(!anonymous) html += 
-                                '<div class="channel switcher activechan" onclick="return switchChan(\'channel\');">' + 
+                                '<div class="channel switcher activechan" onclick="return Interface.switchChan(\'channel\');">' + 
                                     '<div class="icon talk-images"></div>' + 
                                 
                                     '<div class="name">' + Common._e("Channel") +  '</div>' + 
@@ -201,7 +201,7 @@ var Talk = (function () {
                             '</div>' + 
                             
                             '<div class="more ibubble">' + 
-                                '<div class="more-button talk-images" onclick="return loadChatSwitch();" title="' + Common._e("All tabs") +  '"></div>' + 
+                                '<div class="more-button talk-images" onclick="return Interface.loadChatSwitch();" title="' + Common._e("All tabs") +  '"></div>' + 
                             '</div>' + 
                         '</div>' + 
                         
@@ -228,7 +228,7 @@ var Talk = (function () {
                                                 
                                                 '<div class="attach-subitem">' + 
                                                     '<p class="attach-p">' + Common._e("Attach a file") +  '</p>' + 
-                                                    generateFileShare() + 
+                                                    Interface.generateFileShare() + 
                                                 '</div>' + 
                                             '</form>' + 
                                         '</div>' + 
@@ -299,7 +299,7 @@ var Talk = (function () {
             
             // We renitalise the html markup as its initiale look
             $('.removable').remove();
-            pageTitle('home');
+            Interface.title('home');
             
             // Finally we show the homepage
             $('#home').show();

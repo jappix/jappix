@@ -233,7 +233,7 @@ var Music = (function () {
 
         try {
             // We share the tune on PEP if enabled
-            if(enabledPEP()) {
+            if(Features.enabledPEP()) {
                 var iq = new JSJaCIQ();
                 iq.setType('set');
                 

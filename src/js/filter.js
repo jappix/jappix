@@ -47,7 +47,7 @@ var Filter = (function () {
      * @param {string} html_escape
      * @return {string}
      */
-    self.filterThisMessage = function(neutralMessage, nick, html_escape) {
+    self.message = function(neutralMessage, nick, html_escape) {
 
         try {
             var filteredMessage = neutralMessage;
@@ -60,46 +60,46 @@ var Filter = (function () {
             filteredMessage = filteredMessage.replace(/((^)|((.+)(>)))(\/me )([^<]+)/, nick + ' $7')
             
             // We replace the smilies text into images
-            .replace(/(:-?@)($|\s|<)/gi, emoteImage('angry', '$1', '$2'))
-            .replace(/(:-?\[)($|\s|<)/gi, emoteImage('bat', '$1', '$2'))
-            .replace(/(\(B\))($|\s|<)/g, emoteImage('beer', '$1', '$2'))
-            .replace(/((:-?D)|(XD))($|\s|<)/gi, emoteImage('biggrin', '$1', '$4'))
-            .replace(/(:-?\$)($|\s|<)/gi, emoteImage('blush', '$1', '$2'))
-            .replace(/(\(Z\))($|\s|<)/g, emoteImage('boy', '$1', '$2'))
-            .replace(/(\(W\))($|\s|<)/g, emoteImage('brflower', '$1', '$2'))            
-            .replace(/((&lt;\/3)|(\(U\)))($|\s|<)/g, emoteImage('brheart', '$1', '$4'))         
-            .replace(/(\(C\))($|\s|<)/g, emoteImage('coffee', '$1', '$2'))          
-            .replace(/((8-\))|(\(H\)))($|\s|<)/g, emoteImage('coolglasses', '$1', '$4'))
-            .replace(/(:'-?\()($|\s|<)/gi, emoteImage('cry', '$1', '$2'))
-            .replace(/(\(%\))($|\s|<)/g, emoteImage('cuffs', '$1', '$2'))
-            .replace(/(\]:-?&gt;)($|\s|<)/gi, emoteImage('devil', '$1', '$2'))          
-            .replace(/(\(D\))($|\s|<)/g, emoteImage('drink', '$1', '$2'))
-            .replace(/(@}-&gt;--)($|\s|<)/gi, emoteImage('flower', '$1', '$2'))
-            .replace(/((:-?\/)|(:-?S))($|\s|<)/gi, emoteImage('frowning', '$1', '$4'))
-            .replace(/(\(X\))($|\s|<)/g, emoteImage('girl', '$1', '$2'))
-            .replace(/((&lt;3)|(\(L\)))($|\s|<)/g, emoteImage('heart', '$1', '$4'))
-            .replace(/(\(}\))($|\s|<)/g, emoteImage('hugleft', '$1', '$2'))         
-            .replace(/(\({\))($|\s|<)/g, emoteImage('hugright', '$1', '$2'))
-            .replace(/(:-?{})($|\s|<)/gi, emoteImage('kiss', '$1', '$2'))
-            .replace(/(\(I\))($|\s|<)/g, emoteImage('lamp', '$1', '$2'))
-            .replace(/(:-?3)($|\s|<)/gi, emoteImage('lion', '$1', '$2'))
-            .replace(/(\(E\))($|\s|<)/g, emoteImage('mail', '$1', '$2'))
-            .replace(/(\(S\))($|\s|<)/g, emoteImage('moon', '$1', '$2'))
-            .replace(/(\(8\))($|\s|<)/g, emoteImage('music', '$1', '$2'))
-            .replace(/((=-?O)|(:-?O))($|\s|<)/gi, emoteImage('oh', '$1', '$4'))
-            .replace(/(\(T\))($|\s|<)/g, emoteImage('phone', '$1', '$2'))
-            .replace(/(\(P\))($|\s|<)/g, emoteImage('photo', '$1', '$2'))
-            .replace(/(:-?!)($|\s|<)/gi, emoteImage('puke', '$1', '$2'))
-            .replace(/(\(@\))($|\s|<)/g, emoteImage('pussy', '$1', '$2'))
-            .replace(/(\(R\))($|\s|<)/g, emoteImage('rainbow', '$1', '$2'))
-            .replace(/(:-?\))($|\s|<)/gi, emoteImage('smile', '$1', '$2'))
-            .replace(/(\(\*\))($|\s|<)/g, emoteImage('star', '$1', '$2'))
-            .replace(/(:-?\|)($|\s|<)/gi, emoteImage('stare', '$1', '$2'))
-            .replace(/(\(N\))($|\s|<)/g, emoteImage('thumbdown', '$1', '$2'))
-            .replace(/(\(Y\))($|\s|<)/g, emoteImage('thumbup', '$1', '$2'))
-            .replace(/(:-?P)($|\s|<)/gi, emoteImage('tongue', '$1', '$2'))
-            .replace(/(:-?\()($|\s|<)/gi, emoteImage('unhappy', '$1', '$2'))
-            .replace(/(;-?\))($|\s|<)/gi, emoteImage('wink', '$1', '$2'))
+            .replace(/(:-?@)($|\s|<)/gi, self.emoteImage('angry', '$1', '$2'))
+            .replace(/(:-?\[)($|\s|<)/gi, self.emoteImage('bat', '$1', '$2'))
+            .replace(/(\(B\))($|\s|<)/g, self.emoteImage('beer', '$1', '$2'))
+            .replace(/((:-?D)|(XD))($|\s|<)/gi, self.emoteImage('biggrin', '$1', '$4'))
+            .replace(/(:-?\$)($|\s|<)/gi, self.emoteImage('blush', '$1', '$2'))
+            .replace(/(\(Z\))($|\s|<)/g, self.emoteImage('boy', '$1', '$2'))
+            .replace(/(\(W\))($|\s|<)/g, self.emoteImage('brflower', '$1', '$2'))            
+            .replace(/((&lt;\/3)|(\(U\)))($|\s|<)/g, self.emoteImage('brheart', '$1', '$4'))         
+            .replace(/(\(C\))($|\s|<)/g, self.emoteImage('coffee', '$1', '$2'))          
+            .replace(/((8-\))|(\(H\)))($|\s|<)/g, self.emoteImage('coolglasses', '$1', '$4'))
+            .replace(/(:'-?\()($|\s|<)/gi, self.emoteImage('cry', '$1', '$2'))
+            .replace(/(\(%\))($|\s|<)/g, self.emoteImage('cuffs', '$1', '$2'))
+            .replace(/(\]:-?&gt;)($|\s|<)/gi, self.emoteImage('devil', '$1', '$2'))          
+            .replace(/(\(D\))($|\s|<)/g, self.emoteImage('drink', '$1', '$2'))
+            .replace(/(@}-&gt;--)($|\s|<)/gi, self.emoteImage('flower', '$1', '$2'))
+            .replace(/((:-?\/)|(:-?S))($|\s|<)/gi, self.emoteImage('frowning', '$1', '$4'))
+            .replace(/(\(X\))($|\s|<)/g, self.emoteImage('girl', '$1', '$2'))
+            .replace(/((&lt;3)|(\(L\)))($|\s|<)/g, self.emoteImage('heart', '$1', '$4'))
+            .replace(/(\(}\))($|\s|<)/g, self.emoteImage('hugleft', '$1', '$2'))         
+            .replace(/(\({\))($|\s|<)/g, self.emoteImage('hugright', '$1', '$2'))
+            .replace(/(:-?{})($|\s|<)/gi, self.emoteImage('kiss', '$1', '$2'))
+            .replace(/(\(I\))($|\s|<)/g, self.emoteImage('lamp', '$1', '$2'))
+            .replace(/(:-?3)($|\s|<)/gi, self.emoteImage('lion', '$1', '$2'))
+            .replace(/(\(E\))($|\s|<)/g, self.emoteImage('mail', '$1', '$2'))
+            .replace(/(\(S\))($|\s|<)/g, self.emoteImage('moon', '$1', '$2'))
+            .replace(/(\(8\))($|\s|<)/g, self.emoteImage('music', '$1', '$2'))
+            .replace(/((=-?O)|(:-?O))($|\s|<)/gi, self.emoteImage('oh', '$1', '$4'))
+            .replace(/(\(T\))($|\s|<)/g, self.emoteImage('phone', '$1', '$2'))
+            .replace(/(\(P\))($|\s|<)/g, self.emoteImage('photo', '$1', '$2'))
+            .replace(/(:-?!)($|\s|<)/gi, self.emoteImage('puke', '$1', '$2'))
+            .replace(/(\(@\))($|\s|<)/g, self.emoteImage('pussy', '$1', '$2'))
+            .replace(/(\(R\))($|\s|<)/g, self.emoteImage('rainbow', '$1', '$2'))
+            .replace(/(:-?\))($|\s|<)/gi, self.emoteImage('smile', '$1', '$2'))
+            .replace(/(\(\*\))($|\s|<)/g, self.emoteImage('star', '$1', '$2'))
+            .replace(/(:-?\|)($|\s|<)/gi, self.emoteImage('stare', '$1', '$2'))
+            .replace(/(\(N\))($|\s|<)/g, self.emoteImage('thumbdown', '$1', '$2'))
+            .replace(/(\(Y\))($|\s|<)/g, self.emoteImage('thumbup', '$1', '$2'))
+            .replace(/(:-?P)($|\s|<)/gi, self.emoteImage('tongue', '$1', '$2'))
+            .replace(/(:-?\()($|\s|<)/gi, self.emoteImage('unhappy', '$1', '$2'))
+            .replace(/(;-?\))($|\s|<)/gi, self.emoteImage('wink', '$1', '$2'))
             
             // Text in bold
             .replace(/(^|\s|>|\()((\*)([^<>'"\*]+)(\*))($|\s|<|\))/gi, '$1<b>$2</b>$6')
@@ -112,14 +112,14 @@ var Filter = (function () {
             
             // Add the links
             if(html_escape)
-                filteredMessage = applyLinks(filteredMessage, 'desktop');
+                filteredMessage = Links.apply(filteredMessage, 'desktop');
             
             // Filter integratebox links
-            filteredMessage = filterIntegrateBox(filteredMessage);
+            filteredMessage = IntegrateBox.filter(filteredMessage);
             
             return filteredMessage;
         } catch(e) {
-            Console.error('Filter.filterThisMessage', e);
+            Console.error('Filter.message', e);
         }
 
     };
@@ -131,7 +131,7 @@ var Filter = (function () {
      * @param {string} code
      * @return {string}
      */
-    self.filterThisXHTML = function(code) {
+    self.xhtml = function(code) {
 
         try {
             // Allowed elements array
@@ -235,7 +235,7 @@ var Filter = (function () {
             
             return $(code).find('html body').html();
         } catch(e) {
-            Console.error('Filter.filterThisXHTML', e);
+            Console.error('Filter.xhtml', e);
         }
 
     };

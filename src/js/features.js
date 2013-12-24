@@ -25,7 +25,7 @@ var Features = (function () {
      * @public
      * @return {undefined}
      */
-    self.getFeatures = function() {
+    self.get = function() {
 
         /* REF: http://xmpp.org/extensions/xep-0030.html */
 
@@ -43,7 +43,7 @@ var Features = (function () {
             
             // Any stored data?
             if(xml) {
-                handleFeatures(xml);
+                self.handle(xml);
                 
                 Console.log('Read server CAPS from cache.');
             }
@@ -73,7 +73,7 @@ var Features = (function () {
      * @param {string} xml
      * @return {boolean}
      */
-    self.handleFeatures = function(xml) {
+    self.handle = function(xml) {
 
         try {
             // Selector
@@ -101,7 +101,7 @@ var Features = (function () {
             // Enable the pep elements if available
             if(pep) {
                 // Update our database
-                enableFeature('pep');
+                self.enable('pep');
                 
                 // Get the PEP nodes to initiate
                 getInitMicroblog();
@@ -129,26 +129,26 @@ var Features = (function () {
             
             // Enable the pubsub features if available
             if(pubsub)
-                enableFeature(NS_PUBSUB);
+                self.enable(NS_PUBSUB);
 
             // Enable the pubsub config-node features if available
             if(pubsub_cn)
-                enableFeature(NS_PUBSUB_CN);
+                self.enable(NS_PUBSUB_CN);
             
             // Enable the message MAM management features if available
             if(mam)
-                enableFeature(NS_URN_MAM);
+                self.enable(NS_URN_MAM);
             
             // Enable the commands features if available
             if(commands)
-                enableFeature(NS_COMMANDS);
+                self.enable(NS_COMMANDS);
             
             // Hide the private life fieldset if nothing to show
             if(!pep && !mam)
                 $('#options fieldset.privacy').hide();
             
             // Apply the features
-            applyFeatures('talk');
+            self.apply('talk');
             
             // Process the buddy-list height
             if(pep)
@@ -168,34 +168,34 @@ var Features = (function () {
      * @param {string} id
      * @return {undefined}
      */
-    self.applyFeatures = function(id) {
+    self.apply = function(id) {
 
         try {
             // Path to the elements
             var path = '#' + id + ' .';
             
             // PEP features
-            if(enabledPEP()) {
+            if(self.enabledPEP()) {
                 $(path + 'pep-hidable').show();
             }
             
             // PubSub features
-            if(enabledPubSub()) {
+            if(self.enabledPubSub()) {
                 $(path + 'pubsub-hidable').show();
             }
 
             // PubSub Config-Node features
-            if(enabledPubSubCN()) {
+            if(self.enabledPubSubCN()) {
                 $(path + 'pubsub-hidable-cn').show();
             }
             
             // MAM features
-            if(enabledMAM()) {
+            if(self.enabledMAM()) {
                 $(path + 'mam-hidable').show();
             }
             
             // Commands features
-            if(enabledCommands()) {
+            if(self.enabledCommands()) {
                 $(path + 'commands-hidable').show();
             }
             
@@ -216,7 +216,7 @@ var Features = (function () {
      * @param {string} feature
      * @return {undefined}
      */
-    self.enableFeature = function(feature) {
+    self.enable = function(feature) {
 
         try {
             DataStore.setDB(DESKTOP_HASH, 'feature', feature, 'true');
@@ -233,12 +233,12 @@ var Features = (function () {
      * @param {string} feature
      * @return {boolean}
      */
-    self.enabledFeature = function(feature) {
+    self.isEnabled = function(feature) {
 
         try {
             return DataStore.getDB(DESKTOP_HASH, 'feature', feature) === 'true';
         } catch(e) {
-            Console.error('Features.enabled', e);
+            Console.error('Features.isEnabled', e);
         }
 
     };
@@ -252,7 +252,7 @@ var Features = (function () {
     self.enabledPEP = function() {
 
         try {
-            return enabledFeature('pep');
+            return self.isEnabled('pep');
         } catch(e) {
             Console.error('Features.enabledPEP', e);
         }
@@ -268,7 +268,7 @@ var Features = (function () {
     self.enabledPubSub = function() {
 
         try {
-            return enabledFeature(NS_PUBSUB);
+            return self.isEnabled(NS_PUBSUB);
         } catch(e) {
             Console.error('Features.enabledPubSub', e);
         }
@@ -284,7 +284,7 @@ var Features = (function () {
     self.enabledPubSubCN = function() {
 
         try {
-            return enabledFeature(NS_PUBSUB_CN);
+            return self.isEnabled(NS_PUBSUB_CN);
         } catch(e) {
             Console.error('Features.enabledPubSubCN', e);
         }
@@ -300,7 +300,7 @@ var Features = (function () {
     self.enabledMAM = function() {
 
         try {
-            return enabledFeature(NS_URN_MAM);
+            return self.isEnabled(NS_URN_MAM);
         } catch(e) {
             Console.error('Features.enabledMAM', e);
         }
@@ -316,7 +316,7 @@ var Features = (function () {
     self.enabledCommands = function() {
 
         try {
-            return enabledFeature(NS_COMMANDS);
+            return self.isEnabled(NS_COMMANDS);
         } catch(e) {
             Console.error('Features.enabledCommands', e);
         }

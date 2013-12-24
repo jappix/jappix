@@ -33,11 +33,11 @@ var HTTPAuth = (function () {
      * @param {number} lPriority
      * @return {boolean}
      */
-    self.do = function(lNick, lPass, lServer, lPriority) {
+    self.go = function(lNick, lPass, lServer, lPriority) {
 
         try {
             // We add the login wait div
-            showGeneralWait();
+            Interface.showGeneralWait();
             
             // We define the http binding parameters
             oArgs = new Object();
@@ -90,11 +90,11 @@ var HTTPAuth = (function () {
             con.connect(oArgs);
             
             // Change the page title
-            pageTitle('wait');
+            Interface.title('wait');
             
             Console.info('Jappix is connecting...');
         } catch(e) {
-            Console.error('HTTPAuth.do', e);
+            Console.error('HTTPAuth.go', e);
 
             // Reset Jappix
             destroyTalkPage();

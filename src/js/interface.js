@@ -30,7 +30,7 @@ var Interface = (function () {
      * @param {string} title
      * @return {undefined}
      */
-    self.pageTitle = function(title) {
+    self.title = function(title) {
 
         try {
             // Anonymous mode?
@@ -52,7 +52,7 @@ var Interface = (function () {
                     break;
                 
                 case 'new':
-                    document.title = '[' + pendingEvents() + '] ' + SERVICE_NAME + ' • ' + head_name;
+                    document.title = '[' + self.pendingEvents() + '] ' + SERVICE_NAME + ' • ' + head_name;
                     
                     break;
                 
@@ -62,7 +62,7 @@ var Interface = (function () {
                     break;
             }
         } catch(e) {
-            Console.error('Interface.pageTitle', e);
+            Console.error('Interface.title', e);
         }
 
     };
@@ -154,10 +154,10 @@ var Interface = (function () {
                 
                 // Scroll down to the last message
                 if(id != 'channel')
-                    autoScroll(id);
+                    self.autoScroll(id);
                 
                 // Manage input focus
-                inputFocus();
+                self.inputFocus();
             }
         } catch(e) {
             Console.error('Interface.switchChan', e);
@@ -294,23 +294,23 @@ var Interface = (function () {
             }
 
             // Clear MAM storage for this chat
-            if(xid in MAM_MAP_STATES) {
-                delete MAM_MAP_STATES[xid];
+            if(xid in MAM.map_states) {
+                delete MAM.map_states[xid];
             }
             
             // Get the chat ID which is before
             var previous = $('#' + hash).prev().attr('id');
             
             // Remove the chat
-            deleteThisChat(hash);
+            self.deleteThisChat(hash);
             
             // Reset the switcher
             if(!Common.exists('#page-switch .switcher.activechan')) {
-                switchChan(previous);
+                self.switchChan(previous);
             }
             
             // Reset the notifications
-            chanCleanNotify(hash);
+            self.chanCleanNotify(hash);
         } catch(e) {
             Console.error('Interface.quitThisChat', e);
         } finally {
@@ -408,7 +408,7 @@ var Interface = (function () {
             }
             
             // Update the page title
-            updateTitle();
+            self.updateTitle();
         } catch(e) {
             Console.error('Interface.messageNotify', e);
         }
@@ -449,9 +449,9 @@ var Interface = (function () {
         try {
             // Any pending events?
             if(Common.exists('.one-counter[data-counter]'))
-                pageTitle('new');
+                self.title('new');
             else
-                pageTitle('talk');
+                self.title('talk');
         } catch(e) {
             Console.error('Interface.updateTitle', e);
         }
@@ -480,7 +480,7 @@ var Interface = (function () {
             $('#' + hash).removeAttr('data-counter');
             
             // Update the page title
-            updateTitle();
+            self.updateTitle();
         } catch(e) {
             Console.error('Interface.chanCleanNotify', e);
         }
@@ -624,7 +624,7 @@ var Interface = (function () {
         try {
             $(document).ready(function() {
                 // Focus on the first visible input
-                $(window).focus(inputFocus);
+                $(window).focus(self.inputFocus);
             });
         } catch(e) {
             Console.error('Interface.launch', e);
@@ -640,5 +640,4 @@ var Interface = (function () {
 
 })();
 
-// Launch this plugin!
-$(document).ready(launchInterface);
+Interface.launch();

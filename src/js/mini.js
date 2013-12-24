@@ -2454,7 +2454,7 @@ var JappixMini = (function () {
                        .replace(/(^|\s|>|\()((_)([^<>'"_]+)(_))($|\s|<|\))/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
             
             // Filter the links
-            body = applyLinks(body, 'mini');
+            body = Links.apply(body, 'mini');
             
             // Generate the message code
             if(me_command)

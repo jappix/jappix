@@ -26,7 +26,7 @@ var Home = (function () {
      * @param {string} div
      * @return {boolean}
      */
-    self.switchHome = function(div) {
+    self.change = function(div) {
 
         try {
             // Path to
@@ -57,7 +57,7 @@ var Home = (function () {
                         
                         // Click event on previous link
                         $(home + 'top.sub a.previous').click(function() {
-                            return switchHome('default');
+                            return self.change('default');
                         });
                     }
                 
@@ -181,19 +181,19 @@ var Home = (function () {
                     // Login tool
                     case 'loginer':
                         $(current + ' a.to-anonymous').click(function() {
-                            return switchHome('anonymouser');
+                            return self.change('anonymouser');
                         });
                         
-                        $(current + ' a.advanced').click(showAdvanced);
+                        $(current + ' a.advanced').click(self.showAdvanced);
                         
-                        $(current + ' form').submit(loginForm);
+                        $(current + ' form').submit(self.loginForm);
                         
                         break;
                     
                     // Anonymous login tool
                     case 'anonymouser':
                         $(current + ' a.to-home').click(function() {
-                            return switchHome('loginer');
+                            return self.change('loginer');
                         });
                         
                         $(current + ' form').submit(Connection.doAnonymous);
@@ -235,7 +235,7 @@ var Home = (function () {
                         //$('#home input[placeholder]').placeholder();
                         
                         // Register form submit
-                        $(current + ' form').submit(registerForm);
+                        $(current + ' form').submit(self.registerForm);
                         
                         break;
                 }
@@ -246,7 +246,7 @@ var Home = (function () {
                 $(right + 'input:visible:first').focus();
             });
         } catch(e) {
-            Console.error('Home.switch', e);
+            Console.error('Home.change', e);
         } finally {
             return false;
         }
@@ -392,11 +392,11 @@ var Home = (function () {
                 $(button).click(function() {
                     // Login button
                     if($(this).is('.login'))
-                        return switchHome('loginer');
+                        return self.change('loginer');
                     
                     // Register button
                     else
-                        return switchHome('registerer');
+                        return self.change('registerer');
                 });
                 
                 // Allows the user to view the corporation & about infobox

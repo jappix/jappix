@@ -33,7 +33,7 @@ var Groupchat = (function () {
      * @param {number} statuscode
      * @return {undefined}
      */
-    self.displayMucAdmin = function(affiliation, id, xid, statuscode) {
+    self.openAdmin = function(affiliation, id, xid, statuscode) {
 
         try {
             // We must be in the "login" mode
@@ -53,7 +53,7 @@ var Groupchat = (function () {
                 openMucAdmin(xid, affiliation);
             });
         } catch(e) {
-            Console.error('Groupchat.displayMucAdmin', e);
+            Console.error('Groupchat.openAdmin', e);
         }
 
     };
@@ -87,7 +87,7 @@ var Groupchat = (function () {
                 
                 // If the nickname could not be retrieved, ask it
                 if(!nickname)
-                    generateMUCAsk('nickname', room, hash, nickname, password);
+                    self.generateMUCAsk('nickname', room, hash, nickname, password);
             }
             
             // Got our nickname?
@@ -100,7 +100,7 @@ var Groupchat = (function () {
                 $('#' + hash).attr('data-nick', escape(nickname));
             
                 // Send the appropriate presence
-                sendPresence(room + '/' + nickname, '', show, status, '', true, password, handleMUC);
+                sendPresence(room + '/' + nickname, '', show, status, '', true, password, self.handleMUC);
             }
         } catch(e) {
             Console.error('Groupchat.getMUC', e);
@@ -135,7 +135,7 @@ var Groupchat = (function () {
             Console.info('First MUC presence: ' + from);
             
             // Catch the errors
-            if(!handleError(xml)) {
+            if(!Error.handle(xml)) {
                 // Define some stuffs
                 var muc_user = $(xml).find('x[xmlns="' + NS_MUC_USER + '"]');
                 var affiliation = muc_user.find('item').attr('affiliation');
@@ -145,7 +145,7 @@ var Groupchat = (function () {
                 handlePresence(presence);
                 
                 // Check if I am a room owner
-                displayMucAdmin(affiliation, hash, room, statuscode);
+                self.openAdmin(affiliation, hash, room, statuscode);
                 
                 // Tell the MUC we can notify the incoming presences
                 $(document).oneTime('15s', function() {
@@ -160,12 +160,12 @@ var Groupchat = (function () {
             
             // A password is required
             else if($(xml).find('error[type="auth"] not-authorized').size()) {
-                generateMUCAsk('password', room, hash, nickname);
+                self.generateMUCAsk('password', room, hash, nickname);
             }
             
             // There's a nickname conflict
             else if($(xml).find('error[type="cancel"] conflict').size()) {
-                generateMUCAsk('nickname', room, hash);
+                self.generateMUCAsk('nickname', room, hash);
             }
         } catch(e) {
             Console.error('Groupchat.handleMUC', e);
@@ -222,12 +222,12 @@ var Groupchat = (function () {
                     // $.trim() fixes #304
                     if(type == 'nickname' && $.trim(value_input)) {
                         nickname = $.trim(value_input);
-                        return getMUC(room, nickname, password);
+                        return self.getMUC(room, nickname, password);
                     }
                     
                     if(type == 'password' && value_input) {
                         password = value_input;
-                        return getMUC(room, nickname, password);
+                        return self.getMUC(room, nickname, password);
                     }
                 }
             });
@@ -253,7 +253,7 @@ var Groupchat = (function () {
      * @param {string} password
      * @return {undefined}
      */
-    self.groupchatCreate = function(hash, room, chan, nickname, password) {
+    self.create = function(hash, room, chan, nickname, password) {
 
         /* REF: http://xmpp.org/extensions/xep-0045.html */
 
@@ -275,7 +275,7 @@ var Groupchat = (function () {
                 $(this).hide();
                 
                 // Add the groupchat to the user favorites
-                addThisFavorite(room, chan);
+                Favorites.addThis(room, chan);
             });
             
             // Must show the add button?
@@ -288,7 +288,7 @@ var Groupchat = (function () {
             // Focus event
             inputDetect.focus(function() {
                 // Clean notifications for this chat
-                chanCleanNotify(hash);
+                Interface.chanCleanNotify(hash);
                 
                 // Store focus on this chat!
                 CHAT_FOCUS_HASH = hash;
@@ -314,7 +314,7 @@ var Groupchat = (function () {
                     
                     // Send the message
                     else {
-                        sendMessage(hash, 'groupchat');
+                        Message.send(hash, 'groupchat');
                         
                         // Reset the composing database entry
                         DataStore.setDB(DESKTOP_HASH, 'chatstate', room, 'off');
@@ -340,7 +340,7 @@ var Groupchat = (function () {
             eventsChatState(inputDetect, room, hash, 'groupchat');
             
             // Get the current muc informations and content
-            getMUC(room, nickname, password);
+            self.getMUC(room, nickname, password);
         } catch(e) {
             Console.error('Groupchat.create', e);
         }
@@ -353,7 +353,7 @@ var Groupchat = (function () {
      * @public
      * @return {object}
      */
-    self.arrayJoinGroupchats = function() {
+    self.arrayJoin = function() {
 
         try {
             // Values array
@@ -393,7 +393,7 @@ var Groupchat = (function () {
      * @public
      * @return {undefined}
      */
-    self.joinConfGroupchats = function() {
+    self.joinConf = function() {
 
         try {
             // Nothing to join?
@@ -420,7 +420,7 @@ var Groupchat = (function () {
     self.suggestCheck = function() {
 
         try {
-            var groupchat_arr = arrayJoinGroupchats();
+            var groupchat_arr = self.arrayJoin();
     
             // Must suggest the user?
             if((GROUPCHATS_SUGGEST == 'on') && groupchat_arr.length) {

@@ -74,7 +74,7 @@ var Notification = (function () {
             }
             
             // Update the page title
-            updateTitle();
+            Interface.updateTitle();
         } catch(e) {
             Console.error('Notification.check', e);
         }
@@ -343,7 +343,7 @@ var Notification = (function () {
                 Chat.checkCreate(data[0], 'groupchat');
             
             else if(type == 'request')
-                requestReply(value, data[0]);
+                HTTPReply.go(value, data[0]);
             
             if((type == 'send') && (value == 'yes'))
                 replyOOB(data[0], data[3], 'accept', data[2], data[4]);

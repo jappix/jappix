@@ -1280,7 +1280,7 @@ var Roster = (function () {
                 
                 // When the user wants to edit his groupchat favorites
                 $('.buddy-conf-groupchat-edit').click(function() {
-                    openFavorites();
+                    Favorites.open();
                     Bubble.close();
                     
                     return false;
@@ -1303,7 +1303,7 @@ var Roster = (function () {
                 });
                 
                 // Load the favorites
-                loadFavorites();
+                Favorites.load();
                 
                 return false;
             });
@@ -1352,14 +1352,14 @@ var Roster = (function () {
                 
                 // When the user wants to display all his buddies
                 $('.buddy-conf-more-display-unavailable').click(function() {
-                    showAllBuddies('roster');
+                    Interface.showAllBuddies('roster');
                     
                     return false;
                 });
                 
                 // When the user wants to display only online buddies
                 $('.buddy-conf-more-display-available').click(function() {
-                    showOnlineBuddies('roster');
+                    Interface.showOnlineBuddies('roster');
                     
                     return false;
                 });
@@ -1383,7 +1383,7 @@ var Roster = (function () {
                     $('.buddy-conf-more-display-available').show();
                 }
                 
-                if(enabledCommands())
+                if(Features.enabledCommands())
                     $('.buddy-conf-more-commands').parent().show();
                 
                 if(DataStore.getDB(DESKTOP_HASH, 'privacy-marker', 'available'))

@@ -276,11 +276,11 @@ var Board = (function () {
                     // Click action?
                     switch(type) {
                         case 'chat':
-                            switchChan(hex_md5(xid));
+                            Interface.switchChan(hex_md5(xid));
                             break;
                         
                         case 'groupchat':
-                            switchChan(hex_md5(Common.bareXID(xid)));
+                            Interface.switchChan(hex_md5(Common.bareXID(xid)));
                             break;
                         
                         default:
