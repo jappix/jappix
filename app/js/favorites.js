@@ -480,7 +480,7 @@ var Favorites = (function () {
      * @param {object} iq
      * @return {undefined}
      */
-    self.handleGCList = function() {
+    self.handleGCList = function(iq) {
 
         try {
             var path = '#favorites .';
@@ -550,7 +550,7 @@ var Favorites = (function () {
      * @param {string} room
      * @return {boolean}
      */
-    self.join = function() {
+    self.join = function(room) {
 
         try {
             self.quit();

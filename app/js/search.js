@@ -34,32 +34,35 @@ var Search = (function () {
 
         try {
             // No query submitted?
-            if(!query)
+            if(!query) {
                 return;
+            }
             
             // Wildcard (*) submitted
-            if(query == '*')
+            if(query == '*') {
                 query = '';
+            }
             
             // Replace forbidden characters in regex
             query = Common.escapeRegex(query);
             
             // Create an empty array
-            var results = new Array();
+            var results = [];
             
             // Search regex
             var regex = new RegExp('((^)|( ))' + query, 'gi');
             
             // Search in the roster
-            var buddies = self.getAllBuddies();
+            var buddies = Roster.getAllBuddies();
             
             for(i in buddies) {
                 var xid = buddies[i];
                 var nick = Name.getBuddy(xid);
                 
                 // Buddy match our search, and not yet in the array
-                if(nick.match(regex) && !Utils.existArrayValue(results, xid))
+                if(nick.match(regex) && !Utils.existArrayValue(results, xid)) {
                     results.push(xid);
+                }
             }
             
             // Return the results array

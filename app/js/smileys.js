@@ -50,7 +50,7 @@ var Smileys = (function () {
         try {
             var links = '';
             
-            var sArray = new Array(
+            var sArray = [
                 ':-D',
                 ']:->',
                 '8-)',
@@ -91,9 +91,9 @@ var Smileys = (function () {
                 '(R)',
                 '(*)',
                 '(S)'
-            );
+            ];
             
-            var cArray = new Array(
+            var cArray = [
                 'biggrin',
                 'devil',
                 'coolglasses',
@@ -134,10 +134,11 @@ var Smileys = (function () {
                 'rainbow',
                 'star',
                 'moon'
-            );
+            ];
             
-            for(i in sArray)
-                links += emoteLink(sArray[i], cArray[i], hash);
+            for(i in sArray) {
+                links += self.emoteLink(sArray[i], cArray[i], hash);
+            }
             
             return links;
         } catch(e) {

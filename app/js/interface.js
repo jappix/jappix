@@ -494,7 +494,7 @@ var Interface = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.autoScroll = function() {
+    self.autoScroll = function(hash) {
 
         try {
             // Avoid a JS error
