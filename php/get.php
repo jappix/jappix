@@ -51,8 +51,8 @@ if(isset($_GET['f']) && !empty($_GET['f']) && isSafe($_GET['f']))
 	$file = $_GET['f'];
 
 // Read the group var (only for text files)
-if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET['g']) && preg_match('/^(css|js)$/', $type) && isSafe($_GET['g']) && file_exists(JAPPIX_BASE.'/src/xml/'.$_GET['g'])) {
-	$xml_data = file_get_contents(JAPPIX_BASE.'/src/xml/'.$_GET['g']);
+if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET['g']) && preg_match('/^(css|js)$/', $type) && isSafe($_GET['g']) && file_exists(JAPPIX_BASE.'/app/xml/'.$_GET['g'])) {
+	$xml_data = file_get_contents(JAPPIX_BASE.'/app/xml/'.$_GET['g']);
 	
 	// Any data?
 	if($xml_data) {
@@ -70,7 +70,7 @@ if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET
 // We check if the data was submitted
 if($file && $type) {
 	// We define some stuffs
-	$dir = JAPPIX_BASE.'/src/'.$type.'/';
+	$dir = JAPPIX_BASE.'/app/'.$type.'/';
 	$path = $dir.$file;
 	
 	// Read request headers
@@ -143,7 +143,7 @@ if($file && $type) {
 		
 		// Internationalization
 		if($type == 'js') {
-			if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/src/lang/'.$_GET['l']))
+			if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/app/lang/'.$_GET['l']))
 				$locale = $_GET['l'];
 			else
 				$locale = 'en';

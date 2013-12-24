@@ -34,7 +34,7 @@ ABSPATH=$(cd "$(dirname "$0")"; pwd)
 
 # standard settings
 BASE_DIR="$ABSPATH/.."
-SOURCE_DIR="$BASE_DIR/src"
+SOURCE_DIR="$BASE_DIR/app"
 TARGET_DIR="$BASE_DIR/mini"
 LICENSE=MPL
 
