@@ -476,6 +476,34 @@ var Connection = (function () {
     };
 
 
+    /**
+     * Terminates the user session
+     * @public
+     * @return {undefined}
+     */
+    self.terminate = function() {
+
+        try {
+            if(Common.isConnected()) {
+                // Clear temporary session storage
+                self.resetConMarkers();
+                
+                // Show the waiting item (useful if BOSH is sloooow)
+                Interface.showGeneralWait();
+                
+                // Change the page title
+                Interface.title('wait');
+                
+                // Disconnect from the XMPP server
+                self.logout();
+            }
+        } catch(e) {
+            Console.error('Connection.terminate', e);
+        }
+
+    };
+
+
 	/**
      * Quits a session
      * @public
@@ -807,25 +835,25 @@ var Connection = (function () {
         try {
             $(document).ready(function() {
                 // Logouts when Jappix is closed
-                $(window).bind('beforeunload', terminate);
+                $(window).bind('beforeunload', Connection.terminate);
                 
                 // Nothing to do when anonymous!
                 if(Utils.isAnonymous())
                     return;
                 
                 // Connection params submitted in URL?
-                if(LINK_VARS['u'] && LINK_VARS['q']) {
+                if(XMPPLinks.links_var['u'] && XMPPLinks.links_var['q']) {
                     // Generate login data
-                    var login_xid = Common.bareXID(Common.generateXID(LINK_VARS['u'], 'chat'));
+                    var login_xid = Common.bareXID(Common.generateXID(XMPPLinks.links_var['u'], 'chat'));
                     var login_nick = Common.getXIDNick(login_xid);
                     var login_server = Common.getXIDHost(login_xid);
-                    var login_pwd = LINK_VARS['q'];
+                    var login_pwd = XMPPLinks.links_var['q'];
                     var login_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
                     var login_priority = '10';
                     var login_remember = 1;
                     
                     // Must store session?
-                    if(LINK_VARS['h'] && (LINK_VARS['h'] == '1')) {
+                    if(XMPPLinks.links_var['h'] && (XMPPLinks.links_var['h'] == '1')) {
                         // Store session
                         var session_xml = self.storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
                         DataStore.setPersistent('global', 'session', 1, session_xml);
@@ -865,7 +893,7 @@ var Connection = (function () {
                 }
                 
                 // Not connected, maybe a XMPP link is submitted?
-                else if((parent.location.hash != '#OK') && LINK_VARS['x']) {
+                else if((parent.location.hash != '#OK') && XMPPLinks.links_var['x']) {
                     Home.change('loginer');
                     
                     Console.info('A XMPP link is set, switch to login page.');

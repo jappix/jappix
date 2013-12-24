@@ -162,10 +162,10 @@ var Anonymous = (function () {
                 Interface.showGeneralWait();
                 
                 // Get the vars
-                if(LINK_VARS['r'])
-                    ANONYMOUS_ROOM = LINK_VARS['r'];
-                if(LINK_VARS['n'])
-                    ANONYMOUS_NICK = LINK_VARS['n'];
+                if(XMPPLinks.links_var['r'])
+                    ANONYMOUS_ROOM = XMPPLinks.links_var['r'];
+                if(XMPPLinks.links_var['n'])
+                    ANONYMOUS_NICK = XMPPLinks.links_var['n'];
                 
                 // Fire the login action
                 self.login(HOST_ANONYMOUS);

@@ -169,7 +169,7 @@ var Utils = (function () {
         var is_anonymous = false;
 
         try {
-            if(Common.allowedAnonymous() && LINK_VARS['r']) {
+            if(Common.allowedAnonymous() && XMPPLinks.links_var['r']) {
                 is_anonymous = true;
             }
         } catch(e) {

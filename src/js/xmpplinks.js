@@ -87,7 +87,7 @@ var XMPPLinks = (function () {
     /**
      * Gets the links vars (get parameters in URL)
      */
-    var LINK_VARS = (function() {
+    self.links_var = (function() {
         var vars = [], hash;
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
         

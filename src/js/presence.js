@@ -75,9 +75,9 @@ var Presence = (function () {
                 Storage.get(NS_BOOKMARKS);
                 
                 // We open a new chat if a XMPP link was submitted
-                if((parent.location.hash != '#OK') && LINK_VARS['x']) {
+                if((parent.location.hash != '#OK') && XMPPLinks.links_var['x']) {
                     // A link is submitted in the URL
-                    XMPPLinks.go(LINK_VARS['x']);
+                    XMPPLinks.go(XMPPLinks.links_var['x']);
                     
                     // Set a OK status
                     parent.location.hash = 'OK';
