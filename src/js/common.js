@@ -501,7 +501,7 @@ var Common = (function () {
      * @param {string} xid
      * @return {boolean}
      */
-    self.isGateway = function() {
+    self.isGateway = function(xid) {
 
         is_gateway = true;
 

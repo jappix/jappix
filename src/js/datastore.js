@@ -110,7 +110,7 @@ var DataStore = (function () {
     /**
      * Temporary: sessionStorage class alias for direct access
      */
-    var storageDB = new self._adapter(
+    self.storageDB = new self._adapter(
         (window.sessionStorage ? sessionStorage : null),
         self._db_emulated
     );
@@ -119,7 +119,7 @@ var DataStore = (function () {
     /**
      * Persistent: localStorage class alias for direct access
      */
-    var storagePersistent = new self._adapter(
+    self.storagePersistent = new self._adapter(
         (window.localStorage ? localStorage : null),
         self._persistent_emulated
     );
@@ -135,8 +135,8 @@ var DataStore = (function () {
         var has_db = false;
 
         try {
-            storageDB.setItem('hasdb_check', 'ok');
-            storageDB.removeItem('hasdb_check');
+            self.storageDB.setItem('hasdb_check', 'ok');
+            self.storageDB.removeItem('hasdb_check');
 
             has_db = true;
         } catch(e) {
@@ -160,7 +160,7 @@ var DataStore = (function () {
 
         try {
             try {
-                return storageDB.getItem(dbID + '_' + type + '_' + id);
+                return self.storageDB.getItem(dbID + '_' + type + '_' + id);
             }
             
             catch(e) {
@@ -184,11 +184,11 @@ var DataStore = (function () {
      * @param {type} value
      * @return {boolean}
      */
-    self.setDB = function() {
+    self.setDB = function(dbID, type, id, value) {
 
         try {
             try {
-                storageDB.setItem(dbID + '_' + type + '_' + id, value);
+                self.storageDB.setItem(dbID + '_' + type + '_' + id, value);
 
                 return true;
             }
@@ -217,7 +217,7 @@ var DataStore = (function () {
 
         try {
             try {
-                storageDB.removeItem(dbID + '_' + type + '_' + id);
+                self.storageDB.removeItem(dbID + '_' + type + '_' + id);
                 
                 return true;
             }
@@ -262,7 +262,7 @@ var DataStore = (function () {
 
         try {
             try {
-                storageDB.clear();
+                self.storageDB.clear();
                 
                 Console.info('Temporary database cleared.');
                 
@@ -292,8 +292,8 @@ var DataStore = (function () {
 
         try {
             // Try to write something
-            storagePersistent.setItem('haspersistent_check', 'ok');
-            storagePersistent.removeItem('haspersistent_check');
+            self.storagePersistent.setItem('haspersistent_check', 'ok');
+            self.storagePersistent.removeItem('haspersistent_check');
             
             has_persistent = true;
         } catch(e) {
@@ -317,7 +317,7 @@ var DataStore = (function () {
 
         try {
             try {
-                return storagePersistent.getItem(dbID + '_' + type + '_' + id);
+                return self.storagePersistent.getItem(dbID + '_' + type + '_' + id);
             }
             
             catch(e) {
@@ -345,7 +345,7 @@ var DataStore = (function () {
 
         try {
             try {
-                storagePersistent.setItem(dbID + '_' + type + '_' + id, value);
+                self.storagePersistent.setItem(dbID + '_' + type + '_' + id, value);
                 
                 return true;
             }
@@ -359,7 +359,7 @@ var DataStore = (function () {
                 
                 // Set the item again
                 try {
-                    storagePersistent.setItem(dbID + ' -> ' + type + '_' + id, value);
+                    self.storagePersistent.setItem(dbID + ' -> ' + type + '_' + id, value);
                     
                     return true;
                 }
@@ -390,7 +390,7 @@ var DataStore = (function () {
 
         try {
             try {
-                storagePersistent.removeItem(dbID + '_' + type + '_' + id);
+                self.storagePersistent.removeItem(dbID + '_' + type + '_' + id);
 
                 return true;
             }
@@ -436,7 +436,7 @@ var DataStore = (function () {
 
         try {
             try {
-                storagePersistent.clear();
+                self.storagePersistent.clear();
 
                 Console.info('Persistent database cleared.');
                 
