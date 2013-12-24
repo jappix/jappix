@@ -21,8 +21,8 @@ var Presence = (function () {
 
 
     /* Variables */
-    var FIRST_PRESENCE_SENT = false;
-    var AUTO_IDLE = false;
+    self.first_sent = false;
+    self.auto_idle = false;
 
 
 	/**
@@ -43,7 +43,7 @@ var Presence = (function () {
             var is_anonymous = Utils.isAnonymous();
             
             // Update our marker
-            FIRST_PRESENCE_SENT = true;
+            self.first_sent = true;
             
             // Try to use the last status message
             var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
@@ -594,7 +594,7 @@ var Presence = (function () {
                 // Chat stuffs
                 if(Common.exists('#' + hash)) {
                     // Remove the chatstate stuffs
-                    resetChatState(hash);
+                    ChatState.reset(hash);
                     $('#' + hash + ' .chatstate').remove();
                     $('#' + hash + ' .message-area').removeAttr('data-chatstates');
                     
@@ -1287,14 +1287,14 @@ var Presence = (function () {
             // Stop if an xa presence was set manually
             var last_presence = self.getUserShow();
             
-            if(!AUTO_IDLE && ((last_presence == 'away') || (last_presence == 'xa')))
+            if(!self.auto_idle && ((last_presence == 'away') || (last_presence == 'xa')))
                 return;
             
             var idle_presence;
             var activity_limit;
             
             // Can we extend to auto extended away mode (20 minutes)?
-            if(AUTO_IDLE && (last_presence == 'away')) {
+            if(self.auto_idle && (last_presence == 'away')) {
                 idle_presence = 'xa';
                 activity_limit = 1200;
             }
@@ -1306,9 +1306,9 @@ var Presence = (function () {
             }
             
             // The user is really inactive and has set another presence than extended away
-            if(((!AUTO_IDLE && (last_presence != 'away')) || (AUTO_IDLE && (last_presence == 'away'))) && (DateUtils.getLastActivity() >= activity_limit)) {
+            if(((!self.auto_idle && (last_presence != 'away')) || (self.auto_idle && (last_presence == 'away'))) && (DateUtils.getLastActivity() >= activity_limit)) {
                 // Then tell we use an auto presence
-                AUTO_IDLE = true;
+                self.auto_idle = true;
                 
                 // Get the old status message
                 var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
@@ -1341,7 +1341,7 @@ var Presence = (function () {
 
         try {
             // If we were idle, restore our old presence
-            if(AUTO_IDLE) {
+            if(self.auto_idle) {
                 // Get the values
                 var show = DataStore.getDB(Connection.desktop_hash, 'presence-show', 1);
                 var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
@@ -1361,7 +1361,7 @@ var Presence = (function () {
             }
             
             // Apply some values
-            AUTO_IDLE = false;
+            self.auto_idle = false;
             LAST_ACTIVITY = DateUtils.getTimeStamp();
         } catch(e) {
             Console.error('Presence.eventIdle', e);
@@ -1379,7 +1379,7 @@ var Presence = (function () {
 
         try {
             // Apply the autoIdle function every minute
-            AUTO_IDLE = false;
+            self.auto_idle = false;
             $('#my-infos .f-presence').everyTime('30s', self.autoIdle);
             
             // On body bind (click & key event)

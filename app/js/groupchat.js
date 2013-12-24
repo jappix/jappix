@@ -337,7 +337,7 @@ var Groupchat = (function () {
             });
             
             // Chatstate events
-            eventsChatState(inputDetect, room, hash, 'groupchat');
+            ChatState.events(inputDetect, room, hash, 'groupchat');
             
             // Get the current muc informations and content
             self.getMUC(room, nickname, password);

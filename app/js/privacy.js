@@ -113,7 +113,7 @@ var Privacy = (function () {
             Popup.create('privacy', html);
             
             // Associate the events
-            launchPrivacy();
+            self.instance();
             
             // Display the available privacy lists
             self.displayLists();
@@ -202,8 +202,9 @@ var Privacy = (function () {
 
         try {
             // Error?
-            if(iq.getType() == 'error')
+            if(iq.getType() == 'error') {
                 return Console.warn('Privacy lists not supported!');
+            }
             
             // Get IQ query content
             var iqQuery = iq.getQuery();
@@ -226,7 +227,7 @@ var Privacy = (function () {
                     DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'active', 'block');
                 
                 // Get the block list rules
-                self.getPrivacy('block');
+                self.get('block');
             }
             
             // Apply the received marker here
@@ -259,11 +260,12 @@ var Privacy = (function () {
             var iqQuery = iq.setQuery(NS_PRIVACY);
             iqQuery.appendChild(iq.buildNode('list', {'xmlns': NS_PRIVACY, 'name': list}));
             
-            con.send(iq, handleGet);
+            con.send(iq, self.handleGet);
             
             // Must show the wait item?
-            if(Common.exists('#privacy'))
+            if(Common.exists('#privacy')) {
                 $('#privacy .wait').show();
+            }
             
             Console.log('Getting privacy list(s): ' + list);
         } catch(e) {

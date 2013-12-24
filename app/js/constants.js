@@ -106,8 +106,8 @@ var NS_FEATURE_COMPRESS = NS_FEATURES + 'compress';
 var NS_COMPRESS =     NS_PROTOCOL + 'compress';
 
 // Available locales
-var LOCALES_AVAILABLE_ID = [];
-var LOCALES_AVAILABLE_NAMES = [];
+var LOCALES_AVAILABLE_ID = new Array();
+var LOCALES_AVAILABLE_NAMES = new Array();
 
 // XML lang
 var XML_LANG = null;

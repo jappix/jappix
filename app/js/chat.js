@@ -466,7 +466,7 @@ var Chat = (function () {
             });
             
             // Chatstate events
-            eventsChatState(inputDetect, xid, hash, 'chat');
+            ChatState.events(inputDetect, xid, hash, 'chat');
         } catch(e) {
             Console.error('Chat.create', e);
         }

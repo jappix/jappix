@@ -127,13 +127,14 @@ function setLocales($string, $locale) {
 
 	// Locales array
 	$array = array(
-			'LOCALES_AVAILABLE_ID' => $available_id,
-			'LOCALES_AVAILABLE_NAMES' => $available_names
-		      );
+		'LOCALES_AVAILABLE_ID' => $available_id,
+		'LOCALES_AVAILABLE_NAMES' => $available_names
+	);
 
 	// Apply it!
-	foreach($array as $array_key => $array_value)
+	foreach($array as $array_key => $array_value) {
 		$string = preg_replace('/(var '.$array_key.'(( )?=( )?)new Array\()(\);)/', '$1'.$array_value.'$5', $string);
+	}
 
 	return $string;
 }

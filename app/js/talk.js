@@ -286,9 +286,9 @@ var Talk = (function () {
             // Reset some vars
             STANZA_ID = 1;
             Roster.blist_all = false;
-            FIRST_PRESENCE_SENT = false;
+            Presence.first_sent = false;
             Search.search_filtered = false;
-            AVATAR_PENDING = [];
+            Avatar.pending = [];
             JOIN_SUGGEST = [];
             
             // Kill all timers, exept the board ones

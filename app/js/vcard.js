@@ -447,8 +447,9 @@ var vCard = (function () {
             var path_userInfos = '#userinfos[data-vcard="' + iqID + '"]';
             
             // End if the session does not exist
-            if(((type == 'user') && !Common.exists(path_vCard)) || ((type == 'buddy') && !Common.exists(path_userInfos)))
+            if(((type == 'user') && !Common.exists(path_vCard)) || ((type == 'buddy') && !Common.exists(path_userInfos))) {
                 return;
+            }
             
             // We retrieve main values
             var values_yet = [];
@@ -478,8 +479,9 @@ var vCard = (function () {
                             }
                             
                             // Profile editor popup
-                            else if(type == 'user')
+                            else if(type == 'user') {
                                 $(path_vCard + ' #USER-' + currentID).val(currentText);
+                            }
                             
                             // Avoid duplicating the value
                             values_yet.push(currentID);
@@ -509,12 +511,14 @@ var vCard = (function () {
                             }
                             
                             // Description modification
-                            else if(tokenname == 'DESC')
+                            else if(tokenname == 'DESC') {
                                 currentText = Filter.message(currentText, Name.getBuddy(iqFrom).htmlEnc(), true);
+                            }
                             
                             // Other stuffs
-                            else
+                            else {
                                 currentText = currentText.htmlEnc();
+                            }
                             
                             $(path_userInfos + ' #BUDDY-' + tokenname).html(currentText);
                         }
@@ -562,8 +566,9 @@ var vCard = (function () {
             // We display the avatar if retrieved
             if(aBinval) {
                 // No type?
-                if(!aType)
+                if(!aType) {
                     aType = 'image/png';
+                }
                 
                 if(type == 'user') {
                     // We move all the things that we don't need in that case
@@ -576,8 +581,9 @@ var vCard = (function () {
                 $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
             }
             
-            else if(type == 'buddy')
+            else if(type == 'buddy') {
                 $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>');
+            }
             
             // Do someting depending of the type
             if(type == 'user') {

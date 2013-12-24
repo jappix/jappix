@@ -21,7 +21,7 @@ var Avatar = (function () {
 
 
 	/* Variables */
-	var AVATAR_PENDING = [];
+	self.pending = [];
 
 
 	/**
@@ -39,7 +39,7 @@ var Avatar = (function () {
 
         try {
             // No need to get the avatar, another process is yet running
-            if(Utils.existArrayValue(AVATAR_PENDING, xid))
+            if(Utils.existArrayValue(self.pending, xid))
                 return false;
             
             // Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
@@ -55,7 +55,7 @@ var Avatar = (function () {
             // No avatar in presence
             if(!photo && !forced && enabled == 'true') {
                 // Pending marker
-                AVATAR_PENDING.push(xid);
+                self.pending.push(xid);
                 
                 // Reset the avatar
                 self.reset(xid, hex_md5(xid));
@@ -78,7 +78,7 @@ var Avatar = (function () {
                 // If the avatar is yet stored and a new retrieving is not needed
                 if(mode == 'cache' && type && binval && checksum && updated) {
                     // Pending marker
-                    AVATAR_PENDING.push(xid);
+                    self.pending.push(xid);
                     
                     // Display the cache avatar
                     self.display(xid, hex_md5(xid), type, binval);
@@ -89,7 +89,7 @@ var Avatar = (function () {
                 // Else if the request has not yet been fired, we get it
                 else if((!updated || mode == 'force' || photo == 'forget') && enabled != 'false') {
                     // Pending marker
-                    AVATAR_PENDING.push(xid);
+                    self.pending.push(xid);
                     
                     // Get the latest avatar
                     var iq = new JSJaCIQ();
@@ -126,8 +126,9 @@ var Avatar = (function () {
             var handleFrom = Common.fullXID(Common.getStanzaFrom(iq));
             
             // Is this me? Remove the resource!
-            if(Common.bareXID(handleFrom) == Common.getXID())
+            if(Common.bareXID(handleFrom) == Common.getXID()) {
                 handleFrom = Common.bareXID(handleFrom);
+            }
             
             // Get some other values
             var hash = hex_md5(handleFrom);
@@ -187,11 +188,12 @@ var Avatar = (function () {
             }
             
             // vCard is empty
-            else
+            else {
                 self.reset(handleFrom);
+            }
             
             // We got a new checksum for us?
-            if(((oChecksum != null) && (oChecksum != aChecksum)) || !FIRST_PRESENCE_SENT) {
+            if(((oChecksum != null) && (oChecksum != aChecksum)) || !Presence.first_sent) {
                 // Define a proper checksum
                 var pChecksum = aChecksum;
                 
@@ -202,7 +204,7 @@ var Avatar = (function () {
                 DataStore.setDB(Connection.desktop_hash, 'checksum', 1, pChecksum);
                 
                 // Send the stanza
-                if(!FIRST_PRESENCE_SENT)
+                if(!Presence.first_sent)
                     Storage.get(NS_OPTIONS);
                 else if(DataStore.hasPersistent())
                     Presence.sendActions(pChecksum);
@@ -264,7 +266,7 @@ var Avatar = (function () {
             $('.' + container).html(code);
             
             // We can remove the pending marker
-            Utils.removeArrayValue(AVATAR_PENDING, xid);
+            Utils.removeArrayValue(self.pending, xid);
         } catch(e) {
             Console.error('Avatar.display', e);
         }

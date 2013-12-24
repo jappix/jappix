@@ -92,7 +92,7 @@ var ChatState = (function () {
         try {
             // Groupchat?
             if(type == 'groupchat') {
-                resetChatState(hash, type);
+                self.reset(hash, type);
                 
                 // "gone" state not allowed
                 if(state != 'gone')
@@ -102,7 +102,7 @@ var ChatState = (function () {
             // Chat
             else {
                 // We change the buddy name color in the page-switch
-                resetChatState(hash, type);
+                self.reset(hash, type);
                 $('#page-switch .' + hash + ' .name').addClass(state);
                 
                 // We generate the chatstate text
@@ -160,7 +160,7 @@ var ChatState = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.resetChatState = function(hash, type) {
+    self.reset = function(hash, type) {
 
         try {
             // Define the selector
@@ -193,7 +193,7 @@ var ChatState = (function () {
      * @param {string} type
      * @return {undefined}
      */
-    self.eventsChatState = function(target, xid, hash, type) {
+    self.events = function(target, xid, hash, type) {
 
         try {
             target.keyup(function(e) {

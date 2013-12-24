@@ -283,9 +283,10 @@ var IntegrateBox = (function () {
     /**
      * Checks whether the file ext can use integratebox or not
      * @public
+     * @param {string} ext
      * @return {boolean}
      */
-    self.can = function() {
+    self.can = function(ext) {
 
         can_use = false;
 
