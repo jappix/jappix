@@ -169,7 +169,7 @@ var vCard = (function () {
             Popup.destroy('vcard');
             
             // Create the welcome end popup?
-            if(END_WELCOME) {
+            if(Welcome.is_done) {
                 // Open popup
                 Me.open();
                 

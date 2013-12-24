@@ -21,7 +21,7 @@ var Welcome = (function () {
 
 
     /* Variables */
-    var END_WELCOME = false;
+    self.is_done = false;
 
     
 	/**
@@ -314,7 +314,7 @@ var Welcome = (function () {
             // Unavoidable popup
             $('#vcard').addClass('unavoidable');
             
-            END_WELCOME = true;
+            self.is_done = true;
         } catch(e) {
             Console.error('Welcome.save', e);
         } finally {

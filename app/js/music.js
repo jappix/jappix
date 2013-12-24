@@ -173,7 +173,7 @@ var Music = (function () {
      * @param {string} action
      * @return {boolean}
      */
-    self.action = function() {
+    self.action = function(action) {
 
         try {
             // Initialize

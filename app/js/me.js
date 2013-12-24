@@ -75,7 +75,7 @@ var Me = (function () {
             Popup.destroy('me');
             
             // We finished
-            END_WELCOME = false;
+            Welcome.is_done = false;
         } catch(e) {
             Console.error('Me.close', e);
         } finally {
