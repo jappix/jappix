@@ -143,7 +143,7 @@ if($file && $type) {
 		
 		// Internationalization
 		if($type == 'js') {
-			if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/app/lang/'.$_GET['l']))
+			if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/i18n/'.$_GET['l']))
 				$locale = $_GET['l'];
 			else
 				$locale = 'en';

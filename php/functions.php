@@ -191,7 +191,7 @@ function checkLanguage() {
 	if(isset($_GET['l']) && !empty($_GET['l'])) {
 		// We define some stuffs
 		$defined_lang = strtolower($_GET['l']);
-		$lang_file = JAPPIX_BASE.'/lang/'.$defined_lang.'/LC_MESSAGES/main.mo';
+		$lang_file = JAPPIX_BASE.'/i18n/'.$defined_lang.'/LC_MESSAGES/main.mo';
 		
 		if($defined_lang == 'en')
 			$lang_found = true;
@@ -214,7 +214,7 @@ function checkLanguage() {
 		$check_cookie = $_COOKIE['jappix_locale'];
 		
 		// The cookie has a value, check this value
-		if($check_cookie && (file_exists(JAPPIX_BASE.'/lang/'.$check_cookie.'/LC_MESSAGES/main.mo') || ($check_cookie == 'en')))
+		if($check_cookie && (file_exists(JAPPIX_BASE.'/i18n/'.$check_cookie.'/LC_MESSAGES/main.mo') || ($check_cookie == 'en')))
 			return $check_cookie;
 	}
 	
@@ -247,7 +247,7 @@ function checkLanguage() {
 	arsort($order);
 	
 	foreach($order as $nav_lang => $val) {
-		$lang_found = file_exists(JAPPIX_BASE.'/lang/'.$nav_lang.'/LC_MESSAGES/main.mo');
+		$lang_found = file_exists(JAPPIX_BASE.'/i18n/'.$nav_lang.'/LC_MESSAGES/main.mo');
 		
 		if($lang_found)
 			return $nav_lang;
@@ -484,7 +484,7 @@ function htmlTag($locale) {
 // The function which generates the available locales list
 function availableLocales($active_locale) {
 	// Initialize
-	$scan = scandir(JAPPIX_BASE.'/lang/');
+	$scan = scandir(JAPPIX_BASE.'/i18n/');
 	$list = array();
 	
 	// Loop the available languages
@@ -825,7 +825,7 @@ function staticLocation() {
 // The function to include a translation file
 function includeTranslation($locale, $domain) {
 	T_setlocale(LC_MESSAGES, $locale);
-	T_bindtextdomain($domain, JAPPIX_BASE.'/lang');
+	T_bindtextdomain($domain, JAPPIX_BASE.'/i18n');
 	T_bind_textdomain_codeset($domain, 'UTF-8');
 	T_textdomain($domain);
 }
