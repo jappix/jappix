@@ -208,8 +208,8 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 #jappix_mini div.jm_chat-content {
 	background-color: white;
 	border: 1px solid #999999;
-	height: 300px;
-	width: 260px;
+	height: 350px;
+	width: 300px;
 	position: absolute;
 	right: -1px;
 	bottom: 25px;
@@ -443,7 +443,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 #jappix_mini div.jm_received-messages {
 	background-color: white;
 	padding: 5px 0 4px;
-	height: 242px;
+	height: 292px;
 	overflow: auto;
 }
 
@@ -519,7 +519,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 250px;
+	width: 290px;
 	min-height: 14px;
 }
 
