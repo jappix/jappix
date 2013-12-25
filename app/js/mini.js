@@ -103,9 +103,15 @@ var JappixMini = (function () {
             
             // And we handle everything that happen
             self.setupCon(con);
-            
-            // Generate a resource
-            var random_resource = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'resource');
+
+            // fixes #339
+            var store_resource = !(BrowserDetect.browser === 'Explorer');
+            var random_resource = null;
+
+            if(store_resource) {
+                // Randomize resource?
+                random_resource = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'resource');
+            }
             
             if(!random_resource) {
                 random_resource = MINI_RESOURCE + ' (' + (new Date()).getTime() + ')';
@@ -119,8 +125,10 @@ var JappixMini = (function () {
             oArgs.domain = domain;
             
             // Store the resource (for reconnection)
-            JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'resource', random_resource);
-            
+            if(store_resource) {
+                JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'resource', random_resource);
+            }
+
             // Anonymous login?
             if(MINI_ANONYMOUS) {
                 // Anonymous mode disabled?
