@@ -1,6 +1,12 @@
 <img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" />
 
 
+Code status
+-----------
+
+* [![build status](https://ci.frenchtouch.pro/projects/7/status.png?ref=master)](https://ci.frenchtouch.pro/projects/7?ref=master) on ci.frenchtouch.pro (master branch)
+
+
 License
 -------
 
