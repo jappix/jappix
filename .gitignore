@@ -1,4 +1,6 @@
 mini/
 store/
+tmp/
+log/
 .DS_Store
 *.esproj
