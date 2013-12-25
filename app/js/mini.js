@@ -1932,7 +1932,7 @@ var JappixMini = (function () {
                     var pr_xid = [''];
                     
                     jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').each(function() {
-                        var this_sub_sel = $(this);
+                        var this_sub_sel = jQuery(this);
                         pr_xid.push(unescape(this_sub_sel.attr('data-xid')) + '/' + unescape(this_sub_sel.attr('data-nick')));
                     });
                     
