@@ -62,11 +62,11 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	
 	// Generate some values
 	$content_dir = '../store/archives/';
-	$filename = 'chat_log-'.md5($xid.time());
+	$filename = 'jappix-chat-'.md5($xid.time());
 	$filepath = $content_dir.$filename.'.html';
 	
 	// Generate Jappix logo Base64 code
-	$logo = base64_encode(file_get_contents(JAPPIX_BASE.'/img/sprites/logs.png'));
+	$logo = base64_encode(file_get_contents(JAPPIX_BASE.'/app/img/sprites/archives.png'));
 	
 	// Create the HTML code
 	$new_text_inter = 
