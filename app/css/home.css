@@ -403,6 +403,7 @@ html[dir="rtl"] #home .right {
 	height: 64px;
 	text-decoration: none;
 	font-weight: bold;
+	outline: none;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -451,17 +452,17 @@ html[dir="rtl"] #home .right button span.text {
 	background-position: 0 0;
 	border: 1px solid #5cb55c;
 	margin-top: 22px;
-	box-shadow: 0 0 10px #89e389;
-	-moz-box-shadow: 0 0 10px #89e389;
-	-webkit-box-shadow: 0 0 10px #89e389;
+	box-shadow: 0 0 6px #89e389;
+	-moz-box-shadow: 0 0 6px #89e389;
+	-webkit-box-shadow: 0 0 6px #89e389;
 }
 
 #home .right .login:hover,
 #home .right .login:focus {
 	border: 1px solid #419141;
-	box-shadow: 0 0 15px #72d071;
-	-moz-box-shadow: 0 0 15px #72d071;
-	-webkit-box-shadow: 0 0 15px #72d071;
+	box-shadow: 0 0 10px #72d071;
+	-moz-box-shadow: 0 0 10px #72d071;
+	-webkit-box-shadow: 0 0 10px #72d071;
 }
 
 #home .right .login:active {
@@ -483,17 +484,17 @@ html[dir="rtl"] #home .right button span.text {
 	background-position: 0 -160px;
 	border: 1px solid #e3db56;
 	margin-top: 15px;
-	box-shadow: 0 0 15px #f1e968;
-	-moz-box-shadow: 0 0 15px #f1e968;
-	-webkit-box-shadow: 0 0 15px #f1e968;
+	box-shadow: 0 0 6px #f1e968;
+	-moz-box-shadow: 0 0 6px #f1e968;
+	-webkit-box-shadow: 0 0 6px #f1e968;
 }
 
 #home .right .register:hover,
 #home .right .register:focus {
 	border: 1px solid #d2c93f;
-	box-shadow: 0 0 15px #e0d743;
-	-moz-box-shadow: 0 0 15px #e0d743;
-	-webkit-box-shadow: 0 0 15px #e0d743;
+	box-shadow: 0 0 10px #e0d743;
+	-moz-box-shadow: 0 0 10px #e0d743;
+	-webkit-box-shadow: 0 0 10px #e0d743;
 }
 
 #home .right .register:active {
