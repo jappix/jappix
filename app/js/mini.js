@@ -3831,7 +3831,59 @@ var JappixMini = (function () {
 
 
     /**
-     * Plugin launcher
+     * Plugin configurator
+     * @public
+     * @param {object} config_args
+     * @return {undefined}
+     */
+    self.configure = function(config_args) {
+
+        try {
+            if(typeof config_args !== 'object') {
+                config_args = {};
+            }
+
+            // Read configuration subs
+            connection_config = config_args['connection'] || {};
+            application_config = config_args['application'] || {};
+
+            application_network_config = application_config['network'] || {};
+            application_interface_config = application_config['interface'] || {};
+            application_user_config = application_config['user'] || {};
+            application_chat_config = application_config['chat'] || {};
+            application_groupchat_config = application_config['groupchat'] || {};
+
+            // Apply new configuration (falling back to defaults if not set)
+            MINI_AUTOCONNECT         = application_network_config['autoconnect']         || MINI_AUTOCONNECT;
+            MINI_SHOWPANE            = application_interface_config['showpane']          || MINI_SHOWPANE;
+            MINI_ANIMATE             = application_interface_config['animate']           || MINI_ANIMATE;
+            MINI_RANDNICK            = application_user_config['random_nickname']        || MINI_RANDNICK;
+            MINI_GROUPCHAT_PRESENCE  = application_groupchat_config['show_presence']     || MINI_GROUPCHAT_PRESENCE;
+            MINI_DISABLE_MOBILE      = application_interface_config['no_mobile']         || MINI_DISABLE_MOBILE;
+            MINI_NICKNAME            = application_user_config['nickname']               || MINI_NICKNAME;
+            MINI_DOMAIN              = connection_config['domain']                       || MINI_DOMAIN;
+            MINI_USER                = connection_config['user']                         || MINI_USER;
+            MINI_PASSWORD            = connection_config['password']                     || MINI_PASSWORD;
+            MINI_RECONNECT_MAX       = application_network_config['reconnect_max']       || MINI_RECONNECT_MAX;
+            MINI_RECONNECT_INTERVAL  = application_network_config['reconnect_interval']  || MINI_RECONNECT_INTERVAL;
+            MINI_CHATS               = application_chat_config['open']                   || MINI_CHATS;
+            MINI_GROUPCHATS          = application_groupchat_config['open']              || MINI_GROUPCHATS;
+            MINI_SUGGEST_CHATS       = application_chat_config['suggest']                || MINI_CHATS;
+            MINI_SUGGEST_GROUPCHATS  = application_groupchat_config['suggest']           || MINI_SUGGEST_GROUPCHATS;
+            MINI_SUGGEST_PASSWORDS   = application_groupchat_config['suggest_passwords'] || MINI_SUGGEST_PASSWORDS;
+            MINI_PASSWORDS           = application_groupchat_config['open_passwords']    || MINI_PASSWORDS;
+            MINI_PRIORITY            = connection_config['priority']                     || MINI_PRIORITY;
+            MINI_RESOURCE            = connection_config['resource']                     || MINI_RESOURCE;
+            MINI_ERROR_LINK          = application_interface_config['error_link']        || MINI_ERROR_LINK;
+        } catch(e) {
+            JappixConsole.error('JappixMini.configure', e);
+        }
+
+    };
+
+
+    /**
+     * Plugin processor
      * @public
      * @param {boolean} autoconnect
      * @param {boolean} show_pane
@@ -3841,7 +3893,7 @@ var JappixMini = (function () {
      * @param {number} priority
      * @return {undefined}
      */
-    self.launch = function(autoconnect, show_pane, domain, user, password, priority) {
+    self.process = function(autoconnect, show_pane, domain, user, password, priority) {
 
         try {
             // Disabled on mobile?
@@ -3936,6 +3988,34 @@ var JappixMini = (function () {
             
             JappixConsole.log('Welcome to Jappix Mini! Happy coding in developer mode!');
         } catch(e) {
+            JappixConsole.error('JappixMini.process', e);
+        }
+
+    };
+
+
+    /**
+     * Plugin launcher
+     * @public
+     * @param {object} args
+     * @return {undefined}
+     */
+    self.launch = function(args) {
+
+        try {
+            // Configure the app
+            self.configure(args);
+
+            // Initialize the app!
+            self.process(
+                MINI_AUTOCONNECT,
+                MINI_SHOWPANE,
+                MINI_DOMAIN,
+                MINI_USER,
+                MINI_PASSWORD,
+                MINI_PRIORITY
+            );
+        } catch(e) {
             JappixConsole.error('JappixMini.launch', e);
         }
 
@@ -3949,4 +4029,5 @@ var JappixMini = (function () {
 
 })();
 
-var launchMini = JappixMini.launch;
+/* Legacy compatibility layer */
+var launchMini = JappixMini.process;
