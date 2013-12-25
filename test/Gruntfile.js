@@ -35,14 +35,14 @@ module.exports = function(grunt) {
           'font-sizes': false,
         },
 
-        src: ['../css/*.css']
+        src: ['../app/css/*.css']
       }
     },
 
 
     // Task: JSHint
     jshint: {
-      all: ['../js/*.js']
+      all: ['../app/js/*.js']
     }
   });
 
