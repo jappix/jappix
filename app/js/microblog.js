@@ -578,8 +578,9 @@ var Microblog = (function () {
             var code = '';
             
             // No node?
-            if(!node)
+            if(!node) {
                 node = $(data).find('publish:first').attr('node');
+            }
             
             // Get the parent microblog item
             var parent_select = $('#channel .one-update:has(*[data-node="' + node + '"])');
@@ -596,11 +597,13 @@ var Microblog = (function () {
                 complete = false;
             
             // Add the comment tool
-            if(complete)
-                code += '<div class="one-comment compose">' + 
-                        '<span class="icon talk-images"></span><input type="text" placeholder="' + Common._e("Type your comment here...") + '" />' + 
-                    '</div>';
-            
+            if(complete) {
+                code += 
+                '<div class="one-comment compose">' + 
+                    '<span class="icon talk-images"></span><input type="text" placeholder="' + Common._e("Type your comment here...") + '" />' + 
+                '</div>';
+            }
+
             // Append the comments
             $(data).find('item').each(function() {
                 // Get comment
@@ -666,7 +669,7 @@ var Microblog = (function () {
                         users_xid.push(current_xid);
                     
                     // Add the HTML code
-                    code += '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + Common.encodeQuotes(current_id) + '">' + 
+                    code = '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + Common.encodeQuotes(current_id) + '">' + 
                             marker + 
                             
                             '<div class="avatar-container" onclick="return ' + onclick + ';">' + 
@@ -682,7 +685,7 @@ var Microblog = (function () {
                             '</div>' + 
                             
                             '<div class="clear"></div>' + 
-                        '</div>';
+                        '</div>' + code;
                 }
             });
             
@@ -697,7 +700,7 @@ var Microblog = (function () {
             }
             
             else {
-                $(path).find('.one-comment.compose').after(code);
+                $(path).find('.one-comment.compose').before(code);
                 
                 // Beautiful effect
                 $(path).find('.one-comment.new').slideDown('fast', function() {
