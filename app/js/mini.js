@@ -1062,12 +1062,15 @@ var JappixMini = (function () {
                     jQuery(send_input).removeAttr('disabled').val('');
                 }
             }
-            
+
             // Change the show presence of this buddy
             jQuery(friend + ' span.jm_presence, ' + chat + ' span.jm_presence').attr('class', 'jm_presence jm_images jm_' + show);
             
             // Update the presence counter
             self.updateRoster();
+
+            // Update groups visibility
+            self.updateGroups();
 
             JappixConsole.log('Presence displayed for user: ' + xid);
         } catch(e) {
@@ -1554,6 +1557,22 @@ var JappixMini = (function () {
             jQuery('#jappix_mini a.jm_button span.jm_counter').text(jQuery('#jappix_mini a.jm_online').size());
         } catch(e) {
             JappixConsole.error('JappixMini.updateRoster', e);
+        }
+
+    };
+
+
+    /**
+     * Updates the visibility of roster groups
+     * @public
+     * @return {undefined}
+     */
+    self.updateGroups = function() {
+
+        try {
+            jQuery('.jm_grouped_roster').filter(':not(:has(.jm_friend.jm_online:visible))').hide();
+        } catch(e) {
+            JappixConsole.error('JappixMini.updateGroups', e);
         }
 
     };
@@ -2122,13 +2141,13 @@ var JappixMini = (function () {
                 this_sel.attr('data-value', this_sel.val());
                 
                 // Don't filter at each key up (faster for computer)
-                var self = this;
+                var _this = this;
                 
                 JappixCommon.typewatch()(function() {
                     // Using a try/catch to override IE issues
                     try {
                         // Get values
-                        var search = jQuery(self).val();
+                        var search = jQuery(_this).val();
                         var regex = new RegExp('((^)|( ))' + JappixCommon.escapeRegex(search), 'gi');
                         
                         // Reset results
@@ -2138,6 +2157,9 @@ var JappixMini = (function () {
                         // If there is no search, we don't need to loop over buddies
                         if(!search) {
                             jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').show();
+
+                            // Update groups visibility
+                            self.updateGroups();
                             
                             return;
                         }
@@ -3117,6 +3139,9 @@ var JappixMini = (function () {
             self.switchPane('roster');
             jQuery('#jappix_mini div.jm_roster').show();
             jQuery('#jappix_mini a.jm_button').addClass('jm_clicked');
+
+            // Update groups visibility
+            self.updateGroups();
             
             jQuery(document).oneTime(10, function() {
                 jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').focus();
