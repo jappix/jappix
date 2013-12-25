@@ -71,6 +71,11 @@ var Options = (function () {
                             '<label for="showall">' + Common._e("Show all friends") + '</label>' + 
                             '<input id="showall" type="checkbox" />' + 
                         '</div>' +
+
+                        '<div class="groupchatpresence">' +
+                            '<label for="groupchatpresence">' + Common._e("Groupchat presence messages") + '</label>' + 
+                            '<input id="groupchatpresence" type="checkbox" />' + 
+                        '</div>' +
                         
                         '<div class="noxhtmlimg">' +
                             '<label for="noxhtmlimg">' + Common._e("No chat images auto-load") + '</label>' + 
@@ -322,13 +327,14 @@ var Options = (function () {
             var geolocation = DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation');
             var showall = DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall');
             var noxhtmlimg = DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images');
+            var groupchatpresence = DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence');
             var integratemedias = DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias');
             var localarchives = DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives');
             var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
             // Create an array to be looped
-            var oType = ['sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'localarchives', 'presence-status'];
-            var oContent = [sounds, geolocation, showall, noxhtmlimg, integratemedias, localarchives, status];
+            var oType = ['sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'groupchatpresence', 'integratemedias', 'localarchives', 'presence-status'];
+            var oContent = [sounds, geolocation, showall, noxhtmlimg, groupchatpresence, integratemedias, localarchives, status];
             
             // New IQ
             var iq = new JSJaCIQ();
@@ -413,32 +419,25 @@ var Options = (function () {
             }
             
             // We apply the XHTML-IM images filter
-            if($('#noxhtmlimg').filter(':checked').size()) {
-                DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '1');
-            } else {
-                DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '0');
-            }
+            var noxhtmlimg = '1' ? $('#noxhtmlimg').filter(':checked').size() : '0';
+            DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', noxhtmlimg);
             
+            // We apply the groupchat presence messages configuration
+            var groupchatpresence = '1' ? $('#groupchatpresence').filter(':checked').size() : '0';
+            DataStore.setDB(Connection.desktop_hash, 'options', 'groupchatpresence', groupchatpresence);
+
             // We apply the media integration
-            var integratemedias = '0';
-            
-            if($('#integratemedias').filter(':checked').size()) {
-                integratemedias = '1';
-            }
-            
+            var integratemedias = '1' ? $('#integratemedias').filter(':checked').size() : '0';
             DataStore.setDB(Connection.desktop_hash, 'options', 'integratemedias', integratemedias);
 
             // We apply the local archiving
-            var localarchives = '0';
-            
-            if($('#localarchives').filter(':checked').size()) {
-                localarchives = '1';
-            } else {
-                // Flush local archives
+            var localarchives = '1' ? $('#localarchives').filter(':checked').size() : '0';
+            DataStore.setDB(Connection.desktop_hash, 'options', 'localarchives', localarchives);
+
+            // Flush local archives?
+            if(localarchives === '0') {
                 Message.flushLocalArchive();
             }
-            
-            DataStore.setDB(Connection.desktop_hash, 'options', 'localarchives', localarchives);
             
             // We apply the message archiving
             if(Features.enabledMAM()) {
@@ -446,12 +445,8 @@ var Options = (function () {
             }
             
             // We apply the microblog configuration
-            var persist = '0';
+            var persist = '1' ? $('#persist').filter(':checked').size() : '0';
             var maximum = $('#maxnotices').val();
-            
-            if($('#persistent').filter(':checked').size()) {
-                persist = '1';
-            }
             
             if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN())) {
                 Microblog.setup('', NS_URN_MBLOG, persist, maximum, '', '', false);
@@ -812,6 +807,12 @@ var Options = (function () {
                 $('#integratemedias').attr('checked', false);
             else
                 $('#integratemedias').attr('checked', true);
+
+            // We get the values of the forms for the groupchatpresence
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') == '0')
+                $('#groupchatpresence').attr('checked', false);
+            else
+                $('#groupchatpresence').attr('checked', true);
 
             // We get the values of the forms for the localarchives
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives') == '0')

@@ -193,7 +193,7 @@ var Utils = (function () {
 
         try {
             if(Common.exists('[data-xid="' + escape(xid) + '"][data-type="groupchat"]')) {
-                return true;
+                is_private = true;
             }
         } catch(e) {
             Console.error('Utils.isPrivate', e);

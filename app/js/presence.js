@@ -168,8 +168,9 @@ var Presence = (function () {
                 });
                 
                 // If this is an initial presence (when user join the room)
-                if(Common.exists('#' + xidHash + '[data-initial="true"]'))
+                if(Common.exists('#' + xidHash + '[data-initial="true"]')) {
                     notInitial = false;
+                }
                 
                 // If one user is quitting
                 if(type && (type == 'unavailable')) {
@@ -225,8 +226,9 @@ var Presence = (function () {
                 }
                 
                 // Unsubscribe stanza
-                else if(type == 'unsubscribe')
+                else if(type == 'unsubscribe') {
                     Roster.send(xid, 'remove');
+                }
                 
                 // Other stanzas
                 else {
@@ -368,7 +370,7 @@ var Presence = (function () {
                     });
                 
                 // We tell the user that someone entered the room
-                if(!initial) {
+                if(!initial && DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') !== '0') {
                     notify = true;
                     write += Common._e("joined the chat room");
                     
@@ -446,7 +448,7 @@ var Presence = (function () {
                 }
                 
                 // We tell the user that someone left the room
-                else if(!initial) {
+                else if(!initial && DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') !== '0') {
                     $(thisUser).remove();
                     notify = true;
                     write += Common._e("left the chat room");

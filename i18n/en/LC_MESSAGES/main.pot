@@ -177,6 +177,9 @@ msgstr ""
 msgid "Only show connected friends"
 msgstr ""
 
+msgid "Groupchat presence messages"
+msgstr ""
+
 msgid "No chat images auto-load"
 msgstr ""
 
