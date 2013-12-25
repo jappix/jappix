@@ -30,8 +30,9 @@ var Audio = (function () {
 
         try {
             // Not supported!
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                 return false;
+            }
             
             // If the sounds are enabled
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') == '1') {

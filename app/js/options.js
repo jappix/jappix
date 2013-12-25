@@ -81,6 +81,11 @@ var Options = (function () {
                             '<label for="integratemedias">' + Common._e("Media integration") + '</label>' + 
                             '<input id="integratemedias" type="checkbox" />' + 
                         '</div>' +
+
+                        '<div class="localarchives mam-showable">' +
+                            '<label for="localarchives">' + Common._e("Keep local chat archives") + '</label>' + 
+                            '<input id="localarchives" type="checkbox" />' + 
+                        '</div>' +
                         
                         '<div class="xmpplinks">' +
                             '<label class="xmpplinks-hidable">' + Common._e("XMPP links") + '</label>' + 
@@ -318,11 +323,12 @@ var Options = (function () {
             var showall = DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall');
             var noxhtmlimg = DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images');
             var integratemedias = DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias');
+            var localarchives = DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives');
             var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
             // Create an array to be looped
-            var oType = new Array('sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'presence-status');
-            var oContent = new Array(sounds, geolocation, showall, noxhtmlimg, integratemedias, status);
+            var oType = ['sounds', 'geolocation', 'roster-showall', 'no-xhtml-images', 'integratemedias', 'localarchives', 'presence-status'];
+            var oContent = [sounds, geolocation, showall, noxhtmlimg, integratemedias, localarchives, status];
             
             // New IQ
             var iq = new JSJaCIQ();
@@ -377,8 +383,9 @@ var Options = (function () {
             // We apply the sounds
             var sounds = '0';
             
-            if($('#sounds').filter(':checked').size())
+            if($('#sounds').filter(':checked').size()) {
                 sounds = '1';
+            }
             
             DataStore.setDB(Connection.desktop_hash, 'options', 'sounds', sounds);
             
@@ -388,9 +395,7 @@ var Options = (function () {
                 
                 // We geolocate the user on the go
                 PEP.geolocate();
-            }
-            
-            else {
+            } else {
                 DataStore.setDB(Connection.desktop_hash, 'options', 'geolocation', '0');
                 
                 // We delete the geolocation informations
@@ -402,9 +407,7 @@ var Options = (function () {
             if($('#showall').filter(':checked').size()) {
                 DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '1');
                 Interface.showAllBuddies('options');
-            }
-            
-            else {
+            } else {
                 DataStore.setDB(Connection.desktop_hash, 'options', 'roster-showall', '0');
                 Interface.showOnlineBuddies('options');
             }
@@ -412,19 +415,30 @@ var Options = (function () {
             // We apply the XHTML-IM images filter
             if($('#noxhtmlimg').filter(':checked').size()) {
                 DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '1');
-            }
-            
-            else {
+            } else {
                 DataStore.setDB(Connection.desktop_hash, 'options', 'no-xhtml-images', '0');
             }
             
             // We apply the media integration
             var integratemedias = '0';
             
-            if($('#integratemedias').filter(':checked').size())
+            if($('#integratemedias').filter(':checked').size()) {
                 integratemedias = '1';
+            }
             
             DataStore.setDB(Connection.desktop_hash, 'options', 'integratemedias', integratemedias);
+
+            // We apply the local archiving
+            var localarchives = '0';
+            
+            if($('#localarchives').filter(':checked').size()) {
+                localarchives = '1';
+            } else {
+                // Flush local archives
+                Message.flushLocalArchive();
+            }
+            
+            DataStore.setDB(Connection.desktop_hash, 'options', 'localarchives', localarchives);
             
             // We apply the message archiving
             if(Features.enabledMAM()) {
@@ -435,11 +449,13 @@ var Options = (function () {
             var persist = '0';
             var maximum = $('#maxnotices').val();
             
-            if($('#persistent').filter(':checked').size())
+            if($('#persistent').filter(':checked').size()) {
                 persist = '1';
+            }
             
-            if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN()))
+            if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN())) {
                 Microblog.setup('', NS_URN_MBLOG, persist, maximum, '', '', false);
+            }
             
             // We send the options to the database
             self.store();
@@ -796,6 +812,12 @@ var Options = (function () {
                 $('#integratemedias').attr('checked', false);
             else
                 $('#integratemedias').attr('checked', true);
+
+            // We get the values of the forms for the localarchives
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives') == '0')
+                $('#localarchives').attr('checked', false);
+            else
+                $('#localarchives').attr('checked', true);
         } catch(e) {
             Console.error('Options.load', e);
         }

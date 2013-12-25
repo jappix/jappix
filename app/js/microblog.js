@@ -870,8 +870,9 @@ var Microblog = (function () {
                 var href = 'xmpp:' + server + '?;node=' + encodeURIComponent(node) + ';item=' + encodeURIComponent(hash);
                 
                 // Loop!
-                for(n in notifiy_arr)
+                for(n in notifiy_arr) {
                     Notification.send(notifiy_arr[n], 'comment', href, value, parent_data);
+                }
             }
         } catch(e) {
             Console.error('Microblog.sendComment', e);

@@ -297,7 +297,7 @@ var Chat = (function () {
             $('#page-engine #' + chat + ' .content .one-group').remove();
             
             // Clear the history database
-            DataStore.removePersistent(Common.getXID(), 'history', chat);
+            Message.removeLocalArchive(chat);
             
             // Focus again
             $(document).oneTime(10, function() {
@@ -342,7 +342,7 @@ var Chat = (function () {
                     });
                 } else {
                     // Restore the chat history
-                    var chat_history = DataStore.getPersistent(Common.getXID(), 'history', hash);
+                    var chat_history = Message.readLocalArchive(hash);
                     
                     if(chat_history) {
                         // Generate hashs

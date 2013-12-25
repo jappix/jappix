@@ -192,6 +192,7 @@ var Features = (function () {
             // MAM features
             if(self.enabledMAM()) {
                 $(path + 'mam-hidable').show();
+                $(path + 'mam-showable').hide();
             }
             
             // Commands features

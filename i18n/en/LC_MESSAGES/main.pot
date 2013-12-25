@@ -1095,6 +1095,9 @@ msgstr ""
 msgid "Media integration"
 msgstr ""
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr ""
 

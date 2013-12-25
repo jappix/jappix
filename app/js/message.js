@@ -887,9 +887,93 @@ var Message = (function () {
 
 
     /**
+     * Read messages from local archive
+     * @public
+     * @param {string} hash
+     * @return {string}
+     */
+    self.readLocalArchive = function(hash) {
+
+        try {
+            return DataStore.getPersistent(Common.getXID(), 'history', hash);
+        } catch(e) {
+            Console.error('Message.readLocalArchive', e);
+        }
+
+    };
+
+
+    /**
+     * Stores message in local archive
+     * @public
+     * @param {string} hash
+     * @param {string} store_html
+     * @return {undefined}
+     */
+    self.storeLocalArchive = function(hash, store_html) {
+
+        try {
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives') != '0') {
+                DataStore.setPersistent(Common.getXID(), 'history', hash, store_html);
+            }
+        } catch(e) {
+            Console.error('Message.storeLocalArchive', e);
+        }
+
+    };
+
+
+    /**
+     * Removes messages from local archive
+     * @public
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self.removeLocalArchive = function(hash) {
+
+        try {
+            DataStore.removePersistent(Common.getXID(), 'history', hash);
+        } catch(e) {
+            Console.error('Message.removeLocalArchive', e);
+        }
+
+    };
+
+
+    /**
+     * Flushes local messages archive
+     * @public
+     * @return {undefined}
+     */
+    self.flushLocalArchive = function() {
+
+        try {
+            var flush_count = 0;
+            var db_regex = new RegExp(('^' + Common.getXID() + '_') + ('history_'));
+
+            for(var i = 0; i < JappixDataStore.storagePersistent.length; i++) {
+                var db_current = JappixDataStore.storagePersistent.key(i);
+
+                if(db_regex.exec(db_current)) {
+                    JappixDataStore.storagePersistent.removeItem(db_current);
+                    flush_count++;
+                }
+            }
+
+            Console.info('Flushed ' + flush_count + ' archives in total.')
+        } catch(e) {
+            Console.error('Message.flushLocalArchive', e);
+        }
+
+    };
+
+
+    /**
      * Generates the correct message code
      * @public
-     * @param {type} name
+     * @param {object} aMsg
+     * @param {string} body
+     * @param {string} hash
      * @return {string}
      */
     self.generate = function(aMsg, body, hash) {
@@ -1068,7 +1152,7 @@ var Message = (function () {
                 c_target_sel.append(messageCode);
             }
 
-            // Store the last MAM_REQ_MAX message groups
+            // Store the last MAM.REQ_MAX message groups
             if(!Features.enabledMAM() && (type == 'chat') && (message_type == 'user-message')) {
                 // Filter the DOM
                 var dom_filter = $('#' + hash + ' .content').clone().contents();
@@ -1076,13 +1160,13 @@ var Message = (function () {
                 
                 $(dom_filter).find('.system-message').parent().remove();
                 $(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
-                $(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - MAM_REQ_MAX).remove();
+                $(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - MAM.REQ_MAX).remove();
                 
                 var store_html = $(dom_filter).parent().html();
                 
                 // Store the data
                 if(store_html) {
-                    DataStore.setPersistent(Common.getXID(), 'history', hash, store_html);
+                    self.storeLocalArchive(hash, store_html);
                 }
             }
             
