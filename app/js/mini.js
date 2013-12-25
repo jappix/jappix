@@ -89,10 +89,11 @@ var JappixMini = (function () {
             // We define the http binding parameters
             oArgs = new Object();
             
-            if(HOST_BOSH_MINI)
+            if(HOST_BOSH_MINI) {
                 oArgs.httpbase = HOST_BOSH_MINI;
-            else
+            } else {
                 oArgs.httpbase = HOST_BOSH;
+            }
             
             // Check BOSH origin
             BOSH_SAME_ORIGIN = JappixOrigin.isSame(oArgs.httpbase);
@@ -106,8 +107,9 @@ var JappixMini = (function () {
             // Generate a resource
             var random_resource = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'resource');
             
-            if(!random_resource)
+            if(!random_resource) {
                 random_resource = MINI_RESOURCE + ' (' + (new Date()).getTime() + ')';
+            }
             
             // We retrieve what the user typed in the login inputs
             oArgs = new Object();
@@ -157,8 +159,9 @@ var JappixMini = (function () {
                 }
                 
                 // No nickname?
-                if(!MINI_NICKNAME)
+                if(!MINI_NICKNAME) {
                     MINI_NICKNAME = user;
+                }
                 
                 oArgs.username = user;
                 oArgs.pass = password;
@@ -252,8 +255,9 @@ var JappixMini = (function () {
 
         try {
             // Not initialized?
-            if(!MINI_INITIALIZED)
+            if(!MINI_INITIALIZED) {
                 return;
+            }
             
             // Save the actual Jappix Mini DOM
             JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'dom', jQuery('#jappix_mini').html());
@@ -263,8 +267,9 @@ var JappixMini = (function () {
             var scroll_position = '';
             var scroll_hash = jQuery('#jappix_mini div.jm_conversation:has(a.jm_pane.jm_clicked)').attr('data-hash');
             
-            if(scroll_hash)
+            if(scroll_hash) {
                 scroll_position = document.getElementById('received-' + scroll_hash).scrollTop + '';
+            }
             
             JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'scroll', scroll_position);
             
@@ -301,8 +306,9 @@ var JappixMini = (function () {
             for(i = 0; i < JappixDataStore.storageDB.length; i++) {
                 db_current = JappixDataStore.storageDB.key(i);
 
-                if(db_regex.exec(db_current))
+                if(db_regex.exec(db_current)) {
                     JappixDataStore.storageDB.removeItem(db_current);
+                }
             }
 
             JappixConsole.log('Jappix Mini DB has been successfully flushed (' + (r_override ? 'partly' : 'completely') + ').');
@@ -322,8 +328,9 @@ var JappixMini = (function () {
 
         try {
             // No connection?
-            if(!JappixCommon.isConnected())
+            if(!JappixCommon.isConnected()) {
                 return false;
+            }
             
             JappixConsole.info('Jappix Mini is disconnecting...');
             
@@ -485,8 +492,9 @@ var JappixMini = (function () {
                         }
                         
                         // XID to use for a groupchat
-                        else
+                        else {
                             use_xid = from;
+                        }
                     }
                     
                     // Message type
@@ -495,8 +503,9 @@ var JappixMini = (function () {
                     // Grouphat values
                     if(type == 'groupchat') {
                         // Old message
-                        if(msg.getChild('delay', NS_URN_DELAY) || msg.getChild('x', NS_DELAY))
+                        if(msg.getChild('delay', NS_URN_DELAY) || msg.getChild('x', NS_DELAY)) {
                             message_type = 'old-message';
+                        }
                         
                         // System message?
                         if(!nick || subject) {
@@ -538,8 +547,9 @@ var JappixMini = (function () {
                     var target = '#jappix_mini #chat-' + hash;
                     
                     // Create the chat if it does not exist
-                    if(!JappixCommon.exists(target) && (type != 'groupchat'))
+                    if(!JappixCommon.exists(target) && (type != 'groupchat')) {
                         self.chat(type, xid, nick, hash);
+                    }
                     
                     // Display the message
                     self.displayMessage(type, body, use_xid, nick, hash, time, stamp, message_type);
@@ -547,8 +557,9 @@ var JappixMini = (function () {
                     // Notify the user if not focused & the message is not a groupchat old one
                     if((!jQuery(target + ' a.jm_chat-tab').hasClass('jm_clicked') || !JappixCommon.isFocused() || (MINI_ACTIVE != hash)) && (message_type == 'user-message')) {
                         // Play a sound
-                        if(type != 'groupchat')
+                        if(type != 'groupchat') {
                             self.soundPlay();
+                        }
                         
                         // Show a notification bubble
                         self.notifyMessage(hash);
@@ -572,8 +583,9 @@ var JappixMini = (function () {
                     jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').attr('data-chatstates', 'true');
                     
                     // Composing?
-                    if(jQuery(node).find('composing[xmlns="' + NS_CHATSTATES + '"]').size())
+                    if(jQuery(node).find('composing[xmlns="' + NS_CHATSTATES + '"]').size()) {
                         self.displayChatstate('composing', xid, hash, type);
+                    }
                 }
             }
         } catch(e) {
@@ -688,8 +700,9 @@ var JappixMini = (function () {
             // Not implemented
             else if(!jQuery(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
                 // Append stanza content
-                for(var i = 0; i < iqNode.childNodes.length; i++)
+                for(var i = 0; i < iqNode.childNodes.length; i++) {
                     iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
+                }
                 
                 // Append error content
                 var iqError = iqResponse.appendNode('error', {'xmlns': NS_CLIENT, 'code': '501', 'type': 'cancel'});
@@ -724,8 +737,9 @@ var JappixMini = (function () {
             var resources_obj = {};
 
             // Is this a groupchat?
-            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + JappixCommon.encodeQuotes(xid) + '"]'))
+            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + JappixCommon.encodeQuotes(xid) + '"]')) {
                 xid = from;
+            }
 
             // Store presence stanza
             JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'presence-stanza-' + from, pr.xml());
@@ -756,7 +770,9 @@ var JappixMini = (function () {
         try {
             var pr = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'presence-stanza-' + from);
 
-            if(!pr)  pr = '<presence type="unavailable"></presence>';
+            if(!pr) {
+                pr = '<presence type="unavailable"></presence>';
+            }
 
             return JappixCommon.XMLFromString(pr);
         } catch(e) {
@@ -1001,8 +1017,9 @@ var JappixMini = (function () {
                     }
 
                     // Log message in chat view
-                    if(MINI_GROUPCHAT_PRESENCE && log_message && (jQuery(groupchat_path).attr('data-init') == 'true'))
+                    if(MINI_GROUPCHAT_PRESENCE && log_message && (jQuery(groupchat_path).attr('data-init') == 'true')) {
                         self.displayMessage('groupchat', log_message, xid, '', groupchat_hash, JappixDateUtils.getCompleteTime(), JappixDateUtils.getTimeStamp(), 'system-message');
+                    }
                 }
             }
             
@@ -1033,10 +1050,11 @@ var JappixMini = (function () {
                 var regex = new RegExp('((^)|( ))' + JappixCommon.escapeRegex(search), 'gi');
                 var nick = unescape(jQuery(friend).data('nick'));
 
-                if(search && !nick.match(regex))
+                if(search && !nick.match(regex)) {
                     jQuery(friend).hide();
-                else
+                } else {
                     jQuery(friend).show();
+                }
                 
                 // Enable the chat input
                 if(is_groupchat) {
@@ -1078,8 +1096,9 @@ var JappixMini = (function () {
             // Is it a valid server presence?
             var valid = false;
             
-            if(!resource || (resource == unescape(jQuery('#jappix_mini #chat-' + hash + '[data-type="groupchat"]').attr('data-nick'))))
+            if(!resource || (resource == unescape(jQuery('#jappix_mini #chat-' + hash + '[data-type="groupchat"]').attr('data-nick')))) {
                 valid = true;
+            }
             
             // Password required?
             if(valid && jQuery(xml).find('error[type="auth"] not-authorized').size()) {
@@ -1169,29 +1188,33 @@ var JappixMini = (function () {
             if(status)
                 pr.setStatus(status);
 
-            if(priority)
+            if(priority) {
                 pr.setPriority(priority);
-            else if(MINI_PRIORITY && !to)
+            } else if(MINI_PRIORITY && !to) {
                 pr.setPriority(MINI_PRIORITY);
+            }
 
             // Special presence elements
             if(password || limit_history) {
                 var x = pr.appendNode('x', {'xmlns': NS_MUC});
                 
                 // Any password?
-                if(password)
+                if(password) {
                     x.appendChild(pr.buildNode('password', {'xmlns': NS_MUC}, password));
+                }
                 
                 // Any history limit?
-                if(limit_history)
+                if(limit_history) {
                     x.appendChild(pr.buildNode('history', {'maxstanzas': 10, 'seconds': 86400, 'xmlns': NS_MUC}));
+                }
             }
             
             // Send the packet
-            if(handler)
+            if(handler) {
                 con.send(pr, handler);
-            else
+            } else {
                 con.send(pr);
+            }
             
             JappixConsole.info('Presence sent (to: ' + (to || 'none') + ', show: ' + (show || 'none') + ', type: ' + (type || 'none') + ')');
         } catch(e) {
@@ -1393,7 +1416,7 @@ var JappixMini = (function () {
             var notify_middle = notify + ' span.jm_notify_middle';
             
             // Notification box not yet added?
-            if(!JappixCommon.exists(notify))
+            if(!JappixCommon.exists(notify)) {
                 jQuery(tab).append(
                     '<span class="jm_notify">' + 
                         '<span class="jm_notify_left jm_images"></span>' + 
@@ -1401,6 +1424,7 @@ var JappixMini = (function () {
                         '<span class="jm_notify_right jm_images"></span>' + 
                     '</span>'
                 );
+            }
             
             // Increment the notification number
             var number = parseInt(jQuery(notify_middle).text());
@@ -1467,15 +1491,17 @@ var JappixMini = (function () {
             }
             
             // No saved title? Abort!
-            if(MINI_TITLE == null)
+            if(MINI_TITLE == null) {
                 return;
+            }
             
             // Page title code
             var title = MINI_TITLE;
             
             // No new stuffs? Reset the title!
-            if(number)
+            if(number) {
                 title = '[' + number + '] ' + title;
+            }
             
             // Apply the title
             document.title = title;
@@ -1545,8 +1571,9 @@ var JappixMini = (function () {
             var number_visible = parseInt((jQuery(window).width() - 380) / 140);
             var number_visible_dom = jQuery('#jappix_mini div.jm_conversation:visible').size();
 
-            if(number_visible <= 0)
+            if(number_visible <= 0) {
                 number_visible = 1;
+            }
 
             // Need to reprocess?
             if(number_visible != number_visible_dom) {
@@ -1584,16 +1611,20 @@ var JappixMini = (function () {
                     jQuery('#jappix_mini div.jm_conversation:visible:gt(' + index_visible + ')').hide();
                     
                     // Close the opened chat
-                    if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size())
+                    if(jQuery('#jappix_mini div.jm_conversation:hidden a.jm_pane.jm_clicked').size()) {
                         self.switchPane();
+                    }
                     
                     // Update navigation buttons
                     jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
                     
-                    if(!jQuery('#jappix_mini div.jm_conversation:visible:first').prev().size())
+                    if(!jQuery('#jappix_mini div.jm_conversation:visible:first').prev().size()) {
                         jQuery('#jappix_mini a.jm_switch.jm_left').addClass('jm_nonav');
-                    if(!jQuery('#jappix_mini div.jm_conversation:visible:last').next().size())
+                    }
+
+                    if(!jQuery('#jappix_mini div.jm_conversation:visible:last').next().size()) {
                         jQuery('#jappix_mini a.jm_switch.jm_right').addClass('jm_nonav');
+                    }
                 }
                 
                 // Must remove the overflow switcher?
@@ -1621,8 +1652,9 @@ var JappixMini = (function () {
                 var this_sel = jQuery(this);
 
                 // Nothing to do?
-                if(this_sel.hasClass('jm_nonav'))
+                if(this_sel.hasClass('jm_nonav')) {
                     return false;
+                }
                 
                 var hide_this = show_this = '';
                 
@@ -1630,16 +1662,18 @@ var JappixMini = (function () {
                 if(this_sel.is('.jm_left')) {
                     show_this = jQuery('#jappix_mini div.jm_conversation:visible:first').prev();
                     
-                    if(show_this.size())
+                    if(show_this.size()) {
                         hide_this = jQuery('#jappix_mini div.jm_conversation:visible:last');
+                    }
                 }
                 
                 // Go right?
                 else {
                     show_this = jQuery('#jappix_mini div.jm_conversation:visible:last').next();
                     
-                    if(show_this.size())
+                    if(show_this.size()) {
                         hide_this = jQuery('#jappix_mini div.jm_conversation:visible:first');
+                    }
                 }
                 
                 // Update overflow content
@@ -1649,8 +1683,9 @@ var JappixMini = (function () {
                         hide_this.hide();
                         
                         // Close the opened chat
-                        if(hide_this.find('a.jm_pane').hasClass('jm_clicked'))
+                        if(hide_this.find('a.jm_pane').hasClass('jm_clicked')) {
                             self.switchPane();
+                        }
                     }
                     
                     // Show
@@ -1659,8 +1694,9 @@ var JappixMini = (function () {
                     // Update navigation buttons
                     jQuery('#jappix_mini a.jm_switch').removeClass('jm_nonav');
                     
-                    if((this_sel.is('.jm_right') && !show_this.next().size()) || (this_sel.is('.jm_left') && !show_this.prev().size()))
+                    if((this_sel.is('.jm_right') && !show_this.next().size()) || (this_sel.is('.jm_left') && !show_this.prev().size())) {
                         this_sel.addClass('jm_nonav');
+                    }
                     
                     // Update notification counters
                     self.notifyCounters();
@@ -1695,8 +1731,9 @@ var JappixMini = (function () {
             JappixDataStore.removeDB(MINI_HASH, 'jappix-mini', 'dom');
             
             // Invalid stored DOM?
-            if(dom && isNaN(jQuery(dom).find('a.jm_pane.jm_button span.jm_counter').text()))
+            if(dom && isNaN(jQuery(dom).find('a.jm_pane.jm_button span.jm_counter').text())) {
                 dom = null;
+            }
             
             // Old DOM? (saved session)
             if(dom) {
@@ -1802,8 +1839,9 @@ var JappixMini = (function () {
                     var counter = '#jappix_mini a.jm_pane.jm_button span.jm_counter';
                     
                     // Cannot open the roster?
-                    if(jQuery(counter).text() == JappixCommon._e("Please wait..."))
+                    if(jQuery(counter).text() == JappixCommon._e("Please wait...")) {
                         return false;
+                    }
                     
                     // Not yet connected?
                     if(jQuery(counter).text() == JappixCommon._e("Chat")) {
@@ -1820,10 +1858,11 @@ var JappixMini = (function () {
                     }
                     
                     // Normal actions
-                    if(!jQuery(this).hasClass('jm_clicked'))
+                    if(!jQuery(this).hasClass('jm_clicked')) {
                         self.showRoster();
-                    else
+                    } else {
                         self.hideRoster();
+                    }
                 }
                 
                 catch(e) {}
@@ -1866,7 +1905,8 @@ var JappixMini = (function () {
                     var pr_xid = [''];
                     
                     jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').each(function() {
-                        pr_xid.push(unescape(this_sel.attr('data-xid')) + '/' + unescape(this_sel.attr('data-nick')));
+                        var this_sub_sel = $(this);
+                        pr_xid.push(unescape(this_sub_sel.attr('data-xid')) + '/' + unescape(this_sub_sel.attr('data-nick')));
                     });
                     
                     // Loop on XIDs
@@ -1936,15 +1976,17 @@ var JappixMini = (function () {
                             // Generate the groupchat links HTML
                             for(var i = 0; i < MINI_SUGGEST_GROUPCHATS.length; i++) {
                                 // Empty value?
-                                if(!MINI_SUGGEST_GROUPCHATS[i])
+                                if(!MINI_SUGGEST_GROUPCHATS[i]) {
                                     continue;
+                                }
                                 
                                 // Using a try/catch override IE issues
                                 try {
                                     var chat_room = JappixCommon.bareXID(JappixCommon.generateXID(MINI_SUGGEST_GROUPCHATS[i], 'groupchat'));
                                     var chat_pwd = MINI_SUGGEST_PASSWORDS[i] || '';
                                     
-                                    chans_html += '<a class="jm_suggest_groupchat" href="#" data-xid="' + escape(chat_room) + '" data-pwd="' + escape(chat_pwd) + '">' + 
+                                    chans_html += 
+                                    '<a class="jm_suggest_groupchat" href="#" data-xid="' + escape(chat_room) + '" data-pwd="' + escape(chat_pwd) + '">' + 
                                         '<span class="jm_chan_icon jm_images"></span>' + 
                                         '<span class="jm_chan_name">' + JappixCommon.getXIDNick(chat_room).htmlEnc() + '</span>' + 
                                     '</a>';
@@ -1954,14 +1996,16 @@ var JappixMini = (function () {
                             }
                             
                             // Any separation space to add?
-                            if(chans_html)
+                            if(chans_html) {
                                 chans_html += '<div class="jm_space"></div>';
+                            }
                             
                             // Generate the chat links HTML
                             for(var j = 0; j < MINI_SUGGEST_CHATS.length; j++) {
                                 // Empty value?
-                                if(!MINI_SUGGEST_CHATS[j])
+                                if(!MINI_SUGGEST_CHATS[j]) {
                                     continue;
+                                }
                                 
                                 // Using a try/catch override IE issues
                                 try {
@@ -1971,13 +2015,15 @@ var JappixMini = (function () {
                                     var chat_nick = jQuery('#jappix_mini a#friend-' + chat_hash).attr('data-nick');
                                     
                                     // Get current chat nickname
-                                    if(!chat_nick)
+                                    if(!chat_nick) {
                                         chat_nick = JappixCommon.getXIDNick(chat_xid);
-                                    else
+                                    } else {
                                         chat_nick = unescape(chat_nick);
+                                    }
                                     
                                     // Generate HTML for current chat
-                                    chans_html += '<a class="jm_suggest_chat" href="#" data-xid="' + escape(chat_xid) + '">' + 
+                                    chans_html += 
+                                    '<a class="jm_suggest_chat" href="#" data-xid="' + escape(chat_xid) + '">' + 
                                         '<span class="jm_chan_icon jm_images"></span>' + 
                                         '<span class="jm_chan_name">' + JappixCommon.getXIDNick(chat_nick).htmlEnc() + '</span>' + 
                                     '</a>';
@@ -1987,8 +2033,9 @@ var JappixMini = (function () {
                             }
                             
                             // Any separation space to add?
-                            if(chans_html)
+                            if(chans_html) {
                                 chans_html += '<div class="jm_space"></div>';
+                            }
                             
                             // Append selector code
                             jQuery('#jappix_mini div.jm_actions').append(
@@ -2027,8 +2074,9 @@ var JappixMini = (function () {
                                     }
                                     
                                     // Default prompt?
-                                    else
+                                    else {
                                         self.groupchatPrompt();
+                                    }
                                 }
                                 
                                 catch(e) {}
@@ -2044,8 +2092,9 @@ var JappixMini = (function () {
                     }
                     
                     // Default action
-                    else
+                    else {
                         self.groupchatPrompt();
+                    }
                 }
                 
                 catch(e) {}
@@ -2060,12 +2109,14 @@ var JappixMini = (function () {
                 var this_sel = jQuery(this);
 
                 // Avoid buddy navigation to be reseted
-                if((e.keyCode == 38) || (e.keyCode == 40))
+                if((e.keyCode == 38) || (e.keyCode == 40)) {
                     return;
+                }
                 
                 // Escape key pressed?
-                if(e.keyCode == 27)
+                if(e.keyCode == 27) {
                     this_sel.val('');
+                }
                 
                 // Save current value
                 this_sel.attr('data-value', this_sel.val());
@@ -2073,7 +2124,7 @@ var JappixMini = (function () {
                 // Don't filter at each key up (faster for computer)
                 var self = this;
                 
-                JappixCommon.typewatch(function() {
+                JappixCommon.typewatch()(function() {
                     // Using a try/catch to override IE issues
                     try {
                         // Get values
@@ -2096,18 +2147,20 @@ var JappixMini = (function () {
                             var this_sub_sel = jQuery(this);
                             var nick = unescape(this_sub_sel.data('nick'));
                             
-                            if(nick.match(regex))
+                            if(nick.match(regex)) {
                                 this_sub_sel.show();
-                            else
+                            } else {
                                 this_sub_sel.hide();
+                            }
                         });
                         
                         // Filter groups
                         jQuery('#jappix_mini div.jm_roster div.jm_grouped').each(function() {
                             var this_sub_sel = jQuery(this);
 
-                            if(!this_sub_sel.find('a.jm_online:visible').size())
+                            if(!this_sub_sel.find('a.jm_online:visible').size()) {
                                 this_sub_sel.hide();
+                            }
                         });
                         
                         // Focus on the first buddy
@@ -2125,17 +2178,19 @@ var JappixMini = (function () {
             // Roster navigation
             jQuery(document).keydown(function(e) {
                 // Cannot work if roster is not opened
-                if(jQuery('#jappix_mini div.jm_roster').is(':hidden'))
+                if(jQuery('#jappix_mini div.jm_roster').is(':hidden')) {
                     return;
+                }
                 
                 // Up/Down keys
                 if((e.keyCode == 38) || (e.keyCode == 40)) {
                     // Hover the last/first buddy
                     if(!jQuery('#jappix_mini a.jm_online.jm_hover').size()) {
-                        if(e.keyCode == 38)
+                        if(e.keyCode == 38) {
                             jQuery('#jappix_mini a.jm_online:visible:last').addClass('jm_hover');
-                        else
+                        } else {
                             jQuery('#jappix_mini a.jm_online:visible:first').addClass('jm_hover');
+                        }
                     }
                     
                     // Hover the previous/next buddy
@@ -2143,20 +2198,23 @@ var JappixMini = (function () {
                         var hover_index = jQuery('#jappix_mini a.jm_online:visible').index(jQuery('a.jm_hover'));
                         
                         // Up (decrement) or down (increment)?
-                        if(e.keyCode == 38)
+                        if(e.keyCode == 38) {
                             hover_index--;
-                        else
+                        } else {
                             hover_index++;
+                        }
                         
-                        if(!hover_index)
+                        if(!hover_index) {
                             hover_index = 0;
+                        }
                         
                         // No buddy before/after?
                         if(!jQuery('#jappix_mini a.jm_online:visible').eq(hover_index).size()) {
-                            if(e.keyCode == 38)
+                            if(e.keyCode == 38) {
                                 hover_index = jQuery('#jappix_mini a.jm_online:visible:last').index();
-                            else
+                            } else {
                                 hover_index = 0;
+                            }
                         }
                         
                         // Hover the previous/next buddy
@@ -2183,8 +2241,9 @@ var JappixMini = (function () {
                 // Cannot work if an input/textarea is already focused or chat is not opened
                 var path = '#jappix_mini div.jm_conversation div.jm_chat-content';
 
-                if(jQuery('input, textarea').is(':focus') || !jQuery(path).is(':visible'))
+                if(jQuery('input, textarea').is(':focus') || !jQuery(path).is(':visible')) {
                     return;
+                }
 
                 // May cause some compatibility issues
                 try {
@@ -2215,14 +2274,16 @@ var JappixMini = (function () {
             
             // Hides the roster when clicking away of Jappix Mini
             jQuery(document).click(function(evt) {
-                if(!jQuery(evt.target).parents('#jappix_mini').size() && !JappixCommon.exists('#jappix_popup'))
+                if(!jQuery(evt.target).parents('#jappix_mini').size() && !JappixCommon.exists('#jappix_popup')) {
                     self.hideRoster();
+                }
             });
             
             // Hides all panes double clicking away of Jappix Mini
             jQuery(document).dblclick(function(evt) {
-                if(!jQuery(evt.target).parents('#jappix_mini').size() && !JappixCommon.exists('#jappix_popup'))
+                if(!jQuery(evt.target).parents('#jappix_mini').size() && !JappixCommon.exists('#jappix_popup')) {
                     self.switchPane();
+                }
             });
             
             // Suspended session resumed?
@@ -2235,8 +2296,9 @@ var JappixMini = (function () {
                     // Restore previous reconnect counter
                     var reconnect = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'reconnect');
 
-                    if(!isNaN(reconnect))
+                    if(!isNaN(reconnect)) {
                         MINI_RECONNECT = parseInt(reconnect);
+                    }
 
                     // Restore queued functions
                     self.unserializeQueue();
@@ -2250,16 +2312,18 @@ var JappixMini = (function () {
                     var this_sub_sel = jQuery(this);
                     var chat_value = this_sub_sel.attr('data-value');
                     
-                    if(chat_value)
+                    if(chat_value) {
                         this_sub_sel.val(chat_value);
+                    }
                 });
                 
                 // Restore roster filter value
                 var search_box = jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox');
                 var filter_value = search_box.attr('data-value');
                 
-                if(filter_value)
+                if(filter_value) {
                     search_box.val(filter_value).keyup();
+                }
                 
                 // Restore buddy events
                 self.eventsBuddy('#jappix_mini a.jm_friend');
@@ -2278,8 +2342,9 @@ var JappixMini = (function () {
                 var scroll_position = JappixDataStore.getDB(MINI_HASH, 'jappix-mini', 'scroll');
                 
                 // Any scroll position?
-                if(scroll_position)
+                if(scroll_position) {
                     scroll_position = parseInt(scroll_position);
+                }
                 
                 if(scroll_hash) {
                     // Use a timer to override the DOM lag issue
@@ -2293,8 +2358,9 @@ var JappixMini = (function () {
             }
             
             // Can auto-connect?
-            else if(MINI_AUTOCONNECT)
+            else if(MINI_AUTOCONNECT) {
                 self.connect(domain, user, password);
+            }
             
             // Cannot auto-connect?
             else {
@@ -2457,8 +2523,9 @@ var JappixMini = (function () {
             body = JappixLinks.apply(body, 'mini');
             
             // Generate the message code
-            if(me_command)
+            if(me_command) {
                 body = '<em>' + body + '</em>';
+            }
             
             body = '<p>' + body + '</p>';
             
@@ -2526,8 +2593,9 @@ var JappixMini = (function () {
                 });
                 
                 // Scroll to the last message
-                if(hash)
+                if(hash) {
                     self.messageScroll(hash);
+                }
             }
         } catch(e) {
             JappixConsole.error('JappixMini.switchPane', e);
@@ -2599,8 +2667,9 @@ var JappixMini = (function () {
             jQuery(prompt).css('margin-top', vert_pos);
             
             // Apply the value?
-            if(value)
+            if(value) {
                 jQuery(value_input).val(value);
+            }
             
             // Focus on the input
             jQuery(document).oneTime(10, function() {
@@ -2726,8 +2795,9 @@ var JappixMini = (function () {
                                 var nickname = self.closePrompt();
                                 
                                 // Update the stored one
-                                if(nickname)
+                                if(nickname) {
                                     MINI_NICKNAME = nickname;
+                                }
                                 
                                 // Launch it again!
                                 self.chat(type, xid, nick, hash, pwd);
@@ -2775,11 +2845,12 @@ var JappixMini = (function () {
                 }
                 
                 // Any close button to display?
-                if(((type == 'groupchat') && !groupchat_exists) || ((type == 'chat') && !chat_exists) || ((type != 'groupchat') && (type != 'chat')))
+                if(((type == 'groupchat') && !groupchat_exists) || ((type == 'chat') && !chat_exists) || ((type != 'groupchat') && (type != 'chat'))) {
                     html += '<a class="jm_one-action jm_close jm_images" title="' + JappixCommon._e("Close") + '" href="#"></a>';
+                }
                 
-                html += '</div>' + 
-                        
+                html += 
+                    '</div>' +     
                         '<div class="jm_received-messages" id="received-' + hash + '">' + 
                             '<div class="jm_chatstate_typing">' + JappixCommon.printf(JappixCommon._e("%s is typing..."), nick.htmlEnc()) + '</div>' + 
                         '</div>' + 
@@ -2806,16 +2877,17 @@ var JappixMini = (function () {
                     var show = 'available';
                     
                     // Read the presence
-                    if(selector.hasClass('jm_unavailable') || !selector.size())
+                    if(selector.hasClass('jm_unavailable') || !selector.size()) {
                         show = 'unavailable';
-                    else if(selector.hasClass('jm_chat'))
+                    } else if(selector.hasClass('jm_chat')) {
                         show = 'chat';
-                    else if(selector.hasClass('jm_away'))
+                    } else if(selector.hasClass('jm_away')) {
                         show = 'away';
-                    else if(selector.hasClass('jm_xa'))
+                    } else if(selector.hasClass('jm_xa')) {
                         show = 'xa';
-                    else if(selector.hasClass('jm_dnd'))
+                    } else if(selector.hasClass('jm_dnd')) {
                         show = 'dnd';
+                    }
                     
                     // Create the presence marker
                     jQuery(current + ' a.jm_chat-tab').prepend('<span class="jm_presence jm_images jm_' + show + '"></span>');
@@ -2836,10 +2908,11 @@ var JappixMini = (function () {
             }
             
             // Focus on our pane
-            if(show_pane != false)
+            if(show_pane != false) {
                 jQuery(document).oneTime(10, function() {
                     self.switchPane('chat-' + hash, hash);
                 });
+            }
             
             // Update chat overflow
             self.updateOverflow();
@@ -2900,8 +2973,9 @@ var JappixMini = (function () {
                     // Close button?
                     if(jQuery(e.target).is('a.jm_close')) {
                         // Gone chatstate
-                        if(type != 'groupchat')
+                        if(type != 'groupchat') {
                             self.sendChatstate('gone', xid, hash);
+                        }
                         
                         current_sel.stopTime().remove();
                         
@@ -2953,10 +3027,11 @@ var JappixMini = (function () {
                 if(e.keyCode == 27) {
                     if(current_sel.find('a.jm_close').size()) {
                         // Open next/previous chat
-                        if(current_sel.next('div.jm_conversation').size())
+                        if(current_sel.next('div.jm_conversation').size()) {
                             current_sel.next('div.jm_conversation').find('a.jm_pane').click();
-                        else if(current_sel.prev('div.jm_conversation').size())
+                        } else if(current_sel.prev('div.jm_conversation').size()) {
                             current_sel.prev('div.jm_conversation').find('a.jm_pane').click();
+                        }
                         
                         // Close current chat
                         current_sel.find('a.jm_close').click();
@@ -2974,8 +3049,9 @@ var JappixMini = (function () {
             
             .blur(function() {
                 // Reset active chat
-                if(MINI_ACTIVE == hash)
+                if(MINI_ACTIVE == hash) {
                     MINI_ACTIVE = null;
+                }
             });
             
             // Chatstate events
@@ -3117,8 +3193,9 @@ var JappixMini = (function () {
             // Join the groupchats (first)
             for(var i = 0; i < MINI_GROUPCHATS.length; i++) {
                 // Empty value?
-                if(!MINI_GROUPCHATS[i])
+                if(!MINI_GROUPCHATS[i]) {
                     continue;
+                }
                 
                 // Using a try/catch override IE issues
                 try {
@@ -3135,8 +3212,9 @@ var JappixMini = (function () {
             // Join the chats (then)
             for(var j = 0; j < MINI_CHATS.length; j++) {
                 // Empty value?
-                if(!MINI_CHATS[j])
+                if(!MINI_CHATS[j]) {
                     continue;
+                }
                 
                 // Using a try/catch override IE issues
                 try {
@@ -3145,10 +3223,11 @@ var JappixMini = (function () {
                     var chat_hash = hex_md5(chat_xid);
                     var chat_nick = jQuery('#jappix_mini a#friend-' + chat_hash).attr('data-nick');
                     
-                    if(!chat_nick)
+                    if(!chat_nick) {
                         chat_nick = JappixCommon.getXIDNick(chat_xid);
-                    else
+                    } else {
                         chat_nick = unescape(chat_nick);
+                    }
                     
                     // Open the current chat
                     self.chat('chat', chat_xid, chat_nick, chat_hash);
@@ -3207,8 +3286,9 @@ var JappixMini = (function () {
                 }
 
                 // Group: end
-                if(c != MINI_ROSTER_NOGROUP)
+                if(c != MINI_ROSTER_NOGROUP) {
                     buddy_str += '</div>';
+                }
             }
 
             // Append code
@@ -3247,8 +3327,10 @@ var JappixMini = (function () {
             var element = '#jappix_mini a#friend-' + hash;
             
             // Yet added?
-            if(JappixCommon.exists(element))  jQuery(element).remove();
-            
+            if(JappixCommon.exists(element)) {
+                jQuery(element).remove();
+            }
+
             // Generate the path
             var path = '#jappix_mini div.jm_roster div.jm_buddies';
 
@@ -3285,14 +3367,16 @@ var JappixMini = (function () {
                 subscription
             );
             
-            if(groupchat || group)
+            if(groupchat || group) {
                 jQuery(path).append(code);
-            else
+            } else {
                 jQuery(path).prepend(code);
+            }
             
             // Need to hide this buddy?
-            if(jQuery('#jappix_mini div.jm_actions a.jm_toggle_view.jm_toggled').size())
+            if(jQuery('#jappix_mini div.jm_actions a.jm_toggle_view.jm_toggled').size()) {
                 jQuery(element).filter('.jm_offline').hide();
+            }
 
             // Events on this buddy
             self.eventsBuddy(element);
@@ -3363,8 +3447,9 @@ var JappixMini = (function () {
             // Empty group?
             var group = '#jappix_mini div.jm_roster div.jm_grouped_groupchat[data-xid="' + escape(groupchat) + '"]';
             
-            if(groupchat && !jQuery(group + ' a.jm_friend').size())
+            if(groupchat && !jQuery(group + ' a.jm_friend').size()) {
                 jQuery(group).remove();
+            }
             
             return true;
         } catch(e) {
@@ -3448,7 +3533,9 @@ var JappixMini = (function () {
                         this_sub_sel.find('group').each(function() {
                             cur_group = jQuery(this).text();
 
-                            if(cur_group)  cur_groups[cur_group] = 1;
+                            if(cur_group) {
+                                cur_groups[cur_group] = 1;
+                            }
                         });
                     } else {
                         cur_groups[MINI_ROSTER_NOGROUP] = 1;
@@ -3456,8 +3543,13 @@ var JappixMini = (function () {
 
                     for(cur_group in cur_groups) {
                         // Prepare multidimentional array
-                        if(typeof pointer[cur_group] != 'number')  pointer[cur_group] = 0;
-                        if(typeof buddies[cur_group] != 'object')  buddies[cur_group] = [];
+                        if(typeof pointer[cur_group] != 'number') {
+                            pointer[cur_group] = 0;
+                        }
+
+                        if(typeof buddies[cur_group] != 'object') {
+                            buddies[cur_group] = [];
+                        }
 
                         // Push buddy data
                         buddies[cur_group][(pointer[cur_group])++] = cur_buddy;
@@ -3476,7 +3568,9 @@ var JappixMini = (function () {
             } else {
                 for(c in buddies) {
                     for(j = 0; j < buddies[c].length; j++) {
-                        if(!buddies[c][j])  continue;
+                        if(!buddies[c][j]) {
+                            continue;
+                        }
 
                         // Current buddy information
                         nick = buddies[c][j][0];
@@ -3485,10 +3579,11 @@ var JappixMini = (function () {
                         subscription = buddies[c][j][3];
 
                         // Apply current buddy action
-                        if(subscription == 'remove')
+                        if(subscription == 'remove') {
                             self.removeBuddy(hash);
-                        else
+                        } else {
                             self.addBuddy(xid, hash, nick, null, subscription, (c != MINI_ROSTER_NOGROUP ? c : null));
+                        }
                     }
                 }
             }
@@ -3603,7 +3698,9 @@ var JappixMini = (function () {
             ];
             
             // Select random values from the arrays
-            var rand_nick = JappixCommon.randomArrayValue(first_arr) + JappixCommon.randomArrayValue(second_arr) + JappixCommon.randomArrayValue(last_arr);
+            var rand_nick = JappixCommon.randomArrayValue(first_arr)
+                          + JappixCommon.randomArrayValue(second_arr)
+                          + JappixCommon.randomArrayValue(last_arr);
             
             return rand_nick;
         } catch(e) {
@@ -3630,8 +3727,9 @@ var JappixMini = (function () {
             // If the friend client supports chatstates and is online
             if((user_type == 'groupchat') || ((user_type == 'chat') && user_storage.attr('data-chatstates') && !JappixCommon.exists('#jappix_mini a#friend-' + hash + '.jm_offline'))) {
                 // Already sent?
-                if(user_storage.attr('data-chatstate') == state)
+                if(user_storage.attr('data-chatstate') == state) {
                     return;
+                }
                 
                 // Store the state
                 user_storage.attr('data-chatstate', state);
@@ -3722,8 +3820,9 @@ var JappixMini = (function () {
 
         try {
             // Groupchat not supported
-            if(type == 'groupchat')
+            if(type == 'groupchat') {
                 return;
+            }
             
             jQuery('#jappix_mini #chat-' + hash + ' input.jm_send-messages').keyup(function(e) {
                 var this_sel = jQuery(this);
@@ -3758,28 +3857,32 @@ var JappixMini = (function () {
                 var this_sel = jQuery(this);
 
                 // Not needed
-                if(this_sel.is(':disabled'))
+                if(this_sel.is(':disabled')) {
                     return;
+                }
                 
                 // Nothing in the input, user is active
-                if(!this_sel.val())
+                if(!this_sel.val()) {
                     self.sendChatstate('active', xid, hash);
-                else
+                } else {
                     self.sendChatstate('composing', xid, hash);
+                }
             })
             
             .blur(function() {
                 var this_sel = jQuery(this);
 
                 // Not needed
-                if(this_sel.is(':disabled'))
+                if(this_sel.is(':disabled')) {
                     return;
+                }
                 
                 // Nothing in the input, user is inactive
-                if(!this_sel.val())
+                if(!this_sel.val()) {
                     self.sendChatstate('inactive', xid, hash);
-                else
+                } else {
                     self.sendChatstate('paused', xid, hash);
+                }
             });
         } catch(e) {
             JappixConsole.error('JappixMini.eventsChatstate', e);
@@ -3797,8 +3900,9 @@ var JappixMini = (function () {
 
         try {
             // Not supported!
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                 return false;
+            }
             
             // Append the sound container
             if(!JappixCommon.exists('#jappix_mini #jm_audio')) {
@@ -3909,26 +4013,30 @@ var JappixMini = (function () {
             MINI_PASSWORD = password;
             MINI_HASH = 'jm.' + hex_md5(MINI_USER + '@' + MINI_DOMAIN);
 
-            if(priority != undefined)
+            if(priority != undefined) {
                 MINI_PRIORITY = priority;
+            }
             
             // Anonymous mode?
-            if(!user || !password)
+            if(!user || !password) {
                 MINI_ANONYMOUS = true;
-            else
+            } else {
                 MINI_ANONYMOUS = false;
+            }
             
             // Autoconnect (only if storage available to avoid floods)?
-            if(autoconnect && JappixDataStore.hasDB())
+            if(autoconnect && JappixDataStore.hasDB()) {
                 MINI_AUTOCONNECT = true;
-            else
+            } else {
                 MINI_AUTOCONNECT = false;
+            }
             
             // Show pane?
-            if(show_pane)
+            if(show_pane) {
                 MINI_SHOWPANE = true;
-            else
+            } else {
                 MINI_SHOWPANE = false;
+            }
             
             // Remove Jappix Mini
             jQuery('#jappix_mini').remove();
@@ -3944,13 +4052,15 @@ var JappixMini = (function () {
             jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini.css' + '" type="text/css" media="all" />');
             
             // Legacy IE stylesheet
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7))
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
                 jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini-ie.css' + '" type="text/css" media="all" />');
+            }
             
             // Disables the browser HTTP-requests stopper
             jQuery(document).keydown(function(e) {
-                if((e.keyCode == 27) && !JappixSystem.isDeveloper())
+                if((e.keyCode == 27) && !JappixSystem.isDeveloper()) {
                     return false;
+                }
             });
             
             // Save the page title
@@ -3973,8 +4083,9 @@ var JappixMini = (function () {
                     var target = this_sel.attr('target') || '';
                     
                     // Not new window or JS link
-                    if(href && !href.match(/^#/i) && !target.match(/_blank|_new/i))
+                    if(href && !href.match(/^#/i) && !target.match(/_blank|_new/i)) {
                         self.saveSession();
+                    }
                 });
                 
                 // Emulates onbeforeunload on Opera (form submitted)
