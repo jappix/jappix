@@ -33,6 +33,8 @@ module.exports = function(grunt) {
           'unique-headings': false,
           'floats': false,
           'font-sizes': false,
+          'ids': false,
+          'overqualified-elements': false
         },
 
         src: ['../app/css/*.css']
@@ -42,7 +44,19 @@ module.exports = function(grunt) {
 
     // Task: JSHint
     jshint: {
-      all: ['../app/js/*.js']
+      files: ['../app/js/*.js'],
+      options: {
+          ignores: [
+            '../app/js/jquery.js',
+            '../app/js/jquery.*.js',
+            '../app/js/jsjac.js',
+            '../app/js/jsjac.*.js',
+            '../app/js/jxhr.js',
+            '../app/js/browser-detect.js',
+            '../app/js/base64.js',
+            '../app/js/ios.js'
+          ]
+      }
     }
   });
 
