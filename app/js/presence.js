@@ -220,7 +220,7 @@ var Presence = (function () {
                         var nickname = $(node).find('nick[xmlns="' + NS_NICK + '"]:first').text();
                         
                         // New notification
-                        newNotification('subscribe', xid, [xid, nickname], status);
+                        Notification.create('subscribe', xid, [xid, nickname], status);
                     }
                 }
                 

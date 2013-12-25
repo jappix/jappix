@@ -73,7 +73,7 @@ var Options = (function () {
                         '</div>' +
                         
                         '<div class="noxhtmlimg">' +
-                            '<label for="noxhtmlimg">' + Common._e("Filter XHTML-IM Images") + '</label>' + 
+                            '<label for="noxhtmlimg">' + Common._e("No chat images auto-load") + '</label>' + 
                             '<input id="noxhtmlimg" type="checkbox" />' + 
                         '</div>' +
                         

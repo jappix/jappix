@@ -164,7 +164,7 @@ var Message = (function () {
                         var jappix_me_notification_ns = jappix_app_name_id + '_' + jappix_app_data_action_type + '_' + jappix_app_data_action_job + '_' + jappix_app_data_action_success;
 
                         // Open a new notification
-                        newNotification(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
+                        Notification.create(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
                         
                         Console.log('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
                         
@@ -184,7 +184,7 @@ var Message = (function () {
                     iRoom = from;
                 
                 // We display the notification
-                newNotification('invite_room', iFrom, [iRoom], body);
+                Notification.create('invite_room', iFrom, [iRoom], body);
                 
                 Console.log('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
                 
@@ -194,7 +194,7 @@ var Message = (function () {
             // Request message
             if(message.getChild('confirm', NS_HTTP_AUTH)) {
                 // Open a new notification
-                newNotification('request', xid, [message], body);
+                Notification.create('request', xid, [message], body);
                 
                 Console.log('HTTP Request from: ' + xid);
                 
@@ -213,7 +213,7 @@ var Message = (function () {
             // Roster Item Exchange message
             if(message.getChild('x', NS_ROSTERX)) {
                 // Open a new notification
-                newNotification('rosterx', xid, [message], body);
+                Notification.create('rosterx', xid, [message], body);
                 
                 Console.log('Roster Item Exchange from: ' + xid);
                 

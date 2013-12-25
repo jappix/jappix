@@ -441,16 +441,16 @@ var vCard = (function () {
             var iqID = iq.getID();
             var iqFrom = Common.fullXID(Common.getStanzaFrom(iq));
             var iqNode = iq.getNode();
-            
+
             // Define some paths
-            var path_vCard = '#vcard[data-vcard="' + iqID + '"]';
+            var path_vcard = '#vcard[data-vcard="' + iqID + '"]';
             var path_userInfos = '#userinfos[data-vcard="' + iqID + '"]';
             
             // End if the session does not exist
-            if(((type == 'user') && !Common.exists(path_vCard)) || ((type == 'buddy') && !Common.exists(path_userInfos))) {
+            if(((type == 'user') && !Common.exists(path_vcard)) || ((type == 'buddy') && !Common.exists(path_userInfos))) {
                 return;
             }
-            
+
             // We retrieve main values
             var values_yet = [];
             
@@ -480,7 +480,7 @@ var vCard = (function () {
                             
                             // Profile editor popup
                             else if(type == 'user') {
-                                $(path_vCard + ' #USER-' + currentID).val(currentText);
+                                $(path_vcard + ' #USER-' + currentID).val(currentText);
                             }
                             
                             // Avoid duplicating the value
@@ -525,14 +525,14 @@ var vCard = (function () {
                         
                         // Profile editor popup
                         else if(type == 'user')
-                            $(path_vCard + ' #USER-' + tokenname).val(currentText);
+                            $(path_vcard + ' #USER-' + tokenname).val(currentText);
                         
                         // Avoid duplicating the value
                         values_yet.push(tokenname);
                     }
                 }
             });
-            
+
             // Update the stored avatar
             if(type == 'buddy') {
                 // Get the avatar XML
@@ -547,14 +547,14 @@ var vCard = (function () {
                 // Handle the user avatar
                 Avatar.handle(iq);
             }
-            
+
             // The avatar values targets
             var aBinval, aType, aContainer;
             
             if(type == 'user') {
                 aBinval = $('#USER-PHOTO-BINVAL').val();
                 aType = $('#USER-PHOTO-TYPE').val();
-                aContainer = path_vCard + ' .avatar-container';
+                aContainer = path_vcard + ' .avatar-container';
             }
             
             else {
@@ -562,7 +562,7 @@ var vCard = (function () {
                 aType = $(iqNode).find('TYPE:first').text();
                 aContainer = path_userInfos + ' .avatar-container';
             }
-            
+
             // We display the avatar if retrieved
             if(aBinval) {
                 // No type?
@@ -572,9 +572,9 @@ var vCard = (function () {
                 
                 if(type == 'user') {
                     // We move all the things that we don't need in that case
-                    $(path_vCard + ' .no-avatar').hide();
-                    $(path_vCard + ' .avatar-delete').show();
-                    $(path_vCard + ' .avatar').remove();
+                    $(path_vcard + ' .no-avatar').hide();
+                    $(path_vcard + ' .avatar-delete').show();
+                    $(path_vcard + ' .avatar').remove();
                 }
                 
                 // We display the avatar we have just received
@@ -584,13 +584,13 @@ var vCard = (function () {
             else if(type == 'buddy') {
                 $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>');
             }
-            
+
             // Do someting depending of the type
             if(type == 'user') {
-                $(path_vCard + ' .wait').hide();
-                $(path_vCard + ' .finish:first').removeClass('disabled');
+                $(path_vcard + ' .wait').hide();
+                $(path_vcard + ' .finish:first').removeClass('disabled');
             } else {
-                BuddyInfos.vCard();
+                UserInfos.vCard();
             }
             
             Console.log('vCard received: ' + iqFrom);

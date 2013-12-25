@@ -115,7 +115,7 @@ var OOB = (function () {
             
             // Open a new notification
             if(type && xid && url && desc) {
-                newNotification('send', xid, [xid, url, type, id, node], desc, hex_md5(xid + url + desc + id));
+                Notification.create('send', xid, [xid, url, type, id, node], desc, hex_md5(xid + url + desc + id));
             }
         } catch(e) {
             Console.error('OOB.handle', e);
@@ -245,7 +245,7 @@ var OOB = (function () {
                 self.send(xid, oob_type, fURL, fDesc);
                 
                 // Notify the sender
-                newNotification('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
+                Notification.create('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
                 
                 Console.info('File request sent.');
             }

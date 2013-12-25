@@ -327,10 +327,10 @@ var DataForm = (function () {
                 buttonsCode += '<a href="#" class="back" onclick="return Discovery.start();">' + Common._e("Close") + '</a>';
             
             if((action == 'back') && ((target == 'welcome') || (target == 'directory')))
-                buttonsCode += '<a href="#" class="back" onclick="return self.go(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + Common._e("Previous") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return DataForm.go(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + Common._e("Previous") + '</a>';
             
             if((action == 'back') && (target == 'adhoc'))
-                buttonsCode += '<a href="#" class="back" onclick="return self.go(\'' + Utils.encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
+                buttonsCode += '<a href="#" class="back" onclick="return DataForm.go(\'' + Utils.encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
             
             buttonsCode += '</div>';
             
@@ -480,7 +480,7 @@ var DataForm = (function () {
                             // Node
                             if(itemNode)
                                 $(pathID).append(
-                                    '<div class="oneresult ' + target + '-oneresult" onclick="return self.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'browse\', \'' + Utils.encodeOnclick(itemNode) + '\', \'\', \'' + Utils.encodeOnclick(target) + '\');">' + 
+                                    '<div class="oneresult ' + target + '-oneresult" onclick="return DataForm.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'browse\', \'' + Utils.encodeOnclick(itemNode) + '\', \'\', \'' + Utils.encodeOnclick(target) + '\');">' + 
                                         '<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
                                     '</div>'
                                 );
@@ -696,7 +696,7 @@ var DataForm = (function () {
                             
                             // We display the waiting element
                             $(pathID).prepend(
-                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return self.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'command\', \'' + Utils.encodeOnclick(itemNode) + '\', \'execute\', \'' + Utils.encodeOnclick(target) + '\');">' + 
+                                '<div class="oneresult ' + target + '-oneresult ' + itemHash + '" onclick="return DataForm.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'command\', \'' + Utils.encodeOnclick(itemNode) + '\', \'execute\', \'' + Utils.encodeOnclick(target) + '\');">' + 
                                     '<div class="one-name">' + itemName + '</div>' + 
                                     '<div class="one-next">»</div>' + 
                                 '</div>'
@@ -960,10 +960,11 @@ var DataForm = (function () {
             
             var iqQuery = iq.setQuery(NS_DISCO_INFO);
             
-            if(node)
+            if(node) {
                 iqQuery.setAttribute('node', node);
+            }
             
-            con.send(iq, handleThisBrowse);
+            con.send(iq, self.handleThisBrowse);
         } catch(e) {
             Console.error('DataForm.getType', e);
         }
@@ -1047,7 +1048,7 @@ var DataForm = (function () {
                 
                 for(i in buttons) {
                     if(buttons[i])
-                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return self.go(\'' + Utils.encodeOnclick(from) + '\', \'' + Utils.encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + Utils.encodeOnclick(target) + '\');" title="' + Utils.encodeOnclick(bTools[i]) + '"></a>';
+                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return DataForm.go(\'' + Utils.encodeOnclick(from) + '\', \'' + Utils.encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + Utils.encodeOnclick(target) + '\');" title="' + Utils.encodeOnclick(bTools[i]) + '"></a>';
                 }
                 
                 // As defined in the ref, we detect the type of each category to put an icon

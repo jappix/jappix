@@ -67,11 +67,11 @@ var IQ = (function () {
                 if($(iqNode).find('error').size()) {
                     // Rejected?
                     if($(iqNode).find('error not-acceptable').size())
-                        newNotification('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
+                        Notification.create('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
                     
                     // Failed?
                     else
-                        newNotification('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
+                        Notification.create('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
                     
                     // Remove the file
                     $.get(oob_url + '&action=remove');
@@ -79,7 +79,7 @@ var IQ = (function () {
                 
                 // Success?
                 else if(iqType == 'result')
-                    newNotification('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
+                    Notification.create('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
             }
             
             // Software version query
@@ -142,7 +142,7 @@ var IQ = (function () {
             // Roster Item Exchange query
             else if($(iqNode).find('x[xmlns="' + NS_ROSTERX + '"]').size()) {
                 // Open a new notification
-                newNotification('rosterx', iqFrom, [iqNode], '');
+                Notification.create('rosterx', iqFrom, [iqNode], '');
                 
                 Console.log('Roster Item Exchange from: ' + iqFrom);
             }

@@ -93,7 +93,7 @@ var Notification = (function () {
      * @param {boolean} inverse
      * @return {undefined}
      */
-    self.newNotification = function(type, from, data, body, id, inverse) {
+    self.create = function(type, from, data, body, id, inverse) {
 
         try {
             if(!type || !from)
@@ -472,7 +472,7 @@ var Notification = (function () {
                     current_name = current_bname;
                 
                 // Create it!
-                newNotification(current_type, current_xid, [current_name, current_href, current_parent_href, current_item], current_text, current_id, inverse);
+                self.create(current_type, current_xid, [current_name, current_href, current_parent_href, current_item], current_text, current_id, inverse);
             });
             
             Console.info(items.size() + ' social notification(s) got!');
