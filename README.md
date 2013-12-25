@@ -1,10 +1,12 @@
 <img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" />
 
 
-Code status
------------
+Jappix is a fresh new open social platform which enables you to create your own cloud, wherever you want to. People must be able to get in touch with all their friends on a free decentralized network!
 
-* [![build status](https://ci.frenchtouch.pro/projects/7/status.png?ref=master)](https://ci.frenchtouch.pro/projects/7?ref=master) on ci.frenchtouch.pro (master branch)
+You can build your own Jappix installation for your own requirements: if you want to use it as a personal social client, you can download it and put it on your webserver. It's easy, fast and free.
+
+
+[![build status](https://ci.frenchtouch.pro/projects/7/status.png?ref=master)](https://ci.frenchtouch.pro/projects/7?ref=master)
 
 
 License
