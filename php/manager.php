@@ -424,7 +424,7 @@ else
 				<ul>
 					<li class="total"><a href="./?p=everything<?php echo $keep_get; ?>"><?php _e("Clean everything"); ?></a></li>
 					<li><a href="./?p=cache<?php echo $keep_get; ?>"><?php _e("Purge cache"); ?></a></li>
-					<li><a href="./?p=logs<?php echo $keep_get; ?>"><?php _e("Purge logs"); ?></a></li>
+					<li><a href="./?p=archives<?php echo $keep_get; ?>"><?php _e("Purge logs"); ?></a></li>
 					<li><a href="./?p=send<?php echo $keep_get; ?>"><?php _e("Purge sent files"); ?></a></li>
 					<li><a href="./?p=updates<?php echo $keep_get; ?>"><?php _e("Purge updates"); ?></a></li>
 				</ul>

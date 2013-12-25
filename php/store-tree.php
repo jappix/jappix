@@ -19,12 +19,12 @@ if(!defined('JAPPIX_BASE'))
 // Array of the sub-folders to create
 $store_folders = array(
 	'access',
+	'archives',
 	'avatars',
 	'backgrounds',
 	'cache',
 	'conf',
 	'logos',
-	'logs',
 	'music',
 	'send',
 	'share',

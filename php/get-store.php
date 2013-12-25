@@ -17,7 +17,7 @@ if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Purge requested
-if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(logs)|(send)|(updates))$/', $_GET['p'])) {
+if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(archives)|(send)|(updates))$/', $_GET['p'])) {
 	purgeFolder($_GET['p']);
 ?>
 	

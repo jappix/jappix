@@ -61,7 +61,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	$date = $date[2].'/'.$date[1].'/'.$date[0];
 	
 	// Generate some values
-	$content_dir = '../store/logs/';
+	$content_dir = '../store/archives/';
 	$filename = 'chat_log-'.md5($xid.time());
 	$filepath = $content_dir.$filename.'.html';
 	
