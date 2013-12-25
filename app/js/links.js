@@ -66,3 +66,5 @@ var Links = (function () {
     return self;
 
 })();
+
+var JappixLinks = Links;

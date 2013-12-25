@@ -18,7 +18,7 @@ var Console = new function () {
 
   /* Variables */
   self._available = typeof(window.console) != 'undefined';
-  self._has = self._available && System.isDeveloper();
+  self._has = self._available && JappixSystem.isDeveloper();
   self._console = self._available ? console : {};
 
 
@@ -58,3 +58,5 @@ var Console = new function () {
   self.debug = self._adapter(4);
 
 };
+
+var JappixConsole = Console;

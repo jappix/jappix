@@ -498,3 +498,5 @@ var DataStore = (function () {
     return self;
 
 })();
+
+var JappixDataStore = DataStore;

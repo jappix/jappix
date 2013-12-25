@@ -378,3 +378,5 @@ var DateUtils = (function () {
     return self;
 
 })();
+
+var JappixDateUtils = DateUtils;
