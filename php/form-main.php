@@ -113,6 +113,23 @@ else
 	<label for="owner_website"><?php _e("Owner website"); ?></label><input id="owner_website" type="text" name="owner_website" value="<?php echo $owner_website; ?>" placeholder="http://www.post-pro.fr/" />
 
 	<label for="legal"><?php _e("Legal disclaimer"); ?></label><input id="legal" type="text" name="legal" value="<?php echo $legal; ?>" placeholder="https://legal.jappix.com/" />
+
+	<label for="language"><?php _e("Language"); ?></label>
+	<select id="language" name="language">
+		<option value="all" <?php if($language == 'all') echo('selected=""'); ?>>All languages available</option>
+
+		<?php
+			
+			// Available languages
+			foreach(availableLocales(null, true) as $current_lng => $current_name) {
+				if($current_lng == $language)
+					echo('<option value="'.$current_lng.'" selected="">'.$current_name.'</option>');
+				else
+					echo('<option value="'.$current_lng.'">'.$current_name.'</option>');
+			}
+		
+		?>
+	</select>
 </fieldset>
 
 <fieldset>

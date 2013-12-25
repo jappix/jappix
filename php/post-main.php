@@ -46,6 +46,12 @@ if(isset($_POST['legal']) && !empty($_POST['legal']))
 else
 	$legal = stripslashes(htmlspecialchars($main_default['legal']));
 
+// Language
+if(isset($_POST['language']) && !empty($_POST['language']))
+	$language = stripslashes(htmlspecialchars($_POST['language']));
+else
+	$language = stripslashes(htmlspecialchars($main_default['language']));
+
 // Jappix resource
 if(isset($_POST['jappix_resource']) && !empty($_POST['jappix_resource']))
 	$jappix_resource = stripslashes(htmlspecialchars($_POST['jappix_resource']));
@@ -197,6 +203,7 @@ $conf_xml =
 	<owner_name>'.$owner_name.'</owner_name>
 	<owner_website>'.$owner_website.'</owner_website>
 	<legal>'.$legal.'</legal>
+	<language>'.$language.'</language>
 	<resource>'.$jappix_resource.'</resource>
 	<lock>'.$lock_host.'</lock>
 	<anonymous>'.$anonymous_mode.'</anonymous>

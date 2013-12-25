@@ -236,11 +236,13 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 			</div>
 		</div>
 		
-		<div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
-			<div class="current">
-				<div class="current_align"><?php echo(getLanguageName($locale)); ?></div>
+		<?php if(!LANGUAGE || LANGUAGE == 'all') { ?>
+			<div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
+				<div class="current">
+					<div class="current_align"><?php echo(getLanguageName($locale)); ?></div>
+				</div>
 			</div>
-		</div>
+		<?php } ?>
 		
 		<?php
 		

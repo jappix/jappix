@@ -187,6 +187,11 @@ function getVersion() {
 
 // The function to detect the user's language
 function checkLanguage() {
+	// System-forced language?
+	if(LANGUAGE && LANGUAGE != 'all') {
+		return LANGUAGE;
+	}
+
 	// If the user defined a language
 	if(isset($_GET['l']) && !empty($_GET['l'])) {
 		// We define some stuffs
@@ -482,19 +487,25 @@ function htmlTag($locale) {
 }
 
 // The function which generates the available locales list
-function availableLocales($active_locale) {
+function availableLocales($active_locale=null, $bypass_settings=false) {
 	// Initialize
 	$scan = scandir(JAPPIX_BASE.'/i18n/');
 	$list = array();
 	
 	// Loop the available languages
 	foreach($scan as $current_id) {
+		// Pass?
+		if(!$bypass_settings && LANGUAGE && LANGUAGE != 'all' && $current_id != LANGUAGE) {
+			continue;
+		}
+
 		// Get the current language name
 		$current_name = getLanguageName($current_id);
 		
 		// Not valid?
-		if((strtolower($current_id) == $active_locale) || ($current_name == null))
+		if((strtolower($current_id) == $active_locale) || ($current_name == null)) {
 			continue;
+		}
 		
 		// Add this to the list
 		$list[$current_id] = $current_name;

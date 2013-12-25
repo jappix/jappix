@@ -22,6 +22,7 @@ $service_desc = htmlspecialchars(SERVICE_DESC);
 $owner_name = htmlspecialchars(OWNER_NAME);
 $owner_website = htmlspecialchars(OWNER_WEBSITE);
 $legal = htmlspecialchars(LEGAL);
+$language = htmlspecialchars(LANGUAGE);
 $jappix_resource = htmlspecialchars(JAPPIX_RESOURCE);
 $lock_host = htmlspecialchars(LOCK_HOST);
 $anonymous_mode = htmlspecialchars(ANONYMOUS);

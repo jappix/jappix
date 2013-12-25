@@ -22,7 +22,8 @@ $main_conf = array(
 	     	'desc'					=> 'a free social network',
 	     	'owner_name'			=> '',
 	     	'owner_website'			=> '',
-	     	'legal'					=> 		'',
+	     	'legal'					=> '',
+	     	'language'				=> 'all',
 	     	'resource'				=> 'Jappix',
 	     	'lock'					=> 'on',
 	     	'anonymous'				=> 'on',
@@ -76,6 +77,7 @@ define('SERVICE_DESC', $main_conf['desc']);
 define('OWNER_NAME', $main_conf['owner_name']);
 define('OWNER_WEBSITE', $main_conf['owner_website']);
 define('LEGAL', $main_conf['legal']);
+define('LANGUAGE', $main_conf['language']);
 define('JAPPIX_RESOURCE', $main_conf['resource']);
 define('LOCK_HOST', $main_conf['lock']);
 define('ANONYMOUS', $main_conf['anonymous']);
