@@ -1,0 +1,32 @@
+{
+  "name": "jappix",
+  "description": "Jappix test tools",
+  "version": "1.0.0",
+  "homepage": "http://jappix.org/",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jappix/jappix"
+  },
+
+  "author": {
+    "name": "Valérian Saliou",
+    "url": "https://valeriansaliou.name/"
+  },
+
+  "main": "Gruntfile.js",
+
+  "engines": {
+    "node": ">=0.8.0"
+  },
+
+  "scripts": {
+    "test": "npm install; grunt test"
+  },
+
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-csslint": "0.1.2",
+    "grunt-contrib-jshint": "0.6.4"
+  }
+}
