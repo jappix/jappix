@@ -901,6 +901,11 @@ html[dir="rtl"] #home .anonymouser input.nick {
 	width: 350px;
 }
 
+html[dir="rtl"] #home .info {
+	right: auto;
+	left: 35px;
+}
+
 #home .info.success {
 	background-color: #aee578;
 	border-color: #85b05c;
