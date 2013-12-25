@@ -33,7 +33,8 @@ require_once('./functions.php');
 require_once('./read-main.php');
 require_once('./read-hosts.php');
 
-// Optimize the page rendering
+// Prepare application
+enableErrorSink();
 hideErrors();
 compressThis();
 

@@ -25,7 +25,8 @@ require_once('./php/read-hosts.php');
 // Get some extra-libs
 require_once('./php/gettext.php');
 
-// Optimize the page rendering
+// Prepare application
+enableErrorSink();
 hideErrors();
 compressThis();
 
@@ -39,7 +40,7 @@ $hash = genHash($version);
 
 // Include the good application file
 $include_app = 'desktop';
-
+$dd = $_GET['mefioefijoijfe'];
 // Not yet installed?
 if(!isInstalled())
 	$include_app = 'install';

@@ -21,7 +21,8 @@ require_once('./functions-get.php');
 require_once('./read-main.php');
 require_once('./read-hosts.php');
 
-// Hide PHP errors
+// Prepare application
+enableErrorSink();
 hideErrors();
 
 // Get some parameters

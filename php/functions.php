@@ -575,18 +575,6 @@ function genHash($version) {
 	return md5($version.$hash_main.$hash_hosts.$hash_background.$hash_logos);
 }
 
-// The function to hide the error messages
-function hideErrors() {
-	// Hide errors if not developer
-	if(!isDeveloper()) {
-		ini_set('display_errors', 0);
-		//ini_set('error_reporting', 0); not used anymore since we still need errors to be logged in /var/logs
-	} else {
-		ini_set('display_errors', 1);
-		ini_set('error_reporting', E_ALL);
-	}
-}
-
 // The function to check BOSH proxy is enabled
 function BOSHProxy() {
 	if(BOSH_PROXY == 'on')
@@ -1568,6 +1556,67 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
 	catch(Exception $e) {
 		return false;
 	}
+}
+
+// Hides error messages
+function hideErrors() {
+	// Hide errors if not developer
+	if(!isDeveloper()) {
+		ini_set('display_errors', 0);
+		ini_set('error_reporting', E_WARNING);
+	} else {
+		ini_set('display_errors', 1);
+		ini_set('error_reporting', E_ALL);
+	}
+}
+
+// Handles errors (to be appended in log file)
+function handleError($errno, $errstr, $errfile, $errline) {
+	// Error code is not included in error_reporting?
+    if(!(error_reporting() & $errno)) {
+        return;
+    }
+
+    // Generate error message
+    $error_ns = 'INFO';
+    $error_date = date('Y-m-d H:i:s');
+
+    switch($errno) {
+	    case E_ERROR:
+	       	$error_ns = 'ERROR';
+	        break;
+
+	    case E_WARNING:
+	        $error_ns = 'WARNING';
+	        break;
+
+	    case E_NOTICE:
+	        $error_ns = 'NOTICE';
+	        break;
+    }
+
+    $error_message = '['.$error_ns.' @ '.$errfile.':'.$errline.'] '.$error_date.' >> '.$errstr.PHP_EOL;
+
+    // Write message to log file
+    $log_path = JAPPIX_BASE.'/log/php.log';
+    file_put_contents($log_path, $error_message, FILE_APPEND);
+
+    return false;
+}
+
+// Handles fatal errors
+function handleFatal() {
+	$error = error_get_last();
+
+    if($error['type'] == E_ERROR) {
+        handleError($error['type'], $error['message'], $error['file'], $error['line']);
+    }
+}
+
+// Enables the error sink
+function enableErrorSink() {
+	set_error_handler('handleError');
+	register_shutdown_function('handleFatal');
 }
 
 ?>

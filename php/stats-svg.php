@@ -27,7 +27,8 @@ require_once('./read-hosts.php');
 require_once('./drawsvgchart.php');
 require_once('./gettext.php');
 
-// Optimize the page rendering
+// Prepare application
+enableErrorSink();
 hideErrors();
 compressThis();
 
