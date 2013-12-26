@@ -117,7 +117,7 @@ var Error = (function () {
                 Interface.removeGeneralWait();
                 
                 // Show reconnect pane
-                if(CURRENT_SESSION && CONNECTED) {
+                if(Connection.current_session && Connection.connected) {
                     // Anonymous?
                     if(Utils.isAnonymous())
                         Connection.createReconnect('anonymous');
@@ -126,14 +126,15 @@ var Error = (function () {
                 }
                 
                 // Show the homepage (security)
-                else if(!CURRENT_SESSION || !CONNECTED) {
+                else if(!Connection.current_session || !Connection.connected) {
                     $('#home').show();
                     Interface.title('home');
                 }
                 
                 // Still connected? (security)
-                if(Common.isConnected())
+                if(Common.isConnected()) {
                     con.disconnect();
+                }
                 
                 Console.error('First level error received.');
             }
@@ -145,11 +146,9 @@ var Error = (function () {
                 condition = packet.getElementsByTagName('error').item(0).childNodes.item(0).nodeName.replace(/-/g, ' ');
                 
                 Console.error('Second level error received.');
-            }
-            
-            // No error
-            else
+            } else {
                 return false;
+            }
             
             // Show the error board
             self.show(condition, reason, type);

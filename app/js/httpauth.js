@@ -20,10 +20,6 @@ var HTTPAuth = (function () {
     var self = {};
 
 
-    /* Variables */
-    var CURRENT_SESSION = false;
-
-
 	/**
      * Login to a HTTP session
      * @public
@@ -81,7 +77,7 @@ var HTTPAuth = (function () {
             session_xml = '<session><stored>true</stored><domain>' + lServer.htmlEnc() + '</domain><username>' + lNick.htmlEnc() + '</username><resource>' + random_resource + '</resource><password>' + lPass.htmlEnc() + '</password><priority>' + (lPriority + '').htmlEnc() + '</priority></session>';
             
             // Save the session parameters (for reconnect if network issue)
-            CURRENT_SESSION = session_xml;
+            Connection.current_session = session_xml;
             
             // We store the infos of the user into the data-base
             DataStore.setDB(Connection.desktop_hash, 'priority', 1, 10);

@@ -31,10 +31,10 @@ var Anonymous = (function () {
             Console.info('Jappix (anonymous) is now connected.');
             
             // Connected marker
-            CONNECTED = true;
-            CURRENT_SESSION = true;
-            RECONNECT_TRY = 0;
-            RECONNECT_TIMER = 0;
+            Connection.connected = true;
+            Connection.current_session = true;
+            Connection.reconnect_try = 0;
+            Connection.reconnect_timer = 0;
             
             // Not resumed?
             if(!RESUME) {
