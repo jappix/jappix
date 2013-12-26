@@ -118,17 +118,17 @@ var Welcome = (function () {
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://www.google.com/buzz/post?message=' + Common.encodeQuotes(share_msg) + '&amp;url=' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
-                        '<span class="logo buzz welcome-images"></span>' + 
-                        '<span class="name">Google Buzz</span>' + 
-                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Google Buzz') + '</span>' + 
+                    '<a class="box share" href="https://plus.google.com/share?url=' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
+                        '<span class="logo plus welcome-images"></span>' + 
+                        '<span class="name">Google+</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Google+') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                     
-                    '<a class="box share" href="http://identi.ca/index.php?action=newnotice&amp;status_textarea=' + Common.encodeQuotes(share_msg) + ' ' + Common.encodeQuotes(Utils.generateURL(JAPPIX_LOCATION)) + '" target="_blank">' + 
-                        '<span class="logo identica welcome-images"></span>' + 
-                        '<span class="name">Identi.ca</span>' + 
-                        '<span class="description">' + Common.printf(Common._e("Share Jappix on %s"), 'Identi.ca') + '</span>' + 
+                    '<a class="box share" href="https://waaave.com/spot/jappix/" target="_blank">' + 
+                        '<span class="logo waaave welcome-images"></span>' + 
+                        '<span class="name">Waaave</span>' + 
+                        '<span class="description">' + Common.printf(Common._e("Follow Jappix topic on %s"), 'Waaave') + '</span>' + 
                         '<span class="go talk-images"></span>' + 
                     '</a>' + 
                 '</div>' + 
