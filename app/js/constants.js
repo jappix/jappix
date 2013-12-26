@@ -16,7 +16,8 @@ var NS_FEATURES =     'http://jabber.org/features/';
 var NS_CLIENT =       'jabber:client';
 var NS_IQ =           'jabber:iq:';
 var NS_X =            'jabber:x:';
-var NS_IETF =         'urn:ietf:params:xml:ns:xmpp-';
+var NS_IETF =         'urn:ietf:params:xml:ns:';
+var NS_IETF_XMPP =    NS_IETF + 'xmpp-';
 var NS_XMPP =         'urn:xmpp:';
 
 var NS_STORAGE =      'storage:';
@@ -31,6 +32,7 @@ var NS_DISCO_ITEMS =  NS_PROTOCOL + 'disco#items';
 var NS_DISCO_INFO =   NS_PROTOCOL + 'disco#info';
 var NS_VCARD =        'vcard-temp';
 var NS_VCARD_P =      NS_VCARD + ':x:update';
+var NS_URN_VCARD4 =   NS_IETF + 'vcard-4.0';
 var NS_AUTH =         NS_IQ + 'auth';
 var NS_AUTH_ERROR =   NS_IQ + 'auth:error';
 var NS_REGISTER =     NS_IQ + 'register';
@@ -75,6 +77,7 @@ var NS_URN_FORWARD =  NS_XMPP + 'forward:0';
 var NS_URN_MAM =      NS_XMPP + 'mam:0';
 var NS_URN_DELAY =    NS_XMPP + 'delay';
 var NS_URN_RECEIPTS = NS_XMPP + 'receipts';
+var NS_URN_CARBONS =  NS_XMPP + 'carbons:2';
 var NS_RSM =          NS_PROTOCOL + 'rsm';
 var NS_IPV6 =         'ipv6';
 var NS_XHTML =        'http://www.w3.org/1999/xhtml';
@@ -91,13 +94,13 @@ var NS_NOTIFY =       '+notify';
 var NS_CAPS =         NS_PROTOCOL + 'caps';
 var NS_ATOM =         'http://www.w3.org/2005/Atom';
 
-var NS_STANZAS =      NS_IETF + 'stanzas';
-var NS_STREAMS =      NS_IETF + 'streams';
+var NS_STANZAS =      NS_IETF_XMPP + 'stanzas';
+var NS_STREAMS =      NS_IETF_XMPP + 'streams';
 
-var NS_TLS =          NS_IETF + 'tls';
-var NS_SASL =         NS_IETF + 'sasl';
-var NS_SESSION =      NS_IETF + 'session';
-var NS_BIND =         NS_IETF + 'bind';
+var NS_TLS =          NS_IETF_XMPP + 'tls';
+var NS_SASL =         NS_IETF_XMPP + 'sasl';
+var NS_SESSION =      NS_IETF_XMPP + 'session';
+var NS_BIND =         NS_IETF_XMPP + 'bind';
 
 var NS_FEATURE_IQAUTH = NS_FEATURES + 'iq-auth';
 var NS_FEATURE_IQREGISTER = NS_FEATURES + 'iq-register';
