@@ -1188,8 +1188,9 @@ var Roster = (function () {
                     // Enter: continue
                     if(e.keyCode == 13) {
                         // Select something from the search
-                        if(Common.exists(dHovered))
+                        if(Common.exists(dHovered)) {
                             Search.addBuddy(destination, $(dHovered).attr('data-xid'));
+                        }
                         
                         // Join something
                         else {
@@ -1210,12 +1211,14 @@ var Roster = (function () {
                                     Chat.checkCreate(xid, type);
                                 }
                                 
-                                else
+                                else {
                                     $('.join-jid').addClass('please-complete');
+                                }
                             }
                             
-                            else
+                            else {
                                 $('.join-jid').addClass('please-complete');
+                            }
                         }
                         
                         return false;

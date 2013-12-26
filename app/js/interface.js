@@ -202,6 +202,66 @@ var Interface = (function () {
 
 
     /**
+     * Loads the groupchat joiner
+     * @public
+     * @return {undefined}
+     */
+    self.loadJoinGroupchat = function() {
+
+        try {
+            // Path
+            var join_content = '#page-switch .join-content';
+            var join_sel = $('#page-switch .join');
+            
+            // Yet displayed?
+            if(Common.exists(join_content))
+                return Bubble.close();
+            
+            // Add the bubble
+            Bubble.show(join_content);
+            
+            // Append the content
+            join_sel.append(
+                '<div class="join-content bubble removable">' + 
+                    '<input type="text" class="join-groupchat-xid" required="" placeholder="' + Common._e("Groupchat name") + '" />' + 
+                '</div>'
+            );
+
+            var input_sel = join_sel.find('input.join-groupchat-xid');
+
+            input_sel.keyup(function(e) {
+                // Enter: continue
+                if(e.keyCode == 13) {
+                    var this_sel = $(this);
+                    var xid = $.trim(this_sel.val());
+                    
+                    if(xid) {
+                        // Generate a correct XID
+                        xid = Common.generateXID(xid, 'groupchat');
+                        
+                        Bubble.close();
+                        Chat.checkCreate(xid, 'groupchat');
+                    } else {
+                        this_sel.addClass('please-complete');
+                    }
+
+                    return false;
+                }
+            });
+
+            $(document).oneTime(10, function() {
+                input_sel.focus();
+            });
+        } catch(e) {
+            Console.error('Interface.loadJoinGroupchat', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
      * Puts the selected smiley in the good page-engine input
      * @public
      * @param {string} smiley

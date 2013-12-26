@@ -196,10 +196,16 @@ var Talk = (function () {
                                 
                                     '<div class="name">' + Common._e("Channel") +  '</div>' + 
                                 '</div>';
-                            
+
                             html +=
-                            '</div>' + 
+                            '</div>';
                             
+                            if(anonymous) html +=
+                                '<div class="join ibubble">' + 
+                                    '<div class="join-button talk-images" onclick="return Interface.loadJoinGroupchat();" title="' + Common._e("Join groupchat") +  '"></div>' + 
+                                '</div>';
+
+                            html +=
                             '<div class="more ibubble">' + 
                                 '<div class="more-button talk-images" onclick="return Interface.loadChatSwitch();" title="' + Common._e("All tabs") +  '"></div>' + 
                             '</div>' + 

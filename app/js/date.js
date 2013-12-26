@@ -21,8 +21,8 @@ var DateUtils = (function () {
 
 
     /* Variables */
-    var LAST_ACTIVITY = 0;
-    var PRESENCE_LAST_ACTIVITY = 0;
+    self.last_activity = 0;
+    self.presence_last_activity = 0;
 
 
 	/**
@@ -84,10 +84,10 @@ var DateUtils = (function () {
 
         try {
             // Last activity not yet initialized?
-            if(LAST_ACTIVITY == 0)
+            if(self.last_activity == 0)
                 return 0;
             
-            return self.getTimeStamp() - LAST_ACTIVITY;
+            return self.getTimeStamp() - self.last_activity;
         } catch(e) {
             Console.error('DateUtils.getLastActivity', e);
         }
@@ -104,10 +104,10 @@ var DateUtils = (function () {
 
         try {
             // Last presence stamp not yet initialized?
-            if(PRESENCE_LAST_ACTIVITY == 0)
+            if(self.presence_last_activity == 0)
                 return 0;
             
-            return self.getTimeStamp() - PRESENCE_LAST_ACTIVITY;
+            return self.getTimeStamp() - self.presence_last_activity;
         } catch(e) {
             Console.error('DateUtils.getPresenceLast', e);
         }

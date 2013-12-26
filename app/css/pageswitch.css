@@ -21,7 +21,7 @@ Author: Valérian Saliou
 #page-switch .chans {
 	position: absolute;
 	left: 0;
-	right: 40px;
+	right: 50px;
 	top: 0;
 	height: 25px;
 	overflow: hidden;
@@ -32,10 +32,22 @@ html[dir="rtl"] #page-switch .chans {
 	left: 40px;
 }
 
+#page-switch .join,
 #page-switch .more {
 	position: absolute;
-	right: 0;
 	top: 0;
+}
+
+#page-switch .join {
+	right: 25px;
+}
+
+html[dir="rtl"] #page-switch .join {
+	left: 25px;
+}
+
+#page-switch .more {
+	right: 0;
 }
 
 html[dir="rtl"] #page-switch .more {
@@ -43,11 +55,11 @@ html[dir="rtl"] #page-switch .more {
 	left: 0;
 }
 
+#page-switch .join-button,
 #page-switch .more-button {
-	background-position: 6px -1372px;
 	background-color: #d9e7ea;
 	width: 7px;
-	height: 17px;
+	height: 16px;
 	padding: 1px 6px;
 	font-size: 0.9em;
 	text-decoration: none;
@@ -56,6 +68,15 @@ html[dir="rtl"] #page-switch .more {
 	-webkit-border-radius: 2px;
 }
 
+#page-switch .join-button {
+	background-position: 4px -2136px;
+}
+
+#page-switch .more-button {
+	background-position: 6px -1372px;
+}
+
+#page-switch .join-content,
 #page-switch .more-content {
 	background-color: #d9e7ea;
 	width: 200px;
@@ -76,6 +97,7 @@ html[dir="rtl"] #page-switch .more {
 	-webkit-border-bottom-right-radius: 3px;
 }
 
+html[dir="rtl"] #page-switch .join-content,
 html[dir="rtl"] #page-switch .more-content {
 	margin-left: 0;
 	left: 0;
@@ -85,6 +107,11 @@ html[dir="rtl"] #page-switch .more-content {
 	-moz-border-radius-topleft: 0;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 0;
+}
+
+#page-switch .join-content input.join-groupchat-xid {
+	margin: 0 0 0 6px;
+	width: 170px;
 }
 
 #page-switch .switcher {
@@ -123,6 +150,8 @@ html[dir="rtl"] #page-switch .switcher {
 	display: block;
 }
 
+#page-switch .join-button:hover,
+#page-switch .join-button:focus,
 #page-switch .more-button:hover,
 #page-switch .more-button:focus,
 #page-switch .switcher:hover,
@@ -133,6 +162,7 @@ html[dir="rtl"] #page-switch .switcher {
 	cursor: pointer;
 }
 
+#page-switch .join-button:active,
 #page-switch .more-button:active,
 #page-switch .switcher:active,
 #page-switch .more-content .switcher:active {

@@ -37,7 +37,7 @@ var Anonymous = (function () {
             Connection.reconnect_timer = 0;
             
             // Not resumed?
-            if(!RESUME) {
+            if(!Connection.resume) {
                 // Create the app
                 Talk.create();
                 
@@ -45,7 +45,7 @@ var Anonymous = (function () {
                 Presence.sendFirst('');
                 
                 // Set last activity stamp
-                LAST_ACTIVITY = DateUtils.getTimeStamp();
+                DateUtils.last_activity = DateUtils.getTimeStamp();
                 
                 // Create the new groupchat
                 Chat.checkCreate(Common.generateXID(ANONYMOUS_ROOM, 'groupchat'), 'groupchat');
@@ -98,7 +98,7 @@ var Anonymous = (function () {
 
         try {
             // We define the http binding parameters
-            oArgs = new Object();
+            oArgs = {};
             
             if(HOST_BOSH_MAIN)
                 oArgs.httpbase = HOST_BOSH_MAIN;
@@ -116,11 +116,11 @@ var Anonymous = (function () {
             con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.connected);
-            con.registerHandler('onerror', handleError);
+            con.registerHandler('onerror', Error.handle);
             con.registerHandler('ondisconnect', self.disconnected);
             
             // We set the anonymous connection parameters
-            oArgs = new Object();
+            oArgs = {};
             oArgs.domain = server;
             oArgs.authtype = 'saslanon';
             oArgs.resource = JAPPIX_RESOURCE + ' Anonymous (' + (new Date()).getTime() + ')';

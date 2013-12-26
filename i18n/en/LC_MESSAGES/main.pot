@@ -561,6 +561,9 @@ msgstr ""
 msgid "All tabs"
 msgstr ""
 
+msgid "Join groupchat"
+msgstr ""
+
 msgid "Close this tab"
 msgstr ""
 

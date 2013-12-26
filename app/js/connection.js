@@ -378,7 +378,7 @@ var Connection = (function () {
                 self.getEverything();
                 
                 // Set last activity stamp
-                LAST_ACTIVITY = DateUtils.getTimeStamp();
+                DateUtils.last_activity = DateUtils.getTimeStamp();
             }
             
             // Resumed

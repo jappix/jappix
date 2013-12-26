@@ -64,7 +64,7 @@ var Presence = (function () {
             $('#my-infos .f-presence a.picker').removeClass('disabled');
             
             // We set the last activity stamp
-            PRESENCE_LAST_ACTIVITY = DateUtils.getTimeStamp();
+            DateUtils.presence_last_activity = DateUtils.getTimeStamp();
             
             // We store our presence
             DataStore.setDB(Connection.desktop_hash, 'presence-show', 1, 'available');
@@ -1134,7 +1134,7 @@ var Presence = (function () {
             
             // Else, set a new last activity stamp
             else
-                PRESENCE_LAST_ACTIVITY = DateUtils.getTimeStamp();
+                DateUtils.presence_last_activity = DateUtils.getTimeStamp();
             
             // Send the presence packet
             if(handle)
@@ -1364,7 +1364,7 @@ var Presence = (function () {
             
             // Apply some values
             self.auto_idle = false;
-            LAST_ACTIVITY = DateUtils.getTimeStamp();
+            DateUtils.last_activity = DateUtils.getTimeStamp();
         } catch(e) {
             Console.error('Presence.eventIdle', e);
         }
