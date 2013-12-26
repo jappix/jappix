@@ -1097,7 +1097,7 @@ var Microblog = (function () {
             // Any error?
             if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                self.setup('', NS_URN_MBLOG, '1', '1000000', '', '', true);
+                Pubsub.setup('', NS_URN_MBLOG, '1', '1000000', '', '', true);
                 
                 Console.warn('Error while getting microblog, trying to reconfigure the PubSub node!');
             }
@@ -1278,79 +1278,6 @@ var Microblog = (function () {
             }
         } catch(e) {
             Console.error('Microblog.wait', e);
-        }
-
-    };
-
-
-    /**
-     * Setups a new microblog
-     * @public
-     * @param {string} entity
-     * @param {object} node
-     * @param {boolean} persist
-     * @param {number} maximum
-     * @param {string} access
-     * @param {string} publish
-     * @param {string} create
-     * @return {undefined}
-     */
-    self.setup = function(entity, node, persist, maximum, access, publish, create) {
-
-        /* REF: http://xmpp.org/extensions/xep-0060.html#owner-create-and-configure */
-
-        try {
-            // Create the PubSub node
-            var iq = new JSJaCIQ();
-            iq.setType('set');
-            
-            // Any external entity?
-            if(entity)
-                iq.setTo(entity);
-            
-            // Create it?
-            if(create) {
-                var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-                pubsub.appendChild(iq.buildNode('create', {'xmlns': NS_PUBSUB, 'node': node}));
-            }
-            
-            else
-                var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
-            
-            // Configure it!
-            var configure = pubsub.appendChild(iq.buildNode('configure', {'node': node, 'xmlns': NS_PUBSUB}));
-            var x = configure.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': 'submit'}));
-            
-            var field1 = x.appendChild(iq.buildNode('field', {'var': 'FORM_TYPE', 'type': 'hidden', 'xmlns': NS_XDATA}));
-            field1.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, NS_PUBSUB_NC));
-            
-            // Persist items?
-            if(persist) {
-                var field2 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#persist_items', 'xmlns': NS_XDATA}));
-                field2.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, persist));
-            }
-            
-            // Maximum items?
-            if(maximum) {
-                var field3 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#max_items', 'xmlns': NS_XDATA}));
-                field3.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, maximum));
-            }
-            
-            // Access rights?
-            if(access) {
-                var field4 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#access_model', 'xmlns': NS_XDATA}));
-                field4.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, access));
-            }
-            
-            // Publish rights?
-            if(publish) {
-                var field5 = x.appendChild(iq.buildNode('field', {'var': 'pubsub#publish_model', 'xmlns': NS_XDATA}));
-                field5.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, publish));
-            }
-            
-            con.send(iq);
-        } catch(e) {
-            Console.error('Microblog.setup', e);
         }
 
     };
@@ -1639,7 +1566,7 @@ var Microblog = (function () {
                     comments_node_file[i] = NS_URN_MBLOG + ':comments/' + hex_md5(attachedurl[i] + attachedname[i] + attachedtype[i] + attachedlength[i] + time);
                     
                     // Create the node
-                    self.setup(comments_entity_file[i], comments_node_file[i], '1', '1000000', 'open', 'open', true);
+                    Pubsub.setup(comments_entity_file[i], comments_node_file[i], '1', '1000000', 'open', 'open', true);
                 }
                 
                 file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'replies', 'title': 'comments_file', 'href': 'xmpp:' + comments_entity_file[i] + '?;node=' + encodeURIComponent(comments_node_file[i])}));
@@ -1671,7 +1598,7 @@ var Microblog = (function () {
             
             // Create the XML comments PubSub nodes
             if(node_create) {
-                self.setup(comments_entity, comments_node, '1', '1000000', 'open', 'open', true);
+                Pubsub.setup(comments_entity, comments_node, '1', '1000000', 'open', 'open', true);
             }
         } catch(e) {
             Console.error('Microblog.publish', e);

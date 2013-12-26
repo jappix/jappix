@@ -440,7 +440,7 @@ var Notification = (function () {
             // Any error?
             if((stanza.getType() == 'error') && $(stanza.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                Microblog.setup('', NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
+                Pubsub.setup('', NS_URN_INBOX, '1', '1000000', 'whitelist', 'open', true);
                 
                 Console.warn('Error while getting social notifications, trying to reconfigure the Pubsub node!');
             }

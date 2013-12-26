@@ -449,7 +449,7 @@ var Options = (function () {
             var maximum = $('#maxnotices').val();
             
             if(Features.enabledPEP() && (Features.enabledPubSub() || Features.enabledPubSubCN())) {
-                Microblog.setup('', NS_URN_MBLOG, persist, maximum, '', '', false);
+                Pubsub.setup('', NS_URN_MBLOG, persist, maximum, '', '', false);
             }
             
             // We send the options to the database

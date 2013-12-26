@@ -44,32 +44,32 @@ var vCard = (function () {
                         '<legend>' + Common._e("Personal") + '</legend>' + 
                         
                         '<label for="USER-FN">' + Common._e("Complete name") + '</label>' + 
-                        '<input type="text" id="USER-FN" class="vcard-item" placeholder="John Locke" />' + 
+                        '<input type="text" id="USER-FN" data-vcard4="fn-text" class="vcard-item" placeholder="John Locke" />' + 
                         
                         '<label for="USER-NICKNAME">' + Common._e("Nickname") + '</label>' + 
-                        '<input type="text" id="USER-NICKNAME" class="vcard-item" placeholder="Jo" />' + 
+                        '<input type="text" id="USER-NICKNAME" data-vcard4="nickname-text" class="vcard-item" placeholder="Jo" />' + 
                         
                         '<label for="USER-N-GIVEN">' + Common._e("First name") + '</label>' + 
-                        '<input type="text" id="USER-N-GIVEN" class="vcard-item" placeholder="John" />' + 
+                        '<input type="text" id="USER-N-GIVEN" data-vcard4="n-given" class="vcard-item" placeholder="John" />' + 
                         
                         '<label for="USER-N-FAMILY">' + Common._e("Last name") + '</label>' + 
-                        '<input type="text" id="USER-N-FAMILY" class="vcard-item" placeholder="Locke" />' + 
+                        '<input type="text" id="USER-N-FAMILY" data-vcard4="n-surname" class="vcard-item" placeholder="Locke" />' + 
                         
                         '<label for="USER-BDAY">' + Common._e("Date of birth") + '</label>' + 
-                        '<input type="text" id="USER-BDAY" class="vcard-item" pattern="^[0-9]{2}-[0-9]{2}-[0-9]{4}$" placeholder="16-02-1974" />' + 
+                        '<input type="text" id="USER-BDAY" data-vcard4="bday-date" class="vcard-item" pattern="^[0-9]{2}-[0-9]{2}-[0-9]{4}$" placeholder="16-02-1974" />' + 
                     '</fieldset>' + 
                     
                     '<fieldset>' + 
                         '<legend>' + Common._e("Contact") + '</legend>' + 
                         
                         '<label for="USER-EMAIL-USERID">' + Common._e("E-mail") + '</label>' + 
-                        '<input type="text" id="USER-EMAIL-USERID" class="vcard-item" placeholder="john@locke.fam" />' + 
+                        '<input type="text" id="USER-EMAIL-USERID" data-vcard4="email-text" class="vcard-item" placeholder="john@locke.fam" />' + 
                         
                         '<label for="USER-TEL-NUMBER">' + Common._e("Phone") + '</label>' + 
-                        '<input type="text" id="USER-TEL-NUMBER" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
+                        '<input type="text" id="USER-TEL-NUMBER" data-vcard4="tel-uri" class="vcard-item" placeholder="John" placeholder="+1-292-321-0812" />' + 
                         
                         '<label for="USER-URL">' + Common._e("Website") + '</label>' + 
-                        '<input type="text" id="USER-URL" class="vcard-item" placeholder="john.locke.fam" />' + 
+                        '<input type="text" id="USER-URL" data-vcard4="url-uri" class="vcard-item" placeholder="john.locke.fam" />' + 
                     '</fieldset>' + 
                 '</div>' + 
                 
@@ -104,22 +104,22 @@ var vCard = (function () {
                         '<legend>' + Common._e("Address") + '</legend>' + 
                         
                         '<label for="USER-ADR-STREET">' + Common._e("Street") + '</label>' + 
-                        '<input type="text" id="USER-ADR-STREET" class="vcard-item" placeholder="Manhattan" />' + 
+                        '<input type="text" id="USER-ADR-STREET" data-vcard4="adr-street" class="vcard-item" placeholder="Manhattan" />' + 
                         
                         '<label for="USER-ADR-LOCALITY">' + Common._e("City") + '</label>' + 
-                        '<input type="text" id="USER-ADR-LOCALITY" class="vcard-item" placeholder="New-York" />' + 
+                        '<input type="text" id="USER-ADR-LOCALITY" data-vcard4="adr-locality" class="vcard-item" placeholder="New-York" />' + 
                         
                         '<label for="USER-ADR-PCODE">' + Common._e("Postal code") + '</label>' + 
-                        '<input type="text" id="USER-ADR-PCODE" class="vcard-item" placeholder="10002" />' + 
+                        '<input type="text" id="USER-ADR-PCODE" data-vcard4="adr-code" class="vcard-item" placeholder="10002" />' + 
                         
                         '<label for="USER-ADR-CTRY">' + Common._e("Country") + '</label>' + 
-                        '<input type="text" id="USER-ADR-CTRY" class="vcard-item" placeholder="USA" />' + 
+                        '<input type="text" id="USER-ADR-CTRY" data-vcard4="adr-country" class="vcard-item" placeholder="USA" />' + 
                     '</fieldset>' + 
                     
                     '<fieldset>' + 
                         '<legend>' + Common._e("Biography") + '</legend>' + 
                         
-                        '<textarea id="USER-DESC" rows="8" cols="60" class="vcard-item"></textarea>' + 
+                        '<textarea id="USER-DESC" data-vcard4="note-text" rows="8" cols="60" class="vcard-item"></textarea>' + 
                     '</fieldset>' + 
                 '</div>' + 
                 
@@ -609,107 +609,13 @@ var vCard = (function () {
     self.send = function() {
 
         try {
-            // Initialize the IQ
-            var iq = new JSJaCIQ();
-            iq.setType('set');
-            
-            var vCard = iq.appendNode('vCard', {'xmlns': NS_VCARD});
-            
-            // We send the identity part of the form
-            $('#vcard .vcard-item').each(function() {
-                var itemID = $(this).attr('id').replace(/^USER-(.+)/, '$1');
-                var itemVal = $(this).val();
-                
-                if(itemVal && itemID) {
-                    if(itemID.indexOf('-') != -1) {
-                        var tagname = Common.explodeThis('-', itemID, 0);
-                        var aNode;
-                        
-                        if(vCard.getElementsByTagName(tagname).length > 0)
-                            aNode = vCard.getElementsByTagName(tagname).item(0);
-                        else
-                            aNode = vCard.appendChild(iq.buildNode(tagname, {'xmlns': NS_VCARD}));
-                        
-                        aNode.appendChild(iq.buildNode(Common.explodeThis('-', itemID, 1), {'xmlns': NS_VCARD}, itemVal));
-                    }
-                    
-                    else
-                        vCard.appendChild(iq.buildNode(itemID, {'xmlns': NS_VCARD}, itemVal));
-                }
-            });
-            
-            // Send the IQ
-            con.send(iq);
+            // Send both vcard-temp + vCard4
+            self._sendLegacy();
+            self._sendForward();
             
             // Send the user nickname & avatar over PEP
             if(Features.enabledPEP()) {
-                // Read values
-                var user_nick = $('#USER-NICKNAME').val();
-                var photo_bin = $('#USER-PHOTO-BINVAL').val();
-                var photo_type = $('#USER-PHOTO-TYPE').val();
-                var photo_data = Base64.decode(photo_bin) || '';
-                var photo_bytes = photo_data.length || '';
-                var photo_id = hex_sha1(photo_data) || '';
-                
-                // Values array
-                var read = [
-                    user_nick,
-                    photo_bin,
-                    [photo_type, photo_id, photo_bytes]
-                ];
-                
-                // Nodes array
-                var node = [
-                    NS_NICK,
-                    NS_URN_ADATA,
-                    NS_URN_AMETA
-                ];
-                
-                // Generate the XML
-                for(i in read) {
-                    var iq = new JSJaCIQ();
-                    iq.setType('set');
-                    
-                    var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-                    var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
-                    
-                    if((i == 0) && read[0]) {
-                        var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
-                        
-                        // Nickname element
-                        item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
-                    }
-                    
-                    else if(((i == 1) || (i == 2)) && read[1]) {
-                        var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
-                        
-                        // Apply the SHA-1 hash
-                        if(photo_id)
-                            item.setAttribute('id', photo_id);
-                        
-                        // Avatar data node
-                        if(i == 1)
-                            item.appendChild(iq.buildNode('data', {'xmlns': NS_URN_ADATA}, read[i]));
-                        
-                        // Avatar metadata node
-                        else {
-                            var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
-                            
-                            if(read[i]) {
-                                var meta_info = metadata.appendChild(iq.buildNode('info', {'xmlns': NS_URN_AMETA}));
-                                
-                                if(read[i][0])
-                                    meta_info.setAttribute('type', read[i][0]);
-                                if(read[i][1])
-                                    meta_info.setAttribute('id', read[i][1]);
-                                if(read[i][2])
-                                    meta_info.setAttribute('bytes', read[i][2]);
-                            }
-                        }
-                    }
-                    
-                    con.send(iq);
-                }
+                self._sendPubsub();
             }
             
             // Close the vCard stuffs
@@ -723,6 +629,240 @@ var vCard = (function () {
             Console.error('vCard.send', e);
         } finally {
             return false;
+        }
+
+    };
+
+
+    /**
+     * Generate XML tree
+     * @private
+     * @return {boolean}
+     */
+    self._generateTree = function(namespace, stanza, node) {
+
+        try {
+            var selector = $('#vcard .vcard-item');
+            var get_id_fn = function(this_sel) {
+                var id = this_sel.attr('id');
+                return id ? id.replace(/^USER-(.+)/, '$1') : null;
+            };
+
+            if(namespace === NS_IETF_VCARD4) {
+                selector = selector.filter('[data-vcard4]');
+                get_id_fn = function(this_sel) {
+                    return this_sel.attr('data-vcard4') || null;
+                };
+            }
+
+            // We send the identity part of the form
+            selector.each(function() {
+                var this_sel = $(this);
+
+                var item_id = get_id_fn(this_sel);
+                var item_value = this_sel.val();
+
+                if(item_value && item_id) {
+                    if(item_id.indexOf('-') !== -1) {
+                        var tagname = Common.explodeThis('-', item_id, 0);
+                        var cur_node;
+
+                        if(node.getElementsByTagName(tagname).length > 0)
+                            cur_node = node.getElementsByTagName(tagname).item(0);
+                        else
+                            cur_node = node.appendChild(stanza.buildNode(tagname, {'xmlns': namespace}));
+                        
+                        cur_node.appendChild(
+                            stanza.buildNode(
+                                Common.explodeThis('-', item_id, 1),
+                                {'xmlns': namespace},
+                                item_value
+                            )
+                        );
+                    } else {
+                        node.appendChild(stanza.buildNode(item_id, {'xmlns': namespace}, item_value));
+                    }
+                }
+            });
+
+            return true;
+        } catch(e) {
+            Console.error('vCard._generateTree', e);
+
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Configure given Pubsub node
+     * @private
+     * @param {string} namespace
+     * @return {undefined}
+     */
+    self._configureNode = function(namespace) {
+
+        try {
+            Pubsub.setup(null, namespace, '1', '1', 'open', 'whitelist');
+        } catch(e) {
+            Console.error('vCard._configureNode', e);
+        }
+
+    };
+
+
+    /**
+     * Send legacy vCard
+     * @private
+     * @return {undefined}
+     */
+    self._sendLegacy = function() {
+
+        try {
+            var iq = new JSJaCIQ();
+            iq.setType('set');
+            
+            var vCard = iq.appendNode('vCard', {
+                'xmlns': NS_VCARD
+            });
+
+            self._generateTree(NS_VCARD, iq, vCard);
+            
+            con.send(iq);
+        } catch(e) {
+            Console.error('vCard._sendLegacy', e);
+        }
+
+    };
+
+
+    /**
+     * Send forward version vCard (vCard 4)
+     * @private
+     * @return {undefined}
+     */
+    self._sendForward = function() {
+
+        try {
+            var iq = new JSJaCIQ();
+            iq.setType('set');
+            
+            // Build Pubsub headers
+            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+
+            var publish = pubsub.appendChild(iq.buildNode('publish', {
+                'node': NS_XMPP_VCARD4,
+                'xmlns': NS_PUBSUB
+            }));
+
+            var item = publish.appendChild(iq.buildNode('item', {
+                'xmlns': NS_PUBSUB,
+                'id': 'current'
+            }));
+
+            // Generate vCard4 tree
+            var vcard = item.appendChild(iq.buildNode('vcard', {
+                'xmlns': NS_IETF_VCARD4
+            }));
+            
+            self._generateTree(NS_IETF_VCARD4, iq, vcard);
+            
+            con.send(iq);
+
+            // Make it publicly-viewable
+            self._configureNode(NS_XMPP_VCARD4);
+        } catch(e) {
+            Console.error('vCard._sendForward', e);
+        }
+
+    };
+
+
+    /**
+     * Send other Pubsub items
+     * @private
+     * @return {undefined}
+     */
+    self._sendPubsub = function() {
+
+        try {
+            // Read values
+            var user_nick = $('#USER-NICKNAME').val();
+            var photo_bin = $('#USER-PHOTO-BINVAL').val();
+            var photo_type = $('#USER-PHOTO-TYPE').val();
+            var photo_data = Base64.decode(photo_bin) || '';
+            var photo_bytes = photo_data.length || '';
+            var photo_id = hex_sha1(photo_data) || '';
+            
+            // Values array
+            var read = [
+                user_nick,
+                photo_bin,
+                [photo_type, photo_id, photo_bytes],
+
+            ];
+            
+            // Nodes array
+            var node = [
+                NS_NICK,
+                NS_URN_ADATA,
+                NS_URN_AMETA,
+                NS_XMPP_VCARD4
+            ];
+            
+            // Generate the XML
+            for(i in read) {
+                var iq = new JSJaCIQ();
+                iq.setType('set');
+                
+                var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+                var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
+                
+                if((i == 0) && read[0]) {
+                    var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+                    
+                    // Nickname element
+                    item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
+                }
+                
+                else if(((i == 1) || (i == 2)) && read[1]) {
+                    var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+                    
+                    // Apply the SHA-1 hash
+                    if(photo_id) {
+                        item.setAttribute('id', photo_id);
+                    }
+                    
+                    // Avatar data node
+                    if(i == 1) {
+                        item.appendChild(iq.buildNode('data', {'xmlns': NS_URN_ADATA}, read[i]));
+                    }
+                    
+                    // Avatar metadata node
+                    else {
+                        var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
+                        
+                        if(read[i]) {
+                            var meta_info = metadata.appendChild(iq.buildNode('info', {'xmlns': NS_URN_AMETA}));
+                            
+                            if(read[i][0])
+                                meta_info.setAttribute('type', read[i][0]);
+                            if(read[i][1])
+                                meta_info.setAttribute('id', read[i][1]);
+                            if(read[i][2])
+                                meta_info.setAttribute('bytes', read[i][2]);
+                        }
+                    }
+                }
+                
+                con.send(iq);
+
+                // Make node publicly-viewable
+                self._configureNode(node[i]);
+            }
+        } catch(e) {
+            Console.error('vCard._sendPubsub', e);
         }
 
     };

@@ -841,7 +841,7 @@ var PEP = (function () {
             // Any error?
             if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
-                Microblog.setup('', NS_GEOLOC, '1', '1', '', '', true);
+                Pubsub.setup('', NS_GEOLOC, '1', '1', '', '', true);
                 
                 Console.warn('Error while getting geoloc, trying to reconfigure the PubSub node!');
             }
