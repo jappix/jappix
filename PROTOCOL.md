@@ -49,15 +49,16 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
  * XEP-0280: Message Carbons *v0.9*
  * XEP-0292: vCard4 Over XMPP *v0.10*
  * XEP-0166: Jingle *v1.1*
- * XEP-0269: Jingle Early Media *v0.1*
  * XEP-0167: Jingle RTP Sessions *v1.1*
  * XEP-0176: Jingle ICE-UDP Transport Method *v1.0*
+ * XEP-0215: External Service Discovery *v0.5*
+ * XEP-0262: Use of ZRTP in Jingle RTP Sessions *v1.0*
+ * XEP-0266: Codecs for Jingle Audio *v1.0*
+ * XEP-0269: Jingle Early Media *v0.1*
  * XEP-0293: Jingle RTP Feedback Negotiation *v0.1*
  * XEP-0294: Jingle RTP Header Extensions Negotiation *v0.1*
- * XEP-xxxx: Use of DTLS-SRTP in Jingle Sessions *v0.0.2*
-   * Alternate URL: http://xmpp.org/extensions/inbox/dtls-fingerprint.html
- * XEP-0262: Use of ZRTP in Jingle RTP Sessions *v1.0*
- * XEP-0215: External Service Discovery *v0.5*
+ * XEP-0299: Codecs for Jingle Video *v0.1*
+ * XEP-0320: Use of DTLS-SRTP in Jingle Sessions *v0.2*
 
 
 # Others
