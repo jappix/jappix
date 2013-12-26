@@ -111,8 +111,9 @@ var Filter = (function () {
             .replace(/(^|\s|>|\()((_)([^<>'"_]+)(_))($|\s|<|\))/gi, '$1<span style="text-decoration: underline;">$2</span>$6');
             
             // Add the links
-            if(html_escape)
+            if(html_escape) {
                 filteredMessage = Links.apply(filteredMessage, 'desktop');
+            }
             
             // Filter integratebox links
             filteredMessage = IntegrateBox.filter(filteredMessage);

@@ -340,7 +340,8 @@ var IntegrateBox = (function () {
                 
                 // Vimeo video box
                 else if(href.match(/((\w{3,5})(:)(\S+)(vimeo|www\.vimeo)\.com\/([\w\-]+))/gim)) {
-                    url = RegExp.$1;
+                    url = RegExp.$6;
+                    alert(url)
                     service = 'vimeo';
                 }
                 
@@ -387,7 +388,7 @@ var IntegrateBox = (function () {
                     new_a += ' onclick="return ' + event + ';"';
                     
                     // Value
-                    new_a += '>' + $(this).text().htmlEnc() + '</a>';
+                    new_a += '>' + $(this).html() + '</a>';
                     
                     // Replace it!
                     $(this).replaceWith(new_a);
