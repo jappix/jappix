@@ -428,7 +428,7 @@ var Groupchat = (function () {
                     return;
                 
                 // Create HTML code
-                var html = '<div id="suggest">';
+                var html = '<div id="suggest" class="removable">';
                     html += '<div class="title">' + Common._e("Suggested chatrooms") + '</div>';
                     
                     html += '<div class="content">';
@@ -442,7 +442,10 @@ var Groupchat = (function () {
                         }
                     html += '</div>';
                     
-                    html += '<a class="next disabled" href="#">' + Common._e("Continue") + '</a>';
+                    html += '<div class="bottom">';
+                        html += '<a class="next continue disabled" href="#">' + Common._e("Continue") + '</a>';
+                        html += '<a class="next skip" href="#">' + Common._e("Skip") + '</a>';
+                    html += '</div>';
                 html += '</div>';
                 
                 // Append HTML code
@@ -464,13 +467,16 @@ var Groupchat = (function () {
                 
                 $('#suggest a.next').click(function() {
                     // Disabled?
-                    if($(this).hasClass('disabled'))
+                    if($(this).hasClass('disabled')) {
                         return false;
+                    }
                     
-                    // Store groupchats to join
-                    $('#suggest .content a.one.active').each(function() {
-                        JOIN_SUGGEST.push($(this).attr('data-xid'));
-                    });
+                    // Store groupchats to join?
+                    if($(this).is('.continue')) {
+                        $('#suggest .content a.one.active').each(function() {
+                            JOIN_SUGGEST.push($(this).attr('data-xid'));
+                        });
+                    }
                     
                     // Switch to talk UI
                     $('#suggest').remove();

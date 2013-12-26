@@ -233,8 +233,13 @@ html[dir="rtl"] .general-wait-content {
 	clear: both;
 }
 
-#suggest a.next {
-	position: absolute;
-	bottom: 13px;
-	right: 8px;
+#suggest .bottom {
+    position: absolute;
+    bottom: 13px;
+    right: 8px;
+    left: 8px;
+}
+
+#suggest .bottom a.next {
+	float: right;
 }

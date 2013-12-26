@@ -459,6 +459,9 @@ msgstr ""
 msgid "Suggested chatrooms"
 msgstr ""
 
+msgid "Skip"
+msgstr ""
+
 msgid "Continue"
 msgstr ""
 
