@@ -315,6 +315,7 @@ var Presence = (function () {
 
         try {
             // Generate the values
+            var room_xid = Common.bareXID(from);
             var thisUser = '#page-engine #' + roomHash + ' .list .' + hash;
             var thisPrivate = $('#' + hash + ' .message-area');
             var nick_html = nick.htmlEnc();
@@ -355,19 +356,107 @@ var Presence = (function () {
                 // Set the user in the MUC list
                 $('#' + roomHash + ' .list .' + role + ' .title').after(
                     '<div class="user ' + hash + myself + '" data-xid="' + Common.encodeQuotes(from) + '" data-nick="' + escape(nick) + '"' + real_xid + ' data-role="' + Common.encodeQuotes(role) + '" data-affiliation="' + Common.encodeQuotes(affiliation) + '">' + 
-                        '<div class="name talk-images available">' + nick_html + '</div>' + 
-                        
-                        '<div class="avatar-container">' + 
-                            '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                        '<div class="user-details">' + 
+                            '<div class="name talk-images available">' + nick_html + '</div>' + 
+                            
+                            '<div class="avatar-container">' + 
+                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                            '</div>' + 
+
+                            '<div class="clear"></div>' + 
+                        '</div>' + 
+
+                        '<div class="user-actions">' + 
+                            '<span class="action promote">' + 
+                                '<a href="#" class="talk-images" title="' + Common._e("Promote as moderator") + '"></a>' + 
+                            '</span>' + 
+
+                            '<span class="action demote">' + 
+                                '<a href="#" class="talk-images" title="' + Common._e("Remove moderator status") + '"></a>' + 
+                            '</span>' + 
+
+                            '<span class="action add">' + 
+                                '<a href="#" class="talk-images" title="' + Common._e("Add to my contacts") + '"></a>' + 
+                            '</span>' + 
+
+                            '<span class="action kick">' + 
+                                '<a href="#" class="talk-images" title="' + Common._e("Kick from room") + '"></a>' + 
+                            '</span>' + 
+
+                            '<div class="clear"></div>' + 
                         '</div>' + 
                     '</div>'
                 );
                 
                 // Click event
-                if(nick != Name.getMUCNick(roomHash))
-                    $(thisUser).on('click', function() {
+                if(nick != Name.getMUCNick(roomHash)) {
+                    $(thisUser).hover(function() {
+                        if(iXID && Groupchat.affiliationMe(room_xid).code >= 2) {
+                            var user_actions_sel = $(this).find('.user-actions');
+                            var user_actions_btn_sel = user_actions_sel.find('.action');
+
+                            // Update buttons
+                            var i;
+                            var hide_btns = [];
+
+                            var user_affiliation = Groupchat.affiliationUser(room_xid, nick);
+
+                            if(user_affiliation.name == 'owner') {
+                                hide_btns.push('promote');
+                                hide_btns.push('demote');
+                                hide_btns.push('kick');
+                            } else if(user_affiliation.name === 'admin') {
+                                hide_btns.push('promote');
+                                hide_btns.push('kick');
+                            } else {
+                                hide_btns.push('demote');
+                            }
+
+                            if(Roster.isFriend(iXID)) {
+                                hide_btns.push('add');
+                            }
+
+                            // Go Go Go!!
+                            for(i in hide_btns) {
+                                user_actions_btn_sel.filter('.' + hide_btns[i]).hide();
+                            }
+
+                            // Slide down?
+                            if(hide_btns.length < user_actions_btn_sel.size()) {
+                                user_actions_sel.stop(true).slideDown(250);
+                            }
+                        }
+                    }, function() {
+                        var user_actions_sel = $(this).find('.user-actions');
+
+                        if(user_actions_sel.is(':visible')) {
+                            user_actions_sel.stop(true).slideUp(200, function() {
+                                user_actions_sel.find('.action').show();
+                            });
+                        }
+                    });
+
+                    $(thisUser).find('.user-details').on('click', function() {
                         Chat.checkCreate(from, 'private');
                     });
+
+                    $(thisUser).find('.user-actions .action a').on('click', function() {
+                        var this_parent_sel = $(this).parent();
+
+                        if(this_parent_sel.is('.promote')) {
+                            Groupchat.promoteModerator(room_xid, iXID);
+                        } else if(this_parent_sel.is('.demote')) {
+                            Groupchat.demoteModerator(room_xid, iXID);
+                        } else if(this_parent_sel.is('.add')) {
+                            this_parent_sel.hide();
+                            Roster.addThisContact(iXID, nick);
+                        } else if(this_parent_sel.is('.kick')) {
+                            Groupchat.kickUser(room_xid, (iXID || from), nick);
+                        }
+
+                        return false;
+                    });
+                }
                 
                 // We tell the user that someone entered the room
                 if(!initial && DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') !== '0') {

@@ -375,7 +375,7 @@ var Chat = (function () {
                 }
 
                 // Add button
-                if(!Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
+                if(!Roster.isFriend(xid))
                     $('#' + hash + ' .tools-add').click(function() {
                         // Hide the icon (to tell the user all is okay)
                         $(this).hide();

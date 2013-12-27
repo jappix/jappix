@@ -587,18 +587,20 @@ var Message = (function () {
                 if(type == 'groupchat') {
                     var nXID = Utils.getMUCUserXID(xid, whois_xid);
                     
-                    if(!nXID)
+                    if(!nXID) {
                         Board.openThisInfo(6);
-                    else
+                    } else {
                         UserInfos.open(nXID);
+                    }
                 }
                 
                 // Chat or private WHOIS
                 else {
-                    if(!whois_xid)
+                    if(!whois_xid) {
                         UserInfos.open(xid);
-                    else
+                    } else {
                         UserInfos.open(whois_xid);
+                    }
                 }
                 
                 // Reset chatstate
@@ -703,39 +705,26 @@ var Message = (function () {
                 
                 // /ban shortcut
                 else if(body.match(/^\/ban (.*)/)) {
-                                    nick = $.trim(RegExp.$1);
-                                    reason='';
-                    var nXID = Utils.getMUCUserRealXID(xid, nick);
-                                    // We check if the user exists, if not it may be because a reason is given
-                                    // we do not check it at first because the nickname could contain ':'
-                                    if(!nXID && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
-                                        var reason = $.trim(RegExp.$1);
-                                        var nick = $.trim(RegExp.$2);
-                                        if (0==nick.length) {
-                                            nick = reason;
-                                            reason='';
-                                        }
-                                        var nXID = Utils.getMUCUserXID(xid, nick);
-                                    }
+                    nick = $.trim(RegExp.$1);
+                    reason = '';
                     
-                    // We check if the user exists
-                    if(!nXID)
-                        Board.openThisInfo(6);
-                    
-                    else {
-                        // We generate the ban IQ
-                        var iq = new JSJaCIQ();
-                        iq.setTo(xid);
-                        iq.setType('set');
-                        
-                        var iqQuery = iq.setQuery(NS_MUC_ADMIN);
-                        var item = iqQuery.appendChild(iq.buildNode('item', {'affiliation': 'outcast', 'jid': nXID, 'xmlns': NS_MUC_ADMIN}));
-                        
-                        if(reason)
-                            item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
-                        
-                        con.send(iq, Error.handleReply);
+                    // We check if the user exists, if not it may be because a reason is given
+                    // we do not check it at first because the nickname could contain ':'
+                    var ban_xid = Utils.getMUCUserRealXID(xid, nick);
+
+                    if(!ban_xid && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
+                        var reason = $.trim(RegExp.$1);
+                        var nick = $.trim(RegExp.$2);
+
+                        if(nick.length === 0) {
+                            nick = reason;
+                            reason = '';
+                        }
+
+                        var ban_xid = Utils.getMUCUserXID(xid, nick);
                     }
+                    
+                    Groupchat.banUser(xid, ban_xid, reason)
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -743,39 +732,26 @@ var Message = (function () {
                 
                 // /kick shortcut
                 else if(body.match(/^\/kick (.*)/)) {
-                                    nick = $.trim(RegExp.$1);
-                                    reason='';
-                    var nXID = Utils.getMUCUserRealXID(xid, nick);
-                                    // We check if the user exists, if not it may be because a reason is given
-                                    // we do not check it at first because the nickname could contain ':'
-                                    if(!nXID && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
-                                        var reason = $.trim(RegExp.$1);
-                                        var nick = $.trim(RegExp.$2);
-                                        if (0==nick.length) {
-                                            nick = reason;
-                                            reason='';
-                                        }
-                                        var nXID = Utils.getMUCUserXID(xid, nick);
-                                    }
-                    
-                    // We check if the user exists
-                    if(!nXID)
-                        Board.openThisInfo(6);
-                    
-                    else {
-                        // We generate the kick IQ
-                        var iq = new JSJaCIQ();
-                        iq.setTo(xid);
-                        iq.setType('set');
-                        
-                        var iqQuery = iq.setQuery(NS_MUC_ADMIN);
-                        var item = iqQuery.appendChild(iq.buildNode('item', {'nick': nick, 'role': 'none', 'xmlns': NS_MUC_ADMIN}));
-                        
-                        if(reason)
-                            item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
-                        
-                        con.send(iq, Error.handleReply);
+                    nick = $.trim(RegExp.$1);
+                    reason =  '';
+
+                    // We check if the user exists, if not it may be because a reason is given
+                    // we do not check it at first because the nickname could contain ':'
+                    var kick_xid = Utils.getMUCUserRealXID(xid, nick);
+
+                    if(!kick_xid && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
+                        var reason = $.trim(RegExp.$1);
+                        var nick = $.trim(RegExp.$2);
+
+                        if(nick.length === 0) {
+                            nick = reason;
+                            reason = '';
+                        }
+
+                        var kick_xid = Utils.getMUCUserXID(xid, nick);
                     }
+                    
+                    Groupchat.kickUser(xid, kick_xid, nick, reason);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -785,12 +761,13 @@ var Message = (function () {
                 else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
                     var i_xid = RegExp.$1;
                     var reason = RegExp.$2;
-                    
+
                     var x = aMsg.appendNode('x', {'xmlns': NS_MUC_USER});
                     var aNode = x.appendChild(aMsg.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
                     
-                    if(reason)
+                    if(reason) {
                         aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, reason));
+                    }
                     
                     con.send(aMsg, Error.handleReply);
                     

@@ -155,7 +155,7 @@ var UserInfos = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.retrieve = function() {
+    self.retrieve = function(xid) {
 
         try {
             // We setup the waiting indicator
@@ -269,7 +269,7 @@ var UserInfos = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.displayBuddyComments = function() {
+    self.displayBuddyComments = function(xid) {
 
         try {
             var value = DataStore.getDB(Connection.desktop_hash, 'rosternotes', xid);

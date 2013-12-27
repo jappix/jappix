@@ -215,7 +215,6 @@ html[dir="rtl"] #page-engine .list {
 	border-style: solid;
 	color: #383838;
 	margin-bottom: 3px;
-	height: 32px;
 	overflow: hidden;
 }
 
@@ -233,7 +232,11 @@ html[dir="rtl"] #page-engine .list {
 	cursor: default;
 }
 
-#page-engine .list .user .name {
+#page-engine .list .user .user-details {
+	height: 32px;
+}
+
+#page-engine .list .user .user-details .name {
 	float: left;
 	height: 18px;
 	overflow: hidden;
@@ -241,26 +244,77 @@ html[dir="rtl"] #page-engine .list {
 	padding-left: 18px;
 }
 
-html[dir="rtl"] #page-engine .list .user .name {
+html[dir="rtl"] #page-engine .list .user .user-details .name {
 	margin-left: auto;
 	margin-right: 8px;
 	float: right;
 }
 
-#page-engine .list .user .avatar-container {
+#page-engine .list .user .user-details .avatar-container {
 	text-align: center;
 	float: right;
 	height: 32px;
 	width: 32px;
 }
 
-html[dir="rtl"] #page-engine .list .user .avatar-container {
+html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
 	float: left;
 }
 
-#page-engine .list .user .avatar {
+#page-engine .list .user .user-details .avatar {
 	max-height: 32px;
 	max-width: 32px;
+}
+
+#page-engine .list .user .user-actions {
+	margin-top: 2px;
+	display: none;
+}
+
+#page-engine .list .user .user-actions .action {
+	border-style: solid;
+	border-width: 0 1px 0 0;
+	border-color: #e1e1e1;
+	text-align: center;
+	margin: 0 0 0 6px;
+	padding: 0 6px 0 0;
+	float: left;
+}
+
+#page-engine .list .user .user-actions .action a {
+	width: 16px;
+	height: 16px;
+	margin: 2px 6px 1px 6px;
+	display: inline-block;
+	opacity: 0.8;
+}
+
+#page-engine .list .user .user-actions .action a:hover,
+#page-engine .list .user .user-actions .action a:focus {
+	opacity: 1;
+}
+
+#page-engine .list .user .user-actions .action.promote a {
+	background-position: 0 -2156px;
+}
+
+#page-engine .list .user .user-actions .action.demote a {
+	background-position: 0 -2172px;
+}
+
+#page-engine .list .user .user-actions .action.kick a {
+	background-position: 0 -2188px;
+}
+
+#page-engine .list .user .user-actions .action.add {
+	border-width: 0 0 0 1px;
+	margin: 0 6px 0 0;
+	padding: 0 0 0 6px;
+	float: right;
+}
+
+#page-engine .list .user .user-actions .action.add a {
+	background-position: 0 -1047px;
 }
 
 #page-engine .one-group {

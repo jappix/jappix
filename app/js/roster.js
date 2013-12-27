@@ -973,6 +973,23 @@ var Roster = (function () {
 
 
     /**
+     * Returns whether given XID is in buddy list or not
+     * @public
+     * @param {string} xid
+     * @return {boolean}
+     */
+    self.isFriend = function(xid) {
+
+        try {
+            return Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]');
+        } catch(e) {
+            Console.error('Roster.isFriend', e);
+        }
+
+    };
+
+
+    /**
      * Gets the user gateways
      * @public
      * @return {object}

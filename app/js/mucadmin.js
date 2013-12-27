@@ -358,36 +358,55 @@ var MUCAdmin = (function () {
                 
                 // We loop for all the elements
                 $('.mucadmin-aut .aut-' + tType + ' input').each(function() {
-                    // We set the iq headers
-                    var iq = new JSJaCIQ();
-                    iq.setTo(xid);
-                    iq.setType('set');
-
-                    var iqQuery = iq.setQuery(NS_MUC_ADMIN);
-            
                     // We get the needed values
                     var value = $(this).val();
-                    
-                    // If there's a value
-                    if(value)
-                        var item = iqQuery.appendChild(iq.buildNode('item', {'jid': value, 'xmlns': NS_MUC_ADMIN}));
-                    
-                    // It the user had removed the XID
-                    if($(this).hasClass('aut-dustbin') && value)
-                        item.setAttribute('affiliation', 'none');
-                    
-                    // If the value is not blank and okay
-                    else if(value)
-                        item.setAttribute('affiliation', tType);
-            
-                    // We send the iq !
-                    con.send(iq, Error.handleReply);
+                    var affiliation = ($(this).hasClass('aut-dustbin') && value) ? 'none' : tType;
+
+                    // Submit affiliation
+                    if(value && affiliation) {
+                        self.setAffiliation(xid, value, affiliation);
+                    }
                 });
-            }   
+            }
             
             Console.info('MUC admin authorizations form sent: ' + xid);
         } catch(e) {
             Console.error('MUCAdmin.sendAuth', e);
+        }
+
+    };
+
+
+    /**
+     * Sets the affiliation for a given user
+     * @public
+     * @param {string} muc_xid
+     * @param {string} user_xid
+     * @param {string} affiliation
+     * @return {undefined}
+     */
+    self.setAffiliation = function(muc_xid, user_xid, affiliation) {
+
+        try {
+            // If no affiliation set, assume it's 'none'
+            affiliation = affiliation || 'none';
+
+            // Go Go Go!!
+            var iq = new JSJaCIQ();
+            iq.setTo(muc_xid);
+            iq.setType('set');
+
+            var iqQuery = iq.setQuery(NS_MUC_ADMIN);
+    
+            var item = iqQuery.appendChild(iq.buildNode('item', {
+                'jid': user_xid,
+                'affiliation': affiliation,
+                'xmlns': NS_MUC_ADMIN
+            }));
+    
+            con.send(iq, Error.handleReply);
+        } catch(e) {
+            Console.error('MUCAdmin.setAffiliation', e);
         }
 
     };

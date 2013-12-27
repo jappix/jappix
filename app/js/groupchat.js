@@ -497,6 +497,181 @@ var Groupchat = (function () {
 
 
     /**
+     * Bans a user from given room
+     * @public
+     * @param {string} room_xid
+     * @param {string} ban_xid
+     * @param {string} reason
+     * @return {object}
+     */
+    self.banUser = function(room_xid, ban_xid, reason) {
+
+        try {
+            // We check if the user exists
+            if(!ban_xid) {
+                Board.openThisInfo(6);
+
+                Console.warning('Could not ban user with XID: ' + ban_xid + ' from room: ' + room_xid);
+            } else {
+                // We generate the ban IQ
+                var iq = new JSJaCIQ();
+                iq.setTo(room_xid);
+                iq.setType('set');
+                
+                var iqQuery = iq.setQuery(NS_MUC_ADMIN);
+                var item = iqQuery.appendChild(iq.buildNode('item', {'affiliation': 'outcast', 'jid': ban_xid, 'xmlns': NS_MUC_ADMIN}));
+                
+                if(reason) {
+                    item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
+                }
+                
+                con.send(iq, Error.handleReply);
+
+                Console.log('Banned user with XID: ' + ban_xid + ' from room: ' + room_xid);
+            }
+        } catch(e) {
+            Console.error('Groupchat.banUser', e);
+        }
+
+    };
+
+
+    /**
+     * Kicks a user from given room
+     * @public
+     * @param {string} room_xid
+     * @param {string} kick_xid
+     * @param {string} nick
+     * @param {string} reason
+     * @return {object}
+     */
+    self.kickUser = function(room_xid, kick_xid, nick, reason) {
+
+        try {
+            // We check if the user exists
+            if(!room_xid) {
+                Board.openThisInfo(6);
+
+                Console.warning('Could not kick user "' + nick + '" from room: ' + room_xid);
+            } else {
+                // We generate the kick IQ
+                var iq = new JSJaCIQ();
+                iq.setTo(room_xid);
+                iq.setType('set');
+                
+                var iqQuery = iq.setQuery(NS_MUC_ADMIN);
+                var item = iqQuery.appendChild(iq.buildNode('item', {'nick': nick, 'role': 'none', 'xmlns': NS_MUC_ADMIN}));
+                
+                if(reason) {
+                    item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
+                }
+                
+                con.send(iq, Error.handleReply);
+
+                Console.info('Kicked user "' + nick + '" from room: ' + room_xid);
+            }
+        } catch(e) {
+            Console.error('Groupchat.kickUser', e);
+        }
+
+    };
+
+
+    /**
+     * Promotes an user as groupchat moderator
+     * @public
+     * @param {string} muc_xid
+     * @param {string} user_xid
+     * @return {object}
+     */
+    self.promoteModerator = function(muc_xid, user_xid) {
+
+        try {
+            MUCAdmin.setAffiliation(muc_xid, user_xid, 'admin');
+        } catch(e) {
+            Console.error('Groupchat.promoteModerator', e);
+        }
+
+    };
+
+
+    /**
+     * Demotes an user as being groupchat moderator
+     * @public
+     * @param {string} muc_xid
+     * @param {string} user_xid
+     * @return {object}
+     */
+    self.demoteModerator = function(muc_xid, user_xid) {
+
+        try {
+            MUCAdmin.setAffiliation(muc_xid, user_xid, 'none');
+        } catch(e) {
+            Console.error('Groupchat.demoteModerator', e);
+        }
+
+    };
+
+
+    /**
+     * Returns user affiliation in groupchat
+     * @public
+     * @param {string} muc_xid
+     * @param {string} nick
+     * @return {object}
+     */
+    self.affiliationUser = function(muc_xid, nick) {
+
+        try {
+            // Initial data
+            var affiliations = ['none', 'member', 'admin', 'owner'];
+            var affiliation = {
+                code: 0,
+                name: affiliations[0]
+            };
+
+            // Get user data
+            var user_sel = $('#' + hex_md5(muc_xid) + ' .list .user[data-nick="' + escape(nick) + '"]');
+
+            if(user_sel.size()) {
+                var user_affiliation = user_sel.attr('data-affiliation');
+
+                if(user_affiliation && Utils.existArrayValue(affiliations, user_affiliation)) {
+                    affiliation.code = Utils.indexArrayValue(affiliations, user_affiliation);
+                    affiliation.name = user_affiliation;
+                }
+            }
+
+            return affiliation;
+        } catch(e) {
+            Console.error('Groupchat.affiliationUser', e);
+        }
+
+    };
+
+
+    /**
+     * Returns our affiliation in groupchat
+     * @public
+     * @param {string} muc_xid
+     * @return {object}
+     */
+    self.affiliationMe = function(muc_xid) {
+
+        try {
+            // Get my nick
+            var my_nick = unescape($('#' + hex_md5(muc_xid)).attr('data-nick') || '');
+
+            // Return my affiliation
+            return self.affiliationUser(muc_xid, my_nick);
+        } catch(e) {
+            Console.error('Groupchat.affiliationMe', e);
+        }
+
+    };
+
+
+    /**
      * Return class scope
      */
     return self;
