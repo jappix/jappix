@@ -2,6 +2,6 @@ mini/
 store/
 tmp/
 log/
-test/node_modules/
+node_modules/
 .DS_Store
 *.esproj
