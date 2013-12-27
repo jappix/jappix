@@ -1,6 +1,6 @@
 {
   "name": "jappix",
-  "description": "An open social platform",
+  "description": "Jappix test tools",
   "version": "1.0.0",
   "homepage": "http://jappix.org/",
 
@@ -14,12 +14,14 @@
     "url": "https://valeriansaliou.name/"
   },
 
+  "main": "Gruntfile.js",
+
   "engines": {
     "node": ">=0.8.0"
   },
 
   "scripts": {
-    "test": "npm install; cd ./test; grunt test"
+    "test": "npm install; grunt test"
   },
 
   "devDependencies": {
