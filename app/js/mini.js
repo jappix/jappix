@@ -1832,6 +1832,9 @@ var JappixMini = (function () {
             // Create the DOM
             jQuery('body').append('<div id="jappix_mini" style="display: none;" dir="' + (JappixCommon.isRTL() ? 'rtl' : 'ltr') + '">' + dom + '</div>');
             
+            // Apply legacy support
+            self.legacySupport();
+
             // Hide the roster picker panels
             jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').removeClass('active');
             jQuery('#jappix_mini div.jm_status_picker').hide();
@@ -2694,6 +2697,9 @@ var JappixMini = (function () {
                     '</div>' + 
                 '</div>'
             );
+
+            // Apply legacy support
+            self.legacySupport();
             
             // Vertical center
             var vert_pos = '-' + ((jQuery(prompt).height() / 2) + 10) + 'px';
@@ -3969,6 +3975,62 @@ var JappixMini = (function () {
 
 
     /**
+     * Applies legacy support items (for IE)
+     * @public
+     * @return {undefined}
+     */
+    self.legacySupport = function() {
+
+        try {
+            // IE-specific style? (legacy)
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
+                jQuery('#jappix_mini, #jappix_popup').addClass('ie');
+            }
+        } catch(e) {
+            JappixConsole.error('JappixMini.legacySupport', e);
+        }
+
+    };
+
+
+    /**
+     * Loads the Jappix Mini stylesheet
+     * @public
+     * @return {boolean}
+     */
+    self.loadStylesheet = function() {
+
+        try {
+            var css_url = [];
+            var css_html = '';
+
+            // Do we know the optimized Get API path?
+            if(JAPPIX_MINI_CSS) {
+                css_url.push(JAPPIX_MINI_CSS);
+            } else {
+                // Fallback to non-optimized way, used with standalone Jappix Mini
+                css_url.push(JAPPIX_STATIC + 'css/mini.css');
+                css_url.push(JAPPIX_STATIC + 'css/mini-ie.css');
+            }
+
+            // Append final stylesheet HTML
+            for(var u in css_url) {
+                css_html += '<link rel="stylesheet" href="' + JappixCommon.encodeQuotes(css_url[u]) + '" type="text/css" media="all" />';
+            }
+
+            jQuery('head').append(css_html);
+
+            return true;
+        } catch(e) {
+            JappixConsole.error('JappixMini.loadStylesheet', e);
+
+            return false;
+        }
+
+    };
+
+
+    /**
      * Plugin configurator
      * @public
      * @param {object} config_args
@@ -4082,13 +4144,8 @@ var JappixMini = (function () {
                 return self.create(domain, user, password);
             }
             
-            // Append the Mini stylesheet
-            jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini.css' + '" type="text/css" media="all" />');
-            
-            // Legacy IE stylesheet
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
-                jQuery('head').append('<link rel="stylesheet" href="' + JAPPIX_STATIC + 'css/mini-ie.css' + '" type="text/css" media="all" />');
-            }
+            // Load the Mini stylesheet
+            self.loadStylesheet();
             
             // Disables the browser HTTP-requests stopper
             jQuery(document).keydown(function(e) {

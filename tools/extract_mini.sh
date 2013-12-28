@@ -18,13 +18,28 @@
 # - $ ./extract_mini.sh
 # - move the newly created mini/ directory onto your webserver
 # - Create index.html:
-#     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+#     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 #     <script type="text/javascript" src="/mini/js/mini.js"></script>
 #     <script type="text/javascript">
 #       jQuery(document).ready(function() {
-#         JAPPIX_STATIC="/mini/";
-#         HOST_BOSH="https://bind.jappix.com/"
-#         launchMini(true, false, "-server-", "-username-", "-password-");
+#         JAPPIX_STATIC = "/mini/";
+#         HOST_BOSH = "https://bind.jappix.com/"
+#
+#         JappixMini.launch({
+#           connection: {
+#             user: 'username',
+#             password: 'password',
+#             domain: 'server.tld'
+#           },
+#           application: {
+#             network: {
+#               autoconnect: true
+#             },
+#             interface: {
+#               showpane: false
+#             }
+#           }
+#         });
 #       });
 #     </script>
 #

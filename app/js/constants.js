@@ -164,6 +164,7 @@ var ANONYMOUS_NICK = null;
 
 // Node parameters
 var JAPPIX_LOCATION = JappixSystem.location();
+var JAPPIX_MINI_CSS = null;
 var BOSH_SAME_ORIGIN = false;
 
 // XMPP error stanzas

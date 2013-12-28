@@ -10,7 +10,7 @@ Author: Valérian Saliou
 
 */
 
-#jappix_mini {
+#jappix_mini.ie {
 	width: expression(document.documentElement.clientWidth - 150 + 'px') !important;
 	position: absolute !important;
 	bottom: auto !important;
@@ -19,47 +19,47 @@ Author: Valérian Saliou
 	left: expression((150 + this.offsetWidth - (document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth) + (ignoreMiniLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }
 
-#jappix_mini .jm_images {
+#jappix_mini.ie .jm_images {
 	background-image: url(../img/sprites/mini.gif) !important;
 }
 
-#jappix_mini .jm_images_animate {
+#jappix_mini.ie .jm_images_animate {
 	background-image: url(../img/sprites/animate.gif) !important;
 }
 
-#jappix_mini a.jm_button {
+#jappix_mini.ie a.jm_button {
 	width: 1px !important;
 }
 
-#jappix_mini div.jm_roster {
+#jappix_mini.ie div.jm_roster {
 	right: -1px !important;
 	bottom: 23px !important;
 }
 
-#jappix_mini div.jm_roster div.jm_buddies {
+#jappix_mini.ie div.jm_roster div.jm_buddies {
 	height: expression(this.scrollHeight > (document.documentElement.clientHeight - 70) ? (document.documentElement.clientHeight - 70) + 'px' : 'auto') !important;
 }
 
-#jappix_mini a.jm_pane {
+#jappix_mini.ie a.jm_pane {
 	height: 12px !important;
 	overflow-y: hidden !important;
 }
 
-#jappix_mini a.jm_button.jm_clicked {
+#jappix_mini.ie a.jm_button.jm_clicked {
 	background-image: none !important;
 }
 
-#jappix_mini div.jm_conversations a.jm_clicked {
+#jappix_mini.ie div.jm_conversations a.jm_clicked {
 	border-right: none !important;
 	padding: 7px 6px 6px 6px !important;
 }
 
-#jappix_mini div.jm_chat-content {
+#jappix_mini.ie div.jm_chat-content {
 	bottom: 23px !important;
 	right: -2px !important;
 }
 
-#jappix_popup {
+#jappix_popup.ie {
 	height: expression(document.documentElement.clientHeight + 'px') !important;
 	width: expression(document.documentElement.clientWidth + 'px') !important;
 	position: absolute !important;
@@ -67,6 +67,6 @@ Author: Valérian Saliou
 	left: expression(((ignorePopupLeft = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px') !important;
 }
 
-#jappix_popup div.jm_prompt {
+#jappix_popup.ie div.jm_prompt {
 	position: absolute !important;
 }

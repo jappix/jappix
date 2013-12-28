@@ -140,7 +140,7 @@ function setLocales($string, $locale) {
 }
 
 // The function to set the good configuration to a JS file
-function setConfiguration($string, $locale, $version, $max_upload) {
+function setConfiguration($string, $hash, $locale, $version, $max_upload) {
 	// Special BOSH URL if BOSH proxy enabled
 	if(BOSHProxy())
 		$bosh_special = staticLocation().'php/bosh.php';
@@ -157,6 +157,7 @@ function setConfiguration($string, $locale, $version, $max_upload) {
 		      	'JAPPIX_VERSION'		=> $version,
 		      	'JAPPIX_MAX_FILE_SIZE'	=> $max_upload,
 		      	'JAPPIX_MAX_UPLOAD'		=> formatBytes($max_upload),
+		      	'JAPPIX_MINI_CSS'		=> getFiles($hash, '', 'css', 'mini.xml', ''),
 
 		      	// Main configuration
 		      	'SERVICE_NAME'			=> SERVICE_NAME,
