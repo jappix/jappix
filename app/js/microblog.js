@@ -329,7 +329,7 @@ var Microblog = (function () {
                         var nearest = Search.sortElementByStamp(tStamp, '#channel .mixed .one-update');
                         
                         // Append the content at the right position (date relative)
-                        if(nearest == 0)
+                        if(nearest === 0)
                             $('#channel .content.mixed').append(html);
                         else
                             $('#channel .one-update[data-stamp="' + nearest + '"]:first').before(html);
@@ -445,7 +445,7 @@ var Microblog = (function () {
             retract_iq.appendNode('pubsub', {'xmlns': NS_PUBSUB}).appendChild(retract_iq.buildNode('retract', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB})).appendChild(retract_iq.buildNode('item', {'id': id, 'xmlns': NS_PUBSUB}));
             
             var comm_delete_iq;
-            if (pserver != '' && cnode != '') {
+            if (pserver !== '' && cnode !== '') {
                 comm_delete_iq = new JSJaCIQ();
                 comm_delete_iq.setType('set');
                 comm_delete_iq.setTo(pserver);
@@ -457,7 +457,7 @@ var Microblog = (function () {
                 con.send(retract_iq, self.handleRemove);
             } else {
                 if (comm_delete_iq) { con.send(comm_delete_iq); }
-                con.send(retract_iq, Error.handleReply);
+                con.send(retract_iq, Errors.handleReply);
             }
         } catch(e) {
             Console.error('Microblog.remove', e);
@@ -478,7 +478,7 @@ var Microblog = (function () {
 
         try {
             // Handle the error reply
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             
             // Get the latest item
             self.request(Common.getXID(), '1', false, self.handleUpdateRemove);
@@ -564,7 +564,7 @@ var Microblog = (function () {
                 return false;
             
             // Any error?
-            if(Error.handleReply(iq)) {
+            if(Errors.handleReply(iq)) {
                 $(path).html('<div class="one-comment loading">' + Common._e("Could not get the comments!") + '</div>');
                 
                 return false;
@@ -712,7 +712,7 @@ var Microblog = (function () {
             self.adaptComment(id);
             
             // Get the avatars
-            for(a in users_xid)
+            for(var a in users_xid)
                 Avatar.get(users_xid[a], 'cache', 'true', 'forget');
             
             // Add the owner XID
@@ -873,7 +873,7 @@ var Microblog = (function () {
                 var href = 'xmpp:' + server + '?;node=' + encodeURIComponent(node) + ';item=' + encodeURIComponent(hash);
                 
                 // Loop!
-                for(n in notifiy_arr) {
+                for(var n in notifiy_arr) {
                     Notification.send(notifiy_arr[n], 'comment', href, value, parent_data);
                 }
             }
@@ -1389,7 +1389,7 @@ var Microblog = (function () {
             self.unattach();
             
             // Check for errors
-            Error.handleReply(packet);
+            Errors.handleReply(packet);
         } catch(e) {
             Console.error('Microblog.handleMy', e);
         }
@@ -1435,7 +1435,7 @@ var Microblog = (function () {
                 // Containing YouTube videos?
                 var yt_matches = body.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim);
                 
-                for(y in yt_matches) {
+                for(var y in yt_matches) {
                     fName.push('');
                     fType.push('text/html');
                     fLength.push('');

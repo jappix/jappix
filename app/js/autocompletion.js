@@ -55,7 +55,7 @@ var Autocompletion = (function () {
      */
     self.process = function(query, id) {
 
-        var results = new Array();
+        var results = [];
 
         try {
             // Replace forbidden characters in regex
@@ -118,7 +118,7 @@ var Autocompletion = (function () {
             var query = vSelector.attr('data-autocompletion-query');
             
             // The autocompletion has not been yet launched
-            if(query == undefined) {
+            if(query === undefined) {
                 query = value;
                 vSelector.attr('data-autocompletion-query', query);
             }
@@ -134,7 +134,7 @@ var Autocompletion = (function () {
             var nick = self.process(query, hash)[i];
             
             // Shit, this is my nick!
-            if((nick != undefined) && (nick.toLowerCase() == Name.getMUCNick(hash).toLowerCase())) {
+            if((nick !== undefined) && (nick.toLowerCase() == Name.getMUCNick(hash).toLowerCase())) {
                 // Increment
                 i++;
                 
@@ -143,7 +143,7 @@ var Autocompletion = (function () {
             }
             
             // We quote the nick
-            if(nick != undefined) {
+            if(nick !== undefined) {
                 // Increment
                 i++;
                 Utils.quoteMyNick(hash, nick);

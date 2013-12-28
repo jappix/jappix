@@ -263,9 +263,10 @@ var Music = (function () {
                              );
                     
                     // Create the children nodes
-                    for(i in nodes) {
-                        if(values[i])
+                    for(var i in nodes) {
+                        if(values[i]) {
                             tune.appendChild(iq.buildNode(nodes[i], {'xmlns': NS_TUNE}, values[i]));
+                        }
                     }
                 }
                 

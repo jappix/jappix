@@ -413,8 +413,9 @@ var Home = (function () {
                     var html = '<div class="list">';
                     
                     // Generate each locale HTML code
-                    for(i in LOCALES_AVAILABLE_ID)
+                    for(var i in LOCALES_AVAILABLE_ID) {
                         html += '<a href="./?l=' + LOCALES_AVAILABLE_ID[i] + keepget + '">' + LOCALES_AVAILABLE_NAMES[i].htmlEnc() + '</a>';
+                    }
                     
                     html += '</div>';
                     

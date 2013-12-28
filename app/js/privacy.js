@@ -567,7 +567,7 @@ var Privacy = (function () {
             var groups = Roster.getAllGroups();
             
             // Generate HTML
-            for(i in groups) {
+            for(var i in groups) {
                 html += '<option value="' + Common.encodeQuotes(groups[i]) +'">' + groups[i].htmlEnc() + '</option>';
             }
         } catch(e) {
@@ -647,7 +647,7 @@ var Privacy = (function () {
             // Display the list status
             var status = ['active', 'default'];
             
-            for(s in status) {
+            for(var s in status) {
                 if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                     $('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
             }
@@ -717,7 +717,7 @@ var Privacy = (function () {
                 var desc = '';
                 var desc_arr = [item_type, item_value, item_action, item_order];
                 
-                for(d in desc_arr) {
+                for(var d in desc_arr) {
                     // Nothing to display?
                     if(!desc_arr[d])
                         continue;
@@ -940,7 +940,7 @@ var Privacy = (function () {
                 // Disable this list before removing it
                 var status = ['active', 'default'];
                 
-                for(s in status) {
+                for(var s in status) {
                     if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                         self.change('', status[s]);
                 }
@@ -1061,7 +1061,7 @@ var Privacy = (function () {
                     // Disable this list before removing it
                     var status = ['active', 'default'];
                     
-                    for(s in status) {
+                    for(var s in status) {
                         if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
                             self.change('', status[s]);
                     }

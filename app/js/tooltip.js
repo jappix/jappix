@@ -500,7 +500,7 @@ var Tooltip = (function () {
             $('#' + hash + ' .chat-tools-' + type).hover(function() {
                 self.create(xid, hash, type);
             }, function() {
-                self.destroy(hash, type)
+                self.destroy(hash, type);
             });
         } catch(e) {
             Console.error('Tooltip.hover', e);

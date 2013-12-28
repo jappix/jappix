@@ -142,7 +142,7 @@ var MAM = (function () {
 
             var purge = iq.appendNode('purge', { 'xmlns': NS_URN_MAM });
 
-            for(c in args) {
+            for(var c in args) {
                 if(args[c])  purge.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
             }
             
@@ -188,15 +188,15 @@ var MAM = (function () {
 
             var query = iq.setQuery(NS_URN_MAM);
 
-            for(c in args) {
-                if(args[c] != null)  query.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
+            for(var c in args) {
+                if(args[c] !== null)  query.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
             }
 
             if(rsm_args && typeof rsm_args == 'object') {
                 var rsm_set = query.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
 
-                for(r in rsm_args) {
-                    if(rsm_args[r] != null)  rsm_set.appendChild(iq.buildNode(r, {'xmlns': NS_RSM}, rsm_args[r]));
+                for(var r in rsm_args) {
+                    if(rsm_args[r] !== null)  rsm_set.appendChild(iq.buildNode(r, {'xmlns': NS_RSM}, rsm_args[r]));
                 }
             }
 
@@ -244,11 +244,11 @@ var MAM = (function () {
                             'last': res_rsm_sel.find('last').eq(0).text(),
                             'count': parseInt(res_rsm_sel.find('count').eq(0).text() || 0)
                         }
-                    }
+                    };
 
                     // Generate stamps for easy operations
-                    var start_stamp = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with]['date']['start']));
-                    var start_end = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with]['date']['end']));
+                    var start_stamp = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with].date.start));
+                    var start_end = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with].date.end));
 
                     // Create MAM messages target
                     var target_html = '<div class="mam-chunk" data-start="' + Common.encodeQuotes(start_stamp) + '" data-end="' + Common.encodeQuotes(start_end) + '"></div>';
@@ -264,7 +264,7 @@ var MAM = (function () {
 
                     // Any enqueued message to display?
                     if(typeof self.msg_queue[res_with] == 'object') {
-                        for(i in self.msg_queue[res_with]) {
+                        for(var i in self.msg_queue[res_with]) {
                             (self.msg_queue[res_with][i])();
                         }
 
@@ -325,7 +325,7 @@ var MAM = (function () {
 
                     // Refactor chat XID (in case we were the sender of the archived message)
                     if(mode == 'me') {
-                        xid = Common.bareXID(message.getTo())
+                        xid = Common.bareXID(message.getTo());
                     }
 
                     var hash = hex_md5(xid);
@@ -350,7 +350,7 @@ var MAM = (function () {
                         // Select the custom target
                         var c_target_sel = function() {
                             return $(mam_chunk_path).filter(function() {
-                                return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp
+                                return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp;
                             }).filter(':first');
                         };
 

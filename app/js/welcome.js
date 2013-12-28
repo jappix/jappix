@@ -240,10 +240,10 @@ var Welcome = (function () {
             var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_OPTIONS}));
             
             // Value array
-            var tags = new Array('sounds', 'geolocation', '', '', 'roster-showall');
+            var tags = ['sounds', 'geolocation', '', '', 'roster-showall'];
             
             // Build the XML with the array
-            for(i in array) {
+            for(var i in array) {
                 var value = array[i];
                 var tag = tags[i];
                 
@@ -275,7 +275,7 @@ var Welcome = (function () {
 
         try {
             // Get the new options
-            var array = new Array();
+            var array = [];
             
             $('#welcome a.box').each(function() {
                 var current = '0';

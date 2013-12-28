@@ -324,7 +324,7 @@ var Jingle = (function () {
 
         try {
             if(self.__jingle_current) {
-                if(self.__jingle_current.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) == true) {
+                if(self.__jingle_current.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === true) {
                     $('#jingle a.mute').removeClass('off').addClass('on');
                     self.__jingle_current.unmute(JSJAC_JINGLE_MEDIA_AUDIO);
                 } else {
@@ -380,7 +380,7 @@ var Jingle = (function () {
                     '<video class="local_video" src="" alt=""></video>' + 
                     '<video class="remote_video" src="" alt=""></video>' + 
                 '</div>'
-            )
+            );
 
             $('#jingle').find('.sidebar .controls a').click(function() {
                 try {
@@ -397,7 +397,7 @@ var Jingle = (function () {
                 } finally {
                     return false;
                 }
-            })
+            });
         } catch(e) {
             Console.error('Jingle.create_interface', e);
         }

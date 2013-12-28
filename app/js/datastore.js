@@ -44,7 +44,7 @@ var DataStore = (function () {
 
                     var c = 0;
 
-                    for(name in storage_emulated) {
+                    for(var name in storage_emulated) {
                         if(c++ == key)  return name;
                     }
 
@@ -245,7 +245,7 @@ var DataStore = (function () {
     self.existDB = function(dbID, type, id) {
 
         try {
-            return self.getDB(dbID, type, id) != null;
+            return self.getDB(dbID, type, id) !== null;
         } catch(e) {
             Console.error('DataStore.existDB', e);
         }
@@ -365,8 +365,8 @@ var DataStore = (function () {
                 }
                 
                 // New error!
-                catch(e) {
-                    Console.error('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
+                catch(_e) {
+                    Console.error('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', _e);
                 }
             }
 
@@ -418,7 +418,7 @@ var DataStore = (function () {
     self.existPersistent = function(dbID, type, id) {
 
         try {
-            return self.getPersistent(dbID, type, id) != null;
+            return self.getPersistent(dbID, type, id) !== null;
         } catch(e) {
             Console.error('DataStore.existPersistent', e);
         }

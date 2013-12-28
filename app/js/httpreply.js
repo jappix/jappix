@@ -52,7 +52,7 @@ var HTTPReply = (function () {
             aMsg.appendNode('confirm', {'xmlns': xmlns, 'url': url, 'id': id, 'method': method});
             
             // We send the message
-            con.send(aMsg, Error.handleReply);
+            con.send(aMsg, Errors.handleReply);
             
             Console.info('Replying HTTP auth request: ' + from);
         } catch(e) {

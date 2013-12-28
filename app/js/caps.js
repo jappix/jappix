@@ -159,9 +159,9 @@ var Caps = (function () {
             var query = iq.getQuery();
             
             // Generate the CAPS-processing values
-            var identities = new Array();
-            var features = new Array();
-            var data_forms = new Array();
+            var identities = [];
+            var features = [];
+            var data_forms = [];
             
             // Identity values
             $(query).find('identity').each(function() {
@@ -195,7 +195,7 @@ var Caps = (function () {
             $(query).find('x[xmlns="' + NS_XDATA + '"]').each(function() {
                 // Initialize some stuffs
                 var pString = '';
-                var sortVar = new Array();
+                var sortVar = [];
                 
                 // Add the form type field
                 $(this).find('field[var="FORM_TYPE"] value').each(function() {
@@ -217,9 +217,9 @@ var Caps = (function () {
                 sortVar = sortVar.sort();
                 
                 // Loop this sorted var attributes
-                for(i in sortVar) {
+                $.each(sortVar, function(i) {
                     // Initialize the value sorting
-                    var sortVal = new Array();
+                    var sortVal = [];
                     
                     // Append it to the string
                     pString += sortVar[i] + '<';
@@ -233,9 +233,10 @@ var Caps = (function () {
                     sortVal = sortVal.sort();
                     
                     // Append the values to the string
-                    for(j in sortVal)
+                    for(var j in sortVal) {
                         pString += sortVal[j] + '<';
-                }
+                    }
+                });
                 
                 // Any string?
                 if(pString) {
@@ -298,7 +299,7 @@ var Caps = (function () {
             hash = hex_md5(xid);
 
             // Display the supported features
-            var features = {}
+            var features = {};
 
             $(xml).find('feature').each(function() {
                 var current = $(this).attr('var');
@@ -385,17 +386,17 @@ var Caps = (function () {
             cDataForms = cDataForms.sort();
             
             // Process the sorted identity string
-            for(a in cIdentities) {
+            for(var a in cIdentities) {
                 cString += cIdentities[a] + '<';
             }
             
             // Process the sorted feature string
-            for(b in cFeatures) {
+            for(var b in cFeatures) {
                 cString += cFeatures[b] + '<';
             }
             
             // Process the sorted data-form string
-            for(c in cDataForms) {
+            for(var c in cDataForms) {
                 cString += cDataForms[c] + '<';
             }
             
@@ -419,9 +420,9 @@ var Caps = (function () {
 
         try {
             return self.process(
-                new Array('client/web//Jappix'),
+                ['client/web//Jappix'],
                 self.myDiscoInfos(),
-                new Array()
+                []
             );
         } catch(e) {
             Console.error('Caps.mine', e);

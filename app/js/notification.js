@@ -100,8 +100,9 @@ var Notification = (function () {
                 return;
             
             // Generate an ID hash
-            if(!id)
-                var id = hex_md5(type + from);
+            if(!id) {
+                id = hex_md5(type + from);
+            }
             
             // Generate the text to be displayed
             var text, action, code;

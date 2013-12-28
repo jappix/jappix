@@ -128,14 +128,14 @@ var Groupchat = (function () {
             var hash = hex_md5(room);
             
             // No ID: must fix M-Link bug
-            if(presence.getID() == null) {
+            if(presence.getID() === null) {
                 presence.setID(1);
             }
             
             Console.info('First MUC presence: ' + from);
             
             // Catch the errors
-            if(!Error.handle(xml)) {
+            if(!Errors.handle(xml)) {
                 // Define some stuffs
                 var muc_user = $(xml).find('x[xmlns="' + NS_MUC_USER + '"]');
                 var affiliation = muc_user.find('item').attr('affiliation');
@@ -292,7 +292,7 @@ var Groupchat = (function () {
                 
                 // Store focus on this chat!
                 Interface.chat_focus_hash = hash;
-            })
+            });
             
             // Blur event
             inputDetect.blur(function() {
@@ -302,7 +302,7 @@ var Groupchat = (function () {
 
                 // Reset autocompletion
                 Autocompletion.reset(hash);
-            })
+            });
             
             // Lock to the input
             inputDetect.keydown(function(e) {
@@ -364,7 +364,7 @@ var Groupchat = (function () {
             if(GROUPCHATS_JOIN.indexOf(',') != -1)
                 muc_arr = GROUPCHATS_JOIN.split(',');
             
-            for(i in muc_arr) {
+            for(var i in muc_arr) {
                 // Get the current value
                 var muc_current = $.trim(muc_arr[i]);
                 
@@ -402,8 +402,9 @@ var Groupchat = (function () {
             
             // Join the chats
             if(JOIN_SUGGEST.length) {
-                for(g in JOIN_SUGGEST)
+                for(var g in JOIN_SUGGEST) {
                     Chat.checkCreate(JOIN_SUGGEST[g], 'groupchat');
+                }
             }
         } catch(e) {
             Console.error('Groupchat.joinConf', e);
@@ -432,7 +433,7 @@ var Groupchat = (function () {
                     html += '<div class="title">' + Common._e("Suggested chatrooms") + '</div>';
                     
                     html += '<div class="content">';
-                        for(g in groupchat_arr) {
+                        for(var g in groupchat_arr) {
                             html += '<a class="one" href="#" data-xid="' + Common.encodeQuotes(groupchat_arr[g]) + '">';
                                 html += '<span class="icon talk-images"></span>';
                                 html += '<span class="name">' + Utils.capitaliseFirstLetter(Common.getXIDNick(groupchat_arr[g]).htmlEnc()) + '</span>';
@@ -525,7 +526,7 @@ var Groupchat = (function () {
                     item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
                 }
                 
-                con.send(iq, Error.handleReply);
+                con.send(iq, Errors.handleReply);
 
                 Console.log('Banned user with XID: ' + ban_xid + ' from room: ' + room_xid);
             }
@@ -566,7 +567,7 @@ var Groupchat = (function () {
                     item.appendChild(iq.buildNode('reason', {'xmlns': NS_MUC_ADMIN}, reason));
                 }
                 
-                con.send(iq, Error.handleReply);
+                con.send(iq, Errors.handleReply);
 
                 Console.info('Kicked user "' + nick + '" from room: ' + room_xid);
             }

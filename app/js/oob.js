@@ -92,7 +92,9 @@ var OOB = (function () {
     self.handle = function(from, id, type, node) {
 
         try {
-            var xid = url = desc = '';
+            var xid = '';
+            var url = '';
+            var desc = '';
             
             // IQ stanza?
             if(type == 'iq') {

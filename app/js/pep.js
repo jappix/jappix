@@ -87,8 +87,7 @@ var PEP = (function () {
         try {
             // Read the target input for values
             var value = $(Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'pep-' + type, xid)));
-            var dText;
-            var aLink = ''
+            var aLink = '';
             
             // If the PEP element exists
             if(type) {
@@ -98,12 +97,17 @@ var PEP = (function () {
                 // Initialize
                 var fText, fValue;
                 var dText = '';
+
+                // Initialize typed valyes
+                var tLat, tLon, tHuman, tReal;
+                var fArtist, fTitle, fAlbum, fURI;
+                var pepValue, pepText;
                 
                 // Parse the XML for mood and activity
                 if((type == 'mood') || (type == 'activity')) {
                     if(value) {
-                        var pepValue = value.find('value').text();
-                        var pepText = value.find('text').text();
+                        pepValue = value.find('value').text();
+                        pepText = value.find('text').text();
                         
                         // No value?
                         if(!pepValue)
@@ -142,7 +146,6 @@ var PEP = (function () {
                         var tTitle = value.find('title').text();
                         var tAlbum = value.find('album').text();
                         var tURI = value.find('uri').text();
-                        var fArtist, fTitle, fAlbum, fURI;
                         
                         // Apply the good values
                         if(!tArtist && !tAlbum && !tTitle) {
@@ -195,10 +198,10 @@ var PEP = (function () {
                     
                     if(value) {
                         // Parse the geoloc XML
-                        var tLat = value.find('lat').text();
-                        var tLon = value.find('lon').text();
-                        var tHuman = value.find('human').text();
-                        var tReal = tHuman;
+                        tLat = value.find('lat').text();
+                        tLon = value.find('lon').text();
+                        tHuman = value.find('human').text();
+                        tReal = tHuman;
                         
                         // No human location?
                         if(!tHuman)
@@ -908,7 +911,7 @@ var PEP = (function () {
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
-                for(i in mood_id) {
+                for(var i in mood_id) {
                     // Yet in use: no need to display it!
                     if(mood_id[i] == mood_val)
                         continue;
@@ -963,7 +966,7 @@ var PEP = (function () {
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
-                for(i in activity_id) {
+                for(var i in activity_id) {
                     // Yet in use: no need to display it!
                     if(activity_id[i] == activity_val)
                         continue;

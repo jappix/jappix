@@ -36,7 +36,7 @@ var HTTPAuth = (function () {
             Interface.showGeneralWait();
             
             // We define the http binding parameters
-            oArgs = new Object();
+            oArgs = {};
             
             if(HOST_BOSH_MAIN)
                 oArgs.httpbase = HOST_BOSH_MAIN;
@@ -62,7 +62,7 @@ var HTTPAuth = (function () {
             lPriority = lPriority ? lPriority : 10;
 
             // We retrieve what the user typed in the login inputs
-            oArgs = new Object();
+            oArgs = {};
             oArgs.domain = $.trim(lServer);
             oArgs.username = $.trim(lNick);
             oArgs.resource = random_resource;

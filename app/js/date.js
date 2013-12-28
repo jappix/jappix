@@ -84,7 +84,7 @@ var DateUtils = (function () {
 
         try {
             // Last activity not yet initialized?
-            if(self.last_activity == 0)
+            if(self.last_activity === 0)
                 return 0;
             
             return self.getTimeStamp() - self.last_activity;
@@ -104,7 +104,7 @@ var DateUtils = (function () {
 
         try {
             // Last presence stamp not yet initialized?
-            if(self.presence_last_activity == 0)
+            if(self.presence_last_activity === 0)
                 return 0;
             
             return self.getTimeStamp() - self.presence_last_activity;

@@ -136,7 +136,7 @@ var Smileys = (function () {
                 'moon'
             ];
             
-            for(i in sArray) {
+            for(var i in sArray) {
                 links += self.emoteLink(sArray[i], cArray[i], hash);
             }
             

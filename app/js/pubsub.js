@@ -47,11 +47,13 @@ var Pubsub = (function () {
             }
             
             // Create it?
+            var pubsub;
+
             if(create) {
-                var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
+                pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
                 pubsub.appendChild(iq.buildNode('create', {'xmlns': NS_PUBSUB, 'node': node}));
             } else {
-                var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
+                pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB_OWNER});
             }
             
             // Configure it!

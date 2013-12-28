@@ -193,7 +193,7 @@ var Avatar = (function () {
             }
             
             // We got a new checksum for us?
-            if(((oChecksum != null) && (oChecksum != aChecksum)) || !Presence.first_sent) {
+            if(((oChecksum !== null) && (oChecksum != aChecksum)) || !Presence.first_sent) {
                 // Define a proper checksum
                 var pChecksum = aChecksum;
                 

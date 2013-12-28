@@ -203,7 +203,7 @@ var Filter = (function () {
             // Check if Filter for XHTML-IM images is enabled
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') != '1') {
                 elements.push("img");
-            };
+            }
             
             // Remove forbidden elements
             $(code).find('html body *').each(function() {

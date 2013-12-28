@@ -288,7 +288,7 @@ var Inbox = (function () {
             // Set body
             mess.setBody(body);
             
-            con.send(mess, Error.handleReply);
+            con.send(mess, Errors.handleReply);
         } catch(e) {
             Console.error('Inbox.sendMessage', e);
         }
@@ -318,7 +318,7 @@ var Inbox = (function () {
                 if(to.indexOf(',') != -1)
                     xid = to.split(',');
                 
-                for(i in xid) {
+                for(var i in xid) {
                     var current = xid[i];
                     
                     // No current value?
@@ -441,7 +441,7 @@ var Inbox = (function () {
                     '</div>';
             
             // Display the message
-            if(nearest == 0)
+            if(nearest === 0)
                 $(inbox + 'inbox-results .inbox').append(nContent);
             else
                 $('#inbox .one-message[data-stamp="' + nearest + '"]:first').before(nContent);
@@ -749,7 +749,7 @@ var Inbox = (function () {
             var inbox = '#inbox .';
             
             // Generate the body
-            var body = '\n' + '____________' + '\n\n' + Utils.truncate(body, 120);
+            body = '\n' + '____________' + '\n\n' + Utils.truncate(body, 120);
             
             // We apply the generated values to the form
             $(inbox + 'inbox-new-to-input').val(from);

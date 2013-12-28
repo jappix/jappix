@@ -86,7 +86,7 @@ var IQ = (function () {
             else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0092.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_VERSION);
+                iqQuery = iqResponse.setQuery(NS_VERSION);
                 
                 iqQuery.appendChild(iqResponse.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix'));
                 iqQuery.appendChild(iqResponse.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
@@ -101,7 +101,7 @@ var IQ = (function () {
             else if((iqQueryXMLNS == NS_LAST) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0012.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_LAST);
+                iqQuery = iqResponse.setQuery(NS_LAST);
                 iqQuery.setAttribute('seconds', DateUtils.getLastActivity());
                 
                 con.send(iqResponse);
@@ -151,7 +151,7 @@ var IQ = (function () {
             else if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0030.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
+                iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
                 
                 // We set the name of the client
                 iqQuery.appendChild(iqResponse.buildNode('identity', {
@@ -164,8 +164,9 @@ var IQ = (function () {
                 // We set all the supported features
                 var fArray = Caps.myDiscoInfos();
                 
-                for(i in fArray)
+                for(var i in fArray) {
                     iqQuery.appendChild(iqResponse.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
+                }
                 
                 con.send(iqResponse);
                 
@@ -209,8 +210,9 @@ var IQ = (function () {
                 iqResponse.setType('error');
                 
                 // Append stanza content
-                for(var i = 0; i < iqNode.childNodes.length; i++)
-                    iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
+                for(var c = 0; c < iqNode.childNodes.length; c++) {
+                    iqResponse.getNode().appendChild(iqNode.childNodes.item(c).cloneNode(true));
+                }
                 
                 // Append error content
                 var iqError = iqResponse.appendNode('error', {'xmlns': NS_CLIENT, 'code': '501', 'type': 'cancel'});

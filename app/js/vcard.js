@@ -812,22 +812,21 @@ var vCard = (function () {
             ];
             
             // Generate the XML
-            for(i in read) {
+            for(var i in read) {
                 var iq = new JSJaCIQ();
                 iq.setType('set');
                 
                 var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
                 var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
-                
-                if((i == 0) && read[0]) {
-                    var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+                var item;
+
+                if((i === 0) && read[0]) {
+                    item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
                     
                     // Nickname element
                     item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
-                }
-                
-                else if(((i == 1) || (i == 2)) && read[1]) {
-                    var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+                } else if(((i === 1) || (i === 2)) && read[1]) {
+                    item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
                     
                     // Apply the SHA-1 hash
                     if(photo_id) {

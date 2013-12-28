@@ -200,8 +200,8 @@ var Common = (function () {
             var index = toStr.indexOf(toEx);
             
             // We split if necessary the string
-            if(index != -1) {
-                if(i == 0)
+            if(index !== -1) {
+                if(i === 0)
                     toStr = toStr.substr(0, index);
                 else
                     toStr = toStr.substr(index + 1);
@@ -274,8 +274,9 @@ var Common = (function () {
             // Remove prohibited chars
             var prohibited_chars = ['"', '&', '\'', '/', ':', '<', '>', '@'];
 
-            for(j in prohibited_chars)
+            for(var j in prohibited_chars) {
                 node = node.replace(prohibited_chars[j], '');
+            }
 
             // Lower case
             node = node.toLowerCase();
@@ -703,7 +704,7 @@ var Common = (function () {
             return function(callback, ms) {
                 clearTimeout(timer);
                 timer = setTimeout(callback, ms);
-            }
+            };
         } catch(e) {
             Console.error('Common.typewatch', e);
         }

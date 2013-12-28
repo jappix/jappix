@@ -344,8 +344,9 @@ var Options = (function () {
             var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_OPTIONS}));
             
             // Loop the array
-            for(i in oType)
+            for(var i in oType) {
                 storage.appendChild(iq.buildNode('option', {'type': oType[i], 'xmlns': NS_OPTIONS}, oContent[i]));
+            }
             
             con.send(iq, self.handleStore);
             
@@ -479,7 +480,7 @@ var Options = (function () {
             Interface.removeGeneralWait();
             
             // If no errors
-            if(!Error.handleReply(iq)) {
+            if(!Errors.handleReply(iq)) {
                 Connection.clearLastSession();
                 Connection.quit();
                 Board.openThisInfo(1);
@@ -570,7 +571,7 @@ var Options = (function () {
             Interface.removeGeneralWait();
             
             // If no errors
-            if(!Error.handleReply(iq)) {
+            if(!Errors.handleReply(iq)) {
                 Connection.clearLastSession();
                 Talk.destroy();
                 Board.openThisInfo(2);
@@ -679,7 +680,7 @@ var Options = (function () {
 
         try {
             // If no errors
-            if(!Error.handleReply(iq)) {
+            if(!Errors.handleReply(iq)) {
                 // Remove the microblog items
                 $('.one-update.update_' + hex_md5(Common.getXID())).remove();
                 

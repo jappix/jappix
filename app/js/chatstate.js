@@ -172,11 +172,7 @@ var ChatState = (function () {
                 selector = $('#page-switch .' + hash + ' .name');
             
             // Reset!
-            selector.removeClass('active')
-            selector.removeClass('composing')
-            selector.removeClass('paused')
-            selector.removeClass('inactive')
-            selector.removeClass('gone');
+            selector.removeClass('active composing paused inactive gone');
         } catch(e) {
             Console.error('ChatState.reset', e);
         }

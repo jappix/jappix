@@ -192,9 +192,9 @@ var RosterX = (function () {
                 var group = $(this).attr('data-group');
                 
                 // Parse groups XML
+                var group_arr = [];
+                
                 if(group) {
-                    var group_arr = []
-                    
                     $(group).find('group').each(function() {
                         group_arr.push($(this).text().revertHtmlEnc());
                     });

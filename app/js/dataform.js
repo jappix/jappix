@@ -198,7 +198,7 @@ var DataForm = (function () {
                                 xid_arr = iValue.split(',');
                             
                             // Append each value to the XML document
-                            for(i in xid_arr) {
+                            for(var i in xid_arr) {
                                 // Get the current value
                                 xid_current = $.trim(xid_arr[i]);
                                 
@@ -218,8 +218,9 @@ var DataForm = (function () {
                         else if(iType == 'list-multi') {
                             // Any value?
                             if(iValue && iValue.length) {
-                                for(i in iValue)
-                                    field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue[i]));
+                                for(var j in iValue) {
+                                    field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue[j]));
+                                }
                             }
                         }
                         
@@ -356,7 +357,7 @@ var DataForm = (function () {
     self.handleMUC = function(iq) {
 
         try {
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             self.handleContent(iq, 'muc');
         } catch(e) {
             Console.error('DataForm.handleMUC', e);
@@ -374,7 +375,7 @@ var DataForm = (function () {
     self.handleBrowse = function(iq) {
 
         try {
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             self.handleContent(iq, 'browse');
         } catch(e) {
             Console.error('DataForm.handleBrowse', e);
@@ -392,7 +393,7 @@ var DataForm = (function () {
     self.handleCommand = function(iq) {
 
         try {
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             self.handleContent(iq, 'command');
         } catch(e) {
             Console.error('DataForm.handleCommand', e);
@@ -410,7 +411,7 @@ var DataForm = (function () {
     self.handleSubscribe = function(iq) {
 
         try {
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             self.handleContent(iq, 'subscribe');
         } catch(e) {
             Console.error('DataForm.handleSubscribe', e);
@@ -428,7 +429,7 @@ var DataForm = (function () {
     self.handleSearch = function(iq) {
 
         try {
-            Error.handleReply(iq);
+            Errors.handleReply(iq);
             self.handleContent(iq, 'search');
         } catch(e) {
             Console.error('DataForm.handleSearch', e);
@@ -546,10 +547,10 @@ var DataForm = (function () {
                             $.each($(this).find('field'), function(i, item)
                             {                                                                                                                                                                                                                      
                                 var $item = $(item);
-                                if ($(item).attr('var').match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && doneName != true) {
+                                if ($(item).attr('var').match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && doneName !== true) {
                                     bName = $item.children('value:first').text();
                                     doneName = true;
-                                } else if ($(item).attr('var').match(/^(ctry|country.*)$/gi) && doneCountry != true) {
+                                } else if ($(item).attr('var').match(/^(ctry|country.*)$/gi) && doneCountry !== true) {
                                     bCountry = $item.children('value:first').text();
                                     doneCountry = true;
                                 }
@@ -774,7 +775,7 @@ var DataForm = (function () {
                 var reg_ids = ['username', 'name', 'password', 'email'];
                 
                 // Append these inputs
-                for(a in reg_names) {
+                $.each(reg_names, function(a) {
                     selector.find(reg_ids[a]).each(function() {
                         $(pathID).append(
                             '<div class="oneresult ' + target + '-oneresult">' + 
@@ -783,7 +784,7 @@ var DataForm = (function () {
                             '</div>'
                         );
                     });
-                }
+                });
                 
                 return false;
             }
@@ -895,7 +896,7 @@ var DataForm = (function () {
                         var xid_value = '';
                         
                         if(xid_arr.length) {
-                            for(i in xid_arr) {
+                            for(var i in xid_arr) {
                                 // Any pre-value
                                 if(xid_value)
                                     xid_value += ', ';
@@ -1010,7 +1011,7 @@ var DataForm = (function () {
                 // Get the features that this entity supports
                 var findFeature = $(handleXML).find('feature');
                 
-                for(i in findFeature) {
+                for(var i in findFeature) {
                     var current = findFeature.eq(i).attr('var');
                     
                     switch(current) {
@@ -1046,9 +1047,10 @@ var DataForm = (function () {
                 var aTools = Array('search', 'join', 'subscribe', 'command', 'browse');
                 var bTools = Array(Common._e("Search"), Common._e("Join"), Common._e("Subscribe"), Common._e("Command"), Common._e("Browse"));
                 
-                for(i in buttons) {
-                    if(buttons[i])
-                        tools += '<a href="#" class="one-button ' + aTools[i] + ' talk-images" onclick="return DataForm.go(\'' + Utils.encodeOnclick(from) + '\', \'' + Utils.encodeOnclick(aTools[i]) + '\', \'\', \'\', \'' + Utils.encodeOnclick(target) + '\');" title="' + Utils.encodeOnclick(bTools[i]) + '"></a>';
+                for(var b in buttons) {
+                    if(buttons[b]) {
+                        tools += '<a href="#" class="one-button ' + aTools[b] + ' talk-images" onclick="return DataForm.go(\'' + Utils.encodeOnclick(from) + '\', \'' + Utils.encodeOnclick(aTools[b]) + '\', \'\', \'\', \'' + Utils.encodeOnclick(target) + '\');" title="' + Utils.encodeOnclick(bTools[b]) + '"></a>';
+                    }
                 }
                 
                 // As defined in the ref, we detect the type of each category to put an icon

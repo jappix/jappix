@@ -133,7 +133,7 @@ function setLocales($string, $locale) {
 
 	// Apply it!
 	foreach($array as $array_key => $array_value) {
-		$string = preg_replace('/(var '.$array_key.'(( )?=( )?)new Array\()(\);)/', '$1'.$array_value.'$5', $string);
+		$string = preg_replace('/(var '.$array_key.'(( )?=( )?)\[)(\];)/', '$1'.$array_value.'$5', $string);
 	}
 
 	return $string;

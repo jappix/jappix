@@ -98,7 +98,7 @@ var Roster = (function () {
             xidHash = hex_md5(xid);
             
             // Create an array containing the groups
-            var groups = new Array();
+            var groups = [];
             
             current.find('group').each(function() {
                 var group_text = $(this).text();
@@ -203,9 +203,7 @@ var Roster = (function () {
                     privacy_class = ' blocked';
                 
                 // For each group this buddy has
-                for(i in dGroup) {
-                    var cGroup = dGroup[i];
-                    
+                $.each(dGroup, function(i, cGroup) {
                     if(cGroup) {
                         // Process some vars
                         var groupHash = 'group' + hex_md5(cGroup);
@@ -287,7 +285,7 @@ var Roster = (function () {
                         // Apply the hover event
                         self.applyBuddyHover(dXID, dXIDHash, dName, dSubscription, dGroup, groupHash);
                     }
-                }
+                });
                 
                 // Click event on this buddy
                 $('#buddy-list .' + dXIDHash + ' .buddy-click').click(function() {
@@ -654,7 +652,7 @@ var Roster = (function () {
 
         try {
             var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] ';
-            var array = new Array();
+            var array = [];
             
             // Each checked checkboxes
             $(path + 'div.bm-choose input[type="checkbox"]').filter(':checked').each(function() {
@@ -715,7 +713,7 @@ var Roster = (function () {
     self.getAllGroups = function() {
 
         try {
-            var groups = new Array();
+            var groups = [];
             
             $('#buddy-list .one-group').each(function() {
                 var current = unescape($(this).attr('data-group'));
@@ -755,7 +753,7 @@ var Roster = (function () {
             var privacy_active = DataStore.getDB(Connection.desktop_hash, 'privacy-marker', 'available');
             
             // Get the group privacy state
-            for(g in groups) {
+            for(var g in groups) {
                 if((Privacy.status('block', groups[g]) == 'deny') && (privacy_state != 'allow'))
                     privacy_state = 'deny';
             }
@@ -828,7 +826,7 @@ var Roster = (function () {
             var all_groups = self.getAllGroups();
             var all_groups_dom = '';
             
-            for(a in all_groups) {
+            for(var a in all_groups) {
                 // Current group
                 var all_groups_current = all_groups[a];
                 
@@ -909,7 +907,7 @@ var Roster = (function () {
             
             // Any group?
             if(group && group.length) {
-                for(i in group)
+                for(var i in group)
                     item.appendChild(iq.buildNode('group', {'xmlns': NS_ROSTER}, group[i]));
             }
             
@@ -955,13 +953,14 @@ var Roster = (function () {
     self.getAllBuddies = function() {
 
         try {
-            var buddies = new Array();
+            var buddies = [];
     
             $('#buddy-list .buddy').each(function() {
                 var xid = unescape($(this).attr('data-xid'));
                 
-                if(xid)
+                if(xid) {
                     buddies.push(xid);
+                }
             });
             
             return buddies;
@@ -998,13 +997,14 @@ var Roster = (function () {
 
         try {
             // New array
-            var gateways = new Array();
+            var gateways = [];
             var buddies = self.getAllBuddies();
             
             // Get the gateways
-            for(c in buddies) {
-                if(Common.isGateway(buddies[c]))
+            for(var c in buddies) {
+                if(Common.isGateway(buddies[c])) {
                     gateways.push(buddies[c]);
+                }
             }
             
             return gateways;
@@ -1096,16 +1096,15 @@ var Roster = (function () {
                 // Any gateway?
                 if(gateways.length) {
                     // Append the gateways
-                    for(i in gateways)
+                    for(var i in gateways) {
                         $('.add-contact-gateway').append('<option value="' + escape(gateways[i]) + '">' + gateways[i].htmlEnc() +  '</option>');
+                    }
                     
                     // Show the gateway selector
                     $('.add-contact-gateway').parent().show();
-                }
-                
-                // No gateway?
-                else
+                } else {
                     $('.add-contact-gateway').parent().hide();
+                }
                 
                 // Blur event on the add contact input
                 $('.add-contact-jid').blur(function() {

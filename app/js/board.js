@@ -260,7 +260,7 @@ var Board = (function () {
                 title = Common._e("New event!");
             
             // Check for notification permission
-            if(window.webkitNotifications.checkPermission() == 0) {
+            if(window.webkitNotifications.checkPermission() === 0) {
                 // Create notification
                 var notification = window.webkitNotifications.createNotification(icon, title, content);
                 
@@ -314,7 +314,7 @@ var Board = (function () {
     self.quickPermission = function() {
 
         try {
-            if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() == 0))
+            if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() === 0))
                 return;
             
             // Ask for permission

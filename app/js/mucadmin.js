@@ -352,7 +352,7 @@ var MUCAdmin = (function () {
             // We define the values array
             var types = new Array('member', 'owner', 'admin', 'outcast');
 
-            for(i in types) {
+            $.each(types, function(i) {
                 // We get the current type
                 var tType = types[i];
                 
@@ -367,7 +367,7 @@ var MUCAdmin = (function () {
                         self.setAffiliation(xid, value, affiliation);
                     }
                 });
-            }
+            });
             
             Console.info('MUC admin authorizations form sent: ' + xid);
         } catch(e) {
@@ -404,7 +404,7 @@ var MUCAdmin = (function () {
                 'xmlns': NS_MUC_ADMIN
             }));
     
-            con.send(iq, Error.handleReply);
+            con.send(iq, Errors.handleReply);
         } catch(e) {
             Console.error('MUCAdmin.setAffiliation', e);
         }
@@ -421,7 +421,7 @@ var MUCAdmin = (function () {
     self.handleDestroyIQ = function(iq) {
 
         try {
-            if(!Error.handleReply(iq)) {
+            if(!Errors.handleReply(iq)) {
                 // We close the groupchat
                 var room = Common.fullXID(Common.getStanzaFrom(iq));
                 var hash = hex_md5(room);

@@ -31,8 +31,7 @@ var Links = (function () {
     self.apply = function(string, mode, style) {
 
         try {
-            // Special stuffs
-            var style, target;
+            var target;
             
             // Links style
             if(!style)

@@ -341,7 +341,6 @@ var IntegrateBox = (function () {
                 // Vimeo video box
                 else if(href.match(/((\w{3,5})(:)(\S+)(vimeo|www\.vimeo)\.com\/([\w\-]+))/gim)) {
                     url = RegExp.$6;
-                    alert(url)
                     service = 'vimeo';
                 }
                 

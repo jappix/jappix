@@ -6,7 +6,7 @@ These are the Jappix Mini JS scripts for Jappix
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut, Maranda
+Authors: ValÃ©rian Saliou, hunterjm, Camaran, regilero, Kloadut, Maranda
 
 */
 
@@ -16,7 +16,7 @@ var MINI_AUTOCONNECT			= false;
 var MINI_SHOWPANE				= false;
 var MINI_INITIALIZED			= false;
 var MINI_ROSTER_INIT			= false;
-var MINI_ROSTER_NOGROUP         = 'jm_nogroup'
+var MINI_ROSTER_NOGROUP         = 'jm_nogroup';
 var MINI_ANONYMOUS				= false;
 var MINI_ANIMATE				= false;
 var MINI_RANDNICK				= false;
@@ -87,7 +87,7 @@ var JappixMini = (function () {
 
         try {
             // We define the http binding parameters
-            oArgs = new Object();
+            oArgs = {};
             
             if(HOST_BOSH_MINI) {
                 oArgs.httpbase = HOST_BOSH_MINI;
@@ -105,7 +105,7 @@ var JappixMini = (function () {
             self.setupCon(con);
 
             // fixes #339
-            var store_resource = !(BrowserDetect.browser === 'Explorer');
+            var store_resource = (BrowserDetect.browser != 'Explorer');
             var random_resource = null;
 
             if(store_resource) {
@@ -118,7 +118,7 @@ var JappixMini = (function () {
             }
             
             // We retrieve what the user typed in the login inputs
-            oArgs = new Object();
+            oArgs = {};
             oArgs.secure = true;
             oArgs.xmllang = XML_LANG;
             oArgs.resource = random_resource;
@@ -285,7 +285,7 @@ var JappixMini = (function () {
             if(JappixCommon.isConnected()) {
                 con.suspend(false);
             } else {
-                JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'reconnect', ((MINI_RECONNECT == 0) ? 0 : (MINI_RECONNECT - 1)));
+                JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'reconnect', ((MINI_RECONNECT === 0) ? 0 : (MINI_RECONNECT - 1)));
                 self.serializeQueue();
             }
             
@@ -309,7 +309,7 @@ var JappixMini = (function () {
             var i,
             db_regex, db_current;
 
-            db_regex = new RegExp(('^' + MINI_HASH + '_') + 'jappix\-mini' + (r_override ? ('_' + r_override) : ''));
+            db_regex = new RegExp(('^' + MINI_HASH + '_') + 'jappix-mini' + (r_override ? ('_' + r_override) : ''));
 
             for(i = 0; i < JappixDataStore.storageDB.length; i++) {
                 db_current = JappixDataStore.storageDB.key(i);
@@ -545,7 +545,7 @@ var JappixMini = (function () {
                                 }
                                 
                                 // Push that unknown guy in a temporary roster entry
-                                var unknown_entry = jQuery('<a class="jm_unknown jm_offline" href="#"></a>').attr('data-nick', nick).attr('data-xid', xid);
+                                unknown_entry = jQuery('<a class="jm_unknown jm_offline" href="#"></a>').attr('data-nick', nick).attr('data-xid', xid);
                                 unknown_entry.appendTo('#jappix_mini div.jm_roster div.jm_buddies');
                              }
                         }
@@ -618,6 +618,7 @@ var JappixMini = (function () {
             var iqQueryXMLNS = iq.getQueryXMLNS();
             var iqType = iq.getType();
             var iqNode = iq.getNode();
+            var iqQuery;
             
             // Build the response
             var iqResponse = new JSJaCIQ();
@@ -630,7 +631,7 @@ var JappixMini = (function () {
             if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0092.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_VERSION);
+                iqQuery = iqResponse.setQuery(NS_VERSION);
                 
                 iqQuery.appendChild(iq.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix Mini'));
                 iqQuery.appendChild(iq.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
@@ -655,7 +656,7 @@ var JappixMini = (function () {
             else if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0030.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
+                iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
                 
                 // We set the name of the client
                 iqQuery.appendChild(iq.appendNode('identity', {
@@ -666,17 +667,18 @@ var JappixMini = (function () {
                 }));
                 
                 // We set all the supported features
-                var fArray = new Array(
+                var fArray = [
                     NS_DISCO_INFO,
                     NS_VERSION,
                     NS_ROSTER,
                     NS_MUC,
                     NS_VERSION,
                     NS_URN_TIME
-                );
+                ];
                 
-                for(i in fArray)
+                for(var i in fArray) {
                     iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
+                }
                 
                 con.send(iqResponse);
                 
@@ -708,8 +710,8 @@ var JappixMini = (function () {
             // Not implemented
             else if(!jQuery(iqNode).find('error').size() && ((iqType == 'get') || (iqType == 'set'))) {
                 // Append stanza content
-                for(var i = 0; i < iqNode.childNodes.length; i++) {
-                    iqResponse.getNode().appendChild(iqNode.childNodes.item(i).cloneNode(true));
+                for(var c = 0; c < iqNode.childNodes.length; c++) {
+                    iqResponse.getNode().appendChild(iqNode.childNodes.item(c).cloneNode(true));
                 }
                 
                 // Append error content
@@ -884,7 +886,7 @@ var JappixMini = (function () {
             // Initialize vars
             var cur_resource, cur_from, cur_pr,
                 cur_xml, cur_priority,
-                from_highest, from_highest;
+                from_highest;
 
             from_highest = null;
             max_priority = null;
@@ -912,7 +914,7 @@ var JappixMini = (function () {
                             cur_priority = !isNaN(cur_priority) ? parseInt(cur_priority) : 0;
                             
                             // Higher priority?
-                            if((cur_priority >= max_priority) || (max_priority == null)) {
+                            if((cur_priority >= max_priority) || (max_priority === null)) {
                                 max_priority = cur_priority;
                                 from_highest = cur_from;
                             }
@@ -1257,7 +1259,7 @@ var JappixMini = (function () {
                 // @see http://xmpp.org/extensions/xep-0172.html
                 var known_roster_entry = jQuery('#jappix_mini a.jm_friend[data-xid="' + xid + '"]');
                 
-                if(known_roster_entry.size() == 0) {
+                if(known_roster_entry.size() === 0) {
                     var subscription = known_roster_entry.attr('data-sub');
                     
                     // The other may not know my nickname if we do not have both a roster entry, or if he doesn't have one
@@ -1502,7 +1504,7 @@ var JappixMini = (function () {
             }
             
             // No saved title? Abort!
-            if(MINI_TITLE == null) {
+            if(MINI_TITLE === null) {
                 return;
             }
             
@@ -1683,7 +1685,8 @@ var JappixMini = (function () {
                     return false;
                 }
                 
-                var hide_this = show_this = '';
+                var hide_this = '';
+                var show_this = '';
                 
                 // Go left?
                 if(this_sel.is('.jm_left')) {
@@ -2267,7 +2270,7 @@ var JappixMini = (function () {
             });
 
             // Chat type re-focus
-            jQuery(document).keypress(function(e) {
+            jQuery(document).keypress(function(evt) {
                 // Cannot work if an input/textarea is already focused or chat is not opened
                 var path = '#jappix_mini div.jm_conversation div.jm_chat-content';
 
@@ -2278,7 +2281,7 @@ var JappixMini = (function () {
                 // May cause some compatibility issues
                 try {
                     // Get key value
-                    var key_value = jQuery.trim(String.fromCharCode(e.which));
+                    var key_value = jQuery.trim(String.fromCharCode(evt.which));
                     
                     // Re-focus on opened chat?
                     if(key_value) {
@@ -2802,6 +2805,7 @@ var JappixMini = (function () {
 
         try {
             var current = '#jappix_mini #chat-' + hash;
+            var nickname = null;
             
             // Not yet added?
             if(!JappixCommon.exists(current)) {
@@ -2811,7 +2815,7 @@ var JappixMini = (function () {
                     if(!MINI_NICKNAME && MINI_RANDNICK)
                         MINI_NICKNAME = self.randomNick();
                     
-                    var nickname = MINI_NICKNAME;
+                    nickname = MINI_NICKNAME;
                     
                     // No nickname?
                     if(!nickname) {
@@ -2855,7 +2859,7 @@ var JappixMini = (function () {
                 var chat_exists = false;
                 
                 if((type == 'groupchat') && MINI_GROUPCHATS && MINI_GROUPCHATS.length) {
-                    for(g in MINI_GROUPCHATS) {
+                    for(var g in MINI_GROUPCHATS) {
                         if(xid == JappixCommon.bareXID(JappixCommon.generateXID(MINI_GROUPCHATS[g], 'groupchat'))) {
                             groupchat_exists = true;
                             
@@ -2865,7 +2869,7 @@ var JappixMini = (function () {
                 }
                 
                 if((type == 'chat') && MINI_CHATS && MINI_CHATS.length) {
-                    for(c in MINI_CHATS) {
+                    for(var c in MINI_CHATS) {
                         if(xid == JappixCommon.bareXID(JappixCommon.generateXID(MINI_CHATS[c], 'chat'))) {
                             chat_exists = true;
                             
@@ -2938,7 +2942,7 @@ var JappixMini = (function () {
             }
             
             // Focus on our pane
-            if(show_pane != false) {
+            if(show_pane !== false) {
                 jQuery(document).oneTime(10, function() {
                     self.switchPane('chat-' + hash, hash);
                 });
@@ -2997,11 +3001,11 @@ var JappixMini = (function () {
             });
             
             // Click on the close button
-            current_sel.find('div.jm_actions').click(function(e) {
+            current_sel.find('div.jm_actions').click(function(evt) {
                 // Using a try/catch override IE issues
                 try {
                     // Close button?
-                    if(jQuery(e.target).is('a.jm_close')) {
+                    if(jQuery(evt.target).is('a.jm_close')) {
                         // Gone chatstate
                         if(type != 'groupchat') {
                             self.sendChatstate('gone', xid, hash);
@@ -3574,7 +3578,7 @@ var JappixMini = (function () {
                         cur_groups[MINI_ROSTER_NOGROUP] = 1;
                     }
 
-                    for(cur_group in cur_groups) {
+                    for(var cur_group in cur_groups) {
                         // Prepare multidimentional array
                         if(typeof pointer[cur_group] != 'number') {
                             pointer[cur_group] = 0;
@@ -3588,9 +3592,6 @@ var JappixMini = (function () {
                         buddies[cur_group][(pointer[cur_group])++] = cur_buddy;
                     }
                 }
-                
-                // Increment counter
-                (pointer[cur_group])++;
             });
 
             // No buddies? (ATM)
@@ -3731,9 +3732,9 @@ var JappixMini = (function () {
             ];
             
             // Select random values from the arrays
-            var rand_nick = JappixCommon.randomArrayValue(first_arr)
-                          + JappixCommon.randomArrayValue(second_arr)
-                          + JappixCommon.randomArrayValue(last_arr);
+            var rand_nick = JappixCommon.randomArrayValue(first_arr)  + 
+                            JappixCommon.randomArrayValue(second_arr) + 
+                            JappixCommon.randomArrayValue(last_arr);
             
             return rand_nick;
         } catch(e) {
@@ -3981,37 +3982,37 @@ var JappixMini = (function () {
             }
 
             // Read configuration subs
-            connection_config = config_args['connection'] || {};
-            application_config = config_args['application'] || {};
+            connection_config = config_args.connection   || {};
+            application_config = config_args.application || {};
 
-            application_network_config = application_config['network'] || {};
-            application_interface_config = application_config['interface'] || {};
-            application_user_config = application_config['user'] || {};
-            application_chat_config = application_config['chat'] || {};
-            application_groupchat_config = application_config['groupchat'] || {};
+            application_network_config = application_config.network     || {};
+            application_interface_config = application_config.interface || {};
+            application_user_config = application_config.user           || {};
+            application_chat_config = application_config.chat           || {};
+            application_groupchat_config = application_config.groupchat || {};
 
             // Apply new configuration (falling back to defaults if not set)
-            MINI_AUTOCONNECT         = application_network_config['autoconnect']         || MINI_AUTOCONNECT;
-            MINI_SHOWPANE            = application_interface_config['showpane']          || MINI_SHOWPANE;
-            MINI_ANIMATE             = application_interface_config['animate']           || MINI_ANIMATE;
-            MINI_RANDNICK            = application_user_config['random_nickname']        || MINI_RANDNICK;
-            MINI_GROUPCHAT_PRESENCE  = application_groupchat_config['show_presence']     || MINI_GROUPCHAT_PRESENCE;
-            MINI_DISABLE_MOBILE      = application_interface_config['no_mobile']         || MINI_DISABLE_MOBILE;
-            MINI_NICKNAME            = application_user_config['nickname']               || MINI_NICKNAME;
-            MINI_DOMAIN              = connection_config['domain']                       || MINI_DOMAIN;
-            MINI_USER                = connection_config['user']                         || MINI_USER;
-            MINI_PASSWORD            = connection_config['password']                     || MINI_PASSWORD;
-            MINI_RECONNECT_MAX       = application_network_config['reconnect_max']       || MINI_RECONNECT_MAX;
-            MINI_RECONNECT_INTERVAL  = application_network_config['reconnect_interval']  || MINI_RECONNECT_INTERVAL;
-            MINI_CHATS               = application_chat_config['open']                   || MINI_CHATS;
-            MINI_GROUPCHATS          = application_groupchat_config['open']              || MINI_GROUPCHATS;
-            MINI_SUGGEST_CHATS       = application_chat_config['suggest']                || MINI_CHATS;
-            MINI_SUGGEST_GROUPCHATS  = application_groupchat_config['suggest']           || MINI_SUGGEST_GROUPCHATS;
-            MINI_SUGGEST_PASSWORDS   = application_groupchat_config['suggest_passwords'] || MINI_SUGGEST_PASSWORDS;
-            MINI_PASSWORDS           = application_groupchat_config['open_passwords']    || MINI_PASSWORDS;
-            MINI_PRIORITY            = connection_config['priority']                     || MINI_PRIORITY;
-            MINI_RESOURCE            = connection_config['resource']                     || MINI_RESOURCE;
-            MINI_ERROR_LINK          = application_interface_config['error_link']        || MINI_ERROR_LINK;
+            MINI_AUTOCONNECT         = application_network_config.autoconnect         || MINI_AUTOCONNECT;
+            MINI_SHOWPANE            = application_interface_config.showpane          || MINI_SHOWPANE;
+            MINI_ANIMATE             = application_interface_config.animate           || MINI_ANIMATE;
+            MINI_RANDNICK            = application_user_config.random_nickname        || MINI_RANDNICK;
+            MINI_GROUPCHAT_PRESENCE  = application_groupchat_config.show_presence     || MINI_GROUPCHAT_PRESENCE;
+            MINI_DISABLE_MOBILE      = application_interface_config.no_mobile         || MINI_DISABLE_MOBILE;
+            MINI_NICKNAME            = application_user_config.nickname               || MINI_NICKNAME;
+            MINI_DOMAIN              = connection_config.domain                       || MINI_DOMAIN;
+            MINI_USER                = connection_config.user                         || MINI_USER;
+            MINI_PASSWORD            = connection_config.password                     || MINI_PASSWORD;
+            MINI_RECONNECT_MAX       = application_network_config.reconnect_max       || MINI_RECONNECT_MAX;
+            MINI_RECONNECT_INTERVAL  = application_network_config.reconnect_interval  || MINI_RECONNECT_INTERVAL;
+            MINI_CHATS               = application_chat_config.open                   || MINI_CHATS;
+            MINI_GROUPCHATS          = application_groupchat_config.open              || MINI_GROUPCHATS;
+            MINI_SUGGEST_CHATS       = application_chat_config.suggest                || MINI_CHATS;
+            MINI_SUGGEST_GROUPCHATS  = application_groupchat_config.suggest           || MINI_SUGGEST_GROUPCHATS;
+            MINI_SUGGEST_PASSWORDS   = application_groupchat_config.suggest_passwords || MINI_SUGGEST_PASSWORDS;
+            MINI_PASSWORDS           = application_groupchat_config.open_passwords    || MINI_PASSWORDS;
+            MINI_PRIORITY            = connection_config.priority                     || MINI_PRIORITY;
+            MINI_RESOURCE            = connection_config.resource                     || MINI_RESOURCE;
+            MINI_ERROR_LINK          = application_interface_config.error_link        || MINI_ERROR_LINK;
         } catch(e) {
             JappixConsole.error('JappixMini.configure', e);
         }
@@ -4046,7 +4047,7 @@ var JappixMini = (function () {
             MINI_PASSWORD = password;
             MINI_HASH = 'jm.' + hex_md5(MINI_USER + '@' + MINI_DOMAIN);
 
-            if(priority != undefined) {
+            if(priority !== undefined) {
                 MINI_PRIORITY = priority;
             }
             

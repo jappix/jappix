@@ -11,7 +11,7 @@ Author: Valérian Saliou
 */
 
 // Bundle
-var Error = (function () {
+var Errors = (function () {
 
     /**
      * Alias of this
@@ -64,7 +64,7 @@ var Error = (function () {
                 Board.openThisError(2);
             }
         } catch(e) {
-            Console.error('Error.show', e);
+            Console.error('Errors.show', e);
         }
 
     };
@@ -156,7 +156,7 @@ var Error = (function () {
             // Return there's an error
             return true;
         } catch(e) {
-            Console.error('Error.handle', e);
+            Console.error('Errors.handle', e);
         }
 
     };
@@ -173,7 +173,7 @@ var Error = (function () {
         try {
             return self.handle(packet.getNode());
         } catch(e) {
-            Console.error('Error.handleReply', e);
+            Console.error('Errors.handleReply', e);
         }
 
     };
@@ -192,7 +192,7 @@ var Error = (function () {
                 Message.handle(packet);
             }
         } catch(e) {
-            Console.error('Error.handleMessage', e);
+            Console.error('Errors.handleMessage', e);
         }
 
     };

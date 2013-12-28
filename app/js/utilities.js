@@ -169,7 +169,7 @@ var Utils = (function () {
         var is_anonymous = false;
 
         try {
-            if(Common.allowedAnonymous() && XMPPLinks.links_var['r']) {
+            if(Common.allowedAnonymous() && XMPPLinks.links_var.r) {
                 is_anonymous = true;
             }
         } catch(e) {
@@ -536,7 +536,7 @@ var Utils = (function () {
 
         try {
             // Loop in the array
-            for(i in array) {
+            for(var i in array) {
                 if(array[i] == value) {
                     val_exists = true;
                     break;
@@ -563,7 +563,7 @@ var Utils = (function () {
         was_removed = false;
 
         try {
-            for(i in array) {
+            for(var i in array) {
                 // It matches, remove it!
                 if(array[i] == value) {
                     array.splice(i, 1);
@@ -597,7 +597,7 @@ var Utils = (function () {
                 if(string.match(/,/gi)) {
                     var string_split = string.split(',');
                     
-                    for(i in string_split) {
+                    for(var i in string_split) {
                         if(string_split[i])
                             array.push(string_split[i]);
                         else

@@ -140,9 +140,9 @@ var Chat = (function () {
                 specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
                 specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
                 specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
-                specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>'
-                            + '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (video)") + '"></a>'
-                            + '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + Common._e("Show user profile") + '"></a>';
+                specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>' + 
+                              '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (video)") + '"></a>' + 
+                              '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + Common._e("Show user profile") + '"></a>';
                 specialStyle = ' style="display: none;"';
                 specialDisabled = '';
             }
@@ -432,8 +432,8 @@ var Chat = (function () {
 
                 if(Features.enabledMAM() && !(xid in MAM.map_pending)) {
                     var has_state = xid in MAM.map_states;
-                    var rsm_count = has_state ? MAM.map_states[xid]['rsm']['count'] : 1;
-                    var rsm_before = has_state ? MAM.map_states[xid]['rsm']['first'] : '';
+                    var rsm_count = has_state ? MAM.map_states[xid].rsm.count : 1;
+                    var rsm_before = has_state ? MAM.map_states[xid].rsm.first : '';
 
                     // Request more archives?
                     if(rsm_count > 0 && $(this).scrollTop() < MAM.SCROLL_THRESHOLD) {

@@ -54,7 +54,7 @@ var Connection = (function () {
             Interface.showGeneralWait();
             
             // We define the http binding parameters
-            oArgs = new Object();
+            oArgs = {};
             
             if(HOST_BOSH_MAIN)
                 oArgs.httpbase = HOST_BOSH_MAIN;
@@ -77,7 +77,7 @@ var Connection = (function () {
                 random_resource = lResource + ' (' + (new Date()).getTime() + ')';
             
             // We retrieve what the user typed in the login inputs
-            oArgs = new Object();
+            oArgs = {};
             oArgs.domain = $.trim(lServer);
             oArgs.username = $.trim(lNick);
             oArgs.resource = random_resource;
@@ -220,13 +220,13 @@ var Connection = (function () {
                         }
                         
                         if(error_message)
-                            Error.show('', error_message, '');
+                            Errors.show('', error_message, '');
                     }
                 });
             } else {
                 try {
                     // We define the http binding parameters
-                    oArgs = new Object();
+                    oArgs = {};
                     
                     if(HOST_BOSH_MAIN)
                         oArgs.httpbase = HOST_BOSH_MAIN;
@@ -244,7 +244,7 @@ var Connection = (function () {
                     con.registerHandler('onerror', handleError);
                     
                     // We retrieve what the user typed in the register inputs
-                    oArgs = new Object();
+                    oArgs = {};
                     oArgs.domain = $.trim(domain);
                     oArgs.username = $.trim(username);
                     oArgs.resource = JAPPIX_RESOURCE + ' Register (' + (new Date()).getTime() + ')';
@@ -433,7 +433,7 @@ var Connection = (function () {
             con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.handleConnected);
-            con.registerHandler('onerror', Error.handle);
+            con.registerHandler('onerror', Errors.handle);
             con.registerHandler('ondisconnect', self.handleDisconnected);
             
             // Extended handlers
@@ -585,7 +585,7 @@ var Connection = (function () {
                 // Fire the event!
                 $('#reconnect a.finish.reconnect').everyTime('1s', function() {
                     // We can reconnect!
-                    if(self.reconnect_timer == 0)
+                    if(self.reconnect_timer === 0)
                         return self.acceptReconnect(mode);
                     
                     // Button text
@@ -842,18 +842,18 @@ var Connection = (function () {
                     return;
                 
                 // Connection params submitted in URL?
-                if(XMPPLinks.links_var['u'] && XMPPLinks.links_var['q']) {
+                if(XMPPLinks.links_var.u && XMPPLinks.links_var.q) {
                     // Generate login data
-                    var login_xid = Common.bareXID(Common.generateXID(XMPPLinks.links_var['u'], 'chat'));
+                    var login_xid = Common.bareXID(Common.generateXID(XMPPLinks.links_var.u, 'chat'));
                     var login_nick = Common.getXIDNick(login_xid);
                     var login_server = Common.getXIDHost(login_xid);
-                    var login_pwd = XMPPLinks.links_var['q'];
+                    var login_pwd = XMPPLinks.links_var.q;
                     var login_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
                     var login_priority = '10';
                     var login_remember = 1;
                     
                     // Must store session?
-                    if(XMPPLinks.links_var['h'] && (XMPPLinks.links_var['h'] == '1')) {
+                    if(XMPPLinks.links_var.h && (XMPPLinks.links_var.h == '1')) {
                         // Store session
                         var session_xml = self.storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
                         DataStore.setPersistent('global', 'session', 1, session_xml);
@@ -893,7 +893,7 @@ var Connection = (function () {
                 }
                 
                 // Not connected, maybe a XMPP link is submitted?
-                else if((parent.location.hash != '#OK') && XMPPLinks.links_var['x']) {
+                else if((parent.location.hash != '#OK') && XMPPLinks.links_var.x) {
                     Home.change('loginer');
                     
                     Console.info('A XMPP link is set, switch to login page.');

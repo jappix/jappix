@@ -75,9 +75,9 @@ var Presence = (function () {
                 Storage.get(NS_BOOKMARKS);
                 
                 // We open a new chat if a XMPP link was submitted
-                if((parent.location.hash != '#OK') && XMPPLinks.links_var['x']) {
+                if((parent.location.hash != '#OK') && XMPPLinks.links_var.x) {
                     // A link is submitted in the URL
-                    XMPPLinks.go(XMPPLinks.links_var['x']);
+                    XMPPLinks.go(XMPPLinks.links_var.x);
                     
                     // Set a OK status
                     parent.location.hash = 'OK';
@@ -106,6 +106,7 @@ var Presence = (function () {
             var xid = Common.bareXID(from);
             var xidHash = hex_md5(xid);
             var resource = Common.thisResource(from);
+            var resources_obj, xml;
             
             // We get the type content
             var type = presence.getType();
@@ -158,10 +159,9 @@ var Presence = (function () {
                 var nick = resource;
                 var messageTime = DateUtils.getCompleteTime();
                 var notInitial = true;
-                var resources_obj;
 
                 // Read the status code
-                var status_code = new Array();
+                var status_code = [];
                 
                 x_muc.find('status').each(function() {
                     status_code.push(parseInt($(this).attr('code')));
@@ -183,7 +183,7 @@ var Presence = (function () {
                 // If one user is joining
                 else {
                     // Fixes M-Link first presence bug (missing ID!)
-                    if((nick == Name.getMUCNick(xidHash)) && (presence.getID() == null) && !Common.exists('#page-engine #' + xidHash + ' .list .' + hash)) {
+                    if((nick == Name.getMUCNick(xidHash)) && (presence.getID() === null) && !Common.exists('#page-engine #' + xidHash + ' .list .' + hash)) {
                         Groupchat.handleMUC(presence);
                         
                         Console.warn('Passed M-Link MUC first presence handling.');
@@ -192,7 +192,7 @@ var Presence = (function () {
                     else {
                         self.displayMUC(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
                         
-                        var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
+                        xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
                         DataStore.setDB(Connection.desktop_hash, 'presence-stanza', from, xml);
                         resources_obj = self.addResource(xid, resource);
@@ -232,8 +232,6 @@ var Presence = (function () {
                 
                 // Other stanzas
                 else {
-                    var resources_obj;
-
                     // Unavailable/error presence
                     if(type == 'unavailable') {
                         DataStore.removeDB(Connection.desktop_hash, 'presence-stanza', from);
@@ -242,7 +240,7 @@ var Presence = (function () {
                     
                     // Other presence (available, subscribe...)
                     else {
-                        var xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
+                        xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
 
                         DataStore.setDB(Connection.desktop_hash, 'presence-stanza', from, xml);
                         resources_obj = self.addResource(xid, resource);
@@ -943,7 +941,7 @@ var Presence = (function () {
             // Initialize vars
             var cur_resource, cur_from, cur_pr,
                 cur_xml, cur_priority,
-                from_highest, from_highest;
+                from_highest;
 
             from_highest = null;
             max_priority = null;
@@ -971,7 +969,7 @@ var Presence = (function () {
                             cur_priority = !isNaN(cur_priority) ? parseInt(cur_priority) : 0;
                             
                             // Higher priority?
-                            if((cur_priority >= max_priority) || (max_priority == null)) {
+                            if((cur_priority >= max_priority) || (max_priority === null)) {
                                 max_priority = cur_priority;
                                 from_highest = cur_from;
                             }
@@ -1570,7 +1568,7 @@ var Presence = (function () {
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
-                for(i in show_id) {
+                for(var i in show_id) {
                     // Yet in use: no need to display it!
                     if(show_id[i] == show_val)
                         continue;

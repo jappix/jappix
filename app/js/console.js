@@ -11,7 +11,7 @@
  *  @url https://github.com/valeriansaliou/console.js
  */
 
-var Console = new function () {
+var Console = (function () {
 
   var self = this;
 
@@ -25,7 +25,7 @@ var Console = new function () {
   /* Adapters */
   self._adapter = function (level) {
     if (!self._has) {
-      return function() {}
+      return function() {};
     }
 
     var adapter = null;
@@ -43,11 +43,11 @@ var Console = new function () {
           adapter = console.debug; break;
       }
     } catch (e) {
-      adapter = function() {}
+      adapter = function() {};
     }
 
     return adapter.bind(self._console);
-  }
+  };
 
 
   /* Methods */
@@ -57,6 +57,10 @@ var Console = new function () {
   self.log = self._adapter(3);
   self.debug = self._adapter(4);
 
-};
+
+  /* Return class scope */
+  return self;
+
+})();
 
 var JappixConsole = Console;

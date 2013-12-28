@@ -30,7 +30,7 @@ var Message = (function () {
 
         try {
             // Error packet? Stop!
-            if(Error.handleReply(message))
+            if(Errors.handleReply(message))
                 return;
             
             // MAM-forwarded message?
@@ -254,6 +254,7 @@ var Message = (function () {
                 // We get the needed values
                 var iParse = $(node).find('event items');
                 var iNode = iParse.attr('node');
+                var tText;
                 
                 // Turn around the different result cases
                 if(iNode) {
@@ -263,7 +264,7 @@ var Message = (function () {
                             // Retrieve the values
                             var iMood = iParse.find('mood');
                             var fValue = '';
-                            var tText = '';
+                            tText = '';
                             
                             // There's something
                             if(iMood.children().size()) {
@@ -288,7 +289,7 @@ var Message = (function () {
                             // Retrieve the values
                             var iActivity = iParse.find('activity');
                             var sValue = '';
-                            var tText = '';
+                            tText = '';
                             
                             // There's something
                             if(iActivity.children().size()) {
@@ -448,7 +449,7 @@ var Message = (function () {
                     var chatType = 'chat';
                     
                     // Must send a receipt notification?
-                    if(Receipts.has(message) && (id != null))
+                    if(Receipts.has(message) && (id !== null))
                         Receipts.sendReceived(type, from, id);
                     
                     // It does not come from a groupchat user, get the full name
@@ -501,6 +502,7 @@ var Message = (function () {
             var message_area = $('#' + hash + ' .message-area');
             var body = $.trim(message_area.val());
             var xid = unescape(message_area.attr('data-to'));
+            var nXID;
             
             // If the user didn't entered any message, stop
             if(!body || !xid)
@@ -543,7 +545,7 @@ var Message = (function () {
                 // Generate the code from the array
                 shortcuts = shortcuts.sort();
                 
-                for(s in shortcuts)
+                for(var s in shortcuts)
                     help_text += shortcuts[s] + '<br />';
                 
                 help_text += '</p>';
@@ -585,7 +587,7 @@ var Message = (function () {
                 
                 // Groupchat WHOIS
                 if(type == 'groupchat') {
-                    var nXID = Utils.getMUCUserXID(xid, whois_xid);
+                    nXID = Utils.getMUCUserXID(xid, whois_xid);
                     
                     if(!nXID) {
                         Board.openThisInfo(6);
@@ -625,7 +627,7 @@ var Message = (function () {
                 aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
                 
                 // Send it!
-                con.send(aMsg, Error.handleReply);
+                con.send(aMsg, Errors.handleReply);
                 
                 // Filter the xHTML message (for us!)
                 if(!html_escape)
@@ -650,7 +652,7 @@ var Message = (function () {
                     aMsg.setType('groupchat');
                     self.generate(aMsg, body, hash);
                     
-                    con.send(aMsg, Error.handleReply);
+                    con.send(aMsg, Errors.handleReply);
                 }
                 
                 // /nick shortcut
@@ -660,7 +662,7 @@ var Message = (function () {
                     // Does not exist yet?
                     if(!Utils.getMUCUserXID(xid, nick)) {
                         // Send a new presence
-                        Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Error.handleReply);
+                        Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Errors.handleReply);
                         
                         // Change the stored nickname
                         $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
@@ -672,21 +674,21 @@ var Message = (function () {
                 
                 // /msg shortcut
                 else if(body.match(/^\/msg (\S+)\s+(.+)/)) {
-                    var nick = RegExp.$1;
-                    var body = RegExp.$2;
-                    var nXID = Utils.getMUCUserXID(xid, nick);
+                    var msg_nick = RegExp.$1;
+                    var msg_body = RegExp.$2;
+                    nXID = Utils.getMUCUserXID(xid, msg_nick);
                     
                     // We check if the user exists
                     if(!nXID)
                         Board.openThisInfo(6);
                     
                     // If the private message is not empty
-                    else if(body) {
+                    else if(msg_body) {
                         aMsg.setType('chat');
                         aMsg.setTo(nXID);
-                        self.generate(aMsg, body, hash);
+                        self.generate(aMsg, msg_body, hash);
                         
-                        con.send(aMsg, Error.handleReply);
+                        con.send(aMsg, Errors.handleReply);
                     }
                 }
                 
@@ -697,7 +699,7 @@ var Message = (function () {
                     aMsg.setType('groupchat');
                     aMsg.setSubject(topic);
                     
-                    con.send(aMsg, Error.handleMessage);
+                    con.send(aMsg, Errors.handleMessage);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -705,26 +707,26 @@ var Message = (function () {
                 
                 // /ban shortcut
                 else if(body.match(/^\/ban (.*)/)) {
-                    nick = $.trim(RegExp.$1);
-                    reason = '';
+                    var ban_nick = $.trim(RegExp.$1);
+                    var ban_reason = '';
                     
                     // We check if the user exists, if not it may be because a reason is given
                     // we do not check it at first because the nickname could contain ':'
-                    var ban_xid = Utils.getMUCUserRealXID(xid, nick);
+                    var ban_xid = Utils.getMUCUserRealXID(xid, ban_nick);
 
                     if(!ban_xid && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
-                        var reason = $.trim(RegExp.$1);
-                        var nick = $.trim(RegExp.$2);
+                        ban_reason = $.trim(RegExp.$1);
+                        ban_nick = $.trim(RegExp.$2);
 
-                        if(nick.length === 0) {
-                            nick = reason;
-                            reason = '';
+                        if(ban_nick.length === 0) {
+                            ban_nick = ban_reason;
+                            ban_reason = '';
                         }
 
-                        var ban_xid = Utils.getMUCUserXID(xid, nick);
+                        ban_xid = Utils.getMUCUserXID(xid, ban_nick);
                     }
                     
-                    Groupchat.banUser(xid, ban_xid, reason)
+                    Groupchat.banUser(xid, ban_xid, ban_reason);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -732,26 +734,26 @@ var Message = (function () {
                 
                 // /kick shortcut
                 else if(body.match(/^\/kick (.*)/)) {
-                    nick = $.trim(RegExp.$1);
-                    reason =  '';
+                    var kick_nick = $.trim(RegExp.$1);
+                    var kick_reason =  '';
 
                     // We check if the user exists, if not it may be because a reason is given
                     // we do not check it at first because the nickname could contain ':'
-                    var kick_xid = Utils.getMUCUserRealXID(xid, nick);
+                    var kick_xid = Utils.getMUCUserRealXID(xid, kick_nick);
 
                     if(!kick_xid && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
-                        var reason = $.trim(RegExp.$1);
-                        var nick = $.trim(RegExp.$2);
+                        kick_reason = $.trim(RegExp.$1);
+                        kick_nick = $.trim(RegExp.$2);
 
-                        if(nick.length === 0) {
-                            nick = reason;
-                            reason = '';
+                        if(kick_nick.length === 0) {
+                            kick_nick = kick_reason;
+                            kick_reason = '';
                         }
 
-                        var kick_xid = Utils.getMUCUserXID(xid, nick);
+                        kick_xid = Utils.getMUCUserXID(xid, kick_nick);
                     }
                     
-                    Groupchat.kickUser(xid, kick_xid, nick, reason);
+                    Groupchat.kickUser(xid, kick_xid, kick_nick, kick_reason);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -760,16 +762,16 @@ var Message = (function () {
                 // /invite shortcut
                 else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
                     var i_xid = RegExp.$1;
-                    var reason = RegExp.$2;
+                    var invite_reason = RegExp.$2;
 
                     var x = aMsg.appendNode('x', {'xmlns': NS_MUC_USER});
                     var aNode = x.appendChild(aMsg.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
                     
-                    if(reason) {
-                        aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, reason));
+                    if(invite_reason) {
+                        aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, invite_reason));
                     }
                     
-                    con.send(aMsg, Error.handleReply);
+                    con.send(aMsg, Errors.handleReply);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -784,7 +786,7 @@ var Message = (function () {
                     
                     self.generate(aMsg, body, hash);
                     
-                    con.send(aMsg, Error.handleMessage);
+                    con.send(aMsg, Errors.handleMessage);
                     
                     Console.info('Message sent to: ' + xid + ' / ' + type);
                 }
@@ -937,7 +939,7 @@ var Message = (function () {
                 }
             }
 
-            Console.info('Flushed ' + flush_count + ' archives in total.')
+            Console.info('Flushed ' + flush_count + ' archives in total.');
         } catch(e) {
             Console.error('Message.flushLocalArchive', e);
         }
@@ -975,7 +977,7 @@ var Message = (function () {
                 var aBody = aHtml.appendChild(aMsg.buildNode('body', {'xmlns': NS_XHTML}));
                 
                 // Use the exploded body array to create one element per entry
-                for(i in new_lines) {
+                for(var i in new_lines) {
                     // Current line
                     var cLine = new_lines[i];
                     
@@ -1051,7 +1053,7 @@ var Message = (function () {
             var cont_scroll = document.getElementById('chat-content-' + hash);
             var can_scroll = false;
             
-            if((!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)) && no_scroll != true) {
+            if((!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)) && no_scroll !== true) {
                 can_scroll = true;
             }
             

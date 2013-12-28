@@ -55,7 +55,7 @@ var Search = (function () {
             // Search in the roster
             var buddies = Roster.getAllBuddies();
             
-            for(i in buddies) {
+            for(var i in buddies) {
                 var xid = buddies[i];
                 var nick = Name.getBuddy(xid);
                 
@@ -161,7 +161,7 @@ var Search = (function () {
                 // Initialize the code generation
                 var code = '<ul>';
                 
-                for(b in entered) {
+                for(var b in entered) {
                     // Get some values from the XID
                     var current = Name.getBuddy(entered[b]).htmlEnc();
                     current = current.replace(regex, '<b>$&</b>');
@@ -203,18 +203,18 @@ var Search = (function () {
     /**
      * Handles the keyboard arrows press when searching
      * @public
-     * @param {object} e
+     * @param {object} evt
      * @param {string} destination
      * @return {boolean}
      */
-    self.arrowsBuddy = function(e, destination) {
+    self.arrowsBuddy = function(evt, destination) {
 
         try {
             // Down arrow: 40
             // Up arrown: 38
             
             // Initialize
-            var code = e.keyCode;
+            var code = evt.keyCode;
             
             // Not the key we want here
             if((code != 40) && (code != 38))
@@ -289,11 +289,11 @@ var Search = (function () {
             
             // Only show the buddies which match the search
             if(!Roster.blist_all) {
-                for(i in rFilter)
+                for(var i in rFilter)
                     $('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
             } else {
-                for(i in rFilter)
-                    $('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]').show();
+                for(var j in rFilter)
+                    $('#buddy-list .buddy[data-xid="' + escape(rFilter[j]) + '"]').show();
             }
         } catch(e) {
             Console.error('Search.goFilterBuddy', e);
@@ -381,7 +381,7 @@ var Search = (function () {
     self.sortElementByStamp = function(stamp, element) {
 
         try {
-            var array = new Array();
+            var array = [];
             var i = 0;
             var nearest = 0;
             

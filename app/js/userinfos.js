@@ -177,10 +177,10 @@ var UserInfos = (function () {
                 pXID = cXID;
                 
                 // We request the user's system infos
-                self.query(cXID, 'version')
+                self.query(cXID, 'version');
                 
                 // We request the user's local time
-                self.query(cXID, 'time')
+                self.query(cXID, 'time');
                 
                 // Add these to the markers
                 markers += ' version time';
@@ -307,7 +307,7 @@ var UserInfos = (function () {
                 var seconds = $(iq.getNode()).find('query').attr('seconds');
                 
                 // Any seconds?
-                if(seconds != undefined) {
+                if(seconds !== undefined) {
                     // Initialize the parsing
                     var last;
                     seconds = parseInt(seconds);
@@ -499,11 +499,11 @@ var UserInfos = (function () {
                 
                 // If the pointer is on a stored rosternote
                 if(current.match(db_regex)) {
-                    var xid = RegExp.$1;
-                    var value = DataStore.storageDB.getItem(current);
+                    var cur_xid = RegExp.$1;
+                    var cur_value = DataStore.storageDB.getItem(current);
                     
-                    if(xid && value)
-                        storage.appendChild(iq.buildNode('note', {'jid': xid, 'xmlns': NS_ROSTERNOTES}, value));
+                    if(cur_xid && cur_value)
+                        storage.appendChild(iq.buildNode('note', {'jid': cur_xid, 'xmlns': NS_ROSTERNOTES}, cur_value));
                 }
             }
             

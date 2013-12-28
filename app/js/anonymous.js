@@ -116,7 +116,7 @@ var Anonymous = (function () {
             con.registerHandler('presence', Presence.handle);
             con.registerHandler('iq', IQ.handle);
             con.registerHandler('onconnect', self.connected);
-            con.registerHandler('onerror', Error.handle);
+            con.registerHandler('onerror', Errors.handle);
             con.registerHandler('ondisconnect', self.disconnected);
             
             // We set the anonymous connection parameters
@@ -162,10 +162,10 @@ var Anonymous = (function () {
                 Interface.showGeneralWait();
                 
                 // Get the vars
-                if(XMPPLinks.links_var['r'])
-                    ANONYMOUS_ROOM = XMPPLinks.links_var['r'];
-                if(XMPPLinks.links_var['n'])
-                    ANONYMOUS_NICK = XMPPLinks.links_var['n'];
+                if(XMPPLinks.links_var.r)
+                    ANONYMOUS_ROOM = XMPPLinks.links_var.r;
+                if(XMPPLinks.links_var.n)
+                    ANONYMOUS_NICK = XMPPLinks.links_var.n;
                 
                 // Fire the login action
                 self.login(HOST_ANONYMOUS);

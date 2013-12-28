@@ -67,7 +67,7 @@ var Mobile = (function () {
                 self.showThis('info');
                 
                 // We define the http binding parameters
-                oArgs = new Object();
+                oArgs = {};
                 
                 if(HOST_BOSH_MAIN)
                     oArgs.httpbase = HOST_BOSH_MAIN;
@@ -89,7 +89,7 @@ var Mobile = (function () {
                 con.registerHandler('ondisconnect', self.handleDisconnected);
                 
                 // We retrieve what the user typed in the login inputs
-                oArgs = new Object();
+                oArgs = {};
                 oArgs.username = username;
                 oArgs.domain = domain;
                 oArgs.resource = JAPPIX_RESOURCE + ' Mobile (' + (new Date()).getTime() + ')';
@@ -386,10 +386,12 @@ var Mobile = (function () {
             var iqID = iq.getID();
             var iqQueryXMLNS = iq.getQueryXMLNS();
             var iqType = iq.getType();
+            var iqQuery;
             
             // Create the response
+            var iqResponse = new JSJaCIQ();
+
             if((iqType == 'get') && ((iqQueryXMLNS == NS_DISCO_INFO) || (iqQueryXMLNS == NS_VERSION))) {
-                var iqResponse = new JSJaCIQ();
                 iqResponse.setID(iqID);
                 iqResponse.setTo(iqFrom);
                 iqResponse.setType('result');
@@ -399,7 +401,7 @@ var Mobile = (function () {
             if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0030.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
+                iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
                 
                 // We set the name of the client
                 iqQuery.appendChild(iq.appendNode('identity', {
@@ -414,8 +416,9 @@ var Mobile = (function () {
                     NS_VERSION
                 );
                 
-                for(i in fArray)
+                for(var i in fArray) {
                     iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
+                }
                 
                 con.send(iqResponse);
             }
@@ -424,7 +427,7 @@ var Mobile = (function () {
             else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0092.html */
                 
-                var iqQuery = iqResponse.setQuery(NS_VERSION);
+                iqQuery = iqResponse.setQuery(NS_VERSION);
                 
                 iqQuery.appendChild(iq.buildNode('name', 'Jappix Mobile'));
                 iqQuery.appendChild(iq.buildNode('version', JAPPIX_VERSION));
@@ -713,8 +716,8 @@ var Mobile = (function () {
             var index = toStr.indexOf(toEx);
             
             // We split if necessary the string
-            if(index != -1) {
-                if(i == 0)
+            if(index !== -1) {
+                if(i === 0)
                     toStr = toStr.substr(0, index);
                 else
                     toStr = toStr.substr(index + 1);
@@ -789,13 +792,11 @@ var Mobile = (function () {
     self.filter = function(msg) {
 
         try {
-            var msg = msg
-    
             // Encode in HTML
-            .htmlEnc()
-            
+            msg = msg.htmlEnc();
+    
             // Highlighted text
-            .replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
+            msg = msg.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
             
             // Links
             msg = Links.apply(msg, 'mini');
