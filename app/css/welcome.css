@@ -30,9 +30,9 @@ Author: Valérian Saliou
 	width: 270px;
 	text-decoration: none;
 	float: left;
-	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 
 #welcome a.box.share {

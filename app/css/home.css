@@ -33,12 +33,12 @@ Author: Valérian Saliou
 	top: 0;
 	text-shadow: 0 0 1px black;
 	z-index: 100;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 	-moz-border-radius-bottomleft: 3px;
 	-moz-border-radius-bottomright: 3px;
 	-webkit-border-bottom-left-radius: 3px;
 	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 #home .corporation,
@@ -70,9 +70,9 @@ html[dir="rtl"] #home .aboutus {
 #home .corporation.hovered,
 #home .aboutus.hovered {
 	height: 28px;
-	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
+	border-radius: 0;
 }
 
 #home .corporation .corp_network,
@@ -82,21 +82,21 @@ html[dir="rtl"] #home .aboutus {
 	top: 28px;
 	left: 0;
 	display: none;
-	border-top-right-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 html[dir="rtl"] #home .corporation .corp_network,
 html[dir="rtl"] #home .aboutus .aboutus_org {
 	left: auto;
 	right: 0;
-	border-top-right-radius: 0;
-	border-top-left-radius: 3px;
 	-moz-border-radius-topright: 0;
 	-moz-border-radius-topleft: 3px;
 	-webkit-border-top-right-radius: 0;
 	-webkit-border-top-left-radius: 3px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 3px;
 }
 
 #home .corporation.hovered .corp_network,
@@ -123,9 +123,9 @@ html[dir="rtl"] #home .aboutus .aboutus_org {
 #home .aboutus .aboutus_org span.one {
 	margin: 2px 0;
 	padding: 2px 6px;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 #home .aboutus .aboutus_org span.one {
@@ -301,12 +301,12 @@ html[dir="rtl"] #home .obsolete a {
 	bottom: 0;
 	right: 0;
 	z-index: 2;
-	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	box-shadow: 0 0 35px #5c5c5c;
+	border-radius: 10px;
 	-moz-box-shadow: 0 0 35px #5c5c5c;
 	-webkit-box-shadow: 0 0 35px #5c5c5c;
+	box-shadow: 0 0 35px #5c5c5c;
 }
 
 #home .left {
@@ -351,8 +351,10 @@ html[dir="rtl"] #home .left p.secondary {
 
 #home .right {
 	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #C5E1FF);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#C5E1FF));
+	background: -moz-linear-gradient(top, #e4eef9, #c5e1ff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#c5e1ff));
+	background: -webkit-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
+	background: -o-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
 	float: right;
 	width: 385px;
 	height: 350px;
@@ -360,12 +362,12 @@ html[dir="rtl"] #home .left p.secondary {
 	padding: 10px;
 	font-size: 13.4px;
 	text-align: justify;
-	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	box-shadow: 0 0 20px black;
+	border-radius: 5px;
 	-moz-box-shadow: 0 0 20px black;
 	-webkit-box-shadow: 0 0 20px black;
+	box-shadow: 0 0 20px black;
 }
 
 html[dir="rtl"] #home .right {
@@ -403,10 +405,13 @@ html[dir="rtl"] #home .right {
 	height: 64px;
 	text-decoration: none;
 	font-weight: bold;
-	outline: none;
-	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#home .right button:focus {
+	outline: 0 none;
 }
 
 html[dir="rtl"] #home .right button {
@@ -452,17 +457,17 @@ html[dir="rtl"] #home .right button span.text {
 	background-position: 0 0;
 	border: 1px solid #5cb55c;
 	margin-top: 22px;
-	box-shadow: 0 0 6px #89e389;
 	-moz-box-shadow: 0 0 6px #89e389;
 	-webkit-box-shadow: 0 0 6px #89e389;
+	box-shadow: 0 0 6px #89e389;
 }
 
 #home .right .login:hover,
 #home .right .login:focus {
 	border: 1px solid #419141;
-	box-shadow: 0 0 10px #72d071;
 	-moz-box-shadow: 0 0 10px #72d071;
 	-webkit-box-shadow: 0 0 10px #72d071;
+	box-shadow: 0 0 10px #72d071;
 }
 
 #home .right .login:active {
@@ -484,17 +489,17 @@ html[dir="rtl"] #home .right button span.text {
 	background-position: 0 -160px;
 	border: 1px solid #e3db56;
 	margin-top: 15px;
-	box-shadow: 0 0 6px #f1e968;
 	-moz-box-shadow: 0 0 6px #f1e968;
 	-webkit-box-shadow: 0 0 6px #f1e968;
+	box-shadow: 0 0 6px #f1e968;
 }
 
 #home .right .register:hover,
 #home .right .register:focus {
 	border: 1px solid #d2c93f;
-	box-shadow: 0 0 10px #e0d743;
 	-moz-box-shadow: 0 0 10px #e0d743;
 	-webkit-box-shadow: 0 0 10px #e0d743;
+	box-shadow: 0 0 10px #e0d743;
 }
 
 #home .right .register:active {
@@ -588,23 +593,25 @@ html[dir="rtl"] #home .right .navigation a {
 
 #home .friendsview .friends {
 	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #C5E1FF);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#C5E1FF));
+	background: -moz-linear-gradient(top, #e4eef9, #c5e1ff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#c5e1ff));
+	background: -webkit-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
+	background: -o-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
 	font-size: 13.4px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
 	-moz-border-radius-bottomleft: 8px;
 	-moz-border-radius-bottomright: 8px;
 	-webkit-border-bottom-left-radius: 8px;
 	-webkit-border-bottom-right-radius: 8px;
-	box-shadow: 0 0 10px black;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 	-moz-box-shadow: 0 0 10px black;
 	-webkit-box-shadow: 0 0 10px black;
+	box-shadow: 0 0 10px black;
 }
 
 #home .friendsview .friends,
@@ -650,6 +657,7 @@ html[dir="rtl"] #home .right .navigation a {
 	opacity: 0.75;
 	-webkit-transition: 0.3s linear;
 	-moz-transition: 0.3s linear;
+	-o-transition: 0.3s linear;
 	transition: 0.3s linear;
 }
 
@@ -676,9 +684,9 @@ html[dir="rtl"] #home .right .navigation a {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #home .friendsview .friends .group.standard a.available_space {
@@ -702,6 +710,7 @@ html[dir="rtl"] #home .right .navigation a {
 	margin: 0 auto;
 	-webkit-transition: 0.3s linear;
 	-moz-transition: 0.3s linear;
+	-o-transition: 0.3s linear;
 	transition: 0.3s linear;
 }
 
@@ -709,6 +718,8 @@ html[dir="rtl"] #home .right .navigation a {
 #home .friendsview .friends a.group.refer:focus span.icon {
 	-webkit-transform: rotate(360deg);
 	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
 	transform: rotate(360deg);
 }
 
@@ -794,9 +805,9 @@ html[dir="rtl"] #home a.advanced {
 	border: 1px solid black;
 	margin: 18px 0 12px 0;
 	padding: 5px 0 4px 0;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 html[dir="rtl"] #home fieldset {
@@ -941,9 +952,9 @@ html[dir="rtl"] #home .info {
 	right: 0;
 	padding: 8px 20px;
 	z-index: 100;
-	box-shadow: 0 0 25px #ababab;
 	-moz-box-shadow: 0 0 25px #ababab;
 	-webkit-box-shadow: 0 0 25px #ababab;
+	box-shadow: 0 0 25px #ababab;
 }
 
 #home .notice.simple .title {

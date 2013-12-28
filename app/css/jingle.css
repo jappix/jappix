@@ -54,10 +54,12 @@ Author: Valérian Saliou
 
 #jingle .sidebar .controls a:hover,
 #jingle .sidebar .controls a:focus {
+    background-color: rgb(255,255,255);
     background-color: rgba(255,255,255,0.1);
 }
 
 #jingle .sidebar .controls a:active {
+    background-color: rgb(255,255,255);
     background-color: rgba(255,255,255,0.2);
 }
 

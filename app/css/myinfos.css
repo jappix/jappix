@@ -16,24 +16,26 @@ Author: Valérian Saliou
 	color: #919191;
 	margin-top: 8px;
 	padding: 15px 6px 6px 6px;
-	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	box-shadow: 0 0 6px #5c5c5c;
+	border-radius: 4px;
 	-moz-box-shadow: 0 0 6px #5c5c5c;
 	-webkit-box-shadow: 0 0 6px #5c5c5c;
+	box-shadow: 0 0 6px #5c5c5c;
 }
 
 #my-infos .content {
 	background: #e8f1f3;
 	background: -moz-linear-gradient(top, #e4edef, #e8f1f3);
 	background: -webkit-gradient(linear, left top, left bottom, from(#e4edef), to(#e8f1f3));
+	background: -webkit-linear-gradient(top, #e4edef 0%, #e8f1f3 100%);
+	background: -o-linear-gradient(top, #e4edef 0%, #e8f1f3 100%);
 	color: #919191;
 	max-height: 140px;
 	padding: 1px 0;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #my-infos .element {
@@ -50,9 +52,9 @@ Author: Valérian Saliou
 	margin-left: 6px;
 	height: 22px;
 	width: 25px;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 html[dir="rtl"] #my-infos .element .icon {
@@ -278,21 +280,17 @@ html[dir="rtl"] #my-infos .element .icon {
 #my-infos .element .icon.picker {
 	border-width: 1px 0 1px 1px;
 	float: left;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
 	-moz-border-radius-topright: 0;
 	-moz-border-radius-bottomright: 0;
 	-webkit-border-top-right-radius: 0;
 	-webkit-border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 html[dir="rtl"] #my-infos .element .icon.picker {
 	border-width: 1px 1px 1px 0;
 	float: right;
-	border-top-right-radius: 2px;
-	border-top-left-radius: 0;
-	border-bottom-right-radius: 2px;
-	border-bottom-left-radius: 0;
 	-moz-border-radius-topright: 2px;
 	-moz-border-radius-topleft: 0;
 	-moz-border-radius-bottomright: 2px;
@@ -301,6 +299,10 @@ html[dir="rtl"] #my-infos .element .icon.picker {
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-bottom-right-radius: 2px;
 	-webkit-border-bottom-left-radius: 0;
+	border-top-right-radius: 2px;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 0;
 }
 
 #my-infos .element .icon.disabled {
@@ -319,12 +321,12 @@ html[dir="rtl"] #my-infos .element .icon.picker {
 	position: absolute;
 	bottom: 21px;
 	left: 6px;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
 	-moz-border-radius-topleft: 2px;
 	-moz-border-radius-topright: 2px;
 	-webkit-border-top-left-radius: 2px;
 	-webkit-border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
 }
 
 html[dir="rtl"] #my-infos .element div.bubble {
@@ -353,22 +355,18 @@ html[dir="rtl"] #my-infos .element a {
 	font-size: 0.85em;
 	padding-left: 4px;
 	float: left;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
 	-moz-border-radius-topleft: 0;
 	-moz-border-radius-bottomleft: 0;
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-top-bottom-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 html[dir="rtl"] #my-infos .element input {
 	padding-left: 2px;
 	padding-right: 4px;
 	float: right;
-	border-top-right-radius: 0;
-	border-top-left-radius: 2px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 2px;
 	-moz-border-radius-topright: 0;
 	-moz-border-radius-topleft: 2px;
 	-moz-border-radius-bottomright: 0;
@@ -377,4 +375,8 @@ html[dir="rtl"] #my-infos .element input {
 	-webkit-border-top-left-radius: 2px;
 	-webkit-border-bottom-right-radius: 0;
 	-webkit-border-bottom-left-radius: 2px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 2px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 2px;
 }

@@ -20,12 +20,12 @@ body {
 	width: 800px;
 	margin: 35px auto;
 	padding-bottom: 17px;
-	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
-	box-shadow: 0 0 35px #5c5c5c;
+	border-radius: 6px;
 	-moz-box-shadow: 0 0 35px #5c5c5c;
 	-webkit-box-shadow: 0 0 35px #5c5c5c;
+	box-shadow: 0 0 35px #5c5c5c;
 }
 
 #install a {
@@ -41,9 +41,9 @@ body {
 	border: 1px solid black;
 	margin: 22px 0 15px 0;
 	padding: 7px 2px 5px 2px;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #install legend {
@@ -127,12 +127,12 @@ html[dir="rtl"] #install input {
 	font-size: 2.7em;
 	text-shadow: 0 1px 1px black;
 	float: right;
-	border-radius: 40px;
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
-	box-shadow: 0 0 10px #202020;
+	border-radius: 40px;
 	-moz-box-shadow: 0 0 10px #202020;
 	-webkit-box-shadow: 0 0 10px #202020;
+	box-shadow: 0 0 10px #202020;
 }
 
 #install-top .step span {
@@ -143,6 +143,8 @@ html[dir="rtl"] #install input {
 	background: #e4eef9;
 	background: -moz-linear-gradient(top, #e4eef9, #d0e5fa);
 	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#d0e5fa));
+	background: -webkit-linear-gradient(top, #e4eef9 0%, #d0e5fa 100%);
+	background: -o-linear-gradient(top, #e4eef9 0%, #d0e5fa 100%);
 	color: black;
 	font-size: 0.9em;
 	margin: 0 10px;
@@ -150,12 +152,12 @@ html[dir="rtl"] #install input {
 	min-height: 260px;
 	clear: both;
 	right: 10px;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	box-shadow: 0 0 20px #202020;
+	border-radius: 3px;
 	-moz-box-shadow: 0 0 20px #202020;
 	-webkit-box-shadow: 0 0 20px #202020;
+	box-shadow: 0 0 20px #202020;
 }
 
 #install-content h3 {
@@ -276,12 +278,12 @@ html[dir="rtl"] #install-content h3 {
 	margin-right: 20px;
 	text-shadow: 0 1px 1px black;
 	float: right;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	box-shadow: 0 0 5px #202020;
+	border-radius: 3px;
 	-moz-box-shadow: 0 0 5px #202020;
 	-webkit-box-shadow: 0 0 5px #202020;
+	box-shadow: 0 0 5px #202020;
 }
 
 #install-buttons input:hover,
@@ -289,9 +291,9 @@ html[dir="rtl"] #install-content h3 {
 	cursor: pointer;
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
-	box-shadow: 0 0 15px #202020;
 	-moz-box-shadow: 0 0 15px #202020;
 	-webkit-box-shadow: 0 0 15px #202020;
+	box-shadow: 0 0 15px #202020;
 }
 
 #install-buttons input:active {

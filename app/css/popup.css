@@ -33,12 +33,12 @@ Author: Valérian Saliou
 	z-index: 10000;
 	left: 50%;
 	top: 50%;
-	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	box-shadow: 0 0 35px #232323;
+	border-radius: 5px;
 	-moz-box-shadow: 0 0 35px #232323;
 	-webkit-box-shadow: 0 0 35px #232323;
+	box-shadow: 0 0 35px #232323;
 }
 
 .popup.large {
@@ -82,12 +82,12 @@ html[dir="rtl"] .popup .top {
 	font-size: 0.94em;
 	overflow: hidden;
 	float: left;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 3px;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 html[dir="rtl"] .popup .tab a {
@@ -123,18 +123,20 @@ html[dir="rtl"] .popup .tab a {
 
 .popup .content {
 	background: #e4eef9;
-	background: -moz-linear-gradient(top, #e4eef9, #D0E5FA);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#D0E5FA));
+	background: -moz-linear-gradient(top, #e4eef9, #d0e5fa);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#d0e5fa));
+	background: -webkit-linear-gradient(top, #e4eef9 0%, #d0e5fa 100%);
+	background: -o-linear-gradient(top, #e4eef9 0%, #d0e5fa 100%);
 	height: 358px;
 	width: 640px;
 	position: absolute;
 	left: 10px;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	box-shadow: 0 0 20px black;
+	border-radius: 3px;
 	-moz-box-shadow: 0 0 20px black;
 	-webkit-box-shadow: 0 0 20px black;
+	box-shadow: 0 0 20px black;
 }
 
 .popup .content,
@@ -152,9 +154,9 @@ html[dir="rtl"] .popup .tab a {
 	bottom: 10px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .popup.large div.comments div.comments-content {
@@ -175,12 +177,12 @@ html[dir="rtl"] .popup .tab a {
 }
 
 .popup.large div.comments div.comments-content {
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 3px;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 .popup .head {
@@ -253,9 +255,9 @@ html[dir="rtl"] .popup .head .head-select {
 	border: 1px #547177 solid;
 	margin: 0 0 15px 0;
 	padding: 8px 2px 3px 2px;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .popup legend {
@@ -491,9 +493,9 @@ html[dir="rtl"] .popup .results .one-name {
 	margin-top: 1px;
 	padding: 4px 8px;
 	text-decoration: none;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 .popup a.one-button:hover,
@@ -669,12 +671,12 @@ a.finish,
 	text-align: center;
 	text-decoration: none;
 	text-shadow: 0 1px 1px black;
-	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	box-shadow: 0 0 5px black;
+	border-radius: 3px;
 	-moz-box-shadow: 0 0 5px black;
 	-webkit-box-shadow: 0 0 5px black;
+	box-shadow: 0 0 5px black;
 }
 
 a.finish:hover,
@@ -684,9 +686,9 @@ a.finish:focus,
 	cursor: pointer;
 	background-color: rgb(255,255,255);
 	background-color: rgba(255,255,255,0.2);
-	box-shadow: 0 0 15px black;
 	-moz-box-shadow: 0 0 15px black;
 	-webkit-box-shadow: 0 0 15px black;
+	box-shadow: 0 0 15px black;
 }
 
 a.finish:active,

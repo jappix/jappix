@@ -46,9 +46,7 @@ html[dir="rtl"] #directory .directory-server-text {
 
 #discovery .disco-server-input,
 #directory .directory-server-input {
-	float: right;
 	width: 200px;
-	padding: 2px;
 	height: 18px;
 	float: right;
 	margin-right: 10px;

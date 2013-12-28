@@ -34,10 +34,13 @@ module.exports = function(grunt) {
           'floats': false,
           'font-sizes': false,
           'ids': false,
-          'overqualified-elements': false
+          'overqualified-elements': false,
+          'known-properties': false,
+          'unqualified-attributes': false,
+          'universal-selector': false
         },
 
-        src: ['../app/css/*.css']
+        src: ['../app/css/*.css', '!../app/css/ie.css', '!../app/css/*-ie.css', '!../app/css/ios.css']
       }
     },
 

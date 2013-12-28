@@ -16,9 +16,9 @@ Author: Valérian Saliou
 	left: 115px;
 	right: 15px;
 	bottom: 15px;
-	border-radius: 20px;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
+	border-radius: 20px;
 }
 
 html[dir="rtl"] #channel .top div.update {
@@ -186,9 +186,9 @@ html[dir="rtl"] #attach div.one-file a.remove {
 	background-color: rgba(0,0,0,0.8);
 	padding: 10px;
 	text-shadow: 0 1px 1px black;
-	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 html[dir="rtl"] .attach-subitem {
@@ -424,7 +424,7 @@ html[dir="rtl"] .popup.large div.comments .one-comment.loading span.icon {
 #channel .one-update div.comments .one-comment,
 .popup.large div.comments .one-comment {
 	border-bottom: 1px solid #f4f4f4;
-	padding: 4px 8px 0px 8px;
+	padding: 4px 8px 0 8px;
 	position: relative;
 	display: block;
 }
@@ -615,12 +615,12 @@ html[dir="rtl"] #channel a.mbtool {
 
 #channel .footer {
 	bottom: 0;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
 
 #channel .footer div {

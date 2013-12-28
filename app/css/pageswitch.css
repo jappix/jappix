@@ -63,9 +63,9 @@ html[dir="rtl"] #page-switch .more {
 	padding: 1px 6px;
 	font-size: 0.9em;
 	text-decoration: none;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 #page-switch .join-button {
@@ -86,27 +86,27 @@ html[dir="rtl"] #page-switch .more {
 	margin: -2px 0 0 -181px;
 	padding: 4px 0;
 	font-size: 0.95em;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 	-moz-border-radius-topleft: 3px;
 	-moz-border-radius-bottomleft: 3px;
 	-moz-border-radius-bottomright: 3px;
 	-webkit-border-top-left-radius: 3px;
 	-webkit-border-bottom-left-radius: 3px;
 	-webkit-border-bottom-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 html[dir="rtl"] #page-switch .join-content,
 html[dir="rtl"] #page-switch .more-content {
 	margin-left: 0;
 	left: 0;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 0;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 0;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 0;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 0;
 }
 
 #page-switch .join-content input.join-groupchat-xid {
@@ -122,12 +122,12 @@ html[dir="rtl"] #page-switch .more-content {
 	margin: 0 2px;
 	font-size: 0.85em;
 	float: left;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 3px;
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 html[dir="rtl"] #page-switch .switcher {
@@ -141,9 +141,9 @@ html[dir="rtl"] #page-switch .switcher {
 	float: none !important;
 	margin: 0;
 	font-size: 0.9em;
-	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
+	border-radius: 0;
 }
 
 #page-switch .more-content .switcher .exit {
@@ -213,9 +213,9 @@ html[dir="rtl"] #page-switch .name {
 	text-align: center;
 	text-decoration: none;
 	float: right;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 html[dir="rtl"] #page-switch .exit {

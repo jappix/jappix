@@ -47,12 +47,12 @@ textarea {
 	font-size: 0.95em;
 	padding: 2px;
 	outline-style: none;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	box-shadow: inset 0 3px 10px #dcdcdc;
+	border-radius: 2px;
 	-moz-box-shadow: inset 0 3px 10px #dcdcdc;
 	-webkit-box-shadow: inset 0 3px 10px #dcdcdc;
+	box-shadow: inset 0 3px 10px #dcdcdc;
 }
 
 textarea {
@@ -65,9 +65,9 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 textarea:focus {
 	border: 1px solid #e1a014;
-	box-shadow: inset 0 3px 10px #edd9bc;
 	-moz-box-shadow: inset 0 3px 10px #edd9bc;
 	-webkit-box-shadow: inset 0 3px 10px #edd9bc;
+	box-shadow: inset 0 3px 10px #edd9bc;
 }
 
 input[type="submit"],
@@ -77,9 +77,9 @@ input[type="reset"] {
 
 input[type="submit"]:active,
 input[type="reset"]:active {
-	box-shadow: inset 0 3px 15px #e1a753;
 	-moz-box-shadow: inset 0 3px 15px #e1a753;
 	-webkit-box-shadow: inset 0 3px 15px #e1a753;
+	box-shadow: inset 0 3px 15px #e1a753;
 }
 
 input[disabled],
@@ -118,9 +118,9 @@ input[type="radio"] {
 .please-complete:hover,
 .please-complete:focus {
 	border: 1px #ac2525 solid !important;
-	box-shadow: inset 0 3px 10px #f39c9c !important;
 	-moz-box-shadow: inset 0 3px 10px #f39c9c !important;
 	-webkit-box-shadow: inset 0 3px 10px #f39c9c !important;
+	box-shadow: inset 0 3px 10px #f39c9c !important;
 }
 
 .hidden {

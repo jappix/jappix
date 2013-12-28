@@ -16,12 +16,12 @@ Author: Valérian Saliou
 	padding: 3px 8px 5px 8px;
 	min-width: 10px;
 	height: 17px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
 
 #top-content .tools a {
@@ -113,9 +113,9 @@ html[dir="rtl"] #top-content .tools-all {
 	padding: 1px 4px;
 	position: absolute;
 	bottom: -2px;
-	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+	border-radius: 10px;
 }
 
 html[dir="rtl"] #top-content .notify {
@@ -148,9 +148,9 @@ html[dir="rtl"] #top-content .tools-content {
 	background-color: rgba(0,0,0,0.8);
 	padding: 14px 6px 6px 6px;
 	clear: both;
-	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .notifications-content {
@@ -193,9 +193,9 @@ html[dir="rtl"] .notifications-content .tools-content-subitem {
 	padding: 6px 4px;
 	font-size: 0.85em;
 	clear: both;
-	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 .notifications-content .one-notification:hover,
@@ -336,14 +336,16 @@ html[dir="rtl"] .music-content {
 	background: #b5d5db;
 	background: -moz-linear-gradient(top, #b5d5db, #adced4);
 	background: -webkit-gradient(linear, left top, left bottom, from(#b5d5db), to(#adced4));
+	background: -webkit-linear-gradient(top, #b5d5db 0%, #adced4 100%);
+	background: -o-linear-gradient(top, #b5d5db 0%, #adced4 100%);
 	height: 20px;
 	padding: 2px 5px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
 	-moz-border-radius-topright: 4px;
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-right-radius: 4px;
 	-webkit-border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
 }
 
 .music-content .player a {
@@ -405,12 +407,12 @@ html[dir="rtl"] .music-content .player a {
 .music-content .search {
 	background-color: #e8f1f3;
 	height: 25px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-bottom-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
 
 .music-content .search input {

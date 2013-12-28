@@ -12,40 +12,40 @@ Author: Valérian Saliou
 
 @font-face {
 	font-family: 'PT Sans';
-	src: url(../fonts/eot/ptsans.eot);
-	src: url(../fonts/eot/ptsans.eot) format('embedded-opentype'),
-	     url(../fonts/woff/ptsans.woff) format('woff'),
-	     url(../fonts/ttf/ptsans.ttf) format('truetype'),
-	     url(../fonts/svg/ptsans.svg) format('svg');
+	src: url('../fonts/eot/ptsans.eot');
+	src: url('../fonts/eot/ptsans.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsans.woff') format('woff'),
+	     url('../fonts/ttf/ptsans.ttf') format('truetype'),
+	     url('../fonts/svg/ptsans.svg#ptsans') format('svg');
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-style: italic;
-	src: url(../fonts/eot/ptsansitalic.eot);
-	src: url(../fonts/eot/ptsansitalic.eot) format('embedded-opentype'),
-	     url(../fonts/woff/ptsansitalic.woff) format('woff'),
-	     url(../fonts/ttf/ptsansitalic.ttf) format('truetype'),
-	     url(../fonts/svg/ptsansitalic.svg) format('svg');
+	src: url('../fonts/eot/ptsansitalic.eot');
+	src: url('../fonts/eot/ptsansitalic.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansitalic.woff') format('woff'),
+	     url('../fonts/ttf/ptsansitalic.ttf') format('truetype'),
+	     url('../fonts/svg/ptsansitalic.svg#ptsansitalic') format('svg');
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-weight: bold;
-	src: url(../fonts/eot/ptsansbold.eot);
-	src: url(../fonts/eot/ptsansbold.eot) format('embedded-opentype'),
-	     url(../fonts/woff/ptsansbold.woff) format('woff'),
-	     url(../fonts/ttf/ptsansbold.ttf) format('truetype'),
-	     url(../fonts/svg/ptsansbold.svg) format('svg');
+	src: url('../fonts/eot/ptsansbold.eot');
+	src: url('../fonts/eot/ptsansbold.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansbold.woff') format('woff'),
+	     url('../fonts/ttf/ptsansbold.ttf') format('truetype'),
+	     url('../fonts/svg/ptsansbold.svg#ptsansbold') format('svg');
 }
 
 @font-face {
 	font-family: 'PT Sans';
 	font-weight: bold;
 	font-style: italic;
-	src: url(../fonts/eot/ptsansbolditalic.eot);
-	src: url(../fonts/eot/ptsansbolditalic.eot) format('embedded-opentype'),
-	     url(../fonts/woff/ptsansbolditalic.woff) format('woff'),
-	     url(../fonts/ttf/ptsansbolditalic.ttf) format('truetype'),
-	     url(../fonts/svg/ptsansbolditalic.svg) format('svg');
+	src: url('../fonts/eot/ptsansbolditalic.eot');
+	src: url('../fonts/eot/ptsansbolditalic.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/woff/ptsansbolditalic.woff') format('woff'),
+	     url('../fonts/ttf/ptsansbolditalic.ttf') format('truetype'),
+	     url('../fonts/svg/ptsansbolditalic.svg#ptsansbolditalic') format('svg');
 }
