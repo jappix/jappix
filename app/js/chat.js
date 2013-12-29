@@ -311,6 +311,29 @@ var Chat = (function () {
 
 
     /**
+     * Returns whether chat exists or not
+     * @public
+     * @param {string} hash
+     * @return {boolean}
+     */
+    self.exists = function(hash) {
+
+        exists = false;
+
+        try {
+            if(hash) {
+                exists = Common.exists('#' + hash + '.page-engine-chan[data-type="chat"]');
+            }
+        } catch(e) {
+            Console.error('Chat.exists', e);
+        } finally {
+            return exists;
+        }
+
+    };
+
+
+    /**
      * Creates a new chat
      * @public
      * @param {string} hash

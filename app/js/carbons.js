@@ -38,7 +38,9 @@ var Carbons = (function () {
             
             iq.appendNode(type, {'xmlns': NS_URN_CARBONS});
             
-            con.send(iq, self._handleConfigure);
+            con.send(iq, function(iq) {
+                self._handleConfigure(iq, type);
+            });
         } catch(e) {
             Console.error('Carbons._configure', e);
         }
@@ -50,15 +52,16 @@ var Carbons = (function () {
      * Configures Message Carbons options
      * @public
      * @param {object} iq
+     * @param {string} type
      * @return {undefined}
      */
-    self._handleConfigure = function(iq) {
+    self._handleConfigure = function(iq, type) {
 
         try {
             if(iq.getType() === 'result') {
-                Console.log('Message Carbons successfully configured');
+                Console.log('Message Carbons successfully configured (type: ' + type + ')');
             } else {
-                Console.error('Message Carbons could not be configured');
+                Console.error('Message Carbons could not be configured (type: ' + type + ')');
             }
         } catch(e) {
             Console.error('Carbons._handleConfigure', e);
@@ -110,6 +113,119 @@ var Carbons = (function () {
             return Features.enabledCarbons();
         } catch(e) {
             Console.error('Carbons.has', e);
+        }
+
+    };
+
+
+    /**
+     * Returns the forwarded message stanza
+     * @public
+     * @param {object} message
+     * @return {object}
+     */
+    self._getForwarded = function(message) {
+
+        try {
+            var forwarded_message = $(message.getNode()).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]:first message:first');
+
+            if(forwarded_message[0]) {
+                return JSJaCPacket.wrapNode(forwarded_message[0]);
+            }
+
+            return null;
+        } catch(e) {
+            Console.error('Carbons._getForwarded', e);
+        }
+
+    };
+
+
+    /**
+     * Handles a forwarded sent message
+     * @public
+     * @param {object} message
+     * @return {undefined}
+     */
+    self.handleSent = function(message) {
+
+        try {
+            var forwarded_message = self._getForwarded(message);
+
+            if(forwarded_message !== null) {
+                var type = forwarded_message.getType();
+
+                // Display sent message
+                if(type === 'chat' || !type) {
+                    var to = Common.bareXID(forwarded_message.getTo());
+                    var hash = hex_md5(to);
+
+                    // Chat opened? (no need to display sent messages if chat does not exist there...)
+                    if(Chat.exists(hash)) {
+                        // Get more data
+                        var id = forwarded_message.getID();
+                        var body = $.trim(forwarded_message.getBody());
+                        var my_xid = Common.getXID();
+
+                        // Generate the message body
+                        var html_escape = (Message.generate(forwarded_message, body, hash) !== 'XHTML');
+                        if(!html_escape) {
+                            body = Filter.xhtml(forwarded_message.getNode());
+                        }
+
+                        if(body) {
+                            // Display the message (finally!)
+                            Message.display(
+                                'chat',
+                                my_xid,
+                                hash,
+                                Name.getBuddy(my_xid).htmlEnc(),
+                                body,
+                                DateUtils.getCompleteTime(),
+                                DateUtils.getTimeStamp(),
+                                'user-message',
+                                html_escape,
+                                '',
+                                'me',
+                                id
+                            );
+
+                            Console.debug('Got a sent message from another resource to: ' + (to || 'none'));
+                        } else {
+                            Console.debug('Got a sent message from another resource to: ' + (to || 'none') + ', was ignored because body empty');
+                        }
+                    } else {
+                        Console.debug('Got a sent message from another resource to: ' + (to || 'none') + ', was ignored because chat not open');
+                    }
+                } else {
+                    Console.warning('Got a sent message from another resource to: ' + (to || 'none') + ', was ignored because of type: ' + type);
+                }
+            }
+        } catch(e) {
+            Console.error('Carbons.handleSent', e);
+        }
+
+    };
+
+
+    /**
+     * Handles a forwarded received message
+     * @public
+     * @param {object} message
+     * @return {undefined}
+     */
+    self.handleReceived = function(message) {
+
+        try {
+            var forwarded_message = self._getForwarded(message);
+
+            if(forwarded_message !== null) {
+                Console.debug('Got a received message from another resource from: ' + (forwarded_message.getFrom() || 'none'));
+
+                Message.handle(forwarded_message);
+            }
+        } catch(e) {
+            Console.error('Carbons.handleReceived', e);
         }
 
     };

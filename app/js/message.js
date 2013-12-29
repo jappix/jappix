@@ -33,12 +33,21 @@ var Message = (function () {
             if(Errors.handleReply(message))
                 return;
             
+            // Carbon-forwarded message?
+            if(message.getChild('sent', NS_URN_CARBONS)) {
+                Carbons.handleSent(message); return;
+            }
+            if(message.getChild('received', NS_URN_CARBONS)) {
+                Carbons.handleReceived(message); return;
+            }
+
             // MAM-forwarded message?
             var c_mam = message.getChild('result', NS_URN_MAM);
 
             if(c_mam) {
-                var c_mam_delay = $(c_mam).find('delay[xmlns="' + NS_URN_DELAY + '"]');
-                var c_mam_forward = $(c_mam).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
+                var c_mam_sel = $(c_mam);
+                var c_mam_delay = c_mam_sel.find('delay[xmlns="' + NS_URN_DELAY + '"]');
+                var c_mam_forward = c_mam_sel.find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
 
                 if(c_mam_forward.size()) {
                     MAM.handleMessage(c_mam_forward, c_mam_delay);
@@ -615,7 +624,7 @@ var Message = (function () {
                 
                 // Generates the correct message depending of the choosen style
                 var genMsg = self.generate(aMsg, body, hash);
-                var html_escape = genMsg != 'XHTML';
+                var html_escape = (genMsg !== 'XHTML');
                 
                 // Receipt request
                 var receipt_request = Receipts.request(hash);
@@ -630,8 +639,9 @@ var Message = (function () {
                 con.send(aMsg, Errors.handleReply);
                 
                 // Filter the xHTML message (for us!)
-                if(!html_escape)
+                if(!html_escape) {
                     body = Filter.xhtml(aMsg.getNode());
+                }
                 
                 // Finally we display the message we just sent
                 var my_xid = Common.getXID();
@@ -639,8 +649,9 @@ var Message = (function () {
                 self.display('chat', my_xid, hash, Name.getBuddy(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
                 
                 // Receipt timer
-                if(receipt_request)
+                if(receipt_request) {
                     Receipts.checkReceived(hash, id);
+                }
             }
             
             // Groupchat message type
