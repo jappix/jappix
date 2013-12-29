@@ -78,8 +78,6 @@ var Features = (function () {
         try {
             // Selector
             var selector = $(xml);
-
-            Console.debug('xml', xml)
             
             // Functions
             var check_feature_fn = function(namespace) {
@@ -103,7 +101,7 @@ var Features = (function () {
             });
             
             // Enable the pep elements if available
-            if(features['pep'] === true) {
+            if(features.pep === true) {
                 // Update our database
                 self.enable('pep');
                 
@@ -129,7 +127,7 @@ var Features = (function () {
             }
 
             // Hide the private life fieldset if nothing to show
-            if(features['pep'] === false && features[NS_URN_MAM] === false) {
+            if(features.pep === false && features[NS_URN_MAM] === false) {
                 $('#options fieldset.privacy').hide();
             }
             
@@ -137,7 +135,7 @@ var Features = (function () {
             self.apply('talk');
             
             // Process the buddy-list height
-            if(features['pep'] === true) {
+            if(features.pep === true) {
                 Roster.adapt();
             }
 
