@@ -153,13 +153,12 @@ var Carbons = (function () {
             var forwarded_message = self._getForwarded(message);
 
             if(forwarded_message !== null) {
+                var to = Common.bareXID(forwarded_message.getTo());
+                var hash = hex_md5(to);
                 var type = forwarded_message.getType();
 
                 // Display sent message
                 if(type === 'chat' || !type) {
-                    var to = Common.bareXID(forwarded_message.getTo());
-                    var hash = hex_md5(to);
-
                     // Chat opened? (no need to display sent messages if chat does not exist there...)
                     if(Chat.exists(hash)) {
                         // Get more data
