@@ -787,79 +787,69 @@ var vCard = (function () {
     self._sendPubsub = function() {
 
         try {
-            // Read values
-            var user_nick = $('#USER-NICKNAME').val();
+            // Generate some values
             var photo_bin = $('#USER-PHOTO-BINVAL').val();
-            var photo_type = $('#USER-PHOTO-TYPE').val();
             var photo_data = Base64.decode(photo_bin) || '';
-            var photo_bytes = photo_data.length || '';
-            var photo_id = hex_sha1(photo_data) || '';
             
-            // Values array
-            var read = [
-                user_nick,
-                photo_bin,
-                [photo_type, photo_id, photo_bytes],
-
-            ];
-            
-            // Nodes array
-            var node = [
-                NS_NICK,
-                NS_URN_ADATA,
-                NS_URN_AMETA,
-                NS_XMPP_VCARD4
-            ];
+            // Data to be sent
+            var send_data = {};
+            send_data[NS_NICK] = $('#USER-NICKNAME').val();
+            send_data[NS_URN_ADATA] = photo_bin;
+            send_data[NS_URN_AMETA] = {
+                'type': $('#USER-PHOTO-TYPE').val(),
+                'id': (hex_sha1(photo_data) || ''),
+                'bytes': (photo_data.length || '')
+            };
             
             // Generate the XML
-            for(var i in read) {
+            $.each(send_data, function(namespace, data) {
                 var iq = new JSJaCIQ();
                 iq.setType('set');
                 
                 var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-                var publish = pubsub.appendChild(iq.buildNode('publish', {'node': node[i], 'xmlns': NS_PUBSUB}));
-                var item;
+                var publish = pubsub.appendChild(iq.buildNode('publish', {'node': namespace, 'xmlns': NS_PUBSUB}));
 
-                if((i === 0) && read[0]) {
-                    item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
-                    
-                    // Nickname element
-                    item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, read[i]));
-                } else if(((i === 1) || (i === 2)) && read[1]) {
-                    item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
-                    
-                    // Apply the SHA-1 hash
-                    if(photo_id) {
-                        item.setAttribute('id', photo_id);
-                    }
-                    
-                    // Avatar data node
-                    if(i == 1) {
-                        item.appendChild(iq.buildNode('data', {'xmlns': NS_URN_ADATA}, read[i]));
-                    }
-                    
-                    // Avatar metadata node
-                    else {
-                        var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
+                if(data) {
+                    var item;
+
+                    if(namespace === NS_NICK) {
+                        item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
                         
-                        if(read[i]) {
-                            var meta_info = metadata.appendChild(iq.buildNode('info', {'xmlns': NS_URN_AMETA}));
+                        // Nickname element
+                        item.appendChild(iq.buildNode('nick', {'xmlns': NS_NICK}, data));
+                    } else if(namespace === NS_URN_ADATA || namespace === NS_URN_AMETA) {
+                        item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
+                        
+                        // Apply the SHA-1 hash
+                        if(send_data[NS_URN_AMETA].id) {
+                            item.setAttribute('id', send_data[NS_URN_AMETA].id);
+                        }
+                        
+                        // Append XML nodes depending on namespace
+                        if(namespace === NS_URN_ADATA) {
+                            item.appendChild(iq.buildNode('data', {'xmlns': NS_URN_ADATA}, data));
+                        } else if(namespace === NS_URN_AMETA) {
+                            var metadata = item.appendChild(iq.buildNode('metadata', {'xmlns': NS_URN_AMETA}));
                             
-                            if(read[i][0])
-                                meta_info.setAttribute('type', read[i][0]);
-                            if(read[i][1])
-                                meta_info.setAttribute('id', read[i][1]);
-                            if(read[i][2])
-                                meta_info.setAttribute('bytes', read[i][2]);
+                            if(data) {
+                                var meta_info = metadata.appendChild(iq.buildNode('info', {'xmlns': NS_URN_AMETA}));
+                                
+                                if(data.type)
+                                    meta_info.setAttribute('type', data.type);
+                                if(data.id)
+                                    meta_info.setAttribute('id', data.id);
+                                if(data.bytes)
+                                    meta_info.setAttribute('bytes', data.bytes);
+                            }
                         }
                     }
                 }
-                
+
                 con.send(iq);
 
                 // Make node publicly-viewable
-                self._configureNode(node[i]);
-            }
+                self._configureNode(namespace);
+            });
         } catch(e) {
             Console.error('vCard._sendPubsub', e);
         }
