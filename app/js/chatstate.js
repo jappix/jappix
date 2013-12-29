@@ -71,25 +71,6 @@ var ChatState = (function () {
     self.display = function(state, hash, type) {
 
         try {
-            // CODE
-        } catch(e) {
-            Console.error('ChatState.display', e);
-        }
-
-    };
-
-
-    /**
-     * Displays a given chatstate in a given chat
-     * @public
-     * @param {string} state
-     * @param {string} hash
-     * @param {string} type
-     * @return {undefined}
-     */
-    self.display = function(state, hash, type) {
-
-        try {
             // Groupchat?
             if(type == 'groupchat') {
                 self.reset(hash, type);

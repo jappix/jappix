@@ -79,24 +79,27 @@ var Features = (function () {
             // Selector
             var selector = $(xml);
             
+            // Functions
+            var check_feature_fn = function(namespace) {
+                return selector.find('feature[var="' + namespace + '"]').size() && true;
+            };
+
             // Markers
-            var pep = false;
-            var pubsub = false;
-            var pubsub_cn = false;
-            var mam = false;
-            var commands = false;
-            
-            // Scan the features
-            if(selector.find('identity[category="pubsub"][type="pep"]').size())
-                pep = true;
-            if(selector.find('feature[var="' + NS_PUBSUB + '"]').size())
-                pubsub = true;
-            if(selector.find('feature[var="' + NS_PUBSUB_CN + '"]').size())
-                pubsub_cn = true;
-            if(selector.find('feature[var="' + NS_URN_MAM + '"]').size())
-                mam = true;
-            if(selector.find('feature[var="' + NS_COMMANDS + '"]').size())
-                commands = true;
+            var namespaces = [NS_PUBSUB, NS_PUBSUB_CN, NS_URN_MAM, NS_COMMANDS, NS_URN_CARBONS];
+
+            var cur_feature;
+            var features = {
+                'pep': (selector.find('identity[category="pubsub"][type="pep"]').size() && true)
+            };
+
+            for(var namespace in namespaces) {
+                cur_feature = check_feature_fn(namespace);
+                features[namespace] = cur_feature;
+
+                if(cur_feature) {
+                    self.enable(namespace);
+                }
+            }
             
             // Enable the pep elements if available
             if(pep) {
@@ -118,41 +121,31 @@ var Features = (function () {
                 $('.postit.attach').css('display', 'block');
                 
                 Console.info('XMPP server supports PEP.');
-            }
-            
-            // Disable microblogging send tools (no PEP!)
-            else {
+            } else {
                 Microblog.wait('unsync');
                 
                 Console.warn('XMPP server does not support PEP.');
             }
-            
-            // Enable the pubsub features if available
-            if(pubsub)
-                self.enable(NS_PUBSUB);
 
-            // Enable the pubsub config-node features if available
-            if(pubsub_cn)
-                self.enable(NS_PUBSUB_CN);
-            
-            // Enable the message MAM management features if available
-            if(mam)
-                self.enable(NS_URN_MAM);
-            
-            // Enable the commands features if available
-            if(commands)
-                self.enable(NS_COMMANDS);
-            
             // Hide the private life fieldset if nothing to show
-            if(!pep && !mam)
+            if(!features['pep'] && !features[NS_URN_MAM]) {
                 $('#options fieldset.privacy').hide();
+            }
             
             // Apply the features
             self.apply('talk');
             
             // Process the buddy-list height
-            if(pep)
+            if(features['pep']) {
                 Roster.adapt();
+            }
+
+            // Enable/Disable Carbons?
+            if(features[NS_URN_CARBONS]) {
+                Carbons.enable();
+            } else {
+                Carbons.disable();
+            }
         } catch(e) {
             Console.error('Features.handle', e);
         } finally {
@@ -304,6 +297,22 @@ var Features = (function () {
             return self.isEnabled(NS_URN_MAM);
         } catch(e) {
             Console.error('Features.enabledMAM', e);
+        }
+
+    };
+
+
+    /**
+     * Returns the XMPP server Carbons support
+     * @public
+     * @return {boolean}
+     */
+    self.enabledCarbons = function() {
+
+        try {
+            return self.isEnabled(NS_URN_CARBONS);
+        } catch(e) {
+            Console.error('Features.enabledCarbons', e);
         }
 
     };
