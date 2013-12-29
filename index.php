@@ -16,14 +16,14 @@ Author: Valérian Saliou
 define('JAPPIX_BASE', '.');
 
 // Get the function files
-require_once('./php/functions.php');
+require_once('./server/functions.php');
 
 // Get the configuration
-require_once('./php/read-main.php');
-require_once('./php/read-hosts.php');
+require_once('./server/read-main.php');
+require_once('./server/read-hosts.php');
 
 // Get some extra-libs
-require_once('./php/gettext.php');
+require_once('./server/gettext.php');
 
 // Prepare application
 enableErrorSink();
@@ -78,7 +78,7 @@ else if(isset($_COOKIE['jappix_mode'])) {
 // No cookie, is this a mobile device?
 else {
 	// New mobile detect
-	require_once('./php/mobile-detect.php');
+	require_once('./server/mobile-detect.php');
 	$mobile = new Mobile_Detect();
 	
 	// Really mobile?
@@ -112,6 +112,6 @@ if(($include_app == 'desktop') || ($include_app == 'mobile')) {
 }
 
 // Include it!
-include('./php/'.$include_app.'.php');
+include('./server/'.$include_app.'.php');
 
 ?>

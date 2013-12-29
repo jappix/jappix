@@ -273,7 +273,7 @@ var Notification = (function () {
                     // We create the html markup depending of the notification type
                     code = '<div class="one-notification ' + id + ' ' + hash + '" title="' + Common.encodeQuotes(body) + ' - ' + Common._e("This notification is only informative, maybe the data it links to have been removed.") + '" data-type="' + Common.encodeQuotes(type) + '">' + 
                             '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
                             
                             '<p class="notification-text">' + text + '</p>' + 

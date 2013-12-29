@@ -67,7 +67,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 	$filepath = $content_dir.$filename.'.html';
 	
 	// Generate Jappix logo Base64 code
-	$logo = base64_encode(file_get_contents(JAPPIX_BASE.'/app/img/sprites/archives.png'));
+	$logo = base64_encode(file_get_contents(JAPPIX_BASE.'/app/images/sprites/archives.png'));
 	
 	// Create the HTML code
 	$new_text_inter = 

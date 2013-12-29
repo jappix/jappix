@@ -1125,7 +1125,7 @@ var Message = (function () {
                 
                 // Any avatar to add?
                 if(has_avatar) {
-                    message_head += '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
+                    message_head += '<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>';
                 }
                 
                 // Add the date & the name
@@ -1146,7 +1146,7 @@ var Message = (function () {
             if(!Features.enabledMAM() && (type == 'chat') && (message_type == 'user-message')) {
                 // Filter the DOM
                 var dom_filter = $('#' + hash + ' .content').clone().contents();
-                var default_avatar = ('./img/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
+                var default_avatar = ('./images/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
                 
                 $(dom_filter).find('.system-message').parent().remove();
                 $(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);

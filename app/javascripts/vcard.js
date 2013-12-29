@@ -582,7 +582,7 @@ var vCard = (function () {
             }
             
             else if(type == 'buddy') {
-                $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>');
+                $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>');
             }
 
             // Do someting depending of the type

@@ -404,7 +404,7 @@ var Jingle = (function() {
                     '<div class="videobox">' + 
                         '<div class="topbar">' + 
                             '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
 
                             '<div class="controls">' + 

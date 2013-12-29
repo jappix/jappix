@@ -227,7 +227,7 @@ var Talk = (function () {
                             '<div id="channel" class="page-engine-chan" style="display: block;">' + 
                                 '<div class="top mixed ' + hex_md5(Common.getXID()) + '">' + 
                                     '<div class="avatar-container">' + 
-                                        '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                        '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                                     '</div>' + 
                                     
                                     '<div class="update">' + 

@@ -430,7 +430,7 @@ var Inbox = (function () {
             var nContent = '<div class="one-message message-' + status + ' ' + id + ' ' + hex_md5(from) + '" data-stamp="' + stamp + '">' + 
                         '<div class="message-head">' + 
                             '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
                             
                             '<div class="message-jid">' + name + '</div>' + 

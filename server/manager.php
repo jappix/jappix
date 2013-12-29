@@ -17,7 +17,7 @@ if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Get the manager functions
-require_once(JAPPIX_BASE.'/php/functions-manager.php');
+require_once(JAPPIX_BASE.'/server/functions-manager.php');
 
 // Session manager
 $id = 0;
@@ -289,7 +289,7 @@ else
 					<li><b><?php _e("Yearly"); ?></b><span><?php echo $visits['yearly']; ?></span></li>
 				</ul>
 				
-				<object class="stats" type="image/svg+xml" data="./php/stats-svg.php?l=<?php echo $locale; ?>&amp;g=access"></object>
+				<object class="stats" type="image/svg+xml" data="./server/stats-svg.php?l=<?php echo $locale; ?>&amp;g=access"></object>
 				
 				<?php
 				
@@ -312,7 +312,7 @@ else
 						?>
 					</ol>
 					
-					<object class="stats" type="image/svg+xml" data="./php/stats-svg.php?l=<?php echo $locale; ?>&amp;g=share"></object>
+					<object class="stats" type="image/svg+xml" data="./server/stats-svg.php?l=<?php echo $locale; ?>&amp;g=share"></object>
 				<?php } ?>
 				
 				<h4><?php _e("Other statistics"); ?></h4>
@@ -331,7 +331,7 @@ else
 					?>
 				</ul>
 				
-				<object class="stats" type="image/svg+xml" data="./php/stats-svg.php?l=<?php echo $locale; ?>&amp;g=others"></object>
+				<object class="stats" type="image/svg+xml" data="./server/stats-svg.php?l=<?php echo $locale; ?>&amp;g=others"></object>
 			<?php endif ?>
 			<?php }
 			
@@ -346,11 +346,11 @@ else
 				<?php
 				
 				// Define the main configuration variables
-				include(JAPPIX_BASE.'/php/vars-main.php');
+				include(JAPPIX_BASE.'/server/vars-main.php');
 				
 				// Read the main configuration POST
 				if(isset($_POST['save'])) {
-					include(JAPPIX_BASE.'/php/post-main.php');
+					include(JAPPIX_BASE.'/server/post-main.php');
 					
 					// Show a success alert
 					?>
@@ -359,7 +359,7 @@ else
 				}
 				
 				// Include the main configuration form
-				include(JAPPIX_BASE.'/php/form-main.php');
+				include(JAPPIX_BASE.'/server/form-main.php');
 			}
 			
 			// Authorized and hosts page requested
@@ -375,11 +375,11 @@ else
 				<?php
 				
 				// Define the hosts configuration variables
-				include(JAPPIX_BASE.'/php/vars-hosts.php');
+				include(JAPPIX_BASE.'/server/vars-hosts.php');
 				
 				// Read the hosts configuration POST
 				if(isset($_POST['save'])) {
-					include(JAPPIX_BASE.'/php/post-hosts.php');
+					include(JAPPIX_BASE.'/server/post-hosts.php');
 					
 					// Show a success alert
 					?>
@@ -388,7 +388,7 @@ else
 				}
 				
 				// Include the hosts configuration form
-				include(JAPPIX_BASE.'/php/form-hosts.php');
+				include(JAPPIX_BASE.'/server/form-hosts.php');
 			}
 			
 			// Authorized and storage page requested
@@ -400,13 +400,13 @@ else
 				<?php
 				
 					// Include the store configuration vars
-					include(JAPPIX_BASE.'/php/vars-store.php');
+					include(JAPPIX_BASE.'/server/vars-store.php');
 					
 					// Include the store configuration POST handler
-					include(JAPPIX_BASE.'/php/post-store.php');
+					include(JAPPIX_BASE.'/server/post-store.php');
 					
 					// Include the store configuration GET handler
-					include(JAPPIX_BASE.'/php/get-store.php');
+					include(JAPPIX_BASE.'/server/get-store.php');
 					
 				?>
 				
@@ -490,13 +490,13 @@ else
 				<?php
 				
 					// Include the design configuration vars
-					include(JAPPIX_BASE.'/php/vars-design.php');
+					include(JAPPIX_BASE.'/server/vars-design.php');
 					
 					// Include the design configuration POST handler
-					include(JAPPIX_BASE.'/php/post-design.php');
+					include(JAPPIX_BASE.'/server/post-design.php');
 					
 					// Include the design configuration reader
-					include(JAPPIX_BASE.'/php/read-design.php');
+					include(JAPPIX_BASE.'/server/read-design.php');
 					
 					// Folder view?
 					if(isset($_GET['b']) && isset($_GET['s']) && ($_GET['b'] == 'backgrounds'))
@@ -655,7 +655,7 @@ else
 				// Add an user?
 				if(isset($_POST['add'])) {
 					// Include the users POST handler
-					include(JAPPIX_BASE.'/php/post-users.php');
+					include(JAPPIX_BASE.'/server/post-users.php');
 					
 					if($valid_user) { ?>
 						<p class="info smallspace success"><?php _e("The user has been added!"); ?></p>
@@ -707,7 +707,7 @@ else
 				<?php
 				
 				// Include the user add form
-				include(JAPPIX_BASE.'/php/form-users.php');
+				include(JAPPIX_BASE.'/server/form-users.php');
 				
 				?>
 				

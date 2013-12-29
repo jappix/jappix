@@ -54,7 +54,7 @@ var UserInfos = (function () {
                 '<div class="lap-active one-lap info1">' + 
                     '<div class="main-infos">' + 
                         '<div class="avatar-container">' + 
-                            '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                            '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                         '</div>' + 
                         
                         '<h1 id="BUDDY-FN" class="reset-info">' + Common._e("unknown") + '</h1>' + 

@@ -64,31 +64,31 @@ function setPath($string, $hash, $host, $type, $locale) {
 	$static = '.';
 
 	// Replace the JS strings
-	if($type == 'js') {
+	if($type == 'javascripts') {
 		// Static host defined
 		if($host && ($host != '.'))
 			$static = $host;
 
 		// Links to JS (must have a lang parameter)
-		$string = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(\S+)(js)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&amp;l='.$locale.'&amp;t=$5&amp;f=$7$8$9', $string);
+		$string = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(\S+)(js)((\")|(\'))/', '$1'.$static.'/server/get.php?h='.$hash.'&amp;l='.$locale.'&amp;t=$5&amp;f=$7$8$9', $string);
 
 		// Other "normal" links (no lang parameter)
-		$string = preg_replace('/((\")|(\'))(\.\/)(css|img|store|snd|fonts)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)((\")|(\'))/', '$1'.$static.'/php/get.php?h='.$hash.'&amp;t=$5&amp;f=$7$8$9', $string);
+		$string = preg_replace('/((\")|(\'))(\.\/)(stylesheets|images|store|sounds|fonts)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)((\")|(\'))/', '$1'.$static.'/server/get.php?h='.$hash.'&amp;t=$5&amp;f=$7$8$9', $string);
 
 		// Links to JS that are prefixed with JAPPIX_STATIC (must have a lang parameter)
-		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(js)(\/)(\S+)(js)((\")|(\'))/', '$1$2'.'php/get.php?h='.$hash.'&amp;l='.$locale.'&amp;t=$5&amp;f=$7$8$9', $string);
+		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(js)(\/)(\S+)(js)((\")|(\'))/', '$1$2'.'server/get.php?h='.$hash.'&amp;l='.$locale.'&amp;t=$5&amp;f=$7$8$9', $string);
 
 		// Other "normal" links prefixed with JAPPIX_STATIC (no lang parameter) (used by mini)
-		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(css|img|store|snd|fonts)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)((\")|(\'))/', '$1$2'.'php/get.php?h='.$hash.'&amp;t=$5&amp;f=$7$8$9', $string);
+		$string = preg_replace('/(\WJAPPIX_STATIC\s*\+\s*)((\")|(\'))(stylesheets|images|store|sounds|fonts)(\/)(\S+)(css|png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)((\")|(\'))/', '$1$2'.'server/get.php?h='.$hash.'&amp;t=$5&amp;f=$7$8$9', $string);
 	}
 
 	// Replace the CSS strings
-	else if($type == 'css') {
+	else if($type == 'stylesheets') {
 		// Static host defined
 		if($host && ($host != '.'))
-			$static = $host.'/php';
+			$static = $host.'/server';
 
-		$string = preg_replace('/(\(((\")|(\'))?\.\.\/)(img|store|snd|fonts)(\/)(\S+)(png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)(\?)?(#\w+)?((\")|(\'))?(\))/', '('.$static.'/get.php?h='.$hash.'&t=$5&f=$7$8$10)', $string);
+		$string = preg_replace('/(\(((\")|(\'))?\.\.\/)(images|store|sounds|fonts)(\/)(\S+)(png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)(\?)?(#\w+)?((\")|(\'))?(\))/', '('.$static.'/get.php?h='.$hash.'&t=$5&f=$7$8$10)', $string);
 	}
 
 	return $string;
@@ -143,7 +143,7 @@ function setLocales($string, $locale) {
 function setConfiguration($string, $hash, $locale, $version, $max_upload) {
 	// Special BOSH URL if BOSH proxy enabled
 	if(BOSHProxy())
-		$bosh_special = staticLocation().'php/bosh.php';
+		$bosh_special = staticLocation().'server/bosh.php';
 	else
 		$bosh_special = HOST_BOSH;
 	

@@ -573,7 +573,7 @@ var DataForm = (function () {
                             // HTML code
                             var bHTML = '<div class="oneresult ' + target + '-oneresult ' + bHash + '">' + 
                                     '<div class="avatar-container">' + 
-                                        '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                        '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                                     '</div>' + 
                                     '<div class="one-fn">' + bName + '</div>' + 
                                     '<div class="one-ctry">' + bCountry + '</div>' + 

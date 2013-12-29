@@ -1404,7 +1404,7 @@ var JappixMini = (function () {
     self.smiley = function(image, text) {
 
         try {
-            return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + JappixCommon.encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'img/others/blank.gif' + '" /> ';
+            return ' <img class="jm_smiley jm_smiley-' + image + ' jm_images" alt="' + JappixCommon.encodeQuotes(text) + '" src="' + JAPPIX_STATIC + 'images/others/blank.gif' + '" /> ';
         } catch(e) {
             JappixConsole.error('JappixMini.smiley', e);
 

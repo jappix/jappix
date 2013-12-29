@@ -234,7 +234,7 @@ var Microblog = (function () {
                     var html = '<div class="one-update update_' + hash + ' ' + tHash + '" data-stamp="' + Common.encodeQuotes(tStamp) + '" data-id="' + Common.encodeQuotes(tID) + '" data-xid="' + Common.encodeQuotes(from) + '">' + 
                             '<div class="' + hash + '">' + 
                                 '<div class="avatar-container">' + 
-                                    '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                    '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                                 '</div>' + 
                             '</div>' + 
                             
@@ -673,7 +673,7 @@ var Microblog = (function () {
                             marker + 
                             
                             '<div class="avatar-container" onclick="return ' + onclick + ';">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
                             
                             '<div class="comment-container">' + 
@@ -1206,7 +1206,7 @@ var Microblog = (function () {
                                .before(
                         '<div class="top individual ' + hash + '">' + 
                             '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
                             
                             '<div class="update">' + 

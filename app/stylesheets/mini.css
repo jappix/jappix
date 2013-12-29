@@ -53,12 +53,12 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 }
 
 #jappix_mini .jm_images {
-	background-image: url(../img/sprites/mini.png);
+	background-image: url(../images/sprites/mini.png);
 	background-repeat: no-repeat;
 }
 
 #jappix_mini .jm_images_animate {
-	background-image: url(../img/sprites/animate.png);
+	background-image: url(../images/sprites/animate.png);
 	background-repeat: no-repeat;
 }
 
@@ -502,7 +502,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 }
 
 #jappix_mini div.jm_received-messages div.jm_chatstate_typing {
-	background-image: url(../img/wait/wait-typing.gif);
+	background-image: url(../images/wait/wait-typing.gif);
 	background-repeat: no-repeat;
 	background-position: 0 5px;
 	color: #a6a6a6;
@@ -744,7 +744,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 }
 
 #jappix_popup {
-	background: url(../img/others/blank.gif) repeat;
+	background: url(../images/others/blank.gif) repeat;
 	position: fixed;
 	top: 0;
 	bottom: 0;

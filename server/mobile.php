@@ -69,7 +69,7 @@ if(!defined('JAPPIX_BASE'))
 		<?php if(hasLegal()) { ?>- <a href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Legal"); ?></a><?php } ?>
 	</div>
 	
-	<?php include(JAPPIX_BASE.'/php/analytics.php'); ?>
+	<?php include(JAPPIX_BASE.'/server/analytics.php'); ?>
 </body>
 
 </html>

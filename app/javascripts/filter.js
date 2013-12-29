@@ -31,7 +31,7 @@ var Filter = (function () {
     self.emoteImage = function(image, text, after) {
 
         try {
-            return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + Common.encodeQuotes(text) + '" src="' + './img/others/blank.gif' + '" /> ' + after;
+            return ' <img class="emoticon emoticon-' + image + ' smileys-images" alt="' + Common.encodeQuotes(text) + '" src="' + './images/others/blank.gif' + '" /> ' + after;
         } catch(e) {
             Console.error('Filter.emoteImage', e);
         }

@@ -34,17 +34,17 @@ if(isset($_POST['step']) && !empty($_POST['step'])) {
 	switch($step) {
 		// Administrator account configuration submitted
 		case 3:
-			include(JAPPIX_BASE.'/php/post-users.php');
+			include(JAPPIX_BASE.'/server/post-users.php');
 			break;
 		
 		// Main configuration submitted
 		case 4:
-			include(JAPPIX_BASE.'/php/post-main.php');
+			include(JAPPIX_BASE.'/server/post-main.php');
 			break;
 		
 		// Hosts configuration submitted
 		case 5:
-			include(JAPPIX_BASE.'/php/post-hosts.php');
+			include(JAPPIX_BASE.'/server/post-hosts.php');
 			break;
 	}
 }
@@ -146,7 +146,7 @@ else
 				
 				<?php if(is_writable(JAPPIX_BASE.'/store')) {
 					// Create the store tree
-					include(JAPPIX_BASE.'/php/store-tree.php');
+					include(JAPPIX_BASE.'/server/store-tree.php');
 				?>
 					<p class="info bigspace success"><?php _e("The folder is writable, you can continue!"); ?></p>
 				<?php }
@@ -169,7 +169,7 @@ else
 				<?php
 				
 				// Include the user add form
-				include(JAPPIX_BASE.'/php/form-users.php');
+				include(JAPPIX_BASE.'/server/form-users.php');
 				
 				if(!$valid_user) { ?>
 					<p class="info bigspace fail"><?php _e("Oops, you missed something or the two passwords do not match!"); ?></p>
@@ -187,14 +187,14 @@ else
 				<?php
 				
 				// Define the main configuration variables
-				include(JAPPIX_BASE.'/php/vars-main.php');
+				include(JAPPIX_BASE.'/server/vars-main.php');
 				
 				// Are we using developer mode?
 				if(preg_match('/~dev/i', $version))
 					$developer = 'on';
 				
 				// Include the main configuration form
-				include(JAPPIX_BASE.'/php/form-main.php');
+				include(JAPPIX_BASE.'/server/form-main.php');
 			}
 			
 			// Fifth step: hosts configuration
@@ -210,10 +210,10 @@ else
 				<?php
 				
 				// Define the hosts configuration variables
-				include(JAPPIX_BASE.'/php/vars-hosts.php');
+				include(JAPPIX_BASE.'/server/vars-hosts.php');
 				
 				// Include the hosts configuration form
-				include(JAPPIX_BASE.'/php/form-hosts.php');
+				include(JAPPIX_BASE.'/server/form-hosts.php');
 			}
 			
 			// Last step: services installation

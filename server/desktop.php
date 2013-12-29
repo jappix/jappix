@@ -112,7 +112,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 			</div>
 			
 			<?php if((ADS_ENABLE == 'on') && (ADS_STANDARD || ADS_STANDARD)) { ?>
-				<?php require_once('./php/functions-advertising.php'); ?>
+				<?php require_once('./server/functions-advertising.php'); ?>
 				<?php $advertise_link = 'http://www.backlinks.com/?aff=58769'; ?>
 				
 				<div class="friendsview">
@@ -272,7 +272,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 </div>
 <!-- END BOARD -->
 
-<?php include(JAPPIX_BASE.'/php/analytics.php'); ?>
+<?php include(JAPPIX_BASE.'/server/analytics.php'); ?>
 
 </body>
 

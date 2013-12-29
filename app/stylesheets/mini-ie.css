@@ -20,11 +20,11 @@ Author: Valérian Saliou
 }
 
 #jappix_mini.ie .jm_images {
-	background-image: url(../img/sprites/mini.gif) !important;
+	background-image: url(../images/sprites/mini.gif) !important;
 }
 
 #jappix_mini.ie .jm_images_animate {
-	background-image: url(../img/sprites/animate.gif) !important;
+	background-image: url(../images/sprites/animate.gif) !important;
 }
 
 #jappix_mini.ie a.jm_button {

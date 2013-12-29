@@ -240,7 +240,7 @@ var Board = (function () {
             
             // Default icon?
             if(!icon) {
-                icon = './img/others/default-avatar.png';
+                icon = './images/others/default-avatar.png';
                 
                 // Avatar icon?
                 if(xid) {

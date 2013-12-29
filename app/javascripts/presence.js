@@ -358,7 +358,7 @@ var Presence = (function () {
                             '<div class="name talk-images available">' + nick_html + '</div>' + 
                             
                             '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</div>' + 
 
                             '<div class="clear"></div>' + 

@@ -70,7 +70,7 @@ html[dir="rtl"] #right-content {
 }
  
 #general-wait {
-	background: url(../img/others/blank.gif) repeat;
+	background: url(../images/others/blank.gif) repeat;
     z-index: 10000;
     position: fixed;
     top: 0;

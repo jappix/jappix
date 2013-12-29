@@ -262,7 +262,7 @@ var Roster = (function () {
                         // Display avatar if not gateway
                         if(!is_gateway) {
                             html += '<div class="avatar-container">' + 
-                                    '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                                    '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                                 '</div>';
                         }
                         

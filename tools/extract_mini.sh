@@ -19,7 +19,7 @@
 # - move the newly created mini/ directory onto your webserver
 # - Create index.html:
 #     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-#     <script type="text/javascript" src="/mini/js/mini.js"></script>
+#     <script type="text/javascript" src="/mini/javascripts/mini.js"></script>
 #     <script type="text/javascript">
 #       jQuery(document).ready(function() {
 #         JAPPIX_STATIC = "/mini/";
@@ -124,9 +124,9 @@ else
   mkdir "$TARGET_DIR"
 fi
 
-mkdir "$TARGET_DIR/css/"
-mkdir "$TARGET_DIR/js/"
-mkdir "$TARGET_DIR/img/"
+mkdir "$TARGET_DIR/stylesheets/"
+mkdir "$TARGET_DIR/javascripts/"
+mkdir "$TARGET_DIR/images/"
 
 # define license check function
 check_license()
@@ -163,18 +163,18 @@ check_license()
 }
 
 # create compound javascript file
-echo "$LICENSE_HEADER" > "$TARGET_DIR/js/mini.js"
+echo "$LICENSE_HEADER" > "$TARGET_DIR/javascripts/mini.js"
 
-JS_FILES="`cat $SOURCE_DIR/xml/mini.xml | sed -n "s/.*<js>\(.*\)<\/js>.*/\1/p" | sed "s/~/ /g"`"
+JS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<js>\(.*\)<\/javascripts>.*/\1/p" | sed "s/~/ /g"`"
 for js_file in $JS_FILES; do
-  check_license "$SOURCE_DIR/js/$js_file" "$COMPATIBLE_LICENSES"
+  check_license "$SOURCE_DIR/javascripts/$js_file" "$COMPATIBLE_LICENSES"
 
   # add to compound file removing UTF-8 byte order mark
-  cat "$SOURCE_DIR/js/$js_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/js/mini.js"
+  cat "$SOURCE_DIR/javascripts/$js_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/javascripts/mini.js"
 done
 
 # simple configuraton
-cat >> "$TARGET_DIR/js/mini.js" << EOF
+cat >> "$TARGET_DIR/javascripts/mini.js" << EOF
 
 // Configuration
 XML_LANG = 'en';
@@ -183,42 +183,42 @@ JAPPIX_STATIC = '/mini/';
 EOF
 
 # create compound style sheet file
-echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini.css"
+echo "$LICENSE_HEADER" > "$TARGET_DIR/stylesheets/mini.css"
 
-CSS_FILES="`cat $SOURCE_DIR/xml/mini.xml | sed -n "s/.*<css>\(.*\)<\/css>.*/\1/p" | sed "s/~/ /g"`"
+CSS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<css>\(.*\)<\/stylesheets>.*/\1/p" | sed "s/~/ /g"`"
 for css_file in $CSS_FILES; do
-  check_license "$SOURCE_DIR/css/$css_file" "$COMPATIBLE_LICENSES"
+  check_license "$SOURCE_DIR/stylesheets/$css_file" "$COMPATIBLE_LICENSES"
 
   # add to compound file removing UTF-8 byte order mark
-  cat "$SOURCE_DIR/css/$css_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/css/mini.css"
+  cat "$SOURCE_DIR/stylesheets/$css_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/stylesheets/mini.css"
 done
 
 # copy additional style sheets
-check_license "$SOURCE_DIR/css/mini-ie.css" "$COMPATIBLE_LICENSES"
-echo "$LICENSE_HEADER" > "$TARGET_DIR/css/mini-ie.css"
-cat "$SOURCE_DIR/css/mini-ie.css" >> "$TARGET_DIR/css/mini-ie.css"
+check_license "$SOURCE_DIR/stylesheets/mini-ie.css" "$COMPATIBLE_LICENSES"
+echo "$LICENSE_HEADER" > "$TARGET_DIR/stylesheets/mini-ie.css"
+cat "$SOURCE_DIR/stylesheets/mini-ie.css" >> "$TARGET_DIR/stylesheets/mini-ie.css"
 
 # copy artwork
 # mini.png, mini.gif, animate.png and animate.gif are licensed under CC-BY
-mkdir -p "$TARGET_DIR/img/sprites/"
-cp "$SOURCE_DIR/img/sprites/mini.gif" "$TARGET_DIR/img/sprites/mini.gif"
-cp "$SOURCE_DIR/img/sprites/mini.png" "$TARGET_DIR/img/sprites/mini.png"
-cp "$SOURCE_DIR/img/sprites/animate.png" "$TARGET_DIR/img/sprites/animate.png"
-cp "$SOURCE_DIR/img/sprites/animate.gif" "$TARGET_DIR/img/sprites/animate.gif"
+mkdir -p "$TARGET_DIR/images/sprites/"
+cp "$SOURCE_DIR/images/sprites/mini.gif" "$TARGET_DIR/images/sprites/mini.gif"
+cp "$SOURCE_DIR/images/sprites/mini.png" "$TARGET_DIR/images/sprites/mini.png"
+cp "$SOURCE_DIR/images/sprites/animate.png" "$TARGET_DIR/images/sprites/animate.png"
+cp "$SOURCE_DIR/images/sprites/animate.gif" "$TARGET_DIR/images/sprites/animate.gif"
 
 # copy wait-typing.gif
-mkdir -p "$TARGET_DIR/img/wait/"
-cp "$SOURCE_DIR/img/wait/wait-typing.gif" "$TARGET_DIR/img/wait/wait-typing.gif"
+mkdir -p "$TARGET_DIR/images/wait/"
+cp "$SOURCE_DIR/images/wait/wait-typing.gif" "$TARGET_DIR/images/wait/wait-typing.gif"
 
 # copy blank.gif
-mkdir -p "$TARGET_DIR/img/others/"
-cp "$SOURCE_DIR/img/others/blank.gif" "$TARGET_DIR/img/others/blank.gif"
+mkdir -p "$TARGET_DIR/images/others/"
+cp "$SOURCE_DIR/images/others/blank.gif" "$TARGET_DIR/images/others/blank.gif"
 
 # copy sounds
 # receive-message.mp3, receive-message.oga are licensed under CC-BY
-mkdir -p "$TARGET_DIR/snd/"
-cp "$SOURCE_DIR/snd/receive-message.mp3" "$TARGET_DIR/snd/receive-message.mp3"
-cp "$SOURCE_DIR/snd/receive-message.oga" "$TARGET_DIR/snd/receive-message.oga"
+mkdir -p "$TARGET_DIR/sounds/"
+cp "$SOURCE_DIR/sounds/receive-message.mp3" "$TARGET_DIR/sounds/receive-message.mp3"
+cp "$SOURCE_DIR/sounds/receive-message.oga" "$TARGET_DIR/sounds/receive-message.oga"
 
 # license information
 cat > "$TARGET_DIR/COPYING" << EOF
@@ -230,7 +230,7 @@ The code is licensed under the $LICENSE, as indicated in the source files.
 Artwork
 -------
 
-The files img/sprites/mini.png, img/sprites/mini.gif, img/sprites/animate.png, img/sprites/animate.gif and img/wait/wait-typing.gif were created by
+The files ./app/images/sprites/mini.png, ./app/images/sprites/mini.gif, ./app/images/sprites/animate.png, ./app/images/sprites/animate.gif and ./app/images/wait/wait-typing.gif were created by
 Valérian Saliou and are dual-licensed under the Creative Commons Attribution 2.5
 License and the Creative Commons Attribution 3.0 License.
 They contain work from the FamFamFam Silk icon set by Mark James.

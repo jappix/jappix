@@ -657,6 +657,23 @@ function multiFiles() {
 	return false;
 }
 
+// Normalizes file type into internal storage representation
+function normalizeFileType($type) {
+	$map = array(
+		'css'   => 'stylesheets',
+		'js'    => 'javascripts',
+		'img'   => 'images',
+		'snd'   => 'sounds',
+		'fonts' => 'fonts'
+	);
+
+	if(isset($map[$type])) {
+		return $map[$type];
+	}
+
+	return $type;
+}
+
 function getFiles($h, $l, $t, $g, $f) {
 	// Define the good path to the Get API
 	if(hasStatic())
@@ -677,11 +694,11 @@ function getFiles($h, $l, $t, $g, $f) {
 		if ($f)
 			$values[] = 'f='.$f;
 		
-		return $path_to.'php/get.php?'.implode('&amp;', $values);
+		return $path_to.'server/get.php?'.implode('&amp;', $values);
 	}
 	
-	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('xml/'.$g)) {
-		$xml_data = file_get_contents('xml/'.$g);
+	if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('bundles/'.$g)) {
+		$xml_data = file_get_contents('bundles/'.$g);
 		
 		// Any data?
 		if($xml_data) {
@@ -1609,7 +1626,7 @@ function handleError($errno, $errstr, $errfile, $errline) {
     $error_message = '['.$error_ns.' @ '.$errfile.':'.$errline.'] '.$error_date.' >> '.$errstr.PHP_EOL;
 
     // Write message to log file
-    $log_path = JAPPIX_BASE.'/log/php.log';
+    $log_path = JAPPIX_BASE.'/log/server.log';
     file_put_contents($log_path, $error_message, FILE_APPEND);
 
     return false;

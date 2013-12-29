@@ -40,24 +40,31 @@ module.exports = function(grunt) {
           'universal-selector': false
         },
 
-        src: ['../app/css/*.css', '!../app/css/ie.css', '!../app/css/*-ie.css', '!../app/css/ios.css']
+        src: [
+          '../app/stylesheets/*.css',
+
+          // Ignored files
+          '!../app/stylesheets/ie.css',
+          '!../app/stylesheets/*-ie.css',
+          '!../app/stylesheets/ios.css'
+        ]
       }
     },
 
 
     // Task: JSHint
     jshint: {
-      files: ['../app/js/*.js'],
+      files: ['../app/javascripts/*.js'],
       options: {
           ignores: [
-            '../app/js/jquery.js',
-            '../app/js/jquery.*.js',
-            '../app/js/jsjac.js',
-            '../app/js/jsjac.*.js',
-            '../app/js/jxhr.js',
-            '../app/js/browser-detect.js',
-            '../app/js/base64.js',
-            '../app/js/ios.js'
+            '../app/javascripts/jquery.js',
+            '../app/javascripts/jquery.*.js',
+            '../app/javascripts/jsjac.js',
+            '../app/javascripts/jsjac.*.js',
+            '../app/javascripts/jxhr.js',
+            '../app/javascripts/browser-detect.js',
+            '../app/javascripts/base64.js',
+            '../app/javascripts/ios.js'
           ]
       }
     }

@@ -137,7 +137,7 @@ var Chat = (function () {
             else {
                 specialMAM = '<div class="wait-mam wait-small"></div>';
                 specialAttributes = ' data-type="chat"';
-                specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" /></div>';
+                specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>';
                 specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
                 specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
                 specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>' + 
