@@ -78,10 +78,12 @@ var Features = (function () {
         try {
             // Selector
             var selector = $(xml);
+
+            Console.debug('xml', xml)
             
             // Functions
             var check_feature_fn = function(namespace) {
-                return selector.find('feature[var="' + namespace + '"]').size() && true;
+                return selector.find('feature[var="' + namespace + '"]').size() > 0 ? true : false;
             };
 
             // Markers
@@ -92,17 +94,16 @@ var Features = (function () {
                 'pep': (selector.find('identity[category="pubsub"][type="pep"]').size() && true)
             };
 
-            for(var namespace in namespaces) {
-                cur_feature = check_feature_fn(namespace);
-                features[namespace] = cur_feature;
+            $.each(namespaces, function(n, namespace) {
+                features[namespace] = check_feature_fn(namespace);
 
-                if(cur_feature) {
+                if(features[namespace] === true) {
                     self.enable(namespace);
                 }
-            }
+            });
             
             // Enable the pep elements if available
-            if(pep) {
+            if(features['pep'] === true) {
                 // Update our database
                 self.enable('pep');
                 
@@ -128,7 +129,7 @@ var Features = (function () {
             }
 
             // Hide the private life fieldset if nothing to show
-            if(!features['pep'] && !features[NS_URN_MAM]) {
+            if(features['pep'] === false && features[NS_URN_MAM] === false) {
                 $('#options fieldset.privacy').hide();
             }
             
@@ -136,15 +137,13 @@ var Features = (function () {
             self.apply('talk');
             
             // Process the buddy-list height
-            if(features['pep']) {
+            if(features['pep'] === true) {
                 Roster.adapt();
             }
 
-            // Enable/Disable Carbons?
-            if(features[NS_URN_CARBONS]) {
+            // Enable Message Carbons?
+            if(features[NS_URN_CARBONS] === true) {
                 Carbons.enable();
-            } else {
-                Carbons.disable();
             }
         } catch(e) {
             Console.error('Features.handle', e);

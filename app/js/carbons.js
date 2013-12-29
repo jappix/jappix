@@ -29,7 +29,7 @@ var Carbons = (function () {
     self._configure = function(type) {
 
         try {
-            if(!(type in ['enable', 'disable'])) {
+            if(!(type in {'enable': 1, 'disable': 1})) {
                 Console.error('Carbons._configure', 'Invalid type (must be either "enable" or "disable")'); return;
             }
 
