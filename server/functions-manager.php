@@ -191,7 +191,7 @@ function newUpdates($force) {
 	if(isDeveloper())
 		return false;
 	
-	$cache_path = JAPPIX_BASE.'/store/updates/version.xml';
+	$cache_path = JAPPIX_BASE.'/tmp/cache/version.xml';
 	
 	// No cache, obsolete one or refresh forced
 	if(!file_exists($cache_path) || (file_exists($cache_path) && (time() - (filemtime($cache_path)) >= 86400)) || $force) {
@@ -230,7 +230,7 @@ function newUpdates($force) {
 // Gets the Jappix update informations
 function updateInformations() {
 	// Get the XML file content
-	$data = file_get_contents(JAPPIX_BASE.'/store/updates/version.xml');
+	$data = file_get_contents(JAPPIX_BASE.'/tmp/cache/version.xml');
 	
 	// Transform the XML content into an array
 	$array = array();
@@ -258,10 +258,10 @@ function updateInformations() {
 function processUpdate($url) {
 	// Archive path
 	$name = md5($url).'.zip';
-	$update_dir = JAPPIX_BASE.'/store/updates/';
-	$path = JAPPIX_BASE.'/store/updates/'.$name;
+	$update_dir = JAPPIX_BASE.'/tmp/update/';
+	$path = $update_dir.$name;
 	$extract_to = $update_dir.'jappix/';
-	$store_tree = JAPPIX_BASE.'/php/store-tree.php';
+	$store_tree = JAPPIX_BASE.'/server/store-tree.php';
 	
 	// We must get the archive from the server
 	if(!file_exists($path)) {
@@ -450,12 +450,10 @@ function otherStats() {
 	// Fill the array with the values
 	$others_stats = array(
 			     	T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
-			     	T_("Cache") => sizeDir(JAPPIX_BASE.'/store/cache/'),
 			     	T_("Logs") => sizeDir(JAPPIX_BASE.'/store/logs/'),
 			     	T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
 			     	T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
 			     	T_("Send") => sizeDir(JAPPIX_BASE.'/store/send/'),
-			     	T_("Updates") => sizeDir(JAPPIX_BASE.'/store/updates/')
 			     );
 	
 	// Sort this array
@@ -545,7 +543,7 @@ function purgeFolder($folder) {
 	
 	// We must purge all the folders?
 	if($folder == 'everything')
-		array_push($array, 'cache', 'logs', 'send', 'updates');
+		array_push($array, 'logs', 'send');
 	else
 		array_push($array, $folder);
 	

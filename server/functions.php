@@ -848,7 +848,7 @@ function includeTranslation($locale, $domain) {
 
 // The function to check the cache presence
 function hasCache($hash) {
-	if(file_exists(JAPPIX_BASE.'/store/cache/'.$hash.'.cache'))
+	if(file_exists(JAPPIX_BASE.'/tmp/cache/'.$hash.'.cache'))
 		return true;
 	else
 		return false;

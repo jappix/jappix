@@ -29,7 +29,7 @@ function getAdverts($type) {
 	if(!$key)
 		return '';
 	
-	$cache_file = JAPPIX_BASE.'/store/cache/ads_'.md5($key).'.cache';
+	$cache_file = JAPPIX_BASE.'/tmp/cache/ads_'.md5($key).'.cache';
 	
 	// Must get from server?
 	if(!file_exists($cache_file) || (isset($_SERVER['HTTP_USER_AGENT']) && ($_SERVER['HTTP_USER_AGENT'] == 'BackLinks.com'))) {

@@ -14,7 +14,7 @@ Authors: Valérian Saliou, Mathieui, olivierm, regilero, Maranda
 
 // The function to get the cache path
 function pathCache($hash) {
-	return JAPPIX_BASE.'/store/cache/'.$hash.'.cache';
+	return JAPPIX_BASE.'/tmp/cache/'.$hash.'.cache';
 }
 
 // The function to get the cached content
@@ -25,7 +25,7 @@ function readCache($hash) {
 // The function to generate a cached file
 function genCache($string, $mode, $cache) {
 	if(!$mode) {
-		$cache_dir = JAPPIX_BASE.'/store/cache';
+		$cache_dir = JAPPIX_BASE.'/tmp/cache';
 		$file_put = $cache_dir.'/'.$cache.'.cache';
 
 		// Cache not yet wrote
