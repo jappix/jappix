@@ -1,6 +1,6 @@
 mini/
 store/
-#tmp/
+tmp/
 log/
 test/node_modules/
 .DS_Store

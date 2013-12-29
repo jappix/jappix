@@ -1551,9 +1551,6 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-msgid "Cache"
-msgstr ""
-
 msgid "Logs"
 msgstr ""
 
