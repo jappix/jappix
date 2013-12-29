@@ -11,7 +11,7 @@ Author: Valérian Saliou
 */
 
 // Bundle
-var Jingle = (function () {
+var Jingle = (function() {
 
     /**
      * Alias of this
@@ -21,10 +21,40 @@ var Jingle = (function () {
 
 
     /* Variables */
-    self.__jingle_current = null;
+    self._jingle_current = null;
 
 
-    /* Helpers */
+    /**
+     * Opens the Jingle interface (depending on the state)
+     * @public
+     * @return {boolean}
+     */
+    self.open = function() {
+
+        try {
+            var jingle_tool_sel = $('#top-content .tools.jingle');
+
+            if(jingle_tool_sel.is('.active')) {
+                // Show the Jingle bubble
+                Bubble.show('.jingle-content');
+
+                Console.info('Opened Jingle notification drawer');
+            } else if(jingle_tool_sel.is('.streaming.video')) {
+                // Videobox?
+                self.showInterface();
+
+                Console.info('Opened Jingle videobox');
+            } else {
+                Console.warn('Could not open any Jingle tool (race condition on state)');
+            }
+        } catch(e) {
+            Console.error('Jingle.open', e);
+        } finally {
+            return false;
+        }
+
+    };
+
 
     /**
      * Returns the Jingle session arguments (used to configure it)
@@ -36,7 +66,7 @@ var Jingle = (function () {
      * @param remote_view
      * @return {object}
      */
-    self.__args = function (connection, xid, hash, local_view, remote_view) {
+    self.__args = function(connection, xid, hash, local_view, remote_view) {
 
         args = {};
 
@@ -129,7 +159,7 @@ var Jingle = (function () {
 
                 session_terminate_success: function(jingle, stanza) {
                     // Ensure we this is the same call session ID (SID)
-                    if(self.__jingle_current.get_sid() == jingle.get_sid()) {
+                    if(self._jingle_current.get_sid() == jingle.get_sid()) {
                         // TODO
                     } else {
                         Console.warn('session_terminate_success', 'Dropped stanza with unmatching SID');
@@ -140,7 +170,7 @@ var Jingle = (function () {
 
                 session_terminate_error: function(jingle, stanza) {
                      // Ensure we this is the same call session ID (SID)
-                    if(self.__jingle_current.get_sid() == jingle.get_sid()) {
+                    if(self._jingle_current.get_sid() == jingle.get_sid()) {
                         // TODO
                     } else {
                         Console.warn('session_terminate_error', 'Dropped stanza with unmatching SID');
@@ -163,6 +193,7 @@ var Jingle = (function () {
 
     };
 
+
     /**
      * Launch a new Jingle session with given buddy
      * @private
@@ -172,7 +203,7 @@ var Jingle = (function () {
      * @param stanza
      * @return {boolean}
      */
-    self.__new = function (xid, mode, is_callee, stanza) {
+    self.__new = function(xid, mode, is_callee, stanza) {
 
         var status = false;
 
@@ -202,13 +233,13 @@ var Jingle = (function () {
                                    jingle_sel.find('.remote_video')[0]
                                  );
 
-            self.__jingle_current = new JSJaCJingle(args);
+            self._jingle_current = new JSJaCJingle(args);
 
             if(is_callee) {
                 // TODO: make it ring!
-                self.__jingle_current.handle(stanza);
+                self._jingle_current.handle(stanza);
             } else {
-                self.__jingle_current.initiate();
+                self._jingle_current.initiate();
             }
 
             status = true;
@@ -220,12 +251,13 @@ var Jingle = (function () {
 
     };
 
+
     /**
      * Adapts the Jingle view to the window size
      * @private
      * @return {undefined}
      */
-    self.__adapt = function () {
+    self.__adapt = function() {
 
         try {
             // TODO
@@ -236,14 +268,12 @@ var Jingle = (function () {
     };
 
 
-    /* Methods */
-
     /**
      * Initializes Jingle
      * @public
      * @return {undefined}
      */
-    self.init = function () {
+    self.init = function() {
 
         try {
             // JSJaCJingle.js custom init configuration
@@ -281,7 +311,7 @@ var Jingle = (function () {
      * @public
      * @return {boolean}
      */
-    self.start = function (xid, mode) {
+    self.start = function(xid, mode) {
 
         try {
             if(!self.in_call()) {
@@ -301,11 +331,15 @@ var Jingle = (function () {
      * @public
      * @return {boolean}
      */
-    self.stop = function () {
+    self.stop = function() {
 
         try {
-            if(self.__jingle_current) {
-                self.__jingle_current.terminate();
+            if(self._jingle_current) {
+                Console.debug('Stopping current Jingle call...');
+
+                self._jingle_current.terminate();
+            } else {
+                Console.warn('No Jingle call to be stopped!');
             }
         } catch(e) {
             Console.error('Jingle.stop', e);
@@ -320,16 +354,16 @@ var Jingle = (function () {
      * @public
      * @return {undefined}
      */
-    self.mute = function () {
+    self.mute = function() {
 
         try {
-            if(self.__jingle_current) {
-                if(self.__jingle_current.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === true) {
+            if(self._jingle_current) {
+                if(self._jingle_current.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === true) {
                     $('#jingle a.mute').removeClass('off').addClass('on');
-                    self.__jingle_current.unmute(JSJAC_JINGLE_MEDIA_AUDIO);
+                    self._jingle_current.unmute(JSJAC_JINGLE_MEDIA_AUDIO);
                 } else {
                     $('#jingle a.mute').removeClass('on').addClass('off');
-                    self.__jingle_current.mute(JSJAC_JINGLE_MEDIA_AUDIO);
+                    self._jingle_current.mute(JSJAC_JINGLE_MEDIA_AUDIO);
                 }
             }
         } catch(e) {
@@ -343,12 +377,12 @@ var Jingle = (function () {
      * @public
      * @return {boolean}
      */
-    self.in_call = function () {
+    self.in_call = function() {
 
         in_call = false;
 
         try {
-            in_call = self.__jingle_current && true;
+            in_call = self._jingle_current && true;
         } catch(e) {
             Console.error('Jingle.in_call', e);
         } finally {
@@ -362,44 +396,53 @@ var Jingle = (function () {
      * @public
      * @return {undefined}
      */
-    self.create_interface = function (xid, mode) {
+    self.createInterface = function(xid, mode) {
 
         try {
-            $('#talk').append(
-                '<div id="jingle" data-xid="" data-mode="">' + 
-                    '<div class="sidebar">' + 
-                        '<span class="logo jingle-images"></span>' + 
+            $('body').append(
+                '<div id="jingle" class="lock removable" data-xid="" data-mode="">' + 
+                    '<div class="videobox">' + 
+                        '<div class="topbar">' + 
+                            '<div class="avatar-container">' + 
+                                '<img class="avatar" src="' + './img/others/default-avatar.png' + '" alt="" />' + 
+                            '</div>' + 
 
-                        '<div class="controls">' + 
-                            '<a href="#" class="chat control-button jingle-images" data-type="chat">Go to chat</a>' + 
-                            '<a href="#" class="stop control-button jingle-images" data-type="stop">Stop call</a>' + 
-                            '<a href="#" class="mute control-button jingle-images" data-type="mute">Mute audio</a>' + 
+                            '<div class="controls">' + 
+                                '<a href="#" class="stop control-button jingle-images" data-type="stop">Stop</a>' + 
+                                '<a href="#" class="mute control-button jingle-images" data-type="mute">Mute</a>' + 
+                            '</div>' + 
+
+                            '<div class="elapsed">00:00:00</div>' + 
+
+                            '<div class="actions">' + 
+                                '<a href="#" class="close action-button jingle-images" data-type="close">X</a>' + 
+                            '</div>' + 
                         '</div>' + 
-                    '</div>' + 
 
-                    '<video class="local_video" src="" alt=""></video>' + 
-                    '<video class="remote_video" src="" alt=""></video>' + 
+                        '<video class="local_video" src="" alt=""></video>' + 
+                        '<video class="remote_video" src="" alt=""></video>' + 
+                    '</div>' + 
                 '</div>'
             );
 
-            $('#jingle').find('.sidebar .controls a').click(function() {
+            $('#jingle .topbar').find('.controls a, .actions a').click(function() {
                 try {
                     switch($(this).data('type')) {
-                        case 'chat':
-                            self.hide_interface(); break;
+                        case 'close':
+                            self.hideInterface(); break;
                         case 'stop':
                             self.stop(); break;
                         case 'mute':
                             self.mute(); break;
                     }
                 } catch(e) {
-                    Console.error('Jingle.create_interface[async]', e);
+                    Console.error('Jingle.createInterface[async]', e);
                 } finally {
                     return false;
                 }
             });
         } catch(e) {
-            Console.error('Jingle.create_interface', e);
+            Console.error('Jingle.createInterface', e);
         }
 
     };
@@ -409,12 +452,12 @@ var Jingle = (function () {
      * @public
      * @return {undefined}
      */
-    self.show_interface = function () {
+    self.showInterface = function() {
 
         try {
             $('#jingle:hidden').stop(true).show();
         } catch(e) {
-            Console.error('Jingle.show_interface', e);
+            Console.error('Jingle.showInterface', e);
         }
 
     };
@@ -424,12 +467,12 @@ var Jingle = (function () {
      * @public
      * @return {undefined}
      */
-    self.hide_interface = function () {
+    self.hideInterface = function() {
 
         try {
             $('#jingle:visible').stop(true).hide();
         } catch(e) {
-            Console.error('Jingle.hide_interface', e);
+            Console.error('Jingle.hideInterface', e);
         }
 
     };
@@ -439,7 +482,7 @@ var Jingle = (function () {
      * @public
      * @return {undefined}
      */
-    self.launch = function () {
+    self.launch = function() {
 
         try {
             $(window).resize(self.__adapt());

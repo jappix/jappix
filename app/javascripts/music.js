@@ -342,12 +342,14 @@ var Music = (function () {
             // When music search string submitted
             $('.music-content input').keyup(function(e) {
                 // Enter : send
-                if(e.keyCode == 13 && $(this).val())
+                if(e.keyCode == 13 && $(this).val()) {
                     self.search();
+                }
                 
                 // Escape : quit
-                if(e.keyCode == 27)
+                if(e.keyCode == 27) {
                     Bubble.close();
+                }
             });
         } catch(e) {
             Console.error('Music.instance', e);
