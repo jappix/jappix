@@ -268,7 +268,7 @@ var Jingle = (function() {
 
         try {
             if(!xid) {
-                throw 'No XID to be called given!'
+                throw 'No XID to be called given!';
             }
 
             var bare_xid    = Common.bareXID(xid);
@@ -280,7 +280,7 @@ var Jingle = (function() {
                 full_xid = Presence.highestPriority(xid);
 
                 if(!full_xid) {
-                    throw 'Could not get user full XID to be called!'
+                    throw 'Could not get user full XID to be called!';
                 }
             }
 
@@ -799,7 +799,7 @@ var Jingle = (function() {
             var map = self._notify_map();
 
             if(!(type in map)) {
-                throw 'Notification type not recognized!'
+                throw 'Notification type not recognized!';
             }
 
             var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
@@ -811,7 +811,7 @@ var Jingle = (function() {
 
             if(typeof map[type].buttons === 'object') {
                 $.each(map[type].buttons, function(button, attrs) {
-                    buttons_html += '<a class="reply-button ' + button + ' ' + attrs.color + ' ' + (!i++ ? 'first' : '') + '" data-action="' + button + '">' + attrs.text + '</a>';
+                    buttons_html += '<a class="reply-button ' + button + ' ' + attrs.color + ' ' + (!(i++) ? 'first' : '') + '" data-action="' + button + '">' + attrs.text + '</a>';
                 });
             }
 
