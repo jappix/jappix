@@ -245,13 +245,32 @@ var Common = (function () {
 
         try {
             // Any resource?
-            if(aXID.indexOf('/') != -1) {
+            if(self.isFullXID(aXID)) {
                 resource = self.explodeThis('/', aXID, 1);
             }
         } catch(e) {
             Console.error('Common.thisResource', e);
         } finally {
             return resource;
+        }
+
+    };
+
+
+    /**
+     * Returns whether this XID is full or not
+     * @public
+     * @param {string} xid
+     * @return {boolean}
+     */
+    self.isFullXID = function(xid) {
+
+        try {
+            return xid.indexOf('/') !== -1;
+        } catch(e) {
+            Console.error('Common.isFullXID', e);
+
+            return false;
         }
 
     };

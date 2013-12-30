@@ -201,7 +201,7 @@ var IQ = (function () {
                 
                 // Handled via JSJaCJingle_route() (see above)
                 
-                logThis('Received a Jingle packet: ' + iqFrom);
+                Console.log('Received a Jingle packet: ' + iqFrom);
             }
             
             // Not implemented

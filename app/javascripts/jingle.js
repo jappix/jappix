@@ -87,7 +87,8 @@ var Jingle = (function() {
                 session_initiate_pending: function(jingle) {
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'initiating'
+                        'initiating',
+                        jingle.get_media()
                     );
 
                     Console.log('Jingle._args', 'session_initiate_pending');
@@ -104,12 +105,14 @@ var Jingle = (function() {
                         if(self.is_responder()) {
                             self.notify(
                                 Common.bareXID(jingle.get_to()),
-                                'call_video'
+                                'call_video',
+                                jingle.get_media()
                             );
                         } else {
                             self.notify(
                                 Common.bareXID(jingle.get_from()),
-                                'waiting'
+                                'waiting',
+                                jingle.get_media()
                             );
                         }
                     }
@@ -118,10 +121,12 @@ var Jingle = (function() {
                 },
 
                 session_initiate_error: function(jingle, stanza) {
-                    self.notify(
+                    // TODO: buggy as XID is not returned there...
+                    /*self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'error'
-                    );
+                        'error',
+                        jingle.get_media()
+                    );*/
 
                     Console.log('Jingle._args', 'session_initiate_error');
                 },
@@ -133,17 +138,14 @@ var Jingle = (function() {
                 session_accept_pending: function(jingle) {
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'connecting'
+                        'connecting',
+                        jingle.get_media()
                     );
 
                     Console.log('Jingle._args', 'session_accept_pending');
                 },
 
                 session_accept_success: function(jingle, stanza) {
-                    var xid  = Common.bareXID(jingle.get_to());
-                    var hash = hex_md5(xid);
-                    var mode = 'video';
-
                     self.unnotify();
 
                     // Notify the other party that it's ringing there?
@@ -157,7 +159,8 @@ var Jingle = (function() {
                 session_accept_error: function(jingle, stanza) {
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'declined'
+                        'declined',
+                        jingle.get_media()
                     );
 
                     Console.log('Jingle._args', 'session_accept_error');
@@ -188,7 +191,8 @@ var Jingle = (function() {
                 session_terminate_pending: function(jingle) {
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'local_ended'
+                        'local_ended',
+                        jingle.get_media()
                     );
 
                     Console.log('Jingle._args', 'session_terminate_pending');
@@ -199,7 +203,8 @@ var Jingle = (function() {
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
                         self.notify(
                             Common.bareXID(jingle.get_to()),
-                            'local_ended'
+                            'local_ended',
+                            jingle.get_media()
                         );
 
                         self.destroyInterface();
@@ -215,7 +220,8 @@ var Jingle = (function() {
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
                         self.notify(
                             Common.bareXID(jingle.get_to()),
-                            'error'
+                            'error',
+                            jingle.get_media()
                         );
 
                         self.destroyInterface();
@@ -229,7 +235,8 @@ var Jingle = (function() {
                 session_terminate_request: function(jingle, stanza) {
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'remote_ended'
+                        'remote_ended',
+                        jingle.get_media()
                     );
 
                     self.destroyInterface();
@@ -269,7 +276,7 @@ var Jingle = (function() {
             var bare_hash   = hex_md5(bare_xid);
 
             // Caller mode?
-            if(!is_callee) {
+            if(!is_callee && Common.isFullXID(xid)) {
                 full_xid = Presence.highestPriority(xid);
 
                 if(!full_xid) {
@@ -278,7 +285,7 @@ var Jingle = (function() {
             }
 
             // Create interface for video containers
-            var jingle_sel = self.createInterface();
+            var jingle_sel = self.createInterface(xid, mode);
 
             // Start the Jingle negotiation
             var args = self._args(
@@ -318,6 +325,10 @@ var Jingle = (function() {
     self._processSize = function(screen, video) {
 
         try {
+            if(!(typeof screen === 'object' && typeof video === 'object')) {
+                throw 'Invalid object passed, aborting!';
+            }
+
             // Get the intrinsic size of the video
             var video_w = video.videoWidth;
             var video_h = video.videoHeight;
@@ -389,7 +400,7 @@ var Jingle = (function() {
 
         try {
             var local_sel = $('#jingle .local_video');
-            var local_video_sel = local_sel.find('video');
+            var local_video_sel = local_sel;
 
             // Process new sizes
             var sizes = self._processSize(
@@ -421,7 +432,7 @@ var Jingle = (function() {
         try {
             var videobox_sel = $('#jingle .videobox');
             var remote_sel = videobox_sel.find('.remote_video');
-            var remote_video_sel = remote_sel.find('video');
+            var remote_video_sel = remote_sel;
 
             // Process new sizes
             var sizes = self._processSize(
@@ -451,7 +462,7 @@ var Jingle = (function() {
     self._adapt = function() {
 
         try {
-            if(self.in_call() && exists('#jingle')) {
+            if(self.in_call() && Common.exists('#jingle')) {
                 self._adaptLocal();
                 self._adaptRemote();
             }
@@ -489,7 +500,7 @@ var Jingle = (function() {
                     Console.info('Incoming call from: ' + xid);
 
                     // Session values
-                    self.start(xid, 'video');
+                    self.start(xid, 'video'); // TODO
                 } catch(e) {
                     Console.error('JSJAC_JINGLE_STORE_INITIATE', e);
                 }
@@ -581,7 +592,12 @@ var Jingle = (function() {
         in_call = false;
 
         try {
-            in_call = self._jingle_current && true;
+            if(self._jingle_current && 
+              (self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTING  || 
+               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTED   ||
+               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_TERMINATING)) {
+                in_call = true;
+            }
         } catch(e) {
             Console.error('Jingle.in_call', e);
         } finally {
@@ -607,7 +623,7 @@ var Jingle = (function() {
                         'accept': {
                             'text': Common._e("Accept"),
                             'color': 'green',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.accept();
                                 }
@@ -619,7 +635,7 @@ var Jingle = (function() {
                         'decline': {
                             'text': Common._e("Decline"),
                             'color': 'red',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
                                 }
@@ -637,7 +653,7 @@ var Jingle = (function() {
                         'accept': {
                             'text': Common._e("Accept"),
                             'color': 'green',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.accept();
                                 }
@@ -649,7 +665,7 @@ var Jingle = (function() {
                         'decline': {
                             'text': Common._e("Decline"),
                             'color': 'red',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
                                 }
@@ -667,7 +683,7 @@ var Jingle = (function() {
                         'cancel': {
                             'text': Common._e("Cancel"),
                             'color': 'red',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
                                 }
@@ -683,7 +699,7 @@ var Jingle = (function() {
                         'cancel': {
                             'text': Common._e("Cancel"),
                             'color': 'red',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
                                 }
@@ -710,7 +726,7 @@ var Jingle = (function() {
                         'cancel': {
                             'text': Common._e("Cancel"),
                             'color': 'red',
-                            'cb': function(xid) {
+                            'cb': function(xid, mode) {
                                 if(self.in_call()) {
                                     self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
                                 }
@@ -726,8 +742,8 @@ var Jingle = (function() {
                         'retry': {
                             'text': Common._e("Retry"),
                             'color': 'blue',
-                            'cb': function(xid) {
-                                alert('retry');
+                            'cb': function(xid, mode) {
+                                self.start(xid, mode);
                             }
                         },
 
@@ -774,9 +790,10 @@ var Jingle = (function() {
      * @public
      * @param {string} xid
      * @param {string} type
+     * @param {string} mode
      * @return {boolean}
      */
-    self.notify = function(xid, type) {
+    self.notify = function(xid, type, mode) {
 
         try {
             var map = self._notify_map();
@@ -831,7 +848,7 @@ var Jingle = (function() {
 
                             // Execute callback, if any
                             if(typeof attrs.cb === 'function') {
-                                attrs.cb(xid);
+                                attrs.cb(xid, mode);
                             }
 
                             Console.info('Closed Jingle notification drawer');
