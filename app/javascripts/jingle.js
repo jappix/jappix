@@ -85,9 +85,12 @@ var Jingle = (function() {
 
                 // Custom handlers (optional)
                 session_initiate_pending: function(jingle) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'initiating'
+                    );
 
-                    Console.log('session_initiate_pending');
+                    Console.log('Jingle._args', 'session_initiate_pending');
                 },
 
                 session_initiate_success: function(jingle, stanza) {
@@ -97,92 +100,141 @@ var Jingle = (function() {
 
                         Console.warn('session_initiate_success', 'Dropped incoming call (already in a call)');
                     } else {
-                        // TODO
+                        // Incoming call?
+                        if(self.is_responder()) {
+                            self.notify(
+                                Common.bareXID(jingle.get_to()),
+                                'call_video'
+                            );
+                        } else {
+                            self.notify(
+                                Common.bareXID(jingle.get_from()),
+                                'waiting'
+                            );
+                        }
                     }
                     
-                    Console.log('session_initiate_success');
+                    Console.log('Jingle._args', 'session_initiate_success');
                 },
 
                 session_initiate_error: function(jingle, stanza) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'error'
+                    );
 
-                    Console.log('session_initiate_error');
+                    Console.log('Jingle._args', 'session_initiate_error');
                 },
 
                 session_initiate_request: function(jingle, stanza) {
-                    // TODO
-
-                    Console.log('session_initiate_request');
+                    Console.log('Jingle._args', 'session_initiate_request');
                 },
 
                 session_accept_pending: function(jingle) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'connecting'
+                    );
 
-                    Console.log('session_accept_pending');
+                    Console.log('Jingle._args', 'session_accept_pending');
                 },
 
                 session_accept_success: function(jingle, stanza) {
-                    // TODO
+                    var xid  = Common.bareXID(jingle.get_to());
+                    var hash = hex_md5(xid);
+                    var mode = 'video';
 
-                    Console.log('session_accept_success');
+                    self.unnotify();
+
+                    // Notify the other party that it's ringing there?
+                    if(jingle.is_responder()) {
+                        jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
+                    }
+
+                    Console.log('Jingle._args', 'session_accept_success');
                 },
 
                 session_accept_error: function(jingle, stanza) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'declined'
+                    );
 
-                    Console.log('session_accept_error');
+                    Console.log('Jingle._args', 'session_accept_error');
                 },
 
                 session_accept_request: function(jingle, stanza) {
-                    Console.log('session_accept_request');
+                    Console.log('Jingle._args', 'session_accept_request');
                 },
 
                 session_info_success: function(jingle, stanza) {
-                    // TODO
+                    // Start counter
+                    self._startCounter();
 
-                    Console.log('session_info_success');
+                    // Show interface
+                    self.showInterface();
+
+                    Console.log('Jingle._args', 'session_info_success');
                 },
 
                 session_info_error: function(jingle, stanza) {
-                    Console.log('session_info_error');
+                    Console.log('Jingle._args', 'session_info_error');
                 },
 
                 session_info_request: function(jingle, stanza) {
-                    Console.log('session_info_request');
+                    Console.log('Jingle._args', 'session_info_request');
                 },
 
                 session_terminate_pending: function(jingle) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'local_ended'
+                    );
 
-                    Console.log('session_terminate_pending');
+                    Console.log('Jingle._args', 'session_terminate_pending');
                 },
 
                 session_terminate_success: function(jingle, stanza) {
                     // Ensure we this is the same call session ID (SID)
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
-                        // TODO
+                        self.notify(
+                            Common.bareXID(jingle.get_to()),
+                            'local_ended'
+                        );
+
+                        self.destroyInterface();
                     } else {
                         Console.warn('session_terminate_success', 'Dropped stanza with unmatching SID');
                     }
 
-                    Console.log('session_terminate_success');
+                    Console.log('Jingle._args', 'session_terminate_success');
                 },
 
                 session_terminate_error: function(jingle, stanza) {
                      // Ensure we this is the same call session ID (SID)
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
-                        // TODO
+                        self.notify(
+                            Common.bareXID(jingle.get_to()),
+                            'error'
+                        );
+
+                        self.destroyInterface();
                     } else {
                         Console.warn('session_terminate_error', 'Dropped stanza with unmatching SID');
                     }
 
-                    Console.log('session_terminate_error');
+                    Console.log('Jingle._args', 'session_terminate_error');
                 },
 
                 session_terminate_request: function(jingle, stanza) {
-                    // TODO
+                    self.notify(
+                        Common.bareXID(jingle.get_to()),
+                        'remote_ended'
+                    );
 
-                    Console.log('session_terminate_request');
+                    self.destroyInterface();
+
+                    Console.log('Jingle._args', 'session_terminate_request');
                 }
             };
         } catch(e) {
@@ -208,7 +260,9 @@ var Jingle = (function() {
         var status = false;
 
         try {
-            if(!xid) return false;
+            if(!xid) {
+                throw 'No XID to be called given!'
+            }
 
             var bare_xid    = Common.bareXID(xid);
             var full_xid    = null;
@@ -216,9 +270,11 @@ var Jingle = (function() {
 
             // Caller mode?
             if(!is_callee) {
-                full_xid = getHighestResource(xid);
+                full_xid = Presence.highestPriority(xid);
 
-                if(!full_xid) return false;
+                if(!full_xid) {
+                    throw 'Could not get user full XID to be called!'
+                }
             }
 
             // Create interface for video containers
@@ -236,7 +292,7 @@ var Jingle = (function() {
             self._jingle_current = new JSJaCJingle(args);
 
             if(is_callee) {
-                // TODO: make it ring!
+                Audio.play(3, true);
                 self._jingle_current.handle(stanza);
             } else {
                 self._jingle_current.initiate();
@@ -448,14 +504,15 @@ var Jingle = (function() {
     /**
      * Start a Jingle call
      * @public
+     * @param {string} xid
+     * @param {string} mode
      * @return {boolean}
      */
     self.start = function(xid, mode) {
 
         try {
             if(!self.in_call()) {
-                // TODO
-                alert('Call: ' + xid + ' (' + mode + ')');
+                self._new(xid, mode);
             }
         } catch(e) {
             Console.error('Jingle.start', e);
@@ -535,6 +592,314 @@ var Jingle = (function() {
 
 
     /**
+     * Get the notification map
+     * @private
+     * @return {object}
+     */
+    self._notify_map = function() {
+
+        try {
+            return {
+                'call_audio': {
+                    'text': Common._e("Is calling you"),
+
+                    'buttons': {
+                        'accept': {
+                            'text': Common._e("Accept"),
+                            'color': 'green',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.accept();
+                                }
+
+                                Audio.stop(3);
+                            }
+                        },
+
+                        'decline': {
+                            'text': Common._e("Decline"),
+                            'color': 'red',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
+                                }
+
+                                Audio.stop(3);
+                            }
+                        }
+                    }
+                },
+
+                'call_video': {
+                    'text': Common._e("Is calling you"),
+
+                    'buttons': {
+                        'accept': {
+                            'text': Common._e("Accept"),
+                            'color': 'green',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.accept();
+                                }
+
+                                Audio.stop(3);
+                            }
+                        },
+
+                        'decline': {
+                            'text': Common._e("Decline"),
+                            'color': 'red',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
+                                }
+
+                                Audio.stop(3);
+                            }
+                        }
+                    }
+                },
+
+                'initiating': {
+                    'text': Common._e("Initiating call"),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
+                                }
+                            }
+                        }
+                    }
+                },
+
+                'waiting': {
+                    'text': Common._e("Waiting for approval"),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
+                                }
+                            }
+                        }
+                    }
+                },
+
+                'declined': {
+                    'text': Common._e("Declined the call"),
+
+                    'buttons': {
+                        'okay': {
+                            'text': Common._e("Okay"),
+                            'color': 'blue'
+                        }
+                    }
+                },
+
+                'connecting': {
+                    'text': Common._e("Connecting to call"),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid) {
+                                if(self.in_call()) {
+                                    self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
+                                }
+                            }
+                        }
+                    }
+                },
+
+                'error': {
+                    'text': Common._e("Call error"),
+
+                    'buttons': {
+                        'retry': {
+                            'text': Common._e("Retry"),
+                            'color': 'blue',
+                            'cb': function(xid) {
+                                alert('retry');
+                            }
+                        },
+
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red'
+                        }
+                    }
+                },
+
+                'local_ended': {
+                    'text': Common._e("Call ended"),
+
+                    'buttons': {
+                        'okay': {
+                            'text': Common._e("Okay"),
+                            'color': 'blue'
+                        }
+                    }
+                },
+
+                'remote_ended': {
+                    'text': Common._e("Ended the call"),
+
+                    'buttons': {
+                        'okay': {
+                            'text': Common._e("Okay"),
+                            'color': 'blue'
+                        }
+                    }
+                }
+            };
+        } catch(e) {
+            Console.error('Jingle._notify_map', e);
+
+            return {};
+        }
+
+    };
+
+
+    /**
+     * Notify for something related to Jingle
+     * @public
+     * @param {string} xid
+     * @param {string} type
+     * @return {boolean}
+     */
+    self.notify = function(xid, type) {
+
+        try {
+            var map = self._notify_map();
+
+            if(!(type in map)) {
+                throw 'Notification type not recognized!'
+            }
+
+            var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
+            var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
+            var jingle_subitem_sel = jingle_tools_all_sel.find('.jingle-content .tools-content-subitem');
+
+            var buttons_html = '';
+            var i = 0;
+
+            if(typeof map[type].buttons === 'object') {
+                $.each(map[type].buttons, function(button, attrs) {
+                    buttons_html += '<a class="reply-button ' + button + ' ' + attrs.color + ' ' + (!i++ ? 'first' : '') + '" data-action="' + button + '">' + attrs.text + '</a>';
+                });
+            }
+
+            // Append notification to DOM
+            jingle_subitem_sel.html(
+                '<div class="jingle-notify notify-' + type + ' ' + hex_md5(xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
+                    '<div class="avatar-pane">' + 
+                        '<div class="avatar-container">' + 
+                            '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                        '</div>' + 
+
+                        '<span class="icon jingle-images"></span>' + 
+                    '</div>' + 
+
+                    '<div class="notification-content">' + 
+                        '<span class="fullname">' + Name.getBuddy(xid).htmlEnc() + '</span>' + 
+                        '<span class="text">' + map[type].text + '</span>' + 
+
+                        '<div class="reply-buttons">' + buttons_html + '</div>' + 
+                    '</div>' + 
+                '</div>'
+            );
+
+            // Apply user avatar
+            Avatar.get(xid, 'cache', 'true', 'forget');
+
+            // Apply button events
+            if(typeof map[type].buttons === 'object') {
+                $.each(map[type].buttons, function(button, attrs) {
+                    jingle_tools_all_sel.find('a.reply-button[data-action="' + button + '"]').click(function() {
+                        try {
+                            // Remove notification
+                            self.unnotify(xid);
+
+                            // Execute callback, if any
+                            if(typeof attrs.cb === 'function') {
+                                attrs.cb(xid);
+                            }
+
+                            Console.info('Closed Jingle notification drawer');
+                        } catch(e) {
+                            Console.error('Jingle.notify[async]', e);
+                        } finally {
+                            return false;
+                        }
+                    });
+                });
+            }
+
+            // Enable notification box!
+            jingle_tool_sel.addClass('active');
+        } catch(e) {
+            Console.error('Jingle.notify', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Remove notification
+     * @public
+     * @return {boolean}
+     */
+    self.unnotify = function() {
+
+        try {
+            // Selectors
+            var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
+            var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
+            var jingle_subitem_sel = jingle_tools_all_sel.find('.jingle-content .tools-content-subitem');
+
+            // Close & disable notification box
+            Bubble.close();
+            jingle_subitem_sel.empty();
+            jingle_tool_sel.removeClass('active');
+        } catch(e) {
+            Console.error('Jingle.unnotify', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Start call elpsed time counter
+     * @private
+     * @return {boolean}
+     */
+    self._startCounter = function() {
+
+        try {
+            // TODO
+        } catch(e) {
+            Console.error('Jingle._startCounter', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
      * Create the Jingle interface
      * @public
      * @return {object}
@@ -590,13 +955,31 @@ var Jingle = (function() {
 
             // Apply user avatar
             Avatar.get(xid, 'cache', 'true', 'forget');
-
-            // Show interface
-            self.showInterface();
         } catch(e) {
             Console.error('Jingle.createInterface', e);
         } finally {
-            $('#jingle');
+            return $('#jingle');
+        }
+
+    };
+
+
+    /**
+     * Destroy the Jingle interface
+     * @public
+     * @return {undefined}
+     */
+    self.destroyInterface = function() {
+
+        try {
+            var jingle_sel = $('#jingle');
+
+            jingle_sel.stopTime();
+            jingle_sel.find('*').stopTime();
+
+            jingle_sel.remove();
+        } catch(e) {
+            Console.error('Jingle.destroyInterface', e);
         }
 
     };
@@ -652,8 +1035,14 @@ var Jingle = (function() {
     self._eventsInterface = function() {
 
         try {
+            var jingle_sel = $('#jingle');
+
+            jingle_sel.everyTime(100, function() {
+                self._adapt();
+            });
+
             // Close interface on click on semi-transparent background
-            $('#jingle').click(function(evt) {
+            jingle_sel.click(function(evt) {
                 try {
                     // Click on lock background?
                     if($(evt.target).is('.lock')) {
@@ -665,7 +1054,7 @@ var Jingle = (function() {
             });
 
             // Click on a control or action button
-            $('#jingle .topbar').find('.controls a, .actions a').click(function() {
+            jingle_sel.find('.topbar').find('.controls a, .actions a').click(function() {
                 try {
                     switch($(this).data('type')) {
                         case 'close':
@@ -683,7 +1072,7 @@ var Jingle = (function() {
             });
 
             // Auto Hide/Show interface topbar
-            $('#jingle .videobox').mousemove(function() {
+            jingle_sel.find('.videobox').mousemove(function() {
                 try {
                     var topbar_sel = $(this).find('.topbar');
 

@@ -134,7 +134,7 @@ html[dir="rtl"] #top-content .tools-all {
 }
 
 #top-content .notifications:hover,
-#top-content .music:hover
+#top-content .music:hover,
 #top-content .jingle.active:hover,
 #top-content .jingle.streaming.video:hover {
 	cursor: pointer;
@@ -483,6 +483,142 @@ html[dir="rtl"] .music-content .player a {
 	margin: 2px;
 	width: 198px;
 	height: 15px;
+}
+
+.jingle-content {
+	text-shadow: none;
+	width: 230px;
+	right: -102px;
+}
+
+.jingle-content .tools-content-subitem {
+	position: relative;
+}
+
+.jingle-content .jingle-notify {
+	height: 90px;
+}
+
+.jingle-content .jingle-notify .avatar-pane {
+	width: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+
+.jingle-content .jingle-notify .avatar-pane .avatar-container {
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+}
+
+.jingle-content .jingle-notify .avatar-pane .avatar-container .avatar {
+	min-height: 100%;
+	min-width: 100%;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.jingle-content .jingle-notify .avatar-pane .icon {
+	opacity: 0.75;
+	position: absolute;
+	left: 8px;
+	bottom: 8px;
+}
+
+.jingle-content .jingle-notify.notify-call_audio .avatar-pane .icon {
+	background-position: 0 -120px;
+	width: 33px;
+	height: 33px;
+}
+
+.jingle-content .jingle-notify.notify-call_video .avatar-pane .icon {
+	background-position: 0 -154px;
+	width: 33px;
+	height: 22px;
+}
+
+.jingle-content .jingle-notify.notify-connecting .avatar-pane .icon {
+	background-position: 0 -175px;
+	width: 33px;
+	height: 32px;
+}
+
+.jingle-content .jingle-notify.notify-error .avatar-pane .icon {
+	background-position: 0 -207px;
+	width: 33px;
+	height: 31px;
+}
+
+.jingle-content .jingle-notify.notify-local_ended .avatar-pane .icon,
+.jingle-content .jingle-notify.notify-remote_ended .avatar-pane .icon {
+	background-position: 0 -238px;
+	width: 33px;
+	height: 34px;
+}
+
+.jingle-content .jingle-notify .notification-content {
+	color: #ffffff;
+	text-align: left;
+	text-shadow: 0 1px 1px rgb(0,0,0);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.75);
+	padding: 10px 10px 0 10px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 100px;
+}
+
+.jingle-content .jingle-notify .notification-content .fullname,
+.jingle-content .jingle-notify .notification-content .text {
+	display: block;
+}
+
+.jingle-content .jingle-notify .notification-content .fullname {
+	font-weight: bold;
+}
+
+.jingle-content .jingle-notify .notification-content .text {
+	font-size: 12px;
+	text-transform: lowercase;
+	margin-top: 2px;
+}
+
+.jingle-content .jingle-notify .notification-content .reply-buttons {
+	text-align: center;
+	padding-left: 10px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 20px;
+}
+
+.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
+	margin-left: 4px;
+	float: left;
+}
+
+.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button:active {
+	margin-top: 0;
+}
+
+.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.first {
+	margin-left: 0;
 }
 
 @-o-keyframes tool_active {
