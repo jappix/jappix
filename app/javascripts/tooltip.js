@@ -148,7 +148,7 @@ var Tooltip = (function () {
                 case 'file':
                     title = Common._e("Send a file");
                     content = '<p style="margin-bottom: 8px;">' + Common._e("Once uploaded, your friend will be prompted to download the file you sent.") + '</p>';
-                    content += '<form id="oob-upload" action="./php/send.php" method="post" enctype="multipart/form-data">' + Interface.generateFileShare() + '</form>';
+                    content += '<form id="oob-upload" action="./server/send.php" method="post" enctype="multipart/form-data">' + Interface.generateFileShare() + '</form>';
                     
                     break;
                 

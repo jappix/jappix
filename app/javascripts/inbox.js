@@ -68,7 +68,7 @@ var Inbox = (function () {
                         '<textarea class="inbox-new-textarea" rows="8" cols="60" required=""></textarea>' + 
                     '</div>' + 
                     
-                    '<form class="inbox-new-file inbox-new-block" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
+                    '<form class="inbox-new-file inbox-new-block" action="./server/file-share.php" method="post" enctype="multipart/form-data">' + 
                         '<p class="inbox-new-text">' + Common._e("File") + '</p>' + 
                         
                         Interface.generateFileShare() + 

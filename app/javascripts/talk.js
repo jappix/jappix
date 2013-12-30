@@ -119,7 +119,7 @@ var Talk = (function () {
                         '<div class="tools jingle talk-images streaming video" onclick="return Jingle.open();">' + 
                             '<span class="streaming-items">' + 
                                 '<span class="counter" data-default="00:00:00">00:00:00</span>' + 
-                                '<a class="stop" href="#" onclick="return Jingle.stop();">Stop</a>' + 
+                                '<a class="stop" href="#" onclick="return Jingle.stop();">' + Common._e("Stop") + '</a>' + 
                             '</span>' + 
                         '</div>' + 
 
@@ -240,7 +240,7 @@ var Talk = (function () {
                                         '<div class="one-microblog-icon ibubble">' + 
                                             '<a href="#" onclick="return Bubble.show(\'#attach\');" title="' + Common._e("Attach a file") +  '" class="postit attach talk-images"></a>' + 
                                             
-                                            '<form id="attach" class="bubble hidable" action="./php/file-share.php" method="post" enctype="multipart/form-data">' + 
+                                            '<form id="attach" class="bubble hidable" action="./server/file-share.php" method="post" enctype="multipart/form-data">' + 
                                                 '<div class="attach-subarrow talk-images"></div>' + 
                                                 
                                                 '<div class="attach-subitem">' + 

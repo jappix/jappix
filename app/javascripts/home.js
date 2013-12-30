@@ -154,7 +154,7 @@ var Home = (function () {
                     
                     if(REGISTER_API == 'on')
                         code += '<div class="captcha_grp">' + 
-                                    '<label for="captcha">' + Common._e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Security code") + '" /><img class="captcha_img" src="./php/captcha.php?id=' + genID() + '" alt="" />' + 
+                                    '<label for="captcha">' + Common._e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Security code") + '" /><img class="captcha_img" src="./server/captcha.php?id=' + genID() + '" alt="" />' + 
                                 '</div>';
                     
                     code += '</fieldset>' + 

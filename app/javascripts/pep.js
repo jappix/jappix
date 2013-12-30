@@ -743,7 +743,7 @@ var PEP = (function () {
             var vAlt = '' + position.coords.altitude;
             
             // Get full position (from Google Maps API)
-            $.get('./php/geolocation.php', {latitude: vLat, longitude: vLon, language: XML_LANG}, function(data) {
+            $.get('./server/geolocation.php', {latitude: vLat, longitude: vLon, language: XML_LANG}, function(data) {
                 // Parse data!
                 var results = self.parsePosition(data);
                 

@@ -2030,3 +2030,12 @@ msgstr ""
 
 msgid "Content ads key"
 msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""

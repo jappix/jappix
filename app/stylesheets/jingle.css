@@ -10,12 +10,250 @@ Author: Valérian Saliou
 
 */
 
+#jingle {
+    display: none;
+}
+
 #jingle .videobox {
-    background: #ffffff;
-    position: fixed;
-    left: 40px;
-    right: 40px;
-    top: 60px;
-    bottom: 60px;
-    z-index: 1000;
+    background: #ededed;
+    text-shadow: none;
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    top: 40px;
+    bottom: 40px;
+    -moz-box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+#jingle .videobox,
+#jingle .videobox video.remote_video {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#jingle .videobox .topbar {
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    color: #ffffff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    height: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 4;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+#jingle .videobox .topbar .card {
+    margin: 4px 0 0 12px;
+}
+
+#jingle .videobox .topbar .card,
+#jingle .videobox .topbar .card .avatar-container,
+#jingle .videobox .topbar .card .identity,
+#jingle .videobox .topbar .controls,
+#jingle .videobox .topbar .elapsed {
+    float: left;
+}
+
+#jingle .videobox .topbar .card .avatar-container {
+    height: 32px;
+    width: 32px;
+}
+
+#jingle .videobox .topbar .card .avatar-container .avatar {
+    max-height: 32px;
+    max-width: 32px;
+}
+
+#jingle .videobox .topbar .card .identity {
+    margin: 1px 0 0 10px;
+}
+
+#jingle .videobox .topbar .card .identity .name,
+#jingle .videobox .topbar .card .identity .xid {
+    letter-spacing: 1px;
+    display: block;
+}
+
+#jingle .videobox .topbar .card .identity .name {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#jingle .videobox .topbar .card .identity .xid {
+    font-size: 10px;
+}
+
+#jingle .videobox .topbar .controls {
+    margin-left: 50px;
+}
+
+#jingle .videobox .topbar .controls a {
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 7px;
+    padding: 5px 6px 6px 6px;
+    float: left;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#jingle .videobox .topbar .controls a:active {
+    padding-top: 6px;
+    padding-bottom: 5px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
+}
+
+#jingle .videobox .topbar .controls a .icon {
+    width: 14px;
+    height: 14px;
+    margin: -1px 7px 0 2px;
+    float: left;
+}
+
+#jingle .videobox .topbar .controls a.stop {
+    background: #cc283f;
+    border-color: #a12032;
+}
+
+#jingle .videobox .topbar .controls a.stop:active {
+    background: #a92134;
+    border-color: #480e16;
+}
+
+#jingle .videobox .topbar .controls a.stop .icon {
+    background-position: 0 -62px;
+}
+
+#jingle .videobox .topbar .controls a.mute,
+#jingle .videobox .topbar .controls a.unmute {
+    background: #6e8dc5;
+    border-color: #485c80;
+    margin-left: 6px;
+}
+
+#jingle .videobox .topbar .controls a.mute:active,
+#jingle .videobox .topbar .controls a.unmute:active {
+    background: #6480b1;
+    border-color: #303d55;
+}
+
+#jingle .videobox .topbar .controls a.mute .icon {
+    background-position: 0 -81px;
+}
+
+#jingle .videobox .topbar .controls a.unmute {
+    display: none;
+}
+
+#jingle .videobox .topbar .controls a.unmute .icon {
+    background-position: 0 -100px;
+}
+
+#jingle .videobox .topbar .elapsed {
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.1);
+    border: 1px solid rgb(255,255,255);
+    border: 1px solid rgba(255,255,255,0.25);
+    outline: 1px solid rgb(0,0,0);
+    outline: 1px solid rgba(0,0,0,0.2);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 9px 0 0 46px;
+    padding: 2px 6px;
+}
+
+#jingle .videobox .topbar .actions {
+    margin: 7px 15px 0 0;
+    float: right;
+}
+
+#jingle .videobox .topbar .actions a {
+    float: left;
+}
+
+#jingle .videobox .topbar .actions a.close {
+    background-position: 0 -44px;
+    width: 18px;
+    height: 12px;
+    margin-top: 6px;
+}
+
+#jingle .videobox video.local_video {
+    background-position: 0 -56px;
+    border: 1px solid rgb(0,0,0);
+    border: 1px solid rgba(0,0,0,0.25);
+    width: 180px;
+    height: 101px;
+    opacity: 0.6;
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    z-index: 3;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    -webkit-transition: all 0.4s ease-in-out 0.2s;
+    -moz-transition: all 0.4s ease-in-out 0.2s;
+    -o-transition: all 0.4s ease-in-out 0.2s;
+    transition: all 0.4s ease-in-out 0.2s;
+}
+
+#jingle .videobox video.local_video:disabled {
+    opacity: 0.2 !important;
+}
+
+#jingle .videobox video.local_video:hover {
+    width: 320px;
+    height: 180px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+#jingle .videobox video.remote_video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+#jingle .videobox .branding {
+    background-position: 0 0;
+    width: 39px;
+    height: 44px;
+    opacity: 0.9;
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    z-index: 2;
 }

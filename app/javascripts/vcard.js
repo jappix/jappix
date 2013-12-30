@@ -80,7 +80,7 @@ var vCard = (function () {
                         '<input type="hidden" id="USER-PHOTO-TYPE" class="vcard-item" />' + 
                         '<input type="hidden" id="USER-PHOTO-BINVAL" class="vcard-item" />' + 
                         
-                        '<form id="vcard-avatar" action="./php/avatar-upload.php" method="post" enctype="multipart/form-data">' + 
+                        '<form id="vcard-avatar" action="./server/avatar-upload.php" method="post" enctype="multipart/form-data">' + 
                             Interface.generateFileShare() + 
                         '</form>' + 
                     '</fieldset>' + 

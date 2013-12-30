@@ -152,12 +152,12 @@ var Music = (function () {
             $(path + '.no-results').hide();
             
             // Get the Jamendo results
-            $.get('./php/music-search.php', {searchquery: string, location: 'jamendo'}, function(data) {
+            $.get('./server/music-search.php', {searchquery: string, location: 'jamendo'}, function(data) {
                 self.parse(data, 'jamendo');
             });
             
             // Get the local results
-            $.get('./php/music-search.php', {searchquery: string, location: JAPPIX_LOCATION}, function(data) {
+            $.get('./server/music-search.php', {searchquery: string, location: JAPPIX_LOCATION}, function(data) {
                 self.parse(data, 'local');
             });
         } catch(e) {

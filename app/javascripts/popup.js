@@ -31,8 +31,9 @@ var Popup = (function () {
 
         try {
             // Popup exists?
-            if(Common.exists('#' + id))
+            if(Common.exists('#' + id)) {
                 return false;
+            }
             
             // Popop on top of another one?
             var top_of = Common.exists('div.lock:has(div.popup)');
@@ -47,8 +48,9 @@ var Popup = (function () {
             );
             
             // Avoids darker popup background (if on top of another popup)
-            if(top_of)
+            if(top_of) {
                 $('#' + id).css('background', 'transparent');
+            }
             
             // Attach popup events
             self.instance(id);

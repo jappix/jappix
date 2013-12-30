@@ -421,9 +421,9 @@ var Interface = (function () {
                 avatar = 'none';
             
             // POST the values to the server
-            $.post('./php/generate-chat.php', { 'content': content, 'xid': xid, 'nick': nick, 'avatar': avatar, 'date': date, 'type': type, 'direction': direction }, function(data) {
+            $.post('./server/generate-chat.php', { 'content': content, 'xid': xid, 'nick': nick, 'avatar': avatar, 'date': date, 'type': type, 'direction': direction }, function(data) {
                 // Handled!
-                $(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./php/download-chat.php?id=' + data + '" target="_blank">' + Common._e("Download file!") + '</a>');
+                $(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./server/download-chat.php?id=' + data + '" target="_blank">' + Common._e("Download file!") + '</a>');
             });
         } catch(e) {
             Console.error('Interface.generateChatLog', e);

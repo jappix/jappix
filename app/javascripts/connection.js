@@ -182,13 +182,13 @@ var Connection = (function () {
                 Interface.title('wait');
                 
                 // Send request
-                $.post('./php/register.php', {username: username, domain: domain, password: pass, captcha: captcha}, function(data) {
+                $.post('./server/register.php', {username: username, domain: domain, password: pass, captcha: captcha}, function(data) {
                     // Error registering
                     Interface.removeGeneralWait();
                     Interface.title('home');
                     
                     // In all case, update CAPTCHA
-                    $('#home img.captcha_img').attr('src', './php/captcha.php?id=' + genID());
+                    $('#home img.captcha_img').attr('src', './server/captcha.php?id=' + genID());
                     $('#home input.captcha').val('');
                     
                     // Registration okay

@@ -306,6 +306,7 @@ var Jingle = (function() {
 
     };
 
+
     /**
      * Start a Jingle call
      * @public
@@ -325,6 +326,7 @@ var Jingle = (function() {
         }
 
     };
+
 
     /**
      * Stops current Jingle call
@@ -349,6 +351,7 @@ var Jingle = (function() {
 
     };
 
+
     /**
      * Mutes current Jingle call
      * @public
@@ -372,6 +375,7 @@ var Jingle = (function() {
 
     };
 
+
     /**
      * Checks whether user is in call or not
      * @public
@@ -391,40 +395,138 @@ var Jingle = (function() {
 
     };
 
+
     /**
      * Create the Jingle interface
      * @public
-     * @return {undefined}
+     * @return {boolean}
      */
     self.createInterface = function(xid, mode) {
 
         try {
+            // Jingle interface already exists?
+            if(Common.exists('#jingle')) {
+                self.showInterface();
+                throw 'Jingle interface already exist!';
+            }
+
+            // Create DOM
             $('body').append(
-                '<div id="jingle" class="lock removable" data-xid="" data-mode="">' + 
+                '<div id="jingle" class="lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
                     '<div class="videobox">' + 
                         '<div class="topbar">' + 
-                            '<div class="avatar-container">' + 
-                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                            '<div class="card">' + 
+                                '<div class="avatar-container">' + 
+                                    '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                                '</div>' + 
+
+                                '<div class="identity">' + 
+                                    '<span class="name">' + Name.getBuddy(xid).htmlEnc() + '</span>' + 
+                                    '<span class="xid">' + xid.htmlEnc() + '</span>' + 
+                                '</div>' + 
                             '</div>' + 
 
                             '<div class="controls">' + 
-                                '<a href="#" class="stop control-button jingle-images" data-type="stop">Stop</a>' + 
-                                '<a href="#" class="mute control-button jingle-images" data-type="mute">Mute</a>' + 
+                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon jingle-images"></span>' + Common._e("Stop") + '</a>' + 
+                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon jingle-images"></span>' + Common._e("Mute") + '</a>' + 
+                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon jingle-images"></span>' + Common._e("Unmute") + '</a>' + 
                             '</div>' + 
 
                             '<div class="elapsed">00:00:00</div>' + 
 
                             '<div class="actions">' + 
-                                '<a href="#" class="close action-button jingle-images" data-type="close">X</a>' + 
+                                '<a href="#" class="close action-button jingle-images" data-type="close"></a>' + 
                             '</div>' + 
                         '</div>' + 
 
-                        '<video class="local_video" src="" alt=""></video>' + 
+                        '<video class="local_video" src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' + 
                         '<video class="remote_video" src="" alt=""></video>' + 
+
+                        '<div class="branding jingle-images"></div>' + 
                     '</div>' + 
                 '</div>'
             );
 
+            // Apply events
+            self._eventsInterface();
+
+            // Apply user avatar
+            Avatar.get(xid, 'cache', 'true', 'forget');
+
+            // Show interface
+            self.showInterface();
+        } catch(e) {
+            Console.error('Jingle.createInterface', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Show the Jingle interface
+     * @public
+     * @return {boolean}
+     */
+    self.showInterface = function() {
+
+        try {
+            $('#jingle:hidden').show();
+
+            // Launch back some events
+            $('#jingle .videobox').mousemove();
+        } catch(e) {
+            Console.error('Jingle.showInterface', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Hide the Jingle interface
+     * @public
+     * @return {boolean}
+     */
+    self.hideInterface = function() {
+
+        try {
+            $('#jingle:visible').hide();
+
+            // Reset some events
+            $('#jingle .videobox .topbar').stopTime().hide();
+        } catch(e) {
+            Console.error('Jingle.hideInterface', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Attaches interface events
+     * @private
+     * @return {undefined}
+     */
+    self._eventsInterface = function() {
+
+        try {
+            // Close interface on click on semi-transparent background
+            $('#jingle').click(function(evt) {
+                try {
+                    // Click on lock background?
+                    if($(evt.target).is('.lock')) {
+                        return self.hideInterface();
+                    }
+                } catch(e) {
+                    Console.error('Jingle._eventsInterface[async]', e);
+                }
+            });
+
+            // Click on a control or action button
             $('#jingle .topbar').find('.controls a, .actions a').click(function() {
                 try {
                     switch($(this).data('type')) {
@@ -436,46 +538,35 @@ var Jingle = (function() {
                             self.mute(); break;
                     }
                 } catch(e) {
-                    Console.error('Jingle.createInterface[async]', e);
+                    Console.error('Jingle._eventsInterface[async]', e);
                 } finally {
                     return false;
                 }
             });
+
+            // Auto Hide/Show interface topbar
+            $('#jingle .videobox').mousemove(function() {
+                try {
+                    var topbar_sel = $(this).find('.topbar');
+
+                    if(topbar_sel.is(':hidden')) {
+                        topbar_sel.stop(true).fadeIn(250);
+                    }
+
+                    topbar_sel.stopTime();
+                    topbar_sel.oneTime('5s', function() {
+                        topbar_sel.stop(true).fadeOut(250);
+                    });
+                } catch(e) {
+                    Console.error('Jingle._eventsInterface[async]', e);
+                }
+            });
         } catch(e) {
-            Console.error('Jingle.createInterface', e);
+            Console.error('Popup._eventsInterface', e);
         }
 
     };
 
-    /**
-     * Show the Jingle interface
-     * @public
-     * @return {undefined}
-     */
-    self.showInterface = function() {
-
-        try {
-            $('#jingle:hidden').stop(true).show();
-        } catch(e) {
-            Console.error('Jingle.showInterface', e);
-        }
-
-    };
-
-    /**
-     * Hide the Jingle interface
-     * @public
-     * @return {undefined}
-     */
-    self.hideInterface = function() {
-
-        try {
-            $('#jingle:visible').stop(true).hide();
-        } catch(e) {
-            Console.error('Jingle.hideInterface', e);
-        }
-
-    };
 
     /**
      * Plugin launcher

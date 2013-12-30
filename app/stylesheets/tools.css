@@ -83,7 +83,6 @@ html[dir="rtl"] #top-content .tools-all {
 }
 
 #top-content .jingle.streaming {
-	padding-right: 48px;
 	padding-left: 30px;
 }
 
@@ -109,11 +108,9 @@ html[dir="rtl"] #top-content .tools-all {
 	text-shadow: 0 1px 1px #521019;
 	text-transform: uppercase;
 	text-decoration: none;
-	padding: 5px 6px 0 6px;
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
+	margin: -3px -8px 0px 8px;
+	padding: 5px 6px 7px 6px;
+	float: right;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;
 	border-bottom-right-radius: 4px;
@@ -122,6 +119,7 @@ html[dir="rtl"] #top-content .tools-all {
 #top-content .jingle.streaming .streaming-items a.stop:active {
 	background: #a92134;
 	padding-top: 6px;
+	padding-bottom: 6px;
 	-webkit-box-shadow: 0 1px 3px #000000 inset;
 	-moz-box-shadow: 0 1px 3px #000000 inset;
 	box-shadow: 0 1px 3px #000000 inset;
