@@ -29,16 +29,18 @@ Author: Valérian Saliou
 
 #jingle .videobox,
 #jingle .videobox video.remote_video {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
 
 #jingle .videobox .topbar {
     background: rgb(0,0,0);
     background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgb(0,0,0);
     border-bottom: 1px solid rgba(0,0,0,0.15);
     color: #ffffff;
+    text-shadow: 0 1px 1px rgb(0,0,0);
     text-shadow: 0 1px 1px rgba(0,0,0,0.5);
     height: 40px;
     position: absolute;
@@ -46,12 +48,12 @@ Author: Valérian Saliou
     right: 0;
     top: 0;
     z-index: 4;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-topleft: 3px;
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-topleft: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
     box-shadow: 0 0 5px rgba(0,0,0,0.25);
@@ -182,7 +184,7 @@ Author: Valérian Saliou
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 2px;
-    margin: 9px 0 0 46px;
+    margin: 10px 0 0 46px;
     padding: 2px 6px;
 }
 

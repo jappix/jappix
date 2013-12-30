@@ -108,7 +108,7 @@ html[dir="rtl"] #top-content .tools-all {
 	text-shadow: 0 1px 1px #521019;
 	text-transform: uppercase;
 	text-decoration: none;
-	margin: -3px -8px 0px 8px;
+	margin: -3px -8px 0 8px;
 	padding: 5px 6px 7px 6px;
 	float: right;
 	-moz-border-radius-bottomright: 4px;

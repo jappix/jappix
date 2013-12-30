@@ -66,7 +66,7 @@ var Jingle = (function() {
      * @param remote_view
      * @return {object}
      */
-    self.__args = function(connection, xid, hash, local_view, remote_view) {
+    self._args = function(connection, xid, hash, local_view, remote_view) {
 
         args = {};
 
@@ -186,7 +186,7 @@ var Jingle = (function() {
                 }
             };
         } catch(e) {
-            Console.error('Jingle.__args', e);
+            Console.error('Jingle._args', e);
         } finally {
             return args;
         }
@@ -203,14 +203,13 @@ var Jingle = (function() {
      * @param stanza
      * @return {boolean}
      */
-    self.__new = function(xid, mode, is_callee, stanza) {
+    self._new = function(xid, mode, is_callee, stanza) {
 
         var status = false;
 
         try {
             if(!xid) return false;
 
-            var jingle_sel = $('#jingle');
             var bare_xid    = Common.bareXID(xid);
             var full_xid    = null;
             var bare_hash   = hex_md5(bare_xid);
@@ -222,10 +221,11 @@ var Jingle = (function() {
                 if(!full_xid) return false;
             }
 
-            // TODO: create DOM containers for video/audio
+            // Create interface for video containers
+            var jingle_sel = self.createInterface();
 
             // Start the Jingle negotiation
-            var args = self.__args(
+            var args = self._args(
                                    con,
                                    full_xid,
                                    bare_hash,
@@ -244,9 +244,144 @@ var Jingle = (function() {
 
             status = true;
         } catch(e) {
-            Console.error('Jingle.__new', e);
+            Console.error('Jingle._new', e);
         } finally {
             return status;
+        }
+
+    };
+
+
+    /**
+     * Processes the Jingle elements size
+     * @private
+     * @param {object} screen
+     * @param {object} video
+     * @return {object}
+     */
+    self._processSize = function(screen, video) {
+
+        try {
+            // Get the intrinsic size of the video
+            var video_w = video.videoWidth;
+            var video_h = video.videoHeight;
+
+            // Get the screen size of the video
+            var screen_w = screen.width();
+            var screen_h = screen.height();
+
+            // Process resize ratios (2 cases)
+            var r_1 = screen_h / video_h;
+            var r_2 = screen_w / video_w;
+
+            // Process resized video sizes
+            var video_w_1 = video_w * r_1;
+            var video_h_1 = video_h * r_1;
+
+            var video_w_2 = video_w * r_2;
+            var video_h_2 = video_h * r_2;
+
+            // DOM view modifiers
+            var dom_width  = 'auto';
+            var dom_height = 'auto';
+            var dom_left   = 0;
+            var dom_top    = 0;
+
+            // Landscape/Portrait/Equal container?
+            if(video_w > video_h || (video_h == video_w && screen_w < screen_h)) {
+                // Not sufficient?
+                if(video_w_1 < screen_w) {
+                    dom_width = screen_w + 'px';
+                    dom_top   = -1 * (video_h_2 - screen_h) / 2;
+                } else {
+                    dom_height = screen_h + 'px';
+                    dom_left   = -1 * (video_w_1 - screen_w) / 2;
+                }
+            } else if(video_h > video_w || (video_h == video_w && screen_w > screen_h)) {
+                // Not sufficient?
+                if(video_h_1 < screen_h) {
+                    dom_height = screen_h + 'px';
+                    dom_left   = -1 * (video_w_1 - screen_w) / 2;
+                } else {
+                    dom_width = screen_w + 'px';
+                    dom_top   = -1 * (video_h_2 - screen_h) / 2;
+                }
+            } else if(screen_w == screen_h) {
+                dom_width  = screen_w + 'px';
+                dom_height = screen_h + 'px';
+            }
+
+            return {
+                width  : dom_width,
+                height : dom_height,
+                left   : dom_left,
+                top    : dom_top
+            };
+        } catch(e) {
+            Console.error('Jingle._processSize', e);
+        }
+
+    };
+
+
+    /**
+     * Adapts the local Jingle view
+     * @private
+     * @return {undefined}
+     */
+    self._adaptLocal = function() {
+
+        try {
+            var local_sel = $('#jingle .local_video');
+            var local_video_sel = local_sel.find('video');
+
+            // Process new sizes
+            var sizes = self._processSize(
+                local_sel,
+                local_video_sel[0]
+            );
+
+            // Apply new sizes
+            local_video_sel.css({
+                'height': sizes.height,
+                'width': sizes.width,
+                'margin-top': sizes.top,
+                'margin-left': sizes.left
+            });
+        } catch(e) {
+            Console.error('Jingle._adaptLocal', e);
+        }
+
+    };
+
+
+    /**
+     * Adapts the remote Jingle view
+     * @private
+     * @return {undefined}
+     */
+    self._adaptRemote = function() {
+
+        try {
+            var videobox_sel = $('#jingle .videobox');
+            var remote_sel = videobox_sel.find('.remote_video');
+            var remote_video_sel = remote_sel.find('video');
+
+            // Process new sizes
+            var sizes = self._processSize(
+                remote_sel,
+                remote_video_sel[0]
+            );
+
+            // Apply new sizes
+            remote_video_sel.css({
+                'height': sizes.height,
+                'width': sizes.width,
+                'margin-top': sizes.top,
+                'margin-left': sizes.left
+            });
+        } catch(e) {
+            Console.error('Jingle._adaptRemote', e);
         }
 
     };
@@ -257,12 +392,15 @@ var Jingle = (function() {
      * @private
      * @return {undefined}
      */
-    self.__adapt = function() {
+    self._adapt = function() {
 
         try {
-            // TODO
+            if(self.in_call() && exists('#jingle')) {
+                self._adaptLocal();
+                self._adaptRemote();
+            }
         } catch(e) {
-            Console.error('Jingle.__adapt', e);
+            Console.error('Jingle._adapt', e);
         }
 
     };
@@ -399,7 +537,7 @@ var Jingle = (function() {
     /**
      * Create the Jingle interface
      * @public
-     * @return {boolean}
+     * @return {object}
      */
     self.createInterface = function(xid, mode) {
 
@@ -458,7 +596,7 @@ var Jingle = (function() {
         } catch(e) {
             Console.error('Jingle.createInterface', e);
         } finally {
-            return false;
+            $('#jingle');
         }
 
     };
@@ -576,7 +714,7 @@ var Jingle = (function() {
     self.launch = function() {
 
         try {
-            $(window).resize(self.__adapt());
+            $(window).resize(self._adapt());
         } catch(e) {
             Console.error('Jingle.launch', e);
         }

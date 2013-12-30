@@ -116,7 +116,7 @@ var Talk = (function () {
 
                     if(!anonymous) html += 
                     '<div class="tools-all ibubble">' + 
-                        '<div class="tools jingle talk-images streaming video" onclick="return Jingle.open();">' + 
+                        '<div class="tools jingle talk-images active" onclick="return Jingle.open();">' + 
                             '<span class="streaming-items">' + 
                                 '<span class="counter" data-default="00:00:00">00:00:00</span>' + 
                                 '<a class="stop" href="#" onclick="return Jingle.stop();">' + Common._e("Stop") + '</a>' + 
