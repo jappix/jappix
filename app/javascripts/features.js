@@ -134,7 +134,7 @@ var Features = (function () {
             // Apply the features
             self.apply('talk');
             
-            // Process the buddy-list height
+            // Process the roster height
             if(features.pep === true) {
                 Roster.adapt();
             }

@@ -285,15 +285,15 @@ var Search = (function () {
             var rFilter = self.processBuddy(vFilter);
             
             // Hide all the buddies
-            $('#buddy-list .buddy').hide();
+            $('#roster .buddy').hide();
             
             // Only show the buddies which match the search
             if(!Roster.blist_all) {
                 for(var i in rFilter)
-                    $('#buddy-list .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
+                    $('#roster .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
             } else {
                 for(var j in rFilter)
-                    $('#buddy-list .buddy[data-xid="' + escape(rFilter[j]) + '"]').show();
+                    $('#roster .buddy[data-xid="' + escape(rFilter[j]) + '"]').show();
             }
         } catch(e) {
             Console.error('Search.goFilterBuddy', e);
@@ -314,11 +314,11 @@ var Search = (function () {
             self.search_filtered = false;
             
             // Show all the buddies
-            $('#buddy-list .buddy').show();
+            $('#roster .buddy').show();
             
             // Only show available buddies
             if(!Roster.blist_all)
-                $('#buddy-list .buddy.hidden-buddy').hide();
+                $('#roster .buddy.hidden-buddy').hide();
             
             // Update the groups
             Roster.updateGroups();
@@ -339,13 +339,13 @@ var Search = (function () {
 
         try {
             // Get the input value
-            var input = $('#buddy-list .filter input');
-            var cancel = $('#buddy-list .filter a');
+            var input = $('#roster .filter input');
+            var cancel = $('#roster .filter a');
             var value = input.val();
             
             // Security: reset all the groups, empty or not, deployed or not
-            $('#buddy-list .one-group, #buddy-list .group-buddies').show();
-            $('#buddy-list .group span').text('-');
+            $('#roster .one-group, #roster .group-buddies').show();
+            $('#roster .group span').text('-');
             
             // Nothing is entered, or escape pressed
             if(!value || (keycode == 27)) {

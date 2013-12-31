@@ -312,10 +312,16 @@ var Caps = (function () {
             
             // Paths
             var path = $('#' + hash);
+            var roster_path = $('#roster .buddy.' + hash);
+            var roster_jingle_path = roster_path.find('.buddy-infos .call-jingle');
+
             var message_area = path.find('.message-area');
             var style = path.find('.chat-tools-style');
             var jingle_audio = path.find('.tools-jingle-audio');
+            var roster_jingle_audio = roster_jingle_path.find('a.audio');
             var jingle_video = path.find('.tools-jingle-video');
+            var roster_jingle_video = roster_jingle_path.find('a.video');
+            var roster_jingle_separator = roster_jingle_path.find('span.separator');
             var file = path.find('.chat-tools-file');
             
             // Apply xHTML-IM
@@ -339,14 +345,30 @@ var Caps = (function () {
             // Apply Jingle
             if(NS_JINGLE_APPS_RTP_AUDIO in features) {
                 jingle_audio.show();
+                roster_jingle_audio.show();
             } else {
                 jingle_audio.hide();
+                roster_jingle_audio.hide();
             }
 
             if(NS_JINGLE_APPS_RTP_VIDEO in features) {
                 jingle_video.show();
+                roster_jingle_video.show();
             } else {
                 jingle_video.hide();
+                roster_jingle_video.hide();
+            }
+
+            if(NS_JINGLE_APPS_RTP_AUDIO in features && NS_JINGLE_APPS_RTP_VIDEO in features) {
+                roster_jingle_separator.show();
+            } else {
+                roster_jingle_separator.hide();
+            }
+
+            if(NS_JINGLE_APPS_RTP_AUDIO in features || NS_JINGLE_APPS_RTP_VIDEO in features) {
+                roster_jingle_path.show();
+            } else {
+                roster_jingle_path.hide();
             }
             
             // Apply Out of Band Data

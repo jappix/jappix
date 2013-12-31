@@ -572,7 +572,7 @@ var Interface = (function () {
 
 
 	/**
-     * Shows all the buddies in the buddy-list
+     * Shows all the buddies in the roster
      * @public
      * @param {string} from
      * @return {undefined}
@@ -588,14 +588,14 @@ var Interface = (function () {
             $('.buddy-conf-more-display-available').show();
             
             // Security: reset all the groups toggle event
-            $('#buddy-list .group-buddies').show();
-            $('#buddy-list .group span').text('-');
+            $('#roster .group-buddies').show();
+            $('#roster .group span').text('-');
             
             // We show the disconnected buddies
             $('.hidden-buddy').show();
             
             // We show all the groups
-            $('#buddy-list .one-group').show();
+            $('#roster .one-group').show();
             
             if(Search.search_filtered)
                 Search.funnelFilterBuddy();
@@ -613,7 +613,7 @@ var Interface = (function () {
 
 
     /**
-     * Shows only the online buddies in the buddy-list
+     * Shows only the online buddies in the roster
      * @public
      * @param {string} from
      * @return {undefined}
@@ -629,8 +629,8 @@ var Interface = (function () {
             $('.buddy-conf-more-display-unavailable').show();
             
             // Security: reset all the groups toggle event
-            $('#buddy-list .group-buddies').show();
-            $('#buddy-list .group span').text('-');
+            $('#roster .group-buddies').show();
+            $('#roster .group span').text('-');
             
             // We hide the disconnected buddies
             $('.hidden-buddy').hide();

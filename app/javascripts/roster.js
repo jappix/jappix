@@ -131,7 +131,7 @@ var Roster = (function () {
     self.updateGroups = function() {
 
         try {
-            $('#buddy-list .one-group').each(function() {
+            $('#roster .one-group').each(function() {
                 // Current values
                 var check = $(this).find('.buddy').size();
                 var hidden = $(this).find('.buddy:not(.hidden-buddy:hidden)').size();
@@ -172,7 +172,7 @@ var Roster = (function () {
 
         try {
             // First remove the buddy
-            $('#buddy-list .' + dXIDHash).remove();
+            $('#roster .' + dXIDHash).remove();
             
             // Define some things around the groups
             var is_gateway = Common.isGateway(dXID);
@@ -207,7 +207,7 @@ var Roster = (function () {
                     if(cGroup) {
                         // Process some vars
                         var groupHash = 'group' + hex_md5(cGroup);
-                        var groupContent = '#buddy-list .' + groupHash;
+                        var groupContent = '#roster .' + groupHash;
                         var groupBuddies = groupContent + ' .group-buddies';
                         
                         // Is this group blocked?
@@ -217,7 +217,7 @@ var Roster = (function () {
                         // Group not yet displayed
                         if(!Common.exists(groupContent)) {
                             // Define some things
-                            var groupCont = '#buddy-list .content';
+                            var groupCont = '#roster .content';
                             var groupToggle = groupCont + ' .' + groupHash + ' a.group';
                             
                             // Create the HTML markup of the group
@@ -288,7 +288,7 @@ var Roster = (function () {
                 });
                 
                 // Click event on this buddy
-                $('#buddy-list .' + dXIDHash + ' .buddy-click').click(function() {
+                $('#roster .' + dXIDHash + ' .buddy-click').click(function() {
                     return Chat.checkCreate(dXID, 'chat');
                 });
                 
@@ -299,7 +299,7 @@ var Roster = (function () {
                 
                 // If the buddy must be shown
                 if(self.blist_all) {
-                    $('#buddy-list .' + dXIDHash).show();
+                    $('#roster .' + dXIDHash).show();
                 }
             }
             
@@ -326,7 +326,7 @@ var Roster = (function () {
 
         try {
             // Initialize
-            var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"]';
+            var path = '#roster .buddy[data-xid="' + escape(xid) + '"]';
             var rename = path + ' .bm-rename input';
             var group = path + ' .bm-group input';
             var manage_infos = path + ' .manage-infos';
@@ -501,18 +501,18 @@ var Roster = (function () {
 
         try {
             // Generate the values
-            var bPath = '#buddy-list .' + group_hash + ' .buddy[data-xid="' + escape(xid) + '"]';
+            var bPath = '#roster .' + group_hash + ' .buddy[data-xid="' + escape(xid) + '"]';
             var iPath = bPath + ' .buddy-infos';
             
             // Apply the hover event
             $(bPath).hover(function() {
                 // Another bubble exist
-                if(Common.exists('#buddy-list .buddy-infos'))
+                if(Common.exists('#roster .buddy-infos'))
                     return false;
                 
                 $(bPath).oneTime(200, function() {
                     // Another bubble exist
-                    if(Common.exists('#buddy-list .buddy-infos'))
+                    if(Common.exists('#roster .buddy-infos'))
                         return false;
                     
                     // Add this bubble!
@@ -530,7 +530,7 @@ var Roster = (function () {
                                     '<p class="bi-activity talk-images activity-exercising">' + Common._e("unknown") + '</p>' + 
                                     '<p class="bi-tune talk-images tune-note">' + Common._e("unknown") + '</p>' + 
                                     '<p class="bi-geoloc talk-images location-world">' + Common._e("unknown") + '</p>' + 
-                                    '<p class="bi-jingle talk-images call-jingle"><a href="#" class="audio">' + Common._e("Audio Call") + '</a> / <a href="#" class="video">' + Common._e("Video Call") + '</a>' + 
+                                    '<p class="bi-jingle talk-images call-jingle"><a href="#" class="audio">' + Common._e("Audio Call") + '</a><span class="separator"> / </span><a href="#" class="video">' + Common._e("Video Call") + '</a>' + 
                                     '<p class="bi-view talk-images view-individual"><a href="#" class="profile">' + Common._e("Profile") + '</a> / <a href="#" class="channel">' + Common._e("Channel") + '</a> / <a href="#" class="commands">' + Common._e("Commands") + '</a></p>' + 
                                     '<p class="bi-edit talk-images edit-buddy"><a href="#">' + Common._e("Edit") + '</a></p>' + 
                                 '</div>' + 
@@ -613,7 +613,7 @@ var Roster = (function () {
 
         try {
             // Paths
-            var group = '#buddy-list .' + group_hash;
+            var group = '#roster .' + group_hash;
             var buddy = group + ' .buddy[data-xid="' + escape(xid) + '"]';
             var buddy_infos = buddy + ' .buddy-infos';
             
@@ -651,7 +651,7 @@ var Roster = (function () {
     self.thisBuddyGroups = function(xid) {
 
         try {
-            var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] ';
+            var path = '#roster .buddy[data-xid="' + escape(xid) + '"] ';
             var array = [];
             
             // Each checked checkboxes
@@ -715,7 +715,7 @@ var Roster = (function () {
         try {
             var groups = [];
             
-            $('#buddy-list .one-group').each(function() {
+            $('#roster .one-group').each(function() {
                 var current = unescape($(this).attr('data-group'));
                 
                 if((current != Common._e("Unclassified")) && (current != Common._e("Gateways")))
@@ -745,7 +745,7 @@ var Roster = (function () {
             Console.info('Buddy edit: ' + xid);
             
             // Initialize
-            var path = '#buddy-list .buddy[data-xid="' + escape(xid) + '"] .';
+            var path = '#roster .buddy[data-xid="' + escape(xid) + '"] .';
             var html = '<div class="manage-infos">';
             
             // Get the privacy state
@@ -937,7 +937,7 @@ var Roster = (function () {
                 new_height = 211;
             
             // Apply the new height
-            $('#buddy-list .content').css('height', new_height);
+            $('#roster .content').css('height', new_height);
         } catch(e) {
             Console.error('Roster.adapt', e);
         }
@@ -955,7 +955,7 @@ var Roster = (function () {
         try {
             var buddies = [];
     
-            $('#buddy-list .buddy').each(function() {
+            $('#roster .buddy').each(function() {
                 var xid = unescape($(this).attr('data-xid'));
                 
                 if(xid) {
@@ -980,7 +980,7 @@ var Roster = (function () {
     self.isFriend = function(xid) {
 
         try {
-            return Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]');
+            return Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]');
         } catch(e) {
             Console.error('Roster.isFriend', e);
         }
@@ -1024,8 +1024,8 @@ var Roster = (function () {
 
         try {
             // Filtering tool
-            var iFilter = $('#buddy-list .filter input');
-            var aFilter = $('#buddy-list .filter a');
+            var iFilter = $('#roster .filter input');
+            var aFilter = $('#roster .filter a');
             
             iFilter.placeholder()
             
@@ -1048,7 +1048,7 @@ var Roster = (function () {
                 iFilter.placeholder();
                 
                 // Security: show all the groups, empty or not
-                $('#buddy-list .one-group').show();
+                $('#roster .one-group').show();
                 
                 // Reset the filtering tool
                 Search.resetFilterBuddy();
@@ -1057,7 +1057,7 @@ var Roster = (function () {
             });
             
             // When the user click on the add button, show the contact adding tool
-            $('#buddy-list .foot .add').click(function() {
+            $('#roster .foot .add').click(function() {
                 // Yet displayed?
                 if(Common.exists('#buddy-conf-add'))
                     return Bubble.close();
@@ -1066,7 +1066,7 @@ var Roster = (function () {
                 Bubble.show('#buddy-conf-add');
                 
                 // Append the content
-                $('#buddy-list .buddy-list-add').append(
+                $('#roster .roster-add').append(
                     '<div id="buddy-conf-add" class="buddy-conf-item bubble removable">' + 
                         '<div class="buddy-conf-subarrow talk-images"></div>' + 
                         
@@ -1170,7 +1170,7 @@ var Roster = (function () {
             });
             
             // When the user click on the join button, show the chat joining tool
-            $('#buddy-list .foot .join').click(function() {
+            $('#roster .foot .join').click(function() {
                 // Yet displayed?
                 if(Common.exists('#buddy-conf-join'))
                     return Bubble.close();
@@ -1179,7 +1179,7 @@ var Roster = (function () {
                 Bubble.show('#buddy-conf-join');
                 
                 // Append the content
-                $('#buddy-list .buddy-list-join').append(
+                $('#roster .roster-join').append(
                     '<div id="buddy-conf-join" class="buddy-conf-item bubble removable">' + 
                         '<div class="buddy-conf-subarrow talk-images"></div>' + 
                         
@@ -1277,7 +1277,7 @@ var Roster = (function () {
             });
             
             // When the user click on the groupchat button, show the groupchat menu
-            $('#buddy-list .foot .groupchat').click(function() {
+            $('#roster .foot .groupchat').click(function() {
                 // Yet displayed?
                 if(Common.exists('#buddy-conf-groupchat'))
                     return Bubble.close();
@@ -1286,7 +1286,7 @@ var Roster = (function () {
                 Bubble.show('#buddy-conf-groupchat');
                 
                 // Append the content
-                $('#buddy-list .buddy-list-groupchat').append(
+                $('#roster .roster-groupchat').append(
                     '<div id="buddy-conf-groupchat" class="buddy-conf-item bubble removable">' + 
                         '<div class="buddy-conf-subarrow talk-images"></div>' + 
                         
@@ -1333,7 +1333,7 @@ var Roster = (function () {
             });
             
             // When the user click on the more button, show the more menu
-            $('#buddy-list .foot .more').click(function() {
+            $('#roster .foot .more').click(function() {
                 // Yet displayed?
                 if(Common.exists('#buddy-conf-more'))
                     return Bubble.close();
@@ -1342,7 +1342,7 @@ var Roster = (function () {
                 Bubble.show('#buddy-conf-more');
                 
                 // Append the content
-                $('#buddy-list .buddy-list-more').append(
+                $('#roster .roster-more').append(
                     '<div id="buddy-conf-more" class="buddy-conf-item bubble removable">' + 
                         '<div class="buddy-conf-subarrow talk-images"></div>' + 
                         
@@ -1417,7 +1417,7 @@ var Roster = (function () {
             });
             
             // When the user scrolls the buddy list
-            $('#buddy-list .content').scroll(function() {
+            $('#roster .content').scroll(function() {
                 // Close the opened buddy infos bubble
                 Bubble.close();
             });

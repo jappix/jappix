@@ -353,7 +353,7 @@ var Chat = (function () {
             // Create the chat switcher
             self.generateSwitch(type, hash, xid, nick);
             
-            // If the user is not in our buddy-list
+            // If the user is not in our roster
             if(type == 'chat') {
                 // MAM? Get archives from there!
                 if(Features.enabledMAM()) {

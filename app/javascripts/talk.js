@@ -136,7 +136,7 @@ var Talk = (function () {
                 '<div id="main-content">' + 
                     '<div id="left-content">';
                         if(!anonymous) html += 
-                        '<div id="buddy-list">' + 
+                        '<div id="roster">' + 
                             '<div class="content"></div>' + 
                             
                             '<div class="filter">' + 
@@ -145,19 +145,19 @@ var Talk = (function () {
                             '</div>' + 
                             
                             '<div class="foot ibubble">' + 
-                                '<div class="buddy-list-add buddy-list-icon">' + 
+                                '<div class="roster-add roster-icon">' + 
                                     '<a href="#" class="add talk-images" title="' + Common._e("Add a friend") +  '"></a>' + 
                                 '</div>' + 
                                 
-                                '<div class="buddy-list-join buddy-list-icon">' + 
+                                '<div class="roster-join roster-icon">' + 
                                     '<a href="#" class="join talk-images" title="' + Common._e("Join a chat") +  '"></a>' + 
                                 '</div>' + 
                                 
-                                '<div class="buddy-list-groupchat buddy-list-icon">' + 
+                                '<div class="roster-groupchat roster-icon">' + 
                                     '<a href="#" class="groupchat talk-images" title="' + Common._e("Your groupchats") +  '"></a>' + 
                                 '</div>' + 
                                 
-                                '<div class="buddy-list-more buddy-list-icon">' + 
+                                '<div class="roster-more roster-icon">' + 
                                     '<a href="#" class="more talk-images" title="' + Common._e("More stuff") +  '"></a>' + 
                                 '</div>' + 
                                 
@@ -272,7 +272,7 @@ var Talk = (function () {
             // Create the HTML code
             $('body').prepend(html);
             
-            // Adapt the buddy-list size
+            // Adapt the roster size
             Roster.adapt();
             
             // Create JS events

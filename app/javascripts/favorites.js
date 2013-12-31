@@ -584,7 +584,7 @@ var Favorites = (function () {
             self.remove(xid, false);
             
             // We complete the select forms
-            $('#buddy-list .gc-join-first-option, #favorites .fedit-head-select-first-option').after(html);
+            $('#roster .gc-join-first-option, #favorites .fedit-head-select-first-option').after(html);
             
             // We store the informations
             var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
@@ -628,7 +628,7 @@ var Favorites = (function () {
             var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + Common._e("Select a favorite") + '</option>' + html;
             
             // Append the HTML code
-            $('#buddy-list .buddy-conf-groupchat-select').html(favorites_bubble);
+            $('#roster .buddy-conf-groupchat-select').html(favorites_bubble);
             $('#favorites .fedit-head-select').html(favorites_popup);
         } catch(e) {
             Console.error('Favorites.load', e);

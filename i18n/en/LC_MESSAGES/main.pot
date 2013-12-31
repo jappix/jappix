@@ -2084,3 +2084,9 @@ msgstr ""
 
 msgid "Retry"
 msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
+msgstr ""

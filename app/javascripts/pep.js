@@ -231,7 +231,7 @@ var PEP = (function () {
                 }
                 
                 // Apply the text to the buddy infos
-                var this_buddy = '#buddy-list .buddy[data-xid="' + escape(xid) + '"]';
+                var this_buddy = '#roster .buddy[data-xid="' + escape(xid) + '"]';
                 
                 if(Common.exists(this_buddy))
                     $(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + Common.encodeQuotes(dText) + '">' + fText + '</p>');
@@ -321,7 +321,7 @@ var PEP = (function () {
                         else if(!Common.exists('#my-infos .f-others a.icon'))
                             $('#my-infos .f-others').remove();
                         
-                        // Process the buddy-list height again
+                        // Process the roster height again
                         Roster.adapt();
                     }
                 }

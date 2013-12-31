@@ -201,7 +201,7 @@ var RosterX = (function () {
                 }
                 
                 // Process the asked action
-                var roster_item = $('#buddy-list .' + hex_md5(xid));
+                var roster_item = $('#roster .' + hex_md5(xid));
                 
                 switch(action) {
                     // Buddy add

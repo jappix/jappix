@@ -1,7 +1,7 @@
 /*
  
 Jappix - An open social platform
-This is the buddy-list CSS stylesheet for Jappix
+This is the roster CSS stylesheet for Jappix
  
 -------------------------------------------------
  
@@ -10,7 +10,7 @@ Author: Valérian Saliou
  
 */
  
-#buddy-list {
+#roster {
         background-color: rgb(20,20,20);
         background-color: rgba(20,20,20,0.85);
         color: #919191;
@@ -23,7 +23,7 @@ Author: Valérian Saliou
         box-shadow: 0 0 6px #5c5c5c;
 }
  
-#buddy-list .content {
+#roster .content {
 	background: #e8f1f3;
 	background: -moz-linear-gradient(top, #e8f1f3, #e4edef);
 	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#e4edef));
@@ -42,11 +42,11 @@ Author: Valérian Saliou
         border-top-right-radius: 3px;
 }
  
-#buddy-list .one-group {
+#roster .one-group {
         margin-bottom: 10px;
 }
  
-#buddy-list .one-group a.group {
+#roster .one-group a.group {
         color: #202c2f;
         font-size: 0.8em;
         margin: 3px 6px;
@@ -57,40 +57,40 @@ Author: Valérian Saliou
         display: block;
 }
 
-html[dir="rtl"] #buddy-list .one-group a.group {
+html[dir="rtl"] #roster .one-group a.group {
         float: right;
 }
  
-#buddy-list .one-group a.group.plus {
+#roster .one-group a.group.plus {
         background-position: -4px -1143px;
 }
  
-#buddy-list .one-group a.group.minus {
+#roster .one-group a.group.minus {
         background-position: -4px -1162px;
 }
  
-#buddy-list .one-group a.group:hover {
+#roster .one-group a.group:hover {
         cursor: pointer;
 }
  
-#buddy-list .hidden-buddy,
-#buddy-list .foot-edit-finish,
+#roster .hidden-buddy,
+#roster .foot-edit-finish,
 .buddy-conf-more-display-available {
         display: none;
 }
 
-#buddy-list .group-buddy {
+#roster .group-buddy {
         clear: both;
 }
  
-#buddy-list .buddy {
+#roster .buddy {
         width: 100%;
         height: 50px;
         margin-bottom: 4px;
         clear: both;
 }
  
-#buddy-list .buddy-click {
+#roster .buddy-click {
         background: #d9e7ea;
         width: 100%;
         height: 100%;
@@ -100,32 +100,32 @@ html[dir="rtl"] #buddy-list .one-group a.group {
         border-radius: 3px;
 }
  
-#buddy-list .buddy-click:hover,
-#buddy-list .buddy-click:focus {
+#roster .buddy-click:hover,
+#roster .buddy-click:focus {
         background: #cedee1;
         cursor: pointer;
 }
  
-#buddy-list .buddy-click:active {
+#roster .buddy-click:active {
         background: #c3d3d7;
 }
  
-#buddy-list .gateway {
+#roster .gateway {
         height: 27px;
 }
  
-#buddy-list .gateway .name {
+#roster .gateway .name {
         margin-left: 0;
 }
  
-#buddy-list .gateway .buddy-presence {
+#roster .gateway .buddy-presence {
         float: left;
         overflow: hidden;
         width: 0;
         margin: 0 4px;
 }
  
-#buddy-list .avatar-container {
+#roster .avatar-container {
         float: left;
         text-align: center;
         margin: 3px;
@@ -133,25 +133,25 @@ html[dir="rtl"] #buddy-list .one-group a.group {
         height: 46px;
 }
 
-html[dir="rtl"] #buddy-list .avatar-container {
+html[dir="rtl"] #roster .avatar-container {
         float: right;
 }
  
-#buddy-list .avatar {
+#roster .avatar {
         max-width: 44px;
         max-height: 44px;
 }
  
-#buddy-list .name {
+#roster .name {
         margin: 4px 3px 5px 56px;
 }
 
-html[dir="rtl"] #buddy-list .name {
+html[dir="rtl"] #roster .name {
         margin-left: auto;
         float: right;
 }
 
-#buddy-list .buddy-name {
+#roster .buddy-name {
         height: 17px;
         font-weight: bold;
         font-size: 0.85em;
@@ -160,11 +160,11 @@ html[dir="rtl"] #buddy-list .name {
         overflow: hidden;
 }
  
-#buddy-list .buddy.blocked p.buddy-name {
+#roster .buddy.blocked p.buddy-name {
         text-decoration: line-through;
 }
  
-#buddy-list .buddy-presence {
+#roster .buddy-presence {
         height: 14px;
         font-size: 0.7em;
         color: #3a585e;
@@ -172,17 +172,17 @@ html[dir="rtl"] #buddy-list .name {
         margin-top: -3px;
 }
 
-html[dir="rtl"] #buddy-list .buddy-presence {
+html[dir="rtl"] #roster .buddy-presence {
         float: right;
 }
  
-#buddy-list .unavailable,
+#roster .unavailable,
 #page-switch .unavailable,
 #page-engine p.bc-infos span.show.unavailable {
         background-position: 0 -153px;
 }
  
-#buddy-list .available,
+#roster .available,
 #page-engine p.bc-infos span.show.available,
 #page-engine .list .available,
 #page-engine .list .chat,
@@ -191,7 +191,7 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         background-position: 0 -169px;
 }
  
-#buddy-list .away,
+#roster .away,
 #page-engine p.bc-infos span.show.away,
 #page-engine .list .away,
 #page-switch .away,
@@ -199,7 +199,7 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         background-position: 0 -185px;
 }
  
-#buddy-list .busy,
+#roster .busy,
 #page-engine p.bc-infos span.show.busy,
 #page-engine .list .xa,
 #page-engine .list .dnd,
@@ -208,13 +208,13 @@ html[dir="rtl"] #buddy-list .buddy-presence {
         background-position: 0 -201px;
 }
  
-#buddy-list .error,
+#roster .error,
 #page-switch .error,
 #page-engine p.bc-infos span.show.error {
         background-position: 0 -217px;
 }
  
-#buddy-list .buddy-infos {
+#roster .buddy-infos {
 	position: absolute;
         z-index: 100;
         width: 337px;
@@ -353,7 +353,14 @@ html[dir="rtl"] .manage-infos p.bm-group input {
 }
 
 .call-jingle {
-        background-position: 0 -2047px;
+        background-position: 1px -2047px;
+}
+
+.call-jingle,
+.call-jingle a.audio,
+.call-jingle a.video,
+.call-jingle span.separator {
+        display: none;
 }
 
 .view-individual {
@@ -364,7 +371,7 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         background-position: 0 -1008px;
 }
  
-#buddy-list .filter {
+#roster .filter {
         background-color: white;
         border-top: 1px solid #b8c2c4;
         height: 15px;
@@ -378,7 +385,7 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         border-bottom-right-radius: 3px;
 }
  
-#buddy-list .filter input {
+#roster .filter input {
         border: none;
         color: #273a3f;
         width: 211px;
@@ -388,7 +395,7 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         box-shadow: none;
 }
  
-#buddy-list .filter a {
+#roster .filter a {
         display: none;
         background-color: #9a2d2d;
         color: white;
@@ -404,24 +411,24 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         border-radius: 2px;
 }
 
-html[dir="rtl"] #buddy-list .filter a {
+html[dir="rtl"] #roster .filter a {
         float: left;
 }
  
-#buddy-list .filter a:hover,
-#buddy-list .filter a:focus {
+#roster .filter a:hover,
+#roster .filter a:focus {
         background-color: #8c2121;
 }
  
-#buddy-list .filter a:active {
+#roster .filter a:active {
         background-color: #7e1919;
 }
  
-#buddy-list .foot {
+#roster .foot {
         padding: 9px 1px 3px;
 }
  
-#buddy-list .buddy-list-icon {
+#roster .roster-icon {
         height: 16px;
         width: 16px;
         margin: -3px 5px 0 0;
@@ -429,37 +436,37 @@ html[dir="rtl"] #buddy-list .filter a {
         position: relative;
 }
 
-html[dir="rtl"] #buddy-list .buddy-list-icon {
+html[dir="rtl"] #roster .roster-icon {
         margin-right: 0;
         margin-left: 5px;
         float: right;
 }
  
-#buddy-list .buddy-list-icon a.talk-images {
+#roster .roster-icon a.talk-images {
         height: 16px;
         width: 16px;
         display: block;
 }
  
-#buddy-list .add,
+#roster .add,
 #page-engine .text .tools-add {
         background-position: 0 -1047px;
 }
  
-#buddy-list .join {
+#roster .join {
         background-position: 0 -1065px;
 }
  
-#buddy-list .groupchat,
+#roster .groupchat,
 #page-switch .groupchat-default {
         background-position: 0 -1082px;
 }
  
-#buddy-list .more {
+#roster .more {
         background-position: 0 -1100px;
 }
  
-#buddy-list .foot-edit-finish a {
+#roster .foot-edit-finish a {
         color: white;
         font-size: 0.8em;
         margin: -3px 4px 0 0;
@@ -467,8 +474,8 @@ html[dir="rtl"] #buddy-list .buddy-list-icon {
         display: block;
 }
  
-#buddy-list .foot-edit-finish a:hover,
-#buddy-list .foot-edit-finish a:focus {
+#roster .foot-edit-finish a:hover,
+#roster .foot-edit-finish a:focus {
         text-decoration: underline;
         cursor: pointer;
 }

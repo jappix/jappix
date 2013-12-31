@@ -212,7 +212,7 @@ var Presence = (function () {
                 // Subscribe stanza
                 else if(type == 'subscribe') {
                     // This is a buddy we can safely authorize, because we added him to our roster
-                    if(Common.exists('#buddy-list .buddy[data-xid="' + escape(xid) + '"]'))
+                    if(Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]'))
                         self.acceptSubscribe(xid);
                     
                     // We do not know this entity, we'd be better ask the user
@@ -650,8 +650,8 @@ var Presence = (function () {
 
         try {
             // Display the presence in the roster
-            var path = '#buddy-list .' + hash;
-            var buddy = $('#buddy-list .content .' + hash);
+            var path = '#roster .' + hash;
+            var buddy = $('#roster .content .' + hash);
             var dStatus = self.filterStatus(xid, status, false);
             var tStatus = Common.encodeQuotes(status);
             var biStatus;
@@ -721,25 +721,28 @@ var Presence = (function () {
                 
                 // Process the new status position
                 self.adaptChat(hash);
-                
-                // Get the disco#infos for this user
-                var highest = self.highestPriority(xid);
-                
-                if(highest)
-                    Caps.getDiscoInfos(highest, caps);
-                else
-                    Caps.displayDiscoInfos(xid, '');
             }
             
             // Display the presence in the switcher
-            if(Common.exists('#page-switch .' + hash))
+            if(Common.exists('#page-switch .' + hash)) {
                 $('#page-switch .' + hash + ' .icon').removeClass('available unavailable error away busy').addClass(type);
+            }
             
             // Update roster groups
-            if(!Search.search_filtered)
+            if(!Search.search_filtered) {
                 Roster.updateGroups();
-            else
+            } else {
                 Search.funnelFilterBuddy();
+            }
+
+            // Get the disco#infos for this user
+            var highest = self.highestPriority(xid);
+            
+            if(highest) {
+                Caps.getDiscoInfos(highest, caps);
+            } else {
+                Caps.displayDiscoInfos(xid, '');
+            }
         } catch(e) {
             Console.error('Presence.display', e);
         }

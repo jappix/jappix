@@ -139,7 +139,7 @@ var Name = (function () {
             
             // Not me!
             else {
-                cname = $('#buddy-list .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
+                cname = $('#roster .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
                 
                 // If the complete name exists
                 if(cname)

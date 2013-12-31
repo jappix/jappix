@@ -581,7 +581,7 @@ var DataForm = (function () {
                                     '<div class="buttons-container">';
                             
                             // The buddy is not in our buddy list?
-                            if(!Common.exists('#buddy-list .buddy[data-xid="' + escape(bXID) + '"]'))
+                            if(!Common.exists('#roster .buddy[data-xid="' + escape(bXID) + '"]'))
                                 bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + Common._e("Add") + '</a>';
                             
                             // Chat button, if not in welcome/directory mode

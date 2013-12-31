@@ -298,16 +298,16 @@ var Privacy = (function () {
                 // Is this a block list?
                 if(list_name == 'block') {
                     // Reset buddies
-                    $('#buddy-list .buddy').removeClass('blocked');
+                    $('#roster .buddy').removeClass('blocked');
                     
                     // XID types
                     $(this).find('item[action="deny"][type="jid"]').each(function() {
-                        $('#buddy-list .buddy[data-xid="' + escape($(this).attr('value')) + '"]').addClass('blocked');
+                        $('#roster .buddy[data-xid="' + escape($(this).attr('value')) + '"]').addClass('blocked');
                     });
                     
                     // Group types
                     $(this).find('item[action="deny"][type="group"]').each(function() {
-                        $('#buddy-list .group' + hex_md5($(this).attr('value')) + ' .buddy').addClass('blocked');
+                        $('#roster .group' + hex_md5($(this).attr('value')) + ' .buddy').addClass('blocked');
                     });
                 }
             });
