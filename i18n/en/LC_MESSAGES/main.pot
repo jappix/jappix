@@ -2046,10 +2046,10 @@ msgstr ""
 msgid "Initiating call"
 msgstr ""
 
-msgid "Connecting to call"
+msgid "Connecting to call..."
 msgstr ""
 
-msgid "Waiting for approval"
+msgid "Waiting for approval..."
 msgstr ""
 
 msgid "Declined the call"
@@ -2071,6 +2071,9 @@ msgid "Canceled the call"
 msgstr ""
 
 msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
 msgstr ""
 
 msgid "Accept"

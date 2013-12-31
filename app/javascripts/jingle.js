@@ -201,7 +201,7 @@ var Jingle = (function() {
 
                     self.notify(
                         Common.bareXID(jingle.get_to()),
-                        'local_ended',
+                        'ending',
                         jingle.get_media()
                     );
 
@@ -628,6 +628,10 @@ var Jingle = (function() {
     self.stop = function() {
 
         try {
+            // Reset interface
+            self._reset();
+
+            // Stop Jingle session
             if(self._jingle_current !== null) {
                 self._jingle_current.terminate();
 
@@ -635,9 +639,6 @@ var Jingle = (function() {
             } else {
                 Console.warn('No Jingle call to be terminated!');
             }
-
-            // Reset interface
-            self._reset();
         } catch(e) {
             Console.error('Jingle.stop', e);
         } finally {
@@ -840,7 +841,7 @@ var Jingle = (function() {
                 },
 
                 'waiting': {
-                    'text': Common._e("Waiting for approval"),
+                    'text': Common._e("Waiting for approval..."),
 
                     'buttons': {
                         'cancel': {
@@ -882,7 +883,7 @@ var Jingle = (function() {
                 },
 
                 'connecting': {
-                    'text': Common._e("Connecting to call"),
+                    'text': Common._e("Connecting to call..."),
 
                     'buttons': {
                         'cancel': {
@@ -915,6 +916,10 @@ var Jingle = (function() {
                             }
                         }
                     }
+                },
+
+                'ending': {
+                    'text': Common._e("Ending call...")
                 },
 
                 'local_ended': {
@@ -1372,7 +1377,7 @@ var Jingle = (function() {
         try {
             var jingle_sel = $('#jingle');
 
-            jingle_sel.everyTime(100, function() {
+            jingle_sel.everyTime(50, function() {
                 self._adapt();
             });
 

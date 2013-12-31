@@ -238,7 +238,7 @@ var DateUtils = (function () {
     self.difference = function(now_stamp, past_stamp) {
 
         try {
-            return (new Date).clearTime().addSeconds(
+            return (new Date()).clearTime().addSeconds(
                 past_stamp > 0 ? now_stamp - past_stamp : 0
             );
         } catch(e) {

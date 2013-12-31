@@ -16,7 +16,11 @@ Author: Valérian Saliou
 
 #jingle .videobox {
     background: #ededed;
+    border: 1px solid rgb(0,0,0);
+    border: 1px solid rgba(0,0,0,0.75);
     text-shadow: none;
+    min-width: 550px;
+    min-height: 420px;
     overflow: hidden;
     position: absolute;
     left: 100px;
@@ -218,7 +222,7 @@ Author: Valérian Saliou
 #jingle .videobox .local_video {
     background-position: 0 -56px;
     border: 1px solid rgb(0,0,0);
-    border: 1px solid rgba(0,0,0,0.25);
+    border: 1px solid rgba(0,0,0,0.5);
     width: 180px;
     height: 101px;
     opacity: 0.6;
@@ -262,7 +266,7 @@ Author: Valérian Saliou
     background-position: 0 0;
     width: 39px;
     height: 44px;
-    opacity: 0.9;
+    opacity: 0.5;
     position: absolute;
     bottom: 16px;
     right: 24px;
