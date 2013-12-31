@@ -4009,8 +4009,8 @@ var JappixMini = (function () {
                 css_url.push(JAPPIX_MINI_CSS);
             } else {
                 // Fallback to non-optimized way, used with standalone Jappix Mini
-                css_url.push(JAPPIX_STATIC + 'css/mini.css');
-                css_url.push(JAPPIX_STATIC + 'css/mini-ie.css');
+                css_url.push(JAPPIX_STATIC + 'stylesheets/mini.css');
+                css_url.push(JAPPIX_STATIC + 'stylesheets/mini-ie.css');
             }
 
             // Append final stylesheet HTML
