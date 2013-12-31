@@ -64,6 +64,7 @@ module.exports = function(grunt) {
             '../app/javascripts/jxhr.js',
             '../app/javascripts/browser-detect.js',
             '../app/javascripts/base64.js',
+            '../app/javascripts/datejs.js',
             '../app/javascripts/ios.js'
           ]
       }

@@ -509,10 +509,6 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 	margin-left: 0;
 }
 
-#page-engine .text .chat-tools-file {
-	display: none;
-}
-
 #page-engine .text .chat-tools-file.mini .bubble-file {
 	z-index: 39;
 }
@@ -559,8 +555,11 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 	background-position: 0 -2080px;
 }
 
+#page-engine .text .chat-tools-file,
 #page-engine .text .tools-add,
-#page-engine .text .tools-mucadmin {
+#page-engine .text .tools-mucadmin,
+#page-ending .text .tools-jingle-audio,
+#page-ending .text .tools-jingle-video {
 	display: none;
 }
 

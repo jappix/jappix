@@ -314,6 +314,8 @@ var Caps = (function () {
             var path = $('#' + hash);
             var message_area = path.find('.message-area');
             var style = path.find('.chat-tools-style');
+            var jingle_audio = path.find('.tools-jingle-audio');
+            var jingle_video = path.find('.tools-jingle-video');
             var file = path.find('.chat-tools-file');
             
             // Apply xHTML-IM
@@ -333,6 +335,19 @@ var Caps = (function () {
                         .removeAttr('data-italic')
                         .removeAttr('data-underline');
             }
+
+            // Apply Jingle
+            if(NS_JINGLE_APPS_RTP_AUDIO in features) {
+                jingle_audio.show();
+            } else {
+                jingle_audio.hide();
+            }
+
+            if(NS_JINGLE_APPS_RTP_VIDEO in features) {
+                jingle_video.show();
+            } else {
+                jingle_video.hide();
+            }
             
             // Apply Out of Band Data
             if(NS_IQOOB in features || NS_XOOB in features) {
@@ -343,9 +358,7 @@ var Caps = (function () {
                     'data-oob',
                     NS_IQOOB in features ? 'iq' : 'x'
                 );
-            }
-            
-            else {
+            } else {
                 // Remove the tooltip elements
                 file.hide();
                 file.find('.bubble-style').remove();

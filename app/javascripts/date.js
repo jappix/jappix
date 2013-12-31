@@ -229,6 +229,26 @@ var DateUtils = (function () {
 
 
     /**
+     * Returns a date representing the difference of time between 2 timestamps
+     * @public
+     * @param {string} now_stamp
+     * @param {string} past_stamp
+     * @return {Date}
+     */
+    self.difference = function(now_stamp, past_stamp) {
+
+        try {
+            return (new Date).clearTime().addSeconds(
+                past_stamp > 0 ? now_stamp - past_stamp : 0
+            );
+        } catch(e) {
+            Console.error('DateUtils.difference', e);
+        }
+
+    };
+
+
+    /**
      * Parses a XMPP date (yyyy-mm-dd, hh-mm-ss) into an human-readable one
      * @public
      * @param {string} to_parse

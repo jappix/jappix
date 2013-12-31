@@ -87,6 +87,11 @@ var Audio = (function () {
                                 '<source src="' + './sounds/incoming-call.mp3' + '" />' + 
                                 '<source src="' + './sounds/incoming-call.oga' + '" />' + 
                             '</audio>' + 
+                            
+                            '<audio id="outgoing-call" preload="auto">' + 
+                                '<source src="' + './sounds/outgoing-call.mp3' + '" />' + 
+                                '<source src="' + './sounds/outgoing-call.oga' + '" />' + 
+                            '</audio>' + 
                         '</div>'
                     );
                 }

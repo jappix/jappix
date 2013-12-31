@@ -2064,6 +2064,15 @@ msgstr ""
 msgid "Call ended"
 msgstr ""
 
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
 msgid "Accept"
 msgstr ""
 

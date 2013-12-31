@@ -17,6 +17,7 @@ Author: Valérian Saliou
 #jingle .videobox {
     background: #ededed;
     text-shadow: none;
+    overflow: hidden;
     position: absolute;
     left: 100px;
     right: 100px;
@@ -25,13 +26,6 @@ Author: Valérian Saliou
     -moz-box-shadow: 0 0 12px rgba(0,0,0,0.4);
     -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.4);
     box-shadow: 0 0 12px rgba(0,0,0,0.4);
-}
-
-#jingle .videobox,
-#jingle .videobox video.remote_video {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
 }
 
 #jingle .videobox .topbar {
@@ -48,12 +42,6 @@ Author: Valérian Saliou
     right: 0;
     top: 0;
     z-index: 4;
-    -moz-border-radius-topright: 2px;
-    -moz-border-radius-topleft: 2px;
-    -webkit-border-top-right-radius: 2px;
-    -webkit-border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-top-left-radius: 2px;
     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
     box-shadow: 0 0 5px rgba(0,0,0,0.25);
@@ -227,20 +215,18 @@ Author: Valérian Saliou
     margin-top: 6px;
 }
 
-#jingle .videobox video.local_video {
+#jingle .videobox .local_video {
     background-position: 0 -56px;
     border: 1px solid rgb(0,0,0);
     border: 1px solid rgba(0,0,0,0.25);
     width: 180px;
     height: 101px;
     opacity: 0.6;
+    overflow: hidden;
     position: absolute;
     left: 18px;
     bottom: 18px;
     z-index: 3;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
     -moz-box-shadow: 0 0 8px rgba(0,0,0,0.25);
     -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.25);
     box-shadow: 0 0 8px rgba(0,0,0,0.25);
@@ -250,18 +236,18 @@ Author: Valérian Saliou
     transition: all 0.4s ease-in-out 0.2s;
 }
 
-#jingle .videobox video.local_video:disabled {
+#jingle .videobox .local_video:disabled {
     opacity: 0.2 !important;
 }
 
-#jingle .videobox video.local_video:hover {
+#jingle .videobox .local_video:hover {
     width: 320px;
     height: 180px;
     opacity: 1;
     cursor: pointer;
 }
 
-#jingle .videobox video.remote_video {
+#jingle .videobox .remote_video {
     width: 100%;
     height: 100%;
     position: absolute;
