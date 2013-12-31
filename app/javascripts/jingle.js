@@ -26,6 +26,61 @@ var Jingle = (function() {
 
 
     /**
+     * Provides an adapter to the JSJaCJingle console implementation which is different
+     * @public
+     * @return {object}
+     */
+    self._consoleAdapter = (function() {
+
+        /**
+         * Alias of this
+         * @private
+         */
+        var _console = {};
+
+
+        /**
+         * Console logging interface (adapted)
+         * @public
+         * @param {string} message
+         * @param {number} loglevel
+         * @return {undefined}
+         */
+        _console.log = function(message, loglevel) {
+
+            try {
+                if(!message) {
+                    throw 'No message passed to console adapter!';
+                }
+
+                switch(loglevel) {
+                    case 0:
+                        Console.warn(message); break;
+                    case 1:
+                        Console.error(message); break;
+                    case 2:
+                        Console.info(message); break;
+                    case 4:
+                        Console.debug(message); break;
+                    default:
+                        Console.log(message);
+                }
+            } catch(e) {
+                Console.error('Jingle._consoleAdapter.log', e);
+            }
+
+        };
+
+
+        /**
+         * Return sub-class scope
+         */
+        return _console;
+
+    })();
+
+
+    /**
      * Opens the Jingle interface (depending on the state)
      * @public
      * @return {boolean}
@@ -83,7 +138,7 @@ var Jingle = (function() {
                 local_view: local_view,
                 remote_view: remote_view,
                 stun: stun,
-                debug: Console,
+                debug: self._consoleAdapter,
 
                 // Custom handlers (optional)
                 session_initiate_pending: function(jingle) {
@@ -111,7 +166,12 @@ var Jingle = (function() {
                                 jingle.get_media()
                             );
 
-                            Audio.play(3, true);
+                            // Play ringtone
+                            // Hard-fix: avoids the JSJaC packets group timer (that will delay success reply)
+                            setTimeout(function() {
+                                Audio.play(3, true);
+                                jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
+                            }, 250);
                         } else {
                             self.notify(
                                 Common.bareXID(jingle.get_to()),
@@ -119,6 +179,7 @@ var Jingle = (function() {
                                 jingle.get_media()
                             );
 
+                            // Play wait ringtone
                             Audio.play(4, true);
                         }
                     }
@@ -155,12 +216,7 @@ var Jingle = (function() {
                 session_accept_success: function(jingle, stanza) {
                     self.unnotify();
 
-                    // Notify the other party that it's ringing there?
-                    if(jingle.is_responder()) {
-                        jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
-                    }
-
-                    // Start call
+                    // Start call! Go Go Go!
                     self._startSession(jingle.get_media());
                     self.showInterface();
                     self._startCounter();
@@ -193,6 +249,19 @@ var Jingle = (function() {
                 },
 
                 session_info_request: function(jingle, stanza) {
+                    var info_name = jingle.util_stanza_session_info(stanza);
+
+                    switch(info_name) {
+                        // Ringing?
+                        case JSJAC_JINGLE_SESSION_INFO_RINGING:
+                            self.notify(
+                                Common.bareXID(jingle.get_to()),
+                                'ringing',
+                                jingle.get_media()
+                            );
+                            break;
+                    }
+
                     Console.log('Jingle._args', 'session_info_request');
                 },
 
@@ -522,7 +591,7 @@ var Jingle = (function() {
         try {
             // JSJaCJingle.js custom init configuration
             JSJAC_JINGLE_STORE_CONNECTION = con;
-            JSJAC_JINGLE_STORE_DEBUG      = Console;
+            JSJAC_JINGLE_STORE_DEBUG      = self._consoleAdapter;
             JSJAC_JINGLE_STORE_INITIATE   = function(stanza) {
                 try {
                     // Already in a call?
@@ -841,7 +910,21 @@ var Jingle = (function() {
                 },
 
                 'waiting': {
-                    'text': Common._e("Waiting for approval..."),
+                    'text': Common._e("Waiting..."),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid, mode) {
+                                self._jingle_current.terminate(JSJAC_JINGLE_REASON_CANCEL);
+                            }
+                        }
+                    }
+                },
+
+                'ringing': {
+                    'text': Common._e("Ringing..."),
 
                     'buttons': {
                         'cancel': {
@@ -1065,6 +1148,9 @@ var Jingle = (function() {
 
             // Enable notification box!
             jingle_tool_sel.addClass('active');
+
+            // Open notification box!
+            jingle_tool_sel.click();
         } catch(e) {
             Console.error('Jingle.notify', e);
         } finally {

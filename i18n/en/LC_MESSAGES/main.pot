@@ -2049,7 +2049,10 @@ msgstr ""
 msgid "Connecting to call..."
 msgstr ""
 
-msgid "Waiting for approval..."
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
 msgstr ""
 
 msgid "Declined the call"
