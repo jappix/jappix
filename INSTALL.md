@@ -10,7 +10,7 @@ Installation
 * The HTTP server: https://github.com/jappix/jappix/wiki/HttpServer
 * The XMPP server: https://github.com/jappix/jappix/wiki/XmppServer
 * The BOSH server: https://github.com/jappix/jappix/wiki/BoshServer
-* The Jappix app.: https://github.com/jappix/jappix/wiki/JappixApp
+* The Jappix app : https://github.com/jappix/jappix/wiki/JappixApp
 
 More
 ----
