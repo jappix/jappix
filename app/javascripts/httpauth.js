@@ -38,10 +38,11 @@ var HTTPAuth = (function () {
             // We define the http binding parameters
             oArgs = {};
             
-            if(HOST_BOSH_MAIN)
+            if(HOST_BOSH_MAIN) {
                 oArgs.httpbase = HOST_BOSH_MAIN;
-            else
+            } else {
                 oArgs.httpbase = HOST_BOSH;
+            }
             
             // Check BOSH origin
             BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
@@ -55,8 +56,9 @@ var HTTPAuth = (function () {
             // Generate a resource
             var random_resource = DataStore.getDB(Connection.desktop_hash, 'session', 'resource');
             
-            if(!random_resource)
+            if(!random_resource) {
                 random_resource = JAPPIX_RESOURCE + ' (' + (new Date()).getTime() + ')';
+            }
             
             // Generate a priority
             lPriority = lPriority ? lPriority : 10;

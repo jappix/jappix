@@ -280,10 +280,11 @@ var Inbox = (function () {
             // Any file to attach?
             var attached = '#inbox .inbox-new-file a.file';
             
-            if(Common.exists(attached))
+            if(Common.exists(attached)) {
                 body += '\n' + 
                     '\n' + 
                     $(attached).attr('data-attachedtitle') + ' - ' + $(attached).attr('data-attachedhref');
+            }
             
             // Set body
             mess.setBody(body);
@@ -315,8 +316,9 @@ var Inbox = (function () {
                 var xid = new Array(to);
                 
                 // More than one XID
-                if(to.indexOf(',') != -1)
+                if(to.indexOf(',') != -1) {
                     xid = to.split(',');
+                }
                 
                 for(var i in xid) {
                     var current = xid[i];
@@ -350,10 +352,9 @@ var Inbox = (function () {
                         $(document).oneTime(10, function() {
                             $(current).addClass('please-complete').focus();
                         });
-                    }
-                    
-                    else
+                    } else {
                         $(current).removeClass('please-complete');  
+                    }
                 });
             }
         } catch(e) {
@@ -441,10 +442,11 @@ var Inbox = (function () {
                     '</div>';
             
             // Display the message
-            if(nearest === 0)
+            if(nearest === 0) {
                 $(inbox + 'inbox-results .inbox').append(nContent);
-            else
+            } else {
                 $('#inbox .one-message[data-stamp="' + nearest + '"]:first').before(nContent);
+            }
             
             // Click events
             $(one_message + ' .message-head').click(function() {
@@ -541,8 +543,9 @@ var Inbox = (function () {
                 var current = DataStore.storageDB.key(i);
                 
                 // If the pointer is on a stored message
-                if(current.match(db_regex))
+                if(current.match(db_regex)) {
                     DataStore.removeDB(Connection.desktop_hash, 'inbox', RegExp.$1);
+                }
             }
             
             // Prevent the database lag
@@ -596,8 +599,9 @@ var Inbox = (function () {
                     var status = $(Common.XMLFromString(DataStore.storageDB.getItem(current))).find('status').text();
                     
                     // Found an unread message
-                    if(status == 'unread')
+                    if(status == 'unread') {
                         unread++;
+                    }
                     
                     // Update the marker
                     has_messages = true;
@@ -605,10 +609,11 @@ var Inbox = (function () {
             }
             
             // No message?
-            if(!has_messages)
+            if(!has_messages) {
                 $(no_results).show();
-            else
+            } else {
                 $(no_results).hide();
+            }
             
             // Reset notifications
             $(inbox_link + ' .notify').remove();
@@ -841,9 +846,7 @@ var Inbox = (function () {
                 Board.openThisError(4);
                 
                 Console.error('Error while attaching the file', dData.find('error').text());
-            }
-            
-            else {
+            } else {
                 // Get the file values
                 var fName = dData.find('title').text();
                 var fType = dData.find('type').text();
@@ -907,8 +910,9 @@ var Inbox = (function () {
             $(inbox + 'inbox-new-to-input').keyup(function(e) {
                 if(e.keyCode != 13) {
                     // New buddy search
-                    if((e.keyCode != 40) && (e.keyCode != 38))
+                    if((e.keyCode != 40) && (e.keyCode != 38)) {
                         Search.createBuddy(destination);
+                    }
                     
                     // Navigating with keyboard in the results
                     Search.arrowsBuddy(e, destination);
@@ -917,8 +921,9 @@ var Inbox = (function () {
             
             // Buddy search lost focus
             .blur(function() {
-                if(!$(destination + ' ul').attr('mouse-hover'))
+                if(!$(destination + ' ul').attr('mouse-hover')) {
                     Search.resetBuddy(destination);
+                }
             })
             
             // Buddy search got focus
@@ -926,8 +931,9 @@ var Inbox = (function () {
                 var value = $(this).val();
                 
                 // Add a comma at the end
-                if(value && !value.match(/^(.+)((,)(\s)?)$/))
+                if(value && !value.match(/^(.+)((,)(\s)?)$/)) {
                     $(this).val(value + ', ');
+                }
             });
             
             // Click events
@@ -949,16 +955,18 @@ var Inbox = (function () {
             
             // Upload form submit event
             $('#inbox .inbox-new-file').submit(function() {
-                if($('#inbox .wait').is(':hidden') && $('#inbox .inbox-new-file input[type="file"]').val())
+                if($('#inbox .wait').is(':hidden') && $('#inbox .inbox-new-file input[type="file"]').val()) {
                     $(this).ajaxSubmit(attach_options);
+                }
                 
                 return false;
             });
             
             // Upload input change event
             $('#inbox .inbox-new-file input[type="file"]').change(function() {
-                if($('#inbox .wait').is(':hidden') && $(this).val())
+                if($('#inbox .wait').is(':hidden') && $(this).val()) {
                     $('#inbox .inbox-new-file').ajaxSubmit(attach_options);
+                }
                 
                 return false;
             });

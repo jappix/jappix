@@ -36,29 +36,26 @@ var Interface = (function () {
             // Anonymous mode?
             var head_name = Name.get();
             
-            if(Utils.isAnonymous())
+            if(Utils.isAnonymous()) {
                 head_name = ANONYMOUS_ROOM + ' (' + Common._e("anonymous mode") + ')';
+            }
             
             // We change the title to give essential informations
             switch(title_type) {
                 case 'home':
                     document.title = SERVICE_NAME + ' • ' + SERVICE_DESC;
-                    
                     break;
                 
                 case 'talk':
                     document.title = SERVICE_NAME + ' • ' + head_name;
-                    
                     break;
                 
                 case 'new':
                     document.title = '[' + self.pendingEvents() + '] ' + SERVICE_NAME + ' • ' + head_name;
-                    
                     break;
                 
                 case 'wait':
                     document.title = SERVICE_NAME + ' • ' + Common._e("Please wait...");
-                    
                     break;
             }
         } catch(e) {
@@ -153,8 +150,9 @@ var Interface = (function () {
                 $('#page-switch .' + id).addClass('activechan').removeClass('chan');
                 
                 // Scroll down to the last message
-                if(id != 'channel')
+                if(id != 'channel') {
                     self.autoScroll(id);
+                }
                 
                 // Manage input focus
                 self.inputFocus();
@@ -276,8 +274,9 @@ var Interface = (function () {
             var oValue = selector.val();
             
             // Any old value?
-            if(oValue && !oValue.match(/^(.+)(\s)+$/))
+            if(oValue && !oValue.match(/^(.+)(\s)+$/)) {
                 oValue += ' ';
+            }
             
             var nValue = oValue + smiley + ' ';
             
@@ -638,8 +637,9 @@ var Interface = (function () {
             // We check the groups to hide
             Roster.updateGroups();
             
-            if(Search.search_filtered)
+            if(Search.search_filtered) {
                 Search.funnelFilterBuddy();
+            }
             
             // Store this in the options
             if((from == 'roster') && Options.loaded()) {

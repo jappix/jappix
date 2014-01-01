@@ -86,24 +86,23 @@ var IntegrateBox = (function () {
             var code = '';
             
             // Protocol to use
-            var protocol = 'http';
-            
-            if(Utils.isHTTPS())
-                protocol = 'https';
+            var protocol = Utils.isHTTPS() ? 'https' : 'http';
             
             // Legacy browser
             var legacy = false;
             
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                 legacy = true;
+            }
             
             // Switch to get the good DOM code
             switch(serv) {
                 case 'youtube':
-                    if(legacy)
+                    if(legacy) {
                         code = '<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/' + url + '&amp;autoplay=1"></param><embed src="http://www.youtube.com/v/' + Common.encodeQuotes(url) + '&amp;autoplay=1" type="application/x-shockwave-flash" width="640" height="385"></embed></object>';
-                    else
+                    } else {
                         code = '<object width="640" height="385" data="' + Common.encodeQuotes(protocol) + '://www.youtube.com/embed/' + Common.encodeQuotes(url) + '?autoplay=1" type="text/html"><a href="http://www.youtube.com/watch?v=' + Common.encodeQuotes(url) + '" target="_blank">http://www.youtube.com/watch?v=' + Common.encodeQuotes(url) + '</a></object>';
+                    }
                     
                     break;
                 
@@ -235,35 +234,40 @@ var IntegrateBox = (function () {
                 var next_services = services_array[index + 1];
                 
                 // Enable/disable buttons
-                if(previous_url && previous_services)
+                if(previous_url && previous_services) {
                     $('#integratebox .bottom .finish.previous').removeClass('disabled');
-                else
+                } else {
                     $('#integratebox .bottom .finish.previous').addClass('disabled');
+                }
                 
-                if(next_url && next_services)
+                if(next_url && next_services) {
                     $('#integratebox .bottom .finish.next').removeClass('disabled');
-                else
+                } else {
                     $('#integratebox .bottom .finish.next').addClass('disabled');
+                }
                 
                 // Click events
                 $('#integratebox .bottom .finish.previous, #integratebox .bottom .finish.next').click(function() {
                     // Not acceptable?
-                    if($(this).is('.disabled'))
+                    if($(this).is('.disabled')) {
                         return false;
+                    }
                     
                     // Apply the event!
-                    if($(this).is('.previous'))
+                    if($(this).is('.previous')) {
                         self.apply(previous_url, previous_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
-                    else
+                    } else {
                         self.apply(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+                    }
                     
                     return false;
                 });
                 
                 if(width_style == 'large')
                     $('#integratebox .content a:has(img)').click(function() {
-                        if(next_url && next_services)
+                        if(next_url && next_services) {
                             self.apply(next_url, next_services, url_list, services_list, comments_e_list, comments_n_list, width_style);
+                        }
                         
                         return false;
                     });
@@ -323,8 +327,9 @@ var IntegrateBox = (function () {
                 var to, url, service, event;
                 
                 // XMPP ID
-                if(href.match(/^xmpp:(.+)/i))
+                if(href.match(/^xmpp:(.+)/i)) {
                     to = RegExp.$1;
+                }
                 
                 // YouTube video box
                 else if(href.match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
@@ -363,10 +368,11 @@ var IntegrateBox = (function () {
                 }
                 
                 // Define the good event
-                if(to)
+                if(to) {
                     event = 'XMPPLinks.go(\'' + Utils.encodeOnclick(to) + '\')';
-                else if(url && service)
+                } else if(url && service) {
                     event = 'IntegrateBox.apply(\'' + Utils.encodeOnclick(url) + '\', \'' + Utils.encodeOnclick(service) + '\')';
+                }
                 
                 // Any click event to apply?
                 if(event) {

@@ -63,23 +63,22 @@ var IQ = (function () {
                 var oob_desc = DataStore.getDB(Connection.desktop_hash, 'send/desc', iqID);
                 var notif_id = hex_md5(oob_url + oob_desc + iqType + iqFrom + iqID);
                 
-                // Error?
                 if($(iqNode).find('error').size()) {
-                    // Rejected?
-                    if($(iqNode).find('error not-acceptable').size())
+                    // Error?
+                    if($(iqNode).find('error not-acceptable').size()) {
+                        // Rejected?
                         Notification.create('send_reject', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
-                    
-                    // Failed?
-                    else
+                    } else {
+                        // Failed?
                         Notification.create('send_fail', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
+                    }
                     
                     // Remove the file
                     $.get(oob_url + '&action=remove');
-                }
-                
-                // Success?
-                else if(iqType == 'result')
+                } else if(iqType == 'result') {
+                    // Success?
                     Notification.create('send_accept', iqFrom, [iqFrom, oob_url, 'iq', iqID, iqNode], oob_desc, notif_id);
+                }
             }
             
             // Software version query
@@ -162,11 +161,11 @@ var IQ = (function () {
                 }));
                 
                 // We set all the supported features
-                var fArray = Caps.myDiscoInfos();
+                var disco_infos = Caps.myDiscoInfos();
                 
-                for(var i in fArray) {
-                    iqQuery.appendChild(iqResponse.buildNode('feature', {'var': fArray[i], 'xmlns': NS_DISCO_INFO}));
-                }
+                $.each(disco_infos, function(i, disco_info) {
+                    iqQuery.appendChild(iqResponse.buildNode('feature', {'var': disco_info, 'xmlns': NS_DISCO_INFO}));
+                });
                 
                 con.send(iqResponse);
                 
