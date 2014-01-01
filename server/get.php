@@ -81,6 +81,10 @@ if($file && $type) {
 
 	// Define the real type if this is a "store" file
 	if($type == 'store') {
+		// Rewrite path
+		$dir = JAPPIX_BASE.'/store/';
+		$path = $dir.$file;
+
 		// Extract the file extension
 		switch(getFileExt($file)) {
 			// CSS file

@@ -1551,7 +1551,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-msgid "Logs"
+msgid "Archives"
 msgstr ""
 
 msgid "Music"

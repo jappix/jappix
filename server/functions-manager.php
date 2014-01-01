@@ -450,7 +450,7 @@ function otherStats() {
 	// Fill the array with the values
 	$others_stats = array(
 			     	T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
-			     	T_("Logs") => sizeDir(JAPPIX_BASE.'/store/logs/'),
+			     	T_("Archives") => sizeDir(JAPPIX_BASE.'/store/archives/'),
 			     	T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
 			     	T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
 			     	T_("Send") => sizeDir(JAPPIX_BASE.'/store/send/'),
@@ -543,7 +543,7 @@ function purgeFolder($folder) {
 	
 	// We must purge all the folders?
 	if($folder == 'everything')
-		array_push($array, 'logs', 'send');
+		array_push($array, 'archives', 'send');
 	else
 		array_push($array, $folder);
 	
