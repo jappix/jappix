@@ -23,6 +23,8 @@ var Jingle = (function() {
     /* Variables */
     self._jingle_current = null;
     self._start_stamp = 0;
+    self._call_ender = null;
+    self._bypass_termination_notify = false;
 
 
     /**
@@ -91,9 +93,6 @@ var Jingle = (function() {
             var jingle_tool_sel = $('#top-content .tools.jingle');
 
             if(jingle_tool_sel.is('.active')) {
-                // Show the Jingle bubble
-                Bubble.show('.jingle-content');
-
                 Console.info('Opened Jingle notification drawer');
             } else if(jingle_tool_sel.is('.streaming.video')) {
                 // Videobox?
@@ -280,13 +279,15 @@ var Jingle = (function() {
                 session_terminate_success: function(jingle, stanza) {
                     // Ensure we this is the same call session ID (SID)
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
-                        self._reset();
+                        if(self._bypass_termination_notify !== true) {
+                            self._reset();
 
-                        self.notify(
-                            Common.bareXID(jingle.get_to()),
-                            'local_ended',
-                            jingle.get_media()
-                        );
+                            self.notify(
+                                Common.bareXID(jingle.get_to()),
+                                (self._call_ender === 'remote' ? 'remote_ended' : 'local_ended'),
+                                jingle.get_media()
+                            );
+                        }
 
                         Console.debug('Stopped current Jingle call');
                     } else {
@@ -299,13 +300,15 @@ var Jingle = (function() {
                 session_terminate_error: function(jingle, stanza) {
                      // Ensure we this is the same call session ID (SID)
                     if(self._jingle_current.get_sid() == jingle.get_sid()) {
-                        self._reset();
+                        if(self._bypass_termination_notify !== true) {
+                            self._reset();
 
-                        self.notify(
-                            Common.bareXID(jingle.get_to()),
-                            'error',
-                            jingle.get_media()
-                        );
+                            self.notify(
+                                Common.bareXID(jingle.get_to()),
+                                'error',
+                                jingle.get_media()
+                            );
+                        }
 
                         Console.warn('Stopped current Jingle call, but with brute force!');
                     } else {
@@ -317,23 +320,37 @@ var Jingle = (function() {
 
                 session_terminate_request: function(jingle, stanza) {
                     var notify_type;
+                    var reason = jingle.util_stanza_terminate_reason(stanza);
 
-                    switch(jingle.get_reason()) {
+                    // The remote wants to end call
+                    self._call_ender = 'remote';
+
+                    // Notify depending on the termination reason
+                    switch(reason) {
                         case JSJAC_JINGLE_REASON_CANCEL:
-                            notify_type = 'canceled'; break;
+                            notify_type = 'remote_canceled'; break;
                         case JSJAC_JINGLE_REASON_BUSY:
                             notify_type = 'busy'; break;
+                        case JSJAC_JINGLE_REASON_DECLINE:
+                            notify_type = 'declined'; break;
                         default:
-                            notify_type = 'remote_ended';
+                            notify_type = 'ending'; break;
                     }
 
                     self._reset();
 
-                    self.notify(
-                        Common.bareXID(jingle.get_to()),
-                        notify_type,
-                        jingle.get_media()
-                    );
+                    // Anything to notify?
+                    if(notify_type !== undefined) {
+                        if(notify_type !== 'ending') {
+                            self._bypass_termination_notify = true;
+                        }
+
+                        self.notify(
+                            Common.bareXID(jingle.get_to()),
+                            notify_type,
+                            jingle.get_media()
+                        );
+                    }
 
                     Console.log('Jingle._args', 'session_terminate_request');
                 }
@@ -402,6 +419,8 @@ var Jingle = (function() {
                                  );
 
             self._jingle_current = new JSJaCJingle(args);
+            self._call_ender = null;
+            self._bypass_termination_notify = false;
 
             if(is_callee) {
                 self._jingle_current.handle(stanza);
@@ -702,6 +721,7 @@ var Jingle = (function() {
 
             // Stop Jingle session
             if(self._jingle_current !== null) {
+                self._call_ender = 'local';
                 self._jingle_current.terminate();
 
                 Console.debug('Stopping current Jingle call...');
@@ -1089,7 +1109,8 @@ var Jingle = (function() {
 
             var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
             var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
-            var jingle_subitem_sel = jingle_tools_all_sel.find('.jingle-content .tools-content-subitem');
+            var jingle_content_sel = jingle_tools_all_sel.find('.jingle-content');
+            var jingle_subitem_sel = jingle_content_sel.find('.tools-content-subitem');
 
             var buttons_html = '';
             var i = 0;
@@ -1150,7 +1171,7 @@ var Jingle = (function() {
             jingle_tool_sel.addClass('active');
 
             // Open notification box!
-            jingle_tool_sel.click();
+            jingle_content_sel.show();
         } catch(e) {
             Console.error('Jingle.notify', e);
         } finally {
@@ -1171,10 +1192,11 @@ var Jingle = (function() {
             // Selectors
             var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
             var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
-            var jingle_subitem_sel = jingle_tools_all_sel.find('.jingle-content .tools-content-subitem');
+            var jingle_content_sel = jingle_tools_all_sel.find('.jingle-content');
+            var jingle_subitem_sel = jingle_content_sel.find('.tools-content-subitem');
 
             // Close & disable notification box
-            Bubble.close();
+            jingle_content_sel.hide();
             jingle_subitem_sel.empty();
             jingle_tool_sel.removeClass('active');
 

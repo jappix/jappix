@@ -135,18 +135,15 @@ html[dir="rtl"] #top-content .tools-all {
 
 #top-content .notifications:hover,
 #top-content .music:hover,
-#top-content .jingle.active:hover,
 #top-content .jingle.streaming.video:hover {
 	cursor: pointer;
 }
 
 #top-content .music:hover,
 #top-content .notifications:hover,
-#top-content .jingle.active:hover,
 #top-content .jingle.streaming.video:hover,
 #top-content .music:focus,
 #top-content .notifications:focus,
-#top-content .jingle.active:focus,
 #top-content .jingle.streaming.video:focus {
 	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.7);
@@ -154,7 +151,6 @@ html[dir="rtl"] #top-content .tools-all {
 
 #top-content .music:active,
 #top-content .notifications:active,
-#top-content .jingle.active:active,
 #top-content .jingle.streaming.video:active {
 	background-color: rgb(232,241,243);
 	background-color: rgba(232,241,243,0.8);

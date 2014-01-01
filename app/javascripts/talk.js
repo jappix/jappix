@@ -115,7 +115,7 @@ var Talk = (function () {
                     '</div>';
 
                     if(!anonymous) html += 
-                    '<div class="tools-all ibubble">' + 
+                    '<div class="tools-all">' + 
                         '<div class="tools jingle talk-images" onclick="return Jingle.open();">' + 
                             '<span class="streaming-items">' + 
                                 '<span class="counter" data-default="00:00:00">00:00:00</span>' + 
@@ -123,7 +123,7 @@ var Talk = (function () {
                             '</span>' + 
                         '</div>' + 
 
-                        '<div class="jingle-content tools-content bubble hidable">' + 
+                        '<div class="jingle-content tools-content">' + 
                             '<div class="tools-content-subarrow talk-images"></div>' + 
                             
                             '<div class="tools-content-subitem"></div>' + 
