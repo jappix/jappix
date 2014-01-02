@@ -290,7 +290,7 @@ var Notification = (function () {
                         $('.notifications-content .empty').after(code);
                     
                     // Play a sound to alert the user
-                    Audio.play(2);
+                    Audio.play('notification');
                     
                     // The yes click function
                     $('.' + id + ' a.yes').click(function() {

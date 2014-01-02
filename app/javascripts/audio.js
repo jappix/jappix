@@ -49,10 +49,10 @@ var Audio = (function () {
 	/**
      * Plays the given sound ID
      * @public
-     * @param {number} num
+     * @param {string} name
      * @return {boolean}
      */
-    self.play = function(num, repeat) {
+    self.play = function(name, repeat) {
 
         try {
             repeat = (typeof repeat === 'boolean') ? repeat : false;
@@ -68,27 +68,27 @@ var Audio = (function () {
                 if(!Common.exists('#audio')) {
                     $('body').append(
                         '<div id="audio">' + 
-                            '<audio id="new-chat" preload="auto">' + 
+                            '<audio id="new-chat" preload="auto" data-duration="2">' + 
                                 '<source src="' + './sounds/new-chat.mp3' + '" />' + 
                                 '<source src="' + './sounds/new-chat.oga' + '" />' + 
                             '</audio>' + 
                             
-                            '<audio id="receive-message" preload="auto">' + 
+                            '<audio id="receive-message" preload="auto" data-duration="2">' + 
                                 '<source src="' + './sounds/receive-message.mp3' + '" />' + 
                                 '<source src="' + './sounds/receive-message.oga' + '" />' + 
                             '</audio>' + 
                             
-                            '<audio id="notification" preload="auto">' + 
+                            '<audio id="notification" preload="auto" data-duration="2">' + 
                                 '<source src="' + './sounds/notification.mp3' + '" />' + 
                                 '<source src="' + './sounds/notification.oga' + '" />' + 
                             '</audio>' + 
                             
-                            '<audio id="incoming-call" preload="auto">' + 
+                            '<audio id="incoming-call" preload="auto" data-duration="7">' + 
                                 '<source src="' + './sounds/incoming-call.mp3' + '" />' + 
                                 '<source src="' + './sounds/incoming-call.oga' + '" />' + 
                             '</audio>' + 
                             
-                            '<audio id="outgoing-call" preload="auto">' + 
+                            '<audio id="outgoing-call" preload="auto" data-duration="30">' + 
                                 '<source src="' + './sounds/outgoing-call.mp3' + '" />' + 
                                 '<source src="' + './sounds/outgoing-call.oga' + '" />' + 
                             '</audio>' + 
@@ -97,25 +97,35 @@ var Audio = (function () {
                 }
                 
                 // We play the target sound
-                var playThis = document.getElementById('audio').getElementsByTagName('audio')[num];
+                var audio_raw_sel = $('#audio audio').filter('#' + name);
+                var audio_sel = audio_raw_sel[0];
 
-                // Fixes Chrome audio bug when Get API serves expired files (for development work purposes)
-                if(window.chrome && System.isDeveloper()) {
-                    playThis.load();
+                if(audio_sel) {
+                    // Fixes Chrome audio bug when Get API serves expired files (for development work purposes)
+                    if(window.chrome && System.isDeveloper()) {
+                        audio_sel.load();
+                    }
+
+                    // Must repeat sound?
+                    if(repeat === true) {
+                        // We hardcoded sound duration as it's a mess to add load event handlers to determine duration via Audio API...
+                        var duration = parseInt((audio_raw_sel.attr('data-duration') || 0), 10);
+
+                        self._timeout_stop = false;
+                        
+                        audio_raw_sel.oneTime((duration + 's'), function() {
+                            if(!self._timeout_stop) {
+                                self.play(name, repeat);
+                            }
+                        });
+                    }
+
+                    audio_sel.play();
+
+                    Console.info('Played sound with name: ' + name + ' (' + (repeat ? 'repeatedly' : 'one time') + ')');
+                } else {
+                    throw 'Sound does not exist: ' + name;
                 }
-
-                // Must repeat sound?
-                if(repeat === true) {
-                    self._timeout_stop = false;
-                    
-                    window.setTimeout(function() {
-                        if(!self._timeout_stop) {
-                            self.play(num, repeat);
-                        }
-                    }, 10 * 1000);
-                }
-
-                playThis.play();
             }
         } catch(e) {
             Console.error('Audio.play', e);
@@ -129,10 +139,10 @@ var Audio = (function () {
     /**
      * Stops the given sound ID
      * @public
-     * @param {number} num
+     * @param {string} name
      * @return {boolean}
      */
-    self.stop = function(num) {
+    self.stop = function(name) {
 
         try {
             // Not supported?
@@ -142,10 +152,27 @@ var Audio = (function () {
             
             self._timeout_stop = true;
 
-            var stop_audio_sel = document.getElementById('audio').getElementsByTagName('audio')[num];
+            // Check the audio container exists before doing anything...
+            var audio_parent_sel = $('#audio');
+            var audio_raw_sel = audio_parent_sel.find('audio').filter('#' + name);
+            var audio_sel = audio_raw_sel[0];
 
-            if(stop_audio_sel) {
-                stop_audio_sel.pause();
+            if(audio_parent_sel.size()) {
+                audio_raw_sel.stopTime();
+                
+                if(audio_sel) {
+                    if(!audio_sel.paused) {
+                        audio_sel.pause();
+
+                        Console.info('Stopped sound with name: ' + name);
+                    } else {
+                        Console.info('Sound with name: ' + name + ' already stopped');
+                    }
+                } else {
+                    throw 'Sound does not exist: ' + name;
+                }
+            } else {
+                Console.warn('Audio container does not exist, aborting as nothing likely to be playing! (already stopped)');
             }
         } catch(e) {
             Console.error('Audio.stop', e);

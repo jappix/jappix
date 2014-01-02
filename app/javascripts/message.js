@@ -250,7 +250,7 @@ var Message = (function () {
                 
                 // Check we have new messages (play a sound if any unread messages)
                 if(Inbox.checkMessages())
-                    Audio.play(2);
+                    Audio.play('notification');
                 
                 // Send it to the server
                 Inbox.store();
@@ -434,7 +434,7 @@ var Message = (function () {
                         if(nickQuote) {
                             Interface.messageNotify(hash, 'personal');
                             Board.quick(from, 'groupchat', raw_body, resource);
-                            Audio.play(1);
+                            Audio.play('receive-message');
                         }
                         
                         // We notify the user there's a new unread MUC message
@@ -443,7 +443,7 @@ var Message = (function () {
                             
                             // Play sound to all users in the MUC, except user who sent the message.
                             if(myNick != resource)
-                                Audio.play(1);
+                                Audio.play('receive-message');
                         }
                     }
                     
@@ -473,9 +473,9 @@ var Message = (function () {
                         Chat.create(hash, xid, fromName, chatType);
                         
                         // We tell the user that a new chat has started
-                        Audio.play(0);
+                        Audio.play('new-chat');
                     } else {
-                        Audio.play(1);
+                        Audio.play('receive-message');
                     }
                     
                     // Display the received message

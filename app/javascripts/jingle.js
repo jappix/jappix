@@ -168,7 +168,7 @@ var Jingle = (function() {
                             // Play ringtone
                             // Hard-fix: avoids the JSJaC packets group timer (that will delay success reply)
                             setTimeout(function() {
-                                Audio.play(3, true);
+                                Audio.play('incoming-call', true);
                                 jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
                             }, 250);
                         } else {
@@ -179,7 +179,7 @@ var Jingle = (function() {
                             );
 
                             // Play wait ringtone
-                            Audio.play(4, true);
+                            Audio.play('outgoing-call', true);
                         }
                     }
                     
@@ -697,8 +697,8 @@ var Jingle = (function() {
             self.destroyInterface();
 
             // Hack: stop audio in case it is still ringing
-            Audio.stop(3);
-            Audio.stop(4);
+            Audio.stop('incoming-call');
+            Audio.stop('outgoing-call');
         } catch(e) {
             Console.error('Jingle._reset', e);
         } finally {
@@ -876,7 +876,7 @@ var Jingle = (function() {
                             'color': 'green',
                             'cb': function(xid, mode) {
                                 self._jingle_current.accept();
-                                Audio.stop(3);
+                                Audio.stop('incoming-call');
                             }
                         },
 
@@ -885,7 +885,7 @@ var Jingle = (function() {
                             'color': 'red',
                             'cb': function(xid, mode) {
                                 self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
-                                Audio.stop(3);
+                                Audio.stop('incoming-call');
                             }
                         }
                     }
@@ -900,7 +900,7 @@ var Jingle = (function() {
                             'color': 'green',
                             'cb': function(xid, mode) {
                                 self._jingle_current.accept();
-                                Audio.stop(3);
+                                Audio.stop('incoming-call');
                             }
                         },
 
@@ -909,7 +909,7 @@ var Jingle = (function() {
                             'color': 'red',
                             'cb': function(xid, mode) {
                                 self._jingle_current.terminate(JSJAC_JINGLE_REASON_DECLINE);
-                                Audio.stop(3);
+                                Audio.stop('incoming-call');
                             }
                         }
                     }
@@ -1201,8 +1201,8 @@ var Jingle = (function() {
             jingle_tool_sel.removeClass('active');
 
             // Stop all sounds
-            Audio.stop(3);
-            Audio.stop(4);
+            Audio.stop('incoming-call');
+            Audio.stop('outgoing-call');
         } catch(e) {
             Console.error('Jingle.unnotify', e);
         } finally {

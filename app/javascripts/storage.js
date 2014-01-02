@@ -146,7 +146,7 @@ var Storage = (function () {
                 
                 // Check we have new messages (play a sound if any unread messages)
                 if(Inbox.checkMessages()) {
-                    Audio.play(2);
+                    Audio.play('notification');
                 }
                 
                 $('.inbox-hidable').show();
