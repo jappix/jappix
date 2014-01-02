@@ -3,7 +3,7 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt, Dominik George
-# Last revision: 24/11/13
+# Last revision: 02/01/14
 # Translators:
 # Christian Sturm <reezer@reezer.org>, 2012
 # palim <ueblesurmeli-transifex@yahoo.de>, 2012
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-11-24 21:53+0100\n"
+"PO-Revision-Date: 2014-01-02 11:06+0100\n"
 "Last-Translator: Dominik George <nik@naturalnet.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/jappix/language/"
 "de/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: jupp v3.1jupp26\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -2316,3 +2316,69 @@ msgstr "Schlüssel für Inhaltswerbung"
 
 msgid "Filter XHTML-IM Images"
 msgstr "Bilder in XHTML-IM filtern"
+
+msgid "Stop"
+msgstr "Abbrechen"
+
+msgid "Mute"
+msgstr "Stumm"
+
+msgid "Unmute"
+msgstr "Nicht stumm"
+
+msgid "Is calling you"
+msgstr "ruft dich an"
+
+msgid "Initiating call"
+msgstr "Anruf beginnen"
+
+msgid "Connecting to call..."
+msgstr "Mit Anruf verbinden..."
+
+msgid "Waiting..."
+msgstr "Warten..."
+
+msgid "Ringing..."
+msgstr "Klingeln..."
+
+msgid "Declined the call"
+msgstr "hat den Anruf abgewiesen"
+
+msgid "Call error"
+msgstr "Fehler beim Anruf"
+
+msgid "Ended the call"
+msgstr "hat den Anruf beendet"
+
+msgid "Call ended"
+msgstr "Anruf beendet"
+
+msgid "Call canceled"
+msgstr "Anruf abgebrochen"
+
+msgid "Canceled the call"
+msgstr "hat den Anruf abgebrochen"
+
+msgid "Is already in a call"
+msgstr "telefoniert bereits"
+
+msgid "Ending call..."
+msgstr "Anruf beenden..."
+
+msgid "Accept"
+msgstr "Annehmen"
+
+msgid "Decline"
+msgstr "Abweisen"
+
+msgid "Okay"
+msgstr "Okay"
+
+msgid "Retry"
+msgstr "Wiederholen"
+
+msgid "Audio Call"
+msgstr "Audio-Anruf"
+
+msgid "Video Call"
+msgstr "Video-Anruf"
