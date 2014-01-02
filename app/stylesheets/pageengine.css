@@ -555,6 +555,12 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 	background-position: 0 -2080px;
 }
 
+body.in_jingle_call #page-engine .text .tools-jingle-video,
+body.in_jingle_call #page-engine .text .tools-jingle-audio {
+	opacity: 0.35;
+	cursor: default;
+}
+
 #page-engine .text .chat-tools-file,
 #page-engine .text .tools-add,
 #page-engine .text .tools-mucadmin,

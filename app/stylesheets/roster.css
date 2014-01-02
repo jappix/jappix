@@ -356,11 +356,19 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         background-position: 1px -2047px;
 }
 
+body.in_jingle_call .call-jingle {
+        opacity: 0.35;
+}
+
 .call-jingle,
 .call-jingle a.audio,
 .call-jingle a.video,
 .call-jingle span.separator {
         display: none;
+}
+
+body.in_jingle_call .call-jingle a {
+        cursor: default;
 }
 
 .view-individual {

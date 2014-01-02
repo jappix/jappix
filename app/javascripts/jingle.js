@@ -152,7 +152,7 @@ var Jingle = (function() {
 
                 session_initiate_success: function(jingle, stanza) {
                     // Already in a call?
-                    if(self.in_call()) {
+                    if(self.in_call() && !self.is_same_sid(jingle)) {
                         jingle.terminate(JSJAC_JINGLE_REASON_BUSY);
 
                         Console.warn('session_initiate_success', 'Dropped incoming call (already in a call)');
@@ -396,6 +396,7 @@ var Jingle = (function() {
             }
 
             // Create interface for video containers
+            $('body').addClass('in_jingle_call');
             var jingle_sel = self.createInterface(bare_xid, mode);
 
             // Filter media
@@ -695,6 +696,7 @@ var Jingle = (function() {
             self._stopCounter();
             self._stopSession();
             self.destroyInterface();
+            $('body').removeClass('in_jingle_call');
 
             // Hack: stop audio in case it is still ringing
             Audio.stop('incoming-call');
@@ -800,8 +802,10 @@ var Jingle = (function() {
 
         try {
             if(self._jingle_current && 
-              (self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTING  || 
-               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTED   ||
+              (self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_INITIATING  || 
+               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_INITIATED   || 
+               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTING   || 
+               self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_ACCEPTED    ||
                self._jingle_current.get_status() === JSJAC_JINGLE_STATUS_TERMINATING)) {
                 in_call = true;
             }
@@ -809,6 +813,30 @@ var Jingle = (function() {
             Console.error('Jingle.in_call', e);
         } finally {
             return in_call;
+        }
+
+    };
+
+
+    /**
+     * Checks if the given call SID is the same as the current call's one
+     * @public
+     * @param {object}
+     * @return {boolean}
+     */
+    self.is_same_sid = function(jingle) {
+
+        is_same = false;
+
+        try {
+            if(jingle && self._jingle_current  && 
+               jingle.get_sid() === self._jingle_current.get_sid()) {
+                is_same = true;
+            }
+        } catch(e) {
+            Console.error('Jingle.is_same_sid', e);
+        } finally {
+            return is_same;
         }
 
     };
