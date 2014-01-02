@@ -2,16 +2,16 @@
 # These are the default english strings of Jappix
 # -------------------------------------------------
 # License: AGPL
-# Authors: Valérian Saliou, JanCBorchardt
+# Authors: Valérian Saliou, JanCBorchardt, Dominik George
 # Translators:
 # Christian Sturm <reezer@reezer.org>, 2012
 # gruenerfuchs <gruener-fuchs@web.de>, 2013
 # palim <ueblesurmeli-transifex@yahoo.de>, 2012
-# Natureshadow <nik@naturalnet.de>, 2014
+# Dominik George <nik@naturalnet.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-02 14:18+0100\n"
+"PO-Revision-Date: 2014-01-02 14:22+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/jappix/language/"
 "de/)\n"
