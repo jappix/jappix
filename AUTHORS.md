@@ -63,6 +63,7 @@ Translators
 * mbajur
 * mentalo
 * mkwm
+* Natureshadow
 * Och.Oyuka
 * Otourly
 * piotr.moskal
