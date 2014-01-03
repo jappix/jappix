@@ -616,37 +616,39 @@ var Jingle = (function() {
 
 
     /**
-     * Initializes Jingle
+     * Initializes Jingle router
      * @public
      * @return {undefined}
      */
     self.init = function() {
 
         try {
-            // JSJaCJingle.js custom init configuration
-            JSJAC_JINGLE_STORE_CONNECTION = con;
-            JSJAC_JINGLE_STORE_DEBUG      = self._consoleAdapter;
-            JSJAC_JINGLE_STORE_INITIATE   = function(stanza) {
-                try {
-                    // Already in a call?
-                    if(self.in_call()) {
-                        (new JSJaCJingle({ to: stanza.getFrom(), debug: JSJAC_JINGLE_STORE_DEBUG })).terminate(JSJAC_JINGLE_REASON_BUSY);
+            JSJaCJingle_listen({
+                connection: con,
+                debug: self._consoleAdapter,
+                
+                initiate: function(stanza) {
+                    try {
+                        // Already in a call?
+                        if(self.in_call()) {
+                            (new JSJaCJingle({ to: stanza.getFrom(), debug: JSJAC_JINGLE_STORE_DEBUG })).terminate(JSJAC_JINGLE_REASON_BUSY);
 
-                        Console.warn('session_initiate_success', 'Dropped incoming call because already in a call.');
+                            Console.warn('session_initiate_success', 'Dropped incoming call because already in a call.');
 
-                        return;
+                            return;
+                        }
+
+                        var xid  = Common.fullXID(Common.getStanzaFrom(stanza));
+
+                        Console.info('Incoming call from: ' + xid);
+
+                        // Session values
+                        self.receive(xid, stanza);
+                    } catch(e) {
+                        Console.error('Jingle.init[initiate]', e);
                     }
-
-                    var xid  = Common.fullXID(Common.getStanzaFrom(stanza));
-
-                    Console.info('Incoming call from: ' + xid);
-
-                    // Session values
-                    self.receive(xid, stanza);
-                } catch(e) {
-                    Console.error('JSJAC_JINGLE_STORE_INITIATE', e);
                 }
-            };
+            });
         } catch(e) {
             Console.error('Jingle.init', e);
         }
