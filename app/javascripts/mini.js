@@ -1420,7 +1420,7 @@ var JappixMini = (function () {
      * @param {string} hash
      * @return {undefined}
      */
-    self.notifyMessage = function() {
+    self.notifyMessage = function(hash) {
 
         try {
             // Define the paths
