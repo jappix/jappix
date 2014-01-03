@@ -25,13 +25,15 @@ else
 // Get the HTTP host
 $http_host = 'jappix.com';
 
-if($_SERVER['HTTP_HOST']) {
+// Fallback on Jappix.com services for convenience for now (easier to configure)
+/*if($_SERVER['HTTP_HOST']) {
 	$http_host_split = str_replace('www.', '', $_SERVER['HTTP_HOST']);
 	$http_host_split = preg_replace('/:[0-9]+$/i', '', $http_host_split);
 	
-	if($http_host_split)
+	if($http_host_split) {
 		$http_host = $http_host_split;
-}
+	}
+}*/
 
 // Define the default hosts configuration values
 $hosts_conf = array(
@@ -41,7 +43,7 @@ $hosts_conf = array(
 	      	'vjud'			=> 'vjud.'.$http_host,
 	      	'anonymous'		=> 'anonymous.'.$http_host,
 	      	'stun'			=> 'stun.'.$http_host,
-	      	'bosh'			=> 'http://'.$http_host.':5280/http-bind',
+	      	'bosh'			=> 'https://bind.'.$http_host.'/',
 	      	'bosh_main'		=> '',
 	      	'bosh_mini'		=> '',
 	      	'static'		=> '',
