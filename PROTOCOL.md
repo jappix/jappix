@@ -6,7 +6,7 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
 
 # XMPP Core
 
- * RFC-3921: Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence
+ * RFC-6121: Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence
  * RFC-6120: XMPP Core
 
 
@@ -24,7 +24,7 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
  * XEP-0172: User Nickname *v1.1*
  * XEP-0084: User Avatar *v1.1*
  * XEP-0277: Microblogging over XMPP *v0.6*
- * XEP-0298: Notification Inbox *v0.1*
+ * XEP-xxxx: Notification Inbox *v0.1*
    * Alternate URL: http://xmpp.org/extensions/inbox/notification-inbox.html
  * XEP-0203: Delayed Delivery *v2.0*
  * XEP-0144: Roster Item Exchange *v1.0*
