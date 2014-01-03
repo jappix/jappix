@@ -17,10 +17,11 @@ if(!defined('JAPPIX_BASE'))
 	exit;
 
 // Get the protocol we use
-if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
+if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) {
 	$protocol = 'https';
-else
+} else {
 	$protocol = 'http';
+}
 
 // Get the HTTP host
 $default_host = 'jappix.com';
@@ -30,8 +31,9 @@ if($_SERVER['HTTP_HOST']) {
 	$http_host_split = str_replace('www.', '', $_SERVER['HTTP_HOST']);
 	$http_host_split = preg_replace('/:[0-9]+$/i', '', $http_host_split);
 	
-	if($http_host_split)
+	if($http_host_split) {
 		$http_host = $http_host_split;
+	}
 }
 
 // Define the default hosts configuration values
