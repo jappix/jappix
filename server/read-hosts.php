@@ -23,7 +23,8 @@ else
 	$protocol = 'http';
 
 // Get the HTTP host
-$http_host = 'jappix.com';
+$default_host = 'jappix.com';
+$http_host = $default_host;
 
 if($_SERVER['HTTP_HOST']) {
 	$http_host_split = str_replace('www.', '', $_SERVER['HTTP_HOST']);
@@ -40,7 +41,10 @@ $hosts_conf = array(
 	      	'pubsub'		=> 'pubsub.'.$http_host,
 	      	'vjud'			=> 'vjud.'.$http_host,
 	      	'anonymous'		=> 'anonymous.'.$http_host,
-	      	'stun'			=> 'stun.'.$http_host,
+	      	'stun'			=> 'stun.'.$default_host,
+	      	'turn'			=> 'turn.'.$default_host,
+	      	'turn_username'	=> '',
+	      	'turn_password'	=> '',
 	      	'bosh'			=> 'http://'.$http_host.':5280/http-bind',
 	      	'bosh_main'		=> '',
 	      	'bosh_mini'		=> '',
@@ -86,6 +90,9 @@ define('HOST_PUBSUB', $hosts_conf['pubsub']);
 define('HOST_VJUD', $hosts_conf['vjud']);
 define('HOST_ANONYMOUS', $hosts_conf['anonymous']);
 define('HOST_STUN', $hosts_conf['stun']);
+define('HOST_TURN', $hosts_conf['turn']);
+define('HOST_TURN_USERNAME', $hosts_conf['turn_username']);
+define('HOST_TURN_PASSWORD', $hosts_conf['turn_password']);
 define('HOST_BOSH', $hosts_conf['bosh']);
 define('HOST_BOSH_MAIN', $hosts_conf['bosh_main']);
 define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);

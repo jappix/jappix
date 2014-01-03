@@ -126,9 +126,22 @@ var Jingle = (function() {
         args = {};
 
         try {
+            // Network configuration
             var stun = {};
-            stun[HOST_STUN] = {};
+            var turn = {};
 
+            if(HOST_STUN) {
+                stun[HOST_STUN] = {};
+            }
+
+            if(HOST_TURN) {
+                turn[HOST_TURN] = {
+                    'username': HOST_TURN_USERNAME,
+                    'credential': HOST_TURN_PASSWORD
+                };
+            }
+
+            // Jingle arguments
             args = {
                 // Configuration (required)
                 connection: connection,
@@ -137,6 +150,7 @@ var Jingle = (function() {
                 local_view: local_view,
                 remote_view: remote_view,
                 stun: stun,
+                turn: turn,
                 debug: self._consoleAdapter,
 
                 // Custom handlers (optional)

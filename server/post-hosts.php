@@ -52,6 +52,24 @@ if(isset($_POST['host_stun']) && !empty($_POST['host_stun']))
 else
 	$host_stun = stripslashes(htmlspecialchars($hosts_default['stun']));
 
+// TURN host
+if(isset($_POST['host_turn']) && !empty($_POST['host_turn']))
+	$host_turn = stripslashes(htmlspecialchars($_POST['host_turn']));
+else
+	$host_turn = stripslashes(htmlspecialchars($hosts_default['turn']));
+
+// TURN host username
+if(isset($_POST['host_turn_username']) && !empty($_POST['host_turn_username']))
+	$host_turn_username = stripslashes(htmlspecialchars($_POST['host_turn_username']));
+else
+	$host_turn_username = stripslashes(htmlspecialchars($hosts_default['turn_username']));
+
+// TURN host password
+if(isset($_POST['host_turn_password']) && !empty($_POST['host_turn_password']))
+	$host_turn_password = stripslashes(htmlspecialchars($_POST['host_turn_password']));
+else
+	$host_turn_password = stripslashes(htmlspecialchars($hosts_default['turn_password']));
+
 // BOSH host
 if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh']))
 	$host_bosh = stripslashes(htmlspecialchars($_POST['host_bosh']));
@@ -96,6 +114,9 @@ $hosts_xml =
 	<vjud>'.$host_vjud.'</vjud>
 	<anonymous>'.$host_anonymous.'</anonymous>
 	<stun>'.$host_stun.'</stun>
+	<turn>'.$host_turn.'</turn>
+	<turn_username>'.$host_turn_username.'</turn_username>
+	<turn_password>'.$host_turn_password.'</turn_password>
 	<bosh>'.$host_bosh.'</bosh>
 	<bosh_main>'.$host_bosh_main.'</bosh_main>
 	<bosh_mini>'.$host_bosh_mini.'</bosh_mini>
