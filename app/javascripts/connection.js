@@ -85,16 +85,16 @@ var Connection = (function () {
             oArgs.secure = true;
             oArgs.xmllang = XML_LANG;
 
-            DESKTOP_HASH = 'jd.' + hex_md5(oArgs.username + '@' + oArgs.domain);
+            self.desktop_hash = 'jd.' + hex_md5(oArgs.username + '@' + oArgs.domain);
             
             // Store the resource (for reconnection)
-            DataStore.setDB(DESKTOP_HASH, 'session', 'resource', random_resource);
+            DataStore.setDB(self.desktop_hash, 'session', 'resource', random_resource);
             
             // Store session XML in temporary database
             self.storeSession(lNick, lServer, lPass, lResource, lPriority, lRemember);
             
             // We store the infos of the user into the data-base
-            DataStore.setDB(DESKTOP_HASH, 'priority', 1, lPriority);
+            DataStore.setDB(self.desktop_hash, 'priority', 1, lPriority);
             
             // We connect !
             con.connect(oArgs);
@@ -365,7 +365,7 @@ var Connection = (function () {
             // Not resumed?
             if(!self.resume) {
                 // Remember the session?
-                if(DataStore.getDB(DESKTOP_HASH, 'remember', 'session'))
+                if(DataStore.getDB(self.desktop_hash, 'remember', 'session'))
                     DataStore.setPersistent('global', 'session', 1, self.current_session);
                 
                 // We show the chatting app.
@@ -409,7 +409,7 @@ var Connection = (function () {
             // Normal disconnection
             if(!self.current_session && !self.connected) {
                 Talk.destroy();
-                DESKTOP_HASH = null;
+                self.desktop_hash = null;
             }
         } catch(e) {
             Console.error('Connection.handleDisconnected', e);
@@ -814,8 +814,9 @@ var Connection = (function () {
             self.current_session = session_xml;
             
             // Remember me?
-            if(lRemember)
-                DataStore.setDB(DESKTOP_HASH, 'remember', 'session', 1);
+            if(lRemember) {
+                DataStore.setDB(self.desktop_hash, 'remember', 'session', 1);
+            }
             
             return session_xml;
         } catch(e) {
@@ -853,7 +854,7 @@ var Connection = (function () {
                     var login_remember = 1;
                     
                     // Must store session?
-                    if(XMPPLinks.links_var.h && (XMPPLinks.links_var.h == '1')) {
+                    if(XMPPLinks.links_var.h && (XMPPLinks.links_var.h === '1')) {
                         // Store session
                         var session_xml = self.storeSession(login_nick, login_server, login_pwd, login_resource, login_priority, true);
                         DataStore.setPersistent('global', 'session', 1, session_xml);
