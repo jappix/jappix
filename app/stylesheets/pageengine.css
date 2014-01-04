@@ -564,8 +564,8 @@ body.in_jingle_call #page-engine .text .tools-jingle-audio {
 #page-engine .text .chat-tools-file,
 #page-engine .text .tools-add,
 #page-engine .text .tools-mucadmin,
-#page-ending .text .tools-jingle-audio,
-#page-ending .text .tools-jingle-video {
+#page-engine .text .tools-jingle-video,
+#page-engine .text .tools-jingle-audio {
 	display: none;
 }
 
