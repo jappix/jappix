@@ -6,7 +6,7 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
 
 # XMPP Core
 
- * RFC-6120: XMPP Core
+ * RFC-6120: Extensible Messaging and Presence Protocol (XMPP): Core
  * RFC-6121: Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence
  * RFC-6122: Extensible Messaging and Presence Protocol (XMPP): Address Format
 
