@@ -10,10 +10,8 @@ v1.0.0 (January 2014)
  * XEP-0166: Jingle
  * XEP-0292: vCard4 Over XMPP
  * XEP-0280: Message Carbons
- * OTR (Off-The-Record Messaging) support for end-to-end encrypted chats
- * Jappix Mini mobile interface
  * IE9, IE10, IE11 support
- * Bit-fat libs update
+ * Libs update
  * Client code rewrite
  * Directory tree re-organization
 
