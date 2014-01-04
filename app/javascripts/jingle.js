@@ -633,7 +633,26 @@ var Jingle = (function() {
                     try {
                         // Already in a call?
                         if(self.in_call()) {
-                            (new JSJaCJingle({ to: stanza.getFrom(), debug: JSJAC_JINGLE_STORE_DEBUG })).terminate(JSJAC_JINGLE_REASON_BUSY);
+                            // Try to restore SID there
+                            var stanza_id = stanza.getID();
+                            var sid = null;
+
+                            if(stanza_id) {
+                                var stanza_id_split = stanza_id.split('_');
+                                sid = stanza_id_split[1];
+                            }
+
+                            // Build a temporary Jingle session
+                            var jingle_close = new JSJaCJingle({
+                                to: stanza.getFrom(),
+                                debug: JSJAC_JINGLE_STORE_DEBUG
+                            })
+
+                            if(sid) {
+                                jingle_close._set_sid(sid);
+                            }
+
+                            jingle_close.terminate(JSJAC_JINGLE_REASON_BUSY);
 
                             Console.warn('session_initiate_success', 'Dropped incoming call because already in a call.');
 
