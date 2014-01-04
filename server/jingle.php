@@ -34,10 +34,14 @@ header('Content-Type: application/json');
 
 // If valid data was sent
 if(isset($_GET['username']) && !empty($_GET['username'])) {
-    $cache_hash = md5($_GET['username']);
+    // Read remote IP (secures passwords that are passed there)
+    $remote_ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
+
+    // Generate cache values
+    $cache_hash = md5($_GET['username'].'@'.$remote_ip);
     $cache_path = JAPPIX_BASE.'/tmp/jingle/'.$cache_hash.'cache';
-    $cache_life = 3600;
-    
+    $cache_life = $remote_ip ? 3600 : 0;
+
     // Cache missing or obsolete?
     $filemtime = @filemtime($cache_path);
 
