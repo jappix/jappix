@@ -403,7 +403,8 @@ var Jingle = (function() {
 
             // Caller mode?
             if(!is_callee && !Common.isFullXID(full_xid)) {
-                full_xid = Presence.highestPriority(bare_xid);
+                var jingle_ns = (mode == 'audio') ? NS_JINGLE_APPS_RTP_AUDIO : NS_JINGLE_APPS_RTP_VIDEO;
+                full_xid = Caps.getFeatureResource(bare_xid, jingle_ns);
 
                 if(!full_xid) {
                     throw 'Could not get user full XID to be called!';

@@ -20,6 +20,25 @@ var Caps = (function () {
     var self = {};
 
 
+    /**
+     * Reads a stored Caps
+     * @public
+     * @param {string} caps
+     * @return {object}
+     */
+    self.read = function(caps) {
+
+        try {
+            return Common.XMLFromString(
+                DataStore.getPersistent('global', 'caps', caps)
+            );
+        } catch(e) {
+            Console.error('Caps.read', e);
+        }
+
+    };
+
+
 	/**
      * Returns an array of the Jappix disco#infos
      * @public
@@ -111,9 +130,7 @@ var Caps = (function () {
             }
             
             // Get the stored disco infos
-            var xml = Common.XMLFromString(
-                DataStore.getPersistent('global', 'caps', caps)
-            );
+            var xml = self.read(caps);
             
             // Yet stored
             if(xml) {
@@ -341,7 +358,10 @@ var Caps = (function () {
             }
 
             // Apply Jingle
-            if(NS_JINGLE_APPS_RTP_AUDIO in features) {
+            var jingle_audio_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_AUDIO);
+            var jingle_video_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_VIDEO);
+
+            if(jingle_audio_xid) {
                 jingle_audio.show();
                 roster_jingle_audio.show();
             } else {
@@ -349,7 +369,7 @@ var Caps = (function () {
                 roster_jingle_audio.hide();
             }
 
-            if(NS_JINGLE_APPS_RTP_VIDEO in features) {
+            if(jingle_video_xid) {
                 jingle_video.show();
                 roster_jingle_video.show();
             } else {
@@ -357,26 +377,28 @@ var Caps = (function () {
                 roster_jingle_video.hide();
             }
 
-            if(NS_JINGLE_APPS_RTP_AUDIO in features && NS_JINGLE_APPS_RTP_VIDEO in features) {
+            if(jingle_audio_xid && jingle_video_xid) {
                 roster_jingle_separator.show();
             } else {
                 roster_jingle_separator.hide();
             }
 
-            if(NS_JINGLE_APPS_RTP_AUDIO in features || NS_JINGLE_APPS_RTP_VIDEO in features) {
+            if(jingle_audio_xid || jingle_video_xid) {
                 roster_jingle_path.show();
             } else {
                 roster_jingle_path.hide();
             }
             
             // Apply Out of Band Data
-            if(NS_IQOOB in features || NS_XOOB in features) {
+            var jingle_oob_xid = self.getFeatureResource(xid, NS_IQOOB);
+
+            if(jingle_oob_xid || NS_XOOB in features) {
                 file.show();
                 
                 // Set a marker
                 file.attr(
                     'data-oob',
-                    NS_IQOOB in features ? 'iq' : 'x'
+                    jingle_oob_xid ? 'iq' : 'x'
                 );
             } else {
                 // Remove the tooltip elements
@@ -460,6 +482,51 @@ var Caps = (function () {
             );
         } catch(e) {
             Console.error('Caps.mine', e);
+        }
+
+    };
+
+
+    /**
+     * Returns the user resource supporting given feature w/ highest priority
+     * @public
+     * @param {string} xid
+     * @param {string} feature_ns
+     * @return {string}
+     */
+    self.getFeatureResource = function(xid, feature_ns) {
+
+        var selected_xid = null;
+
+        try {
+            if(!feature_ns) {
+                throw 'No feature namespace given!';
+            }
+
+            var max_priority = null;
+            var cur_xid_full, cur_presence_sel, cur_caps, cur_features, cur_priority;
+
+            for(var cur_resource in Presence.resources(xid)) {
+                cur_xid_full = xid + '/' + cur_resource;
+                cur_presence_sel = $(Presence.readStanza(cur_xid_full));
+
+                cur_priority = parseInt((cur_presence_sel.find('priority').text() || 0), 10);
+                cur_caps = cur_presence_sel.find('caps').text();
+
+                if(cur_caps) {
+                    cur_features = self.read(cur_caps);
+
+                    if(cur_features && $(cur_features).find('feature[var="' + feature_ns + '"]').size()  &&
+                       (cur_priority >= max_priority || max_priority === null)) {
+                        max_priority = cur_priority;
+                        selected_xid = cur_xid_full;
+                    }
+                }
+            }
+        } catch(e) {
+            Console.error('Caps.getFeatureResource', e);
+        } finally {
+            return selected_xid;
         }
 
     };

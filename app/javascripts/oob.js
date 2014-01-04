@@ -36,7 +36,7 @@ var OOB = (function () {
             if(type == 'iq') {
                 // Get some values
                 var id = hex_md5(genID() + to + url + desc);
-                to = Presence.highestPriority(to);
+                to = Caps.getFeatureResource(to, NS_IQOOB);
                 
                 // IQs cannot be sent to offline users
                 if(!to)

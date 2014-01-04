@@ -271,6 +271,9 @@ var Presence = (function () {
                             Message.display('chat', xid, xidHash, dName, dBody, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
                     }
                 }
+
+                // Get disco#infos for this presence (related to Caps)
+                Caps.getDiscoInfos(from, caps);
             }
             
             // For logger
@@ -1012,6 +1015,29 @@ var Presence = (function () {
 
 
     /**
+     * Gets the presence stanza for given full XID
+     * @public
+     * @param {string} xid_full
+     * @return {object}
+     */
+    self.readStanza = function(xid_full) {
+
+        try {
+            var pr = DataStore.getDB(Connection.desktop_hash, 'presence-stanza', xid_full);
+
+            if(!pr) {
+                pr = '<presence><type>unavailable</type></presence>';
+            }
+
+            return Common.XMLFromString(pr);
+        } catch(e) {
+            Console.error('Presence.readStanza', e);
+        }
+
+    };
+
+
+    /**
      * Gets the resource from a XID which has the highest priority
      * @public
      * @param {string} xid
@@ -1020,13 +1046,9 @@ var Presence = (function () {
     self.highestPriorityStanza = function(xid) {
 
         try {
-            var pr;
-            var highest = self.highestPriority(xid);
-
-            if(highest)  pr = DataStore.getDB(Connection.desktop_hash, 'presence-stanza', highest);
-            if(!pr)      pr = '<presence><type>unavailable</type></presence>';
-
-            return Common.XMLFromString(pr);
+            return self.readStanza(
+                self.highestPriority(xid)
+            );
         } catch(e) {
             Console.error('Presence.highestPriorityStanza', e);
         }
