@@ -219,12 +219,13 @@ var IntegrateBox = (function () {
                 
                 // Any comments?
                 if(Common.exists('#integratebox .comments')) {
-                    if(comments_e_array[index] && comments_n_array[index])
-                        self.getComments(comments_e_array[index], comments_n_array[index], comments_id);
-                    else
+                    if(comments_e_array[index] && comments_n_array[index]) {
+                        Microblog.getComments(comments_e_array[index], comments_n_array[index], comments_id);
+                    } else {
                         $('#integratebox .comments .comments-content').html('<div class="one-comment loading"><span class="icon talk-images"></span>' + Common._e("Comments locked!") + '</div>');
+                    }
                 }
-                    
+                
                 // Get the previous values
                 var previous_url = url_array[index - 1];
                 var previous_services = services_array[index - 1];
