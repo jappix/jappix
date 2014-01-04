@@ -168,11 +168,10 @@ function read_url($url) {
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 		$data = curl_exec($ch);
 		curl_close($ch);
-	}
-	
-	// Default method
-	else
+	} else {
+		// Fallback on default method
 		$data = @file_get_contents($url);
+	}
 	
 	return $data;
 }

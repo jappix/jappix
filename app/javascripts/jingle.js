@@ -151,6 +151,7 @@ var Jingle = (function() {
                 remote_view: remote_view,
                 stun: stun,
                 turn: turn,
+                //resolution: 'hd', -> this can cause some lags
                 debug: self._consoleAdapter,
 
                 // Custom handlers (optional)
@@ -626,6 +627,7 @@ var Jingle = (function() {
             JSJaCJingle_listen({
                 connection: con,
                 debug: self._consoleAdapter,
+                fallback: './server/jingle.php',
                 
                 initiate: function(stanza) {
                     try {

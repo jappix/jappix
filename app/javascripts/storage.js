@@ -20,7 +20,7 @@ var Storage = (function () {
     var self = {};
 
 
-	/**
+	  /**
      * Gets the storage items of the user
      * @public
      * @param {string} type
@@ -64,8 +64,9 @@ var Storage = (function () {
             var rosternotes = $(handleXML).find('storage[xmlns="' + NS_ROSTERNOTES + '"]');
             
             // No options and node not yet configured
-            if(options.size() && !options.find('option').size() && (iq.getType() != 'error'))
+            if(options.size() && !options.find('option').size() && (iq.getType() != 'error')) {
                 Welcome.open();
+            }
             
             // Parse the options xml
             options.find('option').each(function() {
@@ -161,8 +162,9 @@ var Storage = (function () {
             }
             
             // Roster notes received (for logger)
-            else if(rosternotes.size())
+            else if(rosternotes.size()) {
                 Console.log('Roster notes received.');
+            }
         } catch(e) {
             Console.error('Storage.handle', e);
         }
