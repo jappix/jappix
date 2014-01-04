@@ -265,9 +265,7 @@ var Caps = (function () {
                 Features.handle(xml);
                 
                 Console.info('Got our server CAPS');
-            }
-            
-            else {
+            } else {
                 // Display the disco infos
                 self.displayDiscoInfos(from, xml);
                 
