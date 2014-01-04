@@ -646,7 +646,7 @@ var Jingle = (function() {
                             var jingle_close = new JSJaCJingle({
                                 to: stanza.getFrom(),
                                 debug: JSJAC_JINGLE_STORE_DEBUG
-                            })
+                            });
 
                             if(sid) {
                                 jingle_close._set_sid(sid);
