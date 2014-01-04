@@ -20,7 +20,7 @@ var Storage = (function () {
     var self = {};
 
 
-	  /**
+      /**
      * Gets the storage items of the user
      * @public
      * @param {string} type
