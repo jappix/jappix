@@ -628,7 +628,8 @@ var Jingle = (function() {
             JSJaCJingle_listen({
                 connection: con,
                 debug: self._consoleAdapter,
-                fallback: './server/jingle.php',
+                // TODO: seems like it fucks up the calls!
+                //fallback: './server/jingle.php',
                 
                 initiate: function(stanza) {
                     try {
