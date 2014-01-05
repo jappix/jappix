@@ -36,20 +36,19 @@ var Features = (function () {
             var xml = null;
             
             // Try to get the stored data
-            if(caps)
+            if(caps) {
                 xml = Common.XMLFromString(
                     DataStore.getPersistent('global', 'caps', caps)
                 );
+            }
             
             // Any stored data?
             if(xml) {
                 self.handle(xml);
                 
                 Console.log('Read server CAPS from cache.');
-            }
-            
-            // Not stored (or no CAPS)!
-            else {
+            } else {
+                // Not stored (or no CAPS)!
                 var iq = new JSJaCIQ();
                 
                 iq.setTo(to);
@@ -81,7 +80,10 @@ var Features = (function () {
             
             // Functions
             var check_feature_fn = function(namespace) {
-                return selector.find('feature[var="' + namespace + '"]').size() > 0 ? true : false;
+                // This weird selector fixes an IE8 bug...
+                return (selector.find('feature').filter(function() {
+                    return ($(this).attr('var') == namespace);
+                }).size() > 0 ? true : false);
             };
 
             // Markers
@@ -89,7 +91,11 @@ var Features = (function () {
 
             var cur_feature;
             var features = {
-                'pep': (selector.find('identity[category="pubsub"][type="pep"]').size() && true)
+                // This weird selector fixes the same IE8 bug as above...
+                'pep': (selector.find('identity').filter(function() {
+                    var this_sel = $(this);
+                    return (this_sel.attr('category') == 'pubsub' && this_sel.attr('type') == 'pep');
+                }).size() && true)
             };
 
             $.each(namespaces, function(n, namespace) {
@@ -104,7 +110,7 @@ var Features = (function () {
             if(features.pep === true) {
                 // Update our database
                 self.enable('pep');
-                
+
                 // Get the PEP nodes to initiate
                 Microblog.getInit();
                 PEP.getInitGeoloc();
