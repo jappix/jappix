@@ -3984,7 +3984,7 @@ var JappixMini = (function () {
         try {
             // IE-specific style? (legacy)
             if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
-                jQuery('#jappix_mini, #jappix_popup').addClass('ie');
+                jQuery('#jappix_mini, #jappix_popup').addClass('jm_ie');
             }
         } catch(e) {
             JappixConsole.error('JappixMini.legacySupport', e);
