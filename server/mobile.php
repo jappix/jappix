@@ -13,8 +13,9 @@ Authors: Valérian Saliou, Camaran
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 ?>
 

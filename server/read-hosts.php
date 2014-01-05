@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Get the protocol we use
 if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) {
@@ -38,22 +39,22 @@ if($_SERVER['HTTP_HOST']) {
 
 // Define the default hosts configuration values
 $hosts_conf = array(
-            'main'          => $http_host,
-            'muc'           => 'muc.'.$http_host,
-            'pubsub'        => 'pubsub.'.$http_host,
-            'vjud'          => 'vjud.'.$http_host,
-            'anonymous'     => 'anonymous.'.$http_host,
-            'stun'          => 'stun.'.$default_host,
-            'turn'          => '',
-            'turn_username' => '',
-            'turn_password' => '',
-            'bosh'          => 'http://'.$http_host.':5280/http-bind',
-            'bosh_main'     => '',
-            'bosh_mini'     => '',
-            'static'        => '',
-            'upload'        => '',
-            'bosh_proxy'    => 'off'
-          );
+    'main'          => $http_host,
+    'muc'           => 'muc.'.$http_host,
+    'pubsub'        => 'pubsub.'.$http_host,
+    'vjud'          => 'vjud.'.$http_host,
+    'anonymous'     => 'anonymous.'.$http_host,
+    'stun'          => 'stun.'.$default_host,
+    'turn'          => '',
+    'turn_username' => '',
+    'turn_password' => '',
+    'bosh'          => 'http://'.$http_host.':5280/http-bind',
+    'bosh_main'     => '',
+    'bosh_mini'     => '',
+    'static'        => '',
+    'upload'        => '',
+    'bosh_proxy'    => 'off'
+);
 
 // Define a default values array
 $hosts_default = $hosts_conf;
@@ -71,19 +72,22 @@ if($hosts_data) {
         $hosts_value = $hosts_child->getName();
         
         // Only push this to the array if it exists
-        if(isset($hosts_conf[$hosts_value]) && (string)$hosts_child)
+        if(isset($hosts_conf[$hosts_value]) && (string)$hosts_child) {
             $hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, (string)$hosts_child);
+        }
     }
 }
 
 // Filter hosts (remove multiple '/' at the end)
 $filter_host_regex = '/(\/+)?$/';
 
-if($hosts_conf['upload'])
+if($hosts_conf['upload']) {
     $hosts_conf['upload'] = preg_replace($filter_host_regex, '', $hosts_conf['upload']);
+}
 
-if($hosts_conf['static'])
+if($hosts_conf['static']) {
     $hosts_conf['static'] = preg_replace($filter_host_regex, '', $hosts_conf['static']);
+}
 
 // Finally, define the hosts configuration globals
 define('HOST_MAIN', $hosts_conf['main']);

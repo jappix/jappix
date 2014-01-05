@@ -13,8 +13,9 @@ Authors: Valérian Saliou, regilero
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Array of the sub-folders to create
 $store_folders = array(
@@ -36,8 +37,9 @@ for($i = 0; $i < count($store_folders); $i++) {
     $current = JAPPIX_BASE.'/store/'.$store_folders[$i];
     
     // Create the folder itself
-    if(!is_dir($current))
+    if(!is_dir($current)) {
         mkdir($current, 0777, true);
+    }
     
     chmod($current, 0777);
     

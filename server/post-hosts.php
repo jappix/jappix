@@ -13,98 +13,114 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Main host
-if(isset($_POST['host_main']) && !empty($_POST['host_main']))
+if(isset($_POST['host_main']) && !empty($_POST['host_main'])) {
     $host_main = stripslashes(htmlspecialchars($_POST['host_main']));
-else
+} else {
     $host_main = stripslashes(htmlspecialchars($hosts_default['main']));
+}
 
 // Groupchat host
-if(isset($_POST['host_muc']) && !empty($_POST['host_muc']))
+if(isset($_POST['host_muc']) && !empty($_POST['host_muc'])) {
     $host_muc = stripslashes(htmlspecialchars($_POST['host_muc']));
-else
+} else {
     $host_muc = stripslashes(htmlspecialchars($hosts_default['muc']));
+}
 
 // Pubsub host
-if(isset($_POST['host_pubsub']) && !empty($_POST['host_pubsub']))
+if(isset($_POST['host_pubsub']) && !empty($_POST['host_pubsub'])) {
     $host_pubsub = stripslashes(htmlspecialchars($_POST['host_pubsub']));
-else
+} else {
     $host_pubsub = stripslashes(htmlspecialchars($hosts_default['pubsub']));
+}
 
 // Directory host
-if(isset($_POST['host_vjud']) && !empty($_POST['host_vjud']))
+if(isset($_POST['host_vjud']) && !empty($_POST['host_vjud'])) {
     $host_vjud = stripslashes(htmlspecialchars($_POST['host_vjud']));
-else
+} else {
     $host_vjud = stripslashes(htmlspecialchars($hosts_default['vjud']));
+}
 
 // Anonymous host
-if(isset($_POST['host_anonymous']) && !empty($_POST['host_anonymous']))
+if(isset($_POST['host_anonymous']) && !empty($_POST['host_anonymous'])) {
     $host_anonymous = stripslashes(htmlspecialchars($_POST['host_anonymous']));
-else
+} else {
     $host_anonymous = stripslashes(htmlspecialchars($hosts_default['anonymous']));
+}
 
 // STUN host
-if(isset($_POST['host_stun']) && !empty($_POST['host_stun']))
+if(isset($_POST['host_stun']) && !empty($_POST['host_stun'])) {
     $host_stun = stripslashes(htmlspecialchars($_POST['host_stun']));
-else
+} else {
     $host_stun = stripslashes(htmlspecialchars($hosts_default['stun']));
+}
 
 // TURN host
-if(isset($_POST['host_turn']) && !empty($_POST['host_turn']))
+if(isset($_POST['host_turn']) && !empty($_POST['host_turn'])) {
     $host_turn = stripslashes(htmlspecialchars($_POST['host_turn']));
-else
+} else {
     $host_turn = stripslashes(htmlspecialchars($hosts_default['turn']));
+}
 
 // TURN host username
-if(isset($_POST['host_turn_username']) && !empty($_POST['host_turn_username']))
+if(isset($_POST['host_turn_username']) && !empty($_POST['host_turn_username'])) {
     $host_turn_username = stripslashes(htmlspecialchars($_POST['host_turn_username']));
-else
+} else {
     $host_turn_username = stripslashes(htmlspecialchars($hosts_default['turn_username']));
+}
 
 // TURN host password
-if(isset($_POST['host_turn_password']) && !empty($_POST['host_turn_password']))
+if(isset($_POST['host_turn_password']) && !empty($_POST['host_turn_password'])) {
     $host_turn_password = stripslashes(htmlspecialchars($_POST['host_turn_password']));
-else
+} else {
     $host_turn_password = stripslashes(htmlspecialchars($hosts_default['turn_password']));
+}
 
 // BOSH host
-if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh']))
+if(isset($_POST['host_bosh']) && !empty($_POST['host_bosh'])) {
     $host_bosh = stripslashes(htmlspecialchars($_POST['host_bosh']));
-else
+} else {
     $host_bosh = stripslashes(htmlspecialchars($hosts_default['bosh']));
+}
 
 // Main BOSH host
-if(isset($_POST['host_bosh_main']) && !empty($_POST['host_bosh_main']))
+if(isset($_POST['host_bosh_main']) && !empty($_POST['host_bosh_main'])) {
     $host_bosh_main = stripslashes(htmlspecialchars($_POST['host_bosh_main']));
-else
+} else {
     $host_bosh_main = stripslashes(htmlspecialchars($hosts_default['bosh_main']));
+}
 
 // Mini BOSH host
-if(isset($_POST['host_bosh_mini']) && !empty($_POST['host_bosh_mini']))
+if(isset($_POST['host_bosh_mini']) && !empty($_POST['host_bosh_mini'])) {
     $host_bosh_mini = stripslashes(htmlspecialchars($_POST['host_bosh_mini']));
-else
+} else {
     $host_bosh_mini = stripslashes(htmlspecialchars($hosts_default['bosh_mini']));
+}
 
 // Static host
-if(isset($_POST['host_static']) && !empty($_POST['host_static']))
+if(isset($_POST['host_static']) && !empty($_POST['host_static'])) {
     $host_static = stripslashes(htmlspecialchars($_POST['host_static']));
-else
+} else {
     $host_static = stripslashes(htmlspecialchars($hosts_default['static']));
+}
 
 // Upload host
-if(isset($_POST['host_upload']) && !empty($_POST['host_upload']))
+if(isset($_POST['host_upload']) && !empty($_POST['host_upload'])) {
     $host_upload = stripslashes(htmlspecialchars($_POST['host_upload']));
-else
+} else {
     $host_upload = stripslashes(htmlspecialchars($hosts_default['upload']));
+}
 
 // BOSH proxy
-if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy']))
+if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy'])) {
     $bosh_proxy = 'on';
-else
+} else {
     $bosh_proxy = 'off';
+}
 
 // Generate the hosts XML content
 $hosts_xml = 

@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Handle the remove GET
 if(isset($_GET['k']) && !empty($_GET['k'])) {
@@ -28,8 +29,9 @@ if(isset($_GET['k']) && !empty($_GET['k'])) {
 }
 
 // Handle the remove POST
-else if(isset($_POST['remove']))
+else if(isset($_POST['remove'])) {
     removeElements();
+}
 
 // Handle the logo upload POST
 else if(isset($_POST['logo_upload'])) {
@@ -71,8 +73,9 @@ else if(isset($_POST['logo_upload'])) {
     
     foreach($logos as $sub_array) {
         // Nothing?
-        if(!$sub_array[0] || !$sub_array[1])
+        if(!$sub_array[0] || !$sub_array[1]) {
             continue;
+        }
         
         // Not an image?
         if(getFileExt($sub_array[0]) != 'png') {
@@ -148,47 +151,58 @@ else if(isset($_POST['save'])) {
     // Handle it for background
     $background = array();
     
-    if(isset($_POST['background_type']))
+    if(isset($_POST['background_type'])) {
         $background['type'] = $_POST['background_type'];
+    }
     
-    if(isset($_POST['background_image_file']))
+    if(isset($_POST['background_image_file'])) {
         $background['image_file'] = $_POST['background_image_file'];
+    }
 
-    if(isset($_POST['background_image_repeat']))
+    if(isset($_POST['background_image_repeat'])) {
         $background['image_repeat'] = $_POST['background_image_repeat'];
+    }
     
-    if(isset($_POST['background_image_horizontal']))
+    if(isset($_POST['background_image_horizontal'])) {
         $background['image_horizontal'] = $_POST['background_image_horizontal'];
+    }
     
-    if(isset($_POST['background_image_vertical']))
+    if(isset($_POST['background_image_vertical'])) {
         $background['image_vertical'] = $_POST['background_image_vertical'];
+    }
     
-    if(isset($_POST['background_image_adapt']))
+    if(isset($_POST['background_image_adapt'])) {
         $background['image_adapt'] = 'on';
+    }
     
-    if(isset($_POST['background_image_color']))
+    if(isset($_POST['background_image_color'])) {
         $background['image_color'] = $_POST['background_image_color'];
+    }
     
-    if(isset($_POST['background_color_color']))
+    if(isset($_POST['background_color_color'])) {
         $background['color_color'] = $_POST['background_color_color'];
+    }
     
     // Write the configuration file
     writeBackground($background);
     
     // Handle it for notice
-    if(isset($_POST['notice_type']))
+    if(isset($_POST['notice_type'])) {
         $notice_type = $_POST['notice_type'];
-    else
+    } else {
         $notice_type = 'none';
+    }
     
     $notice_text = '';
     
-    if(isset($_POST['notice_text']))
+    if(isset($_POST['notice_text'])) {
         $notice_text = $_POST['notice_text'];
+    }
     
     // Check our values
-    if(!$notice_text && ($notice_type != 'none'))
+    if(!$notice_text && ($notice_type != 'none')) {
         $save_marker = false;
+    }
     
     // All is okay
     if($save_marker) {

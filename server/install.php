@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Define the configuration folder
 $conf_folder = JAPPIX_BASE.'/store/conf';
@@ -34,39 +35,38 @@ if(isset($_POST['step']) && !empty($_POST['step'])) {
     switch($step) {
         // Administrator account configuration submitted
         case 3:
-            include(JAPPIX_BASE.'/server/post-users.php');
-            break;
+            include(JAPPIX_BASE.'/server/post-users.php'); break;
         
         // Main configuration submitted
         case 4:
-            include(JAPPIX_BASE.'/server/post-main.php');
-            break;
+            include(JAPPIX_BASE.'/server/post-main.php'); break;
         
         // Hosts configuration submitted
         case 5:
-            include(JAPPIX_BASE.'/server/post-hosts.php');
-            break;
+            include(JAPPIX_BASE.'/server/post-hosts.php'); break;
     }
 }
 
 // Not frozen on the previous step?
 if(!isset($_POST['check']) && (isset($_POST['submit']) || isset($_POST['finish']))) {
     // Checks the current step is valid
-    if(($step >= 2) && !is_dir($conf_folder))
+    if(($step >= 2) && !is_dir($conf_folder)) {
         $step = 2;
-    else if(($step >= 3) && !usersConfName())
+    } else if(($step >= 3) && !usersConfName()) {
         $step = 3;
-    else if(($step >= 4) && !file_exists($conf_folder.'/main.xml'))
+    } else if(($step >= 4) && !file_exists($conf_folder.'/main.xml')) {
         $step = 4;
-    else if(($step >= 5) && !file_exists($conf_folder.'/hosts.xml'))
+    } else if(($step >= 5) && !file_exists($conf_folder.'/hosts.xml')) {
         $step = 5;
-    else
+    } else {
         $step++;
+    }
 }
 
 // These steps are not available
-if(($step > 6) || !is_int($step))
+if(($step > 6) || !is_int($step)) {
     $step = 6;
+}
 
 // Get the current step title
 $names = array(
@@ -82,10 +82,11 @@ $names = array(
 $continue = true;
 
 // Form action
-if($step < 6)
+if($step < 6) {
     $form_action = './?m=install'.keepGet('m', false);
-else
+} else {
     $form_action = './'.keepGet('m', true);
+}
 
 ?>
 <!DOCTYPE html>
@@ -190,8 +191,9 @@ else
                 include(JAPPIX_BASE.'/server/vars-main.php');
                 
                 // Are we using developer mode?
-                if(preg_match('/~dev/i', $version))
+                if(preg_match('/~dev/i', $version)) {
                     $developer = 'on';
+                }
                 
                 // Include the main configuration form
                 include(JAPPIX_BASE.'/server/form-main.php');
@@ -237,8 +239,9 @@ else
                     $service_class = 'info smallspace';
                     
                     // First info?
-                    if($i == 0)
+                    if($i == 0) {
                         $service_class .= ' first';
+                    }
                     
                     // Service installed?
                     if(function_exists($services_functions[$i])) { ?>

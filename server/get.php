@@ -44,12 +44,14 @@ $type = '';
 $file = '';
 
 // Read the type var
-if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|stylesheets|js|javascripts|img|images|snd|sounds|fonts|store)$/', $_GET['t']))
+if(isset($_GET['t']) && !empty($_GET['t']) && preg_match('/^(css|stylesheets|js|javascripts|img|images|snd|sounds|fonts|store)$/', $_GET['t'])) {
     $type = $_GET['t'];
+}
 
 // Read the files var
-if(isset($_GET['f']) && !empty($_GET['f']) && isSafe($_GET['f']))
+if(isset($_GET['f']) && !empty($_GET['f']) && isSafe($_GET['f'])) {
     $file = $_GET['f'];
+}
 
 // Read the group var (only for text files)
 if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET['g']) && preg_match('/^(css|stylesheets|js|javascripts)$/', $type) && isSafe($_GET['g']) && file_exists(JAPPIX_BASE.'/app/bundles/'.$_GET['g'])) {
@@ -61,10 +63,11 @@ if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET
         $xml_parse = $xml_read->$type;
         
         // Files were added to the list before (with file var)?
-        if($file)
+        if($file) {
             $file .= '~'.$xml_parse;
-        else
+        } else {
             $file = $xml_parse;
+        }
     }
 }
 
@@ -89,23 +92,17 @@ if($file && $type) {
         switch(getFileExt($file)) {
             // CSS file
             case 'css':
-                $type = 'stylesheets';
-                
-                break;
+                $type = 'stylesheets'; break;
             
             // JS file
             case 'js':
-                $type = 'javascripts';
-                
-                break;
+                $type = 'javascripts';  break;
             
             // Audio file
             case 'ogg':
             case 'oga':
             case 'mp3':
-                $type = 'sounds';
-                
-                break;
+                $type = 'sounds'; break;
             
             // Image file
             case 'png':
@@ -113,28 +110,25 @@ if($file && $type) {
             case 'jpeg':
             case 'gif':
             case 'bmp':
-                $type = 'images';
-                
-                break;
+                $type = 'images'; break;
             
             // Image file
             case 'woff':
             case 'ttf':
             case 'eot':
             case 'svg':
-                $type = 'fonts';
-                
-                break;
+                $type = 'fonts'; break;
         }
     }
     
     // JS and CSS special stuffs
     if(($type == 'stylesheets') || ($type == 'javascripts')) {
         // Compression var
-        if($has_compression)
+        if($has_compression) {
             $cache_encoding = 'deflate';
-        else
+        } else {
             $cache_encoding = 'plain';
+        }
         
         // Get the vars
         $version = getVersion();
@@ -144,40 +138,44 @@ if($file && $type) {
         // Check if the browser supports DEFLATE
         $deflate_support = false;
         
-        if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasCompression() && !$is_developer)
+        if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasCompression() && !$is_developer) {
             $deflate_support = true;
+        }
         
         // Internationalization
         if($type == 'javascripts') {
-            if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/i18n/'.$_GET['l']))
+            if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/i18n/'.$_GET['l'])) {
                 $locale = $_GET['l'];
-            else
+            } else {
                 $locale = 'en';
+            }
+        } else {
+            $locale = '';
         }
         
-        else
-            $locale = '';
-        
         // Define the cache lang name
-        if($locale)
+        if($locale) {
             $cache_lang = $cache_hash.'_'.$locale;
-        else
+        } else {
             $cache_lang = $cache_hash;
+        }
     }
     
     // Explode the file string
-    if(strpos($file, '~') != false)
+    if(strpos($file, '~') !== false) {
         $array = explode('~', $file);
-    else
+    } else {
         $array = array($file);
+    }
     
     // Define the reading vars
     $continue = true;
     $loop_files = true;
     
     // Check the cache exists for text files (avoid the heavy file_exists loop!)
-    if(!$is_developer && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCache($cache_lang))
+    if(!$is_developer && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCache($cache_lang)) {
         $loop_files = false;
+    }
     
     // Check if the all the file(s) exist(s)
     if($loop_files) {
@@ -185,7 +183,6 @@ if($file && $type) {
             // Stop the loop if a file is missing
             if(!file_exists($dir.$current)) {
                 $continue = false;
-                
                 break;
             }
         }
@@ -199,45 +196,43 @@ if($file && $type) {
         // We set up a known MIME type (and some other headers)
         if(($type == 'stylesheets') || ($type == 'javascripts')) {
             // DEFLATE header
-            if($deflate_support)
+            if($deflate_support) {
                 header('Content-Encoding: deflate');
+            }
             
             // MIME header
-            if($type == 'stylesheets')
+            if($type == 'stylesheets') {
                 header('Content-Type: text/css; charset=utf-8');
-            else if($type == 'javascripts')
+            } else if($type == 'javascripts') {
                 header('Content-Type: application/javascript; charset=utf-8');
+            }
+        } else {
+            switch($mime) {
+                case 'png':
+                    header('Content-Type: image/png'); break;
+                case 'gif':
+                    header('Content-Type: image/gif'); break;
+                case 'jpg':
+                    header('Content-Type: image/jpeg'); break;
+                case 'bmp':
+                    header('Content-Type: image/bmp'); break;
+                case 'oga':
+                case 'ogg':
+                    header('Content-Type: audio/ogg'); break;
+                case 'mp3':
+                    header('Content-Type: audio/mpeg'); break;
+                case 'woff':
+                    header('Content-Type: application/font-woff'); break;
+                case 'ttf':
+                    header('Content-Type: application/x-font-ttf'); break;
+                case 'eot':
+                    header('Content-Type: application/vnd.ms-fontobject'); break;
+                case 'svg':
+                    header('Content-Type: image/svg+xml'); break;
+                default:
+                    header('Content-Type: '.getFileMIME($path));
+            }
         }
-        
-        // Images
-        else if($mime == 'png')
-            header('Content-Type: image/png');
-        else if($mime == 'gif')
-            header('Content-Type: image/gif');
-        else if(($mime == 'jpg') || ($mime == 'jpeg'))
-            header('Content-Type: image/jpeg');
-        else if($mime == 'bmp')
-            header('Content-Type: image/bmp');
-        
-        // Sounds
-        else if(($mime == 'oga') || ($mime == 'ogg'))
-            header('Content-Type: audio/ogg');
-        else if($mime == 'mp3')
-            header('Content-Type: audio/mpeg');
-        
-        // Fonts
-        else if($mime == 'woff')
-            header('Content-Type: application/font-woff');
-        else if($mime == 'ttf')
-            header('Content-Type: application/x-font-ttf');
-        else if($mime == 'eot')
-            header('Content-Type: application/vnd.ms-fontobject');
-        else if($mime == 'svg')
-            header('Content-Type: image/svg+xml');
-        
-        // Catch the file MIME type
-        else
-            header('Content-Type: '.getFileMIME($path));
         
         // Read the text file(s) (CSS & JS)
         if(($type == 'stylesheets') || ($type == 'javascripts')) {
@@ -249,10 +244,11 @@ if($file && $type) {
                 $last_modified = filemtime(pathCache($cache_lang));
                 $cache_read = readCache($cache_lang);
                 
-                if($deflate_support || !$has_compression)
+                if($deflate_support || !$has_compression) {
                     $output_data = $cache_read;
-                else
+                } else {
                     $output_data = gzinflate($cache_read);
+                }
             }
             
             // Else, we generate the cache
@@ -264,10 +260,11 @@ if($file && $type) {
                     $cache_reference = readCache($cache_hash);
                     
                     // Filter the cache reference
-                    if($has_compression)
+                    if($has_compression) {
                         $output = gzinflate($cache_reference);
-                    else
+                    } else {
                         $output = $cache_reference;
+                    }
                 }
                 
                 // No cache reference, we should generate it
@@ -279,8 +276,9 @@ if($file && $type) {
                     $looped = '';
                     
                     // Add the content of the current file
-                    foreach($array as $current)
+                    foreach($array as $current) {
                         $looped .= rmBOM(file_get_contents($dir.$current))."\n";
+                    }
                     
                     // Filter the CSS
                     if($type == 'stylesheets') {
@@ -297,10 +295,11 @@ if($file && $type) {
                     // Optimize the code rendering
                     if($type == 'stylesheets') {
                         // Can minify the CSS
-                        if($has_compression && !$is_developer)
+                        if($has_compression && !$is_developer) {
                             $output = compressCSS($looped);
-                        else
+                        } else {
                             $output = $looped;
+                        }
                     } else {
                         // Can minify the JS (sloooooow!)
                         if($has_compression && !$is_developer) {
@@ -312,10 +311,11 @@ if($file && $type) {
                     }
                     
                     // Generate the reference cache
-                    if($has_compression)
+                    if($has_compression) {
                         $final = gzdeflate($output, 9);
-                    else
+                    } else {
                         $final = $output;
+                    }
                     
                     // Write it!
                     genCache($final, $is_developer, $cache_hash);
@@ -338,33 +338,35 @@ if($file && $type) {
                     $output = setTranslation($output);
                     
                     // Generate the cache
-                    if($has_compression)
+                    if($has_compression) {
                         $final = gzdeflate($output, 9);
-                    else
+                    } else {
                         $final = $output;
+                    }
                     
                     // Write it!
                     genCache($final, $is_developer, $cache_lang);
                 }
                 
                 // Output a well-encoded string
-                if($deflate_support || !$has_compression)
+                if($deflate_support || !$has_compression) {
                     $output_data = $final;
-                else
+                } else {
                     $output_data = gzinflate($final);
+                }
             }
 
             // Any data to output?
             if($output_data) {
                 // Last-Modified HTTP header
-                if(!$is_developer)
+                if(!$is_developer) {
                     header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+                }
 
                 // Check browser cache
                 if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
                     // Use browser cache
                     header('Status: 304 Not Modified', true, 304);
-
                     exit;
                 } else {
                     // More file HTTP headers
@@ -385,14 +387,14 @@ if($file && $type) {
             $last_modified = filemtime($path);
 
             // File HTTP headers
-            if(!$is_developer)
+            if(!$is_developer) {
                 header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
+            }
 
             // Check browser cache
             if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
                 // Use browser cache
                 header('Status: 304 Not Modified', true, 304);
-                
                 exit;
             } else {
                 // More file HTTP headers

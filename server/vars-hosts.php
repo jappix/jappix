@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Define the vars with the hosts configuration constants
 $host_main = htmlspecialchars(HOST_MAIN);

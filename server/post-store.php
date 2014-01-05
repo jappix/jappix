@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Music upload?
 if(isset($_POST['upload'])) {
@@ -71,8 +72,9 @@ if(isset($_POST['upload'])) {
     // Bad extension?
     else if(!preg_match('/^(.+)(\.(og(g|a)|mp3|wav))$/i', $name_music)) {
         // Remove the image file
-        if(file_exists($path_music))
+        if(file_exists($path_music)) {
             unlink($path_music);
+        }
     ?>
     
         <p class="info smallspace fail"><?php _e("This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"); ?></p>
@@ -93,7 +95,8 @@ if(isset($_POST['upload'])) {
 }
 
 // File deletion?
-else if(isset($_POST['remove']))
+else if(isset($_POST['remove'])) {
     removeElements();
+}
 
 ?>

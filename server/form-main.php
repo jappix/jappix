@@ -13,89 +13,103 @@ Authors: Valérian Saliou, LinkMauve, Maranda
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Checks the checkboxes which are set "on"
 $checked = ' checked=""';
 
 // Host locking
-if($lock_host == 'on')
+if($lock_host == 'on') {
     $check_lock_host = $checked;
-else
+} else {
     $check_lock_host = '';
+}
 
 // Anonymous mode
-if($anonymous_mode == 'on')
+if($anonymous_mode == 'on') {
     $check_anonymous_mode = $checked;
-else
+} else {
     $check_anonymous_mode = '';
+}
 
 // HTTP Authentication
-if($http_auth == 'on')
+if($http_auth == 'on') {
     $check_http_auth = $checked;
-else
+} else {
     $check_http_auth = '';
+}
 
 // Registration
-if($registration == 'on')
+if($registration == 'on') {
     $check_registration = $checked;
-else
+} else {
     $check_registration = '';
+}
 
 // Suggest groupchats
-if($groupchats_suggest == 'on')
+if($groupchats_suggest == 'on') {
     $check_groupchats_suggest = $checked;
-else
+} else {
     $check_groupchats_suggest = '';
+}
 
 // Manager link
-if($manager_link == 'on')
+if($manager_link == 'on') {
     $check_manager_link = $checked;
-else
+} else {
     $check_manager_link = '';
+}
 
 // Encryption
-if($encryption == 'on')
+if($encryption == 'on') {
     $check_encryption = $checked;
-else
+} else {
     $check_encryption = '';
+}
 
 // HTTPS storage
-if($https_storage == 'on')
+if($https_storage == 'on') {
     $check_https_storage = $checked;
-else
+} else {
     $check_https_storage = '';
+}
 
 // Force HTTPS
-if($https_force == 'on')
+if($https_force == 'on') {
     $check_https_force = $checked;
-else
+} else {
     $check_https_force = '';
+}
 
 // Compression
-if($compression == 'on')
+if($compression == 'on') {
     $check_compression = $checked;
-else
+} else {
     $check_compression = '';
+}
 
 // Statistics
-if($statistics == 'on')
+if($statistics == 'on') {
     $check_statistics = $checked;
-else
+} else {
     $check_statistics = '';
+}
 
 // Analytics tracking
-if($analytics_track == 'on')
+if($analytics_track == 'on') {
     $check_analytics_track = $checked;
-else
+} else {
     $check_analytics_track = '';
+}
 
 // Advertising
-if($ads_enable == 'on')
+if($ads_enable == 'on') {
     $check_ads_enable = $checked;
-else
+} else {
     $check_ads_enable = '';
+}
 
 ?>
 

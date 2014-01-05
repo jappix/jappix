@@ -13,27 +13,31 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Marker
 $valid_user = true;
 
 // Administrator name
-if(isset($_POST['user_name']) && !empty($_POST['user_name']))
+if(isset($_POST['user_name']) && !empty($_POST['user_name'])) {
     $user_name = trim($_POST['user_name']);
-else
+} else {
     $valid_user = false;
+}
 
 // Administrator password (first)
-if(isset($_POST['user_password']) && !empty($_POST['user_password']))
+if(isset($_POST['user_password']) && !empty($_POST['user_password'])) {
     $user_password = trim($_POST['user_password']);
-else
+} else {
     $valid_user = false;
+}
 
 // Administrator password (second)
-if(isset($_POST['user_repassword']) && ($user_password != $_POST['user_repassword']))
+if(isset($_POST['user_repassword']) && ($user_password != $_POST['user_repassword'])) {
     $valid_user = false;
+}
 
 // Generate the users XML content
 if($valid_user) {

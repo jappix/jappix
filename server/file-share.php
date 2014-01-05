@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic() || isUpload()) {
     exit;
+}
 
 // Set a special XML header
 header('Content-Type: text/xml; charset=utf-8');
@@ -42,10 +43,11 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
     $filename = $_FILES['file']['name'];
     
     // Get the location
-    if(HOST_UPLOAD)
+    if(HOST_UPLOAD) {
         $location = HOST_UPLOAD.'/';
-    else
+    } else {
         $location = $_POST['location'];
+    }
     
     // Get the file new name
     $ext = getFileExt($filename);
@@ -74,8 +76,9 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
     }
     
     // Create (or re-create) the security file
-    if(!file_exists($security_file))    
+    if(!file_exists($security_file)) {   
         file_put_contents($security_file, securityHTML(), LOCK_EX);
+    }
     
     // Not already there? (sometimes users upload same file twice, no need to compute it 2 times)
     $file_first_upload = !file_exists($path);
@@ -107,8 +110,9 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
         }
         
         // Create the thumbnail (only once)
-        if(!$thumb_first_upload || resizeImage($thumb, $ext, 140, 105, 'square'))
+        if(!$thumb_first_upload || resizeImage($thumb, $ext, 140, 105, 'square')) {
             $thumb_xml = '<thumb>'.htmlspecialchars($location.'store/share/'.$user.'/'.$name.'_thumb.'.$ext).'</thumb>';
+        }
     }
     
     // Return the path to the file

@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic())
+if(isStatic()) {
     exit;
+}
 
 // Action on an existing file
 if(isset($_GET['id']) && !empty($_GET['id'])) {
@@ -35,22 +36,21 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     $file_path = JAPPIX_BASE.'/store/send/'.$file_id;
     
     // Get file name
-    if(isset($_GET['name']) && !empty($_GET['name']))
+    if(isset($_GET['name']) && !empty($_GET['name'])) {
         $file_name = $_GET['name'];
-    else
+    } else {
         $file_name = $file_id;
+    }
     
     // Hack?
     if(!isSafe($file_id)) {
         header('Status: 406 Not Acceptable', true, 406);
-
         exit('HTTP/1.1 406 Not Acceptable');
     }
     
     // File does not exist
     if(!file_exists($file_path)) {
         header('Status: 404 Not Found', true, 404);
-
         exit('HTTP/1.1 404 Not Found');
     }
     
@@ -85,10 +85,11 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
     $filename = $_FILES['file']['name'];
     
     // Get the location
-    if(HOST_UPLOAD)
+    if(HOST_UPLOAD) {
         $location = HOST_UPLOAD.'/';
-    else
+    } else {
         $location = $_POST['location'];
+    }
     
     // Get the file new name
     $ext = getFileExt($filename);

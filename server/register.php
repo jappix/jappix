@@ -22,8 +22,9 @@ session_start();
 $session_captcha = isset($_SESSION['captcha']) ? $_SESSION['captcha'] : null;
 
 // Remove CAPTCHA
-if(isset($_SESSION['captcha']))
+if(isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
+}
 
 // Close the session
 session_write_close();
@@ -61,16 +62,17 @@ if(REGISTER_API == 'on') {
     if(!$username || !$password || !$domain || !$captcha) {
         $error = true;
         
-        if(!$username)
+        if(!$username) {
             $error_reason = 'Username POST Field Missing';
-        else if(!$password)
+        } else if(!$password) {
             $error_reason = 'Password POST Field Missing';
-        else if(!$domain)
+        } else if(!$domain) {
             $error_reason = 'Domain POST Field Missing';
-        else if(!$captcha)
+        } else if(!$captcha) {
             $error_reason = 'CAPTCHA POST Field Missing';
-        else
+        } else {
             $error_reason = 'POST Field Missing';
+        }
     } else if($domain != HOST_MAIN) {
         $error = true;
         $error_reason = 'Domain Not Allowed';
@@ -130,10 +132,11 @@ if(REGISTER_API == 'on') {
             if($command_return != 1) {
                 $error = true;
                 
-                if($command_return == 2)
+                if($command_return == 2) {
                     $error_reason = 'Username Unavailable';
-                else
+                } else {
                     $error_reason = 'Server Error';
+                }
             }
         } else {
             $error = true;
@@ -153,8 +156,9 @@ if($error) {
     $status_code = '0';
     $status_message = 'Server error';
     
-    if($error_reason)
+    if($error_reason) {
         $status_message = $error_reason;
+    }
 }
 
 $api_response = '<jappix xmlns="jappix:account:register">';

@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic() || isUpload()) {
     exit;
+}
 
 // If valid data was sent
 if((isset($_GET['latitude']) && !empty($_GET['latitude'])) && (isset($_GET['longitude']) && !empty($_GET['longitude'])) && (isset($_GET['language']) && !empty($_GET['language']))) {

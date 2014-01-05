@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Purge requested
 if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(archives)|(send)|(updates))$/', $_GET['p'])) {
@@ -27,10 +28,11 @@ if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(archives)|(send)|(u
 
 // Folder view?
 if(isset($_GET['b']) && isset($_GET['s'])) {
-    if($_GET['b'] == 'share')
+    if($_GET['b'] == 'share') {
         $share_folder = urldecode($_GET['s']);
-    else if($_GET['b'] == 'music')
+    } else if($_GET['b'] == 'music') {
         $music_folder = urldecode($_GET['s']);
+    }
 }
 
 ?>

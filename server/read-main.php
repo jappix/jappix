@@ -13,41 +13,42 @@ Author: Valérian Saliou, Maranda
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Define the default main configuration values
 $main_conf = array(
-            'name'                  => 'Jappix',
-            'desc'                  => 'a free social network',
-            'owner_name'            => '',
-            'owner_website'         => '',
-            'legal'                 => '',
-            'language'              => 'all',
-            'resource'              => 'Jappix',
-            'lock'                  => 'on',
-            'anonymous'             => 'on',
-            'http_auth'             => 'off',
-            'registration'          => 'on',
-            'manager_link'          => 'on',
-            'groupchats_join'       => '',
-            'groupchats_suggest'    => 'on',
-            'encryption'            => 'on',
-            'https_storage'         => 'off',
-            'https_force'           => 'off',
-            'compression'           => 'off',
-            'analytics_track'       => 'off',
-            'analytics_url'         => '',
-            'analytics_id'          => '',
-            'ads_enable'            => 'off',
-            'ads_standard'          => '',
-            'ads_content'           => '',
-            'multi_files'           => 'off',
-            'developer'             => 'off',
-            'statistics'            => 'on',
-            'register_api'          => 'off',
-            'xmppd_ctl'             => '/usr/sbin/ejabberdctl',
-            'xmppd'                 => 'ejabberd'
+    'name'                  => 'Jappix',
+    'desc'                  => 'a free social network',
+    'owner_name'            => '',
+    'owner_website'         => '',
+    'legal'                 => '',
+    'language'              => 'all',
+    'resource'              => 'Jappix',
+    'lock'                  => 'on',
+    'anonymous'             => 'on',
+    'http_auth'             => 'off',
+    'registration'          => 'on',
+    'manager_link'          => 'on',
+    'groupchats_join'       => '',
+    'groupchats_suggest'    => 'on',
+    'encryption'            => 'on',
+    'https_storage'         => 'off',
+    'https_force'           => 'off',
+    'compression'           => 'off',
+    'analytics_track'       => 'off',
+    'analytics_url'         => '',
+    'analytics_id'          => '',
+    'ads_enable'            => 'off',
+    'ads_standard'          => '',
+    'ads_content'           => '',
+    'multi_files'           => 'off',
+    'developer'             => 'off',
+    'statistics'            => 'on',
+    'register_api'          => 'off',
+    'xmppd_ctl'             => '/usr/sbin/ejabberdctl',
+    'xmppd'                 => 'ejabberd'
 );
 
 // Define a default values array
@@ -66,8 +67,9 @@ if($main_data) {
         $main_value = $main_child->getName();
 
         // Only push this to the array if it exists
-        if(isset($main_conf[$main_value]) && (string)$main_child)
+        if(isset($main_conf[$main_value]) && (string)$main_child) {
             $main_conf[$main_value] = (string)$main_child;
+        }
     }
 }
 

@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic() || isUpload()) {
     exit;
+}
 
 // Create the HTML file to be downloaded
 if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && isset($_POST['nick']) && !empty($_POST['nick']) && isset($_POST['avatar']) && !empty($_POST['avatar']) && isset($_POST['date']) && !empty($_POST['date']) && isset($_POST['type']) && !empty($_POST['type'])) {
@@ -43,18 +44,21 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
     // Generate the XID link
     $xid_link = 'xmpp:'.$xid;
     
-    if($type == 'groupchat')
+    if($type == 'groupchat') {
         $xid_link .= '?join';
+    }
     
     // Generates the avatar code
-    if($avatar != 'none')
+    if($avatar != 'none') {
         $avatar = '<div class="avatar-container">'.$avatar.'</div>';
-    else
+    } else {
         $avatar = '';
+    }
 
     // Filter direction
-    if($direction != 'rtl')
+    if($direction != 'rtl') {
         $direction = 'ltr';
+    }
     
     // Generates an human-readable date
     $date = explode('T', $date);

@@ -29,15 +29,17 @@ function genCache($string, $mode, $cache) {
         $file_put = $cache_dir.'/'.$cache.'.cache';
 
         // Cache not yet wrote
-        if(is_dir($cache_dir) && !file_exists($file_put))
+        if(is_dir($cache_dir) && !file_exists($file_put)) {
             file_put_contents($file_put, $string, LOCK_EX);
+        }
     }
 }
 
 // The function to remove the BOM from a string
 function rmBOM($string) {
-    if(substr($string, 0, 3) == pack('CCC', 0xef, 0xbb, 0xbf))
+    if(substr($string, 0, 3) == pack('CCC', 0xef, 0xbb, 0xbf)) {
         $string = substr($string, 3);
+    }
 
     return $string;
 }
@@ -66,8 +68,9 @@ function setPath($string, $hash, $host, $type, $locale) {
     // Replace the JS strings
     if($type == 'javascripts') {
         // Static host defined
-        if($host && ($host != '.'))
+        if($host && ($host != '.')) {
             $static = $host;
+        }
 
         // Links to JS (must have a lang parameter)
         $string = preg_replace('/((\")|(\'))(\.\/)(js)(\/)(\S+)(js)((\")|(\'))/', '$1'.$static.'/server/get.php?h='.$hash.'&amp;l='.$locale.'&amp;t=$5&amp;f=$7$8$9', $string);
@@ -85,8 +88,9 @@ function setPath($string, $hash, $host, $type, $locale) {
     // Replace the CSS strings
     else if($type == 'stylesheets') {
         // Static host defined
-        if($host && ($host != '.'))
+        if($host && ($host != '.')) {
             $static = $host.'/server';
+        }
 
         $string = preg_replace('/(\(((\")|(\'))?\.\.\/)(images|store|sounds|fonts)(\/)(\S+)(png|jpg|jpeg|gif|bmp|ogg|oga|mp3|svg|ttf|woff|eot)(\?)?(#\w+)?((\")|(\'))?(\))/', '('.$static.'/get.php?h='.$hash.'&t=$5&f=$7$8$10)', $string);
     }
@@ -142,10 +146,11 @@ function setLocales($string, $locale) {
 // The function to set the good configuration to a JS file
 function setConfiguration($string, $hash, $locale, $version, $max_upload) {
     // Special BOSH URL if BOSH proxy enabled
-    if(BOSHProxy())
+    if(BOSHProxy()) {
         $bosh_special = staticLocation().'server/bosh.php';
-    else
+    } else {
         $bosh_special = HOST_BOSH;
+    }
     
     // Configuration array
     $array = array(
@@ -198,8 +203,9 @@ function setConfiguration($string, $hash, $locale, $version, $max_upload) {
               );
 
     // Apply it!
-    foreach($array as $array_key => $array_value)
+    foreach($array as $array_key => $array_value) {
         $string = preg_replace('/var '.$array_key.'(( )?=( )?)null;/', 'var '.$array_key.'$1\''.addslashes($array_value).'\';', $string);
+    }
 
     return $string;
 }

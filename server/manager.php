@@ -13,8 +13,9 @@ Authors: Valérian Saliou, Cyril "Kyriog" Glapa
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Get the manager functions
 require_once(JAPPIX_BASE.'/server/functions-manager.php');
@@ -39,8 +40,9 @@ $check_updates = false;
 session_start();
 
 // Force the updates check?
-if(isset($_GET['p']) && ($_GET['p'] == 'check'))
+if(isset($_GET['p']) && ($_GET['p'] == 'check')) {
     $check_updates = true;
+}
 
 // Login form is sent
 if(isset($_POST['login'])) {
@@ -48,8 +50,9 @@ if(isset($_POST['login'])) {
     $login_fired = true;
     
     // Extract the user name
-    if(isset($_POST['admin_name']) && !empty($_POST['admin_name']))
+    if(isset($_POST['admin_name']) && !empty($_POST['admin_name'])) {
         $user = trim($_POST['admin_name']);
+    }
     
     if($user && (isset($_POST['admin_password']) && !empty($_POST['admin_password']))) {
         // Get the password values
@@ -72,8 +75,9 @@ else if((isset($_SESSION['jappix_user']) && !empty($_SESSION['jappix_user'])) &&
 }
 
 // Validate the current session
-if($login_fired && isAdmin($user, $password))
+if($login_fired && isAdmin($user, $password)) {
     $id = 1;
+}
 
 // Any special page requested (and authorized)?
 if(($id != 0) && isset($_GET['a']) && !empty($_GET['a'])) {
@@ -186,18 +190,20 @@ $names = array(
 );
 
 // Any user for the meta?
-if($user && ($id != 0))
+if($user && ($id != 0)) {
     $user_meta = $user;
+}
 
 // Define current page identifier & name
 $page_identifier = $identifiers[$id];
 $page_name = $names[$id];
 
 // Define the current page form action
-if($id == 0)
+if($id == 0) {
     $form_action = keepGet('(m|a|p|k)', false);
-else
+} else {
     $form_action = keepGet('(m|p|k)', false);
+}
 
 ?>
 <!DOCTYPE html>

@@ -13,17 +13,19 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Checks the checkboxes which are set "on"
 $checked = ' checked=""';
 
 // BOSH proxy
-if($bosh_proxy == 'on')
+if($bosh_proxy == 'on') {
     $check_bosh_proxy = $checked;
-else
+} else {
     $check_bosh_proxy = '';
+}
 
 ?>
 <a class="info smallspace neutral" href="https://github.com/jappix/jappix/wiki/JappixApp" target="_blank"><?php _e("Need help? You'd better read our documentation page about how to fill this form!"); ?></a>

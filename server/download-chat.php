@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic() || isUpload()) {
     exit;
+}
 
 // Send the HTML file to be downloaded
 if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {

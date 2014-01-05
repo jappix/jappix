@@ -13,8 +13,9 @@ Author: Valérian Saliou
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 // Get the available backgrounds
 $backgrounds = getBackgrounds();
@@ -24,8 +25,9 @@ $backgrounds_number = count($backgrounds);
 $background = readBackground();
 
 // Backgrounds are missing?
-if(!$backgrounds_number && ($background['type'] == 'image'))
+if(!$backgrounds_number && ($background['type'] == 'image')) {
     $background['type'] = 'default';
+}
 
 switch($background['type']) {
     // Simple notice input
@@ -98,8 +100,9 @@ switch($background['image_vertical']) {
         break;
 }
 
-if($background['image_adapt'] == 'on')
+if($background['image_adapt'] == 'on') {
     $background_image_adapt = ' checked=""';
+}
 
 // Read the notice configuration
 $notice_conf = readNotice();

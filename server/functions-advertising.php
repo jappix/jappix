@@ -26,23 +26,25 @@ function getAdverts($type) {
     }
     
     // Not available?
-    if(!$key)
+    if(!$key) {
         return '';
+    }
     
     $cache_file = JAPPIX_BASE.'/tmp/cache/ads_'.md5($key).'.cache';
     
     // Must get from server?
     if(!file_exists($cache_file) || (isset($_SERVER['HTTP_USER_AGENT']) && ($_SERVER['HTTP_USER_AGENT'] == 'BackLinks.com'))) {
         // Get the cache data
-        if(isset($_SERVER['SCRIPT_URI']) && strlen($_SERVER['SCRIPT_URI']))
+        if(isset($_SERVER['SCRIPT_URI']) && strlen($_SERVER['SCRIPT_URI'])) {
             $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_URI'].((strlen($_SERVER['QUERY_STRING'])) ? '?'.$_SERVER['QUERY_STRING'] : '');
-        else
+        } else {
             $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'].((strlen($_SERVER['QUERY_STRING'])) ? '?'.$_SERVER['QUERY_STRING'] : '');
+        }
         
-        $query = 'LinkUrl='.urlencode(((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        $query  = 'LinkUrl='.urlencode(((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $query .= '&Key=' .urlencode($key);
         $query .= '&OpenInNewWindow=1';
-        $code = @file_get_contents('http://www.backlinks.com/'.$script.'?'.$query);
+        $code   = @file_get_contents('http://www.backlinks.com/'.$script.'?'.$query);
         
         // Write code to cache
         @file_put_contents($cache_file, $code);
@@ -50,8 +52,9 @@ function getAdverts($type) {
         $code = @file_get_contents($cache_file);
     }
     
-    if(!$code)
+    if(!$code) {
         $code = '';
+    }
     
     return $code;
 }

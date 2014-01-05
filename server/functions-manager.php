@@ -18,12 +18,14 @@ function isAdmin($user, $password) {
     $array = getUsers();
     
     // No data?
-    if(empty($array))
+    if(empty($array)) {
         return false;
+    }
     
     // Our user is set and valid?
-    if(isset($array[$user]) && ($array[$user] == $password))
+    if(isset($array[$user]) && ($array[$user] == $password)) {
         return true;
+    }
     
     // Not authorized
     return false;
@@ -32,16 +34,18 @@ function isAdmin($user, $password) {
 // Checks if a file is a valid image
 function isImage($file) {
     // This is an image
-    if(preg_match('/^(.+)(\.)(png|jpg|jpeg|gif|bmp)$/i', $file))
+    if(preg_match('/^(.+)(\.)(png|jpg|jpeg|gif|bmp)$/i', $file)) {
         return true;
+    }
     
     return false;
 }
 
 // Puts a marker on the current opened manager tab
 function currentTab($current, $page) {
-    if($current == $page)
+    if($current == $page) {
         echo ' class="tab-active"';
+    }
 }
 
 // Checks all the storage folders are writable
@@ -64,8 +68,9 @@ function storageWritable() {
             chmod($folder, 0777);
             
             // Check it again!
-            if(!is_writable($folder))
+            if(!is_writable($folder)) {
                 $writable = false;
+            }
         }
     }
     
@@ -75,18 +80,21 @@ function storageWritable() {
 // Removes a given directory (with all sub-elements)
 function removeDir($dir) {
     // Can't open the dir
-    if(!$dh = @opendir($dir))
+    if(!$dh = @opendir($dir)) {
         return;
+    }
     
     // Loop the current dir to remove its content
     while(false !== ($obj = readdir($dh))) {
         // Not a "real" directory
-        if(($obj == '.') || ($obj == '..'))
+        if(($obj == '.') || ($obj == '..')) {
             continue;
+        }
         
         // Not a file, remove this dir
-        if(!@unlink($dir.'/'.$obj))
+        if(!@unlink($dir.'/'.$obj)) {
             removeDir($dir.'/'.$obj);
+        }
     }
     
     // Close the dir and remove it!
@@ -104,15 +112,15 @@ function copyDir($source, $destination) {
         
         // Append the source directory content into the target one
         while(FALSE !== ($readdirectory = $directory->read())) {
-            if(($readdirectory == '.') || ($readdirectory == '..'))
+            if(($readdirectory == '.') || ($readdirectory == '..')) {
                 continue;
+            }
             
             $PathDir = $source.'/'.$readdirectory;
             
             // Recursive copy
             if(is_dir($PathDir)) {
                 copyDir($PathDir, $destination.'/'.$readdirectory);
-                
                 continue;
             }
             
@@ -132,8 +140,9 @@ function copyDir($source, $destination) {
 function sizeDir($dir) {
     $size = 0;
     
-    foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $file)
-            $size += $file->getSize();
+    foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $file) {
+        $size += $file->getSize();
+    }
     
     return $size;
 }
@@ -175,12 +184,14 @@ function versionNumber($id) {
     
     // Add missing items to [X.X.X]
     $missing = 3 - strlen($extract.'');
-    if($missing > 0)
+    if($missing > 0) {
         $extract = $extract.(str_repeat('0', $missing));
+    }
     
     // Allows updates for dev versions
-    if($dev)
+    if($dev) {
         $extract = $extract - 1;
+    }
     
     return intval($extract);
 }
@@ -188,8 +199,9 @@ function versionNumber($id) {
 // Checks for new Jappix updates
 function newUpdates($force) {
     // No need to check if developer mode
-    if(isDeveloper())
+    if(isDeveloper()) {
         return false;
+    }
     
     $cache_path = JAPPIX_BASE.'/tmp/cache/version.xml';
     
@@ -200,18 +212,18 @@ function newUpdates($force) {
         
         // Write the content
         file_put_contents($cache_path, $last_version, LOCK_EX);
-    }
-    
-    // Read from the cache
-    else
+    } else {
+        // Read from cache
         $last_version = file_get_contents($cache_path);
+    }
     
     // Parse the XML
     $xml = @simplexml_load_string($last_version);
     
     // No data?
-    if($xml === FALSE)
+    if($xml === FALSE) {
         return false;
+    }
     
     // Get the version numbers
     $current_version = getVersion();
@@ -221,8 +233,9 @@ function newUpdates($force) {
     $current_version = versionNumber($current_version);
     $last_version = versionNumber($last_version);
     
-    if($current_version < $last_version)
+    if($current_version < $last_version) {
         return true;
+    }
     
     return false;
 }
@@ -236,8 +249,9 @@ function updateInformations() {
     $array = array();
     
     // No XML?
-    if(!$data)
+    if(!$data) {
         return $array;
+    }
     
     $xml = new SimpleXMLElement($data);
     
@@ -318,9 +332,7 @@ function processUpdate($url) {
         if($zip_open === TRUE) {
             $zip->extractTo($update_dir);
             $zip->close();
-        }
-        
-        else {
+        } else {
             echo('<p>» '.T_("Aborted: could not extract the package!").'</p>');
             
             // Remove the broken source folder
@@ -377,12 +389,12 @@ function processUpdate($url) {
         $to_remove = $dir_base.$current;
         
         // Remove folders
-        if(is_dir($to_remove))
+        if(is_dir($to_remove)) {
             removeDir($to_remove);
-        
-        // Remove files
-        else
+        } else {
+            // Remove files
             unlink($to_remove);
+        }
     }
     
     // Move the extracted files to the base
@@ -419,8 +431,9 @@ function shareStats() {
     
     // Loop the share files
     foreach($scan as $current) {
-        if(is_dir($path.$current) && !preg_match('/^(\.(.+)?)$/i', $current))
+        if(is_dir($path.$current) && !preg_match('/^(\.(.+)?)$/i', $current)) {
             array_push($array, $current);
+        }
     }
     
     return $array;
@@ -433,8 +446,9 @@ function largestShare($array, $number) {
     $size_array = array();
     
     // Push the results in an array
-    foreach($array as $current)
+    foreach($array as $current) {
         $size_array[$current] = sizeDir($path.$current);
+    }
     
     // Sort this array
     arsort($size_array);
@@ -497,10 +511,11 @@ function getVisits() {
                   );
         
         foreach($timed as $timed_key => $timed_value) {
-            if($age >= $timed_value)
+            if($age >= $timed_value) {
                 $array[$timed_key] = intval($array['total'] / ($age / $timed[$timed_key])).'';
-            else
+            } else {
                 $array[$timed_key] = $array['total'].'';
+            }
         }
     }
     
@@ -542,10 +557,11 @@ function purgeFolder($folder) {
     $array = array();
     
     // We must purge all the folders?
-    if($folder == 'everything')
+    if($folder == 'everything') {
         array_push($array, 'archives', 'send');
-    else
+    } else {
         array_push($array, $folder);
+    }
     
     // All right, now we can empty it!
     foreach($array as $current_folder) {
@@ -558,13 +574,13 @@ function purgeFolder($folder) {
         foreach($scan as $current) {
             $remove_this = $directory.$current;
             
-            // Remove folders
-            if(is_dir($remove_this))
+            if(is_dir($remove_this)) {
+                // Remove folders
                 removeDir($remove_this);
-            
-            // Remove files
-            else
+            } else {
+                // Remove files
                 unlink($remove_this);
+            }
         }
     }
 }
@@ -601,15 +617,13 @@ function browseFolder($folder, $mode) {
         $path = $directory.'/'.$current;
         $file = $folder.'/'.$current;
         
-        // Directory?
         if(is_dir($path)) {
+            // Directory
             $type = 'folder';
             $href = './?b='.$mode.'&s='.urlencode($file).$keep_get;
             $target = '';
-        }
-        
-        // File?
-        else {
+        } else {
+            // File
             $type = getFileType(getFileExt($path));
             $href = $path;
             $target = ' target="_blank"';
@@ -618,10 +632,11 @@ function browseFolder($folder, $mode) {
         echo('<div class="one-browse '.$marker.' '.$type.' manager-images"><a href="'.$href.'"'.$target.'>'.htmlspecialchars($current).'</a><input type="checkbox" name="element_'.md5($file).'" value="'.htmlspecialchars($file).'" /></div>');
         
         // Change the marker
-        if($marker == 'odd')
+        if($marker == 'odd') {
             $marker = 'even';
-        else
+        } else {
             $marker = 'odd';
+        }
     }
     
     return true;
@@ -644,14 +659,16 @@ function removeElements() {
             $post_element = JAPPIX_BASE.'/store/'.$post_value;
             
             // Remove the current element
-            if(is_dir($post_element))
+            if(is_dir($post_element)) {
                 removeDir($post_element);
-            else if(file_exists($post_element)) {
+            } else if(file_exists($post_element)) {
                 if(substr($post_value,-4) == '.xml') {
                     $content_file = substr($post_element,0,-4);
                     unlink($content_file);
-                    if(file_exists($content_file.'_thumb.jpg'))
+
+                    if(file_exists($content_file.'_thumb.jpg')) {
                         unlink($content_file.'_thumb.jpg');
+                    }
                 }
                 unlink($post_element);
             }
@@ -659,10 +676,11 @@ function removeElements() {
     }
     
     // Show a notification message
-    if($elements_removed)
+    if($elements_removed) {
         echo('<p class="info smallspace success">'.T_("The selected elements have been removed.").'</p>');
-    else
+    } else {
         echo('<p class="info smallspace fail">'.T_("You must select elements to remove!").'</p>');
+    }
 }
 
 // Returns users browsing informations
@@ -682,19 +700,21 @@ function browseUsers() {
         echo('<div class="one-browse '.$marker.' user manager-images"><span>'.$user.'</span><input type="checkbox" name="admin_'.md5($user).'" value="'.$user.'" /><div class="clear"></div></div>');
         
         // Change the marker
-        if($marker == 'odd')
+        if($marker == 'odd') {
             $marker = 'even';
-        else
+        } else {
             $marker = 'odd';
+        }
     }
 }
 
 // Generates the logo form field
 function logoFormField($id, $name) {
-    if(file_exists(JAPPIX_BASE.'/store/logos/'.$name.'.png'))
+    if(file_exists(JAPPIX_BASE.'/store/logos/'.$name.'.png')) {
         echo '<span class="logo_links"><a class="remove manager-images" href="./?k='.urlencode($name).keepGet('k', false).'" title="'.T_("Remove this logo").'"></a><a class="view manager-images" href="./store/logos/'.$name.'.png" target="_blank" title="'.T_("View this logo").'"></a></span>';
-    else
+    } else {
         echo '<input id="logo_own_'.$id.'_location" type="file" name="logo_own_'.$id.'_location" accept="image/*" />';
+    }
     
     echo "\n";
 }
@@ -716,14 +736,16 @@ function readBackground() {
         $background_xml = new SimpleXMLElement($background_data);
         
         // Loop the notice configuration elements
-        foreach($background_xml->children() as $background_child)
+        foreach($background_xml->children() as $background_child) {
             $background_conf[$background_child->getName()] = (string)$background_child;
+        }
     }
     
     // Checks no value is missing in the stored configuration
     foreach($background_default as $background_name => $background_value) {
-        if(!isset($background_conf[$background_name]) || empty($background_conf[$background_name]))
+        if(!isset($background_conf[$background_name]) || empty($background_conf[$background_name])) {
             $background_conf[$background_name] = $background_default[$background_name];
+        }
     }
     
     return $background_conf;
@@ -734,8 +756,9 @@ function writeBackground($array) {
     // Generate the XML data
     $xml = '';
     
-    foreach($array as $key => $value)
+    foreach($array as $key => $value) {
         $xml .= "\n".'  <'.$key.'>'.stripslashes(htmlspecialchars($value)).'</'.$key.'>';
+    }
     
     // Write this data
     writeXML('conf', 'background', $xml);
@@ -750,8 +773,9 @@ function getBackgrounds() {
     $scan = scandir(JAPPIX_BASE.'/store/backgrounds/');
     
     foreach($scan as $current) {
-        if(isImage($current))
+        if(isImage($current)) {
             array_push($array, $current);
+        }
     }
     
     return $array;

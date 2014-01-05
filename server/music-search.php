@@ -26,8 +26,9 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
+if(isStatic() || isUpload()) {
     exit;
+}
 
 // If valid data was sent
 if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET['location']) && !empty($_GET['location']))) {
@@ -39,8 +40,9 @@ if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET
     $location = $_GET['location'];
     
     // Jamendo search?
-    if($location == 'jamendo')
+    if($location == 'jamendo') {
         exit(read_url('http://api.jamendo.com/get2/name+id+duration+url/track/xml/?searchquery='.urlencode($searchquery).'&order=searchweight_desc'));
+    }
     
     // Local music search
     $xml = '<data>';
@@ -63,12 +65,13 @@ if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET
             $id = md5($url);
             
             // Get the MIME type
-            if($ext == 'mp3')
+            if($ext == 'mp3') {
                 $type = 'audio/mpeg';
-            else if($ext == 'wav')
+            } else if($ext == 'wav') {
                 $type = 'audio/x-wav';
-            else
+            } else {
                 $type = 'audio/ogg';
+            }
             
             // Get the advanced informations
             $locked_title = $title;
@@ -79,14 +82,17 @@ if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET
             $artist_regex = '/^(.+) - (.+)$/i';
             $source_regex = '/^(.+) \[(.+)\]$/i';
             
-            if(preg_match($title_regex, $locked_title))
+            if(preg_match($title_regex, $locked_title)) {
                 $title = preg_replace($title_regex, '$3', $locked_title);
+            }
             
-            if(preg_match($artist_regex, $locked_title))
+            if(preg_match($artist_regex, $locked_title)) {
                 $artist = preg_replace($artist_regex, '$1', $locked_title);
+            }
             
-            if(preg_match($source_regex, $locked_title))
+            if(preg_match($source_regex, $locked_title)) {
                 $source = preg_replace($source_regex, '$2', $locked_title);
+            }
             
             // Generate the XML
             $xml .= '<data><track><name>'.htmlspecialchars($title).'</name><artist>'.htmlspecialchars($artist).'</artist><source>'.htmlspecialchars($source).'</source><id>'.htmlspecialchars($id).'</id><url>'.htmlspecialchars($url).'</url><type>'.$type.'</type></track></data>';

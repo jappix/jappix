@@ -48,20 +48,23 @@ if((isset($_SESSION['jappix_user']) && !empty($_SESSION['jappix_user'])) && (iss
 }
 
 // Not admin? Stop the script!
-if(!$is_admin)
+if(!$is_admin) {
     exit;
+}
 
 // Get the graph type
-if((isset($_GET['g']) && !empty($_GET['g'])))
+if((isset($_GET['g']) && !empty($_GET['g']))) {
     $graph = $_GET['g'];
-else
+} else {
     $graph = 'others';
+}
 
 // Get the locale
-if((isset($_GET['l']) && !empty($_GET['l'])))
+if((isset($_GET['l']) && !empty($_GET['l']))) {
     $locale = $_GET['l'];
-else
+} else {
     $locale = 'en';
+}
 
 // Include the translations
 includeTranslation($locale, 'main');
@@ -74,22 +77,16 @@ $evolution = FALSE;
 
 // Access graph?
 if($graph == 'access') {
-    // Values
+    // Access graph
     $elements = getMonthlyVisits();
     $legend = array(array('#5276A9', T_("Visits")));
     $evolution = TRUE;
-}
-
-// Share graph?
-else if($graph == 'share') {
-    // Values
+} else if($graph == 'share') {
+    // Share graph
     $elements = largestShare(shareStats(), 8);
     $legend = array(array('#5276A9', T_("Size")));
-}
-
-// Others graph?
-else if($graph == 'others') {
-    // Values
+} else if($graph == 'others') {
+    // Others graph
     $elements = otherStats();
     $legend = array(array('#5276A9', T_("Size")));
 }

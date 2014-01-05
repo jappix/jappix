@@ -41,18 +41,15 @@ $hash = genHash($version);
 // Include the good application file
 $include_app = 'desktop';
 
-// Not yet installed?
+// App to include?
 if(!isInstalled()) {
+    // Not yet installed
     $include_app = 'install';
-}
-
-// Anonymous?
-else if(anonymousMode()) {
+} else if(anonymousMode()) {
+    // Anonymous
     $include_app = 'desktop';
-}
-
-// Not anonymous, any forced mode?
-else if(isset($_GET['m']) && !empty($_GET['m'])) {
+} else if(isset($_GET['m']) && !empty($_GET['m'])) {
+    // Not anonymous, any forced mode?
     $force_mode = $_GET['m'];
     
     // Switch between two Jappix apps
@@ -67,18 +64,13 @@ else if(isset($_GET['m']) && !empty($_GET['m'])) {
     } else if($force_mode == 'download') {
         $include_app = $force_mode;
     }
-}
-
-// Not forced, any cookie stored?
-else if(isset($_COOKIE['jappix_mode'])) {
+} else if(isset($_COOKIE['jappix_mode'])) {
+    // Not forced, any cookie stored?
     if($_COOKIE['jappix_mode'] == 'mobile') {
         $include_app = 'mobile';
     }
-}
-
-// No cookie, is this a mobile device?
-else {
-    // New mobile detect
+} else {
+    // No cookie, is this a mobile device?
     require_once('./server/mobile-detect.php');
     $mobile = new Mobile_Detect();
     
@@ -88,7 +80,7 @@ else {
     }
 }
 
-// Special stuffs for Jappix apps
+// Special stuffs for Jappix apps?
 if(($include_app == 'desktop') || ($include_app == 'mobile')) {
     // Redirects the user to HTTPS if forced
     if(!useHttps() && httpsForce()) {

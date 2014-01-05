@@ -13,8 +13,9 @@ Author: Valérian Saliou, Maranda
 */
 
 // Someone is trying to hack us?
-if(!defined('JAPPIX_BASE'))
+if(!defined('JAPPIX_BASE')) {
     exit;
+}
 
 ?>
 <!DOCTYPE html>
