@@ -27,17 +27,17 @@ compressThis();
 
 // Not allowed for a special node
 if(isStatic() || isUpload())
-	exit;
+    exit;
 
 // If valid data was sent
 if((isset($_GET['latitude']) && !empty($_GET['latitude'])) && (isset($_GET['longitude']) && !empty($_GET['longitude'])) && (isset($_GET['language']) && !empty($_GET['language']))) {
-	// Set a XML header
-	header('Content-Type: text/xml; charset=utf-8');
-	
-	// Get the XML content
-	$xml = read_url('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
-	
-	exit($xml);
+    // Set a XML header
+    header('Content-Type: text/xml; charset=utf-8');
+    
+    // Get the XML content
+    $xml = read_url('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
+    
+    exit($xml);
 }
 
 ?>

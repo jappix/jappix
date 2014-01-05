@@ -14,37 +14,37 @@ Authors: Valérian Saliou, regilero
 
 // Someone is trying to hack us?
 if(!defined('JAPPIX_BASE'))
-	exit;
+    exit;
 
 // Array of the sub-folders to create
 $store_folders = array(
-	'access',
-	'archives',
-	'avatars',
-	'backgrounds',
-	'cache',
-	'conf',
-	'logos',
-	'music',
-	'send',
-	'share',
-	'updates'
+    'access',
+    'archives',
+    'avatars',
+    'backgrounds',
+    'cache',
+    'conf',
+    'logos',
+    'music',
+    'send',
+    'share',
+    'updates'
 );
 
 // Creates the sub-folders
 for($i = 0; $i < count($store_folders); $i++) {
-	$current = JAPPIX_BASE.'/store/'.$store_folders[$i];
-	
-	// Create the folder itself
-	if(!is_dir($current))
-		mkdir($current, 0777, true);
-	
-	chmod($current, 0777);
-	
-	// Create the security file inside the folder
-	$security_html = securityHTML();
-	
-	file_put_contents($current.'/index.html', $security_html, LOCK_EX);
+    $current = JAPPIX_BASE.'/store/'.$store_folders[$i];
+    
+    // Create the folder itself
+    if(!is_dir($current))
+        mkdir($current, 0777, true);
+    
+    chmod($current, 0777);
+    
+    // Create the security file inside the folder
+    $security_html = securityHTML();
+    
+    file_put_contents($current.'/index.html', $security_html, LOCK_EX);
 }
 
 ?>

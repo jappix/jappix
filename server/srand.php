@@ -45,7 +45,7 @@ function secure_random_bytes($len = 10)
    $SSLstr = '4'; // http://xkcd.com/221/
    if (function_exists('openssl_random_pseudo_bytes') && 
        (version_compare(PHP_VERSION, '5.3.4') >= 0 || 
-	substr(PHP_OS, 0, 3) !== 'WIN'))
+  substr(PHP_OS, 0, 3) !== 'WIN'))
    {
       $SSLstr = openssl_random_pseudo_bytes($len, $strong);
       if ($strong) {
@@ -66,7 +66,7 @@ function secure_random_bytes($len = 10)
        substr(PHP_OS, 0, 3) !== 'WIN')) {
       $str = mcrypt_create_iv($len, MCRYPT_DEV_URANDOM);
       if ($str !== false) {
-         return $str;	
+         return $str; 
       }
    }
 
@@ -107,7 +107,7 @@ function secure_random_bytes($len = 10)
       }
       if ($handle) {
          $entropy .= @fread($handle, $bytes);
-      } else  {	           	
+      } else  {             
          // Measure the time that the operations will take on average
          for ($i = 0; $i < 3; $i++) 
          {
@@ -117,11 +117,11 @@ function secure_random_bytes($len = 10)
                $var = sha1($var);
             }
             $c2 = microtime(true);
-    	    $entropy .= $c1 . $c2;
+          $entropy .= $c1 . $c2;
          }
 
          // Based on the above measurement determine the total rounds
-         // in order to bound the total running time.	
+         // in order to bound the total running time. 
          $rounds = (int) ($msec_per_round * 50 / (int) (($c2 - $c1) * 1000000));
 
          // Take the additional measurements. On average we can expect

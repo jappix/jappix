@@ -17,16 +17,16 @@ Author: Cyril "Kyriog" Glapa
 
 // Check submitted vars
 if(!isset($_GET['file']))
-	exit(T_("You haven't provided any file to download"));
+    exit(T_("You haven't provided any file to download"));
 if(!isset($_GET['key']))
-	exit(T_("You cannot download a file if you don't provide a key"));
+    exit(T_("You cannot download a file if you don't provide a key"));
 
 // Initialize
 $file_path = JAPPIX_BASE.'/store/share/'.$_GET['file'];
 $xml_path = $file_path.'.xml';
 
 if(!is_file($xml_path) || !is_file($file_path))
-	exit(T_("Woah this file isn't found, please double check"));
+    exit(T_("Woah this file isn't found, please double check"));
 
 // Load XML information for this file
 $xml = new SimpleXMLElement($xml_path, 0, true);
@@ -34,16 +34,16 @@ $keys = $xml->keys->key;
 $key_found = false;
 
 foreach($keys as $key) {
-	if($key == $_GET['key']) {
-		$key_found = true;
-		
-		break;
-	}
+    if($key == $_GET['key']) {
+        $key_found = true;
+        
+        break;
+    }
 }
 
 // Not allowed?
 if(!$key_found)
-	exit(T_("The key you provided does not have the permission to download this file"));
+    exit(T_("The key you provided does not have the permission to download this file"));
 
 // Generate header data
 $expires  = 31536000;

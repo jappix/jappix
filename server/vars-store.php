@@ -14,7 +14,7 @@ Author: Valérian Saliou
 
 // Someone is trying to hack us?
 if(!defined('JAPPIX_BASE'))
-	exit;
+    exit;
 
 // Define the initial music form values
 $music_title = '';

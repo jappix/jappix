@@ -68,6 +68,22 @@ module.exports = function(grunt) {
             '../app/javascripts/ios.js'
           ]
       }
+    },
+
+
+    // Task PHPLint
+    phplint: {
+      all: [
+        '../index.php',
+        '../server/*.php',
+
+        // Ignored files
+        '!../server/drawsvgchart.php',
+        '!../server/gettext.php',
+        '!../server/jsmin.php',
+        '!../server/mobile-detect.php',
+        '!../server/srand.php'
+      ]
     }
   });
 
@@ -75,6 +91,7 @@ module.exports = function(grunt) {
   // Load plugins
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-phplint');
 
 
   // Map tasks
@@ -84,7 +101,8 @@ module.exports = function(grunt) {
 
   var GRUNT_TASKS_LINT = {
     css: [['csslint',0]],
-    js: [['jshint',0]]
+    js: [['jshint',0]],
+    php: [['phplint',0]]
   };
 
 

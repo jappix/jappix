@@ -27,6 +27,7 @@
   "devDependencies": {
     "grunt": "0.4.2",
     "grunt-contrib-csslint": "0.2.0",
-    "grunt-contrib-jshint": "0.8.0"
+    "grunt-contrib-jshint": "0.8.0",
+    "grunt-phplint": "0.0.5"
   }
 }

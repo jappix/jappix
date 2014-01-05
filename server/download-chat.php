@@ -27,27 +27,27 @@ compressThis();
 
 // Not allowed for a special node
 if(isStatic() || isUpload())
-	exit;
+    exit;
 
 // Send the HTML file to be downloaded
 if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {
-	// We define the variables
-	$filename = $_GET['id'];
-	$content_dir = '../store/archives/';
-	$filepath = $content_dir.$filename.'.html';
-	
-	// We set special headers
-	header("Content-disposition: attachment; filename=\"$filename.html\"");
-	header("Content-Type: application/force-download");
-	header("Content-Transfer-Encoding: text/html\n");
-	header("Content-Length: ".filesize($filepath));
-	header("Pragma: no-cache");
-	header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
-	header("Expires: 0");
-	readfile($filepath);
-	
-	// We delete the stored log file
-	unlink($filepath);
+    // We define the variables
+    $filename = $_GET['id'];
+    $content_dir = '../store/archives/';
+    $filepath = $content_dir.$filename.'.html';
+    
+    // We set special headers
+    header("Content-disposition: attachment; filename=\"$filename.html\"");
+    header("Content-Type: application/force-download");
+    header("Content-Transfer-Encoding: text/html\n");
+    header("Content-Length: ".filesize($filepath));
+    header("Pragma: no-cache");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
+    header("Expires: 0");
+    readfile($filepath);
+    
+    // We delete the stored log file
+    unlink($filepath);
 }
 
 ?>

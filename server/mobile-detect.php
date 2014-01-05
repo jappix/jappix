@@ -549,7 +549,7 @@ class Mobile_Detect {
             }
         }
 
-	    return false;
+        return false;
 
     }
 

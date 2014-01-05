@@ -26,93 +26,85 @@ hideErrors();
 compressThis();
 
 // Not allowed for a special node
-if(isStatic() || isUpload())
-	exit;
+if(isStatic() || isUpload()) {
+    exit;
+}
+
+// Initialize response vars
+$response_type = null;
+$response_binval = null;
+$response_error = null;
+$response_id = '0';
 
 // Set a special XML header
 header('Content-Type: text/xml; charset=utf-8');
 
 // No file uploaded?
-if((!isset($_FILES['file']) || empty($_FILES['file'])) || (!isset($_POST['id']) || empty($_POST['id'])))
-	exit(
-'<jappix xmlns=\'jappix:avatar:post\' id=\'0\'>
-	<error>bad-request</error>
-</jappix>'
-	);
+if((!isset($_FILES['file']) || empty($_FILES['file'])) || (!isset($_POST['id']) || empty($_POST['id']))) {
+    $response_error = 'bad-request';
+    $response_id = '0';
+} else {
+    // Get the POST vars
+    $response_id = $_POST['id'];
+    $tmp_filename = $_FILES['file']['tmp_name'];
+    $old_filename = $_FILES['file']['name'];
 
-// Get the POST vars
-$id = $_POST['id'];
-$tmp_filename = $_FILES['file']['tmp_name'];
-$old_filename = $_FILES['file']['name'];
+    // Get the file extension
+    $ext = getFileExt($old_filename);
 
-// Get the file extension
-$ext = getFileExt($old_filename);
+    // Hash it!
+    $filename = md5($old_filename.time()).$ext;
 
-// Hash it!
-$filename = md5($old_filename.time()).$ext;
+    // Define some vars
+    $path = JAPPIX_BASE.'/store/avatars/'.$filename;
 
-// Define some vars
-$path = JAPPIX_BASE.'/store/avatars/'.$filename;
+    // Define MIME type
+    if($ext == 'jpg') {
+        $ext = 'jpeg';
+    }
 
-// Define MIME type
-if($ext == 'jpg')
-	$ext = 'jpeg';
+    $response_type = 'image/'.$ext;
 
-$mime = 'image/'.$ext;
+    if(!preg_match('/^(jpeg|png|gif)$/i', $ext)) {
+        // Unsupported file extension
+        $response_error = 'forbidden-type';
+    } else if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+        // File upload error
+        $response_error = 'move-error';
+    } else if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96, 'square')) {
+        // Resize the image
+        try {
+            // Encode the file
+            $response_binval = base64_encode(file_get_contents($path));
 
-// Unsupported file extension?
-if(!preg_match('/^(jpeg|png|gif)$/i', $ext))
-	exit(
-'<jappix xmlns=\'jappix:avatar:post\' id=\''.$id.'\'>
-	<error>forbidden-type</error>
-</jappix>'
-	);
+            // Remove the file
+            unlink($path);
+        } catch(Exception $e) {
+            $response_error = 'server-error';
 
-// File upload error?
-if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path))
-	exit(
-'<jappix xmlns=\'jappix:file:post\' id=\''.$id.'\'>
-	<error>move-error</error>
-</jappix>'
-	);
+            // Remove the file
+            unlink($path);
+        }
+    }
 
-// Resize the image?
-if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96, 'square')) {
-	try {
-		// Encode the file
-		$binval = base64_encode(file_get_contents($path));
-		
-		// Remove the file
-		unlink($path);
-		
-		exit(
-'<jappix xmlns=\'jappix:file:post\' id=\''.$id.'\'>
-	<type>'.$mime.'</type>
-	<binval>'.$binval.'</binval>
-</jappix>'
-		);
-	}
-	
-	catch(Exception $e) {
-		// Remove the file
-		unlink($path);
-		
-		exit(
-'<jappix xmlns=\'jappix:file:post\' id=\''.$id.'\'>
-	<error>server-error</error>
-</jappix>'
-		);
-	}
+    // Remove the file
+    unlink($path);
 }
 
-// Remove the file
-unlink($path);
-
-// Something went wrong!
-exit(
-'<jappix xmlns=\'jappix:file:post\' id=\''.$id.'\'>
-	<error>service-unavailable</error>
-</jappix>'
-);
+// Exit with response
+if($response_type && $response_binval && !$response_error) {
+    exit(
+        '<jappix xmlns=\'jappix:file:post\' id=\''.$response_id.'\'>'.
+        '   <type>'.$response_type.'</type>'.
+        '   <binval>'.$response_binval.'</binval>'.
+        '</jappix>'
+    );
+} else {
+    exit(
+        '<jappix xmlns=\'jappix:file:post\' id=\''.$response_id.'\'>'.
+        '   <error>'.($response_error || 'unexpected-error').'</error>'.
+        '</jappix>'
+    );
+}
 
 ?>

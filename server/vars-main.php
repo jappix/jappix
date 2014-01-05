@@ -14,7 +14,7 @@ Author: Valérian Saliou, Maranda
 
 // Someone is trying to hack us?
 if(!defined('JAPPIX_BASE'))
-	exit;
+    exit;
 
 // Define the vars with the main configuration constants
 $service_name = htmlspecialchars(SERVICE_NAME);
