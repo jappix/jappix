@@ -241,7 +241,7 @@ var Connection = (function () {
                     
                     // We setup the connection !
                     con.registerHandler('onconnect', self.handleRegistered);
-                    con.registerHandler('onerror', handleError);
+                    con.registerHandler('onerror', Errors.handle);
                     
                     // We retrieve what the user typed in the register inputs
                     oArgs = {};
