@@ -1320,6 +1320,9 @@ msgstr ""
 msgid "BOSH host"
 msgstr ""
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid "You can install some extra softwares on your server, to extend your Jappix features. Some others might be modified, because of security restrictions which are set by default."
 msgstr ""
 

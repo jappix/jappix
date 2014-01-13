@@ -66,6 +66,28 @@ var Common = (function () {
 
 
     /**
+     * Checks if Jappix is connected
+     * @public
+     * @return {boolean}
+     */
+    self.hasWebSocket = function() {
+
+        has_websocket = false;
+
+        try {
+            if(HOST_WEBSOCKET && typeof window.WebSocket !== undefined) {
+                has_websocket = true;
+            }
+        } catch(e) {
+            Console.error('Common.hasWebSocket', e);
+        } finally {
+            return has_websocket;
+        }
+
+    };
+
+
+    /**
      * Checks if Jappix has focus
      * @public
      * @return {boolean}

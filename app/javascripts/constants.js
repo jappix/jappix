@@ -158,6 +158,7 @@ var HOST_TURN_PASSWORD = null;
 var HOST_BOSH = null;
 var HOST_BOSH_MAIN = null;
 var HOST_BOSH_MINI = null;
+var HOST_WEBSOCKET = null;
 var HOST_STATIC = null;
 var HOST_UPLOAD = null;
 

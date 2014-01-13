@@ -198,6 +198,7 @@ function setConfiguration($string, $hash, $locale, $version, $max_upload) {
                 'HOST_BOSH'             => $bosh_special,
                 'HOST_BOSH_MAIN'        => HOST_BOSH_MAIN,
                 'HOST_BOSH_MINI'        => HOST_BOSH_MINI,
+                'HOST_WEBSOCKET'        => HOST_WEBSOCKET,
                 'HOST_STATIC'           => HOST_STATIC,
                 'HOST_UPLOAD'           => HOST_UPLOAD
               );

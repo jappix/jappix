@@ -39,21 +39,22 @@ if($_SERVER['HTTP_HOST']) {
 
 // Define the default hosts configuration values
 $hosts_conf = array(
-    'main'          => $http_host,
-    'muc'           => 'muc.'.$http_host,
-    'pubsub'        => 'pubsub.'.$http_host,
-    'vjud'          => 'vjud.'.$http_host,
-    'anonymous'     => 'anonymous.'.$http_host,
-    'stun'          => 'stun.'.$default_host,
-    'turn'          => '',
-    'turn_username' => '',
-    'turn_password' => '',
-    'bosh'          => 'http://'.$http_host.':5280/http-bind',
-    'bosh_main'     => '',
-    'bosh_mini'     => '',
-    'static'        => '',
-    'upload'        => '',
-    'bosh_proxy'    => 'off'
+    'main'            => $http_host,
+    'muc'             => 'muc.'.$http_host,
+    'pubsub'          => 'pubsub.'.$http_host,
+    'vjud'            => 'vjud.'.$http_host,
+    'anonymous'       => 'anonymous.'.$http_host,
+    'stun'            => 'stun.'.$default_host,
+    'turn'            => '',
+    'turn_username'   => '',
+    'turn_password'   => '',
+    'bosh'            => 'http://'.$http_host.':5280/http-bind',
+    'bosh_main'       => '',
+    'bosh_mini'       => '',
+    'websocket'       => 'ws://'.$http_host.':5280/xmpp-websocket',
+    'static'          => '',
+    'upload'          => '',
+    'bosh_proxy'      => 'off'
 );
 
 // Define a default values array
@@ -102,6 +103,7 @@ define('HOST_TURN_PASSWORD', $hosts_conf['turn_password']);
 define('HOST_BOSH', $hosts_conf['bosh']);
 define('HOST_BOSH_MAIN', $hosts_conf['bosh_main']);
 define('HOST_BOSH_MINI', $hosts_conf['bosh_mini']);
+define('HOST_WEBSOCKET', $hosts_conf['websocket']);
 define('HOST_STATIC', $hosts_conf['static']);
 define('HOST_UPLOAD', $hosts_conf['upload']);
 define('BOSH_PROXY', $hosts_conf['bosh_proxy']);

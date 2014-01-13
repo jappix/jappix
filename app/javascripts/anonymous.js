@@ -97,19 +97,27 @@ var Anonymous = (function () {
     self.login = function(server) {
 
         try {
-            // We define the http binding parameters
             oArgs = {};
-            
-            if(HOST_BOSH_MAIN)
-                oArgs.httpbase = HOST_BOSH_MAIN;
-            else
-                oArgs.httpbase = HOST_BOSH;
 
-            // Check BOSH origin
-            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
-            
-            // We create the new http-binding connection
-            con = new JSJaCHttpBindingConnection(oArgs);
+            if(Common.hasWebSocket()) {
+                // WebSocket supported & configured
+                oArgs.httpbase = HOST_WEBSOCKET;
+
+                con = new JSJaCWebSocketConnection(oArgs);
+            } else {
+                // Otherwise, fallback on legacy HTTP bind (BOSH)
+                if(HOST_BOSH_MAIN) {
+                    oArgs.httpbase = HOST_BOSH_MAIN;
+                } else {
+                    oArgs.httpbase = HOST_BOSH;
+                }
+
+                // Check BOSH origin
+                BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
+                
+                // We create the new http-binding connection
+                con = new JSJaCHttpBindingConnection(oArgs);
+            }
             
             // And we handle everything that happen
             con.registerHandler('message', Message.handle);

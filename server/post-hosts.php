@@ -101,6 +101,13 @@ if(isset($_POST['host_bosh_mini']) && !empty($_POST['host_bosh_mini'])) {
     $host_bosh_mini = stripslashes(htmlspecialchars($hosts_default['bosh_mini']));
 }
 
+// WebSocket host
+if(isset($_POST['host_websocket']) && !empty($_POST['host_websocket'])) {
+    $host_websocket = stripslashes(htmlspecialchars($_POST['host_websocket']));
+} else {
+    $host_websocket = stripslashes(htmlspecialchars($hosts_default['websocket']));
+}
+
 // Static host
 if(isset($_POST['host_static']) && !empty($_POST['host_static'])) {
     $host_static = stripslashes(htmlspecialchars($_POST['host_static']));
@@ -136,6 +143,7 @@ $hosts_xml =
     <bosh>'.$host_bosh.'</bosh>
     <bosh_main>'.$host_bosh_main.'</bosh_main>
     <bosh_mini>'.$host_bosh_mini.'</bosh_mini>
+    <websocket>'.$host_websocket.'</websocket>
     <static>'.$host_static.'</static>
     <upload>'.$host_upload.'</upload>
     <bosh_proxy>'.$bosh_proxy.'</bosh_proxy>'

@@ -53,28 +53,37 @@ var Connection = (function () {
             // We add the login wait div
             Interface.showGeneralWait();
             
-            // We define the http binding parameters
             oArgs = {};
-            
-            if(HOST_BOSH_MAIN)
-                oArgs.httpbase = HOST_BOSH_MAIN;
-            else
-                oArgs.httpbase = HOST_BOSH;
-            
-            // Check BOSH origin
-            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
 
-            // We create the new http-binding connection
-            con = new JSJaCHttpBindingConnection(oArgs);
+            if(Common.hasWebSocket()) {
+                // WebSocket supported & configured
+                oArgs.httpbase = HOST_WEBSOCKET;
+
+                con = new JSJaCWebSocketConnection(oArgs);
+            } else {
+                // Otherwise, fallback on legacy HTTP bind (BOSH)
+                if(HOST_BOSH_MAIN) {
+                    oArgs.httpbase = HOST_BOSH_MAIN;
+                } else {
+                    oArgs.httpbase = HOST_BOSH;
+                }
+
+                // Check BOSH origin
+                BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
+                
+                // We create the new http-binding connection
+                con = new JSJaCHttpBindingConnection(oArgs);
+            }
             
             // And we handle everything that happen
-            self.setupCon(con,oExtend);
+            self.setupCon(con, oExtend);
             
             // Generate a resource
             var random_resource = DataStore.getDB(self.desktop_hash, 'session', 'resource');
             
-            if(!random_resource)
+            if(!random_resource) {
                 random_resource = lResource + ' (' + (new Date()).getTime() + ')';
+            }
             
             // We retrieve what the user typed in the login inputs
             oArgs = {};
@@ -225,19 +234,27 @@ var Connection = (function () {
                 });
             } else {
                 try {
-                    // We define the http binding parameters
                     oArgs = {};
-                    
-                    if(HOST_BOSH_MAIN)
-                        oArgs.httpbase = HOST_BOSH_MAIN;
-                    else
-                        oArgs.httpbase = HOST_BOSH;
-                    
-                    // Check BOSH origin
-                    BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
 
-                    // We create the new http-binding connection
-                    con = new JSJaCHttpBindingConnection(oArgs);
+                    if(Common.hasWebSocket()) {
+                        // WebSocket supported & configured
+                        oArgs.httpbase = HOST_WEBSOCKET;
+
+                        con = new JSJaCWebSocketConnection(oArgs);
+                    } else {
+                        // Otherwise, fallback on legacy HTTP bind (BOSH)
+                        if(HOST_BOSH_MAIN) {
+                            oArgs.httpbase = HOST_BOSH_MAIN;
+                        } else {
+                            oArgs.httpbase = HOST_BOSH;
+                        }
+
+                        // Check BOSH origin
+                        BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
+                        
+                        // We create the new http-binding connection
+                        con = new JSJaCHttpBindingConnection(oArgs);
+                    }
                     
                     // We setup the connection !
                     con.registerHandler('onconnect', self.handleRegistered);
