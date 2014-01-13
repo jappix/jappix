@@ -88,24 +88,19 @@ var JappixMini = (function () {
         try {
             oArgs = {};
 
-            if(JappixCommon.hasWebSocket()) {
+            if(Common.hasWebSocket()) {
                 // WebSocket supported & configured
-                oArgs.httpbase = HOST_WEBSOCKET;
-
-                con = new JSJaCWebSocketConnection(oArgs);
+                con = new JSJaCWebSocketConnection({
+                    httpbase: HOST_WEBSOCKET
+                });
             } else {
-                // Otherwise, fallback on legacy HTTP bind (BOSH)
-                if(HOST_BOSH_MINI) {
-                    oArgs.httpbase = HOST_BOSH_MINI;
-                } else {
-                    oArgs.httpbase = HOST_BOSH;
-                }
-
                 // Check BOSH origin
                 BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
                 
                 // We create the new http-binding connection
-                con = new JSJaCHttpBindingConnection(oArgs);
+                con = new JSJaCHttpBindingConnection({
+                    httpbase: (HOST_BOSH_MINI || HOST_BOSH)
+                });
             }
             
             // And we handle everything that happen

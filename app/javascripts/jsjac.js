@@ -1206,6 +1206,9 @@ JSJAC_CHECKQUEUEINTERVAL = 100;   // msecs to poll send queue
 JSJAC_CHECKINQUEUEINTERVAL = 100; // msecs to poll incoming queue
 JSJAC_TIMERVAL = 2000;          // default polling interval
 
+JSJAC_ALLOW_PLAIN = true;       // whether to allow plaintext logins
+JSJAC_ALLOW_SCRAM = false;      // allow usage of SCRAM-SHA-1 authentication; please note that it is quite slow so it is disable by default
+
 // Options specific to HTTP Binding (BOSH)
 JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
                                     // connection manager 

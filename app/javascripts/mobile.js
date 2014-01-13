@@ -66,27 +66,19 @@ var Mobile = (function () {
                 // Show the info notification
                 self.showThis('info');
                 
-                // We define the http binding parameters
-                oArgs = {};
-
                 if(HOST_WEBSOCKET && typeof window.WebSocket !== undefined) {
                     // WebSocket supported & configured
-                    oArgs.httpbase = HOST_WEBSOCKET;
-
-                    con = new JSJaCWebSocketConnection(oArgs);
+                    con = new JSJaCWebSocketConnection({
+                        httpbase: HOST_WEBSOCKET
+                    });
                 } else {
-                    // Otherwise, fallback on legacy HTTP bind (BOSH)
-                    if(HOST_BOSH_MAIN) {
-                        oArgs.httpbase = HOST_BOSH_MAIN;
-                    } else {
-                        oArgs.httpbase = HOST_BOSH;
-                    }
-
                     // Check BOSH origin
                     BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
                     
                     // We create the new http-binding connection
-                    con = new JSJaCHttpBindingConnection(oArgs);
+                    con = new JSJaCHttpBindingConnection({
+                        httpbase: (HOST_BOSH_MAIN || HOST_BOSH)
+                    });
                 }
                 
                 // And we handle everything that happen
@@ -105,10 +97,11 @@ var Mobile = (function () {
                 oArgs.pass = pwd;
                 oArgs.secure = true;
                 oArgs.xmllang = XML_LANG;
-                
+
                 // Register?
-                if(reg)
+                if(reg) {
                     oArgs.register = true;
+                }
                 
                 // We connect !
                 con.connect(oArgs);
