@@ -88,21 +88,14 @@ var JappixMini = (function () {
         try {
             oArgs = {};
 
-            if(Common.hasWebSocket()) {
-                // WebSocket supported & configured
-                con = new JSJaCWebSocketConnection({
-                    httpbase: HOST_WEBSOCKET
-                });
-            } else {
-                // Check BOSH origin
-                BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
-                
-                // We create the new http-binding connection
-                con = new JSJaCHttpBindingConnection({
-                    httpbase: (HOST_BOSH_MINI || HOST_BOSH)
-                });
-            }
+            // Check BOSH origin
+            BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
             
+            // We create the new http-binding connection
+            con = new JSJaCHttpBindingConnection({
+                httpbase: (HOST_BOSH_MINI || HOST_BOSH)
+            });
+
             // And we handle everything that happen
             self.setupCon(con);
 
@@ -1770,11 +1763,7 @@ var JappixMini = (function () {
             // Old DOM? (saved session)
             if(dom) {
                 // Attempt to resume connection
-                if(JappixCommon.hasWebSocket()) {
-                    con = new JSJaCWebSocketConnection();
-                } else {
-                    con = new JSJaCHttpBindingConnection();
-                }
+                con = new JSJaCHttpBindingConnection();
 
                 self.setupCon(con);
                 resumed = con.resume();
