@@ -56,7 +56,7 @@ if((!isset($_FILES['file']) || empty($_FILES['file'])) || (!isset($_POST['id']) 
     $filename = md5($old_filename.time()).$ext;
 
     // Define some vars
-    $path = JAPPIX_BASE.'/store/avatars/'.$filename;
+    $path = JAPPIX_BASE.'/tmp/avatars/'.$filename;
 
     // Define MIME type
     if($ext == 'jpg') {

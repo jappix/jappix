@@ -21,7 +21,6 @@ if(!defined('JAPPIX_BASE')) {
 $store_folders = array(
     'access',
     'archives',
-    'avatars',
     'backgrounds',
     'cache',
     'conf',

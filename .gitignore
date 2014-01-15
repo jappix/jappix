@@ -1,6 +1,8 @@
 mini/
 store/
-tmp/
+tmp/cache/
+tmp/jingle/
+tmp/update/
 log/
 test/node_modules/
 .DS_Store
