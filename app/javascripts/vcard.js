@@ -240,8 +240,9 @@ var vCard = (function () {
             var dData = $(responseXML).find('jappix');
             
             // Not current upload session?
-            if(parseInt(dData.attr('id')) != parseInt($('#vcard-avatar input[name="id"]').val()))
+            if(parseInt(dData.attr('id')) != parseInt($('#vcard-avatar input[name="id"]').val())) {
                 return;
+            }
             
             // Reset the avatar info
             $('#vcard .avatar-info').hide().stopTime();

@@ -49,46 +49,43 @@ if((!isset($_FILES['file']) || empty($_FILES['file'])) || (!isset($_POST['id']) 
     $tmp_filename = $_FILES['file']['tmp_name'];
     $old_filename = $_FILES['file']['name'];
 
-    // Get the file extension
-    $ext = getFileExt($old_filename);
+    // Security sanitization
+    if(isAllowedExt($old_filename)) {
+        // Get the file extension
+        $ext = getFileExt($old_filename);
 
-    // Hash it!
-    $filename = md5($old_filename.time()).$ext;
+        // Hash it!
+        $filename = md5($old_filename.time()).'.'.$ext;
 
-    // Define some vars
-    $path = JAPPIX_BASE.'/tmp/avatars/'.$filename;
+        // Define some vars
+        $path = JAPPIX_BASE.'/tmp/avatar/'.$filename;
 
-    // Define MIME type
-    if($ext == 'jpg') {
-        $ext = 'jpeg';
-    }
-
-    $response_type = 'image/'.$ext;
-
-    if(!preg_match('/^(jpeg|png|gif)$/i', $ext)) {
-        // Unsupported file extension
-        $response_error = 'forbidden-type';
-    } else if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
-        // File upload error
-        $response_error = 'move-error';
-    } else if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96, 'square')) {
-        // Resize the image
-        try {
-            // Encode the file
-            $response_binval = base64_encode(file_get_contents($path));
-
-            // Remove the file
-            unlink($path);
-        } catch(Exception $e) {
-            $response_error = 'server-error';
-
-            // Remove the file
-            unlink($path);
+        // Define MIME type
+        if($ext == 'jpg') {
+            $ext = 'jpeg';
         }
-    }
 
-    // Remove the file
-    unlink($path);
+        $response_type = 'image/'.$ext;
+
+        if(!preg_match('/^(jpeg|png|gif)$/i', $ext)) {
+            // Unsupported file extension
+            $response_error = 'forbidden-type';
+        } else if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
+            // File upload error
+            $response_error = 'move-error';
+        } else if(!function_exists('gd_info') || resizeImage($path, $ext, 96, 96, 'square')) {
+            // Resize the image
+            try {
+                // Encode the file
+                $response_binval = base64_encode(file_get_contents($path));
+            } catch(Exception $e) {
+                $response_error = 'server-error';
+            }
+        }
+
+        // Remove the file
+        unlink($path);
+    }
 }
 
 // Exit with response

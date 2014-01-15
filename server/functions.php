@@ -1418,15 +1418,9 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
         // Initialize GD
         switch($ext) {
             case 'png':
-                $img_resize = imagecreatefrompng($path);
-                
-                break;
-            
+                $img_resize = imagecreatefrompng($path); break;
             case 'gif':
-                $img_resize = imagecreatefromgif($path);
-                
-                break;
-            
+                $img_resize = imagecreatefromgif($path); break;
             default:
                 $img_resize = imagecreatefromjpeg($path);
         }
@@ -1514,13 +1508,28 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
         $new_img = imagecreatetruecolor($new_width, $new_height);
         
         // Must keep alpha pixels?
-        if(($ext == 'png') || ($ext == 'gif')){
-            imagealphablending($new_img, false);
-            imagesavealpha($new_img, true);
-            
-            // Set transparent pixels
-            $transparent = imagecolorallocatealpha($new_img, 255, 255, 255, 127);
-            imagefilledrectangle($new_img, 0, 0, $new_width, $new_height, $transparent);
+        if(($ext == 'png') || ($ext == 'gif')) {
+            $current_transparent = imagecolortransparent($img_resize);
+
+            if($current_transparent != -1) {
+                $transparent_color = imagecolorsforindex($img_resize, $current_transparent);
+
+                $current_transparent = imagecolorallocate(
+                    $new_img,
+                    $transparent_color['red'],
+                    $transparent_color['green'],
+                    $transparent_color['blue']
+                );
+
+                imagefill($new_img, 0, 0, $current_transparent);
+                imagecolortransparent($new_img, $current_transparent);
+            } elseif($ext == 'png') {
+                imagealphablending($new_img, false);
+                $color = imagecolorallocatealpha($new_img, 0, 0, 0, 127);
+                
+                imagefill($new_img, 0, 0, $color);
+                imagesavealpha($new_img, true);
+            }
         }
         
         // Copy the new image
