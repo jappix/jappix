@@ -59,9 +59,7 @@ if(!isInstalled()) {
         
         // Define the app to include
         $include_app = $force_mode;
-    } else if($force_mode == 'manager') {
-        $include_app = $force_mode;
-    } else if($force_mode == 'download') {
+    } else if(($force_mode == 'manager') || ($force_mode == 'download')) {
         $include_app = $force_mode;
     }
 } else if(isset($_COOKIE['jappix_mode'])) {
