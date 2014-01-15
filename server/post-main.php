@@ -191,6 +191,20 @@ if(isset($_POST['ads_content']) && !empty($_POST['ads_content'])) {
     $ads_content = stripslashes(htmlspecialchars($main_default['ads_content']));
 }
 
+// Google AdSense Client ID
+if(isset($_POST['gads_client']) && !empty($_POST['gads_client'])) {
+    $gads_client = stripslashes(htmlspecialchars(trim($_POST['gads_client'])));
+} else {
+    $gads_client = stripslashes(htmlspecialchars($main_default['gads_client']));
+}
+
+// Google AdSense Slot
+if(isset($_POST['gads_slot']) && !empty($_POST['gads_slot'])) {
+    $gads_slot = stripslashes(htmlspecialchars(trim($_POST['gads_slot'])));
+} else {
+    $gads_slot = stripslashes(htmlspecialchars($main_default['gads_slot']));
+}
+
 // Multiple resources
 if(isset($_POST['multi_files']) && ($_POST['multi_files'] == 'on')) {
     $multi_files = 'on';
@@ -252,6 +266,8 @@ $conf_xml =
     <ads_enable>'.$ads_enable.'</ads_enable>
     <ads_standard>'.$ads_standard.'</ads_standard>
     <ads_content>'.$ads_content.'</ads_content>
+    <gads_client>'.$gads_client.'</gads_client>
+    <gads_slot>'.$gads_slot.'</gads_slot>
     <multi_files>'.$multi_files.'</multi_files>
     <developer>'.$developer.'</developer>
     <statistics>'.$statistics.'</statistics>

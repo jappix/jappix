@@ -96,20 +96,21 @@ var R_WEBRTC_SDP_ICE_CANDIDATE = /^a=candidate:(\w{1,32}) (\d{1,5}) (udp|tcp) (\
 var R_WEBRTC_SDP_ICE_PAYLOAD   = {
   rtpmap          : /^a=rtpmap:(\d+) (([^\s\/]+)\/(\d+)(\/([^\s\/]+))?)?/i,
   fmtp            : /^a=fmtp:(\d+) (.+)/i,
+  group           : /^a=group:(\S+) (.+)/,
   rtcp_fb         : /^a=rtcp-fb:(\S+) (\S+)( (\S+))?/i,
   rtcp_fb_trr_int : /^a=rtcp-fb:(\d+) trr-int (\d+)/i,
   pwd             : /^a=ice-pwd:(\S+)/i,
   ufrag           : /^a=ice-ufrag:(\S+)/i,
   ptime           : /^a=ptime:(\d+)/i,
   maxptime        : /^a=maxptime:(\d+)/i,
-  ssrc            : /^a=ssrc:(\d+) (\w+)(:(\S+))?( (\w+))?/i,
+  ssrc            : /^a=ssrc:(\d+) (\S+)(:(\S+))?( (\S+))?/i,
   rtcp_mux        : /^a=rtcp-mux/i,
-  crypto          : /^a=crypto:(\d{1,9}) (\w+) (\S+)( (\S+))?/i,
-  zrtp_hash       : /^a=zrtp-hash:(\S+) (\w+)/i,
+  crypto          : /^a=crypto:(\d{1,9}) (\S+) (\S+)( (\S+))?/i,
+  zrtp_hash       : /^a=zrtp-hash:(\S+) (\S+)/i,
   fingerprint     : /^a=fingerprint:(\S+) (\S+)/i,
   setup           : /^a=setup:(\S+)/i,
   extmap          : /^a=extmap:([^\s\/]+)(\/([^\s\/]+))? (\S+)/i,
-  bandwidth       : /^b=(\w+):(\d+)/i,
+  bandwidth       : /^b=(\S+):(\d+)/i,
   media           : /^m=(audio|video|application|data) /i
 };
 
@@ -129,8 +130,10 @@ var NS_JINGLE_APPS_RTP_VIDEO                        = 'urn:xmpp:jingle:apps:rtp:
 var NS_JINGLE_APPS_RTP_RTP_HDREXT                   = 'urn:xmpp:jingle:apps:rtp:rtp-hdrext:0';
 var NS_JINGLE_APPS_RTP_RTCP_FB                      = 'urn:xmpp:jingle:apps:rtp:rtcp-fb:0';
 var NS_JINGLE_APPS_RTP_ZRTP                         = 'urn:xmpp:jingle:apps:rtp:zrtp:1';
+var NS_JINGLE_APPS_RTP_SSMA                         = 'urn:xmpp:jingle:apps:rtp:ssma:0';
 var NS_JINGLE_APPS_STUB                             = 'urn:xmpp:jingle:apps:stub:0';
 var NS_JINGLE_APPS_DTLS                             = 'urn:xmpp:tmp:jingle:apps:dtls:0';
+var NS_JINGLE_APPS_GROUPING                         = 'urn:xmpp:jingle:apps:grouping:0';
 
 var NS_JINGLE_TRANSPORTS_ICEUDP                     = 'urn:xmpp:jingle:transports:ice-udp:1';
 var NS_JINGLE_TRANSPORTS_STUB                       = 'urn:xmpp:jingle:transports:stub:0';
@@ -140,6 +143,8 @@ var NS_JINGLE_SECURITY_STUB                         = 'urn:xmpp:jingle:security:
 var NS_EXTDISCO                                     = 'urn:xmpp:extdisco:1';
 
 var NS_IETF_RFC_3264                                = 'urn:ietf:rfc:3264';
+var NS_IETF_RFC_5576                                = 'urn:ietf:rfc:5576';
+var NS_IETF_RFC_5888                                = 'urn:ietf:rfc:5888';
 
 var R_NS_JINGLE_APP                                 = /^urn:xmpp:jingle:app:(\w+)(:(\w+))?(:(\d+))?$/;
 var R_NS_JINGLE_TRANSPORT                           = /^urn:xmpp:jingle:transport:(\w+)$/;
@@ -155,6 +160,12 @@ var MAP_DISCO_JINGLE                                = [
   /* http://xmpp.org/extensions/xep-0176.html#support */
   NS_JINGLE_TRANSPORTS_ICEUDP,
   NS_IETF_RFC_3264,
+
+  /* http://xmpp.org/extensions/xep-0339.html#disco */
+  NS_IETF_RFC_5576,
+
+  /* http://xmpp.org/extensions/xep-0338.html#disco */
+  NS_IETF_RFC_5888,
 
   /* http://xmpp.org/extensions/xep-0293.html#determining-support */
   NS_JINGLE_APPS_RTP_RTCP_FB,
@@ -661,6 +672,11 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._group_local = {};
+
+  /**
+   * @private
+   */
   self._candidates_local = {};
 
   /**
@@ -672,6 +688,11 @@ function JSJaCJingle(args) {
    * @private
    */
   self._payloads_remote = {};
+
+  /**
+   * @private
+   */
+  self._group_remote = {};
 
   /**
    * @private
@@ -1602,6 +1623,7 @@ function JSJaCJingle(args) {
       });
 
       self._util_stanza_generate_content_local(stanza, jingle);
+      self._util_stanza_generate_group_local(stanza, jingle);
 
       // Schedule success
       self.register_handler(JSJAC_JINGLE_STANZA_TYPE_RESULT, args.id, function(stanza) {
@@ -1686,6 +1708,7 @@ function JSJaCJingle(args) {
       });
 
       self._util_stanza_generate_content_local(stanza, jingle);
+      self._util_stanza_generate_group_local(stanza, jingle);
 
       // Schedule success
       self.register_handler(JSJAC_JINGLE_STANZA_TYPE_RESULT, args.id, function(stanza) {
@@ -1811,6 +1834,7 @@ function JSJaCJingle(args) {
       }
 
       self._util_stanza_generate_content_local(stanza, jingle, content_queue_local);
+      self._util_stanza_generate_group_local(stanza, jingle);
 
       // Schedule success
       self.register_handler(JSJAC_JINGLE_STANZA_TYPE_RESULT, args.id, function(stanza) {
@@ -2129,6 +2153,9 @@ function JSJaCJingle(args) {
 
       // Request is valid?
       if(rd_sid && self.is_initiator() && self._util_stanza_parse_content(stanza)) {
+        // Handle additional data (optional)
+        self._util_stanza_parse_group(stanza);
+
         // Generate and store content data
         self._util_build_content_remote();
 
@@ -2138,6 +2165,7 @@ function JSJaCJingle(args) {
 
         var sdp_remote = self._util_sdp_generate(
           WEBRTC_SDP_TYPE_ANSWER,
+          self._get_group_remote(),
           self._get_payloads_remote(),
           self._get_candidates_queue_remote()
         );
@@ -2391,6 +2419,9 @@ function JSJaCJingle(args) {
 
       // Request is valid?
       if(rd_sid && self._util_stanza_parse_content(stanza)) {
+        // Handle additional data (optional)
+        self._util_stanza_parse_group(stanza);
+
         // Set session values
         self._set_sid(rd_sid);
         self._set_to(rd_from);
@@ -2599,6 +2630,9 @@ function JSJaCJingle(args) {
 
       // Request is valid?
       if(rd_sid && self._util_stanza_parse_content(stanza)) {
+        // Handle additional data (optional)
+        self._util_stanza_parse_group(stanza);
+
         // Re-generate and store new content data
         self._util_build_content_remote();
 
@@ -2863,6 +2897,16 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._get_group_local = function(semantics) {
+    if(semantics)
+      return (semantics in self._group_local) ? self._group_local[semantics] : {};
+
+    return self._group_local;
+  };
+
+  /**
+   * @private
+   */
   self._get_candidates_local = function(name) {
     if(name)
       return (name in self._candidates_local) ? self._candidates_local[name] : {};
@@ -2888,6 +2932,16 @@ function JSJaCJingle(args) {
       return (name in self._payloads_remote) ? self._payloads_remote[name] : {};
 
     return self._payloads_remote;
+  };
+
+  /**
+   * @private
+   */
+  self._get_group_remote = function(semantics) {
+    if(semantics)
+      return (semantics in self._group_remote) ? self._group_remote[semantics] : {};
+
+    return self._group_remote;
   };
 
   /**
@@ -3432,6 +3486,13 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._set_group_local = function(semantics, group_data) {
+    self._group_local[semantics] = group_data;
+  };
+
+  /**
+   * @private
+   */
   self._set_candidates_local = function(name, candidate_data) {
     if(!(name in self._candidates_local))  self._candidates_local[name] = [];
 
@@ -3482,6 +3543,13 @@ function JSJaCJingle(args) {
     } catch(e) {
       self.get_debug().log('[JSJaCJingle] _set_payloads_remote_add > ' + e, 1);
     }
+  };
+
+  /**
+   * @private
+   */
+  self._set_group_remote = function(semantics, group_data) {
+    self._group_remote[semantics] = group_data;
   };
 
   /**
@@ -4340,6 +4408,60 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._util_stanza_parse_group = function(stanza) {
+    try {
+      var i, j,
+          jingle,
+          group, cur_group,
+          content, cur_content, group_content_names;
+
+      // Parse initiate stanza
+      jingle = self.util_stanza_jingle(stanza);
+
+      if(jingle) {
+        // Childs
+        group = self.util_stanza_get_element(jingle, 'group', NS_JINGLE_APPS_GROUPING);
+
+        if(group && group.length) {
+          for(i = 0; i < group.length; i++) {
+            cur_group = group[i];
+            group_content_names = [];
+
+            // Attrs
+            group_semantics = self.util_stanza_get_attribute(cur_group, 'semantics');
+
+            // Contents
+            content = self.util_stanza_get_element(cur_group, 'content', NS_JINGLE_APPS_GROUPING);
+
+            for(j = 0; j < content.length; j++) {
+              cur_content = content[j];
+
+              // Content attrs
+              group_content_names.push(
+                self.util_stanza_get_attribute(cur_content, 'name')
+              );
+            }
+
+            // Payloads (non-destructive setters / cumulative)
+            self._set_group_remote(
+              group_semantics,
+              group_content_names
+            );
+          }
+        }
+      }
+
+      return true;
+    } catch(e) {
+      self.get_debug().log('[JSJaCJingle] _util_stanza_parse_group > ' + e, 1);
+    }
+
+    return false;
+  };
+
+  /**
+   * @private
+   */
   self._util_stanza_parse_payload = function(stanza_content) {
     var payload_obj = {
       descriptions : {},
@@ -4844,6 +4966,39 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._util_stanza_generate_group_local = function(stanza, jingle) {
+    try {
+      var i,
+          cur_semantics, cur_group, cur_group_name,
+          group;
+
+      var group_local = self._get_group_local();
+
+      for(cur_semantics in group_local) {
+        cur_group = group_local[cur_semantics];
+
+        group = jingle.appendChild(stanza.buildNode('group', {
+          'xmlns': NS_JINGLE_APPS_GROUPING,
+          'semantics': cur_semantics
+        }));
+
+        for(i in cur_group) {
+          cur_group_name = cur_group[i];
+
+          group.appendChild(stanza.buildNode('content', {
+            'xmlns': NS_JINGLE_APPS_GROUPING,
+            'name': cur_group_name
+          }));
+        }
+      }
+    } catch(e) {
+      self.get_debug().log('[JSJaCJingle] _util_stanza_generate_group_local > ' + e, 1);
+    }
+  };
+
+  /**
+   * @private
+   */
   self._util_generate_content = function(creator, name, senders, payloads, transports) {
     var content_obj = {};
 
@@ -5006,12 +5161,12 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
-  self._util_sdp_generate = function(type, payloads, candidates) {
+  self._util_sdp_generate = function(type, group, payloads, candidates) {
     try {
       var sdp_obj = {};
 
       sdp_obj.candidates  = self._util_sdp_generate_candidates(candidates);
-      sdp_obj.description = self._util_sdp_generate_description(type, payloads, sdp_obj.candidates);
+      sdp_obj.description = self._util_sdp_generate_description(type, group, payloads, sdp_obj.candidates);
 
       return sdp_obj;
     } catch(e) {
@@ -5097,16 +5252,17 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
-  self._util_sdp_generate_description = function(type, payloads, sdp_candidates) {
+  self._util_sdp_generate_description = function(type, group, payloads, sdp_candidates) {
     var payloads_obj = {};
 
     try {
       var payloads_str = '';
 
       // Common vars
-      var i, c, j, k, l, m, n, o, p, q, r, s,
+      var i, c, j, k, l, m, n, o, p, q, r, s, t,
           cur_name, cur_name_obj,
           cur_media, cur_senders,
+          cur_group_semantics, cur_group_names, cur_group_name,
           cur_transports_obj, cur_description_obj,
           cur_d_pwd, cur_d_ufrag, cur_d_fingerprint,
           cur_d_attrs, cur_d_rtcp_fb, cur_d_bandwidth, cur_d_encryption, cur_d_ssrc,
@@ -5128,6 +5284,20 @@ function JSJaCJingle(args) {
       payloads_str += WEBRTC_SDP_LINE_BREAK;
       payloads_str += self._util_sdp_generate_timing();
       payloads_str += WEBRTC_SDP_LINE_BREAK;
+
+      // Add groups
+      for(cur_group_semantics in group) {
+        cur_group_names = group[cur_group_semantics];
+
+        payloads_str += 'a=group:' + cur_group_semantics;
+
+        for(t in cur_group_names) {
+          cur_group_name = cur_group_names[t];
+          payloads_str += ' ' + cur_group_name;
+        }
+
+        payloads_str += WEBRTC_SDP_LINE_BREAK;
+      }
 
       // Add media groups
       for(cur_name in payloads) {
@@ -6164,6 +6334,47 @@ function JSJaCJingle(args) {
   /**
    * @private
    */
+  self._util_sdp_parse_group = function(sdp_payload) {
+    var group = {};
+
+    try {
+      if(!sdp_payload || sdp_payload.indexOf('\n') == -1)  return group;
+
+      // Common vars
+      var lines = sdp_payload.split('\n');
+      var i, cur_line,
+          m_group;
+
+      var init_group = function(semantics) {
+        if(!(semantics in group))  group[semantics] = [];
+      };
+
+      for(i in lines) {
+        cur_line = lines[i];
+
+        // 'group' line?
+        m_group = (R_WEBRTC_SDP_ICE_PAYLOAD.group).exec(cur_line);
+
+        if(m_group) {
+          if(m_group[1] && m_group[2]) {
+            init_group(m_group[1]);
+
+            group[m_group[1]] = (m_group[2].indexOf(' ') === -1 ? [m_group[2]] : m_group[2].split(' '));
+          }
+
+          continue;
+        }
+      }
+    } catch(e) {
+      self.get_debug().log('[JSJaCJingle] _util_sdp_parse_group > ' + e, 1);
+    }
+
+    return group;
+  };
+
+  /**
+   * @private
+   */
   self._util_sdp_resolution_payload = function(payload) {
     try {
       if(!payload || typeof payload !== 'object') return {};
@@ -6417,13 +6628,14 @@ function JSJaCJingle(args) {
 
       if(self.is_initiator()) {
         // Local description
-        self._get_peer_connection().createOffer(self._peer_got_description, null, WEBRTC_CONFIGURATION.create_offer);
+        self._get_peer_connection().createOffer(self._peer_got_description, self._peer_fail_description, WEBRTC_CONFIGURATION.create_offer);
 
         // Then, wait for responder to send back its remote description
       } else {
         // Apply SDP data
         sdp_remote = self._util_sdp_generate(
           WEBRTC_SDP_TYPE_OFFER,
+          self._get_group_remote(),
           self._get_payloads_remote(),
           self._get_candidates_queue_remote()
         );
@@ -6447,7 +6659,7 @@ function JSJaCJingle(args) {
         );
 
         // Local description
-        self._get_peer_connection().createAnswer(self._peer_got_description, null, WEBRTC_CONFIGURATION.create_answer);
+        self._get_peer_connection().createAnswer(self._peer_got_description, self._peer_fail_description, WEBRTC_CONFIGURATION.create_answer);
 
         // ICE candidates
         var c;
@@ -6567,9 +6779,20 @@ function JSJaCJingle(args) {
         );
       }
 
+      var cur_semantics;
+      var group_parsed = self._util_sdp_parse_group(sdp_local.sdp);
+
+      for(cur_semantics in group_parsed) {
+        self._set_group_local(
+          cur_semantics,
+          group_parsed[cur_semantics]
+        );
+      }
+
       // Filter our local description (remove unused medias)
       var sdp_local_desc = self._util_sdp_generate_description(
         sdp_local.type,
+        self._get_group_local(),
         self._get_payloads_local(),
 
         self._util_sdp_generate_candidates(
@@ -6596,6 +6819,19 @@ function JSJaCJingle(args) {
       self.get_debug().log('[JSJaCJingle] _peer_got_description > Waiting for local candidates...', 2);
     } catch(e) {
       self.get_debug().log('[JSJaCJingle] _peer_got_description > ' + e, 1);
+    }
+  };
+
+  /**
+   * @private
+   */
+  self._peer_fail_description = function() {
+    self.get_debug().log('[JSJaCJingle] _peer_fail_description', 4);
+
+    try {
+      self.get_debug().log('[JSJaCJingle] _peer_fail_description > Could not get local description!', 1);
+    } catch(e) {
+      self.get_debug().log('[JSJaCJingle] _peer_fail_description > ' + e, 1);
     }
   };
 

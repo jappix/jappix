@@ -32,6 +32,8 @@ var MINI_ACTIVE					= null;
 var MINI_RECONNECT				= 0;
 var MINI_RECONNECT_MAX			= 100;
 var MINI_RECONNECT_INTERVAL     = 1;
+var MINI_PIXEL_STREAM_DURATION  = 300;
+var MINI_PIXEL_STREAM_INTERVAL  = 3600;
 var MINI_QUEUE					= [];
 var MINI_CHATS					= [];
 var MINI_GROUPCHATS				= [];
@@ -199,10 +201,11 @@ var JappixMini = (function () {
                 // Update the roster
                 jQuery('#jappix_mini a.jm_pane.jm_button span.jm_counter').text('0');
 
-                if(MINI_ANONYMOUS)
+                if(MINI_ANONYMOUS) {
                     self.initialize();
-                else
+                } else {
                     self.getRoster();
+                }
 
                 JappixConsole.info('Jappix Mini is now connected.');
             } else {
@@ -261,7 +264,10 @@ var JappixMini = (function () {
             if(!MINI_INITIALIZED) {
                 return;
             }
-            
+
+            // Reset Jappix Mini DOM before saving it
+            self.resetPixStream();
+
             // Save the actual Jappix Mini DOM
             JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'dom', jQuery('#jappix_mini').html());
             JappixDataStore.setDB(MINI_HASH, 'jappix-mini', 'nickname', MINI_NICKNAME);
@@ -1827,7 +1833,7 @@ var JappixMini = (function () {
             
             // Create the DOM
             jQuery('body').append('<div id="jappix_mini" style="display: none;" dir="' + (JappixCommon.isRTL() ? 'rtl' : 'ltr') + '">' + dom + '</div>');
-            
+
             // Apply legacy support
             self.legacySupport();
 
@@ -1840,7 +1846,7 @@ var JappixMini = (function () {
             self.overflowEvents();
 
             // Delay to fix DOM lag bug (CSS file not yet loaded)
-            jQuery('#jappix_mini').everyTime(10, function() {
+            jQuery('#jappix_mini').everyTime(100, function() {
                 var this_sel = jQuery(this);
 
                 if(this_sel.is(':visible')) {
@@ -1853,8 +1859,22 @@ var JappixMini = (function () {
 
                     // Adapt roster height
                     self.adaptRoster();
+
+                    // Update current pixel streams
+                    self.updatePixStream();
                 }
             });
+
+            // Auto-check if ads should be added
+            if(GADS_CLIENT && GADS_SLOT) {
+                jQuery('#jappix_mini div.jm_conversations').everyTime('60s', function() {
+                    JappixConsole.debug('JappixMini.create[timer]', 'Auto-updating ads...');
+
+                    self.updatePixStream();
+
+                    JappixConsole.debug('JappixMini.create[timer]', 'Done auto-updating ads.');
+                });
+            }
             
             // CSS refresh (Safari display bug when restoring old DOM)
             jQuery('#jappix_mini div.jm_starter').css('float', 'right');
@@ -2624,9 +2644,10 @@ var JappixMini = (function () {
                     jQuery(current + ' input.jm_send-messages').focus();
                 });
                 
-                // Scroll to the last message
+                // Scroll to the last message & adapt chat
                 if(hash) {
                     self.messageScroll(hash);
+                    self.updatePixStream(hash);
                 }
             }
         } catch(e) {
@@ -2886,7 +2907,9 @@ var JappixMini = (function () {
                 }
                 
                 html += 
-                    '</div>' +     
+                    '</div>' + 
+                        '<div class="jm_pix_stream"></div>' + 
+
                         '<div class="jm_received-messages" id="received-' + hash + '">' + 
                             '<div class="jm_chatstate_typing">' + JappixCommon.printf(JappixCommon._e("%s is typing..."), nick.htmlEnc()) + '</div>' + 
                         '</div>' + 
@@ -3200,7 +3223,7 @@ var JappixMini = (function () {
      * @param {string} xid
      * @return {undefined}
      */
-    self.removeGroupchat = function() {
+    self.removeGroupchat = function(xid) {
 
         try {
             // Remove the groupchat private chats & the groupchat buddies from the roster
@@ -3965,6 +3988,154 @@ var JappixMini = (function () {
             JappixConsole.error('JappixMini.soundPlay', e);
         } finally {
             return false;
+        }
+
+    };
+
+
+    /**
+     * Adapts chat size
+     * @public
+     * @param {string} conversation_path
+     * @return {undefined}
+     */
+    self.adaptChat = function(conversation_path) {
+
+        try {
+            var conversation_sel = jQuery('#jappix_mini div.jm_conversation');
+            
+            if(conversation_path) {
+                conversation_sel = conversation_sel.filter(conversation_path);
+            }
+
+            if(conversation_sel.size()) {
+                // Reset before doing anything else...
+                conversation_sel.find('div.jm_received-messages').css({
+                    'max-height': 'none',
+                    'margin-top': 0
+                });
+
+                // Update sizes of chat
+                var pix_stream_sel = conversation_sel.find('div.jm_pix_stream');
+                var received_messages_sel = conversation_sel.find('div.jm_received-messages');
+                var pix_stream_height = pix_stream_sel.height();
+
+                if(pix_stream_sel.find('*').size() && pix_stream_height > 0) {
+                    received_messages_sel.css({
+                        'margin-top': pix_stream_height,
+                        'max-height': (received_messages_sel.height() - pix_stream_sel.height())
+                    });
+                }
+            }
+        } catch(e) {
+            JappixConsole.error('JappixMini.adaptChat', e);
+        }
+
+    };
+
+
+    /**
+     * Updates given pixel stream
+     * @public
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self.updatePixStream = function(hash) {
+
+        try {
+            // Feature supported? (we rely on local storage)
+            if(window.localStorage !== undefined) {
+                var stamp_now = JappixDateUtils.getTimeStamp();
+                var stamp_start = JappixDataStore.getPersistent(MINI_HASH, 'pixel-stream', 'start');
+                var stamp_end = JappixDataStore.getPersistent(MINI_HASH, 'pixel-stream', 'end');
+
+                var in_schedule = false;
+                var to_reschedule = true;
+
+                if(stamp_start && stamp_end && !isNaN(stamp_start) && !isNaN(stamp_end)) {
+                    stamp_start = parseInt(stamp_start, 10);
+                    stamp_end = parseInt(stamp_end, 10);
+
+                    in_schedule = (stamp_now >= stamp_start && stamp_end >= stamp_now);
+                    to_reschedule = (stamp_now >= stamp_end + MINI_PIXEL_STREAM_INTERVAL);
+                }
+
+                // Should add ads?
+                if(in_schedule || to_reschedule) {
+                    // Store new schedules
+                    if(to_reschedule) {
+                        JappixDataStore.setPersistent(MINI_HASH, 'pixel-stream', 'start', stamp_now);
+                        JappixDataStore.setPersistent(MINI_HASH, 'pixel-stream', 'end', stamp_now + MINI_PIXEL_STREAM_DURATION);
+                    }
+
+                    // Select chat(s)
+                    var conversation_path = '#chat-' + hash;
+                    var conversation_sel = jQuery('#jappix_mini div.jm_conversation');
+
+                    if(hash) {
+                        conversation_sel = conversation_sel.filter(conversation_path);
+                    } else {
+                        conversation_sel = conversation_sel.filter(':has(div.jm_chat-content:visible):first');
+
+                        if(conversation_sel.size()) {
+                            conversation_path = '#' + conversation_sel.attr('id');
+                        } else {
+                            conversation_path = null;
+                        }
+                    }
+
+                    // Process HTML code
+                    if(conversation_path && GADS_CLIENT && GADS_SLOT) {
+                        var pix_stream_sel = conversation_sel.find('div.jm_pix_stream');
+
+                        if(!pix_stream_sel.find('*').size()) {
+                            pix_stream_sel.html(
+                                '<ins class="adsbygoogle"' + 
+                                     'style="display:block"' + 
+                                     'data-ad-client="' + JappixCommon.encodeQuotes(GADS_CLIENT) + '"' + 
+                                     'data-ad-slot="' + JappixCommon.encodeQuotes(GADS_SLOT) + '"' + 
+                                     'data-ad-format="auto"></ins>' + 
+                                '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'
+                            );
+
+                            jQuery.getScript('//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function() {
+                                self.adaptChat(conversation_path);
+                            });
+
+                            JappixConsole.info('JappixMini.updatePixStream', 'Added a pixel stream');
+                        } else {
+                            JappixConsole.info('JappixMini.updatePixStream', 'Pixel stream already added');
+                        }
+                    } else {
+                        self.resetPixStream();
+                    }
+
+                    // Update chat height
+                    if(conversation_path) {
+                        self.adaptChat(conversation_path);
+                    }
+                } else {
+                    self.resetPixStream();
+                }
+            }
+        } catch(e) {
+            JappixConsole.error('JappixMini.updatePixStream', e);
+        }
+
+    };
+
+
+    /**
+     * Resets all pixel streams
+     * @public
+     * @return {undefined}
+     */
+    self.resetPixStream = function() {
+
+        try {
+            jQuery('#jappix_mini div.jm_pix_stream').empty();
+        } catch(e) {
+            JappixConsole.error('JappixMini.resetPixStream', e);
         }
 
     };

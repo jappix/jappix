@@ -187,6 +187,9 @@ if($ads_enable == 'on') {
 
     <label for="ads_enable"><?php _e("Enable ads"); ?></label><input id="ads_enable" type="checkbox" name="ads_enable"<?php echo $check_ads_enable; ?> />
 
+    <input type="hidden" name="gads_client" value="<?php echo $gads_client; ?>" />
+    <input type="hidden" name="gads_slot" value="<?php echo $gads_slot; ?>" />
+
     <input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 
     <input type="hidden" name="developer" value="<?php echo $developer; ?>" />

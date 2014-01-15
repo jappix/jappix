@@ -208,8 +208,8 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 #jappix_mini div.jm_chat-content {
 	background-color: white;
 	border: 1px solid #999999;
-	height: 350px;
-	width: 300px;
+	height: 375px;
+	width: 320px;
 	position: absolute;
 	right: -1px;
 	bottom: 25px;
@@ -440,10 +440,26 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 	color: #3a3a3a;
 }
 
+#jappix_mini div.jm_pix_stream {
+	line-height: 0;
+	max-height: 50px;
+	overflow: hidden;
+	position: absolute;
+	top: 23px;
+	left: 0;
+	right: 0;
+}
+
+#jappix_mini div.jm_pix_stream iframe {
+	width: 320px;
+	height: 50px;
+	overflow: hidden;
+}
+
 #jappix_mini div.jm_received-messages {
 	background-color: white;
 	padding: 5px 0 4px;
-	height: 292px;
+	height: 317px;
 	overflow: auto;
 }
 
@@ -519,7 +535,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 	border-style: solid;
 	border-width: 1px 0 0 0;
 	padding: 5px;
-	width: 290px;
+	width: 310px;
 	min-height: 14px;
 }
 

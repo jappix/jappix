@@ -43,6 +43,8 @@ $main_conf = array(
     'ads_enable'            => 'off',
     'ads_standard'          => '',
     'ads_content'           => '',
+    'gads_client'           => '',
+    'gads_slot'             => '',
     'multi_files'           => 'off',
     'developer'             => 'off',
     'statistics'            => 'on',
@@ -98,6 +100,8 @@ define('ANALYTICS_ID', $main_conf['analytics_id']);
 define('ADS_ENABLE', $main_conf['ads_enable']);
 define('ADS_STANDARD', $main_conf['ads_standard']);
 define('ADS_CONTENT', $main_conf['ads_content']);
+define('GADS_CLIENT', $main_conf['gads_client']);
+define('GADS_SLOT', $main_conf['gads_slot']);
 define('MULTI_FILES', $main_conf['multi_files']);
 define('DEVELOPER', $main_conf['developer']);
 define('STATISTICS', $main_conf['statistics']);
