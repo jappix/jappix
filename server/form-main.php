@@ -187,9 +187,6 @@ if($ads_enable == 'on') {
 
     <label for="ads_enable"><?php _e("Enable ads"); ?></label><input id="ads_enable" type="checkbox" name="ads_enable"<?php echo $check_ads_enable; ?> />
 
-    <input type="hidden" name="gads_client" value="<?php echo $gads_client; ?>" />
-    <input type="hidden" name="gads_slot" value="<?php echo $gads_slot; ?>" />
-
     <input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 
     <input type="hidden" name="developer" value="<?php echo $developer; ?>" />
@@ -215,4 +212,12 @@ if($ads_enable == 'on') {
     <label for="ads_standard"><?php _e("Standard ads key"); ?></label><input id="ads_standard" type="text" name="ads_standard" value="<?php echo $ads_standard; ?>" placeholder="XXXX-XXXX-XXXX" />
     
     <label for="ads_content"><?php _e("Content ads key"); ?></label><input id="ads_content" type="text" name="ads_content" value="<?php echo $ads_content; ?>" placeholder="XXXX-XXXX-XXXX" />
+</fieldset>
+
+<?php if(($ads_enable == 'on') || $gads_client || $gads_slot) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
+    <legend><?php printf(T_("Advertising (%s)"), 'AdSense'); ?></legend>
+
+    <label for="gads_client"><?php _e("AdSense client ID"); ?></label><input id="gads_client" type="text" name="gads_client" value="<?php echo $gads_client; ?>" placeholder="ca-pub-XXXXXXXXXXXXXXXX" />
+    
+    <label for="gads_slot"><?php _e("AdSense slot"); ?></label><input id="gads_slot" type="text" name="gads_slot" value="<?php echo $gads_slot; ?>" placeholder="XXXXXXXXXX" />
 </fieldset>

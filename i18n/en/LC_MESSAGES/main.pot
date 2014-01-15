@@ -2034,6 +2034,12 @@ msgstr ""
 msgid "Content ads key"
 msgstr ""
 
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
 msgid "Stop"
 msgstr ""
 
