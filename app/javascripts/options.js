@@ -279,6 +279,7 @@ var Options = (function () {
             $('#options #conf' + id).show();
             $('#options .tab a').removeClass('tab-active');
             $('#options .tab a[data-key="' + id + '"]').addClass('tab-active');
+            $('#options .sub-ask .sub-ask-close').click();
         } catch(e) {
             Console.error('Options.switchTab', e);
         } finally {
@@ -596,7 +597,8 @@ var Options = (function () {
     self.purgeMyArchives = function() {
 
         try {
-            var password = $('#options .check-mam').val();
+            var pwd_input_sel = $('#options .check-mam');
+            var password = pwd_input_sel.val();
             
             if(password == Utils.getPassword()) {
                 MAM.purgeArchives();
@@ -605,7 +607,8 @@ var Options = (function () {
                 $('.page-engine-chan[data-type="chat"] .tools-clear').click();
 
                 // Hide the tool
-                $('#options .sub-ask').hide();
+                pwd_input_sel.val('');
+                $('#options .sub-ask-mam .sub-ask-close').click();
             } else {
                 var selector = $('#options .check-mam');
                 
@@ -635,7 +638,8 @@ var Options = (function () {
         /* REF: http://xmpp.org/extensions/xep-0060.html#owner-purge */
 
         try {
-            var password = $('#options .check-empty').val();
+            var pwd_input_sel = $('#options .check-empty');
+            var password = pwd_input_sel.val();
             
             if(password == Utils.getPassword()) {
                 // Send the IQ to remove the item (and get eventual error callback)
@@ -648,7 +652,8 @@ var Options = (function () {
                 con.send(iq, self.handleMicroblogPurge);
                 
                 // Hide the tool
-                $('#options .sub-ask').hide();
+                pwd_input_sel.val('');
+                $('#options .sub-ask-empty .sub-ask-close').click();
                 
                 Console.info('Microblog purge sent.');
             } else {
@@ -849,6 +854,7 @@ var Options = (function () {
             
             $('#options .linked').click(function() {
                 $('#options .sub-ask').hide();
+                $('#options .forms').removeClass('in_background');
             });
             
             $('#options .xmpp-links').click(function() {
@@ -861,6 +867,7 @@ var Options = (function () {
                 var selector = '#options .sub-ask-mam';
                 
                 $(selector).show();
+                $('#options .forms').addClass('in_background');
                 
                 $(document).oneTime(10, function() {
                     $(selector + ' input').focus();
@@ -873,6 +880,7 @@ var Options = (function () {
                 var selector = '#options .sub-ask-empty';
                 
                 $(selector).show();
+                $('#options .forms').addClass('in_background');
                 
                 $(document).oneTime(10, function() {
                     $(selector + ' input').focus();
@@ -885,6 +893,7 @@ var Options = (function () {
                 var selector = '#options .sub-ask-pass';
                 
                 $(selector).show();
+                $('#options .forms').addClass('in_background');
                 
                 $(document).oneTime(10, function() {
                     $(selector + ' input:first').focus();
@@ -897,6 +906,7 @@ var Options = (function () {
                 var selector = '#options .sub-ask-delete';
                 
                 $(selector).show();
+                $('#options .forms').addClass('in_background');
                 
                 $(document).oneTime(10, function() {
                     $(selector + ' input').focus();
@@ -923,6 +933,7 @@ var Options = (function () {
             
             $('#options .sub-ask-close').click(function() {
                 $('#options .sub-ask').hide();
+                $('#options .forms').removeClass('in_background');
                 
                 return false;
             });

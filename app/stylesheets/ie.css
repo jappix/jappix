@@ -169,7 +169,11 @@ legend {
 	margin-bottom: 5px !important;
 }
 
-/* Fix an opacity bug */
+/* Fix opacity bugs */
+#options .forms.in_background fieldset {
+	filter: alpha(opacity = 50) !important;
+}
+
 a.finish.disabled {
 	filter: alpha(opacity = 20) !important;
 }

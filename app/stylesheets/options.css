@@ -46,6 +46,10 @@ html[dir="rtl"] #options .forms a.linked {
 	float: right;
 }
 
+#options .forms.in_background fieldset {
+	opacity: 0.5;
+}
+
 #options fieldset.privacy {
 	display: none;
 }
@@ -55,12 +59,13 @@ html[dir="rtl"] #options .forms a.linked {
 }
 
 #options .sub-ask {
-	display: none;
+	background: #cbdde1;
+	border: 1px #879da2 dotted;
 	width: 592px;
 	padding: 8px;
-	float: left;
-	border: 1px #879da2 dotted;
-	background: #cbdde1;
+	display: none;
+	position: absolute;
+	bottom: 15px;
 }
 
 #options .sub-ask-top {
