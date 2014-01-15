@@ -2105,3 +2105,6 @@ msgstr ""
 
 msgid "Video Call"
 msgstr ""
+
+msgid "I lost my password"
+msgstr ""
