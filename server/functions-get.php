@@ -181,6 +181,7 @@ function setConfiguration($string, $hash, $locale, $version, $max_upload) {
                 'HTTPS_STORAGE'         => HTTPS_STORAGE,
                 'HTTPS_FORCE'           => HTTPS_FORCE,
                 'COMPRESSION'           => COMPRESSION,
+                'ADS_ENABLE'            => ADS_ENABLE,
                 'GADS_CLIENT'           => GADS_CLIENT,
                 'GADS_SLOT'             => GADS_SLOT,
                 'MULTI_FILES'           => MULTI_FILES,

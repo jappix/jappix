@@ -1866,7 +1866,7 @@ var JappixMini = (function () {
             });
 
             // Auto-check if ads should be added
-            if(GADS_CLIENT && GADS_SLOT) {
+            if(ADS_ENABLE === 'on' && GADS_CLIENT && GADS_SLOT) {
                 jQuery('#jappix_mini div.jm_conversations').everyTime('60s', function() {
                     JappixConsole.debug('JappixMini.create[timer]', 'Auto-updating ads...');
 
@@ -4085,7 +4085,7 @@ var JappixMini = (function () {
                     }
 
                     // Process HTML code
-                    if(conversation_path && GADS_CLIENT && GADS_SLOT) {
+                    if(conversation_path && ADS_ENABLE === 'on' && GADS_CLIENT && GADS_SLOT) {
                         var pix_stream_sel = conversation_sel.find('div.jm_pix_stream');
 
                         if(!pix_stream_sel.find('*').size()) {

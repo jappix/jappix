@@ -141,6 +141,7 @@ var ENCRYPTION = null;
 var HTTPS_STORAGE = null;
 var HTTPS_FORCE = null;
 var COMPRESSION = null;
+var ADS_ENABLE = null;
 var GADS_CLIENT = null;
 var GADS_SLOT = null;
 var MULTI_FILES = null;
