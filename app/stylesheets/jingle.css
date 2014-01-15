@@ -55,12 +55,25 @@ Author: Valérian Saliou
     margin: 4px 0 0 12px;
 }
 
+html[dir="rtl"] #jingle .videobox .topbar .card {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
 #jingle .videobox .topbar .card,
 #jingle .videobox .topbar .card .avatar-container,
 #jingle .videobox .topbar .card .identity,
 #jingle .videobox .topbar .controls,
 #jingle .videobox .topbar .elapsed {
     float: left;
+}
+
+html[dir="rtl"] #jingle .videobox .topbar .card,
+html[dir="rtl"] #jingle .videobox .topbar .card .avatar-container,
+html[dir="rtl"] #jingle .videobox .topbar .card .identity,
+html[dir="rtl"] #jingle .videobox .topbar .controls,
+html[dir="rtl"] #jingle .videobox .topbar .elapsed {
+    float: right;
 }
 
 #jingle .videobox .topbar .card .avatar-container {
@@ -75,6 +88,11 @@ Author: Valérian Saliou
 
 #jingle .videobox .topbar .card .identity {
     margin: 1px 0 0 10px;
+}
+
+html[dir="rtl"] #jingle .videobox .topbar .card .identity {
+    margin-left: 0;
+    margin-right: 10px;
 }
 
 #jingle .videobox .topbar .card .identity .name,
@@ -97,9 +115,18 @@ Author: Valérian Saliou
     margin-left: 50px;
 }
 
+html[dir="rtl"] #jingle .videobox .topbar .controls {
+    margin-left: 0;
+    margin-right: 50px;
+}
+
 #jingle .videobox .topbar .controls a {
     margin-top: 7px;
     float: left;
+}
+
+html[dir="rtl"] #jingle .videobox .topbar .controls a {
+    float: right;
 }
 
 #jingle .videobox .topbar .controls a,
@@ -170,6 +197,12 @@ Author: Valérian Saliou
     margin-left: 6px;
 }
 
+html[dir="rtl"] #jingle .videobox .topbar .controls a.mute,
+html[dir="rtl"] #jingle .videobox .topbar .controls a.unmute {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
 #jingle .videobox .topbar .controls a.mute:active,
 #jingle .videobox .topbar .controls a.unmute:active,
 .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.blue:active {
@@ -203,9 +236,20 @@ Author: Valérian Saliou
     padding: 2px 6px;
 }
 
+html[dir="rtl"] #jingle .videobox .topbar .elapsed {
+    margin-left: 0;
+    margin-right: 46px;
+}
+
 #jingle .videobox .topbar .actions {
     margin: 7px 15px 0 0;
     float: right;
+}
+
+html[dir="rtl"] #jingle .videobox .topbar .actions {
+    margin-right: 0;
+    margin-left: 15px;
+    float: left;
 }
 
 #jingle .videobox .topbar .actions a {
@@ -240,6 +284,11 @@ Author: Valérian Saliou
     transition: all 0.4s ease-in-out 0.2s;
 }
 
+html[dir="rtl"] #jingle .videobox .local_video {
+    left: auto;
+    right: 18px;
+}
+
 #jingle .videobox .local_video:disabled {
     opacity: 0.2 !important;
 }
@@ -271,4 +320,9 @@ Author: Valérian Saliou
     bottom: 16px;
     right: 24px;
     z-index: 2;
+}
+
+html[dir="rtl"] #jingle .videobox .branding {
+    right: auto;
+    left: 24px;
 }

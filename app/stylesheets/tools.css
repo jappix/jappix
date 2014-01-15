@@ -442,6 +442,10 @@ html[dir="rtl"] .music-content .player a {
 	overflow-x: hidden;
 }
 
+html[dir="rtl"] .music-content .list {
+	text-align: right;
+}
+
 .music-content p.no-results {
 	display: none;
 	color: black;
@@ -487,6 +491,10 @@ html[dir="rtl"] .music-content .player a {
 	right: -102px;
 }
 
+html[dir="rtl"] .jingle-content {
+	left: -102px;
+}
+
 .jingle-content .tools-content-subitem {
 	position: relative;
 }
@@ -509,6 +517,11 @@ html[dir="rtl"] .music-content .player a {
 	border-top-left-radius: 4px;
 }
 
+html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane {
+	left: auto;
+	right: 0;
+}
+
 .jingle-content .jingle-notify .avatar-pane .avatar-container {
 	overflow: hidden;
 	position: absolute;
@@ -528,6 +541,18 @@ html[dir="rtl"] .music-content .player a {
 	-webkit-border-bottom-left-radius: 5px;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
+}
+
+html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane .avatar-container .avatar {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .jingle-content .jingle-notify .avatar-pane .icon {
@@ -581,6 +606,12 @@ html[dir="rtl"] .music-content .player a {
 	left: 100px;
 }
 
+html[dir="rtl"] .jingle-content .jingle-notify .notification-content {
+	text-align: right;
+	right: 100px;
+	left: 0;
+}
+
 .jingle-content .jingle-notify .notification-content .fullname,
 .jingle-content .jingle-notify .notification-content .text {
 	display: block;
@@ -605,9 +636,20 @@ html[dir="rtl"] .music-content .player a {
 	bottom: 20px;
 }
 
+html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons {
+	padding-left: 0;
+	padding-right: 10px;
+}
+
 .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
 	margin-left: 4px;
 	float: left;
+}
+
+html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
+	margin-left: 0;
+	margin-right: 4px;
+	float: right;
 }
 
 .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button:active {
@@ -616,6 +658,10 @@ html[dir="rtl"] .music-content .player a {
 
 .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.first {
 	margin-left: 0;
+}
+
+html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.first {
+	margin-right: 0;
 }
 
 @-o-keyframes tool_active {
