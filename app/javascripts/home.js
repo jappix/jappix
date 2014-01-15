@@ -270,7 +270,7 @@ var Home = (function () {
     self.showRecoverPassword = function() {
 
         try {
-            alert('To be done soon.')
+            alert('To be done soon.');
         } catch(e) {
             Console.error('Home.showRecoverPassword', e);
         } finally {
