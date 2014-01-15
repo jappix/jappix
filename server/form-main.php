@@ -192,6 +192,8 @@ if($ads_enable == 'on') {
     <input type="hidden" name="developer" value="<?php echo $developer; ?>" />
     
     <input type="hidden" name="register_api" value="<?php echo $register_api; ?>" />
+
+    <input type="hidden" name="recover_api" value="<?php echo $recover_api; ?>" />
     
     <input type="hidden" name="xmppd_ctl" value="<?php echo $xmppd_ctl; ?>" />
     

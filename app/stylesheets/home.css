@@ -273,7 +273,7 @@ html[dir="rtl"] #home .obsolete a {
 }
 
 #home .plane {
-	background-position: 0 -421px;
+	background-position: 0 -432px;
 	width: 507px;
 	height: 328px;
 	position: absolute;
@@ -853,10 +853,23 @@ html[dir="rtl"] #home select {
 	margin-top: -2px;
 }
 
+#home .submit {
+	clear: both;
+}
+
 #home input[type="submit"] {
 	min-width: 120px;
 	float: right;
-	clear: both;
+}
+
+#home a.recover-password {
+	background-position: 0 -415px;
+	font-size: 0.9em;
+	text-decoration: underline;
+	margin-top: 5px;
+	margin-left: 2px;
+	padding-left: 17px;
+	float: left;
 }
 
 #home span.jid {

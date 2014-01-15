@@ -98,7 +98,15 @@ var Home = (function () {
                                 '</select>' + 
                             '</fieldset>' + 
                             
-                            '<input type="submit" value="' + Common._e("Here we go!") + '" />' + 
+                            '<div class="submit">';
+                                if(RECOVER_API === 'on') {
+                                    code += '<a href="#" class="recover-password home-images">' + Common._e("I lost my password") + '</a>';
+                                }
+
+                                code += '<input type="submit" value="' + Common._e("Here we go!") + '" />' + 
+
+                                '<div class="clear"></div>' + 
+                            '</div>' + 
                         '</form>';
                     
                     break;
@@ -184,8 +192,8 @@ var Home = (function () {
                             return self.change('anonymouser');
                         });
                         
+                        $(current + ' a.recover-password').click(self.showRecoverPassword);
                         $(current + ' a.advanced').click(self.showAdvanced);
-                        
                         $(current + ' form').submit(self.loginForm);
                         
                         break;
@@ -247,6 +255,24 @@ var Home = (function () {
             });
         } catch(e) {
             Console.error('Home.change', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Shows the password recovery form
+     * @public
+     * @return {boolean}
+     */
+    self.showRecoverPassword = function() {
+
+        try {
+            alert('To be done soon.')
+        } catch(e) {
+            Console.error('Home.showRecoverPassword', e);
         } finally {
             return false;
         }

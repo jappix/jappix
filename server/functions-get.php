@@ -187,6 +187,7 @@ function setConfiguration($string, $hash, $locale, $version, $max_upload) {
                 'MULTI_FILES'           => MULTI_FILES,
                 'DEVELOPER'             => DEVELOPER,
                 'REGISTER_API'          => REGISTER_API,
+                'RECOVER_API'           => RECOVER_API,
 
                 // Hosts configuration
                 'HOST_MAIN'             => HOST_MAIN,

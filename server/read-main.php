@@ -49,6 +49,7 @@ $main_conf = array(
     'developer'             => 'off',
     'statistics'            => 'on',
     'register_api'          => 'off',
+    'recover_api'           => 'off',
     'xmppd_ctl'             => '/usr/sbin/ejabberdctl',
     'xmppd'                 => 'ejabberd'
 );
@@ -106,6 +107,7 @@ define('MULTI_FILES', $main_conf['multi_files']);
 define('DEVELOPER', $main_conf['developer']);
 define('STATISTICS', $main_conf['statistics']);
 define('REGISTER_API', $main_conf['register_api']);
+define('RECOVER_API', $main_conf['recover_api']);
 define('XMPPD_CTL', $main_conf['xmppd_ctl']);
 define('XMPPD', $main_conf['xmppd']);
 

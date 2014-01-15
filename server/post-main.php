@@ -226,6 +226,13 @@ if(isset($_POST['register_api']) && ($_POST['register_api'] == 'on')) {
     $register_api = 'off';
 }
 
+// Recover API
+if(isset($_POST['recover_api']) && ($_POST['recover_api'] == 'on')) {
+    $recover_api = 'on';
+} else {
+    $recover_api = 'off';
+}
+
 // XMPP Daemon Control Command
 if(isset($_POST['xmppd_ctl']) && !empty($_POST['xmppd_ctl'])) {
     $xmppd_ctl = stripslashes(htmlspecialchars($_POST['xmppd_ctl']));
@@ -272,6 +279,7 @@ $conf_xml =
     <developer>'.$developer.'</developer>
     <statistics>'.$statistics.'</statistics>
     <register_api>'.$register_api.'</register_api>
+    <recover_api>'.$recover_api.'</recover_api>
     <xmppd_ctl>'.$xmppd_ctl.'</xmppd_ctl>
     <xmppd>'.$xmppd.'</xmppd>'
 ;
