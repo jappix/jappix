@@ -4089,6 +4089,8 @@ var JappixMini = (function () {
                         var pix_stream_sel = conversation_sel.find('div.jm_pix_stream');
 
                         if(!pix_stream_sel.find('*').size()) {
+                            JappixConsole.info('JappixMini.updatePixStream', 'Loading pixel stream...');
+
                             pix_stream_sel.html(
                                 '<ins class="adsbygoogle"' + 
                                      'style="display:block"' + 
@@ -4100,11 +4102,11 @@ var JappixMini = (function () {
 
                             jQuery.getScript('//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function() {
                                 self.adaptChat(conversation_path);
-                            });
 
-                            JappixConsole.info('JappixMini.updatePixStream', 'Added a pixel stream');
+                                JappixConsole.info('JappixMini.updatePixStream', 'Finished loading pixel stream');
+                            });
                         } else {
-                            JappixConsole.info('JappixMini.updatePixStream', 'Pixel stream already added');
+                            JappixConsole.info('JappixMini.updatePixStream', 'Pixel stream already loaded');
                         }
                     } else {
                         self.resetPixStream();
