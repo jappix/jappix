@@ -101,15 +101,15 @@ var Home = (function () {
                             '<div class="submit">';
                                 if(RECOVER_API === 'on') {
                                     code += 
-                                    '<div class="recover-password ibubble">' + 
+                                    '<div class="recover-password ibubble" data-api="./server/recover.php">' + 
                                         '<a href="#" class="recover-link home-images">' + Common._e("I lost my password") + '</a>' + 
                                         
                                         '<div class="recover-content bubble hidable">' + 
                                             '<div class="tools-content-subarrow talk-images"></div>' + 
                                             
                                             '<div class="tools-content-subitem">' + 
-                                                '<label><span>' + Common._e("E-Mail") +  '</span><input type="text" class="recover-email" required="" placeholder="email@server.tld" /><span class="clear"></span></label>' + 
-                                                '<label><span>' + Common._e("Security") +  '</span><img class="security_img" src="./server/captcha.php?id=' + genID() + '" alt="" /><input type="text" class="recover-security" maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Enter code") + '" /><span class="clear"></span></label>' + 
+                                                '<label><span>' + Common._e("E-Mail") +  '</span><input type="text" class="recover-email" name="email" required="" placeholder="email@server.tld" /><span class="clear"></span></label>' + 
+                                                '<label><span>' + Common._e("Security") +  '</span><img class="security_img" src="./server/captcha.php?id=' + genID() + '" alt="" /><input type="text" class="recover-security" name="captcha" maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Enter code") + '" /><span class="clear"></span></label>' + 
                                                 '<input class="recover-submit" type="submit" value="' + Common._e("Recover") + '" />' + 
 
                                                 '<div class="clear"></div>' + 
