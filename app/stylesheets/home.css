@@ -862,13 +862,97 @@ html[dir="rtl"] #home select {
 	float: right;
 }
 
-#home a.recover-password {
+#home .recover-password {
+	margin-top: 5px;
+	margin-left: 2px;
+	float: left;
+	position: relative;
+}
+
+#home .recover-password a.recover-link {
 	background-position: 0 -415px;
 	font-size: 0.9em;
 	text-decoration: underline;
-	margin-top: 5px;
-	margin-left: 2px;
 	padding-left: 17px;
+}
+
+#home .recover-password div.recover-content {
+	width: 250px;
+	display: none;
+	position: absolute;
+	top: 14px;
+	left: -10px;
+	z-index: 1;
+}
+
+#home .recover-password div.recover-content .tools-content-subarrow {
+	margin: 0 0 0 8px;
+}
+
+html[dir="rtl"] #home .recover-password div.recover-content .tools-content-subarrow {
+	float: left;
+}
+
+#home .recover-password div.recover-content label {
+	width: auto;
+	margin-left: 5px;
+	float: none;
+	clear: none;
+}
+
+#home .recover-password div.recover-content label span {
+	color: #ffffff;
+	text-shadow: none;
+}
+
+#home .recover-password div.recover-content label span {
+	float: left;
+}
+
+html[dir="rtl"] #home .recover-password div.recover-content label span {
+	float: right;
+}
+
+#home .recover-password div.recover-content label input {
+	width: 150px;
+	float: right;
+}
+
+#home .recover-password div.recover-content label input.recover-security {
+	width: 80px;
+	margin-right: 6px;
+}
+
+html[dir="rtl"] #home .recover-password div.recover-content label input.recover-security {
+	margin-left: 6px;
+	margin-right: 0;
+}
+
+#home .recover-password div.recover-content label img.security_img {
+	margin-top: -2px;
+	float: right;
+}
+
+html[dir="rtl"] #home .recover-password div.recover-content label input,
+#home .recover-password div.recover-content label img.security_img {
+	float: left;
+}
+
+#home .recover-password div.recover-content label span.clear {
+	float: none;
+	display: block;
+	clear: both;
+}
+
+#home .recover-password div.recover-content input.recover-submit {
+	min-width: 90px;
+	margin-bottom: 2px;
+	margin-right: 1px;
+}
+
+html[dir="rtl"] #home .recover-password div.recover-content input.recover-submit {
+	margin-left: 5px;
+	margin-right: 0;
 	float: left;
 }
 

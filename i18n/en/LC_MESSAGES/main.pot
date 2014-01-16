@@ -342,6 +342,15 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
+msgid "Security"
+msgstr ""
+
+msgid "Enter code"
+msgstr ""
+
+msgid "Recover"
+msgstr ""
+
 msgid "Phone"
 msgstr ""
 
