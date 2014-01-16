@@ -147,7 +147,6 @@ var GADS_SLOT = null;
 var MULTI_FILES = null;
 var DEVELOPER = null;
 var REGISTER_API = null;
-var RECOVER_API = null;
 
 // Jappix hosts configuration
 var HOST_MAIN = null;

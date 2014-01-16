@@ -98,27 +98,8 @@ var Home = (function () {
                                 '</select>' + 
                             '</fieldset>' + 
                             
-                            '<div class="submit">';
-                                if(RECOVER_API === 'on') {
-                                    code += 
-                                    '<div class="recover-password ibubble" data-api="./server/recover.php">' + 
-                                        '<a href="#" class="recover-link home-images">' + Common._e("I lost my password") + '</a>' + 
-                                        
-                                        '<div class="recover-content bubble hidable">' + 
-                                            '<div class="tools-content-subarrow talk-images"></div>' + 
-                                            
-                                            '<div class="tools-content-subitem">' + 
-                                                '<label><span>' + Common._e("E-Mail") +  '</span><input type="text" class="recover-email" name="email" required="" placeholder="email@server.tld" /><span class="clear"></span></label>' + 
-                                                '<label><span>' + Common._e("Security") +  '</span><img class="security_img" src="./server/captcha.php?id=' + genID() + '" alt="" /><input type="text" class="recover-security" name="captcha" maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Enter code") + '" /><span class="clear"></span></label>' + 
-                                                '<input class="recover-submit" type="submit" value="' + Common._e("Recover") + '" />' + 
-
-                                                '<div class="clear"></div>' + 
-                                            '</div>' + 
-                                        '</div>' + 
-                                    '</div>';
-                                }
-
-                                code += '<input type="submit" value="' + Common._e("Here we go!") + '" />' + 
+                            '<div class="submit">' + 
+                                '<input type="submit" value="' + Common._e("Here we go!") + '" />' + 
 
                                 '<div class="clear"></div>' + 
                             '</div>' + 
@@ -207,7 +188,6 @@ var Home = (function () {
                             return self.change('anonymouser');
                         });
                         
-                        $(current + ' .recover-password a.recover-link').click(self.showRecoverPassword);
                         $(current + ' a.advanced').click(self.showAdvanced);
                         $(current + ' form').submit(self.loginForm);
                         
@@ -270,24 +250,6 @@ var Home = (function () {
             });
         } catch(e) {
             Console.error('Home.change', e);
-        } finally {
-            return false;
-        }
-
-    };
-
-
-    /**
-     * Shows the password recovery form
-     * @public
-     * @return {boolean}
-     */
-    self.showRecoverPassword = function() {
-
-        try {
-            Bubble.show('.recover-content');
-        } catch(e) {
-            Console.error('Home.showRecoverPassword', e);
         } finally {
             return false;
         }

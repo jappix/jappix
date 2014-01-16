@@ -342,15 +342,6 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-msgid "Security"
-msgstr ""
-
-msgid "Enter code"
-msgstr ""
-
-msgid "Recover"
-msgstr ""
-
 msgid "Phone"
 msgstr ""
 
@@ -2113,7 +2104,4 @@ msgid "Audio Call"
 msgstr ""
 
 msgid "Video Call"
-msgstr ""
-
-msgid "I lost my password"
 msgstr ""

@@ -48,7 +48,6 @@ $multi_files = htmlspecialchars(MULTI_FILES);
 $developer = htmlspecialchars(DEVELOPER);
 $statistics = htmlspecialchars(STATISTICS);
 $register_api = htmlspecialchars(REGISTER_API);
-$recover_api = htmlspecialchars(RECOVER_API);
 $xmppd_ctl = htmlspecialchars(XMPPD_CTL);
 $xmppd = htmlspecialchars(XMPPD);
 
