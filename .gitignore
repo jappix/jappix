@@ -1,10 +1,10 @@
 mini/
-#store/
-#tmp/cache/
-#tmp/jingle/
-#tmp/update/
-#tmp/avatar/
-#log/
+store/
+tmp/cache/
+tmp/jingle/
+tmp/update/
+tmp/avatar/
+log/
 test/node_modules/
 .DS_Store
 *.esproj
