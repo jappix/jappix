@@ -145,7 +145,7 @@ if($step < 6) {
                 
                 <p><?php printf(T_("Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."), '<em>777</em>', '<em>www-data</em>'); ?></p>
                 
-                <?php if(is_writable(JAPPIX_BASE.'/store')) {
+                <?php if(is_writable(JAPPIX_BASE.'/store') && is_writable(JAPPIX_BASE.'/tmp') && is_writable(JAPPIX_BASE.'/log')) {
                     // Create the store tree
                     include(JAPPIX_BASE.'/server/store-tree.php');
                 ?>

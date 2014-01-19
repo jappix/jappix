@@ -40,7 +40,7 @@ if(isset($_GET['username']) && !empty($_GET['username'])) {
 
     // Generate cache values
     $cache_hash = md5($_GET['username'].'@'.$remote_ip);
-    $cache_path = JAPPIX_BASE.'/tmp/jingle/'.$cache_hash.'cache';
+    $cache_path = JAPPIX_BASE.'/tmp/jingle/'.$cache_hash.'.cache';
     $cache_life = $remote_ip ? 3600 : 0;
 
     // Cache missing or obsolete?
