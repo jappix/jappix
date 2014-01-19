@@ -47,7 +47,11 @@ if($bosh_proxy == 'on') {
     
     <label for="host_vjud"><?php _e("Directory host"); ?></label><input id="host_vjud" type="text" name="host_vjud" value="<?php echo $host_vjud; ?>" pattern="[^@/]+" />
     
-    <label for="host_websocket"><?php _e("WebSocket host"); ?></label><input id="host_websocket" type="text" name="host_websocket" value="<?php echo $host_websocket; ?>" />
+    <?php if($host_websocket) { ?>
+        <label for="host_websocket"><?php _e("WebSocket host"); ?></label><input id="host_websocket" type="text" name="host_websocket" value="<?php echo $host_websocket; ?>" />
+    <?php } else { ?>
+        <input type="hidden" name="host_websocket" value="<?php echo $host_websocket; ?>" />
+    <?php } ?>
 
     <label for="host_bosh"><?php _e("BOSH host"); ?></label><input id="host_bosh" type="text" name="host_bosh" value="<?php echo $host_bosh; ?>" />
     

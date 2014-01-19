@@ -59,12 +59,14 @@ var Connection = (function () {
                     httpbase: HOST_WEBSOCKET
                 });
             } else {
+                var httpbase = (HOST_BOSH_MAIN || HOST_BOSH);
+
                 // Check BOSH origin
-                BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
+                BOSH_SAME_ORIGIN = Origin.isSame(httpbase);
                 
                 // We create the new http-binding connection
                 con = new JSJaCHttpBindingConnection({
-                    httpbase: (HOST_BOSH_MAIN || HOST_BOSH)
+                    httpbase: httpbase
                 });
             }
             
@@ -235,12 +237,14 @@ var Connection = (function () {
                             httpbase: HOST_WEBSOCKET
                         });
                     } else {
+                        var httpbase = (HOST_BOSH_MAIN || HOST_BOSH);
+
                         // Check BOSH origin
-                        BOSH_SAME_ORIGIN = Origin.isSame(oArgs.httpbase);
+                        BOSH_SAME_ORIGIN = Origin.isSame(httpbase);
                         
                         // We create the new http-binding connection
                         con = new JSJaCHttpBindingConnection({
-                            httpbase: (HOST_BOSH_MAIN || HOST_BOSH)
+                            httpbase: httpbase
                         });
                     }
                     
