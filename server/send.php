@@ -122,7 +122,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
     // Return the path to the file
     exit(
 '<jappix xmlns=\'jappix:file:send\'>
-    <url>'.htmlspecialchars($location.'php/send.php?id='.urlencode($name).'.'.urlencode($ext).'&name='.urlencode($filename)).'</url>
+    <url>'.htmlspecialchars($location.'server/send.php?id='.urlencode($name).'.'.urlencode($ext).'&name='.urlencode($filename)).'</url>
     <desc>'.htmlspecialchars($new_name).'</desc>
     <id>'.htmlspecialchars($_POST['id']).'</id>
 </jappix>'
