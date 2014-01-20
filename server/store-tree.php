@@ -31,7 +31,7 @@ $store_folders = array(
     'updates'
 );
 
-// Creates the sub-folders
+// Creates the store sub-folders
 for($i = 0; $i < count($store_folders); $i++) {
     $current = JAPPIX_BASE.'/store/'.$store_folders[$i];
     
@@ -47,5 +47,9 @@ for($i = 0; $i < count($store_folders); $i++) {
     
     file_put_contents($current.'/index.html', $security_html, LOCK_EX);
 }
+
+// Apply 777 rights on other writable folders
+chmod(JAPPIX_BASE.'/log', 0777);
+chmod(JAPPIX_BASE.'/tmp', 0777);
 
 ?>

@@ -1212,10 +1212,10 @@ msgstr ""
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
 
-msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into a single secured storage folder."
+msgid "Jappix stores persistent data (such as shared files, chat logs, your own music and its configuration) into multiple storage folders."
 msgstr ""
 
-msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights to %1s or change the folder owner to %2s (depending of your configuration)."
+msgid "Jappix must be able to write in this folder to create its sub-directories. If not, you must set the rights of %1s to %2s or change the folder owner to %3s (depending of your configuration)."
 msgstr ""
 
 msgid "The folder is writable, you can continue!"
