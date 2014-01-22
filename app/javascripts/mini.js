@@ -4045,6 +4045,24 @@ var JappixMini = (function () {
         try {
             // Feature supported? (we rely on local storage)
             if(window.localStorage !== undefined) {
+                // Select chat(s)
+                var conversation_path = '#chat-' + hash;
+                var conversation_sel = jQuery('#jappix_mini div.jm_conversation');
+                var conversation_all_sel = conversation_sel;
+
+                if(hash) {
+                    conversation_sel = conversation_sel.filter(conversation_path);
+                } else {
+                    conversation_sel = conversation_sel.filter(':has(div.jm_chat-content:visible):first');
+
+                    if(conversation_sel.size()) {
+                        conversation_path = '#' + conversation_sel.attr('id');
+                    } else {
+                        conversation_path = null;
+                    }
+                }
+
+                // Parse stored dates
                 var stamp_now = JappixDateUtils.getTimeStamp();
                 var stamp_start = JappixDataStore.getPersistent(MINI_HASH, 'pixel-stream', 'start');
                 var stamp_end = JappixDataStore.getPersistent(MINI_HASH, 'pixel-stream', 'end');
@@ -4068,22 +4086,6 @@ var JappixMini = (function () {
                         JappixDataStore.setPersistent(MINI_HASH, 'pixel-stream', 'end', stamp_now + MINI_PIXEL_STREAM_DURATION);
                     }
 
-                    // Select chat(s)
-                    var conversation_path = '#chat-' + hash;
-                    var conversation_sel = jQuery('#jappix_mini div.jm_conversation');
-
-                    if(hash) {
-                        conversation_sel = conversation_sel.filter(conversation_path);
-                    } else {
-                        conversation_sel = conversation_sel.filter(':has(div.jm_chat-content:visible):first');
-
-                        if(conversation_sel.size()) {
-                            conversation_path = '#' + conversation_sel.attr('id');
-                        } else {
-                            conversation_path = null;
-                        }
-                    }
-
                     // Process HTML code
                     if(conversation_path && ADS_ENABLE === 'on' && GADS_CLIENT && GADS_SLOT) {
                         var pix_stream_sel = conversation_sel.find('div.jm_pix_stream');
@@ -4091,14 +4093,24 @@ var JappixMini = (function () {
                         if(!pix_stream_sel.find('*').size()) {
                             JappixConsole.info('JappixMini.updatePixStream', 'Loading pixel stream...');
 
-                            pix_stream_sel.html(
-                                '<ins class="adsbygoogle"' + 
-                                     'style="display:block"' + 
-                                     'data-ad-client="' + JappixCommon.encodeQuotes(GADS_CLIENT) + '"' + 
-                                     'data-ad-slot="' + JappixCommon.encodeQuotes(GADS_SLOT) + '"' + 
-                                     'data-ad-format="auto"></ins>' + 
-                                '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'
-                            );
+                            var pix_stream_other_added = conversation_all_sel.find('div.jm_pix_stream ins.adsbygoogle:first').clone();
+
+                            if(pix_stream_other_added.size()) {
+                                JappixConsole.log('JappixMini.updatePixStream', 'Copy existing pixel stream from DOM');
+
+                                pix_stream_sel.html(pix_stream_other_added);
+                            } else {
+                                JappixConsole.log('JappixMini.updatePixStream', 'Fetch fresh pixel stream from server');
+
+                                pix_stream_sel.html(
+                                    '<ins class="adsbygoogle"' + 
+                                         'style="display:block"' + 
+                                         'data-ad-client="' + JappixCommon.encodeQuotes(GADS_CLIENT) + '"' + 
+                                         'data-ad-slot="' + JappixCommon.encodeQuotes(GADS_SLOT) + '"' + 
+                                         'data-ad-format="auto"></ins>' + 
+                                    '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'
+                                );
+                            }
 
                             jQuery.getScript('//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function() {
                                 self.adaptChat(conversation_path);
@@ -4111,13 +4123,13 @@ var JappixMini = (function () {
                     } else {
                         self.resetPixStream();
                     }
-
-                    // Update chat height
-                    if(conversation_path) {
-                        self.adaptChat(conversation_path);
-                    }
                 } else {
                     self.resetPixStream();
+                }
+
+                // Update chat height
+                if(conversation_path) {
+                    self.adaptChat(conversation_path);
                 }
             }
         } catch(e) {
