@@ -22,7 +22,6 @@ $store_folders = array(
     'access',
     'archives',
     'backgrounds',
-    'cache',
     'conf',
     'logos',
     'music',
