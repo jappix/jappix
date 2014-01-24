@@ -358,10 +358,11 @@ var Caps = (function () {
             }
 
             // Apply Jingle
+            var jingle_local_supported = JSJAC_JINGLE_AVAILABLE;
             var jingle_audio_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_AUDIO);
             var jingle_video_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_VIDEO);
 
-            if(jingle_audio_xid) {
+            if(jingle_audio_xid && jingle_local_supported) {
                 jingle_audio.show();
                 roster_jingle_audio.show();
             } else {
@@ -369,7 +370,7 @@ var Caps = (function () {
                 roster_jingle_audio.hide();
             }
 
-            if(jingle_video_xid) {
+            if(jingle_video_xid && jingle_local_supported) {
                 jingle_video.show();
                 roster_jingle_video.show();
             } else {
@@ -377,28 +378,28 @@ var Caps = (function () {
                 roster_jingle_video.hide();
             }
 
-            if(jingle_audio_xid && jingle_video_xid) {
+            if(jingle_audio_xid && jingle_video_xid && jingle_local_supported) {
                 roster_jingle_separator.show();
             } else {
                 roster_jingle_separator.hide();
             }
 
-            if(jingle_audio_xid || jingle_video_xid) {
+            if((jingle_audio_xid || jingle_video_xid) && jingle_local_supported) {
                 roster_jingle_path.show();
             } else {
                 roster_jingle_path.hide();
             }
             
             // Apply Out of Band Data
-            var jingle_oob_xid = self.getFeatureResource(xid, NS_IQOOB);
+            var iq_oob_xid = self.getFeatureResource(xid, NS_IQOOB);
 
-            if(jingle_oob_xid || NS_XOOB in features) {
+            if(iq_oob_xid || NS_XOOB in features) {
                 file.show();
                 
                 // Set a marker
                 file.attr(
                     'data-oob',
-                    jingle_oob_xid ? 'iq' : 'x'
+                    iq_oob_xid ? 'iq' : 'x'
                 );
             } else {
                 // Remove the tooltip elements
