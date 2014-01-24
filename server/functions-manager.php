@@ -553,13 +553,13 @@ function getMonthlyVisits() {
 
 // Returns the folder path
 function pathFolder($folder) {
-    if($current_folder == 'archives' || $current_folder == 'avatar' || 
-       $current_folder == 'cache'    || $current_folder == 'jingle' ||
-       $current_folder == 'send'     || $current_folder == 'update') {
-        return JAPPIX_BASE.'/tmp/'.$current_folder.'/';
+    if($folder == 'archives' || $folder == 'avatar' || 
+       $folder == 'cache'    || $folder == 'jingle' ||
+       $folder == 'send'     || $folder == 'update') {
+        return JAPPIX_BASE.'/tmp/'.$folder.'/';
     }
 
-    return JAPPIX_BASE.'/store/'.$current_folder.'/';
+    return JAPPIX_BASE.'/store/'.$folder.'/';
 }
 
 // Purges the target folder content
