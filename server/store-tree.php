@@ -23,7 +23,8 @@ $store_folders = array(
     'backgrounds',
     'conf',
     'logos',
-    'music'
+    'music',
+    'share'
 );
 
 // Creates the store sub-folders
