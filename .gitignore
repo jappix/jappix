@@ -4,6 +4,9 @@ tmp/cache/
 tmp/jingle/
 tmp/update/
 tmp/avatar/
+tmp/archives/
+tmp/send/
+tmp/share/
 log/
 test/node_modules/
 .DS_Store
