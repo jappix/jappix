@@ -272,7 +272,7 @@ function updateInformations() {
 function processUpdate($url) {
     // Archive path
     $name = md5($url).'.zip';
-    $update_dir = JAPPIX_BASE.'/tmp/update/';
+    $update_dir = JAPPIX_BASE.'/store/update/';
     $path = $update_dir.$name;
     $extract_to = $update_dir.'jappix/';
     $store_tree = JAPPIX_BASE.'/server/store-tree.php';
@@ -350,7 +350,7 @@ function processUpdate($url) {
         removeDir($to_remove);
         
         return false;
-    }
+    }""
     
     // Remove the ./store dir from the source directory
     removeDir($extract_to.'store/');
@@ -555,7 +555,7 @@ function getMonthlyVisits() {
 function pathFolder($folder) {
     if($folder == 'archives' || $folder == 'avatar' || 
        $folder == 'cache'    || $folder == 'jingle' ||
-       $folder == 'send'     || $folder == 'update') {
+       $folder == 'send') {
         return JAPPIX_BASE.'/tmp/'.$folder.'/';
     }
 

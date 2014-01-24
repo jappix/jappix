@@ -24,7 +24,8 @@ $store_folders = array(
     'conf',
     'logos',
     'music',
-    'share'
+    'share',
+    'update'
 );
 
 // Creates the store sub-folders
