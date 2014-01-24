@@ -350,7 +350,7 @@ function processUpdate($url) {
         removeDir($to_remove);
         
         return false;
-    }""
+    }
     
     // Remove the ./store dir from the source directory
     removeDir($extract_to.'store/');
