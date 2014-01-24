@@ -21,8 +21,8 @@ var DataStore = (function () {
 
 
     /* Variables */
-    var _db_emulated = {};
-    var _persistent_emulated = {};
+    self._db_emulated = {};
+    self._persistent_emulated = {};
 
 
 	/**
