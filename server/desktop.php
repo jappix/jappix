@@ -124,8 +124,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         
                         <div class="group standard">
                             <div class="separator">
-                                <span class="top"></span>
-                                <span class="bottom"></span>
+                                <span class="sep_top"></span>
+                                <span class="sep_bottom"></span>
                             </div>
                             
                             <?php displayAdverts('standard', $advertise_link); ?>
@@ -133,8 +133,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         
                         <a class="group refer" href="<?php echo $advertise_link; ?>" target="_blank">
                             <div class="separator">
-                                <span class="top"></span>
-                                <span class="bottom"></span>
+                                <span class="sep_top"></span>
+                                <span class="sep_bottom"></span>
                             </div>
                             
                             <span class="home-images icon"></span>

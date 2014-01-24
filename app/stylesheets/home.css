@@ -732,8 +732,8 @@ html[dir="rtl"] #home .right .navigation a {
 }
 
 #home .friendsview .friends .group .separator,
-#home .friendsview .friends .group .separator .top,
-#home .friendsview .friends .group .separator .bottom {
+#home .friendsview .friends .group .separator .sep_top,
+#home .friendsview .friends .group .separator .sep_bottom {
 	position: absolute;
 }
 
@@ -744,14 +744,14 @@ html[dir="rtl"] #home .right .navigation a {
 	left: -1px;
 }
 
-#home .friendsview .friends .group .separator .top,
-#home .friendsview .friends .group .separator .bottom {
+#home .friendsview .friends .group .separator .sep_top,
+#home .friendsview .friends .group .separator .sep_bottom {
 	height: 50%;
 	left: 0;
 	right: 0;
 }
 
-#home .friendsview .friends .group .separator .top {
+#home .friendsview .friends .group .separator .sep_top {
 	background: #eeeeee;
 	background: rgba(0,0,0,0.3);
 	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
@@ -763,7 +763,7 @@ html[dir="rtl"] #home .right .navigation a {
 	top: 0;
 }
 
-#home .friendsview .friends .group .separator .bottom {
+#home .friendsview .friends .group .separator .sep_bottom {
 	background: #eeeeee;
 	background: rgba(0,0,0,0.3);
 	background: -moz-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
