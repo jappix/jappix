@@ -34,7 +34,7 @@ if(isStatic() || isUpload()) {
 if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {
     // We define the variables
     $filename = $_GET['id'];
-    $content_dir = '../store/archives/';
+    $content_dir = '../tmp/archives/';
     $filepath = $content_dir.$filename.'.html';
     
     // We set special headers

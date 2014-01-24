@@ -66,7 +66,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
     $date = $date[2].'/'.$date[1].'/'.$date[0];
     
     // Generate some values
-    $content_dir = '../store/archives/';
+    $content_dir = '../tmp/archives/';
     $filename = 'jappix-chat-'.md5($xid.time());
     $filepath = $content_dir.$filename.'.html';
     

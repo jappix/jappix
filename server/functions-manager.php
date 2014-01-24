@@ -363,7 +363,7 @@ function processUpdate($url) {
     $scan = scandir($dir_base);
     
     // Filter the scan array
-    $scan = array_diff($scan, array('.', '..', '.svn', 'store'));
+    $scan = array_diff($scan, array('.', '..', '.git', 'store'));
     
     // Check all the files are writable
     foreach($scan as $scanned) {
@@ -423,7 +423,7 @@ function processUpdate($url) {
 // Returns an array with the biggest share folders
 function shareStats() {
     // Define some stuffs
-    $path = JAPPIX_BASE.'/store/share/';
+    $path = JAPPIX_BASE.'/tmp/share/';
     $array = array();
     
     // Open the directory
@@ -442,7 +442,7 @@ function shareStats() {
 // Returns the largest share folders
 function largestShare($array, $number) {
     // Define some stuffs
-    $path = JAPPIX_BASE.'/store/share/';
+    $path = JAPPIX_BASE.'/tmp/share/';
     $size_array = array();
     
     // Push the results in an array
@@ -464,10 +464,10 @@ function otherStats() {
     // Fill the array with the values
     $others_stats = array(
                     T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
-                    T_("Archives") => sizeDir(JAPPIX_BASE.'/store/archives/'),
+                    T_("Archives") => sizeDir(JAPPIX_BASE.'/tmp/archives/'),
                     T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
-                    T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
-                    T_("Send") => sizeDir(JAPPIX_BASE.'/store/send/'),
+                    T_("Share") => sizeDir(JAPPIX_BASE.'/tmp/share/'),
+                    T_("Send") => sizeDir(JAPPIX_BASE.'/tmp/send/'),
                  );
     
     // Sort this array
