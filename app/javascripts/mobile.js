@@ -66,7 +66,7 @@ var Mobile = (function () {
                 // Show the info notification
                 self.showThis('info');
                 
-                if(HOST_WEBSOCKET && typeof window.WebSocket !== undefined) {
+                if(HOST_WEBSOCKET && typeof window.WebSocket != 'undefined') {
                     // WebSocket supported & configured
                     con = new JSJaCWebSocketConnection({
                         httpbase: HOST_WEBSOCKET

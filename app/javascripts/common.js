@@ -75,7 +75,7 @@ var Common = (function () {
         has_websocket = false;
 
         try {
-            if(HOST_WEBSOCKET && typeof window.WebSocket !== undefined) {
+            if(HOST_WEBSOCKET && typeof window.WebSocket != 'undefined') {
                 has_websocket = true;
             }
         } catch(e) {
