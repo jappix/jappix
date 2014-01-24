@@ -103,14 +103,14 @@ var R_WEBRTC_SDP_ICE_PAYLOAD   = {
   ufrag           : /^a=ice-ufrag:(\S+)/i,
   ptime           : /^a=ptime:(\d+)/i,
   maxptime        : /^a=maxptime:(\d+)/i,
-  ssrc            : /^a=ssrc:(\d+) (\S+)(:(\S+))?( (\S+))?/i,
+  ssrc            : /^a=ssrc:(\d+) (\w+)(:(\S+))?( (\S+))?/i,
   rtcp_mux        : /^a=rtcp-mux/i,
   crypto          : /^a=crypto:(\d{1,9}) (\S+) (\S+)( (\S+))?/i,
   zrtp_hash       : /^a=zrtp-hash:(\S+) (\S+)/i,
   fingerprint     : /^a=fingerprint:(\S+) (\S+)/i,
   setup           : /^a=setup:(\S+)/i,
   extmap          : /^a=extmap:([^\s\/]+)(\/([^\s\/]+))? (\S+)/i,
-  bandwidth       : /^b=(\S+):(\d+)/i,
+  bandwidth       : /^b=(\w+):(\d+)/i,
   media           : /^m=(audio|video|application|data) /i
 };
 
@@ -2631,7 +2631,8 @@ function JSJaCJingle(args) {
       // Request is valid?
       if(rd_sid && self._util_stanza_parse_content(stanza)) {
         // Handle additional data (optional)
-        self._util_stanza_parse_group(stanza);
+        // Still unsure if it is relevant to parse groups there... (are they allowed in such stanza?)
+        //self._util_stanza_parse_group(stanza);
 
         // Re-generate and store new content data
         self._util_build_content_remote();
@@ -4560,7 +4561,7 @@ function JSJaCJingle(args) {
               'parameter',
               NS_JINGLE_APPS_RTP,
               payload_obj.descriptions.payload[cur_payload_id].parameter,
-              [ { n: 'name', r: 1 }, { n: 'value', r: 1 } ]
+              [ { n: 'name', r: 1 }, { n: 'value', r: 0 } ]
             );
 
             // Loop on multiple RTCP-FB
@@ -4658,6 +4659,7 @@ function JSJaCJingle(args) {
 
         if(fingerprint.length) {
           payload_obj.transports.fingerprint          = {};
+          payload_obj.transports.fingerprint.setup = self.util_stanza_get_attribute(fingerprint, 'setup');
           payload_obj.transports.fingerprint.hash  = self.util_stanza_get_attribute(fingerprint, 'hash');
           payload_obj.transports.fingerprint.value = self.util_stanza_get_value(fingerprint);
         }
@@ -5472,8 +5474,11 @@ function JSJaCJingle(args) {
               if(cur_d_payload_obj_parameter_str)  cur_d_payload_obj_parameter_str += ';';
 
               cur_d_payload_obj_parameter_str += cur_d_payload_obj_parameter_obj.name;
-              cur_d_payload_obj_parameter_str += '=';
-              cur_d_payload_obj_parameter_str += cur_d_payload_obj_parameter_obj.value;
+
+              if(cur_d_payload_obj_parameter_obj.value !== null) {
+                cur_d_payload_obj_parameter_str += '=';
+                cur_d_payload_obj_parameter_str += cur_d_payload_obj_parameter_obj.value;
+              }
             }
 
             payloads_str += cur_d_payload_obj_parameter_str;
@@ -6029,19 +6034,24 @@ function JSJaCJingle(args) {
 
             for(j in cur_fmtp_values) {
               // Parse current attribute
-              cur_fmtp_attrs = cur_fmtp_values[j].split('=');
-              cur_fmtp_key   = cur_fmtp_attrs[0];
-              cur_fmtp_value = cur_fmtp_attrs[1];
+              if(cur_fmtp_values[j].indexOf('=') !== -1) {
+                cur_fmtp_attrs = cur_fmtp_values[j].split('=');
+                cur_fmtp_key   = cur_fmtp_attrs[0];
+                cur_fmtp_value = cur_fmtp_attrs[1];
 
-              while(cur_fmtp_key.length && !cur_fmtp_key[0])
-                cur_fmtp_key = cur_fmtp_key.substring(1);
+                while(cur_fmtp_key.length && !cur_fmtp_key[0])
+                  cur_fmtp_key = cur_fmtp_key.substring(1);
+              } else {
+                cur_fmtp_key = cur_fmtp_values[j];
+                cur_fmtp_value = null;
+              }
 
               // Populate current object
               error = 0;
               cur_fmtp = {};
 
               cur_fmtp.name  = cur_fmtp_key    || error++;
-              cur_fmtp.value = cur_fmtp_value  || error++;
+              cur_fmtp.value = cur_fmtp_value;
 
               // Incomplete?
               if(error !== 0) continue;
