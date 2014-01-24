@@ -4098,10 +4098,9 @@ var JappixMini = (function () {
 
                                 pix_stream_sel.html(
                                     '<ins class="adsbygoogle"' + 
-                                         'style="display:block"' + 
+                                         'style="display:block;width:320px;height:50px;"' + 
                                          'data-ad-client="' + JappixCommon.encodeQuotes(GADS_CLIENT) + '"' + 
-                                         'data-ad-slot="' + JappixCommon.encodeQuotes(GADS_SLOT) + '"' + 
-                                         'data-ad-format="auto"></ins>' + 
+                                         'data-ad-slot="' + JappixCommon.encodeQuotes(GADS_SLOT) + '"></ins>' + 
                                     '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'
                                 );
                             }
