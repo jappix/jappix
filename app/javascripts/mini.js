@@ -1834,9 +1834,6 @@ var JappixMini = (function () {
             // Create the DOM
             jQuery('body').append('<div id="jappix_mini" style="display: none;" dir="' + (JappixCommon.isRTL() ? 'rtl' : 'ltr') + '">' + dom + '</div>');
 
-            // Apply legacy support
-            self.legacySupport();
-
             // Hide the roster picker panels
             jQuery('#jappix_mini a.jm_status.active, #jappix_mini a.jm_join.active').removeClass('active');
             jQuery('#jappix_mini div.jm_status_picker').hide();
@@ -2714,9 +2711,6 @@ var JappixMini = (function () {
                     '</div>' + 
                 '</div>'
             );
-
-            // Apply legacy support
-            self.legacySupport();
             
             // Vertical center
             var vert_pos = '-' + ((jQuery(prompt).height() / 2) + 10) + 'px';
@@ -4156,19 +4150,16 @@ var JappixMini = (function () {
 
 
     /**
-     * Applies legacy support items (for IE)
+     * Returns whether browser is legacy/unsupported or not (IE 7 and less)
      * @public
      * @return {undefined}
      */
-    self.legacySupport = function() {
+    self.isLegacy = function() {
 
         try {
-            // IE-specific style? (legacy)
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 7)) {
-                jQuery('#jappix_mini, #jappix_popup').addClass('jm_ie');
-            }
+            return BrowserDetect.browser == 'Explorer' && BrowserDetect.version <= 7;
         } catch(e) {
-            JappixConsole.error('JappixMini.legacySupport', e);
+            JappixConsole.error('JappixMini.isLegacy', e);
         }
 
     };
@@ -4191,7 +4182,6 @@ var JappixMini = (function () {
             } else {
                 // Fallback to non-optimized way, used with standalone Jappix Mini
                 css_url.push(JAPPIX_STATIC + 'stylesheets/mini.css');
-                css_url.push(JAPPIX_STATIC + 'stylesheets/mini-ie.css');
             }
 
             // Append final stylesheet HTML
@@ -4279,9 +4269,12 @@ var JappixMini = (function () {
         try {
             // Disabled on mobile?
             if(MINI_DISABLE_MOBILE && JappixCommon.isMobile()) {
-                JappixConsole.log('Jappix Mini disabled on mobile.');
+                JappixConsole.log('Jappix Mini disabled on mobile.'); return;
+            }
 
-                return;
+            // Legacy browser? (unsupported)
+            if(self.isLegacy()) {
+                JappixConsole.warn('Jappix Mini cannot load on this browser (unsupported because too old)'); return;
             }
 
             // Save infos to reconnect

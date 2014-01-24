@@ -249,6 +249,7 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 	outline-style: none;
 	display: block;
 	position: absolute;
+	top: 4px;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action:hover,
