@@ -33,7 +33,7 @@ if(isStatic()) {
 // Action on an existing file
 if(isset($_GET['id']) && !empty($_GET['id'])) {
     $file_id = $_GET['id'];
-    $file_path = JAPPIX_BASE.'/store/send/'.$file_id;
+    $file_path = JAPPIX_BASE.'/tmp/send/'.$file_id;
     
     // Get file name
     if(isset($_GET['name']) && !empty($_GET['name'])) {
@@ -97,7 +97,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
     
     // Define some vars
     $name = sha1(time().$filename);
-    $path = JAPPIX_BASE.'/store/send/'.$name.'.'.$ext;
+    $path = JAPPIX_BASE.'/tmp/send/'.$name.'.'.$ext;
     
     // Forbidden file?
     if(!isSafeAllowed($filename) || !isSafeAllowed($name.'.'.$ext)) {

@@ -423,7 +423,7 @@ function processUpdate($url) {
 // Returns an array with the biggest share folders
 function shareStats() {
     // Define some stuffs
-    $path = JAPPIX_BASE.'/tmp/share/';
+    $path = JAPPIX_BASE.'/store/share/';
     $array = array();
     
     // Open the directory
@@ -442,7 +442,7 @@ function shareStats() {
 // Returns the largest share folders
 function largestShare($array, $number) {
     // Define some stuffs
-    $path = JAPPIX_BASE.'/tmp/share/';
+    $path = JAPPIX_BASE.'/store/share/';
     $size_array = array();
     
     // Push the results in an array
@@ -466,7 +466,7 @@ function otherStats() {
                     T_("Backgrounds") => sizeDir(JAPPIX_BASE.'/store/backgrounds/'),
                     T_("Archives") => sizeDir(JAPPIX_BASE.'/tmp/archives/'),
                     T_("Music") => sizeDir(JAPPIX_BASE.'/store/music/'),
-                    T_("Share") => sizeDir(JAPPIX_BASE.'/tmp/share/'),
+                    T_("Share") => sizeDir(JAPPIX_BASE.'/store/share/'),
                     T_("Send") => sizeDir(JAPPIX_BASE.'/tmp/send/'),
                  );
     
@@ -551,6 +551,17 @@ function getMonthlyVisits() {
     return $array;
 }
 
+// Returns the folder path
+function pathFolder($folder) {
+    if($current_folder == 'archives' || $current_folder == 'avatar' || 
+       $current_folder == 'cache'    || $current_folder == 'jingle' ||
+       $current_folder == 'send'     || $current_folder == 'update') {
+        return JAPPIX_BASE.'/tmp/'.$current_folder.'/';
+    }
+
+    return JAPPIX_BASE.'/store/'.$current_folder.'/';
+}
+
 // Purges the target folder content
 function purgeFolder($folder) {
     // Array of the folders to purge
@@ -566,7 +577,7 @@ function purgeFolder($folder) {
     // All right, now we can empty it!
     foreach($array as $current_folder) {
         // Scan the current directory
-        $directory = JAPPIX_BASE.'/store/'.$current_folder.'/';
+        $directory = pathFolder($current_folder);
         $scan = scandir($directory);
         $scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
         
@@ -588,9 +599,9 @@ function purgeFolder($folder) {
 // Returns folder browsing informations
 function browseFolder($folder, $mode) {
     // Scan the target directory
-    $directory = JAPPIX_BASE.'/store/'.$folder;
+    $directory = pathFolder($folder);
     $scan = scandir($directory);
-    $scan = array_diff($scan, array('.', '..', '.svn', 'index.html'));
+    $scan = array_diff($scan, array('.', '..', '.git', 'index.html'));
     $keep_get = keepGet('(s|b|k)', false);
     
     // Odd/even marker
