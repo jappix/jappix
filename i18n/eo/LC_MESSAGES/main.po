@@ -3,13 +3,11 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:24+0100\n"
+"PO-Revision-Date: 2014-01-24 16:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/jappix/"
 "language/eo/)\n"
@@ -19,7 +17,7 @@ msgstr ""
 "Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -199,6 +197,12 @@ msgstr "Montri ĉiojn amikojn"
 
 msgid "Only show connected friends"
 msgstr "Nur montri konektitajn amikojn"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "Mesaĝaj arkivoj"
@@ -445,6 +449,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "Surtera loko"
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr "Malplena"
 
@@ -473,6 +489,9 @@ msgid "New (2 times)"
 msgstr "Nova (2 fojoj)"
 
 msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Continue"
@@ -579,6 +598,9 @@ msgstr "Aldoni ĉi tiu retbabilejo al via ŝatolisto"
 
 msgid "All tabs"
 msgstr "Tutaj folioj"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "Fermi tion folion"
@@ -1152,6 +1174,9 @@ msgstr "Aplikaĵo"
 msgid "Media integration"
 msgstr "Aŭdvidaĵo integrado"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPPa ligoj"
 
@@ -1208,6 +1233,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "Kunuzigi Jappix-on ĉe %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Uzante Jappix-on, malferma socia platformo. Mi estas %s!"
@@ -1282,20 +1310,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix entenas persistan datumon (kiel komunaj dosieroj, konversaciaj "
-"ŝtipoj, via propra muziko kaj ĝia konfiguracio) en ununura gardata "
-"konservada dosierujo."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix devas esti kapabla skribi en ĉi tiu teko krei ĝia sub-adresaroj. Se "
-"ne, vi devas fiksi la rajtojn al %1s aŭ ŝanĝi la tekan posedanton al %2s "
-"(dependanta de via konfiguracio)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "La dosierujo estas skribebla, vi povas daŭri!"
@@ -1434,6 +1456,9 @@ msgstr "Dosieruja gastigo"
 msgid "BOSH host"
 msgstr "BOSH-a gastigo"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1545,9 +1570,6 @@ msgstr "koloro"
 
 msgid "Users"
 msgstr "Uzantoj"
-
-msgid "Updates"
-msgstr "Ĝisdatigoj"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1731,11 +1753,8 @@ msgstr "dimanĉo"
 msgid "Total"
 msgstr "Totala"
 
-msgid "Cache"
-msgstr "Kaŝmemoro"
-
-msgid "Logs"
-msgstr "Protokoloj"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Muziko"
@@ -2285,4 +2304,76 @@ msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

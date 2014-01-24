@@ -3,14 +3,13 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 # jui <appukonrad@gmail.com>, 2012
+# moneytoo <mdop@seznam.cz>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:24+0100\n"
+"PO-Revision-Date: 2014-01-24 16:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/jappix/language/"
 "cs/)\n"
@@ -20,7 +19,7 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -63,13 +62,13 @@ msgid "Find a public Jappix node."
 msgstr "Najít veřejný Jappix uzel."
 
 msgid "Credits"
-msgstr ""
+msgstr "Zásluhy"
 
 msgid "Association"
-msgstr ""
+msgstr "Asociace"
 
 msgid "Web agency"
-msgstr ""
+msgstr "Webová agentůra"
 
 msgid "Legal"
 msgstr "Právo"
@@ -81,10 +80,10 @@ msgid "Terms of use and legal"
 msgstr "Podmínky používání a právo"
 
 msgid "Owner"
-msgstr ""
+msgstr "Vlastník"
 
 msgid "Node owner"
-msgstr ""
+msgstr "Vlastník uzlu"
 
 msgid "By using our service, you accept %s."
 msgstr "Užíváním naší služby, souhlasíte s %s."
@@ -203,6 +202,12 @@ msgstr "Zobrazit všechny kamarády"
 
 msgid "Only show connected friends"
 msgstr "Zobrazit pouze připojené kamarády"
+
+msgid "Groupchat presence messages"
+msgstr "Popisy stavů pro skupinový rozhovor"
+
+msgid "No chat images auto-load"
+msgstr "Nenačítat obrázky u rozhovorů"
 
 msgid "Message archives"
 msgstr "Archiv zpráv"
@@ -403,6 +408,8 @@ msgid ""
 "Be careful with the information you store into your profile, because it "
 "might be accessible by everyone (even someone you don't want to)."
 msgstr ""
+"Buďte opatrní, informace, které vyplníte v profilu jsou přístupné každému (i "
+"tomu, komu nechcete)."
 
 msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
@@ -444,10 +451,22 @@ msgid "Message archiving"
 msgstr "Archivace zpráv"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "Ukládat historii vašich rozhovorů"
 
 msgid "Geolocation"
 msgstr "Geologická poloha"
+
+msgid "Disabled"
+msgstr "Zakázaný"
+
+msgid "Store all chats"
+msgstr "Ukládat všechny rozhovory"
+
+msgid "Store friend chats"
+msgstr "Ukládat rozhovory s kamarády"
+
+msgid "Remove all archives"
+msgstr "Smazat všechny archívy"
 
 msgid "Empty"
 msgstr "Odstranit"
@@ -478,6 +497,9 @@ msgstr "Nové (2 krát)"
 
 msgid "Suggested chatrooms"
 msgstr "Doporučené diskusní místnosti"
+
+msgid "Skip"
+msgstr "Přeskočit"
 
 msgid "Continue"
 msgstr "Pokračovat"
@@ -584,6 +606,9 @@ msgstr "Přidej tento skupinový rozhovor do oblíbených"
 
 msgid "All tabs"
 msgstr "Všechny listy"
+
+msgid "Join groupchat"
+msgstr "Připojit se ke skupinovému rozhovoru"
 
 msgid "Close this tab"
 msgstr "Zavřít tento list"
@@ -787,10 +812,10 @@ msgid "left the chat room"
 msgstr "opustit místnost"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s zbývá"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s přidaných"
 
 msgid "no status"
 msgstr "bez statusu"
@@ -836,6 +861,8 @@ msgid ""
 "For your account safety, when you login or register, make sure your password "
 "remains secret."
 msgstr ""
+"Pro bezpečí vašeho účtu, během přihlašování nebo registraci, se ujistěte, že "
+"je vaše heslo v bezpečí."
 
 msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
@@ -1006,22 +1033,27 @@ msgid ""
 "validated your account. Your public profile will be available in a few "
 "moments."
 msgstr ""
+"potvrdil váš účet. Váš veřejný profil bude dostupný během několika okamžiků."
 
 msgid "has removed your public profile after your request. We will miss you!"
-msgstr ""
+msgstr "na vaši žádost odstranil váš veřejný profil. Bude se nám stýskat!"
 
 msgid ""
 "has saved your new public profile settings. They will be applied in a few "
 "moments."
 msgstr ""
+"uložil nastavení vašeho nového veřejného profilu. To bude použito během "
+"několika okamžiků."
 
 msgid ""
 "could not validate your account to create or update your public profile. "
 "Check your credentials."
 msgstr ""
+"nemohl potvrdil váš účet k vytvoření nebo úpravě vašeho veřejného profilu. "
+"Zkontrolujte si svá přístupová data."
 
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 msgid "Show"
 msgstr "Zobrazit"
@@ -1159,6 +1191,9 @@ msgstr "Aplikace"
 msgid "Media integration"
 msgstr "Integrovat media"
 
+msgid "Keep local chat archives"
+msgstr "Nechávat lokální archívy rozhovorů"
+
 msgid "XMPP links"
 msgstr "XMPP odkaz"
 
@@ -1215,6 +1250,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "Sdílejte Jappix na %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr "Sledovat Jappix téma na %s"
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Používám Jappix, otevřenou sociální platformu. Jsem %s!"
@@ -1290,19 +1328,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix ukládá natrvalo data (sdílené soubory, vaše vlastní hudba a "
-"konfigurace) do jediného zabezpečeného adresáře. "
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix musí mít oprávnění zapisovat do tohoto adresáře pro vytvoření "
-"vlastních podadresářů.Pokud tomu tak není, je třeba nastavit oprávnění na "
-"%1s a nebo nastavit vlastníka adresáře na %2s (závisí to na vašem nastavení)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "Do adresáře je povolen zápis, můžete pokračovat!"
@@ -1359,10 +1392,10 @@ msgid "Service description"
 msgstr "Popis služby"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Jméno vlastníka"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Webová stránka vlastníka"
 
 msgid "Connection"
 msgstr "Připojení"
@@ -1380,7 +1413,7 @@ msgid "Registration allowed"
 msgstr "Registrace povolena"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Použít vestavěnou BOSH proxy"
 
 msgid "Manager link"
 msgstr "Odkaz správce"
@@ -1436,6 +1469,9 @@ msgstr "Directory host"
 
 msgid "BOSH host"
 msgstr "BOSH host"
+
+msgid "WebSocket host"
+msgstr ""
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
@@ -1547,9 +1583,6 @@ msgstr "Barva"
 msgid "Users"
 msgstr "Uživatelé"
 
-msgid "Updates"
-msgstr "Aktualizace"
-
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
 "node."
@@ -1591,6 +1624,7 @@ msgstr "Změna konfiguraci vašeho Jabbix uzlu pomocí správce."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
 msgstr ""
+"Změnit nastavení XMPP hostitelů, který Jappix uzel využívá v tomto nástroji."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
@@ -1728,11 +1762,8 @@ msgstr "Neděle"
 msgid "Total"
 msgstr "Celkem"
 
-msgid "Cache"
-msgstr "Keš"
-
-msgid "Logs"
-msgstr "Logy"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Hudba"
@@ -2002,6 +2033,8 @@ msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
 "only one remaining."
 msgstr ""
+"S tímto nástrojem můžete odstranit uživatele. Mějte na paměti, že nelze "
+"odstranit uživatele, pokud zbývá jako poslední."
 
 msgid "The user has been added!"
 msgstr "Uživatel byl přidán!"
@@ -2152,10 +2185,10 @@ msgid "%s changes the room topic"
 msgstr "%s změní téma místnosti"
 
 msgid "%s kicks a user of the room"
-msgstr ""
+msgstr "%s vykáže uživatele z místnosti"
 
 msgid "%s bans a user of the room"
-msgstr ""
+msgstr "%s zakáže uživateli přístup do místnosti"
 
 msgid "%s invites someone to join the room"
 msgstr "%s zve někoho do místnosti"
@@ -2171,21 +2204,30 @@ msgid ""
 "easier to share it. No XMPP account is required to view your social channel, "
 "your current position and your contact details."
 msgstr ""
+"%s je služba Jappix.com, která dělá váš veřejný XMPP profil. Je lehčí ho tak "
+"sdílet. Nepotřebujete ani účet XMPP k prohlížení vašeho sociálního kanálu, "
+"vaší aktuální polohy a vašich kontaktů."
 
 msgid ""
 "Furthermore, every picture you post in your social channel is added to a "
 "beautiful picture timeline. You can now view the pictures you shared year by "
 "year."
 msgstr ""
+"Dále je každý obrázek, který pošlete do vašeho sociálního kanálu, přidán do "
+"krásné obrázkové časové osy. Můžete se teď podívat na obrázky, které jste "
+"slíleli rok po roku."
 
 msgid ""
 "You can also use your XMPP avatar as a single avatar for every website, blog "
 "and forum you use. When you change it on XMPP, the new avatar appears "
 "everywhere. What a genius improvement!"
 msgstr ""
+"Svůj XMPP avatar můžete také využít na všech webových stránkách, blozích a "
+"fórech, která používáte. Když ho změníte na XMPP, nový avatar se objeví "
+"všude. To je ale geniální vylepšení!"
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Hurá, pojďme vytvořit váš veřejný profil!"
 
 msgid "Enable my public profile"
 msgstr "Povolit můj veřejný profil"
@@ -2200,6 +2242,8 @@ msgid ""
 "This notification is only informative, maybe the data it links to have been "
 "removed."
 msgstr ""
+"Toto upozornění je jen pro informaci, že data, na které se odkazuje mohla "
+"být již odstraněna."
 
 msgid "You haven't provided any file to download"
 msgstr "Nezadali jste žádný soubor ke stažení"
@@ -2208,10 +2252,10 @@ msgid "You cannot download a file if you don't provide a key"
 msgstr "Nemůžete stahovat soubor, pokud nechcete poskytnout klíč"
 
 msgid "Woah this file isn't found, please double check"
-msgstr ""
+msgstr "Hej, tento soubor nebyl nalezen, zkontroluj to prosím ještě jednou"
 
 msgid "The key you provided does not have the permission to download this file"
-msgstr ""
+msgstr "Vámi dodaný klíč nemá právo ke stažení tohoto souboru"
 
 msgid "Statistics are currently disabled in the settings."
 msgstr "Statistiky jsou v současnosti zakázány v nastavení."
@@ -2224,55 +2268,127 @@ msgstr "%s píše se..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
-msgstr ""
+msgstr "Tento bezpečnostní kód je neplatný. Zkuste prosím jiný."
 
 msgid "The username you picked is not available. Please try another one."
-msgstr ""
+msgstr "Zvolené uživatelské jméno není dostupné. Zkuste si prosím vybrat jiné."
 
 msgid "There was an error registering your account. Please retry."
-msgstr ""
+msgstr "Během registrace došlo k chybě. Zkuste to prosím znovu."
 
 msgid "Username"
-msgstr ""
+msgstr "Uživatelské jméno"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Zadat heslo"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Ještě jednou..."
 
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 msgid "Security code"
-msgstr ""
+msgstr "Bezpečnostní kód"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Reklamní plocha je volná!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Inzerujte zde"
 
 msgid "Analytics (%s)"
-msgstr ""
+msgstr "Analýza (%s)"
 
 msgid "Track visits"
-msgstr ""
+msgstr "Sledovat návštěvy"
 
 msgid "Piwik URL"
-msgstr ""
+msgstr "Piwik URL adresa"
 
 msgid "Piwik tracking ID"
-msgstr ""
+msgstr "Piwik ID pro sledování"
 
 msgid "Advertising (%s)"
-msgstr ""
+msgstr "Reklama (%s)"
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Povolit reklamy"
 
 msgid "Standard ads key"
-msgstr ""
+msgstr "Klíč pro standardní reklamy"
 
 msgid "Content ads key"
+msgstr "Klíč pro obsahové reklamy"
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

@@ -2,16 +2,19 @@
 # These are the default english strings of Jappix
 # -------------------------------------------------
 # License: AGPL
-# Authors: Valérian Saliou, JanCBorchardt, Dominik George
+# Authors: Valérian Saliou, JanCBorchardt
 # Translators:
 # Christian Sturm <reezer@reezer.org>, 2012
+# Natureshadow <nik@naturalnet.de>, 2014
 # gruenerfuchs <gruener-fuchs@web.de>, 2013
 # palim <ueblesurmeli-transifex@yahoo.de>, 2012
-# Dominik George <nik@naturalnet.de>, 2014
+# gruenerfuchs <gruener-fuchs@web.de>, 2013
+# palim <ueblesurmeli-transifex@yahoo.de>, 2012
+# Valérian Saliou <val.saliou@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-02 14:22+0100\n"
+"PO-Revision-Date: 2014-01-24 16:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/jappix/language/"
 "de/)\n"
@@ -21,7 +24,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -208,10 +211,10 @@ msgid "Only show connected friends"
 msgstr "Nur verfügbare Freunde anzeigen"
 
 msgid "Groupchat presence messages"
-msgstr ""
+msgstr "Statusnachrichten in Gruppenchats"
 
 msgid "No chat images auto-load"
-msgstr ""
+msgstr "Bilder in Chats nicht automatisch laden"
 
 msgid "Message archives"
 msgstr "Nachrichtenarchiv"
@@ -503,7 +506,7 @@ msgid "Suggested chatrooms"
 msgstr "Vorgeschlagene Räume"
 
 msgid "Skip"
-msgstr ""
+msgstr "Überspringen"
 
 msgid "Continue"
 msgstr "Fortsetzen"
@@ -612,7 +615,7 @@ msgid "All tabs"
 msgstr "Alle Tabs"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "Gruppenchat beitreten"
 
 msgid "Close this tab"
 msgstr "Diesen Tab schließen"
@@ -1197,7 +1200,7 @@ msgid "Media integration"
 msgstr "Medien Einbindung"
 
 msgid "Keep local chat archives"
-msgstr ""
+msgstr "Chatverläufe lokal speichern"
 
 msgid "XMPP links"
 msgstr "XMPP-Verweise"
@@ -1257,7 +1260,7 @@ msgid "Share Jappix on %s"
 msgstr "Jappix über %s teilen"
 
 msgid "Follow Jappix topic on %s"
-msgstr ""
+msgstr "Jappix auf %s folgen"
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Ich nutze Jappix, ein freies soziales Netzwerk. Ich bin %s!"
@@ -1332,19 +1335,21 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix speichert permanente Dateien (wie öffentliche Dateien, Chatlogs, "
-"deine Musik und die Einstellungen) in einem separat gesicherten Ordner."
+"Jappix speichert persistente Daten (wie z.B. geteilte Dateien, "
+"Nachrichtenverläufe, deine eigene Musik und seine Konfiguration) in mehreren "
+"Speicherordnern."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix muss Schreibberechtigungen in diesem Ordner haben um sein Unterordner "
-"zu erzeugen. Wenn nicht, setze die Rechte zu %1s oder ändere den Besitzer "
-"des Ordners zu %2s, je nach deiner Konfiguration."
+"Jappix muss in diesem Verzeichnis schreiben können, um die "
+"Unterverzeichnisse anzulegen. Andernfalls musst du die die Rechte von %1s "
+"auf %2s setzen oder den Verzeichnisbesitzer zu %3s ändern (abhängig von "
+"deiner Konfiguration)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "Der Ordner ist schreibbar, du kannst weitermachen!"
@@ -1483,6 +1488,9 @@ msgstr "Verzeichnis-Host"
 
 msgid "BOSH host"
 msgstr "BOSH-Host"
+
+msgid "WebSocket host"
+msgstr "WebSocket-Host"
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
@@ -1779,7 +1787,7 @@ msgid "Total"
 msgstr "Gesamt"
 
 msgid "Archives"
-msgstr ""
+msgstr "Archiv"
 
 msgid "Music"
 msgstr "Musik"
@@ -2346,6 +2354,12 @@ msgstr "Schlüssel für Standard-Werbung"
 
 msgid "Content ads key"
 msgstr "Schlüssel für Inhaltswerbung"
+
+msgid "AdSense client ID"
+msgstr "AdSense-Client-ID"
+
+msgid "AdSense slot"
+msgstr "AdSense-Slot"
 
 msgid "Stop"
 msgstr "Abbrechen"

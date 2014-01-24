@@ -3,15 +3,13 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
-# Rivo Zängov <eraser@eraser.ee>, 2012-2013
+# Rivo Zängov <eraser@eraser.ee>, 2012-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:25+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-01-24 16:00+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/jappix/language/"
 "et/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +18,7 @@ msgstr ""
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -202,6 +200,12 @@ msgstr "Näita kõiki sõpru"
 
 msgid "Only show connected friends"
 msgstr "Näita ainult sisselogitud sõpru"
+
+msgid "Groupchat presence messages"
+msgstr "Grupivestluses juuresoleku sõnumid"
+
+msgid "No chat images auto-load"
+msgstr "Pole ühtegi vestluse pilti, mida automaatselt laadida"
 
 msgid "Message archives"
 msgstr "Sõnumite arhiiv"
@@ -445,10 +449,22 @@ msgid "Message archiving"
 msgstr "Sõnumite arhiveerimine"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "Salvesta oma vestluste ajalugu"
 
 msgid "Geolocation"
 msgstr "Geolokatsioon"
+
+msgid "Disabled"
+msgstr "Välja lülitatud"
+
+msgid "Store all chats"
+msgstr "Salvesta kõik vestlused"
+
+msgid "Store friend chats"
+msgstr "Salvesta vestlused sõpradega"
+
+msgid "Remove all archives"
+msgstr "Eemalda kõik arhiivid"
 
 msgid "Empty"
 msgstr "Tühi"
@@ -479,6 +495,9 @@ msgstr "Uus"
 
 msgid "Suggested chatrooms"
 msgstr "Soovitatud jututoad"
+
+msgid "Skip"
+msgstr "Jäta vahele"
 
 msgid "Continue"
 msgstr "Jätka"
@@ -585,6 +604,9 @@ msgstr "Lisa see grupivestlus oma lemmikutesse"
 
 msgid "All tabs"
 msgstr "Kõik kaardid"
+
+msgid "Join groupchat"
+msgstr "Liitu grupivestlustega"
 
 msgid "Close this tab"
 msgstr "Sulge see kaart"
@@ -1164,6 +1186,9 @@ msgstr "Aplikatsioon"
 msgid "Media integration"
 msgstr "Meedia integratsioon"
 
+msgid "Keep local chat archives"
+msgstr "Säilita kohapealsed vestluse arhiivid"
+
 msgid "XMPP links"
 msgstr "XMPP lingid"
 
@@ -1217,6 +1242,9 @@ msgstr "Kui te vajutate salvestamise nuppu siis avaneb profiili muutmise aken."
 
 msgid "Share Jappix on %s"
 msgstr "Jaga Jappix'it %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr "Jälgi Jappixi teemat %s"
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Kasutan Jappix'it, avatud sotsiaalvõrgustik. Ma olen %s!"
@@ -1290,19 +1318,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix hoiab säilivaid andmeid (nagu nt jagatud failid, vestluse logid, Teie "
-"muusika ja konfiguratsioon) ühes ainsas turvatud kataloogis."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappixil peab olema siia ja alamkataloogidesse kirjutusõigus. Kui see puudub "
-"siis peate Te muutma õigused %1s või muutma kataloogi omaniku %2s (olenevalt "
-"Teie konfiguratsioonist)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "Kataloogil on kirjutusõigused, Te võite jätkata!"
@@ -1440,6 +1463,9 @@ msgstr "Kataloogi host"
 msgid "BOSH host"
 msgstr "BOSH host"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1548,9 +1574,6 @@ msgstr "Värv"
 
 msgid "Users"
 msgstr "Kasutajad"
-
-msgid "Updates"
-msgstr "Uuendused"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1732,11 +1755,8 @@ msgstr "Pühapäev"
 msgid "Total"
 msgstr "Kokku"
 
-msgid "Cache"
-msgstr "Vahemälu"
-
-msgid "Logs"
-msgstr "Logid"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Muusika"
@@ -2296,3 +2316,75 @@ msgstr "Stndardne reklaami võti"
 
 msgid "Content ads key"
 msgstr "Sisu reklaami võti"
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr "Peata"
+
+msgid "Mute"
+msgstr "Hääl väljas"
+
+msgid "Unmute"
+msgstr "Hääl sees"
+
+msgid "Is calling you"
+msgstr "Helistab sulle"
+
+msgid "Initiating call"
+msgstr "Kõne käivitamine"
+
+msgid "Connecting to call..."
+msgstr "Kõne ühendamine ..."
+
+msgid "Waiting..."
+msgstr "Ootamine..."
+
+msgid "Ringing..."
+msgstr "Helisemine..."
+
+msgid "Declined the call"
+msgstr "Kõnet ei võetud vastu"
+
+msgid "Call error"
+msgstr "Kõne tõrge"
+
+msgid "Ended the call"
+msgstr "Lõpetas kõne"
+
+msgid "Call ended"
+msgstr "Kõne lõpetati"
+
+msgid "Call canceled"
+msgstr "Kõne tühistati"
+
+msgid "Canceled the call"
+msgstr "Tühistas kõne"
+
+msgid "Is already in a call"
+msgstr "On juba kõnes"
+
+msgid "Ending call..."
+msgstr "Kõne lõpetamine..."
+
+msgid "Accept"
+msgstr "Võta vastu"
+
+msgid "Decline"
+msgstr "Keeldu"
+
+msgid "Okay"
+msgstr "OK"
+
+msgid "Retry"
+msgstr "Proovi uuesti"
+
+msgid "Audio Call"
+msgstr "Telefonikõne"
+
+msgid "Video Call"
+msgstr "Videokõne"

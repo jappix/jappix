@@ -3,14 +3,12 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:25+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-01-24 16:01+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/jappix/"
 "language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +17,7 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -199,6 +197,12 @@ msgstr "Minden barát mutatása"
 
 msgid "Only show connected friends"
 msgstr "Csak a csatlakozott barátok mutatása"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "Archivált üzenetek"
@@ -445,6 +449,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "Tartózkodási hely"
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr "Üres"
 
@@ -473,6 +489,9 @@ msgid "New (2 times)"
 msgstr "Új (2-szer)"
 
 msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Continue"
@@ -578,6 +597,9 @@ msgstr "Csoportos beszélgetés hozzáadása a kedvencekhez"
 
 msgid "All tabs"
 msgstr "Minden lap"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "Lap bezárása"
@@ -1152,6 +1174,9 @@ msgstr "Alkalmazás"
 msgid "Media integration"
 msgstr "Média integráció"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPP linkek"
 
@@ -1208,6 +1233,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "A Jappix megosztása a %s -en."
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Jappix-et, egy nyílt szociális platformot használok. %s vagyok!"
@@ -1282,20 +1310,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"A Jappix tárolja az állandó adatokat (mint a megosztott fájlok, "
-"beszélgetések naplózásai, saját zenék és konfigurációk), egy egyedi, "
-"biztosított mappában."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"A Jappix-nak tudnia kell írni ebbe a mappába, hogy létre tudjon hozni "
-"almappákat. Ha nem tud, be kell állítanod az írási jogot %1s vagy "
-"megváltoztatni a mappa tulajdonosát %2s -re (a konfigurációdtól függően)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "A mappa írható, már folytathatod!"
@@ -1434,6 +1456,9 @@ msgstr "Címtár kiszolgáló"
 msgid "BOSH host"
 msgstr "BOSH kiszolgáló"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1541,9 +1566,6 @@ msgstr "Szín"
 
 msgid "Users"
 msgstr "Felhasználók"
-
-msgid "Updates"
-msgstr "Frissítések"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1730,11 +1752,8 @@ msgstr "Vasárnap"
 msgid "Total"
 msgstr "Összeg"
 
-msgid "Cache"
-msgstr "Gyorsítótár"
-
-msgid "Logs"
-msgstr "Logok"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Zene"
@@ -2285,4 +2304,76 @@ msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

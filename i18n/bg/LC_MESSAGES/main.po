@@ -3,13 +3,11 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:24+0100\n"
+"PO-Revision-Date: 2014-01-24 16:00+0100\n"
 "Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/jappix/"
 "language/bg/)\n"
@@ -19,7 +17,7 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -212,6 +210,12 @@ msgstr "Показване на всички приятели"
 
 msgid "Only show connected friends"
 msgstr "Показване само на свързаните приятели"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "Архив на съобщенията"
@@ -458,6 +462,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "Геолокация"
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr "Празно"
 
@@ -486,6 +502,9 @@ msgid "New (2 times)"
 msgstr "Нов(и) (2 пъти)"
 
 msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Continue"
@@ -592,6 +611,9 @@ msgstr "Добавяне на груповия чат към твоите люб
 
 msgid "All tabs"
 msgstr "Всички подпрозорци (табове)"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "Затваряне на подпрозореца (таба)"
@@ -1171,6 +1193,9 @@ msgstr "Приложение"
 msgid "Media integration"
 msgstr "Медийна интеграция"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPP връзки"
 
@@ -1227,6 +1252,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "Споделяне на Jappix по %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Използвам Jappix, отворена социална платформа. Аз съм %s!"
@@ -1303,21 +1331,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix съхранява натрапчиви/постоянни данни (като споделени файлове, "
-"дневници/архиви на чатовете, вашата музика и собствената си конфигурация) в "
-"своята собствена сигурна папка/директория за съхранение."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix трябва да може да вписва данни в тази папка/директория, за да създаде "
-"своите поддиректории. Ако това е невъзможно, трябва да настроите "
-"правомощията на %1s или да промените собственика на папката на %2s (в "
-"зависимост от вашата конфигурация)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "В тази папка/директория може да се записва, можете да продължите!"
@@ -1460,6 +1481,9 @@ msgstr "Хост на директорията"
 msgid "BOSH host"
 msgstr "BOSH хост"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1575,9 +1599,6 @@ msgstr "Цвят"
 
 msgid "Users"
 msgstr "Потребители"
-
-msgid "Updates"
-msgstr "Обновления"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1764,11 +1785,8 @@ msgstr "неделя"
 msgid "Total"
 msgstr "Общо"
 
-msgid "Cache"
-msgstr "Кеш (cache)"
-
-msgid "Logs"
-msgstr "Дневници (logs)"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Музика"
@@ -2329,4 +2347,76 @@ msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

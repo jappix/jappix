@@ -3,7 +3,6 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 # Caner BAŞARAN <basaran.caner@gmail.com>, 2013
 # Caner BAŞARAN <basaran.caner@gmail.com>, 2013
@@ -12,9 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:25+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-01-24 16:01+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/jappix/language/"
 "tr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +21,7 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr ""
@@ -51,7 +49,7 @@ msgid "Statistics around Jappix."
 msgstr "Jappix istatistikleri."
 
 msgid "Legal disclaimer for Jappix."
-msgstr ""
+msgstr "Jappix için yasal feragatname"
 
 msgid "Download Jappix for free."
 msgstr "Jappix'i ücretsiz indirin."
@@ -78,7 +76,7 @@ msgid "Legal"
 msgstr "Yasal"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "Yasal feragatname"
 
 msgid "Terms of use and legal"
 msgstr "Kullanım koşulları ve izinler"
@@ -204,6 +202,12 @@ msgstr "Tüm arkadaşları göster"
 
 msgid "Only show connected friends"
 msgstr "Sadece aktif arkadaşları göster"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "Mesaj arşivleri"
@@ -450,6 +454,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "Coğrafik lokasyon"
 
+msgid "Disabled"
+msgstr "Devredışı"
+
+msgid "Store all chats"
+msgstr "Tüm sohbetleri sakla"
+
+msgid "Store friend chats"
+msgstr "Arkadaş sohbetlerini sakla"
+
+msgid "Remove all archives"
+msgstr "Tüm arşivleri kaldır"
+
 msgid "Empty"
 msgstr "Boş"
 
@@ -479,6 +495,9 @@ msgstr "Yeni (2 adet)"
 
 msgid "Suggested chatrooms"
 msgstr "Önerilen sohbet odaları"
+
+msgid "Skip"
+msgstr ""
 
 msgid "Continue"
 msgstr "Devam"
@@ -583,6 +602,9 @@ msgstr "Bu grup sohbetini favorilerinize ekleyin"
 
 msgid "All tabs"
 msgstr "Tüm sekmeler"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "Bu sekmeyi kapat"
@@ -786,10 +808,10 @@ msgid "left the chat room"
 msgstr "sohbet odasını terk etti"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s ayrıldı"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s katıldı"
 
 msgid "no status"
 msgstr "durum yok"
@@ -1153,6 +1175,9 @@ msgstr "Application"
 msgid "Media integration"
 msgstr "Media integration"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPP links"
 
@@ -1209,6 +1234,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "Share Jappix on %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Using Jappix, an open social platform. I am %s!"
@@ -1279,19 +1307,14 @@ msgstr "Sosyal bulutunu oluşturma vakti: sadece sonraki adıma geç!"
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "The folder is writable, you can continue!"
@@ -1431,6 +1454,9 @@ msgstr "Directory host"
 msgid "BOSH host"
 msgstr "BOSH host"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1541,9 +1567,6 @@ msgstr "Color"
 
 msgid "Users"
 msgstr "Users"
-
-msgid "Updates"
-msgstr "Updates"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1725,11 +1748,8 @@ msgstr "Sunday"
 msgid "Total"
 msgstr "Total"
 
-msgid "Cache"
-msgstr "Cache"
-
-msgid "Logs"
-msgstr "Logs"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Music"
@@ -2184,7 +2204,7 @@ msgid ""
 msgstr ""
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Haydi, açık profilini oluştur!"
 
 msgid "Enable my public profile"
 msgstr "Genel profilimi aktif et"
@@ -2222,7 +2242,7 @@ msgid "New event!"
 msgstr "Yeni olay!"
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s yazıyor..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
@@ -2271,10 +2291,82 @@ msgid "Advertising (%s)"
 msgstr ""
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Reklamları etkinleştir"
 
 msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

@@ -3,14 +3,12 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:25+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-01-24 16:02+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/jappix/"
 "language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +17,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -194,6 +192,12 @@ msgstr "显示所有好友"
 
 msgid "Only show connected friends"
 msgstr "只显示已联机的好友"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "消息存盘"
@@ -437,6 +441,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "地理位置"
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr "空白"
 
@@ -465,6 +481,9 @@ msgid "New (2 times)"
 msgstr "新（2 次）"
 
 msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Continue"
@@ -568,6 +587,9 @@ msgstr "加入此群至你的收藏夹"
 
 msgid "All tabs"
 msgstr "全部选项卡"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "关闭此选项卡"
@@ -1131,6 +1153,9 @@ msgstr "应用程序"
 msgid "Media integration"
 msgstr "媒体整合"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPP 链接"
 
@@ -1181,6 +1206,9 @@ msgstr "当你点击保存键，个人资料编辑器将会被打开，快乐的
 
 msgid "Share Jappix on %s"
 msgstr "在 %s 上分享 Jappix"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "使用 Jappix，一个开放社交平台。我是 %s！"
@@ -1251,18 +1279,14 @@ msgstr "是时候该去创建你自己的社交圈：只要进入下一步"
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix供应持久性数据（比如分享的文件，聊天记录，你自己的音乐和其配置）保存在"
-"一个安全的储存文档中"
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix必须有能力去在这个文档中创建其分目录。如果不能，你必须设置权力给%1s或者"
-"将文档的所有者更改为%2s（取决于你的配置）"
 
 msgid "The folder is writable, you can continue!"
 msgstr "文件夹可写入，你可以继续！"
@@ -1392,6 +1416,9 @@ msgstr "目录主机"
 msgid "BOSH host"
 msgstr "BOSH 主机"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1496,9 +1523,6 @@ msgstr "色彩"
 
 msgid "Users"
 msgstr "用户"
-
-msgid "Updates"
-msgstr "更新"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1667,11 +1691,8 @@ msgstr "星期日"
 msgid "Total"
 msgstr "合计"
 
-msgid "Cache"
-msgstr "隐藏"
-
-msgid "Logs"
-msgstr "记录"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "音乐"
@@ -2199,4 +2220,76 @@ msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""

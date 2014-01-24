@@ -3,15 +3,13 @@
 # -------------------------------------------------
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
-# Last revision: 07/06/13
 # Translators:
 # Muhammad Panji <sumodirjo@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"Report-Msgid-Bugs-To: https://github.com/jappix/jappix/issues\n"
-"PO-Revision-Date: 2013-08-12 21:25+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-01-24 16:01+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/jappix/"
 "language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +18,7 @@ msgstr ""
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -202,6 +200,12 @@ msgstr "Tampilkan semua teman"
 
 msgid "Only show connected friends"
 msgstr "Hanya tampilkan teman-teman yang terhubung"
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
 
 msgid "Message archives"
 msgstr "Arsip pesan"
@@ -451,6 +455,18 @@ msgstr ""
 msgid "Geolocation"
 msgstr "Geolokasi"
 
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
 msgid "Empty"
 msgstr "Kosong"
 
@@ -479,6 +495,9 @@ msgid "New (2 times)"
 msgstr "Baru (2 kali)"
 
 msgid "Suggested chatrooms"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Continue"
@@ -586,6 +605,9 @@ msgstr "Tambahkan groupchat ini ke favorit anda"
 
 msgid "All tabs"
 msgstr "Semua tab"
+
+msgid "Join groupchat"
+msgstr ""
 
 msgid "Close this tab"
 msgstr "Tutup tab ini"
@@ -1161,6 +1183,9 @@ msgstr "Aplikasi"
 msgid "Media integration"
 msgstr "Integrasi Media"
 
+msgid "Keep local chat archives"
+msgstr ""
+
 msgid "XMPP links"
 msgstr "XMPP link"
 
@@ -1218,6 +1243,9 @@ msgstr ""
 
 msgid "Share Jappix on %s"
 msgstr "Berbagi Jappix ke %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Menggunakan Jappix, sebuah platform sosial yang terbuka. Saya s!%"
@@ -1294,20 +1322,14 @@ msgstr ""
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
-"music and its configuration) into a single secured storage folder."
+"music and its configuration) into multiple storage folders."
 msgstr ""
-"Jappix menyimpan data persisten (seperti shared file, log chatting, musik "
-"anda sendiri dan konfigurasi nya) ke dalam folder penyimpanan tunggal yang "
-"aman."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
-"If not, you must set the rights to %1s or change the folder owner to %2s "
-"(depending of your configuration)."
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
 msgstr ""
-"Jappix harus mampu menulis dalam folder ini untuk membuat sub-direktori. "
-"Jika tidak, anda harus mengatur hak untuk %1s atau mengubah pemilik folder "
-"untuk %2s (tergantung dari konfigurasi anda)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "Folder dapat ditulis, anda dapat melanjutkan!"
@@ -1447,6 +1469,9 @@ msgstr "Host Direktori"
 msgid "BOSH host"
 msgstr "Host Bosh"
 
+msgid "WebSocket host"
+msgstr ""
+
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
 "features. Some others might be modified, because of security restrictions "
@@ -1557,9 +1582,6 @@ msgstr "Warna"
 
 msgid "Users"
 msgstr "Pengguna"
-
-msgid "Updates"
-msgstr "Update"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1744,11 +1766,8 @@ msgstr "Minggu"
 msgid "Total"
 msgstr "Total"
 
-msgid "Cache"
-msgstr "Penutup"
-
-msgid "Logs"
-msgstr "Log"
+msgid "Archives"
+msgstr ""
 
 msgid "Music"
 msgstr "Musik"
@@ -2305,4 +2324,76 @@ msgid "Standard ads key"
 msgstr ""
 
 msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
 msgstr ""
