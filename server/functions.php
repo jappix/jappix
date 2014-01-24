@@ -792,7 +792,7 @@ function staticURL() {
 // The function to get the Jappix location (only from Get API!)
 function staticLocation() {
     // Filter the URL
-    return preg_replace('/((.+)\/)server\/get\.php(\S)+$/', '$1', staticURL());
+    return preg_replace('/((.+)\/)(server|php)\/get\.php(\S)+$/', '$1', staticURL());
 }
 
 // The function to include a translation file
