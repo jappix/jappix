@@ -193,11 +193,6 @@ for css_file in $CSS_FILES; do
   cat "$SOURCE_DIR/stylesheets/$css_file" | sed s/^\\xef\\xbb\\xbf// >> "$TARGET_DIR/stylesheets/mini.css"
 done
 
-# copy additional style sheets
-check_license "$SOURCE_DIR/stylesheets/mini-ie.css" "$COMPATIBLE_LICENSES"
-echo "$LICENSE_HEADER" > "$TARGET_DIR/stylesheets/mini-ie.css"
-cat "$SOURCE_DIR/stylesheets/mini-ie.css" >> "$TARGET_DIR/stylesheets/mini-ie.css"
-
 # copy artwork
 # mini.png, mini.gif, animate.png and animate.gif are licensed under CC-BY
 mkdir -p "$TARGET_DIR/images/sprites/"
