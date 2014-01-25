@@ -165,7 +165,7 @@ check_license()
 # create compound javascript file
 echo "$LICENSE_HEADER" > "$TARGET_DIR/javascripts/mini.js"
 
-JS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<js>\(.*\)<\/javascripts>.*/\1/p" | sed "s/~/ /g"`"
+JS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<js>\(.*\)<\/js>.*/\1/p" | sed "s/~/ /g"`"
 for js_file in $JS_FILES; do
   check_license "$SOURCE_DIR/javascripts/$js_file" "$COMPATIBLE_LICENSES"
 
@@ -185,7 +185,7 @@ EOF
 # create compound style sheet file
 echo "$LICENSE_HEADER" > "$TARGET_DIR/stylesheets/mini.css"
 
-CSS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<css>\(.*\)<\/stylesheets>.*/\1/p" | sed "s/~/ /g"`"
+CSS_FILES="`cat $SOURCE_DIR/bundles/mini.xml | sed -n "s/.*<css>\(.*\)<\/css>.*/\1/p" | sed "s/~/ /g"`"
 for css_file in $CSS_FILES; do
   check_license "$SOURCE_DIR/stylesheets/$css_file" "$COMPATIBLE_LICENSES"
 
