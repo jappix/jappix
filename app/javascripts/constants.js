@@ -145,7 +145,7 @@ var ADS_ENABLE = null;
 var GADS_CLIENT = null;
 var GADS_SLOT = null;
 var MULTI_FILES = null;
-var DEVELOPER = null;
+var DEVELOPER = 'on;
 var REGISTER_API = null;
 
 // Jappix hosts configuration
