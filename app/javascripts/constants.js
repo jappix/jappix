@@ -109,7 +109,7 @@ var NS_FEATURE_COMPRESS = NS_FEATURES + 'compress';
 
 var NS_COMPRESS =     NS_PROTOCOL + 'compress';
 
-var NS_METRONOME_MAM_PURGE = 'http://metronome.im/protocol/mam-purge'
+var NS_METRONOME_MAM_PURGE = 'http://metronome.im/protocol/mam-purge';
 
 // Available locales
 var LOCALES_AVAILABLE_ID = [];
