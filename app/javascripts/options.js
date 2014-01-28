@@ -55,7 +55,7 @@ var Options = (function () {
                                 '<option value="roster">' + Common._e("Store friend chats") + '</option>' + 
                                 '<option value="always">' + Common._e("Store all chats") + '</option>' + 
                             '</select>' + 
-                            '<a href="#" class="linked empty-archives mam-hidable">' + Common._e("Remove all archives") + '</a>' + 
+                            '<a href="#" class="linked empty-archives mam-purge-hidable">' + Common._e("Remove all archives") + '</a>' + 
                         '</div>' +
                     '</fieldset>' + 
                     

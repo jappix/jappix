@@ -140,10 +140,10 @@ var MAM = (function () {
             var iq = new JSJaCIQ();
             iq.setType('set');
 
-            var purge = iq.appendNode('purge', { 'xmlns': NS_URN_MAM });
+            var purge = iq.appendNode('purge', { 'xmlns': NS_METRONOME_MAM_PURGE });
 
             for(var c in args) {
-                if(args[c])  purge.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
+                if(args[c])  purge.appendChild(iq.buildNode(c, {'xmlns': NS_METRONOME_MAM_PURGE}, args[c]));
             }
             
             con.send(iq, function(iq) {

@@ -6,7 +6,7 @@ These are the constants JS scripts for Jappix
 -------------------------------------------------
 
 License: dual-licensed under AGPL and MPLv2
-Authors: Stefan Strigler, Valérian Saliou, Kloadut
+Authors: Stefan Strigler, Valérian Saliou, Kloadut, Maranda
 
 */
 
@@ -75,7 +75,7 @@ var NS_URN_PING =     NS_XMPP + 'ping';
 var NS_URN_MBLOG =    NS_XMPP + 'microblog:0';
 var NS_URN_INBOX =    NS_XMPP + 'inbox';
 var NS_URN_FORWARD =  NS_XMPP + 'forward:0';
-var NS_URN_MAM =      NS_XMPP + 'mam:0';
+var NS_URN_MAM =      NS_XMPP + 'mam:tmp';
 var NS_URN_DELAY =    NS_XMPP + 'delay';
 var NS_URN_RECEIPTS = NS_XMPP + 'receipts';
 var NS_URN_CARBONS =  NS_XMPP + 'carbons:2';
@@ -108,6 +108,8 @@ var NS_FEATURE_IQREGISTER = NS_FEATURES + 'iq-register';
 var NS_FEATURE_COMPRESS = NS_FEATURES + 'compress';
 
 var NS_COMPRESS =     NS_PROTOCOL + 'compress';
+
+var NS_METRONOME_MAM_PURGE = 'http://metronome.im/protocol/mam-purge'
 
 // Available locales
 var LOCALES_AVAILABLE_ID = [];

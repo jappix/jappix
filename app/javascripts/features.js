@@ -190,6 +190,11 @@ var Features = (function () {
                 $(path + 'mam-hidable').show();
                 $(path + 'mam-showable').hide();
             }
+
+            // MAM Purge
+            if(self.enabledMAMPurge()) {
+                $(path + 'mam-purge-hidable').show();
+            }
             
             // Commands features
             if(self.enabledCommands()) {
@@ -300,6 +305,26 @@ var Features = (function () {
             return self.isEnabled(NS_URN_MAM);
         } catch(e) {
             Console.error('Features.enabledMAM', e);
+        }
+
+    };
+
+
+    /**
+     * Returns Metronome MAM Purge support
+     * @public
+     * @return {boolean}
+     */
+    self.enabledMAMPurge = function() {
+
+        try {
+            if(self.isEnabled(NS_URN_MAM)) {
+		return self.isEnabled(NS_METRONOME_MAM_PURGE);
+            } else {
+		return false;
+            }
+        } catch(e) {
+            Console.error('Features.enabledMAMPurge', e);
         }
 
     };
