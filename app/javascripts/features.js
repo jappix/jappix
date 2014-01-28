@@ -319,9 +319,9 @@ var Features = (function () {
 
         try {
             if(self.isEnabled(NS_URN_MAM)) {
-		return self.isEnabled(NS_METRONOME_MAM_PURGE);
+	       return self.isEnabled(NS_METRONOME_MAM_PURGE);
             } else {
-		return false;
+               return false;
             }
         } catch(e) {
             Console.error('Features.enabledMAMPurge', e);
