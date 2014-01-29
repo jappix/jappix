@@ -628,7 +628,11 @@ function normalizeFileType($type) {
 
 function getFiles($h, $l, $t, $g, $f) {
     // Define the good path to the Get API
-    $path_to = hasStatic() ? HOST_STATIC.'/' : JAPPIX_BASE.'/';
+    if(isStaticURL()) {
+        $path_to = staticLocation();
+    } else {
+        $path_to = hasStatic() ? HOST_STATIC.'/' : JAPPIX_BASE.'/';
+    }
     
     if(!multiFiles()) {
         $values = array();
@@ -763,6 +767,11 @@ function sslLink() {
     }
     
     return $link;
+}
+
+// The function to get the Jappix static URL
+function isStaticURL() {
+    return preg_match('/((.+)\/)(server|php)\/get\.php(\S)+$/', staticURL()) && true;
 }
 
 // The function to get the Jappix static URL
