@@ -4,6 +4,14 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.1 (January 2014)
+--------------------------
+
+ * Changed MAM namespace to a temporary one
+ * Fixed broken Jappix Mini CSS loader in some cases
+ * Libs update
+
+
 One, v1.0.0 (January 2014)
 --------------------------
 
