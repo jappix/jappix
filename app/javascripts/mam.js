@@ -38,7 +38,7 @@ var MAM = (function () {
     self.msg_queue = {};
 
 
-	/**
+    /**
      * Gets the MAM configuration
      * @public
      * @return {undefined}
@@ -210,7 +210,7 @@ var MAM = (function () {
     };
 
 
-	/**
+    /**
      * Handles the MAM configuration
      * @public
      * @param {object} iq
