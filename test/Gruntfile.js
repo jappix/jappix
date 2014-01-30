@@ -9,11 +9,9 @@
 
 module.exports = function(grunt) {
 
-
   // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
 
     // Task: CSSLint
     csslint: {
@@ -51,7 +49,6 @@ module.exports = function(grunt) {
       }
     },
 
-
     // Task: JSHint
     jshint: {
       files: ['../app/javascripts/*.js'],
@@ -70,7 +67,6 @@ module.exports = function(grunt) {
       }
     },
 
-
     // Task PHPLint
     phplint: {
       all: [
@@ -87,12 +83,10 @@ module.exports = function(grunt) {
     }
   });
 
-
   // Load plugins
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-phplint');
-
 
   // Map tasks
   var GRUNT_TASKS_TEST = {
@@ -104,7 +98,6 @@ module.exports = function(grunt) {
     js: [['jshint',0]],
     php: [['phplint',0]]
   };
-
 
   // Register tasks
   grunt.registerTask('default', function() {

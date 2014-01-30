@@ -9,10 +9,9 @@ Simple CAPTCHA generator
 
 License: AGPL
 Author: Valérian Saliou
+Note: Thanks to Daniel Correa for his great help on security concerns
 
 */
-
-// Thanks to Daniel Correa for his great help on security concerns!
 
 // Process a totally random security code
 function security_code() {
