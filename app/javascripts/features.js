@@ -20,7 +20,7 @@ var Features = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Gets the features of a server
      * @public
      * @return {undefined}
@@ -246,7 +246,7 @@ var Features = (function () {
     };
 
 
-	/**
+    /**
      * Returns the XMPP server PEP support
      * @public
      * @return {boolean}

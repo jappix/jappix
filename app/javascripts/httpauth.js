@@ -20,7 +20,7 @@ var HTTPAuth = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Login to a HTTP session
      * @public
      * @param {string} lNick

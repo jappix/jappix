@@ -11,256 +11,256 @@ Author: Valérian Saliou
 */
 
 #privacy .content {
-	padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
 #privacy .privacy-head div.list-left,
 #privacy .privacy-head div.list-center,
 #privacy .privacy-head div.list-right,
 #privacy .privacy-first {
-	float: left;
+    float: left;
 }
 
 html[dir="rtl"] #privacy .privacy-head div.list-left,
 html[dir="rtl"] #privacy .privacy-head div.list-center,
 html[dir="rtl"] #privacy .privacy-head div.list-right {
-	float: right;
+    float: right;
 }
 
 #privacy .privacy-head div.list-left {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 
 #privacy .privacy-head div.list-center {
-	border-right: 1px dotted #1b393f;
-	height: 24px;
-	width: 1px;
-	margin-right: 15px;
-	padding-left: 18px;
+    border-right: 1px dotted #1b393f;
+    height: 24px;
+    width: 1px;
+    margin-right: 15px;
+    padding-left: 18px;
 }
 
 #privacy .privacy-head span,
 #privacy .privacy-head a,
 #privacy .privacy-item span,
 #privacy .privacy-item a {
-	float: left;
+    float: left;
 }
 
 #privacy .privacy-head span {
-	font-size: 0.9em;
-	font-weight: bold;
-	margin: 3px 10px 0 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 3px 10px 0 0;
 }
 
 html[dir="rtl"] #privacy .privacy-head span {
-	margin-right: auto;
-	margin-left: 10px;
-	float: right;
+    margin-right: auto;
+    margin-left: 10px;
+    float: right;
 }
 
 #privacy .privacy-head input,
 #privacy .privacy-head select {
-	width: 180px;
+    width: 180px;
 }
 
 #privacy .privacy-head input {
-	margin-top: 1px;
+    margin-top: 1px;
 }
 
 #privacy .privacy-head select {
-	margin-bottom: 0;
-	margin-top: 2px;
+    margin-bottom: 0;
+    margin-top: 2px;
 }
 
 html[dir="rtl"] #privacy .privacy-head select {
-	margin-right: 0;
-	margin-left: 10px;
+    margin-right: 0;
+    margin-left: 10px;
 }
 
 #privacy .privacy-item select {
-	margin-top: -2px;
+    margin-top: -2px;
 }
 
 #privacy .privacy-head span.left-space {
-	margin-left: 16px;
+    margin-left: 16px;
 }
 
 #privacy .privacy-head a,
 #privacy .privacy-item a {
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: block;
 }
 
 #privacy .privacy-item a.item-add {
-	background-position: 2px -1178px;
+    background-position: 2px -1178px;
 }
 
 #privacy .privacy-head a.list-remove,
 #privacy .privacy-item a.item-remove {
-	background-position: 2px -1197px;
+    background-position: 2px -1197px;
 }
 
 #privacy .privacy-item a.item-save {
-	background-position: 3px -126px;
-	width: auto;
-	height: 19px;
-	padding: 1px 7px 0 21px;
+    background-position: 3px -126px;
+    width: auto;
+    height: 19px;
+    padding: 1px 7px 0 21px;
 }
 
 #privacy .privacy-item,
 #privacy form,
 #privacy .privacy-active {
-	clear: both;
+    clear: both;
 }
 
 #privacy .privacy-item {
-	margin: 17px 12px;
-	font-size: 0.9em;
+    margin: 17px 12px;
+    font-size: 0.9em;
 }
 
 #privacy .privacy-item span {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 html[dir="rtl"] #privacy .privacy-item span {
-	margin-top: -5px;
-	float: right;
+    margin-top: -5px;
+    float: right;
 }
 
 #privacy .privacy-item select {
-	width: 300px;
-	margin: -4px 30px 0 10px;
+    width: 300px;
+    margin: -4px 30px 0 10px;
 }
 
 html[dir="rtl"] #privacy .privacy-item select {
-	margin-right: 10px;
-	margin-left: 30px;
+    margin-right: 10px;
+    margin-left: 30px;
 }
 
 #privacy .privacy-item a {
-	margin: -2px 6px 0 0;
+    margin: -2px 6px 0 0;
 }
 
 html[dir="rtl"] #privacy .privacy-form input {
-	margin-right: auto;
-	margin-left: 10px;
+    margin-right: auto;
+    margin-left: 10px;
 }
 
 #privacy .privacy-first,
 #privacy .privacy-second,
 #privacy .privacy-third {
-	height: 195px;
-	font-size: 0.9em;
-	margin: 10px 0 0 10px;
-	float: left;
+    height: 195px;
+    font-size: 0.9em;
+    margin: 10px 0 0 10px;
+    float: left;
 }
 
 html[dir="rtl"] #privacy .privacy-first,
 html[dir="rtl"] #privacy .privacy-second,
 html[dir="rtl"] #privacy .privacy-third {
-	margin-right: 10px;
-	margin-left: auto;
-	float: right;
+    margin-right: 10px;
+    margin-left: auto;
+    float: right;
 }
 
 #privacy .privacy-first,
 #privacy .privacy-second {
-	border-width: 0 1px 0 0;
-	border-style: dotted;
-	border-color: #1b393f;
-	padding-right: 14px;
+    border-width: 0 1px 0 0;
+    border-style: dotted;
+    border-color: #1b393f;
+    padding-right: 14px;
 }
 
 html[dir="rtl"] #privacy .privacy-first,
 html[dir="rtl"] #privacy .privacy-second {
-	border-width: 0 0 0 1px;
+    border-width: 0 0 0 1px;
 }
 
 #privacy .privacy-first {
-	width: 125px;
+    width: 125px;
 }
 
 #privacy .privacy-first label {
-	margin: 50px 0 0 15px;
+    margin: 50px 0 0 15px;
 }
 
 #privacy .privacy-first label input {
-	margin-top: 2px;
+    margin-top: 2px;
 }
 
 #privacy .privacy-second {
-	width: 205px;
+    width: 205px;
 }
 
 #privacy .privacy-second label {
-	margin: 2px 0 0 12px;
+    margin: 2px 0 0 12px;
 }
 
 #privacy .privacy-second input[type="radio"],
 #privacy .privacy-third input[type="checkbox"] {
-	margin-top: 2px;
-	margin-bottom: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 #privacy .privacy-second input[type="text"],
 #privacy .privacy-second select {
-	width: 170px;
-	margin: 2px 0 11px 12px;
-	float: none;
+    width: 170px;
+    margin: 2px 0 11px 12px;
+    float: none;
 }
 
 #privacy .privacy-third label {
-	width: auto;
-	margin-top: 11px;
+    width: auto;
+    margin-top: 11px;
 }
 
 #privacy .privacy-third {
-	width: 240px;
+    width: 240px;
 }
 
 #privacy .privacy-active {
-	margin: 34px 16px 0 16px;
-	font-size: 0.9em;
+    margin: 34px 16px 0 16px;
+    font-size: 0.9em;
 }
 
 #privacy .privacy-active-elements {
-	float: right;
+    float: right;
 }
 
 html[dir="rtl"] #privacy .privacy-active-elements {
-	float: left;
+    float: left;
 }
 
 #privacy .privacy-active input[type="text"] {
-	width: 30px;
-	margin: 0 0 0 8px;
-	float: none;
+    width: 30px;
+    margin: 0 0 0 8px;
+    float: none;
 }
 
 html[dir="rtl"] #privacy .privacy-active input[type="text"] {
-	margin-left: auto;
-	margin-right: 8px;
+    margin-left: auto;
+    margin-right: 8px;
 }
 
 #privacy .privacy-active input[type="checkbox"] {
-	margin: 3px 5px 0 0;
-	float: left;
+    margin: 3px 5px 0 0;
+    float: left;
 }
 
 html[dir="rtl"] #privacy .privacy-active input[type="checkbox"] {
-	margin-left: 5px;
-	margin-right: 14px;
-	float: right;
+    margin-left: 5px;
+    margin-right: 14px;
+    float: right;
 }
 
 #privacy .privacy-active label {
-	width: auto;
-	margin: 0 15px 0 0;
-	clear: none;
+    width: auto;
+    margin: 0 15px 0 0;
+    clear: none;
 }
 
 html[dir="rtl"] #privacy .privacy-active label {
-	margin-right: 0;
+    margin-right: 0;
 }

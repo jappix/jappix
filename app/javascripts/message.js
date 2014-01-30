@@ -20,7 +20,7 @@ var Message = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Handles the incoming message packets
      * @public
      * @param {object} message

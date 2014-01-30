@@ -24,9 +24,9 @@ Author: Valérian Saliou
 }
  
 #roster .content {
-	background: #e8f1f3;
-	background: -moz-linear-gradient(top, #e8f1f3, #e4edef);
-	background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#e4edef));
+        background: #e8f1f3;
+        background: -moz-linear-gradient(top, #e8f1f3, #e4edef);
+        background: -webkit-gradient(linear, left top, left bottom, from(#e8f1f3), to(#e4edef));
         background: -webkit-linear-gradient(top, #e8f1f3 0%, #e4edef 100%);
         background: -o-linear-gradient(top, #e8f1f3 0%, #e4edef 100%);
         color: #666666;
@@ -215,7 +215,7 @@ html[dir="rtl"] #roster .buddy-presence {
 }
  
 #roster .buddy-infos {
-	position: absolute;
+        position: absolute;
         z-index: 100;
         width: 337px;
         color: white;
@@ -243,8 +243,8 @@ html[dir="rtl"] .buddy-infos-subarrow {
         width: 308px;
         text-shadow: 0 1px 1px black;
         float: left;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
         border-radius: 5px;
 }
 
@@ -527,8 +527,8 @@ html[dir="rtl"] .buddy-conf-subarrow {
         margin-top: 10px;
         padding: 10px;
         text-shadow: 0 1px 1px black;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
         border-radius: 5px;
 }
  

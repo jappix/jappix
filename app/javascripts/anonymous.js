@@ -20,7 +20,7 @@ var Anonymous = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Connected to an anonymous session
      * @public
      * @return {undefined}

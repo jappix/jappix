@@ -20,7 +20,7 @@ var Music = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the music bubble
      * @public
      * @return {boolean}
@@ -281,7 +281,7 @@ var Music = (function () {
     };
 
 
-	/**
+    /**
      * Adds a music title to the results
      * @public
      * @param {string} id

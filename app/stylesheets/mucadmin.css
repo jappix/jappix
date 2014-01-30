@@ -11,120 +11,120 @@ Author: Valérian Saliou
 */
 
 #mucadmin .content {
-	padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
 #mucadmin .content p {
-	margin: 5px 10px 5px 10px;
-	text-align: justify;
+    margin: 5px 10px 5px 10px;
+    text-align: justify;
 }
 
 html[dir="rtl"] #mucadmin .mucadmin-head-text {
-	float: right;
+    float: right;
 }
 
 #mucadmin .mucadmin-head-jid {
-	text-decoration: underline;
-	font-size: 0.9em;
-	float: right;
-	margin: 2px 4px 1px 1px;
+    text-decoration: underline;
+    font-size: 0.9em;
+    float: right;
+    margin: 2px 4px 1px 1px;
 }
 
 html[dir="rtl"] #mucadmin .mucadmin-head-jid {
-	margin-left: 4px;
-	margin-right: 1px;
-	float: left;
+    margin-left: 4px;
+    margin-right: 1px;
+    float: left;
 }
 
 #mucadmin .mucadmin-forms {
-	height: 310px;
-	width: 620px;
-	margin: -5px 0 0 10px;
-	padding: 6px 0 0 0;
-	overflow: auto;
+    height: 310px;
+    width: 620px;
+    margin: -5px 0 0 10px;
+    padding: 6px 0 0 0;
+    overflow: auto;
 }
 
 html[dir="rtl"] #mucadmin .mucadmin-forms {
-	margin-left: 0;
-	margin-right: 10px;
+    margin-left: 0;
+    margin-right: 10px;
 }
 
 #mucadmin .mucadmin-forms label {
-	width: 260px;
+    width: 260px;
 }
 
 #mucadmin .mucadmin-topic label,
 #mucadmin .mucadmin-aut label,
 #mucadmin .mucadmin-others label {
-	font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 #mucadmin .mucadmin-forms textarea {
-	height: 60px;
-	width: 300px;
-	margin: 5px 12px 10px 0;
+    height: 60px;
+    width: 300px;
+    margin: 5px 12px 10px 0;
 }
 
 html[dir="rtl"] #mucadmin .mucadmin-forms textarea {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 #mucadmin .results {
-	height: auto;
-	width: auto;
-	overflow: visible;
-	margin: 5px;
+    height: auto;
+    width: auto;
+    overflow: visible;
+    margin: 5px;
 }
 
 #mucadmin .aut-group {
-	float: left;
-	padding-bottom: 4px;
+    float: left;
+    padding-bottom: 4px;
 }
 
 html[dir="rtl"] #mucadmin .aut-group {
-	float: right;
+    float: right;
 }
 
 #mucadmin .one-aut {
-	clear: both;
-	margin: 0 10px 5px 0;
+    clear: both;
+    margin: 0 10px 5px 0;
 }
 
 html[dir="rtl"] #mucadmin .one-aut {
-	margin-right: 0;
-	margin-left: 10px;
+    margin-right: 0;
+    margin-left: 10px;
 }
 
 #mucadmin .aut-add {
-	clear: both;
-	float: left;
-	margin-bottom: 5px;
-	font-size: 0.9em;
+    clear: both;
+    float: left;
+    margin-bottom: 5px;
+    font-size: 0.9em;
 }
 
 html[dir="rtl"] #mucadmin .aut-add {
-	float: right;
+    float: right;
 }
 
 #mucadmin .aut-remove {
-	float: left;
+    float: left;
 }
 
 html[dir="rtl"] #mucadmin .aut-remove {
-	float: right;
+    float: right;
 }
 
 #mucadmin .aut-remove:hover,
 #mucadmin .aut-remove:focus {
-	font-weight: bold;
-	text-decoration: none;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 #mucadmin .mucadmin-others a {
-	float: left;
-	font-size: 0.9em;
+    float: left;
+    font-size: 0.9em;
 }
 
 html[dir="rtl"] #mucadmin .mucadmin-others a {
-	float: right;
+    float: right;
 }

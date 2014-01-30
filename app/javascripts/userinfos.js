@@ -20,7 +20,7 @@ var UserInfos = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the user-infos popup
      * @public
      * @param {string} xid
@@ -263,7 +263,7 @@ var UserInfos = (function () {
     };
 
 
-	/**
+    /**
      * Displays the buddy comments
      * @public
      * @param {string} xid
@@ -463,7 +463,7 @@ var UserInfos = (function () {
     };
 
 
-	/**
+    /**
      * Sends the buddy comments
      * @public
      * @return {boolean}

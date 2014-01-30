@@ -39,7 +39,7 @@ var Caps = (function () {
     };
 
 
-	/**
+    /**
      * Returns an array of the Jappix disco#infos
      * @public
      * @return {object}
@@ -468,7 +468,7 @@ var Caps = (function () {
     };
 
 
-	/**
+    /**
      * Generates the Jappix CAPS hash
      * @public
      * @return {string}

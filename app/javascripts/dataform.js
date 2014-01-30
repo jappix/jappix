@@ -20,7 +20,7 @@ var DataForm = (function () {
     var self = {};
 
     
-	/**
+    /**
      * Gets the defined dataform elements
      * @public
      * @param {string} host
@@ -384,7 +384,7 @@ var DataForm = (function () {
     };
     
 
-	/**
+    /**
      * Handles the command dataform
      * @public
      * @param {object} iq
@@ -943,7 +943,7 @@ var DataForm = (function () {
     };
 
 
-	/**
+    /**
      * Gets the dataform type
      * @public
      * @param {string} host

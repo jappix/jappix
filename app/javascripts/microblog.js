@@ -18,9 +18,9 @@ var Microblog = (function () {
      * @private
      */
     var self = {};
-	
+    
 
-	/**
+    /**
      * Completes arrays of an entry's attached files
      * @public
      * @param {string} selector
@@ -515,7 +515,7 @@ var Microblog = (function () {
     };
 
 
-	/**
+    /**
      * Gets a given microblog comments node
      * @public
      * @param {string} server
@@ -930,7 +930,7 @@ var Microblog = (function () {
     };
 
 
-	/**
+    /**
      * Adapts the comment elements width
      * @public
      * @param {string} id
@@ -1085,7 +1085,7 @@ var Microblog = (function () {
     };
 
 
-	/**
+    /**
      * Handles the user's microblog to create it in case of error
      * @public
      * @param {object} iq
@@ -1283,7 +1283,7 @@ var Microblog = (function () {
     };
 
 
-	/**
+    /**
      * Gets the microblog configuration
      * @public
      * @return {undefined}
@@ -1455,7 +1455,7 @@ var Microblog = (function () {
     };
 
 
-	/**
+    /**
      * Publishes a given microblog item
      * @public
      * @param {type} body

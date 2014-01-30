@@ -25,7 +25,7 @@ var DataStore = (function () {
     self._persistent_emulated = {};
 
 
-	/**
+    /**
      * Common: storage adapter
      * @public
      * @param {object} storage_native
@@ -234,7 +234,7 @@ var DataStore = (function () {
     };
 
 
-	/**
+    /**
      * Temporary: used to check a database entry exists
      * @public
      * @param {string} dbID
@@ -378,7 +378,7 @@ var DataStore = (function () {
     };
 
 
-	/**
+    /**
      * Persistent: used to remove a database entry
      * @public
      * @param {string} dbID

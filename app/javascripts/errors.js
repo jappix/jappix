@@ -20,7 +20,7 @@ var Errors = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Shows the given error output
      * @public
      * @param {string} condition

@@ -20,7 +20,7 @@ var Chat = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Correctly opens a new chat
      * @public
      * @param {string} xid

@@ -178,54 +178,54 @@ var BOSH_SAME_ORIGIN = false;
 
 // XMPP error stanzas
 function STANZA_ERROR(code, type, cond) {
-	if(window == this) {
-		return new STANZA_ERROR(code, type, cond);
-	}
-	
-	this.code = code;
-	this.type = type;
-	this.cond = cond;
+    if(window == this) {
+        return new STANZA_ERROR(code, type, cond);
+    }
+    
+    this.code = code;
+    this.type = type;
+    this.cond = cond;
 }
 
 var ERR_BAD_REQUEST =
-	STANZA_ERROR('400', 'modify', 'bad-request');
+    STANZA_ERROR('400', 'modify', 'bad-request');
 var ERR_CONFLICT =
-	STANZA_ERROR('409', 'cancel', 'conflict');
+    STANZA_ERROR('409', 'cancel', 'conflict');
 var ERR_FEATURE_NOT_IMPLEMENTED =
-	STANZA_ERROR('501', 'cancel', 'feature-not-implemented');
+    STANZA_ERROR('501', 'cancel', 'feature-not-implemented');
 var ERR_FORBIDDEN =
-	STANZA_ERROR('403', 'auth',   'forbidden');
+    STANZA_ERROR('403', 'auth',   'forbidden');
 var ERR_GONE =
-	STANZA_ERROR('302', 'modify', 'gone');
+    STANZA_ERROR('302', 'modify', 'gone');
 var ERR_INTERNAL_SERVER_ERROR =
-	STANZA_ERROR('500', 'wait',   'internal-server-error');
+    STANZA_ERROR('500', 'wait',   'internal-server-error');
 var ERR_ITEM_NOT_FOUND =
-	STANZA_ERROR('404', 'cancel', 'item-not-found');
+    STANZA_ERROR('404', 'cancel', 'item-not-found');
 var ERR_JID_MALFORMED =
-	STANZA_ERROR('400', 'modify', 'jid-malformed');
+    STANZA_ERROR('400', 'modify', 'jid-malformed');
 var ERR_NOT_ACCEPTABLE =
-	STANZA_ERROR('406', 'modify', 'not-acceptable');
+    STANZA_ERROR('406', 'modify', 'not-acceptable');
 var ERR_NOT_ALLOWED =
-	STANZA_ERROR('405', 'cancel', 'not-allowed');
+    STANZA_ERROR('405', 'cancel', 'not-allowed');
 var ERR_NOT_AUTHORIZED =
-	STANZA_ERROR('401', 'auth',   'not-authorized');
+    STANZA_ERROR('401', 'auth',   'not-authorized');
 var ERR_PAYMENT_REQUIRED =
-	STANZA_ERROR('402', 'auth',   'payment-required');
+    STANZA_ERROR('402', 'auth',   'payment-required');
 var ERR_RECIPIENT_UNAVAILABLE =
-	STANZA_ERROR('404', 'wait',   'recipient-unavailable');
+    STANZA_ERROR('404', 'wait',   'recipient-unavailable');
 var ERR_REDIRECT =
-	STANZA_ERROR('302', 'modify', 'redirect');
+    STANZA_ERROR('302', 'modify', 'redirect');
 var ERR_REGISTRATION_REQUIRED =
-	STANZA_ERROR('407', 'auth',   'registration-required');
+    STANZA_ERROR('407', 'auth',   'registration-required');
 var ERR_REMOTE_SERVER_NOT_FOUND =
-	STANZA_ERROR('404', 'cancel', 'remote-server-not-found');
+    STANZA_ERROR('404', 'cancel', 'remote-server-not-found');
 var ERR_REMOTE_SERVER_TIMEOUT =
-	STANZA_ERROR('504', 'wait',   'remote-server-timeout');
+    STANZA_ERROR('504', 'wait',   'remote-server-timeout');
 var ERR_RESOURCE_CONSTRAINT =
-	STANZA_ERROR('500', 'wait',   'resource-constraint');
+    STANZA_ERROR('500', 'wait',   'resource-constraint');
 var ERR_SERVICE_UNAVAILABLE =
-	STANZA_ERROR('503', 'cancel', 'service-unavailable');
+    STANZA_ERROR('503', 'cancel', 'service-unavailable');
 var ERR_SUBSCRIPTION_REQUIRED =
-	STANZA_ERROR('407', 'auth',   'subscription-required');
+    STANZA_ERROR('407', 'auth',   'subscription-required');
 var ERR_UNEXPECTED_REQUEST =
-	STANZA_ERROR('400', 'wait',   'unexpected-request');
+    STANZA_ERROR('400', 'wait',   'unexpected-request');

@@ -11,39 +11,39 @@ Authors: Valérian Saliou, hunterjm, Camaran, regilero, Kloadut, Maranda
 */
 
 // Jappix Mini globals
-var MINI_DISCONNECT				= false;
-var MINI_AUTOCONNECT			= false;
-var MINI_SHOWPANE				= false;
-var MINI_INITIALIZED			= false;
-var MINI_ROSTER_INIT			= false;
+var MINI_DISCONNECT             = false;
+var MINI_AUTOCONNECT            = false;
+var MINI_SHOWPANE               = false;
+var MINI_INITIALIZED            = false;
+var MINI_ROSTER_INIT            = false;
 var MINI_ROSTER_NOGROUP         = 'jm_nogroup';
-var MINI_ANONYMOUS				= false;
-var MINI_ANIMATE				= false;
-var MINI_RANDNICK				= false;
-var MINI_GROUPCHAT_PRESENCE		= false;
-var MINI_DISABLE_MOBILE			= false;
-var MINI_NICKNAME				= '';
-var MINI_TITLE					= null;
-var MINI_DOMAIN					= null;
-var MINI_USER					= null;
-var MINI_PASSWORD				= null;
-var MINI_HASH					= null;
-var MINI_ACTIVE					= null;
-var MINI_RECONNECT				= 0;
-var MINI_RECONNECT_MAX			= 100;
+var MINI_ANONYMOUS              = false;
+var MINI_ANIMATE                = false;
+var MINI_RANDNICK               = false;
+var MINI_GROUPCHAT_PRESENCE     = false;
+var MINI_DISABLE_MOBILE         = false;
+var MINI_NICKNAME               = '';
+var MINI_TITLE                  = null;
+var MINI_DOMAIN                 = null;
+var MINI_USER                   = null;
+var MINI_PASSWORD               = null;
+var MINI_HASH                   = null;
+var MINI_ACTIVE                 = null;
+var MINI_RECONNECT              = 0;
+var MINI_RECONNECT_MAX          = 100;
 var MINI_RECONNECT_INTERVAL     = 1;
 var MINI_PIXEL_STREAM_DURATION  = 300;
 var MINI_PIXEL_STREAM_INTERVAL  = 7200;
-var MINI_QUEUE					= [];
-var MINI_CHATS					= [];
-var MINI_GROUPCHATS				= [];
-var MINI_SUGGEST_CHATS			= [];
-var MINI_SUGGEST_GROUPCHATS		= [];
-var MINI_SUGGEST_PASSWORDS		= [];
-var MINI_PASSWORDS				= [];
-var MINI_PRIORITY				= 1;
-var MINI_RESOURCE				= JAPPIX_RESOURCE + ' Mini';
-var MINI_ERROR_LINK				= 'https://mini.jappix.com/issues';
+var MINI_QUEUE                  = [];
+var MINI_CHATS                  = [];
+var MINI_GROUPCHATS             = [];
+var MINI_SUGGEST_CHATS          = [];
+var MINI_SUGGEST_GROUPCHATS     = [];
+var MINI_SUGGEST_PASSWORDS      = [];
+var MINI_PASSWORDS              = [];
+var MINI_PRIORITY               = 1;
+var MINI_RESOURCE               = JAPPIX_RESOURCE + ' Mini';
+var MINI_ERROR_LINK             = 'https://mini.jappix.com/issues';
 
 
 // Bundle
@@ -56,7 +56,7 @@ var JappixMini = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Setups connection handlers
      * @public
      * @param {object} con
@@ -298,7 +298,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Flushes Jappix Mini storage database
      * @public
      * @param {string} r_override
@@ -604,7 +604,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Handles the incoming IQs
      * @public
      * @param {object} iq
@@ -843,7 +843,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Removes a given presence resource for an user
      * @public
      * @param {string} xid
@@ -1174,7 +1174,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Updates the user presence
      * @public
      * @param {string} type
@@ -1371,7 +1371,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Unserializes and update the queue storage
      * @public
      * @return {undefined}
@@ -1526,7 +1526,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Clears the notifications
      * @public
      * @param {string} hash
@@ -2431,7 +2431,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Buddy events
      * @public
      * @param {string} path
@@ -2745,7 +2745,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Returns the prompt value
      * @public
      * @return {string}
@@ -3159,7 +3159,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Shows the roster
      * @public
      * @return {undefined}
@@ -3363,7 +3363,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Displays a roster buddy
      * @public
      * @param {string} xid
@@ -3654,7 +3654,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Adapts the roster height to the window
      * @public
      * @return {undefined}
@@ -3861,7 +3861,7 @@ var JappixMini = (function () {
     };
 
 
-	/**
+    /**
      * Adds the chatstate events
      * @public
      * @param {string} xid

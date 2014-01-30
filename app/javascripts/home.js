@@ -20,7 +20,7 @@ var Home = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Allows the user to switch the difference home page elements
      * @public
      * @param {string} div

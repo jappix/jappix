@@ -20,7 +20,7 @@ var Options = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the options popup
      * @public
      * @return {boolean}
@@ -315,7 +315,7 @@ var Options = (function () {
     };
 
 
-	/**
+    /**
      * Sends the options to the XMPP server
      * @public
      * @return {undefined}
@@ -559,7 +559,7 @@ var Options = (function () {
     };
 
 
-	/**
+    /**
      * Handles the account deletion request
      * @public
      * @param {object} iq
@@ -747,7 +747,7 @@ var Options = (function () {
     };
 
 
-	/**
+    /**
      * Loads the user options
      * @public
      * @return {undefined}

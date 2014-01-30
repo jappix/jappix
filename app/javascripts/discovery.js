@@ -20,7 +20,7 @@ var Discovery = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the discovery popup
      * @public
      * @return {boolean}

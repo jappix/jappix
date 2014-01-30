@@ -20,7 +20,7 @@ var Receipts = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Checks if we can send a receipt request
      * @public
      * @param {string} hash
@@ -158,7 +158,7 @@ var Receipts = (function () {
     };
 
 
-	/**
+    /**
      * Checks if the message has been received
      * @public
      * @param {string} hash

@@ -46,7 +46,7 @@ var Audio = (function () {
     };
 
 
-	/**
+    /**
      * Plays the given sound ID
      * @public
      * @param {string} name

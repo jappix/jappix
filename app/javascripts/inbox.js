@@ -20,7 +20,7 @@ var Inbox = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the inbox popup
      * @public
      * @return {boolean}
@@ -232,7 +232,7 @@ var Inbox = (function () {
     };
     
 
-	/**
+    /**
      * Cleans the inbox
      * @public
      * @return {undefined}
@@ -469,7 +469,7 @@ var Inbox = (function () {
     };
 
 
-	/**
+    /**
      * Stores an inbox message
      * @public
      * @param {string} from
@@ -715,7 +715,7 @@ var Inbox = (function () {
     };
 
 
-	/**
+    /**
      * Hides a normal message content
      * @public
      * @param {string} id

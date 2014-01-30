@@ -11,19 +11,19 @@ Author: Valérian Saliou
 */
 
 #adhoc .content {
-	padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
 #adhoc .adhoc-head {
-	background-color: #f1f6fd;
-	border: 1px #9dc4fc solid;
-	width: 598px;
-	height: 18px;
-	font-size: 0.9em;
-	margin: 0 10px 12px 10px;
-	padding: 6px 10px;
+    background-color: #f1f6fd;
+    border: 1px #9dc4fc solid;
+    width: 598px;
+    height: 18px;
+    font-size: 0.9em;
+    margin: 0 10px 12px 10px;
+    padding: 6px 10px;
 }
 
 #adhoc .one-actions .one-button {
-	float: right;
+    float: right;
 }

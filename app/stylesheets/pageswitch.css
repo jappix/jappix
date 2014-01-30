@@ -11,143 +11,143 @@ Author: Valérian Saliou
 */
 
 #page-switch {
-	position: absolute;
-	top: 15px;
-	left: 10px;
-	right: 10px;
-	z-index: 9;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    right: 10px;
+    z-index: 9;
 }
 
 #page-switch .chans {
-	position: absolute;
-	left: 0;
-	right: 50px;
-	top: 0;
-	height: 25px;
-	overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 50px;
+    top: 0;
+    height: 25px;
+    overflow: hidden;
 }
 
 html[dir="rtl"] #page-switch .chans {
-	right: 0;
-	left: 40px;
+    right: 0;
+    left: 40px;
 }
 
 #page-switch .join,
 #page-switch .more {
-	position: absolute;
-	top: 0;
+    position: absolute;
+    top: 0;
 }
 
 #page-switch .join {
-	right: 25px;
+    right: 25px;
 }
 
 html[dir="rtl"] #page-switch .join {
-	left: 25px;
+    left: 25px;
 }
 
 #page-switch .more {
-	right: 0;
+    right: 0;
 }
 
 html[dir="rtl"] #page-switch .more {
-	right: auto;
-	left: 0;
+    right: auto;
+    left: 0;
 }
 
 #page-switch .join-button,
 #page-switch .more-button {
-	background-color: #d9e7ea;
-	width: 7px;
-	height: 16px;
-	padding: 1px 6px;
-	font-size: 0.9em;
-	text-decoration: none;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
+    background-color: #d9e7ea;
+    width: 7px;
+    height: 16px;
+    padding: 1px 6px;
+    font-size: 0.9em;
+    text-decoration: none;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 }
 
 #page-switch .join-button {
-	background-position: 4px -2136px;
+    background-position: 4px -2136px;
 }
 
 #page-switch .more-button {
-	background-position: 6px -1372px;
+    background-position: 6px -1372px;
 }
 
 #page-switch .join-content,
 #page-switch .more-content {
-	background-color: #d9e7ea;
-	width: 200px;
-	max-height: 400px;
-	overflow: auto;
-	position: absolute;
-	margin: -2px 0 0 -181px;
-	padding: 4px 0;
-	font-size: 0.95em;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-webkit-border-bottom-right-radius: 3px;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+    background-color: #d9e7ea;
+    width: 200px;
+    max-height: 400px;
+    overflow: auto;
+    position: absolute;
+    margin: -2px 0 0 -181px;
+    padding: 4px 0;
+    font-size: 0.95em;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 html[dir="rtl"] #page-switch .join-content,
 html[dir="rtl"] #page-switch .more-content {
-	margin-left: 0;
-	left: 0;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 0;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 0;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 0;
+    margin-left: 0;
+    left: 0;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 0;
 }
 
 #page-switch .join-content input.join-groupchat-xid {
-	margin: 0 0 0 6px;
-	width: 170px;
+    margin: 0 0 0 6px;
+    width: 170px;
 }
 
 #page-switch .switcher {
-	background-color: #d9e7ea;
-	color: #17353b;
-	height: 15px;
-	padding: 5px 10px 5px 5px;
-	margin: 0 2px;
-	font-size: 0.85em;
-	float: left;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
+    background-color: #d9e7ea;
+    color: #17353b;
+    height: 15px;
+    padding: 5px 10px 5px 5px;
+    margin: 0 2px;
+    font-size: 0.85em;
+    float: left;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 html[dir="rtl"] #page-switch .switcher {
-	padding-left: 10px;
-	padding-right: 5px;
-	float: right;
+    padding-left: 10px;
+    padding-right: 5px;
+    float: right;
 }
 
 #page-switch .more-content .switcher {
-	background-color: #d9e7ea;
-	float: none !important;
-	margin: 0;
-	font-size: 0.9em;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
+    background-color: #d9e7ea;
+    float: none !important;
+    margin: 0;
+    font-size: 0.9em;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }
 
 #page-switch .more-content .switcher .exit {
-	display: block;
+    display: block;
 }
 
 #page-switch .join-button:hover,
@@ -158,128 +158,128 @@ html[dir="rtl"] #page-switch .switcher {
 #page-switch .switcher:focus,
 #page-switch .more-content .switcher:hover,
 #page-switch .more-content .switcher:focus {
-	background-color: #cedee1;
-	cursor: pointer;
+    background-color: #cedee1;
+    cursor: pointer;
 }
 
 #page-switch .join-button:active,
 #page-switch .more-button:active,
 #page-switch .switcher:active,
 #page-switch .more-content .switcher:active {
-	background-color: #c3d3d7;
+    background-color: #c3d3d7;
 }
 
 #page-switch .switcher.activechan {
-	background-color: #e8f1f3;
+    background-color: #e8f1f3;
 }
 
 #page-switch .more-content .switcher.activechan {
-	background-color: #d1e0e3;
+    background-color: #d1e0e3;
 }
 
 #page-switch .icon {
-	height: 16px;
-	width: 16px;
-	float: left;
+    height: 16px;
+    width: 16px;
+    float: left;
 }
 
 html[dir="rtl"] #page-switch .icon {
-	float: right;
+    float: right;
 }
 
 #page-switch .name {
-	float: left;
-	margin-left: 4px;
-	max-height: 16px;
-	max-width: 140px;
-	overflow: hidden;
+    float: left;
+    margin-left: 4px;
+    max-height: 16px;
+    max-width: 140px;
+    overflow: hidden;
 }
 
 html[dir="rtl"] #page-switch .name {
-	float: right;
-	margin-left: 0;
-	margin-right: 4px;
+    float: right;
+    margin-left: 0;
+    margin-right: 4px;
 }
 
 #page-switch .exit {
-	display: none;
-	background-color: #bdd9dc;
-	border: 1px solid #80aab0;
-	color: #355e64;
-	height: 14px;
-	width: 13px;
-	margin-left: 10px;
-	font-size: 0.85em;
-	text-align: center;
-	text-decoration: none;
-	float: right;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
+    display: none;
+    background-color: #bdd9dc;
+    border: 1px solid #80aab0;
+    color: #355e64;
+    height: 14px;
+    width: 13px;
+    margin-left: 10px;
+    font-size: 0.85em;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 }
 
 html[dir="rtl"] #page-switch .exit {
-	margin-left: 0;
-	margin-right: 10px;
-	float: left;
+    margin-left: 0;
+    margin-right: 10px;
+    float: left;
 }
 
 #page-switch .exit:hover,
 #page-switch .exit:focus {
-	background-color: #aac7cb;
+    background-color: #aac7cb;
 }
 
 #page-switch .exit:active {
-	background-color: #9bbdc1;
+    background-color: #9bbdc1;
 }
 
 #page-switch .activechan .exit {
-	display: block;
-	float: right;
+    display: block;
+    float: right;
 }
 
 html[dir="rtl"] #page-switch .activechan .exit {
-	float: left;
+    float: left;
 }
 
 #page-switch .chan-newmessage {
-	background-color: #f6edc3 !important;
+    background-color: #f6edc3 !important;
 }
 
 #page-switch .chan-newmessage:hover,
 #page-switch .chan-newmessage:focus {
-	background-color: #f1eac0 !important;
+    background-color: #f1eac0 !important;
 }
 
 #page-switch .chan-newmessage:active {
-	background-color: #ede4b8 !important;
+    background-color: #ede4b8 !important;
 }
 
 #page-switch .composing,
 #page-engine .list .user.composing {
-	color: #217021 !important;
+    color: #217021 !important;
 }
 
 #page-switch .paused,
 #page-switch .chan-unread .name,
 #page-engine .list .user.paused {
-	color: #2431ac !important;
+    color: #2431ac !important;
 }
 
 #page-switch .active,
 #page-engine .list .user.active {
-	color: #353535 !important;
+    color: #353535 !important;
 }
 
 #page-switch .inactive,
 #page-engine .list .user.inactive {
-	color: #585858 !important;
+    color: #585858 !important;
 }
 
 #page-switch .gone {
-	color: #851313 !important;
+    color: #851313 !important;
 }
 
 #page-switch .channel .icon {
-	background-position: 0 -55px;
+    background-position: 0 -55px;
 }

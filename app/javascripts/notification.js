@@ -20,7 +20,7 @@ var Notification = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Resets the notifications alert if no one remaining
      * @public
      * @return {undefined}
@@ -405,7 +405,7 @@ var Notification = (function () {
     };
 
 
-	/**
+    /**
      * Gets the pending social notifications
      * @public
      * @return {undefined}
@@ -588,7 +588,7 @@ var Notification = (function () {
     };
 
 
-	/**
+    /**
      * Adapt the notifications bubble max-height
      * @public
      * @return {undefined}

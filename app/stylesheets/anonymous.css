@@ -11,19 +11,19 @@ Author: Valérian Saliou
 */
 
 #top-content {
-	min-width: 500px !important;
+    min-width: 500px !important;
 }
 
 #main-content {
-	min-width: 490px !important;
-	min-height: 450px !important;
+    min-width: 490px !important;
+    min-height: 450px !important;
 }
 
 #left-content {
-	display: none;
+    display: none;
 }
 
 #right-content {
-	left: 0 !important;
-	right: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
 }

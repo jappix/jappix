@@ -20,7 +20,7 @@ var Bubble = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Closes all the opened bubbles
      * @public
      * @return {boolean}

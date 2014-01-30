@@ -11,38 +11,38 @@ Author: Valérian Saliou
 */
 
 #me .content {
-	padding: 10px 0;
+    padding: 10px 0;
 }
 
 #me .logo {
-	background-position: 0 0;
-	width: 300px;
-	height: 61px;
-	margin: 20px auto 0 auto;
-	display: block;
+    background-position: 0 0;
+    width: 300px;
+    height: 61px;
+    margin: 20px auto 0 auto;
+    display: block;
 }
 
 #me .infos {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 #me .infos p {
-	margin-top: 8px;
+    margin-top: 8px;
 }
 
 #me .infos p.infos-title {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 #me .infos a {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #me a.go {
-	text-align: center;
-	font-weight: bold;
-	width: 300px;
-	margin: 30px auto 0 auto;
-	padding: 8px 12px;
-	display: block;
+    text-align: center;
+    font-weight: bold;
+    width: 300px;
+    margin: 30px auto 0 auto;
+    padding: 8px 12px;
+    display: block;
 }

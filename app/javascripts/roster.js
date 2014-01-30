@@ -24,7 +24,7 @@ var Roster = (function () {
     self.blist_all = false;
 
 
-	/**
+    /**
      * Gets the roster items
      * @public
      * @return {undefined}
@@ -316,7 +316,7 @@ var Roster = (function () {
     };
 
 
-	/**
+    /**
      * Applies the buddy editing input events
      * @public
      * @param {string} xid
@@ -704,7 +704,7 @@ var Roster = (function () {
     };
 
 
-	/**
+    /**
      * Gets an array of all the groups in the roster
      * @public
      * @param {type} name
@@ -945,7 +945,7 @@ var Roster = (function () {
     };
 
 
-	/**
+    /**
      * Gets all the buddies in our roster
      * @public
      * @return {object}

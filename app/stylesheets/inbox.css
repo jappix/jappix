@@ -11,234 +11,234 @@ Author: Valérian Saliou
 */
 
 #inbox .content {
-	padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
 #inbox .content p {
-	margin: 3px 10px;
-	text-align: justify;
-	font-size: 0.9em;
+    margin: 3px 10px;
+    text-align: justify;
+    font-size: 0.9em;
 }
 
 #inbox .inbox-results {
-	height: 310px;
-	width: 620px;
-	margin: -5px 0 0 10px;
-	padding: 6px 0 0 0;
-	overflow: auto;
+    height: 310px;
+    width: 620px;
+    margin: -5px 0 0 10px;
+    padding: 6px 0 0 0;
+    overflow: auto;
 }
 
 html[dir="rtl"] #inbox .inbox-results {
-	margin-left: auto;
-	margin-right: 10px;
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 #inbox .message-unread {
-	background-color: #E9F1FD;
+    background-color: #E9F1FD;
 }
 
 #inbox .one-message {
-	font-size: 0.9em;
-	border-bottom: 1px #b2c7cb solid;
+    font-size: 0.9em;
+    border-bottom: 1px #b2c7cb solid;
 }
 
 #inbox .message-head {
-	padding: 6px 0 7px 4px;
-	overflow: hidden;
+    padding: 6px 0 7px 4px;
+    overflow: hidden;
 }
 
 #inbox .message-head:hover {
-	background-color: #e9f1fd;
-	cursor: pointer;
+    background-color: #e9f1fd;
+    cursor: pointer;
 }
 
 #inbox .message-head:active {
-	background-color: #f1f6fd;
+    background-color: #f1f6fd;
 }
 
 #inbox .one-message.message-reading,
 #inbox .one-message.message-reading .message-head {
-	background-color: #f1f6fd;
+    background-color: #f1f6fd;
 }
 
 html[dir="rtl"] #inbox .one-message a.one-button {
-	float: right;
+    float: right;
 }
 
 #inbox .avatar-container {
-	float: left;
-	width: 40px;
-	height: 40px;
-	margin-right: 7px;
-	text-align: center;
-	background-repeat: no-repeat;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 7px;
+    text-align: center;
+    background-repeat: no-repeat;
 }
 
 html[dir="rtl"] #inbox .avatar-container {
-	margin-left: 7px;
-	margin-right: auto;
-	float: right;
+    margin-left: 7px;
+    margin-right: auto;
+    float: right;
 }
 
 #inbox .avatar {
-	max-width: 40px;
-	max-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 #inbox .message-jid,
 #inbox .message-subject {
-	float: left;
-	margin: 0 2px;
-	overflow: hidden;
+    float: left;
+    margin: 0 2px;
+    overflow: hidden;
 }
 
 html[dir="rtl"] #inbox .message-jid,
 html[dir="rtl"] #inbox .message-subject {
-	float: right;
+    float: right;
 }
 
 #inbox .message-jid {
-	width: 165px;
-	font-weight: bold;
+    width: 165px;
+    font-weight: bold;
 }
 
 #inbox .message-subject {
-	width: 355px;
+    width: 355px;
 }
 
 #inbox .message-truncated {
-	color: #42646b;
-	font-size: 0.8em;
-	margin: 23px 0 0 49px;
+    color: #42646b;
+    font-size: 0.8em;
+    margin: 23px 0 0 49px;
 }
 
 #inbox .message-body {
-	padding: 8px 5px 5px 5px;
+    padding: 8px 5px 5px 5px;
 }
 
 #inbox .message-body a {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #inbox .message-meta {
-	margin-top: 6px;
-	padding: 3px 4px;
-	border-top: 1px #b2c7cb dotted;
+    margin-top: 6px;
+    padding: 3px 4px;
+    border-top: 1px #b2c7cb dotted;
 }
 
 #inbox .message-meta span.date {
-	color: #28474e;
-	font-size: 0.8em;
-	margin: 10px 0 0 4px;
-	float: left;
+    color: #28474e;
+    font-size: 0.8em;
+    margin: 10px 0 0 4px;
+    float: left;
 }
 
 #inbox .message-meta a {
-	font-size: 0.98em;
-	margin: 5px;
-	float: right;
-	display: block;
+    font-size: 0.98em;
+    margin: 5px;
+    float: right;
+    display: block;
 }
 
 #inbox .inbox-noresults {
-	font-weight: bold;
-	display: none;
+    font-weight: bold;
+    display: none;
 }
 
 #inbox .a-show-messages {
-	display: none;
+    display: none;
 }
 
 #inbox .inbox-new {
-	display: none;
-	height: 300px;
-	width: 620px;
-	margin: -5px 0 0 10px;
-	padding: 16px 0 0 0;
+    display: none;
+    height: 300px;
+    width: 620px;
+    margin: -5px 0 0 10px;
+    padding: 16px 0 0 0;
 }
 
 #inbox .inbox-new-block {
-	border-top: 1px #686868 dotted;
-	padding-top: 9px;
-	min-height: 32px;
-	clear: both;
+    border-top: 1px #686868 dotted;
+    padding-top: 9px;
+    min-height: 32px;
+    clear: both;
 }
 
 #inbox .inbox-new-text {
-	float: left;
-	width: 100px;
+    float: left;
+    width: 100px;
 }
 
 #inbox .inbox-new-textarea {
-	width: 460px;
-	height: 109px;
-	margin-bottom: 10px;
-	float: left;
+    width: 460px;
+    height: 109px;
+    margin-bottom: 10px;
+    float: left;
 }
 
 #inbox .inbox-new input {
-	float: left;
+    float: left;
 }
 
 html[dir="rtl"] #inbox .inbox-new-text,
 html[dir="rtl"] #inbox .inbox-new-textarea,
 html[dir="rtl"] #inbox .inbox-new input {
-	float: right;
+    float: right;
 }
 
 html[dir="rtl"] #inbox .inbox-new-text {
-	margin-right: 20px;
+    margin-right: 20px;
 }
 
 html[dir="rtl"] #inbox .inbox-new input {
-	margin-right: auto;
+    margin-right: auto;
 }
 
 #inbox .inbox-new-to ul {
-	width: 264px;
-	max-height: 168px;
-	font-size: 0.9em;
-	left: 120px;
-	top: 31px;
+    width: 264px;
+    max-height: 168px;
+    font-size: 0.9em;
+    left: 120px;
+    top: 31px;
 }
 
 html[dir="rtl"] #inbox .inbox-new-to ul {
-	left: auto;
-	right: 130px;
+    left: auto;
+    right: 130px;
 }
 
 #inbox .inbox-new-to-input {
-	width: 260px;
+    width: 260px;
 }
 
 #inbox .inbox-new-subject-input {
-	width: 380px;
+    width: 380px;
 }
 
 #inbox .inbox-new-file a {
-	display: block;
-	float: left;
+    display: block;
+    float: left;
 }
 
 #inbox .inbox-new-file a.file {
-	font-size: 0.85em;
-	height: 16px;
-	max-width: 320px;
-	margin: 3px 0 15px 013px;
-	overflow: hidden;
+    font-size: 0.85em;
+    height: 16px;
+    max-width: 320px;
+    margin: 3px 0 15px 013px;
+    overflow: hidden;
 }
 
 #inbox .inbox-new-file a.one-button {
-	font-size: 0.85em;
-	margin: -2px 0 0 25px;
+    font-size: 0.85em;
+    margin: -2px 0 0 25px;
 }
 
 #inbox .inbox-new-send a {
-	font-size: 0.85em;
-	float: right;
-	display: block;
+    font-size: 0.85em;
+    float: right;
+    display: block;
 }
 
 html[dir="rtl"] #inbox .inbox-new-send a {
-	margin-right: 18px;
+    margin-right: 18px;
 }

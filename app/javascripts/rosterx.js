@@ -20,7 +20,7 @@ var RosterX = (function () {
     var self = {};
     
 
-	/**
+    /**
      * Opens the rosterx tools
      * @public
      * @param {string} data
@@ -238,7 +238,7 @@ var RosterX = (function () {
     };
 
 
-	/**
+    /**
      * Plugin launcher
      * @public
      * @return {undefined}

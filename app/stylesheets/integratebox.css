@@ -11,27 +11,27 @@ Author: Valérian Saliou
 */
 
 #integratebox .top {
-	height: 40px;
+    height: 40px;
 }
 
 #integratebox .content {
-	text-align: center;
-	height: 385px;
+    text-align: center;
+    height: 385px;
 }
 
 #integratebox .one-media img {
-	max-height: 385px;
-	max-width: 640px;
+    max-height: 385px;
+    max-width: 640px;
 }
 
 #integratebox .one-media a img {
-	border: none;
+    border: none;
 }
 
 #integratebox .one-media audio {
-	margin-top: 170px;
+    margin-top: 170px;
 }
 
 #integratebox .bottom {
-	left: 10px;
+    left: 10px;
 }

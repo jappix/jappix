@@ -12,637 +12,637 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 
 #jappix_mini,
 #jappix_popup {
-	font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
-	min-width: 280px;
+    font: normal 11px helvetica, "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Arial, sans-serif;
+    min-width: 280px;
 }
 
 #jappix_mini {
-	margin-left: 130px;
-	position: fixed;
-	bottom: 0;
-	right: 20px;
-	display: block !important;
-	z-index: 999;
+    margin-left: 130px;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    display: block !important;
+    z-index: 999;
 }
 
 #jappix_mini *,
 #jappix_popup * {
-	border: none;
-	color: black;
-	width: auto;
-	height: auto;
-	margin: 0;
-	padding: 0;
-	overflow: visible;
-	font-size: 11px;
-	text-align: left;
-	text-transform: none;
-	text-shadow: none;
-	opacity: 1.0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+    border: none;
+    color: black;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    font-size: 11px;
+    text-align: left;
+    text-transform: none;
+    text-shadow: none;
+    opacity: 1.0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 #jappix_mini[dir="rtl"] *,
 #jappix_popup[dir="rtl"] * {
-	text-align: right;
+    text-align: right;
 }
 
 #jappix_mini .jm_images {
-	background-image: url(../images/sprites/mini.png);
-	background-repeat: no-repeat;
+    background-image: url(../images/sprites/mini.png);
+    background-repeat: no-repeat;
 }
 
 #jappix_mini .jm_images_animate {
-	background-image: url(../images/sprites/animate.png);
-	background-repeat: no-repeat;
+    background-image: url(../images/sprites/animate.png);
+    background-repeat: no-repeat;
 }
 
 #jappix_mini input.placeholder {
-	color: #999999 !important;
+    color: #999999 !important;
 }
 
 #jappix_mini input:-moz-placeholder {
-	color: #999999 !important;
+    color: #999999 !important;
 }
 
 #jappix_mini input::-webkit-input-placeholder {
-	color: #999999 !important;
+    color: #999999 !important;
 }
 
 #jappix_mini a {
-	text-decoration: none;
-	cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 #jappix_mini a:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #jappix_mini div.jm_position {
-	float: right;
+    float: right;
 }
 
 #jappix_mini a.jm_pane {
-	background-color: #f4f4f4;
-	background-position: 0 -100px;
-	background-repeat: repeat-x;
-	border-color: #999999;
-	border-style: solid;
-	border-width: 1px 1px 0 1px;
-	font-weight: bold;
-	outline-style: none;
-	display: block;
-	padding: 6px;
-	height: 13px;
+    background-color: #f4f4f4;
+    background-position: 0 -100px;
+    background-repeat: repeat-x;
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    font-weight: bold;
+    outline-style: none;
+    display: block;
+    padding: 6px;
+    height: 13px;
 }
 
 #jappix_mini a.jm_pane:hover {
-	background: white;
+    background: white;
 }
 
 #jappix_mini a.jm_pane:hover,
 #jappix_mini a.jm_pane:focus {
-	border-color: #666666;
+    border-color: #666666;
 }
 
 #jappix_mini div.jm_starter {
-	float: right;
-	position: relative;
+    float: right;
+    position: relative;
 }
 
 #jappix_mini div.jm_conversations,
 #jappix_mini div.jm_conversation,
 #jappix_mini a.jm_switch {
-	float: left;
-	position: relative;
+    float: left;
+    position: relative;
 }
 
 #jappix_mini a.jm_switch {
-	border-right: none;
+    border-right: none;
 }
 
 #jappix_mini a.jm_switch.jm_notifnav {
-	background-position: 0 -432px !important;
+    background-position: 0 -432px !important;
 }
 
 #jappix_mini a.jm_switch span.jm_navigation {
-	width: 16px;
-	height: 16px;
-	margin-top: -1px;
-	display: block;
+    width: 16px;
+    height: 16px;
+    margin-top: -1px;
+    display: block;
 }
 
 #jappix_mini a.jm_switch.jm_right span.jm_navigation {
-	background-position: 0 -400px;
+    background-position: 0 -400px;
 }
 
 #jappix_mini a.jm_switch.jm_left span.jm_navigation {
-	background-position: 0 -416px;
+    background-position: 0 -416px;
 }
 
 #jappix_mini div.jm_conversation {
-	width: 153px;
+    width: 153px;
 }
 
 #jappix_mini a.jm_chat-tab {
-	border-width: 1px 0 0 1px;
-	width: 140px;
-	float: right;
-	overflow: hidden;
+    border-width: 1px 0 0 1px;
+    width: 140px;
+    float: right;
+    overflow: hidden;
 }
 
 #jappix_mini a.jm_chat-tab.jm_clicked {
-	background: white;
-	position: relative;
-	border-top: none;
-	border-left: 1px solid #999999;
-	padding-top: 7px;
+    background: white;
+    position: relative;
+    border-top: none;
+    border-left: 1px solid #999999;
+    padding-top: 7px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify {
-	position: absolute;
-	top: 6px;
-	right: 9px;
+    position: absolute;
+    top: 6px;
+    right: 9px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span {
-	float: left;
+    float: left;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_left {
-	background-position: 0 -360px;
+    background-position: 0 -360px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_right {
-	background-position: -7px -360px;
+    background-position: -7px -360px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_left,
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_right {
-	height: 16px;
-	width: 7px;
+    height: 16px;
+    width: 7px;
 }
 
 #jappix_mini a.jm_chat-tab span.jm_notify span.jm_notify_middle {
-	background-color: #c60505;
-	color: white;
-	font-size: 0.85em;
-	height: 13px;
-	padding-top: 3px;
+    background-color: #c60505;
+    color: white;
+    font-size: 0.85em;
+    height: 13px;
+    padding-top: 3px;
 }
 
 #jappix_mini div.jm_conversation.jm_type_groupchat span.jm_name {
-	margin-left: 4px;
+    margin-left: 4px;
 }
 
 #jappix_mini[dir="rtl"] div.jm_conversation.jm_type_groupchat span.jm_name {
-	margin-left: 0;
-	margin-right: 4px;
+    margin-left: 0;
+    margin-right: 4px;
 }
 
 #jappix_mini div.jm_chat-content {
-	background-color: white;
-	border: 1px solid #999999;
-	height: 375px;
-	width: 320px;
-	position: absolute;
-	right: -1px;
-	bottom: 25px;
-	display: none;
+    background-color: white;
+    border: 1px solid #999999;
+    height: 375px;
+    width: 320px;
+    position: absolute;
+    right: -1px;
+    bottom: 25px;
+    display: none;
 }
 
 #jappix_mini div.jm_actions {
-	background-color: #565d5e;
-	border-bottom: 1px solid #3a3a3a;
-	height: 14px;
-	padding: 4px 6px;
-	font-weight: bold;
-	overflow: hidden;
+    background-color: #565d5e;
+    border-bottom: 1px solid #3a3a3a;
+    height: 14px;
+    padding: 4px 6px;
+    font-weight: bold;
+    overflow: hidden;
 }
 
 #jappix_mini div.jm_conversation div.jm_actions {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #jappix_mini div.jm_actions span.jm_nick {
-	color: white;
-	height: 16px;
-	width: 225px;
-	overflow: hidden;
-	float: left;
+    color: white;
+    height: 16px;
+    width: 225px;
+    overflow: hidden;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] div.jm_actions span.jm_nick {
-	float: right;
+    float: right;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action {
-	background-color: #727879;
-	margin: 0 -2px 0 5px;
-	height: 15px;
-	width: 15px;
-	outline-style: none;
-	display: block;
-	position: absolute;
-	top: 4px;
+    background-color: #727879;
+    margin: 0 -2px 0 5px;
+    height: 15px;
+    width: 15px;
+    outline-style: none;
+    display: block;
+    position: absolute;
+    top: 4px;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action:hover,
 #jappix_mini div.jm_actions a.jm_one-action:focus {
-	background-color: #7f8788;
+    background-color: #7f8788;
 }
 
 #jappix_mini div.jm_actions a.jm_one-action:active {
-	background-color: #8c9293;
+    background-color: #8c9293;
 }
 
 #jappix_mini div.jm_actions a.jm_logo {
-	background-position: 7px 2px;
-	width: 81px;
-	height: 22px;
-	margin: -4px 0 0 -2px;
-	outline-style: none;
-	float: left;
+    background-position: 7px 2px;
+    width: 81px;
+    height: 22px;
+    margin: -4px 0 0 -2px;
+    outline-style: none;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] div.jm_actions a.jm_logo {
-	float: right;
+    float: right;
 }
 
 #jappix_mini div.jm_actions a.jm_logo:hover,
 #jappix_mini div.jm_actions a.jm_logo:focus {
-	background-color: #636a6b;
+    background-color: #636a6b;
 }
 
 #jappix_mini div.jm_actions a.jm_logo:active {
-	background-color: #707677;
+    background-color: #707677;
 }
 
 #jappix_mini div.jm_actions a.jm_close {
-	background-position: 1px -341px;
-	right: 6px;
+    background-position: 1px -341px;
+    right: 6px;
 }
 
 #jappix_mini[dir="rtl"] div.jm_actions a.jm_close {
-	right: auto;
-	left: 0;
+    right: auto;
+    left: 0;
 }
 
 #jappix_mini div.jm_actions a.jm_join {
-	background-position: 0 -327px;
-	right: 6px;
+    background-position: 0 -327px;
+    right: 6px;
 }
 
 #jappix_mini[dir="rtl"] div.jm_actions a.jm_join {
-	right: auto;
-	left: 18px;
+    right: auto;
+    left: 18px;
 }
 
 #jappix_mini div.jm_actions a.jm_status {
-	background-color: #727879;
-	overflow: hidden;
-	right: 24px;
+    background-color: #727879;
+    overflow: hidden;
+    right: 24px;
 }
 
 #jappix_mini[dir="rtl"] div.jm_actions a.jm_status {
-	right: auto;
-	left: 0;
+    right: auto;
+    left: 0;
 }
 
 #jappix_mini div.jm_actions a.active,
 #jappix_mini div.jm_actions a.active:hover,
 #jappix_mini div.jm_actions a.active:focus,
 #jappix_mini div.jm_actions a.active:active {
-	background-color: #727879;
-	border: 1px solid #3a3a3a;
-	border-width: 1px 1px 0 1px;
-	margin-right: -3px;
-	top: 3px;
-	z-index: 10;
+    background-color: #727879;
+    border: 1px solid #3a3a3a;
+    border-width: 1px 1px 0 1px;
+    margin-right: -3px;
+    top: 3px;
+    z-index: 10;
 }
 
 #jappix_mini div.jm_status_picker,
 #jappix_mini div.jm_chan_suggest {
-	background-color: #727879;
-	border: 1px solid #3a3a3a;
-	color: white;
-	list-style: none outside none;
-	width: 130px;
-	position: absolute;
-	top: 18px;
-	padding: 3px 0;
-	z-index: 9;
+    background-color: #727879;
+    border: 1px solid #3a3a3a;
+    color: white;
+    list-style: none outside none;
+    width: 130px;
+    position: absolute;
+    top: 18px;
+    padding: 3px 0;
+    z-index: 9;
 }
 
 #jappix_mini div.jm_status_picker {
-	right: 21px;
+    right: 21px;
 }
 
 #jappix_mini div.jm_chan_suggest {
-	right: 4px;
+    right: 4px;
 }
 
 #jappix_mini[dir="rtl"] div.jm_status_picker,
 #jappix_mini[dir="rtl"] div.jm_chan_suggest {
-	margin-right: 2px;
+    margin-right: 2px;
 }
 
 #jappix_mini div.jm_chan_suggest {
-	max-height: 108px;
-	overflow: auto;
+    max-height: 108px;
+    overflow: auto;
 }
 
 #jappix_mini div.jm_status_picker a,
 #jappix_mini div.jm_chan_suggest a {
-	color: white;
-	height: 13px;
-	padding: 4px;
-	display: block;
+    color: white;
+    height: 13px;
+    padding: 4px;
+    display: block;
 }
 
 #jappix_mini div.jm_status_picker a:hover,
 #jappix_mini div.jm_status_picker a:focus,
 #jappix_mini div.jm_chan_suggest a:hover,
 #jappix_mini div.jm_chan_suggest a:focus {
-	background-color: white;
-	color: #3a3a3a;
-	border-width: 1px 0;
-	border-style: solid;
-	border-color: #3a3a3a;
-	margin: -1px 0;
-	display: block;
+    background-color: white;
+    color: #3a3a3a;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #3a3a3a;
+    margin: -1px 0;
+    display: block;
 }
 
 #jappix_mini div.jm_chan_suggest div.jm_space {
-	height: 6px;
+    height: 6px;
 }
 
 #jappix_mini div.jm_status_picker a span.jm_presence {
-	margin-top: -1px;
+    margin-top: -1px;
 }
 
 #jappix_mini div.jm_chan_suggest a span.jm_chan_icon {
-	height: 16px;
-	width: 16px;
-	margin: 0 8px 0 4px;
-	float: left;
+    height: 16px;
+    width: 16px;
+    margin: 0 8px 0 4px;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] div.jm_chan_suggest a span.jm_chan_icon {
-	margin-right: 4px;
-	margin-left: 8px;
-	float: right;
+    margin-right: 4px;
+    margin-left: 8px;
+    float: right;
 }
 
 #jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat span.jm_chan_icon {
-	background-position: 0 -480px;
+    background-position: 0 -480px;
 }
 
 #jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat:hover span.jm_chan_icon,
 #jappix_mini div.jm_chan_suggest a.jm_suggest_groupchat:focus span.jm_chan_icon {
-	background-position: 0 -496px;
+    background-position: 0 -496px;
 }
 
 #jappix_mini div.jm_chan_suggest a.jm_suggest_chat span.jm_chan_icon {
-	background-position: 0 -512px;
+    background-position: 0 -512px;
 }
 
 #jappix_mini div.jm_chan_suggest a.jm_suggest_chat:hover span.jm_chan_icon,
 #jappix_mini div.jm_chan_suggest a.jm_suggest_chat:focus span.jm_chan_icon {
-	background-position: 0 -528px;
+    background-position: 0 -528px;
 }
 
 #jappix_mini div.jm_chan_suggest a span.jm_chan_name,
 #jappix_mini div.jm_status_picker a span.jm_show_text {
-	color: white;
-	float: left;
+    color: white;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] div.jm_chan_suggest a span.jm_chan_name,
 #jappix_mini[dir="rtl"] div.jm_status_picker a span.jm_show_text {
-	float: right;
+    float: right;
 }
 
 #jappix_mini div.jm_chan_suggest a span.jm_chan_name {
-	height: 15px;
-	width: 90px;
-	overflow: hidden;
+    height: 15px;
+    width: 90px;
+    overflow: hidden;
 }
 
 #jappix_mini div.jm_chan_suggest a:hover span.jm_chan_name,
 #jappix_mini div.jm_chan_suggest a:focus span.jm_chan_name,
 #jappix_mini div.jm_status_picker a:hover span.jm_show_text,
 #jappix_mini div.jm_status_picker a:focus span.jm_show_text {
-	color: #3a3a3a;
+    color: #3a3a3a;
 }
 
 #jappix_mini div.jm_pix_stream {
-	line-height: 0;
-	max-height: 50px;
-	overflow: hidden;
-	position: absolute;
-	top: 23px;
-	left: 0;
-	right: 0;
+    line-height: 0;
+    max-height: 50px;
+    overflow: hidden;
+    position: absolute;
+    top: 23px;
+    left: 0;
+    right: 0;
 }
 
 #jappix_mini div.jm_pix_stream iframe {
-	width: 320px;
-	height: 50px;
-	overflow: hidden;
+    width: 320px;
+    height: 50px;
+    overflow: hidden;
 }
 
 #jappix_mini div.jm_received-messages {
-	background-color: white;
-	padding: 5px 0 4px;
-	height: 317px;
-	overflow: auto;
+    background-color: white;
+    padding: 5px 0 4px;
+    height: 317px;
+    overflow: auto;
 }
 
 #jappix_mini div.jm_received-messages p {
-	margin: 3px 0;
-	word-wrap: break-word;
+    margin: 3px 0;
+    word-wrap: break-word;
 }
 
 #jappix_mini div.jm_received-messages p,
 #jappix_mini div.jm_received-messages a {
-	color: black !important;
+    color: black !important;
 }
 
 #jappix_mini div.jm_received-messages div.jm_group {
-	margin: 2px 6px 9px 6px;
-	padding-bottom: 8px;
-	border-bottom: 1px solid #eaeaea;
+    margin: 2px 6px 9px 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eaeaea;
 }
 
 #jappix_mini div.jm_received-messages div.jm_system-message p,
 #jappix_mini div.jm_received-messages div.jm_system-message b,
 #jappix_mini div.jm_received-messages div.jm_system-message a {
-	color: #053805 !important;
-	font-style: italic !important;
+    color: #053805 !important;
+    font-style: italic !important;
 }
 
 #jappix_mini div.jm_received-messages p a {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #jappix_mini div.jm_received-messages b.jm_name {
-	margin-bottom: 3px;
-	display: block;
+    margin-bottom: 3px;
+    display: block;
 }
 
 #jappix_mini div.jm_received-messages b.jm_name.jm_me {
-	color: #123a5c;
+    color: #123a5c;
 }
 
 #jappix_mini div.jm_received-messages b.jm_name.jm_him {
-	color: #801e1e;
+    color: #801e1e;
 }
 
 #jappix_mini div.jm_received-messages span.jm_date {
-	font-size: 0.8em;
-	float: right;
-	display: none;
+    font-size: 0.8em;
+    float: right;
+    display: none;
 }
 
 #jappix_mini[dir="rtl"] div.jm_received-messages span.jm_date {
-	float: left;
+    float: left;
 }
 
 #jappix_mini div.jm_received-messages div.jm_group:hover span.jm_date {
-	display: block;
+    display: block;
 }
 
 #jappix_mini div.jm_received-messages div.jm_chatstate_typing {
-	background-image: url(../images/wait/wait-typing.gif);
-	background-repeat: no-repeat;
-	background-position: 0 5px;
-	color: #a6a6a6;
-	font-size: 10px;
-	letter-spacing: 1px;
-	margin: 0 0 5px 8px;
-	padding-left: 24px;
-	visibility: hidden;
+    background-image: url(../images/wait/wait-typing.gif);
+    background-repeat: no-repeat;
+    background-position: 0 5px;
+    color: #a6a6a6;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin: 0 0 5px 8px;
+    padding-left: 24px;
+    visibility: hidden;
 }
 
 #jappix_mini input.jm_send-messages {
-	background-color: white;
-	border-color: #999999;
-	border-style: solid;
-	border-width: 1px 0 0 0;
-	padding: 5px;
-	width: 310px;
-	min-height: 14px;
+    background-color: white;
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    padding: 5px;
+    width: 310px;
+    min-height: 14px;
 }
 
 #jappix_mini div.jm_disabled div.jm_chat-content,
 #jappix_mini div.jm_disabled input.jm_send-messages,
 #jappix_mini div.jm_disabled a.jm_pane,
 #jappix_mini a.jm_switch.jm_nonav {
-	background: #f3f3f3 !important;
+    background: #f3f3f3 !important;
 }
 
 #jappix_mini div.jm_disabled input.jm_send-messages {
-	color: #9d9d9d;
+    color: #9d9d9d;
 }
 
 #jappix_mini div.jm_roster {
-	background-color: white;
-	border: 1px solid #999999;
-	width: 160px;
-	position: absolute;
-	right: 0;
-	bottom: 25px;
-	display: none;
+    background-color: white;
+    border: 1px solid #999999;
+    width: 160px;
+    position: absolute;
+    right: 0;
+    bottom: 25px;
+    display: none;
 }
 
 #jappix_mini div.jm_search {
-	border-top: 1px solid #999999;
-	padding: 2px 0;
+    border-top: 1px solid #999999;
+    padding: 2px 0;
 }
 
 #jappix_mini div.jm_search input.jm_searchbox {
-	background-color: white;
-	background-position: 9px -381px;
-	color: black;
-	font-size: 0.9em;
-	width: 128px;
-	padding: 2px 4px 2px 28px;
+    background-color: white;
+    background-position: 9px -381px;
+    color: black;
+    font-size: 0.9em;
+    width: 128px;
+    padding: 2px 4px 2px 28px;
 }
 
 #jappix_mini input.jm_searchbox:focus {
-	border-color: #999999;
+    border-color: #999999;
 }
 
 #jappix_mini div.jm_roster div.jm_buddies {
-	width: 100%;
-	max-height: 300px;
-	min-height: 100px;
-	padding: 5px 0;
-	overflow: auto;
+    width: 100%;
+    max-height: 300px;
+    min-height: 100px;
+    padding: 5px 0;
+    overflow: auto;
 }
 
 #jappix_mini div.jm_roster div.jm_grouped {
-	margin: 2px 0;
+    margin: 2px 0;
 }
 
 #jappix_mini div.jm_roster div.jm_grouped div.jm_name {
-	margin-bottom: 2px;
-	padding: 4px 8px 0;
-	font-weight: bold;
+    margin-bottom: 2px;
+    padding: 4px 8px 0;
+    font-weight: bold;
 }
 
 #jappix_mini a.jm_friend {
-	border-color: white;
-	border-style: solid;
-	border-width: 1px 0;
-	outline-style: none;
-	padding: 6px;
-	display: block;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px 0;
+    outline-style: none;
+    padding: 6px;
+    display: block;
 }
 
 #jappix_mini a.jm_friend.jm_offline {
-	display: none;
+    display: none;
 }
 
 #jappix_mini a.jm_friend.jm_hover {
-	background-color: #888888;
-	border-color: #494949;
-	color: white;
+    background-color: #888888;
+    border-color: #494949;
+    color: white;
 }
 
 #jappix_mini a.jm_friend.jm_hover span.jm_presence {
-	background-position: 0 -84px;
+    background-position: 0 -84px;
 }
 
 #jappix_mini a.jm_button {
-	padding: 6px 10px;
-	position: relative;
-	z-index: 1;
+    padding: 6px 10px;
+    position: relative;
+    z-index: 1;
 }
 
 #jappix_mini a.jm_button.jm_clicked {
-	background: white;
-	border-top: none;
-	border-left: 1px solid #999999;
-	border-right: 1px solid #999999;
-	padding: 7px 10px 6px 10px;
+    background: white;
+    border-top: none;
+    border-left: 1px solid #999999;
+    border-right: 1px solid #999999;
+    padding: 7px 10px 6px 10px;
 }
 
 #jappix_mini span.jm_animate {
-	background-position: 0 0;
-	width: 80px;
-	height: 74px;
-	position: absolute;
-	top: -76px;
-	left: -52px;
-	z-index: 1;
-	display: block;
+    background-position: 0 0;
+    width: 80px;
+    height: 74px;
+    position: absolute;
+    top: -76px;
+    left: -52px;
+    z-index: 1;
+    display: block;
     -moz-animation-duration: 1.5s;
     -webkit-animation-duration: 1.5s;
     -o-animation-duration: 1.5s;
@@ -666,173 +666,173 @@ Authors: Valérian Saliou, Julien, hunterjm, Kloadut
 }
 
 #jappix_mini span.jm_counter {
-	background-position: 0 -288px;
-	color: #333333;
-	height: 16px;
-	padding-left: 25px;
-	display: block;
+    background-position: 0 -288px;
+    color: #333333;
+    height: 16px;
+    padding-left: 25px;
+    display: block;
 }
 
 #jappix_mini span.jm_counter.jm_error {
-	background-position: 0 -305px;
+    background-position: 0 -305px;
 }
 
 #jappix_mini span.jm_presence {
-	display: block;
-	height: 16px;
-	width: 16px;
-	margin-right: 4px;
-	float: left;
+    display: block;
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] span.jm_presence {
-	margin-right: 0;
-	margin-left: 4px;
-	float: right;
+    margin-right: 0;
+    margin-left: 4px;
+    float: right;
 }
 
 #jappix_mini span.jm_name {
-	color: #272727;
-	height: 14px;
-	width: 105px;
-	overflow: hidden;
-	float: left;
+    color: #272727;
+    height: 14px;
+    width: 105px;
+    overflow: hidden;
+    float: left;
 }
 
 #jappix_mini[dir="rtl"] span.jm_name {
-	float: right;
+    float: right;
 }
 
 #jappix_mini .jm_available,
 #jappix_mini .jm_chat {
-	background-position: 0 -20px;
+    background-position: 0 -20px;
 }
 
 #jappix_mini .jm_away {
-	background-position: 0 -36px;
+    background-position: 0 -36px;
 }
 
 #jappix_mini .jm_xa,
 #jappix_mini .jm_dnd {
-	background-position: 0 -52px;
+    background-position: 0 -52px;
 }
 
 #jappix_mini .jm_unavailable {
-	background-position: 0 -68px;
+    background-position: 0 -68px;
 }
 
 #jappix_mini .jm_smiley {
-	border: 0 none;
-	height: 16px;
-	width: 16px;
-	vertical-align: bottom;
+    border: 0 none;
+    height: 16px;
+    width: 16px;
+    vertical-align: bottom;
 }
 
 #jappix_mini .jm_smiley-wink {
-	background-position: 0 -148px;
+    background-position: 0 -148px;
 }
 
 #jappix_mini .jm_smiley-waii {
-	background-position: 0 -164px;
+    background-position: 0 -164px;
 }
 
 #jappix_mini .jm_smiley-unhappy {
-	background-position: 0 -180px;
+    background-position: 0 -180px;
 }
 
 #jappix_mini .jm_smiley-tongue {
-	background-position: 0 -196px;
+    background-position: 0 -196px;
 }
 
 #jappix_mini .jm_smiley-surprised {
-	background-position: 0 -212px;
+    background-position: 0 -212px;
 }
 
 #jappix_mini .jm_smiley-smile {
-	background-position: 0 -228px;
+    background-position: 0 -228px;
 }
 
 #jappix_mini .jm_smiley-happy {
-	background-position: 0 -244px;
+    background-position: 0 -244px;
 }
 
 #jappix_mini .jm_smiley-grin {
-	background-position: 0 -260px;
+    background-position: 0 -260px;
 }
 
 #jappix_popup {
-	background: url(../images/others/blank.gif) repeat;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 999;
+    background: url(../images/others/blank.gif) repeat;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 #jappix_popup div.jm_prompt {
-	background-color: #565d5e;
-	border: 1px solid #3a3a3a;
-	width: 346px;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-left: -175px;
-	padding: 16px 2px 2px 2px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	-moz-box-shadow: 0 0 35px #232323;
-	-webkit-box-shadow: 0 0 35px #232323;
-	box-shadow: 0 0 35px #232323;
+    background-color: #565d5e;
+    border: 1px solid #3a3a3a;
+    width: 346px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -175px;
+    padding: 16px 2px 2px 2px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-box-shadow: 0 0 35px #232323;
+    -webkit-box-shadow: 0 0 35px #232323;
+    box-shadow: 0 0 35px #232323;
 }
 
 #jappix_popup div.jm_prompt form {
-	background-color: white;
-	border: 1px solid #3a3a3a;
-	width: 332px;
-	padding: 6px;
+    background-color: white;
+    border: 1px solid #3a3a3a;
+    width: 332px;
+    padding: 6px;
 }
 
 #jappix_popup div.jm_prompt form input {
-	background-color: #f9f9f9;
-	border: 1px solid #666666;
-	font-size: 1.1em;
-	padding: 1px 2px;
+    background-color: #f9f9f9;
+    border: 1px solid #666666;
+    font-size: 1.1em;
+    padding: 1px 2px;
 }
 
 #jappix_popup div.jm_prompt form input:hover,
 #jappix_popup div.jm_prompt form input:focus {
-	border: 1px solid #202020;
+    border: 1px solid #202020;
 }
 
 #jappix_popup div.jm_prompt form input.jm_text {
-	width: 326px;
-	margin: 6px 0;
-	display: block;
+    width: 326px;
+    margin: 6px 0;
+    display: block;
 }
 
 #jappix_popup div.jm_prompt form input.jm_submit {
-	text-align: center;
-	margin-left: 3px;
-	float: right;
+    text-align: center;
+    margin-left: 3px;
+    float: right;
 }
 
 #jappix_popup div.jm_prompt form input.jm_submit:hover,
 #jappix_popup div.jm_prompt form input.jm_submit:focus {
-	background-color: #f3f3f3;
-	cursor: pointer;
+    background-color: #f3f3f3;
+    cursor: pointer;
 }
 
 #jappix_popup div.jm_prompt form input.jm_submit:active {
-	background-color: #e8e8e8;
+    background-color: #e8e8e8;
 }
 
 #jappix_popup div.jm_prompt div.jm_clear {
-	clear: both;
+    clear: both;
 }
 
 @-moz-keyframes jm_animate {

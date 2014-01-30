@@ -20,7 +20,7 @@ var vCard = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the vCard popup
      * @public
      * @return {boolean}
@@ -294,7 +294,7 @@ var vCard = (function () {
     };
 
 
-	/**
+    /**
      * Deletes the encoded avatar of an user
      * @public
      * @return {boolean}
@@ -428,7 +428,7 @@ var vCard = (function () {
     };
 
 
-	/**
+    /**
      * Handles a vCard stanza
      * @public
      * @param {object} iq

@@ -20,7 +20,7 @@ var Directory = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the directory popup
      * @public
      * @return {boolean}

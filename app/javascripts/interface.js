@@ -24,7 +24,7 @@ var Interface = (function () {
     self.chat_focus_hash = null;
 
 
-	/**
+    /**
      * Changes the title of the document
      * @public
      * @param {string} new_title
@@ -166,7 +166,7 @@ var Interface = (function () {
     };
 
 
-	/**
+    /**
      * Loads the complete chat switcher
      * @public
      * @return {undefined}
@@ -433,7 +433,7 @@ var Interface = (function () {
     };
 
 
-	/**
+    /**
      * Notifies the user from a new incoming message
      * @public
      * @param {string} hash
@@ -570,7 +570,7 @@ var Interface = (function () {
     };
 
 
-	/**
+    /**
      * Shows all the buddies in the roster
      * @public
      * @param {string} from

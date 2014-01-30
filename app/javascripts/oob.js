@@ -20,7 +20,7 @@ var OOB = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Sends an OOB request to someone
      * @public
      * @param {string} to

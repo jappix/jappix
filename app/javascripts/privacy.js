@@ -20,7 +20,7 @@ var Privacy = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the privacy popup
      * @public
      * @return {boolean}
@@ -243,7 +243,7 @@ var Privacy = (function () {
     };
 
 
-	/**
+    /**
      * Gets privacy lists
      * @public
      * @param {object} list
@@ -536,7 +536,7 @@ var Privacy = (function () {
     };
 
 
-	/**
+    /**
      * Checks the privacy status (action) of a value
      * @public
      * @param {string} list
@@ -844,7 +844,7 @@ var Privacy = (function () {
     };
 
 
-	/**
+    /**
      * Clears the privacy list form
      * @public
      * @return {undefined}

@@ -85,7 +85,7 @@ var Utils = (function () {
     };
 
 
-	/**
+    /**
      * Truncates a string
      * @public
      * @param {string} string
@@ -181,7 +181,7 @@ var Utils = (function () {
     };
 
 
-	/**
+    /**
      * Checks if this is a private chat user
      * @public
      * @param {string} xid
@@ -303,7 +303,7 @@ var Utils = (function () {
     };
 
 
-	/**
+    /**
      * Gets the password of the user
      * @public
      * @return {string}
@@ -551,7 +551,7 @@ var Utils = (function () {
     };
 
 
-	/**
+    /**
      * Removes a value from an array
      * @public
      * @param {object} array

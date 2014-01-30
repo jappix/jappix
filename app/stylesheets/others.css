@@ -70,7 +70,7 @@ html[dir="rtl"] #right-content {
 }
  
 #general-wait {
-	background: url(../images/others/blank.gif) repeat;
+    background: url(../images/others/blank.gif) repeat;
     z-index: 10000;
     position: fixed;
     top: 0;
@@ -134,103 +134,103 @@ html[dir="rtl"] .general-wait-content {
 }
 
 #suggest {
-	width: 350px;
-	height: 350px;
-	margin-top: -175px;
-	margin-left: -175px;
-	left: 50%;
+    width: 350px;
+    height: 350px;
+    margin-top: -175px;
+    margin-left: -175px;
+    left: 50%;
     right: auto;
-	top: 50%;
+    top: 50%;
 }
 
 #suggest .title {
-	color: white;
-	font-weight: bold;
-	text-transform: uppercase;
-	text-shadow: 0 2px 2px black;
-	position: absolute;
-	top: 14px;
-	left: 18px;
-	right: 18px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 2px 2px black;
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    right: 18px;
 }
 
 #suggest .content {
-	background: #e4eef9;
-	padding: 12px 12px 0 12px;
-	position: absolute;
-	left: 8px;
-	right: 8px;
-	top: 45px;
-	bottom: 52px;
-	overflow: auto;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+    background: #e4eef9;
+    padding: 12px 12px 0 12px;
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 45px;
+    bottom: 52px;
+    overflow: auto;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     border-radius: 3px;
-	-moz-box-shadow: 0 0 10px black;
-	-webkit-box-shadow: 0 0 10px black;
+    -moz-box-shadow: 0 0 10px black;
+    -webkit-box-shadow: 0 0 10px black;
     box-shadow: 0 0 10px black;
 }
 
 #suggest .content a.one {
-	background-color: #e4eef9;
-	border: 1px solid #ccdbde;
-	margin-bottom: 8px;
-	padding: 8px 12px;
-	text-decoration: none;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+    background-color: #e4eef9;
+    border: 1px solid #ccdbde;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    text-decoration: none;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
     border-radius: 2px;
-	display: block;
+    display: block;
 }
 
 #suggest .content a.one:hover,
 #suggest .content a.one:focus {
-	border: 1px solid #93c5fa;
+    border: 1px solid #93c5fa;
 }
 
 #suggest .content a.one:active {
-	border: 1px solid #419afa;
+    border: 1px solid #419afa;
 }
 
 #suggest .content a.one.active {
-	background-color: #f1f6fd;
-	border: 1px solid #9dc4fc;
+    background-color: #f1f6fd;
+    border: 1px solid #9dc4fc;
 }
 
 #suggest .content a.one span.icon,
 #suggest .content a.one span.state {
-	height: 16px;
-	width: 16px;
+    height: 16px;
+    width: 16px;
 }
 
 #suggest .content a.one span.icon {
-	background-position: 0 -1082px;
-	margin: 0 15px 0 0;
-	float: left;
+    background-position: 0 -1082px;
+    margin: 0 15px 0 0;
+    float: left;
 }
 
 #suggest .content a.one span.name {
-	font-weight: bold;
-	height: 16px;
-	width: 250px;
-	overflow: hidden;
-	float: left;
+    font-weight: bold;
+    height: 16px;
+    width: 250px;
+    overflow: hidden;
+    float: left;
 }
 
 #suggest .content a.one span.state {
-	background-position: 0 -1661px;
-	margin: -6px -16px 0 0;
-	display: none;
-	float: right;
+    background-position: 0 -1661px;
+    margin: -6px -16px 0 0;
+    display: none;
+    float: right;
 }
 
 #suggest .content a.one.active span.state {
-	display: block;
+    display: block;
 }
 
 #suggest .content a.one span.clear {
-	display: block;
-	clear: both;
+    display: block;
+    clear: both;
 }
 
 #suggest .bottom {
@@ -241,5 +241,5 @@ html[dir="rtl"] .general-wait-content {
 }
 
 #suggest .bottom a.next {
-	float: right;
+    float: right;
 }

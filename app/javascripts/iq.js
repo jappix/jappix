@@ -20,7 +20,7 @@ var IQ = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Handles an incoming IQ packet
      * @public
      * @param {object} iq

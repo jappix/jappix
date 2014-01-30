@@ -25,7 +25,7 @@ var Presence = (function () {
     self.auto_idle = false;
 
 
-	/**
+    /**
      * Sends the user first presence
      * @public
      * @param {string} checksum
@@ -753,7 +753,7 @@ var Presence = (function () {
     };
 
 
-	/**
+    /**
      * Process the chat presence position
      * @public
      * @param {string} hash
@@ -997,7 +997,7 @@ var Presence = (function () {
     };
 
 
-	/**
+    /**
      * Returns the highest presence priority XID for an user
      * @public
      * @param {string} xid
@@ -1130,7 +1130,7 @@ var Presence = (function () {
     };
 
 
-	/**
+    /**
      * Makes something easy to process for the presence IA
      * @public
      * @param {string} xid
@@ -1356,7 +1356,7 @@ var Presence = (function () {
     };
 
 
-	/**
+    /**
      * Accepts the subscription from another entity
      * @public
      * @param {string} xid
@@ -1526,7 +1526,7 @@ var Presence = (function () {
     };
 
 
-	/**
+    /**
      * Gets the user presence show
      * @public
      * @return {string}

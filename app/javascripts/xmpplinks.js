@@ -20,7 +20,7 @@ var XMPPLinks = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Does an action with the provided XMPP link
      * @public
      * @param {string} link

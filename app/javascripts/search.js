@@ -24,7 +24,7 @@ var Search = (function () {
     self.search_filtered = false;
 
 
-	/**
+    /**
      * Searches in the user's buddy list
      * @public
      * @param {string} query

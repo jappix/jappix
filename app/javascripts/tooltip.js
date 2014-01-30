@@ -20,7 +20,7 @@ var Tooltip = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Creates a tooltip code
      * @public
      * @param {string} xid

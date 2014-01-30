@@ -20,7 +20,7 @@ var MUCAdmin = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the MUC admin popup
      * @public
      * @param {string} xid
@@ -251,7 +251,7 @@ var MUCAdmin = (function () {
     };
 
 
-	/**
+    /**
      * Handles the MUC admin form
      * @public
      * @param {object} iq
@@ -449,7 +449,7 @@ var MUCAdmin = (function () {
     };
 
 
-	/**
+    /**
      * Destroys a MUC room
      * @public
      * @param {string} xid

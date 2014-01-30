@@ -20,7 +20,7 @@ var IntegrateBox = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the integratebox popup
      * @public
      * @return {undefined}
@@ -309,7 +309,7 @@ var IntegrateBox = (function () {
     };
 
 
-	/**
+    /**
      * Filters a string to apply the integratebox links
      * @public
      * @param {string} data

@@ -20,7 +20,7 @@ var Popup = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Creates a popup code
      * @public
      * @param {string} id

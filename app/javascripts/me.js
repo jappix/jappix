@@ -20,7 +20,7 @@ var Me = (function () {
     var self = {};
     
 
-	/**
+    /**
      * Opens the Me tools
      * @public
      * @return {undefined}

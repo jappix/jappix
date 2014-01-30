@@ -11,49 +11,49 @@ Author: Valérian Saliou
 */
 
 .search {
-	position: relative;
+    position: relative;
 }
 
 .search input.suggested {
-	border-bottom: 1px solid white;
-	-moz-border-radius-bottomright: 0;
-	-moz-border-radius-bottomleft: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
+    border-bottom: 1px solid white;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .search ul {
-	background-color: rgb(255,255,255);
-	background-color: rgba(255,255,255,0.9);
-	border-color: #e1a014;
-	border-style: solid;
-	border-width: 0 1px 1px 1px;
-	position: absolute;
-	z-index: 1;
-	padding: 3px 0;
-	list-style: none;
-	overflow: auto;
-	-moz-border-radius-bottomright: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-webkit-border-bottom-right-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.9);
+    border-color: #e1a014;
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
+    position: absolute;
+    z-index: 1;
+    padding: 3px 0;
+    list-style: none;
+    overflow: auto;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .search ul li {
-	padding: 2px 6px;
-	color: #3d3d3d;
-	text-shadow: none;
+    padding: 2px 6px;
+    color: #3d3d3d;
+    text-shadow: none;
 }
 
 .search ul li:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .search ul li.hovered {
-	background-color: rgb(225,160,20);
-	background-color: rgba(225,160,20,0.3);
+    background-color: rgb(225,160,20);
+    background-color: rgba(225,160,20,0.3);
 }

@@ -20,7 +20,7 @@ var Common = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Checks if an element exists in the DOM
      * @public
      * @param {string} path
@@ -162,7 +162,7 @@ var Common = (function () {
     };
 
 
-	/**
+    /**
      * Replaces '%s' to a given value for a translated string
      * @public
      * @param {string} string
@@ -298,7 +298,7 @@ var Common = (function () {
     };
 
 
-	/**
+    /**
      * nodepreps an XMPP node
      * @public
      * @param {string} node
@@ -417,7 +417,7 @@ var Common = (function () {
     };
 
 
-	/**
+    /**
      * Gets the host from a XID
      * @public
      * @param {string} aXID
@@ -482,7 +482,7 @@ var Common = (function () {
     };
 
 
-	/**
+    /**
      * Gets the full XID of the user
      * @public
      * @return {string}
@@ -663,7 +663,7 @@ var Common = (function () {
     };
 
 
-	/**
+    /**
      * Converts a XML document to a string
      * @public
      * @param {object} xmlData

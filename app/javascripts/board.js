@@ -20,7 +20,7 @@ var Board = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Creates a board panel
      * @public
      * @param {string} type
@@ -202,7 +202,7 @@ var Board = (function () {
     };
 
 
-	/**
+    /**
      * Closes a given board
      * @public
      * @param {string} board

@@ -24,7 +24,7 @@ var Groupchat = (function () {
     var JOIN_SUGGEST = [];
 
 
-	/**
+    /**
      * Displays the MUC admin elements
      * @public
      * @param {string} affiliation
@@ -348,7 +348,7 @@ var Groupchat = (function () {
     };
 
 
-	/**
+    /**
      * Generates a groupchat to join array
      * @public
      * @return {object}

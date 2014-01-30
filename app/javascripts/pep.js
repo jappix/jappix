@@ -20,7 +20,7 @@ var PEP = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Stores the PEP items
      * @public
      * @param {string} xid
@@ -549,7 +549,7 @@ var PEP = (function () {
     };
 
 
-	/**
+    /**
      * Sends the user's activity
      * @public
      * @param {string} main
@@ -777,7 +777,7 @@ var PEP = (function () {
     };
 
 
-	/**
+    /**
      * Geolocates the user
      * @public
      * @return {undefined}

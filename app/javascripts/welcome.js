@@ -24,7 +24,7 @@ var Welcome = (function () {
     self.is_done = false;
 
     
-	/**
+    /**
      * Opens the welcome tools
      * @public
      * @return {undefined}
@@ -324,7 +324,7 @@ var Welcome = (function () {
     };
 
 
-	/**
+    /**
      * Goes to the next welcome step
      * @public
      * @return {boolean}

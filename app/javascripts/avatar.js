@@ -20,11 +20,11 @@ var Avatar = (function () {
     var self = {};
 
 
-	/* Variables */
-	self.pending = [];
+    /* Variables */
+    self.pending = [];
 
 
-	/**
+    /**
      * Requests the avatar of a given user
      * @public
      * @param {string} xid

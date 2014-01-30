@@ -11,59 +11,59 @@ Author: Valérian Saliou
 */
 
 #rosterx .content {
-	padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 
 #rosterx .rosterx-head a {
-	font-size: 0.9em;
-	margin: 3px 4px;
-	float: left;
+    font-size: 0.9em;
+    margin: 3px 4px;
+    float: left;
 }
 
 html[dir="rtl"] #rosterx .rosterx-head a {
-	float: right;
+    float: right;
 }
 
 #rosterx .oneresult:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #rosterx .oneresult span {
-	margin: 4px 5px 0 5px;
-	overflow: hidden;
-	float: left;
+    margin: 4px 5px 0 5px;
+    overflow: hidden;
+    float: left;
 }
 
 html[dir="rtl"] #rosterx .oneresult span {
-	float: right;
+    float: right;
 }
 
 #rosterx .oneresult span.name {
-	width: 230px;
-	font-weight: bold;
+    width: 230px;
+    font-weight: bold;
 }
 
 #rosterx .oneresult span.xid {
-	width: 270px;
-	font-size: 0.9em;
+    width: 270px;
+    font-size: 0.9em;
 }
 
 #rosterx .oneresult span.action {
-	width: 16px;
-	height: 16px;
-	margin-top: 4px;
-	float: right;
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    float: right;
 }
 
 html[dir="rtl"] #rosterx .oneresult span.action {
-	float: left;
+    float: left;
 }
 
 #rosterx .oneresult span.action.modify {
-	background-position: 0 -1244px;
+    background-position: 0 -1244px;
 }
 
 html[dir="rtl"] #rosterx .oneresult input {
-	margin-right: 10px;
-	margin-left: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }

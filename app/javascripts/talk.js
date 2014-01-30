@@ -20,7 +20,7 @@ var Talk = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Creates the talkpage events
      * @public
      * @return {undefined}

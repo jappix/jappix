@@ -29,7 +29,7 @@ var Connection = (function () {
     self.resume = false;
 
 
-	/**
+    /**
      * Does the user login
      * @public
      * @param {string} lNick
@@ -363,7 +363,7 @@ var Connection = (function () {
     };
 
 
-	/**
+    /**
      * Triggers the connected state
      * @public
      * @return {undefined}
@@ -513,7 +513,7 @@ var Connection = (function () {
     };
 
 
-	/**
+    /**
      * Quits a session
      * @public
      * @param {type} name
@@ -710,7 +710,7 @@ var Connection = (function () {
     };
 
 
-	/**
+    /**
      * Resets the connection markers
      * @public
      * @return {undefined}

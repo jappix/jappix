@@ -20,7 +20,7 @@ var Filter = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Generates a given emoticon HTML code
      * @public
      * @param {string} image

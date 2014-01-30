@@ -25,7 +25,7 @@ var DateUtils = (function () {
     self.presence_last_activity = 0;
 
 
-	/**
+    /**
      * Gets a stamp from a date
      * @public
      * @param {Date} date
@@ -115,7 +115,7 @@ var DateUtils = (function () {
     };
 
 
-	/**
+    /**
      * Generates the time for XMPP
      * @public
      * @param {string} location
@@ -288,7 +288,7 @@ var DateUtils = (function () {
     };
 
 
-	/**
+    /**
      * Parses a XMPP date (hh-mm-ss) into an human-readable one
      * @public
      * @param {string} to_parse

@@ -20,7 +20,7 @@ var ChatState = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Sends a given chatstate to a given entity
      * @public
      * @param {string} state

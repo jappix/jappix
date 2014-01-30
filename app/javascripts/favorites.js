@@ -20,7 +20,7 @@ var Favorites = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Opens the favorites popup
      * @public
      * @return {undefined}
@@ -255,7 +255,7 @@ var Favorites = (function () {
     };
 
 
-	/**
+    /**
      * Edits a favorite
      * @public
      * @return {undefined}
@@ -444,7 +444,7 @@ var Favorites = (function () {
     };
 
 
-	/**
+    /**
      * Gets a list of the MUC items on a given server
      * @public
      * @return {undefined}

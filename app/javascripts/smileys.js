@@ -20,7 +20,7 @@ var Smileys = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Generates the correct HTML code for an emoticon insertion tool
      * @public
      * @param {string} smiley

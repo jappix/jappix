@@ -20,7 +20,7 @@ var Name = (function () {
     var self = {};
 
 
-	/**
+    /**
      * Gets an user name for buddy add tool
      * @public
      * @param {string} xid
@@ -181,7 +181,7 @@ var Name = (function () {
     };
 
 
-	/**
+    /**
      * Gets the full name of the user
      * @public
      * @return {string}
