@@ -3485,17 +3485,18 @@ JSJaCConnection.prototype._doStreamBind = function() {
   iq.appendNode("bind", {xmlns: "urn:ietf:params:xml:ns:xmpp-bind"},
                 [["resource", this.resource]]);
   this.oDbg.log(iq.xml());
-  if (!this.legacy_sessions) {
-    this._handleEvent('onconnect');
-  } else {
-    this.send(iq,this._doXMPPSess);
-  }
+  this.send(iq,this._doXMPPSess);
 };
 
 /**
  * @private
  */
 JSJaCConnection.prototype._doXMPPSess = function(iq) {
+  if (!this.legacy_sessions) {
+    this._handleEvent('onconnect');
+    return;
+  }
+
   if (iq.getType() != 'result' || iq.getType() == 'error') { // failed
     this.disconnect();
     if (iq.getType() == 'error')
