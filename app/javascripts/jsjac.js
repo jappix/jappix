@@ -3492,6 +3492,11 @@ JSJaCConnection.prototype._doStreamBind = function() {
  * @private
  */
 JSJaCConnection.prototype._doXMPPSess = function(iq) {
+  if (!this.legacy_sessions) {
+    this._handleEvent('onconnect');
+    return;
+  }
+
   if (iq.getType() != 'result' || iq.getType() == 'error') { // failed
     this.disconnect();
     if (iq.getType() == 'error')
@@ -3685,6 +3690,12 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
         this.server_caps=v_sCaps;
         break;
       }
+    }
+
+    // Get legacy session capability if available
+    this.legacy_sessions=null;
+    if (doc.getElementsByTagName("session")[0]) {
+	this.legacy_sessions=true;
     }
     
     return true;
