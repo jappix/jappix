@@ -146,12 +146,12 @@ XmlDocument.create = function (name,ns) {
       // some versions of Moz do not support the readyState property
       // and the onreadystate event so we patch it!
       if (doc.readyState == null) {
-  doc.readyState = 1;
-  doc.addEventListener("load", function () {
+        doc.readyState = 1;
+        doc.addEventListener("load", function () {
              doc.readyState = 4;
              if (typeof doc.onreadystatechange == "function")
-         doc.onreadystatechange();
-           }, false);
+               doc.onreadystatechange();
+        }, false);
       }
     } else if (window.ActiveXObject) {
       doc = new ActiveXObject(XmlDocument.getPrefix() + ".DomDocument");
@@ -3485,18 +3485,17 @@ JSJaCConnection.prototype._doStreamBind = function() {
   iq.appendNode("bind", {xmlns: "urn:ietf:params:xml:ns:xmpp-bind"},
                 [["resource", this.resource]]);
   this.oDbg.log(iq.xml());
-  this.send(iq,this._doXMPPSess);
+  if (!this.legacy_sessions) {
+    this._handleEvent('onconnect');
+  } else {
+    this.send(iq,this._doXMPPSess);
+  }
 };
 
 /**
  * @private
  */
 JSJaCConnection.prototype._doXMPPSess = function(iq) {
-  if (!this.legacy_sessions) {
-    this._handleEvent('onconnect');
-    return;
-  }
-
   if (iq.getType() != 'result' || iq.getType() == 'error') { // failed
     this.disconnect();
     if (iq.getType() == 'error')
