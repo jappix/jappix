@@ -3492,11 +3492,6 @@ JSJaCConnection.prototype._doStreamBind = function() {
  * @private
  */
 JSJaCConnection.prototype._doXMPPSess = function(iq) {
-  if (!this.legacy_sessions) {
-    this._handleEvent('onconnect');
-    return;
-  }
-
   if (iq.getType() != 'result' || iq.getType() == 'error') { // failed
     this.disconnect();
     if (iq.getType() == 'error')
@@ -3506,6 +3501,11 @@ JSJaCConnection.prototype._doXMPPSess = function(iq) {
 
   this.fulljid = iq.getChildVal("jid");
   this.jid = this.fulljid.substring(0,this.fulljid.lastIndexOf('/'));
+
+  if (!this.legacy_sessions) {
+    this._handleEvent('onconnect');
+    return;
+  }
 
   iq = new JSJaCIQ();
   iq.setIQ(null,'set','sess_1');
