@@ -109,7 +109,7 @@ var IQ = (function () {
             }
             
             // Privacy lists push
-            else if((iqQueryXMLNS == NS_PRIVACY) && (iqType == 'set')) {
+            else if((iqQueryXMLNS == NS_PRIVACY) && (iqType == 'set') && Common.isSafeStanza(iq)) {
                 // REF : http://xmpp.org/extensions/xep-0016.html
                 
                 // Roster push
@@ -124,7 +124,7 @@ var IQ = (function () {
             }
             
             // Roster push
-            else if((iqQueryXMLNS == NS_ROSTER) && (iqType == 'set')) {
+            else if((iqQueryXMLNS == NS_ROSTER) && (iqType == 'set') && Common.isSafeStanza(iq)) {
                 // REF : http://xmpp.org/extensions/xep-0092.html
                 
                 // Roster push

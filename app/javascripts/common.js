@@ -360,8 +360,9 @@ var Common = (function () {
             xid = self.cutResource(xid);
             
             // Launch nodeprep
-            if(xid.indexOf('@') != -1)
+            if(xid.indexOf('@') != -1) {
                 xid = self.nodeprep(self.getXIDNick(xid)) + '@' + self.getXIDHost(xid);
+            }
             
             return xid;
         } catch(e) {
@@ -572,12 +573,36 @@ var Common = (function () {
             var from = stanza.getFrom();
             
             // No from, we assume this is our XID
-            if(!from)
+            if(!from) {
                 from = self.getXID();
+            }
             
             return from;
         } catch(e) {
             Console.error('Common.getStanzaFrom', e);
+        }
+
+    };
+
+
+    /**
+     * Returns whether the stanza has been really sent from our own server or entity
+     * @public
+     * @param {object} stanza
+     * @return {string}
+     */
+    self.isSafeStanza = function(stanza) {
+
+        var is_safe = false;
+
+        try {
+            var from = self.getStanzaFrom(stanza);
+
+            is_safe = (!from || from == con.domain || from == self.getXID()) && true;
+        } catch(e) {
+            Console.error('Common.isSafeStanza', e);
+        } finally {
+            return is_safe;
         }
 
     };
