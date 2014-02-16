@@ -828,7 +828,7 @@ msgstr "它允許你與幾百萬跟你一樣正在使用 Jappix 的用戶聯繫�
 msgid "Hi there!"
 msgstr "你好！"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "歡迎來到 %1s，“%2s”。"
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1171,7 +1171,7 @@ msgstr "歡迎！"
 msgid "Friends"
 msgstr "好友"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr "歡迎來到 Jappix---你自己的社交雲端！"
 
 msgid ""

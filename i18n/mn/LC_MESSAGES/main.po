@@ -825,7 +825,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr "Тавтай морил!"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "%1s, “%2s”"
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1168,7 +1168,7 @@ msgstr "Тавтай морил!"
 msgid "Friends"
 msgstr "Найзууд"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr ""
 
 msgid ""

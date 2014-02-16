@@ -849,7 +849,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr "Ahoj!"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "Vítejte na %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1209,7 +1209,7 @@ msgstr "Vítejte!"
 msgid "Friends"
 msgstr "Kamarádi"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr "Vítejte v Jappix, vaší vlastní sociální síti!"
 
 msgid ""

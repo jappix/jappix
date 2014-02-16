@@ -840,7 +840,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr "こんにちは!"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "ようこそ。ここは %1s 、 “%2s” です。"
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1191,7 +1191,7 @@ msgstr "ようこそ"
 msgid "Friends"
 msgstr "友達"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr "Jappixへようこそ。ここはあなたのソーシャルクラウドです!"
 
 msgid ""
