@@ -850,7 +850,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr "Halo semua!"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "Selamat datang di %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1201,7 +1201,7 @@ msgstr "Selamat Datang!"
 msgid "Friends"
 msgstr "Teman"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr "Selamat datang di Jappix, awan sosial anda sendiri!"
 
 msgid ""

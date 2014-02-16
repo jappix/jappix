@@ -80,7 +80,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     <h1 class="top default"><?php _e("Hi there!"); ?></h1>
                     
                     <div class="default homediv">
-                        <p><?php printf(T_("Welcome on %1s, “%2s”."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
+                        <p><?php printf(T_("Welcome to %1s, “%2s”."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
                         
                         <p><?php _e("Login to your existing XMPP account or create a new one for free!"); ?></p>
                         

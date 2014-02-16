@@ -841,7 +841,7 @@ msgstr ""
 msgid "Hi there!"
 msgstr "Saluton!"
 
-msgid "Welcome on %1s, “%2s”."
+msgid "Welcome to %1s, “%2s”."
 msgstr "Bonvenon en %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
@@ -1192,7 +1192,7 @@ msgstr "Bonvenon!"
 msgid "Friends"
 msgstr "Amikoj"
 
-msgid "Welcome on Jappix, your own social cloud!"
+msgid "Welcome to Jappix, your own social cloud!"
 msgstr "Bonvenon ĉe Jappix, via propra socia nubo!"
 
 msgid ""
