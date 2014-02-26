@@ -4,11 +4,17 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.2 (not released yet)
+------------------------------
+
+ * Fix IQ spoofing security issue (NOT YET DONE)
+
+
 One, v1.0.1 (January 2014)
 --------------------------
 
- * Changed MAM namespace to a temporary one
- * Fixed broken Jappix Mini CSS loader in some cases
+ * Change MAM namespace to a temporary one
+ * Fix broken Jappix Mini CSS loader in some cases
  * Libs update
 
 
