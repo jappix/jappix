@@ -321,22 +321,27 @@ var Utils = (function () {
 
 
     /**
-     * Quotes the nick of an user
+     * Quotes the nick of an user. If a message is given, the nick is inserted at its end.
      * @public
      * @param {string} hash
      * @param {string} nick
+     * @param {string} message
      * @return {undefined}
      */
-    self.quoteMyNick = function(hash, nick) {
+    self.quoteMyNick = function(hash, nick, message) {
 
         try {
             $(document).oneTime(10, function() {
-                $('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+                if (message === undefined || message.length == 0) {
+                    $('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
+                } else {
+                    $('#page-engine #' + hash + ' .message-area').val(message + nick).focus();
+                }
             });
         } catch(e) {
             Console.error('Utils.quoteMyNick', e);
         }
-
+    
     };
 
 

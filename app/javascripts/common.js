@@ -635,17 +635,31 @@ var Common = (function () {
 
 
     /**
-     * Escapes a string for a regex usage
+     * Escapes a string (or an array of string) for a regex usage. In case of an
+     * array, escapes are not done "in place", keeping the query unmodified
      * @public
-     * @param {string} query
-     * @return {string}
+     * @param {object} query
+     * @return {object}
      */
     self.escapeRegex = function(query) {
 
-        try {
-            return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-        } catch(e) {
-            Console.error('Common.escapeRegex', e);
+        if (query instanceof Array) {
+            var result = new Array(query.length);
+            for(i=0; i<query.length; i++) {
+                try {
+                    result[i] = Common.escapeRegex(query[i]);
+                } catch(e) {
+                    Console.error('Common.escapeRegex', e);
+                    result[i] = null;
+                }
+            }
+            return result;
+        } else {
+            try {
+                return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+            } catch(e) {
+                Console.error('Common.escapeRegex', e);
+            }
         }
 
     };
