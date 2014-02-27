@@ -202,7 +202,7 @@ var Autocompletion = (function () {
             }
             
             // We quote the nick
-            if((nickResult != undefined) && (nick !== undefined)) {
+            if((nickResult !== undefined) && (nick !== undefined)) {
                 // Increment
                 i++;
                 var message = query[1][nickResult[1]];
