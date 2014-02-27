@@ -235,8 +235,9 @@ var Board = (function () {
 
         try {
             // Cannot process?
-            if(Common.isFocused() || !content || !window.webkitNotifications)
+            if(Common.isFocused() || !content || !(window.webkitNotifications || window.Notification)) {
                 return;
+            }
             
             // Default icon?
             if(!icon) {
@@ -256,49 +257,77 @@ var Board = (function () {
             }
             
             // Default title?
-            if(!title)
+            if(!title) {
                 title = Common._e("New event!");
+            }
+
+            // Click callback
+            var cb_click_fn = function() {
+                // Click action?
+                switch(type) {
+                    case 'chat':
+                        Interface.switchChan(hex_md5(xid));
+                        break;
+                    
+                    case 'groupchat':
+                        Interface.switchChan(hex_md5(Common.bareXID(xid)));
+                        break;
+                    
+                    default:
+                        break;
+                }
+                
+                // Focus on msg-me
+                window.focus();
+                
+                // Remove notification
+                this.cancel();
+            };
             
             // Check for notification permission
-            if(window.webkitNotifications.checkPermission() === 0) {
-                // Create notification
-                var notification = window.webkitNotifications.createNotification(icon, title, content);
-                
-                // Auto-hide after a while
-                notification.ondisplay = function(event) {
+            try {
+                if(Notification.permission == 'granted' || Notification.permission == undefined) {
+                    var notification = new Notification(title, {
+                        dir: 'auto',
+                        lang: '',
+                        body: content,
+                        tag: type,
+                        icon: icon
+                    });
+
+                    notification.onclick = cb_click_fn;
+
                     setTimeout(function() {
-                        event.currentTarget.cancel();
+                        notification.close();
                     }, 10000);
-                };
-                
-                // Click event
-                notification.onclick = function() {
-                    // Click action?
-                    switch(type) {
-                        case 'chat':
-                            Interface.switchChan(hex_md5(xid));
-                            break;
-                        
-                        case 'groupchat':
-                            Interface.switchChan(hex_md5(Common.bareXID(xid)));
-                            break;
-                        
-                        default:
-                            break;
+
+                    if(notification.permission == 'granted') {
+                        return notification;
                     }
+                }
+            } catch(_e) {
+                if(window.webkitNotifications.checkPermission() === 0) {
+                    // Create notification
+                    var notification = window.webkitNotifications.createNotification(icon, title, content);
                     
-                    // Focus on msg-me
-                    window.focus();
+                    // Auto-hide after a while
+                    notification.ondisplay = function(event) {
+                        setTimeout(function() {
+                            event.currentTarget.cancel();
+                        }, 10000);
+                    };
                     
-                    // Remove notification
-                    this.cancel();
-                };
-                
-                // Show notification
-                notification.show();
-                
-                return notification;
+                    // Click event
+                    notification.onclick = cb_click_fn;
+                    
+                    // Show notification
+                    notification.show();
+                    
+                    return notification;
+                }
             }
+
+            return null;
         } catch(e) {
             Console.error('Board.quick', e);
         }
@@ -314,11 +343,21 @@ var Board = (function () {
     self.quickPermission = function() {
 
         try {
-            if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() === 0))
-                return;
-            
-            // Ask for permission
-            window.webkitNotifications.requestPermission();
+            try {
+                // W3C Notification API (still a draft!)
+                if(Notification.permission !== 'granted') {
+                    // Ask for permission
+                    Notification.requestPermission();
+                }
+            } catch (_e) {
+                // WebKit Notification API (fallback)
+                if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() === 0)) {
+                    return;
+                }
+                
+                // Ask for permission
+                window.webkitNotifications.requestPermission();
+            }
         } catch(e) {
             Console.error('Board.quickPermission', e);
         }

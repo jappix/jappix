@@ -392,8 +392,9 @@ var Message = (function () {
                 var html_escape = true;
                 
                 // IE bug fix
-                if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+                if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                     xHTML = 0;
+                }
                 
                 //If this is a xHTML message
                 if(xHTML) {
@@ -411,12 +412,14 @@ var Message = (function () {
                     var message_type = 'user-message';
                     
                     // This is an old message
-                    if(delay && resource)
+                    if(delay && resource) {
                         message_type = 'old-message';
+                    }
                     
                     // This is a system message
-                    else if(!resource)
+                    else if(!resource) {
                         message_type = 'system-message';
+                    }
                     
                     var nickQuote = '';
                     
@@ -442,8 +445,9 @@ var Message = (function () {
                             Interface.messageNotify(hash, 'unread');
                             
                             // Play sound to all users in the MUC, except user who sent the message.
-                            if(myNick != resource)
+                            if(myNick != resource) {
                                 Audio.play('receive-message');
+                            }
                         }
                     }
                     
@@ -462,10 +466,11 @@ var Message = (function () {
                         Receipts.sendReceived(type, from, id);
                     
                     // It does not come from a groupchat user, get the full name
-                    if(!GCUser)
+                    if(!GCUser) {
                         fromName = Name.getBuddy(xid);
-                    else
+                    } else {
                         chatType = 'private';
+                    }
                     
                     // If the chat isn't yet opened, open it !
                     if(!Common.exists('#' + hash)) {
