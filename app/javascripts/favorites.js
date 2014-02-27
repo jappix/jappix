@@ -663,11 +663,11 @@ var Favorites = (function () {
                 if(e.keyCode == 13) {
                     // Edit a favorite
                     if($(path + 'fedit-edit').is(':visible'))
-                        terminateThis('edit');
+                        self.terminateThis('edit');
                     
                     // Add a favorite
                     else
-                        terminateThis('add');
+                        self.terminateThis('add');
                 }
             });
             
@@ -690,15 +690,15 @@ var Favorites = (function () {
             });
             
             $(path + 'fedit-add').click(function() {
-                return terminateThis('add');
+                return self.terminateThis('add');
             });
             
             $(path + 'fedit-edit').click(function() {
-                return terminateThis('edit');
+                return self.terminateThis('edit');
             });
             
             $(path + 'fedit-remove').click(function() {
-                return terminateThis('remove');
+                return self.terminateThis('remove');
             });
             
             $(path + 'bottom .finish').click(function() {
