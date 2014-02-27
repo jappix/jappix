@@ -332,7 +332,7 @@ var Utils = (function () {
 
         try {
             $(document).oneTime(10, function() {
-                if (message === undefined || message.length == 0) {
+                if (message === undefined || message.length === 0) {
                     $('#page-engine #' + hash + ' .message-area').val(nick + ', ').focus();
                 } else {
                     $('#page-engine #' + hash + ' .message-area').val(message + nick).focus();

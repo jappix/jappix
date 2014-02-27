@@ -66,7 +66,7 @@ var Autocompletion = (function () {
         for (var i=queryLastCharPos; i>=0; i--) {
             // Search from the end of the query
             var iChar = query.charAt(i);
-            if (spaceCounter == 0 && iChar.search(/\s/) == 0) {
+            if (spaceCounter === 0 && iChar.search(/\s/) === 0) {
                 // the first "local" space was found
                 // add the subquery and its remnant to results
                 subqueries.push(query.slice(i+1));
@@ -76,7 +76,7 @@ var Autocompletion = (function () {
                 spaceCounter = 0;
             }
         }
-        if (spaceCounter == 0) {
+        if (spaceCounter === 0) {
             // If the first char of the query is not a space, add the full query to results
             subqueries.push(query);
             remnants.push("");
@@ -105,7 +105,7 @@ var Autocompletion = (function () {
             // Build an array of regex to use
             var queryRegExp = [];
             for (i = 0; i<query.length; i++) {
-                if (query[i] != null) {
+                if (query[i] !== null) {
                     queryRegExp.push(new RegExp('(^)' + query[i], 'gi'));
                 }
             }
@@ -202,7 +202,7 @@ var Autocompletion = (function () {
             }
             
             // We quote the nick
-            if((nickResult != undefined) && (nick !== undefined)) {
+            if((nickResult !== undefined) && (nick !== undefined)) {
                 // Increment
                 i++;
                 var message = query[1][nickResult[1]];
