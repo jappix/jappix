@@ -286,7 +286,7 @@ var Board = (function () {
             
             // Check for notification permission
             try {
-                if(Notification.permission == 'granted' || Notification.permission == undefined) {
+                if(Notification.permission == 'granted' || Notification.permission === undefined) {
                     var notification = new Notification(title, {
                         dir: 'auto',
                         lang: '',
