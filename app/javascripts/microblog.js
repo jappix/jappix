@@ -1199,7 +1199,7 @@ var Microblog = (function () {
                 // Create a new individual channel
                 $('#channel .content.mixed').after(
                         '<div class="content individual microblog-' + hash + '">' + 
-                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return self.get(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(hash) + '\'); } return false;">' + Common._e("More notices...") + '</a>' + 
+                            '<a href="#" class="more home-images" onclick="if($(\'#channel .footer div.fetch\').is(\':hidden\')) { return Microblog.get(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(hash) + '\'); } return false;">' + Common._e("More notices...") + '</a>' + 
                         '</div>'
                                  )
                                
