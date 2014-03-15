@@ -724,24 +724,45 @@ function anonymousMode() {
     return (isset($_GET['r']) && !empty($_GET['r']) && HOST_ANONYMOUS && (ANONYMOUS == 'on'));
 }
 
+// Returns the authentication headers
+function authHeaders() {
+    $auth = array(
+        'user' => null,
+        'password' => null
+    );
+
+    if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
+        $auth['user'] = $_SERVER['PHP_AUTH_USER'];
+        $auth['password'] = $_SERVER['PHP_AUTH_PW'];
+    } else if(isset($_SERVER['HTTP_AUTH_USER']) && isset($_SERVER['HTTP_AUTH_PASSWORD'])) {
+        $auth['user'] = $_SERVER['HTTP_AUTH_USER'];
+        $auth['password'] = $_SERVER['HTTP_AUTH_PASSWORD'];
+    }
+
+    return $auth;
+}
+
 // The function to check if HTTP authentication is authorized and possible
 function httpAuthEnabled() {
-    return (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && (HTTP_AUTH == 'on'));
+    $auth = authHeaders();
+    return (($auth['user'] !== null) && ($auth['password'] !== null) && (HTTP_AUTH == 'on'));
 }
 
 // The function to authenticate with HTTP
 function httpAuthentication() {
-    if (isset($_SERVER['HTTP_EMAIL'])) {
+    $auth = authHeaders();
+
+    if(isset($_SERVER['HTTP_EMAIL'])) {
         $user = strstr($_SERVER['HTTP_EMAIL'], "@", true);
         $host = substr(strrchr($_SERVER['HTTP_EMAIL'], "@"), 1);
     } else {
-        $user = $_SERVER['PHP_AUTH_USER'];
+        $user = $auth['user'];
         $host = HOST_MAIN;
     }
 
     echo '<script type="text/javascript">
             jQuery(document).ready(function() {
-                HTTPAuth.go("'.$_SERVER['PHP_AUTH_USER'].'", "'.$_SERVER['PHP_AUTH_PW'].'", "'.$host.'", 10);
+                HTTPAuth.go('.json_encode($user).', '.json_encode($auth['password']).', '.json_encode($host).', 10);
             });
           </script>';
 }
