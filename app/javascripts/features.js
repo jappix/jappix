@@ -20,6 +20,22 @@ var Features = (function () {
     var self = {};
 
 
+    /* Constants */
+    self.SERVER_NAMES = [
+        'metronome',
+        'prosody',
+        'ejabberd',
+        'jabberd',
+        'openfire',
+        'tigase',
+        'isode'
+    ];
+
+
+    /* Variables */
+    self.server_name = null;
+
+
     /**
      * Gets the features of a server
      * @public
@@ -89,10 +105,12 @@ var Features = (function () {
             // Markers
             var namespaces = [NS_PUBSUB, NS_PUBSUB_CN, NS_URN_MAM, NS_COMMANDS, NS_URN_CARBONS];
 
+            var identity = selector.find('identity');
+
             var cur_feature;
             var features = {
                 // This weird selector fixes the same IE8 bug as above...
-                'pep': (selector.find('identity').filter(function() {
+                'pep': (identity.filter(function() {
                     var this_sel = $(this);
                     return (this_sel.attr('category') == 'pubsub' && this_sel.attr('type') == 'pep');
                 }).size() && true)
@@ -105,7 +123,12 @@ var Features = (function () {
                     self.enable(namespace);
                 }
             });
-            
+
+            // Retrieve server identity
+            self.server_name = self._normalizeServerName(
+                identity.filter('[category="server"]').attr('name')
+            );
+
             // Enable the pep elements if available
             if(features.pep === true) {
                 // Update our database
@@ -357,6 +380,49 @@ var Features = (function () {
             return self.isEnabled(NS_COMMANDS);
         } catch(e) {
             Console.error('Features.enabledCommands', e);
+        }
+
+    };
+
+
+    /**
+     * Normalizes the XMPP server name
+     * @private
+     * @return {string}
+     */
+    self._normalizeServerName = function(name) {
+
+        try {
+            var cur_r;
+
+            for(var i in self.SERVER_NAMES) {
+                cur_r = new RegExp(self.SERVER_NAMES[i], 'gi');
+
+                if(cur_r.exec(name) !== null) {
+                    name = self.SERVER_NAMES[i];
+                    break;
+                }
+            }
+        } catch(e) {
+            Console.error('Features._normalizeServerName', e);
+        } finally {
+            return name;
+        }
+
+    };
+
+
+    /**
+     * Returns the XMPP server name
+     * @public
+     * @return {string}
+     */
+    self.getServerName = function() {
+
+        try {
+            return self.server_name;
+        } catch(e) {
+            Console.error('Features.getServerName', e);
         }
 
     };

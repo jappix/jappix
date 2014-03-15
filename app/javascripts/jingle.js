@@ -29,7 +29,7 @@ var Jingle = (function() {
 
     /**
      * Provides an adapter to the JSJaCJingle console implementation which is different
-     * @public
+     * @private
      * @return {object}
      */
     self._consoleAdapter = (function() {

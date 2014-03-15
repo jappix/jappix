@@ -66,7 +66,10 @@ var Roster = (function () {
 
                 // Request user microblog (populates channel)
                 if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to'))) {
-                    Microblog.request(user_xid, 1, null, Microblog.handleRoster);
+                    // Openfire has an issue, forget about it!
+                    if(Features.getServerName() != 'openfire') {
+                        Microblog.request(user_xid, 1, null, Microblog.handleRoster);
+                    }
                 }
             });
             
