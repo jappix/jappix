@@ -365,6 +365,8 @@ var Favorites = (function () {
             Console.info('Action on this bookmark: ' + room + '@' + server + ' / ' + type);
         } catch(e) {
             Console.error('Favorites.terminateThis', e);
+        } finally {
+            return false;
         }
 
     };
