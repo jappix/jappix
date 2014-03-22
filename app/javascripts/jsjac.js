@@ -3619,6 +3619,8 @@ JSJaCConnection.prototype._handlePID = function(packet) {
       delete reg;
       return true;
     }
+  } else {
+    this.oDbg.log("rejecting unknown response with id "+id,3);
   }
   return false;
 };
