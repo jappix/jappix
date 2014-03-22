@@ -312,7 +312,7 @@ String.prototype.htmlEnc = function() {
 String.prototype.revertHtmlEnc = function() {
   if(!this)
     return this;
-  
+
   var str = this.replace(/&amp;/gi,'&');
   str = str.replace(/&lt;/gi,'<');
   str = str.replace(/&gt;/gi,'>');
@@ -361,7 +361,17 @@ Date.hrTime = function(ts) {
   return Date.jab2date(ts).toLocaleString();
 };
 
-/**
+
+ /**
+  * Current timestamp.
+  * @return Seconds since 1.1.1970.
+  * @type int
+  */
+ if (!Date.now) {
+     Date.now = function() { return new Date().getTime(); }
+ }
+ 
+ /**
  * somewhat opposit to {@link #hrTime}
  * expects a javascript Date object as parameter and returns a jabber
  * date string conforming to
@@ -1195,6 +1205,7 @@ function cnonce(size) {
 
 JSJAC_HAVEKEYS = true;          // whether to use keys
 JSJAC_NKEYS    = 16;            // number of keys to generate
+
 JSJAC_INACTIVITY = 300;         // qnd hack to make suspend/resume 
                                     // work more smoothly with polling
 JSJAC_ERR_COUNT = 10;           // number of retries in case of connection
@@ -1209,11 +1220,19 @@ JSJAC_TIMERVAL = 2000;          // default polling interval
 JSJAC_ALLOW_PLAIN = true;       // whether to allow plaintext logins
 JSJAC_ALLOW_SCRAM = false;      // allow usage of SCRAM-SHA-1 authentication; please note that it is quite slow so it is disable by default
 
-// Options specific to HTTP Binding (BOSH)
-JSJACHBC_MAX_HOLD = 1;          // default for number of connections held by 
-                                    // connection manager 
-JSJACHBC_MAX_WAIT = 20;        // default 'wait' param - how long an idle connection
-                                    // should be held by connection manager
+JSJAC_RETRYDELAY = 5000;        // msecs to wait before trying next
+                                // request after error
+
+JSJAC_REGID_TIMEOUT = 20;       // time in seconds until registered
+                                // callbacks for ids timeout
+
+/* Options specific to HTTP Binding (BOSH) */
+JSJACHBC_MAX_HOLD = 1;          // default for number of connctions
+                                // held by connection manager
+
+JSJACHBC_MAX_WAIT = 300;        // default 'wait' param - how long an
+                                // idle connection should be held by
+                                // connection manager
 
 JSJACHBC_BOSH_VERSION  = "1.6";
 JSJACHBC_USE_BOSH_VER  = true;
@@ -3009,7 +3028,7 @@ JSJaCConnection.prototype.send = function(packet,cb,arg) {
 
   // remember id for response if callback present
   if (cb)
-    this._registerPID(packet.getID(),cb,arg);
+    this._registerPID(packet, cb, arg);
 
   try {
     this._handleEvent(packet.pType()+'_out', packet);
@@ -3063,7 +3082,7 @@ JSJaCConnection.prototype.sendIQ = function(iq, handlers, arg) {
 
 /**
  * Sets polling interval for this connection
- * @param {int} millisecs Milliseconds to set timer to
+ * @param {int} timerval Milliseconds to set timer to
  * @return effective interval this connection has been set to
  * @type int
  */
@@ -3578,28 +3597,27 @@ JSJaCConnection.prototype._handleEvent = function(event,arg) {
 /**
  * @private
  */
-JSJaCConnection.prototype._handlePID = function(aJSJaCPacket) {
-  if (!aJSJaCPacket.getID())
+JSJaCConnection.prototype._handlePID = function(packet) {
+  if (!packet.getID())
     return false;
-  for (var i in this._regIDs) {
-    if (this._regIDs.hasOwnProperty(i) &&
-        this._regIDs[i] && i == aJSJaCPacket.getID()) {
-      var pID = aJSJaCPacket.getID();
-      this.oDbg.log("handling "+pID,3);
-      try {
-        if (this._regIDs[i].cb.call(this, aJSJaCPacket, this._regIDs[i].arg) === false) {
-          // don't unregister
-          return false;
-        } else {
-          this._unregisterPID(pID);
-          return true;
-        }
-      } catch (e) {
-        // broken handler?
-        this.oDbg.log(e.name+": "+ e.message, 1);
-        this._unregisterPID(pID);
+  var jid = packet.getFrom() || this.domain;
+  var id = packet.getID();
+  if (this._regIDs[jid][id]) {
+    try {
+      this.oDbg.log("handling id "+id,3);
+      var reg = this._regIDs[jid][id];
+      if (reg.cb.call(this, packet, reg.arg) === false) {
+        // don't unregister
+        return false;
+      } else {
+        delete reg;
         return true;
       }
+    } catch (e) {
+      // broken handler?
+      this.oDbg.log(e.name+": "+ e.message, 1);
+      delete reg;
+      return true;
     }
   }
   return false;
@@ -3795,20 +3813,66 @@ JSJaCConnection.prototype._process = function(timerval) {
 
 /**
  * @private
+   @param {JSJaCPacket} packet The packet to be sent.
+   @param {function} cb The callback to be called when response is received.
+   @param {any} arg Optional arguments to be passed to 'cb' when executing it.
+   @return Whether registering an ID was successful
+   @type boolean
  */
-JSJaCConnection.prototype._registerPID = function(pID,cb,arg) {
-  if (!pID || !cb)
+JSJaCConnection.prototype._registerPID = function(packet, cb, arg) {
+  this.oDbg.log("registering id for packet "+packet.xml(), 3);
+  var id = packet.getID();
+  if (!id) {
+    this.oDbg.log("id missing", 1);
     return false;
-  this._regIDs[pID] = new Object();
-  this._regIDs[pID].cb = cb;
-  if (arg)
-    this._regIDs[pID].arg = arg;
-  this.oDbg.log("registered "+pID,3);
+  }
+
+  if (typeof cb != 'function') {
+    this.oDbg.log("callback is not a function", 1);
+    return false;
+  }
+
+  var jid = packet.getTo() || this.domain;
+
+  if (!this._regIDs[jid]) {
+    this._regIDs[jid] = {};
+  }
+
+  if (this._regIDs[jid][id] != null) {
+    this.oDbg.log("id already registered: " + id, 1);
+    return false;
+  }
+  this._regIDs[jid][id] = {
+      cb:  cb,
+      arg: arg,
+      ts:  Date.now()
+  };
+  this.oDbg.log("registered id "+id,3);
+  this._cleanupRegisteredPIDs();
   return true;
 };
 
 /**
- * partial function binding sendEmpty to callback
+ * @private
+ */
+JSJaCConnection.prototype._cleanupRegisteredPIDs = function() {
+  var now = Date.now();
+  for (var jid in this._regIDs) {
+    if (this._regIDs.hasOwnProperty(jid)) {
+      for (var id in this._regIDs[jid]) {
+        if (this._regIDs[jid].hasOwnProperty(id)) {
+          if (this._regIDs[jid][id].ts + JSJAC_REGID_TIMEOUT < now) {
+            this.oDbg.log("deleting registered id '"+id+ "due to timeout", 1);
+            delete this._regIDs[jid][id];
+          }
+        }
+      }
+    }
+  }
+};
+
+/**
+ * Partial function binding sendEmpty to callback
  * @private
  */
 JSJaCConnection.prototype._prepSendEmpty = function(cb, ctx) {
@@ -3871,17 +3935,6 @@ JSJaCConnection.prototype._setStatus = function(status) {
     this._handleEvent('onstatuschanged', status);
     this._handleEvent('status_changed', status);
   }
-};
-
-/**
- * @private
- */
-JSJaCConnection.prototype._unregisterPID = function(pID) {
-  if (!this._regIDs[pID])
-    return false;
-  this._regIDs[pID] = null;
-  this.oDbg.log("unregistered "+pID,3);
-  return true;
 };
 
 
@@ -4852,7 +4905,7 @@ JSJaCWebSocketConnection.prototype.send = function(packet, cb, arg) {
     }
 
     // register callback with id
-    this._registerPID(packet.getID(), cb, arg);
+    this._registerPID(packet, cb, arg);
   }
 
   try {
