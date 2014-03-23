@@ -3620,7 +3620,7 @@ JSJaCConnection.prototype._handlePID = function(packet) {
       return true;
     }
   } else {
-    this.oDbg.log("rejecting unknown response with id "+id,3);
+    this.oDbg.log("not handling id '"+id+"' from jid "+jid, 1);
   }
   return false;
 };
