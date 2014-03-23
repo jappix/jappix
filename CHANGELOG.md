@@ -4,10 +4,10 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-One, v1.0.2 (not released yet)
-------------------------------
+One, v1.0.2 (March 2014)
+------------------------
 
- * Fix IQ spoofing security issue   @valeriansaliou
+ * Fix IQ spoofing security issue   @valeriansaliou, @sstrigler
  * Better autocompletion            @Nabellaleen
  * Various bugfixes                 @Nabellaleen, @valeriansaliou
 
