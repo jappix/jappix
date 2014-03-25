@@ -3602,7 +3602,7 @@ JSJaCConnection.prototype._handlePID = function(packet) {
     return false;
   var jid = packet.getFrom() || this.jid;
   var id = packet.getID();
-  if (this._regIDs[jid][id]) {
+  if (typeof this._regIDs[jid] == 'object' && this._regIDs[jid][id]) {
     try {
       this.oDbg.log("handling id "+id,3);
       var reg = this._regIDs[jid][id];
