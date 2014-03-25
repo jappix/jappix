@@ -4,6 +4,12 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.3 (March 2014)
+------------------------
+
+ * Fix JSJaC packet register   @valeriansaliou, @sstrigler
+
+
 One, v1.0.2 (March 2014)
 ------------------------
 
