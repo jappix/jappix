@@ -1223,7 +1223,7 @@ JSJAC_ALLOW_SCRAM = false;      // allow usage of SCRAM-SHA-1 authentication; pl
 JSJAC_RETRYDELAY = 5000;        // msecs to wait before trying next
                                 // request after error
 
-JSJAC_REGID_TIMEOUT = 20;       // time in seconds until registered
+JSJAC_REGID_TIMEOUT = 20000;    // time in msec until registered
                                 // callbacks for ids timeout
 
 /* Options specific to HTTP Binding (BOSH) */
@@ -3600,9 +3600,18 @@ JSJaCConnection.prototype._handleEvent = function(event,arg) {
 JSJaCConnection.prototype._handlePID = function(packet) {
   if (!packet.getID())
     return false;
+
+  if (packet.pType() != 'iq' ||
+         (packet.getType() != 'error' && packet.getType() != 'result'))
+    return false; 
+
   var jid = packet.getFrom() || this.jid;
+
+  if (packet.getFrom() == this.domain)
+    jid = this.jid;
+
   var id = packet.getID();
-  if (typeof this._regIDs[jid] == 'object' && this._regIDs[jid][id]) {
+  if (this._regIDs[jid] && this._regIDs[jid][id]) {
     try {
       this.oDbg.log("handling id "+id,3);
       var reg = this._regIDs[jid][id];
@@ -3610,13 +3619,13 @@ JSJaCConnection.prototype._handlePID = function(packet) {
         // don't unregister
         return false;
       } else {
-        delete reg;
+        delete this._regIDs[jid][id];
         return true;
       }
     } catch (e) {
       // broken handler?
       this.oDbg.log(e.name+": "+ e.message, 1);
-      delete reg;
+      delete this._regIDs[jid][id];
       return true;
     }
   } else {
@@ -3836,6 +3845,9 @@ JSJaCConnection.prototype._registerPID = function(packet, cb, arg) {
 
   var jid = packet.getTo() || this.jid;
 
+  if (packet.getTo() == this.domain)
+    jid = this.jid;
+
   if (!this._regIDs[jid]) {
     this._regIDs[jid] = {};
   }
@@ -3864,7 +3876,7 @@ JSJaCConnection.prototype._cleanupRegisteredPIDs = function() {
       for (var id in this._regIDs[jid]) {
         if (this._regIDs[jid].hasOwnProperty(id)) {
           if (this._regIDs[jid][id].ts + JSJAC_REGID_TIMEOUT < now) {
-            this.oDbg.log("deleting registered id '"+id+ "due to timeout", 1);
+            this.oDbg.log("deleting registered id '"+id+ "' due to timeout", 1);
             delete this._regIDs[jid][id];
           }
         }
