@@ -32,9 +32,9 @@ Start translating on https://www.transifex.com/projects/p/jappix/ (new translato
 Links
 -----
 
-* Jappix project website: http://jappix.org/
+* Jappix project website: https://jappix.org/
 * Jappix project dev panel: https://github.com/jappix/jappix
-* Jappix nodes list: http://jappix.net/
+* Jappix nodes list: https://jappix.net/
 * Jappix main service: https://jappix.com/
 * Jappix commercial support: https://jappix.pro/
 

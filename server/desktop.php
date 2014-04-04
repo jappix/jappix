@@ -177,7 +177,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 
                 <h2>Jappix.org</h2>
                 <div class="tabulate">
-                    <a href="http://jappix.org/">
+                    <a href="https://jappix.org/">
                         <span class="name">Jappix Download</span>
                         <span class="desc"><?php _e("Get Jappix, get support."); ?></span>
                     </a>
@@ -197,7 +197,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 
                 <h2>Jappix.net</h2>
                 <div class="tabulate">
-                    <a href="http://jappix.net/">
+                    <a href="https://jappix.net/">
                         <span class="name">Jappix Network</span>
                         <span class="desc"><?php _e("Find a public Jappix node."); ?></span>
                     </a>

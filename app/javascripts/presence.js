@@ -1209,7 +1209,7 @@ var Presence = (function () {
             presence.setPriority(priority);
             
             // CAPS (entity capabilities)
-            presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'http://jappix.org/', 'ver': Caps.mine()});
+            presence.appendNode('c', {'xmlns': NS_CAPS, 'hash': 'sha-1', 'node': 'https://jappix.org/', 'ver': Caps.mine()});
             
             // Nickname
             var nickname = Name.get();
