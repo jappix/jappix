@@ -3723,7 +3723,7 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
 
     // Get legacy session capability if available
     this.legacy_sessions=null;
-    if (doc.getElementsByTagName("session")[0]) {
+    if (doc.getElementsByTagName("session")) {
 	this.legacy_sessions=true;
     }
     
