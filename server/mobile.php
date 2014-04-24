@@ -29,8 +29,30 @@ if(!defined('JAPPIX_BASE')) {
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" name="viewport" />
     <title><?php echo htmlspecialchars(SERVICE_NAME); ?> (<?php _e("Jappix Mobile"); ?>) &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
     <link rel="shortcut icon" href="./favicon.ico" />
+
     <?php echoGetFiles($hash, '', 'css', 'mobile.xml', ''); echo "\n"; ?>
     <?php echoGetFiles($hash, $locale, 'js', 'mobile.xml', ''); echo "\n"; ?>
+
+    <script type="text/javascript">
+        var HTTP_AUTH = {};
+    </script>
+
+    <?php
+        if(httpAuthEnabled()) {
+            echo "\n\t";
+            $auth_credentials = httpAuthCredentials();
+        ?>
+            <script type="text/javascript">
+                HTTP_AUTH = {
+                    user: <?php echo json_encode($auth_credentials['user']); ?>,
+                    password: <?php echo json_encode($auth_credentials['password']); ?>,
+                    host: <?php echo json_encode($auth_credentials['host']); ?>,
+                }
+            </script>
+        <?php
+            echo "\n";
+        }
+    ?>
 </head>
 
 <body>
@@ -56,7 +78,7 @@ if(!defined('JAPPIX_BASE')) {
         <div class="login">
             <?php _e("Login"); ?>
 
-            <form action="#" method="post" onsubmit="return Mobile.doLogin(this);">
+            <form id="login-form" action="#" method="post" onsubmit="return Mobile.doLogin(this);">
                 <input class="xid mobile-images" type="text" name="xid" required="" placeholder="<?php _e("jid@domain.tld"); ?>" />
                 <input class="password mobile-images" type="password" id="pwd" name="pwd" required="" placeholder="<?php _e("Password"); ?>" />
                 <?php if((REGISTRATION != 'off') && (REGISTER_API != 'on')) { ?>

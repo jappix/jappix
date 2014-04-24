@@ -142,6 +142,30 @@ var Mobile = (function () {
 
 
     /**
+     * Proceeds client initialization
+     * @public
+     * @return {undefined}
+     */
+    self.doInitialize = function() {
+
+        try {
+            if(typeof HTTP_AUTH === 'object' && 
+                HTTP_AUTH.user && HTTP_AUTH.password && HTTP_AUTH.host) {
+                var form_sel = document.forms['login-form'];
+
+                form_sel.elements.xid.value = (HTTP_AUTH.user + '@' + HTTP_AUTH.host);
+                form_sel.elements.pwd.value = HTTP_AUTH.password;
+
+                self.doLogin(form_sel);
+            }
+        } catch(e) {
+            Console.error('Mobile.doInitialize', e);
+        }
+
+    };
+
+
+    /**
      * Shows target element
      * @public
      * @param {string} id
@@ -990,6 +1014,7 @@ var Mobile = (function () {
 
         try {
             onbeforeunload = self.doLogout;
+            onload = self.doInitialize;
         } catch(e) {
             Console.error('Mobile.launch', e);
         }

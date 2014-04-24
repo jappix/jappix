@@ -749,7 +749,7 @@ function httpAuthEnabled() {
 }
 
 // The function to authenticate with HTTP
-function httpAuthentication() {
+function httpAuthCredentials() {
     $auth = authHeaders();
 
     if(isset($_SERVER['HTTP_EMAIL'])) {
@@ -760,9 +760,20 @@ function httpAuthentication() {
         $host = HOST_MAIN;
     }
 
+    return array(
+        'user'     => $user,
+        'password' => $auth['password'],
+        'host'     => $host
+    );
+}
+
+// The function to authenticate with HTTP
+function httpAuthentication() {
+    $auth = httpAuthCredentials();
+
     echo '<script type="text/javascript">
             jQuery(document).ready(function() {
-                HTTPAuth.go('.json_encode($user).', '.json_encode($auth['password']).', '.json_encode($host).', 10);
+                HTTPAuth.go('.json_encode($auth['user']).', '.json_encode($auth['password']).', '.json_encode($auth['host']).', 10);
             });
           </script>';
 }
