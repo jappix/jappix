@@ -142,6 +142,13 @@ if(isset($_POST['compression']) && !empty($_POST['compression'])) {
     $compression = 'off';
 }
 
+// Caching
+if(isset($_POST['caching']) && !empty($_POST['caching'])) {
+    $caching = 'on';
+} else {
+    $caching = 'off';
+}
+
 // Statistics
 if(isset($_POST['statistics']) && !empty($_POST['statistics'])) {
     $statistics = 'on';
@@ -260,6 +267,7 @@ $conf_xml =
     <https_storage>'.$https_storage.'</https_storage>
     <https_force>'.$https_force.'</https_force>
     <compression>'.$compression.'</compression>
+    <caching>'.$caching.'</caching>
     <analytics_track>'.$analytics_track.'</analytics_track>
     <analytics_url>'.$analytics_url.'</analytics_url>
     <analytics_id>'.$analytics_id.'</analytics_id>

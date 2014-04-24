@@ -1296,6 +1296,9 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
+msgid "Cache assets"
+msgstr ""
+
 msgid "This page helps you specify the default hosts Jappix will connect to. You can leave it as it is and continue if you want to use the official service hosts."
 msgstr ""
 

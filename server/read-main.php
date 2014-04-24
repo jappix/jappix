@@ -37,6 +37,7 @@ $main_conf = array(
     'https_storage'         => 'off',
     'https_force'           => 'off',
     'compression'           => 'off',
+    'caching'               => 'on',
     'analytics_track'       => 'off',
     'analytics_url'         => '',
     'analytics_id'          => '',
@@ -94,6 +95,7 @@ define('ENCRYPTION', $main_conf['encryption']);
 define('HTTPS_STORAGE', $main_conf['https_storage']);
 define('HTTPS_FORCE', $main_conf['https_force']);
 define('COMPRESSION', $main_conf['compression']);
+define('CACHING', $main_conf['caching']);
 define('ANALYTICS_TRACK', $main_conf['analytics_track']);
 define('ANALYTICS_URL', $main_conf['analytics_url']);
 define('ANALYTICS_ID', $main_conf['analytics_id']);

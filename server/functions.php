@@ -571,6 +571,11 @@ function hasCompression() {
     return (COMPRESSION != 'off');
 }
 
+// The function to check caching is enabled
+function hasCaching() {
+    return (CACHING != 'off');
+}
+
 // The function to check compression is available with the current client
 function canCompress() {
     // Compression allowed by admin & browser?

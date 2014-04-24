@@ -36,6 +36,7 @@ $encryption = htmlspecialchars(ENCRYPTION);
 $https_storage = htmlspecialchars(HTTPS_STORAGE);
 $https_force = htmlspecialchars(HTTPS_FORCE);
 $compression = htmlspecialchars(COMPRESSION);
+$caching = htmlspecialchars(CACHING);
 $analytics_track = htmlspecialchars(ANALYTICS_TRACK);
 $analytics_url = htmlspecialchars(ANALYTICS_URL);
 $analytics_id = htmlspecialchars(ANALYTICS_ID);

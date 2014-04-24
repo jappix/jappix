@@ -32,7 +32,7 @@ $has_compression = hasCompression();
 // Cache control (for development & production)
 if($is_developer) {
     header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-} else {
+} else if(hasCaching()) {
     $expires = 31536000;
 
     header('Cache-Control: maxage='.$expires);
@@ -359,12 +359,13 @@ if($file && $type) {
             // Any data to output?
             if($output_data) {
                 // Last-Modified HTTP header
-                if(!$is_developer) {
+                if(!$is_developer && hasCaching()) {
                     header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
                 }
 
                 // Check browser cache
-                if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
+                if(!$is_developer && hasCaching() && 
+                    ($if_modified_since && ($last_modified <= $if_modified_since))) {
                     // Use browser cache
                     header('Status: 304 Not Modified', true, 304);
                     exit;
@@ -386,13 +387,14 @@ if($file && $type) {
             // Process re-usable HTTP headers values
             $last_modified = filemtime($path);
 
-            // File HTTP headers
-            if(!$is_developer) {
+            // Last-Modified HTTP header
+            if(!$is_developer && hasCaching()) {
                 header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_modified).' GMT');
             }
 
             // Check browser cache
-            if(!$is_developer && ($if_modified_since && ($last_modified <= $if_modified_since))) {
+            if(!$is_developer && hasCaching() && 
+                ($if_modified_since && ($last_modified <= $if_modified_since))) {
                 // Use browser cache
                 header('Status: 304 Not Modified', true, 304);
                 exit;

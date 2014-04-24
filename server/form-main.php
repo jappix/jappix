@@ -90,6 +90,13 @@ if($compression == 'on') {
     $check_compression = '';
 }
 
+// Caching
+if($caching == 'on') {
+    $check_caching = $checked;
+} else {
+    $check_caching = '';
+}
+
 // Statistics
 if($statistics == 'on') {
     $check_statistics = $checked;
@@ -180,6 +187,8 @@ if($ads_enable == 'on') {
     <label for="https_force"><?php _e("Force HTTPS"); ?></label><input id="https_force" type="checkbox" name="https_force"<?php echo $check_https_force; ?> />
 
     <label for="compression"><?php _e("Compression"); ?></label><input id="compression" type="checkbox" name="compression"<?php echo $check_compression; ?> />
+
+    <label for="caching"><?php _e("Cache assets"); ?></label><input id="caching" type="checkbox" name="caching"<?php echo $check_caching; ?> />
 
     <label for="statistics"><?php _e("Statistics"); ?></label><input id="statistics" type="checkbox" name="statistics"<?php echo $check_statistics; ?> />
 
