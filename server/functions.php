@@ -141,8 +141,39 @@ function readXML($type, $xmlns) {
     return false;
 }
 
+// Creates a secure download context (StartSSL provider, used on Jappix.org which is the update source)
+function requestContext($remote_url, $type = 'default', $opt = null) {
+    $options = array();
+    $url_parse = parse_url($remote_url);
+
+    $ca_path = JAPPIX_BASE.'/misc/certs/';
+
+    // Official update host?
+    if($url_parse['scheme'] === 'https' && $url_parse['host'] === 'jappix.org') {
+        if($type === 'curl') {
+            curl_setopt($opt, CURLOPT_SSL_VERIFYPEER, TRUE);
+            curl_setopt($opt, CURLOPT_CAPATH, $ca_path);
+        } else {
+            $options['ssl'] = array(
+                'verify_peer'   => true,
+                'capath'        => $ca_path,
+                'verify_depth'  => 10,
+                'CN_match'      => $url_parse['host']
+            );
+        }
+    }
+
+    if($type === 'curl') {
+        return true;
+    } else {
+        $ssl_context = stream_context_create($options);
+
+        return $ssl_context;
+    }
+}
+
 // The function to read remote URLs
-function read_url($url) {
+function readUrl($url) {
     // Any cURL?
     if(function_exists('curl_init')) {
         $ch = curl_init();
@@ -151,11 +182,16 @@ function read_url($url) {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
+        // Set dynamic request context
+        requestContext($url, 'curl', $ch);
+
         $data = curl_exec($ch);
         curl_close($ch);
     } else {
+        $context = requestContext($url);
+
         // Fallback on default method
-        $data = @file_get_contents($url);
+        $data = @file_get_contents($url, false, $context);
     }
     
     return $data;

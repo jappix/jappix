@@ -41,7 +41,7 @@ if((isset($_GET['searchquery']) && !empty($_GET['searchquery'])) && (isset($_GET
     
     // Jamendo search?
     if($location == 'jamendo') {
-        exit(read_url('http://api.jamendo.com/get2/name+id+duration+url/track/xml/?searchquery='.urlencode($searchquery).'&order=searchweight_desc'));
+        exit(readUrl('http://api.jamendo.com/get2/name+id+duration+url/track/xml/?searchquery='.urlencode($searchquery).'&order=searchweight_desc'));
     }
     
     // Local music search

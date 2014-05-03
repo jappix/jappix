@@ -208,7 +208,7 @@ function newUpdates($force) {
     // No cache, obsolete one or refresh forced
     if(!file_exists($cache_path) || (file_exists($cache_path) && (time() - (filemtime($cache_path)) >= 86400)) || $force) {
         // Get the content
-        $last_version = read_url('https://jappix.org/xml/version.xml');
+        $last_version = readUrl('https://jappix.org/xml/version.xml');
         
         // Write the content
         file_put_contents($cache_path, $last_version, LOCK_EX);
@@ -281,9 +281,12 @@ function processUpdate($url) {
     if(!file_exists($path)) {
         echo('<p>» '.T_("Downloading package...").'</p>');
         
+        // Create SSL request context
+        $ssl_context = requestContext($url);
+
         // Open the packages
         $local = fopen($path, 'w');
-        $remote = fopen($url, 'r');
+        $remote = fopen($url, 'r', false, $ssl_context);
         
         // Could not open a socket?!
         if(!$remote) {

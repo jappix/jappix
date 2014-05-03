@@ -52,7 +52,7 @@ if(isset($_GET['username']) && !empty($_GET['username'])) {
         //       if you are concerned about privacy, rather setup your TURN and add it to Jappix hosts configuration
 
         // Get the JSON content
-        $json = read_url('https://computeengineondemand.appspot.com/turn?username='.urlencode($_GET['username']));
+        $json = readUrl('https://computeengineondemand.appspot.com/turn?username='.urlencode($_GET['username']));
 
         if($json && strpos($json, 'uris') !== false) {
             file_put_contents($cache_path, $json);
