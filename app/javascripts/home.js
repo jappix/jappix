@@ -76,7 +76,7 @@ var Home = (function () {
                                 '<legend>' + Common._e("Required") + '</legend>' + 
                                 
                                 '<label for="lnick">' + Common._e("Address") + '</label>' + 
-                                '<input type="text" class="nick" id="lnick" pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + ' pattern="[^@/]+" required="" />' + 
+                                '<input type="text" class="nick" id="lnick" pattern="[^@/]+" required="" /><span class="jid">@</span><input type="text" class="server" id="lserver" value="' + HOST_MAIN + '" ' + lock_host + ' pattern="[^@/]+" required="" list="server" />' + 
                                 '<label for="lpassword">' + Common._e("Password") + '</label>' + 
                                 '<input type="password" class="password" id="lpassword" required="" />' + 
                                 '<label for="lremember">' + Common._e("Remember me") + '</label>' + 
@@ -152,7 +152,7 @@ var Home = (function () {
                                 '<legend>' + Common._e("Required") + '</legend>' + 
                                 
                                 '<label for="rnick">' + Common._e("Address") + '</label>' + 
-                                '<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" placeholder="' + Common._e("Username") + '" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" placeholder="' + Common._e("Server") + '" />' + 
+                                '<input type="text" class="nick" id="rnick" ' + disable_form + ' pattern="[^@/]+" required="" placeholder="' + Common._e("Username") + '" /><span class="jid">@</span><input type="text" class="server" id="rserver" value="' + HOST_MAIN + '" ' + disable_form + lock_host + ' pattern="[^@/]+" required="" list="server" placeholder="' + Common._e("Server") + '" />' + 
                                 '<label for="rpassword">' + Common._e("Password") + '</label>' + 
                                 '<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + Common._e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + Common._e("Once again...") + '" />';
                     
