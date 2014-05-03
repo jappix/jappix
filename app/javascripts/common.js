@@ -348,6 +348,40 @@ var Common = (function () {
 
 
     /**
+     * Escapes quotes in a string
+     * @public
+     * @param {string} str
+     * @return {string}
+     */
+    self.escapeQuotes = function(str) {
+
+        try {
+            return escape(self.encodeQuotes(str));
+        } catch(e) {
+            Console.error('Common.escapeQuotes', e);
+        }
+
+    };
+
+
+    /**
+     * Unescapes quotes in a string
+     * @public
+     * @param {string} str
+     * @return {string}
+     */
+    self.unescapeQuotes = function(str) {
+
+        try {
+            return unescape(str);
+        } catch(e) {
+            Console.error('Common.unescapeQuotes', e);
+        }
+
+    };
+
+
+    /**
      * Gets the bare XID from a XID
      * @public
      * @param {string} xid

@@ -748,7 +748,7 @@ var JappixMini = (function () {
             var resources_obj = {};
 
             // Is this a groupchat?
-            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + JappixCommon.encodeQuotes(xid) + '"]')) {
+            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + JappixCommon.escapeQuotes(xid) + '"]')) {
                 xid = from;
             }
 
@@ -1003,7 +1003,7 @@ var JappixMini = (function () {
                 is_groupchat = true;
                 
                 // Groupchat buddy presence (not me)
-                if(resource != unescape(jQuery(groupchat_path).attr('data-nick'))) {
+                if(resource != JappixCommon.unescapeQuotes(jQuery(groupchat_path).attr('data-nick'))) {
                     // Regenerate some stuffs
                     var groupchat = xid;
                     var groupchat_hash = hash;
@@ -1059,7 +1059,7 @@ var JappixMini = (function () {
                 // Check against search string
                 var search = jQuery('#jappix_mini div.jm_roster div.jm_search input.jm_searchbox').val();
                 var regex = new RegExp('((^)|( ))' + JappixCommon.escapeRegex(search), 'gi');
-                var nick = unescape(jQuery(friend).data('nick'));
+                var nick = JappixCommon.unescapeQuotes(jQuery(friend).data('nick'));
 
                 if(search && !nick.match(regex)) {
                     jQuery(friend).hide();
@@ -1110,7 +1110,7 @@ var JappixMini = (function () {
             // Is it a valid server presence?
             var valid = false;
             
-            if(!resource || (resource == unescape(jQuery('#jappix_mini #chat-' + hash + '[data-type="groupchat"]').attr('data-nick')))) {
+            if(!resource || (resource == JappixCommon.unescapeQuotes(jQuery('#jappix_mini #chat-' + hash + '[data-type="groupchat"]').attr('data-nick')))) {
                 valid = true;
             }
             
@@ -1154,7 +1154,7 @@ var JappixMini = (function () {
                 self.presence('', '', '', '', room + '/' + nickname, '', true, self.handleMUC);
                 
                 // Update the nickname marker
-                jQuery('#jappix_mini #chat-' + hash).attr('data-nick', escape(nickname));
+                jQuery('#jappix_mini #chat-' + hash).attr('data-nick', JappixCommon.escapeQuotes(nickname));
             }
             
             // Handle normal presence
@@ -1258,7 +1258,7 @@ var JappixMini = (function () {
                 
                 // If the roster does not give us any nick the user may have send us a nickname to use with his first message
                 // @see http://xmpp.org/extensions/xep-0172.html
-                var known_roster_entry = jQuery('#jappix_mini a.jm_friend[data-xid="' + xid + '"]');
+                var known_roster_entry = jQuery('#jappix_mini a.jm_friend[data-xid="' + JappixCommon.escapeQuotes(xid) + '"]');
                 
                 if(known_roster_entry.size() === 0) {
                     var subscription = known_roster_entry.attr('data-sub');
@@ -1952,7 +1952,7 @@ var JappixMini = (function () {
                     
                     jQuery('#jappix_mini div.jm_conversation[data-type="groupchat"]').each(function() {
                         var this_sub_sel = jQuery(this);
-                        pr_xid.push(unescape(this_sub_sel.attr('data-xid')) + '/' + unescape(this_sub_sel.attr('data-nick')));
+                        pr_xid.push(JappixCommon.unescapeQuotes(this_sub_sel.attr('data-xid')) + '/' + JappixCommon.unescapeQuotes(this_sub_sel.attr('data-nick')));
                     });
                     
                     // Loop on XIDs
@@ -2032,7 +2032,7 @@ var JappixMini = (function () {
                                     var chat_pwd = MINI_SUGGEST_PASSWORDS[i] || '';
                                     
                                     chans_html += 
-                                    '<a class="jm_suggest_groupchat" href="#" data-xid="' + escape(chat_room) + '" data-pwd="' + escape(chat_pwd) + '">' + 
+                                    '<a class="jm_suggest_groupchat" href="#" data-xid="' + JappixCommon.escapeQuotes(chat_room) + '" data-pwd="' + JappixCommon.escapeQuotes(chat_pwd) + '">' + 
                                         '<span class="jm_chan_icon jm_images"></span>' + 
                                         '<span class="jm_chan_name">' + JappixCommon.getXIDNick(chat_room).htmlEnc() + '</span>' + 
                                     '</a>';
@@ -2064,12 +2064,12 @@ var JappixMini = (function () {
                                     if(!chat_nick) {
                                         chat_nick = JappixCommon.getXIDNick(chat_xid);
                                     } else {
-                                        chat_nick = unescape(chat_nick);
+                                        chat_nick = JappixCommon.unescapeQuotes(chat_nick);
                                     }
                                     
                                     // Generate HTML for current chat
                                     chans_html += 
-                                    '<a class="jm_suggest_chat" href="#" data-xid="' + escape(chat_xid) + '">' + 
+                                    '<a class="jm_suggest_chat" href="#" data-xid="' + JappixCommon.escapeQuotes(chat_xid) + '">' + 
                                         '<span class="jm_chan_icon jm_images"></span>' + 
                                         '<span class="jm_chan_name">' + JappixCommon.getXIDNick(chat_nick).htmlEnc() + '</span>' + 
                                     '</a>';
@@ -2103,18 +2103,18 @@ var JappixMini = (function () {
 
                                     // Chat?
                                     if(this_sub_sel.is('.jm_suggest_chat')) {
-                                        var current_chat = unescape(this_sub_sel.attr('data-xid'));
+                                        var current_chat = JappixCommon.unescapeQuotes(this_sub_sel.attr('data-xid'));
                                         
                                         self.chat('chat', current_chat, this_sub_sel.find('span.jm_chan_name').text(), hex_md5(current_chat));
                                     }
                                     
                                     // Groupchat?
                                     else if(this_sub_sel.is('.jm_suggest_groupchat')) {
-                                        var current_groupchat = unescape(this_sub_sel.attr('data-xid'));
+                                        var current_groupchat = JappixCommon.unescapeQuotes(this_sub_sel.attr('data-xid'));
                                         var current_password = this_sub_sel.attr('data-pwd') || null;
                                         
                                         if(current_password)
-                                            current_password = unescape(current_password);
+                                            current_password = JappixCommon.unescapeQuotes(current_password);
                                         
                                         self.chat('groupchat', current_groupchat, this_sub_sel.find('span.jm_chan_name').text(), hex_md5(current_groupchat), current_password);
                                     }
@@ -2194,7 +2194,7 @@ var JappixMini = (function () {
                         // Filter buddies
                         jQuery('#jappix_mini div.jm_roster div.jm_buddies a.jm_online').each(function() {
                             var this_sub_sel = jQuery(this);
-                            var nick = unescape(this_sub_sel.data('nick'));
+                            var nick = JappixCommon.unescapeQuotes(this_sub_sel.data('nick'));
                             
                             if(nick.match(regex)) {
                                 this_sub_sel.show();
@@ -2380,7 +2380,7 @@ var JappixMini = (function () {
                 // Restore chat click events
                 jQuery('#jappix_mini div.jm_conversation').each(function() {
                     var this_sub_sel = jQuery(this);
-                    self.chatEvents(this_sub_sel.attr('data-type'), unescape(this_sub_sel.attr('data-xid')), this_sub_sel.attr('data-hash'));
+                    self.chatEvents(this_sub_sel.attr('data-type'), JappixCommon.unescapeQuotes(this_sub_sel.attr('data-xid')), this_sub_sel.attr('data-hash'));
                 });
 
                 // Restore init marker on all groupchats
@@ -2447,7 +2447,7 @@ var JappixMini = (function () {
                 // Using a try/catch override IE issues
                 try {
                     var this_sel = jQuery(this);
-                    self.chat('chat', unescape(this_sel.attr('data-xid')), unescape(this_sel.attr('data-nick')), this_sel.attr('data-hash'));
+                    self.chat('chat', JappixCommon.unescapeQuotes(this_sel.attr('data-xid')), JappixCommon.unescapeQuotes(this_sel.attr('data-nick')), this_sel.attr('data-hash'));
                 }
                 
                 catch(e) {}
@@ -2866,7 +2866,7 @@ var JappixMini = (function () {
                 }
                 
                 // Create the HTML markup
-                var html = '<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + escape(xid) + '" data-type="' + type + '" data-nick="' + escape(nick) + '" data-hash="' + hash + '" data-origin="' + escape(JappixCommon.cutResource(xid)) + '">' + 
+                var html = '<div class="jm_conversation jm_type_' + type + '" id="chat-' + hash + '" data-xid="' + JappixCommon.escapeQuotes(xid) + '" data-type="' + type + '" data-nick="' + JappixCommon.escapeQuotes(nick) + '" data-hash="' + hash + '" data-origin="' + JappixCommon.escapeQuotes(JappixCommon.cutResource(xid)) + '">' + 
                         '<div class="jm_chat-content">' + 
                             '<div class="jm_actions">' + 
                                 '<span class="jm_nick">' + nick + '</span>';
@@ -2952,7 +2952,7 @@ var JappixMini = (function () {
                 // Join the groupchat
                 if(type == 'groupchat') {
                     // Add nickname & init values
-                    jQuery(current).attr('data-nick', escape(nickname))
+                    jQuery(current).attr('data-nick', JappixCommon.escapeQuotes(nickname))
                                    .attr('data-init', 'false');
                     
                     // Send the first groupchat presence
@@ -3035,7 +3035,7 @@ var JappixMini = (function () {
                         // Quit the groupchat?
                         if(type == 'groupchat') {
                             // Send an unavailable presence
-                            self.presence('unavailable', '', '', '', xid + '/' + unescape(current_sel.attr('data-nick')));
+                            self.presence('unavailable', '', '', '', xid + '/' + JappixCommon.unescapeQuotes(current_sel.attr('data-nick')));
                             
                             // Remove this groupchat!
                             self.removeGroupchat(xid);
@@ -3221,7 +3221,7 @@ var JappixMini = (function () {
 
         try {
             // Remove the groupchat private chats & the groupchat buddies from the roster
-            jQuery('#jappix_mini div.jm_conversation[data-origin="' + escape(JappixCommon.cutResource(xid)) + '"], #jappix_mini div.jm_roster div.jm_grouped[data-xid="' + escape(xid) + '"]').remove();
+            jQuery('#jappix_mini div.jm_conversation[data-origin="' + JappixCommon.escapeQuotes(JappixCommon.cutResource(xid)) + '"], #jappix_mini div.jm_roster div.jm_grouped[data-xid="' + JappixCommon.escapeQuotes(xid) + '"]').remove();
             
             // Update the presence counter
             self.updateRoster();
@@ -3282,7 +3282,7 @@ var JappixMini = (function () {
                     if(!chat_nick) {
                         chat_nick = JappixCommon.getXIDNick(chat_xid);
                     } else {
-                        chat_nick = unescape(chat_nick);
+                        chat_nick = JappixCommon.unescapeQuotes(chat_nick);
                     }
                     
                     // Open the current chat
@@ -3325,7 +3325,7 @@ var JappixMini = (function () {
 
                 // Group: start
                 if(c != MINI_ROSTER_NOGROUP) {
-                    buddy_str += '<div class="jm_grouped jm_grouped_roster" data-name="' + escape(c) + '">';
+                    buddy_str += '<div class="jm_grouped jm_grouped_roster" data-name="' + JappixCommon.escapeQuotes(c) + '">';
                     buddy_str += '<div class="jm_name">' + c.htmlEnc() + '</div>';
                 }
 
@@ -3392,23 +3392,23 @@ var JappixMini = (function () {
 
             // Generate the groupchat group path
             if(groupchat) {
-                path = '#jappix_mini div.jm_roster div.jm_grouped_groupchat[data-xid="' + escape(bare_xid) + '"]';
+                path = '#jappix_mini div.jm_roster div.jm_grouped_groupchat[data-xid="' + JappixCommon.escapeQuotes(bare_xid) + '"]';
 
                 // Must add a groupchat group?
                 if(!JappixCommon.exists(path)) {
                     jQuery('#jappix_mini div.jm_roster div.jm_buddies').append(
-                        '<div class="jm_grouped jm_grouped_groupchat" data-xid="' + escape(bare_xid) + '">' + 
+                        '<div class="jm_grouped jm_grouped_groupchat" data-xid="' + JappixCommon.escapeQuotes(bare_xid) + '">' + 
                             '<div class="jm_name">' + JappixCommon.getXIDNick(groupchat).htmlEnc() + '</div>' + 
                         '</div>'
                     );
                 }
             } else if(group) {
-                path = '#jappix_mini div.jm_roster div.jm_grouped_roster[data-name="' + escape(group) + '"]';
+                path = '#jappix_mini div.jm_roster div.jm_grouped_roster[data-name="' + JappixCommon.escapeQuotes(group) + '"]';
 
                 // Must add a roster group?
                 if(!JappixCommon.exists(path)) {
                     jQuery('#jappix_mini div.jm_roster div.jm_buddies').append(
-                        '<div class="jm_grouped jm_grouped_roster" data-name="' + escape(group) + '">' + 
+                        '<div class="jm_grouped jm_grouped_roster" data-name="' + JappixCommon.escapeQuotes(group) + '">' + 
                             '<div class="jm_name">' + group.htmlEnc() + '</div>' + 
                         '</div>'
                     );
@@ -3465,8 +3465,8 @@ var JappixMini = (function () {
             buddy_str += '<a class="jm_friend jm_offline jm_friend-' + hash;
               buddy_str += '" id="friend-' + hash;
               buddy_str += '" title="' + JappixCommon.encodeQuotes(xid) + '"';
-              buddy_str += '" data-xid="' + escape(xid) + '"';
-              buddy_str += '" data-nick="' + escape(nick) + '"';
+              buddy_str += '" data-xid="' + JappixCommon.escapeQuotes(xid) + '"';
+              buddy_str += '" data-nick="' + JappixCommon.escapeQuotes(nick) + '"';
               buddy_str += '" data-hash="' + hash + '"';
               buddy_str += ' ' + (subscription ? ' data-sub="' + subscription + '" ' : '');
             buddy_str += '>';
@@ -3501,7 +3501,7 @@ var JappixMini = (function () {
             jQuery('#jappix_mini a#friend-' + hash).remove();
             
             // Empty group?
-            var group = '#jappix_mini div.jm_roster div.jm_grouped_groupchat[data-xid="' + escape(groupchat) + '"]';
+            var group = '#jappix_mini div.jm_roster div.jm_grouped_groupchat[data-xid="' + JappixCommon.escapeQuotes(groupchat) + '"]';
             
             if(groupchat && !jQuery(group + ' a.jm_friend').size()) {
                 jQuery(group).remove();
