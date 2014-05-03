@@ -748,7 +748,7 @@ var JappixMini = (function () {
             var resources_obj = {};
 
             // Is this a groupchat?
-            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + JappixCommon.encodeQuotes(xid) + '"]')) {
+            if(JappixCommon.exists('#jappix_mini div.jm_conversation[data-type="groupchat"][data-xid="' + hex_md5(xid) + '"]')) {
                 xid = from;
             }
 
