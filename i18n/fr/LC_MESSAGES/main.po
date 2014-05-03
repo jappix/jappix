@@ -6,11 +6,12 @@
 # Translators:
 # Cyril Glapa <kyriog@gmail.com>, 2012
 # Julien Barrier <julien@julienbarrier.fr>, 2013
-# Valérian Saliou <val.saliou@gmail.com>, 2013-2014
+# Valérian Saliou <valerian@valeriansaliou.name>, 2014
+# Valérian Saliou <valerian@valeriansaliou.name>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:00+0100\n"
+"PO-Revision-Date: 2014-05-03 12:57+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/jappix/language/"
 "fr/)\n"
@@ -856,7 +857,7 @@ msgid "Hi there!"
 msgstr "Salut toi !"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "Bienvenue sur %1s, « %2s »."
+msgstr "Bienvenue sur %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -1216,7 +1217,7 @@ msgid "Friends"
 msgstr "Amis"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr "Bienvenue sur Jappix, votre propre nuage social !"
+msgstr "Bienvenue sur Jappix, plateforme sociale libre."
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1453,6 +1454,9 @@ msgstr "Forcer le HTTPS"
 
 msgid "Compression"
 msgstr "Compression"
+
+msgid "Cache assets"
+msgstr "Cacher les resources"
 
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
