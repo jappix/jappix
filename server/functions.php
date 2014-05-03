@@ -155,10 +155,11 @@ function requestContext($remote_url, $type = 'default', $opt = null) {
             curl_setopt($opt, CURLOPT_CAPATH, $ca_path);
         } else {
             $options['ssl'] = array(
-                'verify_peer'   => true,
-                'capath'        => $ca_path,
-                'verify_depth'  => 10,
-                'CN_match'      => $url_parse['host']
+                'verify_peer'       => TRUE,
+                'capath'            => $ca_path,
+                'verify_depth'      => 10,
+                'SNI_enabled'       => TRUE,
+                'SNI_server_name'   => $url_parse['host']
             );
         }
     }
