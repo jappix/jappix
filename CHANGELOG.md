@@ -4,6 +4,17 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.4 (May 2014)
+------------------------
+
+ * Fix update tool (on some environments)               @valeriansaliou
+ * Fix MUC room join                                    @maranda, @valeriansaliou
+ * Fix special chars in JIDs for Jappix Mini            @dunger, @valeriansaliou
+ * Enhance backend security (verify SSL certificates)   @valeriansaliou
+ * Add assets client cache option                       @valeriansaliou
+ * Add SSO support to Jappix Mobile                     @valeriansaliou
+
+
 One, v1.0.3 (March 2014)
 ------------------------
 
