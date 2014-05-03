@@ -1280,8 +1280,9 @@ var Presence = (function () {
             var status = self.getUserStatus();
             
             // Send the presence
-            if(!Utils.isAnonymous())
+            if(!Utils.isAnonymous()) {
                 self.send('', '', show, status, checksum);
+            }
             
             // We set the good icon
             self.icon(show);
@@ -1301,8 +1302,9 @@ var Presence = (function () {
                 var nick = unescape(tmp_nick);
                 
                 // Must re-initialize?
-                if(RESUME)
+                if(Connection.resume) {
                     Groupchat.getMUC(room, nick);
+                }
                 
                 // Not disabled?
                 else if(!$(this).find('.message-area').attr('disabled'))
