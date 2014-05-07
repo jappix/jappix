@@ -518,7 +518,7 @@ var Favorites = (function () {
                                     '<a href="#" class="one-button join talk-images" onclick="return Favorites.join(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
                             
                             // This room is yet a favorite
-                            if(DataStore.existDB('favorites', roomXID))
+                            if(DataStore.existDB(Connection.desktop_hash, 'favorites', roomXID))
                                 html += '<a href="#" class="one-button remove talk-images" onclick="return Favorites.removeThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
                             else
                                 html += '<a href="#" class="one-button add talk-images" onclick="return Favorites.addThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';

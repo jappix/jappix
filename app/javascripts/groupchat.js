@@ -279,8 +279,9 @@ var Groupchat = (function () {
             });
             
             // Must show the add button?
-            if(!DataStore.existDB('favorites', room))
+            if(!DataStore.existDB(Connection.desktop_hash, 'favorites', room)) {
                 $('#' + hash + ' .tools-add').show();
+            }
             
             // The event handlers
             var inputDetect = $('#' + hash + ' .message-area');

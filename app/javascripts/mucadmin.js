@@ -434,7 +434,7 @@ var MUCAdmin = (function () {
                 Board.openThisInfo(5);
                 
                 // We remove the user's favorite
-                if(DataStore.existDB('favorites', room))
+                if(DataStore.existDB(Connection.desktop_hash, 'favorites', room))
                     Favorites.removeThis(room, Common.explodeThis('@', room, 0));
                 
                 Console.info('MUC admin destroyed: ' + room);
