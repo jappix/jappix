@@ -4861,9 +4861,9 @@ JSJaCWebSocketConnection.prototype._parseXml = function(s) {
   this.oDbg.log('Parsing: ' + s, 4);
   try {
     doc = XmlDocument.create('stream', NS_STREAM);
-    if(s == '</stream:stream>') {
+    if(s.trim() == '</stream:stream>') {
       // Consider session as closed
-      this.oDbg.log("session terminated",1);
+      this.oDbg.log("session terminated", 1);
 
       clearTimeout(this._timeout); // remove timer
       clearInterval(this._interval);
@@ -4874,21 +4874,12 @@ JSJaCWebSocketConnection.prototype._parseXml = function(s) {
       } catch (e) {}
 
       this._connected = false;
-
       this._handleEvent('onerror',JSJaCError('503','cancel','session-terminate'));
-
-      this.oDbg.log("Aborting remaining connections",4);
-
-      for (var i=0; i<this._hold+1; i++) {
-        try {
-          this._req[i].r.abort();
-        } catch(e) { this.oDbg.log(e, 1); }
-      }
-
-      this.oDbg.log("parseResponse done with terminating", 3);
 
       this.oDbg.log("Disconnected.",1);
       this._handleEvent('ondisconnect');
+
+      return null;
     } else if(s.indexOf('<stream:stream') === -1) {
       // Wrap every stanza into stream element, so that XML namespaces work properly.
       doc.loadXML("<stream:stream xmlns:stream='" + NS_STREAM + "' xmlns='jabber:client'>" + s + "</stream:stream>");
