@@ -7,9 +7,9 @@ Here's the log of what has changed over the Jappix releases.
 One, v1.0.5 (May 2014)
 ------------------------
 
+ * Fix MUC bookmark shortcut button                         @valeriansaliou
  * Fix HTML5 notifications in Firefox 22+                   @valeriansaliou
  * Fix server commands tool                                 @valeriansaliou
- * Improve Jappix Desktop performance                       @valeriansaliou
  * New translations added (Uzbek), and a few ones updated   @nurkamol, @valeriansaliou
 
 
