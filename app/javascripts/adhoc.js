@@ -142,9 +142,7 @@ var AdHoc = (function () {
 
         try {
             // Click event
-            $('#adhoc .bottom .finish').click(
-                self.close()
-            );
+            $('#adhoc .bottom .finish').click(self.close);
         } catch(e) {
             Console.error('AdHoc.launch', e);
         }
