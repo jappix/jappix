@@ -20,6 +20,10 @@ var Board = (function () {
     var self = {};
 
 
+    /* Contants */
+    self.NOTIFICATION = (window.Notification || window.mozNotification || window.webkitNotification);
+
+
     /**
      * Creates a board panel
      * @public
@@ -235,7 +239,7 @@ var Board = (function () {
 
         try {
             // Cannot process?
-            if(Common.isFocused() || !content || !(window.webkitNotifications || window.Notification)) {
+            if(Common.isFocused() || !content || !self.NOTIFICATION) {
                 return;
             }
             
@@ -248,11 +252,13 @@ var Board = (function () {
                     var avatar_xml = Common.XMLFromString(
                         DataStore.getPersistent('global', 'avatar', xid)
                     );
+
                     var avatar_type = $(avatar_xml).find('type').text() || 'image/png';
                     var avatar_binval = $(avatar_xml).find('binval').text();
                     
-                    if(avatar_binval && avatar_type)
+                    if(avatar_binval && avatar_type) {
                         icon = 'data:' + avatar_type + ';base64,' + avatar_binval;
+                    }
                 }
             }
             
@@ -261,8 +267,17 @@ var Board = (function () {
                 title = Common._e("New event!");
             }
 
-            // Click callback
-            var cb_click_fn = function() {
+            // Create notification
+            var notification = new self.NOTIFICATION(title, {
+                dir: 'auto',
+                lang: '',
+                body: content,
+                tag: type,
+                icon: icon
+            });
+
+            // Click event
+            notification.onclick = function() {
                 // Click action?
                 switch(type) {
                     case 'chat':
@@ -283,51 +298,15 @@ var Board = (function () {
                 // Remove notification
                 this.cancel();
             };
-            
-            // Check for notification permission
-            try {
-                if(Notification.permission == 'granted' || Notification.permission === undefined) {
-                    var notification = new Notification(title, {
-                        dir: 'auto',
-                        lang: '',
-                        body: content,
-                        tag: type,
-                        icon: icon
-                    });
 
-                    notification.onclick = cb_click_fn;
+            // Show event
+            notification.onshow = function() {
+                setTimeout(function() {
+                    notification.close();
+                }, 10000);
+            };
 
-                    setTimeout(function() {
-                        notification.close();
-                    }, 10000);
-
-                    if(notification.permission == 'granted') {
-                        return notification;
-                    }
-                }
-            } catch(_e) {
-                if(window.webkitNotifications.checkPermission() === 0) {
-                    // Create notification
-                    var notification = window.webkitNotifications.createNotification(icon, title, content);
-                    
-                    // Auto-hide after a while
-                    notification.ondisplay = function(event) {
-                        setTimeout(function() {
-                            event.currentTarget.cancel();
-                        }, 10000);
-                    };
-                    
-                    // Click event
-                    notification.onclick = cb_click_fn;
-                    
-                    // Show notification
-                    notification.show();
-                    
-                    return notification;
-                }
-            }
-
-            return null;
+            return notification;
         } catch(e) {
             Console.error('Board.quick', e);
         }
@@ -343,21 +322,7 @@ var Board = (function () {
     self.quickPermission = function() {
 
         try {
-            try {
-                // W3C Notification API (still a draft!)
-                if(Notification.permission !== 'granted') {
-                    // Ask for permission
-                    Notification.requestPermission();
-                }
-            } catch (_e) {
-                // WebKit Notification API (fallback)
-                if(!window.webkitNotifications || (window.webkitNotifications.checkPermission() === 0)) {
-                    return;
-                }
-                
-                // Ask for permission
-                window.webkitNotifications.requestPermission();
-            }
+            self.NOTIFICATION.requestPermission();
         } catch(e) {
             Console.error('Board.quickPermission', e);
         }
@@ -376,8 +341,9 @@ var Board = (function () {
             // Fires quickPermission() on document click
             $(document).click(function() {
                 // Ask for permission to use quick boards
-                if((typeof con != 'undefined') && con.connected())
+                if((typeof con != 'undefined') && con.connected()) {
                     self.quickPermission();
+                }
             });
         } catch(e) {
             Console.error('Board.launch', e);
