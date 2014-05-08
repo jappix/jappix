@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:02+0100\n"
+"PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/jappix/"
 "language/zh_CN/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -829,7 +829,7 @@ msgid "Hi there!"
 msgstr "你好！"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "欢迎来到 %1s，“%2s”。"
+msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr "登录已有的 Jappix 账号或免费建立新账号！"
@@ -1172,7 +1172,7 @@ msgid "Friends"
 msgstr "好友"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr "欢迎来到 Jappix---你自己的社交云端！"
+msgstr ""
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1381,6 +1381,9 @@ msgstr "强制使用 HTTPS"
 
 msgid "Compression"
 msgstr "压缩"
+
+msgid "Cache assets"
+msgstr ""
 
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "

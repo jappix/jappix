@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:01+0100\n"
+"PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/"
 "jappix/language/oc/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: oc\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -839,7 +839,7 @@ msgid "Hi there!"
 msgstr "Adiu !"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "Benvengut/uda sus %1s, “%2s”."
+msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -1384,6 +1384,9 @@ msgid "Force HTTPS"
 msgstr ""
 
 msgid "Compression"
+msgstr ""
+
+msgid "Cache assets"
 msgstr ""
 
 msgid ""

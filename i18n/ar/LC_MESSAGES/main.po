@@ -4,12 +4,12 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
-# Valérian Saliou <val.saliou@gmail.com>, 2013
+# Valérian Saliou <valerian@valeriansaliou.name>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 15:59+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-05-08 10:20+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/jappix/language/"
 "ar/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:RTL"
@@ -1374,6 +1374,9 @@ msgid "Force HTTPS"
 msgstr ""
 
 msgid "Compression"
+msgstr ""
+
+msgid "Cache assets"
 msgstr ""
 
 msgid ""

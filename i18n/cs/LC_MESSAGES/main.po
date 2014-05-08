@@ -5,12 +5,12 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
 # jui <appukonrad@gmail.com>, 2012
-# moneytoo <mdop@seznam.cz>, 2013
+# moneytoo <mdop@seznam.cz>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:00+0100\n"
-"Last-Translator: Valérian Saliou <val.saliou@gmail.com>\n"
+"PO-Revision-Date: 2014-05-08 10:20+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/jappix/language/"
 "cs/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -850,7 +850,7 @@ msgid "Hi there!"
 msgstr "Ahoj!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "Vítejte na %1s, “%2s”."
+msgstr "Vítejte na %1s, \"%2s\"."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -1210,7 +1210,7 @@ msgid "Friends"
 msgstr "Kamarádi"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr "Vítejte v Jappix, vaší vlastní sociální síti!"
+msgstr "Vítá Vás Jappix, Váš vlastní sociální cloud!"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1330,12 +1330,17 @@ msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
 "music and its configuration) into multiple storage folders."
 msgstr ""
+"Jappix ukládá trvalá data (jako jsou sdílené soubory, historie rozhovorů, "
+"vaši hudbu a konfiguraci) do několika adresářů."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
 "If not, you must set the rights of %1s to %2s or change the folder owner to "
 "%3s (depending of your configuration)."
 msgstr ""
+"Jappix musí mít právo zapisovat do tohoto adresáře pro vytváření pod-"
+"adresářů. Pokud nemá, musíte nastavit práva %1 na %2 nebo změnit vlastníka "
+"adresáře na %3s (v závislosti na vaší konfiguraci)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "Do adresáře je povolen zápis, můžete pokračovat!"
@@ -1436,6 +1441,9 @@ msgstr "Vynutit HTTPS"
 msgid "Compression"
 msgstr "Komprese"
 
+msgid "Cache assets"
+msgstr ""
+
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
 "can leave it as it is and continue if you want to use the official service "
@@ -1471,7 +1479,7 @@ msgid "BOSH host"
 msgstr "BOSH host"
 
 msgid "WebSocket host"
-msgstr ""
+msgstr "WebSocket host"
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
@@ -1763,7 +1771,7 @@ msgid "Total"
 msgstr "Celkem"
 
 msgid "Archives"
-msgstr ""
+msgstr "Archívy"
 
 msgid "Music"
 msgstr "Hudba"
@@ -2322,73 +2330,73 @@ msgid "Content ads key"
 msgstr "Klíč pro obsahové reklamy"
 
 msgid "AdSense client ID"
-msgstr ""
+msgstr "AdSense ID klienta"
 
 msgid "AdSense slot"
-msgstr ""
+msgstr "AdSense slot"
 
 msgid "Stop"
-msgstr ""
+msgstr "Zastavit"
 
 msgid "Mute"
-msgstr ""
+msgstr "Ztlumit"
 
 msgid "Unmute"
-msgstr ""
+msgstr "Povolit"
 
 msgid "Is calling you"
-msgstr ""
+msgstr "Vám volá"
 
 msgid "Initiating call"
-msgstr ""
+msgstr "Spojování hovoru"
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "Spojování hovoru..."
 
 msgid "Waiting..."
-msgstr ""
+msgstr "Čekám..."
 
 msgid "Ringing..."
-msgstr ""
+msgstr "Vyzvání..."
 
 msgid "Declined the call"
-msgstr ""
+msgstr "Odmítl hovor"
 
 msgid "Call error"
-msgstr ""
+msgstr "Chyba hovoru"
 
 msgid "Ended the call"
-msgstr ""
+msgstr "Ukončil hovor"
 
 msgid "Call ended"
-msgstr ""
+msgstr "Hovor ukončen"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "Hovor zrušen"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "Zrušil hovor"
 
 msgid "Is already in a call"
-msgstr ""
+msgstr "Právě hovoří"
 
 msgid "Ending call..."
-msgstr ""
+msgstr "Ukončování hovoru..."
 
 msgid "Accept"
-msgstr ""
+msgstr "Přijmout"
 
 msgid "Decline"
-msgstr ""
+msgstr "Odmítnout"
 
 msgid "Okay"
-msgstr ""
+msgstr "Jasně"
 
 msgid "Retry"
-msgstr ""
+msgstr "Znovu"
 
 msgid "Audio Call"
-msgstr ""
+msgstr "Hlasový hovor"
 
 msgid "Video Call"
-msgstr ""
+msgstr "Video hovor"

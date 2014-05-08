@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:02+0100\n"
+"PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/jappix/"
 "language/uk/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -1375,6 +1375,9 @@ msgid "Force HTTPS"
 msgstr ""
 
 msgid "Compression"
+msgstr ""
+
+msgid "Cache assets"
 msgstr ""
 
 msgid ""

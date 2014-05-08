@@ -5,12 +5,12 @@
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
 # DonIncognito <joe.brendel.ronck@gmail.com>, 2013
-# kahpa <patrick@nerds.lu>, 2013
+# Kahr Patrick <patrick@nerds.lu>, 2013-2014
 # Tullius, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:01+0100\n"
+"PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Luxembourgish (http://www.transifex.com/projects/p/jappix/"
 "language/lb/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: lb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "Standart:LTR"
@@ -29,20 +29,20 @@ msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
-"Ären Browser ënnerstëtzt keen JavaScript, an dofier kann Jappix net gestart "
-"gin! Ännert daat w.e.g."
+"Däin Browser ënnerstëtzt keen JavaScript, an dofier kann Jappix net gestart "
+"gin! Änner daat w.e.g."
 
 msgid "Social channel, chat and more."
 msgstr "Social Channel, Chat a méi."
 
 msgid "Create your public profile."
-msgstr "Erstellt ären öffentlechen Profil."
+msgstr "Erstell däin öffentlechen Profil."
 
 msgid "A mini-chat for your website."
-msgstr "E Mini-Chat fier Äer Internetsäit"
+msgstr "E Mini-Chat fier deng Internetsäit"
 
 msgid "Get Jappix, get support."
-msgstr "Besuergt Iech Jappix, kritt Ennerstëtzung."
+msgstr "Jappix benotzen, Ënnerstetzung kréien."
 
 msgid "Statistics around Jappix."
 msgstr "Statistiken iwwert Jappix."
@@ -51,16 +51,16 @@ msgid "Legal disclaimer for Jappix."
 msgstr "Disclaimer fier Jappix"
 
 msgid "Download Jappix for free."
-msgstr "Lued Jappix gratis erof."
+msgstr "Jappix gratis eroflueden."
 
 msgid "Contribute to the Jappix code."
-msgstr "Drot eppes zum Jappix Code bäi"
+msgstr "Dro eppes zum Jappix Code bäi."
 
 msgid "Jappix for your company."
 msgstr "Jappix fier Äer Firma."
 
 msgid "Find a public Jappix node."
-msgstr "Fannt en öffentlechen Jappix node."
+msgstr "En öffentlechen Jappix node fannen."
 
 msgid "Credits"
 msgstr "Credits"
@@ -97,24 +97,24 @@ msgid ""
 "that you entered the right credentials), sorry for the inconvenience."
 msgstr ""
 "Jappix gouf wéinst engem Netzwierkproblem, engem Fehler oder engem "
-"mësslongenen Login (kontrolléiert ob der déi richteg Zougangsdonnéen agin "
-"hudd) ënnerbrach, entschëllegt d'Stéirung."
+"mësslongenen Login (kontrolléier deng Zougangsdonnéen) ënnerbrach, "
+"entschëlleg d'Stéirung."
 
 msgid "The element list on this server could not be obtained!"
-msgstr "Konnt d'Lëscht vun den Elementer op dësem Server net kréien!"
+msgstr "Konnt d'Lëscht vun den Elementer op dësem Server net fannnen!"
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
 msgstr ""
-"Äert Passwuert gouf geännert, Dier kënnt Iech elo mat Ären neien "
+"Däin Passwuert gouf geännert, du kanns dech elo mat dengen neien "
 "Zougangsdonnéen aloggen."
 
 msgid "Your XMPP account has been removed, bye!"
-msgstr "Ären XMPP Kont gouf geläscht, Äddi!"
+msgstr "Däin XMPP Kont gouf geläscht, Äddi!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr "Dier hudd Iech aus ärem XMPP Kont ausgeloggt, e schéinen Daag nach!"
+msgstr "Du hues dech aus dengem XMPP Kont ausgeloggt, e schéinen Daag nach!"
 
 msgid "The room you tried to join doesn't seem to exist."
 msgstr "Den Chat-Raum deem dier bäitrieden wollt, schéngt et net ze ginn."
@@ -123,19 +123,19 @@ msgid "The groupchat has been removed."
 msgstr "Den Gruppenchat ass geläscht ginn."
 
 msgid "The user that you want to reach is not present in the room."
-msgstr "De Benotzer deen Dier erreechen wëllt as fier de Moment net am Raum."
+msgstr "De Benotzer deens de erreechen wëllt as fier de Moment net am Raum."
 
 msgid "Please enter the group chat address to join."
-msgstr "Gitt w.e.g. d'Adress vum Gruppenchat deem der bäitrieden wëllt an."
+msgstr "Gëff w.e.g. d'Adress vum Gruppenchat deems de bäitrieden wëllt an."
 
 msgid "Please enter your nickname to join %s."
-msgstr "Gitt w.e.g. Ären Benotzernumm an fier %s bäizetrieden."
+msgstr "Gëff w.e.g. däin Benotzernumm an fier %s bäizetrieden."
 
 msgid "This room (%s) is protected with a password."
 msgstr "Dëse Raum (%s) as mat engem Passwuert geschützt. "
 
 msgid "Your browser is out of date!"
-msgstr "Ären Browser as net méi aktuell!"
+msgstr "Däin Browser as net méi aktuell!"
 
 msgid "Last %s version is better!"
 msgstr "Déi neisten %s Versioun as besser!"
@@ -147,7 +147,7 @@ msgid "Register"
 msgstr "Registréieren"
 
 msgid "Here we go!"
-msgstr "A lass geet et!"
+msgstr "A lass!"
 
 msgid "Server"
 msgstr "Server"
@@ -156,7 +156,7 @@ msgid "Password"
 msgstr "Passwuert"
 
 msgid "Remember me"
-msgstr "Errënner dech u mech"
+msgstr "Verhalen"
 
 msgid "This tool has been disabled!"
 msgstr "Dësen Tool as desaktivéiert gin!"
@@ -164,8 +164,7 @@ msgstr "Dësen Tool as desaktivéiert gin!"
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
 msgstr ""
-"Dier gouft wéinst engem Netzwierkproblem ausgeloggt. Waat wëllt der elo "
-"maachen?"
+"Du goufs wéinst engem Netzwierkproblem ausgeloggt. Waat wëlls de elo maachen?"
 
 msgid "Reconnect"
 msgstr "Frësch verbannen"
@@ -186,13 +185,13 @@ msgid "Filter"
 msgstr "Filter"
 
 msgid "Add a friend"
-msgstr "Add e Kolleg"
+msgstr "E Kolleg adden"
 
 msgid "Your groupchats"
-msgstr "Äer Gruppenchats"
+msgstr "Deng Gruppenchats"
 
 msgid "Manage your favorite groupchats"
-msgstr "Organiséiert Äer Gruppenchats"
+msgstr "Organiséier deng Gruppenchats"
 
 msgid "More stuff"
 msgstr "Méi"
@@ -201,13 +200,13 @@ msgid "Show all friends"
 msgstr "All Kollegen"
 
 msgid "Only show connected friends"
-msgstr "Nëmmen déi Kollegen déi grad online sin"
+msgstr "Nëmmen déi Kollegen déi online sin"
 
 msgid "Groupchat presence messages"
-msgstr ""
+msgstr "Gruppenchat-Präsenz Messagen"
 
 msgid "No chat images auto-load"
-msgstr ""
+msgstr "Chat Biller net automatesch lueden"
 
 msgid "Message archives"
 msgstr "Noriichtenarchiv"
@@ -219,13 +218,13 @@ msgid "A short message?"
 msgstr "Eng kuerz Noriicht?"
 
 msgid "How are you?"
-msgstr "Wéi geet et Iech?"
+msgstr "Wéi geet et dier?"
 
 msgid "What are you doing?"
-msgstr "Waat maacht dier grad?"
+msgstr "Waat méchs du grad?"
 
 msgid "Join a chat"
-msgstr "Tried engem Chat bäi."
+msgstr "Engem Chat bäitrieden"
 
 msgid "Status"
 msgstr "Status"
@@ -330,7 +329,7 @@ msgid "Remove this notice"
 msgstr "Dës Notiz läschen"
 
 msgid "Your profile"
-msgstr "Ären Profil"
+msgstr "Däin Profil"
 
 msgid "Identity"
 msgstr "Identitéit"
@@ -381,7 +380,7 @@ msgid "Delete"
 msgstr "Läschen"
 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr "Waat eng Schan! Dier hutt nach keen Profilbild!"
+msgstr "Waat eng Schan! Du hues nach keen Profilbild!"
 
 msgid "Address"
 msgstr "Adress"
@@ -416,7 +415,7 @@ msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
 "profile (vCard)."
 msgstr ""
-"Net alles as privat bei XMPP; daat heiten, Ären öffentlechen Profil (vCard), "
+"Net alles as privat bei XMPP; daat heiten, däin öffentlechen Profil (vCard), "
 "as eng vun deene Saachen, ."
 
 msgid ""
@@ -425,7 +424,7 @@ msgid ""
 "friends."
 msgstr ""
 "Et gëtt staark rekommandéiert e Profilbild eropzelueden (%s Maximum), ewéi z."
-"B. eng Foto vun Iech selwer, esou kennen Äer Kollegen Iech méi einfach "
+"B. eng Foto vun dier selwer, esou kennen deng Kollegen dech méi einfach "
 "erëmerkennen."
 
 msgid "Save"
@@ -444,7 +443,7 @@ msgid "Commands"
 msgstr "Kommandoen"
 
 msgid "Sounds"
-msgstr "Kläng"
+msgstr "Téin"
 
 msgid "Privacy"
 msgstr "Privatsphär"
@@ -471,10 +470,10 @@ msgid "Remove all archives"
 msgstr "All Archiver läschen"
 
 msgid "Empty"
-msgstr "Eidel"
+msgstr "Eidel maachen"
 
 msgid "Empty channel"
-msgstr "Eidelen Channel"
+msgstr "Channel eidel maachen"
 
 msgid "Persistent"
 msgstr "Dauerhaft"
@@ -501,7 +500,7 @@ msgid "Suggested chatrooms"
 msgstr "Fiergeschloen Chat-Raim"
 
 msgid "Skip"
-msgstr ""
+msgstr "Iwwersprangen"
 
 msgid "Continue"
 msgstr "Weiderfueren"
@@ -522,7 +521,7 @@ msgid "is now"
 msgstr "as elo"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr "Waart w.e.g. während Ären Avatar eropgelueden gëtt..."
+msgstr "Waart w.e.g. während däin Avatar eropgelueden gëtt..."
 
 msgid "Here it is! A new beautiful profile image!"
 msgstr "Hei as et! E schéint neit Profilbild!"
@@ -538,10 +537,10 @@ msgid "Error"
 msgstr "Fehler"
 
 msgid "Click here to solve the error"
-msgstr "Klickt hei fier de Problem ze behiewen"
+msgstr "Klick hei fier de Problem ze behiewen"
 
 msgid "You"
-msgstr "Dier"
+msgstr "Du"
 
 msgid "Remove"
 msgstr "Läschen"
@@ -550,10 +549,10 @@ msgid "Rename"
 msgstr "Numm änneren"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Moien, mäin Numm as %s, ech géif Iech gäer als Kolleg adden."
+msgstr "Moien, mäin Numm as %s, ech géif dech gäer als Kolleg adden."
 
 msgid "Smiley insertion"
-msgstr "Insertioun vun Smiley'en"
+msgstr "Smiley'en"
 
 msgid "Change style"
 msgstr "Style änneren"
@@ -573,7 +572,7 @@ msgstr "eng Datei schécken"
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr ""
-"Soubal se eropgelueden as, kritt Ären Kolleg daat ugewisen a kann d'Datei "
+"Soubal se eropgelueden as, kritt däin Kolleg daat ugewisen a kann d'Datei "
 "eroflueden."
 
 msgid "Save chat"
@@ -583,8 +582,8 @@ msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
-"Klickt op folgenden Link fier den Chatprotokoll ze kréien, dann waart. "
-"Klickt duerno nach eng Kéier fier en erofzelueden."
+"Klick op folgenden Link fier den Chatprotokoll ze erstellen, dann waart. "
+"Klick duerno nach eng Kéier fier en erofzelueden."
 
 msgid "This chat is empty!"
 msgstr "Dësen Chat as eidel."
@@ -602,19 +601,19 @@ msgid "Show user profile"
 msgstr "Benotzerprofil kucken"
 
 msgid "Add this contact to your friends"
-msgstr "Dësen Kontakt bei Äer Kollegen derbäisetzten"
+msgstr "Dësen Kontakt bei deng Kollegen derbäisetzten"
 
 msgid "Add this groupchat to your favorites"
-msgstr "Dësen Gruppenchat bei Äer Favoriten derbäisetzten"
+msgstr "Dësen Gruppenchat bei deng Favoriten derbäisetzten"
 
 msgid "All tabs"
-msgstr "All d'Reiteren"
+msgstr "All d'Tabs"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "Gruppenchat bäitrieden"
 
 msgid "Close this tab"
-msgstr "Dëse Reiter zoumaachen"
+msgstr "Dësen Tab zoumaachen"
 
 msgid "no subject defined for this room."
 msgstr "Fier dësen Raum gouf keen Sujet festgeluet."
@@ -626,13 +625,13 @@ msgid "Moderators"
 msgstr "Moderatoren"
 
 msgid "Participants"
-msgstr "Participanten"
+msgstr "Participant'en"
 
 msgid "Visitors"
 msgstr "Visiteuren"
 
 msgid "Manage favorite rooms"
-msgstr "Organiséiert Äer favoriséiert Räim"
+msgstr "Organiséier deng favoriséiert Räim"
 
 msgid "Change favorites"
 msgstr "Favoriten änneren"
@@ -641,7 +640,7 @@ msgid "Search a room"
 msgstr "E Raum sichen"
 
 msgid "Select a favorite"
-msgstr "Wielt e Favorit aus"
+msgstr "Wiel e Favorit aus"
 
 msgid "Getting the name..."
 msgstr "Numm sichen..."
@@ -656,7 +655,7 @@ msgid "Room"
 msgstr "Raum"
 
 msgid "Add"
-msgstr "Bäisetzen"
+msgstr "Dobäisetzen"
 
 msgid "Edit"
 msgstr "Änneren"
@@ -695,7 +694,7 @@ msgid "Components"
 msgstr "Komponenten"
 
 msgid "Rooms"
-msgstr "Raim"
+msgstr "Räim"
 
 msgid "Directories"
 msgstr "Uerdner"
@@ -716,13 +715,13 @@ msgid "Publication/Subscription"
 msgstr "Publikatioun/Abonnement"
 
 msgid "Storage"
-msgstr "Speicher"
+msgstr "Späicher"
 
 msgid "Service offline or broken"
 msgstr "Service offline oder fehlerhaft"
 
 msgid "Your inbox"
-msgstr "Äer Bréifkëscht"
+msgstr "Bréifkëscht"
 
 msgid "Available actions"
 msgstr "Verfügbar Aktiounen"
@@ -746,13 +745,13 @@ msgid "Send message"
 msgstr "Message schécken"
 
 msgid "Your inbox is empty."
-msgstr "Äer Bréifkëscht as eidel."
+msgstr "Bréifkëscht as eidel."
 
 msgid "MUC administration"
-msgstr "MUC Administartioun"
+msgstr "MUC Administratioun"
 
 msgid "You administrate this room"
-msgstr "Dier administréiert dëse Raum"
+msgstr "Du administréiers dëse Raum"
 
 msgid "Enter new subject"
 msgstr "Neie Sujet androen"
@@ -782,22 +781,22 @@ msgid "Destroy this MUC"
 msgstr "Dësen MUC läschen"
 
 msgid "Yes, let's do it!"
-msgstr "Jo, looss ons dat maachen!"
+msgstr "Jo, maach dat!"
 
 msgid "Your friend is paying attention to the conversation."
-msgstr "Äre Kolleg beuecht d'Konversatioun grad."
+msgstr "Däin Kolleg beuecht d'Konversatioun grad."
 
 msgid "Your friend is writing a message..."
-msgstr "Äre Kolleg schréift grad e Message..."
+msgstr "Däin Kolleg schréift grad e Message..."
 
 msgid "Your friend stopped writing a message."
-msgstr "Äre Kolleg huet grad opgehalen e Message ze schreiwen."
+msgstr "Däin Kolleg huet grad opgehalen e Message ze schreiwen."
 
 msgid "Your friend is doing something else."
-msgstr "Äre Kolleg mecht grad eppes Aneres."
+msgstr "Däin Kolleg mecht grad eppes Aneres."
 
 msgid "Your friend closed the chat."
-msgstr "Äre Kolleg huet den Chat zougemaach."
+msgstr "Däin Kolleg huet den Chat zougemaach."
 
 msgid "Requesting this service..."
 msgstr "Service ufroen..."
@@ -812,7 +811,7 @@ msgid "joined the chat room"
 msgstr "as dem Chat-Raum bäigetrueden"
 
 msgid "left the chat room"
-msgstr "huet den Chat Raum verlooss"
+msgstr "huet den Chat-Raum verlooss"
 
 msgid "%s left"
 msgstr "%s ass fortgaangen "
@@ -853,11 +852,11 @@ msgid "Hi there!"
 msgstr "Moien!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "Wëllkomm op %1s, \"%2s\"."
+msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
-"Logt Iech an Ären bestehenden XMPP  Kont an oder maacht gratis en neien op!"
+"Logg dech an däin bestehenden XMPP Kont an oder maach gratis en neien op!"
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -870,7 +869,7 @@ msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
-"Logt Iech an Ären bestehenden XMPP Kont an. Dier kënnt och den %s benotzen "
+"Logt dech an däin bestehenden XMPP Kont an. Du kanns och den %s benotzen "
 "fier engem Gruppenchat bäizetrieden."
 
 msgid "Previous"
@@ -901,20 +900,20 @@ msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
-"Gitt de Gruppenchat an deem der wëllt bäitrieden an dee gewënschten "
-"Spëtznumm. Dier kënnt och zerèck an den %s goen."
+"Gëff de Gruppenchat deems de wëllts bäitrieden an dee gewënschten Spëtznumm "
+"an. Du kanns och zerèck an den %s goen."
 
 msgid "login page"
 msgstr "Login Säit"
 
 msgid "Share this link with your friends:"
-msgstr "Deelt dësen Link mat Ären Kollegen:"
+msgstr "Deel dësen Link mat dengen Kollegen:"
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
 "That's simple!"
 msgstr ""
-"Maacht en neien XMPP Kont op fier Kontakt mat Äeren Kollegen an Äerer "
+"Maach en neien XMPP Kont op fier Kontakt mat dengen Kollegen an denger "
 "eegener Social Cloud opzehuelen.\n"
 "Daat as ganz einfach!"
 
@@ -922,7 +921,7 @@ msgid "Required"
 msgstr "Erfuerderlech"
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr "Dier gouft registréiert, hei as Äer XMPP Adress:"
+msgstr "Du goufs registréiert, hei as deng XMPP Adress:"
 
 msgid "Manager"
 msgstr "Manager"
@@ -934,22 +933,22 @@ msgid "Unencrypted"
 msgstr "Onverschlësselt"
 
 msgid "Where are you?"
-msgstr "Wou sidd Dier?"
+msgstr "Wou bas du?"
 
 msgid "What's up with you?"
-msgstr "Waat leeft bei Iech?"
+msgstr "Waat leeft bei dier?"
 
 msgid "Type something you want to share with your friends..."
-msgstr "Schréiwt eppes, daat Dier mat Äeren Kollegen deelen wëllt..."
+msgstr "Schréiw eppes, daats de mat dengen Kollegen deelen wëlls..."
 
 msgid "Fetching the social channel..."
 msgstr "Social Channel ofruffen..."
 
 msgid "You are synchronized with your network."
-msgstr "Dier sidd mat Ärem Netzwierk synchroniséiert."
+msgstr "Du bas mat dengem Netzwierk synchroniséiert."
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr "Et konnt näicht verschéckt gin: Dier kënnt nëmmen Notizen kréien!"
+msgstr "Et konnt näicht verschéckt gin: Du kanns nëmmen Notizen kréien!"
 
 msgid "Media viewer"
 msgstr "Media viewer"
@@ -979,13 +978,13 @@ msgid "No notifications."
 msgstr "Keng Meldungen."
 
 msgid "would like to add you as a friend."
-msgstr "géif Iech gäer als Kolleg adden."
+msgstr "géif dech gäer als Kolleg adden."
 
 msgid "would like you to join this chatroom:"
 msgstr "géif gäer dësem chat-Raum bäitrieden:"
 
 msgid "Do you accept?"
-msgstr "Akzeptéiert Dier daat?"
+msgstr "Akzeptéierts du daat?"
 
 msgid "Yes"
 msgstr "Jo"
@@ -997,7 +996,7 @@ msgid "would like to get authorization."
 msgstr "freet no Erlabnis."
 
 msgid "would like to send you a file: “%s”."
-msgstr "géif Iech gäer eng Datei schécken: \"%s\"."
+msgstr "géif dier gäer eng Datei schécken: \"%s\"."
 
 msgid "has received a file exchange request: “%s”."
 msgstr "huet eng Ufro kritt fier d'Datei ze tauschen: \"%s\"."
@@ -1006,31 +1005,31 @@ msgid "has accepted to receive your file: “%s”."
 msgstr "huet Äer Ufro fier eng Datei ze erhaalen ugeholl: \"%s\"."
 
 msgid "has rejected to receive your file: “%s”."
-msgstr "huet Äer Ufro fier eng Datei ze tauschen ofgelehnt: \"%s\"."
+msgstr "huet deng Ufro fier eng Datei ze tauschen ofgelehnt: \"%s\"."
 
 msgid "could not receive your file: “%s”."
-msgstr "huet Äer Datei net kritt: \"%s\"."
+msgstr "huet deng Datei net kritt: \"%s\"."
 
 msgid "Do you want to see the friends %s suggests you?"
-msgstr "Wëllt Dier gesin wéieng Kollegen %s Iech fierschléit?"
+msgstr "Wëlls du gesin wéieng Kollegen %s dier vierschléit?"
 
 msgid "commented an item you follow: “%s”."
-msgstr "huet en Antrag deen dier Abonnéiert hudd kommentéiert: \"%s\"."
+msgstr "huet en Antrag deens du Abonnéiert hues kommentéiert: \"%s\"."
 
 msgid "liked your post: “%s”."
-msgstr "huet Äeren post geliked: \"%s\"."
+msgstr "huet däin post geliked: \"%s\"."
 
 msgid "quoted you somewhere: “%s”."
-msgstr "huet Iech zitéiert: “%s”."
+msgstr "huet dech zitéiert: “%s”."
 
 msgid "published on your wall: “%s”."
-msgstr "huet eppes op Ärer Wall publizéiert: \"%s\"."
+msgstr "huet eppes op denger Wall publizéiert: \"%s\"."
 
 msgid "tagged you in a photo (%s)."
-msgstr "huet Iech op enger Foto getagged (%s)."
+msgstr "huet dech op enger Foto getagged (%s)."
 
 msgid "tagged you in a video (%s)."
-msgstr "huet Iech an engem Video getagged (%s)."
+msgstr "huet dech an engem Video getagged (%s)."
 
 msgid ""
 "validated your account. Your public profile will be available in a few "
@@ -1149,10 +1148,10 @@ msgid "Comments locked!"
 msgstr "Kommentarer gespaart!"
 
 msgid "Type your comment here..."
-msgstr "Gitt Ären Kommentar hei an..."
+msgstr "Gëff däin Kommentar hei an..."
 
 msgid "Your channel"
-msgstr "Äeren Channel"
+msgstr "Däin Channel"
 
 msgid "Channel of"
 msgstr "Channel vum"
@@ -1173,23 +1172,23 @@ msgid ""
 "An error occured while uploading your file: maybe it is too big (%s maximum) "
 "or forbidden!"
 msgstr ""
-"Beim eroplueden vun Ärer Datei as e Fehler opgetrueden: vläit as se ze "
+"Beim eroplueden vun denger Datei as e Fehler opgetrueden: vläit as se ze "
 "grouss (%s Maximum) oder verbueden!"
 
 msgid "Authorization failed"
-msgstr "Authorisatioun fehlgeschloen"
+msgstr "Autorisatioun fehlgeschloen"
 
 msgid "Registration failed, please choose a different username"
-msgstr "Registréierung fehlgeschloen, wielt w.e.g. en aneren Benotzernumm"
+msgstr "Registréierung fehlgeschloen, wiel w.e.g. en aneren Benotzernumm"
 
 msgid "Service unavailable"
 msgstr "Service net ze errechen"
 
 msgid "Internal server error, try later"
-msgstr "Internen Server Fehler, probéiert méi spéit nach eng Kéier"
+msgstr "Internen Server Fehler, probéier méi spéit nach eng Kéier"
 
 msgid "Your form has been sent."
-msgstr "Äre Formular gouf fortgeschéckt."
+msgstr "Däin Formular gouf fortgeschéckt."
 
 msgid "Application"
 msgstr "Applikatioun"
@@ -1198,7 +1197,7 @@ msgid "Media integration"
 msgstr "Media integratioun"
 
 msgid "Keep local chat archives"
-msgstr ""
+msgstr "Lokal Chat Archiver halen"
 
 msgid "XMPP links"
 msgstr "XMPP-Linken"
@@ -1216,32 +1215,32 @@ msgid "Friends"
 msgstr "Kollegen"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr "Wëllkomm op Jappix, Äerer eegener Social Cloud!"
+msgstr ""
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
 "friends and complete your profile."
 msgstr ""
-"Ier der ufänkt en ze beontzen, muss der nach e puer Astellungen änneren, no "
-"Kollegen sichen an Ären Profil vervollstännegen."
+"Iers de ufänks en ze benotzen, muss de nach e puer Astellungen änneren, no "
+"Kollegen sichen an däin Profil vervollstännegen."
 
 msgid "Enable notification sounds"
 msgstr "D'Téin fir d'Meldungen uschalten"
 
 msgid "Share your position on the globe"
-msgstr "Deelt Äer geografesch Positioun"
+msgstr "Deel deng geografesch Positioun"
 
 msgid "Offline friends"
 msgstr "Offline Kollegen"
 
 msgid "Don't hide offline friends"
-msgstr "Vergiesst Äer offline Kollegen net"
+msgstr "Vergiess deng offline Kollegen net"
 
 msgid ""
 "Use this tool to find your friends on the server you are using right now, or "
 "add them later."
 msgstr ""
-"Benotzt dësen Tool fir Äer Kollegen op dem Server ze fannen deen der grad "
+"Benotz dësen Tool fir deng Kollegen op dem Server ze fannen deens de grad "
 "benotzt, oder fir se spéider ze adden."
 
 msgid "Good job! Now, you can share Jappix with your friends!"
@@ -1257,7 +1256,7 @@ msgid "Share Jappix on %s"
 msgstr "Deelt Jappix op %s"
 
 msgid "Follow Jappix topic on %s"
-msgstr ""
+msgstr "Jappix op  %s followen"
 
 msgid "Using Jappix, an open social platform. I am %s!"
 msgstr "Benotzen Jappix, eng oppen sozial Plattform. Ech sin %s!"
@@ -1334,12 +1333,17 @@ msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
 "music and its configuration) into multiple storage folders."
 msgstr ""
+"Jappix späichert donnéen (wéi z.B. Dateien, Chat-Archiver, deng Musek an "
+"Konfiguratiounen) a verschiddenen Uerdner."
 
 msgid ""
 "Jappix must be able to write in this folder to create its sub-directories. "
 "If not, you must set the rights of %1s to %2s or change the folder owner to "
 "%3s (depending of your configuration)."
 msgstr ""
+"Jappix muss an dësen Uerdner Schréifrechter hun fier Ënner-Uerdner unzeleen. "
+"Wann daat net de Fall as muss de d'Rechter vun %1s op %2s setzen oder den "
+"Besëtzer vum Uerdner op %3s setzen (Hängt vun denger Konfiguratioun of)."
 
 msgid "The folder is writable, you can continue!"
 msgstr "An desen Uerdner kënnt Der schreiwen, Dier kënnt weidermaachen!"
@@ -1444,6 +1448,9 @@ msgstr "HTTPS Forcéieren"
 msgid "Compression"
 msgstr "Kompriméirung"
 
+msgid "Cache assets"
+msgstr ""
+
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
 "can leave it as it is and continue if you want to use the official service "
@@ -1481,7 +1488,7 @@ msgid "BOSH host"
 msgstr "BOSH host"
 
 msgid "WebSocket host"
-msgstr ""
+msgstr "WebSocket host"
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
@@ -1783,7 +1790,7 @@ msgid "Total"
 msgstr "Total"
 
 msgid "Archives"
-msgstr ""
+msgstr "Archiver"
 
 msgid "Music"
 msgstr "Musek"
@@ -2361,73 +2368,73 @@ msgid "Content ads key"
 msgstr "Inhalts Reklammen-Schlëssel"
 
 msgid "AdSense client ID"
-msgstr ""
+msgstr "AdSense client ID"
 
 msgid "AdSense slot"
-msgstr ""
+msgstr "AdSense slot"
 
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 msgid "Mute"
-msgstr ""
+msgstr "Mute"
 
 msgid "Unmute"
-msgstr ""
+msgstr "Unmute"
 
 msgid "Is calling you"
-msgstr ""
+msgstr "Rifft dech un"
 
 msgid "Initiating call"
-msgstr ""
+msgstr "Uruff opbauen"
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "Verbannen..."
 
 msgid "Waiting..."
-msgstr ""
+msgstr "Warden..."
 
 msgid "Ringing..."
-msgstr ""
+msgstr "Schellen..."
 
 msgid "Declined the call"
-msgstr ""
+msgstr "Huet den  Uruff oofgelehnt"
 
 msgid "Call error"
-msgstr ""
+msgstr "Fehler"
 
 msgid "Ended the call"
-msgstr ""
+msgstr "Huet agehangen"
 
 msgid "Call ended"
-msgstr ""
+msgstr "Uruff beendegt"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "Uruff ofgebrach"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "Uruff ofbriechen"
 
 msgid "Is already in a call"
-msgstr ""
+msgstr "As besat"
 
 msgid "Ending call..."
-msgstr ""
+msgstr "Uruff beendegen..."
 
 msgid "Accept"
-msgstr ""
+msgstr "Unhuelen"
 
 msgid "Decline"
-msgstr ""
+msgstr "Oflehnen"
 
 msgid "Okay"
-msgstr ""
+msgstr "Ok"
 
 msgid "Retry"
-msgstr ""
+msgstr "Neien Versuch"
 
 msgid "Audio Call"
-msgstr ""
+msgstr "Uruff"
 
 msgid "Video Call"
-msgstr ""
+msgstr "Video Konferenz"

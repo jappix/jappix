@@ -4,70 +4,70 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
-# Midgard, 2013
+# Nurkamol Vakhidov <nurkamol@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
 "PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/jappix/language/"
-"nl/)\n"
+"Language-Team: Uzbek (Cyrillic) (http://www.transifex.com/projects/p/jappix/"
+"language/uz@Cyrl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: uz@cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "POT-Creation-Date: \n"
 "X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
-msgstr "default:LTR"
+msgstr "одатдаги:LTR"
 
 msgid ""
 "JavaScript is missing in your web browser, so that you will not be able to "
 "launch Jappix! Please fix this."
 msgstr ""
-"JavaScript is niet aanwezig in je browser, je kan Jappix niet gebruiken! Los "
-"dit alsjeblieft op."
+"Сизнинг браузерингизда JavaScript ўчирилган, у сиз Jappix ишламайди! "
+"Илтимос, муаммони хал этинг."
 
 msgid "Social channel, chat and more."
-msgstr "Sociaal kanaal, chat en meer."
+msgstr "Ижтимоий тармоқ, чат ва бошқалар."
 
 msgid "Create your public profile."
-msgstr "Je openbaar profiel maken."
+msgstr "Оммавий профиль очиш."
 
 msgid "A mini-chat for your website."
-msgstr "Een minichat voor je website."
+msgstr "Сизнинг сайтингиз учун мини-чат."
 
 msgid "Get Jappix, get support."
-msgstr ""
+msgstr "Jappix ва ёрдам олиш."
 
 msgid "Statistics around Jappix."
-msgstr "Statistieken in verband met Jappix."
+msgstr "Jappix статистикаси."
 
 msgid "Legal disclaimer for Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
-msgstr "Download Jappix gratis."
+msgstr "Jappix бепул юклаб олиш."
 
 msgid "Contribute to the Jappix code."
-msgstr "Draag bij aan de Jappixcode."
+msgstr "Jappix кодига ўз хиссангизни қўшинг."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Сизнинг компаниянгиз учун Jappix"
 
 msgid "Find a public Jappix node."
-msgstr "Zoek een openbare Jappix-node."
+msgstr "Оммавий Jappix тугунини қидириш."
 
 msgid "Credits"
-msgstr ""
+msgstr "Кредитлар"
 
 msgid "Association"
 msgstr ""
 
 msgid "Web agency"
-msgstr ""
+msgstr "Веб агентлик"
 
 msgid "Legal"
 msgstr ""
@@ -79,7 +79,7 @@ msgid "Terms of use and legal"
 msgstr ""
 
 msgid "Owner"
-msgstr ""
+msgstr "Хўжайин"
 
 msgid "Node owner"
 msgstr ""
@@ -94,111 +94,110 @@ msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
 "that you entered the right credentials), sorry for the inconvenience."
 msgstr ""
-"Jappix is onderbroken door een netwerk probleem, een fout of een slechte "
-"login (controleer dat je de juiste gegevens hebt ingegeven), sorry voor het "
-"ongemak."
+"Тармоқда муаммо хосил бўлгани учун Jappix хизмати тўхтади, хатолик ёки "
+"нотўғри кўрсатилган маълумотлар (илтимос фойдаланувчи исми ва парольни "
+"текширинг). Келтирилган ноқулайликлар учун узр сўраймиз."
 
 msgid "The element list on this server could not be obtained!"
-msgstr "De lijst van elementen op deze server kon niet worden opgevraagd!"
+msgstr "Ушбу сервердан элементлар рўйхатини олиб бўлмайди."
 
 msgid ""
 "Your password has been changed, now you can connect to your account with "
 "your new login data."
-msgstr "Uw paswoord is gewijzigd, U kan nu aanmelden met de nieuwe gegevens."
+msgstr ""
+"Сизнинг паролингиз ўзгарди, энди сиз аккаунтингизга янги киритилган логин "
+"маълумотлар орқали киришингиз мумкин."
 
 msgid "Your XMPP account has been removed, bye!"
-msgstr "Je XMPP-account is verwijderd, daag!"
+msgstr "Сизнинг XMPP аккаунтингиз ўчириб юборилди, хайр!"
 
 msgid "You have been logged out of your XMPP account, have a nice day!"
-msgstr "Je bent uitgelogd van je XMPP-account, prettige dag verder!"
+msgstr "Сиз XMPP аккаунтингизни тарк этдингиз, кунингиз хайрли ўтсин!"
 
 msgid "The room you tried to join doesn't seem to exist."
 msgstr ""
-"De kamer die je binnenkwam bestaat nog niet. Je moet ze eerst aanmaken!"
 
 msgid "The groupchat has been removed."
-msgstr ""
-"Het groepsgesprek is verwijderd. Nu kan iemand anders ze opnieuw aanmaken."
+msgstr "Гуруҳ чати ўчирилиб юборилди."
 
 msgid "The user that you want to reach is not present in the room."
-msgstr ""
-"De gebruiker die je probeert te bereiken, is niet aanwezig in de kamer."
+msgstr "Сизга керак бўлган фойдаланувчи хонада йўқ."
 
 msgid "Please enter the group chat address to join."
-msgstr "Geef alsjeblieft het groepschatadres in om erbij te komen."
+msgstr "Илтимос, қўшилмоқчи бўлган гурухингиз чати манзилини киритинг."
 
 msgid "Please enter your nickname to join %s."
-msgstr "Gelieve je nickname in te geven om je bij %s te voegen."
+msgstr "%s га қўшилиш учун никни киритинг."
 
 msgid "This room (%s) is protected with a password."
-msgstr "Deze kamer (%s) is beveiligd met een wachtwoord."
+msgstr "Ушбу (%s) хона пароль билан химояланган."
 
 msgid "Your browser is out of date!"
-msgstr "Je browser is verouderd!"
+msgstr "Сизнинг браузерингиз эскирган. Илтимос янгиланг!"
 
 msgid "Last %s version is better!"
-msgstr "De laatste versie van %s is beter!"
+msgstr "Янги %s версия жуда хам зўр!"
 
 msgid "Login"
-msgstr "Log in"
+msgstr "Кириш"
 
 msgid "Register"
-msgstr "Registreer"
+msgstr "Рўйхатдан ўтиш"
 
 msgid "Here we go!"
-msgstr "Hier gaan we dan!"
+msgstr "Олға!"
 
 msgid "Server"
-msgstr "Server"
+msgstr "Сервер"
 
 msgid "Password"
-msgstr "Paswoord"
+msgstr "Пароль"
 
 msgid "Remember me"
-msgstr "Herinner mij"
+msgstr "Ёдда сақлаш"
 
 msgid "This tool has been disabled!"
-msgstr ""
+msgstr "Бу асбоб ўчирилган!"
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
-msgstr "Door een netwerkfout is de verbinding verbroken. Wat wil je doen?"
+msgstr ""
 
 msgid "Reconnect"
-msgstr "Opnieuw verbinden"
+msgstr "Қайта боғланиш"
 
 msgid "Messages"
-msgstr "Berichten"
+msgstr "Хабарлар"
 
 msgid "Profile"
-msgstr "Profiel"
+msgstr "Профиль"
 
 msgid "Options"
-msgstr "Opties"
+msgstr ""
 
 msgid "Disconnect"
-msgstr "Verbreek de verbinding"
+msgstr "Узиш"
 
 msgid "Filter"
-msgstr "Filteren"
+msgstr "Фильтр"
 
 msgid "Add a friend"
-msgstr "Een vriend toevoegen"
+msgstr "Дўст қўшиш"
 
 msgid "Your groupchats"
-msgstr "Jouw groepschats"
+msgstr ""
 
 msgid "Manage your favorite groupchats"
-msgstr "Beheer je favoriete groepsgesprekken"
+msgstr ""
 
 msgid "More stuff"
-msgstr "Meer"
+msgstr ""
 
 msgid "Show all friends"
-msgstr "Toon alle vrienden"
+msgstr "Барча дўстларни кўрсатиш"
 
 msgid "Only show connected friends"
-msgstr "Toon alleen vrienden die verbonden zijn"
+msgstr "Фақат боғланган дўстларни кўрсатиш"
 
 msgid "Groupchat presence messages"
 msgstr ""
@@ -207,199 +206,199 @@ msgid "No chat images auto-load"
 msgstr ""
 
 msgid "Message archives"
-msgstr "Berichten archief"
+msgstr "Хабар архивлари"
 
 msgid "Date"
-msgstr "Datum"
+msgstr "Сана"
 
 msgid "A short message?"
-msgstr "Een kort bericht?"
+msgstr "Қисқа хабар?"
 
 msgid "How are you?"
-msgstr "Hoe gaat het ermee?"
+msgstr "Қалайсиз?"
 
 msgid "What are you doing?"
-msgstr "Wat ben je aan het doen?"
+msgstr "Нималар билан бандсиз?"
 
 msgid "Join a chat"
-msgstr "Een chat binnengaan"
+msgstr "Чатга қўшилиш"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Статус"
 
 msgid "Available"
-msgstr "Beschikbaar"
+msgstr "Тармоқда"
 
 msgid "Talkative"
-msgstr "Spraakzaam"
+msgstr "Сергап"
 
 msgid "Away"
-msgstr "Weg"
+msgstr "Кетган"
 
 msgid "Not available"
-msgstr "Niet beschikbaar"
+msgstr "Мавжуд эмас"
 
 msgid "Busy"
-msgstr "Bezig"
+msgstr "Банд"
 
 msgid "Offline"
-msgstr ""
+msgstr "Тармоқда эмас"
 
 msgid "Mood"
-msgstr "Gemoedstoestand"
+msgstr "Кайфият"
 
 msgid "None"
-msgstr "Geen"
+msgstr "Хеч нарса"
 
 msgid "Crazy"
-msgstr "Gek"
+msgstr "Ақлдан озган"
 
 msgid "Excited"
-msgstr "Opgewonden"
+msgstr "Тасирчан"
 
 msgid "Playful"
-msgstr "Speels"
+msgstr "Ўйноқи"
 
 msgid "Happy"
-msgstr "Vrolijk"
+msgstr "Хурсанд"
 
 msgid "Shocked"
-msgstr "Geschokt"
+msgstr "Шокда"
 
 msgid "Hot"
-msgstr "Vurig"
+msgstr "Қайноқ"
 
 msgid "Sad"
-msgstr "Triest"
+msgstr "Хафа"
 
 msgid "Amorous"
-msgstr "Verliefd"
+msgstr " Севикли"
 
 msgid "Confident"
-msgstr "Zelfverzekerd"
+msgstr "Ишончли"
 
 msgid "Activity"
-msgstr "Activiteit"
+msgstr "Фаолият"
 
 msgid "Chores"
-msgstr "Klusjes"
+msgstr ""
 
 msgid "Drinking"
-msgstr "Drinken"
+msgstr "Ичимлик"
 
 msgid "Eating"
-msgstr "Eten"
+msgstr "Паловхўрлик"
 
 msgid "Exercising"
-msgstr "Oefenen"
+msgstr ""
 
 msgid "Grooming"
-msgstr "Persoonlijke hygiëne aan het verzorgen"
+msgstr ""
 
 msgid "Appointment"
-msgstr "Afspraak"
+msgstr ""
 
 msgid "Inactive"
-msgstr "Inactief"
+msgstr ""
 
 msgid "Relaxing"
-msgstr "Uitrusten"
+msgstr ""
 
 msgid "Talking"
-msgstr "Praten"
+msgstr ""
 
 msgid "Traveling"
-msgstr "Reizen"
+msgstr ""
 
 msgid "Working"
-msgstr "Werken"
+msgstr ""
 
 msgid "View profile"
-msgstr "Profiel bekijken"
+msgstr "Профильни кўриш"
 
 msgid "This is a repeat from %s"
-msgstr "Dit is een herhaling van %s"
+msgstr ""
 
 msgid "Repeat this notice"
-msgstr "Herhaal deze melding"
+msgstr "Ушбу огоҳлантиришни қайтариш"
 
 msgid "Remove this notice"
-msgstr "Verwijder deze melding"
+msgstr "Ушбу огоҳлантиришни ўчириш"
 
 msgid "Your profile"
-msgstr "Jouw profiel"
+msgstr "Сизнинг профилингиз"
 
 msgid "Identity"
-msgstr "Identiteit"
+msgstr "Идентификатор"
 
 msgid "Profile image"
-msgstr "Profielfoto"
+msgstr "Профиль расми"
 
 msgid "Others"
-msgstr ""
+msgstr "Бошқалар"
 
 msgid "Other"
-msgstr ""
+msgstr "Бошқа"
 
 msgid "Personal"
-msgstr "Persoonlijk"
+msgstr "Шахсий"
 
 msgid "Complete name"
-msgstr "Volledige naam"
+msgstr "Тўлиқ исм"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Ник исм"
 
 msgid "First name"
-msgstr "Voornaam"
+msgstr "Исм"
 
 msgid "Last name"
-msgstr "Achternaam"
+msgstr "Фамилия"
 
 msgid "Date of birth"
-msgstr "Geboortedatum"
+msgstr "Туғилган сана"
 
 msgid "Contact"
-msgstr "Contact"
+msgstr "Контакт"
 
 msgid "E-mail"
 msgstr "E-mail"
 
 msgid "Phone"
-msgstr "Telefoon"
+msgstr "Телефон"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Веб-сайт"
 
 msgid "Current"
-msgstr ""
+msgstr "Жорий"
 
 msgid "Delete"
-msgstr "Verwijder"
+msgstr "Ўчириш"
 
 msgid "What a pity! You have no profile image defined in your identity card!"
-msgstr "Jammer, er is geen profielfoto ingesteld in je visitekaartje!"
+msgstr ""
 
 msgid "Address"
-msgstr "Adres"
+msgstr "Манзил"
 
 msgid "Street"
-msgstr "Straat"
+msgstr "Кўча"
 
 msgid "City"
-msgstr "Stad"
+msgstr "Шахар"
 
 msgid "Postal code"
-msgstr "Postcode"
+msgstr "Почта коди"
 
 msgid "Country"
-msgstr "Land"
+msgstr "Мамлакат"
 
 msgid "Biography"
-msgstr "Biografie"
+msgstr "Биография"
 
 msgid "Important notice"
-msgstr "Belangrijke mededeling"
+msgstr "Мухим ёзув"
 
 msgid ""
 "Be careful with the information you store into your profile, because it "
@@ -410,231 +409,222 @@ msgid ""
 "Not everything is private on XMPP; this is one of those things, your public "
 "profile (vCard)."
 msgstr ""
-"Niet alles is privé in XMPP; dit is zoiets, je openbaar profiel (vCard)."
 
 msgid ""
 "It is strongly recommended to upload a profile image (%s maximum), like a "
 "picture of yourself, because that makes you easily recognizable by your "
 "friends."
 msgstr ""
-"Het is ten zeerste aangeraden een profielfoto te uploaden (maximaal %s), "
-"zoals een foto van jezelf, want dat maakt je gemakkelijk herkenbaar voor je "
-"vrienden."
 
 msgid "Save"
-msgstr "Opslaan"
+msgstr "Сақлаш"
 
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr "Бекор"
 
 msgid "Edit options"
 msgstr ""
 
 msgid "Channel"
-msgstr "Kanaal"
+msgstr "Канал"
 
 msgid "Commands"
-msgstr "Commando's"
+msgstr "Буйруқлар"
 
 msgid "Sounds"
-msgstr "Geluiden"
+msgstr "Овозлар"
 
 msgid "Privacy"
-msgstr "Privacy"
+msgstr ""
 
 msgid "Message archiving"
-msgstr "Bericht archivering"
+msgstr "Хабарни архивлаш"
 
 msgid "Store an history of your chats"
 msgstr ""
 
 msgid "Geolocation"
-msgstr "Geolocatie"
+msgstr "Геожойлашув"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Ўчирилган"
 
 msgid "Store all chats"
-msgstr ""
+msgstr "Хамма чатларни сақлаш"
 
 msgid "Store friend chats"
-msgstr ""
+msgstr "Дўстлар чатини сақлаш"
 
 msgid "Remove all archives"
-msgstr ""
+msgstr "Хамма тарихларни ўчириш"
 
 msgid "Empty"
-msgstr "Leeg"
+msgstr "Бўш"
 
 msgid "Empty channel"
-msgstr "Leeg kanaal"
+msgstr "Бўш канал"
 
 msgid "Persistent"
-msgstr "Blijvend"
+msgstr "Қатъий"
 
 msgid "Maximum notices"
-msgstr "Maximale meldingen"
+msgstr "Максимум огоҳлантирувлар"
 
 msgid "Account"
-msgstr "Account"
+msgstr "Аккаунт"
 
 msgid "Change password"
-msgstr "Wachtwoord veranderen"
+msgstr "Парольни ўзгартириш"
 
 msgid "Delete account"
-msgstr "Account verwijderen"
+msgstr "Аккаунтни ўчириш"
 
 msgid "Old"
-msgstr "Oud"
+msgstr "Эски"
 
 msgid "New (2 times)"
-msgstr "Nieuw (2 keer)"
+msgstr "Янги (2 марта)"
 
 msgid "Suggested chatrooms"
-msgstr ""
+msgstr " Таклиф қилинган чат хоналар"
 
 msgid "Skip"
-msgstr ""
+msgstr "Ўтказиб юбориш"
 
 msgid "Continue"
-msgstr "Doorgaan"
+msgstr "Давом этиш"
 
 msgid "To"
-msgstr "Naar"
+msgstr "Га"
 
 msgid "Close"
-msgstr "Sluiten"
+msgstr "Ёпиш"
 
 msgid "unknown"
-msgstr "onbekend"
+msgstr "ноаниқ"
 
 msgid "Unavailable"
-msgstr "Niet beschikbaar"
+msgstr "Мавжуд эмас"
 
 msgid "is now"
-msgstr "is nu"
+msgstr "хозир"
 
 msgid "Please wait while your avatar is uploaded..."
-msgstr "Gelieve te wachten terwijl je avatar wordt geüpload..."
+msgstr "Илтимос, аватарингиз юкланилишини кутинг..."
 
 msgid "Here it is! A new beautiful profile image!"
-msgstr "Hier is-ie! Een mooie, nieuwe profielfoto!"
+msgstr "Мана! Профильнинг янги расми!"
 
 msgid "The image file is not supported or has a bad size."
-msgstr ""
-"Dit afbeeldingsbestand wordt niet ondersteund of heeft een slecht formaat."
+msgstr "Ушбу расм қўлланилмайди ёки хажми ёмон."
 
 msgid "Reply"
-msgstr "Antwoord"
+msgstr "Жавоб"
 
 msgid "Error"
-msgstr "Fout"
+msgstr "Хатолик"
 
 msgid "Click here to solve the error"
-msgstr "Klik hier om het probleem op te lossen"
+msgstr "Хатоликни бартараф этиш учун бу ерга босинг"
 
 msgid "You"
-msgstr "Jij"
+msgstr "Сиз"
 
 msgid "Remove"
-msgstr "Verwijder"
+msgstr "Ўчириш"
 
 msgid "Rename"
-msgstr "Hernoem"
+msgstr "Қайта номлаш"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr "Hallo, ik ben %s, ik zou je willen toevoegen als vriend."
+msgstr ""
 
 msgid "Smiley insertion"
-msgstr "Emoticon invoegen"
+msgstr "Кулгилар қўйиш"
 
 msgid "Change style"
-msgstr "Stijl veranderen"
+msgstr "Стилни ўзгартириш"
 
 msgid "Text in bold"
-msgstr "Tekst vetgedrukt"
+msgstr "Семиз матн"
 
 msgid "Text in italic"
-msgstr "Tekst schuin"
+msgstr "Оғган матн"
 
 msgid "Underlined text"
-msgstr "Tekst onderstreept"
+msgstr "Остки чизиқли матн"
 
 msgid "Send a file"
-msgstr "Bestand verzenden"
+msgstr "Файл жўнатиш"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
 msgstr ""
-"Eens het is geüpload, zal je vriend worden gevraagd om het bestand dat je "
-"verzend te downloaden."
 
 msgid "Save chat"
-msgstr "Chat opslaan"
+msgstr "Чатни сақлаш"
 
 msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
-"Klik op de volgende link om de chatlog aan te vragen, en wacht. Klik dan "
-"opnieuw om het bestand te krijgen."
 
 msgid "This chat is empty!"
-msgstr "Deze chat is leeg!"
+msgstr "Бу чат бўш!"
 
 msgid "Generate file!"
-msgstr "Genereer bestand!"
+msgstr "Файл яратиш!"
 
 msgid "Download file!"
-msgstr "Download bestand!"
+msgstr "Файлни юклаш!"
 
 msgid "Clean current chat"
-msgstr "Huidige chat wissen"
+msgstr "Жорий чатни тозалаш"
 
 msgid "Show user profile"
-msgstr "Toon gebruikersprofiel"
+msgstr "Фойдаланувчи профилини кўрсатиш"
 
 msgid "Add this contact to your friends"
-msgstr "Voeg dit contact toe als vriend"
+msgstr "Ушбу контактни дўстларнингиз қаторига қўшиш"
 
 msgid "Add this groupchat to your favorites"
-msgstr "Voeg deze groupschat toe aan je favorieten"
+msgstr "Ушбу гуруҳ чатни севимлиларга қўшиш"
 
 msgid "All tabs"
-msgstr "Alle tabs"
+msgstr "Барча ойналар"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "Гуруҳ чатга қўшилиш"
 
 msgid "Close this tab"
-msgstr "Sluit deze tab"
+msgstr "Бу ойнани ёпиш"
 
 msgid "no subject defined for this room."
-msgstr "Deze kamer heeft geen onderwerp"
+msgstr "ушбу хона учун мавзу аниқланмади."
 
 msgid "Administration panel for this room"
-msgstr "Beheer voor deze kamer"
+msgstr "Ушбу хона учун администратор панели"
 
 msgid "Moderators"
-msgstr ""
+msgstr "Модераторлар"
 
 msgid "Participants"
-msgstr "Deelnemers"
+msgstr ""
 
 msgid "Visitors"
-msgstr "Bezoekers"
+msgstr "Мехмонлар"
 
 msgid "Manage favorite rooms"
-msgstr ""
+msgstr " Севимли хоналарни бошқариш"
 
 msgid "Change favorites"
-msgstr ""
+msgstr "Севимлиларни ўзгартириш"
 
 msgid "Search a room"
-msgstr "Zoek een kamer"
+msgstr "Хона қидириш"
 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Севимлини танлаш"
 
 msgid "Getting the name..."
 msgstr ""
@@ -643,22 +633,22 @@ msgid "Gateway"
 msgstr ""
 
 msgid "Name"
-msgstr "Naam"
+msgstr "Номи"
 
 msgid "Room"
-msgstr "Kamer"
+msgstr "Хона"
 
 msgid "Add"
-msgstr "Voeg toe"
+msgstr "Қўшиш"
 
 msgid "Edit"
-msgstr "Wijzig"
+msgstr "Ўзгартириш"
 
 msgid "Search a room on"
 msgstr ""
 
 msgid "No room found on this server."
-msgstr "Geen kamer gevonden op deze server"
+msgstr "Бу серверда хона топилмади."
 
 msgid "Service discovery"
 msgstr ""
@@ -670,25 +660,25 @@ msgid "Sorry, but the entity didn't return any result!"
 msgstr ""
 
 msgid "Accounts"
-msgstr ""
+msgstr "Аккаунтлар"
 
 msgid "Authentications"
-msgstr ""
+msgstr "Идентификациялар"
 
 msgid "Automation"
-msgstr ""
+msgstr "Автоматлаштириш"
 
 msgid "Clients"
-msgstr ""
+msgstr "Мижозлар"
 
 msgid "Collaboration"
-msgstr "Samenwerking"
+msgstr "Хамкорлик"
 
 msgid "Components"
-msgstr ""
+msgstr "Компонентлар"
 
 msgid "Rooms"
-msgstr "Kamers"
+msgstr "Хоналар"
 
 msgid "Directories"
 msgstr ""
@@ -697,10 +687,10 @@ msgid "Gateways"
 msgstr ""
 
 msgid "News"
-msgstr "Nieuws"
+msgstr "Янгиликлар"
 
 msgid "Hierarchy"
-msgstr "Hiërarchie"
+msgstr "Дарахт"
 
 msgid "Proxies"
 msgstr ""
@@ -709,61 +699,61 @@ msgid "Publication/Subscription"
 msgstr ""
 
 msgid "Storage"
-msgstr "Opslag"
+msgstr "Хотира"
 
 msgid "Service offline or broken"
 msgstr ""
 
 msgid "Your inbox"
-msgstr ""
+msgstr "Сизнинг кириш қутингиз"
 
 msgid "Available actions"
-msgstr "Beschikabre acties"
+msgstr "Мавжуд жараёнлар"
 
 msgid "Clean"
-msgstr ""
+msgstr "Тозалаш"
 
 msgid "New"
-msgstr "Nieuw"
+msgstr "Янги"
 
 msgid "Received"
-msgstr "Ontvangen"
+msgstr "Қабул қилинди"
 
 msgid "Subject"
-msgstr "Onderwerp"
+msgstr "Мавзу"
 
 msgid "Content"
-msgstr "Inhoud"
+msgstr "Мазмун"
 
 msgid "Send message"
-msgstr ""
+msgstr "Хабар жўнатиш"
 
 msgid "Your inbox is empty."
 msgstr ""
 
 msgid "MUC administration"
-msgstr "MUC beheer"
+msgstr ""
 
 msgid "You administrate this room"
 msgstr ""
 
 msgid "Enter new subject"
-msgstr ""
+msgstr "Янги мавзу киритинг"
 
 msgid "Configuration"
-msgstr "Configuratie"
+msgstr ""
 
 msgid "Authorizations"
-msgstr ""
+msgstr "Авторизациялар"
 
 msgid "Member list"
-msgstr ""
+msgstr "Аъзолар рўйхати"
 
 msgid "Owner list"
-msgstr ""
+msgstr "Хўжайинлар рўйхати"
 
 msgid "Administrator list"
-msgstr ""
+msgstr "Администраторлар рўйхати"
 
 msgid "Outcast list"
 msgstr ""
@@ -772,22 +762,22 @@ msgid "Add an input"
 msgstr ""
 
 msgid "Destroy this MUC"
-msgstr "Verwijder deze MUC"
+msgstr "Ушбу MUC ни йўқ қилиш"
 
 msgid "Yes, let's do it!"
-msgstr "Ja, laten we het doen!"
+msgstr ""
 
 msgid "Your friend is paying attention to the conversation."
 msgstr ""
 
 msgid "Your friend is writing a message..."
-msgstr "Je vriend schrijft een bericht..."
+msgstr ""
 
 msgid "Your friend stopped writing a message."
-msgstr "Je vriend is gestopt met het schrijven van een bericht."
+msgstr ""
 
 msgid "Your friend is doing something else."
-msgstr "Je vriend is wat anders aan het doen."
+msgstr ""
 
 msgid "Your friend closed the chat."
 msgstr ""
@@ -796,34 +786,34 @@ msgid "Requesting this service..."
 msgstr ""
 
 msgid "Loading"
-msgstr "Laden"
+msgstr "Юкланмоқда"
 
 msgid "changed his/her nickname to %s"
-msgstr ""
+msgstr "ник исмини %s га ўзгартирди"
 
 msgid "joined the chat room"
-msgstr ""
+msgstr "чат хонасига қўшилди"
 
 msgid "left the chat room"
-msgstr ""
+msgstr "чат хонасини тарк этди"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s тарк этди"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s қўшилди"
 
 msgid "no status"
-msgstr ""
+msgstr "статус йўқ"
 
 msgid "has been kicked"
-msgstr ""
+msgstr "чиқариб юборилди"
 
 msgid "has been banned"
 msgstr ""
 
 msgid "no reason"
-msgstr ""
+msgstr "сабаб йўқ"
 
 msgid "Communicate with the entire world!"
 msgstr ""
@@ -839,10 +829,10 @@ msgid ""
 msgstr ""
 
 msgid "Hi there!"
-msgstr "Hallo!"
+msgstr "Салом хаммага!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr ""
+msgstr "%1s, “%2s” га Хуш келибсиз."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -858,28 +848,28 @@ msgid ""
 msgstr ""
 
 msgid "Previous"
-msgstr "Vorige"
+msgstr "Олдинги"
 
 msgid "General"
-msgstr "Algemeen"
+msgstr ""
 
 msgid "Advanced"
-msgstr "Geavanceerd"
+msgstr ""
 
 msgid "Resource"
 msgstr ""
 
 msgid "Priority"
-msgstr "Prioriteit"
+msgstr "Приоритет"
 
 msgid "Low"
-msgstr "Laag"
+msgstr "Паст"
 
 msgid "Medium"
-msgstr "Middelmatig"
+msgstr "Ўрта"
 
 msgid "High"
-msgstr "Hoog"
+msgstr "Юқори"
 
 msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
@@ -887,10 +877,10 @@ msgid ""
 msgstr ""
 
 msgid "login page"
-msgstr "Login pagina"
+msgstr "кириш сахифаси"
 
 msgid "Share this link with your friends:"
-msgstr "Deel deze link met je vrienden:"
+msgstr ""
 
 msgid ""
 "Register a new XMPP account to join your friends on your own social cloud. "
@@ -898,82 +888,82 @@ msgid ""
 msgstr ""
 
 msgid "Required"
-msgstr "Verplicht"
+msgstr ""
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr "Je bent geregistreerd, hier is je XMPP adres:"
+msgstr ""
 
 msgid "Manager"
-msgstr "Manager"
+msgstr ""
 
 msgid "Encrypted"
-msgstr "Versleuteld"
+msgstr ""
 
 msgid "Unencrypted"
 msgstr ""
 
 msgid "Where are you?"
-msgstr "Waar ben je?"
+msgstr ""
 
 msgid "What's up with you?"
-msgstr "Hoe gaat het met je?"
+msgstr ""
 
 msgid "Type something you want to share with your friends..."
 msgstr ""
 
 msgid "Fetching the social channel..."
-msgstr "Binnenhalen van het kanaal..."
+msgstr ""
 
 msgid "You are synchronized with your network."
-msgstr "Je bent gesynchroniseerd met het netwerk"
+msgstr ""
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr "Kan niets verzenden: je kunt alleen berichten ontvangen!"
+msgstr ""
 
 msgid "Media viewer"
 msgstr ""
 
 msgid "Browse"
-msgstr "Blader"
+msgstr ""
 
 msgid "Command"
-msgstr "Commando"
+msgstr ""
 
 msgid "Subscribe"
-msgstr "Inschrijven"
+msgstr ""
 
 msgid "Join"
-msgstr "Aanmelden"
+msgstr "Қўшилиш"
 
 msgid "Automatic"
-msgstr "Automatisch"
+msgstr ""
 
 msgid "Search"
-msgstr "Zoek"
+msgstr "Қидириш"
 
 msgid "No result!"
-msgstr "Geen resultaat!"
+msgstr "Натижалар йўқ"
 
 msgid "No notifications."
-msgstr "Geen meldingen"
+msgstr ""
 
 msgid "would like to add you as a friend."
-msgstr "zou je graag als vriend toevoegen."
+msgstr ""
 
 msgid "would like you to join this chatroom:"
-msgstr "wil naar je chatroom komen."
+msgstr ""
 
 msgid "Do you accept?"
-msgstr "Ben je het ermee eens?"
+msgstr ""
 
 msgid "Yes"
-msgstr "Ja"
+msgstr ""
 
 msgid "No"
-msgstr "Nee"
+msgstr ""
 
 msgid "would like to get authorization."
-msgstr "wil geauthoriseerd worden."
+msgstr ""
 
 msgid "would like to send you a file: “%s”."
 msgstr ""
@@ -1030,82 +1020,82 @@ msgid ""
 msgstr ""
 
 msgid "Open"
-msgstr ""
+msgstr "Очиш"
 
 msgid "Show"
-msgstr ""
+msgstr "Кўрсатиш"
 
 msgid "Hide"
-msgstr ""
+msgstr "Яшириш"
 
 msgid "Submit"
-msgstr "Verzend"
+msgstr "Тасдиқлаш"
 
 msgid "Client"
-msgstr "Client"
+msgstr "Мижоз"
 
 msgid "System"
-msgstr "Systeem"
+msgstr "Тизим"
 
 msgid "Local time"
-msgstr "Lokale tijd"
+msgstr "Махаллий вақт"
 
 msgid "Comments"
-msgstr "Commentaar"
+msgstr ""
 
 msgid "User profile"
-msgstr "Gebruikers profiel"
+msgstr ""
 
 msgid "See his/her position on the globe"
-msgstr "Bekijk zijn/haar positie op de wereld"
+msgstr ""
 
 msgid "Confirm"
-msgstr "Bevestig"
+msgstr ""
 
 msgid "anonymous mode"
-msgstr "anonieme modus"
+msgstr ""
 
 msgid "Groups"
-msgstr "Groepen"
+msgstr ""
 
 msgid "Unclassified"
-msgstr "Ongeklassificeerd"
+msgstr ""
 
 msgid "Authorize"
-msgstr "Autoriseer"
+msgstr ""
 
 msgid "Ask for authorization"
-msgstr "Vraag om een authorisatie"
+msgstr ""
 
 msgid "Unblock"
 msgstr ""
 
 msgid "Prohibit"
-msgstr "Toegestaan"
+msgstr ""
 
 msgid "Block"
-msgstr "Blokkeren"
+msgstr ""
 
 msgid "Chat"
-msgstr "Gesprek"
+msgstr ""
 
 msgid "Groupchat"
-msgstr "Groepsgesprek"
+msgstr ""
 
 msgid "Jappix Mobile"
-msgstr "Jappix Mobiel"
+msgstr "Jappix Mobilex"
 
 msgid "Desktop"
-msgstr "Desktop"
+msgstr ""
 
 msgid "Mobile"
-msgstr "Mobiel"
+msgstr ""
 
 msgid "Please wait..."
-msgstr "Even geduld aub ..."
+msgstr ""
 
 msgid "Please enable JavaScript"
-msgstr "Activeer Javascript"
+msgstr ""
 
 msgid "Show comments"
 msgstr ""
@@ -1123,19 +1113,19 @@ msgid "Type your comment here..."
 msgstr ""
 
 msgid "Your channel"
-msgstr "Jouw kanaal"
+msgstr "Сизнинг каналингиз"
 
 msgid "Channel of"
-msgstr "Kanaal van"
+msgstr ""
 
 msgid "More notices..."
-msgstr "Meer mededelingen..."
+msgstr ""
 
 msgid "Attach a file"
-msgstr "Toevoegen van bestand"
+msgstr "Файл қўйиш"
 
 msgid "Send"
-msgstr "Verzenden"
+msgstr "Жўнатиш"
 
 msgid "Unattach the file"
 msgstr ""
@@ -1155,37 +1145,37 @@ msgid "Service unavailable"
 msgstr ""
 
 msgid "Internal server error, try later"
-msgstr "Interne server fout, probeer het later"
+msgstr "Серверда ички хатолик, кейинроқ харакат қилинг"
 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Сизнинг ёзувли формангиз жўнатилди."
 
 msgid "Application"
-msgstr "Applicatie"
+msgstr "Илова"
 
 msgid "Media integration"
-msgstr ""
+msgstr "Медиа бириктириш"
 
 msgid "Keep local chat archives"
 msgstr ""
 
 msgid "XMPP links"
-msgstr "XMPP links"
+msgstr "XMPP ёрлиқлар"
 
 msgid "Open XMPP links with Jappix"
-msgstr "Open XMPP links met Jappix"
+msgstr "XMPP ёрлиқларини Jappix билан очиш"
 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "мавзу ушбу кўринишга ўзгарди:"
 
 msgid "Welcome!"
-msgstr "Welkom!"
+msgstr "Хуш келибсиз!"
 
 msgid "Friends"
-msgstr "Vrienden"
+msgstr "Дўстлар"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr ""
+msgstr "Сизнинг ижтимоий булутингиз, Jappix га хуш келибсиз!"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1193,13 +1183,13 @@ msgid ""
 msgstr ""
 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "Огоҳлантирув товушларини ёқиш"
 
 msgid "Share your position on the globe"
 msgstr ""
 
 msgid "Offline friends"
-msgstr ""
+msgstr "Тармоқда бўлмаган дўстлар"
 
 msgid "Don't hide offline friends"
 msgstr ""
@@ -1227,25 +1217,25 @@ msgid "Using Jappix, an open social platform. I am %s!"
 msgstr ""
 
 msgid "Unknown name"
-msgstr "Onbekende naam"
+msgstr "Ноаниқ ном"
 
 msgid "Unknown country"
-msgstr "Onbekend land"
+msgstr "Ноаниқ мамлакат"
 
 msgid "Click to enable"
-msgstr ""
+msgstr "Ёқиш учун босинг"
 
 msgid "Click to disable"
-msgstr ""
+msgstr "Ўчириш учун босинг"
 
 msgid "Installation"
-msgstr ""
+msgstr "Ўрнатиш"
 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Jappix ни ўрнатиш"
 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Jappix ўрнатишга хуш келибсиз!"
 
 msgid ""
 "This tool will help you installing Jappix, the first full-featured XMPP-"
@@ -1253,25 +1243,25 @@ msgid ""
 msgstr ""
 
 msgid "Installation Steps:"
-msgstr ""
+msgstr "Ўрнатилиш кетма-кетлиги"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Хуш келибсиз"
 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Хотирани созлаш"
 
 msgid "Administrator account"
-msgstr ""
+msgstr "Администратор аккаунти"
 
 msgid "Main configuration"
-msgstr ""
+msgstr "Асосий созланишлар"
 
 msgid "Hosts configuration"
-msgstr ""
+msgstr "Хостларнинг созланишлари"
 
 msgid "Services installation"
-msgstr ""
+msgstr "Хизматнинг ўрнатилиши"
 
 msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
@@ -1331,37 +1321,37 @@ msgid ""
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "Фойдаланувчи"
 
 msgid "Service"
-msgstr ""
+msgstr "Хизмат"
 
 msgid "Service name"
-msgstr ""
+msgstr "Хизмат номи"
 
 msgid "Service description"
-msgstr ""
+msgstr "Хизмат хақида қисқа"
 
 msgid "Owner name"
-msgstr ""
+msgstr "Хўжайин исми"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Веб сайт хўжайини"
 
 msgid "Connection"
-msgstr ""
+msgstr "Боғланиш"
 
 msgid "Lock the host"
-msgstr ""
+msgstr "Хостни қулфлаш"
 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Ноаниқ режим"
 
 msgid "HTTP authentication"
-msgstr ""
+msgstr "HTTP аутентификация"
 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Рўйхатдан ўтиш рухсат этилган"
 
 msgid "Use the built-in BOSH proxy"
 msgstr ""
@@ -1403,25 +1393,25 @@ msgid ""
 msgstr ""
 
 msgid "Main host"
-msgstr ""
+msgstr "Асосий хост"
 
 msgid "Groupchat host"
-msgstr ""
+msgstr "Гуруҳ чат хости"
 
 msgid "Pubsub host"
-msgstr ""
+msgstr "Pubsub хост"
 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Ноаниқ хост"
 
 msgid "Directory host"
 msgstr ""
 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH хост"
 
 msgid "WebSocket host"
-msgstr ""
+msgstr "WebSocket хост"
 
 msgid ""
 "You can install some extra softwares on your server, to extend your Jappix "
@@ -1442,23 +1432,23 @@ msgid ""
 msgstr ""
 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "Jappix дан фойдаланаётганингиз учун рахмат!"
 
 msgid "Next"
-msgstr ""
+msgstr "Кейинги"
 
 msgid "Finish"
-msgstr ""
+msgstr "Финиш"
 
 msgid "Check again"
-msgstr ""
+msgstr "Яна текшириш"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
 msgstr ""
 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s сизнинг тизимингизга ўрнатилди."
 
 msgid "%1s is not installed on your system, you should install %2s."
 msgstr ""
@@ -1472,40 +1462,40 @@ msgid ""
 msgstr ""
 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix бошқарувчи"
 
 msgid "Manager access"
 msgstr ""
 
 msgid "Statistics"
-msgstr ""
+msgstr "Статистикалар"
 
 msgid "Hosts"
-msgstr ""
+msgstr "Хостлар"
 
 msgid "Design"
-msgstr ""
+msgstr "Дизайн"
 
 msgid "Repeat"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Барча"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтал"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикал"
 
 msgid "Center"
-msgstr ""
+msgstr "Марказ"
 
 msgid "Left"
-msgstr ""
+msgstr "Чап"
 
 msgid "Right"
-msgstr ""
+msgstr "Ўнг"
 
 msgid "Top"
 msgstr ""
@@ -1517,10 +1507,10 @@ msgid "Adapt"
 msgstr ""
 
 msgid "Color"
-msgstr ""
+msgstr "Ранг"
 
 msgid "Users"
-msgstr ""
+msgstr "Фойдаланувчилар"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
@@ -1581,10 +1571,10 @@ msgid "Your image was added to the list!"
 msgstr ""
 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Ўзгаришлар сақланди!"
 
 msgid "Logo"
-msgstr ""
+msgstr "Логотип"
 
 msgid ""
 "You can set your own service logo to replace the default one. Take care of "
@@ -1600,10 +1590,10 @@ msgid ""
 msgstr ""
 
 msgid "Remove this logo"
-msgstr ""
+msgstr "Бу логотипни ўчириш"
 
 msgid "View this logo"
-msgstr ""
+msgstr "Бу логотипни кўриш"
 
 msgid ""
 "You can define more than one administrator for this Jappix node. You can "
@@ -1619,85 +1609,85 @@ msgid "Access statistics"
 msgstr ""
 
 msgid "Share statistics"
-msgstr ""
+msgstr "Статистикаларни юбориш"
 
 msgid "Other statistics"
-msgstr ""
+msgstr "Бошқа статистикалар"
 
 msgid "January"
-msgstr ""
+msgstr "Январь"
 
 msgid "February"
-msgstr ""
+msgstr "Февраль"
 
 msgid "March"
-msgstr ""
+msgstr "Март"
 
 msgid "April"
-msgstr ""
+msgstr "Апрель"
 
 msgid "May"
-msgstr ""
+msgstr "Май"
 
 msgid "June"
-msgstr ""
+msgstr "Июнь"
 
 msgid "July"
-msgstr ""
+msgstr "Июль"
 
 msgid "August"
-msgstr ""
+msgstr "Август"
 
 msgid "September"
-msgstr ""
+msgstr "Сентябрь"
 
 msgid "October"
-msgstr ""
+msgstr "Октябрь"
 
 msgid "November"
-msgstr ""
+msgstr "Ноябрь"
 
 msgid "December"
-msgstr ""
+msgstr "Декабрь"
 
 msgid "Monday"
-msgstr ""
+msgstr "Душанба"
 
 msgid "Tuesday"
-msgstr ""
+msgstr "Сешанба"
 
 msgid "Wednesday"
-msgstr ""
+msgstr "Чоршанба"
 
 msgid "Thursday"
-msgstr ""
+msgstr "Пайшанба"
 
 msgid "Friday"
-msgstr ""
+msgstr "Жума"
 
 msgid "Saturday"
-msgstr ""
+msgstr "Шанба"
 
 msgid "Sunday"
-msgstr ""
+msgstr "Якшанба"
 
 msgid "Total"
-msgstr ""
+msgstr "Умумий"
 
 msgid "Archives"
-msgstr ""
+msgstr "Архивлар"
 
 msgid "Music"
-msgstr ""
+msgstr "Мусиқа"
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Орқа фонлар"
 
 msgid "Share"
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Орқа фон"
 
 msgid "Notice"
 msgstr ""
@@ -1714,16 +1704,16 @@ msgid ""
 msgstr ""
 
 msgid "Use default background"
-msgstr ""
+msgstr "Одатдаги орқа фонни танлаш"
 
 msgid "Use your own image"
-msgstr ""
+msgstr "Шахсий расмингизни қўллаш"
 
 msgid "Select a background to use and change the display options."
 msgstr ""
 
 msgid "Use your own color"
-msgstr ""
+msgstr "Шахсий рангингизни қўллаш"
 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr ""
@@ -1760,10 +1750,10 @@ msgid ""
 msgstr ""
 
 msgid "Available updates"
-msgstr ""
+msgstr "Мавжуд янгиланишлар"
 
 msgid "What's new?"
-msgstr ""
+msgstr "Нималар янги?"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
@@ -1783,30 +1773,33 @@ msgstr ""
 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr ""
+"Сизнинг версиянгиз эскирди. Хозир янгиламоқчи бўлсангиз бу %s ерга босинг!"
 
 msgid ""
 "Your version seems to be up to date, but you can check updates manually by "
 "clicking here."
 msgstr ""
+"Сизнинг версиянгиз янги, лекин сиз буни қўлбола холатда текшириш учун бу %s "
+"ерга босинг."
 
 msgid "Check for updates"
-msgstr ""
+msgstr "Янгиланишни текшириш"
 
 msgid "Update in progress"
-msgstr ""
+msgstr "Янгиланиш амалда"
 
 msgid ""
 "Jappix has been updated: you are now running the latest version. Have fun!"
-msgstr ""
+msgstr "Jappix янгиланди: энди сиз охирги версияга эга бўлдингиз. Завқланинг!"
 
 msgid "The update has failed! Please try again later."
 msgstr ""
 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Пакет юкланмоқда..."
 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Жорий Jappix тизимли файллари ўчирилмоқда..."
 
 msgid "Extracting package..."
 msgstr ""
@@ -1815,7 +1808,7 @@ msgid "Regenerating storage folder tree..."
 msgstr ""
 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix янги версияга эга бўлди!"
 
 msgid "Aborted: socket error!"
 msgstr ""
@@ -1833,22 +1826,22 @@ msgid "Visits"
 msgstr ""
 
 msgid "Daily"
-msgstr ""
+msgstr "Кунлик"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Хафталик"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Ойлик"
 
 msgid "Yearly"
-msgstr ""
+msgstr "Йиллик"
 
 msgid "Size"
-msgstr ""
+msgstr "Хажм"
 
 msgid "Clean everything"
-msgstr ""
+msgstr "Хамма нарсани тозалаш"
 
 msgid "Purge cache"
 msgstr ""
@@ -1863,7 +1856,7 @@ msgid "Purge updates"
 msgstr ""
 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "Сиз тозаланишини хохлаган хотира папкаси энди бўш!"
 
 msgid ""
 "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
@@ -1873,9 +1866,11 @@ msgid ""
 "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
 "Jappix!"
 msgstr ""
+"Jappix да сизнинг мусиқаларингизни (Ogg Vorbis, MP3 ёки WAV) тинглаш учун "
+"юкланг!"
 
 msgid "The file you want to upload must be smaller than %s."
-msgstr ""
+msgstr "Юкламоқчи бўлган файлингиз %s дан камроқ бўлиши шарт."
 
 msgid ""
 "You can check what your users store on your server and remove undesired "
@@ -1883,22 +1878,22 @@ msgid ""
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "Номи"
 
 msgid "Artist"
-msgstr ""
+msgstr "Артист"
 
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 msgid "Upload"
-msgstr ""
+msgstr "Юклаш"
 
 msgid "The folder is empty."
-msgstr ""
+msgstr "Папка бўш."
 
 msgid "The music could not be received, please retry!"
 msgstr ""
@@ -1906,9 +1901,10 @@ msgstr ""
 msgid ""
 "This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
 msgstr ""
+"Қўлламайдиган мусиқа формати, илтимос Ogg Vorbis, MP3 ёки WAV га конвертланг!"
 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Мусиқа қўшилди"
 
 msgid "The selected elements have been removed."
 msgstr ""
@@ -1922,10 +1918,10 @@ msgid ""
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Бошқарув"
 
 msgid "List"
-msgstr ""
+msgstr "Рўйхат"
 
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
@@ -1933,22 +1929,22 @@ msgid ""
 msgstr ""
 
 msgid "The user has been added!"
-msgstr ""
+msgstr "Фойдаланувчи қўшилди!"
 
 msgid "The chosen users have been removed."
 msgstr ""
 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "Фойдаланувчи ўчириш учун бир ёки ундан ортиқ танлашингиз керак!"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Кеча"
 
 msgid "%s days ago"
-msgstr ""
+msgstr "%s кунлар олдин"
 
 msgid "User currently active"
-msgstr ""
+msgstr "Жорий холатдаги актив фойдаланувчи"
 
 msgid "Last seen: %s"
 msgstr ""
@@ -1972,28 +1968,28 @@ msgid "This is the user uploads server for %1s, “%2s”."
 msgstr ""
 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Дўстлик қабул қилинди"
 
 msgid "Check all"
-msgstr ""
+msgstr "Хаммасини белгилаш"
 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Хаммасини белгилашдан чиқариш"
 
 msgid "Choose"
-msgstr ""
+msgstr "Танлаш"
 
 msgid "List name"
-msgstr ""
+msgstr "Рўйхат номи"
 
 msgid "Allow"
-msgstr ""
+msgstr "Қабул"
 
 msgid "Deny"
-msgstr ""
+msgstr "Бекор"
 
 msgid "Group"
-msgstr ""
+msgstr "Гуруҳ"
 
 msgid "Subscription"
 msgstr ""
@@ -2002,43 +1998,43 @@ msgid "Both"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "Кимдан"
 
 msgid "Everybody"
-msgstr ""
+msgstr "Хар ким"
 
 msgid "Send messages"
-msgstr ""
+msgstr "Хабар жўнатиш"
 
 msgid "Send queries"
 msgstr ""
 
 msgid "See my status"
-msgstr ""
+msgstr "Статусимни кўриш"
 
 msgid "Send his/her status"
 msgstr ""
 
 msgid "Everything"
-msgstr ""
+msgstr "Хар нарса"
 
 msgid "Item"
 msgstr ""
 
 msgid "Order"
-msgstr ""
+msgstr "Тартиб"
 
 msgid "Active for this session"
-msgstr ""
+msgstr "Бу сессия учун актив"
 
 msgid "Always active"
-msgstr ""
+msgstr "Хар доим актив"
 
 msgid "User directory"
-msgstr ""
+msgstr "Фойдаланувчи луғати"
 
 msgid "Search a friend"
-msgstr ""
+msgstr "Дўстни қидириш"
 
 msgid ""
 "The feature requested is not implemented by the recipient or server and "
@@ -2046,52 +2042,52 @@ msgid ""
 msgstr ""
 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Унга хат юбориш"
 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "У билан чатни бошлаш"
 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "Мавжуд ёрлиқлар:"
 
 msgid "%s removes the chat logs"
-msgstr ""
+msgstr "%s чат логларини ўчиради"
 
 msgid "%s joins a groupchat"
-msgstr ""
+msgstr "%s гуруҳ чатга кириш"
 
 msgid "%s closes the chat"
-msgstr ""
+msgstr "%s чатни ёпиш"
 
 msgid "%s shows the user profile"
-msgstr ""
+msgstr "%s фойдаланувчи профилини кўрсатиш"
 
 msgid "%s sends a message to the room"
-msgstr ""
+msgstr "%s хонага хабар юбориш"
 
 msgid "%s changes your nickname"
-msgstr ""
+msgstr "%s сизнинг ник исмингизни ўзгартириш"
 
 msgid "%s sends a message to someone in the room"
-msgstr ""
+msgstr "%s хонадаги бирор бир фойдаланувчига хабар юбориш"
 
 msgid "%s changes the room topic"
-msgstr ""
+msgstr "%s хона мавзусини ўзгартириш"
 
 msgid "%s kicks a user of the room"
-msgstr ""
+msgstr "%s хона фойдаланувчисини чиқариб юбориш"
 
 msgid "%s bans a user of the room"
-msgstr ""
+msgstr "%s хона фойдаланувчисини бан қилиш"
 
 msgid "%s invites someone to join the room"
-msgstr ""
+msgstr "%s хонага фойдаланувчини таклиф қилиш"
 
 msgid "Public profile"
-msgstr ""
+msgstr "Сизнинг профилингиз"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Сизнинг профилингиз Web да хар жойда."
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
@@ -2112,13 +2108,13 @@ msgid ""
 msgstr ""
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Хўш, қани сизнинг оммабоп профилингизни яратсак!"
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Менинг оммабоп профилимни ёқиш"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Телефонинг телефонингиз учун Jappix"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr ""
@@ -2135,44 +2131,45 @@ msgid "You cannot download a file if you don't provide a key"
 msgstr ""
 
 msgid "Woah this file isn't found, please double check"
-msgstr ""
+msgstr "Вой, ушбу файл топилмади, илтимос яна текшириб кўринг"
 
 msgid "The key you provided does not have the permission to download this file"
 msgstr ""
 
 msgid "Statistics are currently disabled in the settings."
-msgstr ""
+msgstr "Ушбу созлашларда статистикалар ўчирилган."
 
 msgid "New event!"
 msgstr ""
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s ёзмоқда..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
 msgstr ""
 
 msgid "The username you picked is not available. Please try another one."
-msgstr ""
+msgstr "Сиз танлаган ник исм мавжуд эмас. Илтимос бошқасини киритинг."
 
 msgid "There was an error registering your account. Please retry."
 msgstr ""
+"Сизининг аккаунтингиз яратилишида хатолик. Илтимос қайта харакат қилинг."
 
 msgid "Username"
-msgstr ""
+msgstr "Фойдаланувчи исми"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Парольни киритинг"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Яна бир марта..."
 
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 msgid "Security code"
-msgstr ""
+msgstr "Хафвсизлик коди"
 
 msgid "Advertising space available!"
 msgstr ""
@@ -2211,67 +2208,67 @@ msgid "AdSense slot"
 msgstr ""
 
 msgid "Stop"
-msgstr ""
+msgstr "Тўхтатиш"
 
 msgid "Mute"
-msgstr ""
+msgstr "Овозни ўчириш"
 
 msgid "Unmute"
-msgstr ""
+msgstr "Ўчиришдан чиқариш"
 
 msgid "Is calling you"
-msgstr ""
+msgstr "Сизга қўнғироқ қилмоқда"
 
 msgid "Initiating call"
-msgstr ""
+msgstr "Қўнғироқ юкланмоқда"
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "Қўнғироққа боғланиш..."
 
 msgid "Waiting..."
-msgstr ""
+msgstr "Кутилмоқда"
 
 msgid "Ringing..."
-msgstr ""
+msgstr "Чақирилмоқда..."
 
 msgid "Declined the call"
-msgstr ""
+msgstr "Қўнғироқни бекор қилишди"
 
 msgid "Call error"
-msgstr ""
+msgstr "Чақиришда хатолик"
 
 msgid "Ended the call"
-msgstr ""
+msgstr "Қўнғироқ тугаллашди"
 
 msgid "Call ended"
-msgstr ""
+msgstr "Қўнғироқ тамомланди"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "Қўнғироқ бекор қилинди"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "Қўнғироқ бекор қилинди"
 
 msgid "Is already in a call"
-msgstr ""
+msgstr "Аслида қўнғироқ қилинган"
 
 msgid "Ending call..."
-msgstr ""
+msgstr "Қўнғироқ якунланмоқда..."
 
 msgid "Accept"
-msgstr ""
+msgstr "Қабул"
 
 msgid "Decline"
-msgstr ""
+msgstr "Бекор"
 
 msgid "Okay"
-msgstr ""
+msgstr "Яхши"
 
 msgid "Retry"
-msgstr ""
+msgstr "Қайта харакат"
 
 msgid "Audio Call"
-msgstr ""
+msgstr "Аудио қўнғироқ"
 
 msgid "Video Call"
-msgstr ""
+msgstr "Видео қўнғироқ"

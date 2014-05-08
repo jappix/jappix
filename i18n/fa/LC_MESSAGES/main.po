@@ -4,10 +4,11 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
+# Afshar Esmailzadeh <afsharblog@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-01-24 16:00+0100\n"
+"PO-Revision-Date: 2014-05-08 10:21+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Persian (http://www.transifex.com/projects/p/jappix/language/"
 "fa/)\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 
 msgid "default:LTR"
 msgstr "default:RTL"
@@ -33,10 +34,10 @@ msgid "Social channel, chat and more."
 msgstr ""
 
 msgid "Create your public profile."
-msgstr ""
+msgstr "پروفایل عمومی خود را بسازید."
 
 msgid "A mini-chat for your website."
-msgstr ""
+msgstr "مینی-چت برای وب سایت شما."
 
 msgid "Get Jappix, get support."
 msgstr ""
@@ -48,37 +49,37 @@ msgid "Legal disclaimer for Jappix."
 msgstr ""
 
 msgid "Download Jappix for free."
-msgstr ""
+msgstr "Jappix را بصورت رایگان دریافت کنید."
 
 msgid "Contribute to the Jappix code."
 msgstr ""
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix برای شرکت شما."
 
 msgid "Find a public Jappix node."
 msgstr ""
 
 msgid "Credits"
-msgstr ""
+msgstr "اعتبار"
 
 msgid "Association"
-msgstr ""
+msgstr "انجمن"
 
 msgid "Web agency"
-msgstr ""
+msgstr "خبرگذاری وب"
 
 msgid "Legal"
-msgstr ""
+msgstr "حقوقی"
 
 msgid "Legal disclaimer"
-msgstr ""
+msgstr "سلب مسئولیت حقوقی"
 
 msgid "Terms of use and legal"
-msgstr ""
+msgstr "شرایط استفاده و قوانین حقوقی"
 
 msgid "Owner"
-msgstr ""
+msgstr "مالک"
 
 msgid "Node owner"
 msgstr ""
@@ -87,7 +88,7 @@ msgid "By using our service, you accept %s."
 msgstr ""
 
 msgid "our terms of use"
-msgstr ""
+msgstr "شرایط استفاده ما"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -122,13 +123,13 @@ msgid "The user that you want to reach is not present in the room."
 msgstr ""
 
 msgid "Please enter the group chat address to join."
-msgstr ""
+msgstr "لطفا آدرس چت گروهی را برای ورود وارد کنید."
 
 msgid "Please enter your nickname to join %s."
-msgstr ""
+msgstr "نام نمایشی خود را برای ورود وارد کنید."
 
 msgid "This room (%s) is protected with a password."
-msgstr ""
+msgstr "این اتاق (%ها) به وسیله رمز عبور امن شده است."
 
 msgid "Your browser is out of date!"
 msgstr "مرورگر شما منسوخ است!"
@@ -240,7 +241,7 @@ msgid "Busy"
 msgstr "مشغول"
 
 msgid "Offline"
-msgstr ""
+msgstr "آفلاین"
 
 msgid "Mood"
 msgstr "حالت"
@@ -336,7 +337,7 @@ msgid "Others"
 msgstr "دیگران"
 
 msgid "Other"
-msgstr ""
+msgstr "دیگر"
 
 msgid "Personal"
 msgstr "شخصی"
@@ -439,22 +440,22 @@ msgid "Message archiving"
 msgstr "بایگانی پیام"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "ذخیره سازی تاریخچه ی گفتگوهای شما"
 
 msgid "Geolocation"
 msgstr "منطقهٔ جغرافیایی"
 
 msgid "Disabled"
-msgstr ""
+msgstr "غیرفعال شد"
 
 msgid "Store all chats"
-msgstr ""
+msgstr "ذخیره سازی همه ی گفتگوها"
 
 msgid "Store friend chats"
-msgstr ""
+msgstr "ذخیره سازی گفتگو های دوستانه"
 
 msgid "Remove all archives"
-msgstr ""
+msgstr "پاک سازی تمام آرشیو"
 
 msgid "Empty"
 msgstr "خالی"
@@ -487,7 +488,7 @@ msgid "Suggested chatrooms"
 msgstr ""
 
 msgid "Skip"
-msgstr ""
+msgstr "صرف نظر کردن"
 
 msgid "Continue"
 msgstr "ادامه"
@@ -514,7 +515,7 @@ msgid "Here it is! A new beautiful profile image!"
 msgstr "اینجاست! یک تصویر زیبا و جدید پروفایل!"
 
 msgid "The image file is not supported or has a bad size."
-msgstr ""
+msgstr "فایل تصویر وارد شده پشتیبانی نمیشود یا اندازه آن درست نیست."
 
 msgid "Reply"
 msgstr "پاسخ"
@@ -535,7 +536,7 @@ msgid "Rename"
 msgstr "تغییر نام"
 
 msgid "Hi, I am %s, I would like to add you as my friend."
-msgstr ""
+msgstr "سلام,من %s هستم , من خوشحال میشوم که شما را به دوستان خودم اضافه کنم."
 
 msgid "Smiley insertion"
 msgstr "افزودن شکلک"
@@ -553,7 +554,7 @@ msgid "Underlined text"
 msgstr "متن زیرخط کشیده شده"
 
 msgid "Send a file"
-msgstr ""
+msgstr "ارسال فایل"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
@@ -566,6 +567,8 @@ msgid ""
 "Click on the following link to get the chat log, and wait. Then click again "
 "to get the file."
 msgstr ""
+"برای گرفتن گزارش کار چت روی لینک مقابل کلیک کنید, وصبر کنید. سپس دوباره کلیک "
+"کنید تا فایل را دریافت کنید."
 
 msgid "This chat is empty!"
 msgstr "این گفتگو خالی‌است!"
@@ -592,7 +595,7 @@ msgid "All tabs"
 msgstr "همهٔ برگه‌ها"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "ورود به گفتگوی گروهی"
 
 msgid "Close this tab"
 msgstr "بستن این برگه"
@@ -679,7 +682,7 @@ msgid "Rooms"
 msgstr "اتاق‌ها"
 
 msgid "Directories"
-msgstr ""
+msgstr "پوشه ها"
 
 msgid "Gateways"
 msgstr "دروازه‌ها"
@@ -694,7 +697,7 @@ msgid "Proxies"
 msgstr "پروکسی‌ها"
 
 msgid "Publication/Subscription"
-msgstr ""
+msgstr "عمومی کردن/اشتراک گذاری"
 
 msgid "Storage"
 msgstr "انباره"
@@ -733,7 +736,7 @@ msgid "MUC administration"
 msgstr "مدیریت MUC"
 
 msgid "You administrate this room"
-msgstr ""
+msgstr "شما این اتاق را مدیریت میکنید"
 
 msgid "Enter new subject"
 msgstr "افزودن عنوان جدید"
@@ -754,7 +757,7 @@ msgid "Administrator list"
 msgstr "فهرست مدیران"
 
 msgid "Outcast list"
-msgstr ""
+msgstr "لیست اخراجی"
 
 msgid "Add an input"
 msgstr "افزودن یک وررو"
@@ -796,10 +799,10 @@ msgid "left the chat room"
 msgstr "ترک‌کردن اتاق گفتگو"
 
 msgid "%s left"
-msgstr ""
+msgstr "$s خارج شد"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s وارد شد"
 
 msgid "no status"
 msgstr "بی‌وضعیت"
@@ -814,7 +817,7 @@ msgid "no reason"
 msgstr "بی‌دلیل"
 
 msgid "Communicate with the entire world!"
-msgstr ""
+msgstr "با تمام دنیا ارتباط برقرار کنید!"
 
 msgid ""
 "Jappix is an open social platform, that let's you easily get or keep in "
@@ -830,10 +833,11 @@ msgid "Hi there!"
 msgstr "سلام!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr "خوش‌آمدید به %1s. «%2s»"
+msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
+"به حساب کاربری XMPP خود وارد شوید یا به صورت رایگان یک حساب کاربری بسازید!"
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -844,6 +848,8 @@ msgid ""
 "Login to your existing XMPP account. You can also use the %s to join a "
 "groupchat."
 msgstr ""
+"به حساب کاربری XMPP خود وارد شوید. شما همچنان میتوانید با استفاده از حساب "
+"کاربری خود به گفتگو های گروهی وارد شوید."
 
 msgid "Previous"
 msgstr "قبلی"
@@ -873,6 +879,8 @@ msgid ""
 "Enter the groupchat you want to join and the nick you want to have. You can "
 "also go back to the %s."
 msgstr ""
+"با نام نمایشی دلخواه خود و به گفتگوهای گروهی دلخواه خود وارد شوید.همینطور "
+"میتوانید به % برگردید"
 
 msgid "login page"
 msgstr "صفحهٔ واردشدن"
@@ -889,7 +897,7 @@ msgid "Required"
 msgstr "مورد نیاز"
 
 msgid "You have been registered, here is your XMPP address:"
-msgstr ""
+msgstr "شما قبلا ثبت نام کرده اید.این آدرس XMPP شماست:"
 
 msgid "Manager"
 msgstr "مدیر"
@@ -901,10 +909,10 @@ msgid "Unencrypted"
 msgstr "رمزنگاری‌نشده"
 
 msgid "Where are you?"
-msgstr ""
+msgstr "شما کجا هستید؟"
 
 msgid "What's up with you?"
-msgstr ""
+msgstr "چه اتفاقی برای شما افتاد؟"
 
 msgid "Type something you want to share with your friends..."
 msgstr ""
@@ -913,10 +921,10 @@ msgid "Fetching the social channel..."
 msgstr ""
 
 msgid "You are synchronized with your network."
-msgstr ""
+msgstr "شما با شبکه خود همسان سازی شدید."
 
 msgid "Cannot send anything: you can only receive notices!"
-msgstr ""
+msgstr "نمیتوان چیزی فرستاد:شما فقط قادر به دریافت اطلاعیه ها هستید!"
 
 msgid "Media viewer"
 msgstr "نمایشگر رسانه"
@@ -943,13 +951,13 @@ msgid "No result!"
 msgstr "بی‌نتیجه!"
 
 msgid "No notifications."
-msgstr ""
+msgstr "خبر جدیدی نیست"
 
 msgid "would like to add you as a friend."
 msgstr "دوست دارد شما را به عنوان یک بیافزاید."
 
 msgid "would like you to join this chatroom:"
-msgstr ""
+msgstr "از شما برای ورود به این اتاق گفتگو دعوت میکنم:"
 
 msgid "Do you accept?"
 msgstr "قبول می‌کنید؟"
@@ -1018,7 +1026,7 @@ msgid ""
 msgstr ""
 
 msgid "Open"
-msgstr ""
+msgstr "باز کردن"
 
 msgid "Show"
 msgstr "نمایش"
@@ -1045,7 +1053,7 @@ msgid "User profile"
 msgstr "پروفایل کاربری"
 
 msgid "See his/her position on the globe"
-msgstr ""
+msgstr "مکان او را روی زمین ببینید"
 
 msgid "Confirm"
 msgstr "تأیید"
@@ -1102,10 +1110,10 @@ msgid "Loading comments..."
 msgstr "بارگذاری توضیحات..."
 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "نمیتوان نظرات را مشاهده کرد!"
 
 msgid "Comments locked!"
-msgstr ""
+msgstr "نظرات قفل شد!"
 
 msgid "Type your comment here..."
 msgstr "توضیح خود را اینجا بنویسید..."
@@ -1137,7 +1145,7 @@ msgid "Authorization failed"
 msgstr "شکست در اجازه‌گیری"
 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "ثبت نام شکست خورد, لطفا نام کاربری دیگری را انتخاب کنید"
 
 msgid "Service unavailable"
 msgstr "خدمت ناموجود است"
@@ -1161,30 +1169,32 @@ msgid "XMPP links"
 msgstr "پیوند XMPP"
 
 msgid "Open XMPP links with Jappix"
-msgstr ""
+msgstr "لینک های XMPP زا با Jappix باز کنید"
 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "موضوع تغییر کرد به:"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "خوش آمدید!"
 
 msgid "Friends"
-msgstr ""
+msgstr "دوستان"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr ""
+msgstr "به Jappix خوش آمدید, فضای مجازی خود شما!"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
 "friends and complete your profile."
 msgstr ""
+"قبل از استفاده,شما باید بعضی تنظیمات را انجام دهید, دنبال دوستانتان بگردید و "
+"اطلاعات پروفایل خود را کامل کنید."
 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "باز کردن صدای اطلاعیه ها"
 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "به اشتراک گذاری محل شما"
 
 msgid "Offline friends"
 msgstr "دوستان آفلاین"
@@ -1270,9 +1280,12 @@ msgid ""
 "If you want to get some help about the Jappix installation and "
 "configuration, you can use our whole documentation, available at:"
 msgstr ""
+"اگر شما برای نصب و راه اندازی Jappix به کمک نیاز دارید, میتوانید از تمام "
+"مطالب زاهنمای ما استفاده کنید, که از این طریق قابل دسترسی است:"
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
+"وقت آن رسید که فضای مجازی خود را بسازید: فقط کافیست به مرحله بعد بروید!"
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
@@ -1293,14 +1306,19 @@ msgid ""
 "plugins or search for updates. That's why you must create an administrator "
 "account to access the manager."
 msgstr ""
+"Jappix به شما این امکان را میدهد که تنظیمات خود را مدیریت کنید, افزونه های "
+"جدید را نصب کنید یا از بروزرسانی ها استفاده کنید. برای همین است که شما باید "
+"یک حساب مدیریتی برای دسترسی به مدیریت ایجاد کنید."
 
 msgid ""
 "When Jappix will be installed, just click on the manager link on the home "
 "page to access it."
 msgstr ""
+"وقتی Jappix نصب شد, فقط با کلیک بر روی دکمه مدیریت در صفحه اصلی میتوانید به "
+"آن دسترسی داشته باشید."
 
 msgid "Oops, you missed something or the two passwords do not match!"
-msgstr ""
+msgstr "شما یک اشتباه دارید یا اینکه رمز های عبور وارد شده مطابقت ندارد!"
 
 msgid ""
 "Jappix needs that you specify some values to work. Please correct the "
@@ -1331,10 +1349,10 @@ msgid "Service description"
 msgstr "توضیح خدمت"
 
 msgid "Owner name"
-msgstr ""
+msgstr "نام مالک"
 
 msgid "Owner website"
-msgstr ""
+msgstr "وب سایت مالک"
 
 msgid "Connection"
 msgstr "اتصال"
@@ -1358,7 +1376,7 @@ msgid "Manager link"
 msgstr "مدیر پیوند"
 
 msgid "Groupchats to join"
-msgstr ""
+msgstr "گفتگو های گروهی برای ورود"
 
 msgid "Suggest groupchats"
 msgstr ""
@@ -1374,6 +1392,9 @@ msgstr "HTTPS اجباری"
 
 msgid "Compression"
 msgstr "فشرده‌سازی"
+
+msgid "Cache assets"
+msgstr ""
 
 msgid ""
 "This page helps you specify the default hosts Jappix will connect to. You "
@@ -1443,10 +1464,10 @@ msgid ""
 msgstr ""
 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "%s روی سیستم شما نصب شده است."
 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s روی سیستم شما نصب نشده است, شما باید %2s را نصب کنید."
 
 msgid "PHP maximum upload size is sufficient (%s)."
 msgstr "حداکثر اندازهٔ بارگذاری PHP کافی است (%s)."
@@ -1460,7 +1481,7 @@ msgid "Jappix manager"
 msgstr "مدیریت‌کنندهٔ Jappix"
 
 msgid "Manager access"
-msgstr ""
+msgstr "دسترسی مدیریت"
 
 msgid "Statistics"
 msgstr "آمارها"
@@ -1552,24 +1573,25 @@ msgstr ""
 
 msgid "This is not a valid image, please use PNG, GIF or JPG!"
 msgstr ""
+"تصویر وارد شده معتبر نیست, لطفا از فرمت های PNG, GIF یا JPG استفاده کنید!"
 
 msgid "This is not a valid image, please use the PNG format!"
 msgstr ""
 
 msgid "The image could not be received, would you mind retry?"
-msgstr ""
+msgstr "تصویر دریافت نشد, مایل به تلاش دوباره هستید؟"
 
 msgid "Your service logo has been successfully changed!"
-msgstr ""
+msgstr "لوگوی شما به خوبی ویرایش شد!"
 
 msgid "Your image was added to the list!"
-msgstr ""
+msgstr "تصویر شما به لیست اضافه شد!"
 
 msgid "Changes saved!"
 msgstr "تغییرات ذخیره شد!"
 
 msgid "Logo"
-msgstr ""
+msgstr "لوگو"
 
 msgid ""
 "You can set your own service logo to replace the default one. Take care of "
@@ -1585,10 +1607,10 @@ msgid ""
 msgstr ""
 
 msgid "Remove this logo"
-msgstr ""
+msgstr "حذف این لوگو"
 
 msgid "View this logo"
-msgstr ""
+msgstr "نمایش این لوگو"
 
 msgid ""
 "You can define more than one administrator for this Jappix node. You can "
@@ -1601,10 +1623,10 @@ msgid ""
 msgstr ""
 
 msgid "Access statistics"
-msgstr ""
+msgstr "دسترسی به آمار"
 
 msgid "Share statistics"
-msgstr ""
+msgstr "به اشتراک گذاری آمار"
 
 msgid "Other statistics"
 msgstr "سایر آمارها"
@@ -1625,7 +1647,7 @@ msgid "May"
 msgstr "می"
 
 msgid "June"
-msgstr ""
+msgstr "ژوئن"
 
 msgid "July"
 msgstr "جولای"
@@ -1670,7 +1692,7 @@ msgid "Total"
 msgstr "همه"
 
 msgid "Archives"
-msgstr ""
+msgstr "آرشیو"
 
 msgid "Music"
 msgstr "آهنگ"
@@ -1688,7 +1710,7 @@ msgid "Notice"
 msgstr "آگهی"
 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "تنظیمات مربوط به طراحی شما ذخیره شد!"
 
 msgid "Please check your inputs: something is missing!"
 msgstr "لطفاً ورودی‌های خود را بررسی کنید: چیزی گم شده!"
@@ -1702,19 +1724,19 @@ msgid "Use default background"
 msgstr "استفاده از پشت‌زمینهٔ پیش‌فرض"
 
 msgid "Use your own image"
-msgstr ""
+msgstr "از تصویر دلخواه خودتان استفاده کنید"
 
 msgid "Select a background to use and change the display options."
 msgstr ""
 
 msgid "Use your own color"
-msgstr ""
+msgstr "از رنگ دلخواه خودتان استفاده کنید"
 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr ""
 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "مدیریت پس زمینه ها"
 
 msgid ""
 "You can add a new background to the list with this tool. Please send a valid "
@@ -1730,14 +1752,14 @@ msgid ""
 msgstr ""
 
 msgid "Simple notice"
-msgstr ""
+msgstr "اطلاعیه ی ساده"
 
 msgid ""
 "This notice only needs simple text to be displayed, but no code is allowed!"
 msgstr ""
 
 msgid "Advanced notice"
-msgstr ""
+msgstr "اطلاعیه پیشرفته"
 
 msgid ""
 "You can customize your notice with embedded HTML, CSS and JavaScript, but "
@@ -1745,10 +1767,10 @@ msgid ""
 msgstr ""
 
 msgid "Available updates"
-msgstr ""
+msgstr "بروزرسانی های در دسترس"
 
 msgid "What's new?"
-msgstr ""
+msgstr "چه چیزهایی جدید است؟"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
@@ -1803,16 +1825,16 @@ msgid "Jappix is now up to date!"
 msgstr "Jappix الآن به روز است!"
 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "لغو شد: مشکل سوکت!"
 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "لغو شد: مشکل بافر!"
 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "لغو شد: دسترسی نوشتن موجود نیست!"
 
 msgid "Aborted: could not extract the package!"
-msgstr ""
+msgstr "لغو شد: قادر به بازگشایی بسته نیست!"
 
 msgid "Visits"
 msgstr "بازدیدها"
@@ -1842,13 +1864,13 @@ msgid "Purge logs"
 msgstr "خالی‌کردن سیاهه‌ها"
 
 msgid "Purge sent files"
-msgstr ""
+msgstr "پالایش فایل های ارسالی"
 
 msgid "Purge updates"
 msgstr "خالی‌کردن به‌روزرسانی‌ها"
 
 msgid "The storage folder you wanted to clean is now empty!"
-msgstr ""
+msgstr "پوشه ای که شما برای پاک سازی انتخاب کردید, هم اکنون خالی است!"
 
 msgid ""
 "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
@@ -1858,6 +1880,8 @@ msgid ""
 "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
 "Jappix!"
 msgstr ""
+"موزیک دلخواه خود را آپلود کنید(Ogg Vorbis, MP3 یا WAV) تا بتوانید در Jappix "
+"به آن گوش دهید!"
 
 msgid "The file you want to upload must be smaller than %s."
 msgstr ""
@@ -1924,7 +1948,7 @@ msgid "The chosen users have been removed."
 msgstr "کاربرهای انتخاب شده حذف شده‌اند."
 
 msgid "You must select one or more users to be removed!"
-msgstr ""
+msgstr "شما باید یک یا چند کاربر را برای حذف شدن انتخاب کنید!"
 
 msgid "Yesterday"
 msgstr "دیروز"
@@ -2031,13 +2055,13 @@ msgid ""
 msgstr ""
 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "برای او یک پیام بفرستید"
 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "با او گفتگو کنید"
 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "میانبر های در دسترس:"
 
 msgid "%s removes the chat logs"
 msgstr ""
@@ -2073,7 +2097,7 @@ msgid "%s invites someone to join the room"
 msgstr ""
 
 msgid "Public profile"
-msgstr ""
+msgstr "پروفایل عمومی"
 
 msgid "Your profile anywhere on the Web."
 msgstr ""
@@ -2100,10 +2124,10 @@ msgid "Yay, let's create your public profile!"
 msgstr ""
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "فعال کردن پروفایل عمومی من"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix برای موبایل شما"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr ""
@@ -2129,7 +2153,7 @@ msgid "Statistics are currently disabled in the settings."
 msgstr ""
 
 msgid "New event!"
-msgstr ""
+msgstr "رخداد جدید!"
 
 msgid "%s is typing..."
 msgstr ""
@@ -2145,31 +2169,31 @@ msgid "There was an error registering your account. Please retry."
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "نام کاربری"
 
 msgid "Enter password"
-msgstr ""
+msgstr "کلمه ی عبور را وارد کنید"
 
 msgid "Once again..."
-msgstr ""
+msgstr "دوباره ..."
 
 msgid "Code"
-msgstr ""
+msgstr "کد"
 
 msgid "Security code"
-msgstr ""
+msgstr "کد امنیتی"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "فضای تبلیغاتی در دسترس است!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "اینجا تبلیغ کنید"
 
 msgid "Analytics (%s)"
 msgstr ""
 
 msgid "Track visits"
-msgstr ""
+msgstr "دنبال کردن بازدید ها"
 
 msgid "Piwik URL"
 msgstr ""
@@ -2181,7 +2205,7 @@ msgid "Advertising (%s)"
 msgstr ""
 
 msgid "Enable ads"
-msgstr ""
+msgstr "فعال سازی تبلیغات"
 
 msgid "Standard ads key"
 msgstr ""
@@ -2196,67 +2220,67 @@ msgid "AdSense slot"
 msgstr ""
 
 msgid "Stop"
-msgstr ""
+msgstr "توقف"
 
 msgid "Mute"
-msgstr ""
+msgstr "بی صدا کردن"
 
 msgid "Unmute"
-msgstr ""
+msgstr "لغو حالت بی صدا"
 
 msgid "Is calling you"
-msgstr ""
+msgstr "با شما تماس گرفته"
 
 msgid "Initiating call"
 msgstr ""
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "برقراری ارتباط برای تماس ..."
 
 msgid "Waiting..."
-msgstr ""
+msgstr "انتظار ..."
 
 msgid "Ringing..."
-msgstr ""
+msgstr "زنگ خوردن ..."
 
 msgid "Declined the call"
 msgstr ""
 
 msgid "Call error"
-msgstr ""
+msgstr "مشکل در تماس"
 
 msgid "Ended the call"
-msgstr ""
+msgstr "پایان تماس"
 
 msgid "Call ended"
-msgstr ""
+msgstr "تماس پایان یافت"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "تماس قطع شد"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "تماس قطع شده"
 
 msgid "Is already in a call"
-msgstr ""
+msgstr "مشغول تماس"
 
 msgid "Ending call..."
-msgstr ""
+msgstr "اتمام تماس ..."
 
 msgid "Accept"
-msgstr ""
+msgstr "پذیرش"
 
 msgid "Decline"
-msgstr ""
+msgstr "رد کردن"
 
 msgid "Okay"
-msgstr ""
+msgstr "اوکی"
 
 msgid "Retry"
-msgstr ""
+msgstr "تلاش مجدد"
 
 msgid "Audio Call"
-msgstr ""
+msgstr "تماس صوتی"
 
 msgid "Video Call"
-msgstr ""
+msgstr "تماس تصویری"
