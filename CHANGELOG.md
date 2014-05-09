@@ -4,6 +4,12 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.6 (Development)
+------------------------
+
+ * Fix sounds in Jappix Mini   @aryo, @valeriansaliou
+
+
 One, v1.0.5 (May 2014)
 ------------------------
 

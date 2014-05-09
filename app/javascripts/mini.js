@@ -3962,8 +3962,8 @@ var JappixMini = (function () {
                 jQuery('#jappix_mini').append(
                     '<div id="jm_audio">' + 
                         '<audio preload="auto">' + 
-                            '<source src="' + JAPPIX_STATIC + 'snd/receive-message.mp3" />' + 
-                            '<source src="' + JAPPIX_STATIC + 'snd/receive-message.oga" />' + 
+                            '<source src="' + JAPPIX_STATIC + 'sounds/receive-message.mp3" />' + 
+                            '<source src="' + JAPPIX_STATIC + 'sounds/receive-message.oga" />' + 
                         '</audio>' + 
                     '</div>'
                 );
