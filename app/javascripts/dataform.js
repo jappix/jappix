@@ -295,7 +295,7 @@ var DataForm = (function () {
             
             if(action == 'submit') {
                 if((target == 'adhoc') && (type == 'command')) {
-                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return DataForm.send(\'' + Utils.encodeOnclick(type) + '\', \'execute\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
@@ -308,7 +308,7 @@ var DataForm = (function () {
                 }
                 
                 else {
-                    buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
+                    buttonsCode += '<a href="#" class="submit" onclick="return DataForm.send(\'' + Utils.encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
                     $(pathID + ' input').keyup(function(e) {
@@ -322,7 +322,7 @@ var DataForm = (function () {
             }
             
             if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
-                buttonsCode += '<a href="#" class="submit" onclick="return self.send(\'' + Utils.encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
+                buttonsCode += '<a href="#" class="submit" onclick="return DataForm.send(\'' + Utils.encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
             
             if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
                 buttonsCode += '<a href="#" class="back" onclick="return Discovery.start();">' + Common._e("Close") + '</a>';
