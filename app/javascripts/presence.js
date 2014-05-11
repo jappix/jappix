@@ -207,13 +207,16 @@ var Presence = (function () {
             // This presence comes from an user or a gateway
             else {
                 // Subscribed/Unsubscribed stanzas
-                if((type == 'subscribed') || (type == 'unsubscribed'))
+                if((type == 'subscribed') || (type == 'unsubscribed')) {
                     return;
+                }
+
                 // Subscribe stanza
                 else if(type == 'subscribe') {
                     // This is a buddy we can safely authorize, because we added him to our roster
-                    if(Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]'))
+                    if(Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]')) {
                         self.acceptSubscribe(xid);
+                    }
                     
                     // We do not know this entity, we'd be better ask the user
                     else {
@@ -952,8 +955,8 @@ var Presence = (function () {
             from_highest = null;
             max_priority = null;
 
-            // Groupchat presence? (no priority here)
-            if(xid.indexOf('/') !== -1) {
+            // Groupchat or gateway presence? (no priority here)
+            if(xid.indexOf('/') !== -1 || Common.isGateway(xid)) {
                 from_highest = xid;
 
                 Console.log('Processed presence for groupchat user: ' + xid);
@@ -986,10 +989,11 @@ var Presence = (function () {
                 }
             }
 
-            if(from_highest)
+            if(from_highest) {
                 DataStore.setDB(Connection.desktop_hash, 'presence-priority', xid, from_highest);
-            else
+            } else {
                 DataStore.removeDB(Connection.desktop_hash, 'presence-priority', xid);
+            }
         } catch(e) {
             Console.error('Presence.processPriority', e);
         }
