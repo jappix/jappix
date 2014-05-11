@@ -309,8 +309,9 @@ var Common = (function () {
         // Spec: http://tools.ietf.org/html/rfc6122#appendix-A
 
         try {
-            if(!node)
+            if(!node) {
                 return node;
+            }
 
             // Remove prohibited chars
             var prohibited_chars = ['"', '&', '\'', '/', ':', '<', '>', '@'];
@@ -394,8 +395,8 @@ var Common = (function () {
             xid = self.cutResource(xid);
             
             // Launch nodeprep
-            if(xid.indexOf('@') != -1) {
-                xid = self.nodeprep(self.getXIDNick(xid)) + '@' + self.getXIDHost(xid);
+            if(xid.indexOf('@') !== -1) {
+                xid = self.nodeprep(self.getXIDNick(xid, true)) + '@' + self.getXIDHost(xid);
             }
             
             return xid;
@@ -420,8 +421,9 @@ var Common = (function () {
             var resource = self.thisResource(xid);
             
             // Any resource?
-            if(resource)
+            if(resource) {
                 full += '/' + resource;
+            }
             
             return full;
         } catch(e) {
@@ -435,14 +437,18 @@ var Common = (function () {
      * Gets the nick from a XID
      * @public
      * @param {string} aXID
+     * @param {boolean} raw_explode
      * @return {string}
      */
-    self.getXIDNick = function(aXID) {
+    self.getXIDNick = function(aXID, raw_explode) {
 
         try {
-            // Gateway nick?
-            if(aXID.match(/\\40/))
-                return self.explodeThis('\\40', aXID, 0);
+            if(raw_explode !== true) {
+                // Gateway nick?
+                if(aXID.match(/\\40/)) {
+                    return self.explodeThis('\\40', aXID, 0);
+                }
+            }
             
             return self.explodeThis('@', aXID, 0);
         } catch(e) {

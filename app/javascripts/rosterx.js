@@ -178,7 +178,7 @@ var RosterX = (function () {
     /**
      * Saves the rosterx settings
      * @public
-     * @return {undefined}
+     * @return {boolean}
      */
     self.save = function() {
 
@@ -233,6 +233,8 @@ var RosterX = (function () {
             self.close();
         } catch(e) {
             Console.error('RosterX.save', e);
+        } finally {
+            return false;
         }
 
     };

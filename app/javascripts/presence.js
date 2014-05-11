@@ -101,6 +101,9 @@ var Presence = (function () {
         try {
             // We define everything needed here
             var from = Common.fullXID(Common.getStanzaFrom(presence));
+            Console.debug('PRESENCE/FROM', presence.xml());
+            Console.debug('PRESENCE/FROM', Common.getStanzaFrom(presence));
+            Console.debug('PRESENCE/FROM', from);
             var hash = hex_md5(from);
             var node = presence.getNode();
             var xid = Common.bareXID(from);
