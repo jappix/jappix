@@ -79,6 +79,7 @@ var NS_URN_MAM =      NS_XMPP + 'mam:tmp';
 var NS_URN_DELAY =    NS_XMPP + 'delay';
 var NS_URN_RECEIPTS = NS_XMPP + 'receipts';
 var NS_URN_CARBONS =  NS_XMPP + 'carbons:2';
+var NS_URN_CORRECT =  NS_XMPP + 'message-correct:0';
 var NS_RSM =          NS_PROTOCOL + 'rsm';
 var NS_IPV6 =         'ipv6';
 var NS_XHTML =        'http://www.w3.org/1999/xhtml';

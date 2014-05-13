@@ -103,7 +103,7 @@ var Features = (function () {
             };
 
             // Markers
-            var namespaces = [NS_PUBSUB, NS_PUBSUB_CN, NS_URN_MAM, NS_COMMANDS, NS_URN_CARBONS];
+            var namespaces = [NS_PUBSUB, NS_PUBSUB_CN, NS_URN_MAM, NS_COMMANDS, NS_URN_CARBONS, NS_URN_CORRECT];
 
             var identity = selector.find('identity');
 
@@ -217,6 +217,11 @@ var Features = (function () {
             // MAM Purge
             if(self.enabledMAMPurge()) {
                 $(path + 'mam-purge-hidable').show();
+            }
+
+            // Message correction features
+            if(self.enabledCorrection()) {
+                $(path + 'correction-hidable').show();
             }
             
             // Commands features
@@ -380,6 +385,22 @@ var Features = (function () {
             return self.isEnabled(NS_COMMANDS);
         } catch(e) {
             Console.error('Features.enabledCommands', e);
+        }
+
+    };
+
+
+    /**
+     * Returns the XMPP server correction support
+     * @public
+     * @return {boolean}
+     */
+    self.enabledCorrection = function() {
+
+        try {
+            return self.isEnabled(NS_URN_CORRECT);
+        } catch(e) {
+            Console.error('Features.enabledCorrection', e);
         }
 
     };
