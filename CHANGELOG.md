@@ -7,8 +7,9 @@ Here's the log of what has changed over the Jappix releases.
 One, v1.0.6 (Development)
 ------------------------
 
- * Fix gateway contacts management   @valeriansaliou
- * Fix sounds in Jappix Mini         @aryo, @valeriansaliou
+ * XEP-0308: Last Message Correction   @valeriansaliou
+ * Fix gateway contacts management     @valeriansaliou
+ * Fix sounds in Jappix Mini           @aryo, @valeriansaliou
 
 
 One, v1.0.5 (May 2014)
