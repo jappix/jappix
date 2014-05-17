@@ -508,8 +508,14 @@ var Caps = (function () {
             var max_priority = null;
             var cur_xid_full, cur_presence_sel, cur_caps, cur_features, cur_priority;
 
-            for(var cur_resource in Presence.resources(xid)) {
-                cur_xid_full = xid + '/' + cur_resource;
+            var resources_obj = Presence.resources(xid);
+            var fn_parse_resource = function(cur_resource) {
+                cur_xid_full = xid;
+
+                if(cur_resource) {
+                    cur_xid_full += '/' + cur_resource;
+                }
+
                 cur_presence_sel = $(Presence.readStanza(cur_xid_full));
 
                 cur_priority = parseInt((cur_presence_sel.find('priority').text() || 0), 10);
@@ -524,6 +530,14 @@ var Caps = (function () {
                         selected_xid = cur_xid_full;
                     }
                 }
+            };
+
+            if(resources_obj['bare'] === 1) {
+                fn_parse_resource(null);
+            }
+
+            for(var cur_resource in resources_obj['list']) {
+                fn_parse_resource(cur_resource);
             }
         } catch(e) {
             Console.error('Caps.getFeatureResource', e);

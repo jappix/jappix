@@ -101,9 +101,6 @@ var Presence = (function () {
         try {
             // We define everything needed here
             var from = Common.fullXID(Common.getStanzaFrom(presence));
-            Console.debug('PRESENCE/FROM', presence.xml());
-            Console.debug('PRESENCE/FROM', Common.getStanzaFrom(presence));
-            Console.debug('PRESENCE/FROM', from);
             var hash = hex_md5(from);
             var node = presence.getNode();
             var xid = Common.bareXID(from);
@@ -965,13 +962,22 @@ var Presence = (function () {
                 Console.log('Processed presence for groupchat user: ' + xid);
             } else {
                 if(!self.highestPriority(xid)) {
-                    from_highest = xid + '/' + resource;
+                    from_highest = xid;
+
+                    if(resource) {
+                        from_highest += '/' + resource;
+                    }
 
                     Console.log('Processed initial presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
                 } else {
-                    for(cur_resource in resources_obj) {
+                    var fn_parse_resource = function(cur_resource) {
                         // Read presence data
-                        cur_from = xid + '/' + cur_resource;
+                        cur_from = xid;
+
+                        if(cur_resource) {
+                            cur_from += '/' + cur_resource;
+                        }
+
                         cur_pr   = DataStore.getDB(Connection.desktop_hash, 'presence-stanza', cur_from);
 
                         if(cur_pr) {
@@ -986,6 +992,16 @@ var Presence = (function () {
                                 from_highest = cur_from;
                             }
                         }
+                    };
+
+                    // Parse bare presences (used by gateway contacts, mostly)
+                    if(resources_obj['bare'] === 1) {
+                        fn_parse_resource(null);
+                    }
+
+                    // Parse resources
+                    for(cur_resource in resources_obj['list']) {
+                        fn_parse_resource(cur_resource);
                     }
 
                     Console.log('Processed presence for regular user: ' + xid + ' (highest priority for: ' + (from_highest || 'none') + ')');
@@ -1072,7 +1088,11 @@ var Presence = (function () {
     self.resources = function(xid) {
 
         try {
-            var resources_obj = {};
+            var resources_obj = {
+                'bare': 0,
+                'list': {}
+            };
+
             var resources_db  = DataStore.getDB(Connection.desktop_hash, 'presence-resources', xid);
 
             if(resources_db) {
@@ -1101,7 +1121,12 @@ var Presence = (function () {
         try {
             resources_obj = self.resources(xid);
 
-            resources_obj[resource] = 1;
+            if(resource) {
+                resources_obj['list'][resource] = 1;
+            } else {
+                resources_obj['bare'] = 1;
+            }
+
             DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
         } catch(e) {
             Console.error('Presence.addResource', e);
@@ -1126,7 +1151,12 @@ var Presence = (function () {
         try {
             resources_obj = self.resources(xid);
 
-            delete resources_obj[resource];
+            if(resource) {
+                delete resources_obj['list'][resource];
+            } else {
+                resources_obj['bare'] = 0;
+            }
+            
             DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
         } catch(e) {
             Console.error('Presence.removeResource', e);
