@@ -532,11 +532,11 @@ var Caps = (function () {
                 }
             };
 
-            if(resources_obj['bare'] === 1) {
+            if(resources_obj.bare === 1) {
                 fn_parse_resource(null);
             }
 
-            for(var cur_resource in resources_obj['list']) {
+            for(var cur_resource in resources_obj.list) {
                 fn_parse_resource(cur_resource);
             }
         } catch(e) {

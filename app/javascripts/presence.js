@@ -995,12 +995,12 @@ var Presence = (function () {
                     };
 
                     // Parse bare presences (used by gateway contacts, mostly)
-                    if(resources_obj['bare'] === 1) {
+                    if(resources_obj.bare === 1) {
                         fn_parse_resource(null);
                     }
 
                     // Parse resources
-                    for(cur_resource in resources_obj['list']) {
+                    for(cur_resource in resources_obj.list) {
                         fn_parse_resource(cur_resource);
                     }
 
@@ -1122,9 +1122,9 @@ var Presence = (function () {
             resources_obj = self.resources(xid);
 
             if(resource) {
-                resources_obj['list'][resource] = 1;
+                resources_obj.list[resource] = 1;
             } else {
-                resources_obj['bare'] = 1;
+                resources_obj.bare = 1;
             }
 
             DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
@@ -1152,9 +1152,9 @@ var Presence = (function () {
             resources_obj = self.resources(xid);
 
             if(resource) {
-                delete resources_obj['list'][resource];
+                delete resources_obj.list[resource];
             } else {
-                resources_obj['bare'] = 0;
+                resources_obj.bare = 0;
             }
             
             DataStore.setDB(Connection.desktop_hash, 'presence-resources', xid, $.toJSON(resources_obj));
