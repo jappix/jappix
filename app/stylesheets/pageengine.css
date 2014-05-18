@@ -365,8 +365,8 @@ html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info
     display: none;
 }
 
-#page-engine .one-line .correction-edit:hover,
-#page-engine .one-line .correction-edit:focus {
+#page-engine .page-engine-chan[data-correction="true"] .one-line .correction-edit:hover,
+#page-engine .page-engine-chan[data-correction="true"] .one-line .correction-edit:focus {
     opacity: 1;
 }
 
@@ -375,7 +375,7 @@ html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info
     margin-top: 2px;
 }
 
-#page-engine .one-line.user-message[data-mode="me"]:last-child:hover .correction-edit {
+#page-engine .page-engine-chan[data-correction="true"] .one-line.user-message[data-mode="me"]:last-child:hover .correction-edit {
     display: block;
 }
 

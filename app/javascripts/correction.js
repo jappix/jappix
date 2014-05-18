@@ -30,7 +30,7 @@ var Correction = (function () {
         var support = false;
 
         try {
-            if($('#' + hex_md5(xid) + ' .message-area[data-correction]').size()) {
+            if($('#' + hex_md5(xid) + '[data-correction="true"]').size()) {
                 support = true;
             }
         } catch(e) {
@@ -104,7 +104,7 @@ var Correction = (function () {
                 last_message_sel = $('#' + hex_md5(xid) + ' .content .one-line.user-message[data-mode="me"]:last');
                 last_message_val = last_message_sel.find('.message-content').text() || null;
 
-                if(!last_message_val === null) {
+                if(last_message_val === null) {
                     last_message_sel = null;
                 }
             }
@@ -208,10 +208,10 @@ var Correction = (function () {
         try {
             var hash = hex_md5(xid);
             var id = genID();
-            args['id'] = id;
+            args.id = id;
 
             var message = new JSJaCMessage();
-            args['message'] = message;
+            args.message = message;
 
             message.setType('chat');
             message.setTo(xid);
@@ -219,7 +219,7 @@ var Correction = (function () {
 
             // Generates the correct message depending of the choosen style
             var generate_message = Message.generate(message, message_body, hash);
-            args['xhtml'] = (generate_message === 'XHTML');
+            args.xhtml = (generate_message === 'XHTML');
             
             // Receipt request
             var receipt_request = Receipts.request(hash);
@@ -341,8 +341,8 @@ var Correction = (function () {
                     // Filter the xHTML message (for us!)
                     var replacement_formatted = replacement;
 
-                    if(stanza_args['xhtml']) {
-                        replacement_formatted = Filter.xhtml(stanza_args['message'].getNode());
+                    if(stanza_args.xhtml) {
+                        replacement_formatted = Filter.xhtml(stanza_args.message.getNode());
                     }
 
                     // Remove old message
@@ -360,10 +360,10 @@ var Correction = (function () {
                         DateUtils.getCompleteTime(),
                         DateUtils.getTimeStamp(),
                         'user-message',
-                        !stanza_args['xhtml'],
+                        !stanza_args.xhtml,
                         '',
                         'me',
-                        stanza_args['id'],
+                        stanza_args.id,
                         undefined,
                         undefined,
                         true

@@ -425,9 +425,9 @@ var Caps = (function () {
 
             // Apply Last Message Correction
             if(NS_URN_CORRECT in features) {
-                message_area.attr('data-correction', 'true');
+                path.attr('data-correction', 'true');
             } else {
-                message_area.removeAttr('data-correction');
+                path.removeAttr('data-correction');
             }
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);
