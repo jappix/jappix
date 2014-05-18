@@ -433,29 +433,53 @@ var Chat = (function () {
                 }
             });
             
-            inputDetect.keypress(function(e) {
-                // Enter key
+            inputDetect.keydown(function(e) {
                 if(e.keyCode == 13) {
-                    // Add a new line
+                    // Enter key
                     if(e.shiftKey || e.ctrlKey) {
+                        // Add a new line
                         inputDetect.val(inputDetect.val() + '\n');
                     } else {
-                        // Send the message
-                        Message.send(hash, 'chat');
-                        
+                        if(Correction.isIn(xid) === true) {
+                            var corrected_value = inputDetect.val().trim();
+
+                            if(corrected_value) {
+                                // Send the corrected message
+                                Correction.send(xid, corrected_value);
+                            }
+
+                            Correction.leave(xid);
+                        } else {
+                            // Send the message
+                            Message.send(hash, 'chat');
+                        }
+
                         // Reset the composing database entry
                         DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
                     }
                     
                     return false;
-                } else {
-                    // Leave correction mode?
-                    if(e.keyCode == 27 && Correction.isIn(xid) === true) {
+                } else if(e.keyCode == 8) {
+                    // Leave correction mode? (another way, by flushing input value progressively)
+                    if(Correction.isIn(xid) === true && !inputDetect.val()) {
                         Correction.leave(xid);
                     }
+                }
+            });
 
-                    // Enter correction mode?
-                    else if(inputDetect.val().match(/^\/correct/) && Correction.isIn(xid) === false) {
+            inputDetect.keyup(function(e) {
+                if(e.keyCode == 27) {
+                    // Escape key
+                    inputDetect.val('');
+
+                    // Leave correction mode? (simple escape way)
+                    if(Correction.isIn(xid) === true) {
+                        Correction.leave(xid);
+                    }
+                } else {
+                    // Other keys
+                    if(inputDetect.val().match(/^\/correct/) && Correction.isIn(xid) === false) {
+                        // Enter correction mode?
                         Correction.enter(xid);
                     }
                 }

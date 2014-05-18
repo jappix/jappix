@@ -2108,3 +2108,12 @@ msgstr ""
 
 msgid "Video Call"
 msgstr ""
+
+msgid "Edited"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Being edited"
+msgstr ""

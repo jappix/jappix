@@ -685,7 +685,7 @@ var Common = (function () {
 
         if (query instanceof Array) {
             var result = new Array(query.length);
-            for(i=0; i<query.length; i++) {
+            for(i=0; i < query.length; i++) {
                 try {
                     result[i] = Common.escapeRegex(query[i]);
                 } catch(e) {

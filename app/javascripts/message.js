@@ -95,8 +95,9 @@ var Message = (function () {
             }
             
             // Received message
-            if(Receipts.hasReceived(message))
+            if(Receipts.hasReceived(message)) {
                 return Receipts.messageReceived(hash, id);
+            }
             
             // Chatstate message
             if(node && !delay && ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
@@ -457,6 +458,25 @@ var Message = (function () {
                 
                 // Chat message
                 else {
+                    // Message is an edit? (XEP-0308)
+                    var is_edited = false;
+                    var replace_node = message.getChild('replace', NS_URN_CORRECT);
+
+                    if(replace_node) {
+                        var message_edit_id = $(replace_node).attr('id');
+
+                        if(typeof message_edit_id != 'undefined') {
+                            var message_edit_sel = $('#' + hash + ' .one-line.user-message[data-mode="him"]').filter(function() {
+                                return ($(this).attr('data-id') + '') === (message_edit_id + '');
+                            });
+
+                            if(message_edit_sel.size()) {
+                                is_edited = true;
+                                message_edit_sel.remove();
+                            }
+                        }
+                    }
+
                     // Gets the nickname of the user
                     var fromName = resource;
                     var chatType = 'chat';
@@ -485,7 +505,22 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    self.display(type, xid, hash, fromName.htmlEnc(), body, time, stamp, 'user-message', html_escape, '', 'him');
+                    self.display(type,
+                        xid,
+                        hash,
+                        fromName.htmlEnc(),
+                        body,
+                        time,
+                        stamp,
+                        'user-message',
+                        html_escape,
+                        '',
+                        'him',
+                        id,
+                        undefined,
+                        undefined,
+                        is_edited
+                    );
                     
                     // We notify the user
                     Interface.messageNotify(hash, 'personal');
@@ -581,18 +616,6 @@ var Message = (function () {
                 // Reset chatstate
                 ChatState.send('active', xid, hash);
             }
-
-            // /correct shortcut
-            else if(body.match(/^\/correct\s*(.*)/)) {
-                var replacement = (RegExp.$1).trim();
-
-                if(replacement) {
-                    // Directly push corrected message to the network
-                    Correction.push(xid, replacement);
-                } else {
-                    return false;
-                }
-            }
             
             // /join shortcut
             else if(body.match(/^\/join (\S+)\s*(.*)/)) {
@@ -649,8 +672,9 @@ var Message = (function () {
                 // Receipt request
                 var receipt_request = Receipts.request(hash);
                 
-                if(receipt_request)
+                if(receipt_request) {
                     aMsg.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
+                }
                 
                 // Chatstate
                 aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
@@ -1063,7 +1087,7 @@ var Message = (function () {
      * @param {boolean} no_scroll
      * @return {undefined}
      */
-    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll) {
+    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited) {
 
         try {
             // Target
@@ -1098,12 +1122,19 @@ var Message = (function () {
             if(id) {
                 data_id = ' data-id="' + id + '"';
             }
+
+            // Edited state?
+            var data_edited = '';
+
+            if(is_edited === true) {
+                data_edited = ' data-edited="true"';
+            }
             
             // Filter the message
             var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
-            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + '><div class="message-content">';
+            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + '><div class="message-content">';
             
             // Name color attribute
             if(type == 'groupchat') {
@@ -1144,6 +1175,10 @@ var Message = (function () {
 
             if(type == 'chat') {
                 messageCode += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
+
+                if(is_edited === true) {
+                    messageCode += '<span class="corrected-info">' + Common._e("Edited") + '</span>';
+                }
             }
             
             messageCode += '</div>';
@@ -1206,7 +1241,7 @@ var Message = (function () {
 
                 if(xid_to) {
                     xid_to = unescape(xid_to);
-                    
+
                     $('#' + hash + ' .content .one-line:last .correction-edit').click(function() {
                         Correction.enter(xid_to);
                         return false;
