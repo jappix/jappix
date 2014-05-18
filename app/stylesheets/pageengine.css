@@ -327,6 +327,33 @@ html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
     margin-bottom: 10px;
 }
 
+#page-engine .one-line {
+    position: relative;
+}
+
+#page-engine .one-line .correction-edit {
+    border: 1px solid #7f7f7f;
+    color: black;
+    font-size: 0.8em;
+    text-decoration: none;
+    margin-top: -1px;
+    padding: 2px 5px;
+    opacity: 0.4;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#page-engine .one-line .correction-edit:hover,
+#page-engine .one-line .correction-edit:focus {
+    opacity: 1;
+}
+
+#page-engine .one-line.user-message[data-mode="me"]:last-child .correction-edit {
+    display: block;
+}
+
 #page-engine .one-line,
 #page-engine .one-group b.name {
     padding-left: 50px;
@@ -337,6 +364,10 @@ html[dir="rtl"] #page-engine .one-line,
 html[dir="rtl"] #page-engine .one-group b.name {
     padding-left: auto;
     padding-right: 50px;
+}
+
+#page-engine .one-line.correction-active {
+    opacity: 0.6;
 }
 
 #page-engine .one-group b.name {

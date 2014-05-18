@@ -353,7 +353,7 @@ var Chat = (function () {
             // Create the chat switcher
             self.generateSwitch(type, hash, xid, nick);
             
-            // If the user is not in our roster
+            // Is this a chat?
             if(type == 'chat') {
                 // MAM? Get archives from there!
                 if(Features.enabledMAM()) {
@@ -398,7 +398,7 @@ var Chat = (function () {
                 }
 
                 // Add button
-                if(!Roster.isFriend(xid))
+                if(!Roster.isFriend(xid)) {
                     $('#' + hash + ' .tools-add').click(function() {
                         // Hide the icon (to tell the user all is okay)
                         $(this).hide();
@@ -406,6 +406,7 @@ var Chat = (function () {
                         // Send the subscribe request
                         Roster.addThisContact(xid, nick);
                     }).show();
+                }
             }
             
             // We catch the user's informations (like this avatar, vcard, and so on...)
@@ -427,8 +428,9 @@ var Chat = (function () {
             
             inputDetect.blur(function() {
                 // Reset storage about focus on this chat!
-                if(Interface.chat_focus_hash == hash)
+                if(Interface.chat_focus_hash == hash) {
                     Interface.chat_focus_hash = null;
+                }
             });
             
             inputDetect.keypress(function(e) {
@@ -446,6 +448,16 @@ var Chat = (function () {
                     }
                     
                     return false;
+                } else {
+                    // Leave correction mode?
+                    if(e.keyCode == 27 && Correction.isIn(xid) === true) {
+                        Correction.leave(xid);
+                    }
+
+                    // Enter correction mode?
+                    else if(inputDetect.val().match(/^\/correct/) && Correction.isIn(xid) === false) {
+                        Correction.enter(xid);
+                    }
                 }
             });
 

@@ -206,8 +206,9 @@ var Caps = (function () {
                 var pVar = $(this).attr('var');
                 
                 // Add the current value to the array
-                if(pVar)
+                if(pVar) {
                     features.push(pVar);
+                }
             });
             
             // Data-form values
@@ -220,16 +221,18 @@ var Caps = (function () {
                 $(this).find('field[var="FORM_TYPE"] value').each(function() {
                     var cText = $(this).text();
                     
-                    if(cText)
+                    if(cText) {
                         pString += cText + '<';
+                    }
                 });
                 
                 // Add the var attributes into an array
                 $(this).find('field:not([var="FORM_TYPE"])').each(function() {
                     var cVar = $(this).attr('var');
                     
-                    if(cVar)
+                    if(cVar) {
                         sortVar.push(cVar);
+                    }
                 });
                 
                 // Sort the var attributes
@@ -260,8 +263,9 @@ var Caps = (function () {
                 // Any string?
                 if(pString) {
                     // Remove the undesired double '<' from the string
-                    if(pString.match(/(.+)(<)+$/))
+                    if(pString.match(/(.+)(<)+$/)) {
                         pString = pString.substring(0, pString.length - 1);
+                    }
                     
                     // Add the current string to the array
                     data_forms.push(pString);
@@ -310,8 +314,9 @@ var Caps = (function () {
             var xid = Common.bareXID(from);
             
             // This comes from a private groupchat chat?
-            if(Utils.isPrivate(xid))
+            if(Utils.isPrivate(xid)) {
                 xid = from;
+            }
             
             hash = hex_md5(xid);
 
@@ -350,12 +355,12 @@ var Caps = (function () {
                 
                 // Reset the markers
                 message_area.removeAttr('style')
-                        .removeAttr('data-font')
-                        .removeAttr('data-fontsize')
-                        .removeAttr('data-color')
-                        .removeAttr('data-bold')
-                        .removeAttr('data-italic')
-                        .removeAttr('data-underline');
+                            .removeAttr('data-font')
+                            .removeAttr('data-fontsize')
+                            .removeAttr('data-color')
+                            .removeAttr('data-bold')
+                            .removeAttr('data-italic')
+                            .removeAttr('data-underline');
             }
 
             // Apply Jingle
@@ -416,6 +421,13 @@ var Caps = (function () {
                 message_area.attr('data-receipts', 'true');
             } else {
                 message_area.removeAttr('data-receipts');
+            }
+
+            // Apply Last Message Correction
+            if(NS_URN_CORRECT in features) {
+                message_area.attr('data-correction', 'true');
+            } else {
+                message_area.removeAttr('data-correction');
             }
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);

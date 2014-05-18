@@ -462,8 +462,9 @@ var Message = (function () {
                     var chatType = 'chat';
                     
                     // Must send a receipt notification?
-                    if(Receipts.has(message) && (id !== null))
+                    if(Receipts.has(message) && (id !== null)) {
                         Receipts.sendReceived(type, from, id);
+                    }
                     
                     // It does not come from a groupchat user, get the full name
                     if(!GCUser) {
@@ -519,8 +520,9 @@ var Message = (function () {
             var nXID;
             
             // If the user didn't entered any message, stop
-            if(!body || !xid)
+            if(!body || !xid) {
                 return false;
+            }
         
             // We send the message through the XMPP network
             var aMsg = new JSJaCMessage();
@@ -559,8 +561,9 @@ var Message = (function () {
                 // Generate the code from the array
                 shortcuts = shortcuts.sort();
                 
-                for(var s in shortcuts)
+                for(var s in shortcuts) {
                     help_text += shortcuts[s] + '<br />';
+                }
                 
                 help_text += '</p>';
                 
@@ -577,6 +580,18 @@ var Message = (function () {
                 
                 // Reset chatstate
                 ChatState.send('active', xid, hash);
+            }
+
+            // /correct shortcut
+            else if(body.match(/^\/correct\s*(.*)/)) {
+                var replacement = (RegExp.$1).trim();
+
+                if(replacement) {
+                    // Directly push corrected message to the network
+                    Correction.push(xid, replacement);
+                } else {
+                    return false;
+                }
             }
             
             // /join shortcut
@@ -695,8 +710,9 @@ var Message = (function () {
                     nXID = Utils.getMUCUserXID(xid, msg_nick);
                     
                     // We check if the user exists
-                    if(!nXID)
+                    if(!nXID) {
                         Board.openThisInfo(6);
+                    }
                     
                     // If the private message is not empty
                     else if(msg_body) {
@@ -849,8 +865,9 @@ var Message = (function () {
             // Loop the input values
             $(checkbox).filter(':checked').each(function() {
                 // If there is a previous element
-                if(style)
+                if(style) {
                     style += ' ';
+                }
                 
                 // Get the current style
                 switch($(this).attr('class')) {
@@ -985,8 +1002,9 @@ var Message = (function () {
                 // Explode the message body new lines (to create one <p /> element by line)
                 var new_lines = new Array(body);
                 
-                if(body.match(/\n/))
+                if(body.match(/\n/)) {
                     new_lines = body.split('\n');
+                }
                 
                 // Create the XML elements
                 var aHtml = aMsg.appendNode('html', {'xmlns': NS_XHTML_IM});
@@ -998,8 +1016,9 @@ var Message = (function () {
                     var cLine = new_lines[i];
                     
                     // Blank line, we put a <br />
-                    if(cLine.match(/(^)(\s+)($)/) || !cLine)
+                    if(cLine.match(/(^)(\s+)($)/) || !cLine) {
                         aBody.appendChild(aMsg.buildNode('br', {'xmlns': NS_XHTML}));
+                    }
                     
                     // Line with content, we put a <p />
                     else {
@@ -1084,7 +1103,7 @@ var Message = (function () {
             var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
-            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '"' + data_id + '>';
+            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + '><div class="message-content">';
             
             // Name color attribute
             if(type == 'groupchat') {
@@ -1122,6 +1141,12 @@ var Message = (function () {
             }
             
             messageCode += filteredMessage + '</div>';
+
+            if(type == 'chat') {
+                messageCode += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
+            }
+            
+            messageCode += '</div>';
             
             // Must group it?
             if(!grouped) {
@@ -1173,6 +1198,20 @@ var Message = (function () {
             // Scroll to this message
             if(can_scroll) {
                 Interface.autoScroll(hash);
+            }
+
+            // Add click events
+            if(type == 'chat') {
+                var xid_to = $('#' + hash).attr('data-xid');
+
+                if(xid_to) {
+                    xid_to = unescape(xid_to);
+                    
+                    $('#' + hash + ' .content .one-line:last .correction-edit').click(function() {
+                        Correction.enter(xid_to);
+                        return false;
+                    });
+                }
             }
         } catch(e) {
             Console.error('Message.display', e);
