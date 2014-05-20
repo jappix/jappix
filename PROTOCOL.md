@@ -61,6 +61,12 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
  * XEP-0299: Codecs for Jingle Video *v0.1*
  * XEP-0320: Use of DTLS-SRTP in Jingle Sessions *v0.2*
  * XEP-0338: Jingle Grouping Framework *v0.1*
+ * XEP-0308: Last Message Correction *v1.0*
+ * XEP-0333: Chat Markers *v0.2*
+ * XEP-0152: Reachability Addresses *v1.0*
+ * XEP-0334: Message Processing Hints *v0.1*
+ * XEP-0224: Attention *v1.0*
+ * XEP-0319: Last User Interaction in Presence *v0.2*
 
 
 # Others
