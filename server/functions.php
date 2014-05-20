@@ -1654,6 +1654,9 @@ function hideErrors() {
         ini_set('display_errors', 1);
         ini_set('error_reporting', E_ALL);
     }
+
+    // Force timezone (avoids getting warnings on some PHP setups)
+    date_default_timezone_set(@date_default_timezone_get());
 }
 
 // Handles errors (to be appended in log file)
