@@ -257,8 +257,9 @@ var Presence = (function () {
                     if(Common.exists('#' + xidHash)) {
                         var dStatus = self.filterStatus(xid, status, false);
                         
-                        if(dStatus)
+                        if(dStatus) {
                             dStatus = ' (' + dStatus + ')';
+                        }
                         
                         // Generate the presence-in-chat code
                         var dName = Name.getBuddy(from).htmlEnc();
@@ -267,11 +268,13 @@ var Presence = (function () {
                         // Check whether it has been previously displayed
                         var can_display = true;
                         
-                        if($('#' + xidHash + ' .one-line.system-message:last').html() == dBody)
+                        if($('#' + xidHash + ' .one-line.system-message:last').html() == dBody) {
                             can_display = false;
+                        }
                         
-                        if(can_display)
+                        if(can_display) {
                             Message.display('chat', xid, xidHash, dName, dBody, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
+                        }
                     }
                 }
 
@@ -1230,8 +1233,9 @@ var Presence = (function () {
             var presence = new JSJaCPresence();
             
             // Avoid "null" or "none" if nothing stored
-            if(!checksum || (checksum == 'none'))
+            if(!checksum || (checksum == 'none')) {
                 checksum = '';
+            }
             
             // Presence headers
             if(to)
@@ -1270,6 +1274,27 @@ var Presence = (function () {
                 if(password)
                     xMUC.appendChild(presence.buildNode('password', {'xmlns': NS_MUC}, password));
             }
+
+            // Reachability details
+            if(type != 'unavailable') {
+                var reach_regex = new RegExp('[^+0-9]', 'g');
+                var reach_phone = DataStore.getDB(Connection.desktop_hash, 'profile', 'phone');
+                reach_phone = reach_phone.replace(reach_regex, '');
+
+                if(reach_phone) {
+                    /* REF: http://www.xmpp.org/extensions/xep-0152.html */
+                    var reach_node = presence.appendNode(presence.buildNode('reach', {
+                        'xmlns': NS_URN_REACH
+                    }));
+
+                    reach_node.appendChild(
+                        presence.buildNode('addr', {
+                            'uri': 'tel:' + reach_phone,
+                            'xmlns': NS_URN_REACH
+                        })
+                    );
+                }
+            }
             
             // If away, send a last activity time
             if((show == 'away') || (show == 'xa')) {
@@ -1297,9 +1322,10 @@ var Presence = (function () {
             else
                 con.send(presence);
             
-            if(!type)
+            if(!type) {
                 type = 'available';
-            
+            }
+
             Console.info('Presence sent: ' + type);
         } catch(e) {
             Console.error('Presence.send', e);

@@ -525,8 +525,9 @@ var vCard = (function () {
                         }
                         
                         // Profile editor popup
-                        else if(type == 'user')
+                        else if(type == 'user') {
                             $(path_vcard + ' #USER-' + tokenname).val(currentText);
+                        }
                         
                         // Avoid duplicating the value
                         values_yet.push(tokenname);
@@ -556,9 +557,7 @@ var vCard = (function () {
                 aBinval = $('#USER-PHOTO-BINVAL').val();
                 aType = $('#USER-PHOTO-TYPE').val();
                 aContainer = path_vcard + ' .avatar-container';
-            }
-            
-            else {
+            } else {
                 aBinval = $(iqNode).find('BINVAL:first').text();
                 aType = $(iqNode).find('TYPE:first').text();
                 aContainer = path_userInfos + ' .avatar-container';

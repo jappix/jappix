@@ -141,8 +141,9 @@ var Avatar = (function () {
                 oChecksum = DataStore.getDB(Connection.desktop_hash, 'checksum', 1);
                 
                 // Avoid the "null" value
-                if(!oChecksum)
+                if(!oChecksum) {
                     oChecksum = '';
+                }
             }
             
             // vCard not empty?
@@ -151,10 +152,12 @@ var Avatar = (function () {
                 if(handleFrom == Common.getXID()) {
                     // Get the names
                     var names = Name.generateBuddy(iq);
+                    var phone_number = find.find('TEL:has(NUMBER):first NUMBER:first').text();
                     
                     // Write the values to the database
                     DataStore.setDB(Connection.desktop_hash, 'profile', 'name', names[0]);
                     DataStore.setDB(Connection.desktop_hash, 'profile', 'nick', names[1]);
+                    DataStore.setDB(Connection.desktop_hash, 'profile', 'phone', phone_number);
                 }
                 
                 // We get the avatar
