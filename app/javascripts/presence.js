@@ -1274,16 +1274,22 @@ var Presence = (function () {
             // If away, send a last activity time
             if((show == 'away') || (show == 'xa')) {
                 /* REF: http://xmpp.org/extensions/xep-0256.html */
-                
                 presence.appendNode(presence.buildNode('query', {
                     'xmlns': NS_LAST,
                     'seconds': DateUtils.getPresenceLast()
                 }));
+
+                /* REF: http://xmpp.org/extensions/xep-0319.html */
+                presence.appendNode(presence.buildNode('idle', {
+                    'xmlns': NS_URN_IDLE,
+                    'since': DateUtils.getLastActivityDate()
+                }));
             }
             
             // Else, set a new last activity stamp
-            else
+            else {
                 DateUtils.presence_last_activity = DateUtils.getTimeStamp();
+            }
             
             // Send the presence packet
             if(handle)
@@ -1434,8 +1440,9 @@ var Presence = (function () {
 
         try {
             // Not connected?
-            if(!Common.isConnected())
+            if(!Common.isConnected()) {
                 return;
+            }
             
             // Stop if an xa presence was set manually
             var last_presence = self.getUserShow();
@@ -1507,8 +1514,9 @@ var Presence = (function () {
                 // Then restore the old presence
                 self.sendActions('', true);
                 
-                if(!show)
+                if(!show) {
                     show = 'available';
+                }
                 
                 Console.info('Presence restored: ' + show);
             }

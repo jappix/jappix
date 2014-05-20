@@ -97,7 +97,12 @@ var Caps = (function () {
                 NS_IQOOB,
                 NS_XOOB,
                 NS_URN_CARBONS,
-                NS_URN_CORRECT
+                NS_URN_CORRECT,
+                NS_URN_MARKERS,
+                NS_URN_IDLE,
+                NS_URN_ATTENTION,
+                NS_URN_REACH,
+                NS_URN_HINTS
             ];
 
             var disco_jingle = JSJaCJingle_disco();

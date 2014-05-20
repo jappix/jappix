@@ -84,12 +84,34 @@ var DateUtils = (function () {
 
         try {
             // Last activity not yet initialized?
-            if(self.last_activity === 0)
+            if(self.last_activity === 0) {
                 return 0;
+            }
             
             return self.getTimeStamp() - self.last_activity;
         } catch(e) {
             Console.error('DateUtils.getLastActivity', e);
+        }
+
+    };
+
+
+    /**
+     * Gets the last user activity as a date
+     * @public
+     * @return {string}
+     */
+    self.getLastActivityDate = function() {
+
+        try {
+            var last_activity = self.last_activity || self.getTimeStamp();
+
+            var last_date = new Date();
+            last_date.setTime(last_activity * 1000);
+
+            return self.getDatetime(last_date, 'utc');
+        } catch(e) {
+            Console.error('DateUtils.getLastActivityDate', e);
         }
 
     };
@@ -104,12 +126,65 @@ var DateUtils = (function () {
 
         try {
             // Last presence stamp not yet initialized?
-            if(self.presence_last_activity === 0)
+            if(self.presence_last_activity === 0) {
                 return 0;
+            }
             
             return self.getTimeStamp() - self.presence_last_activity;
         } catch(e) {
             Console.error('DateUtils.getPresenceLast', e);
+        }
+
+    };
+
+
+    /**
+     * Generates a normalized datetime
+     * @public
+     * @param {Date} date
+     * @param {string} location
+     * @return {string}
+     */
+    self.getDatetime = function(date, location) {
+
+        /* FROM : http://trac.jwchat.org/jsjac/browser/branches/jsjac_1.0/jsextras.js?rev=221 */
+
+        var year, month, day, hours, minutes, seconds;
+        var date_string = null;
+
+        try {
+            // Gets the UTC date
+            if(location == 'utc') {
+                year = date.getUTCFullYear();
+                month = date.getUTCMonth();
+                day = date.getUTCDate();
+                hours = date.getUTCHours();
+                minutes = date.getUTCMinutes();
+                seconds = date.getUTCSeconds();
+            }
+            
+            // Gets the local date
+            else {
+                year = date.getFullYear();
+                month = date.getMonth();
+                day = date.getDate();
+                hours = date.getHours();
+                minutes = date.getMinutes();
+                seconds = date.getSeconds();
+            }
+            
+            // Generates the date string
+            date_string = year + '-';
+            date_string += Common.padZero(month + 1) + '-';
+            date_string += Common.padZero(day) + 'T';
+            date_string += Common.padZero(hours) + ':';
+            date_string += Common.padZero(minutes) + ':';
+            date_string += Common.padZero(seconds) + 'Z';
+            
+            // Returns the date string
+            return date_string;
+        } catch(e) {
+            Console.error('DateUtils.getDatetime', e);
         }
 
     };
@@ -123,43 +198,11 @@ var DateUtils = (function () {
      */
     self.getXMPPTime = function(location) {
 
-        /* FROM : http://trac.jwchat.org/jsjac/browser/branches/jsjac_1.0/jsextras.js?rev=221 */
-
         try {
-            // Initialize
-            var jInit = new Date();
-            var year, month, day, hours, minutes, seconds;
-            
-            // Gets the UTC date
-            if(location == 'utc') {
-                year = jInit.getUTCFullYear();
-                month = jInit.getUTCMonth();
-                day = jInit.getUTCDate();
-                hours = jInit.getUTCHours();
-                minutes = jInit.getUTCMinutes();
-                seconds = jInit.getUTCSeconds();
-            }
-            
-            // Gets the local date
-            else {
-                year = jInit.getFullYear();
-                month = jInit.getMonth();
-                day = jInit.getDate();
-                hours = jInit.getHours();
-                minutes = jInit.getMinutes();
-                seconds = jInit.getSeconds();
-            }
-            
-            // Generates the date string
-            var jDate = year + '-';
-            jDate += Common.padZero(month + 1) + '-';
-            jDate += Common.padZero(day) + 'T';
-            jDate += Common.padZero(hours) + ':';
-            jDate += Common.padZero(minutes) + ':';
-            jDate += Common.padZero(seconds) + 'Z';
-            
-            // Returns the date string
-            return jDate;
+            return self.getDatetime(
+                (new Date()),
+                location
+            );
         } catch(e) {
             Console.error('DateUtils.getXMPPTime', e);
         }
