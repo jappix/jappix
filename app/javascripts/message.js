@@ -460,6 +460,7 @@ var Message = (function () {
                 else {
                     // Message is an edit? (XEP-0308)
                     var is_edited = false;
+                    var edit_count = 0;
                     var replace_node = message.getChild('replace', NS_URN_CORRECT);
 
                     if(replace_node) {
@@ -471,6 +472,8 @@ var Message = (function () {
                             });
 
                             if(message_edit_sel.size()) {
+                                edit_count = message_edit_sel.attr('data-edit-count') || 0;
+                                edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
                                 is_edited = true;
                                 message_edit_sel.remove();
                             }
@@ -519,7 +522,8 @@ var Message = (function () {
                         id,
                         undefined,
                         undefined,
-                        is_edited
+                        is_edited,
+                        (edit_count + 1)
                     );
                     
                     // We notify the user
@@ -1087,7 +1091,7 @@ var Message = (function () {
      * @param {boolean} no_scroll
      * @return {undefined}
      */
-    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited) {
+    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count) {
 
         try {
             // Target
@@ -1125,16 +1129,18 @@ var Message = (function () {
 
             // Edited state?
             var data_edited = '';
+            var data_edit_count = '';
 
             if(is_edited === true) {
                 data_edited = ' data-edited="true"';
+                data_edit_count = ' data-edit-count="' + (edit_count || 0) + '"';
             }
             
             // Filter the message
             var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
-            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + '><div class="message-content">';
+            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + data_edit_count + '><div class="message-content">';
             
             // Name color attribute
             if(type == 'groupchat') {
@@ -1177,7 +1183,13 @@ var Message = (function () {
                 messageCode += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
 
                 if(is_edited === true) {
-                    messageCode += '<span class="corrected-info">' + Common._e("Edited") + '</span>';
+                    var edit_text = Common._e("Edited");
+
+                    if(edit_count > 1) {
+                        edit_text = Common._e(Common.printf("Edited (%s)", edit_count));
+                    }
+
+                    messageCode += '<span class="corrected-info">' + edit_text + '</span>';
                 }
             }
             

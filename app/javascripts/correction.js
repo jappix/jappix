@@ -346,9 +346,13 @@ var Correction = (function () {
                     }
 
                     // Remove old message
-                    $('#' + hash + ' .content .one-line.user-message[data-mode="me"]').filter(function() {
+                    old_message_sel = $('#' + hash + ' .content .one-line.user-message[data-mode="me"]').filter(function() {
                         return ($(this).attr('data-id') + '') === (replace_id + '');
-                    }).remove();
+                    });
+
+                    var edit_count = old_message_sel.attr('data-edit-count') || 0;
+                    edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
+                    old_message_sel.remove();
 
                     // Display edited message
                     Message.display(
@@ -366,7 +370,8 @@ var Correction = (function () {
                         stanza_args.id,
                         undefined,
                         undefined,
-                        true
+                        true,
+                        (edit_count + 1)
                     );
                 }
             }

@@ -2112,6 +2112,9 @@ msgstr ""
 msgid "Edited"
 msgstr ""
 
+msgid "Edited (%s)"
+msgstr ""
+
 msgid "Editing"
 msgstr ""
 
