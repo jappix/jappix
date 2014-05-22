@@ -33,6 +33,9 @@ var Message = (function () {
             if(Errors.handleReply(message))
                 return;
             
+            // Storable message?
+            var is_storable = message.getChild('no-permanent-storage', NS_URN_HINTS) ? false : true;
+
             // Carbon-forwarded message?
             if(message.getChild('sent', NS_URN_CARBONS)) {
                 Carbons.handleSent(message); return;
@@ -236,8 +239,9 @@ var Message = (function () {
                 var messageDate = delay;
                 
                 // No message date?
-                if(!messageDate)
+                if(!messageDate) {
                     messageDate = DateUtils.getXMPPTime('utc');
+                }
                 
                 // Message ID
                 var messageID = hex_md5(xid + subject + messageDate);
@@ -453,7 +457,25 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    self.display(type, from, hash, resource.htmlEnc(), body, time, stamp, message_type, html_escape, nickQuote);
+                    self.display(
+                        type,
+                        from,
+                        hash,
+                        resource.htmlEnc(),
+                        body,
+                        time,
+                        stamp,
+                        message_type,
+                        html_escape,
+                        nickQuote,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        is_storable
+                    );
                 }
                 
                 // Chat message
@@ -508,7 +530,8 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    self.display(type,
+                    self.display(
+                        type,
                         xid,
                         hash,
                         fromName.htmlEnc(),
@@ -523,7 +546,8 @@ var Message = (function () {
                         undefined,
                         undefined,
                         is_edited,
-                        (edit_count + 1)
+                        (edit_count + 1),
+                        is_storable
                     );
                     
                     // We notify the user
@@ -1091,7 +1115,7 @@ var Message = (function () {
      * @param {boolean} no_scroll
      * @return {undefined}
      */
-    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count) {
+    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count, is_storable) {
 
         try {
             // Target
@@ -1232,8 +1256,12 @@ var Message = (function () {
                 var store_html = $(dom_filter).parent().html();
                 
                 // Store the data
-                if(store_html) {
+                if(store_html && is_storable !== false) {
                     self.storeLocalArchive(hash, store_html);
+                }
+
+                if(is_storable === false) {
+                    Console.info('Message.display', 'Won\'t store message since it\'s labeled as not storable (' + xid + ')');
                 }
             }
             
