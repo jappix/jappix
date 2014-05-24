@@ -193,6 +193,9 @@ var Carbons = (function () {
                         } else {
                             Console.debug('Got a sent message from another resource to: ' + (to || 'none') + ', was ignored because body empty');
                         }
+
+                        // Handle chat markers change
+                        Markers.handleCarbonChange(forwarded_message);
                     } else {
                         Console.debug('Got a sent message from another resource to: ' + (to || 'none') + ', was ignored because chat not open');
                     }
@@ -220,6 +223,8 @@ var Carbons = (function () {
 
             if(forwarded_message !== null) {
                 Console.debug('Got a received message from another resource from: ' + (forwarded_message.getFrom() || 'none'));
+
+                Console.debug('CARBONS:RECEIVED', forwarded_message.xml());
 
                 Message.handle(forwarded_message);
             }

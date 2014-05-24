@@ -163,6 +163,58 @@ var Markers = (function () {
 
 
     /**
+     * Handle marker change coming from Carbons
+     * @public
+     * @param {string} message
+     * @return {undefined}
+     */
+    self.handleCarbonChange = function(message) {
+
+        try {
+            // Check the marker element is existing
+            var marker_sel = $(message).find('[xmlns="' + NS_URN_MARKERS + '"]');
+
+            if(marker_sel.size()) {
+                var xid = Common.bareXID(message.getTo());
+
+                var mark_type = marker_sel.prop('tagName').toLowerCase();
+                var mark_handle = false;
+
+                // Filter allowed markers
+                switch(mark_type) {
+                    case self.MARK_TYPE_RECEIVED:
+                    case self.MARK_TYPE_DISPLAYED:
+                    case self.MARK_TYPE_ACKNOWLEDGED:
+                        mark_handle = true;
+                        break;
+                }
+
+                if(mark_handle === true) {
+                    var mark_message_id = marker_sel.attr('id');
+
+                    var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="him"][data-markable="true"]').filter(function() {
+                        return ($(this).attr('data-id') + '') === (mark_message_id + '');
+                    });
+
+                    if(!message_sel.size()) {
+                        Console.warn('Markers.handleCarbonChange', 'Unknown message marker to keep in sync with Carbons for: ' + xid);
+                        return false;
+                    }
+
+                    // Store mark state
+                    message_sel.attr('data-mark', mark_type);
+
+                    Console.debug('Markers.handleCarbonChange', 'Received Carbons chat marker (' + mark_type + ') from another resource for: ' + from);
+                }
+            }
+        } catch(e) {
+            Console.error('Markers.handleCarbonChange', e);
+        }
+
+    };
+
+
+    /**
      * Handles a marked message
      * @public
      * @param {object} message
@@ -194,7 +246,7 @@ var Markers = (function () {
                 }
 
                 // Find marked message target
-                var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="me"]:last').filter(function() {
+                var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="me"]').filter(function() {
                     return ($(this).attr('data-id') + '') === (mark_message_id + '');
                 });
 
