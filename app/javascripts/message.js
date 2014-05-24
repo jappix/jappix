@@ -101,7 +101,7 @@ var Message = (function () {
             if(Receipts.hasReceived(message)) {
                 return Receipts.messageReceived(hash, id);
             }
-            
+
             // Chatstate message
             if(node && !delay && ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
                 /* REF: http://xmpp.org/extensions/xep-0085.html */
@@ -547,7 +547,8 @@ var Message = (function () {
                         undefined,
                         is_edited,
                         (edit_count + 1),
-                        is_storable
+                        is_storable,
+                        Markers.hasRequestMarker(node)
                     );
                     
                     // We notify the user
@@ -557,7 +558,12 @@ var Message = (function () {
                 
                 return false;
             }
-            
+
+            // Message marker?
+            if(type == 'chat' && Markers.hasResponseMarker(node)) {
+                return Markers.handle(from, node);
+            }
+
             return false;
         } catch(e) {
             Console.error('Message.handle', e);
@@ -588,12 +594,12 @@ var Message = (function () {
             }
         
             // We send the message through the XMPP network
-            var aMsg = new JSJaCMessage();
-            aMsg.setTo(xid);
+            var message_packet = new JSJaCMessage();
+            message_packet.setTo(xid);
             
             // Set an ID
             var id = genID();
-            aMsg.setID(id);
+            message_packet.setID(id);
             
             // /help shortcut
             if(body.match(/^\/help\s*(.*)/)) {
@@ -691,28 +697,33 @@ var Message = (function () {
             
             // Chat message type
             else if(type == 'chat') {
-                aMsg.setType('chat');
+                message_packet.setType('chat');
                 
                 // Generates the correct message depending of the choosen style
-                var genMsg = self.generate(aMsg, body, hash);
+                var genMsg = self.generate(message_packet, body, hash);
                 var html_escape = (genMsg !== 'XHTML');
                 
                 // Receipt request
                 var receipt_request = Receipts.request(hash);
                 
                 if(receipt_request) {
-                    aMsg.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
+                    message_packet.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
                 }
                 
                 // Chatstate
-                aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
+                message_packet.appendNode('active', {'xmlns': NS_CHATSTATES});
                 
+                // Markable message?
+                if(Markers.hasSupport(xid)) {
+                    Markers.mark(message_packet);
+                }
+
                 // Send it!
-                con.send(aMsg, Errors.handleReply);
+                con.send(message_packet, Errors.handleReply);
                 
                 // Filter the xHTML message (for us!)
                 if(!html_escape) {
-                    body = Filter.xhtml(aMsg.getNode());
+                    body = Filter.xhtml(message_packet.getNode());
                 }
                 
                 // Finally we display the message we just sent
@@ -732,10 +743,10 @@ var Message = (function () {
                 if(body.match(/^\/say (.+)/)) {
                     body = body.replace(/^\/say (.+)/, '$1');
                     
-                    aMsg.setType('groupchat');
-                    self.generate(aMsg, body, hash);
+                    message_packet.setType('groupchat');
+                    self.generate(message_packet, body, hash);
                     
-                    con.send(aMsg, Errors.handleReply);
+                    con.send(message_packet, Errors.handleReply);
                 }
                 
                 // /nick shortcut
@@ -768,11 +779,11 @@ var Message = (function () {
                     
                     // If the private message is not empty
                     else if(msg_body) {
-                        aMsg.setType('chat');
-                        aMsg.setTo(nXID);
-                        self.generate(aMsg, msg_body, hash);
+                        message_packet.setType('chat');
+                        message_packet.setTo(nXID);
+                        self.generate(message_packet, msg_body, hash);
                         
-                        con.send(aMsg, Errors.handleReply);
+                        con.send(message_packet, Errors.handleReply);
                     }
                 }
                 
@@ -780,10 +791,10 @@ var Message = (function () {
                 else if(body.match(/^\/topic (.+)/)) {
                     var topic = body.replace(/^\/topic (.+)/, '$1');
                     
-                    aMsg.setType('groupchat');
-                    aMsg.setSubject(topic);
+                    message_packet.setType('groupchat');
+                    message_packet.setSubject(topic);
                     
-                    con.send(aMsg, Errors.handleMessage);
+                    con.send(message_packet, Errors.handleMessage);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -848,14 +859,14 @@ var Message = (function () {
                     var i_xid = RegExp.$1;
                     var invite_reason = RegExp.$2;
 
-                    var x = aMsg.appendNode('x', {'xmlns': NS_MUC_USER});
-                    var aNode = x.appendChild(aMsg.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
+                    var x = message_packet.appendNode('x', {'xmlns': NS_MUC_USER});
+                    var aNode = x.appendChild(message_packet.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
                     
                     if(invite_reason) {
-                        aNode.appendChild(aMsg.buildNode('reason', {'xmlns': NS_MUC_USER}, invite_reason));
+                        aNode.appendChild(message_packet.buildNode('reason', {'xmlns': NS_MUC_USER}, invite_reason));
                     }
                     
-                    con.send(aMsg, Errors.handleReply);
+                    con.send(message_packet, Errors.handleReply);
                     
                     // Reset chatstate
                     ChatState.send('active', xid, hash);
@@ -863,14 +874,14 @@ var Message = (function () {
                 
                 // No shortcut, this is a message
                 else {
-                    aMsg.setType('groupchat');
+                    message_packet.setType('groupchat');
                     
                     // Chatstate
-                    aMsg.appendNode('active', {'xmlns': NS_CHATSTATES});
+                    message_packet.appendNode('active', {'xmlns': NS_CHATSTATES});
                     
-                    self.generate(aMsg, body, hash);
+                    self.generate(message_packet, body, hash);
                     
-                    con.send(aMsg, Errors.handleMessage);
+                    con.send(message_packet, Errors.handleMessage);
                     
                     Console.info('Message sent to: ' + xid + ' / ' + type);
                 }
@@ -1115,7 +1126,7 @@ var Message = (function () {
      * @param {boolean} no_scroll
      * @return {undefined}
      */
-    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count, is_storable) {
+    self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count, is_storable, is_markable) {
 
         try {
             // Target
@@ -1159,12 +1170,15 @@ var Message = (function () {
                 data_edited = ' data-edited="true"';
                 data_edit_count = ' data-edit-count="' + (edit_count || 0) + '"';
             }
+
+            // Markable state?
+            var data_markable = (is_markable === true) ? ' data-markable="true"' : '';
             
             // Filter the message
             var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
-            var messageCode = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + data_edit_count + '><div class="message-content">';
+            var message_code = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + data_markable + data_edit_count + '><div class="message-content">';
             
             // Name color attribute
             if(type == 'groupchat') {
@@ -1201,23 +1215,29 @@ var Message = (function () {
                 filteredMessage = '<i>' + filteredMessage + '</i>';
             }
             
-            messageCode += filteredMessage + '</div>';
+            message_code += filteredMessage + '</div>';
 
             if(type == 'chat') {
-                messageCode += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
+                if(mode == 'me') {
+                    // Message edit properties
+                    message_code += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
 
-                if(is_edited === true) {
-                    var edit_text = Common._e("Edited");
+                    if(is_edited === true) {
+                        var edit_text = Common._e("Edited");
 
-                    if(edit_count > 1) {
-                        edit_text = Common._e(Common.printf("Edited (%s)", edit_count));
+                        if(edit_count > 1) {
+                            edit_text = Common._e(Common.printf("Edited (%s)", edit_count));
+                        }
+
+                        message_code += '<span class="corrected-info">' + edit_text + '</span>';
                     }
-
-                    messageCode += '<span class="corrected-info">' + edit_text + '</span>';
+                } else if(mode == 'him') {
+                    // Message marker container
+                    message_code += '<span class="message-marker"></span>';
                 }
             }
             
-            messageCode += '</div>';
+            message_code += '</div>';
             
             // Must group it?
             if(!grouped) {
@@ -1233,14 +1253,14 @@ var Message = (function () {
                 message_head += '<span class="date">' + time + '</span><b data-xid="' + Common.encodeQuotes(xid) + '" ' + attribute + '>' + name + '</b>';
                 
                 // Generate message code
-                messageCode = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + messageCode + '</div>';
+                message_code = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + message_code + '</div>';
             }
 
             // Write the code in the DOM
             if(grouped) {
-                c_target_sel.find('.one-group:last').append(messageCode);
+                c_target_sel.find('.one-group:last').append(message_code);
             } else {
-                c_target_sel.append(messageCode);
+                c_target_sel.append(message_code);
             }
 
             // Store the last MAM.REQ_MAX message groups

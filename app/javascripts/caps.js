@@ -434,6 +434,13 @@ var Caps = (function () {
             } else {
                 path.removeAttr('data-correction');
             }
+
+            // Apply Chat Markers
+            if(NS_URN_MARKERS in features) {
+                path.attr('data-markers', 'true');
+            } else {
+                path.removeAttr('data-markers');
+            }
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);
         }

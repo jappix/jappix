@@ -333,7 +333,8 @@ html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
 
 #page-engine .one-line .correction-edit,
 #page-engine .one-line .correction-label,
-#page-engine .one-line.user-message[data-edited] .corrected-info {
+#page-engine .one-line.user-message[data-edited] .corrected-info,
+#page-engine .one-line.user-message .message-marker {
     font-size: 0.8em;
     position: absolute;
     right: 0;
@@ -342,7 +343,8 @@ html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
 
 html[dir="rtl"] #page-engine .one-line .correction-edit,
 html[dir="rtl"] #page-engine .one-line .correction-label,
-html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info {
+html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info,
+html[dir="rtl"] #page-engine .one-line.user-message .message-marker  {
     left: 0;
     right: auto;
 }
@@ -370,9 +372,19 @@ html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info
     opacity: 1;
 }
 
-#page-engine .one-line.user-message[data-edited] .corrected-info {
+#page-engine .one-line.user-message[data-edited] .corrected-info,
+#page-engine .one-line.user-message .message-marker {
     color: #969696;
     margin-top: 2px;
+}
+
+#page-engine .one-line.user-message .message-marker {
+    display: none;
+}
+
+#page-engine .one-line.user-message .message-marker.message-marker-read {
+    background-position: 0 -2227px;
+    padding-left: 11px;
 }
 
 #page-engine .page-engine-chan[data-correction="true"] .one-line.user-message[data-mode="me"]:last-child:hover .correction-edit {
