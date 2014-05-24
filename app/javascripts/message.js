@@ -533,7 +533,7 @@ var Message = (function () {
                     }
                     
                     // Display the received message
-                    self.display(
+                    var message_sel = self.display(
                         type,
                         xid,
                         hash,
@@ -557,23 +557,23 @@ var Message = (function () {
                     // We notify the user
                     Interface.messageNotify(hash, 'personal');
                     Board.quick(xid, 'chat', raw_body, fromName);
+
+                    // Mark the message
+                    if(is_markable === true && Markers.hasSupport(xid)) {
+                        var mark_type = Markers.MARK_TYPE_RECEIVED;
+
+                        if(Interface.hasChanFocus(hash) === true) {
+                            mark_type = Markers.MARK_TYPE_DISPLAYED;
+                        }
+
+                        Markers.change(from, mark_type, id, message_sel);
+                    }
                 }
             }
 
             // Message marker?
             if(Markers.hasResponseMarker(node)) {
                 return Markers.handle(from, node);
-            }
-
-            // Markable message?
-            if(is_markable === true && Markers.hasSupport(xid)) {
-                var mark_type = Markers.MARK_TYPE_RECEIVED;
-
-                if(Interface.hasChanFocus(hash) === true) {
-                    mark_type = Markers.MARK_TYPE_DISPLAYED;
-                }
-
-                Markers.change(from, mark_type, id);
             }
 
             return false;
@@ -1136,9 +1136,11 @@ var Message = (function () {
      * @param {string} id
      * @param {object} c_target_sel
      * @param {boolean} no_scroll
-     * @return {undefined}
+     * @return {object}
      */
     self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count, is_storable, is_markable) {
+
+        var message_sel = null;
 
         try {
             // Target
@@ -1275,6 +1277,8 @@ var Message = (function () {
                 c_target_sel.append(message_code);
             }
 
+            message_sel = c_target_sel.find('.one-line:last');
+
             // Store the last MAM.REQ_MAX message groups
             if(!Features.enabledMAM() && (type == 'chat') && (message_type == 'user-message')) {
                 // Filter the DOM
@@ -1322,6 +1326,8 @@ var Message = (function () {
             }
         } catch(e) {
             Console.error('Message.display', e);
+        } finally {
+            return message_sel;
         }
 
     };

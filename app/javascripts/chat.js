@@ -524,8 +524,9 @@ var Chat = (function () {
                 }
             });
             
-            // Chatstate events
+            // Input events
             ChatState.events(inputDetect, xid, hash, 'chat');
+            Markers.events(inputDetect, xid, hash, 'chat');
         } catch(e) {
             Console.error('Chat.create', e);
         }

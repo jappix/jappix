@@ -212,23 +212,6 @@ var ChatState = (function () {
                 // Chat only: Nothing in the input, user is active
                 else if(type == 'chat')
                     self.send('active', xid, hash);
-
-                // Send displayed message marker?
-                if(type == 'chat' && Markers.hasSupport(xid) === true) {
-                    var last_message = $('#' + hash + ' .content .one-line.user-message[data-markable="true"]:last');
-
-                    if(last_message.attr('data-mark') != Markers.MARK_TYPE_DISPLAYED) {
-                        var last_message_id = last_message.attr('data-id');
-
-                        if(last_message_id) {
-                            Markers.change(
-                                xid,
-                                Markers.MARK_TYPE_DISPLAYED,
-                                last_message_id
-                            );
-                        }
-                    }
-                }
             });
             
             target.blur(function() {

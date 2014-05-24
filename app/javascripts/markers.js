@@ -134,12 +134,15 @@ var Markers = (function () {
      * @param {object} message_id
      * @return {undefined}
      */
-    self.change = function(to, mark_type, message_id) {
+    self.change = function(to, mark_type, message_id, message_sel) {
 
         try {
             if(!(mark_type in self.MARK_TYPES)) {
                 throw 'Marker type (' + mark_type + ') not supported, aborting.';
             }
+
+            // Store mark state
+            message_sel.attr('data-mark', mark_type);
 
             var message = new JSJaCMessage();
             message.setTo(to);
@@ -212,6 +215,48 @@ var Markers = (function () {
         } catch(e) {
             Console.error('Markers.handle', e);
             return false;
+        }
+
+    };
+
+
+    /**
+     * Adds the markers input events
+     * @public
+     * @param {object} target
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} type
+     * @return {undefined}
+     */
+    self.events = function(target, xid, hash, type) {
+
+        try {
+            target.focus(function() {
+                // Not needed
+                if(target.is(':disabled'))
+                    return;
+                
+                // Send displayed message marker?
+                if(type == 'chat' && self.hasSupport(xid) === true) {
+                    var last_message = $('#' + hash + ' .content .one-line.user-message[data-markable="true"]:last');
+
+                    if(last_message.attr('data-mark') != self.MARK_TYPE_DISPLAYED) {
+                        var last_message_id = last_message.attr('data-id');
+
+                        if(last_message_id) {
+                            self.change(
+                                xid,
+                                self.MARK_TYPE_DISPLAYED,
+                                last_message_id,
+                                last_message
+                            );
+                        }
+                    }
+                }
+            });
+        } catch(e) {
+            Console.error('Markers.events', e);
         }
 
     };
