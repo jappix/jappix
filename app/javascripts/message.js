@@ -30,8 +30,9 @@ var Message = (function () {
 
         try {
             // Error packet? Stop!
-            if(Errors.handleReply(message))
+            if(Errors.handleReply(message)) {
                 return;
+            }
             
             // Storable message?
             var is_storable = message.getChild('no-permanent-storage', NS_URN_HINTS) ? false : true;
@@ -235,6 +236,13 @@ var Message = (function () {
                 
                 return false;
             }
+
+            // Attention message
+            if(message.getChild('attention', NS_URN_ATTENTION)) {
+                Attention.receive(xid, body);
+
+                return false;
+            }
             
             // Normal message
             if((type == 'normal') && body) {
@@ -404,7 +412,7 @@ var Message = (function () {
                     xHTML = 0;
                 }
                 
-                //If this is a xHTML message
+                // If this is a xHTML message
                 if(xHTML) {
                     html_escape = false;
                     
@@ -687,7 +695,15 @@ var Message = (function () {
                 // Reset chatstate
                 ChatState.send('active', xid, hash);
             }
-            
+
+            // /attention shortcut
+            else if(body.match(/^\/attention( (.*))?/) && type == 'chat') {
+                Attention.send(
+                    xid,
+                    $.trim(RegExp.$2)
+                );
+            }
+
             // Chat message type
             else if(type == 'chat') {
                 message_packet.setType('chat');

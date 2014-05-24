@@ -82,6 +82,11 @@ var Audio = (function () {
                                 '<source src="' + './sounds/notification.mp3' + '" />' + 
                                 '<source src="' + './sounds/notification.oga' + '" />' + 
                             '</audio>' + 
+
+                            '<audio id="catch-attention" preload="auto" data-duration="3">' + 
+                                '<source src="' + './sounds/catch-attention.mp3' + '" />' + 
+                                '<source src="' + './sounds/catch-attention.oga' + '" />' + 
+                            '</audio>' + 
                             
                             '<audio id="incoming-call" preload="auto" data-duration="7">' + 
                                 '<source src="' + './sounds/incoming-call.mp3' + '" />' + 

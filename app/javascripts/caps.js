@@ -441,6 +441,13 @@ var Caps = (function () {
             } else {
                 path.removeAttr('data-markers');
             }
+
+            // Apply Attention
+            if(NS_URN_ATTENTION in features) {
+                path.attr('data-attention', 'true');
+            } else {
+                path.removeAttr('data-attention');
+            }
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);
         }
