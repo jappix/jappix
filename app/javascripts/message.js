@@ -412,42 +412,8 @@ var Message = (function () {
                     body = Filter.xhtml(node);
                 }
 
-                // Message is an edit? (XEP-0308)
-                var is_edited = false;
-                var edit_count = 0;
-                var replace_node = message.getChild('replace', NS_URN_CORRECT);
-
-                if(replace_node) {
-                    var message_edit_id = $(replace_node).attr('id');
-
-                    if(typeof message_edit_id != 'undefined') {
-                        var message_edit_sel = $('#' + hash + ' .one-line.user-message').filter(function() {
-                            var this_sel = $(this);
-                            var is_valid_mode = true;
-
-                            if(type == 'chat') {
-                                is_valid_mode = true ? this_sel.attr('data-mode') == 'him' : false;
-                            }
-
-                            return is_valid_mode && ((this_sel.attr('data-id') + '') === (message_edit_id + ''));
-                        });
-
-                        if(message_edit_sel.size()) {
-                            edit_count = message_edit_sel.attr('data-edit-count') || 0;
-                            edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
-                            is_edited = true;
-
-                            // Empty group?
-                            var message_edit_group_sel = message_edit_sel.parents('.one-group');
-
-                            if(message_edit_group_sel.find('.one-line').size() <= 1) {
-                                message_edit_group_sel.remove();
-                            } else {
-                                message_edit_sel.remove();
-                            }
-                        }
-                    }
-                }
+                // Catch message edit (XEP-0308)
+                var message_edit = Correction.catch(message, hash, type);
                 
                 // Groupchat message
                 if(type == 'groupchat') {
@@ -512,8 +478,8 @@ var Message = (function () {
                         id,
                         undefined,
                         undefined,
-                        is_edited,
-                        (edit_count + 1),
+                        message_edit['is_edited'],
+                        message_edit['next_count'],
                         is_storable
                     );
                 }
@@ -563,8 +529,8 @@ var Message = (function () {
                         id,
                         undefined,
                         undefined,
-                        is_edited,
-                        (edit_count + 1),
+                        message_edit['is_edited'],
+                        message_edit['next_count'],
                         is_storable,
                         is_markable
                     );

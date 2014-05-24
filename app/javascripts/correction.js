@@ -414,6 +414,68 @@ var Correction = (function () {
 
 
     /**
+     * Catches a replace message
+     * @public
+     * @param {object} message
+     * @param {string} hash
+     * @param {string} type
+     * @return {object}
+     */
+    self.catch = function(message, hash, type) {
+
+        var edit_results = {
+            'has_replace': false,
+            'is_edited': false,
+            'count': 0,
+            'next_count': 0
+        };
+
+        try {
+            var replace_node = message.getChild('replace', NS_URN_CORRECT);
+
+            if(replace_node) {
+                edit_results['has_replace'] = true;
+                var message_edit_id = $(replace_node).attr('id');
+
+                if(typeof message_edit_id != 'undefined') {
+                    var message_edit_sel = $('#' + hash + ' .one-line.user-message').filter(function() {
+                        var this_sel = $(this);
+                        var is_valid_mode = true;
+
+                        if(type == 'chat') {
+                            is_valid_mode = true ? this_sel.attr('data-mode') == 'him' : false;
+                        }
+
+                        return is_valid_mode && ((this_sel.attr('data-id') + '') === (message_edit_id + ''));
+                    });
+
+                    if(message_edit_sel.size()) {
+                        edit_results['count'] = message_edit_sel.attr('data-edit-count') || 0;
+                        edit_results['count'] = isNaN(edit_results['count']) ? 0 : parseInt(edit_results['count'], 10);
+                        edit_results['next_count'] = edit_results['count'] + 1;
+                        edit_results['is_edited'] = true;
+
+                        // Empty group?
+                        var message_edit_group_sel = message_edit_sel.parents('.one-group');
+
+                        if(message_edit_group_sel.find('.one-line').size() <= 1) {
+                            message_edit_group_sel.remove();
+                        } else {
+                            message_edit_sel.remove();
+                        }
+                    }
+                }
+            }
+        } catch(e) {
+            Console.error('Correction.catch', e);
+        } finally {
+            return edit_results;
+        }
+
+    };
+
+
+    /**
      * Returns whether we are in correction mode or not
      * @public
      * @param {string} xid
