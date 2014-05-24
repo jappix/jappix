@@ -296,7 +296,7 @@ var Board = (function () {
                 window.focus();
                 
                 // Remove notification
-                this.cancel();
+                this.close();
             };
 
             // Show event
