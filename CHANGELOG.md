@@ -4,6 +4,12 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+One, v1.0.7 (Development)
+-------------------------
+
+ * (...)
+
+
 One, v1.0.6 (May 2014)
 ----------------------
 
