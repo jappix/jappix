@@ -4,8 +4,8 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-One, v1.0.6 (Development)
--------------------------
+One, v1.0.6 (May 2014)
+----------------------
 
  * XEP-0308: Last Message Correction               @valeriansaliou
  * XEP-0333: Chat Markers                          @valeriansaliou
