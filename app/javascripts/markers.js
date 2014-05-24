@@ -202,6 +202,7 @@ var Markers = (function () {
 
                 Console.debug('Markers.handle', 'Received chat marker (' + mark_type + ') from: ' + from);
 
+                // Finally display received marker
                 self._display(xid, message_sel, mark_type);
 
                 return true;
