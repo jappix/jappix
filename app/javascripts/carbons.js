@@ -224,8 +224,6 @@ var Carbons = (function () {
             if(forwarded_message !== null) {
                 Console.debug('Got a received message from another resource from: ' + (forwarded_message.getFrom() || 'none'));
 
-                Console.debug('CARBONS:RECEIVED', forwarded_message.xml());
-
                 Message.handle(forwarded_message);
             }
         } catch(e) {

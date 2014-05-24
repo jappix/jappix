@@ -2126,3 +2126,6 @@ msgstr ""
 
 msgid "Read"
 msgstr ""
+
+msgid "Sending..."
+msgstr ""

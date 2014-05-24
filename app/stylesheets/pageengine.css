@@ -331,10 +331,14 @@ html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
     position: relative;
 }
 
+#page-engine .one-line.is-sending {
+    opacity: 0.6;
+}
+
 #page-engine .one-line .correction-edit,
 #page-engine .one-line .correction-label,
 #page-engine .one-line.user-message[data-edited] .corrected-info,
-#page-engine .one-line.user-message .message-marker {
+#page-engine .one-line .message-marker {
     font-size: 0.8em;
     position: absolute;
     right: 0;
@@ -344,7 +348,7 @@ html[dir="rtl"] #page-engine .list .user .user-details .avatar-container {
 html[dir="rtl"] #page-engine .one-line .correction-edit,
 html[dir="rtl"] #page-engine .one-line .correction-label,
 html[dir="rtl"] #page-engine .one-line.user-message[data-edited] .corrected-info,
-html[dir="rtl"] #page-engine .one-line.user-message .message-marker  {
+html[dir="rtl"] #page-engine .one-line .message-marker  {
     left: 0;
     right: auto;
 }
@@ -373,16 +377,16 @@ html[dir="rtl"] #page-engine .one-line.user-message .message-marker  {
 }
 
 #page-engine .one-line.user-message[data-edited] .corrected-info,
-#page-engine .one-line.user-message .message-marker {
+#page-engine .one-line .message-marker {
     color: #969696;
     margin-top: 2px;
 }
 
-#page-engine .one-line.user-message .message-marker {
+#page-engine .one-line .message-marker {
     display: none;
 }
 
-#page-engine .one-line.user-message .message-marker.message-marker-read {
+#page-engine .one-line .message-marker.message-marker-read {
     background-position: 0 -2227px;
     padding-left: 11px;
 }

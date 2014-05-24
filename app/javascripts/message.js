@@ -726,7 +726,9 @@ var Message = (function () {
                 message_packet.appendNode('active', {'xmlns': NS_CHATSTATES});
                 
                 // Markable message?
-                if(Markers.hasSupport(xid)) {
+                var has_markers = Markers.hasSupport(xid);
+
+                if(has_markers === true) {
                     Markers.mark(message_packet);
                 }
 
@@ -741,7 +743,27 @@ var Message = (function () {
                 // Finally we display the message we just sent
                 var my_xid = Common.getXID();
                 
-                self.display('chat', my_xid, hash, Name.getBuddy(my_xid).htmlEnc(), body, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'user-message', html_escape, '', 'me', id);
+                var message_sel = self.display(
+                    'chat',
+                    my_xid,
+                    hash,
+                    Name.getBuddy(my_xid).htmlEnc(),
+                    body,
+                    DateUtils.getCompleteTime(),
+                    DateUtils.getTimeStamp(),
+                    'user-message',
+                    html_escape,
+                    '',
+                    'me',
+                    id
+                );
+
+                if(has_markers === true) {
+                    message_sel.addClass('is-sending');
+                    message_sel.find('.message-marker').text(
+                        Common._e("Sending...")
+                    ).show();
+                }
                 
                 // Receipt timer
                 if(receipt_request) {
@@ -1231,8 +1253,18 @@ var Message = (function () {
             
             message_code += filteredMessage + '</div>';
 
-            if(type == 'chat') {
-                if(mode == 'me') {
+            // Groupchat own nickname
+            var own_groupchat_nickname = null;
+
+            if(type == 'groupchat') {
+                own_groupchat_nickname = $('#' + hash).attr('data-nick') || '';
+                own_groupchat_nickname = unescape(own_groupchat_nickname);
+            }
+
+            // Message correction containers
+            if((type == 'chat' && mode == 'me') ||
+               (type == 'groupchat' && name == own_groupchat_nickname)) {
+                if(message_type == 'user-message') {
                     // Message edit properties
                     message_code += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
 
@@ -1245,10 +1277,12 @@ var Message = (function () {
 
                         message_code += '<span class="corrected-info">' + edit_text + '</span>';
                     }
-
-                    // Message marker container
-                    message_code += '<span class="message-marker"></span>';
                 }
+            }
+
+            // Message marker container
+            if(type == 'chat') {
+                message_code += '<span class="message-marker"></span>';
             }
             
             message_code += '</div>';

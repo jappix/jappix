@@ -359,11 +359,20 @@ var Markers = (function () {
                 marker_sel.attr('data-category', marker_category);
             }
 
+            // Reset sending state
+            message_sel.removeClass('is-sending');
+
             // Toggle marker visibility
             message_sel.parents('.content').find('.one-line .message-marker').filter(function() {
+                var data_category = $(this).attr('data-category');
+
+                if(data_category != 'delivered' && data_category != 'read') {
+                    return false;
+                }
+
                 // Leave older "read" checkpoint on screen
                 if(marker_category == 'delivered') {
-                    return $(this).attr('data-category') == marker_category;
+                    return data_category == marker_category;
                 }
 
                 return true;
