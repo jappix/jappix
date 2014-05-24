@@ -1263,20 +1263,18 @@ var Message = (function () {
             message_code += filteredMessage + '</div>';
 
             // Message correction containers
-            if(mode == 'me' && (type == 'chat' || type == 'groupchat')) {
-                if(message_type == 'user-message') {
-                    // Message edit properties
-                    message_code += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
+            if(message_type == 'user-message') {
+                // Message edit properties
+                message_code += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
 
-                    if(is_edited === true) {
-                        var edit_text = Common._e("Edited");
+                if(is_edited === true) {
+                    var edit_text = Common._e("Edited");
 
-                        if(edit_count > 1) {
-                            edit_text = Common._e(Common.printf("Edited (%s)", edit_count));
-                        }
-
-                        message_code += '<span class="corrected-info">' + edit_text + '</span>';
+                    if(edit_count > 1) {
+                        edit_text = Common._e(Common.printf("Edited (%s)", edit_count));
                     }
+
+                    message_code += '<span class="corrected-info">' + edit_text + '</span>';
                 }
             }
 
