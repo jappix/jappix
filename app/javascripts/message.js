@@ -569,7 +569,7 @@ var Message = (function () {
             if(is_markable === true && Markers.hasSupport(xid)) {
                 var mark_type = Markers.MARK_TYPE_RECEIVED;
 
-                if(Interface.hasChanFocus(hash)) {
+                if(Interface.hasChanFocus(hash) === true) {
                     mark_type = Markers.MARK_TYPE_DISPLAYED;
                 }
 

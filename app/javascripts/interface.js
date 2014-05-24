@@ -474,7 +474,7 @@ var Interface = (function () {
             var active = $(tested).hasClass('activechan');
             
             // We notify the user if he has not the focus on the chat
-            if(self.hasChanFocus(hash)) {
+            if(self.hasChanFocus(hash) === false) {
                 if(!active) {
                     if(type == 'personal') {
                         $(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
