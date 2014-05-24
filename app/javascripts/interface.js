@@ -712,6 +712,39 @@ var Interface = (function () {
             $(document).ready(function() {
                 // Focus on the first visible input
                 $(window).focus(self.inputFocus);
+
+                // Re-focus to visible chat/groupchat input if typing when input blurred
+                $(document).keypress(function(evt) {
+                    try {
+                        // Don't trigger if not connected or popup opened
+                        if(Common.isConnected() && !Common.exists('div.lock')) {
+                            // Cannot work if an input/textarea is already focused or chat is not opened
+                            var target_input_sel = $('.page-engine-chan .message-area:visible');
+
+                            if(!target_input_sel.size() || $('input, textarea').is(':focus')) {
+                                return;
+                            }
+
+                            // Get key value
+                            var key_value = $.trim(String.fromCharCode(evt.which));
+                            
+                            // Re-focus on opened chat?
+                            if(key_value) {
+                                // Get input values
+                                value_input = target_input_sel.val();
+
+                                // Append pressed key value
+                                target_input_sel.val(value_input + key_value);
+                                target_input_sel.focus();
+
+                                // Put cursor at the end of input
+                                target_input_sel[0].selectionStart = target_input_sel[0].selectionEnd = value_input.length + 1;
+                            }
+                        }
+                    } catch(e) {
+                        Console.error('Interface.launch[autofocus]', e);
+                    }
+                });
             });
         } catch(e) {
             Console.error('Interface.launch', e);
