@@ -119,7 +119,7 @@ var Chat = (function () {
             
             // Groupchat special code
             if(type == 'groupchat') {
-                specialAttributes = ' data-type="groupchat"';
+                specialAttributes = ' data-type="groupchat" data-correction="true"';
                 specialAvatar = '';
                 specialName = '<p class="bc-infos"><b>' + Common._e("Subject") + '</b> <span class="muc-topic">' + Common._e("no subject defined for this room.") + '</span></p>';
                 specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + Common._e("Moderators") + '</p></div><div class="participant role"><p class="title">' + Common._e("Participants") + '</p></div><div class="visitor role"><p class="title">' + Common._e("Visitors") + '</p></div><div class="none role"><p class="title">' + Common._e("Others") + '</p></div></div>';
@@ -445,7 +445,7 @@ var Chat = (function () {
 
                             if(corrected_value) {
                                 // Send the corrected message
-                                Correction.send(xid, corrected_value);
+                                Correction.send(xid, 'chat', corrected_value);
                             }
 
                             Correction.leave(xid);
@@ -477,11 +477,7 @@ var Chat = (function () {
                         Correction.leave(xid);
                     }
                 } else {
-                    // Other keys
-                    if(inputDetect.val().match(/^\/correct/) && Correction.isIn(xid) === false) {
-                        // Enter correction mode?
-                        Correction.enter(xid);
-                    }
+                    Correction.detect(xid, inputDetect);
                 }
             });
 

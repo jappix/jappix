@@ -193,11 +193,12 @@ var Correction = (function () {
     /**
      * @private
      * @param {string} xid
+     * @param {string} type
      * @param {string} message_id
      * @param {string} message_body
      * @return {string}
      */
-    self._sendStanza = function(xid, message_id, message_body) {
+    self._sendStanza = function(xid, type, message_id, message_body) {
 
         var args = {
             'id': null,
@@ -213,7 +214,7 @@ var Correction = (function () {
             var message = new JSJaCMessage();
             args.message = message;
 
-            message.setType('chat');
+            message.setType(type);
             message.setTo(xid);
             message.setID(id);
 
@@ -243,6 +244,28 @@ var Correction = (function () {
             Console.error('Correction._sendStanza', e);
         } finally {
             return args;
+        }
+
+    };
+
+
+    /**
+     * Detects correction mode request (in input)
+     * @public
+     * @param {string} xid
+     * @param {object} input_sel
+     * @return {undefined}
+     */
+    self.detect = function(xid, input_sel) {
+
+        try {
+            // Other keys
+            if(input_sel.val().match(/^\/correct/) && self.isIn(xid) === false) {
+                // Enter correction mode?
+                self.enter(xid);
+            }
+        } catch(e) {
+            Console.error('Correction.detect', e);
         }
 
     };
@@ -317,10 +340,11 @@ var Correction = (function () {
      * Send corrected message
      * @public
      * @param {string} xid
+     * @param {string} type
      * @param {string} replacement
      * @return {undefined}
      */
-    self.send = function(xid, replacement) {
+    self.send = function(xid, type, replacement) {
 
         try {
             if(self._hasSupport(xid) === true) {
@@ -334,45 +358,52 @@ var Correction = (function () {
                     // Send the stanza itself
                     var stanza_args = self._sendStanza(
                         xid,
+                        type,
                         replace_id,
                         replacement
                     );
 
-                    // Filter the xHTML message (for us!)
-                    var replacement_formatted = replacement;
+                    // Update DOM (for chat only)
+                    if(type == 'chat') {
+                        // Filter the xHTML message (for us!)
+                        var replacement_formatted = replacement;
 
-                    if(stanza_args.xhtml) {
-                        replacement_formatted = Filter.xhtml(stanza_args.message.getNode());
+                        if(stanza_args.xhtml) {
+                            replacement_formatted = Filter.xhtml(stanza_args.message.getNode());
+                        }
+
+                        // Remove old message
+                        old_message_sel = $('#' + hash + ' .content .one-line.user-message[data-mode="me"]').filter(function() {
+                            return ($(this).attr('data-id') + '') === (replace_id + '');
+                        });
+
+                        var edit_count = old_message_sel.attr('data-edit-count') || 0;
+                        edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
+
+                        if(type == 'chat') {
+                            old_message_sel.remove();
+                        }
+
+                        // Display edited message
+                        Message.display(
+                            'chat',
+                            own_xid,
+                            hash,
+                            Name.getBuddy(own_xid).htmlEnc(),
+                            replacement_formatted,
+                            DateUtils.getCompleteTime(),
+                            DateUtils.getTimeStamp(),
+                            'user-message',
+                            !stanza_args.xhtml,
+                            '',
+                            'me',
+                            stanza_args.id,
+                            undefined,
+                            undefined,
+                            true,
+                            (edit_count + 1)
+                        );
                     }
-
-                    // Remove old message
-                    old_message_sel = $('#' + hash + ' .content .one-line.user-message[data-mode="me"]').filter(function() {
-                        return ($(this).attr('data-id') + '') === (replace_id + '');
-                    });
-
-                    var edit_count = old_message_sel.attr('data-edit-count') || 0;
-                    edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
-                    old_message_sel.remove();
-
-                    // Display edited message
-                    Message.display(
-                        'chat',
-                        own_xid,
-                        hash,
-                        Name.getBuddy(own_xid).htmlEnc(),
-                        replacement_formatted,
-                        DateUtils.getCompleteTime(),
-                        DateUtils.getTimeStamp(),
-                        'user-message',
-                        !stanza_args.xhtml,
-                        '',
-                        'me',
-                        stanza_args.id,
-                        undefined,
-                        undefined,
-                        true,
-                        (edit_count + 1)
-                    );
                 }
             }
         } catch(e) {

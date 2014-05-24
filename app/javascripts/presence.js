@@ -1278,7 +1278,7 @@ var Presence = (function () {
             // Reachability details
             if(type != 'unavailable') {
                 var reach_regex = new RegExp('[^+0-9]', 'g');
-                var reach_phone = DataStore.getDB(Connection.desktop_hash, 'profile', 'phone');
+                var reach_phone = DataStore.getDB(Connection.desktop_hash, 'profile', 'phone') || '';
                 reach_phone = reach_phone.replace(reach_regex, '');
 
                 if(reach_phone) {

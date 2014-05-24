@@ -411,6 +411,43 @@ var Message = (function () {
                     // Filter the xHTML message
                     body = Filter.xhtml(node);
                 }
+
+                // Message is an edit? (XEP-0308)
+                var is_edited = false;
+                var edit_count = 0;
+                var replace_node = message.getChild('replace', NS_URN_CORRECT);
+
+                if(replace_node) {
+                    var message_edit_id = $(replace_node).attr('id');
+
+                    if(typeof message_edit_id != 'undefined') {
+                        var message_edit_sel = $('#' + hash + ' .one-line.user-message').filter(function() {
+                            var this_sel = $(this);
+                            var is_valid_mode = true;
+
+                            if(type == 'chat') {
+                                is_valid_mode = true ? this_sel.attr('data-mode') == 'him' : false;
+                            }
+
+                            return is_valid_mode && ((this_sel.attr('data-id') + '') === (message_edit_id + ''));
+                        });
+
+                        if(message_edit_sel.size()) {
+                            edit_count = message_edit_sel.attr('data-edit-count') || 0;
+                            edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
+                            is_edited = true;
+
+                            // Empty group?
+                            var message_edit_group_sel = message_edit_sel.parents('.one-group');
+
+                            if(message_edit_group_sel.find('.one-line').size() <= 1) {
+                                message_edit_group_sel.remove();
+                            } else {
+                                message_edit_sel.remove();
+                            }
+                        }
+                    }
+                }
                 
                 // Groupchat message
                 if(type == 'groupchat') {
@@ -472,39 +509,17 @@ var Message = (function () {
                         html_escape,
                         nickQuote,
                         undefined,
+                        id,
                         undefined,
                         undefined,
-                        undefined,
-                        undefined,
-                        undefined,
+                        is_edited,
+                        (edit_count + 1),
                         is_storable
                     );
                 }
                 
                 // Chat message
                 else {
-                    // Message is an edit? (XEP-0308)
-                    var is_edited = false;
-                    var edit_count = 0;
-                    var replace_node = message.getChild('replace', NS_URN_CORRECT);
-
-                    if(replace_node) {
-                        var message_edit_id = $(replace_node).attr('id');
-
-                        if(typeof message_edit_id != 'undefined') {
-                            var message_edit_sel = $('#' + hash + ' .one-line.user-message[data-mode="him"]').filter(function() {
-                                return ($(this).attr('data-id') + '') === (message_edit_id + '');
-                            });
-
-                            if(message_edit_sel.size()) {
-                                edit_count = message_edit_sel.attr('data-edit-count') || 0;
-                                edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
-                                is_edited = true;
-                                message_edit_sel.remove();
-                            }
-                        }
-                    }
-
                     // Gets the nickname of the user
                     var fromName = resource;
                     var chatType = 'chat';
@@ -1170,6 +1185,18 @@ var Message = (function () {
                 c_target_sel = $('#' + hash + ' .content');
             }
 
+            // Auto-calculate mode for groupchat?
+            if(type == 'groupchat' && !mode) { 
+                var own_groupchat_nickname = $('#' + hash).attr('data-nick') || '';
+                own_groupchat_nickname = unescape(own_groupchat_nickname);
+
+                if(name == own_groupchat_nickname) {
+                    mode = 'me';
+                } else {
+                    mode = 'him';
+                }
+            }
+
             // Generate some stuffs
             var has_avatar = false;
             var xid_hash = '';
@@ -1253,17 +1280,8 @@ var Message = (function () {
             
             message_code += filteredMessage + '</div>';
 
-            // Groupchat own nickname
-            var own_groupchat_nickname = null;
-
-            if(type == 'groupchat') {
-                own_groupchat_nickname = $('#' + hash).attr('data-nick') || '';
-                own_groupchat_nickname = unescape(own_groupchat_nickname);
-            }
-
             // Message correction containers
-            if((type == 'chat' && mode == 'me') ||
-               (type == 'groupchat' && name == own_groupchat_nickname)) {
+            if(mode == 'me' && (type == 'chat' || type == 'groupchat')) {
                 if(message_type == 'user-message') {
                     // Message edit properties
                     message_code += '<a class="correction-edit" href="#">' + Common._e("Edit") + '</a>';
@@ -1346,17 +1364,15 @@ var Message = (function () {
             }
 
             // Add click events
-            if(type == 'chat') {
-                var xid_to = $('#' + hash).attr('data-xid');
+            var xid_to = $('#' + hash).attr('data-xid');
 
-                if(xid_to) {
-                    xid_to = unescape(xid_to);
+            if(xid_to) {
+                xid_to = unescape(xid_to);
 
-                    $('#' + hash + ' .content .one-line:last .correction-edit').click(function() {
-                        Correction.enter(xid_to);
-                        return false;
-                    });
-                }
+                $('#' + hash + ' .content .one-line:last .correction-edit').click(function() {
+                    Correction.enter(xid_to);
+                    return false;
+                });
             }
         } catch(e) {
             Console.error('Message.display', e);

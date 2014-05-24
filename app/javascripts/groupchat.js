@@ -313,15 +313,34 @@ var Groupchat = (function () {
                     if(e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey)
                         inputDetect.val(inputDetect.val() + '\n');
                     
-                    // Send the message
                     else {
-                        Message.send(hash, 'groupchat');
-                        
-                        // Reset the composing database entry
-                        DataStore.setDB(Connection.desktop_hash, 'chatstate', room, 'off');
+                        if(Correction.isIn(room) === true) {
+                                var corrected_value = inputDetect.val().trim();
+
+                                if(corrected_value) {
+                                    // Send the corrected message
+                                    Correction.send(room, 'groupchat', corrected_value);
+                                }
+
+                                Correction.leave(room);
+                        } else {
+                            // Send the message
+                            Message.send(hash, 'groupchat');
+                            
+                            // Reset the composing database entry
+                            DataStore.setDB(Connection.desktop_hash, 'chatstate', room, 'off');
+                        }
                     }
                     
                     return false;
+                }
+
+                // Remove chars (leave correction)
+                else if(e.keyCode == 8) {
+                    // Leave correction mode? (another way, by flushing input value progressively)
+                    if(Correction.isIn(room) === true && !inputDetect.val()) {
+                        Correction.leave(room);
+                    }
                 }
                 
                 // Tabulation key (without any modifiers)
@@ -334,6 +353,20 @@ var Groupchat = (function () {
                 // Reset the autocompleter
                 else {
                     Autocompletion.reset(hash);
+                }
+            });
+
+            inputDetect.keyup(function(e) {
+                if(e.keyCode == 27) {
+                    // Escape key
+                    inputDetect.val('');
+
+                    // Leave correction mode? (simple escape way)
+                    if(Correction.isIn(room) === true) {
+                        Correction.leave(room);
+                    }
+                } else {
+                    Correction.detect(room, inputDetect);
                 }
             });
             
