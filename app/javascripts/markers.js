@@ -65,7 +65,7 @@ var Markers = (function () {
         var has_request_marker = false;
 
         try {
-            has_request_marker = (true ? $(message).find('markable[xmlns="' + NS_URN_MARKERS + '"]').size() : false);
+            has_request_marker = ($(message).find('markable[xmlns="' + NS_URN_MARKERS + '"]').size() ? true : false);
         } catch(e) {
             Console.error('Markers.hasRequestMarker', e);
         } finally {
@@ -150,6 +150,8 @@ var Markers = (function () {
             });
 
             con.send(message);
+
+            Console.debug('Markers.change', 'Changed marker to: ' + mark_type + ' for message with ID: ' + message_id + ' from: ' + to);
         } catch(e) {
             Console.error('Markers.change', e);
         }
@@ -186,12 +188,10 @@ var Markers = (function () {
                 if(mark_valid === false) {
                     Console.warn('Markers.handle', 'Dropping unexpected chat marker (' + mark_type + ') from: ' + from);
                     return false;
-                } else {
-                    Console.debug('Markers.handle', 'Received chat marker (' + mark_type + ') from: ' + from);
                 }
 
                 // Find marked message target
-                var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="him"][data-markable="true"]').filter(function() {
+                var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="me"]:last').filter(function() {
                     return ($(this).attr('data-id') + '') === (mark_message_id + '');
                 });
 
@@ -200,7 +200,9 @@ var Markers = (function () {
                     return false;
                 }
 
-                self._display(xid, message_sel, marker_type);
+                Console.debug('Markers.handle', 'Received chat marker (' + mark_type + ') from: ' + from);
+
+                self._display(xid, message_sel, mark_type);
 
                 return true;
             }
@@ -229,19 +231,24 @@ var Markers = (function () {
             var marker_sel = message_sel.find('.message-marker');
             var mark_message = null;
             var css_classes = 'talk-images message-marker-read';
+            var marker_category = null;
 
             switch(mark_type) {
                 case self.MARK_TYPE_RECEIVED:
-                    marker_sel.removeClass(css_classes)
-                              .text(
+                    marker_category = 'delivered';
+
+                    marker_sel.removeClass(css_classes);
+                    marker_sel.text(
                                 Common._e("Delivered")
                               );
                     break;
 
                 case self.MARK_TYPE_DISPLAYED:
                 case self.MARK_TYPE_ACKNOWLEDGED:
-                    marker_sel.addClass(css_classes)
-                              .text(
+                    marker_category = 'read';
+
+                    marker_sel.addClass(css_classes);
+                    marker_sel.text(
                                 Common._e("Read")
                               );
                     break;
@@ -250,8 +257,19 @@ var Markers = (function () {
                     return false;
             }
 
+            if(marker_category !== null) {
+                marker_sel.attr('data-category', marker_category);
+            }
+
             // Toggle marker visibility
-            message_sel.parents('.content').find('.one-line .message-marker').hide();
+            message_sel.parents('.content').find('.one-line .message-marker').filter(function() {
+                // Leave older "read" checkpoint on screen
+                if(marker_category == 'delivered') {
+                    return $(this).attr('data-category') == marker_category;
+                }
+
+                return true;
+            }).hide();
             marker_sel.show();
 
             return true;

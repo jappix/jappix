@@ -102,6 +102,9 @@ var Message = (function () {
                 return Receipts.messageReceived(hash, id);
             }
 
+            // Markable message?
+            var is_markable = Markers.hasRequestMarker(node);
+
             // Chatstate message
             if(node && !delay && ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
                 /* REF: http://xmpp.org/extensions/xep-0085.html */
@@ -548,20 +551,29 @@ var Message = (function () {
                         is_edited,
                         (edit_count + 1),
                         is_storable,
-                        Markers.hasRequestMarker(node)
+                        is_markable
                     );
                     
                     // We notify the user
                     Interface.messageNotify(hash, 'personal');
                     Board.quick(xid, 'chat', raw_body, fromName);
                 }
-                
-                return false;
             }
 
             // Message marker?
-            if(type == 'chat' && Markers.hasResponseMarker(node)) {
+            if(Markers.hasResponseMarker(node)) {
                 return Markers.handle(from, node);
+            }
+
+            // Markable message?
+            if(is_markable === true && Markers.hasSupport(xid)) {
+                var mark_type = Markers.MARK_TYPE_RECEIVED;
+
+                if(Interface.hasChanFocus(hash)) {
+                    mark_type = Markers.MARK_TYPE_DISPLAYED;
+                }
+
+                Markers.change(from, mark_type, id);
             }
 
             return false;
@@ -1231,7 +1243,7 @@ var Message = (function () {
 
                         message_code += '<span class="corrected-info">' + edit_text + '</span>';
                     }
-                } else if(mode == 'him') {
+
                     // Message marker container
                     message_code += '<span class="message-marker"></span>';
                 }

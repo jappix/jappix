@@ -396,6 +396,11 @@ html[dir="rtl"] #page-engine .one-line.user-message .message-marker  {
     display: none;
 }
 
+#page-engine .one-line.correction-active .message-marker,
+#page-engine .one-line.user-message[data-mode="me"]:last-child:hover .message-marker {
+    display: none !important;
+}
+
 #page-engine .one-line .message-content {
     margin-right: 80px;
 }

@@ -434,6 +434,31 @@ var Interface = (function () {
 
 
     /**
+     * Returns whether chan has focus or not
+     * @public
+     * @param {string} hash
+     * @return {boolean}
+     */
+    self.hasChanFocus = function(hash) {
+
+        var has_focus = true;
+
+        try {
+            if(!$('#page-switch .' + hash).hasClass('activechan')  || 
+                !Common.isFocused()                                || 
+                (self.chat_focus_hash != hash)) {
+                has_focus = false;
+            }
+        } catch(e) {
+            Console.error('Interface.hasChanFocus', e);
+        } finally {
+            return has_focus;
+        }
+
+    };
+
+
+    /**
      * Notifies the user from a new incoming message
      * @public
      * @param {string} hash
@@ -449,7 +474,7 @@ var Interface = (function () {
             var active = $(tested).hasClass('activechan');
             
             // We notify the user if he has not the focus on the chat
-            if(!active || !Common.isFocused() || (self.chat_focus_hash != hash)) {
+            if(self.hasChanFocus(hash)) {
                 if(!active) {
                     if(type == 'personal') {
                         $(tested + ', ' + chat_switch + 'more-button').addClass('chan-newmessage');
