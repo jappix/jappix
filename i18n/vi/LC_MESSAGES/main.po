@@ -1,0 +1,2387 @@
+# Jappix - An open social platform
+# These are the default english strings of Jappix
+# -------------------------------------------------
+# License: AGPL
+# Authors: Valérian Saliou, JanCBorchardt
+# Translators:
+# serdiuk <serdiuk38@yahoo.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Jappix\n"
+"PO-Revision-Date: 2014-05-24 21:38+0100\n"
+"Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
+"Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/projects/p/"
+"jappix/language/vi_VN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.6.5\n"
+
+msgid "default:LTR"
+msgstr ""
+
+msgid ""
+"JavaScript is missing in your web browser, so that you will not be able to "
+"launch Jappix! Please fix this."
+msgstr ""
+"Trình duyệt của bạn không hỗ trợ JavaScript hoặc chức năng này đã bị tắt. "
+"Bạn không thể sử dụng Jappix!"
+
+msgid "Social channel, chat and more."
+msgstr "Mạng xã hội, trò chuyện và hơn thế nữa."
+
+msgid "Create your public profile."
+msgstr "Tạo thông tin cá nhân."
+
+msgid "A mini-chat for your website."
+msgstr "Trình chat mini cho website."
+
+msgid "Get Jappix, get support."
+msgstr ""
+
+msgid "Statistics around Jappix."
+msgstr "Thông số về Jappix."
+
+msgid "Legal disclaimer for Jappix."
+msgstr ""
+
+msgid "Download Jappix for free."
+msgstr "Tải Jappix miễn phí."
+
+msgid "Contribute to the Jappix code."
+msgstr "Đóng góp code cho Jappix."
+
+msgid "Jappix for your company."
+msgstr ""
+
+msgid "Find a public Jappix node."
+msgstr ""
+
+msgid "Credits"
+msgstr ""
+
+msgid "Association"
+msgstr ""
+
+msgid "Web agency"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid "Legal disclaimer"
+msgstr ""
+
+msgid "Terms of use and legal"
+msgstr ""
+
+msgid "Owner"
+msgstr ""
+
+msgid "Node owner"
+msgstr ""
+
+msgid "By using our service, you accept %s."
+msgstr ""
+
+msgid "our terms of use"
+msgstr ""
+
+msgid ""
+"Jappix has been interrupted by a network issue, a bug or bad login (check "
+"that you entered the right credentials), sorry for the inconvenience."
+msgstr "Đăng nhập"
+
+msgid "The element list on this server could not be obtained!"
+msgstr "Danh sách các thành phần trên máy chủ không được xác định!"
+
+msgid ""
+"Your password has been changed, now you can connect to your account with "
+"your new login data."
+msgstr ""
+"Mật khẩu của bạn đã được thay đổi, bạn có thể kết nối tới tài khoản của mình "
+"bằng mật khẩu mới."
+
+msgid "Your XMPP account has been removed, bye!"
+msgstr "Tài khoản XMPP của bạn đã được gỡ bỏ."
+
+msgid "You have been logged out of your XMPP account, have a nice day!"
+msgstr "Bạn vừa thoát khỏi hệ thống XMPP, chúc bạn một ngày tốt lành!"
+
+msgid "The room you tried to join doesn't seem to exist."
+msgstr ""
+
+msgid "The groupchat has been removed."
+msgstr ""
+
+msgid "The user that you want to reach is not present in the room."
+msgstr "Người dùng bạn muốn tiếp xúc không có trong phòng chat."
+
+msgid "Please enter the group chat address to join."
+msgstr "Xin hãy nhập địa chỉ group chat để tham gia."
+
+msgid "Please enter your nickname to join %s."
+msgstr "Nhập nick name của bạn để tham gia %s."
+
+msgid "This room (%s) is protected with a password."
+msgstr "Phòng này (%s) được bảo vệ bởi mật khẩu."
+
+msgid "Your browser is out of date!"
+msgstr "Trình duyệt của bạn đã quá cũ!"
+
+msgid "Last %s version is better!"
+msgstr "Phiên bản trước %s vẫn tốt hơn!"
+
+msgid "Login"
+msgstr "Đăng nhập"
+
+msgid "Register"
+msgstr "Đăng ký"
+
+msgid "Here we go!"
+msgstr "Đăng nhập"
+
+msgid "Server"
+msgstr "Máy chủ"
+
+msgid "Password"
+msgstr "Mật khẩu"
+
+msgid "Remember me"
+msgstr "Ghi nhớ"
+
+msgid "This tool has been disabled!"
+msgstr "Chức năng này đã bị khóa!"
+
+msgid ""
+"Due to a network issue, you were disconnected. What do you want to do now?"
+msgstr ""
+"Có vấn đề xảy ra ra với mạng của bạn, bạn vừa bị ngắt kết nối. Bạn có muốn "
+"kết nối lại không?"
+
+msgid "Reconnect"
+msgstr "Kết nối lại"
+
+msgid "Messages"
+msgstr "Thông điệp"
+
+msgid "Profile"
+msgstr "Thông tin cá nhân"
+
+msgid "Options"
+msgstr "Tùy chọn"
+
+msgid "Disconnect"
+msgstr "Ngắt kết nối"
+
+msgid "Filter"
+msgstr "Lọc"
+
+msgid "Add a friend"
+msgstr "Thêm bạn"
+
+msgid "Your groupchats"
+msgstr "Nhóm chat của bạn"
+
+msgid "Manage your favorite groupchats"
+msgstr "Quản lý nhóm chat ưa thích"
+
+msgid "More stuff"
+msgstr "Các chức năng khác"
+
+msgid "Show all friends"
+msgstr "Hiện toàn bộ danh sách bạn bè."
+
+msgid "Only show connected friends"
+msgstr "Chỉ hiện những người online."
+
+msgid "Groupchat presence messages"
+msgstr ""
+
+msgid "No chat images auto-load"
+msgstr ""
+
+msgid "Message archives"
+msgstr "Tin nhắn lưu trữ"
+
+msgid "Date"
+msgstr "Ngày"
+
+msgid "A short message?"
+msgstr "Một tin nhắn nhanh?"
+
+msgid "How are you?"
+msgstr "Bạn khỏe không?"
+
+msgid "What are you doing?"
+msgstr "Bạn đang làm gì vậy?"
+
+msgid "Join a chat"
+msgstr "Tham gia chat"
+
+msgid "Status"
+msgstr "Tình trạng"
+
+msgid "Available"
+msgstr "Sẵn sàng"
+
+msgid "Talkative"
+msgstr "Sẵn sàng trò chuyện"
+
+msgid "Away"
+msgstr "Đã rời khỏi đây"
+
+msgid "Not available"
+msgstr "Không sẵn sàng"
+
+msgid "Busy"
+msgstr "Đang bận"
+
+msgid "Offline"
+msgstr ""
+
+msgid "Mood"
+msgstr "Tâm trạng"
+
+msgid "None"
+msgstr "Không gì cả"
+
+msgid "Crazy"
+msgstr "Hâm"
+
+msgid "Excited"
+msgstr "Khoái chí"
+
+msgid "Playful"
+msgstr "Vui vẻ"
+
+msgid "Happy"
+msgstr "Hạnh phúc"
+
+msgid "Shocked"
+msgstr "Shock"
+
+msgid "Hot"
+msgstr "Nóng"
+
+msgid "Sad"
+msgstr "Chán"
+
+msgid "Amorous"
+msgstr "Đa tình"
+
+msgid "Confident"
+msgstr "Tự tin"
+
+msgid "Activity"
+msgstr "Hoạt động"
+
+msgid "Chores"
+msgstr "Công việc"
+
+msgid "Drinking"
+msgstr "Đang nhậu"
+
+msgid "Eating"
+msgstr "Đang ăn"
+
+msgid "Exercising"
+msgstr "Đang tập"
+
+msgid "Grooming"
+msgstr "Đang chăm"
+
+msgid "Appointment"
+msgstr "Đang hẹn"
+
+msgid "Inactive"
+msgstr "Không sẵn sàng"
+
+msgid "Relaxing"
+msgstr "Đang nghỉ"
+
+msgid "Talking"
+msgstr "Đang trò chuyện"
+
+msgid "Traveling"
+msgstr "Đang du lịch"
+
+msgid "Working"
+msgstr "Đang làm việc"
+
+msgid "View profile"
+msgstr "Xem thông tin cá nhân"
+
+msgid "This is a repeat from %s"
+msgstr "Cái này được lặp lại từ %s"
+
+msgid "Repeat this notice"
+msgstr "Lặp lại chú ý này"
+
+msgid "Remove this notice"
+msgstr "Gỡ bỏ chú ý này"
+
+msgid "Your profile"
+msgstr "Thông tin cá nhân của bạn"
+
+msgid "Identity"
+msgstr "Nhận dạng"
+
+msgid "Profile image"
+msgstr "Ảnh cá nhân"
+
+msgid "Others"
+msgstr "Thông tin khác"
+
+msgid "Other"
+msgstr ""
+
+msgid "Personal"
+msgstr "Cá nhân"
+
+msgid "Complete name"
+msgstr "Tên đầy đủ"
+
+msgid "Nickname"
+msgstr "Nickname"
+
+msgid "First name"
+msgstr "Tên"
+
+msgid "Last name"
+msgstr "Họ"
+
+msgid "Date of birth"
+msgstr "Ngày sinh"
+
+msgid "Contact"
+msgstr "Liên hệ"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Số điện thoại"
+
+msgid "Website"
+msgstr "Trang web"
+
+msgid "Current"
+msgstr "Hiện tại"
+
+msgid "Delete"
+msgstr "Xóa"
+
+msgid "What a pity! You have no profile image defined in your identity card!"
+msgstr "Rất tiếc! Bạn không có ảnh cá nhân trong thẻ nhận dạng!"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Street"
+msgstr "Đường phố"
+
+msgid "City"
+msgstr "Thành phố"
+
+msgid "Postal code"
+msgstr "Mã quốc gia"
+
+msgid "Country"
+msgstr "Quốc gia"
+
+msgid "Biography"
+msgstr "Tiểu sử"
+
+msgid "Important notice"
+msgstr "Chú ý quan trọng"
+
+msgid ""
+"Be careful with the information you store into your profile, because it "
+"might be accessible by everyone (even someone you don't want to)."
+msgstr ""
+"Cẩn thận với các thông tin mà bạn lưu trên profile, nó có thể được truy cập "
+"bởi bất kỳ ai (cả với những người mà bạn không mong muốn)."
+
+msgid ""
+"Not everything is private on XMPP; this is one of those things, your public "
+"profile (vCard)."
+msgstr ""
+"Không phải mọi thứ đều riêng tư trên XMPP, thông tin công khai của bạn "
+"(vCard) là một trong số đó."
+
+msgid ""
+"It is strongly recommended to upload a profile image (%s maximum), like a "
+"picture of yourself, because that makes you easily recognizable by your "
+"friends."
+msgstr ""
+"Khuyến cáo bạn nên upload ảnh đại diện (%s maximum) là ảnh của bạn để bạn bè "
+"có thể nhận ra."
+
+msgid "Save"
+msgstr "Lưu lại"
+
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+msgid "Edit options"
+msgstr "Thay đổi tùy chọn"
+
+msgid "Channel"
+msgstr "Kênh"
+
+msgid "Commands"
+msgstr "Dòng lệnh"
+
+msgid "Sounds"
+msgstr "Âm thanh"
+
+msgid "Privacy"
+msgstr "Riêng tư"
+
+msgid "Message archiving"
+msgstr "Lưu trữ tin nhắn"
+
+msgid "Store an history of your chats"
+msgstr ""
+
+msgid "Geolocation"
+msgstr "Địa lý"
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Store all chats"
+msgstr ""
+
+msgid "Store friend chats"
+msgstr ""
+
+msgid "Remove all archives"
+msgstr ""
+
+msgid "Empty"
+msgstr "Trống rỗng"
+
+msgid "Empty channel"
+msgstr "Kênh rỗng"
+
+msgid "Persistent"
+msgstr "Cố định"
+
+msgid "Maximum notices"
+msgstr "Số lượng chú ý tối đa"
+
+msgid "Account"
+msgstr "Tài khoản"
+
+msgid "Change password"
+msgstr "Đỏi mật khẩu"
+
+msgid "Delete account"
+msgstr "Xóa tải khoản"
+
+msgid "Old"
+msgstr "Cũ"
+
+msgid "New (2 times)"
+msgstr "Mới (2 lần)"
+
+msgid "Suggested chatrooms"
+msgstr "Lựa chọn phòng chat"
+
+msgid "Skip"
+msgstr "Bỏ qua"
+
+msgid "Continue"
+msgstr "TIếp tục"
+
+msgid "To"
+msgstr "Đến"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "unknown"
+msgstr "Không rõ"
+
+msgid "Unavailable"
+msgstr "Không sẵn sàng"
+
+msgid "is now"
+msgstr "ngay bây giờ"
+
+msgid "Please wait while your avatar is uploaded..."
+msgstr "Xin hãy chờ, ảnh đại diện đang được upload ..."
+
+msgid "Here it is! A new beautiful profile image!"
+msgstr "OK đây rồi. Một bức ảnh đẹp!"
+
+msgid "The image file is not supported or has a bad size."
+msgstr "Loại file không được hỗ trợ hoặc sai kích cỡ."
+
+msgid "Reply"
+msgstr "Trả lời"
+
+msgid "Error"
+msgstr "Lỗi"
+
+msgid "Click here to solve the error"
+msgstr "Nhấn vào đây để sửa lỗi"
+
+msgid "You"
+msgstr "Bạn"
+
+msgid "Remove"
+msgstr "Gỡ bỏ"
+
+msgid "Rename"
+msgstr "Đổi tên"
+
+msgid "Hi, I am %s, I would like to add you as my friend."
+msgstr "Xin chào, tôi là %s, tôi muốn kết bạn với bạn."
+
+msgid "Smiley insertion"
+msgstr "Chèn biểu tượng cảm xúc"
+
+msgid "Change style"
+msgstr "Đổi giao diện"
+
+msgid "Text in bold"
+msgstr "Chữ in đậm"
+
+msgid "Text in italic"
+msgstr "Chữ in nghiêng"
+
+msgid "Underlined text"
+msgstr "Chữ gạch dưới"
+
+msgid "Send a file"
+msgstr "Gửi file"
+
+msgid ""
+"Once uploaded, your friend will be prompted to download the file you sent."
+msgstr "Sau khi upload xong, bạn của bạn sẽ được thông báo để tải file."
+
+msgid "Save chat"
+msgstr "Lưu chat"
+
+msgid ""
+"Click on the following link to get the chat log, and wait. Then click again "
+"to get the file."
+msgstr "Click vào liên kết sau để xem nhật ký chat. Click lần nữa để tải file."
+
+msgid "This chat is empty!"
+msgstr "Cuộc trò chuyện này không có nội dung."
+
+msgid "Generate file!"
+msgstr "Tạo file!"
+
+msgid "Download file!"
+msgstr "Tải file!"
+
+msgid "Clean current chat"
+msgstr "Xóa nội dung chat hiện tại"
+
+msgid "Show user profile"
+msgstr "Hiện thông tin người dùng"
+
+msgid "Add this contact to your friends"
+msgstr "Thêm người dùng này vào danh sách bạn bè"
+
+msgid "Add this groupchat to your favorites"
+msgstr "Thêm nhóm chat này vào danh sách ưa thích"
+
+msgid "All tabs"
+msgstr "Tất cả tab"
+
+msgid "Join groupchat"
+msgstr ""
+
+msgid "Close this tab"
+msgstr "Đóng cửa sổ này"
+
+msgid "no subject defined for this room."
+msgstr "phòng chat này không có tiêu đề."
+
+msgid "Administration panel for this room"
+msgstr "Quản lý phòng chat này"
+
+msgid "Moderators"
+msgstr "Người quản lý"
+
+msgid "Participants"
+msgstr "Những người tham gia"
+
+msgid "Visitors"
+msgstr "Khách"
+
+msgid "Manage favorite rooms"
+msgstr "Quản lý phòng chat ưa thích"
+
+msgid "Change favorites"
+msgstr "Thay đổi danh sách ưa thích"
+
+msgid "Search a room"
+msgstr "Tìm phòng chat"
+
+msgid "Select a favorite"
+msgstr "Chọn từ danh sách ưa thích"
+
+msgid "Getting the name..."
+msgstr "Đang lấy tên ..."
+
+msgid "Gateway"
+msgstr "Cổng thông tin"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Room"
+msgstr "Phòng chat"
+
+msgid "Add"
+msgstr "Thêm"
+
+msgid "Edit"
+msgstr "Sửa"
+
+msgid "Search a room on"
+msgstr "Tìm trong phòng"
+
+msgid "No room found on this server."
+msgstr "Không có phòng chat nào trên máy chủ này"
+
+msgid "Service discovery"
+msgstr "Tìm kiếm dịch vụ"
+
+msgid "Server to query"
+msgstr "Tìm kiếm từ máy chủ"
+
+msgid "Sorry, but the entity didn't return any result!"
+msgstr "Không có kết quả nào!"
+
+msgid "Accounts"
+msgstr "Những tài khoản"
+
+msgid "Authentications"
+msgstr "Sự xác nhận"
+
+msgid "Automation"
+msgstr "Tự động"
+
+msgid "Clients"
+msgstr ""
+
+msgid "Collaboration"
+msgstr "Sự hợp tác"
+
+msgid "Components"
+msgstr "Các thành phần"
+
+msgid "Rooms"
+msgstr "Các phòng"
+
+msgid "Directories"
+msgstr ""
+
+msgid "Gateways"
+msgstr ""
+
+msgid "News"
+msgstr "Tin tức"
+
+msgid "Hierarchy"
+msgstr "Phân cấp"
+
+msgid "Proxies"
+msgstr ""
+
+msgid "Publication/Subscription"
+msgstr ""
+
+msgid "Storage"
+msgstr ""
+
+msgid "Service offline or broken"
+msgstr "Dịch vụ đã tắt hoặc hư hỏng"
+
+msgid "Your inbox"
+msgstr "Hòm thư chính"
+
+msgid "Available actions"
+msgstr "Chức năng sẵn có"
+
+msgid "Clean"
+msgstr "Dọn dẹp"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "Received"
+msgstr "Đã nhận"
+
+msgid "Subject"
+msgstr "Tiêu đề"
+
+msgid "Content"
+msgstr "Nội dung"
+
+msgid "Send message"
+msgstr "Gửi tin nhắn"
+
+msgid "Your inbox is empty."
+msgstr "Hòm thư chính rỗng"
+
+msgid "MUC administration"
+msgstr "Quản lý MUC"
+
+msgid "You administrate this room"
+msgstr "Bạn quản lý phòng này"
+
+msgid "Enter new subject"
+msgstr "Nhập tiêu đề mới"
+
+msgid "Configuration"
+msgstr "Cấu hình"
+
+msgid "Authorizations"
+msgstr "Quyền hạn"
+
+msgid "Member list"
+msgstr "Danh sách thành viên"
+
+msgid "Owner list"
+msgstr "Danh sách chủ thể"
+
+msgid "Administrator list"
+msgstr "Danh sách người quản lý"
+
+msgid "Outcast list"
+msgstr ""
+
+msgid "Add an input"
+msgstr ""
+
+msgid "Destroy this MUC"
+msgstr "Loại bỏ MUC này"
+
+msgid "Yes, let's do it!"
+msgstr "OK, làm thôi!"
+
+msgid "Your friend is paying attention to the conversation."
+msgstr "Bạn của bạn rất quan tâm đến đối thoại này."
+
+msgid "Your friend is writing a message..."
+msgstr "Bạn của bạn đang viết tin nhắn ..."
+
+msgid "Your friend stopped writing a message."
+msgstr "Bạn của bạn đã ngừng viết tin nhắn."
+
+msgid "Your friend is doing something else."
+msgstr "Bạn của bạn đang làm việc khác."
+
+msgid "Your friend closed the chat."
+msgstr "Bạn của bạn đã đóng cửa sổ chat."
+
+msgid "Requesting this service..."
+msgstr "Đang yêu cầu dịch vụ ..."
+
+msgid "Loading"
+msgstr "Đang tải"
+
+msgid "changed his/her nickname to %s"
+msgstr "đổi nickname của người đó thành %s"
+
+msgid "joined the chat room"
+msgstr "đã tham gia phòng chat"
+
+msgid "left the chat room"
+msgstr "đã rời phòng chat"
+
+msgid "%s left"
+msgstr ""
+
+msgid "%s joined"
+msgstr ""
+
+msgid "no status"
+msgstr "không đặt trạng thái"
+
+msgid "has been kicked"
+msgstr "đã bị kick"
+
+msgid "has been banned"
+msgstr "đã bị ban"
+
+msgid "no reason"
+msgstr "không có nguyên nhân"
+
+msgid "Communicate with the entire world!"
+msgstr "Follow the Giant!"
+
+msgid ""
+"Jappix is an open social platform, that let's you easily get or keep in "
+"touch with everyone."
+msgstr ""
+"Chào mừng bạn đến với FTG Chat. Đây sẽ là nơi để các bạn giao lưu trao đổi "
+"cũng như nhận được tư vấn hỗ trợ về hệ thống FTG."
+
+msgid ""
+"Join the millions of users who are currently using the XMPP Network (Google "
+"Talk, etc), don't stay out!"
+msgstr "Cùng tham gia với chúng tôi trên hệ thống XMPP!"
+
+msgid "Hi there!"
+msgstr "Chào bạn!"
+
+msgid "Welcome to %1s, “%2s”."
+msgstr "Chào mừng bạn đến với %1s, \"%2s\"."
+
+msgid "Login to your existing XMPP account or create a new one for free!"
+msgstr "Đăng nhập bằng tải khoản XMPP của bạn hoặc tạo mới tài khoản."
+
+msgid ""
+"For your account safety, when you login or register, make sure your password "
+"remains secret."
+msgstr "Để đảm bảo an toàn, bạn nên thiết lập mật khẩu đủ mạnh."
+
+msgid ""
+"Login to your existing XMPP account. You can also use the %s to join a "
+"groupchat."
+msgstr ""
+"Đăng nhập bằng tài khoản XMPP của bạn. Bạn có thể sử dụng %s để tham gia "
+"chat nhóm."
+
+msgid "Previous"
+msgstr "Trở lại"
+
+msgid "General"
+msgstr "Tổng quan"
+
+msgid "Advanced"
+msgstr "Nâng cao"
+
+msgid "Resource"
+msgstr "Tài nguyên"
+
+msgid "Priority"
+msgstr "Độ ưu tiên"
+
+msgid "Low"
+msgstr "Thấp"
+
+msgid "Medium"
+msgstr "Vừa"
+
+msgid "High"
+msgstr "Cao"
+
+msgid ""
+"Enter the groupchat you want to join and the nick you want to have. You can "
+"also go back to the %s."
+msgstr ""
+"Nhập nhóm chat bạn muốn tham gia và nickname muốn hiển thị. Bạn cũng có thể "
+"trở lại %s."
+
+msgid "login page"
+msgstr "trang đăng nhập"
+
+msgid "Share this link with your friends:"
+msgstr "Chia sẻ link này cho bạn bè:"
+
+msgid ""
+"Register a new XMPP account to join your friends on your own social cloud. "
+"That's simple!"
+msgstr "Đăng ký một tài khoản XMPP mới để tham gia. Rất đơn giản!"
+
+msgid "Required"
+msgstr "Bắt buộc"
+
+msgid "You have been registered, here is your XMPP address:"
+msgstr "Bạn vừa đăng ký xong, đây là tài khoản XMPP của bạn:"
+
+msgid "Manager"
+msgstr "Quản lý"
+
+msgid "Encrypted"
+msgstr "Mã hóa"
+
+msgid "Unencrypted"
+msgstr "Giải mã"
+
+msgid "Where are you?"
+msgstr "Bạn đang ở đâu?"
+
+msgid "What's up with you?"
+msgstr "Bạn thế nào?"
+
+msgid "Type something you want to share with your friends..."
+msgstr "Gõ gì đó để chia sẻ với bạn bè ..."
+
+msgid "Fetching the social channel..."
+msgstr "Đang tìm kiếm kênh xã hội ..."
+
+msgid "You are synchronized with your network."
+msgstr "Bạn đã được đồng bộ lên network."
+
+msgid "Cannot send anything: you can only receive notices!"
+msgstr "Không thể gửi: bạn chỉ có thể nhận thông báo!"
+
+msgid "Media viewer"
+msgstr "Trình xem Media"
+
+msgid "Browse"
+msgstr "Duyệt tới"
+
+msgid "Command"
+msgstr "Dòng lệnh"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Join"
+msgstr "Tham gia"
+
+msgid "Automatic"
+msgstr "Tự động"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "No result!"
+msgstr "Không có kết quả!"
+
+msgid "No notifications."
+msgstr "Không có thông báo mới."
+
+msgid "would like to add you as a friend."
+msgstr "muốn kết bạn với bạn."
+
+msgid "would like you to join this chatroom:"
+msgstr "bạn có muốn tham gia phòng chat này:"
+
+msgid "Do you accept?"
+msgstr "Bạn đồng ý không?"
+
+msgid "Yes"
+msgstr "Đồng ý"
+
+msgid "No"
+msgstr "Không"
+
+msgid "would like to get authorization."
+msgstr "muốn được bạn cho phép."
+
+msgid "would like to send you a file: “%s”."
+msgstr "muốn gửi một file cho bạn: \"%s\"."
+
+msgid "has received a file exchange request: “%s”."
+msgstr "vừa nhận yêu cầu trao đổi file: \"%s\"."
+
+msgid "has accepted to receive your file: “%s”."
+msgstr ""
+
+msgid "has rejected to receive your file: “%s”."
+msgstr "đã từ chối nhận file của bạn: \"%s\"."
+
+msgid "could not receive your file: “%s”."
+msgstr "không thể nhận file của bạn: \"%s\"."
+
+msgid "Do you want to see the friends %s suggests you?"
+msgstr "Bạn có muốn được gợi ý kết bạn từ %s không?"
+
+msgid "commented an item you follow: “%s”."
+msgstr "đã bình luận một vấn đề bạn quan tâm: \"%s\"."
+
+msgid "liked your post: “%s”."
+msgstr "đã thích bài viết của bạn: \"%s\"."
+
+msgid "quoted you somewhere: “%s”."
+msgstr "đã trích dẫn từ bạn ở đâu đó: \"%s\"."
+
+msgid "published on your wall: “%s”."
+msgstr "đã viết lên tường của bạn:\"%s\"."
+
+msgid "tagged you in a photo (%s)."
+msgstr "đã đánh dấu bạn trong một ảnh (%s)."
+
+msgid "tagged you in a video (%s)."
+msgstr "đã đánh dấu bạn trong một video (%s)."
+
+msgid ""
+"validated your account. Your public profile will be available in a few "
+"moments."
+msgstr ""
+
+msgid "has removed your public profile after your request. We will miss you!"
+msgstr ""
+
+msgid ""
+"has saved your new public profile settings. They will be applied in a few "
+"moments."
+msgstr ""
+
+msgid ""
+"could not validate your account to create or update your public profile. "
+"Check your credentials."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Show"
+msgstr "Hiện"
+
+msgid "Hide"
+msgstr "Ẩn"
+
+msgid "Submit"
+msgstr "Xác nhận"
+
+msgid "Client"
+msgstr "Máy con"
+
+msgid "System"
+msgstr "Hệ thống"
+
+msgid "Local time"
+msgstr "Giờ hiện tại"
+
+msgid "Comments"
+msgstr "Những bình luận"
+
+msgid "User profile"
+msgstr "Thông tin người dùng"
+
+msgid "See his/her position on the globe"
+msgstr "Xem vị trí của người đó trên thế giới"
+
+msgid "Confirm"
+msgstr "Xác nhận"
+
+msgid "anonymous mode"
+msgstr "chế độ ẩn danh"
+
+msgid "Groups"
+msgstr "Nhóm"
+
+msgid "Unclassified"
+msgstr "Chưa được phân lớp"
+
+msgid "Authorize"
+msgstr "Cho phép"
+
+msgid "Ask for authorization"
+msgstr "Yêu cầu quyền hạn"
+
+msgid "Unblock"
+msgstr "Mở khóa"
+
+msgid "Prohibit"
+msgstr "Cấm"
+
+msgid "Block"
+msgstr "Khóa"
+
+msgid "Chat"
+msgstr "Trò chuyện"
+
+msgid "Groupchat"
+msgstr "Nhóm chat"
+
+msgid "Jappix Mobile"
+msgstr "Bản di động Jappix"
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Mobile"
+msgstr "Di động"
+
+msgid "Please wait..."
+msgstr "Xin chờ ..."
+
+msgid "Please enable JavaScript"
+msgstr "Hãy bật JavaScript"
+
+msgid "Show comments"
+msgstr "Hiện bình luận"
+
+msgid "Loading comments..."
+msgstr "Đang tải bình luận ..."
+
+msgid "Could not get the comments!"
+msgstr "Không thể tải bình luận!"
+
+msgid "Comments locked!"
+msgstr "Bình luận đã bị khóa!"
+
+msgid "Type your comment here..."
+msgstr "Nhập bình luận của bạn ở đây..."
+
+msgid "Your channel"
+msgstr "Kênh của bạn"
+
+msgid "Channel of"
+msgstr "Kênh của"
+
+msgid "More notices..."
+msgstr "Thông báo khác..."
+
+msgid "Attach a file"
+msgstr "Đính kèm file"
+
+msgid "Send"
+msgstr "Gửi"
+
+msgid "Unattach the file"
+msgstr "Bỏ đính kèm"
+
+msgid ""
+"An error occured while uploading your file: maybe it is too big (%s maximum) "
+"or forbidden!"
+msgstr ""
+"Có lỗi xảy ra khi upload file: có thể do file quá lớn (%s max) hoặc bị ngắt "
+"kết nối!"
+
+msgid "Authorization failed"
+msgstr "Cấp phép thất bại!"
+
+msgid "Registration failed, please choose a different username"
+msgstr "Đăng ký thất bại, hãy chọn một tên khác"
+
+msgid "Service unavailable"
+msgstr "Dịch vụ không sẵn sàng"
+
+msgid "Internal server error, try later"
+msgstr "Lỗi từ máy chủ, hãy trở lại sau"
+
+msgid "Your form has been sent."
+msgstr "Form đã được gửi đi."
+
+msgid "Application"
+msgstr "Ứng dụng"
+
+msgid "Media integration"
+msgstr "Tích hợp media"
+
+msgid "Keep local chat archives"
+msgstr "Lưu trữ tin nhắn trên máy tính"
+
+msgid "XMPP links"
+msgstr "Liên kết XMPP"
+
+msgid "Open XMPP links with Jappix"
+msgstr "Mở liên kết XMPP từ Jappix"
+
+msgid "changed the subject to:"
+msgstr "đổi tiêu đề thành:"
+
+msgid "Welcome!"
+msgstr "Chào mừng!"
+
+msgid "Friends"
+msgstr "Bạn bè"
+
+msgid "Welcome to Jappix, your own social cloud!"
+msgstr "Chào mừng bạn đến với Jappix, mạng xã hội của chính bạn."
+
+msgid ""
+"Before you start using it, you will have to change some settings, search for "
+"friends and complete your profile."
+msgstr ""
+"Trước khi sử dụng, bạn phải thay đổi thiết lập, tìm kiếm bạn bè và hoàn tất "
+"thông tin cá nhân."
+
+msgid "Enable notification sounds"
+msgstr "Bật âm thanh thông báo"
+
+msgid "Share your position on the globe"
+msgstr "Chia sẻ vị trí của bạn trên bản đồ"
+
+msgid "Offline friends"
+msgstr "Bạn bè Offline"
+
+msgid "Don't hide offline friends"
+msgstr "Không ẩn bạn bè offline"
+
+msgid ""
+"Use this tool to find your friends on the server you are using right now, or "
+"add them later."
+msgstr "Dùng công cụ này để tìm kiếm bạn bè trên server, hoặc thêm họ sau."
+
+msgid "Good job! Now, you can share Jappix with your friends!"
+msgstr ""
+
+msgid ""
+"When you will press the save button, the profile editor will be opened. "
+"Happy socializing!"
+msgstr ""
+"Sau khi nhấn nút Lưu, trình chỉnh sửa thông tin cá nhân sẽ được mở. Chúc bạn "
+"vui vẻ!"
+
+msgid "Share Jappix on %s"
+msgstr "Chia sẻ Jappix lên %s"
+
+msgid "Follow Jappix topic on %s"
+msgstr ""
+
+msgid "Using Jappix, an open social platform. I am %s!"
+msgstr "Sử dụng Jappix, một nền tảng mạng xã hội mở. Tôi là %s!"
+
+msgid "Unknown name"
+msgstr "Tên không xác định"
+
+msgid "Unknown country"
+msgstr "Quốc gia không xác định"
+
+msgid "Click to enable"
+msgstr "Clik để bật"
+
+msgid "Click to disable"
+msgstr "Click để tắt"
+
+msgid "Installation"
+msgstr "Cài đặt"
+
+msgid "Jappix installation"
+msgstr "Cài đặt Jappix"
+
+msgid "Welcome to the Jappix installation!"
+msgstr "Chào mừng bạn đến với trình cài đặt Jappix!"
+
+msgid ""
+"This tool will help you installing Jappix, the first full-featured XMPP-"
+"based social platform, on your server with ease."
+msgstr ""
+
+msgid "Installation Steps:"
+msgstr ""
+
+msgid "Welcome"
+msgstr "Chào mừng"
+
+msgid "Storage configuration"
+msgstr "Cài đặt cấu hình lưu trữ"
+
+msgid "Administrator account"
+msgstr "Tài khoản người quản trị"
+
+msgid "Main configuration"
+msgstr "Cấu hình chính"
+
+msgid "Hosts configuration"
+msgstr "Cấu hình máy chủ"
+
+msgid "Services installation"
+msgstr "Cài đặt dịch vụ"
+
+msgid ""
+"If the current language does not match yours (%1s), you can make Jappix "
+"speak %2s it will be saved."
+msgstr ""
+"Nếu ngôn ngữ hiện tại không phù hợp với bạn(%1s),bạn có thế nói với Jappix "
+"%2s . Thông tin sẽ được lưu lại"
+
+msgid ""
+"If you want to get some help about the Jappix installation and "
+"configuration, you can use our whole documentation, available at:"
+msgstr ""
+"Nếu bạn muốn nhận được sự giúp đỡ về việc cài đặt và cấu hình Jappix, bạn có "
+"thể sử dụng toàn bộ tài liệu của chúng tôi,tại :"
+
+msgid "It's time to build your own social cloud: just go to the next step!"
+msgstr ""
+"Để xây dựng mạng xã hội đám mây của bạn,bạn chỉ cần thực hiện những bước "
+"tiếp theo!"
+
+msgid ""
+"Jappix stores persistent data (such as shared files, chat logs, your own "
+"music and its configuration) into multiple storage folders."
+msgstr ""
+
+msgid ""
+"Jappix must be able to write in this folder to create its sub-directories. "
+"If not, you must set the rights of %1s to %2s or change the folder owner to "
+"%3s (depending of your configuration)."
+msgstr ""
+
+msgid "The folder is writable, you can continue!"
+msgstr "Các thư mục có thể ghi, bạn có thế tiếp tục!"
+
+msgid ""
+"Jappix offers you the possibility to manage your configuration, install new "
+"plugins or search for updates. That's why you must create an administrator "
+"account to access the manager."
+msgstr ""
+"Jappix cung cấp cho bạn khả năng để quản lý cấu hình của bạn, cài đặt plugin "
+"mới hoặc tìm kiếm các bản cập nhật. Đó là lý do tại sao bạn phải tạo một tài "
+"khoản quản trị để truy cập vào quản lý."
+
+msgid ""
+"When Jappix will be installed, just click on the manager link on the home "
+"page to access it."
+msgstr ""
+"Sau khi đã cài đặt xong Jappix, bạn nhấp vào đường dẫn quản lý trên trang "
+"chủ để truy cập."
+
+msgid "Oops, you missed something or the two passwords do not match!"
+msgstr "Rất tiếc, bạn đã quên điều gì đó hoặc hai mật khẩu không khớp!`"
+
+msgid ""
+"Jappix needs that you specify some values to work. Please correct the "
+"following inputs (or keep the default values, which are sufficient for most "
+"people)."
+msgstr ""
+"Jappix cần bạn chỉ định một số giá trị để làm việc. Vui lòng sửa các đầu vào "
+"sau ( hoặc giữ nguyên giá trị mặc định)"
+
+msgid ""
+"Note that if you don't specify a value which is compulsory, it will be "
+"automatically completed with the default one."
+msgstr ""
+"Chú ý nếu bạn không chỉ định một giá trị bắt buộc phải có, nó sẽ được tự "
+"động gán giá trị mặc định"
+
+msgid ""
+"Need help? You'd better read our documentation page about how to fill this "
+"form!"
+msgstr ""
+
+msgid "User"
+msgstr "Người dùng"
+
+msgid "Service"
+msgstr "Dịch vụ"
+
+msgid "Service name"
+msgstr "Tên dịch vụ"
+
+msgid "Service description"
+msgstr "Mô tả dịch vụ"
+
+msgid "Owner name"
+msgstr ""
+
+msgid "Owner website"
+msgstr ""
+
+msgid "Connection"
+msgstr "Kết nối"
+
+msgid "Lock the host"
+msgstr "Khóa máy chủ"
+
+msgid "Anonymous mode"
+msgstr "Chế độ ẩn danh"
+
+msgid "HTTP authentication"
+msgstr ""
+
+msgid "Registration allowed"
+msgstr "Cho phép đăng ký"
+
+msgid "Use the built-in BOSH proxy"
+msgstr ""
+
+msgid "Manager link"
+msgstr "Đường dẫn quản trị"
+
+msgid "Groupchats to join"
+msgstr "Tham gia trò chuyện nhóm"
+
+msgid "Suggest groupchats"
+msgstr ""
+
+msgid "Encryption"
+msgstr "Mã hóa"
+
+msgid "HTTPS storage"
+msgstr "Lưu trữ HTTPS"
+
+msgid "Force HTTPS"
+msgstr ""
+
+msgid "Compression"
+msgstr "Nén"
+
+msgid "Cache assets"
+msgstr ""
+
+msgid ""
+"This page helps you specify the default hosts Jappix will connect to. You "
+"can leave it as it is and continue if you want to use the official service "
+"hosts."
+msgstr ""
+"Trang này giúp bạn xác định máy chủ mặc định mà Jappix sẽ kết nối. Bạn có "
+"thể giữ nguyên và tiêp tục nếu bạn muốn sử dụng dịch vụ chính thức"
+
+msgid ""
+"Maybe you don't know what a BOSH server is? In fact, this is a relay between "
+"a Jappix client and a XMPP server, which is necessary because of technical "
+"limitations."
+msgstr ""
+"Có thể bạn không biết gì về một máy chủ BOSH. Trên thực tế, đó là một chuyển "
+"tiếp giữa một máy khách Jappix và một máy chủ XMPP,một sự cần thiết vì những "
+"hạn chế kỹ thuật"
+
+msgid "Main host"
+msgstr "Máy chủ chính"
+
+msgid "Groupchat host"
+msgstr "Máy chủ trò chuyện  nhóm"
+
+msgid "Pubsub host"
+msgstr "Máy chủ Pubsub"
+
+msgid "Anonymous host"
+msgstr "Máy chủ ẩn danh"
+
+msgid "Directory host"
+msgstr "Thư mục chủ"
+
+msgid "BOSH host"
+msgstr "BOSH chủ"
+
+msgid "WebSocket host"
+msgstr ""
+
+msgid ""
+"You can install some extra softwares on your server, to extend your Jappix "
+"features. Some others might be modified, because of security restrictions "
+"which are set by default."
+msgstr ""
+"Bạn có thể cài đặt thêm những phần mêm vào máy chủ để mở rộng các tính năng "
+"của Jappix. Một vài người khác có thể thay đổi bởi vì những hạn chế bảo mật "
+"được thiết lập mặc định."
+
+msgid ""
+"To perform this, you must be able to access your server's shell and be "
+"logged in as root. Remember this is facultative, Jappix will work without "
+"these modules, but some of its features will be unavailable."
+msgstr ""
+"Để thực hiện được điều này, bạn phải truy cập được vào shell máy chủ của bạn "
+"và đăng nhập như là một tài khoản root. Hãy nhớ rằng điều này là tùy ý, "
+"Jappix sẽ làm việc mà không có một vài mô-đun, nhưng một vài tính năng của "
+"nó cũng ko được sử dụng"
+
+msgid ""
+"After you finished the setup, Jappix will generate the cache files. It might "
+"be slow, just wait until the application is displayed and do not press any "
+"button."
+msgstr ""
+"Sau khi bạn hoàn thành việc cài đặt, Jappix sẽ tạo ra các tập tin lưu trữ bộ "
+"nhớ cache. Jappix có thể sẽ chậm, bạn cần phải chờ cho đến khi chương trình "
+"được hiển thị, và không bấm vào bất kỳ nút bấm nào."
+
+msgid "Thanks for using Jappix!"
+msgstr "Cảm ơn bạn đã sử dụng Jappix!"
+
+msgid "Next"
+msgstr "Tiếp theo"
+
+msgid "Finish"
+msgstr "Hoàn thành"
+
+msgid "Check again"
+msgstr "Kiểm tra lại"
+
+msgid ""
+"The folder is not writable, set the right permissions to the %s directory."
+msgstr "Thư mục không được quyền ghi,thiết lập lại đúng quyền cho thư mục %s"
+
+msgid "%s is installed on your system."
+msgstr "%s đã được cài đặt trên hệ thống của bạn."
+
+msgid "%1s is not installed on your system, you should install %2s."
+msgstr "%1s chưa được cài đặt trên hệ thống của bạn, bạn cần phải cài đặt %2s"
+
+msgid "PHP maximum upload size is sufficient (%s)."
+msgstr "Kích thước tải lên tối đa PHP là (%s) "
+
+msgid ""
+"PHP maximum upload size is not sufficient (%1s), you should define it to %2s "
+"in %3s."
+msgstr ""
+"Kích thước PHP tối đa tải lên không đủ (%1s),bạn phải định nghĩa nó từ %2s "
+"đến %3s"
+
+msgid "Jappix manager"
+msgstr "Quản lý Jappix"
+
+msgid "Manager access"
+msgstr "Quản lý truy cập"
+
+msgid "Statistics"
+msgstr "Thống kê"
+
+msgid "Hosts"
+msgstr "Máy chủ"
+
+msgid "Design"
+msgstr "Thiết kế"
+
+msgid "Repeat"
+msgstr "Lặp lại"
+
+msgid "All"
+msgstr "Tất cả"
+
+msgid "Horizontal"
+msgstr "Chiều ngang"
+
+msgid "Vertical"
+msgstr "Chiều dọc"
+
+msgid "Center"
+msgstr "Trung tâm"
+
+msgid "Left"
+msgstr "Bên trái"
+
+msgid "Right"
+msgstr "Bên phải"
+
+msgid "Top"
+msgstr "Phía trên"
+
+msgid "Bottom"
+msgstr "Phía dưới"
+
+msgid "Adapt"
+msgstr "Thích ứng"
+
+msgid "Color"
+msgstr "Màu sắc"
+
+msgid "Users"
+msgstr "Người dùng"
+
+msgid ""
+"This is a restricted area: only the authorized users can manage this Jappix "
+"node."
+msgstr ""
+"Đây là khu vực giới hạn : chỉ những người dùng có thẩm quyền mới có thể quản "
+"lý nốt Jappix này."
+
+msgid "Please use the form below to login to the administration panel."
+msgstr "Vui lòng sử dụng mẫu dưới đây để đăng nhập vào bảng điều khiển chính."
+
+msgid ""
+"To improve security, sessions are limited in time and when your browser will "
+"be closed, you will be logged out."
+msgstr ""
+"Để đảm bảo an toàn,phiên làm việc sẽ được hạn chế thời gian và khi trình "
+"duyện của bạn đóng lại,bạn sẽ bị đăng xuất ra khỏi hệ thống."
+
+msgid "Credentials"
+msgstr "Thông tin"
+
+msgid "You have been logged out. Goodbye!"
+msgstr "Bạn đã đăng xuất. Tạm biệt!"
+
+msgid ""
+"Oops, you could not be recognized as a valid administrator. Check your "
+"credentials!"
+msgstr ""
+"Rât tiếc, bạn không được công nhận là một quản trị hợp lệ. Vui lòng kiểm tra "
+"lại thông tin của bạn!"
+
+msgid ""
+"Basic statistics are processed by Jappix about some important things, you "
+"can find them below."
+msgstr ""
+"Những thống kê cơ bản được xử xý bởi Jappix về một số thông tin quan trọng, "
+"bạn có thể tìm chúng ở phía dưới."
+
+msgid "Change your Jappix node configuration with this tool."
+msgstr "Chỉnh sửa cấu hình nốt Jappix của bạn với công cụ này."
+
+msgid "Change the XMPP hosts that this Jappix node serves with this tool."
+msgstr ""
+
+msgid ""
+"All this Jappix node stored files can be managed with this tool: please "
+"select a sub-folder and start editing its content!"
+msgstr ""
+"Tất cả các tập tin lưu trữ của nôt Jappix có thể quản lý bằng công cụ : vui "
+"lòng chọn một thư mục con và bắt đầu chỉnh sửa nội cung của nó!"
+
+msgid "Jappix is fully customisable: you can change its design right here."
+msgstr ""
+"Jappix hoàn toàn được tùy biến: bạn có thể thay đổi thiết kế của nó tại đây."
+
+msgid "This is not a valid image, please use PNG, GIF or JPG!"
+msgstr "Hình ảnh không đúng định dạng, vui lòng sử dụng ảnh PNG, GIF hoặc JPG!"
+
+msgid "This is not a valid image, please use the PNG format!"
+msgstr "Hình ảnh không đúng định dạng, vui lòng sử dụng ảnh PNG!"
+
+msgid "The image could not be received, would you mind retry?"
+msgstr "Ảnh không thể nhận được,bạn có muốn thử lại?"
+
+msgid "Your service logo has been successfully changed!"
+msgstr "Logo dịch vụ của bạn đã được thay đổi thành công!"
+
+msgid "Your image was added to the list!"
+msgstr "Hình ảnh của ban đã được thêm vào danh sách!"
+
+msgid "Changes saved!"
+msgstr "Thay đổi đã được lưu!"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid ""
+"You can set your own service logo to replace the default one. Take care of "
+"the size and the main color of each logo!"
+msgstr ""
+"Bạn có thể thiết lập logo dịch vụ của bạn thay thế logo mặc định. Chú ý về "
+"kích thước và màu sắc của mỗi logo!"
+
+msgid "Upload each logo with the recommended maximum pixel size."
+msgstr "Tải mỗi logo với kích thước lớn nhất theo yêu cầu."
+
+msgid ""
+"Your logo format must be PNG. Leave a field empty and the logo will not be "
+"changed."
+msgstr ""
+"Định dạng logo của bạn phải là PNG. Để lại một trường trống và logo sẽ không "
+"được thay đổi."
+
+msgid "Remove this logo"
+msgstr "Gỡ bỏ logo này."
+
+msgid "View this logo"
+msgstr "Xem logo này."
+
+msgid ""
+"You can define more than one administrator for this Jappix node. You can "
+"also change a password with this tool."
+msgstr ""
+"Bạn có thể định nghĩa nhiều hơn một người quản trị cho nốt Jappix này . Bạn "
+"cũng có thể đổi mật khẩu với công cụ này."
+
+msgid ""
+"Update your Jappix node with this tool, or check if a new one is available. "
+"Informations about the latest version are also displayed (in english)."
+msgstr ""
+"Cập nhật nốt Jappix của bạn bằng công cụ này, hoặc kiểm tra nêu có một công "
+"cụ mới. Thông tin về phiên bản mới nhất sẽ luôn được hiển thị (bằng Tiếng "
+"Anh)."
+
+msgid "Access statistics"
+msgstr "Thống kê truy cập"
+
+msgid "Share statistics"
+msgstr "Chia sẻ số liệu thống kê"
+
+msgid "Other statistics"
+msgstr "Thống kê khác"
+
+msgid "January"
+msgstr "Tháng Một"
+
+msgid "February"
+msgstr "Tháng Hai"
+
+msgid "March"
+msgstr "Tháng Ba"
+
+msgid "April"
+msgstr "Tháng Tư"
+
+msgid "May"
+msgstr "Tháng Năm"
+
+msgid "June"
+msgstr "Tháng Sáu"
+
+msgid "July"
+msgstr "Tháng Bảy"
+
+msgid "August"
+msgstr "Tháng Tám"
+
+msgid "September"
+msgstr "Tháng Chín"
+
+msgid "October"
+msgstr "Tháng Mười"
+
+msgid "November"
+msgstr "Tháng Mười Một"
+
+msgid "December"
+msgstr "Tháng Mười Hai"
+
+msgid "Monday"
+msgstr "Thứ Hai"
+
+msgid "Tuesday"
+msgstr "Thứ Ba"
+
+msgid "Wednesday"
+msgstr "Thứ Tư"
+
+msgid "Thursday"
+msgstr "Thứ Năm"
+
+msgid "Friday"
+msgstr "Thứ Sáu"
+
+msgid "Saturday"
+msgstr "Thứ Bảy"
+
+msgid "Sunday"
+msgstr "Chủ Nhật"
+
+msgid "Total"
+msgstr "Tổng"
+
+msgid "Archives"
+msgstr ""
+
+msgid "Music"
+msgstr "Âm nhạc"
+
+msgid "Backgrounds"
+msgstr "Nền"
+
+msgid "Share"
+msgstr "Chia sẻ"
+
+msgid "Background"
+msgstr "Nền"
+
+msgid "Notice"
+msgstr "Thông báo"
+
+msgid "Your design preferences have been saved!"
+msgstr "Thiết kế của bạn đã được lưu!"
+
+msgid "Please check your inputs: something is missing!"
+msgstr "Vui lòng kiểm tra đầu vào của bạn : Một vài thứ bị thiếu!"
+
+msgid ""
+"Change your Jappix node background with this tool. You can either set a "
+"custom color or an uploaded image. Let your creativity flow!"
+msgstr ""
+"Thay đổi nền nút Jappix của bạn với công cụ này. Bạn có thể tùy chỉnh màu "
+"sắc hoặc tải lên một hình ảnh."
+
+msgid "Use default background"
+msgstr "Sử dụng ảnh nền mặc định"
+
+msgid "Use your own image"
+msgstr "Sử dụng hình ảnh của bạn"
+
+msgid "Select a background to use and change the display options."
+msgstr "Chọn một ảnh nền để sử dụng và thay thôi tùy chọn hiển thị."
+
+msgid "Use your own color"
+msgstr "Sử dụng màu sắc của bạn"
+
+msgid "Type the hexadecimal color value you want to use as a background."
+msgstr "Nhập giá trị màu hệ hexa mà bạn muốn sử dụng làm nền."
+
+msgid "Manage backgrounds"
+msgstr "Quản lý ảnh nền."
+
+msgid ""
+"You can add a new background to the list with this tool. Please send a valid "
+"image."
+msgstr ""
+"Bạn có thể thêm ảnh nền mới vào danh sách với công cụ này. Vui lòng gửi một "
+"ảnh hợp lệ."
+
+msgid "If you want to remove some backgrounds, use the browser below."
+msgstr "Nếu bạn muốn gỡ bỏ một vài ảnh nền, sử dụng trình duyệt dưới đây."
+
+msgid ""
+"Define a homepage notice for all your users, such as a warn, an important "
+"message or an advert with this tool."
+msgstr ""
+"Định nghĩa một thông báo ở trang chủ cho tất cả người dùng của bạn, một "
+"thông tin cảnh báo, một tin nhắn quan trọng hoặc là một quảng cáo với công "
+"cụ này."
+
+msgid "Simple notice"
+msgstr "Thông báo đơn giản"
+
+msgid ""
+"This notice only needs simple text to be displayed, but no code is allowed!"
+msgstr ""
+"Thông báo này chỉ cho hiển thị văn bản đơn giản,nhưng không mã hóa được cho "
+"phép."
+
+msgid "Advanced notice"
+msgstr "Thông báo nâng cao"
+
+msgid ""
+"You can customize your notice with embedded HTML, CSS and JavaScript, but "
+"you need to code the style."
+msgstr ""
+"Bạn có thể tùy chỉnh thông báo của bạn với mã nhúng HTML, CSS và JavaScrtip, "
+"nhưng bàn cần phải lập trình style"
+
+msgid "Available updates"
+msgstr "Cập nhật có sẵn"
+
+msgid "What's new?"
+msgstr "Có gì mới?"
+
+msgid "Your storage folders are not writable, please apply the good rights!"
+msgstr "Thư mục lưu trữ của bạn không thể ghi, vui lòng áp dụng đúng quyền!"
+
+msgid ""
+"%1s may cause problems to the proxy, please increase %2s value up to %3s!"
+msgstr "%1s có thể gây ra các vấn đề cho proxy, vui lòng tăng %2s lên %3s!"
+
+msgid ""
+"You are using a development version of Jappix. Update it through our "
+"repository by executing: %s."
+msgstr ""
+"Bạn đang sử dụng phiên bản đang phát triển của Jappix. Cập nhật Jappix thông "
+"qua qua kho lưu trữ của chúng tôi bằng cách thực hiện : %s."
+
+msgid ""
+"A new Jappix version is available! Check what is new and launch the update!"
+msgstr ""
+"Đã có phiên bản mới của Jappix. Kiểm tra những điều mới và chạy cập nhật "
+"chương trình!"
+
+msgid "Your version is out to date. Update it now to %s by clicking here!"
+msgstr ""
+"Phiên bản của bạn đã được cập nhật. Nâng cấp ngay đến phiên bản %s bằng cách "
+"nhấp vào đây!"
+
+msgid ""
+"Your version seems to be up to date, but you can check updates manually by "
+"clicking here."
+msgstr ""
+"Phiên bản của bạn dường như đã được nâng cấp,nhưng bạn có thể kiểm tra cập "
+"nhật thủ công bằng cách nhấp vào đây."
+
+msgid "Check for updates"
+msgstr "Kiểm tra cập nhật"
+
+msgid "Update in progress"
+msgstr "Đang chạy cập nhật"
+
+msgid ""
+"Jappix has been updated: you are now running the latest version. Have fun!"
+msgstr ""
+"Jappix đã được cập nhật: bạn đang chạy phiên bản mới nhất. Chúc vui vẻ!"
+
+msgid "The update has failed! Please try again later."
+msgstr "Cập nhật có lỗi. Vui lòng thử lại sau."
+
+msgid "Downloading package..."
+msgstr "Đang tải xuống gói..."
+
+msgid "Removing current Jappix system files..."
+msgstr "Loại bỏ những tập tin hệ thống Jappix hiện tại..."
+
+msgid "Extracting package..."
+msgstr "Giải nén gói..."
+
+msgid "Regenerating storage folder tree..."
+msgstr "Tạo lại cây thư mục lưu trữ..."
+
+msgid "Jappix is now up to date!"
+msgstr "Jappix bây giờ đã được nâng cấp phiên bản!"
+
+msgid "Aborted: socket error!"
+msgstr "Hủy bỏ : Lỗi socket!"
+
+msgid "Aborted: buffer error!"
+msgstr "Hủy bỏ : Lỗi bộ đệm 'buffer'!"
+
+msgid "Aborted: everything is not writable!"
+msgstr "Hủy bỏ : Tất cả đều không thể ghi !"
+
+msgid "Aborted: could not extract the package!"
+msgstr "Hủy bỏ: Không thể giải nén!"
+
+msgid "Visits"
+msgstr "Thăm"
+
+msgid "Daily"
+msgstr "Hàng ngày"
+
+msgid "Weekly"
+msgstr "Hàng tuần"
+
+msgid "Monthly"
+msgstr "Hàng tháng"
+
+msgid "Yearly"
+msgstr "Hàng năm"
+
+msgid "Size"
+msgstr "Kích thước"
+
+msgid "Clean everything"
+msgstr "Dọn dẹp mọi thứ"
+
+msgid "Purge cache"
+msgstr "Thanh lọc bộ nhớ đệm"
+
+msgid "Purge logs"
+msgstr "Thanh lọc bản ghi log"
+
+msgid "Purge sent files"
+msgstr "Thanh lọc việc gửi tập tin"
+
+msgid "Purge updates"
+msgstr "Thanh lọc cập nhật"
+
+msgid "The storage folder you wanted to clean is now empty!"
+msgstr "Thư mục bạn muốn dọn dẹp hiện đã trống!"
+
+msgid ""
+"Keep your Jappix node fresh and fast, clean the storage folders regularly!"
+msgstr ""
+"Luôn giữ cho Jappix sạch sẽ và gọn gàng, hãy dọn dẹp thư mục thường xuyên!"
+
+msgid ""
+"Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
+"Jappix!"
+msgstr "Tải nhạc của bạn lên(Ogg Vorbis, MP3)!"
+
+msgid "The file you want to upload must be smaller than %s."
+msgstr "Tập tin mà bạn muốn tải lên phải nhỏ hơn %s."
+
+msgid ""
+"You can check what your users store on your server and remove undesired "
+"content with this tool."
+msgstr ""
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Artist"
+msgstr ""
+
+msgid "Album"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "The folder is empty."
+msgstr ""
+
+msgid "The music could not be received, please retry!"
+msgstr ""
+
+msgid ""
+"This is not a valid music file, please encode in Ogg Vorbis, MP3 or WAV!"
+msgstr ""
+
+msgid "Your music has been added!"
+msgstr ""
+
+msgid "The selected elements have been removed."
+msgstr ""
+
+msgid "You must select elements to remove!"
+msgstr ""
+
+msgid ""
+"Add a new user with this tool, or change a password (type an existing "
+"username). Please submit a strong password!"
+msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid ""
+"Remove users with this tool. Note that you cannot remove a user if he is the "
+"only one remaining."
+msgstr ""
+
+msgid "The user has been added!"
+msgstr ""
+
+msgid "The chosen users have been removed."
+msgstr ""
+
+msgid "You must select one or more users to be removed!"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "%s days ago"
+msgstr ""
+
+msgid "User currently active"
+msgstr ""
+
+msgid "Last seen: %s"
+msgstr ""
+
+msgid "Inactive since: %s"
+msgstr ""
+
+msgid "Your friend seems not to have received your message(s)!"
+msgstr ""
+
+msgid "Static content server"
+msgstr ""
+
+msgid "This is the static content server for %1s, “%2s”."
+msgstr ""
+
+msgid "User uploads server"
+msgstr ""
+
+msgid "This is the user uploads server for %1s, “%2s”."
+msgstr ""
+
+msgid "Suggested friends"
+msgstr ""
+
+msgid "Check all"
+msgstr ""
+
+msgid "Uncheck all"
+msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "List name"
+msgstr ""
+
+msgid "Allow"
+msgstr ""
+
+msgid "Deny"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "Both"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Everybody"
+msgstr ""
+
+msgid "Send messages"
+msgstr ""
+
+msgid "Send queries"
+msgstr ""
+
+msgid "See my status"
+msgstr ""
+
+msgid "Send his/her status"
+msgstr ""
+
+msgid "Everything"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Active for this session"
+msgstr ""
+
+msgid "Always active"
+msgstr ""
+
+msgid "User directory"
+msgstr ""
+
+msgid "Search a friend"
+msgstr ""
+
+msgid ""
+"The feature requested is not implemented by the recipient or server and "
+"therefore cannot be processed."
+msgstr ""
+
+msgid "Send him/her a message"
+msgstr ""
+
+msgid "Start a chat with him/her"
+msgstr ""
+
+msgid "Available shortcuts:"
+msgstr ""
+
+msgid "%s removes the chat logs"
+msgstr ""
+
+msgid "%s joins a groupchat"
+msgstr ""
+
+msgid "%s closes the chat"
+msgstr ""
+
+msgid "%s shows the user profile"
+msgstr ""
+
+msgid "%s sends a message to the room"
+msgstr ""
+
+msgid "%s changes your nickname"
+msgstr ""
+
+msgid "%s sends a message to someone in the room"
+msgstr ""
+
+msgid "%s changes the room topic"
+msgstr ""
+
+msgid "%s kicks a user of the room"
+msgstr ""
+
+msgid "%s bans a user of the room"
+msgstr ""
+
+msgid "%s invites someone to join the room"
+msgstr ""
+
+msgid "Public profile"
+msgstr ""
+
+msgid "Your profile anywhere on the Web."
+msgstr ""
+
+msgid ""
+"%s is a Jappix.com service which makes your XMPP profile public. It is "
+"easier to share it. No XMPP account is required to view your social channel, "
+"your current position and your contact details."
+msgstr ""
+
+msgid ""
+"Furthermore, every picture you post in your social channel is added to a "
+"beautiful picture timeline. You can now view the pictures you shared year by "
+"year."
+msgstr ""
+
+msgid ""
+"You can also use your XMPP avatar as a single avatar for every website, blog "
+"and forum you use. When you change it on XMPP, the new avatar appears "
+"everywhere. What a genius improvement!"
+msgstr ""
+
+msgid "Yay, let's create your public profile!"
+msgstr ""
+
+msgid "Enable my public profile"
+msgstr "Bật thông tin cá nhân của tôi."
+
+msgid "Jappix for your phone"
+msgstr ""
+
+msgid "A single phone app for messages, channels, profiles and much more!"
+msgstr ""
+
+msgid ""
+"This notification is only informative, maybe the data it links to have been "
+"removed."
+msgstr ""
+
+msgid "You haven't provided any file to download"
+msgstr ""
+
+msgid "You cannot download a file if you don't provide a key"
+msgstr ""
+
+msgid "Woah this file isn't found, please double check"
+msgstr ""
+
+msgid "The key you provided does not have the permission to download this file"
+msgstr ""
+
+msgid "Statistics are currently disabled in the settings."
+msgstr ""
+
+msgid "New event!"
+msgstr ""
+
+msgid "%s is typing..."
+msgstr ""
+
+msgid ""
+"The security code you entered is invalid. Please retry with another one."
+msgstr ""
+
+msgid "The username you picked is not available. Please try another one."
+msgstr ""
+
+msgid "There was an error registering your account. Please retry."
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Enter password"
+msgstr ""
+
+msgid "Once again..."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+msgid "Advertising space available!"
+msgstr ""
+
+msgid "Advertise here"
+msgstr ""
+
+msgid "Analytics (%s)"
+msgstr ""
+
+msgid "Track visits"
+msgstr ""
+
+msgid "Piwik URL"
+msgstr ""
+
+msgid "Piwik tracking ID"
+msgstr ""
+
+msgid "Advertising (%s)"
+msgstr ""
+
+msgid "Enable ads"
+msgstr ""
+
+msgid "Standard ads key"
+msgstr ""
+
+msgid "Content ads key"
+msgstr ""
+
+msgid "AdSense client ID"
+msgstr ""
+
+msgid "AdSense slot"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Unmute"
+msgstr ""
+
+msgid "Is calling you"
+msgstr ""
+
+msgid "Initiating call"
+msgstr ""
+
+msgid "Connecting to call..."
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "Ringing..."
+msgstr ""
+
+msgid "Declined the call"
+msgstr ""
+
+msgid "Call error"
+msgstr ""
+
+msgid "Ended the call"
+msgstr ""
+
+msgid "Call ended"
+msgstr ""
+
+msgid "Call canceled"
+msgstr ""
+
+msgid "Canceled the call"
+msgstr ""
+
+msgid "Is already in a call"
+msgstr ""
+
+msgid "Ending call..."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Audio Call"
+msgstr ""
+
+msgid "Video Call"
+msgstr ""
+
+msgid "Edited"
+msgstr ""
+
+msgid "Edited (%s)"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Being edited"
+msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Sending..."
+msgstr ""
+
+msgid "%s requested your attention to the conversation"
+msgstr ""
+
+msgid "You requested %s's attention to the conversation"
+msgstr ""
+
+msgid "Attention to conversation requested."
+msgstr ""

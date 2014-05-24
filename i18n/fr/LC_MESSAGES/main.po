@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:21+0100\n"
+"PO-Revision-Date: 2014-05-24 21:38+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/jappix/language/"
 "fr/)\n"
@@ -2449,3 +2449,33 @@ msgstr "Appel Audio"
 
 msgid "Video Call"
 msgstr "Appel Vidéo"
+
+msgid "Edited"
+msgstr "Édité"
+
+msgid "Edited (%s)"
+msgstr "Édité (%s)"
+
+msgid "Editing"
+msgstr "Édition"
+
+msgid "Being edited"
+msgstr "En édition"
+
+msgid "Delivered"
+msgstr "Envoyé"
+
+msgid "Read"
+msgstr "Lu"
+
+msgid "Sending..."
+msgstr "Envoi..."
+
+msgid "%s requested your attention to the conversation"
+msgstr "%s demande votre attention à la conversation"
+
+msgid "You requested %s's attention to the conversation"
+msgstr "Vous avez demandé l'attention de %s à la conversation"
+
+msgid "Attention to conversation requested."
+msgstr "Demande d'attention à la conversation."
