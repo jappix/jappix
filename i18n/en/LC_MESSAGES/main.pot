@@ -2120,3 +2120,9 @@ msgstr ""
 
 msgid "Being edited"
 msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Read"
+msgstr ""
