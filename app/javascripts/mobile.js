@@ -254,25 +254,6 @@ var Mobile = (function () {
 
 
     /**
-     * Orders buddy according to its presence data
-     * @public
-     * @param {string} hash
-     * @param {string} type
-     * @param {string} show
-     * @return {undefined}
-     */
-    self.orderBuddy = function(hash, type, show) {
-
-        try {
-            // TODO
-        } catch(e) {
-            Console.error('Mobile.orderBuddy', e);
-        }
-
-    };
-
-
-    /**
      * Returns whether target item exists or not
      * @public
      * @param {type} id
@@ -408,9 +389,6 @@ var Mobile = (function () {
                         break;
                 }
             }
-
-            // Order buddy according to its presence data
-            self.orderBuddy(hash, type, show);
         } catch(e) {
             Console.error('Mobile.handlePresence', e);
         }
@@ -580,7 +558,9 @@ var Mobile = (function () {
                 return self.sendPresence('', 'available', 1);
             
             // Define some pre-vars
-            var current, xid, nick, oneBuddy, oneID, hash;
+            var current, xid, nick, oneBuddy, oneID, hash, cur_buddy;
+            var roster_buddies = [];
+
             var roster = document.getElementById('roster');
             
             // Get roster items
@@ -596,18 +576,30 @@ var Mobile = (function () {
                 hash = hex_md5(xid);
                 
                 // No defined nick?
-                if(!nick)
+                if(!nick) {
                     nick = self.getDirectNick(xid);
-                
-                // Display the values
-                oneBuddy = document.createElement('a');
-                oneID = 'buddy-' + hash;
-                oneBuddy.setAttribute('href', '#');
-                oneBuddy.setAttribute('id', oneID);
-                oneBuddy.setAttribute('class', 'one-buddy');
-                oneBuddy.setAttribute('onclick', 'return Mobile.chat(\'' + self.encodeOnclick(xid) + '\', \'' + self.encodeOnclick(nick) + '\');');
-                oneBuddy.innerHTML = nick.htmlEnc();
-                roster.appendChild(oneBuddy);
+                }
+
+                roster_buddies.push({
+                    'xid': xid,
+                    'hash': hash,
+                    'nick': nick
+                });
+            }
+
+            // Sort the values
+            self.sortRoster(roster_buddies);
+
+            // Display the values
+            for(var j = 0; j < roster_buddies.length; j++) {
+                cur_buddy = roster_buddies[j];
+
+                self.displayRoster(
+                    roster,
+                    cur_buddy.xid,
+                    cur_buddy.hash,
+                    cur_buddy.nick
+                );
             }
             
             // Start handling buddies presence
@@ -886,6 +878,61 @@ var Mobile = (function () {
             document.getElementById(path).lastChild.scrollIntoView();
         } catch(e) {
             Console.error('Mobile.displayMessage', e);
+        }
+
+    };
+
+
+    /**
+     * Displays a roster buddy
+     * @public
+     * @param {object} roster
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} nick
+     * @return {undefined}
+     */
+    self.displayRoster = function(roster, xid, hash, nick) {
+
+        try {
+            oneBuddy = document.createElement('a');
+            oneID = 'buddy-' + hash;
+
+            oneBuddy.setAttribute('href', '#');
+            oneBuddy.setAttribute('id', oneID);
+            oneBuddy.setAttribute('class', 'one-buddy');
+            oneBuddy.setAttribute('onclick', 'return Mobile.chat(\'' + self.encodeOnclick(xid) + '\', \'' + self.encodeOnclick(nick) + '\');');
+            oneBuddy.innerHTML = nick.htmlEnc();
+
+            roster.appendChild(oneBuddy);
+        } catch(e) {
+            Console.error('Mobile.displayRoster', e);
+        }
+
+    };
+
+
+    /**
+     * Sorts the roster buddies by nickname
+     * @public
+     * @param {object} roster_buddies
+     * @return {object}
+     */
+    self.sortRoster = function(roster_buddies) {
+
+        try {
+            var one_nick, two_nick;
+
+            roster_buddies.sort(function(one, two) {
+                one_nick = (one.nick + '').toLowerCase();
+                two_nick = (two.nick + '').toLowerCase();
+                
+                return one_nick < two_nick ? -1 : (one_nick > two_nick ? 1 : 0);
+            });
+        } catch(e) {
+            Console.error('Mobile.sortRoster', e);
+        } finally {
+            return roster_buddies;
         }
 
     };
