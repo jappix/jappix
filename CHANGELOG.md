@@ -7,9 +7,9 @@ Here's the log of what has changed over the Jappix releases.
 One, v1.0.7 (May 2014)
 ----------------------
 
- * Fix BackLinks design
- * Sort Jappix Mobile contacts alphabetically
- * Display offline contacts in Jappix Mini
+ * Fix BackLinks design                         @valeriansaliou
+ * Sort Jappix Mobile contacts alphabetically   @valeriansaliou
+ * Display offline contacts in Jappix Mini      @valeriansaliou
 
 
 One, v1.0.6 (May 2014)
