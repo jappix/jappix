@@ -597,7 +597,8 @@ html[dir="rtl"] #home .right .navigation a {
     background: -webkit-gradient(linear, left top, left bottom, from(#e4eef9), to(#c5e1ff));
     background: -webkit-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
     background: -o-linear-gradient(top, #e4eef9 0%, #c5e1ff 100%);
-    font-size: 13.4px;
+    font-size: 11px !important;
+    overflow: hidden;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -691,6 +692,22 @@ html[dir="rtl"] #home .right .navigation a {
 
 #home .friendsview .friends .group.standard a.available_space {
     left: 10px;
+}
+
+#home .friendsview .friends .group.standard br {
+    display: none;
+}
+
+#home .friendsview .friends .group.standard a {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 1px;
+    float: left;
+    width: 50%;
+}
+
+#home .friendsview .friends .group.standard a:nth-child(even) {
+    float: right;
 }
 
 #home .friendsview .friends a.group.refer {

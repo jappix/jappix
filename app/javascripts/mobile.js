@@ -254,6 +254,25 @@ var Mobile = (function () {
 
 
     /**
+     * Orders buddy according to its presence data
+     * @public
+     * @param {string} hash
+     * @param {string} type
+     * @param {string} show
+     * @return {undefined}
+     */
+    self.orderBuddy = function(hash, type, show) {
+
+        try {
+            // TODO
+        } catch(e) {
+            Console.error('Mobile.orderBuddy', e);
+        }
+
+    };
+
+
+    /**
      * Returns whether target item exists or not
      * @public
      * @param {type} id
@@ -364,10 +383,8 @@ var Mobile = (function () {
             var type = pre.getType();
             var show = pre.getShow();
             
-            // Online buddy: show it!
+            // Online buddy
             if(!type) {
-                self.showThis('buddy-' + hash);
-                
                 // Display the correct presence
                 switch(show) {
                     case 'chat':
@@ -390,9 +407,10 @@ var Mobile = (function () {
                         self.displayPresence(hash, 'available');
                         break;
                 }
-            } else {
-                self.hideThis('buddy-' + hash);
             }
+
+            // Order buddy according to its presence data
+            self.orderBuddy(hash, type, show);
         } catch(e) {
             Console.error('Mobile.handlePresence', e);
         }
