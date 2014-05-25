@@ -67,6 +67,7 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
  * XEP-0334: Message Processing Hints *v0.1*
  * XEP-0224: Attention *v1.0*
  * XEP-0319: Last User Interaction in Presence *v0.2*
+ * XEP-0272: Multiparty Jingle (Muji) *v0.1*
 
 
 # Others
