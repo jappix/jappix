@@ -375,7 +375,7 @@ var Correction = (function () {
                         // Remove old message
                         old_message_sel = $('#' + hash + ' .content .one-line.user-message[data-mode="me"]').filter(function() {
                             return ($(this).attr('data-id') + '') === (replace_id + '');
-                        });
+                        }).filter(':last');
 
                         var edit_count = old_message_sel.attr('data-edit-count') || 0;
                         edit_count = isNaN(edit_count) ? 0 : parseInt(edit_count, 10);
@@ -447,7 +447,7 @@ var Correction = (function () {
                         }
 
                         return is_valid_mode && ((this_sel.attr('data-id') + '') === (message_edit_id + ''));
-                    });
+                    }).filter(':last');
 
                     if(message_edit_sel.size()) {
                         edit_results['count'] = message_edit_sel.attr('data-edit-count') || 0;

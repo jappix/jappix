@@ -194,7 +194,7 @@ var Markers = (function () {
 
                     var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="him"][data-markable="true"]').filter(function() {
                         return ($(this).attr('data-id') + '') === (mark_message_id + '');
-                    });
+                    }).filter(':last');
 
                     if(!message_sel.size()) {
                         Console.warn('Markers.handleCarbonChange', 'Unknown message marker to keep in sync with Carbons for: ' + xid);
@@ -248,7 +248,7 @@ var Markers = (function () {
                 // Find marked message target
                 var message_sel = $('#' + hex_md5(xid) + ' .content .one-line[data-mode="me"]').filter(function() {
                     return ($(this).attr('data-id') + '') === (mark_message_id + '');
-                });
+                }).filter(':last');
 
                 if(!message_sel.size()) {
                     Console.warn('Markers.handle', 'Dropping chat marker (' + mark_type + ') for inexisting message ID (' + mark_message_id + ') from: ' + from);
