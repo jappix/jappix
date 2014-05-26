@@ -434,7 +434,7 @@ var Correction = (function () {
             var replace_node = message.getChild('replace', NS_URN_CORRECT);
 
             if(replace_node) {
-                edit_results['has_replace'] = true;
+                edit_results.has_replace = true;
                 var message_edit_id = $(replace_node).attr('id');
 
                 if(typeof message_edit_id != 'undefined') {

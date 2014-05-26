@@ -486,8 +486,8 @@ var Message = (function () {
                         id,
                         undefined,
                         undefined,
-                        message_edit['is_edited'],
-                        message_edit['next_count'],
+                        message_edit.is_edited,
+                        message_edit.next_count,
                         is_storable
                     );
                 }
@@ -537,8 +537,8 @@ var Message = (function () {
                         id,
                         undefined,
                         undefined,
-                        message_edit['is_edited'],
-                        message_edit['next_count'],
+                        message_edit.is_edited,
+                        message_edit.next_count,
                         is_storable,
                         is_markable
                     );
