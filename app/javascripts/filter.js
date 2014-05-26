@@ -289,18 +289,18 @@ var Filter = (function () {
             // Security: don't filter huge messages (avoids crash attacks)
             if(filtered.length < 10000) {
                 // /me command
-                filtered = filtered.replace(self.message_regex.commands.me, nick + ' $7')
+                filtered = filtered.replace(self.message_regex.commands.me, nick + ' $7');
                 
                 // We replace the smilies text into images
                 var cur_emote;
 
-                for(var e in self.message_regex.emotes) {
-                    cur_emote = self.message_regex.emotes[e];
+                for(var cur_emote_name in self.message_regex.emotes) {
+                    cur_emote = self.message_regex.emotes[cur_emote_name];
 
                     filtered = filtered.replace(
                         cur_emote[0],
                         self.emoteImage(
-                            e,
+                            cur_emote_name,
                             '$1',
                             cur_emote[1]
                         )
@@ -310,8 +310,8 @@ var Filter = (function () {
                 // Text formatting
                 var cur_formatting;
 
-                for(var f in self.message_regex.formatting) {
-                    cur_formatting = self.message_regex.formatting[f];
+                for(var cur_formatting_name in self.message_regex.formatting) {
+                    cur_formatting = self.message_regex.formatting[cur_formatting_name];
 
                     filtered = filtered.replace(
                         cur_formatting[0],
