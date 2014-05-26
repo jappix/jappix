@@ -286,44 +286,47 @@ var Filter = (function () {
                 filtered = filtered.htmlEnc();
             }
             
-            // /me command
-            filtered = filtered.replace(self.message_regex.commands.me, nick + ' $7')
-            
-            // We replace the smilies text into images
-            var cur_emote;
+            // Security: don't filter huge messages (avoids crash attacks)
+            if(filtered.length < 10000) {
+                // /me command
+                filtered = filtered.replace(self.message_regex.commands.me, nick + ' $7')
+                
+                // We replace the smilies text into images
+                var cur_emote;
 
-            for(var e in self.message_regex.emotes) {
-                cur_emote = self.message_regex.emotes[e];
+                for(var e in self.message_regex.emotes) {
+                    cur_emote = self.message_regex.emotes[e];
 
-                filtered = filtered.replace(
-                    cur_emote[0],
-                    self.emoteImage(
-                        e,
-                        '$1',
-                        cur_emote[1]
-                    )
-                );
+                    filtered = filtered.replace(
+                        cur_emote[0],
+                        self.emoteImage(
+                            e,
+                            '$1',
+                            cur_emote[1]
+                        )
+                    );
+                }
+                
+                // Text formatting
+                var cur_formatting;
+
+                for(var f in self.message_regex.formatting) {
+                    cur_formatting = self.message_regex.formatting[f];
+
+                    filtered = filtered.replace(
+                        cur_formatting[0],
+                        cur_formatting[1]
+                    );
+                }
+
+                // Add the links
+                if(html_escape) {
+                    filtered = Links.apply(filtered, 'desktop');
+                }
+                
+                // Filter integratebox links
+                filtered = IntegrateBox.filter(filtered);
             }
-            
-            // Text formatting
-            var cur_formatting;
-
-            for(var f in self.message_regex.formatting) {
-                cur_formatting = self.message_regex.formatting[f];
-
-                filtered = filtered.replace(
-                    cur_formatting[0],
-                    cur_formatting[1]
-                );
-            }
-
-            // Add the links
-            if(html_escape) {
-                filtered = Links.apply(filtered, 'desktop');
-            }
-            
-            // Filter integratebox links
-            filtered = IntegrateBox.filter(filtered);
             
             return filtered;
         } catch(e) {
