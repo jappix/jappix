@@ -7,7 +7,8 @@ Here's the log of what has changed over the Jappix releases.
 Primo, v1.1.0 (Development)
 ---------------------------
 
- * XEP-0272: Multiparty Jingle (Muji)   @valeriansaliou
+ * XEP-0272: Multiparty Jingle (Muji)      @valeriansaliou
+ * Prevent client crash on huge messages   @valeriansaliou
 
 
 One, v1.0.7 (May 2014)
