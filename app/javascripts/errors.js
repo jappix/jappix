@@ -37,17 +37,20 @@ var Errors = (function () {
                 var eText = '';
                 
                 // Any error condition
-                if(condition)
+                if(condition) {
                     eText += condition;
+                }
                 
                 // Any error type
-                if(type && eText)
+                if(type && eText) {
                     eText += ' (' + type + ')';
+                }
                 
                 // Any error reason
                 if(reason) {
-                    if(eText)
+                    if(eText) {
                         eText += ' - ';
+                    }
                     
                     eText += reason;
                 }
@@ -119,10 +122,11 @@ var Errors = (function () {
                 // Show reconnect pane
                 if(Connection.current_session && Connection.connected) {
                     // Anonymous?
-                    if(Utils.isAnonymous())
+                    if(Utils.isAnonymous()) {
                         Connection.createReconnect('anonymous');
-                    else
+                    } else {
                         Connection.createReconnect('normal');
+                    }
                 }
                 
                 // Show the homepage (security)

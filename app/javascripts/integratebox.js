@@ -161,8 +161,9 @@ var IntegrateBox = (function () {
             self.close();
             
             // Media integration not wanted?
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias') == '0') {
                 return true;
+            }
             
             // Apply the HTML code
             var dom_code = self.code(service, url);

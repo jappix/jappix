@@ -794,13 +794,13 @@ var Inbox = (function () {
                     
                     // Display the current message
                     self.displayMessage(
-                                value.find('from').text().revertHtmlEnc(),
-                                value.find('subject').text().revertHtmlEnc(),
-                                value.find('content').text().revertHtmlEnc(),
-                                value.find('status').text().revertHtmlEnc(),
-                                value.find('id').text().revertHtmlEnc(),
-                                value.find('date').text().revertHtmlEnc()
-                               );
+                        value.find('from').text().revertHtmlEnc(),
+                        value.find('subject').text().revertHtmlEnc(),
+                        value.find('content').text().revertHtmlEnc(),
+                        value.find('status').text().revertHtmlEnc(),
+                        value.find('id').text().revertHtmlEnc(),
+                        value.find('date').text().revertHtmlEnc()
+                    );
                 }
             }
             
@@ -857,8 +857,10 @@ var Inbox = (function () {
                 $('#inbox .inbox-new-file').append('<a class="file ' + Common.encodeQuotes(Utils.fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + Common._e("Remove") + '</a>');
                 
                 // Set values to the file link
-                $('#inbox .inbox-new-file a.file').attr('data-attachedtitle', fName)
-                                  .attr('data-attachedhref',  fURL);
+                var inbox_file_sel = $('#inbox .inbox-new-file a.file');
+
+                inbox_file_sel.attr('data-attachedtitle', fName);
+                inbox_file_sel.attr('data-attachedhref', fURL);
                 
                 // Click events
                 $('#inbox .inbox-new-file a.remove').click(function() {
@@ -899,10 +901,11 @@ var Inbox = (function () {
             // Send the message when enter pressend
             $(inbox + 'inbox-new input').keyup(function(e) {
                 if(e.keyCode == 13) {
-                    if(Common.exists(dHovered))
+                    if(Common.exists(dHovered)) {
                         Search.addBuddy(destination, $(dHovered).attr('data-xid'));
-                    else
+                    } else {
                         self.checkMessage();
+                    }
                 }
             });
             
@@ -948,7 +951,7 @@ var Inbox = (function () {
             
             // File upload
             var attach_options = {
-                dataType:   'xml',
+                dataType:       'xml',
                 beforeSubmit:   self.waitAttach,
                 success:        self.handleAttach
             };

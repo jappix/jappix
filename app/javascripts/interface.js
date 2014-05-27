@@ -74,8 +74,9 @@ var Interface = (function () {
 
         try {
             // Item exists?
-            if(Common.exists('#general-wait'))
+            if(Common.exists('#general-wait')) {
                 return false;
+            }
             
             // Generate the HTML code
             var html = 
@@ -178,8 +179,9 @@ var Interface = (function () {
             var more_content = '#page-switch .more-content';
             
             // Yet displayed?
-            if(Common.exists(more_content))
+            if(Common.exists(more_content)) {
                 return Bubble.close();
+            }
             
             // Add the bubble
             Bubble.show(more_content);
@@ -534,10 +536,11 @@ var Interface = (function () {
 
         try {
             // Any pending events?
-            if(Common.exists('.one-counter[data-counter]'))
+            if(Common.exists('.one-counter[data-counter]')) {
                 self.title('new');
-            else
+            } else {
                 self.title('talk');
+            }
         } catch(e) {
             Console.error('Interface.updateTitle', e);
         }
@@ -559,8 +562,9 @@ var Interface = (function () {
             $(chat_switch + hash).removeClass('chan-newmessage chan-unread');
             
             // We reset the global notifications if no more unread messages
-            if(!$(chat_switch + 'chans .chan-newmessage').size())
+            if(!$(chat_switch + 'chans .chan-newmessage').size()) {
                 $(chat_switch + 'more-button').removeClass('chan-newmessage');
+            }
             
             // We reset the chat counter
             $('#' + hash).removeAttr('data-counter');
@@ -623,8 +627,9 @@ var Interface = (function () {
             // We show all the groups
             $('#roster .one-group').show();
             
-            if(Search.search_filtered)
+            if(Search.search_filtered) {
                 Search.funnelFilterBuddy();
+            }
             
             // Store this in the options
             if((from == 'roster') && Options.loaded()) {

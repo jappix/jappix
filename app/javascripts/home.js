@@ -112,8 +112,9 @@ var Home = (function () {
                     disable_form = Utils.disableInput(ANONYMOUS, 'off');
                     code = '<p>' + Common.printf(Common._e("Enter the groupchat you want to join and the nick you want to have. You can also go back to the %s."), '<a href="#" class="to-home">' + Common._e("login page") + '</a>') + '</p>';
                     
-                    if(LEGAL)
+                    if(LEGAL) {
                         code += '<p>' + Common.printf(Common._e("By using our service, you accept %s."), '<b><a href="' + Common.encodeQuotes(LEGAL) + '" target="_blank">' + Common._e("our terms of use") + '</a></b>') + '</p>';
+                    }
                     
                     code += '<form action="#" method="post">' + 
                             '<fieldset>' + 
@@ -139,13 +140,15 @@ var Home = (function () {
                 case 'registerer':
                     disable_form = Utils.disableInput(REGISTRATION, 'off');
                     
-                    if(!disable_form)
+                    if(!disable_form) {
                         lock_host = Utils.disableInput(LOCK_HOST, 'on');
+                    }
                     
                     code = '<p>' + Common._e("Register a new XMPP account to join your friends on your own social cloud. That's simple!") + '</p>';
                     
-                    if(LEGAL)
+                    if(LEGAL) {
                         code += '<p>' + Common.printf(Common._e("By using our service, you accept %s."), '<b><a href="' + Common.encodeQuotes(LEGAL) + '" target="_blank">' + Common._e("our terms of use") + '</a></b>') + '</p>';
+                    }
                     
                     code += '<form action="#" method="post">' + 
                             '<fieldset>' + 
@@ -156,10 +159,11 @@ var Home = (function () {
                                 '<label for="rpassword">' + Common._e("Password") + '</label>' + 
                                 '<input type="password" class="password" id="rpassword" ' + disable_form + ' required="" placeholder="' + Common._e("Enter password") + '" /><input type="password" class="spassword" id="spassword" ' + disable_form + ' required="" placeholder="' + Common._e("Once again...") + '" />';
                     
-                    if(REGISTER_API == 'on')
+                    if(REGISTER_API == 'on') {
                         code += '<div class="captcha_grp">' + 
                                     '<label for="captcha">' + Common._e("Code") + '</label><input type="text" class="captcha" id="captcha" ' + disable_form + ' maxlength="6" pattern="[a-zA-Z0-9]{6}" required="" placeholder="' + Common._e("Security code") + '" /><img class="captcha_img" src="./server/captcha.php?id=' + genID() + '" alt="" />' + 
                                 '</div>';
+                    }
                     
                     code += '</fieldset>' + 
                             
@@ -170,10 +174,11 @@ var Home = (function () {
             }
             
             // Form disabled?
-            if(disable_form)
+            if(disable_form) {
                 code += '<div class="info fail">' + 
                         Common._e("This tool has been disabled!") + 
                     '</div>';
+            }
             
             // Create this HTML code
             if(code && !Common.exists(current)) {
@@ -303,12 +308,13 @@ var Home = (function () {
                 $(lPath + 'input[type="text"], ' + lPath + 'input[type="password"]').each(function() {
                     var select = $(this);
                     
-                    if(!select.val())
+                    if(!select.val()) {
                         $(document).oneTime(10, function() {
                             select.addClass('please-complete').focus();
                         });
-                    else
+                    } else {
                         select.removeClass('please-complete');  
+                    }
                 });
             }
         } catch(e) {
@@ -354,12 +360,13 @@ var Home = (function () {
                 $(rPath + 'input[type="text"], ' + rPath + 'input[type="password"]').each(function() {
                     var select = $(this);
                     
-                    if(!select.val() || (select.is('#spassword') && pass && (pass != spass)))
+                    if(!select.val() || (select.is('#spassword') && pass && (pass != spass))) {
                         $(document).oneTime(10, function() {
                             select.addClass('please-complete').focus();
                         });
-                    else
+                    } else {
                         select.removeClass('please-complete');  
+                    }
                 });
             }
         } catch(e) {
@@ -394,12 +401,14 @@ var Home = (function () {
                 // Allows the user to switch the home page
                 $(button).click(function() {
                     // Login button
-                    if($(this).is('.login'))
+                    if($(this).is('.login')) {
                         return self.change('loginer');
+                    }
                     
                     // Register button
-                    else
+                    else {
                         return self.change('registerer');
+                    }
                 });
                 
                 // Allows the user to view the corporation & about infobox
@@ -430,8 +439,9 @@ var Home = (function () {
                 
                 // Disables the browser HTTP-requests stopper
                 $(document).keydown(function(e) {
-                    if((e.keyCode == 27) && !System.isDeveloper())
+                    if((e.keyCode == 27) && !System.isDeveloper()) {
                         return false;
+                    }
                 });
                 
                 // Warns for an obsolete browser

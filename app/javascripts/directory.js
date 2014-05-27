@@ -123,8 +123,9 @@ var Directory = (function () {
             $('#directory .directory-server-input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // No value?
-                    if(!$(this).val())
+                    if(!$(this).val()) {
                         $(this).val(HOST_VJUD);
+                    }
                     
                     // Start the directory search
                     self.start();

@@ -216,8 +216,9 @@ var Discovery = (function () {
             $('#discovery .disco-server-input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // No value?
-                    if(!$(this).val())
+                    if(!$(this).val()) {
                         $(this).val(HOST_MAIN);
+                    }
                     
                     // Start the discovery
                     self.start();

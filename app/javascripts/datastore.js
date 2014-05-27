@@ -39,8 +39,9 @@ var DataStore = (function () {
 
             this.key = function(key) {
                 if(legacy) {
-                    if(key >= this.length)
+                    if(key >= this.length) {
                         return null;
+                    }
 
                     var c = 0;
 
@@ -56,8 +57,9 @@ var DataStore = (function () {
 
             this.getItem = function(key) {
                 if(legacy) {
-                    if(storage_emulated[key] !== undefined)
+                    if(storage_emulated[key] !== undefined) {
                         return storage_emulated[key];
+                    }
 
                     return null;
                 } else {
@@ -67,8 +69,9 @@ var DataStore = (function () {
 
             this.setItem = function(key, data) {
                 if(legacy) {
-                    if(!(key in storage_emulated))
+                    if(!(key in storage_emulated)) {
                         this.length++;
+                    }
 
                     storage_emulated[key] = (data + '');
                 } else {
@@ -472,8 +475,9 @@ var DataStore = (function () {
                 self.resetPersistent();
                 
                 // Restaure the stored session entry
-                if(session)
+                if(session) {
                     self.setPersistent('global', 'session', 1, session);
+                }
                 
                 Console.info('Persistent database flushed.');
                 

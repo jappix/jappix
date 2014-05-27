@@ -287,8 +287,9 @@ var Favorites = (function () {
                 $(favorites + 'fedit-server').val(Common.getXIDHost(xid));
                 $(favorites + 'fedit-password').val($(data).find('password').text());
                 
-                if($(data).find('autojoin').text() == 'true')
+                if($(data).find('autojoin').text() == 'true') {
                     $(favorites + 'fedit-autojoin').attr('checked', true);
+                }
             }
         } catch(e) {
             Console.error('Favorites.edit', e);
@@ -320,15 +321,17 @@ var Favorites = (function () {
             var password = $(favorites + '.fedit-password').val();
             var autojoin = 'false';
             
-            if($(favorites + '.fedit-autojoin').filter(':checked').size())
+            if($(favorites + '.fedit-autojoin').filter(':checked').size()) {
                 autojoin = 'true';
+            }
             
             // We check the missing values and send this if okay
             if((type == 'add') || (type == 'edit')) {
                 if(title && nick && room && server) {
                     // Remove the edited room
-                    if(type == 'edit')
+                    if(type == 'edit') {
                         self.remove(old_xid, true);
+                    }
                     
                     // Display the favorites
                     self.display(xid, title, nick, autojoin, password);
@@ -341,12 +344,13 @@ var Favorites = (function () {
                     $(favorites + 'input[required]').each(function() {
                         var select = $(this);
                         
-                        if(!select.val())
+                        if(!select.val()) {
                             $(document).oneTime(10, function() {
                                 select.addClass('please-complete').focus();
                             });
-                        else
+                        } else {
                             select.removeClass('please-complete');  
+                        }
                     });
                 }
             }
@@ -431,8 +435,9 @@ var Favorites = (function () {
                     var item = storage.appendChild(iq.buildNode('conference', {'name': rName, 'jid': xid, 'autojoin': autojoin, xmlns: NS_BOOKMARKS}));
                     item.appendChild(iq.buildNode('nick', {xmlns: NS_BOOKMARKS}, nick));
                     
-                    if(password)
+                    if(password) {
                         item.appendChild(iq.buildNode('password', {xmlns: NS_BOOKMARKS}, password));
+                    }
                     
                     Console.info('Bookmark sent: ' + xid);
                 }
@@ -518,10 +523,11 @@ var Favorites = (function () {
                                     '<a href="#" class="one-button join talk-images" onclick="return Favorites.join(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
                             
                             // This room is yet a favorite
-                            if(DataStore.existDB(Connection.desktop_hash, 'favorites', roomXID))
+                            if(DataStore.existDB(Connection.desktop_hash, 'favorites', roomXID)) {
                                 html += '<a href="#" class="one-button remove talk-images" onclick="return Favorites.removeThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
-                            else
+                            } else {
                                 html += '<a href="#" class="one-button add talk-images" onclick="return Favorites.addThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';
+                            }
                             
                             // Close the room HTML
                             html += '</div>';
@@ -653,8 +659,9 @@ var Favorites = (function () {
             $(path + 'fsearch-head-server').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // No value?
-                    if(!$(this).val())
+                    if(!$(this).val()) {
                         $(this).val(HOST_MUC);
+                    }
                     
                     // Get the list
                     self.getGCList();
@@ -664,12 +671,11 @@ var Favorites = (function () {
             $(path + 'fedit-line input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // Edit a favorite
-                    if($(path + 'fedit-edit').is(':visible'))
+                    if($(path + 'fedit-edit').is(':visible')) {
                         self.terminateThis('edit');
-                    
-                    // Add a favorite
-                    else
+                    } else {
                         self.terminateThis('add');
+                    }
                 }
             });
             

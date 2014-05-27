@@ -594,12 +594,14 @@ var Connection = (function () {
                 // Fire the event!
                 $('#reconnect a.finish.reconnect').everyTime('1s', function() {
                     // We can reconnect!
-                    if(self.reconnect_timer === 0)
+                    if(self.reconnect_timer === 0) {
                         return self.acceptReconnect(mode);
+                    }
                     
                     // Button text
-                    if(self.reconnect_timer <= 10)
+                    if(self.reconnect_timer <= 10) {
                         $(this).text(Common._e("Reconnect") + ' (' + self.reconnect_timer + ')');
+                    }
                     
                     // Remove 1 second
                     self.reconnect_timer--;
@@ -645,10 +647,11 @@ var Connection = (function () {
             $('#reconnect').remove();
             
             // Try to login again
-            if(mode == 'normal')
+            if(mode == 'normal') {
                 self.loginFromSession(Common.XMLFromString(self.current_session));
-            else if(mode == 'anonymous')
+            } else if(mode == 'anonymous') {
                 Anonymous.login(HOST_ANONYMOUS);
+            }
         } catch(e) {
             Console.error('Connection.acceptReconnect', e);
         } finally {

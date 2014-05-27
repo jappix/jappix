@@ -36,45 +36,20 @@ var Microblog = (function () {
     self.attached = function(selector, tFName, tFURL, tFThumb, tFSource, tFType, tFLength, tFEComments, tFNComments) {
 
         try {
-            if($(selector).attr('title'))
-                tFName.push($(selector).attr('title'));
-            else
-                tFName.push('');
-            
-            if($(selector).attr('href'))
-                tFURL.push($(selector).attr('href'));
-            else
-                tFURL.push('');
-            
-            if($(selector).find('link[rel="self"][title="thumb"]:first').attr('href'))
-                tFThumb.push($(selector).find('link[rel="self"][title="thumb"]:first').attr('href'));
-            else
-                tFThumb.push('');
-            
-            if($(selector).attr('source'))
-                tFSource.push($(selector).attr('source'));
-            else
-                tFSource.push('');
-            
-            if($(selector).attr('type'))
-                tFType.push($(selector).attr('type'));
-            else
-                tFType.push('');
-            
-            if($(selector).attr('length'))
-                tFLength.push($(selector).attr('length'));
-            else
-                tFLength.push('');
-            
+            tFName.push($(selector).attr('title') || '');
+            tFURL.push($(selector).attr('href') || '');
+            tFThumb.push($(selector).find('link[rel="self"][title="thumb"]:first').attr('href') || '');
+            tFSource.push($(selector).attr('source') || '');
+            tFType.push($(selector).attr('type') || '');
+            tFLength.push($(selector).attr('length') || '');
+
             // Comments?
             var comments_href_c = $(selector).find('link[rel="replies"][title="comments_file"]:first').attr('href');
             
             if(comments_href_c && comments_href_c.match(/^xmpp:(.+)\?;node=(.+)/)) {
                 tFEComments.push(RegExp.$1);
                 tFNComments.push(decodeURIComponent(RegExp.$2));
-            }
-            
-            else {
+            } else {
                 tFEComments.push('');
                 tFNComments.push('');
             }
@@ -187,15 +162,16 @@ var Microblog = (function () {
                     
                     // Human-readable name?
                     var gHuman = PEP.humanPosition(
-                                           sGeoloc.find('locality').text(),
-                                           sGeoloc.find('region').text(),
-                                           sGeoloc.find('country').text()
-                                          );
+                        sGeoloc.find('locality').text(),
+                        sGeoloc.find('region').text(),
+                        sGeoloc.find('country').text()
+                    );
                     
-                    if(gHuman)
+                    if(gHuman) {
                         tGeoloc += gHuman.htmlEnc();
-                    else
+                    } else {
                         tGeoloc += gLat.htmlEnc() + '; ' + gLon.htmlEnc();
+                    }
                     
                     tGeoloc += '</a>';
                 }
@@ -216,8 +192,9 @@ var Microblog = (function () {
                         tContent = $(this).find('title:not(source > title)').text();
                         
                         // Last chance?
-                        if(!tContent)
+                        if(!tContent) {
                             tContent = tBody;
+                        }
                     }
                     
                     // Trim the content
@@ -255,8 +232,9 @@ var Microblog = (function () {
                     // Generate an array of the files URL
                     for(var a = 0; a < tFURL.length; a++) {
                         // Not enough data?
-                        if(!tFURL[a])
+                        if(!tFURL[a]) {
                             continue;
+                        }
                         
                         // Push the current URL! (YouTube or file)
                         if(tFURL[a].match(/(\w{3,5})(:)(\S+)((\.youtube\.com\/watch(\?v|\?\S+v|\#\!v|\#\!\S+v)\=)|(youtu\.be\/))([^& ]+)((&amp;\S)|(&\S)|\s|$)/gim)) {
@@ -273,8 +251,9 @@ var Microblog = (function () {
                     // Add each file code
                     for(var f = 0; f < tFURL.length; f++) {
                         // Not enough data?
-                        if(!tFURL[f])
+                        if(!tFURL[f]) {
                             continue;
+                        }
                         
                         // Get the file type
                         var tFLink = tFURL[f];
@@ -288,24 +267,28 @@ var Microblog = (function () {
                         }
                         
                         // Supported image/video/sound
-                        if(IntegrateBox.can(tFExt) || (tFCat == 'youtube'))
+                        if(IntegrateBox.can(tFExt) || (tFCat == 'youtube')) {
                             tFEClick = 'onclick="return IntegrateBox.apply(\'' + Utils.encodeOnclick(tFLink) + '\', \'' + Utils.encodeOnclick(tFCat) + '\', \'' + Utils.encodeOnclick(aFURL) + '\', \'' + Utils.encodeOnclick(aFCat) + '\', \'' + Utils.encodeOnclick(tFEComments) + '\', \'' + Utils.encodeOnclick(tFNComments) + '\', \'large\');" ';
-                        else
+                        } else {
                             tFEClick = '';
+                        }
                         
                         // Any thumbnail?
-                        if(tFThumb[f])
+                        if(tFThumb[f]) {‹
                             html += '<a class="thumb" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" title="' + Common.encodeQuotes(tFName[f]) + '" data-node="' + Common.encodeQuotes(tFNComments[f]) + '"><img src="' + Common.encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
-                        else
+                        } else {
                             html += '<a class="' + Common.encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + Common.encodeQuotes(tFNComments[f]) + '">' + tFName[f].htmlEnc() + '</a>';
+                        }
                     }
                     
-                    if(tFURL.length)
+                    if(tFURL.length) {
                         html += '</p>';
+                    }
                     
                     // It's my own notice, we can remove it!
-                    if(from == Common.getXID())
+                    if(from == Common.getXID()) {
                         html += '<a href="#" onclick="return Microblog.remove(\'' + Utils.encodeOnclick(tID) + '\', \'' + Utils.encodeOnclick(tHash) + '\', \'' + Utils.encodeOnclick(entityComments) + '\', \'' + Utils.encodeOnclick(nodeComments) + '\');" title="' + Common._e("Remove this notice") + '" class="mbtool remove talk-images"></a>';
+                    }
                     
                     // Notice from another user
                     else {
@@ -313,8 +296,9 @@ var Microblog = (function () {
                         html += '<a href="#" title="' + Common._e("View profile") + '" class="mbtool profile talk-images" onclick="return UserInfos.open(\'' + Utils.encodeOnclick(from) + '\');"></a>';
                         
                         // If PEP is enabled
-                        if(Features.enabledPEP() && tHTMLEscape)
+                        if(Features.enabledPEP() && tHTMLEscape) {
                             html += '<a href="#" title="' + Common._e("Repeat this notice") + '" class="mbtool repost talk-images"></a>';
+                        }
                     }
                     
                     html += '</div><div class="comments-container" data-node="' + Common.encodeQuotes(nodeComments) + '"></div></div>';
@@ -322,29 +306,33 @@ var Microblog = (function () {
                     // Mixed mode
                     if((mode == 'mixed') && !Common.exists('.mixed .' + tHash)) {
                         // Remove the old element
-                        if(way == 'push')
+                        if(way == 'push') {
                             $('#channel .content.mixed .one-update.update_' + hash).remove();
+                        }
                         
                         // Get the nearest element
                         var nearest = Search.sortElementByStamp(tStamp, '#channel .mixed .one-update');
                         
                         // Append the content at the right position (date relative)
-                        if(nearest === 0)
+                        if(nearest === 0) {
                             $('#channel .content.mixed').append(html);
-                        else
+                        } else {
                             $('#channel .one-update[data-stamp="' + nearest + '"]:first').before(html);
+                        }
                         
                         // Show the new item
-                        if(way == 'push')
+                        if(way == 'push') {
                             $('#channel .content.mixed .one-update.' + tHash).fadeIn('fast');
-                        else
+                        } else {
                             $('#channel .content.mixed .one-update.' + tHash).show();
+                        }
                         
                         // Remove the old notices to make the DOM lighter
                         var oneUpdate = '#channel .content.mixed .one-update';
                         
-                        if($(oneUpdate).size() > 80)
+                        if($(oneUpdate).size() > 80) {
                             $(oneUpdate + ':last').remove();
+                        }
                         
                         // Click event on avatar/name
                         $('.mixed .' + tHash + ' .avatar-container, .mixed .' + tHash + ' .body b').click(function() {
@@ -358,29 +346,33 @@ var Microblog = (function () {
                     // Can append individual content?
                     var can_individual = true;
                     
-                    if($('#channel .top.individual input[name="comments"]').val() && Common.exists(tIndividual + ' .one-update'))
+                    if($('#channel .top.individual input[name="comments"]').val() && Common.exists(tIndividual + ' .one-update')) {
                         can_individual = false;
+                    }
                     
                     if(can_individual && Common.exists(tIndividual) && !Common.exists('.individual .' + tHash)) {
-                        if(mode == 'mixed')
+                        if(mode == 'mixed') {
                             $(tIndividual).prepend(html);
-                        else
+                        } else {
                             $(tIndividual + ' a.more').before(html);
+                        }
                         
                         // Show the new item
-                        if(way == 'push')
+                        if(way == 'push') {
                             $('#channel .content.individual .one-update.' + tHash).fadeIn('fast');
-                        else
+                        } else {
                             $('#channel .content.individual .one-update.' + tHash).show();
+                        }
                         
                         // Make 'more' link visible
                         $(tIndividual + ' a.more').css('visibility', 'visible');
                         
                         // Click event on name (if not me!)
-                        if(from != Common.getXID())
+                        if(from != Common.getXID()) {
                             $('.individual .' + tHash + ' .avatar-container, .individual .' + tHash + ' .body b').click(function() {
                                 Chat.checkCreate(from, 'chat');
                             });
+                        }
                     }
                     
                     // Apply the click event
@@ -430,8 +422,9 @@ var Microblog = (function () {
             var get_last = false;
             
             // Get the latest item for the mixed mode
-            if(Common.exists('#channel .content.mixed .' + hash))
+            if(Common.exists('#channel .content.mixed .' + hash)) {
                 get_last = true;
+            }
             
             // Remove the item from our DOM
             selector.fadeOut('fast', function() {
@@ -453,10 +446,16 @@ var Microblog = (function () {
             }
             
             if(get_last) {
-                if (comm_delete_iq) { con.send(comm_delete_iq); }
+                if(comm_delete_iq) {
+                    con.send(comm_delete_iq);
+                }
+
                 con.send(retract_iq, self.handleRemove);
             } else {
-                if (comm_delete_iq) { con.send(comm_delete_iq); }
+                if(comm_delete_iq) {
+                    con.send(comm_delete_iq);
+                }
+
                 con.send(retract_iq, Errors.handleReply);
             }
         } catch(e) {
@@ -499,8 +498,9 @@ var Microblog = (function () {
 
         try {
             // Error?
-            if(iq.getType() == 'error')
+            if(iq.getType() == 'error') {
                 return;
+            }
             
             // Initialize
             var xid = Common.bareXID(Common.getStanzaFrom(iq));
@@ -560,8 +560,9 @@ var Microblog = (function () {
             var path = 'div.comments[data-id="' + id + '"] div.comments-content';
             
             // Does not exist?
-            if(!Common.exists(path))
+            if(!Common.exists(path)) {
                 return false;
+            }
             
             // Any error?
             if(Errors.handleReply(iq)) {
@@ -593,8 +594,9 @@ var Microblog = (function () {
             // Must we create the complete DOM?
             var complete = true;
             
-            if($(path).find('.one-comment.compose').size())
+            if($(path).find('.one-comment.compose').size()) {
                 complete = false;
+            }
             
             // Add the comment tool
             if(complete) {
@@ -615,35 +617,41 @@ var Microblog = (function () {
                 var current_bname = Name.getBuddy(current_xid);
                 
                 // Legacy?
-                if(!current_body)
+                if(!current_body) {
                     current_body = $(this).find('title:not(source > title)').text();
+                }
                 
                 // Yet displayed? (continue the loop)
-                if($(path).find('.one-comment[data-id="' + current_id + '"]').size())
+                if($(path).find('.one-comment[data-id="' + current_id + '"]').size()) {
                     return;
+                }
                 
                 // No XID?
                 if(!current_xid) {
                     current_xid = '';
                     
-                    if(!current_name)
+                    if(!current_name) {
                         current_name = Common._e("unknown");
+                    }
                 }
                 
-                else if(!current_name || (current_bname != Common.getXIDNick(current_xid)))
+                else if(!current_name || (current_bname != Common.getXIDNick(current_xid))) {
                     current_name = current_bname;
+                }
                 
                 // Any date?
-                if(current_date)
+                if(current_date) {
                     current_date = DateUtils.relative(current_date);
-                else
+                } else {
                     current_date = DateUtils.getCompleteTime();
+                }
                 
                 // Click event
                 var onclick = 'false';
                 
-                if(current_xid != Common.getXID())
+                if(current_xid != Common.getXID()) {
                     onclick = 'Chat.checkCreate(\'' + Utils.encodeOnclick(current_xid) + '\', \'chat\')';
+                }
                 
                 // If this is my comment, add a marker
                 var type = 'him';
@@ -659,14 +667,16 @@ var Microblog = (function () {
                 // New comment?
                 var new_class = '';
                 
-                if(!complete)
+                if(!complete) {
                     new_class = ' new';
+                }
                 
                 // Add the comment
                 if(current_body) {
                     // Add the XID
-                    if(!Utils.existArrayValue(users_xid, current_xid))
+                    if(!Utils.existArrayValue(users_xid, current_xid)) {
                         users_xid.push(current_xid);
+                    }
                     
                     // Add the HTML code
                     code = '<div class="one-comment ' + hex_md5(current_xid) + ' ' + type + new_class + '" data-id="' + Common.encodeQuotes(current_id) + '">' + 
@@ -712,16 +722,19 @@ var Microblog = (function () {
             self.adaptComment(id);
             
             // Get the avatars
-            for(var a in users_xid)
+            for(var a in users_xid) {
                 Avatar.get(users_xid[a], 'cache', 'true', 'forget');
+            }
             
             // Add the owner XID
-            if(owner_xid && owner_xid.match('@') && !Utils.existArrayValue(users_xid, owner_xid))
+            if(owner_xid && owner_xid.match('@') && !Utils.existArrayValue(users_xid, owner_xid)) {
                 users_xid.push(owner_xid);
+            }
             
             // Add the repeated from XID
-            if(repeat_xid && repeat_xid.match('@') && !Utils.existArrayValue(users_xid, repeat_xid))
+            if(repeat_xid && repeat_xid.match('@') && !Utils.existArrayValue(users_xid, repeat_xid)) {
                 users_xid.push(repeat_xid);
+            }
             
             // Remove my own XID
             Utils.removeArrayValue(users_xid, Common.getXID());
@@ -832,8 +845,9 @@ var Microblog = (function () {
 
         try {
             // Not enough data?
-            if(!value || !server || !node)
+            if(!value || !server || !node) {
                 return false;
+            }
             
             // Get some values
             var date = DateUtils.getXMPPTime('utc');
@@ -979,10 +993,11 @@ var Microblog = (function () {
                 self.display(iq, from, hash, 'individual', 'request');
                 
                 // Hide the waiting icon
-                if(Features.enabledPEP())
+                if(Features.enabledPEP()) {
                     self.wait('sync');
-                else
+                } else {
                     self.wait('unsync');
+                }
                 
                 // Hide the 'more items' link?
                 if($(iq.getNode()).find('item').size() < old_count)
@@ -1007,8 +1022,9 @@ var Microblog = (function () {
                     }
                     
                     // Is it a file?
-                    else if(file_link.size())
+                    else if(file_link.size()) {
                         file_link.click();
+                    }
                 }
             }
             
@@ -1126,10 +1142,11 @@ var Microblog = (function () {
             var ps_items = pubsub.appendChild(iq.buildNode('items', {'node': NS_URN_MBLOG, 'xmlns': NS_PUBSUB}));
             
             // Request a particular item?
-            if(get_item)
+            if(get_item) {
                 ps_items.appendChild(iq.buildNode('item', {'id': get_item, 'xmlns': NS_PUBSUB}));
-            else
+            } else {
                 ps_items.setAttribute('max_items', items);
+            }
             
             if(handler) {
                 con.send(iq, handler);
@@ -1172,8 +1189,9 @@ var Microblog = (function () {
             }
             
             // No hash?
-            if(!hash)
+            if(!hash) {
                 hash = hex_md5(xid);
+            }
             
             // Can display the individual channel?
             if(!check && !Common.exists('#channel .individual')) {
@@ -1184,9 +1202,9 @@ var Microblog = (function () {
                 var cTitle;
                 var cShortcuts = '';
                 
-                if(xid == Common.getXID())
+                if(xid == Common.getXID()) {
                     cTitle = Common._e("Your channel");
-                else {
+                } else {
                     cTitle = Common._e("Channel of") + ' ' + Name.getBuddy(xid).htmlEnc();
                     cShortcuts = '<div class="shortcuts">' + 
                                 '<a href="#" class="message talk-images" title="' + Common._e("Send him/her a message") + '" onclick="return Inbox.composeMessage(\'' + Utils.encodeOnclick(xid) + '\');"></a>' + 
@@ -1223,8 +1241,11 @@ var Microblog = (function () {
                 
                 // Microblog navigation
                 $('#channel .content.individual').scroll(function() {
-                    if($('#channel .footer div.fetch').is(':hidden') && $('#channel .individual a.more:visible').size() && $('#channel .content.individual').scrollTop() >= ($('#channel .content.individual')[0].scrollHeight - $('#channel .content.individual').height() - 200))
+                    if($('#channel .footer div.fetch').is(':hidden') && 
+                        $('#channel .individual a.more:visible').size() && 
+                        $('#channel .content.individual').scrollTop() >= ($('#channel .content.individual')[0].scrollHeight - $('#channel .content.individual').height() - 200)) {
                         $('#channel .individual a.more').click();
+                    }
                 });
 
                 // Display the user avatar
@@ -1234,14 +1255,16 @@ var Microblog = (function () {
             // Get the number of items to retrieve
             var items = '0';
             
-            if(!check)
+            if(!check) {
                 items = $('#channel .top.individual input[name="counter"]').val();
+            }
             
             // Request
-            if(check)
+            if(check) {
                 self.request(xid, items, get_item, self.handleInit);
-            else
+            } else {
                 self.request(xid, items, get_item, self.handle);
+            }
         } catch(e) {
             Console.error('Microblog.get', e);
         } finally {
@@ -1325,8 +1348,9 @@ var Microblog = (function () {
             $('#persistent, #maxnotices').removeAttr('disabled');
             
             // End if not a result
-            if(!iq || (iq.getType() != 'result'))
+            if(!iq || (iq.getType() != 'result')) {
                 return;
+            }
             
             // Initialize the values
             var selector = $(iq.getNode());
@@ -1338,11 +1362,13 @@ var Microblog = (function () {
             var xMaxnotices = selector.find('field[var="pubsub#max_items"] value:first').text();
             
             // Any value?
-            if(xPersistent)
+            if(xPersistent) {
                 persistent = xPersistent;
+            }
             
-            if(xMaxnotices)
+            if(xMaxnotices) {
                 maxnotices = xMaxnotices;
+            }
             
             // Change the maxnotices value
             switch(maxnotices) {
@@ -1360,10 +1386,11 @@ var Microblog = (function () {
             }
             
             // Apply persistent value
-            if(persistent == '0')
+            if(persistent == '0') {
                 $('#persistent').attr('checked', false);
-            else
+            } else {
                 $('#persistent').attr('checked', true);
+            }
             
             // Apply maxnotices value
             $('#maxnotices').val(maxnotices);
@@ -1500,10 +1527,13 @@ var Microblog = (function () {
                 comments_node = NS_URN_MBLOG + ':comments/' + id;
             }
             
-            if(!comments_entity_file)
+            if(!comments_entity_file) {
                 comments_entity_file = [];
-            if(!comments_node_file)
+            }
+
+            if(!comments_node_file) {
                 comments_node_file = [];
+            }
             
             // Don't create another comments node if only 1 file is attached
             if(attachedurl && (attachedurl.length == 1) && (!comments_entity_file[0] || !comments_node_file[0])) {
@@ -1541,8 +1571,9 @@ var Microblog = (function () {
             // Create the attached files nodes
             for(var i = 0; i < attachedurl.length; i++) {
                 // Not enough data?
-                if(!attachedurl[i])
+                if(!attachedurl[i]) {
                     continue;
+                }
                 
                 // Append a new file element
                 var file = entry.appendChild(iq.buildNode('link', {'xmlns': NS_ATOM, 'rel': 'enclosure', 'href': attachedurl[i]}));
@@ -1556,8 +1587,9 @@ var Microblog = (function () {
                     file.setAttribute('length', attachedlength[i]);
                 
                 // Any thumbnail?
-                if(attachedthumb[i])
+                if(attachedthumb[i]) {
                     file.appendChild(iq.buildNode('link', {'xmlns': NS_URN_MBLOG, 'rel': 'self', 'title': 'thumb', 'type': attachedtype[i], 'href': attachedthumb[i]}));
+                }
                 
                 // Any comments node?
                 if(!comments_entity_file[i] || !comments_node_file[i]) {
@@ -1588,8 +1620,9 @@ var Microblog = (function () {
                 
                 // Append the geoloc content
                 for(var g = 0; g < geo_names.length; g++) {
-                    if(geo_names[g] && geo_values[g])
+                    if(geo_names[g] && geo_values[g]) {
                         geoloc.appendChild(iq.buildNode(geo_names[g], {'xmlns': NS_GEOLOC}, geo_values[g]));
+                    }
                 }
             }
             
@@ -1656,10 +1689,11 @@ var Microblog = (function () {
 
         try {
             // Individual removal?
-            if(id)
+            if(id) {
                 $('#attach .one-file[data-id="' + id + '"]').remove();
-            else
+            } else {
                 $('#attach .one-file').remove();
+            }
             
             // Must enable the popup again?
             if(!Common.exists('#attach .one-file')) {
@@ -1670,10 +1704,9 @@ var Microblog = (function () {
                 if(id) {
                     $('#attach').hide();
                     Bubble.show('#attach');
-                }
-                
-                else
+                } else {
                     Bubble.close();
+                }
             }
         } catch(e) {
             Console.error('Microblog.unattach', e);

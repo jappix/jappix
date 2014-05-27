@@ -21,6 +21,215 @@ var Chat = (function () {
 
 
     /**
+     * Apply generate events
+     * @private
+     * @param {string} path
+     * @param {string} id
+     * @param {string} xid
+     * @return {undefined}
+     */
+    self._generateEvents = function(path, id, xid) {
+
+        try {
+            // Click event: chat cleaner
+            $(path + 'tools-clear').click(function() {
+                self.clean(id);
+            });
+
+            // Click event: call (audio)
+            $(path + 'tools-jingle-audio').click(function() {
+                Jingle.start(xid, 'audio');
+            });
+
+            // Click event: call (video)
+            $(path + 'tools-jingle-video').click(function() {
+                Jingle.start(xid, 'video');
+            });
+            
+            // Click event: user-infos
+            $(path + 'tools-infos').click(function() {
+                UserInfos.open(xid);
+            });
+        } catch(e) {
+            Console.error('Caps._generateEvents', e);
+        }
+
+    };
+
+
+    /**
+     * Apply generate events
+     * @private
+     * @param {object} input_sel
+     * @param {string} xid
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._createEvents = function(input_sel, xid, hash) {
+
+        try {
+            self._createEventsInput(input_sel, hash);
+            self._createEventsKey(input_sel, xid, hash);
+            self._createEventsMouse(xid, hash);
+        } catch(e) {
+            Console.error('Caps._createEvents', e);
+        }
+
+    };
+
+
+    /**
+     * Apply generate events (input)
+     * @private
+     * @param {object} input_sel
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._createEventsInput = function(input_sel, hash) {
+
+        try {
+            input_sel.focus(function() {
+                // Clean notifications for this chat
+                Interface.chanCleanNotify(hash);
+                
+                // Store focus on this chat!
+                Interface.chat_focus_hash = hash;
+            });
+            
+            input_sel.blur(function() {
+                // Reset storage about focus on this chat!
+                if(Interface.chat_focus_hash == hash) {
+                    Interface.chat_focus_hash = null;
+                }
+            });
+        } catch(e) {
+            Console.error('Caps._createEventsInput', e);
+        }
+
+    };
+
+
+    /**
+     * Apply generate events (key)
+     * @private
+     * @param {object} input_sel
+     * @param {string} xid
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._createEventsKey = function(input_sel, xid, hash) {
+
+        try {
+            input_sel.keydown(function(e) {
+                if(e.keyCode == 13) {
+                    // Enter key
+                    if(e.shiftKey || e.ctrlKey) {
+                        // Add a new line
+                        input_sel.val(input_sel.val() + '\n');
+                    } else {
+                        if(Correction.isIn(xid) === true) {
+                            var corrected_value = input_sel.val().trim();
+
+                            if(corrected_value) {
+                                // Send the corrected message
+                                Correction.send(xid, 'chat', corrected_value);
+                            }
+
+                            Correction.leave(xid);
+                        } else {
+                            // Send the message
+                            Message.send(hash, 'chat');
+                        }
+
+                        // Reset the composing database entry
+                        DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
+                    }
+                    
+                    return false;
+                } else if(e.keyCode == 8) {
+                    // Leave correction mode? (another way, by flushing input value progressively)
+                    if(Correction.isIn(xid) === true && !input_sel.val()) {
+                        Correction.leave(xid);
+                    }
+                }
+            });
+
+            input_sel.keyup(function(e) {
+                if(e.keyCode == 27) {
+                    // Escape key
+                    input_sel.val('');
+
+                    // Leave correction mode? (simple escape way)
+                    if(Correction.isIn(xid) === true) {
+                        Correction.leave(xid);
+                    }
+                } else {
+                    Correction.detect(xid, input_sel);
+                }
+            });
+        } catch(e) {
+            Console.error('Caps._createEventsKey', e);
+        }
+
+    };
+
+
+    /**
+     * Apply generate events (mouse)
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._createEventsMouse = function(xid, hash) {
+
+        try {
+            // Scroll in chat content
+            $('#page-engine #' + hash + ' .content').scroll(function() {
+                var self = this;
+
+                if(Features.enabledMAM() && !(xid in MAM.map_pending)) {
+                    var has_state = xid in MAM.map_states;
+                    var rsm_count = has_state ? MAM.map_states[xid].rsm.count : 1;
+                    var rsm_before = has_state ? MAM.map_states[xid].rsm.first : '';
+
+                    // Request more archives?
+                    if(rsm_count > 0 && $(this).scrollTop() < MAM.SCROLL_THRESHOLD) {
+                        var was_scroll_top = $(self).scrollTop() <= 32;
+                        var wait_mam = $('#' + hash).find('.wait-mam');
+                        wait_mam.show();
+
+                        MAM.getArchives({
+                            'with': xid
+                        }, {
+                            'max': MAM.REQ_MAX,
+                            'before': rsm_before
+                        }, function() {
+                            var wait_mam_height = was_scroll_top ? 0 : wait_mam.height();
+                            wait_mam.hide();
+
+                            // Restore scroll?
+                            if($(self).scrollTop() < MAM.SCROLL_THRESHOLD) {
+                                var sel_mam_chunk = $(self).find('.mam-chunk:first');
+
+                                var cont_padding_top = parseInt($(self).css('padding-top').replace(/[^-\d\.]/g, ''));
+                                var cont_one_group_margin_bottom = parseInt(sel_mam_chunk.find('.one-group:last').css('margin-bottom').replace(/[^-\d\.]/g, ''));
+                                var cont_mam_chunk_height = sel_mam_chunk.height();
+
+                                $(self).scrollTop(wait_mam_height + cont_padding_top + cont_one_group_margin_bottom + cont_mam_chunk_height);
+                            }
+                        });
+                    }
+                }
+            });
+        } catch(e) {
+            Console.error('Caps._createEventsMouse', e);
+        }
+
+    };
+
+
+    /**
      * Correctly opens a new chat
      * @public
      * @param {string} xid
@@ -213,25 +422,7 @@ var Chat = (function () {
                 '</div>'
             );
             
-            // Click event: chat cleaner
-            $(path + 'tools-clear').click(function() {
-                self.clean(id);
-            });
-
-            // Click event: call (audio)
-            $(path + 'tools-jingle-audio').click(function() {
-                Jingle.start(xid, 'audio');
-            });
-
-            // Click event: call (video)
-            $(path + 'tools-jingle-video').click(function() {
-                Jingle.start(xid, 'video');
-            });
-            
-            // Click event: user-infos
-            $(path + 'tools-infos').click(function() {
-                UserInfos.open(xid);
-            });
+            self._generateEvents(path, id, xid);
         } catch(e) {
             Console.error('Chat.generate', e);
         }
@@ -379,18 +570,21 @@ var Chat = (function () {
                         var friend_hash = hex_md5(xid);
                         
                         // Add chat history HTML
-                        $('#' + hash + ' .content').append(chat_history);
+                        var path_sel = $('#' + hash);
+
+                        path_sel.find('.content').append(chat_history);
                         
                         // Filter old groups & messages
-                        $('#' + hash + ' .one-group[data-type="user-message"]').addClass('from-history').attr('data-type', 'old-message');
-                        $('#' + hash + ' .user-message').removeClass('user-message').addClass('old-message');
+                        var one_group_sel = path_sel.find('.one-group');
+                        one_group_sel.filter('[data-type="user-message"]').addClass('from-history').attr('data-type', 'old-message');
+                        path_sel.find('.user-message').removeClass('user-message').addClass('old-message');
                         
                         // Regenerate user names
-                        $('#' + hash + ' .one-group.' + my_hash + ' b.name').text(Name.getBuddy(Common.getXID()));
-                        $('#' + hash + ' .one-group.' + friend_hash + ' b.name').text(Name.getBuddy(xid));
+                        one_group_sel.filter('.' + my_hash + ' b.name').text(Name.getBuddy(Common.getXID()));
+                        one_group_sel.filter('.' + friend_hash + ' b.name').text(Name.getBuddy(xid));
                         
                         // Regenerate group dates
-                        $('#' + hash + ' .one-group').each(function() {
+                        one_group_sel.each(function() {
                             var current_stamp = parseInt($(this).attr('data-stamp'));
                             $(this).find('span.date').text(DateUtils.relative(current_stamp));
                         });
@@ -425,113 +619,12 @@ var Chat = (function () {
             Tooltip.icons(xid, hash);
             
             // The event handlers
-            var inputDetect = $('#page-engine #' + hash + ' .message-area');
-            
-            inputDetect.focus(function() {
-                // Clean notifications for this chat
-                Interface.chanCleanNotify(hash);
-                
-                // Store focus on this chat!
-                Interface.chat_focus_hash = hash;
-            });
-            
-            inputDetect.blur(function() {
-                // Reset storage about focus on this chat!
-                if(Interface.chat_focus_hash == hash) {
-                    Interface.chat_focus_hash = null;
-                }
-            });
-            
-            inputDetect.keydown(function(e) {
-                if(e.keyCode == 13) {
-                    // Enter key
-                    if(e.shiftKey || e.ctrlKey) {
-                        // Add a new line
-                        inputDetect.val(inputDetect.val() + '\n');
-                    } else {
-                        if(Correction.isIn(xid) === true) {
-                            var corrected_value = inputDetect.val().trim();
-
-                            if(corrected_value) {
-                                // Send the corrected message
-                                Correction.send(xid, 'chat', corrected_value);
-                            }
-
-                            Correction.leave(xid);
-                        } else {
-                            // Send the message
-                            Message.send(hash, 'chat');
-                        }
-
-                        // Reset the composing database entry
-                        DataStore.setDB(Connection.desktop_hash, 'chatstate', xid, 'off');
-                    }
-                    
-                    return false;
-                } else if(e.keyCode == 8) {
-                    // Leave correction mode? (another way, by flushing input value progressively)
-                    if(Correction.isIn(xid) === true && !inputDetect.val()) {
-                        Correction.leave(xid);
-                    }
-                }
-            });
-
-            inputDetect.keyup(function(e) {
-                if(e.keyCode == 27) {
-                    // Escape key
-                    inputDetect.val('');
-
-                    // Leave correction mode? (simple escape way)
-                    if(Correction.isIn(xid) === true) {
-                        Correction.leave(xid);
-                    }
-                } else {
-                    Correction.detect(xid, inputDetect);
-                }
-            });
-
-            // Scroll in chat content
-            $('#page-engine #' + hash + ' .content').scroll(function() {
-                var self = this;
-
-                if(Features.enabledMAM() && !(xid in MAM.map_pending)) {
-                    var has_state = xid in MAM.map_states;
-                    var rsm_count = has_state ? MAM.map_states[xid].rsm.count : 1;
-                    var rsm_before = has_state ? MAM.map_states[xid].rsm.first : '';
-
-                    // Request more archives?
-                    if(rsm_count > 0 && $(this).scrollTop() < MAM.SCROLL_THRESHOLD) {
-                        var was_scroll_top = $(self).scrollTop() <= 32;
-                        var wait_mam = $('#' + hash).find('.wait-mam');
-                        wait_mam.show();
-
-                        MAM.getArchives({
-                            'with': xid
-                        }, {
-                            'max': MAM.REQ_MAX,
-                            'before': rsm_before
-                        }, function() {
-                            var wait_mam_height = was_scroll_top ? 0 : wait_mam.height();
-                            wait_mam.hide();
-
-                            // Restore scroll?
-                            if($(self).scrollTop() < MAM.SCROLL_THRESHOLD) {
-                                var sel_mam_chunk = $(self).find('.mam-chunk:first');
-
-                                var cont_padding_top = parseInt($(self).css('padding-top').replace(/[^-\d\.]/g, ''));
-                                var cont_one_group_margin_bottom = parseInt(sel_mam_chunk.find('.one-group:last').css('margin-bottom').replace(/[^-\d\.]/g, ''));
-                                var cont_mam_chunk_height = sel_mam_chunk.height();
-
-                                $(self).scrollTop(wait_mam_height + cont_padding_top + cont_one_group_margin_bottom + cont_mam_chunk_height);
-                            }
-                        });
-                    }
-                }
-            });
+            var input_sel = $('#page-engine #' + hash + ' .message-area');
+            self._createEvents(input_sel, xid, hash);
             
             // Input events
-            ChatState.events(inputDetect, xid, hash, 'chat');
-            Markers.events(inputDetect, xid, hash, 'chat');
+            ChatState.events(input_sel, xid, hash, 'chat');
+            Markers.events(input_sel, xid, hash, 'chat');
         } catch(e) {
             Console.error('Chat.create', e);
         }

@@ -375,20 +375,24 @@ var DateUtils = (function () {
             var days = Math.round((current_stamp - old_stamp) / 86400000);
             
             // Invalid date?
-            if(isNaN(old_stamp) || isNaN(days))
+            if(isNaN(old_stamp) || isNaN(days)) {
                 return self.getCompleteTime();
+            }
             
             // Is it today?
-            if(current_day == old_day)
+            if(current_day == old_day) {
                 return old_time;
+            }
             
             // It is yesterday?
-            if(days <= 1)
+            if(days <= 1) {
                 return Common._e("Yesterday") + ' - ' + old_time;
+            }
             
             // Is it less than a week ago?
-            if(days <= 7)
+            if(days <= 7) {
                 return Common.printf(Common._e("%s days ago"), days) + ' - ' + old_time;
+            }
             
             // Another longer period
             return old_date.toLocaleDateString() + ' - ' + old_time;
@@ -415,8 +419,9 @@ var DateUtils = (function () {
             d_delay = jQuery(node).find('delay[xmlns="' + NS_URN_DELAY + '"]:first').attr('stamp');
             
             // New delay (valid XEP)
-            if(d_delay)
+            if(d_delay) {
                 delay = d_delay;
+            }
             
             // Old delay (obsolete XEP!)
             else {

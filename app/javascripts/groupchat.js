@@ -37,16 +37,19 @@ var Groupchat = (function () {
 
         try {
             // We must be in the "login" mode
-            if(Utils.isAnonymous())
+            if(Utils.isAnonymous()) {
                 return;
+            }
             
             // We check if the user is a room owner or administrator to give him privileges
-            if(affiliation == 'owner' || affiliation == 'admin')
+            if(affiliation == 'owner' || affiliation == 'admin') {
                 $('#' + id + ' .tools-mucadmin').show();
+            }
             
             // We check if the room hasn't been yet created
-            if(statuscode == 201)
+            if(statuscode == 201) {
                 Board.openThisInfo(4);
+            }
             
             // We add the click event
             $('#' + id + ' .tools-mucadmin').click(function() {
@@ -80,14 +83,16 @@ var Groupchat = (function () {
             // No nickname?
             if(!nickname) {
                 // Get some values
-                if(!Utils.isAnonymous())
+                if(!Utils.isAnonymous()) {
                     nickname = Name.getNick();
-                else
+                } else {
                     nickname = ANONYMOUS_NICK;
+                }
                 
                 // If the nickname could not be retrieved, ask it
-                if(!nickname)
+                if(!nickname) {
                     self.generateMUCAsk('nickname', room, hash, nickname, password);
+                }
             }
             
             // Got our nickname?
@@ -139,7 +144,7 @@ var Groupchat = (function () {
                 // Define some stuffs
                 var muc_user = $(xml).find('x[xmlns="' + NS_MUC_USER + '"]');
                 var affiliation = muc_user.find('item').attr('affiliation');
-                        var statuscode = parseInt(muc_user.find('status').attr('code'));
+                var statuscode = parseInt(muc_user.find('status').attr('code'));
                 
                 // Handle my presence
                 Presence.handle(presence);
@@ -298,8 +303,9 @@ var Groupchat = (function () {
             // Blur event
             inputDetect.blur(function() {
                 // Reset storage about focus on this chat!
-                if(Interface.chat_focus_hash == hash)
+                if(Interface.chat_focus_hash == hash) {
                     Interface.chat_focus_hash = null;
+                }
 
                 // Reset autocompletion
                 Autocompletion.reset(hash);
@@ -395,23 +401,26 @@ var Groupchat = (function () {
             var new_arr = [];
             
             // Try to split it
-            if(GROUPCHATS_JOIN.indexOf(',') != -1)
+            if(GROUPCHATS_JOIN.indexOf(',') != -1) {
                 muc_arr = GROUPCHATS_JOIN.split(',');
+            }
             
             for(var i in muc_arr) {
                 // Get the current value
                 var muc_current = $.trim(muc_arr[i]);
                 
                 // No current value?
-                if(!muc_current)
+                if(!muc_current) {
                     continue;
+                }
                 
                 // Filter the current value
                 muc_current = Common.generateXID(muc_current, 'groupchat');
                 
                 // Add the current value
-                if(!Utils.existArrayValue(new_arr, muc_current))
+                if(!Utils.existArrayValue(new_arr, muc_current)) {
                     new_arr.push(muc_current);
+                }
             }
             
             return new_arr;
@@ -431,8 +440,9 @@ var Groupchat = (function () {
 
         try {
             // Nothing to join?
-            if(!JOIN_SUGGEST)
+            if(!JOIN_SUGGEST) {
                 return;
+            }
             
             // Join the chats
             if(JOIN_SUGGEST.length) {
@@ -459,8 +469,9 @@ var Groupchat = (function () {
     
             // Must suggest the user?
             if((GROUPCHATS_SUGGEST == 'on') && groupchat_arr.length) {
-                if(Common.exists('#suggest'))
+                if(Common.exists('#suggest')) {
                     return;
+                }
                 
                 // Create HTML code
                 var html = '<div id="suggest" class="removable">';
@@ -492,10 +503,11 @@ var Groupchat = (function () {
                     $(this).toggleClass('active');
                     
                     // We require at least one room to be chosen
-                    if(Common.exists('#suggest .content a.one.active'))
+                    if(Common.exists('#suggest .content a.one.active')) {
                         $('#suggest a.next').removeClass('disabled');
-                    else
+                    } else {
                         $('#suggest a.next').addClass('disabled');
+                    }
                     
                     return false;
                 });

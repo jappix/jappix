@@ -62,8 +62,9 @@ var DataForm = (function () {
                 else if(type == 'browse') {
                     var iqQuery = iq.setQuery(NS_DISCO_ITEMS);
                     
-                    if(node)
+                    if(node) {
                         iqQuery.setAttribute('node', node);
+                    }
                     
                     con.send(iq, self.handleBrowse);
                 }
@@ -72,8 +73,9 @@ var DataForm = (function () {
                 else if(type == 'command') {
                     var items;
                     
-                    if(node)
+                    if(node) {
                         items = iq.appendNode('command', {'node': node, 'xmlns': NS_COMMANDS});
+                    }
                     
                     else {
                         items = iq.setQuery(NS_DISCO_ITEMS);
@@ -102,8 +104,9 @@ var DataForm = (function () {
                 
                 // Join
                 else if(type == 'join') {
-                    if(target == 'discovery')
+                    if(target == 'discovery') {
                         Discovery.close();
+                    }
                     
                     Chat.checkCreate(host, 'groupchat');
                 }
@@ -144,14 +147,15 @@ var DataForm = (function () {
             // Set the correct query
             var query;
             
-            if(type == 'subscribe')
+            if(type == 'subscribe') {
                 iqQuery = iq.setQuery(NS_REGISTER);
-            else if(type == 'search')
+            } else if(type == 'search') {
                 iqQuery = iq.setQuery(NS_SEARCH);
-            else if(type == 'command')
+            } else if(type == 'command') {
                 iqQuery = iq.appendNode('command', {'xmlns': NS_COMMANDS, 'node': node, 'sessionid': sessionid, 'action': action});
-            else if(type == 'x')
+            } else if(type == 'x') {
                 iqQuery = iq.setQuery(NS_MUC_OWNER);
+            }
             
             // Build the XML document
             if(action != 'cancel') {
@@ -181,10 +185,11 @@ var DataForm = (function () {
                         
                         // Boolean input?
                         if(iType == 'boolean') {
-                            if($(this).filter(':checked').size())
+                            if($(this).filter(':checked').size()) {
                                 iValue = '1';
-                            else
+                            } else {
                                 iValue = '0';
+                            }
                         }
                         
                         // JID-multi input?
@@ -194,8 +199,9 @@ var DataForm = (function () {
                             var xid_check = [];
                             
                             // Try to split it
-                            if(iValue.indexOf(',') != -1)
+                            if(iValue.indexOf(',') != -1) {
                                 xid_arr = iValue.split(',');
+                            }
                             
                             // Append each value to the XML document
                             for(var i in xid_arr) {
@@ -203,8 +209,9 @@ var DataForm = (function () {
                                 xid_current = $.trim(xid_arr[i]);
                                 
                                 // No current value?
-                                if(!xid_current)
+                                if(!xid_current) {
                                     continue;
+                                }
                                 
                                 // Add the current value
                                 if(!Utils.existArrayValue(xid_check, xid_current)) {
@@ -225,8 +232,9 @@ var DataForm = (function () {
                         }
                         
                         // Other inputs?
-                        else
+                        else {
                             field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, iValue));
+                        }
                     });
                 }
             }
@@ -243,14 +251,15 @@ var DataForm = (function () {
             iq.setID(iqID);
             
             // Send the IQ
-            if(type == 'subscribe')
+            if(type == 'subscribe') {
                 con.send(iq, self.handleSubscribe);
-            else if(type == 'search')
+            } else if(type == 'search') {
                 con.send(iq, self.handleSearch);
-            else if(type == 'command')
+            } else if(type == 'command') {
                 con.send(iq, self.handleCommand);
-            else
+            } else {
                 con.send(iq);
+            }
         } catch(e) {
             Console.error('DataForm.send', e);
         } finally {
@@ -277,8 +286,9 @@ var DataForm = (function () {
 
         try {
             // No need to use buttons?
-            if(type == 'muc')
+            if(type == 'muc') {
                 return;
+            }
             
             // Override the "undefined" output
             if(!id)
@@ -305,9 +315,7 @@ var DataForm = (function () {
                             return false;
                         }
                     });
-                }
-                
-                else {
+                } else {
                     buttonsCode += '<a href="#" class="submit" onclick="return DataForm.send(\'' + Utils.encodeOnclick(type) + '\', \'submit\', \'submit\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Submit") + '</a>';
                     
                     // When keyup on one text input
@@ -321,17 +329,21 @@ var DataForm = (function () {
                 }
             }
             
-            if((action == 'submit') && (type != 'subscribe') && (type != 'search'))
+            if((action == 'submit') && (type != 'subscribe') && (type != 'search')) {
                 buttonsCode += '<a href="#" class="submit" onclick="return DataForm.send(\'' + Utils.encodeOnclick(type) + '\', \'cancel\', \'cancel\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(node) + '\', \'' + Utils.encodeOnclick(sessionid) + '\', \'' + Utils.encodeOnclick(target) + '\');">' + Common._e("Cancel") + '</a>';
+            }
             
-            if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery'))
+            if(((action == 'back') || (type == 'subscribe') || (type == 'search')) && (target == 'discovery')) {
                 buttonsCode += '<a href="#" class="back" onclick="return Discovery.start();">' + Common._e("Close") + '</a>';
+            }
             
-            if((action == 'back') && ((target == 'welcome') || (target == 'directory')))
+            if((action == 'back') && ((target == 'welcome') || (target == 'directory'))) {
                 buttonsCode += '<a href="#" class="back" onclick="return DataForm.go(HOST_VJUD, \'search\', \'\', \'\', \'' + target + '\');">' + Common._e("Previous") + '</a>';
+            }
             
-            if((action == 'back') && (target == 'adhoc'))
+            if((action == 'back') && (target == 'adhoc')) {
                 buttonsCode += '<a href="#" class="back" onclick="return DataForm.go(\'' + Utils.encodeOnclick(xid) + '\', \'command\', \'\', \'\', \'adhoc\');">' + Common._e("Previous") + '</a>';
+            }
             
             buttonsCode += '</div>';
             
@@ -339,8 +351,9 @@ var DataForm = (function () {
             $(pathID).append(buttonsCode);
             
             // If no submit link, lock the form
-            if(!Common.exists(pathID + ' a.submit'))
+            if(!Common.exists(pathID + ' a.submit')) {
                 $(pathID + ' input, ' + pathID + ' textarea').attr('readonly', true);
+            }
         } catch(e) {
             Console.error('DataForm.buttons', e);
         }
@@ -459,8 +472,9 @@ var DataForm = (function () {
             var pathID = '#' + target + ' .results[data-session="' + sessionID + '"]';
             
             // If an error occured
-            if(!iq || (iq.getType() != 'result'))
+            if(!iq || (iq.getType() != 'result')) {
                 self.noResult(pathID);
+            }
             
             // If we got something okay
             else {
@@ -479,21 +493,23 @@ var DataForm = (function () {
                             var itemHash = hex_md5(itemHost);
                             
                             // Node
-                            if(itemNode)
+                            if(itemNode) {
                                 $(pathID).append(
                                     '<div class="oneresult ' + target + '-oneresult" onclick="return DataForm.go(\'' + Utils.encodeOnclick(itemHost) + '\', \'browse\', \'' + Utils.encodeOnclick(itemNode) + '\', \'\', \'' + Utils.encodeOnclick(target) + '\');">' + 
                                         '<div class="one-name">' + itemNode.htmlEnc() + '</div>' + 
                                     '</div>'
                                 );
-                            
+                            }
+
                             // Item
-                            else if(queryNode && itemName)
+                            else if(queryNode && itemName) {
                                 $(pathID).append(
                                     '<div class="oneresult ' + target + '-oneresult">' + 
                                         '<div class="one-name">' + itemName.htmlEnc() + '</div>' + 
                                     '</div>'
                                 );
-                            
+                            }
+
                             // Item with children
                             else {
                                 // We display the waiting element
@@ -544,13 +560,13 @@ var DataForm = (function () {
                             var bCountry;
                             var doneName, doneCountry;
 
-                            $.each($(this).find('field'), function(i, item)
-                            {                                                                                                                                                                                                                      
+                            $.each($(this).find('field'), function(i, item) {                                                                                                                                                                                                                      
                                 var $item = $(item);
-                                if ($(item).attr('var').match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && doneName !== true) {
+
+                                if($(item).attr('var').match(/^(fn|name|[^n][^i][^c][^k]name)$/gi) && doneName !== true) {
                                     bName = $item.children('value:first').text();
                                     doneName = true;
-                                } else if ($(item).attr('var').match(/^(ctry|country.*)$/gi) && doneCountry !== true) {
+                                } else if($(item).attr('var').match(/^(ctry|country.*)$/gi) && doneCountry !== true) {
                                     bCountry = $item.children('value:first').text();
                                     doneCountry = true;
                                 }
@@ -581,16 +597,19 @@ var DataForm = (function () {
                                     '<div class="buttons-container">';
                             
                             // The buddy is not in our buddy list?
-                            if(!Common.exists('#roster .buddy[data-xid="' + escape(bXID) + '"]'))
+                            if(!Common.exists('#roster .buddy[data-xid="' + escape(bXID) + '"]')) {
                                 bHTML += '<a href="#" class="one-add one-vjud one-button talk-images">' + Common._e("Add") + '</a>';
+                            }
                             
                             // Chat button, if not in welcome/directory mode
-                            if(target == 'discovery')
+                            if(target == 'discovery') {
                                 bHTML += '<a href="#" class="one-chat one-vjud one-button talk-images">' + Common._e("Chat") + '</a>';
+                            }
                             
                             // Profile button, if not in discovery mode
-                            else
+                            else {
                                 bHTML += '<a href="#" class="one-profile one-vjud one-button talk-images">' + Common._e("Profile") + '</a>';
+                            }
                             
                             // Close the HTML element
                             bHTML += '</div></div>';
@@ -615,15 +634,17 @@ var DataForm = (function () {
                                 }
                                 
                                 // Buddy profile
-                                if($(this).is('.one-profile'))
+                                if($(this).is('.one-profile')) {
                                     UserInfos.open(bXID);
+                                }
                                 
                                 return false;
                             });
                             
                             // Get the user's avatar
-                            if(bXID)
+                            if(bXID) {
                                 Avatar.get(bXID, 'cache', 'true', 'forget');
+                            }
                         });
                         
                         // No result?
@@ -640,10 +661,11 @@ var DataForm = (function () {
                         self.fill(handleXML, sessionID);
                         
                         // We display the buttons
-                        if(bStatus != 'completed')
+                        if(bStatus != 'completed') {
                             self.buttons(type, 'submit', sessionID, from, bNode, bSession, target, pathID);
-                        else
+                        } else {
                             self.buttons(type, 'back', sessionID, from, bNode, bSession, target, pathID);
+                        }
                     }
                     
                     // Command completed or subscription done
@@ -661,23 +683,26 @@ var DataForm = (function () {
                         }
                         
                         // Default text
-                        else
+                        else {
                             $(pathID).append('<div class="oneinstructions ' + target + '-oneresult">' + Common._e("Your form has been sent.") + '</div>');
+                        }
                         
                         // Display the back button
                         self.buttons(type, 'back', sessionID, from, '', '', target, pathID);
                         
                         // Add the gateway to our roster if subscribed
-                        if(type == 'subscribe')
+                        if(type == 'subscribe') {
                             Roster.addThisContact(from);
+                        }
                     }
                     
                     // Command canceled
                     else if((bStatus == 'canceled') && (type == 'command')) {
-                        if(target == 'discovery')
+                        if(target == 'discovery') {
                             Discovery.start();
-                        else if(target == 'adhoc')
+                        } else if(target == 'adhoc') {
                             dataForm(from, 'command', '', '', 'adhoc');
+                        }
                     }
                     
                     // No items for this query
@@ -706,8 +731,9 @@ var DataForm = (function () {
                     }
                     
                     // Else, there are no items for this query
-                    else
+                    else {
                         self.noResult(pathID);
+                    }
                 }
             }
             
@@ -743,16 +769,18 @@ var DataForm = (function () {
             var selector, is_dataform;
             
             // Is it a dataform?
-            if($(xml).find('x[xmlns="' + NS_XDATA + '"]').size())
+            if($(xml).find('x[xmlns="' + NS_XDATA + '"]').size()) {
                 is_dataform = true;
-            else
+            } else {
                 is_dataform = false;
+            }
             
             // Determines the good selector to use
-            if(is_dataform)
+            if(is_dataform) {
                 selector = $(xml).find('x[xmlns="' + NS_XDATA + '"]');
-            else
+            } else {
                 selector = $(xml);
+            }
             
             // Form title
             selector.find('title').each(function() {
@@ -799,29 +827,32 @@ var DataForm = (function () {
                 var required = '';
                 
                 // No value?
-                if(!field)
+                if(!field) {
                     return;
+                }
                 
                 // Required input?
-                if($(this).find('required').size())
+                if($(this).find('required').size()) {
                     required = ' required=""';
+                }
                 
                 // Compatibility fix
-                if(!label)
+                if(!label) {
                     label = field;
+                }
                 
-                if(!type)
+                if(!type) {
                     type = '';
+                }
                 
                 // Generate some values
                 var input;
                 var hideThis = '';
                 
                 // Fixed field
-                if(type == 'fixed')
+                if(type == 'fixed') {
                     $(pathID).append('<div class="oneinstructions">' + value.htmlEnc() + '</div>');
-                
-                else {
+                } else {
                     // Hidden field
                     if(type == 'hidden') {
                         hideThis = ' style="display: none;"';
@@ -845,8 +876,9 @@ var DataForm = (function () {
                         var multiple = '';
                         
                         // Multiple options?
-                        if(type == 'list-multi')
+                        if(type == 'list-multi') {
                             multiple = ' multiple=""';
+                        }
                         
                         // Append the select field
                         input = '<select name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" class="dataform-i"' + required + multiple + '>';
@@ -858,14 +890,16 @@ var DataForm = (function () {
                             var nValue = $(this).find('value').text();
                             
                             // No label?
-                            if(!nLabel)
+                            if(!nLabel) {
                                 nLabel = nValue;
+                            }
                             
                             // If this is the selected value
-                            if(nValue == value)
+                            if(nValue == value) {
                                 selected = 'selected';
-                            else
+                            } else {
                                 selected = '';
+                            }
                             
                             input += '<option ' + selected + ' value="' + Common.encodeQuotes(nValue) + '">' + nLabel.htmlEnc() + '</option>';
                         });
@@ -874,8 +908,9 @@ var DataForm = (function () {
                     }
                     
                     // Text-multi field
-                    else if(type == 'text-multi')
+                    else if(type == 'text-multi') {
                         input = '<textarea rows="8" cols="60" data-type="' + Common.encodeQuotes(type) + '" name="' + Common.encodeQuotes(field) + '" class="dataform-i"' + required + '>' + value.htmlEnc() + '</textarea>';
+                    }
                     
                     // JID-multi field
                     else if(type == 'jid-multi') {
@@ -885,8 +920,9 @@ var DataForm = (function () {
                         $(this).find('value').each(function() {
                             var cValue = $(this).text();
                             
-                            if(!Utils.existArrayValue(xid_arr, cValue))
+                            if(!Utils.existArrayValue(xid_arr, cValue)) {
                                 xid_arr.push(cValue);
+                            }
                         });
                         
                         // Sort the array
@@ -898,8 +934,9 @@ var DataForm = (function () {
                         if(xid_arr.length) {
                             for(var i in xid_arr) {
                                 // Any pre-value
-                                if(xid_value)
+                                if(xid_value) {
                                     xid_value += ', ';
+                                }
                                 
                                 // Add the current XID
                                 xid_value += xid_arr[i];
@@ -915,12 +952,14 @@ var DataForm = (function () {
                         var iType = 'text';
                         
                         // Text-private field
-                        if(type == 'text-private')
+                        if(type == 'text-private') {
                             iType = 'password';
+                        }
                         
                         // JID-single field
-                        else if(type == 'jid-single')
+                        else if(type == 'jid-single') {
                             iType = 'email';
+                        }
                         
                         input = '<input name="' + Common.encodeQuotes(field) + '" data-type="' + Common.encodeQuotes(type) + '" type="' + iType + '" class="dataform-i" value="' + Common.encodeQuotes(value) + '"' + required + ' />';
                     }
@@ -1001,10 +1040,11 @@ var DataForm = (function () {
                 var type = $(handleXML).find('identity').attr('type');
                 var named = $(handleXML).find('identity').attr('name');
                 
-                if(named)
+                if(named) {
                     gName = named;
-                else
+                } else {
                     gName = '';
+                }
                 
                 var one, two, three, four, five;
                 

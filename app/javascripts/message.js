@@ -197,8 +197,9 @@ var Message = (function () {
                 var iRoom = $(node).find('x[xmlns="' + NS_XCONFERENCE + '"]').attr('jid');
                 
                 // Old invite method?
-                if(!iRoom)
+                if(!iRoom) {
                     iRoom = from;
+                }
                 
                 // We display the notification
                 Notification.create('invite_room', iFrom, [iRoom], body);
@@ -261,12 +262,14 @@ var Message = (function () {
                 Inbox.storeMessage(xid, subject, body, 'unread', messageID, messageDate);
                 
                 // Display the inbox message
-                if(Common.exists('#inbox'))
+                if(Common.exists('#inbox')) {
                     Inbox.displayMessage(xid, subject, body, 'unread', messageID, messageDate);
+                }
                 
                 // Check we have new messages (play a sound if any unread messages)
-                if(Inbox.checkMessages())
+                if(Inbox.checkMessages()) {
                     Audio.play('notification');
+                }
                 
                 // Send it to the server
                 Inbox.store();
@@ -325,8 +328,9 @@ var Message = (function () {
                                 tText = iActivity.find('text').text();
                                 
                                 // Avoid errors
-                                if(!fValue)
+                                if(!fValue) {
                                     fValue = '';
+                                }
                             }
                             
                             // Store the PEP event (and display it)
@@ -665,8 +669,9 @@ var Message = (function () {
             }
             
             // /part shortcut
-            else if(body.match(/^\/part\s*(.*)/) && (!Utils.isAnonymous() || (Utils.isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))))
+            else if(body.match(/^\/part\s*(.*)/) && (!Utils.isAnonymous() || (Utils.isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))))) {
                 Interface.quitThisChat(xid, hex_md5(xid), type);
+            }
             
             // /whois shortcut
             else if(body.match(/^\/whois(( (\S+))|($))/)) {

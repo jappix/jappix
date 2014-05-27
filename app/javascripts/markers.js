@@ -286,8 +286,9 @@ var Markers = (function () {
         try {
             target.focus(function() {
                 // Not needed
-                if(target.is(':disabled'))
+                if(target.is(':disabled')) {
                     return;
+                }
                 
                 // Send displayed message marker?
                 if(type == 'chat' && self.hasSupport(xid) === true) {

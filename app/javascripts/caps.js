@@ -478,7 +478,7 @@ var Caps = (function () {
     self.myDiscoInfos = function() {
 
         try {
-            var disco_base = self.disco_infos;
+            var disco_base = self.disco_infos.items;
 
             var disco_jingle = JSJaCJingle_disco();
             var disco_all = disco_base.concat(disco_jingle);
@@ -624,9 +624,9 @@ var Caps = (function () {
             // Paths
             var path_sel = $('#' + hash);
             var roster_sel = $('#roster .buddy.' + hash);
-            var message_area_sel = path.find('.message-area');
-            var style_sel = path.find('.chat-tools-style');
-            var file_sel = path.find('.chat-tools-file');
+            var message_area_sel = path_sel.find('.message-area');
+            var style_sel = path_sel.find('.chat-tools-style');
+            var file_sel = path_sel.find('.chat-tools-file');
             
             // Apply Features
             self._applyDiscoXHTMLIM(features, style_sel, message_area_sel);

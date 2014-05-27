@@ -34,16 +34,18 @@ var Links = (function () {
             var target;
             
             // Links style
-            if(!style)
+            if(!style) {
                 style = '';
-            else
+            } else {
                 style = ' style="' + style + '"';
+            }
             
             // Open in new tabs
-            if(mode != 'xhtml-im')
+            if(mode != 'xhtml-im') {
                 target = ' target="_blank"';
-            else
+            } else {
                 target = '';
+            }
             
             // XMPP address
             string = string.replace(/(\s|<br \/>|^)(([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\.\/_-]+))(,|\s|$)/gi, '$1<a href="xmpp:$2" target="_blank"' + style + '>$2</a>$5');
