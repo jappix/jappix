@@ -21,6 +21,28 @@ var Anonymous = (function () {
 
 
     /**
+     * Registers connection handlers
+     * @private
+     * @param {object} con
+     * @return {undefined}
+     */
+    self._registerHandlers = function(con) {
+
+        try {
+            con.registerHandler('message', Message.handle);
+            con.registerHandler('presence', Presence.handle);
+            con.registerHandler('iq', IQ.handle);
+            con.registerHandler('onconnect', self.connected);
+            con.registerHandler('onerror', Errors.handle);
+            con.registerHandler('ondisconnect', self.disconnected);
+        } catch(e) {
+            Console.error('Anonymous._registerHandlers', e);
+        }
+
+    };
+
+
+    /**
      * Connected to an anonymous session
      * @public
      * @return {undefined}
@@ -115,12 +137,7 @@ var Anonymous = (function () {
             }
             
             // And we handle everything that happen
-            con.registerHandler('message', Message.handle);
-            con.registerHandler('presence', Presence.handle);
-            con.registerHandler('iq', IQ.handle);
-            con.registerHandler('onconnect', self.connected);
-            con.registerHandler('onerror', Errors.handle);
-            con.registerHandler('ondisconnect', self.disconnected);
+            self._registerHandlers(con);
             
             // We set the anonymous connection parameters
             oArgs = {};
@@ -165,10 +182,13 @@ var Anonymous = (function () {
                 Interface.showGeneralWait();
                 
                 // Get the vars
-                if(XMPPLinks.links_var.r)
+                if(XMPPLinks.links_var.r) {
                     ANONYMOUS_ROOM = XMPPLinks.links_var.r;
-                if(XMPPLinks.links_var.n)
+                }
+                
+                if(XMPPLinks.links_var.n) {
                     ANONYMOUS_NICK = XMPPLinks.links_var.n;
+                }
                 
                 // Fire the login action
                 self.login(HOST_ANONYMOUS);

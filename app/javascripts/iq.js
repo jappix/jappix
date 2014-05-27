@@ -87,7 +87,7 @@ var IQ = (function () {
                 
                 iqQuery = iqResponse.setQuery(NS_VERSION);
                 
-                iqQuery.appendChild(iqResponse.buildNode('name', {'xmlns': NS_VERSION}, 'Jappix'));
+                iqQuery.appendChild(iqResponse.buildNode('name', {'xmlns': NS_VERSION}, Caps.disco_infos.identity.name));
                 iqQuery.appendChild(iqResponse.buildNode('version', {'xmlns': NS_VERSION}, JAPPIX_VERSION));
                 iqQuery.appendChild(iqResponse.buildNode('os', {'xmlns': NS_VERSION}, BrowserDetect.OS));
                 
@@ -154,9 +154,9 @@ var IQ = (function () {
                 
                 // We set the name of the client
                 iqQuery.appendChild(iqResponse.buildNode('identity', {
-                    'category': 'client',
-                    'type': 'web',
-                    'name': 'Jappix',
+                    'category': Caps.disco_infos.identity.category,
+                    'type': Caps.disco_infos.identity.type,
+                    'name': Caps.disco_infos.identity.name,
                     'xmlns': NS_DISCO_INFO
                 }));
                 

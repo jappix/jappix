@@ -34,38 +34,40 @@ var Chat = (function () {
 
         try {
             // No XID?
-            if(!xid)
+            if(!xid) {
                 return false;
+            }
             
             // We generate some stuffs
             var hash = hex_md5(xid);
             var name;
             
             // Gets the name of the user/title of the room
-            if(title)
+            if(title) {
                 name = title;
-            
-            else {
+            } else {
                 // Private groupchat chat
-                if(type == 'private')
+                if(type == 'private') {
                     name = Common.thisResource(xid);
+                }
                 
                 // XMPP-ID
-                else if(xid.indexOf('@') != -1)
+                else if(xid.indexOf('@') != -1) {
                     name = Name.getBuddy(xid);
+                }
                 
                 // Gateway
-                else
+                else {
                     name = xid;
+                }
             }
             
             // If the target div does not exist
             if(!Common.exists('#' + hash)) {
                 // We check the type of the chat to open
-                if((type == 'chat') || (type == 'private'))
+                if((type == 'chat') || (type == 'private')) {
                     self.create(hash, xid, name, type);
-                
-                else if(type == 'groupchat') {
+                } else if(type == 'groupchat') {
                     // Try to read the room stored configuration
                     if(!Utils.isAnonymous() && (!nickname || !password || !title)) {
                         // Catch the room data
@@ -127,10 +129,11 @@ var Chat = (function () {
                 specialStyle = '';
                 
                 // Is this a gateway?
-                if(xid.match(/%/))
+                if(xid.match(/%/)) {
                     specialDisabled = '';
-                else
+                } else {
                     specialDisabled = ' disabled=""';
+                }
             }
             
             // Chat (or other things?!) special code
@@ -164,8 +167,9 @@ var Chat = (function () {
                             '<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
                          '</div>';
             
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9))
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                 specialStylePicker = '';
+            }
             
             // Append the chat HTML code
             $('#page-engine').append(
@@ -258,8 +262,9 @@ var Chat = (function () {
             if(type == 'groupchat') {
                 specialClass = ' groupchat-default';
                 
-                if(Utils.isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat')))
+                if(Utils.isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))) {
                     show_close = false;
+                }
             }
             
             // Generate the HTML code
@@ -269,8 +274,9 @@ var Chat = (function () {
                     '<div class="name">' + nick.htmlEnc() + '</div>';
             
             // Show the close button if not MUC and not anonymous
-            if(show_close)
+            if(show_close) {
                 html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return Interface.quitThisChat(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(type) + '\');">x</div>';
+            }
             
             // Close the HTML
             html += '</div>';
@@ -390,10 +396,13 @@ var Chat = (function () {
                         });
                         
                         // Regenerate avatars
-                        if(Common.exists('#' + hash + ' .one-group.' + my_hash + ' .avatar-container'))
+                        if(Common.exists('#' + hash + ' .one-group.' + my_hash + ' .avatar-container')) {
                             Avatar.get(Common.getXID(), 'cache', 'true', 'forget');
-                        if(Common.exists('#' + hash + ' .one-group.' + friend_hash + ' .avatar-container'))
+                        }
+                        
+                        if(Common.exists('#' + hash + ' .one-group.' + friend_hash + ' .avatar-container')) {
                             Avatar.get(xid, 'cache', 'true', 'forget');
+                        }
                     }
                 }
 

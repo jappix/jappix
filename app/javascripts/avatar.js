@@ -39,8 +39,9 @@ var Avatar = (function () {
 
         try {
             // No need to get the avatar, another process is yet running
-            if(Utils.existArrayValue(self.pending, xid))
+            if(Utils.existArrayValue(self.pending, xid)) {
                 return false;
+            }
             
             // Initialize: XML data is in one SQL entry, because some browser are sloooow with SQL requests
             var xml = Common.XMLFromString(
@@ -49,8 +50,9 @@ var Avatar = (function () {
             var forced = false;
             
             // Retrieving forced?
-            if($(xml).find('forced').text() == 'true')
+            if($(xml).find('forced').text() == 'true') {
                 forced = true;
+            }
             
             // No avatar in presence
             if(!photo && !forced && enabled == 'true') {
@@ -72,8 +74,9 @@ var Avatar = (function () {
                 var updated = false;
 
                 // Process the checksum of the avatar
-                if(checksum == photo || photo == 'forget' || forced)
+                if(checksum == photo || photo == 'forget' || forced) {
                     updated = true;
+                }
 
                 // If the avatar is yet stored and a new retrieving is not needed
                 if(mode == 'cache' && type && binval && checksum && updated) {
@@ -173,12 +176,11 @@ var Avatar = (function () {
                 // Enough data
                 else {
                     // No type?
-                    if(!aType)
+                    if(!aType) {
                         aType = 'image/png';
-                    
-                    // Process the checksum
-                    else
+                    } else {
                         aChecksum = hex_sha1(Base64.decode(aBinval));
+                    }
                 }
                 
                 // We display the user avatar
@@ -200,17 +202,19 @@ var Avatar = (function () {
                 // Define a proper checksum
                 var pChecksum = aChecksum;
                 
-                if(pChecksum == 'none')
+                if(pChecksum == 'none') {
                     pChecksum = '';
+                }
                 
                 // Update our temp. checksum
                 DataStore.setDB(Connection.desktop_hash, 'checksum', 1, pChecksum);
                 
                 // Send the stanza
-                if(!Presence.first_sent)
+                if(!Presence.first_sent) {
                     Storage.get(NS_OPTIONS);
-                else if(DataStore.hasPersistent())
+                } else if(DataStore.hasPersistent()) {
                     Presence.sendActions(pChecksum);
+                }
             }
         } catch(e) {
             Console.error('Avatar.handle', e);
@@ -258,10 +262,11 @@ var Avatar = (function () {
             var code = '<img class="avatar" src="';
             
             // If the avatar exists
-            if((type != 'none') && (binval != 'none'))
+            if((type != 'none') && (binval != 'none')) {
                 code += 'data:' + type + ';base64,' + binval;
-            else
+            } else {
                 code += './images/others/default-avatar.png';
+            }
             
             code += '" alt="" />';
             

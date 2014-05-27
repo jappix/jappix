@@ -125,12 +125,14 @@ var Common = (function () {
 
             if(xid && (xid.indexOf('@') == -1)) {
                 // Groupchat
-                if(type == 'groupchat')
+                if(type == 'groupchat') {
                     return xid + '@' + HOST_MUC;
+                }
                 
                 // One-to-one chat
-                if(xid.indexOf('.') == -1)
+                if(xid.indexOf('.') == -1) {
                     return xid + '@' + HOST_MAIN;
+                }
                 
                 // It might be a gateway?
                 return xid;
@@ -190,14 +192,16 @@ var Common = (function () {
     self.strAfterLast = function(given_char, str) {
 
         try {
-            if(!given_char || !str)
+            if(!given_char || !str) {
                 return '';
+            }
             
             var char_index = str.lastIndexOf(given_char);
             var str_return = str;
             
-            if(char_index >= 0)
+            if(char_index >= 0) {
                 str_return = str.substr(char_index + 1);
+            }
             
             return str_return;
         } catch(e) {
@@ -658,12 +662,14 @@ var Common = (function () {
 
         try {
             // Negative number (without first 0)
-            if(i > -10 && i < 0)
+            if(i > -10 && i < 0) {
                 return '-0' + (i * -1);
+            }
             
             // Positive number (without first 0)
-            if(i < 10 && i >= 0)
+            if(i < 10 && i >= 0) {
                 return '0' + i;
+            }
             
             // All is okay
             return i;
@@ -683,23 +689,31 @@ var Common = (function () {
      */
     self.escapeRegex = function(query) {
 
-        if (query instanceof Array) {
-            var result = new Array(query.length);
-            for(i=0; i < query.length; i++) {
+        var result = [];
+
+        try {
+            if(query instanceof Array) {
+                result = [query.length];
+
+                for(i = 0; i < query.length; i++) {
+                    try {
+                        result[i] = Common.escapeRegex(query[i]);
+                    } catch(e) {
+                        Console.error('Common.escapeRegex', e);
+                        result[i] = null;
+                    }
+                }
+            } else {
                 try {
-                    result[i] = Common.escapeRegex(query[i]);
+                    result = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
                 } catch(e) {
-                    Console.error('Common.escapeRegex', e);
-                    result[i] = null;
+                    Console.error('Common.escapeRegex[inner]', e);
                 }
             }
+        } catch(e) {
+            Console.error('Common.escapeRegex', e);
+        } finally {
             return result;
-        } else {
-            try {
-                return query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-            } catch(e) {
-                Console.error('Common.escapeRegex', e);
-            }
         }
 
     };

@@ -20,6 +20,437 @@ var Caps = (function () {
     var self = {};
 
 
+    /* Constants */
+    self.disco_infos = {
+        'identity': {
+            'category': 'client',
+            'type': 'web',
+            'name': 'Jappix'
+        },
+
+        'items': [
+            NS_MUC,
+            NS_MUC_USER,
+            NS_MUC_ADMIN,
+            NS_MUC_OWNER,
+            NS_MUC_CONFIG,
+            NS_DISCO_INFO,
+            NS_DISCO_ITEMS,
+            NS_PUBSUB_RI,
+            NS_BOSH,
+            NS_CAPS,
+            NS_MOOD,
+            NS_ACTIVITY,
+            NS_TUNE,
+            NS_GEOLOC,
+            NS_NICK,
+            NS_URN_MBLOG,
+            NS_URN_INBOX,
+            NS_MOOD + NS_NOTIFY,
+            NS_ACTIVITY + NS_NOTIFY,
+            NS_TUNE + NS_NOTIFY,
+            NS_GEOLOC + NS_NOTIFY,
+            NS_URN_MBLOG + NS_NOTIFY,
+            NS_URN_INBOX + NS_NOTIFY,
+            NS_URN_DELAY,
+            NS_ROSTER,
+            NS_ROSTERX,
+            NS_HTTP_AUTH,
+            NS_CHATSTATES,
+            NS_XHTML_IM,
+            NS_URN_MAM,
+            NS_IPV6,
+            NS_LAST,
+            NS_PRIVATE,
+            NS_REGISTER,
+            NS_SEARCH,
+            NS_COMMANDS,
+            NS_VERSION,
+            NS_XDATA,
+            NS_VCARD,
+            NS_IETF_VCARD4,
+            NS_URN_ADATA,
+            NS_URN_AMETA,
+            NS_URN_TIME,
+            NS_URN_PING,
+            NS_URN_RECEIPTS,
+            NS_PRIVACY,
+            NS_IQOOB,
+            NS_XOOB,
+            NS_URN_CARBONS,
+            NS_URN_CORRECT,
+            NS_URN_MARKERS,
+            NS_URN_IDLE,
+            NS_URN_ATTENTION,
+            NS_URN_REACH,
+            NS_URN_HINTS
+        ]
+    };
+
+
+    /**
+     * Parse identities from disco infos query response
+     * @private
+     * @param {object} query
+     * @return {object}
+     */
+    self._parseDiscoIdentities = function(query) {
+
+        var identities = [];
+
+        try {
+            var cur_category, cur_type, cur_lang, cur_name;
+
+            $(query).find('identity').each(function() {
+                cur_category = $(this).attr('category') || '';
+                cur_type = $(this).attr('type') || '';
+                cur_lang = $(this).attr('xml:lang') || '';
+                cur_name = $(this).attr('name') || '';
+                
+                identities.push(cur_category + '/' + cur_type + '/' + cur_lang + '/' + cur_name);
+            });
+        } catch(e) {
+            Console.error('Caps._parseDiscoIdentities', e);
+        } finally {
+            return identities;
+        }
+
+    };
+
+
+    /**
+     * Parse features from disco infos query response
+     * @private
+     * @param {object} query
+     * @return {object}
+     */
+    self._parseDiscoFeatures = function(query) {
+
+        var features = [];
+
+        try {
+            var cur_var;
+
+            $(query).find('feature').each(function() {
+                cur_var = $(this).attr('var');
+                
+                // Add the current value to the array
+                if(cur_var) {
+                    features.push(cur_var);
+                }
+            });
+        } catch(e) {
+            Console.error('Caps._parseDiscoFatures', e);
+        } finally {
+            return features;
+        }
+
+    };
+
+
+    /**
+     * Parse data form from disco infos query response
+     * @private
+     * @param {object} query
+     * @return {object}
+     */
+    self._parseDiscoDataForms = function(query) {
+
+        var data_forms = [];
+
+        try {
+            var cur_string, cur_sort_var,
+                cur_text, cur_var, cur_sort_val;
+
+            $(query).find('x[xmlns="' + NS_XDATA + '"]').each(function() {
+                // Initialize some stuffs
+                cur_string = '';
+                cur_sort_var = [];
+                
+                // Add the form type field
+                $(this).find('field[var="FORM_TYPE"] value').each(function() {
+                    cur_text = $(this).text();
+                    
+                    if(cur_text) {
+                        cur_string += cur_text + '<';
+                    }
+                });
+                
+                // Add the var attributes into an array
+                $(this).find('field:not([var="FORM_TYPE"])').each(function() {
+                    cur_var = $(this).attr('var');
+                    
+                    if(cur_var) {
+                        cur_sort_var.push(cur_var);
+                    }
+                });
+                
+                // Sort the var attributes
+                cur_sort_var = cur_sort_var.sort();
+                
+                // Loop this sorted var attributes
+                $.each(cur_sort_var, function(i) {
+                    // Initialize the value sorting
+                    cur_sort_val = [];
+                    
+                    // Append it to the string
+                    cur_string += cur_sort_var[i] + '<';
+                    
+                    // Add each value to the array
+                    $(this).find('field[var=' + cur_sort_var[i] + '] value').each(function() {
+                        cur_sort_val.push($(this).text());
+                    });
+                    
+                    // Sort the values
+                    cur_sort_val = cur_sort_val.sort();
+                    
+                    // Append the values to the string
+                    for(var j in cur_sort_val) {
+                        cur_string += cur_sort_val[j] + '<';
+                    }
+                });
+                
+                // Any string?
+                if(cur_string) {
+                    // Remove the undesired double '<' from the string
+                    if(cur_string.match(/(.+)(<)+$/)) {
+                        cur_string = cur_string.substring(0, cur_string.length - 1);
+                    }
+                    
+                    // Add the current string to the array
+                    data_forms.push(cur_string);
+                }
+            });
+        } catch(e) {
+            Console.error('Caps._parseDiscoDataForms', e);
+        } finally {
+            return data_forms;
+        }
+
+    };
+
+
+    /**
+     * Apply XHTML-IM features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} style_sel
+     * @param {object} message_area_sel
+     * @return {undefined}
+     */
+    self._applyDiscoXHTMLIM = function(features, style_sel, message_area_sel) {
+
+        try {
+            // Apply
+            if(NS_XHTML_IM in features) {
+                style_sel.show();
+            } else {
+                // Remove the tooltip elements
+                style_sel.hide();
+                style_sel.find('.bubble-style').remove();
+                
+                // Reset the markers
+                message_area_sel.removeAttr('style')
+                                .removeAttr('data-font')
+                                .removeAttr('data-fontsize')
+                                .removeAttr('data-color')
+                                .removeAttr('data-bold')
+                                .removeAttr('data-italic')
+                                .removeAttr('data-underline');
+            }
+
+        } catch(e) {
+            Console.error('Caps._applyDiscoXHTMLIM', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Jingle features from disco infos
+     * @private
+     * @param {object} path_sel
+     * @param {object} roster_sel
+     * @return {undefined}
+     */
+    self._applyDiscoJingle = function(path_sel, roster_sel) {
+
+        try {
+            // Selectors
+            var roster_jingle_sel = roster_sel.find('.buddy-infos .call-jingle');
+            var jingle_audio = path_sel.find('.tools-jingle-audio');
+            var roster_jingle_audio = roster_jingle_sel.find('a.audio');
+            var jingle_video = path_sel.find('.tools-jingle-video');
+            var roster_jingle_video = roster_jingle_sel.find('a.video');
+            var roster_jingle_separator = roster_jingle_sel.find('span.separator');
+
+            // Apply
+            var jingle_local_supported = JSJAC_JINGLE_AVAILABLE;
+            var jingle_audio_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_AUDIO);
+            var jingle_video_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_VIDEO);
+
+            if(jingle_audio_xid && jingle_local_supported) {
+                jingle_audio.show();
+                roster_jingle_audio.show();
+            } else {
+                jingle_audio.hide();
+                roster_jingle_audio.hide();
+            }
+
+            if(jingle_video_xid && jingle_local_supported) {
+                jingle_video.show();
+                roster_jingle_video.show();
+            } else {
+                jingle_video.hide();
+                roster_jingle_video.hide();
+            }
+
+            if(jingle_audio_xid && jingle_video_xid && jingle_local_supported) {
+                roster_jingle_separator.show();
+            } else {
+                roster_jingle_separator.hide();
+            }
+
+            if((jingle_audio_xid || jingle_video_xid) && jingle_local_supported) {
+                roster_jingle_sel.show();
+            } else {
+                roster_jingle_sel.hide();
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoJingle', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Out of Band Data features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} file_sel
+     * @return {undefined}
+     */
+    self._applyDiscoOOB = function(features, file_sel) {
+
+        try {
+            // Apply
+            var iq_oob_xid = self.getFeatureResource(xid, NS_IQOOB);
+
+            if(iq_oob_xid || NS_XOOB in features) {
+                file_sel.show();
+                
+                // Set a marker
+                file_sel.attr(
+                    'data-oob',
+                    iq_oob_xid ? 'iq' : 'x'
+                );
+            } else {
+                // Remove the tooltip elements
+                file_sel.hide();
+                file_sel.find('.bubble-style').remove();
+                
+                // Reset the marker
+                file_sel.removeAttr('data-oob');
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoOOB', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Receipts features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} message_area_sel
+     * @return {undefined}
+     */
+    self._applyDiscoReceipts = function(features, message_area_sel) {
+
+        try {
+            // Apply
+            if(NS_URN_RECEIPTS in features) {
+                message_area_sel.attr('data-receipts', 'true');
+            } else {
+                message_area_sel.removeAttr('data-receipts');
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoReceipts', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Last Message Correction features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} path_sel
+     * @return {undefined}
+     */
+    self._applyDiscoCorrection = function(features, path_sel) {
+
+        try {
+            // Apply
+            if(NS_URN_CORRECT in features) {
+                path_sel.attr('data-correction', 'true');
+            } else {
+                path_sel.removeAttr('data-correction');
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoCorrection', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Chat Markers features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} path_sel
+     * @return {undefined}
+     */
+    self._applyDiscoMarkers = function(features, path_sel) {
+
+        try {
+            // Apply
+            if(NS_URN_MARKERS in features) {
+                path_sel.attr('data-markers', 'true');
+            } else {
+                path_sel.removeAttr('data-markers');
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoMarkers', e);
+        }
+
+    };
+
+
+    /**
+     * Apply Attention features from disco infos
+     * @private
+     * @param {object} features
+     * @param {object} path_sel
+     * @return {undefined}
+     */
+    self._applyDiscoAttention = function(features, path_sel) {
+
+        try {
+            // Apply
+            if(NS_URN_ATTENTION in features) {
+                path_sel.attr('data-attention', 'true');
+            } else {
+                path_sel.removeAttr('data-attention');
+            }
+        } catch(e) {
+            Console.error('Caps._applyDiscoAttention', e);
+        }
+
+    };
+
+
     /**
      * Reads a stored Caps
      * @public
@@ -47,63 +478,7 @@ var Caps = (function () {
     self.myDiscoInfos = function() {
 
         try {
-            var disco_base = [
-                NS_MUC,
-                NS_MUC_USER,
-                NS_MUC_ADMIN,
-                NS_MUC_OWNER,
-                NS_MUC_CONFIG,
-                NS_DISCO_INFO,
-                NS_DISCO_ITEMS,
-                NS_PUBSUB_RI,
-                NS_BOSH,
-                NS_CAPS,
-                NS_MOOD,
-                NS_ACTIVITY,
-                NS_TUNE,
-                NS_GEOLOC,
-                NS_NICK,
-                NS_URN_MBLOG,
-                NS_URN_INBOX,
-                NS_MOOD + NS_NOTIFY,
-                NS_ACTIVITY + NS_NOTIFY,
-                NS_TUNE + NS_NOTIFY,
-                NS_GEOLOC + NS_NOTIFY,
-                NS_URN_MBLOG + NS_NOTIFY,
-                NS_URN_INBOX + NS_NOTIFY,
-                NS_URN_DELAY,
-                NS_ROSTER,
-                NS_ROSTERX,
-                NS_HTTP_AUTH,
-                NS_CHATSTATES,
-                NS_XHTML_IM,
-                NS_URN_MAM,
-                NS_IPV6,
-                NS_LAST,
-                NS_PRIVATE,
-                NS_REGISTER,
-                NS_SEARCH,
-                NS_COMMANDS,
-                NS_VERSION,
-                NS_XDATA,
-                NS_VCARD,
-                NS_IETF_VCARD4,
-                NS_URN_ADATA,
-                NS_URN_AMETA,
-                NS_URN_TIME,
-                NS_URN_PING,
-                NS_URN_RECEIPTS,
-                NS_PRIVACY,
-                NS_IQOOB,
-                NS_XOOB,
-                NS_URN_CARBONS,
-                NS_URN_CORRECT,
-                NS_URN_MARKERS,
-                NS_URN_IDLE,
-                NS_URN_ATTENTION,
-                NS_URN_REACH,
-                NS_URN_HINTS
-            ];
+            var disco_base = self.disco_infos;
 
             var disco_jingle = JSJaCJingle_disco();
             var disco_all = disco_base.concat(disco_jingle);
@@ -175,107 +550,17 @@ var Caps = (function () {
     self.handleDiscoInfos = function(iq) {
 
         try {
-            if(!iq || (iq.getType() == 'error'))
+            if(!iq || (iq.getType() == 'error')) {
                 return;
+            }
             
-            // IQ received, get some values
             var from = Common.fullXID(Common.getStanzaFrom(iq));
             var query = iq.getQuery();
             
-            // Generate the CAPS-processing values
-            var identities = [];
-            var features = [];
-            var data_forms = [];
-            
-            // Identity values
-            $(query).find('identity').each(function() {
-                var pCategory = $(this).attr('category');
-                var pType = $(this).attr('type');
-                var pLang = $(this).attr('xml:lang');
-                var pName = $(this).attr('name');
-                
-                if(!pCategory)
-                    pCategory = '';
-                if(!pType)
-                    pType = '';
-                if(!pLang)
-                    pLang = '';
-                if(!pName)
-                    pName = '';
-                
-                identities.push(pCategory + '/' + pType + '/' + pLang + '/' + pName);
-            });
-            
-            // Feature values
-            $(query).find('feature').each(function() {
-                var pVar = $(this).attr('var');
-                
-                // Add the current value to the array
-                if(pVar) {
-                    features.push(pVar);
-                }
-            });
-            
-            // Data-form values
-            $(query).find('x[xmlns="' + NS_XDATA + '"]').each(function() {
-                // Initialize some stuffs
-                var pString = '';
-                var sortVar = [];
-                
-                // Add the form type field
-                $(this).find('field[var="FORM_TYPE"] value').each(function() {
-                    var cText = $(this).text();
-                    
-                    if(cText) {
-                        pString += cText + '<';
-                    }
-                });
-                
-                // Add the var attributes into an array
-                $(this).find('field:not([var="FORM_TYPE"])').each(function() {
-                    var cVar = $(this).attr('var');
-                    
-                    if(cVar) {
-                        sortVar.push(cVar);
-                    }
-                });
-                
-                // Sort the var attributes
-                sortVar = sortVar.sort();
-                
-                // Loop this sorted var attributes
-                $.each(sortVar, function(i) {
-                    // Initialize the value sorting
-                    var sortVal = [];
-                    
-                    // Append it to the string
-                    pString += sortVar[i] + '<';
-                    
-                    // Add each value to the array
-                    $(this).find('field[var=' + sortVar[i] + '] value').each(function() {
-                        sortVal.push($(this).text());
-                    });
-                    
-                    // Sort the values
-                    sortVal = sortVal.sort();
-                    
-                    // Append the values to the string
-                    for(var j in sortVal) {
-                        pString += sortVal[j] + '<';
-                    }
-                });
-                
-                // Any string?
-                if(pString) {
-                    // Remove the undesired double '<' from the string
-                    if(pString.match(/(.+)(<)+$/)) {
-                        pString = pString.substring(0, pString.length - 1);
-                    }
-                    
-                    // Add the current string to the array
-                    data_forms.push(pString);
-                }
-            });
+            // Parse values
+            var identities = self._parseDiscoIdentities(query);
+            var features = self._parseDiscoFeatures(query);
+            var data_forms = self._parseDiscoDataForms(query);
             
             // Process the CAPS
             var caps = self.process(identities, features, data_forms);
@@ -337,117 +622,20 @@ var Caps = (function () {
             });
             
             // Paths
-            var path = $('#' + hash);
-            var roster_path = $('#roster .buddy.' + hash);
-            var roster_jingle_path = roster_path.find('.buddy-infos .call-jingle');
-
-            var message_area = path.find('.message-area');
-            var style = path.find('.chat-tools-style');
-            var jingle_audio = path.find('.tools-jingle-audio');
-            var roster_jingle_audio = roster_jingle_path.find('a.audio');
-            var jingle_video = path.find('.tools-jingle-video');
-            var roster_jingle_video = roster_jingle_path.find('a.video');
-            var roster_jingle_separator = roster_jingle_path.find('span.separator');
-            var file = path.find('.chat-tools-file');
+            var path_sel = $('#' + hash);
+            var roster_sel = $('#roster .buddy.' + hash);
+            var message_area_sel = path.find('.message-area');
+            var style_sel = path.find('.chat-tools-style');
+            var file_sel = path.find('.chat-tools-file');
             
-            // Apply xHTML-IM
-            if(NS_XHTML_IM in features) {
-                style.show();
-            } else {
-                // Remove the tooltip elements
-                style.hide();
-                style.find('.bubble-style').remove();
-                
-                // Reset the markers
-                message_area.removeAttr('style')
-                            .removeAttr('data-font')
-                            .removeAttr('data-fontsize')
-                            .removeAttr('data-color')
-                            .removeAttr('data-bold')
-                            .removeAttr('data-italic')
-                            .removeAttr('data-underline');
-            }
-
-            // Apply Jingle
-            var jingle_local_supported = JSJAC_JINGLE_AVAILABLE;
-            var jingle_audio_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_AUDIO);
-            var jingle_video_xid = self.getFeatureResource(xid, NS_JINGLE_APPS_RTP_VIDEO);
-
-            if(jingle_audio_xid && jingle_local_supported) {
-                jingle_audio.show();
-                roster_jingle_audio.show();
-            } else {
-                jingle_audio.hide();
-                roster_jingle_audio.hide();
-            }
-
-            if(jingle_video_xid && jingle_local_supported) {
-                jingle_video.show();
-                roster_jingle_video.show();
-            } else {
-                jingle_video.hide();
-                roster_jingle_video.hide();
-            }
-
-            if(jingle_audio_xid && jingle_video_xid && jingle_local_supported) {
-                roster_jingle_separator.show();
-            } else {
-                roster_jingle_separator.hide();
-            }
-
-            if((jingle_audio_xid || jingle_video_xid) && jingle_local_supported) {
-                roster_jingle_path.show();
-            } else {
-                roster_jingle_path.hide();
-            }
-            
-            // Apply Out of Band Data
-            var iq_oob_xid = self.getFeatureResource(xid, NS_IQOOB);
-
-            if(iq_oob_xid || NS_XOOB in features) {
-                file.show();
-                
-                // Set a marker
-                file.attr(
-                    'data-oob',
-                    iq_oob_xid ? 'iq' : 'x'
-                );
-            } else {
-                // Remove the tooltip elements
-                file.hide();
-                file.find('.bubble-style').remove();
-                
-                // Reset the marker
-                file.removeAttr('data-oob');
-            }
-            
-            // Apply receipts
-            if(NS_URN_RECEIPTS in features) {
-                message_area.attr('data-receipts', 'true');
-            } else {
-                message_area.removeAttr('data-receipts');
-            }
-
-            // Apply Last Message Correction
-            if(NS_URN_CORRECT in features) {
-                path.attr('data-correction', 'true');
-            } else {
-                path.removeAttr('data-correction');
-            }
-
-            // Apply Chat Markers
-            if(NS_URN_MARKERS in features) {
-                path.attr('data-markers', 'true');
-            } else {
-                path.removeAttr('data-markers');
-            }
-
-            // Apply Attention
-            if(NS_URN_ATTENTION in features) {
-                path.attr('data-attention', 'true');
-            } else {
-                path.removeAttr('data-attention');
-            }
+            // Apply Features
+            self._applyDiscoXHTMLIM(features, style_sel, message_area_sel);
+            self._applyDiscoJingle(path_sel, roster_sel);
+            self._applyDiscoOOB(features, file_sel);
+            self._applyDiscoReceipts(features, message_area_sel);
+            self._applyDiscoCorrection(features, path_sel);
+            self._applyDiscoMarkers(features, path_sel);
+            self._applyDiscoAttention(features, path_sel);
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);
         }
@@ -458,39 +646,39 @@ var Caps = (function () {
     /**
      * Generates the CAPS hash
      * @public
-     * @param {object} cIdentities
-     * @param {object} cFeatures
-     * @param {object} cDataForms
+     * @param {object} identities
+     * @param {object} features
+     * @param {object} dataforms
      * @return {string}
      */
-    self.process = function(cIdentities, cFeatures, cDataForms) {
+    self.process = function(identities, features, dataforms) {
 
         try {
             // Initialize
-            var cString = '';
+            var caps_str = '';
             
             // Sort the arrays
-            cIdentities = cIdentities.sort();
-            cFeatures = cFeatures.sort();
-            cDataForms = cDataForms.sort();
+            identities = identities.sort();
+            features = features.sort();
+            dataforms = dataforms.sort();
             
             // Process the sorted identity string
-            for(var a in cIdentities) {
-                cString += cIdentities[a] + '<';
+            for(var a in identities) {
+                caps_str += identities[a] + '<';
             }
             
             // Process the sorted feature string
-            for(var b in cFeatures) {
-                cString += cFeatures[b] + '<';
+            for(var b in features) {
+                caps_str += features[b] + '<';
             }
             
             // Process the sorted data-form string
-            for(var c in cDataForms) {
-                cString += cDataForms[c] + '<';
+            for(var c in dataforms) {
+                caps_str += dataforms[c] + '<';
             }
             
             // Process the SHA-1 hash
-            var cHash = b64_sha1(cString);
+            var cHash = b64_sha1(caps_str);
             
             return cHash;
         } catch(e) {
@@ -509,7 +697,12 @@ var Caps = (function () {
 
         try {
             return self.process(
-                ['client/web//Jappix'],
+                [
+                    self.disco_infos.identity.category + '/' + 
+                    self.disco_infos.identity.type     + '//' + 
+                    self.disco_infos.identity.name
+                ],
+
                 self.myDiscoInfos(),
                 []
             );

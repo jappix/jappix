@@ -147,10 +147,11 @@ var ChatState = (function () {
             // Define the selector
             var selector;
             
-            if(type == 'groupchat')
+            if(type == 'groupchat') {
                 selector = $('#page-engine .page-engine-chan .user.' + hash);
-            else
+            } else {
                 selector = $('#page-switch .' + hash + ' .name');
+            }
             
             // Reset!
             selector.removeClass('active composing paused inactive gone');
@@ -202,30 +203,36 @@ var ChatState = (function () {
             
             target.focus(function() {
                 // Not needed
-                if(target.is(':disabled'))
+                if(target.is(':disabled')) {
                     return;
+                }
                 
                 // Something was written, user started writing again
-                if($(this).val())
+                if($(this).val()) {
                     self.send('composing', xid, hash);
+                }
 
                 // Chat only: Nothing in the input, user is active
-                else if(type == 'chat')
+                else if(type == 'chat') {
                     self.send('active', xid, hash);
+                }
             });
             
             target.blur(function() {
                 // Not needed
-                if(target.is(':disabled'))
+                if(target.is(':disabled')) {
                     return;
+                }
                 
                 // Something was written, user paused
-                if($(this).val())
+                if($(this).val()) {
                     self.send('paused', xid, hash);
+                }
 
                 // Chat only: Nothing in the input, user is inactive
-                else if(type == 'chat')
+                else if(type == 'chat') {
                     self.send('inactive', xid, hash);
+                }
             });
         } catch(e) {
             Console.error('ChatState.events', e);
