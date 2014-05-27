@@ -78,26 +78,27 @@ var Storage = (function () {
                 DataStore.setDB(Connection.desktop_hash, 'options', type, value);
                 
                 // If this is the buddy list show status
-                if((type == 'roster-showall') && (value == '1'))
+                if((type == 'roster-showall') && (value == '1')) {
                     Interface.showAllBuddies('storage');
+                }
             });
             
             // Parse the inbox xml
             inbox.find('message').each(function() {
                 Inbox.storeMessage(
-                          $(this).attr('from'),
-                          $(this).attr('subject'),
-                          $(this).text(),
-                          $(this).attr('status'),
-                          $(this).attr('id'),
-                          $(this).attr('date'),
-                          [
-                           $(this).attr('file_title'),
-                           $(this).attr('file_href'),
-                           $(this).attr('file_type'),
-                           $(this).attr('file_length')
-                          ]
-                         );
+                    $(this).attr('from'),
+                    $(this).attr('subject'),
+                    $(this).text(),
+                    $(this).attr('status'),
+                    $(this).attr('id'),
+                    $(this).attr('date'),
+                    [
+                        $(this).attr('file_title'),
+                        $(this).attr('file_href'),
+                        $(this).attr('file_type'),
+                        $(this).attr('file_length')
+                    ]
+                );
             });
             
             // Parse the bookmarks xml
@@ -116,8 +117,9 @@ var Storage = (function () {
                 Favorites.display(xid, name, nick, autojoin, password);
                 
                 // Join the chat if autojoin is enabled
-                if(autojoin == 'true')
+                if(autojoin == 'true') {
                     Chat.checkCreate(xid, 'groupchat', nick, password, name);
+                }
             });
             
             // Parse the roster notes xml

@@ -274,7 +274,7 @@ var Microblog = (function () {
                         }
                         
                         // Any thumbnail?
-                        if(tFThumb[f]) {‹
+                        if(tFThumb[f]) {
                             html += '<a class="thumb" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" title="' + Common.encodeQuotes(tFName[f]) + '" data-node="' + Common.encodeQuotes(tFNComments[f]) + '"><img src="' + Common.encodeQuotes(tFThumb[f]) + '" alt="" /></a>';
                         } else {
                             html += '<a class="' + Common.encodeQuotes(tFCat) + ' link talk-images" ' + tFEClick + 'href="' + Common.encodeQuotes(tFURL[f]) + '" target="_blank" data-node="' + Common.encodeQuotes(tFNComments[f]) + '">' + tFName[f].htmlEnc() + '</a>';
@@ -1843,15 +1843,18 @@ var Microblog = (function () {
     self.instance = function() {
 
         try {
+            var microblog_body_sel = $('#channel .top input[name="microblog_body"]');
+
             // Keyboard event
-            $('#channel .top input[name="microblog_body"]').keyup(function(e) {
+            microblog_body_sel.keyup(function(e) {
                 // Enter pressed: send the microblog notice
-                if((e.keyCode == 13) && !Common.exists('#attach .wait'))
+                if((e.keyCode == 13) && !Common.exists('#attach .wait')) {
                     return self.send();
-            })
+                }
+            });
             
             // Placeholder
-            .placeholder();
+            microblog_body_sel.placeholder();
             
             // Microblog file attacher
             self.attach();

@@ -215,16 +215,18 @@ var Privacy = (function () {
             // Any block list?
             if($(iqQuery).find('list[name="block"]').size()) {
                 // Not the default one?
-                if(!$(iqQuery).find('default[name="block"]').size())
+                if(!$(iqQuery).find('default[name="block"]').size()) {
                     self.change('block', 'default');
-                else
+                } else {
                     DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'default', 'block');
+                }
                 
                 // Not the active one?
-                if(!$(iqQuery).find('active[name="block"]').size())
+                if(!$(iqQuery).find('active[name="block"]').size()) {
                     self.change('block', 'active');
-                else
+                } else {
                     DataStore.setDB(Connection.desktop_hash, 'privacy-marker', 'active', 'block');
+                }
                 
                 // Get the block list rules
                 self.get('block');
@@ -381,10 +383,11 @@ var Privacy = (function () {
             }
             
             con.send(iq, function(iq) {
-                if(iq.getType() == 'result')
+                if(iq.getType() == 'result') {
                     Console.log('Sent privacy list.');
-                else
+                } else {
                     Console.error('Error sending privacy list.');
+                }
             });
             
             Console.log('Sending privacy list: ' + list);
@@ -455,8 +458,9 @@ var Privacy = (function () {
                     if(!c_order)
                         c_order = '';
                     
-                    if(!isNaN(c_order) && parseInt(c_order) > highest_order)
+                    if(!isNaN(c_order) && parseInt(c_order) > highest_order) {
                         highest_order = parseInt(c_order);
+                    }
 
                     type.push(c_type);
                     value.push(c_value);
@@ -464,25 +468,29 @@ var Privacy = (function () {
                     order.push(c_order);
                     
                     // Child elements
-                    if($(this).find('presence-in').size())
+                    if($(this).find('presence-in').size()) {
                         presence_in.push(true);
-                    else
+                    } else {
                         presence_in.push(false);
+                    }
                     
-                    if($(this).find('presence-out').size())
+                    if($(this).find('presence-out').size()) {
                         presence_out.push(true);
-                    else
+                    } else {
                         presence_out.push(false);
+                    }
                     
-                    if($(this).find('message').size())
+                    if($(this).find('message').size()) {
                         msg.push(true);
-                    else
+                    } else {
                         msg.push(false);
+                    }
                     
-                    if($(this).find('iq').size())
+                    if($(this).find('iq').size()) {
                         iq_p.push(true);
-                    else
+                    } else {
                         iq_p.push(false);
+                    }
                 }
             });
 
@@ -508,8 +516,9 @@ var Privacy = (function () {
 
         try {
             // Yet sent?
-            if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status) == list)
+            if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status) == list) {
                 return;
+            }
             
             // Write a marker
             DataStore.setDB(Connection.desktop_hash, 'privacy-marker', status, list);
@@ -523,8 +532,9 @@ var Privacy = (function () {
             var iqStatus = iqQuery.appendChild(iq.buildNode(status, {'xmlns': NS_PRIVACY}));
             
             // Can add a "name" attribute?
-            if(list)
+            if(list) {
                 iqStatus.setAttribute('name', list);
+            }
             
             con.send(iq);
             
@@ -596,18 +606,20 @@ var Privacy = (function () {
             $(data).find('list').each(function() {
                 var list_name = $(this).attr('name');
                 
-                if(list_name)
+                if(list_name) {
                     code += '<option value="' + Common.encodeQuotes(list_name) + '">' + list_name.htmlEnc() + '</option>';
+                }
             });
             
             // Apply HTML code
             select.html(code);
             
             // Not empty?
-            if(code)
+            if(code) {
                 select.removeAttr('disabled');
-            else
+            } else {
                 select.attr('disabled', true);
+            }
         } catch(e) {
             Console.error('Privacy.displayLists', e);
         } finally {
@@ -638,8 +650,9 @@ var Privacy = (function () {
             select.html('');
             
             // No list?
-            if(!list)
+            if(!list) {
                 return false;
+            }
             
             // Reset the list status
             $('#privacy .privacy-active input[type="checkbox"]').removeAttr('checked');
@@ -648,8 +661,9 @@ var Privacy = (function () {
             var status = ['active', 'default'];
             
             for(var s in status) {
-                if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
+                if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list) {
                     $('#privacy .privacy-active input[name=' + status[s] + ']').attr('checked', true);
+                }
             }
             
             // Try to read the stored items
@@ -660,10 +674,9 @@ var Privacy = (function () {
                 select.attr('disabled', true);
                 
                 return self.get(list);
-            }
-            
-            else
+            } else {
                 select.removeAttr('disabled');
+            }
             
             // Parse the XML data!
             $(items).find('item').each(function() {
@@ -814,8 +827,9 @@ var Privacy = (function () {
             $(type_check).attr('checked', true);
             
             // Can apply a value?
-            if(value_input)
+            if(value_input) {
                 $(value_input).val(value);
+            }
             
             // Apply the things to do
             var privacy_do = '#privacy .privacy-third input[type="checkbox"]';
@@ -924,8 +938,9 @@ var Privacy = (function () {
                 var list = $('#privacy .privacy-head .list-left select').val();
                 
                 // No value?
-                if(!list)
+                if(!list) {
                     return false;
+                }
                 
                 // Remove it from popup
                 $('#privacy .privacy-head .list-left select option[value="' + list + '"]').remove();
@@ -941,8 +956,9 @@ var Privacy = (function () {
                 var status = ['active', 'default'];
                 
                 for(var s in status) {
-                    if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
+                    if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list) {
                         self.change('', status[s]);
+                    }
                 }
                 
                 // Remove from server
@@ -957,8 +973,9 @@ var Privacy = (function () {
             
             $('#privacy .privacy-head .list-right input').keyup(function(e) {
                 // Not enter?
-                if(e.keyCode != 13)
+                if(e.keyCode != 13) {
                     return;
+                }
                 
                 // Get list name
                 var list = $('#privacy .privacy-head .list-right input').val();
@@ -1002,21 +1019,22 @@ var Privacy = (function () {
                 
                 // Display the data!
                 self.displayForm(
-                       item.attr('data-type'),
-                       item.attr('data-value'),
-                       item.attr('data-action'),
-                       item.attr('data-order'),
-                       item.attr('data-presence_in'),
-                       item.attr('data-presence_out'),
-                       item.attr('data-message'),
-                       item.attr('data-iq')
-                      );
+                    item.attr('data-type'),
+                    item.attr('data-value'),
+                    item.attr('data-action'),
+                    item.attr('data-order'),
+                    item.attr('data-presence_in'),
+                    item.attr('data-presence_out'),
+                    item.attr('data-message'),
+                    item.attr('data-iq')
+                );
             });
             
             $('#privacy .privacy-item a.item-add').click(function() {
                 // Cannot add anything?
-                if(!Common.exists('#privacy .privacy-head .list-left select option:selected'))
+                if(!Common.exists('#privacy .privacy-head .list-left select option:selected')) {
                     return false;
+                }
                 
                 // Disable item select
                 $('#privacy .privacy-item select').attr('disabled', true);
@@ -1034,8 +1052,9 @@ var Privacy = (function () {
             
             $('#privacy .privacy-item a.item-remove').click(function() {
                 // Cannot add anything?
-                if(!Common.exists('#privacy .privacy-head .list-left select option:selected'))
+                if(!Common.exists('#privacy .privacy-head .list-left select option:selected')) {
                     return false;
+                }
                 
                 // Get values
                 var list = $('#privacy .privacy-head .list-left select').val();
@@ -1055,15 +1074,17 @@ var Privacy = (function () {
                     $('#privacy .privacy-head .list-left select option[value="' + list + '"]').remove();
                     
                     // No more privacy lists?
-                    if(!Common.exists('#privacy .privacy-head .list-left select option'))
+                    if(!Common.exists('#privacy .privacy-head .list-left select option')) {
                         $('#privacy .privacy-head .list-left select').attr('disabled', true);
+                    }
                     
                     // Disable this list before removing it
                     var status = ['active', 'default'];
                     
                     for(var s in status) {
-                        if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list)
+                        if(DataStore.getDB(Connection.desktop_hash, 'privacy-marker', status[s]) == list) {
                             self.change('', status[s]);
+                        }
                     }
                 }
                 
@@ -1079,14 +1100,16 @@ var Privacy = (function () {
             
             $('#privacy .privacy-item a.item-save').click(function() {
                 // Canot push item?
-                if(Common.exists('#privacy .privacy-form input:disabled'))
+                if(Common.exists('#privacy .privacy-form input:disabled')) {
                     return false;
+                }
                 
                 // Get the hash
                 var item_hash = '';
                 
-                if(!$('#privacy .privacy-item select').is(':disabled'))
+                if(!$('#privacy .privacy-item select').is(':disabled')) {
                     item_hash = $('#privacy .privacy-item select option:selected').attr('data-hash');
+                }
                 
                 // Read the form
                 var privacy_second = '#privacy .privacy-second';
@@ -1142,17 +1165,17 @@ var Privacy = (function () {
                 
                 // Push item to the server!
                 self.push(
-                        item_list,
-                        [item_type],
-                        [item_value],
-                        [item_action],
-                        [item_order],
-                        [item_prin],
-                        [item_prout],
-                        [item_msg],
-                        [item_iq],
-                        item_hash
-                       );
+                    item_list,
+                    [item_type],
+                    [item_value],
+                    [item_action],
+                    [item_order],
+                    [item_prin],
+                    [item_prout],
+                    [item_msg],
+                    [item_iq],
+                    item_hash
+                );
                 
                 return false;
             });
@@ -1170,16 +1193,19 @@ var Privacy = (function () {
                 var target = '#privacy .privacy-third input[type="checkbox"]';
                 
                 // Must tick "everything" checkbox?
-                if(!$(target).filter(':checked').size())
+                if(!$(target).filter(':checked').size()) {
                     $(target + '[name="everything"]').attr('checked', true);
+                }
                 
                 // Must untick the other checkboxes?
-                else if($(this).is('[name="everything"]'))
+                else if($(this).is('[name="everything"]')) {
                     $(target + ':not([name="everything"])').removeAttr('checked');
+                }
                 
                 // Must untick "everything" checkbox?
-                else
+                else {
                     $(target + '[name="everything"]').removeAttr('checked');
+                }
             });
             
             $('#privacy .privacy-active input[name="order"]').keyup(function() {
@@ -1187,14 +1213,16 @@ var Privacy = (function () {
                 var value = $(this).val();
                 
                 // No value?
-                if(!value)
+                if(!value) {
                     return;
+                }
                 
                 // Not a number?
-                if(isNaN(value))
+                if(isNaN(value)) {
                     value = 1;
-                else
+                } else {
                     value = parseInt(value);
+                }
                 
                 // Negative?        
                 if(value < 0)
@@ -1206,8 +1234,9 @@ var Privacy = (function () {
             
             .blur(function() {
                 // No value?
-                if(!$(this).val())
+                if(!$(this).val()) {
                     $(this).val('1');
+                }
             });
             
             $('#privacy .privacy-active .privacy-active-elements input').change(function() {
@@ -1216,14 +1245,16 @@ var Privacy = (function () {
                 var state_name = $(this).attr('name');
                 
                 // Cannot continue?
-                if(!list_name || !state_name)
+                if(!list_name || !state_name) {
                     return;
+                }
                 
                 // Change the current list status
-                if($(this).filter(':checked').size())
+                if($(this).filter(':checked').size()) {
                     self.change(list_name, state_name);
-                else
+                } else {
                     self.change('', state_name);
+                }
             });
         } catch(e) {
             Console.error('Privacy.instance', e);

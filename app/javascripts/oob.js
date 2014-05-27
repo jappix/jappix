@@ -39,8 +39,9 @@ var OOB = (function () {
                 to = Caps.getFeatureResource(to, NS_IQOOB);
                 
                 // IQs cannot be sent to offline users
-                if(!to)
+                if(!to) {
                     return;
+                }
                 
                 // Register the ID
                 DataStore.setDB(Connection.desktop_hash, 'send/url', id, url);
@@ -140,8 +141,9 @@ var OOB = (function () {
 
         try {
             // Not IQ type?
-            if(type != 'iq')
+            if(type != 'iq') {
                 return;
+            }
             
             // New IQ
             var aIQ = new JSJaCIQ();
@@ -160,8 +162,9 @@ var OOB = (function () {
                 aIQ.setType('error');
                 
                 // Append stanza content
-                for(var i = 0; i < node.childNodes.length; i++)
+                for(var i = 0; i < node.childNodes.length; i++) {
                     aIQ.getNode().appendChild(node.childNodes.item(i).cloneNode(true));
+                }
                 
                 // Append error content
                 var aError = aIQ.appendNode('error', {'xmlns': NS_CLIENT, 'code': '406', 'type': 'modify'});
@@ -220,10 +223,11 @@ var OOB = (function () {
             var oob_has;
             
             // No ID provided?
-            if(!fID)
+            if(!fID) {
                 oob_has = ':has(.wait)';
-            else
+            } else {
                 oob_has = ':has(#oob-upload input[value="' + fID + '"])';
+            }
             
             var xid = $('#page-engine .page-engine-chan' + oob_has).attr('data-xid');
             var oob_type = $('#page-engine .chat-tools-file' + oob_has).attr('data-oob');
@@ -237,8 +241,9 @@ var OOB = (function () {
                 Board.openThisError(4);
                 
                 // Remove the file we sent
-                if(fURL)
+                if(fURL) {
                     $.get(fURL + '&action=remove');
+                }
             }
             
             // Everything okay?
@@ -250,10 +255,7 @@ var OOB = (function () {
                 Notification.create('send_pending', xid, [xid, fURL, oob_type, '', ''], fDesc, hex_md5(fURL + fDesc + fID));
                 
                 Console.info('File request sent.');
-            }
-            
-            // Upload error?
-            else {
+            } else {
                 Board.openThisError(4);
                 
                 Console.error('Error while sending the file', dData.find('error').text());

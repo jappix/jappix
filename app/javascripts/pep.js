@@ -50,12 +50,13 @@ var PEP = (function () {
                 var xml = '<pep type="' + type + '">';
                 
                 // Generate the correct XML
-                if(type == 'tune')
+                if(type == 'tune') {
                     xml += '<artist>' + value1.htmlEnc() + '</artist><title>' + value2.htmlEnc() + '</title><album>' + value3.htmlEnc() + '</album><uri>' + value4.htmlEnc() + '</uri>';
-                else if(type == 'geoloc')
+                } else if(type == 'geoloc') {
                     xml += '<lat>' + value1.htmlEnc() + '</lat><lon>' + value2.htmlEnc() + '</lon><human>' + value3.htmlEnc() + '</human>';
-                else
+                } else {
                     xml += '<value>' + value1.htmlEnc() + '</value><text>' + value2.htmlEnc() + '</text>';
+                }
                 
                 // End the XML node
                 xml += '</pep>';
@@ -110,21 +111,23 @@ var PEP = (function () {
                         pepText = value.find('text').text();
                         
                         // No value?
-                        if(!pepValue)
+                        if(!pepValue) {
                             pepValue = 'none';
+                        }
                         
                         // Apply the good values
-                        if(type == 'mood')
+                        if(type == 'mood') {
                             fValue = self.moodIcon(pepValue);
-                        else if(type == 'activity')
+                        } else if(type == 'activity') {
                             fValue = self.activityIcon(pepValue);
-                        if(!pepText)
+                        }
+
+                        if(!pepText) {
                             fText = Common._e("unknown");
-                        else
+                        } else {
                             fText = pepText;
-                    }
-                    
-                    else {
+                        }
+                    } else {
                         if(type == 'mood')
                             fValue = self.moodIcon('undefined');
                         else if(type == 'activity')
@@ -151,32 +154,34 @@ var PEP = (function () {
                         if(!tArtist && !tAlbum && !tTitle) {
                             fText = Common._e("unknown");
                             dText = fText;
-                        }
-                        
-                        else {
+                        } else {
                             // URI element
-                            if(!tURI)
+                            if(!tURI) {
                                 fURI = 'http://grooveshark.com/search?q=' + encodeURIComponent(tArtist + ' ' + tTitle + ' ' + tAlbum);
-                            else
+                            } else {
                                 fURI = tURI;
+                            }
                             
                             // Artist element
-                            if(!tArtist)
+                            if(!tArtist) {
                                 fArtist = Common._e("unknown");
-                            else
+                            } else {
                                 fArtist = tArtist;
+                            }
                             
                             // Title element
-                            if(!tTitle)
+                            if(!tTitle) {
                                 fTitle = Common._e("unknown");
-                            else
+                            } else {
                                 fTitle = tTitle;
+                            }
                             
                             // Album element
-                            if(!tAlbum)
+                            if(!tAlbum) {
                                 fAlbum = Common._e("unknown");
-                            else
+                            } else {
                                 fAlbum = tAlbum;
+                            }
                             
                             // Generate the link to the title
                             aLink = ' href="' + fURI + '" target="_blank"';
@@ -185,9 +190,7 @@ var PEP = (function () {
                             dText = fArtist + ' - ' + fTitle + ' (' + fAlbum + ')';
                             fText =  '<a' + aLink + '>' + dText + '</a>';
                         }
-                    }
-                    
-                    else {
+                    } else {
                         fText = Common._e("unknown");
                         dText = fText;
                     }
@@ -204,27 +207,25 @@ var PEP = (function () {
                         tReal = tHuman;
                         
                         // No human location?
-                        if(!tHuman)
+                        if(!tHuman) {
                             tHuman = Common._e("See his/her position on the globe");
+                        }
                         
                         // Generate the text to be displayed
                         if(tLat && tLon) {
                             aLink = ' href="http://maps.google.com/?q=' + Common.encodeQuotes(tLat) + ',' + Common.encodeQuotes(tLon) + '" target="_blank"';
                             fText = '<a' + aLink + '>' + tHuman.htmlEnc() + '</a>';
                             
-                            if(tReal)
+                            if(tReal) {
                                 dText = tReal;
-                            else
+                            } else {
                                 dText = tLat + '; ' + tLon;
-                        }
-                        
-                        else {
+                            }
+                        } else {
                             fText = Common._e("unknown");
                             dText = fText;
                         }
-                    }
-                    
-                    else {
+                    } else {
                         fText = Common._e("unknown");
                         dText = fText;
                     }
@@ -233,8 +234,9 @@ var PEP = (function () {
                 // Apply the text to the buddy infos
                 var this_buddy = '#roster .buddy[data-xid="' + escape(xid) + '"]';
                 
-                if(Common.exists(this_buddy))
+                if(Common.exists(this_buddy)) {
                     $(this_buddy + ' .bi-' + type).replaceWith('<p class="bi-' + type + ' talk-images ' + fValue + '" title="' + Common.encodeQuotes(dText) + '">' + fText + '</p>');
+                }
                 
                 // Apply the text to the buddy chat
                 if(Common.exists('#' + hash)) {
@@ -245,11 +247,12 @@ var PEP = (function () {
                     bc_pep.find('a.bi-' + type).remove();
                     
                     // If the new PEP item is not null, create a new one
-                    if(fText != Common._e("unknown"))
+                    if(fText != Common._e("unknown")) {
                         bc_pep.prepend(
                             '<a' + aLink + ' class="bi-' + type + ' talk-images ' + fValue + '" title="' + Common.encodeQuotes(dText) + '"></a>'
                         );
-                    
+                    }
+
                     // Process the new status position
                     Presence.adaptChat(hash);
                 }
@@ -264,15 +267,17 @@ var PEP = (function () {
                         
                         // Must apply default values?
                         if(pepValue == 'none') {
-                            if(type == 'mood')
+                            if(type == 'mood') {
                                 dAttr = 'happy';
-                            else
+                            } else {
                                 dAttr = 'exercising';
+                            }
                         }
                         
                         // No text?
-                        if(dText != Common._e("unknown"))
+                        if(dText != Common._e("unknown")) {
                             dVal = dText;
+                        }
                         
                         // Store this user event in our database
                         DataStore.setDB(Connection.desktop_hash, type + '-value', 1, dAttr);
@@ -297,17 +302,16 @@ var PEP = (function () {
                                 href = fURI;
                                 title = dText;
                                 icon_class = 'tune-note';
-                            }
-                            
-                            else {
+                            } else {
                                 href = 'http://maps.google.com/?q=' + Common.encodeQuotes(tLat) + ',' + Common.encodeQuotes(tLon);
                                 title = Common._e("Where are you?") + ' (' + dText + ')';
                                 icon_class = 'location-world';
                             }
                             
                             // Must create the container?
-                            if(!Common.exists('#my-infos .f-others'))
+                            if(!Common.exists('#my-infos .f-others')) {
                                 $('#my-infos .content').append('<div class="element f-others"></div>');
+                            }
                             
                             // Create the element
                             $('#my-infos .f-others').prepend(
@@ -318,8 +322,9 @@ var PEP = (function () {
                         }
                         
                         // Empty?
-                        else if(!Common.exists('#my-infos .f-others a.icon'))
+                        else if(!Common.exists('#my-infos .f-others a.icon')) {
                             $('#my-infos .f-others').remove();
+                        }
                         
                         // Process the roster height again
                         Roster.adapt();
@@ -574,10 +579,13 @@ var PEP = (function () {
                 var mainType = activity.appendChild(iq.buildNode(main, {'xmlns': NS_ACTIVITY}));
                 
                 // Child nodes
-                if(sub)
+                if(sub) {
                     mainType.appendChild(iq.buildNode(sub, {'xmlns': NS_ACTIVITY}));
-                if(text)
+                }
+
+                if(text) {
                     activity.appendChild(iq.buildNode('text', {'xmlns': NS_ACTIVITY}, text));
+                }
             }
             
             // And finally we send the mood that is set
@@ -628,8 +636,9 @@ var PEP = (function () {
             var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  DateUtils.getXMPPTime('utc')];
             
             for(var i = 0; i < pos_names.length; i++) {
-                if(pos_names[i] && pos_values[i])
+                if(pos_names[i] && pos_values[i]) {
                     geoloc.appendChild(iq.buildNode(pos_names[i], {'xmlns': NS_GEOLOC}, pos_values[i]));
+                }
             }
             
             // And finally we send the XML
@@ -662,20 +671,22 @@ var PEP = (function () {
             // Get latitude and longitude
             var lat = result.find('geometry:first location:first lat').text();
             var lng = result.find('geometry:first location:first lng').text();
+
+            var addr_comp_sel = result.find('address_component');
             
             var array = [
-                         lat,
-                         lng,
-                         result.find('address_component:has(type:contains("country")):first long_name').text(),
-                         result.find('address_component:has(type:contains("country")):first short_name').text(),
-                         result.find('address_component:has(type:contains("administrative_area_level_1")):first long_name').text(),
-                         result.find('address_component:has(type:contains("postal_code")):first long_name').text(),
-                         result.find('address_component:has(type:contains("locality")):first long_name').text(),
-                         result.find('address_component:has(type:contains("route")):first long_name').text(),
-                         result.find('address_component:has(type:contains("street_number")):first long_name').text(),
-                         result.find('formatted_address:first').text(),
-                         'http://maps.google.com/?q=' + Common.encodeQuotes(lat) + ',' + Common.encodeQuotes(lng)
-                        ];
+                lat,
+                lng,
+                addr_comp_sel.filter(':has(type:contains("country")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("country")):first short_name').text(),
+                addr_comp_sel.filter(':has(type:contains("administrative_area_level_1")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("postal_code")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("locality")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("route")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("street_number")):first long_name').text(),
+                result.find('formatted_address:first').text(),
+                'http://maps.google.com/?q=' + Common.encodeQuotes(lat) + ',' + Common.encodeQuotes(lng)
+            ];
             
             return array;
         } catch(e) {
@@ -702,23 +713,28 @@ var PEP = (function () {
             if(tLocality) {
                 tHuman += tLocality;
                 
-                if(tRegion)
+                if(tRegion) {
                     tHuman += ', ' + tRegion;
-                if(tCountry)
+                }
+                
+                if(tCountry) {
                     tHuman += ', ' + tCountry;
+                }
             }
             
             // Any region?
             else if(tRegion) {
                 tHuman += tRegion;
                 
-                if(tCountry)
+                if(tCountry) {
                     tHuman += ', ' + tCountry;
+                }
             }
             
             // Any country?
-            else if(tCountry)
+            else if(tCountry) {
                 tHuman += tCountry;
+            }
             
             return tHuman;
         } catch(e) {
@@ -749,19 +765,19 @@ var PEP = (function () {
                 
                 // Handled!
                 self.sendPosition(
-                             Utils.isNumber(vLat) ? vLat : null,
-                             Utils.isNumber(vLon) ? vLon : null,
-                             Utils.isNumber(vAlt) ? vAlt : null,
-                             results[2],
-                             results[3],
-                             results[4],
-                             results[5],
-                             results[6],
-                             results[7],
-                             results[8],
-                             results[9],
-                             results[10]
-                            );
+                    Utils.isNumber(vLat) ? vLat : null,
+                    Utils.isNumber(vLon) ? vLon : null,
+                    Utils.isNumber(vAlt) ? vAlt : null,
+                    results[2],
+                    results[3],
+                    results[4],
+                    results[5],
+                    results[6],
+                    results[7],
+                    results[8],
+                    results[9],
+                    results[10]
+                );
                 
                 // Store data
                 DataStore.setDB(Connection.desktop_hash, 'geolocation', 'now', Common.xmlToString(data));
@@ -899,22 +915,25 @@ var PEP = (function () {
                 // Yet displayed?
                 var can_append = true;
                 
-                if(Common.exists(path))
+                if(Common.exists(path)) {
                     can_append = false;
+                }
                 
                 // Add this bubble!
                 Bubble.show(path);
                 
-                if(!can_append)
+                if(!can_append) {
                     return false;
+                }
                 
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
                 for(var i in mood_id) {
                     // Yet in use: no need to display it!
-                    if(mood_id[i] == mood_val)
+                    if(mood_id[i] == mood_val) {
                         continue;
+                    }
                     
                     html += '<a href="#" class="talk-images" data-value="' + mood_id[i] + '" title="' + mood_lang[i] + '"></a>';
                 }
@@ -954,22 +973,25 @@ var PEP = (function () {
                 // Yet displayed?
                 var can_append = true;
                 
-                if(Common.exists(path))
+                if(Common.exists(path)) {
                     can_append = false;
+                }
                 
                 // Add this bubble!
                 Bubble.show(path);
                 
-                if(!can_append)
+                if(!can_append) {
                     return false;
+                }
                 
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
                 for(var i in activity_id) {
                     // Yet in use: no need to display it!
-                    if(activity_id[i] == activity_val)
+                    if(activity_id[i] == activity_val) {
                         continue;
+                    }
                     
                     html += '<a href="#" class="talk-images" data-value="' + activity_id[i] + '" title="' + activity_lang[i] + '"></a>';
                 }

@@ -203,6 +203,7 @@ var Welcome = (function () {
             // Update the "save" button if all is okay
             if(!Common.exists(tab + '.tab-missing')) {
                 var finish = welcome + '.finish.';
+
                 $(finish + 'save').show();
                 $(finish + 'next').hide();
             }
@@ -280,19 +281,22 @@ var Welcome = (function () {
             $('#welcome a.box').each(function() {
                 var current = '0';
                 
-                if($(this).hasClass('enabled'))
+                if($(this).hasClass('enabled')) {
                     current = '1';
+                }
                 
                 array.push(current);
             });
             
             // If XMPP links is enabled
-            if(array[2] == '1')
+            if(array[2] == '1') {
                 Utils.xmppLinksHandler();
+            }
             
             // If offline buddies showing is enabled
-            if(array[4] == '1')
+            if(array[4] == '1') {
                 Interface.showAllBuddies('welcome');
+            }
             
             // If archiving is supported by the server
             if(Features.enabledMAM()) {
@@ -336,8 +340,9 @@ var Welcome = (function () {
             var next = 1;
             var missing = '#welcome .tab a.tab-missing';
             
-            if(Common.exists(missing))
+            if(Common.exists(missing)) {
                 next = parseInt($(missing + ':first').attr('data-step'));
+            }
             
             // Switch to the next step
             self.switchTab(next);
@@ -367,19 +372,23 @@ var Welcome = (function () {
             });
             
             $('#welcome a.box:not(.share)').click(function() {
-                if($(this).hasClass('enabled'))
+                if($(this).hasClass('enabled')) {
                     $(this).removeClass('enabled').attr('title', Common._e("Click to enable"));
-                else
+                } else {
                     $(this).addClass('enabled').attr('title', Common._e("Click to disable"));
+                }
                 
                 return false;
             });
             
             $('#welcome .bottom .finish').click(function() {
-                if($(this).is('.next'))
+                if($(this).is('.next')) {
                     return self.next();
-                if($(this).is('.save'))
+                }
+                
+                if($(this).is('.save')) {
                     return self.save();
+                }
                 
                 return false;
             });

@@ -35,11 +35,9 @@ var XMPPLinks = (function () {
             link = Common.explodeThis(':', link, 1);
             
             // The XMPP URI has no "?"
-            if(link.indexOf('?') == -1)
+            if(link.indexOf('?') == -1) {
                 Chat.checkCreate(link, 'chat');
-            
-            // Parse the URI
-            else {
+            } else {
                 var xid = Common.explodeThis('?', link, 0);
                 var action = Common.explodeThis('?', link, 1);
                 
@@ -88,11 +86,13 @@ var XMPPLinks = (function () {
      * Gets the links vars (get parameters in URL)
      */
     self.links_var = (function() {
+        var hash;
         var vars = [];
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
         
         for(var i = 0; i < hashes.length; i++) {
-            var hash = hashes[i].split('=');
+            hash = hashes[i].split('=');
+
             vars.push(hash[0]);
             vars[hash[0]] = $.trim(decodeURIComponent(hash[1]));
         }

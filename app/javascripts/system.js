@@ -31,14 +31,18 @@ var System = (function () {
             var url = window.location.href;
             
             // If the URL has variables, remove them
-            if(url.indexOf('?') != -1)
+            if(url.indexOf('?') != -1) {
                 url = url.split('?')[0];
-            if(url.indexOf('#') != -1)
+            }
+
+            if(url.indexOf('#') != -1) {
                 url = url.split('#')[0];
+            }
             
             // No "/" at the end
-            if(!url.match(/(.+)\/$/))
+            if(!url.match(/(.+)\/$/)) {
                 url += '/';
+            }
             
             return url;
         } catch(e) {

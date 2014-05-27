@@ -154,6 +154,7 @@ var MUCAdmin = (function () {
                 self.query(xid, 'owner');
                 self.query(xid, 'admin');
                 self.query(xid, 'outcast');
+
                 // We query the room to edit
                 DataForm.go(xid, 'muc', '', '', 'mucadmin');
             } else if(aff == 'admin') {
@@ -434,8 +435,9 @@ var MUCAdmin = (function () {
                 Board.openThisInfo(5);
                 
                 // We remove the user's favorite
-                if(DataStore.existDB(Connection.desktop_hash, 'favorites', room))
+                if(DataStore.existDB(Connection.desktop_hash, 'favorites', room)) {
                     Favorites.removeThis(room, Common.explodeThis('@', room, 0));
+                }
                 
                 Console.info('MUC admin destroyed: ' + room);
             }
@@ -555,10 +557,13 @@ var MUCAdmin = (function () {
         try {
             // Click events
             $('#mucadmin .bottom .finish').click(function() {
-                if($(this).is('.cancel'))
+                if($(this).is('.cancel')) {
                     return self.close();
-                if($(this).is('.save'))
+                }
+                
+                if($(this).is('.save')) {
                     return self.save();
+                }
             });
         } catch(e) {
             Console.error('MUCAdmin.instance', e);

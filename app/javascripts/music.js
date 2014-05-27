@@ -63,10 +63,11 @@ var Music = (function () {
             if(!Common.exists(path_type)) {
                 var code = '<div class="' + type + '"></div>';
                 
-                if(type == 'local')
+                if(type == 'local') {
                     $(content).prepend(code);
-                else
+                } else {
                     $(content).append(code);
+                }
             }
             
             // Fill the results
@@ -81,16 +82,19 @@ var Music = (function () {
                 var mime = $(this).find('type').text();
                 
                 // No ID?
-                if(!id)
+                if(!id) {
                     id = hex_md5(uri);
+                }
                 
                 // No MIME?
-                if(!mime)
+                if(!mime) {
                     mime = 'audio/ogg';
+                }
                 
                 // Local URL?
-                if(type == 'local')
+                if(type == 'local') {
                     uri = Utils.generateURL(uri);
+                }
                 
                 // Append the HTML code
                 $(path_type).append('<a href="#" class="song" data-id="' + id + '">' + title + '</a>');
@@ -98,8 +102,9 @@ var Music = (function () {
                 // Current playing song?
                 var current_song = $(path_type + ' a[data-id="' + id + '"]');
                 
-                if(Common.exists('.music-audio[data-id="' + id + '"]'))
+                if(Common.exists('.music-audio[data-id="' + id + '"]')) {
                     current_song.addClass('playing');
+                }
                 
                 // Click event
                 current_song.click(function() {
@@ -117,12 +122,14 @@ var Music = (function () {
                 $(path + 'input').val('').removeAttr('disabled');
                 
                 // No result
-                if(!jamendo && !local)
+                if(!jamendo && !local) {
                     $(path + '.no-results').show();
+                }
                 
                 // We must put a separator between the categories
-                if(jamendo && local)
+                if(jamendo && local) {
                     $(content + ' .local').addClass('special');
+                }
             }
         } catch(e) {
             Console.error('Music.parse', e);
@@ -177,33 +184,35 @@ var Music = (function () {
 
         try {
             // Initialize
-            var playThis = document.getElementById('top-content').getElementsByTagName('audio')[0];
+            var audio_sel = document.getElementById('top-content').getElementsByTagName('audio')[0];
             
             // Nothing to play, exit
-            if(!playThis)
+            if(!audio_sel) {
                 return false;
+            }
             
             var stopButton = $('#top-content a.stop');
             
             // User play a song
             if(action == 'play') {
                 stopButton.show();
-                playThis.load();
-                playThis.play();
-                playThis.addEventListener('ended', function() {
+                audio_sel.load();
+                audio_sel.play();
+
+                audio_sel.addEventListener('ended', function() {
                     self.action('stop');
                 }, true);  
                 
                 Console.log('Music is now playing.');
-            }
-            
-            // User stop the song or the song came to its end
-            else if(action == 'stop') {
+            } else if(action == 'stop') {
+                // User stop the song / end of song
                 stopButton.hide();
-                playThis.pause();
+                audio_sel.pause();
+
                 $('#top-content .music').removeClass('actived');
                 $('.music-content .list a').removeClass('playing');
                 $('.music-audio').remove();
+
                 self.publish();
                 
                 Console.log('Music is now stopped.');
@@ -246,21 +255,21 @@ var Music = (function () {
                 // Enough data?
                 if(title || artist || source || uri) {
                     // Data array
-                    var nodes = new Array(
-                            'title',
-                            'artist',
-                            'source',
-                            'length',
-                            'uri'
-                            );
+                    var nodes = [
+                        'title',
+                        'artist',
+                        'source',
+                        'length',
+                        'uri'
+                    ];
                     
-                    var values = new Array(
-                            title,
-                            artist,
-                            source,
-                            length,
-                            uri
-                             );
+                    var values = [
+                        title,
+                        artist,
+                        source,
+                        length,
+                        uri
+                    ];
                     
                     // Create the children nodes
                     for(var i in nodes) {
@@ -298,16 +307,18 @@ var Music = (function () {
 
         try {
             var path = '.music-content ';
+            var music_audio_sel = $('.music-audio');
             
             // We remove & create a new audio tag
-            $('.music-audio').remove();
+            music_audio_sel.remove();
             $(path + '.player').prepend('<audio class="music-audio" type="' + mime + '" data-id="' + id + '" />');
             
             // We apply the new source to the player
-            if(type == 'jamendo')
-                $('.music-audio').attr('src', 'http://api.jamendo.com/get2/stream/track/redirect/?id=' + id + '&streamencoding=ogg2');
-            else
-                $('.music-audio').attr('src', uri);
+            if(type == 'jamendo') {
+                music_audio_sel.attr('src', 'http://api.jamendo.com/get2/stream/track/redirect/?id=' + id + '&streamencoding=ogg2');
+            } else {
+                music_audio_sel.attr('src', uri);
+            }
             
             // We play the target sound
             self.action('play');

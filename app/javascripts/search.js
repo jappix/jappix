@@ -112,8 +112,9 @@ var Search = (function () {
             // Get the old value (if there's another value)
             var old = '';
             
-            if(value.match(/(^(.+)(,)(\s)?)(\w+)$/))
+            if(value.match(/(^(.+)(,)(\s)?)(\w+)$/)) {
                 old = RegExp.$1;
+            }
             
             // Add the XID to the "to" input and focus on it
             $(document).oneTime(10, function() {
@@ -144,8 +145,9 @@ var Search = (function () {
             var value = $(destination + ' input').val();
             
             // Separation with a comma?
-            if(value.match(/^(.+)((,)(\s)?)(\w+)$/))
+            if(value.match(/^(.+)((,)(\s)?)(\w+)$/)) {
                 value = RegExp.$5;
+            }
             
             // Get the result array
             var entered = self.processBuddy(value);
@@ -217,8 +219,9 @@ var Search = (function () {
             var code = evt.keyCode;
             
             // Not the key we want here
-            if((code != 40) && (code != 38))
+            if((code != 40) && (code != 38)) {
                 return;
+            }
             
             // Remove the eventual mouse hover marker
             $(destination + ' ul').removeAttr('mouse-hover');
@@ -234,25 +237,25 @@ var Search = (function () {
             if(Common.exists(path + '.hovered')) {
                 var index = $(path).attr('data-hovered');
                 
-                if(index)
+                if(index) {
                     i = parseInt(index);
+                }
                 
-                if(code == 40)
+                if(code == 40) {
                     i++;
-                else
+                } else {
                     i--;
+                }
+            } else if(code == 38) {
+                i = pSize - 1;
             }
             
-            else if(code == 38)
-                i = pSize - 1;
-            
             // We must not override the maximum i limit
-            if(i >= pSize)
+            if(i >= pSize) {
                 i = 0;
-            
-            // We must not have negative i
-            else if(i < 0)
+            } else if(i < 0) {
                 i = pSize - 1;
+            }
             
             // Modify the list
             $(path + '.hovered').removeClass('hovered');
@@ -289,11 +292,13 @@ var Search = (function () {
             
             // Only show the buddies which match the search
             if(!Roster.blist_all) {
-                for(var i in rFilter)
+                for(var i in rFilter) {
                     $('#roster .buddy[data-xid="' + escape(rFilter[i]) + '"]:not(.hidden-buddy)').show();
+                }
             } else {
-                for(var j in rFilter)
+                for(var j in rFilter) {
                     $('#roster .buddy[data-xid="' + escape(rFilter[j]) + '"]').show();
+                }
             }
         } catch(e) {
             Console.error('Search.goFilterBuddy', e);
@@ -317,8 +322,9 @@ var Search = (function () {
             $('#roster .buddy').show();
             
             // Only show available buddies
-            if(!Roster.blist_all)
+            if(!Roster.blist_all) {
                 $('#roster .buddy.hidden-buddy').hide();
+            }
             
             // Update the groups
             Roster.updateGroups();
@@ -349,15 +355,13 @@ var Search = (function () {
             
             // Nothing is entered, or escape pressed
             if(!value || (keycode == 27)) {
-                if(keycode == 27)
+                if(keycode == 27) {
                     input.val('');
+                }
                 
                 self.resetFilterBuddy();
                 cancel.hide();
-            }
-            
-            // Process the filtering
-            else {
+            } else {
                 cancel.show();
                 self.goFilterBuddy(value);
             }

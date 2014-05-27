@@ -104,8 +104,9 @@ var RosterX = (function () {
                     group += '<group>' + $(this).text().htmlEnc() + '</group>';
                 });
                 
-                if(group)
+                if(group) {
                     group = '<groups>' + group + '</groups>';
+                }
                 
                 // Display it!
                 self.display($(this).attr('jid'), $(this).attr('name'), group, $(this).attr('action'));
@@ -114,17 +115,19 @@ var RosterX = (function () {
             // Click to check/uncheck
             $('#rosterx .oneresult').click(function(evt) {
                 // No need to apply when click on input
-                if($(evt.target).is('input[type="checkbox"]'))
+                if($(evt.target).is('input[type="checkbox"]')) {
                     return;
+                }
                 
                 // Input selector
                 var checkbox = $(this).find('input[type="checkbox"]');
                 
                 // Check or uncheck?
-                if(checkbox.filter(':checked').size())
+                if(checkbox.filter(':checked').size()) {
                     checkbox.removeAttr('checked');
-                else
+                } else {
                     checkbox.attr('checked', true);
+                }
             });
         } catch(e) {
             Console.error('RosterX.parse', e);
@@ -146,16 +149,19 @@ var RosterX = (function () {
 
         try {
             // End if no XID
-            if(!xid)
+            if(!xid) {
                 return false;
+            }
             
             // Set up a default action if no one
-            if(!action || (action != 'modify') || (action != 'delete'))
+            if(!action || (action != 'modify') || (action != 'delete')) {
                 action = 'add';
+            }
             
             // Override "undefined" for nickname
-            if(!nick)
+            if(!nick) {
                 nick = '';
+            }
             
             // Display it
             $('#rosterx .results').append(
@@ -250,17 +256,21 @@ var RosterX = (function () {
         try {
             // Click events
             $('#rosterx .bottom .finish').click(function() {
-                if($(this).is('.save'))
+                if($(this).is('.save')) {
                     return self.save();
-                if($(this).is('.cancel'))
+                }
+
+                if($(this).is('.cancel')) {
                     return self.close();
+                }
             });
             
             $('#rosterx .rosterx-head a').click(function() {
-                if($(this).is('.check'))
+                if($(this).is('.check')) {
                     $('#rosterx .results input[type="checkbox"]').attr('checked', true);
-                else if($(this).is('.uncheck'))
+                } else if($(this).is('.uncheck')) {
                     $('#rosterx .results input[type="checkbox"]').removeAttr('checked');
+                }
                 
                 return false;
             });

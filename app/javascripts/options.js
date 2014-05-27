@@ -275,11 +275,13 @@ var Options = (function () {
     self.switchTab = function(id) {
 
         try {
-            $('#options .one-lap').hide();
-            $('#options #conf' + id).show();
-            $('#options .tab a').removeClass('tab-active');
-            $('#options .tab a[data-key="' + id + '"]').addClass('tab-active');
-            $('#options .sub-ask .sub-ask-close').click();
+            var options_sel = $('#options');
+
+            options_sel.find('.one-lap').hide();
+            options_sel.find('#conf' + id).show();
+            options_sel.find('.tab a').removeClass('tab-active');
+            options_sel.find('.tab a[data-key="' + id + '"]').addClass('tab-active');
+            options_sel.find('.sub-ask .sub-ask-close').click();
         } catch(e) {
             Console.error('Options.switchTab', e);
         } finally {
@@ -298,15 +300,16 @@ var Options = (function () {
     self.wait = function(id) {
 
         try {
-            var sOptions = $('#options .content');
+            var options_sel = $('#options');
+            var content_sel = options_sel.find('.content');
             
             // Remove the current item class
-            sOptions.removeClass(id);
+            content_sel.removeClass(id);
             
             // Hide the waiting items if all was received
-            if(!sOptions.hasClass('microblog') && !sOptions.hasClass('mam')) {
-                $('#options .wait').hide();
-                $('#options .finish:first').removeClass('disabled');
+            if(!content_sel.hasClass('microblog') && !content_sel.hasClass('mam')) {
+                options_sel.find('.wait').hide();
+                options_sel.find('.finish:first').removeClass('disabled');
             }
         } catch(e) {
             Console.error('Options.wait', e);
@@ -533,22 +536,26 @@ var Options = (function () {
                 $('.sub-ask-pass input').each(function() {
                     var select = $(this);
                     
-                    if(!select.val())
+                    if(!select.val()) {
                         $(document).oneTime(10, function() {
                             select.addClass('please-complete').focus();
                         });
-                    else
+                    } else {
                         select.removeClass('please-complete');  
+                    }
                 });
                 
-                if(password0 != Utils.getPassword())
+                if(password0 != Utils.getPassword()) {
                     $(document).oneTime(10, function() {
                         $('#options .old').addClass('please-complete').focus();
                     });
-                if(password1 != password2)
+                }
+
+                if(password1 != password2) {
                     $(document).oneTime(10, function() {
                         $('#options .new1, #options .new2').addClass('please-complete').focus();
                     });
+                }
             }
         } catch(e) {
             Console.error('Options.sendNewPassword', e);
@@ -612,12 +619,13 @@ var Options = (function () {
             } else {
                 var selector = $('#options .check-mam');
                 
-                if(password != Utils.getPassword())
+                if(password != Utils.getPassword()) {
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
-                else
+                } else {
                     selector.removeClass('please-complete');
+                }
             }
         } catch(e) {
             Console.error('Options.purgeMyArchives', e);
@@ -659,12 +667,13 @@ var Options = (function () {
             } else {
                 var selector = $('#options .check-empty');
                 
-                if(password != Utils.getPassword())
+                if(password != Utils.getPassword()) {
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
-                else
+                } else {
                     selector.removeClass('please-complete');
+                }
             }
         } catch(e) {
             Console.error('Options.purgeMyMicroblog', e);
@@ -726,17 +735,16 @@ var Options = (function () {
                 con.send(iq, self.handleAccDeletion);
                 
                 Console.info('Delete account sent.');
-            }
-            
-            else {
+            } else {
                 var selector = $('#options .check-password');
                 
-                if(password != Utils.getPassword())
+                if(password != Utils.getPassword()) {
                     $(document).oneTime(10, function() {
                         selector.addClass('please-complete').focus();
                     });
-                else
+                } else {
                     selector.removeClass('please-complete');
+                }
             }
         } catch(e) {
             Console.error('Options.deleteMyAccount', e);
@@ -781,50 +789,58 @@ var Options = (function () {
             }
             
             // We show the "privacy" form if something is visible into it
-            if(enabled_mam || enabled_pep)
+            if(enabled_mam || enabled_pep) {
                 $('#options fieldset.privacy').show();
+            }
             
             // We get the values of the forms for the sounds
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') == '0') {
                 $('#sounds').attr('checked', false);
-            else
+            } else {
                 $('#sounds').attr('checked', true);
+            }
             
             // We get the values of the forms for the geolocation
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '1') {
                 $('#geolocation').attr('checked', true);
-            else
+            } else {
                 $('#geolocation').attr('checked', false);
+            }
             
             // We get the values of the forms for the roster show all
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'roster-showall') == '1') {
                 $('#showall').attr('checked', true);
-            else
+            } else {
                 $('#showall').attr('checked', false);
+            }
                 
             // We get the values of the forms for the XHTML-IM images filter
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') == '1')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') == '1') {
                 $('#noxhtmlimg').attr('checked', true);
-            else
+            } else {
                 $('#noxhtmlimg').attr('checked', false);
+            }
             
             // We get the values of the forms for the integratemedias
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'integratemedias') == '0') {
                 $('#integratemedias').attr('checked', false);
-            else
+            } else {
                 $('#integratemedias').attr('checked', true);
+            }
 
             // We get the values of the forms for the groupchatpresence
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'groupchatpresence') == '0') {
                 $('#groupchatpresence').attr('checked', false);
-            else
+            } else {
                 $('#groupchatpresence').attr('checked', true);
+            }
 
             // We get the values of the forms for the localarchives
-            if(DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives') == '0')
+            if(DataStore.getDB(Connection.desktop_hash, 'options', 'localarchives') == '0') {
                 $('#localarchives').attr('checked', false);
-            else
+            } else {
                 $('#localarchives').attr('checked', true);
+            }
         } catch(e) {
             Console.error('Options.load', e);
         }
@@ -939,10 +955,13 @@ var Options = (function () {
             });
             
             $('#options .bottom .finish').click(function() {
-                if($(this).is('.save') && !$(this).hasClass('disabled'))
+                if($(this).is('.save') && !$(this).hasClass('disabled')) {
                     return self.save();
-                if($(this).is('.cancel'))
+                }
+
+                if($(this).is('.cancel')) {
                     return self.close();
+                }
                 
                 return false;
             });
@@ -951,20 +970,24 @@ var Options = (function () {
             $('#options .sub-ask input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // Archives purge
-                    if($(this).is('.purge-archives'))
+                    if($(this).is('.purge-archives')) {
                         return self.purgeMyArchives();
+                    }
 
                     // Microblog purge
-                    else if($(this).is('.purge-microblog'))
+                    else if($(this).is('.purge-microblog')) {
                         return self.purgeMyMicroblog();
+                    }
                     
                     // Password change
-                    else if($(this).is('.password-change'))
+                    else if($(this).is('.password-change')) {
                         return self.sendNewPassword();
+                    }
                     
                     // Account deletion
-                    else if($(this).is('.delete-account'))
+                    else if($(this).is('.delete-account')) {
                         return self.deleteMyAccount();
+                    }
                 }
             });
             

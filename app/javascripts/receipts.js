@@ -108,8 +108,9 @@ var Receipts = (function () {
             aMsg.setID(id);
             
             // Any type?
-            if(type)
+            if(type) {
                 aMsg.setType(type);
+            }
             
             // Append the received node
             aMsg.appendNode('received', {'xmlns': NS_URN_RECEIPTS, 'id': id});
@@ -147,7 +148,7 @@ var Receipts = (function () {
             // Remove the group marker
             if(!group.find('.one-line[data-lost]').size()) {
                 group.find('b.name').removeClass('talk-images')
-                            .removeAttr('title');
+                                    .removeAttr('title');
             }
         } catch(e) {
             Console.error('Receipts.messageReceived', e);
@@ -177,7 +178,10 @@ var Receipts = (function () {
                     
                     // Add a warn on the buddy-name
                     $(this).parent().find('b.name').addClass('talk-images')
-                                       .attr('title', Common._e("Your friend seems not to have received your message(s)!"));
+                                                   .attr(
+                                                        'title',
+                                                        Common._e("Your friend seems not to have received your message(s)!")
+                                                    );
                 }
             });
         } catch(e) {

@@ -47,10 +47,8 @@ var Mobile = (function () {
                     
                     return false;
                 }
-            }
-            
-            // No "@" in the XID, we should add the default domain
-            else {
+            } else {
+                // No "@" in the XID, we should add the default domain
                 username = xid;
                 domain = HOST_MAIN;
             }
@@ -58,8 +56,9 @@ var Mobile = (function () {
             var pwd = aForm.pwd.value;
             var reg = false;
             
-            if(aForm.reg)
+            if(aForm.reg) {
                 reg = aForm.reg.checked;
+            }
             
             // Enough parameters
             if(username && domain && pwd) {
@@ -332,8 +331,9 @@ var Mobile = (function () {
                     var nick = self.getNick(xid, hash);
                     
                     // No nickname?
-                    if(!nick)
+                    if(!nick) {
                         nick = xid;
+                    }
                 
                     // Create the chat if it does not exist
                     self.chat(xid, nick);
@@ -755,10 +755,11 @@ var Mobile = (function () {
             
             // We split if necessary the string
             if(index !== -1) {
-                if(i === 0)
+                if(i === 0) {
                     toStr = toStr.substr(0, index);
-                else
+                } else {
                     toStr = toStr.substr(index + 1);
+                }
             }
             
             // We return the value
@@ -865,10 +866,11 @@ var Mobile = (function () {
             // Display the message
             html = '<span><b';
             
-            if(nick == 'me')
+            if(nick == 'me') {
                 html += ' class="me">' + self._e("You");
-            else
+            } else {
                 html += ' class="him">' + nick;
+            }
             
             html += '</b> ' + self.filter(body) + '</span>';
             
@@ -974,8 +976,9 @@ var Mobile = (function () {
             var divs = document.getElementsByTagName('div');
             
             for(var i = 0; i < divs.length; i++) {
-                if(divs.item(i).getAttribute('class') == 'one-chat')
+                if(divs.item(i).getAttribute('class') == 'one-chat') {
                     divs.item(i).style.display = 'none';
+                }
             }
             
             // Show the chat
@@ -1030,8 +1033,9 @@ var Mobile = (function () {
             // If the chat was not yet opened
             if(!self.exists('chat-' + hash)) {
                 // No nick?
-                if(!nick)
+                if(!nick) {
                     nick = self.getNick(xid, hash);
+                }
                 
                 // Create the chat
                 self.createChat(xid, nick, hash);

@@ -62,10 +62,7 @@ var Notification = (function () {
                 $(notif).prepend('<div class="notify one-counter" data-counter="' + number + '">' + number + '</div>');
                 $(nothing).hide();
                 $(empty).show();
-            }
-            
-            // No notification!
-            else {
+            } else {
                 $(empty).hide();
                 $(nothing).show();
                 
@@ -96,8 +93,9 @@ var Notification = (function () {
     self.create = function(type, from, data, body, id, inverse) {
 
         try {
-            if(!type || !from)
+            if(!type || !from) {
                 return;
+            }
             
             // Generate an ID hash
             if(!id) {
@@ -229,8 +227,9 @@ var Notification = (function () {
             }
             
             // No text?
-            if(!text)
+            if(!text) {
                 return;
+            }
             
             // Action links?
             switch(type) {
@@ -248,8 +247,9 @@ var Notification = (function () {
                     action = '<a href="#" class="no">' + Common._e("Hide") + '</a>';
 
                     // Any parent link?
-                    if((type == 'comment') && data[2])
+                    if((type == 'comment') && data[2]) {
                         action = '<a href="#" class="yes">' + Common._e("Show") + '</a>' + action;
+                    }
 
                     break;
 
@@ -284,10 +284,11 @@ var Notification = (function () {
                            '</div>';
                     
                     // Add the HTML code
-                    if(inverse)
+                    if(inverse) {
                         $('.notifications-content .nothing').before(code);
-                    else
+                    } else {
                         $('.notifications-content .empty').after(code);
+                    }
                     
                     // Play a sound to alert the user
                     Audio.play('notification');
@@ -296,8 +297,9 @@ var Notification = (function () {
                     $('.' + id + ' a.yes').click(function() {
                         self.action(type, data, 'yes', id);
                         
-                        if(($(this).attr('href') == '#') && ($(this).attr('target') != '_blank'))
+                        if(($(this).attr('href') == '#') && ($(this).attr('target') != '_blank')) {
                             return false;
+                        }
                     });
                     
                     // The no click function
@@ -334,28 +336,23 @@ var Notification = (function () {
 
         try {
             // We launch a function depending of the type
-            if((type == 'subscribe') && (value == 'yes'))
+            if((type == 'subscribe') && (value == 'yes')) {
                 Presence.acceptSubscribe(data[0], data[1]);
-            
-            else if((type == 'subscribe') && (value == 'no'))
+            } else if((type == 'subscribe') && (value == 'no')) {
                 Presence.sendSubscribe(data[0], 'unsubscribed');
-            
-            else if((type == 'invite_room') && (value == 'yes'))
+            } else if((type == 'invite_room') && (value == 'yes')) {
                 Chat.checkCreate(data[0], 'groupchat');
-            
-            else if(type == 'request')
+            } else if(type == 'request') {
                 HTTPReply.go(value, data[0]);
+            }
             
-            if((type == 'send') && (value == 'yes'))
+            if((type == 'send') && (value == 'yes')) {
                 OOB.reply(data[0], data[3], 'accept', data[2], data[4]);
-            
-            else if((type == 'send') && (value == 'no'))
+            } else if((type == 'send') && (value == 'no')) {
                 OOB.reply(data[0], data[3], 'reject', data[2], data[4]);
-            
-            else if((type == 'rosterx') && (value == 'yes'))
+            } else if((type == 'rosterx') && (value == 'yes')) {
                 RosterX.open(data[0]);
-            
-            else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
+            } else if((type == 'comment') || (type == 'like') || (type == 'quote') || (type == 'wall') || (type == 'photo') || (type == 'video')) {
                 if(value == 'yes') {
                     // Get the microblog item
                     Microblog.fromInfos(data[2]);
@@ -452,8 +449,9 @@ var Notification = (function () {
             // Should we inverse?
             var inverse = true;
             
-            if(items.size() == 1)
+            if(items.size() == 1) {
                 inverse = false;
+            }
             
             // Parse notifications
             items.each(function() {
@@ -469,8 +467,9 @@ var Notification = (function () {
                 var current_id = hex_md5(current_type + current_xid + current_href + current_text);
                 
                 // Choose the good name!
-                if(!current_name || (current_bname != Common.getXIDNick(current_xid)))
+                if(!current_name || (current_bname != Common.getXIDNick(current_xid))) {
                     current_name = current_bname;
+                }
                 
                 // Create it!
                 self.create(current_type, current_xid, [current_name, current_href, current_parent_href, current_item], current_text, current_id, inverse);

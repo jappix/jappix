@@ -298,8 +298,9 @@ var UserInfos = (function () {
             var path = '#userinfos[data-last="' + id + '"]';
             
             // End if session does not exist
-            if(!Common.exists(path))
+            if(!Common.exists(path)) {
                 return;
+            }
             
             if(iq && (iq.getType() == 'result')) {
                 // Get the values
@@ -313,8 +314,9 @@ var UserInfos = (function () {
                     seconds = parseInt(seconds);
                     
                     // Active user
-                    if(seconds <= 60)
+                    if(seconds <= 60) {
                         last = Common._e("User currently active");
+                    }
                     
                     // Inactive user
                     else {
@@ -325,12 +327,14 @@ var UserInfos = (function () {
                         var date = date_last.toLocaleString();
                         
                         // Offline user
-                        if(from.indexOf('/') == -1)
+                        if(from.indexOf('/') == -1) {
                             last = Common.printf(Common._e("Last seen: %s"), date);
+                        }
                         
                         // Online user
-                        else
+                        else {
                             last = Common.printf(Common._e("Inactive since: %s"), date);
+                        }
                     }
                     
                     // Append this text
@@ -363,8 +367,9 @@ var UserInfos = (function () {
             var path = '#userinfos[data-version="' + id + '"]';
             
             // End if session does not exist
-            if(!Common.exists(path))
+            if(!Common.exists(path)) {
                 return;
+            }
             
             // Extract the reply data
             if(iq && (iq.getType() == 'result')) {
@@ -375,14 +380,18 @@ var UserInfos = (function () {
                 var os = $(xml).find('os').text();
                 
                 // Put the values together
-                if(name && version)
+                if(name && version) {
                     name = name + ' ' + version;
+                }
                 
                 // Display the values
-                if(name)
+                if(name) {
                     $(path + ' #BUDDY-CLIENT').text(name);
-                if(os)
+                }
+                
+                if(os) {
                     $(path + ' #BUDDY-SYSTEM').text(os);
+                }
                 
                 Console.log('Software version received: ' + Common.fullXID(Common.getStanzaFrom(iq)));
             }
@@ -410,8 +419,9 @@ var UserInfos = (function () {
             var path = '#userinfos[data-time="' + id + '"]';
             
             // End if session does not exist
-            if(!Common.exists(path))
+            if(!Common.exists(path)) {
                 return;
+            }
             
             if(iq && (iq.getType() == 'result')) {
                 // Get the values
@@ -422,8 +432,9 @@ var UserInfos = (function () {
                 // Any UTC?
                 if(utc) {
                     // Add the TZO if there's no one
-                    if(tzo && utc.match(/^(.+)Z$/))
+                    if(tzo && utc.match(/^(.+)Z$/)) {
                         utc = RegExp.$1 + tzo;
+                    }
                     
                     // Get the local date string
                     var local_string = Date.hrTime(utc);
@@ -454,8 +465,9 @@ var UserInfos = (function () {
         try {
             var selector = $('#userinfos .content');
             
-            if(!selector.hasClass('vcard') && !selector.hasClass('last') && !selector.hasClass('version') && !selector.hasClass('time'))
+            if(!selector.hasClass('vcard') && !selector.hasClass('last') && !selector.hasClass('version') && !selector.hasClass('time')) {
                 $('#userinfos .wait').hide();
+            }
         } catch(e) {
             Console.error('UserInfos.wait', e);
         }
@@ -478,8 +490,9 @@ var UserInfos = (function () {
             // Necessary to update?
             var old_value = DataStore.getDB(Connection.desktop_hash, 'rosternotes', xid);
             
-            if((old_value == value) || (!old_value && !value))
+            if((old_value == value) || (!old_value && !value)) {
                 return false;
+            }
             
             // Update the database
             DataStore.setDB(Connection.desktop_hash, 'rosternotes', xid, value);
@@ -502,8 +515,9 @@ var UserInfos = (function () {
                     var cur_xid = RegExp.$1;
                     var cur_value = DataStore.storageDB.getItem(current);
                     
-                    if(cur_xid && cur_value)
+                    if(cur_xid && cur_value) {
                         storage.appendChild(iq.buildNode('note', {'jid': cur_xid, 'xmlns': NS_ROSTERNOTES}, cur_value));
+                    }
                 }
             }
             
@@ -526,10 +540,15 @@ var UserInfos = (function () {
     self.switchTab = function(id) {
 
         try {
-            $('#userinfos .content .one-lap').hide();
-            $('#userinfos .content .info' + id).show();
-            $('#userinfos .tab a').removeClass('tab-active');
-            $('#userinfos .tab a[data-key="' + id + '"]').addClass('tab-active');
+            var userinfos_sel = $('#userinfos');
+            var content_sel = userinfos_sel.find('.content');
+            var tab_link_sel = userinfos_sel.find('.tab a');
+
+            content_sel.find('.one-lap').hide();
+            content_sel.find('.info' + id).show();
+
+            tab_link_sel.removeClass('tab-active');
+            tab_link_sel.filter('[data-key="' + id + '"]').addClass('tab-active');
         } catch(e) {
             Console.error('UserInfos.switchTab', e);
         } finally {
@@ -583,8 +602,9 @@ var UserInfos = (function () {
             // Click events
             $('#userinfos .tab a').click(function() {
                 // Yet active?
-                if($(this).hasClass('tab-active'))
+                if($(this).hasClass('tab-active')) {
                     return false;
+                }
                 
                 // Switch to the good tab
                 var key = parseInt($(this).attr('data-key'));

@@ -51,8 +51,9 @@ var Talk = (function () {
 
         try {
             // Talkpage exists?
-            if(Common.exists('#talk'))
+            if(Common.exists('#talk')) {
                 return false;
+            }
             
             // Anonymous detector
             var anonymous = Utils.isAnonymous();

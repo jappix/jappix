@@ -48,16 +48,19 @@ var Presence = (function () {
             // Try to use the last status message
             var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
             
-            if(!status)
+            if(!status) {
                 status = '';
+            }
             
             // We tell the world that we are online
-            if(!is_anonymous)
+            if(!is_anonymous) {
                 self.send('', '', '', status, checksum);
+            }
             
             // Any status to apply?
-            if(status)
+            if(status) {
                 $('#presence-status').val(status);
+            }
             
             // Enable the presence picker
             $('#presence-status').removeAttr('disabled');
@@ -109,43 +112,47 @@ var Presence = (function () {
             var resources_obj, xml;
             
             // We get the type content
-            var type = presence.getType();
-            if(!type)
-                type = '';
+            var type = presence.getType() || '';
             
             // We get the priority content
             var priority = presence.getPriority() + '';
-            if(!priority || (type == 'error'))
+            if(!priority || (type == 'error')) {
                 priority = '0';
+            }
             
             // We get the show content
             var show = presence.getShow();
-            if(!show || (type == 'error'))
+            if(!show || (type == 'error')) {
                 show = '';
+            }
             
             // We get the status content
             var status = presence.getStatus();
-            if(!status || (type == 'error'))
+            if(!status || (type == 'error')) {
                 status = '';
+            }
             
             // We get the photo content
             var photo = $(node).find('x[xmlns="' + NS_VCARD_P + '"]:first photo');
             var checksum = photo.text();
             var hasPhoto = photo.size();
             
-            if(hasPhoto && (type != 'error'))
+            if(hasPhoto && (type != 'error')) {
                 hasPhoto = 'true';
-            else
+            } else {
                 hasPhoto = 'false';
+            }
             
             // We get the CAPS content
             var caps = $(node).find('c[xmlns="' + NS_CAPS + '"]:first').attr('ver');
-            if(!caps || (type == 'error'))
+            if(!caps || (type == 'error')) {
                 caps = '';
+            }
             
             // This presence comes from another resource of my account with a difference avatar checksum
-            if((xid == Common.getXID()) && (hasPhoto == 'true') && (checksum != DataStore.getDB(Connection.desktop_hash, 'checksum', 1)))
+            if((xid == Common.getXID()) && (hasPhoto == 'true') && (checksum != DataStore.getDB(Connection.desktop_hash, 'checksum', 1))) {
                 Avatar.get(Common.getXID(), 'force', 'true', 'forget');
+            }
             
             // This presence comes from a groupchat
             if(Utils.isPrivate(xid)) {
@@ -187,9 +194,7 @@ var Presence = (function () {
                         Groupchat.handleMUC(presence);
                         
                         Console.warn('Passed M-Link MUC first presence handling.');
-                    }
-                    
-                    else {
+                    } else {
                         self.displayMUC(from, xidHash, hash, type, show, status, affiliation, role, reason, status_code, iXID, iNick, messageTime, nick, notInitial);
                         
                         xml = '<presence from="' + Common.encodeQuotes(from) + '"><priority>' + priority.htmlEnc() + '</priority><show>' + show.htmlEnc() + '</show><type>' + type.htmlEnc() + '</type><status>' + status.htmlEnc() + '</status><avatar>' + hasPhoto.htmlEnc() + '</avatar><checksum>' + checksum.htmlEnc() + '</checksum><caps>' + caps.htmlEnc() + '</caps></presence>';
@@ -284,10 +289,11 @@ var Presence = (function () {
             
             // For logger
             if(!show) {
-                if(!type)
+                if(!type) {
                     show = 'available';
-                else
+                } else {
                     show = 'unavailable';
+                }
             }
             
             Console.log('Presence received: ' + show + ', from ' + from);
@@ -331,14 +337,17 @@ var Presence = (function () {
             var notify = false;
             
             // Reset data?
-            if(!role)
+            if(!role) {
                 role = 'participant';
-            if(!affiliation)
+            }
+            if(!affiliation) {
                 affiliation = 'none';
+            }
             
             // Must update the role?
-            if(Common.exists(thisUser) && (($(thisUser).attr('data-role') != role) || ($(thisUser).attr('data-affiliation') != affiliation)))
+            if(Common.exists(thisUser) && (($(thisUser).attr('data-role') != role) || ($(thisUser).attr('data-affiliation') != affiliation))) {
                 $(thisUser).remove();
+            }
             
             // Any XID submitted?
             if(iXID) {
@@ -471,10 +480,11 @@ var Presence = (function () {
                     write += Common._e("joined the chat room");
                     
                     // Any status?
-                    if(status)
+                    if(status) {
                         write += ' (' + Filter.message(status, nick_html, true) + ')';
-                    else
+                    } else {
                         write += ' (' + Common._e("no status") + ')';
+                    }
                 }
                 
                 // Enable the private chat input
@@ -499,18 +509,21 @@ var Presence = (function () {
                     notify = true;
                     
                     // Kicked?
-                    if(Utils.existArrayValue(status_code, 307))
+                    if(Utils.existArrayValue(status_code, 307)) {
                         write += Common._e("has been kicked");
+                    }
                     
                     // Banned?
-                    if(Utils.existArrayValue(status_code, 301))
+                    if(Utils.existArrayValue(status_code, 301)) {
                         write += Common._e("has been banned");
+                    }
                     
                     // Any reason?
-                    if(reason)
+                    if(reason) {
                         write += ' (' + Filter.message(reason, nick_html, true) + ')';
-                    else
+                    } else {
                         write += ' (' + Common._e("no reason") + ')';
+                    }
                 }
                 
                 // Nickname change?
@@ -523,8 +536,9 @@ var Presence = (function () {
                     var new_hash = hex_md5(new_xid);
                     var new_class = 'user ' + new_hash;
                     
-                    if($(thisUser).hasClass('myself'))
+                    if($(thisUser).hasClass('myself')) {
                         new_class += ' myself';
+                    }
                     
                     // Die the click event
                     $(thisUser).off('click');
@@ -550,10 +564,11 @@ var Presence = (function () {
                     write += Common._e("left the chat room");
                     
                     // Any status?
-                    if(status)
+                    if(status) {
                         write += ' (' + Filter.message(status, nick_html, true) + ')';
-                    else
+                    } else {
                         write += ' (' + Common._e("no status") + ')';
+                    }
                 }
                 
                 // Disable the private chat input
@@ -561,8 +576,9 @@ var Presence = (function () {
             }
             
             // Must notify something
-            if(notify)
+            if(notify) {
                 Message.display('groupchat', from, roomHash, nick_html, write, messageTime, DateUtils.getTimeStamp(), 'system-message', false);
+            }
             
             // Set the good status show icon
             switch(show) {
@@ -583,21 +599,24 @@ var Presence = (function () {
             var uTitle = nick;
             
             // Any XID to add?
-            if(iXID)
+            if(iXID) {
                 uTitle += ' (' + iXID + ')';
+            }
             
             // Any status to add?
-            if(status)
+            if(status) {
                 uTitle += ' - ' + status;
+            }
             
             $(thisUser).attr('title', uTitle);
             
             // Show or hide the role category, depending of its content
             $('#' + roomHash + ' .list .role').each(function() {
-                if($(this).find('.user').size())
+                if($(this).find('.user').size()) {
                     $(this).show();
-                else
+                } else {
                     $(this).hide();
+                }
             });
         } catch(e) {
             Console.error('Presence.displayMUC', e);
@@ -621,9 +640,7 @@ var Presence = (function () {
             
             if(!status) {
                 status = '';
-            }
-            
-            else {
+            } else {
                 if(cut) {
                     dStatus = Utils.truncate(status, 50);
                 } else {
@@ -669,10 +686,11 @@ var Presence = (function () {
             $(path + ' .name .buddy-presence').replaceWith('<p class="buddy-presence talk-images ' + type + '">' + value + '</p>');
             
             // The buddy presence in the buddy infos
-            if(dStatus)
+            if(dStatus) {
                 biStatus = dStatus;
-            else
+            } else {
                 biStatus = value;
+            }
             
             $(path + ' .bi-status').replaceWith('<p class="bi-status talk-images ' + type + '" title="' + tStatus + '">' + biStatus + '</p>');
             
@@ -682,12 +700,14 @@ var Presence = (function () {
                 buddy.addClass('hidden-buddy');
                 
                 // No filtering is launched?
-                if(!Search.search_filtered)
+                if(!Search.search_filtered) {
                     buddy.hide();
+                }
                 
                 // All the buddies are shown?
-                if(Roster.blist_all)
+                if(Roster.blist_all) {
                     buddy.show();
+                }
                 
                 // Chat stuffs
                 if(Common.exists('#' + hash)) {
@@ -707,8 +727,9 @@ var Presence = (function () {
                 buddy.removeClass('hidden-buddy');
                 
                 // No filtering is launched?
-                if(!Search.search_filtered)
+                if(!Search.search_filtered) {
                     buddy.show();
+                }
                 
                 // Get the online buddy avatar if not a gateway
                 Avatar.get(xid, 'cache', avatar, checksum);
@@ -719,10 +740,11 @@ var Presence = (function () {
                 // We generate a well formed status message
                 if(dStatus) {
                     // No need to write the same status two times
-                    if(dStatus == value)
+                    if(dStatus == value) {
                         dStatus = '';
-                    else
+                    } else {
                         dStatus = ' (' + dStatus + ')';
+                    }
                 }
                 
                 // We show the presence value
@@ -774,8 +796,9 @@ var Presence = (function () {
             // Process the left/right position
             var presence_h = 12;
             
-            if(pep_numb)
+            if(pep_numb) {
                 presence_h = (pep_numb * 20) + 18;
+            }
             
             // Apply the left/right position
             var presence_h_tag = ($('html').attr('dir') == 'rtl') ? 'left' : 'right';
@@ -797,13 +820,11 @@ var Presence = (function () {
     self.humanShow = function(show, type) {
 
         try {
-            if(type == 'unavailable')
+            if(type == 'unavailable') {
                 show = Common._e("Unavailable");
-            
-            else if(type == 'error')
+            } else if(type == 'error') {
                 show = Common._e("Error");
-            
-            else {
+            } else {
                 switch(show) {
                     case 'chat':
                         show = Common._e("Talkative");
@@ -852,17 +873,16 @@ var Presence = (function () {
 
         try {
             // Is there a status defined?
-            if(!status)
+            if(!status) {
                 status = self.humanShow(show, type);
+            }
             
             // Then we can handle the events
-            if(type == 'error')
+            if(type == 'error') {
                 self.display(Common._e("Error"), 'error', show, status, hash, xid, avatar, checksum, caps);
-            
-            else if(type == 'unavailable')
+            } else if(type == 'unavailable') {
                 self.display(Common._e("Unavailable"), 'unavailable', show, status, hash, xid, avatar, checksum, caps);
-            
-            else {
+            } else {
                 switch(show) {
                     case 'chat':
                         self.display(Common._e("Talkative"), 'available', show, status, hash, xid, avatar, checksum, caps);
@@ -1220,14 +1240,21 @@ var Presence = (function () {
             // Get some stuffs
             var priority = DataStore.getDB(Connection.desktop_hash, 'priority', 1);
             
-            if(!priority)
+            if(!priority) {
                 priority = '1';
-            if(!checksum)
+            }
+
+            if(!checksum) {
                 checksum = DataStore.getDB(Connection.desktop_hash, 'checksum', 1);
-            if(show == 'available')
+            }
+
+            if(show == 'available') {
                 show = '';
-            if(type == 'available')
+            }
+
+            if(type == 'available') {
                 type = '';
+            }
             
             // New presence
             var presence = new JSJaCPresence();
@@ -1267,12 +1294,14 @@ var Presence = (function () {
                 var xMUC = presence.appendNode('x', {'xmlns': NS_MUC});
                 
                 // Max messages age (for MUC)
-                if(limit_history)
+                if(limit_history) {
                     xMUC.appendChild(presence.buildNode('history', {'maxstanzas': 20, 'seconds': 86400, 'xmlns': NS_MUC}));
+                }
                 
                 // Room password
-                if(password)
+                if(password) {
                     xMUC.appendChild(presence.buildNode('password', {'xmlns': NS_MUC}, password));
+                }
             }
 
             // Reachability details
@@ -1317,10 +1346,11 @@ var Presence = (function () {
             }
             
             // Send the presence packet
-            if(handle)
+            if(handle) {
                 con.send(presence, handle);
-            else
+            } else {
                 con.send(presence);
+            }
             
             if(!type) {
                 type = 'available';
@@ -1364,8 +1394,9 @@ var Presence = (function () {
             $('.page-engine-chan[data-type="groupchat"]').each(function() {
                 var tmp_nick = $(this).attr('data-nick');
                 
-                if(!tmp_nick)
+                if(!tmp_nick) {
                     return;
+                }
                 
                 var room = unescape($(this).attr('data-xid'));
                 var nick = unescape(tmp_nick);
@@ -1376,8 +1407,9 @@ var Presence = (function () {
                 }
                 
                 // Not disabled?
-                else if(!$(this).find('.message-area').attr('disabled'))
+                else if(!$(this).find('.message-area').attr('disabled')) {
                     self.send(room + '/' + nick, '', show, status, '', true);
+                }
             });
         } catch(e) {
             Console.error('Presence.quickSend', e);
@@ -1416,8 +1448,9 @@ var Presence = (function () {
             var status = '';
             
             // Subscribe request?
-            if(type == 'subscribe')
+            if(type == 'subscribe') {
                 status = Common.printf(Common._e("Hi, I am %s, I would like to add you as my friend."), Name.get());
+            }
             
             self.send(to, type, '', status);
         } catch(e) {
@@ -1473,8 +1506,9 @@ var Presence = (function () {
             // Stop if an xa presence was set manually
             var last_presence = self.getUserShow();
             
-            if(!self.auto_idle && ((last_presence == 'away') || (last_presence == 'xa')))
+            if(!self.auto_idle && ((last_presence == 'away') || (last_presence == 'xa'))) {
                 return;
+            }
             
             var idle_presence;
             var activity_limit;
@@ -1499,8 +1533,9 @@ var Presence = (function () {
                 // Get the old status message
                 var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
                 
-                if(!status)
+                if(!status) {
                     status = '';
+                }
                 
                 // Change the presence input
                 $('#my-infos .f-presence a.picker').attr('data-value', idle_presence);
@@ -1654,22 +1689,25 @@ var Presence = (function () {
                 // Yet displayed?
                 var can_append = true;
                 
-                if(Common.exists(path))
+                if(Common.exists(path)) {
                     can_append = false;
+                }
                 
                 // Add this bubble!
                 Bubble.show(path);
                 
-                if(!can_append)
+                if(!can_append) {
                     return false;
+                }
                 
                 // Generate the HTML code
                 var html = '<div class="bubble removable">';
                 
                 for(var i in show_id) {
                     // Yet in use: no need to display it!
-                    if(show_id[i] == show_val)
+                    if(show_id[i] == show_val) {
                         continue;
+                    }
                     
                     html += '<a href="#" class="talk-images" data-value="' + show_id[i] + '" title="' + show_lang[i] + '"></a>';
                 }
@@ -1724,8 +1762,9 @@ var Presence = (function () {
                     DataStore.setDB(Connection.desktop_hash, 'options', 'presence-status', status);
                     
                     // Update the server stored status
-                    if(status != old_status)
+                    if(status != old_status) {
                         Options.store();
+                    }
                     
                     // Send the presence
                     self.sendActions();
