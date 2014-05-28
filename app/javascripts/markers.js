@@ -296,10 +296,11 @@ var Markers = (function () {
 
                     if(last_message.attr('data-mark') != self.MARK_TYPE_DISPLAYED) {
                         var last_message_id = last_message.attr('data-id');
+                        var full_xid = Presence.highestPriority(xid) || xid;
 
                         if(last_message_id) {
                             self.change(
-                                xid,
+                                full_xid,
                                 self.MARK_TYPE_DISPLAYED,
                                 last_message_id,
                                 last_message

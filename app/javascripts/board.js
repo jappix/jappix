@@ -132,7 +132,7 @@ var Board = (function () {
      * @param {object} board_sel
      * @return {undefined}
      */
-    self._attachEvents = function(type, id) {
+    self._attachEvents = function(board_sel) {
 
         try {
             board_sel.click(function() {
