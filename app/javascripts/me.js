@@ -93,12 +93,14 @@ var Me = (function () {
     self.instance = function() {
 
         try {
+            var me_sel = $('#me');
+
             // Click events
-            $('#me .content a.go').click(function() {
+            me_sel.find('.content a.go').click(function() {
                 self.close();
             });
             
-            $('#me .bottom .finish').click(self.close);
+            me_sel.find('.bottom .finish').click(self.close);
         } catch(e) {
             Console.error('Me.instance', e);
         }

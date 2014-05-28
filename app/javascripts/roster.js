@@ -57,12 +57,12 @@ var Roster = (function () {
             // Parse the roster xml
             $(iq.getQuery()).find('item').each(function() {
                 // Get user data
-                var _this = $(this);
-                var user_xid = _this.attr('jid');
-                var user_subscription = _this.attr('subscription');
+                var this_sel = $(this);
+                var user_xid = this_sel.attr('jid');
+                var user_subscription = this_sel.attr('subscription');
 
                 // Parse roster data & display user
-                self.parse($(this), 'load');
+                self.parse(this_sel, 'load');
 
                 // Request user microblog (populates channel)
                 if(user_xid && ((user_subscription == 'both') || (user_subscription == 'to'))) {
@@ -138,25 +138,27 @@ var Roster = (function () {
 
         try {
             $('#roster .one-group').each(function() {
+                var this_sel = $(this);
+
                 // Current values
-                var check = $(this).find('.buddy').size();
-                var hidden = $(this).find('.buddy:not(.hidden-buddy:hidden)').size();
+                var check = this_sel.find('.buddy').size();
+                var hidden = this_sel.find('.buddy:not(.hidden-buddy:hidden)').size();
                 
                 // Special case: the filtering tool
                 if(Search.search_filtered) {
-                    hidden = $(this).find('.buddy:visible').size();
+                    hidden = this_sel.find('.buddy:visible').size();
                 }
                 
                 // If the group is empty
                 if(!check) {
-                    $(this).remove();
+                    this_sel.remove();
                 }
                 
                 // If the group contains no online buddy (and is not just hidden)
-                if(!hidden && $(this).find('a.group').hasClass('minus')) {
-                    $(this).hide();
+                if(!hidden && this_sel.find('a.group').hasClass('minus')) {
+                    this_sel.hide();
                 } else {
-                    $(this).show();
+                    this_sel.show();
                 }
             });
         } catch(e) {
@@ -565,21 +567,23 @@ var Roster = (function () {
                     
                     // Click events
                     $(bPath + ' .bi-view a').click(function() {
+                        var this_sel = $(this);
+
                         // Renitialize the buddy infos
                         Bubble.close();
                         
                         // Profile
-                        if($(this).is('.profile')) {
+                        if(this_sel.is('.profile')) {
                             UserInfos.open(xid);
                         }
                         
                         // Channel
-                        else if($(this).is('.channel')) {
+                        else if(this_sel.is('.channel')) {
                             Microblog.fromInfos(xid, hash);
                         }
                         
                         // Command
-                        else if($(this).is('.commands')) {
+                        else if(this_sel.is('.commands')) {
                             AdHoc.retrieve(xid);
                         }
                         
@@ -588,16 +592,18 @@ var Roster = (function () {
 
                     // Jingle events
                     $(bPath + ' .bi-jingle a').click(function() {
+                        var this_sel = $(this);
+
                         // Renitialize the buddy infos
                         Bubble.close();
                         
                         // Audio call?
-                        if($(this).is('.audio')) {
+                        if(this_sel.is('.audio')) {
                             Jingle.start(xid, 'audio');
                         }
                         
                         // Video call?
-                        else if($(this).is('.video')) {
+                        else if(this_sel.is('.video')) {
                             Jingle.start(xid, 'video');
                         }
                         
@@ -680,7 +686,9 @@ var Roster = (function () {
             
             // Each checked checkboxes
             $(path + 'div.bm-choose input[type="checkbox"]').filter(':checked').each(function() {
-                array.push(unescape($(this).attr('data-group')));
+                array.push(
+                    unescape($(this).attr('data-group'))
+                );
             });
             
             // Entered input value (and not yet in the array)
@@ -741,7 +749,9 @@ var Roster = (function () {
             var groups = [];
             
             $('#roster .one-group').each(function() {
-                var current = unescape($(this).attr('data-group'));
+                var current = unescape(
+                    $(this).attr('data-group')
+                );
                 
                 if((current != Common._e("Unclassified")) && (current != Common._e("Gateways"))) {
                     groups.push(current);

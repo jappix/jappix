@@ -87,16 +87,16 @@ var Name = (function () {
 
         try {
             // Get the IQ content
-            var xml = $(iq.getNode()).find('vCard');
+            var vcard_sel = $(iq.getNode()).find('vCard');
             
             // Get the full name & the nickname
-            var pFull = xml.find('FN:first').text();
-            var pNick = xml.find('NICKNAME:first').text();
+            var pFull = vcard_sel.find('FN:first').text();
+            var pNick = vcard_sel.find('NICKNAME:first').text();
             
             // No full name?
             if(!pFull) {
                 // Get the given name
-                var pN = xml.find('N:first');
+                var pN = vcard_sel.find('N:first');
                 var pGiven = pN.find('GIVEN:first').text();
                 
                 if(pGiven) {

@@ -70,9 +70,11 @@ var Storage = (function () {
             
             // Parse the options xml
             options.find('option').each(function() {
+                var this_sel = $(this);
+
                 // We retrieve the informations
-                var type = $(this).attr('type');
-                var value = $(this).text();
+                var type = this_sel.attr('type');
+                var value = this_sel.text();
                 
                 // We display the storage
                 DataStore.setDB(Connection.desktop_hash, 'options', type, value);
@@ -85,30 +87,34 @@ var Storage = (function () {
             
             // Parse the inbox xml
             inbox.find('message').each(function() {
+                var this_sel = $(this);
+
                 Inbox.storeMessage(
-                    $(this).attr('from'),
-                    $(this).attr('subject'),
-                    $(this).text(),
-                    $(this).attr('status'),
-                    $(this).attr('id'),
-                    $(this).attr('date'),
+                    this_sel.attr('from'),
+                    this_sel.attr('subject'),
+                    this_sel.text(),
+                    this_sel.attr('status'),
+                    this_sel.attr('id'),
+                    this_sel.attr('date'),
                     [
-                        $(this).attr('file_title'),
-                        $(this).attr('file_href'),
-                        $(this).attr('file_type'),
-                        $(this).attr('file_length')
+                        this_sel.attr('file_title'),
+                        this_sel.attr('file_href'),
+                        this_sel.attr('file_type'),
+                        this_sel.attr('file_length')
                     ]
                 );
             });
             
             // Parse the bookmarks xml
             bookmarks.find('conference').each(function() {
+                var this_sel = $(this);
+
                 // We retrieve the informations
-                var xid = $(this).attr('jid');
-                var name = $(this).attr('name');
-                var autojoin = $(this).attr('autojoin');
-                var password = $(this).find('password').text();
-                var nick = $(this).find('nick').text();
+                var xid = this_sel.attr('jid');
+                var name = this_sel.attr('name');
+                var autojoin = this_sel.attr('autojoin');
+                var password = this_sel.find('password').text();
+                var nick = this_sel.find('nick').text();
                 
                 // Filter autojoin (compatibility)
                 autojoin = ((autojoin == 'true') || (autojoin == '1')) ? 'true' : 'false';
@@ -124,7 +130,14 @@ var Storage = (function () {
             
             // Parse the roster notes xml
             rosternotes.find('note').each(function() {
-                DataStore.setDB(Connection.desktop_hash, 'rosternotes', $(this).attr('jid'), $(this).text());
+                var this_sel = $(this);
+
+                DataStore.setDB(
+                    Connection.desktop_hash,
+                    'rosternotes',
+                    this_sel.attr('jid'),
+                    this_sel.text()
+                );
             });
             
             // Options received

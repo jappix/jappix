@@ -601,13 +601,15 @@ var UserInfos = (function () {
         try {
             // Click events
             $('#userinfos .tab a').click(function() {
+                var this_sel = $(this);
+                
                 // Yet active?
-                if($(this).hasClass('tab-active')) {
+                if(this_sel.hasClass('tab-active')) {
                     return false;
                 }
                 
                 // Switch to the good tab
-                var key = parseInt($(this).attr('data-key'));
+                var key = parseInt(this_sel.attr('data-key'));
                 
                 return self.switchTab(key);
             });

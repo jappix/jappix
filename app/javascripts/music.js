@@ -73,23 +73,15 @@ var Music = (function () {
             // Fill the results
             $(xml).find('track').each(function() {
                 // Parse the XML
-                var id = $(this).find('id').text();
-                var title = $(this).find('name').text();
-                var artist = $(this).find('artist').text();
-                var source = $(this).find('source').text();
-                var duration = $(this).find('duration').text();
-                var uri = $(this).find('url').text();
-                var mime = $(this).find('type').text();
-                
-                // No ID?
-                if(!id) {
-                    id = hex_md5(uri);
-                }
-                
-                // No MIME?
-                if(!mime) {
-                    mime = 'audio/ogg';
-                }
+                var this_sel = $(this);
+
+                var id = this_sel.find('id').text() || hex_md5(uri);
+                var title = this_sel.find('name').text();
+                var artist = this_sel.find('artist').text();
+                var source = this_sel.find('source').text();
+                var duration = this_sel.find('duration').text();
+                var uri = this_sel.find('url').text();
+                var mime = this_sel.find('type').text() || 'audio/ogg';
                 
                 // Local URL?
                 if(type == 'local') {
@@ -164,7 +156,10 @@ var Music = (function () {
             });
             
             // Get the local results
-            $.get('./server/music-search.php', {searchquery: string, location: JAPPIX_LOCATION}, function(data) {
+            $.get('./server/music-search.php', {
+                searchquery: string,
+                location: JAPPIX_LOCATION
+            }, function(data) {
                 self.parse(data, 'local');
             });
         } catch(e) {
@@ -254,27 +249,24 @@ var Music = (function () {
                 
                 // Enough data?
                 if(title || artist || source || uri) {
-                    // Data array
-                    var nodes = [
-                        'title',
-                        'artist',
-                        'source',
-                        'length',
-                        'uri'
-                    ];
-                    
-                    var values = [
-                        title,
-                        artist,
-                        source,
-                        length,
-                        uri
-                    ];
+                    var music_data = {
+                        'title': title,
+                        'artist': artist,
+                        'source': source,
+                        'length': length,
+                        'uri': uri
+                    };
                     
                     // Create the children nodes
-                    for(var i in nodes) {
-                        if(values[i]) {
-                            tune.appendChild(iq.buildNode(nodes[i], {'xmlns': NS_TUNE}, values[i]));
+                    var cur_value;
+
+                    for(var cur_name in music_data) {
+                        cur_value = music_data[cur_name];
+                        
+                        if(cur_value) {
+                            tune.appendChild(iq.buildNode(cur_name, {
+                                'xmlns': NS_TUNE
+                            }, cur_value));
                         }
                     }
                 }

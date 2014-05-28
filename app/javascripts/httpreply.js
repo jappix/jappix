@@ -45,11 +45,19 @@ var HTTPReply = (function () {
             // If "no"
             if(value == 'no') {
                 aMsg.setType('error');
-                aMsg.appendNode('error', {'code': '401', 'type': 'auth'});
+                aMsg.appendNode('error', {
+                    'code': '401',
+                    'type': 'auth'
+                });
             }
             
             // We set the confirm node
-            aMsg.appendNode('confirm', {'xmlns': xmlns, 'url': url, 'id': id, 'method': method});
+            aMsg.appendNode('confirm', {
+                'xmlns': xmlns,
+                'url': url,
+                'id': id,
+                'method': method
+            });
             
             // We send the message
             con.send(aMsg, Errors.handleReply);

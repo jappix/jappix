@@ -365,28 +365,34 @@ var Welcome = (function () {
         try {
             // Click events
             $('#welcome .tab a').click(function() {
+                var this_sel = $(this);
+
                 // Switch to the good tab
-                var key = parseInt($(this).attr('data-step'));
+                var key = parseInt(this_sel.attr('data-step'));
                 
                 return self.switchTab(key);
             });
             
             $('#welcome a.box:not(.share)').click(function() {
-                if($(this).hasClass('enabled')) {
-                    $(this).removeClass('enabled').attr('title', Common._e("Click to enable"));
+                var this_sel = $(this);
+
+                if(this_sel.hasClass('enabled')) {
+                    this_sel.removeClass('enabled').attr('title', Common._e("Click to enable"));
                 } else {
-                    $(this).addClass('enabled').attr('title', Common._e("Click to disable"));
+                    this_sel.addClass('enabled').attr('title', Common._e("Click to disable"));
                 }
                 
                 return false;
             });
             
             $('#welcome .bottom .finish').click(function() {
-                if($(this).is('.next')) {
+                var this_sel = $(this);
+                
+                if(this_sel.is('.next')) {
                     return self.next();
                 }
                 
-                if($(this).is('.save')) {
+                if(this_sel.is('.save')) {
                     return self.save();
                 }
                 

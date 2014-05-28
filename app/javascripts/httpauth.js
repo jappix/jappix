@@ -34,8 +34,6 @@ var HTTPAuth = (function () {
         try {
             // We add the login wait div
             Interface.showGeneralWait();
-            
-            oArgs = {};
 
             if(Common.hasWebSocket()) {
                 // WebSocket supported & configured
@@ -67,15 +65,6 @@ var HTTPAuth = (function () {
             // Generate a priority
             lPriority = lPriority ? lPriority : 10;
 
-            // We retrieve what the user typed in the login inputs
-            oArgs = {};
-            oArgs.domain = $.trim(lServer);
-            oArgs.username = $.trim(lNick);
-            oArgs.resource = random_resource;
-            oArgs.pass = lPass;
-            oArgs.secure = true;
-            oArgs.xmllang = XML_LANG;
-            
             // Store the resource (for reconnection)
             DataStore.setDB(Connection.desktop_hash, 'session', 'resource', random_resource);
             
@@ -89,7 +78,14 @@ var HTTPAuth = (function () {
             DataStore.setDB(Connection.desktop_hash, 'priority', 1, 10);
             
             // We connect !
-            con.connect(oArgs);
+            con.connect({
+                'domain':   $.trim(lServer),
+                'username': $.trim(lNick),
+                'resource': random_resource,
+                'pass':     lPass,
+                'secure':   true,
+                'xmllang':  XML_LANG
+            });
             
             // Change the page title
             Interface.title('wait');

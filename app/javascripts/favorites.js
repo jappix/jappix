@@ -579,7 +579,7 @@ var Favorites = (function () {
                 Console.info('Rooms retrieved: ' + from);
             }
             
-            $(path + 'wait').hide();
+            path_sel.find('.wait').hide();
         } catch(e) {
             Console.error('Favorites.handleGCList', e);
         }

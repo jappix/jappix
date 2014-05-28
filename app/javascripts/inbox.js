@@ -176,17 +176,16 @@ var Inbox = (function () {
                     var value = $(Common.XMLFromString(DataStore.storageDB.getItem(current)));
                     
                     // Create the storage node
-                    storage.appendChild(iq.buildNode('message', {
-                                             'id': value.find('id').text().revertHtmlEnc(),
-                                             'from': value.find('from').text().revertHtmlEnc(),
-                                             'subject': value.find('subject').text().revertHtmlEnc(),
-                                             'status': value.find('status').text().revertHtmlEnc(),
-                                             'date': value.find('date').text().revertHtmlEnc(),
-                                             'xmlns': NS_INBOX
-                                            },
-                                            
-                                            value.find('content').text().revertHtmlEnc()
-                                    ));
+                    storage.appendChild(
+                        iq.buildNode('message', {
+                            'id': value.find('id').text().revertHtmlEnc(),
+                            'from': value.find('from').text().revertHtmlEnc(),
+                            'subject': value.find('subject').text().revertHtmlEnc(),
+                            'status': value.find('status').text().revertHtmlEnc(),
+                            'date': value.find('date').text().revertHtmlEnc(),
+                            'xmlns': NS_INBOX
+                        }, value.find('content').text().revertHtmlEnc()
+                    ));
                 }
             }
             
@@ -207,18 +206,18 @@ var Inbox = (function () {
 
         try {
             // Init
-            var mPath = '#inbox .';
+            var inbox_sel = $('#inbox');
             
             // Reset the previous buddy search
             Search.resetBuddy('#inbox .inbox-new-to');
             
             // We switch the divs
-            $(mPath + 'inbox-results, #inbox .a-new-message, #inbox .a-delete-messages').hide();
-            $(mPath + 'inbox-new, #inbox .a-show-messages').show();
+            inbox_sel.find('.inbox-results, .a-new-message, .a-delete-messages').hide();
+            inbox_sel.find('.inbox-new, .a-show-messages').show();
             
             // We focus on the first input
             $(document).oneTime(10, function() {
-                $(mPath + 'inbox-new-to-input').focus();
+                inbox_sel.find('.inbox-new-to-input').focus();
             });
             
             // We reset some stuffs
@@ -241,16 +240,16 @@ var Inbox = (function () {
 
         try {
             // Init
-            var mPath = '#inbox .';
+            var inbox_sel = $('#inbox');
             
             // We reset the forms
-            $(mPath + 'inbox-new-block:not(form) input, ' + mPath + 'inbox-new textarea').val('').removeClass('please-complete');
-            $(mPath + 'inbox-new-file a').remove();
-            $(mPath + 'inbox-new-file input').show();
+            inbox_sel.find('.inbox-new-block:not(form) input, .inbox-new textarea').val('').removeClass('please-complete');
+            inbox_sel.find('.inbox-new-file a').remove();
+            inbox_sel.find('.inbox-new-file input').show();
             
             // We close an eventual opened message
-            $(mPath + 'message-content').remove();
-            $(mPath + 'one-message').removeClass('message-reading');
+            inbox_sel.find('.message-content').remove();
+            inbox_sel.find('.one-message').removeClass('message-reading');
         } catch(e) {
             Console.error('Inbox.cleanNewMessage', e);
         }
@@ -270,26 +269,26 @@ var Inbox = (function () {
 
         try {
             // We send the message
-            var mess = new JSJaCMessage();
+            var message = new JSJaCMessage();
             
             // Main attributes
-            mess.setTo(to);
-            mess.setSubject(subject);
-            mess.setType('normal');
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setType('normal');
             
             // Any file to attach?
             var attached = '#inbox .inbox-new-file a.file';
             
             if(Common.exists(attached)) {
                 body += '\n' + 
-                    '\n' + 
-                    $(attached).attr('data-attachedtitle') + ' - ' + $(attached).attr('data-attachedhref');
+                        '\n' + 
+                        $(attached).attr('data-attachedtitle') + ' - ' + $(attached).attr('data-attachedhref');
             }
             
             // Set body
-            mess.setBody(body);
+            message.setBody(body);
             
-            con.send(mess, Errors.handleReply);
+            con.send(message, Errors.handleReply);
         } catch(e) {
             Console.error('Inbox.sendMessage', e);
         }
@@ -306,10 +305,10 @@ var Inbox = (function () {
 
         try {
             // We get some informations
-            var mPath = '#inbox ';
-            var to = $(mPath + '.inbox-new-to-input').val();
-            var body = $(mPath + '.inbox-new-textarea').val();
-            var subject = $(mPath + '.inbox-new-subject-input').val();
+            var inbox_sel = $('#inbox');
+            var to = inbox_sel.find('.inbox-new-to-input').val();
+            var body = inbox_sel.find('.inbox-new-textarea').val();
+            var subject = inbox_sel.find('.inbox-new-subject-input').val();
             
             if(to && body && subject) {
                 // New array of XID
@@ -345,15 +344,15 @@ var Inbox = (function () {
             }
             
             else {
-                $(mPath + 'input[type="text"], ' + mPath + 'textarea').each(function() {
-                    var current = this;
+                inbox_sel.find('input[type="text"], textarea').each(function() {
+                    var this_sel = $(this);
                     
-                    if(!$(current).val()) {
+                    if(!this_sel.val()) {
                         $(document).oneTime(10, function() {
-                            $(current).addClass('please-complete').focus();
+                            this_sel.addClass('please-complete').focus();
                         });
                     } else {
-                        $(current).removeClass('please-complete');  
+                        this_sel.removeClass('please-complete');  
                     }
                 });
             }
@@ -374,17 +373,16 @@ var Inbox = (function () {
     self.showMessage = function() {
 
         try {
-            // Init
-            var mPath = '#inbox .';
+            var inbox_sel = $('#inbox');
             
             // We switch the divs
-            $(mPath + 'inbox-new').hide();
-            $(mPath + 'inbox-results').show();
+            inbox_sel.find('.inbox-new').hide();
+            inbox_sel.find('.inbox-results').show();
             
             // We show a new link in the menu
-            $(mPath + 'a-show-messages').hide();
-            $(mPath + 'a-delete-messages').show();
-            $(mPath + 'a-new-message').show();
+            inbox_sel.find('.a-show-messages').hide();
+            inbox_sel.find('.a-delete-messages').show();
+            inbox_sel.find('.a-new-message').show();
             
             // We reset some stuffs
             self.cleanNewMessage();
@@ -484,10 +482,14 @@ var Inbox = (function () {
 
         try {
             // Initialize the XML data
-            var xml = '<message><id>' + id.htmlEnc().htmlEnc() + '</id><date>' + date.htmlEnc().htmlEnc() + '</date><from>' + from.htmlEnc().htmlEnc() + '</from><subject>' + subject.htmlEnc().htmlEnc() + '</subject><status>' + status.htmlEnc().htmlEnc() + '</status><content>' + content.htmlEnc().htmlEnc() + '</content>';
-            
-            // End the XML data
-            xml += '</message>';
+            var xml = '<message>' + 
+                        '<id>' + id.htmlEnc().htmlEnc() + '</id>' + 
+                        '<date>' + date.htmlEnc().htmlEnc() + '</date>' + 
+                        '<from>' + from.htmlEnc().htmlEnc() + '</from>' + 
+                        '<subject>' + subject.htmlEnc().htmlEnc() + '</subject>' + 
+                        '<status>' + status.htmlEnc().htmlEnc() + '</status>' + 
+                        '<content>' + content.htmlEnc().htmlEnc() + '</content>' + 
+                      '</message>';
             
             // Store this message!
             DataStore.setDB(Connection.desktop_hash, 'inbox', id, xml);
@@ -854,7 +856,17 @@ var Inbox = (function () {
                 
                 // Hide the attach link, show the unattach one
                 $('#inbox .inbox-new-file input').hide();
-                $('#inbox .inbox-new-file').append('<a class="file ' + Common.encodeQuotes(Utils.fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" href="' + Common.encodeQuotes(fURL) + '" target="_blank">' + fName.htmlEnc() + '</a><a href="#" class="remove one-button talk-images">' + Common._e("Remove") + '</a>');
+                $('#inbox .inbox-new-file').append(
+                    '<a class="file ' + Common.encodeQuotes(Utils.fileCategory(Common.explodeThis('/', fType, 1))) + ' talk-images" ' + 
+                       'href="' + Common.encodeQuotes(fURL) + '" ' + 
+                       'target="_blank">' + 
+                        fName.htmlEnc() + 
+                    '</a>' + 
+
+                    '<a href="#" class="remove one-button talk-images">' + 
+                        Common._e("Remove") + 
+                    '</a>'
+                );
                 
                 // Set values to the file link
                 var inbox_file_sel = $('#inbox .inbox-new-file a.file');
@@ -863,9 +875,11 @@ var Inbox = (function () {
                 inbox_file_sel.attr('data-attachedhref', fURL);
                 
                 // Click events
-                $('#inbox .inbox-new-file a.remove').click(function() {
-                    $('#inbox .inbox-new-file a').remove();
-                    $('#inbox .inbox-new-file input').show();
+                var inbox_new_file_sel = $('#inbox .inbox-new-file');
+
+                inbox_new_file_sel.find('a.remove').click(function() {
+                    inbox_new_file_sel.find('a').remove();
+                    inbox_new_file_sel.find('input').show();
                     
                     return false;
                 });

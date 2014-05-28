@@ -272,7 +272,7 @@ var vCard = (function () {
                 $('#USER-PHOTO-TYPE').val(aType);
                 $('#USER-PHOTO-BINVAL').val(aBinval);
                 
-                // We display the avatar !
+                // We display the avatar!
                 $('#vcard .avatar-container').replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
             }
             
@@ -454,15 +454,17 @@ var vCard = (function () {
             var values_yet = [];
             
             $(iqNode).find('vCard').children().each(function() {
+                var this_sel = $(this);
+
                 // Read the current parent node name
                 var tokenname = (this).nodeName.toUpperCase();
                 
                 // Node with a parent
-                if($(this).children().size()) {
-                    $(this).children().each(function() {
+                if(this_sel.children().size()) {
+                    this_sel.children().each(function() {
                         // Get the node values
                         var currentID = tokenname + '-' + (this).nodeName.toUpperCase();
-                        var currentText = $(this).text();
+                        var currentText = this_sel.text();
                         
                         // Not yet added?
                         if(!Utils.existArrayValue(values_yet, currentID)) {
@@ -881,13 +883,15 @@ var vCard = (function () {
             
             // Click events
             $('#vcard .tab a').click(function() {
+                var this_sel = $(this);
+
                 // Yet active?
-                if($(this).hasClass('tab-active')) {
+                if(this_sel.hasClass('tab-active')) {
                     return false;
                 }
                 
                 // Switch to the good tab
-                var key = parseInt($(this).attr('data-key'));
+                var key = parseInt(this_sel.attr('data-key'));
                 
                 return self.switchTab(key);
             });
@@ -897,11 +901,13 @@ var vCard = (function () {
             });
             
             $('#vcard .bottom .finish').click(function() {
-                if($(this).is('.cancel')) {
+                var this_sel = $(this);
+
+                if(this_sel.is('.cancel')) {
                     return self.close();
                 }
 
-                if($(this).is('.save') && !$(this).hasClass('disabled')) {
+                if(this_sel.is('.save') && !this_sel.hasClass('disabled')) {
                     return self.send();
                 }
                 

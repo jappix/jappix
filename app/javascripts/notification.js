@@ -455,14 +455,16 @@ var Notification = (function () {
             
             // Parse notifications
             items.each(function() {
+                var this_sel = $(this);
+                
                 // Parse the current item
-                var current_item = $(this).attr('id');
-                var current_type = $(this).find('link[rel="via"]:first').attr('title');
-                var current_href = $(this).find('link[rel="via"]:first').attr('href');
-                var current_parent_href = $(this).find('link[rel="related"]:first').attr('href');
-                var current_xid = Common.explodeThis(':', $(this).find('author uri').text(), 1);
-                var current_name = $(this).find('author name').text();
-                var current_text = $(this).find('content[type="text"]:first').text();
+                var current_item = this_sel.attr('id');
+                var current_type = this_sel.find('link[rel="via"]:first').attr('title');
+                var current_href = this_sel.find('link[rel="via"]:first').attr('href');
+                var current_parent_href = this_sel.find('link[rel="related"]:first').attr('href');
+                var current_xid = Common.explodeThis(':', this_sel.find('author uri').text(), 1);
+                var current_name = this_sel.find('author name').text();
+                var current_text = this_sel.find('content[type="text"]:first').text();
                 var current_bname = Name.getBuddy(current_xid);
                 var current_id = hex_md5(current_type + current_xid + current_href + current_text);
                 

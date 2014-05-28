@@ -233,9 +233,10 @@ var Chat = (function () {
      * Apply generate events
      * @private
      * @param {string} type
+     * @param {string} id
      * @return {object}
      */
-    self._generateChatCode = function(type) {
+    self._generateChatCode = function(type, id) {
 
         var code_args = {};
 
@@ -286,7 +287,7 @@ var Chat = (function () {
             }
 
             // IE DOM parsing bug fix
-            code_args.style_picker = '<div class="chat-tools-content chat-tools-style"' + chat_args.style + '>' + 
+            code_args.style_picker = '<div class="chat-tools-content chat-tools-style"' + code_args.style + '>' + 
                                             '<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
                                          '</div>';
             
@@ -399,7 +400,7 @@ var Chat = (function () {
             var escaped_xid = escape(xid);
             
             // Special code
-            var chat_args = self._generateChatCode(type);
+            var chat_args = self._generateChatCode(type, id);
 
             // Append the chat HTML code
             $('#page-engine').append(
