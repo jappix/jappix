@@ -131,6 +131,7 @@ var Correction = (function () {
         try {
             // Add message area elements
             var text_sel = $('#' + hex_md5(xid) + ' .text');
+
             text_sel.addClass('correction-active');
             text_sel.prepend(
                 '<div class="correction-toolbox">' + 
@@ -211,6 +212,7 @@ var Correction = (function () {
             var id = genID();
             args.id = id;
 
+            // Initialize message stanza
             var message = new JSJaCMessage();
             args.message = message;
 

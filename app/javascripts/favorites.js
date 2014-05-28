@@ -143,16 +143,21 @@ var Favorites = (function () {
     self.reset = function() {
 
         try {
-            var path = '#favorites ';
+            var path_sel = $('#favorites');
     
-            $(path + '.wait, ' + path + '.fedit-terminate').hide();
-            $(path + '.fedit-add').show();
-            $(path + '.fsearch-oneresult').remove();
-            $(path + 'input').val('');
-            $(path + '.please-complete').removeClass('please-complete');
-            $(path + '.fedit-nick').val(Name.getNick());
-            $(path + '.fsearch-head-server, ' + path + '.fedit-server').val(HOST_MUC);
-            $(path + '.fedit-autojoin').removeAttr('checked');
+            path_sel.find('.wait');
+            path_sel.find('.fedit-terminate').hide();
+            path_sel.find('.fedit-add').show();
+
+            path_sel.find('.fsearch-oneresult').remove();
+            path_sel.find('input').val('');
+            path_sel.find('.please-complete').removeClass('please-complete');
+
+            path_sel.find('.fedit-nick').val(Name.getNick());
+            path_sel.find('.fsearch-head-server').val(HOST_MUC);
+            path_sel.find('.fedit-server').val(HOST_MUC);
+
+            path_sel.find('.fedit-autojoin').removeAttr('checked');
         } catch(e) {
             Console.error('Favorites.reset', e);
         }
@@ -182,29 +187,34 @@ var Favorites = (function () {
     /**
      * Adds a room to the favorites
      * @public
-     * @param {string} roomXID
-     * @param {string} roomName
+     * @param {string} room_xid
+     * @param {string} room_name
      * @return {boolean}
      */
-    self.addThis = function(roomXID, roomName) {
+    self.addThis = function(room_xid, room_name) {
 
         try {
             // Button path
-            var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
+            var button_sel = $('#favorites .fsearch-results div[data-xid="' + escape(room_xid) + '"] a.one-button');
             
             // Add a remove button instead of the add one
-            $(button + '.add').replaceWith('<a href="#" class="one-button remove talk-images">' + Common._e("Remove") + '</a>');
+            button_sel.filter('.add').replaceWith(
+                '<a href="#" class="one-button remove talk-images">' + Common._e("Remove") + '</a>'
+            );
             
             // Click event
-            $(button + '.remove').click(function() {
-                return self.removeThis(roomXID, roomName);
+            button_sel.filter('.remove').click(function() {
+                return self.removeThis(room_xid, room_name);
             });
             
             // Hide the add button in the (opened?) groupchat
-            $('#' + hex_md5(roomXID) + ' .tools-add').hide();
+            $('#' + hex_md5(room_xid) + ' .tools-add').hide();
             
             // Add the database entry
-            self.display(roomXID, Common.explodeThis(' (', roomName, 0), Name.getNick(), '0', '');
+            self.display(
+                room_xid,
+                Common.explodeThis(' (', room_name, 0), Name.getNick(), '0', ''
+            );
             
             // Publish the favorites
             self.publish();
@@ -220,29 +230,29 @@ var Favorites = (function () {
     /**
      * Removes a room from the favorites
      * @public
-     * @param {string} roomXID
-     * @param {string} roomName
+     * @param {string} room_xid
+     * @param {string} room_name
      * @return {boolean}
      */
-    self.removeThis = function(roomXID, roomName) {
+    self.removeThis = function(room_xid, room_name) {
 
         try {
             // Button path
-            var button = '#favorites .fsearch-results div[data-xid="' + escape(roomXID) + '"] a.one-button';
+            var button_sel = $('#favorites .fsearch-results div[data-xid="' + escape(room_xid) + '"] a.one-button');
             
             // Add a remove button instead of the add one
-            $(button + '.remove').replaceWith('<a href="#" class="one-button add talk-images">' + Common._e("Add") + '</a>');
+            button_sel.filter('.remove').replaceWith('<a href="#" class="one-button add talk-images">' + Common._e("Add") + '</a>');
             
             // Click event
-            $(button + '.add').click(function() {
-                return self.addThis(roomXID, roomName);
+            button_sel.filter('.add').click(function() {
+                return self.addThis(room_xid, room_name);
             });
             
             // Show the add button in the (opened?) groupchat
-            $('#' + hex_md5(roomXID) + ' .tools-add').show();
+            $('#' + hex_md5(room_xid) + ' .tools-add').show();
             
             // Remove the favorite
-            self.remove(roomXID, true);
+            self.remove(room_xid, true);
             
             // Publish the favorites
             self.publish();
@@ -264,31 +274,33 @@ var Favorites = (function () {
 
         try {
             // Path to favorites
-            var favorites = '#favorites .';
+            var favorites_sel = $('#favorites');
             
             // Reset the favorites
             self.reset();
             
             // Show the edit/remove button, hide the others
-            $(favorites + 'fedit-terminate').hide();
-            $(favorites + 'fedit-edit').show();
-            $(favorites + 'fedit-remove').show();
+            favorites_sel.find('.fedit-terminate').hide();
+            favorites_sel.find('.fedit-edit').show();
+            favorites_sel.find('.fedit-remove').show();
             
             // We retrieve the values
-            var xid = $(favorites + 'fedit-head-select').val();
-            var data = Common.XMLFromString(DataStore.getDB(Connection.desktop_hash, 'favorites', xid));
+            var xid = favorites_sel.find('.fedit-head-select').val();
+            var data_sel = $(Common.XMLFromString(
+                DataStore.getDB(Connection.desktop_hash, 'favorites', xid)
+            ));
             
             // If this is not the default room
             if(xid != 'none') {
                 // We apply the values
-                $(favorites + 'fedit-title').val($(data).find('name').text());
-                $(favorites + 'fedit-nick').val($(data).find('nick').text());
-                $(favorites + 'fedit-chan').val(Common.getXIDNick(xid));
-                $(favorites + 'fedit-server').val(Common.getXIDHost(xid));
-                $(favorites + 'fedit-password').val($(data).find('password').text());
+                favorites_sel.find('.fedit-title').val(data_sel.find('name').text());
+                favorites_sel.find('.fedit-nick').val(data_sel.find('nick').text());
+                favorites_sel.find('.fedit-chan').val(Common.getXIDNick(xid));
+                favorites_sel.find('.fedit-server').val(Common.getXIDHost(xid));
+                favorites_sel.find('.fedit-password').val(data_sel.find('password').text());
                 
                 if($(data).find('autojoin').text() == 'true') {
-                    $(favorites + 'fedit-autojoin').attr('checked', true);
+                    favorites_sel.find('.fedit-autojoin').attr('checked', true);
                 }
             }
         } catch(e) {
@@ -308,20 +320,20 @@ var Favorites = (function () {
 
         try {
             // Path to favorites
-            var favorites = '#favorites ';
+            var favorites_sel = $('#favorites');
             
             // We get the values of the current edited groupchat
-            var old_xid = $(favorites + '.fedit-head-select').val();
+            var old_xid = favorites_sel.find('.fedit-head-select').val();
             
-            var title = $(favorites + '.fedit-title').val();
-            var nick = $(favorites + '.fedit-nick').val();
-            var room = $(favorites + '.fedit-chan').val();
-            var server = $(favorites + '.fedit-server').val();
+            var title = favorites_sel.find('.fedit-title').val();
+            var nick = favorites_sel.find('.fedit-nick').val();
+            var room = favorites_sel.find('.fedit-chan').val();
+            var server = favorites_sel.find('.fedit-server').val();
             var xid = room + '@' + server;
-            var password = $(favorites + '.fedit-password').val();
+            var password = favorites_sel.find('.fedit-password').val();
             var autojoin = 'false';
             
-            if($(favorites + '.fedit-autojoin').filter(':checked').size()) {
+            if(favorites_sel.find('.fedit-autojoin').filter(':checked').size()) {
                 autojoin = 'true';
             }
             
@@ -338,10 +350,8 @@ var Favorites = (function () {
                     
                     // Reset the inputs
                     self.reset();
-                }
-                
-                else {
-                    $(favorites + 'input[required]').each(function() {
+                } else {
+                    favorites_sel.find('input[required]').each(function() {
                         var select = $(this);
                         
                         if(!select.val()) {
@@ -353,10 +363,7 @@ var Favorites = (function () {
                         }
                     });
                 }
-            }
-            
-            // Must remove a favorite?
-            else if(type == 'remove') {
+            } else if(type == 'remove') {
                 self.remove(old_xid, true);
                 
                 // Reset the inputs
@@ -413,7 +420,9 @@ var Favorites = (function () {
             iq.setType('set');
             
             var query = iq.setQuery(NS_PRIVATE);
-            var storage = query.appendChild(iq.buildNode('storage', {'xmlns': NS_BOOKMARKS}));
+            var storage = query.appendChild(iq.buildNode('storage', {
+                'xmlns': NS_BOOKMARKS
+            }));
             
             // We generate the XML
             var db_regex = new RegExp(('^' + Connection.desktop_hash + '_') + 'favorites_(.+)');
@@ -424,19 +433,34 @@ var Favorites = (function () {
                 
                 // If the pointer is on a stored favorite
                 if(current.match(db_regex)) {
-                    var data = Common.XMLFromString(DataStore.storageDB.getItem(current));
-                    var xid = $(data).find('xid').text();
-                    var rName = $(data).find('name').text();
-                    var nick = $(data).find('nick').text();
-                    var password = $(data).find('password').text();
-                    var autojoin = $(data).find('autojoin').text();
+                    var data_sel = $(Common.XMLFromString(
+                        DataStore.storageDB.getItem(current)
+                    ));
+
+                    var xid = data_sel.find('xid').text();
+                    var rName = data_sel.find('name').text();
+                    var nick = data_sel.find('nick').text();
+                    var password = data_sel.find('password').text();
+                    var autojoin = data_sel.find('autojoin').text();
                     
                     // We create the node for this groupchat
-                    var item = storage.appendChild(iq.buildNode('conference', {'name': rName, 'jid': xid, 'autojoin': autojoin, xmlns: NS_BOOKMARKS}));
-                    item.appendChild(iq.buildNode('nick', {xmlns: NS_BOOKMARKS}, nick));
+                    var item = storage.appendChild(
+                        iq.buildNode('conference', {
+                            'name': rName,
+                            'jid': xid,
+                            'autojoin': autojoin,
+                            xmlns: NS_BOOKMARKS
+                        })
+                    );
+                    
+                    item.appendChild(iq.buildNode('nick', {
+                        xmlns: NS_BOOKMARKS
+                    }, nick));
                     
                     if(password) {
-                        item.appendChild(iq.buildNode('password', {xmlns: NS_BOOKMARKS}, password));
+                        item.appendChild(iq.buildNode('password', {
+                            xmlns: NS_BOOKMARKS
+                        }, password));
                     }
                     
                     Console.info('Bookmark sent: ' + xid);
@@ -459,17 +483,17 @@ var Favorites = (function () {
     self.getGCList = function() {
 
         try {
-            var path = '#favorites .';
-            var gcServer = $('.fsearch-head-server').val();
+            var path_sel = $('#favorites');
+            var groupchat_server = $('.fsearch-head-server').val();
             
             // We reset some things
-            $(path + 'fsearch-oneresult').remove();
-            $(path + 'fsearch-noresults').hide();
-            $(path + 'wait').show();
+            path_sel.find('.fsearch-oneresult').remove();
+            path_sel.find('.fsearch-noresults').hide();
+            path_sel.find('.wait').show();
             
             var iq = new JSJaCIQ();
             iq.setType('get');
-            iq.setTo(gcServer);
+            iq.setTo(groupchat_server);
             
             iq.setQuery(NS_DISCO_ITEMS);
             
@@ -490,13 +514,13 @@ var Favorites = (function () {
     self.handleGCList = function(iq) {
 
         try {
-            var path = '#favorites .';
+            var path_sel = $('#favorites');
             var from = Common.fullXID(Common.getStanzaFrom(iq));
             
             if(!iq || (iq.getType() != 'result')) {
                 Board.openThisError(3);
                 
-                $(path + 'wait').hide();
+                path_sel.find('.wait').hide();
                 
                 Console.error('Error while retrieving the rooms: ' + from);
             }
@@ -509,24 +533,36 @@ var Favorites = (function () {
                     var html = '';
                     
                     $(handleXML).find('item').each(function() {
-                        var roomXID = $(this).attr('jid');
-                        var roomName = $(this).attr('name');
+                        var this_sel = $(this);
+
+                        var room_xid = this_sel.attr('jid');
+                        var room_name = this_sel.attr('name');
                         
-                        if(roomXID && roomName) {
+                        if(room_xid && room_name) {
                             // Escaped values
-                            var escaped_xid = Utils.encodeOnclick(roomXID);
-                            var escaped_name = Utils.encodeOnclick(roomName);
+                            var escaped_xid = Utils.encodeOnclick(room_xid);
+                            var escaped_name = Utils.encodeOnclick(room_name);
                             
                             // Initialize the room HTML
-                            html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(roomXID) + '">' + 
-                                    '<div class="room-name">' + roomName.htmlEnc() + '</div>' + 
+                            html += '<div class="oneresult fsearch-oneresult" data-xid="' + escape(room_xid) + '">' + 
+                                    '<div class="room-name">' + room_name.htmlEnc() + '</div>' + 
                                     '<a href="#" class="one-button join talk-images" onclick="return Favorites.join(\'' + escaped_xid + '\');">' + Common._e("Join") + '</a>';
                             
                             // This room is yet a favorite
-                            if(DataStore.existDB(Connection.desktop_hash, 'favorites', roomXID)) {
-                                html += '<a href="#" class="one-button remove talk-images" onclick="return Favorites.removeThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Remove") + '</a>';
+                            if(DataStore.existDB(Connection.desktop_hash, 'favorites', room_xid)) {
+                                html += '<a href="#" ' + 
+                                           'class="one-button remove talk-images" ' + 
+                                           'onclick="return Favorites.removeThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');"' + 
+                                        '>' + 
+                                            Common._e("Remove") + 
+                                        '</a>';
                             } else {
-                                html += '<a href="#" class="one-button add talk-images" onclick="return Favorites.addThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');">' + Common._e("Add") + '</a>';
+                                html += '<a href="#" ' + 
+                                           'class="one-button add talk-images" ' + 
+                                           'onclick="return Favorites.addThis(\'' + escaped_xid + '\', \'' + escaped_name + '\');"' + 
+                                        '>' + 
+                                            Common._e("Add") + 
+                                        '</a>';
                             }
                             
                             // Close the room HTML
@@ -535,11 +571,10 @@ var Favorites = (function () {
                     });
                     
                     // Append this code to the popup
-                    $(path + 'fsearch-results').append(html);
+                    path_sel.find('.fsearch-results').append(html);
+                } else {
+                    path_sel.find('.fsearch-noresults').show();
                 }
-                
-                else
-                    $(path + 'fsearch-noresults').show();
                 
                 Console.info('Rooms retrieved: ' + from);
             }
@@ -562,7 +597,14 @@ var Favorites = (function () {
 
         try {
             self.quit();
-            Chat.checkCreate(room, 'groupchat', '', '', Common.getXIDNick(room));
+
+            Chat.checkCreate(
+                room,
+                'groupchat',
+                '',
+                '',
+                Common.getXIDNick(room)
+            );
         } catch(e) {
             Console.error('Favorites.join', e);
         } finally {
@@ -595,7 +637,14 @@ var Favorites = (function () {
             $('#roster .gc-join-first-option, #favorites .fedit-head-select-first-option').after(html);
             
             // We store the informations
-            var value = '<groupchat><xid>' + xid.htmlEnc() + '</xid><name>' + name.htmlEnc() + '</name><nick>' + nick.htmlEnc() + '</nick><autojoin>' + autojoin.htmlEnc() + '</autojoin><password>' + password.htmlEnc() + '</password></groupchat>';
+            var value = '<groupchat>' + 
+                            '<xid>' + xid.htmlEnc() + '</xid>' + 
+                            '<name>' + name.htmlEnc() + '</name>' + 
+                            '<nick>' + nick.htmlEnc() + '</nick>' + 
+                            '<autojoin>' + autojoin.htmlEnc() + '</autojoin>' + 
+                            '<password>' + password.htmlEnc() + '</password>' + 
+                        '</groupchat>';
+
             DataStore.setDB(Connection.desktop_hash, 'favorites', xid, value);
         } catch(e) {
             Console.error('Favorites.display', e);
@@ -627,13 +676,20 @@ var Favorites = (function () {
                     var data = Common.XMLFromString(DataStore.storageDB.getItem(current));
                     
                     // Add the current favorite to the HTML code
-                    html += '<option value="' + Common.encodeQuotes($(data).find('xid').text()) + '">' + $(data).find('name').text().htmlEnc() + '</option>';
+                    html += '<option value="' + Common.encodeQuotes($(data).find('xid').text()) + '">' + 
+                                $(data).find('name').text().htmlEnc() + 
+                            '</option>';
                 }
             }
             
             // Generate specific HTML code
-            var favorites_bubble = '<option value="none" class="gc-join-first-option" selected="">' + Common._e("Select a favorite") +  '</option>' + html;
-            var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + Common._e("Select a favorite") + '</option>' + html;
+            var favorites_bubble = '<option value="none" class="gc-join-first-option" selected="">' + 
+                                        Common._e("Select a favorite") + 
+                                   '</option>' + html;
+
+            var favorites_popup = '<option value="none" class="fedit-head-select-first-option" selected="">' + 
+                                        Common._e("Select a favorite") + 
+                                  '</option>' + html;
             
             // Append the HTML code
             $('#roster .buddy-conf-groupchat-select').html(favorites_bubble);

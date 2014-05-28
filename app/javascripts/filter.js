@@ -248,6 +248,71 @@ var Filter = (function () {
 
     };
 
+    self.xhtml_allow = {
+        'elements': [
+            'a',
+            'abbr',
+            'acronym',
+            'address',
+            'blockquote',
+            'body',
+            'br',
+            'cite',
+            'code',
+            'dd',
+            'dfn',
+            'div',
+            'dt',
+            'em',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6',
+            'head',
+            'html',
+            'kbd',
+            'li',
+            'ol',
+            'p',
+            'pre',
+            'q',
+            'samp',
+            'span',
+            'strong',
+            'title',
+            'ul',
+            'var'
+        ],
+        
+        'attributes': [
+            'accesskey',
+            'alt',
+            'charset',
+            'cite',
+            'class',
+            'height',
+            'href',
+            'hreflang',
+            'id',
+            'longdesc',
+            'profile',
+            'rel',
+            'rev',
+            'src',
+            'style',
+            'tabindex',
+            'title',
+            'type',
+            'uri',
+            'version',
+            'width',
+            'xml:lang',
+            'xmlns'
+        ]
+    };
+
 
     /**
      * Generates a given emoticon HTML code
@@ -345,86 +410,23 @@ var Filter = (function () {
     self.xhtml = function(code) {
 
         try {
-            // Allowed elements array
-            var elements = [
-                'a',
-                'abbr',
-                'acronym',
-                'address',
-                'blockquote',
-                'body',
-                'br',
-                'cite',
-                'code',
-                'dd',
-                'dfn',
-                'div',
-                'dt',
-                'em',
-                'h1',
-                'h2',
-                'h3',
-                'h4',
-                'h5',
-                'h6',
-                'head',
-                'html',
-                'kbd',
-                'li',
-                'ol',
-                'p',
-                'pre',
-                'q',
-                'samp',
-                'span',
-                'strong',
-                'title',
-                'ul',
-                'var'
-            ];
-            
-            // Allowed attributes array
-            var attributes = [
-               'accesskey',
-               'alt',
-               'charset',
-               'cite',
-               'class',
-               'height',
-               'href',
-               'hreflang',
-               'id',
-               'longdesc',
-               'profile',
-               'rel',
-               'rev',
-               'src',
-               'style',
-               'tabindex',
-               'title',
-               'type',
-               'uri',
-               'version',
-               'width',
-               'xml:lang',
-               'xmlns'
-            ];
+            var code_sel = $(code);
             
             // Check if Filter for XHTML-IM images is enabled
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') != '1') {
-                elements.push("img");
+                self.xhtml_allow.elements.push("img");
             }
             
             // Remove forbidden elements
-            $(code).find('html body *').each(function() {
+            code_sel.find('html body *').each(function() {
                 // This element is not authorized
-                if(!Utils.existArrayValue(elements, (this).nodeName.toLowerCase())) {
+                if(!Utils.existArrayValue(self.xhtml_allow.elements, (this).nodeName.toLowerCase())) {
                     $(this).remove();
                 }
             });
             
             // Remove forbidden attributes
-            $(code).find('html body *').each(function() {
+            code_sel.find('html body *').each(function() {
                 // Put a pointer on this element (jQuery way & normal way)
                 var cSelector = $(this);
                 var cElement = (this);
@@ -437,16 +439,17 @@ var Filter = (function () {
                     var cVal = cAttr.value;
                     
                     // This attribute is not authorized, or contains JS code
-                    if(!Utils.existArrayValue(attributes, cName.toLowerCase()) || ((cVal.toLowerCase()).match(/(^|"|')javascript:/))) {
+                    if(!Utils.existArrayValue(self.xhtml_allow.attributes, cName.toLowerCase()) || 
+                        ((cVal.toLowerCase()).match(/(^|"|')javascript:/))) {
                         cSelector.removeAttr(cName);
                     }
                 });
             });
             
             // Filter some other elements
-            $(code).find('a').attr('target', '_blank');
+            code_sel.find('a').attr('target', '_blank');
             
-            return $(code).find('html body').html();
+            return code_sel.find('html body').html();
         } catch(e) {
             Console.error('Filter.xhtml', e);
         }

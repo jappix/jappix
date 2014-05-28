@@ -36,8 +36,9 @@ var ChatState = (function () {
             // If the friend client supports chatstates and is online
             if((user_type == 'groupchat') || ((user_type == 'chat') && $('#' + hash + ' .message-area').attr('data-chatstates') && !Common.exists('#page-switch .' + hash + ' .unavailable'))) {
                 // Already sent?
-                if(DataStore.getDB(Connection.desktop_hash, 'currentchatstate', xid) == state)
+                if(DataStore.getDB(Connection.desktop_hash, 'currentchatstate', xid) == state) {
                     return;
+                }
                 
                 // Write the state
                 DataStore.setDB(Connection.desktop_hash, 'currentchatstate', xid, state);
@@ -48,7 +49,9 @@ var ChatState = (function () {
                 aMsg.setType(user_type);
                 
                 // Append the chatstate node
-                aMsg.appendNode(state, {'xmlns': NS_CHATSTATES});
+                aMsg.appendNode(state, {
+                    'xmlns': NS_CHATSTATES
+                });
                 
                 // Send this!
                 con.send(aMsg);
@@ -76,8 +79,9 @@ var ChatState = (function () {
                 self.reset(hash, type);
                 
                 // "gone" state not allowed
-                if(state != 'gone')
+                if(state != 'gone') {
                     $('#page-engine .page-engine-chan .user.' + hash).addClass(state);
+                }
             }
             
             // Chat
@@ -125,7 +129,9 @@ var ChatState = (function () {
                 $('#' + hash + ' .chatstate').remove();
                 
                 // We create the chatstate
-                $('#' + hash + ' .content').after('<div class="' + state + ' chatstate">' + text + '</div>');
+                $('#' + hash + ' .content').after(
+                    '<div class="' + state + ' chatstate">' + text + '</div>'
+                );
             }
         } catch(e) {
             Console.error('ChatState.display', e);
@@ -223,14 +229,11 @@ var ChatState = (function () {
                 if(target.is(':disabled')) {
                     return;
                 }
-                
+
                 // Something was written, user paused
                 if($(this).val()) {
                     self.send('paused', xid, hash);
-                }
-
-                // Chat only: Nothing in the input, user is inactive
-                else if(type == 'chat') {
+                } else if(type == 'chat') {
                     self.send('inactive', xid, hash);
                 }
             });

@@ -227,10 +227,11 @@ var Common = (function () {
             
             // We split if necessary the string
             if(index !== -1) {
-                if(i === 0)
+                if(i === 0) {
                     toStr = toStr.substr(0, index);
-                else
+                } else {
                     toStr = toStr.substr(index + 1);
+                }
             }
             
             // We return the value

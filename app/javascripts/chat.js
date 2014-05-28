@@ -51,7 +51,7 @@ var Chat = (function () {
                 UserInfos.open(xid);
             });
         } catch(e) {
-            Console.error('Caps._generateEvents', e);
+            Console.error('Chat._generateEvents', e);
         }
 
     };
@@ -72,7 +72,7 @@ var Chat = (function () {
             self._createEventsKey(input_sel, xid, hash);
             self._createEventsMouse(xid, hash);
         } catch(e) {
-            Console.error('Caps._createEvents', e);
+            Console.error('Chat._createEvents', e);
         }
 
     };
@@ -103,7 +103,7 @@ var Chat = (function () {
                 }
             });
         } catch(e) {
-            Console.error('Caps._createEventsInput', e);
+            Console.error('Chat._createEventsInput', e);
         }
 
     };
@@ -168,7 +168,7 @@ var Chat = (function () {
                 }
             });
         } catch(e) {
-            Console.error('Caps._createEventsKey', e);
+            Console.error('Chat._createEventsKey', e);
         }
 
     };
@@ -223,7 +223,80 @@ var Chat = (function () {
                 }
             });
         } catch(e) {
-            Console.error('Caps._createEventsMouse', e);
+            Console.error('Chat._createEventsMouse', e);
+        }
+
+    };
+
+
+    /**
+     * Apply generate events
+     * @private
+     * @param {string} type
+     * @return {object}
+     */
+    self._generateChatCode = function(type) {
+
+        var code_args = {};
+
+        try {
+            // Groupchat special code
+            if(type == 'groupchat') {
+                code_args.attributes = ' data-type="groupchat" data-correction="true"';
+                code_args.avatar = '';
+                code_args.name = '<p class="bc-infos"><b>' + Common._e("Subject") + '</b> <span class="muc-topic">' + Common._e("no subject defined for this room.") + '</span></p>';
+                code_args.code = '<div class="content groupchat-content" id="chat-content-' + id + '"></div>' + 
+                                 '<div class="list"><div class="moderator role"><p class="title">' + Common._e("Moderators") + '</p></div>' + 
+                                 '<div class="participant role"><p class="title">' + Common._e("Participants") + '</p></div>' + 
+                                 '<div class="visitor role"><p class="title">' + Common._e("Visitors") + '</p></div>' + 
+                                 '<div class="none role"><p class="title">' + Common._e("Others") + '</p></div></div>';
+                code_args.link = '<a href="#" class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + Common._e("Administration panel for this room") + '"></a>';
+                code_args.style = '';
+                
+                // Is this a gateway?
+                if(xid.match(/%/)) {
+                    code_args.disabled = '';
+                } else {
+                    code_args.disabled = ' disabled=""';
+                }
+            } else {
+                code_args.mam = '<div class="wait-mam wait-small"></div>';
+                code_args.attributes = ' data-type="chat"';
+                code_args.avatar = '<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>';
+                code_args.name = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
+                code_args.code = '<div class="content" id="chat-content-' + id + '">' + code_args.mam + '</div>';
+                code_args.link = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>' + 
+                                 '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (video)") + '"></a>' + 
+                                 '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + Common._e("Show user profile") + '"></a>';
+                code_args.style = ' style="display: none;"';
+                code_args.disabled = '';
+            }
+            
+            // Not a groupchat private chat, we can use the buddy add icon
+            if((type == 'chat') || (type == 'groupchat')) {
+                var title;
+                
+                if(type == 'chat') {
+                    title = Common._e("Add this contact to your friends");
+                } else {
+                    title = Common._e("Add this groupchat to your favorites");
+                }
+                
+                code_args.link += '<a href="#" class="tools-add tools-tooltip talk-images chat-tools-content" title="' + title + '"></a>';
+            }
+
+            // IE DOM parsing bug fix
+            var code_args.style_picker = '<div class="chat-tools-content chat-tools-style"' + chat_args.style + '>' + 
+                                            '<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
+                                         '</div>';
+            
+            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
+                code_args.style_picker = '';
+            }
+        } catch(e) {
+            Console.error('Chat._generateChatCode', e);
+        } finally {
+            return code_args;
         }
 
     };
@@ -326,73 +399,21 @@ var Chat = (function () {
             var escaped_xid = escape(xid);
             
             // Special code
-            var specialAttributes, specialAvatar, specialName, specialCode, specialLink, specialDisabled, specialStyle, specialMAM;
-            
-            // Groupchat special code
-            if(type == 'groupchat') {
-                specialAttributes = ' data-type="groupchat" data-correction="true"';
-                specialAvatar = '';
-                specialName = '<p class="bc-infos"><b>' + Common._e("Subject") + '</b> <span class="muc-topic">' + Common._e("no subject defined for this room.") + '</span></p>';
-                specialCode = '<div class="content groupchat-content" id="chat-content-' + id + '"></div><div class="list"><div class="moderator role"><p class="title">' + Common._e("Moderators") + '</p></div><div class="participant role"><p class="title">' + Common._e("Participants") + '</p></div><div class="visitor role"><p class="title">' + Common._e("Visitors") + '</p></div><div class="none role"><p class="title">' + Common._e("Others") + '</p></div></div>';
-                specialLink = '<a href="#" class="tools-mucadmin tools-tooltip talk-images chat-tools-content" title="' + Common._e("Administration panel for this room") + '"></a>';
-                specialStyle = '';
-                
-                // Is this a gateway?
-                if(xid.match(/%/)) {
-                    specialDisabled = '';
-                } else {
-                    specialDisabled = ' disabled=""';
-                }
-            }
-            
-            // Chat (or other things?!) special code
-            else {
-                specialMAM = '<div class="wait-mam wait-small"></div>';
-                specialAttributes = ' data-type="chat"';
-                specialAvatar = '<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>';
-                specialName = '<div class="bc-pep"></div><p class="bc-infos"><span class="unavailable show talk-images"></span></p>';
-                specialCode = '<div class="content" id="chat-content-' + id + '">' + specialMAM + '</div>';
-                specialLink = '<a href="#" class="tools-jingle-audio tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (audio only)") + '"></a>' + 
-                              '<a href="#" class="tools-jingle-video tools-tooltip talk-images chat-tools-content" title="' + Common._e("Call (video)") + '"></a>' + 
-                              '<a href="#" class="tools-infos tools-tooltip talk-images chat-tools-content" title="' + Common._e("Show user profile") + '"></a>';
-                specialStyle = ' style="display: none;"';
-                specialDisabled = '';
-            }
-            
-            // Not a groupchat private chat, we can use the buddy add icon
-            if((type == 'chat') || (type == 'groupchat')) {
-                var addTitle;
-                
-                if(type == 'chat')
-                    addTitle = Common._e("Add this contact to your friends");
-                else
-                    addTitle = Common._e("Add this groupchat to your favorites");
-                
-                specialLink += '<a href="#" class="tools-add tools-tooltip talk-images chat-tools-content" title="' + addTitle + '"></a>';
-            }
-            
-            // IE DOM parsing bug fix
-            var specialStylePicker = '<div class="chat-tools-content chat-tools-style"' + specialStyle + '>' + 
-                            '<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
-                         '</div>';
-            
-            if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
-                specialStylePicker = '';
-            }
-            
+            var chat_args = self._generateChatCode(type);
+
             // Append the chat HTML code
             $('#page-engine').append(
-                '<div id="' + id + '" class="page-engine-chan chat one-counter"' + specialAttributes + ' data-xid="' + escaped_xid + '">' + 
+                '<div id="' + id + '" class="page-engine-chan chat one-counter"' + chat_args.attributes + ' data-xid="' + escaped_xid + '">' + 
                     '<div class="top ' + id + '">' + 
-                        specialAvatar + 
+                        chat_args.avatar + 
                         
                         '<div class="name">' + 
                             '<p class="bc-name bc-name-nick">' + nick.htmlEnc() + '</p>' + 
-                            specialName + 
+                            chat_args.name + 
                         '</div>' + 
                     '</div>' + 
                     
-                    specialCode + 
+                    chat_args.code + 
                     
                     '<div class="text">' + 
                         '<div class="footer">' + 
@@ -400,7 +421,7 @@ var Chat = (function () {
                                 '<a href="#" class="tools-smileys tools-tooltip talk-images"></a>' + 
                             '</div>' + 
                             
-                            specialStylePicker + 
+                            chat_args.style_picker + 
                             
                             '<div class="chat-tools-content chat-tools-file">' + 
                                 '<a href="#" class="tools-file tools-tooltip talk-images"></a>' + 
@@ -412,11 +433,11 @@ var Chat = (function () {
                             
                             '<a href="#" class="tools-clear tools-tooltip talk-images chat-tools-content" title="' + Common._e("Clean current chat") + '"></a>' + 
                             
-                            specialLink + 
+                            chat_args.link + 
                         '</div>' + 
                         
                         '<div class="compose">' + 
-                            '<textarea class="message-area focusable" ' + specialDisabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
+                            '<textarea class="message-area focusable" ' + chat_args.disabled + ' data-to="' + escaped_xid + '" /></textarea>' + 
                         '</div>' + 
                     '</div>' + 
                 '</div>'
@@ -446,12 +467,12 @@ var Chat = (function () {
             var chat_switch = '#page-switch .';
             
             // Special code
-            var specialClass = ' unavailable';
+            var special_class = ' unavailable';
             var show_close = true;
             
             // Groupchat
             if(type == 'groupchat') {
-                specialClass = ' groupchat-default';
+                special_class = ' groupchat-default';
                 
                 if(Utils.isAnonymous() && (xid == Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))) {
                     show_close = false;
@@ -460,13 +481,17 @@ var Chat = (function () {
             
             // Generate the HTML code
             var html = '<div class="' + id + ' switcher chan" onclick="return Interface.switchChan(\'' + Utils.encodeOnclick(id) + '\')">' + 
-                    '<div class="icon talk-images' + specialClass + '"></div>' + 
-                    
-                    '<div class="name">' + nick.htmlEnc() + '</div>';
+                       '<div class="icon talk-images' + special_class + '"></div>' + 
+                       
+                       '<div class="name">' + nick.htmlEnc() + '</div>';
             
             // Show the close button if not MUC and not anonymous
             if(show_close) {
-                html += '<div class="exit" title="' + Common._e("Close this tab") + '" onclick="return Interface.quitThisChat(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(type) + '\');">x</div>';
+                html += '<div class="exit" ' + 
+                              'title="' + Common._e("Close this tab") + '" ' + 
+                              'onclick="return Interface.quitThisChat(\'' + Utils.encodeOnclick(xid) + '\', \'' + Utils.encodeOnclick(id) + '\', \'' + Utils.encodeOnclick(type) + '\');">' + 
+                                'x' + 
+                        '</div>';
             }
             
             // Close the HTML
@@ -580,12 +605,17 @@ var Chat = (function () {
                         path_sel.find('.user-message').removeClass('user-message').addClass('old-message');
                         
                         // Regenerate user names
-                        one_group_sel.filter('.' + my_hash + ' b.name').text(Name.getBuddy(Common.getXID()));
-                        one_group_sel.filter('.' + friend_hash + ' b.name').text(Name.getBuddy(xid));
+                        one_group_sel.filter('.' + my_hash + ' b.name').text(
+                            Name.getBuddy(Common.getXID())
+                        );
+
+                        one_group_sel.filter('.' + friend_hash + ' b.name').text(
+                            Name.getBuddy(xid)
+                        );
                         
                         // Regenerate group dates
                         one_group_sel.each(function() {
-                            var current_stamp = parseInt($(this).attr('data-stamp'));
+                            var current_stamp = parseInt($(this).attr('data-stamp'), 10);
                             $(this).find('span.date').text(DateUtils.relative(current_stamp));
                         });
                         

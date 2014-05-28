@@ -153,18 +153,16 @@ var DateUtils = (function () {
         var date_string = null;
 
         try {
-            // Gets the UTC date
             if(location == 'utc') {
+                // UTC date
                 year = date.getUTCFullYear();
                 month = date.getUTCMonth();
                 day = date.getUTCDate();
                 hours = date.getUTCHours();
                 minutes = date.getUTCMinutes();
                 seconds = date.getUTCSeconds();
-            }
-            
-            // Gets the local date
-            else {
+            } else {
+                // Local date
                 year = date.getFullYear();
                 month = date.getMonth();
                 day = date.getDate();
@@ -219,6 +217,7 @@ var DateUtils = (function () {
 
         try {
             var init = new Date();
+
             var time = Common.padZero(init.getHours()) + ':';
             time += Common.padZero(init.getMinutes()) + ':';
             time += Common.padZero(init.getSeconds());
@@ -418,14 +417,12 @@ var DateUtils = (function () {
             // Read the delay
             d_delay = jQuery(node).find('delay[xmlns="' + NS_URN_DELAY + '"]:first').attr('stamp');
             
-            // New delay (valid XEP)
+            // Get delay
             if(d_delay) {
+                // New delay (valid XEP)
                 delay = d_delay;
-            }
-            
-            // Old delay (obsolete XEP!)
-            else {
-                // Try to read the old-school delay
+            } else {
+                // Old delay (obsolete XEP!)
                 var x_delay = jQuery(node).find('x[xmlns="' + NS_DELAY + '"]:first').attr('stamp');
                 
                 if(x_delay)
