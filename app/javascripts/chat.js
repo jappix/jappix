@@ -286,7 +286,7 @@ var Chat = (function () {
             }
 
             // IE DOM parsing bug fix
-            var code_args.style_picker = '<div class="chat-tools-content chat-tools-style"' + chat_args.style + '>' + 
+            code_args.style_picker = '<div class="chat-tools-content chat-tools-style"' + chat_args.style + '>' + 
                                             '<a href="#" class="tools-style tools-tooltip talk-images"></a>' + 
                                          '</div>';
             

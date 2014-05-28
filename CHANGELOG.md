@@ -9,6 +9,7 @@ Primo, v1.1.0 (Development)
 
  * XEP-0272: Multiparty Jingle (Muji)      @valeriansaliou
  * Prevent client crash on huge messages   @valeriansaliou
+ * Beautified client code (JavaScript)     @valeriansaliou
 
 
 One, v1.0.7 (May 2014)

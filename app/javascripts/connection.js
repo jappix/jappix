@@ -29,17 +29,6 @@ var Connection = (function () {
     self.resume = false;
 
 
-    /* Constants */
-    self.connection_handlers = {
-        'message':       Message.handle,
-        'presence':      Presence.handle,
-        'iq':            IQ.handle,
-        'onconnect':     self.handleConnected,
-        'onerror':       Errors.handle,
-        'ondisconnect':  self.handleDisconnected
-    };
-
-
     /**
      * Do registration on Register API
      * @private
@@ -126,8 +115,6 @@ var Connection = (function () {
         var is_success = true;
 
         try {
-            con_args = {};
-
             if(Common.hasWebSocket()) {
                 // WebSocket supported & configured
                 con = new JSJaCWebSocketConnection({
@@ -284,6 +271,15 @@ var Connection = (function () {
             
             // And we handle everything that happen
             self.setupCon(con, extend_obj);
+
+            var con_args = {
+                'domain': $.trim(lServer),
+                'username': $.trim(lNick),
+                'resource': random_resource,
+                'pass': lPass,
+                'secure': true,
+                'xmllang': XML_LANG
+            };
             
             // Generate a resource
             var random_resource = DataStore.getDB(self.desktop_hash, 'session', 'resource');
@@ -304,14 +300,7 @@ var Connection = (function () {
             DataStore.setDB(self.desktop_hash, 'priority', 1, lPriority);
             
             // We connect !
-            con.connect({
-                'domain': $.trim(lServer),
-                'username': $.trim(lNick),
-                'resource': random_resource,
-                'pass': lPass,
-                'secure': true,
-                'xmllang': XML_LANG
-            });
+            con.connect(con_args);
             
             // Change the page title
             Interface.title('wait');
@@ -555,10 +544,19 @@ var Connection = (function () {
     self.setupCon = function(con, extend_obj) {
 
         try {
-            for(var cur_handler in self.connection_handlers) {
+            var connection_handlers = {
+                'message':       Message.handle,
+                'presence':      Presence.handle,
+                'iq':            IQ.handle,
+                'onconnect':     self.handleConnected,
+                'onerror':       Errors.handle,
+                'ondisconnect':  self.handleDisconnected
+            };
+
+            for(var cur_handler in connection_handlers) {
                 con.registerHandler(
                     cur_handler,
-                    self.connection_handlers[cur_handler]
+                    connection_handlers[cur_handler]
                 );
             }
 
