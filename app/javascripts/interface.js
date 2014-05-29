@@ -399,32 +399,48 @@ var Interface = (function () {
             var date = DateUtils.getXMPPTime('local');
             var type = $('#' + hash).attr('data-type');
             var direction = $('html').attr('dir') || 'ltr';
+
+            var content_sel = $(content);
             
             // Filter the content smileys
-            $(content).find('img.emoticon').each(function() {
+            content_sel.find('img.emoticon').each(function() {
                 $(this).replaceWith($(this).attr('alt'));
             });
             
             // Remove the useless attributes
-            $(content).removeAttr('data-type').removeAttr('data-stamp');
+            content_sel.removeAttr('data-type').removeAttr('data-stamp');
             
             // Remove the content avatars
-            $(content).find('.avatar-container').remove();
+            content_sel.find('.avatar-container').remove();
+
+            // Remove the content info
+            content_sel.find('.correction-edit, .message-marker, .corrected-info, .correction-label').remove();
             
             // Remove the content click events
-            $(content).find('a').removeAttr('onclick');
+            content_sel.find('a').removeAttr('onclick');
             
             // Extract the content HTML code
-            content = $(content).parent().html();
+            content = content_sel.parent().html();
             
             // No avatar?
-            if(!avatar || !avatar.match(/data:/))
+            if(!avatar || !avatar.match(/data:/)) {
                 avatar = 'none';
+            }
             
             // POST the values to the server
-            $.post('./server/generate-chat.php', { 'content': content, 'xid': xid, 'nick': nick, 'avatar': avatar, 'date': date, 'type': type, 'direction': direction }, function(data) {
+            $.post('./server/generate-chat.php', {
+                'content': content,
+                'xid': xid,
+                'nick': nick,
+                'avatar': avatar,
+                'date': date,
+                'type': type,
+                'direction': direction
+            }, function(data) {
                 // Handled!
-                $(path + 'tooltip-waitlog').replaceWith('<a class="tooltip-actionlog" href="./server/download-chat.php?id=' + data + '" target="_blank">' + Common._e("Download file!") + '</a>');
+                $(path + 'tooltip-waitlog').replaceWith(
+                    '<a class="tooltip-actionlog" href="./server/download-chat.php?id=' + data + '" target="_blank">' + Common._e("Download file!") + '</a>'
+                );
             });
         } catch(e) {
             Console.error('Interface.generateChatLog', e);
