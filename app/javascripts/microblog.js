@@ -777,7 +777,7 @@ var Microblog = (function () {
                 // Input key event
                 var comment_compose_input_sel = path_sel.find('.one-comment.compose input');
 
-                comment_compose_input_sel.placeholder()
+                comment_compose_input_sel.placeholder();
                 comment_compose_input_sel.keyup(function(e) {
                     var this_input_sel = $(this);
 
