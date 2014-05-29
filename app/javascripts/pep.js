@@ -35,14 +35,10 @@ var PEP = (function () {
 
         try {
             // Handle the correct values
-            if(!value1)
-                value1 = '';
-            if(!value2)
-                value2 = '';
-            if(!value3)
-                value3 = '';
-            if(!value4)
-                value4 = '';
+            value1 = value1 || '';
+            value2 = value2 || '';
+            value3 = value3 || '';
+            value4 = value4 || '';
             
             // If one value
             if(value1 || value2 || value3 || value4) {
@@ -621,23 +617,56 @@ var PEP = (function () {
         /* REF: http://xmpp.org/extensions/xep-0080.html */
 
         try {
-            // We propagate the position on pubsub
             var iq = new JSJaCIQ();
             iq.setType('set');
             
-            // We create the XML document
-            var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
-            var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_GEOLOC, 'xmlns': NS_PUBSUB}));
-            var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
-            var geoloc = item.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
+            // Create XML nodes
+            var pubsub = iq.appendNode('pubsub', {
+                'xmlns': NS_PUBSUB
+            });
+
+            var publish = pubsub.appendChild(iq.buildNode('publish', {
+                'node': NS_GEOLOC,
+                'xmlns': NS_PUBSUB
+            }));
+
+            var item = publish.appendChild(iq.buildNode('item', {
+                'xmlns': NS_PUBSUB
+            }));
+
+            var geoloc = item.appendChild(iq.buildNode('geoloc', {
+                'xmlns': NS_GEOLOC
+            }));
             
-            // Create two position arrays
-            var pos_names  = ['lat', 'lon', 'alt', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
-            var pos_values = [ vLat,  vLon,  vAlt,  vCountry,  vCountrycode,  vRegion,  vPostalcode,  vLocality,  vStreet,  vBuilding,  vText,  vURI,  DateUtils.getXMPPTime('utc')];
-            
-            for(var i = 0; i < pos_names.length; i++) {
-                if(pos_names[i] && pos_values[i]) {
-                    geoloc.appendChild(iq.buildNode(pos_names[i], {'xmlns': NS_GEOLOC}, pos_values[i]));
+            // Position object
+            var position_obj = {
+                'lat': vLat,
+                'lon': vLon,
+                'alt': vAlt,
+                'country': vCountry,
+                'countrycode': vCountrycode,
+                'region': vRegion,
+                'postalcode': vPostalcode,
+                'locality': vLocality,
+                'street': vStreet,
+                'building': vBuilding,
+                'text': vText,
+                'uri': vURI,
+                'timestamp': DateUtils.getXMPPTime('utc'),
+                'tzo': DateUtils.getTZO()
+            };
+
+            var cur_position_val;
+
+            for(var cur_position_type in position_obj) {
+                cur_position_val = position_obj[cur_position_type];
+
+                if(cur_position_val) {
+                    geoloc.appendChild(
+                        iq.buildNode(cur_position_type, {
+                            'xmlns': NS_GEOLOC
+                        }, cur_position_val)
+                    );
                 }
             }
             
