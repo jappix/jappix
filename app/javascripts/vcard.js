@@ -464,7 +464,7 @@ var vCard = (function () {
                     this_sel.children().each(function() {
                         // Get the node values
                         var currentID = tokenname + '-' + (this).nodeName.toUpperCase();
-                        var currentText = this_sel.text();
+                        var currentText = $(this).text();
                         
                         // Not yet added?
                         if(!Utils.existArrayValue(values_yet, currentID)) {
@@ -579,8 +579,10 @@ var vCard = (function () {
                     $(path_vcard + ' .avatar').remove();
                 }
                 
+                var avatar_src = ('data:' + aType + ';base64,' + aBinval);
+
                 // We display the avatar we have just received
-                $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="data:' + aType + ';base64,' + aBinval + '" alt="" /></div>');
+                $(aContainer).replaceWith('<div class="avatar-container"><img class="avatar" src="' + avatar_src + '" alt="" /></div>');
             }
             
             else if(type == 'buddy') {

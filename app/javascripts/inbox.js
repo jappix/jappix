@@ -506,7 +506,7 @@ var Inbox = (function () {
      * @param {string} id
      * @return {boolean}
      */
-    self.deleteMessage = function() {
+    self.deleteMessage = function(id) {
 
         try {
             // Remove the message from the inbox

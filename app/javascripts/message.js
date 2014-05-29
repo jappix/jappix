@@ -732,12 +732,11 @@ var Message = (function () {
      * @private
      * @param {string} xid
      * @param {string} hash
-     * @param {string} room
      * @param {string} e_1
      * @param {string} e_2
      * @return {undefined}
      */
-    self._sendJoin = function(xid, hash, room, e_1, e_2) {
+    self._sendJoin = function(xid, hash, e_1, e_2) {
 
         try {
             // Join
@@ -962,7 +961,16 @@ var Message = (function () {
             // Does not exist yet?
             if(nick && !Utils.getMUCUserXID(xid, nick)) {
                 // Send a new presence
-                Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Errors.handleReply);
+                Presence.send(
+                    (xid + '/' + nick),
+                    '',
+                    Presence.getUserShow(),
+                    Presence.getUserStatus(),
+                    '',
+                    false,
+                    false,
+                    Errors.handleReply
+                );
                 
                 // Change the stored nickname
                 $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
@@ -1044,11 +1052,12 @@ var Message = (function () {
      * @private
      * @param {string} xid
      * @param {string} hash
+     * @param {string} body
      * @param {string} e_1
      * @param {string} e_2
      * @return {undefined}
      */
-    self._sendGroupchatBan = function(xid, hash, e_1, e_2) {
+    self._sendGroupchatBan = function(xid, hash, body, e_1, e_2) {
 
         try {
             var ban_nick = $.trim(e_1);
@@ -1086,11 +1095,12 @@ var Message = (function () {
      * @private
      * @param {string} xid
      * @param {string} hash
+     * @param {string} body
      * @param {string} e_1
      * @param {string} e_2
      * @return {undefined}
      */
-    self._sendGroupchatKick = function(xid, hash, e_1, e_2) {
+    self._sendGroupchatKick = function(xid, hash, body, e_1, e_2) {
 
         try {
             var kick_nick = $.trim(e_1);
@@ -1130,9 +1140,10 @@ var Message = (function () {
      * @param {string} hash
      * @param {string} e_1
      * @param {string} e_2
+     * @param {object} message_packet
      * @return {undefined}
      */
-    self._sendGroupchatInvite = function(xid, hash, e_1, e_2) {
+    self._sendGroupchatInvite = function(xid, hash, e_1, e_2, message_packet) {
 
         try {
             var i_xid = e_1;
@@ -1254,6 +1265,7 @@ var Message = (function () {
                 self._sendGroupchatBan(
                     xid,
                     hash,
+                    body,
                     RegExp.$1,
                     RegExp.$2
                 );
@@ -1264,6 +1276,7 @@ var Message = (function () {
                 self._sendGroupchatKick(
                     xid,
                     hash,
+                    body,
                     RegExp.$1,
                     RegExp.$2
                 );
@@ -1275,7 +1288,8 @@ var Message = (function () {
                     xid,
                     hash,
                     RegExp.$1,
-                    RegExp.$2
+                    RegExp.$2,
+                    message_packet
                 );
             }
             
@@ -1297,23 +1311,6 @@ var Message = (function () {
 
 
     /**
-     * Sends an XXX message
-     * @private
-     * @param {string} xxx
-     * @return {undefined}
-     */
-    self._sendYYY = function(xxx) {
-
-        try {
-            
-        } catch(e) {
-            Console.error('Message._sendYYY', e);
-        }
-
-    };
-
-
-    /**
      * Handles the incoming message packets
      * @public
      * @param {object} message
@@ -1327,9 +1324,6 @@ var Message = (function () {
                 return;
             }
             
-            // Storable message?
-            var is_storable = message.getChild('no-permanent-storage', NS_URN_HINTS) ? false : true;
-
             // Carbon-forwarded message?
             if(message.getChild('sent', NS_URN_CARBONS)) {
                 Carbons.handleSent(message); return;
@@ -1387,9 +1381,6 @@ var Message = (function () {
             if(Receipts.hasReceived(message)) {
                 return Receipts.messageReceived(hash, id);
             }
-
-            // Markable message?
-            var is_markable = Markers.hasRequestMarker(node);
 
             // Chatstate message
             if(node && !delay && 
@@ -1464,6 +1455,9 @@ var Message = (function () {
 
                 // Catch message edit (XEP-0308)
                 var message_edit = Correction.catch(message, hash, type);
+
+                // Storable message?
+                var is_storable = message.getChild('no-permanent-storage', NS_URN_HINTS) ? false : true;
                 
                 // Groupchat message
                 if(type == 'groupchat') {
@@ -1483,6 +1477,9 @@ var Message = (function () {
                         is_storable
                     );
                 } else {
+                    // Markable message?
+                    var is_markable = Markers.hasRequestMarker(node);
+
                     self._handleChat(
                         from,
                         xid,
@@ -1558,7 +1555,7 @@ var Message = (function () {
             
             // /join shortcut
             else if(body.match(/^\/join (\S+)\s*(.*)/)) {
-                self._sendJoin(xid, hash, room, RegExp.$1, RegExp.$2);
+                self._sendJoin(xid, hash, RegExp.$1, RegExp.$2);
             }
             
             // /part shortcut

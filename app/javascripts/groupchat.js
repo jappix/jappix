@@ -29,13 +29,14 @@ var Groupchat = (function () {
      * @private
      * @param {object} input_sel
      * @param {string} hash
+     * @param {string} room
      * @return {undefined}
      */
-    self._createEvents = function(input_sel, hash) {
+    self._createEvents = function(input_sel, hash, room) {
 
         try {
             self._createEventsInput(input_sel, hash);
-            self._createEventsKey(input_sel, hash);
+            self._createEventsKey(input_sel, hash, room);
         } catch(e) {
             Console.error('Groupchat._createEvents', e);
         }
@@ -84,9 +85,10 @@ var Groupchat = (function () {
      * @private
      * @param {object} input_sel
      * @param {string} hash
+     * @param {string} room
      * @return {undefined}
      */
-    self._createEventsKey = function(input_sel, hash) {
+    self._createEventsKey = function(input_sel, hash, room) {
 
         try {
             // Lock to the input
@@ -478,7 +480,7 @@ var Groupchat = (function () {
             
             // The event handlers
             var input_sel = $('#' + hash + ' .message-area');
-            self._createEvents(input_sel, hash);
+            self._createEvents(input_sel, hash, room);
             
             // Chatstate events
             ChatState.events(input_sel, room, hash, 'groupchat');
@@ -630,7 +632,7 @@ var Groupchat = (function () {
             if(!ban_xid) {
                 Board.openThisInfo(6);
 
-                Console.warning('Could not ban user with XID: ' + ban_xid + ' from room: ' + room_xid);
+                Console.warn('Could not ban user with XID: ' + ban_xid + ' from room: ' + room_xid);
             } else {
                 // We generate the ban IQ
                 var iq = new JSJaCIQ();

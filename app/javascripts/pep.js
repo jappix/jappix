@@ -28,13 +28,13 @@ var PEP = (function () {
     self._generateDisplayObject = function() {
 
         var display_object = {
-            'pep_value': null,
-            'pep_text': null,
-            'style_value': null,
-            'style_text': null,
-            'display_text': null,
-            'final_link': null,
-            'final_uri': null
+            'pep_value': '',
+            'pep_text': '',
+            'style_value': '',
+            'style_text': '',
+            'display_text': '',
+            'final_link': '',
+            'final_uri': ''
         };
 
         try {
@@ -203,9 +203,10 @@ var PEP = (function () {
 
                 // Text to be displayed
                 if(geolocation_args.geoloc_lat && geolocation_args.geoloc_lon) {
-                    tune_args.final_link = 'http://maps.google.com/?q=' + Common.encodeQuotes(geolocation_args.geoloc_lat) + ',' + Common.encodeQuotes(geolocation_args.geoloc_lon);
+                    geolocation_args.final_uri = 'http://maps.google.com/?q=' + Common.encodeQuotes(geolocation_args.geoloc_lat) + ',' + Common.encodeQuotes(geolocation_args.geoloc_lon);
+                    geolocation_args.final_link = ' href="' + geolocation_args.final_uri + '" target="_blank"';
                     
-                    geolocation_args.style_text = '<a href="' + tune_args.final_link + '" target="_blank">' + 
+                    geolocation_args.style_text = '<a' + geolocation_args.final_link + '>' + 
                                                       geolocation_args.geoloc_human.htmlEnc() + 
                                                   '</a>';
                     geolocation_args.display_text = geolocation_args.geoloc_real || 
@@ -239,15 +240,12 @@ var PEP = (function () {
     self._appendForeignDisplayObject = function(xid, hash, type, display_args) {
 
         try {
-            // Apply the text to the buddy infos
-            self._appendOwnDisplayObject(type, display_args);
-
             var this_buddy = '#roster .buddy[data-xid="' + escape(xid) + '"]';
             
             if(Common.exists(this_buddy)) {
                 $(this_buddy + ' .bi-' + type).replaceWith(
                     '<p class="bi-' + type + ' talk-images ' + display_args.style_value + '" title="' + Common.encodeQuotes(display_args.display_text) + '">' + display_args.style_text + '</p>'
-                    );
+                );
             }
             
             // Apply the text to the buddy chat
@@ -368,15 +366,15 @@ var PEP = (function () {
      */
     self._generateStore = function(args) {
 
-        var storage_data = null;
+        var storage_data = '';
 
         try {
             var cur_value;
 
             for(var cur_arg in args) {
-                storage_data = '<' + cur_arg + '>' + 
+                storage_data += '<' + cur_arg + '>' + 
                                     (args[cur_arg] || '').htmlEnc() + 
-                               '</' + cur_arg + '>';
+                                '</' + cur_arg + '>';
             }
         } catch(e) {
             Console.error('PEP._generateStore', e);
@@ -577,7 +575,7 @@ var PEP = (function () {
                     DataStore.setDB(Connection.desktop_hash, name + '-text', 1, text);
                     
                     // Send it!
-                    send_fn(value, text);
+                    send_fn(value, undefined, text);
                 }
             });
             
@@ -935,7 +933,7 @@ var PEP = (function () {
      * @param {string} text
      * @return {undefined}
      */
-    self.sendMood = function(value, text) {
+    self.sendMood = function(value, _, text) {
 
         /* REF: http://xmpp.org/extensions/xep-0107.html */
 
@@ -1142,13 +1140,13 @@ var PEP = (function () {
             var array = [
                 lat,
                 lng,
-                addr_comp_sel.filter(':has(type:contains("country")):first long_name').text(),
-                addr_comp_sel.filter(':has(type:contains("country")):first short_name').text(),
-                addr_comp_sel.filter(':has(type:contains("administrative_area_level_1")):first long_name').text(),
-                addr_comp_sel.filter(':has(type:contains("postal_code")):first long_name').text(),
-                addr_comp_sel.filter(':has(type:contains("locality")):first long_name').text(),
-                addr_comp_sel.filter(':has(type:contains("route")):first long_name').text(),
-                addr_comp_sel.filter(':has(type:contains("street_number")):first long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("country")):first').find('long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("country")):first').find('short_name').text(),
+                addr_comp_sel.filter(':has(type:contains("administrative_area_level_1")):first').find('long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("postal_code")):first').find('long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("locality")):first').find('long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("route")):first').find('long_name').text(),
+                addr_comp_sel.filter(':has(type:contains("street_number")):first').find('long_name').text(),
                 result.find('formatted_address:first').text(),
                 'http://maps.google.com/?q=' + Common.encodeQuotes(lat) + ',' + Common.encodeQuotes(lng)
             ];

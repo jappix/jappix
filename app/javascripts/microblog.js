@@ -1698,19 +1698,23 @@ var Microblog = (function () {
             
             // Create the geoloc child
             var geoloc_xml = DataStore.getDB(Connection.desktop_hash, 'geolocation', 'now');
-            
+
             if(geoloc_xml) {
                 // Create two position arrays
                 var geo_names  = ['lat', 'lon', 'country', 'countrycode', 'region', 'postalcode', 'locality', 'street', 'building', 'text', 'uri', 'timestamp'];
                 var geo_values = PEP.parsePosition(Common.XMLFromString(geoloc_xml));
-                
+
                 // New geoloc child
-                var geoloc = entry.appendChild(iq.buildNode('geoloc', {'xmlns': NS_GEOLOC}));
+                var geoloc = entry.appendChild(iq.buildNode('geoloc', {
+                    'xmlns': NS_GEOLOC
+                }));
                 
                 // Append the geoloc content
                 for(var g = 0; g < geo_names.length; g++) {
                     if(geo_names[g] && geo_values[g]) {
-                        geoloc.appendChild(iq.buildNode(geo_names[g], {'xmlns': NS_GEOLOC}, geo_values[g]));
+                        geoloc.appendChild(iq.buildNode(geo_names[g], {
+                            'xmlns': NS_GEOLOC
+                        }, geo_values[g]));
                     }
                 }
             }

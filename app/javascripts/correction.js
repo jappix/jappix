@@ -194,12 +194,13 @@ var Correction = (function () {
     /**
      * @private
      * @param {string} xid
+     * @param {string} full_xid
      * @param {string} type
      * @param {string} message_id
      * @param {string} message_body
      * @return {string}
      */
-    self._sendStanza = function(xid, type, message_id, message_body) {
+    self._sendStanza = function(xid, full_xid, type, message_id, message_body) {
 
         var args = {
             'id': null,
@@ -217,7 +218,7 @@ var Correction = (function () {
             args.message = message;
 
             message.setType(type);
-            message.setTo(xid);
+            message.setTo(full_xid);
             message.setID(id);
 
             // Generates the correct message depending of the choosen style
@@ -358,8 +359,10 @@ var Correction = (function () {
                     Console.info('Correction.send', 'Sending replacement message for: ' + xid + ' "' + replacement + '" with ID: ' + (replace_id || 'none'));
 
                     // Send the stanza itself
+                    var full_xid = Presence.highestPriority(xid) || xid;
                     var stanza_args = self._sendStanza(
                         xid,
+                        full_xid,
                         type,
                         replace_id,
                         replacement
