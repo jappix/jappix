@@ -21,6 +21,1300 @@ var Message = (function () {
 
 
     /**
+     * Handles MAM forwared messages
+     * @private
+     * @param {object} c_mam
+     * @return {boolean}
+     */
+    self._handleMAM = function(c_mam) {
+
+        try {
+            var c_mam_sel = $(c_mam);
+            var c_mam_delay = c_mam_sel.find('delay[xmlns="' + NS_URN_DELAY + '"]');
+            var c_mam_forward = c_mam_sel.find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
+
+            if(c_mam_forward.size()) {
+                MAM.handleMessage(c_mam_forward, c_mam_delay);
+            }
+        } catch(e) {
+            Console.error('Message._handleMAM', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles chatstate messages
+     * @private
+     * @param {string} from
+     * @param {string} hash
+     * @param {string} type
+     * @param {object} node
+     * @return {undefined}
+     */
+    self._handleChatstate = function(from, hash, type, node) {
+
+        try {
+            /* REF: http://xmpp.org/extensions/xep-0085.html */
+
+            var node_sel = $(node);
+            
+            // Re-process the hash?
+            var chatstate_hash = (type == 'groupchat') ? hex_md5(from) : hash;
+
+            // Do something depending of the received state
+            if(node_sel.find('active').size()) {
+                ChatState.display('active', chatstate_hash, type);
+                
+                // Tell Jappix the entity supports chatstates
+                $('#' + chatstate_hash + ' .message-area').attr('data-chatstates', 'true');
+                
+                Console.log('Active chatstate received from: ' + from);
+            } else if(node_sel.find('composing').size()) {
+                ChatState.display('composing', chatstate_hash, type);
+
+                Console.log('Composing chatstate received from: ' + from);
+            } else if(node_sel.find('paused').size()) {
+                ChatState.display('paused', chatstate_hash, type);
+
+                Console.log('Paused chatstate received from: ' + from);
+            } else if(node_sel.find('inactive').size()){
+                ChatState.display('inactive', chatstate_hash, type);
+
+                Console.log('Inactive chatstate received from: ' + from);
+            } else if(node_sel.find('gone').size()){
+                ChatState.display('gone', chatstate_hash, type);
+
+                Console.log('Gone chatstate received from: ' + from);
+            }
+        } catch(e) {
+            Console.error('Message._doThat', e);
+        }
+
+    };
+
+
+    /**
+     * Handles Jappix App messages
+     * @private
+     * @param {string} xid
+     * @param {string} body
+     * @param {object} node
+     * @return {boolean}
+     */
+    self._handleJappixApp = function(xid, body, node) {
+
+        var is_exit = false;
+
+        try {
+            var node_sel = $(node);
+
+            // Get notification data
+            var jappix_app_node = node_sel.find('app[xmlns="jappix:app"]');
+            var jappix_app_name = jappix_app_node.find('name');
+
+            var jappix_app_name_id = jappix_app_name.attr('id');
+            var jappix_app_name_value = jappix_app_name.text();
+
+            // Jappix Me notification?
+            if(jappix_app_name_id == 'me') {
+                // Get more notification data
+                var jappix_app_data = jappix_app_node.find('data[xmlns="jappix:app:me"]');
+                var jappix_app_data_action = jappix_app_data.find('action');
+                var jappix_app_data_url = jappix_app_data.find('url');
+
+                var jappix_app_data_action_type = jappix_app_data_action.attr('type');
+                var jappix_app_data_action_success = jappix_app_data_action.attr('success');
+                var jappix_app_data_action_job = jappix_app_data_action.attr('job');
+                var jappix_app_data_url_value = jappix_app_data_url.text();
+
+                // Validate data
+                if(jappix_app_data_action_type && jappix_app_data_action_success && jappix_app_data_action_job) {
+                    // Filter success
+                    jappix_app_data_action_success = parseInt(jappix_app_data_action_success) == 1 ? 'success' : 'error';
+
+                    // Generate notification namespace
+                    var jappix_me_notification_ns = jappix_app_name_id + '_' + jappix_app_data_action_type + '_' + jappix_app_data_action_job + '_' + jappix_app_data_action_success;
+
+                    // Open a new notification
+                    Notification.create(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
+                    
+                    Console.log('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
+                    
+                    is_exit = true;
+                }
+            }
+        } catch(e) {
+            Console.error('Message._handleJappixApp', e);
+        } finally {
+            return is_exit;
+        }
+
+    };
+
+
+    /**
+     * Handles invite messages
+     * @private
+     * @param {string} body
+     * @param {object} node
+     * @return {boolean}
+     */
+    self._handleInvite = function(body, node) {
+
+        try {
+            var node_sel = $(node);
+
+            // We get the needed values
+            var iFrom = node_sel.find('x[xmlns="' + NS_MUC_USER + '"] invite').attr('from');
+            var iRoom = node_sel.find('x[xmlns="' + NS_XCONFERENCE + '"]').attr('jid') || from;
+            
+            // We display the notification
+            Notification.create('invite_room', iFrom, [iRoom], body);
+            
+            Console.log('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
+        } catch(e) {
+            Console.error('Message._handleInvite', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles request messages
+     * @private
+     * @param {string} xid
+     * @param {object} message
+     * @param {string} body
+     * @return {boolean}
+     */
+    self._handleRequest = function(xid, message, body) {
+
+        try {
+            // Open a new notification
+            Notification.create('request', xid, [message], body);
+            
+            Console.log('HTTP Request from: ' + xid);
+        } catch(e) {
+            Console.error('Message._handleRequest', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles OOB messages
+     * @private
+     * @param {string} from
+     * @param {string} xid
+     * @param {string} id
+     * @param {object} node
+     * @return {boolean}
+     */
+    self._handleOOB = function(from, xid, id, node) {
+
+        try {
+            OOB.handle(from, id, 'x', node);
+            
+            Console.log('Message OOB request from: ' + xid);
+        } catch(e) {
+            Console.error('Message._handleOOB', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles Roster Item Exchange messages
+     * @private
+     * @param {string} xid
+     * @param {object} message
+     * @param {string} body
+     * @return {boolean}
+     */
+    self._handleRosterItemExchange = function(xid, message, body) {
+
+        try {
+            // Open a new notification
+            Notification.create('rosterx', xid, [message], body);
+            
+            Console.log('Roster Item Exchange from: ' + xid);
+        } catch(e) {
+            Console.error('Message._handleRosterItemExchange', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles attention messages
+     * @private
+     * @param {string} xid
+     * @param {string} body
+     * @return {boolean}
+     */
+    self._handleAttention = function(xid, body) {
+
+        try {
+            Attention.receive(xid, body);
+        } catch(e) {
+            Console.error('Message._handleAttention', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles normal messages
+     * @private
+     * @param {string} xid
+     * @param {string} subject
+     * @param {string} body
+     * @param {string} delay
+     * @return {boolean}
+     */
+    self._handleNormal = function(xid, subject, body, delay) {
+
+        try {
+            var message_date = delay || DateUtils.getXMPPTime('utc');
+            var message_id = hex_md5(xid + subject + message_date);
+            
+            // Store the received message
+            Inbox.storeMessage(xid, subject, body, 'unread', message_id, message_date);
+            
+            // Display the inbox message
+            if(Common.exists('#inbox')) {
+                Inbox.displayMessage(xid, subject, body, 'unread', message_id, message_date);
+            }
+            
+            // Check we have new messages (play a sound if any unread messages)
+            if(Inbox.checkMessages()) {
+                Audio.play('notification');
+            }
+            
+            // Send it to the server
+            Inbox.store();
+        } catch(e) {
+            Console.error('Message._handleNormal', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles Pubsub event messages
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {object} message
+     * @param {object} node
+     * @return {boolean}
+     */
+    self._handlePubsub = function(xid, hash, message, node) {
+
+        try {
+            var node_sel = $(node);
+
+            // We get the needed values
+            var items_sel = node_sel.find('event items');
+            var node_sel = items_sel.attr('node');
+            var text;
+            
+            // Turn around the different result cases
+            if(node_sel) {
+                switch(node_sel) {
+                    // Mood
+                    case NS_MOOD:
+                        // Retrieve the values
+                        var mood = items_sel.find('mood');
+                        var value = '';
+                        text = '';
+                        
+                        // There's something
+                        if(mood.children().size()) {
+                            value = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName || '';
+                            text = mood.find('text').text();
+                        }
+                        
+                        // Store the PEP event (and display it)
+                        PEP.store(xid, 'mood', value, text);
+                        
+                        break;
+                    
+                    // Activity
+                    case NS_ACTIVITY:
+                        // Retrieve the values
+                        var activity_sel = items_sel.find('activity');
+                        text = '';
+                        
+                        // There's something
+                        if(activity_sel.children().size()) {
+                            value = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName || '';
+                            text = activity_sel.find('text').text();
+                        }
+                        
+                        // Store the PEP event (and display it)
+                        PEP.store(xid, 'activity', value, text);
+                        
+                        break;
+                    
+                    // Tune
+                    case NS_TUNE:
+                        // Retrieve the values
+                        var tune_sel = items_sel.find('tune');
+                        var artist = tune_sel.find('artist').text();
+                        var source = tune_sel.find('source').text();
+                        var title = tune_sel.find('title').text();
+                        var uri = tune_sel.find('uri').text();
+                        
+                        // Store the PEP event (and display it)
+                        PEP.store(xid, 'tune', artist, title, source, uri);
+                        
+                        break;
+                    
+                    // Geolocation
+                    case NS_GEOLOC:
+                        // Retrieve the values
+                        var geoloc_sel = items_sel.find('geoloc');
+                        var lat = geoloc_sel.find('lat').text();
+                        var lon = geoloc_sel.find('lon').text();
+                        
+                        // Any extra-values?
+                        var locality = geoloc_sel.find('locality').text();
+                        var region = geoloc_sel.find('region').text();
+                        var country = geoloc_sel.find('country').text();
+                        var human = PEP.humanPosition(locality, region, country);
+                        
+                        // Store the PEP event (and display it)
+                        PEP.store(xid, 'geoloc', lat, lon, human);
+                        
+                        break;
+                    
+                    // Microblog
+                    case NS_URN_MBLOG:
+                        Microblog.display(message, xid, hash, 'mixed', 'push');
+                        
+                        break;
+                    
+                    // Inbox
+                    case NS_URN_INBOX:
+                        // Do not handle friend's notifications
+                        if(xid == Common.getXID()) {
+                            Notification.handle(message);
+                        }
+                        
+                        break;
+                }
+            }
+        } catch(e) {
+            Console.error('Message._handlePubsub', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Handles room topic messages
+     * @private
+     * @param {string} type
+     * @param {string} from
+     * @param {string} hash
+     * @param {string} subject
+     * @param {string} resource
+     * @param {string} time
+     * @param {string} stamp
+     * @return {undefined}
+     */
+    self._handleRoomTopic = function(type, from, hash, subject, resource, time, stamp) {
+
+        try {
+            // Filter the vars
+            var filter_subject = subject.replace(/\n+/g, ' ');
+            var filteredSubject = Filter.message(filter_subject, resource, true);
+            var filteredName = resource.htmlEnc();
+            
+            // Display the new subject at the top
+            $('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith(
+                '<span class="muc-topic" title="' + filter_subject + '">' + filteredSubject + '</span>'
+            );
+            
+            // Display the new subject as a system message
+            if(resource) {
+                var topic_body = filteredName + ' ' + Common._e("changed the subject to:") + ' ' + Filter.message(subject, resource, true);
+                self.display(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
+            }
+        } catch(e) {
+            Console.error('Message._handleRoomTopic', e);
+        }
+
+    };
+
+
+    /**
+     * Handles groupchat messages
+     * @private
+     * @param {string} from
+     * @param {string} hash
+     * @param {string} type
+     * @param {string} resource
+     * @param {string} id
+     * @param {string} body
+     * @param {string} raw_body
+     * @param {string} time
+     * @param {number} stamp
+     * @param {boolean} html_escape
+     * @param {string} delay
+     * @param {object} message_edit
+     * @param {boolean} is_storable
+     * @return {undefined}
+     */
+    self._handleGroupchat = function(from, hash, type, resource, id, body, raw_body, time, stamp, html_escape, delay, message_edit, is_storable) {
+
+        try {
+            /* REF: http://xmpp.org/extensions/xep-0045.html */
+            
+            // Message type
+            var message_type = 'user-message';
+            
+            if(delay && resource) {
+                // Old message
+                message_type = 'old-message';
+            } else if(!resource) {
+                // System message
+                message_type = 'system-message';
+            }
+            
+            var nickQuote = '';
+            
+            // If this is not an old message
+            if(message_type == 'user-message') {
+                var myNick = Name.getMUCNick(hash);
+                
+                // If an user quoted our nick (with some checks)
+                var regex = new RegExp('((^)|( )|(@))' + Common.escapeRegex(myNick) + '(($)|(:)|(,)|( ))', 'gi');
+                
+                if(body.match(regex) && (myNick != resource) && (message_type == 'user-message')) {
+                    nickQuote = ' my-nick';
+                }
+                
+                // We notify the user if there's a new personal message
+                if(nickQuote) {
+                    Interface.messageNotify(hash, 'personal');
+                    Board.quick(from, 'groupchat', raw_body, resource);
+                    Audio.play('receive-message');
+                }
+                
+                // We notify the user there's a new unread MUC message
+                else {
+                    Interface.messageNotify(hash, 'unread');
+                    
+                    // Play sound to all users in the MUC, except user who sent the message.
+                    if(myNick != resource) {
+                        Audio.play('receive-message');
+                    }
+                }
+            }
+            
+            // Display the received message
+            self.display(
+                type,
+                from,
+                hash,
+                resource.htmlEnc(),
+                body,
+                time,
+                stamp,
+                message_type,
+                html_escape,
+                nickQuote,
+                undefined,
+                id,
+                undefined,
+                undefined,
+                message_edit.is_edited,
+                message_edit.next_count,
+                is_storable
+            );
+        } catch(e) {
+            Console.error('Message._handleGroupchat', e);
+        }
+
+    };
+
+
+    /**
+     * Handles chat messages
+     * @private
+     * @param {string} from
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} type
+     * @param {string} resource
+     * @param {string} id
+     * @param {string} body
+     * @param {string} raw_body
+     * @param {string} time
+     * @param {number} stamp
+     * @param {boolean} html_escape
+     * @param {object} message_edit
+     * @param {boolean} is_storable
+     * @param {boolean} is_markable
+     * @param {object} message
+     * @return {undefined}
+     */
+    self._handleChat = function(from, xid, hash, type, resource, id, body, raw_body, time, stamp, html_escape, message_edit, is_storable, is_markable, message) {
+
+        try {
+            // Gets the nickname of the user
+            var fromName = resource;
+            var chatType = 'chat';
+            
+            // Must send a receipt notification?
+            if(Receipts.has(message) && (id !== null)) {
+                Receipts.sendReceived(type, from, id);
+            }
+            
+            // It does not come from a groupchat user, get the full name
+            if(!is_groupchat_user) {
+                fromName = Name.getBuddy(xid);
+            } else {
+                chatType = 'private';
+            }
+            
+            // If the chat isn't yet opened, open it !
+            if(!Common.exists('#' + hash)) {
+                // We create a new chat
+                Chat.create(hash, xid, fromName, chatType);
+                
+                // We tell the user that a new chat has started
+                Audio.play('new-chat');
+            } else {
+                Audio.play('receive-message');
+            }
+            
+            // Display the received message
+            var message_sel = self.display(
+                type,
+                xid,
+                hash,
+                fromName.htmlEnc(),
+                body,
+                time,
+                stamp,
+                'user-message',
+                html_escape,
+                '',
+                'him',
+                id,
+                undefined,
+                undefined,
+                message_edit.is_edited,
+                message_edit.next_count,
+                is_storable,
+                is_markable
+            );
+            
+            // We notify the user
+            Interface.messageNotify(hash, 'personal');
+            Board.quick(xid, 'chat', raw_body, fromName);
+
+            // Mark the message
+            if(is_markable === true && Markers.hasSupport(xid)) {
+                var mark_type = Markers.MARK_TYPE_RECEIVED;
+
+                if(Interface.hasChanFocus(hash) === true) {
+                    mark_type = Markers.MARK_TYPE_DISPLAYED;
+                }
+
+                Markers.change(from, mark_type, id, message_sel);
+            }
+        } catch(e) {
+            Console.error('Message._handleChat', e);
+        }
+
+    };
+
+
+    /**
+     * Sends an help message
+     * @private
+     * @param {string} type
+     * @param {string} xid
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._sendHelp = function(type, xid, hash) {
+
+        try {
+            // Help text
+            var help_text = '<p class="help" xmlns="http://www.w3.org/1999/xhtml">';
+            help_text += '<b>' + Common._e("Available shortcuts:") + '</b>';
+            
+            // Shortcuts array
+            var shortcuts = [];
+            
+            // Common shortcuts
+            shortcuts.push(Common.printf(Common._e("%s removes the chat logs"), '<em>/clear</em>'));
+            shortcuts.push(Common.printf(Common._e("%s joins a groupchat"), '<em>/join jid</em>'));
+            shortcuts.push(Common.printf(Common._e("%s closes the chat"), '<em>/part</em>'));
+            shortcuts.push(Common.printf(Common._e("%s shows the user profile"), '<em>/whois jid</em>'));
+            
+            // Groupchat shortcuts
+            if(type == 'groupchat') {
+                shortcuts.push(Common.printf(Common._e("%s sends a message to the room"), '<em>/say message</em>'));
+                shortcuts.push(Common.printf(Common._e("%s changes your nickname"), '<em>/nick nickname</em>'));
+                shortcuts.push(Common.printf(Common._e("%s sends a message to someone in the room"), '<em>/msg nickname message</em>'));
+                shortcuts.push(Common.printf(Common._e("%s changes the room topic"), '<em>/topic subject</em>'));
+                shortcuts.push(Common.printf(Common._e("%s kicks a user of the room"), '<em>/kick [reason:] nickname</em>'));
+                shortcuts.push(Common.printf(Common._e("%s bans a user of the room"), '<em>/ban [reason:] nickname</em>'));
+                shortcuts.push(Common.printf(Common._e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
+            }
+            
+            // Generate the code from the array
+            shortcuts = shortcuts.sort();
+            
+            for(var s in shortcuts) {
+                help_text += shortcuts[s] + '<br />';
+            }
+            
+            help_text += '</p>';
+            
+            // Display the message
+            self.display(type, xid, hash, 'help', help_text, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendHelp', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a clear message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @return {undefined}
+     */
+    self._sendClear = function(xid, hash) {
+
+        try {
+            Chat.clean(hex_md5(xid));
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendClear', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a join message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} room
+     * @param {string} e_1
+     * @param {string} e_2
+     * @return {undefined}
+     */
+    self._sendJoin = function(xid, hash, room, e_1, e_2) {
+
+        try {
+            // Join
+            var room = Common.generateXID(e_1, 'groupchat');
+            var pass = e_2;
+            
+            Chat.checkCreate(room, 'groupchat');
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendJoin', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a part message
+     * @private
+     * @param {string} xid
+     * @param {string} type
+     * @return {undefined}
+     */
+    self._sendPart = function(xid, type) {
+
+        try {
+            Interface.quitThisChat(xid, hex_md5(xid), type);
+        } catch(e) {
+            Console.error('Message._sendPart', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a WHOIS message
+     * @private
+     * @param {string} type
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} e_3
+     * @return {undefined}
+     */
+    self._sendWHOIS = function(type, xid, hash, e_3) {
+
+        try {
+            var whois_xid = RegExp.$3;
+            
+            // Groupchat WHOIS
+            if(type == 'groupchat') {
+                nXID = Utils.getMUCUserXID(xid, whois_xid);
+                
+                if(!nXID) {
+                    Board.openThisInfo(6);
+                } else {
+                    UserInfos.open(nXID);
+                }
+            }
+            
+            // Chat or private WHOIS
+            else {
+                if(!whois_xid) {
+                    UserInfos.open(xid);
+                } else {
+                    UserInfos.open(whois_xid);
+                }
+            }
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendWHOIS', e);
+        }
+
+    };
+
+
+    /**
+     * Sends an attention message
+     * @private
+     * @param {string} xid
+     * @param {string} e_2
+     * @return {undefined}
+     */
+    self._sendAttention = function(xid, e_2) {
+
+        try {
+            Attention.send(
+                xid,
+                $.trim(e_2)
+            );
+        } catch(e) {
+            Console.error('Message._sendAttention', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a chat message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} id
+     * @param {string} body
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendChat = function(xid, hash, id, body, message_packet) {
+
+        try {
+            message_packet.setType('chat');
+            
+            // Generates the correct message depending of the choosen style
+            var genMsg = self.generate(message_packet, body, hash);
+            var html_escape = (genMsg !== 'XHTML');
+            
+            // Receipt request
+            var receipt_request = Receipts.request(hash);
+            
+            if(receipt_request) {
+                message_packet.appendNode('request', {
+                    'xmlns': NS_URN_RECEIPTS
+                });
+            }
+            
+            // Chatstate
+            message_packet.appendNode('active', {
+                'xmlns': NS_CHATSTATES
+            });
+            
+            // Markable message?
+            var has_markers = Markers.hasSupport(xid);
+
+            if(has_markers === true) {
+                Markers.mark(message_packet);
+            }
+
+            // Send it!
+            con.send(message_packet, Errors.handleReply);
+            
+            // Filter the xHTML message (for us!)
+            if(!html_escape) {
+                body = Filter.xhtml(message_packet.getNode());
+            }
+            
+            // Finally we display the message we just sent
+            var my_xid = Common.getXID();
+            
+            var message_sel = self.display(
+                'chat',
+                my_xid,
+                hash,
+                Name.getBuddy(my_xid).htmlEnc(),
+                body,
+                DateUtils.getCompleteTime(),
+                DateUtils.getTimeStamp(),
+                'user-message',
+                html_escape,
+                '',
+                'me',
+                id
+            );
+
+            if(has_markers === true) {
+                message_sel.addClass('is-sending');
+                message_sel.find('.message-marker').text(
+                    Common._e("Sending...")
+                ).show();
+            }
+            
+            // Receipt timer
+            if(receipt_request) {
+                Receipts.checkReceived(hash, id);
+            }
+        } catch(e) {
+            Console.error('Message._sendChat', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat say message
+     * @private
+     * @param {string} hash
+     * @param {string} body
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendGroupchatSat = function(hash, body, message_packet) {
+
+        try {
+            body = body.replace(/^\/say (.+)/, '$1');
+            
+            message_packet.setType('groupchat');
+            self.generate(message_packet, body, hash);
+            
+            con.send(message_packet, Errors.handleReply);
+        } catch(e) {
+            Console.error('Message._sendGroupchatSat', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat nick message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} nick
+     * @param {string} body
+     * @return {undefined}
+     */
+    self._sendGroupchatNick = function(xid, hash, nick, body) {
+
+        try {
+            var nick = body.replace(/^\/nick (.+)/, '$1');
+            
+            // Does not exist yet?
+            if(!Utils.getMUCUserXID(xid, nick)) {
+                // Send a new presence
+                Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Errors.handleReply);
+                
+                // Change the stored nickname
+                $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
+                
+                // Reset chatstate
+                ChatState.send('active', xid, hash);
+            }
+        } catch(e) {
+            Console.error('Message._sendGroupchatNick', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat msg message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} e_1
+     * @param {string} e_2
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendGroupchatMsg = function(xid, hash, e_1, e_2, message_packet) {
+
+        try {
+            var msg_nick = e_1;
+            var msg_body = e_2;
+            var nick_xid = Utils.getMUCUserXID(xid, msg_nick);
+            
+            // We check if the user exists
+            if(!nick_xid) {
+                Board.openThisInfo(6);
+            } else if(msg_body) {
+                message_packet.setType('chat');
+                message_packet.setTo(nick_xid);
+                self.generate(message_packet, msg_body, hash);
+                
+                con.send(message_packet, Errors.handleReply);
+            }
+        } catch(e) {
+            Console.error('Message._sendGroupchatMsg', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat XXX message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} body
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendGroupchatTopic = function(xid, hash, body, message_packet) {
+
+        try {
+            var topic = body.replace(/^\/topic (.+)/, '$1');
+            
+            message_packet.setType('groupchat');
+            message_packet.setSubject(topic);
+            
+            con.send(message_packet, Errors.handleMessage);
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendGroupchatTopic', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat XXX message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} e_1
+     * @param {string} e_2
+     * @return {undefined}
+     */
+    self._sendGroupchatBan = function(xid, hash, e_1, e_2) {
+
+        try {
+            var ban_nick = $.trim(e_1);
+            var ban_reason = '';
+            
+            // We check if the user exists, if not it may be because a reason is given
+            // we do not check it at first because the nickname could contain ':'
+            var ban_xid = Utils.getMUCUserRealXID(xid, ban_nick);
+
+            if(!ban_xid && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
+                ban_reason = $.trim(e_1);
+                ban_nick = $.trim(e_2);
+
+                if(ban_nick.length === 0) {
+                    ban_nick = ban_reason;
+                    ban_reason = '';
+                }
+
+                ban_xid = Utils.getMUCUserXID(xid, ban_nick);
+            }
+            
+            Groupchat.banUser(xid, ban_xid, ban_reason);
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendGroupchatBan', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat XXX message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} e_1
+     * @param {string} e_2
+     * @return {undefined}
+     */
+    self._sendGroupchatKick = function(xid, hash, e_1, e_2) {
+
+        try {
+            var kick_nick = $.trim(e_1);
+            var kick_reason =  '';
+
+            // We check if the user exists, if not it may be because a reason is given
+            // we do not check it at first because the nickname could contain ':'
+            var kick_xid = Utils.getMUCUserRealXID(xid, kick_nick);
+
+            if(!kick_xid && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
+                kick_reason = $.trim(e_1);
+                kick_nick = $.trim(e_2);
+
+                if(kick_nick.length === 0) {
+                    kick_nick = kick_reason;
+                    kick_reason = '';
+                }
+
+                kick_xid = Utils.getMUCUserXID(xid, kick_nick);
+            }
+            
+            Groupchat.kickUser(xid, kick_xid, kick_nick, kick_reason);
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendGroupchatKick', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat XXX message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} e_1
+     * @param {string} e_2
+     * @return {undefined}
+     */
+    self._sendGroupchatInvite = function(xid, hash, e_1, e_2) {
+
+        try {
+            var i_xid = e_1;
+            var invite_reason = e_2;
+
+            var x = message_packet.appendNode('x', {
+                'xmlns': NS_MUC_USER
+            });
+
+            var node = x.appendChild(message_packet.buildNode('invite', {
+                'to': i_xid,
+                'xmlns': NS_MUC_USER
+            }));
+            
+            if(invite_reason) {
+                node.appendChild(message_packet.buildNode('reason', {
+                    'xmlns': NS_MUC_USER
+                }, invite_reason));
+            }
+            
+            con.send(message_packet, Errors.handleReply);
+            
+            // Reset chatstate
+            ChatState.send('active', xid, hash);
+        } catch(e) {
+            Console.error('Message._sendGroupchatInvite', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat XXX message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} type
+     * @param {string} body
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendGroupchatMessage = function(xid, hash, type, body, message_packet) {
+
+        try {
+            message_packet.setType('groupchat');
+            
+            // Chatstate
+            message_packet.appendNode('active', {
+                'xmlns': NS_CHATSTATES
+            });
+            
+            self.generate(message_packet, body, hash);
+            
+            con.send(message_packet, Errors.handleMessage);
+            
+            Console.info('Message sent to: ' + xid + ' / ' + type);
+        } catch(e) {
+            Console.error('Message._sendGroupchatMessage', e);
+        }
+
+    };
+
+
+    /**
+     * Sends a groupchat message
+     * @private
+     * @param {string} xid
+     * @param {string} hash
+     * @param {string} type
+     * @param {string} body
+     * @param {object} message_packet
+     * @return {undefined}
+     */
+    self._sendGroupchat = function(xid, hash, type, body, message_packet) {
+
+        try {
+            // /say shortcut
+            if(body.match(/^\/say (.+)/)) {
+                self._sendGroupchatSat(
+                    hash,
+                    body,
+                    message_packet
+                );
+            }
+            
+            // /nick shortcut
+            else if(body.match(/^\/nick (.+)/)) {
+                self._sendGroupchatNick(
+                    xid,
+                    hash,
+                    nick,
+                    body
+                );
+            }
+            
+            // /msg shortcut
+            else if(body.match(/^\/msg (\S+)\s+(.+)/)) {
+                self._sendGroupchatMsg(
+                    xid,
+                    hash,
+                    RegExp.$1,
+                    RegExp.$2,
+                    message_packet
+                );
+            }
+            
+            // /topic shortcut
+            else if(body.match(/^\/topic (.+)/)) {
+                self._sendGroupchatTopic(
+                    xid,
+                    hash,
+                    body,
+                    message_packet
+                );
+            }
+            
+            // /ban shortcut
+            else if(body.match(/^\/ban (.*)/)) {
+                self._sendGroupchatBan(
+                    xid,
+                    hash,
+                    RegExp.$1,
+                    RegExp.$2
+                );
+            }
+            
+            // /kick shortcut
+            else if(body.match(/^\/kick (.*)/)) {
+                self._sendGroupchatKick(
+                    xid,
+                    hash,
+                    RegExp.$1,
+                    RegExp.$2
+                );
+            }
+            
+            // /invite shortcut
+            else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
+                self._sendGroupchatInvite(
+                    xid,
+                    hash,
+                    RegExp.$1,
+                    RegExp.$2
+                );
+            }
+            
+            // No shortcut, this is a message
+            else {
+                self._sendGroupchatMessage(
+                    xid,
+                    hash,
+                    type,
+                    body,
+                    message_packet
+                );
+            }
+        } catch(e) {
+            Console.error('Message._sendGroupchat', e);
+        }
+
+    };
+
+
+    /**
+     * Sends an XXX message
+     * @private
+     * @param {string} xxx
+     * @return {undefined}
+     */
+    self._sendYYY = function(xxx) {
+
+        try {
+            
+        } catch(e) {
+            Console.error('Message._sendYYY', e);
+        }
+
+    };
+
+
+    /**
      * Handles the incoming message packets
      * @public
      * @param {object} message
@@ -49,15 +1343,7 @@ var Message = (function () {
             var c_mam = message.getChild('result', NS_URN_MAM);
 
             if(c_mam) {
-                var c_mam_sel = $(c_mam);
-                var c_mam_delay = c_mam_sel.find('delay[xmlns="' + NS_URN_DELAY + '"]');
-                var c_mam_forward = c_mam_sel.find('forwarded[xmlns="' + NS_URN_FORWARD + '"]');
-
-                if(c_mam_forward.size()) {
-                    MAM.handleMessage(c_mam_forward, c_mam_delay);
-                }
-
-                return;
+                return self._handleMAM(c_mam);
             }
 
             // We get the message items
@@ -76,11 +1362,11 @@ var Message = (function () {
             var resource = Common.thisResource(from);
             var hash = hex_md5(xid);
             var xHTML = $(node).find('html body').size();
-            var GCUser = false;
+            var is_groupchat_user = false;
             
             // This message comes from a groupchat user
             if(Utils.isPrivate(xid) && ((type == 'chat') || !type) && resource) {
-                GCUser = true;
+                is_groupchat_user = true;
                 xid = from;
                 hash = hex_md5(xid);
             }
@@ -107,303 +1393,56 @@ var Message = (function () {
             var is_markable = Markers.hasRequestMarker(node);
 
             // Chatstate message
-            if(node && !delay && ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
-                /* REF: http://xmpp.org/extensions/xep-0085.html */
-                
-                // Re-process the hash
-                var chatstate_hash = hash;
-                
-                if(type == 'groupchat')
-                    chatstate_hash = hex_md5(from);
-                
-                // Do something depending of the received state
-                if($(node).find('active').size()) {
-                    ChatState.display('active', chatstate_hash, type);
-                    
-                    // Tell Jappix the entity supports chatstates
-                    $('#' + chatstate_hash + ' .message-area').attr('data-chatstates', 'true');
-                    
-                    Console.log('Active chatstate received from: ' + from);
-                }
-                
-                else if($(node).find('composing').size()) {
-                    ChatState.display('composing', chatstate_hash, type);
-
-                    Console.log('Composing chatstate received from: ' + from);
-                }
-                
-                else if($(node).find('paused').size()) {
-                    ChatState.display('paused', chatstate_hash, type);
-
-                    Console.log('Paused chatstate received from: ' + from);
-                }
-                
-                else if($(node).find('inactive').size()){
-                    ChatState.display('inactive', chatstate_hash, type);
-
-                    Console.log('Inactive chatstate received from: ' + from);
-                }
-                
-                else if($(node).find('gone').size()){
-                    ChatState.display('gone', chatstate_hash, type);
-
-                    Console.log('Gone chatstate received from: ' + from);
-                }
+            if(node && !delay && 
+                ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
+                self._handleChatstate(from, hash, type, node);
             }
             
             // Jappix App message
             if(message.getChild('app', 'jappix:app')) {
-                // Get notification data
-                var jappix_app_node = $(node).find('app[xmlns="jappix:app"]');
-                var jappix_app_name = jappix_app_node.find('name');
-
-                var jappix_app_name_id = jappix_app_name.attr('id');
-                var jappix_app_name_value = jappix_app_name.text();
-
-                // Jappix Me notification?
-                if(jappix_app_name_id == 'me') {
-                    // Get more notification data
-                    var jappix_app_data = jappix_app_node.find('data[xmlns="jappix:app:me"]');
-                    var jappix_app_data_action = jappix_app_data.find('action');
-                    var jappix_app_data_url = jappix_app_data.find('url');
-
-                    var jappix_app_data_action_type = jappix_app_data_action.attr('type');
-                    var jappix_app_data_action_success = jappix_app_data_action.attr('success');
-                    var jappix_app_data_action_job = jappix_app_data_action.attr('job');
-                    var jappix_app_data_url_value = jappix_app_data_url.text();
-
-                    // Validate data
-                    if(jappix_app_data_action_type && jappix_app_data_action_success && jappix_app_data_action_job) {
-                        // Filter success
-                        jappix_app_data_action_success = parseInt(jappix_app_data_action_success) == 1 ? 'success' : 'error';
-
-                        // Generate notification namespace
-                        var jappix_me_notification_ns = jappix_app_name_id + '_' + jappix_app_data_action_type + '_' + jappix_app_data_action_job + '_' + jappix_app_data_action_success;
-
-                        // Open a new notification
-                        Notification.create(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
-                        
-                        Console.log('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
-                        
-                        return false;
-                    }
+                if(self._handleJappixApp(xid, body, node) === true) {
+                    return false;
                 }
             }
 
             // Invite message
             if($(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').size()) {
-                // We get the needed values
-                var iFrom = $(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').attr('from');
-                var iRoom = $(node).find('x[xmlns="' + NS_XCONFERENCE + '"]').attr('jid');
-                
-                // Old invite method?
-                if(!iRoom) {
-                    iRoom = from;
-                }
-                
-                // We display the notification
-                Notification.create('invite_room', iFrom, [iRoom], body);
-                
-                Console.log('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
-                
-                return false;
+                return self._handleInvite(body, node);
             }
             
             // Request message
             if(message.getChild('confirm', NS_HTTP_AUTH)) {
-                // Open a new notification
-                Notification.create('request', xid, [message], body);
-                
-                Console.log('HTTP Request from: ' + xid);
-                
-                return false;
+                return self._handleRequest(xid, message, body);
             }
             
             // OOB message
             if(message.getChild('x', NS_XOOB)) {
-                OOB.handle(from, id, 'x', node);
-                
-                Console.log('Message OOB request from: ' + xid);
-                
-                return false;
+                return self._handleOOB(from, xid, id, node);
             }
             
             // Roster Item Exchange message
             if(message.getChild('x', NS_ROSTERX)) {
-                // Open a new notification
-                Notification.create('rosterx', xid, [message], body);
-                
-                Console.log('Roster Item Exchange from: ' + xid);
-                
-                return false;
+                return self._handleRosterItemExchange(xid, message, body);
             }
 
             // Attention message
             if(message.getChild('attention', NS_URN_ATTENTION)) {
-                Attention.receive(xid, body);
-
-                return false;
+                return self._handleAttention(xid, body);
             }
             
             // Normal message
             if((type == 'normal') && body) {
-                // Message date
-                var messageDate = delay;
-                
-                // No message date?
-                if(!messageDate) {
-                    messageDate = DateUtils.getXMPPTime('utc');
-                }
-                
-                // Message ID
-                var messageID = hex_md5(xid + subject + messageDate);
-                
-                // We store the received message
-                Inbox.storeMessage(xid, subject, body, 'unread', messageID, messageDate);
-                
-                // Display the inbox message
-                if(Common.exists('#inbox')) {
-                    Inbox.displayMessage(xid, subject, body, 'unread', messageID, messageDate);
-                }
-                
-                // Check we have new messages (play a sound if any unread messages)
-                if(Inbox.checkMessages()) {
-                    Audio.play('notification');
-                }
-                
-                // Send it to the server
-                Inbox.store();
-                
-                return false;
+                return self._handleNormal(xid, subject, body, delay);
             }
             
             // PubSub event
             if($(node).find('event').attr('xmlns') == NS_PUBSUB_EVENT) {
-                // We get the needed values
-                var iParse = $(node).find('event items');
-                var iNode = iParse.attr('node');
-                var tText;
-                
-                // Turn around the different result cases
-                if(iNode) {
-                    switch(iNode) {
-                        // Mood
-                        case NS_MOOD:
-                            // Retrieve the values
-                            var iMood = iParse.find('mood');
-                            var fValue = '';
-                            tText = '';
-                            
-                            // There's something
-                            if(iMood.children().size()) {
-                                // Read the value
-                                fValue = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName;
-                                
-                                // Read the text
-                                tText = iMood.find('text').text();
-                                
-                                // Avoid errors
-                                if(!fValue)
-                                    fValue = '';
-                            }
-                            
-                            // Store the PEP event (and display it)
-                            PEP.store(xid, 'mood', fValue, tText);
-                            
-                            break;
-                        
-                        // Activity
-                        case NS_ACTIVITY:
-                            // Retrieve the values
-                            var iActivity = iParse.find('activity');
-                            var sValue = '';
-                            tText = '';
-                            
-                            // There's something
-                            if(iActivity.children().size()) {
-                                // Read the value
-                                fValue = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName;
-                                
-                                // Read the text
-                                tText = iActivity.find('text').text();
-                                
-                                // Avoid errors
-                                if(!fValue) {
-                                    fValue = '';
-                                }
-                            }
-                            
-                            // Store the PEP event (and display it)
-                            PEP.store(xid, 'activity', fValue, tText);
-                            
-                            break;
-                        
-                        // Tune
-                        case NS_TUNE:
-                            // Retrieve the values
-                            var iTune = iParse.find('tune');
-                            var tArtist = iTune.find('artist').text();
-                            var tSource = iTune.find('source').text();
-                            var tTitle = iTune.find('title').text();
-                            var tURI = iTune.find('uri').text();
-                            
-                            // Store the PEP event (and display it)
-                            PEP.store(xid, 'tune', tArtist, tTitle, tSource, tURI);
-                            
-                            break;
-                        
-                        // Geolocation
-                        case NS_GEOLOC:
-                            // Retrieve the values
-                            var iGeoloc = iParse.find('geoloc');
-                            var tLat = iGeoloc.find('lat').text();
-                            var tLon = iGeoloc.find('lon').text();
-                            
-                            // Any extra-values?
-                            var tLocality = iGeoloc.find('locality').text();
-                            var tRegion = iGeoloc.find('region').text();
-                            var tCountry = iGeoloc.find('country').text();
-                            var tHuman = PEP.humanPosition(tLocality, tRegion, tCountry);
-                            
-                            // Store the PEP event (and display it)
-                            PEP.store(xid, 'geoloc', tLat, tLon, tHuman);
-                            
-                            break;
-                        
-                        // Microblog
-                        case NS_URN_MBLOG:
-                            Microblog.display(message, xid, hash, 'mixed', 'push');
-                            
-                            break;
-                        
-                        // Inbox
-                        case NS_URN_INBOX:
-                            // Do not handle friend's notifications
-                            if(xid == Common.getXID())
-                                Notification.handle(message);
-                            
-                            break;
-                    }
-                }
-                
-                return false;
+                return self._handlePubsub(xid, hash, message, node);
             }
             
             // If this is a room topic message
             if(subject && (type == 'groupchat')) {
-                // Filter the vars
-                var filter_subject = subject.replace(/\n+/g, ' ');
-                var filteredSubject = Filter.message(filter_subject, resource, true);
-                var filteredName = resource.htmlEnc();
-                
-                // Display the new subject at the top
-                $('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith('<span class="muc-topic" title="' + filter_subject + '">' + filteredSubject + '</span>');
-                
-                // Display the new subject as a system message
-                if(resource) {
-                    var topic_body = filteredName + ' ' + Common._e("changed the subject to:") + ' ' + Filter.message(subject, resource, true);
-                    self.display(type, from, hash, filteredName, topic_body, time, stamp, 'system-message', false);
-                }
+                self._handleRoomTopic(type, from, hash, subject, resource, time, stamp);
             }
             
             // If the message has a content
@@ -429,138 +1468,39 @@ var Message = (function () {
                 
                 // Groupchat message
                 if(type == 'groupchat') {
-                    /* REF: http://xmpp.org/extensions/xep-0045.html */
-                    
-                    // We generate the message type and time
-                    var message_type = 'user-message';
-                    
-                    // This is an old message
-                    if(delay && resource) {
-                        message_type = 'old-message';
-                    }
-                    
-                    // This is a system message
-                    else if(!resource) {
-                        message_type = 'system-message';
-                    }
-                    
-                    var nickQuote = '';
-                    
-                    // If this is not an old message
-                    if(message_type == 'user-message') {
-                        var myNick = Name.getMUCNick(hash);
-                        
-                        // If an user quoted our nick (with some checks)
-                        var regex = new RegExp('((^)|( )|(@))' + Common.escapeRegex(myNick) + '(($)|(:)|(,)|( ))', 'gi');
-                        
-                        if(body.match(regex) && (myNick != resource) && (message_type == 'user-message'))
-                            nickQuote = ' my-nick';
-                        
-                        // We notify the user if there's a new personal message
-                        if(nickQuote) {
-                            Interface.messageNotify(hash, 'personal');
-                            Board.quick(from, 'groupchat', raw_body, resource);
-                            Audio.play('receive-message');
-                        }
-                        
-                        // We notify the user there's a new unread MUC message
-                        else {
-                            Interface.messageNotify(hash, 'unread');
-                            
-                            // Play sound to all users in the MUC, except user who sent the message.
-                            if(myNick != resource) {
-                                Audio.play('receive-message');
-                            }
-                        }
-                    }
-                    
-                    // Display the received message
-                    self.display(
-                        type,
+                    self._handleGroupchat(
                         from,
                         hash,
-                        resource.htmlEnc(),
+                        type,
+                        resource,
+                        id,
                         body,
+                        raw_body,
                         time,
                         stamp,
-                        message_type,
                         html_escape,
-                        nickQuote,
-                        undefined,
-                        id,
-                        undefined,
-                        undefined,
-                        message_edit.is_edited,
-                        message_edit.next_count,
+                        delay,
+                        message_edit,
                         is_storable
                     );
-                }
-                
-                // Chat message
-                else {
-                    // Gets the nickname of the user
-                    var fromName = resource;
-                    var chatType = 'chat';
-                    
-                    // Must send a receipt notification?
-                    if(Receipts.has(message) && (id !== null)) {
-                        Receipts.sendReceived(type, from, id);
-                    }
-                    
-                    // It does not come from a groupchat user, get the full name
-                    if(!GCUser) {
-                        fromName = Name.getBuddy(xid);
-                    } else {
-                        chatType = 'private';
-                    }
-                    
-                    // If the chat isn't yet opened, open it !
-                    if(!Common.exists('#' + hash)) {
-                        // We create a new chat
-                        Chat.create(hash, xid, fromName, chatType);
-                        
-                        // We tell the user that a new chat has started
-                        Audio.play('new-chat');
-                    } else {
-                        Audio.play('receive-message');
-                    }
-                    
-                    // Display the received message
-                    var message_sel = self.display(
-                        type,
+                } else {
+                    self._handleChat(
+                        from,
                         xid,
                         hash,
-                        fromName.htmlEnc(),
+                        type,
+                        resource,
+                        id,
                         body,
+                        raw_body,
                         time,
                         stamp,
-                        'user-message',
                         html_escape,
-                        '',
-                        'him',
-                        id,
-                        undefined,
-                        undefined,
-                        message_edit.is_edited,
-                        message_edit.next_count,
+                        message_edit,
                         is_storable,
-                        is_markable
+                        is_markable,
+                        message
                     );
-                    
-                    // We notify the user
-                    Interface.messageNotify(hash, 'personal');
-                    Board.quick(xid, 'chat', raw_body, fromName);
-
-                    // Mark the message
-                    if(is_markable === true && Markers.hasSupport(xid)) {
-                        var mark_type = Markers.MARK_TYPE_RECEIVED;
-
-                        if(Interface.hasChanFocus(hash) === true) {
-                            mark_type = Markers.MARK_TYPE_DISPLAYED;
-                        }
-
-                        Markers.change(from, mark_type, id, message_sel);
-                    }
                 }
             }
 
@@ -608,319 +1548,56 @@ var Message = (function () {
             
             // /help shortcut
             if(body.match(/^\/help\s*(.*)/)) {
-                // Help text
-                var help_text = '<p class="help" xmlns="http://www.w3.org/1999/xhtml">';
-                help_text += '<b>' + Common._e("Available shortcuts:") + '</b>';
-                
-                // Shortcuts array
-                var shortcuts = [];
-                
-                // Common shortcuts
-                shortcuts.push(Common.printf(Common._e("%s removes the chat logs"), '<em>/clear</em>'));
-                shortcuts.push(Common.printf(Common._e("%s joins a groupchat"), '<em>/join jid</em>'));
-                shortcuts.push(Common.printf(Common._e("%s closes the chat"), '<em>/part</em>'));
-                shortcuts.push(Common.printf(Common._e("%s shows the user profile"), '<em>/whois jid</em>'));
-                
-                // Groupchat shortcuts
-                if(type == 'groupchat') {
-                    shortcuts.push(Common.printf(Common._e("%s sends a message to the room"), '<em>/say message</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s changes your nickname"), '<em>/nick nickname</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s sends a message to someone in the room"), '<em>/msg nickname message</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s changes the room topic"), '<em>/topic subject</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s kicks a user of the room"), '<em>/kick [reason:] nickname</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s bans a user of the room"), '<em>/ban [reason:] nickname</em>'));
-                    shortcuts.push(Common.printf(Common._e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
-                }
-                
-                // Generate the code from the array
-                shortcuts = shortcuts.sort();
-                
-                for(var s in shortcuts) {
-                    help_text += shortcuts[s] + '<br />';
-                }
-                
-                help_text += '</p>';
-                
-                // Display the message
-                self.display(type, xid, hash, 'help', help_text, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
-                
-                // Reset chatstate
-                ChatState.send('active', xid, hash);
+                self._sendHelp(type, xid, hash);
             }
             
             // /clear shortcut
             else if(body.match(/^\/clear/)) {
-                Chat.clean(hex_md5(xid));
-                
-                // Reset chatstate
-                ChatState.send('active', xid, hash);
+                self._sendClear(xid, hash);
             }
             
             // /join shortcut
             else if(body.match(/^\/join (\S+)\s*(.*)/)) {
-                // Join
-                var room = Common.generateXID(RegExp.$1, 'groupchat');
-                var pass = RegExp.$2;
-                
-                Chat.checkCreate(room, 'groupchat');
-                
-                // Reset chatstate
-                ChatState.send('active', xid, hash);
+                self._sendJoin(xid, hash, room, RegExp.$1, RegExp.$2);
             }
             
             // /part shortcut
-            else if(body.match(/^\/part\s*(.*)/) && (!Utils.isAnonymous() || (Utils.isAnonymous() && (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))))) {
-                Interface.quitThisChat(xid, hex_md5(xid), type);
+            else if(body.match(/^\/part\s*(.*)/) && 
+                (!Utils.isAnonymous() || (Utils.isAnonymous() && 
+                (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))))) {
+                self._sendPart(xid, type);
             }
             
             // /whois shortcut
             else if(body.match(/^\/whois(( (\S+))|($))/)) {
-                var whois_xid = RegExp.$3;
-                
-                // Groupchat WHOIS
-                if(type == 'groupchat') {
-                    nXID = Utils.getMUCUserXID(xid, whois_xid);
-                    
-                    if(!nXID) {
-                        Board.openThisInfo(6);
-                    } else {
-                        UserInfos.open(nXID);
-                    }
-                }
-                
-                // Chat or private WHOIS
-                else {
-                    if(!whois_xid) {
-                        UserInfos.open(xid);
-                    } else {
-                        UserInfos.open(whois_xid);
-                    }
-                }
-                
-                // Reset chatstate
-                ChatState.send('active', xid, hash);
+                self._sendWHOIS(type, xid, hash, RegExp.$3);
             }
 
             // /attention shortcut
             else if(body.match(/^\/attention( (.*))?/) && type == 'chat') {
-                Attention.send(
-                    xid,
-                    $.trim(RegExp.$2)
-                );
+                self._sendAttention(xid, RegExp.$2);
             }
 
             // Chat message type
             else if(type == 'chat') {
-                message_packet.setType('chat');
-                
-                // Generates the correct message depending of the choosen style
-                var genMsg = self.generate(message_packet, body, hash);
-                var html_escape = (genMsg !== 'XHTML');
-                
-                // Receipt request
-                var receipt_request = Receipts.request(hash);
-                
-                if(receipt_request) {
-                    message_packet.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
-                }
-                
-                // Chatstate
-                message_packet.appendNode('active', {'xmlns': NS_CHATSTATES});
-                
-                // Markable message?
-                var has_markers = Markers.hasSupport(xid);
-
-                if(has_markers === true) {
-                    Markers.mark(message_packet);
-                }
-
-                // Send it!
-                con.send(message_packet, Errors.handleReply);
-                
-                // Filter the xHTML message (for us!)
-                if(!html_escape) {
-                    body = Filter.xhtml(message_packet.getNode());
-                }
-                
-                // Finally we display the message we just sent
-                var my_xid = Common.getXID();
-                
-                var message_sel = self.display(
-                    'chat',
-                    my_xid,
+                self._sendChat(
+                    xid,
                     hash,
-                    Name.getBuddy(my_xid).htmlEnc(),
+                    id,
                     body,
-                    DateUtils.getCompleteTime(),
-                    DateUtils.getTimeStamp(),
-                    'user-message',
-                    html_escape,
-                    '',
-                    'me',
-                    id
+                    message_packet
                 );
-
-                if(has_markers === true) {
-                    message_sel.addClass('is-sending');
-                    message_sel.find('.message-marker').text(
-                        Common._e("Sending...")
-                    ).show();
-                }
-                
-                // Receipt timer
-                if(receipt_request) {
-                    Receipts.checkReceived(hash, id);
-                }
             }
             
             // Groupchat message type
             else if(type == 'groupchat') {
-                // /say shortcut
-                if(body.match(/^\/say (.+)/)) {
-                    body = body.replace(/^\/say (.+)/, '$1');
-                    
-                    message_packet.setType('groupchat');
-                    self.generate(message_packet, body, hash);
-                    
-                    con.send(message_packet, Errors.handleReply);
-                }
-                
-                // /nick shortcut
-                else if(body.match(/^\/nick (.+)/)) {
-                    var nick = body.replace(/^\/nick (.+)/, '$1');
-                    
-                    // Does not exist yet?
-                    if(!Utils.getMUCUserXID(xid, nick)) {
-                        // Send a new presence
-                        Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Errors.handleReply);
-                        
-                        // Change the stored nickname
-                        $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
-                        
-                        // Reset chatstate
-                        ChatState.send('active', xid, hash);
-                    }
-                }
-                
-                // /msg shortcut
-                else if(body.match(/^\/msg (\S+)\s+(.+)/)) {
-                    var msg_nick = RegExp.$1;
-                    var msg_body = RegExp.$2;
-                    nXID = Utils.getMUCUserXID(xid, msg_nick);
-                    
-                    // We check if the user exists
-                    if(!nXID) {
-                        Board.openThisInfo(6);
-                    }
-                    
-                    // If the private message is not empty
-                    else if(msg_body) {
-                        message_packet.setType('chat');
-                        message_packet.setTo(nXID);
-                        self.generate(message_packet, msg_body, hash);
-                        
-                        con.send(message_packet, Errors.handleReply);
-                    }
-                }
-                
-                // /topic shortcut
-                else if(body.match(/^\/topic (.+)/)) {
-                    var topic = body.replace(/^\/topic (.+)/, '$1');
-                    
-                    message_packet.setType('groupchat');
-                    message_packet.setSubject(topic);
-                    
-                    con.send(message_packet, Errors.handleMessage);
-                    
-                    // Reset chatstate
-                    ChatState.send('active', xid, hash);
-                }
-                
-                // /ban shortcut
-                else if(body.match(/^\/ban (.*)/)) {
-                    var ban_nick = $.trim(RegExp.$1);
-                    var ban_reason = '';
-                    
-                    // We check if the user exists, if not it may be because a reason is given
-                    // we do not check it at first because the nickname could contain ':'
-                    var ban_xid = Utils.getMUCUserRealXID(xid, ban_nick);
-
-                    if(!ban_xid && (body.match(/^\/ban ([^:]+)[:]*(.*)/))) {
-                        ban_reason = $.trim(RegExp.$1);
-                        ban_nick = $.trim(RegExp.$2);
-
-                        if(ban_nick.length === 0) {
-                            ban_nick = ban_reason;
-                            ban_reason = '';
-                        }
-
-                        ban_xid = Utils.getMUCUserXID(xid, ban_nick);
-                    }
-                    
-                    Groupchat.banUser(xid, ban_xid, ban_reason);
-                    
-                    // Reset chatstate
-                    ChatState.send('active', xid, hash);
-                }
-                
-                // /kick shortcut
-                else if(body.match(/^\/kick (.*)/)) {
-                    var kick_nick = $.trim(RegExp.$1);
-                    var kick_reason =  '';
-
-                    // We check if the user exists, if not it may be because a reason is given
-                    // we do not check it at first because the nickname could contain ':'
-                    var kick_xid = Utils.getMUCUserRealXID(xid, kick_nick);
-
-                    if(!kick_xid && (body.match(/^\/kick ([^:]+)[:]*(.*)/))) {
-                        kick_reason = $.trim(RegExp.$1);
-                        kick_nick = $.trim(RegExp.$2);
-
-                        if(kick_nick.length === 0) {
-                            kick_nick = kick_reason;
-                            kick_reason = '';
-                        }
-
-                        kick_xid = Utils.getMUCUserXID(xid, kick_nick);
-                    }
-                    
-                    Groupchat.kickUser(xid, kick_xid, kick_nick, kick_reason);
-                    
-                    // Reset chatstate
-                    ChatState.send('active', xid, hash);
-                }
-                
-                // /invite shortcut
-                else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
-                    var i_xid = RegExp.$1;
-                    var invite_reason = RegExp.$2;
-
-                    var x = message_packet.appendNode('x', {'xmlns': NS_MUC_USER});
-                    var aNode = x.appendChild(message_packet.buildNode('invite', {'to': i_xid, 'xmlns': NS_MUC_USER}));
-                    
-                    if(invite_reason) {
-                        aNode.appendChild(message_packet.buildNode('reason', {'xmlns': NS_MUC_USER}, invite_reason));
-                    }
-                    
-                    con.send(message_packet, Errors.handleReply);
-                    
-                    // Reset chatstate
-                    ChatState.send('active', xid, hash);
-                }
-                
-                // No shortcut, this is a message
-                else {
-                    message_packet.setType('groupchat');
-                    
-                    // Chatstate
-                    message_packet.appendNode('active', {'xmlns': NS_CHATSTATES});
-                    
-                    self.generate(message_packet, body, hash);
-                    
-                    con.send(message_packet, Errors.handleMessage);
-                    
-                    Console.info('Message sent to: ' + xid + ' / ' + type);
-                }
+                self._sendGroupchat(
+                    xid,
+                    hash,
+                    type,
+                    body,
+                    message_packet
+                );
             }
             
             // We reset the message input
@@ -1082,16 +1759,16 @@ var Message = (function () {
     /**
      * Generates the correct message code
      * @public
-     * @param {object} aMsg
+     * @param {object} message_packet
      * @param {string} body
      * @param {string} hash
      * @return {string}
      */
-    self.generate = function(aMsg, body, hash) {
+    self.generate = function(message_packet, body, hash) {
 
         try {
             // Create the classical body
-            aMsg.setBody(body);
+            message_packet.setBody(body);
             
             // Get the style
             var style = $('#' + hash + ' .message-area').attr('style');
@@ -1106,8 +1783,13 @@ var Message = (function () {
                 }
                 
                 // Create the XML elements
-                var aHtml = aMsg.appendNode('html', {'xmlns': NS_XHTML_IM});
-                var aBody = aHtml.appendChild(aMsg.buildNode('body', {'xmlns': NS_XHTML}));
+                var html_node = message_packet.appendNode('html', {
+                    'xmlns': NS_XHTML_IM
+                });
+
+                var body_node = html_node.appendChild(message_packet.buildNode('body', {
+                    'xmlns': NS_XHTML
+                }));
                 
                 // Use the exploded body array to create one element per entry
                 for(var i in new_lines) {
@@ -1116,7 +1798,7 @@ var Message = (function () {
                     
                     // Blank line, we put a <br />
                     if(cLine.match(/(^)(\s+)($)/) || !cLine) {
-                        aBody.appendChild(aMsg.buildNode('br', {'xmlns': NS_XHTML}));
+                        body_node.appendChild(message_packet.buildNode('br', {'xmlns': NS_XHTML}));
                     }
                     
                     // Line with content, we put a <p />
@@ -1128,7 +1810,7 @@ var Message = (function () {
                         cLine = Links.apply(cLine, 'xhtml-im', style);
                         
                         // Append the filtered line
-                        $(aBody).append($('<p style="' + style + '">' + cLine + '</p>'));
+                        $(body_node).append($('<p style="' + style + '">' + cLine + '</p>'));
                     }
                 }
                 

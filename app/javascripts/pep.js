@@ -240,7 +240,7 @@ var PEP = (function () {
 
         try {
             // Apply the text to the buddy infos
-            self._appendOwnDisplayObjectAll(type, display_args);
+            self._appendOwnDisplayObject(type, display_args);
 
             var this_buddy = '#roster .buddy[data-xid="' + escape(xid) + '"]';
             
@@ -714,12 +714,8 @@ var PEP = (function () {
             if(type) {
                 // Get the user hash
                 var hash = hex_md5(xid);
-                
                 var display_args = {};
 
-                // Initialize typed valyes
-                var display_args.pep_value, pepText;
-                
                 // Parse the XML for mood and activity
                 switch(type) {
                     case 'mood':

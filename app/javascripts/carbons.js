@@ -22,7 +22,7 @@ var Carbons = (function () {
 
     /**
      * Configures Message Carbons options
-     * @public
+     * @private
      * @param {string} type
      * @return {undefined}
      */
@@ -50,7 +50,7 @@ var Carbons = (function () {
 
     /**
      * Configures Message Carbons options
-     * @public
+     * @private
      * @param {object} iq
      * @param {string} type
      * @return {undefined}
