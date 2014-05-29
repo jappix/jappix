@@ -709,14 +709,16 @@ var Favorites = (function () {
     self.instance = function() {
 
         try {
-            var path = '#favorites .';
+            var favorites_sel = $('#favorites');
             
             // Keyboard events
-            $(path + 'fsearch-head-server').keyup(function(e) {
+            favorites_sel.find('.fsearch-head-server').keyup(function(e) {
                 if(e.keyCode == 13) {
+                    var this_sel = $(this);
+                    
                     // No value?
-                    if(!$(this).val()) {
-                        $(this).val(HOST_MUC);
+                    if(!this_sel.val()) {
+                        this_sel.val(HOST_MUC);
                     }
                     
                     // Get the list
@@ -724,10 +726,10 @@ var Favorites = (function () {
                 }
             });
             
-            $(path + 'fedit-line input').keyup(function(e) {
+            favorites_sel.find('.fedit-line input').keyup(function(e) {
                 if(e.keyCode == 13) {
                     // Edit a favorite
-                    if($(path + 'fedit-edit').is(':visible')) {
+                    if(favorites_sel.find('.fedit-edit').is(':visible')) {
                         self.terminateThis('edit');
                     } else {
                         self.terminateThis('add');
@@ -739,33 +741,33 @@ var Favorites = (function () {
             $('.fedit-head-select').change(self.edit);
             
             // Click events
-            $(path + 'room-switcher').click(function() {
-                $(path + 'favorites-content').hide();
+            favorites_sel.find('.room-switcher').click(function() {
+                favorites_sel.find('.favorites-content').hide();
                 self.reset();
             });
             
-            $(path + 'room-list').click(function() {
-                $(path + 'favorites-edit').show();
+            favorites_sel.find('.room-list').click(function() {
+                favorites_sel.find('.favorites-edit').show();
             });
             
-            $(path + 'room-search').click(function() {
-                $(path + 'favorites-search').show();
+            favorites_sel.find('.room-search').click(function() {
+                favorites_sel.find('.favorites-search').show();
                 self.getGCList();
             });
             
-            $(path + 'fedit-add').click(function() {
+            favorites_sel.find('.fedit-add').click(function() {
                 return self.terminateThis('add');
             });
             
-            $(path + 'fedit-edit').click(function() {
+            favorites_sel.find('.fedit-edit').click(function() {
                 return self.terminateThis('edit');
             });
             
-            $(path + 'fedit-remove').click(function() {
+            favorites_sel.find('.fedit-remove').click(function() {
                 return self.terminateThis('remove');
             });
             
-            $(path + 'bottom .finish').click(function() {
+            favorites_sel.find('.bottom .finish').click(function() {
                 return self.quit();
             });
         } catch(e) {
