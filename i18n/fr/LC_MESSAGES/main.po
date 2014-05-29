@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-24 21:38+0100\n"
+"PO-Revision-Date: 2014-05-29 17:06+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/jappix/language/"
 "fr/)\n"
@@ -2278,7 +2278,7 @@ msgstr ""
 "le nouvel avatar apparaît partout. Quelle innovation géniale !"
 
 msgid "Yay, let's create your public profile!"
-msgstr "Ouais, créons mon profil public !"
+msgstr "Oui, créons mon profil public !"
 
 msgid "Enable my public profile"
 msgstr "Activer mon profil public"

@@ -299,7 +299,7 @@ var Favorites = (function () {
                 favorites_sel.find('.fedit-server').val(Common.getXIDHost(xid));
                 favorites_sel.find('.fedit-password').val(data_sel.find('password').text());
                 
-                if($(data).find('autojoin').text() == 'true') {
+                if(data_sel.find('autojoin').text() == 'true') {
                     favorites_sel.find('.fedit-autojoin').attr('checked', true);
                 }
             }
