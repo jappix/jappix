@@ -327,16 +327,14 @@ var Message = (function () {
     self._handlePubsub = function(xid, hash, message, node) {
 
         try {
-            var node_sel = $(node);
-
             // We get the needed values
-            var items_sel = node_sel.find('event items');
-            var node_sel = items_sel.attr('node');
+            var items_sel = $(node).find('event items');
+            var node_attr = items_sel.attr('node');
             var text;
             
             // Turn around the different result cases
-            if(node_sel) {
-                switch(node_sel) {
+            if(node_attr) {
+                switch(node_attr) {
                     // Mood
                     case NS_MOOD:
                         // Retrieve the values
@@ -575,10 +573,11 @@ var Message = (function () {
      * @param {object} message_edit
      * @param {boolean} is_storable
      * @param {boolean} is_markable
+     * @param {boolean} is_groupchat_user
      * @param {object} message
      * @return {undefined}
      */
-    self._handleChat = function(from, xid, hash, type, resource, id, body, raw_body, time, stamp, html_escape, message_edit, is_storable, is_markable, message) {
+    self._handleChat = function(from, xid, hash, type, resource, id, body, raw_body, time, stamp, html_escape, message_edit, is_storable, is_markable, is_groupchat_user, message) {
 
         try {
             // Gets the nickname of the user
@@ -742,10 +741,10 @@ var Message = (function () {
 
         try {
             // Join
-            var room = Common.generateXID(e_1, 'groupchat');
+            var room_gen = Common.generateXID(e_1, 'groupchat');
             var pass = e_2;
             
-            Chat.checkCreate(room, 'groupchat');
+            Chat.checkCreate(room_gen, 'groupchat');
             
             // Reset chatstate
             ChatState.send('active', xid, hash);
@@ -955,13 +954,13 @@ var Message = (function () {
      * @param {string} body
      * @return {undefined}
      */
-    self._sendGroupchatNick = function(xid, hash, nick, body) {
+    self._sendGroupchatNick = function(xid, hash, e_1, body) {
 
         try {
-            var nick = body.replace(/^\/nick (.+)/, '$1');
+            var nick = $.trim(e_1);
             
             // Does not exist yet?
-            if(!Utils.getMUCUserXID(xid, nick)) {
+            if(nick && !Utils.getMUCUserXID(xid, nick)) {
                 // Send a new presence
                 Presence.send(xid + '/' + nick, '', Presence.getUserShow(), self.getUserStatus(), '', false, false, Errors.handleReply);
                 
@@ -1224,7 +1223,7 @@ var Message = (function () {
                 self._sendGroupchatNick(
                     xid,
                     hash,
-                    nick,
+                    RegExp.$1,
                     body
                 );
             }
@@ -1499,6 +1498,7 @@ var Message = (function () {
                         message_edit,
                         is_storable,
                         is_markable,
+                        is_groupchat_user,
                         message
                     );
                 }
