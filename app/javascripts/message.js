@@ -1839,6 +1839,10 @@ var Message = (function () {
      * @param {string} id
      * @param {object} c_target_sel
      * @param {boolean} no_scroll
+     * @param {boolean} is_edited
+     * @param {number} edit_count
+     * @param {boolean} is_storable
+     * @param {boolean} is_markable
      * @return {object}
      */
     self.display = function(type, xid, hash, name, body, time, stamp, message_type, html_escape, nick_quote, mode, id, c_target_sel, no_scroll, is_edited, edit_count, is_storable, is_markable) {

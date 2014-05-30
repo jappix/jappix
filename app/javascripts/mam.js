@@ -35,6 +35,7 @@ var MAM = (function () {
     self.map_reqs = {};
     self.map_pending = {};
     self.map_states = {};
+    self.map_messages = {};
     self.msg_queue = {};
 
 
@@ -311,11 +312,16 @@ var MAM = (function () {
             if(c_message[0]) {
                 // Re-build a proper JSJaC message stanza
                 var message = JSJaCPacket.wrapNode(c_message[0]);
+                var message_node = message.getNode();
 
                 // Check message type
                 var type = message.getType() || 'chat';
 
                 if(type == 'chat') {
+                    // Display function
+                    var c_display_fn;
+                    var c_display_msg_bool = false;
+
                     // Read message data
                     var xid = Common.bareXID(Common.getStanzaFrom(message));
                     var id = message.getID();
@@ -331,50 +337,100 @@ var MAM = (function () {
                     var hash = hex_md5(xid);
                     var body = message.getBody();
 
-                    // Read delay (required since we deal w/ a past message!)
-                    var time, stamp;
-                    var delay = c_delay.attr('stamp');
+                    // Content message?
+                    if(body) {
+                        // Read delay (required since we deal w/ a past message!)
+                        var time, stamp;
+                        var delay = c_delay.attr('stamp');
 
-                    if(delay) {
-                        time = DateUtils.relative(delay);
-                        stamp = DateUtils.extractStamp(Date.jab2date(delay));
-                    }
-                    
-                    // Last-minute checks before display
-                    if(time && stamp && body) {
-                        var mam_chunk_path = '#' + hash + ' .mam-chunk';
-
-                        // No chat auto-scroll?
-                        var no_scroll = Common.exists(mam_chunk_path);
-
-                        // Select the custom target
-                        var c_target_sel = function() {
-                            return $(mam_chunk_path).filter(function() {
-                                return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp;
-                            }).filter(':first');
-                        };
-
-                        // Display the message in that target
-                        var c_msg_display = function() {
-                            Message.display(type, from_xid, hash, b_name.htmlEnc(), body, time, stamp, 'old-message', true, null, mode, null, c_target_sel(), no_scroll);
-                        };
-
-                        // Hack: do not display the message in case we would duplicate it w/ current session messages
-                        //       only used when initiating a new chat, avoids collisions
-                        if(!(xid in self.map_states) && $('#' + hash).find('.one-line.user-message:last').text() == body) {
-                            return;
+                        if(delay) {
+                            time = DateUtils.relative(delay);
+                            stamp = DateUtils.extractStamp(Date.jab2date(delay));
                         }
+                        
+                        // Last-minute checks before display
+                        if(time && stamp) {
+                            var mam_chunk_path = '#' + hash + ' .mam-chunk';
 
-                        if(c_target_sel().size()) {
+                            // Markable message?
+                            var is_markable = Markers.hasRequestMarker(message_node);
+
+                            // No chat auto-scroll?
+                            var no_scroll = Common.exists(mam_chunk_path);
+
+                            // Select the custom target
+                            var c_target_sel = function() {
+                                return $(mam_chunk_path).filter(function() {
+                                    return $(this).attr('data-start') <= stamp && $(this).attr('data-end') >= stamp;
+                                }).filter(':first');
+                            };
+
                             // Display the message in that target
-                            c_msg_display();
+                            c_display_fn = function() {
+                                // Display message
+                                Message.display(
+                                    type,
+                                    from_xid,
+                                    hash,
+                                    b_name.htmlEnc(),
+                                    body,
+                                    time,
+                                    stamp,
+                                    'old-message',
+                                    true,
+                                    null,
+                                    mode,
+                                    id + '-mam',
+                                    c_target_sel(),
+                                    no_scroll,
+                                    undefined,
+                                    undefined,
+                                    undefined,
+                                    is_markable
+                                );
+
+                                self.map_messages[id] = 1;
+                            };
+
+                            c_display_msg_bool = c_target_sel().size() ? true : false;
+
+                            // Hack: do not display the message in case we would duplicate it w/ current session messages
+                            //       only used when initiating a new chat, avoids collisions
+                            if(!(xid in self.map_states) && $('#' + hash).find('.one-line.user-message:last').text() == body) {
+                                return;
+                            }
+                        }
+                    } else if(Markers.hasResponseMarker(message_node)) {
+                        // Marked message? (by other party)
+                        if(mode == 'him') {
+                            var marked_message_id = Markers.getMessageID(message_node);
+
+                            c_display_fn = function() {
+                                var is_mam_marker = true;
+
+                                Markers.handle(
+                                    from_xid,
+                                    message_node,
+                                    is_mam_marker
+                                );
+                            };
+
+                            c_display_msg_bool = (self.map_messages[marked_message_id] === 1) ? true : false;
+                        }
+                    }
+
+                    // Display message?
+                    if(typeof c_display_fn == 'function') {
+                        if(c_display_msg_bool === true) {
+                            // Display message now
+                            c_display_fn();
                         } else {
                             // Delay display (we may not have received the MAM reply ATM)
                             if(typeof self.msg_queue[xid] != 'object') {
                                 self.msg_queue[xid] = [];
                             }
 
-                            self.msg_queue[xid].push(c_msg_display);
+                            self.msg_queue[xid].push(c_display_fn);
                         }
                     }
                 }

@@ -34,7 +34,7 @@ var Markers = (function () {
 
 
     /**
-     * Return whether entity supports message markers
+     * Returns whether entity supports message markers
      * @public
      * @param {string} xid
      * @return {boolean}
@@ -55,7 +55,7 @@ var Markers = (function () {
 
 
     /**
-     * Return whether request message is marked or not
+     * Returns whether request message is marked or not
      * @public
      * @param {object} message
      * @return {boolean}
@@ -76,7 +76,7 @@ var Markers = (function () {
 
 
     /**
-     * Return whether response message is marked or not
+     * Returns whether response message is marked or not
      * @public
      * @param {object} message
      * @return {boolean}
@@ -109,7 +109,28 @@ var Markers = (function () {
 
 
     /**
-     * Mark a message
+     * Returns the marked message ID
+     * @public
+     * @param {object} message
+     * @return {boolean}
+     */
+    self.getMessageID = function(message) {
+
+        var message_id = null;
+
+        try {
+            message_id = $(message).find('[xmlns="' + NS_URN_MARKERS + '"]').attr('id');
+        } catch(e) {
+            Console.error('Markers.getMessageID', e);
+        } finally {
+            return message_id;
+        }
+
+    };
+
+
+    /**
+     * Marks a message
      * @public
      * @param {object} message
      * @return {undefined}
@@ -128,7 +149,7 @@ var Markers = (function () {
 
 
     /**
-     * Change received message status (once received or read)
+     * Changes received message status (once received or read)
      * @public
      * @param {string} mark_type
      * @param {object} message_id
@@ -145,6 +166,8 @@ var Markers = (function () {
             message_sel.attr('data-mark', mark_type);
 
             var message = new JSJaCMessage();
+
+            message.setType('chat');
             message.setTo(to);
 
             message.appendNode(mark_type, {
@@ -163,7 +186,7 @@ var Markers = (function () {
 
 
     /**
-     * Handle marker change coming from Carbons
+     * Handles marker change coming from Carbons
      * @public
      * @param {string} message
      * @return {undefined}
@@ -217,10 +240,12 @@ var Markers = (function () {
     /**
      * Handles a marked message
      * @public
+     * @param {string} from
      * @param {object} message
+     * @param {boolean} is_mam_marker   
      * @return {undefined}
      */
-    self.handle = function(from, message) {
+    self.handle = function(from, message, is_mam_marker) {
 
         try {
             var xid = Common.bareXID(from);
@@ -229,9 +254,14 @@ var Markers = (function () {
             if(marker_sel.size()) {
                 var mark_type = marker_sel.prop('tagName').toLowerCase();
                 var mark_message_id = marker_sel.attr('id');
-                var mark_valid = false;
+
+                if(is_mam_marker === true) {
+                    mark_message_id += '-mam';
+                }
 
                 // Filter allowed markers
+                var mark_valid = false;
+
                 switch(mark_type) {
                     case self.MARK_TYPE_RECEIVED:
                     case self.MARK_TYPE_DISPLAYED:
