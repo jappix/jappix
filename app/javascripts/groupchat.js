@@ -339,7 +339,7 @@ var Groupchat = (function () {
                 // Handle my presence
                 Presence.handle(presence);
                 
-                //make first configuration of the room, this is should be done
+                //make first configuration of the room, this should be done
                 if(affiliation == 'owner' || affiliation == 'admin')
                     self.makeFirstMUCConfiguration(presence.getID(), room);                
                 
@@ -808,7 +808,7 @@ var Groupchat = (function () {
     };
     
     /**
-     * makes first configuration of the room(default), this is should be done
+     * makes first configuration of the room(default), this should be done.
      * @see http://stackoverflow.com/questions/11791022/trouble-creating-xmpp-muc-room-code-503-service-unavailable
      * @param string pid
      * @param string xid
