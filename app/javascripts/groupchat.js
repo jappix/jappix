@@ -339,6 +339,10 @@ var Groupchat = (function () {
                 // Handle my presence
                 Presence.handle(presence);
                 
+                //make first configuration of the room, this is should be done
+                if(affiliation == 'owner' || affiliation == 'admin')
+                    self.makeFirstMUCConfiguration(presence.getID(), room);                
+                
                 // Check if I am a room owner
                 self.openAdmin(affiliation, hash, room, statuscode);
                 
@@ -802,6 +806,39 @@ var Groupchat = (function () {
         }
 
     };
+    
+    /**
+     * makes first configuration of the room(default), this is should be done
+     * @see http://stackoverflow.com/questions/11791022/trouble-creating-xmpp-muc-room-code-503-service-unavailable
+     * @param string pid
+     * @param string xid
+     */
+    self.makeFirstMUCConfiguration = function(pid, xid)
+    {
+        // New IQ
+        var iq = new JSJaCIQ();
+        iq.setTo(xid);
+        iq.setType('set');
+
+        // Set the correct query
+        var query;
+        iqQuery = iq.setQuery(NS_MUC_OWNER);
+
+        //configure room with nil(null) fields!
+        var iqX = iqQuery.appendChild(iq.buildNode('x', {'xmlns': NS_XDATA, 'type': 'submit'}));
+        
+        // Build a new field node
+        var field = iqX.appendChild(iq.buildNode('field', {'var': 'FORM_TYPE', 'type': 'hidden', 'xmlns': NS_XDATA}));
+        field.appendChild(iq.buildNode('value', {'xmlns': NS_XDATA}, NS_MUC_CONFIG)); 
+
+        // Change the ID of the current discovered item
+        var iqID = 'first-muc-config-' + pid;
+        iq.setID(iqID);
+
+        // Send the IQ
+        con.send(iq);    
+    }
+    
 
 
     /**
