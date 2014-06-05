@@ -852,7 +852,7 @@ var Groupchat = (function () {
         } catch(e) {
             Console.error('Groupchat._initialConfiguration', e);
         }
-    }
+    };
     
 
 
