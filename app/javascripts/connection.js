@@ -382,7 +382,7 @@ var Connection = (function () {
             if((REGISTER_API == 'on') && (domain == HOST_MAIN) && captcha) {
                 self._doRegisterAPI(username, domain, pass, captcha);
             } else {
-                self._doRegisterInBand();
+                self._doRegisterInBand(username, domain, pass);
             }
         } catch(e) {
             Console.error('Connection.doRegister', e);
