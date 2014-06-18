@@ -20,6 +20,10 @@ var Common = (function () {
     var self = {};
 
 
+    /* Constants */
+    self.R_DOMAIN_NAME = /^(([a-zA-Z0-9-\.]+)\.)?[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/i;
+
+
     /**
      * Checks if an element exists in the DOM
      * @public
@@ -110,6 +114,29 @@ var Common = (function () {
 
 
     /**
+     * Matches a domain name
+     * @public
+     * @param {string} xid
+     * @return {boolean}
+     */
+    self.isDomain = function(xid) {
+
+        is_domain = false;
+
+        try {
+            if(xid.match(self.R_DOMAIN_NAME)) {
+                is_domain = true;
+            }
+        } catch(e) {
+            Console.error('Common.isDomain', e);
+        } finally {
+            return is_domain;
+        }
+
+    };
+
+
+    /**
      * Generates the good XID
      * @public
      * @param {string} xid
@@ -120,22 +147,21 @@ var Common = (function () {
 
         try {
             // XID needs to be transformed
-            // .. and made lowercase (uncertain though this is the right place...)
             xid = xid.toLowerCase();
 
-            if(xid && (xid.indexOf('@') == -1)) {
-                // Groupchat
+            if(xid && (xid.indexOf('@') === -1)) {
+                // Groupchat XID
                 if(type == 'groupchat') {
                     return xid + '@' + HOST_MUC;
                 }
                 
-                // One-to-one chat
-                if(xid.indexOf('.') == -1) {
-                    return xid + '@' + HOST_MAIN;
+                // Gateway XID
+                if(self.isDomain(xid) === true) {
+                    return xid;
                 }
                 
-                // It might be a gateway?
-                return xid;
+                // User XID
+                return xid + '@' + HOST_MAIN;
             }
             
             // Nothing special (yet bare XID)

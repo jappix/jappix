@@ -233,12 +233,13 @@ var Caps = (function () {
     /**
      * Apply XHTML-IM features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} style_sel
      * @param {object} message_area_sel
      * @return {undefined}
      */
-    self._applyDiscoXHTMLIM = function(features, style_sel, message_area_sel) {
+    self._applyDiscoXHTMLIM = function(xid, features, style_sel, message_area_sel) {
 
         try {
             // Apply
@@ -269,11 +270,12 @@ var Caps = (function () {
     /**
      * Apply Jingle features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} path_sel
      * @param {object} roster_sel
      * @return {undefined}
      */
-    self._applyDiscoJingle = function(path_sel, roster_sel) {
+    self._applyDiscoJingle = function(xid, path_sel, roster_sel) {
 
         try {
             // Selectors
@@ -326,11 +328,12 @@ var Caps = (function () {
     /**
      * Apply Out of Band Data features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} file_sel
      * @return {undefined}
      */
-    self._applyDiscoOOB = function(features, file_sel) {
+    self._applyDiscoOOB = function(xid, features, file_sel) {
 
         try {
             // Apply
@@ -362,11 +365,12 @@ var Caps = (function () {
     /**
      * Apply Receipts features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} message_area_sel
      * @return {undefined}
      */
-    self._applyDiscoReceipts = function(features, message_area_sel) {
+    self._applyDiscoReceipts = function(xid, features, message_area_sel) {
 
         try {
             // Apply
@@ -385,11 +389,12 @@ var Caps = (function () {
     /**
      * Apply Last Message Correction features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} path_sel
      * @return {undefined}
      */
-    self._applyDiscoCorrection = function(features, path_sel) {
+    self._applyDiscoCorrection = function(xid, features, path_sel) {
 
         try {
             // Apply
@@ -408,11 +413,12 @@ var Caps = (function () {
     /**
      * Apply Chat Markers features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} path_sel
      * @return {undefined}
      */
-    self._applyDiscoMarkers = function(features, path_sel) {
+    self._applyDiscoMarkers = function(xid, features, path_sel) {
 
         try {
             // Apply
@@ -431,11 +437,12 @@ var Caps = (function () {
     /**
      * Apply Attention features from disco infos
      * @private
+     * @param {string} xid
      * @param {object} features
      * @param {object} path_sel
      * @return {undefined}
      */
-    self._applyDiscoAttention = function(features, path_sel) {
+    self._applyDiscoAttention = function(xid, features, path_sel) {
 
         try {
             // Apply
@@ -629,13 +636,13 @@ var Caps = (function () {
             var file_sel = path_sel.find('.chat-tools-file');
             
             // Apply Features
-            self._applyDiscoXHTMLIM(features, style_sel, message_area_sel);
-            self._applyDiscoJingle(path_sel, roster_sel);
-            self._applyDiscoOOB(features, file_sel);
-            self._applyDiscoReceipts(features, message_area_sel);
-            self._applyDiscoCorrection(features, path_sel);
-            self._applyDiscoMarkers(features, path_sel);
-            self._applyDiscoAttention(features, path_sel);
+            self._applyDiscoXHTMLIM(xid, features, style_sel, message_area_sel);
+            self._applyDiscoJingle(xid, path_sel, roster_sel);
+            self._applyDiscoOOB(xid, features, file_sel);
+            self._applyDiscoReceipts(xid, features, message_area_sel);
+            self._applyDiscoCorrection(xid, features, path_sel);
+            self._applyDiscoMarkers(xid, features, path_sel);
+            self._applyDiscoAttention(xid, features, path_sel);
         } catch(e) {
             Console.error('Caps.displayDiscoInfos', e);
         }
