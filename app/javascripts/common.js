@@ -620,7 +620,7 @@ var Common = (function () {
         is_gateway = true;
 
         try {
-            if(xid.indexOf('@') != -1) {
+            if(xid.indexOf('@') !== -1) {
                 is_gateway = false;
             }
         } catch(e) {
