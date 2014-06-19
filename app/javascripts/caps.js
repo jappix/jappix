@@ -487,7 +487,7 @@ var Caps = (function () {
         try {
             var disco_base = self.disco_infos.items;
 
-            var disco_jingle = JSJaCJingle_disco();
+            var disco_jingle = JSJaCJingle.disco();
             var disco_all = disco_base.concat(disco_jingle);
             
             return Utils.uniqueArrayValues(disco_all);

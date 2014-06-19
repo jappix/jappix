@@ -4185,7 +4185,7 @@ var JappixMini = (function () {
 
             // Append final stylesheet HTML
             for(var u in css_url) {
-                css_html += '<link rel="stylesheet" href="' + JappixCommon.encodeQuotes(css_url[u]) + '" type="text/css" media="all" />';
+                css_html += '<link rel="stylesheet" href="' + JappixCommon.encodeQuotes(css_url[u].replace(/&amp;/g, '&')) + '" type="text/css" media="all" />';
             }
 
             jQuery('head').append(css_html);

@@ -322,7 +322,7 @@ var IQ = (function () {
         try {
             /* REF: http://xmpp.org/extensions/xep-0166.html */
             
-            // Handled via JSJaCJingle_route() (see above)
+            // Handled via JSJaCJingle.route() (see above)
             
             Console.log('Received a Jingle packet: ' + iqFrom);
         } catch(e) {
@@ -383,9 +383,6 @@ var IQ = (function () {
             var iqQuery = iq.getQuery();
             var iqType = iq.getType();
 
-            // Handle Jingle packet?
-            JSJaCJingle_route(iq);
-            
             // Build the response
             var iqResponse = new JSJaCIQ();
             

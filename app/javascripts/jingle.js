@@ -254,6 +254,10 @@ var Jingle = (function() {
                     Console.log('Jingle._args', 'session_accept_request');
                 },
 
+                session_info_pending: function(jingle) {
+                    Console.log('Jingle._args', 'session_info_pending');
+                },
+
                 session_info_success: function(jingle, stanza) {
                     Console.log('Jingle._args', 'session_info_success');
                 },
@@ -263,7 +267,7 @@ var Jingle = (function() {
                 },
 
                 session_info_request: function(jingle, stanza) {
-                    var info_name = jingle.util_stanza_session_info(stanza);
+                    var info_name = jingle.utils.stanza_session_info(stanza);
 
                     switch(info_name) {
                         // Ringing?
@@ -335,7 +339,7 @@ var Jingle = (function() {
 
                 session_terminate_request: function(jingle, stanza) {
                     var notify_type;
-                    var reason = jingle.util_stanza_terminate_reason(stanza);
+                    var reason = jingle.utils.stanza_terminate_reason(stanza);
 
                     // The remote wants to end call
                     self._call_ender = 'remote';
@@ -435,7 +439,7 @@ var Jingle = (function() {
                                    jingle_sel.find('.remote_video video')[0]
                                  );
 
-            self._jingle_current = new JSJaCJingle(args);
+            self._jingle_current = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_SINGLE, args);
             self._call_ender = null;
             self._bypass_termination_notify = false;
 
@@ -625,13 +629,13 @@ var Jingle = (function() {
     self.init = function() {
 
         try {
-            JSJaCJingle_listen({
+            JSJaCJingle.listen({
                 connection: con,
                 debug: self._consoleAdapter,
                 // TODO: seems like it fucks up the calls!
-                //fallback: './server/jingle.php',
+                // fallback: './server/jingle.php',
                 
-                initiate: function(stanza) {
+                single_initiate: function(stanza) {
                     try {
                         // Already in a call?
                         if(self.in_call()) {
@@ -645,10 +649,13 @@ var Jingle = (function() {
                             }
 
                             // Build a temporary Jingle session
-                            var jingle_close = new JSJaCJingle({
-                                to: stanza.getFrom(),
-                                debug: JSJAC_JINGLE_STORE_DEBUG
-                            });
+                            var jingle_close = new JSJaCJingle.session(
+                                JSJAC_JINGLE_SESSION_SINGLE,
+                                {
+                                    to: stanza.getFrom(),
+                                    debug: JSJAC_JINGLE_STORE_DEBUG
+                                }
+                            );
 
                             if(sid) {
                                 jingle_close._set_sid(sid);
@@ -668,7 +675,17 @@ var Jingle = (function() {
                         // Session values
                         self.receive(xid, stanza);
                     } catch(e) {
-                        Console.error('Jingle.init[initiate]', e);
+                        Console.error('Jingle.init[single_initiate]', e);
+                    }
+                },
+
+                // Receive a multiparty (Muji) call
+                muji_invite: function(stanza, args) {
+                    try {
+                        // TODO
+                        alert('RECEIVED MUJI INVITE');
+                    } catch(e) {
+                        Console.error('Jingle.init[muji_invite]', e);
                     }
                 }
             });

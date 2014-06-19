@@ -1223,27 +1223,30 @@ var PEP = (function () {
                 longitude: lon,
                 language: XML_LANG
             }, function(data) {
-                var results = self.parsePosition(data);
-                
-                self.sendPosition(
-                    (Utils.isNumber(lat) ? lat : null),
-                    (Utils.isNumber(lon) ? lon : null),
-                    (Utils.isNumber(alt) ? alt : null),
-                    results[2],
-                    results[3],
-                    results[4],
-                    results[5],
-                    results[6],
-                    results[7],
-                    results[8],
-                    results[9],
-                    results[10]
-                );
-                
-                // Store data
-                DataStore.setDB(Connection.desktop_hash, 'geolocation', 'now', Common.xmlToString(data));
-                
-                Console.log('Position details got from Google Maps API.');
+                // Still connected?
+                if(Common.isConnected()) {
+                    var results = self.parsePosition(data);
+                    
+                    self.sendPosition(
+                        (Utils.isNumber(lat) ? lat : null),
+                        (Utils.isNumber(lon) ? lon : null),
+                        (Utils.isNumber(alt) ? alt : null),
+                        results[2],
+                        results[3],
+                        results[4],
+                        results[5],
+                        results[6],
+                        results[7],
+                        results[8],
+                        results[9],
+                        results[10]
+                    );
+                    
+                    // Store data
+                    DataStore.setDB(Connection.desktop_hash, 'geolocation', 'now', Common.xmlToString(data));
+                    
+                    Console.log('Position details got from Google Maps API.');
+                }
             });
             
             Console.log('Position got: latitude > ' + lat + ' / longitude > ' + lon + ' / altitude > ' + alt);
