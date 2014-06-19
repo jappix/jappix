@@ -2091,6 +2091,24 @@ msgstr ""
 msgid "Ending call..."
 msgstr ""
 
+msgid "Incoming group call"
+msgstr ""
+
+msgid "Initiating group call"
+msgstr ""
+
+msgid "Connecting to group call..."
+msgstr ""
+
+msgid "Group call error"
+msgstr ""
+
+msgid "Ending group call..."
+msgstr ""
+
+msgid "Group call ended"
+msgstr ""
+
 msgid "Accept"
 msgstr ""
 

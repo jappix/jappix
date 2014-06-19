@@ -155,6 +155,58 @@ var Call = (function() {
 
 
     /**
+     * Mutes current call
+     * @public
+     * @param {object} session
+     * @param {object} controls
+     * @return {undefined}
+     */
+    self.mute = function(session, controls) {
+
+        try {
+            if(session) {
+                // Toggle interface buttons
+                controls.filter('.mute').hide();
+                controls.filter('.unmute').show();
+
+                // Actually mute audio stream
+                if(session.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === false) {
+                    session.mute(JSJAC_JINGLE_MEDIA_AUDIO);
+                }
+            }
+        } catch(e) {
+            Console.error('Call.mute', e);
+        }
+
+    };
+
+
+    /**
+     * Unmutes current call
+     * @public
+     * @param {object} session
+     * @param {object} controls
+     * @return {undefined}
+     */
+    self.unmute = function(session, controls) {
+
+        try {
+            if(session) {
+                controls.filter('.unmute').hide();
+                controls.filter('.mute').show();
+
+                if(session.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === true) {
+                    session.unmute(JSJAC_JINGLE_MEDIA_AUDIO);
+                }
+            }
+        } catch(e) {
+            Console.error('Call.mute', e);
+        }
+
+    };
+
+
+    /**
      * Checks whether user is in call or not
      * @public
      * @return {boolean}
@@ -169,6 +221,126 @@ var Call = (function() {
             Console.error('Call.is_ongoing', e);
         } finally {
             return is_ongoing;
+        }
+
+    };
+
+
+    /**
+     * Checks if the given call SID is the same as the current call's one
+     * @public
+     * @param {object} session
+     * @param {object} compare_session
+     * @return {boolean}
+     */
+    self.is_same_sid = function(session, compare_session) {
+
+        is_same = false;
+
+        try {
+            if(compare_session && session  && 
+               compare_session.get_sid() === session.get_sid()) {
+                is_same = true;
+            }
+        } catch(e) {
+            Console.error('Call.is_same_sid', e);
+        } finally {
+            return is_same;
+        }
+
+    };
+
+
+    /**
+     * Returns if current call is audio
+     * @public
+     * @param {object} session
+     * @return {boolean}
+     */
+    self.is_audio = function(session) {
+
+        audio = false;
+
+        try {
+            if(session && session.get_media() === JSJAC_JINGLE_MEDIA_AUDIO) {
+                audio = true;
+            }
+        } catch(e) {
+            Console.error('Call.is_audio', e);
+        } finally {
+            return audio;
+        }
+
+    };
+
+
+    /**
+     * Returns if current call is video
+     * @public
+     * @param {object} session
+     * @return {boolean}
+     */
+    self.is_video = function(session) {
+
+        video = false;
+
+        try {
+            if(session && session.get_media() === JSJAC_JINGLE_MEDIA_VIDEO) {
+                video = true;
+            }
+        } catch(e) {
+            Console.error('Call.is_video', e);
+        } finally {
+            return video;
+        }
+
+    };
+
+
+    /**
+     * Set the Muji session as started
+     * @public
+     * @param {string} mode
+     * @return {boolean}
+     */
+    self.start_session = function(mode) {
+
+        try {
+            if(!(mode in JSJAC_JINGLE_MEDIAS)) {
+                throw 'Unknown mode: ' + (mode || 'none');
+            }
+
+            var call_tool_sel = $('#top-content .tools.call');
+
+            call_tool_sel.removeClass('audio video active');
+            call_tool_sel.addClass('streaming').addClass(mode);
+
+            Console.info('Call session successfully started, mode: ' + (mode || 'none'));
+        } catch(e) {
+            Console.error('Call.start_session', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Set the Jingle session as stopped
+     * @public
+     * @param {string} mode
+     * @return {boolean}
+     */
+    self.stop_session = function() {
+
+        try {
+            $('#top-content .tools.call').removeClass('audio video active streaming');
+
+            Console.info('Call session successfully stopped');
+        } catch(e) {
+            Console.error('Call.stop_session', e);
+        } finally {
+            return false;
         }
 
     };
@@ -573,10 +745,147 @@ var Call = (function() {
 
 
     /**
+     * Destroy the call interface
+     * @public
+     * @return {undefined}
+     */
+    self.destroy_interface = function(container_sel) {
+
+        try {
+            container_sel.stopTime();
+            container_sel.find('*').stopTime();
+
+            container_sel.remove();
+        } catch(e) {
+            Console.error('Call.destroy_interface', e);
+        }
+
+    };
+
+
+    /**
+     * Show the call interface
+     * @public
+     * @param {object} manager
+     * @param {object} call_sel
+     * @param {object} video_container_sel
+     * @return {boolean}
+     */
+    self.show_interface = function(manager, call_sel, video_container_sel) {
+
+        try {
+            if(manager.in_call() && manager.is_video()) {
+                call_sel.filter(':hidden').show();
+
+                // Launch back some events
+                video_container_sel.mousemove();
+            }
+        } catch(e) {
+            Console.error('Call.show_interface', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Hide the call interface
+     * @public
+     * @param {object} call_sel
+     * @param {object} video_container_sel
+     * @return {boolean}
+     */
+    self.hide_interface = function(call_sel, video_container_sel) {
+
+        try {
+            call_sel.filter(':visible').hide();
+
+            // Reset some events
+            video_container_sel.find('.topbar').stopTime().hide();
+        } catch(e) {
+            Console.error('Call.hide_interface', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Attaches interface events
+     * @public
+     * @param {object} manager
+     * @param {object} call_sel
+     * @param {object} video_container_sel
+     * @return {undefined}
+     */
+    self.events_interface = function(manager, call_sel, video_container_sel) {
+
+        try {
+            call_sel.everyTime(50, function() {
+                manager._adapt();
+            });
+
+            // Close interface on click on semi-transparent background
+            call_sel.click(function(evt) {
+                try {
+                    // Click on lock background?
+                    if($(evt.target).is('.lock')) {
+                        return manager._hide_interface();
+                    }
+                } catch(e) {
+                    Console.error('Call.events_interface[async]', e);
+                }
+            });
+
+            // Click on a control or action button
+            call_sel.find('.topbar').find('.controls a, .actions a').click(function() {
+                try {
+                    switch($(this).data('type')) {
+                        case 'close':
+                            manager._hide_interface(); break;
+                        case 'stop':
+                            manager.stop(); break;
+                        case 'mute':
+                            manager.mute(); break;
+                        case 'unmute':
+                            manager.unmute(); break;
+                    }
+                } catch(e) {
+                    Console.error('Call.events_interface[async]', e);
+                } finally {
+                    return false;
+                }
+            });
+
+            // Auto Hide/Show interface topbar
+            video_container_sel.mousemove(function() {
+                try {
+                    var topbar_sel = $(this).find('.topbar');
+
+                    if(topbar_sel.is(':hidden')) {
+                        topbar_sel.stop(true).fadeIn(250);
+                    }
+
+                    topbar_sel.stopTime();
+                    topbar_sel.oneTime('5s', function() {
+                        topbar_sel.stop(true).fadeOut(250);
+                    });
+                } catch(e) {
+                    Console.error('Call.events_interface[async]', e);
+                }
+            });
+        } catch(e) {
+            Console.error('Call.events_interface', e);
+        }
+
+    };
+
+
+    /**
      * Return class scope
      */
     return self;
 
 })();
-
-Call.launch();

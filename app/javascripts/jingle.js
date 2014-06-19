@@ -169,7 +169,7 @@ var Jingle = (function() {
                     self._unnotify();
 
                     // Start call! Go Go Go!
-                    self._start_session(jingle.get_media());
+                    Call.start_session(jingle.get_media());
                     self._show_interface();
                     Call.start_counter();
 
@@ -375,13 +375,13 @@ var Jingle = (function() {
 
             // Start the Jingle negotiation
             var args = self._args(
-                                   con,
-                                   full_xid,
-                                   bare_hash,
-                                   media,
-                                   jingle_sel.find('.local_video video')[0],
-                                   jingle_sel.find('.remote_video video')[0]
-                                 );
+                con,
+                full_xid,
+                bare_hash,
+                media,
+                jingle_sel.find('.local_video video')[0],
+                jingle_sel.find('.remote_video video')[0]
+            );
 
             self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_SINGLE, args);
             self._call_ender = null;
@@ -485,7 +485,7 @@ var Jingle = (function() {
         try {
             // Trash interface
             Call.stop_counter();
-            self._stop_session();
+            Call.stop_session();
             self._destroy_interface();
             $('body').removeClass('in_jingle_call');
 
@@ -538,18 +538,10 @@ var Jingle = (function() {
     self.mute = function() {
 
         try {
-            if(self._session) {
-                var jingle_controls = $('#jingle .videobox .topbar .controls a');
-
-                // Toggle interface buttons
-                jingle_controls.filter('.mute').hide();
-                jingle_controls.filter('.unmute').show();
-
-                // Actually mute audio stream
-                if(self._session.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === false) {
-                    self._session.mute(JSJAC_JINGLE_MEDIA_AUDIO);
-                }
-            }
+            Call.mute(
+                self._session,
+                $('#jingle .videobox .topbar .controls a')
+            );
         } catch(e) {
             Console.error('Jingle.mute', e);
         }
@@ -565,16 +557,10 @@ var Jingle = (function() {
     self.unmute = function() {
 
         try {
-            if(self._session) {
-                var jingle_controls = $('#jingle .videobox .topbar .controls a');
-
-                jingle_controls.filter('.unmute').hide();
-                jingle_controls.filter('.mute').show();
-
-                if(self._session.get_mute(JSJAC_JINGLE_MEDIA_AUDIO) === true) {
-                    self._session.unmute(JSJAC_JINGLE_MEDIA_AUDIO);
-                }
-            }
+            Call.unmute(
+                self._session,
+                $('#jingle .videobox .topbar .controls a')
+            );
         } catch(e) {
             Console.error('Jingle.mute', e);
         }
@@ -617,17 +603,10 @@ var Jingle = (function() {
      */
     self.is_same_sid = function(jingle) {
 
-        is_same = false;
-
         try {
-            if(jingle && self._session  && 
-               jingle.get_sid() === self._session.get_sid()) {
-                is_same = true;
-            }
+            return Call.is_same_sid(self._session, jingle);
         } catch(e) {
             Console.error('Jingle.is_same_sid', e);
-        } finally {
-            return is_same;
         }
 
     };
@@ -640,16 +619,10 @@ var Jingle = (function() {
      */
     self.is_audio = function() {
 
-        audio = false;
-
         try {
-            if(self._session && self._session.get_media() === JSJAC_JINGLE_MEDIA_AUDIO) {
-                audio = true;
-            }
+            return Call.is_audio(self._session);
         } catch(e) {
             Console.error('Jingle.is_audio', e);
-        } finally {
-            return audio;
         }
 
     };
@@ -662,16 +635,10 @@ var Jingle = (function() {
      */
     self.is_video = function() {
 
-        video = false;
-
         try {
-            if(self._session && self._session.get_media() === JSJAC_JINGLE_MEDIA_VIDEO) {
-                video = true;
-            }
+            return Call.is_video(self._session);
         } catch(e) {
             Console.error('Jingle.is_video', e);
-        } finally {
-            return video;
         }
 
     };
@@ -910,57 +877,10 @@ var Jingle = (function() {
 
 
     /**
-     * Set the Jingle session as started
-     * @private
-     * @param {string} mode
-     * @return {boolean}
-     */
-    self._start_session = function(mode) {
-
-        try {
-            if(!(mode in JSJAC_JINGLE_MEDIAS)) {
-                throw 'Unknown mode: ' + (mode || 'none');
-            }
-
-            var jingle_tool_sel = $('#top-content .tools.jingle');
-
-            jingle_tool_sel.removeClass('audio video active');
-            jingle_tool_sel.addClass('streaming').addClass(mode);
-
-            Console.info('Jingle session successfully started, mode: ' + (mode || 'none'));
-        } catch(e) {
-            Console.error('Jingle._start_session', e);
-        } finally {
-            return false;
-        }
-
-    };
-
-
-    /**
-     * Set the Jingle session as stopped
-     * @private
-     * @param {string} mode
-     * @return {boolean}
-     */
-    self._stop_session = function() {
-
-        try {
-            $('#top-content .tools.jingle').removeClass('audio video active streaming');
-
-            Console.info('Jingle session successfully stopped');
-        } catch(e) {
-            Console.error('Jingle._stop_session', e);
-        } finally {
-            return false;
-        }
-
-    };
-
-
-    /**
      * Create the Jingle interface
      * @private
+     * @param {string} room
+     * @param {string} mode
      * @return {object}
      */
     self._create_interface = function(xid, mode) {
@@ -1035,12 +955,9 @@ var Jingle = (function() {
     self._destroy_interface = function() {
 
         try {
-            var jingle_sel = $('#jingle');
-
-            jingle_sel.stopTime();
-            jingle_sel.find('*').stopTime();
-
-            jingle_sel.remove();
+            Call.destroy_interface(
+                $('#jingle')
+            );
         } catch(e) {
             Console.error('Jingle._destroy_interface', e);
         }
@@ -1056,12 +973,11 @@ var Jingle = (function() {
     self._show_interface = function() {
 
         try {
-            if(self.in_call() && self.is_video()) {
-                $('#jingle:hidden').show();
-
-                // Launch back some events
-                $('#jingle .videobox').mousemove();
-            }
+            Call.show_interface(
+                self,
+                $('#jingle'),
+                $('#jingle .videobox')
+            );
         } catch(e) {
             Console.error('Jingle._show_interface', e);
         } finally {
@@ -1079,10 +995,10 @@ var Jingle = (function() {
     self._hide_interface = function() {
 
         try {
-            $('#jingle:visible').hide();
-
-            // Reset some events
-            $('#jingle .videobox .topbar').stopTime().hide();
+            Call.hide_interface(
+                $('#jingle'),
+                $('#jingle .videobox')
+            );
         } catch(e) {
             Console.error('Jingle._hide_interface', e);
         } finally {
@@ -1095,68 +1011,21 @@ var Jingle = (function() {
     /**
      * Attaches interface events
      * @private
-     * @return {undefined}
+     * @return {boolean}
      */
     self._events_interface = function() {
 
         try {
-            var jingle_sel = $('#jingle');
-
-            jingle_sel.everyTime(50, function() {
-                self._adapt();
-            });
-
-            // Close interface on click on semi-transparent background
-            jingle_sel.click(function(evt) {
-                try {
-                    // Click on lock background?
-                    if($(evt.target).is('.lock')) {
-                        return self._hide_interface();
-                    }
-                } catch(e) {
-                    Console.error('Jingle._events_interface[async]', e);
-                }
-            });
-
-            // Click on a control or action button
-            jingle_sel.find('.topbar').find('.controls a, .actions a').click(function() {
-                try {
-                    switch($(this).data('type')) {
-                        case 'close':
-                            self._hide_interface(); break;
-                        case 'stop':
-                            self.stop(); break;
-                        case 'mute':
-                            self.mute(); break;
-                        case 'unmute':
-                            self.unmute(); break;
-                    }
-                } catch(e) {
-                    Console.error('Jingle._events_interface[async]', e);
-                } finally {
-                    return false;
-                }
-            });
-
-            // Auto Hide/Show interface topbar
-            jingle_sel.find('.videobox').mousemove(function() {
-                try {
-                    var topbar_sel = $(this).find('.topbar');
-
-                    if(topbar_sel.is(':hidden')) {
-                        topbar_sel.stop(true).fadeIn(250);
-                    }
-
-                    topbar_sel.stopTime();
-                    topbar_sel.oneTime('5s', function() {
-                        topbar_sel.stop(true).fadeOut(250);
-                    });
-                } catch(e) {
-                    Console.error('Jingle._events_interface[async]', e);
-                }
-            });
+            // Apply events
+            Call.events_interface(
+                self,
+                $('#jingle'),
+                $('#jingle .videobox')
+            );
         } catch(e) {
             Console.error('Jingle._events_interface', e);
+        } finally {
+            return false;
         }
 
     };
