@@ -61,46 +61,46 @@ html[dir="rtl"] #top-content .tools-all {
     float: left;
 }
 
-#top-content .jingle {
+#top-content .call {
     background-position: 7px -2114px;
     display: none;
 }
 
-#top-content .jingle.video {
+#top-content .call.video {
     background-position: 7px -2205px;
 }
 
-#top-content .jingle.active,
-#top-content .jingle.streaming {
+#top-content .call.active,
+#top-content .call.streaming {
     display: block;
 }
 
-#top-content .jingle.active {
+#top-content .call.active {
     -webkit-animation: tool_active 1.5s infinite ease-in-out;
     -moz-animation: tool_active 1.5s infinite ease-in-out;
     -o-animation: tool_active 1.5s infinite ease-in-out;
     animation: tool_active 1.5s infinite ease-in-out;
 }
 
-#top-content .jingle.streaming {
+#top-content .call.streaming {
     padding-left: 30px;
 }
 
-#top-content .jingle .streaming-items {
+#top-content .call .streaming-items {
     display: none;
 }
 
-#top-content .jingle.streaming .streaming-items {
+#top-content .call.streaming .streaming-items {
     display: block;
 }
 
-#top-content .jingle.streaming .streaming-items .counter {
+#top-content .call.streaming .streaming-items .counter {
     font-size: 11px;
     font-style: italic;
     font-weight: bold;
 }
 
-#top-content .jingle.streaming .streaming-items a.stop {
+#top-content .call.streaming .streaming-items a.stop {
     background: #cc283f;
     border-left: 1px solid #a12032;
     color: #ffffff;
@@ -116,7 +116,7 @@ html[dir="rtl"] #top-content .tools-all {
     border-bottom-right-radius: 4px;
 }
 
-#top-content .jingle.streaming .streaming-items a.stop:active {
+#top-content .call.streaming .streaming-items a.stop:active {
     background: #a92134;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -135,23 +135,23 @@ html[dir="rtl"] #top-content .tools-all {
 
 #top-content .notifications:hover,
 #top-content .music:hover,
-#top-content .jingle.streaming.video:hover {
+#top-content .call.streaming.video:hover {
     cursor: pointer;
 }
 
 #top-content .music:hover,
 #top-content .notifications:hover,
-#top-content .jingle.streaming.video:hover,
+#top-content .call.streaming.video:hover,
 #top-content .music:focus,
 #top-content .notifications:focus,
-#top-content .jingle.streaming.video:focus {
+#top-content .call.streaming.video:focus {
     background-color: rgb(232,241,243);
     background-color: rgba(232,241,243,0.7);
 }
 
 #top-content .music:active,
 #top-content .notifications:active,
-#top-content .jingle.streaming.video:active {
+#top-content .call.streaming.video:active {
     background-color: rgb(232,241,243);
     background-color: rgba(232,241,243,0.8);
 }
@@ -485,25 +485,25 @@ html[dir="rtl"] .music-content .list {
     height: 15px;
 }
 
-.jingle-content {
+.call-content {
     text-shadow: none;
     width: 230px;
     right: -102px;
 }
 
-html[dir="rtl"] .jingle-content {
+html[dir="rtl"] .call-content {
     left: -102px;
 }
 
-.jingle-content .tools-content-subitem {
+.call-content .tools-content-subitem {
     position: relative;
 }
 
-.jingle-content .jingle-notify {
+.call-content .call-notify {
     height: 90px;
 }
 
-.jingle-content .jingle-notify .avatar-pane {
+.call-content .call-notify .avatar-pane {
     width: 100px;
     position: absolute;
     left: 0;
@@ -517,12 +517,12 @@ html[dir="rtl"] .jingle-content {
     border-top-left-radius: 4px;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane {
+html[dir="rtl"] .call-content .call-notify .avatar-pane {
     left: auto;
     right: 0;
 }
 
-.jingle-content .jingle-notify .avatar-pane .avatar-container {
+.call-content .call-notify .avatar-pane .avatar-container {
     overflow: hidden;
     position: absolute;
     left: 0;
@@ -531,7 +531,7 @@ html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane {
     top: 0;
 }
 
-.jingle-content .jingle-notify .avatar-pane .avatar-container .avatar {
+.call-content .call-notify .avatar-pane .avatar-container .avatar {
     min-height: 100%;
     max-height: 100%;
     min-width: 100%;
@@ -543,7 +543,7 @@ html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane {
     border-bottom-left-radius: 5px;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane .avatar-container .avatar {
+html[dir="rtl"] .call-content .call-notify .avatar-pane .avatar-container .avatar {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
@@ -555,45 +555,45 @@ html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane .avatar-container .a
     border-bottom-right-radius: 5px;
 }
 
-.jingle-content .jingle-notify .avatar-pane .icon {
+.call-content .call-notify .avatar-pane .icon {
     opacity: 0.75;
     position: absolute;
     left: 8px;
     bottom: 8px;
 }
 
-.jingle-content .jingle-notify.notify-call_audio .avatar-pane .icon {
+.call-content .call-notify.notify-call_audio .avatar-pane .icon {
     background-position: 0 -120px;
     width: 33px;
     height: 33px;
 }
 
-.jingle-content .jingle-notify.notify-call_video .avatar-pane .icon {
+.call-content .call-notify.notify-call_video .avatar-pane .icon {
     background-position: 0 -154px;
     width: 33px;
     height: 22px;
 }
 
-.jingle-content .jingle-notify.notify-connecting .avatar-pane .icon {
+.call-content .call-notify.notify-connecting .avatar-pane .icon {
     background-position: 0 -175px;
     width: 33px;
     height: 32px;
 }
 
-.jingle-content .jingle-notify.notify-error .avatar-pane .icon {
+.call-content .call-notify.notify-error .avatar-pane .icon {
     background-position: 0 -207px;
     width: 33px;
     height: 31px;
 }
 
-.jingle-content .jingle-notify.notify-local_ended .avatar-pane .icon,
-.jingle-content .jingle-notify.notify-remote_ended .avatar-pane .icon {
+.call-content .call-notify.notify-local_ended .avatar-pane .icon,
+.call-content .call-notify.notify-remote_ended .avatar-pane .icon {
     background-position: 0 -238px;
     width: 33px;
     height: 34px;
 }
 
-.jingle-content .jingle-notify .notification-content {
+.call-content .call-notify .notification-content {
     color: #ffffff;
     text-align: left;
     text-shadow: 0 1px 1px rgb(0,0,0);
@@ -606,28 +606,28 @@ html[dir="rtl"] .jingle-content .jingle-notify .avatar-pane .avatar-container .a
     left: 100px;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .notification-content {
+html[dir="rtl"] .call-content .call-notify .notification-content {
     text-align: right;
     right: 100px;
     left: 0;
 }
 
-.jingle-content .jingle-notify .notification-content .fullname,
-.jingle-content .jingle-notify .notification-content .text {
+.call-content .call-notify .notification-content .fullname,
+.call-content .call-notify .notification-content .text {
     display: block;
 }
 
-.jingle-content .jingle-notify .notification-content .fullname {
+.call-content .call-notify .notification-content .fullname {
     font-weight: bold;
 }
 
-.jingle-content .jingle-notify .notification-content .text {
+.call-content .call-notify .notification-content .text {
     font-size: 12px;
     text-transform: lowercase;
     margin-top: 2px;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons {
+.call-content .call-notify .notification-content .reply-buttons {
     text-align: center;
     padding-left: 10px;
     position: absolute;
@@ -636,31 +636,31 @@ html[dir="rtl"] .jingle-content .jingle-notify .notification-content {
     bottom: 20px;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons {
+html[dir="rtl"] .call-content .call-notify .notification-content .reply-buttons {
     padding-left: 0;
     padding-right: 10px;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button {
     margin-left: 4px;
     float: left;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
+html[dir="rtl"] .call-content .call-notify .notification-content .reply-buttons a.reply-button {
     margin-left: 0;
     margin-right: 4px;
     float: right;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button:active {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button:active {
     margin-top: 0;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.first {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.first {
     margin-left: 0;
 }
 
-html[dir="rtl"] .jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.first {
+html[dir="rtl"] .call-content .call-notify .notification-content .reply-buttons a.reply-button.first {
     margin-right: 0;
 }
 

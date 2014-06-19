@@ -22,7 +22,6 @@ var Jingle = (function() {
 
     /* Variables */
     self._session = null;
-    self._start_stamp = 0;
     self._call_ender = null;
     self._bypass_termination_notify = false;
 
@@ -166,7 +165,7 @@ var Jingle = (function() {
                 },
 
                 session_accept_success: function(jingle, stanza) {
-                    self._unnotify();
+                    Call._unnotify();
 
                     // Start call! Go Go Go!
                     Call.start_session(jingle.get_media());
@@ -416,11 +415,11 @@ var Jingle = (function() {
 
         try {
             if(self.in_call() && Common.exists('#jingle')) {
-                self.adapt_local(
+                Call.adapt_local(
                     $('#jingle .local_video')
                 );
 
-                self.adapt_remote(
+                Call.adapt_remote(
                     $('#jingle .videobox')
                 );
             }

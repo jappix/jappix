@@ -294,11 +294,11 @@ var Muji = (function() {
 
         try {
             if(self.in_call() && Common.exists('#muji')) {
-                self.adapt_local(
+                Call.adapt_local(
                     $('#muji .local_video')
                 );
 
-                self.adapt_remote(
+                Call.adapt_remote(
                     $('#muji .videoroom')
                 );
             }

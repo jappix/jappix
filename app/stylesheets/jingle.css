@@ -130,7 +130,7 @@ html[dir="rtl"] #jingle .videobox .topbar .controls a {
 }
 
 #jingle .videobox .topbar .controls a,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button {
     border-width: 1px;
     border-style: solid;
     font-size: 10px;
@@ -144,7 +144,7 @@ html[dir="rtl"] #jingle .videobox .topbar .controls a {
 }
 
 #jingle .videobox .topbar .controls a:active,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button:active {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button:active {
     padding-top: 6px;
     padding-bottom: 5px;
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
@@ -160,13 +160,13 @@ html[dir="rtl"] #jingle .videobox .topbar .controls a {
 }
 
 #jingle .videobox .topbar .controls a.stop,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.red {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.red {
     background: #cc283f;
     border-color: #5e121d;
 }
 
 #jingle .videobox .topbar .controls a.stop:active,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.red:active {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.red:active {
     background: #a92134;
     border-color: #480e16;
 }
@@ -175,19 +175,19 @@ html[dir="rtl"] #jingle .videobox .topbar .controls a {
     background-position: 0 -62px;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.green {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.green {
     background: #5ea45e;
     border-color: #1a2e1a;
 }
 
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.green:active {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.green:active {
     background: #549253;
     border-color: #0f1a0f;
 }
 
 #jingle .videobox .topbar .controls a.mute,
 #jingle .videobox .topbar .controls a.unmute,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.blue {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.blue {
     background: #6e8dc5;
     border-color: #303d55;
 }
@@ -205,7 +205,7 @@ html[dir="rtl"] #jingle .videobox .topbar .controls a.unmute {
 
 #jingle .videobox .topbar .controls a.mute:active,
 #jingle .videobox .topbar .controls a.unmute:active,
-.jingle-content .jingle-notify .notification-content .reply-buttons a.reply-button.blue:active {
+.call-content .call-notify .notification-content .reply-buttons a.reply-button.blue:active {
     background: #6480b1;
     border-color: #222b3b;
 }

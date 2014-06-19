@@ -20,6 +20,10 @@ var Call = (function() {
     var self = {};
 
 
+    /* Variables */
+    self._start_stamp = 0;
+
+
     /**
      * Provides an adapter to the JSJaCJingle console implementation which is different
      * @private
@@ -155,6 +159,45 @@ var Call = (function() {
 
 
     /**
+     * Opens the call interface
+     * @public
+     * @return {undefined}
+     */
+    self.open = function() {
+
+        try {
+            if(Jingle.in_call()) {
+                Jingle.open();
+            } else if(Muji.in_call()) {
+                Muji.open();
+            }
+        } catch(e) {
+            Console.error('Call.open', e);
+        }
+
+    };
+
+
+    /**
+     * Stops current call
+     * @public
+     * @return {boolean}
+     */
+    self.stop = function() {
+
+        try {
+            Jingle.stop();
+            Muji.stop();
+        } catch(e) {
+            Console.error('Call.stop', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
      * Mutes current call
      * @public
      * @param {object} session
@@ -216,7 +259,7 @@ var Call = (function() {
         is_ongoing = false;
 
         try {
-            is_ongoing = (Jingle.is_ongoing() === true || Muji.is_ongoing() === true);
+            is_ongoing = (Jingle.in_call() === true || Muji.in_call() === true);
         } catch(e) {
             Console.error('Call.is_ongoing', e);
         } finally {
@@ -408,10 +451,10 @@ var Call = (function() {
                 throw 'Notification type not recognized!';
             }
 
-            var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
-            var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
-            var jingle_content_sel = jingle_tools_all_sel.find('.jingle-content');
-            var jingle_subitem_sel = jingle_content_sel.find('.tools-content-subitem');
+            var call_tools_all_sel = $('#top-content .tools-all:has(.tools.call)');
+            var call_tool_sel = call_tools_all_sel.find('.tools.call');
+            var call_content_sel = call_tools_all_sel.find('.call-content');
+            var call_subitem_sel = call_content_sel.find('.tools-content-subitem');
 
             var buttons_html = '';
             var i = 0;
@@ -423,14 +466,14 @@ var Call = (function() {
             }
 
             // Append notification to DOM
-            jingle_subitem_sel.html(
-                '<div class="jingle-notify notify-' + type + ' ' + hex_md5(xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
+            call_subitem_sel.html(
+                '<div class="call-notify notify-' + type + ' ' + hex_md5(xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
                     '<div class="avatar-pane">' + 
                         '<div class="avatar-container">' + 
                             '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                         '</div>' + 
 
-                        '<span class="icon jingle-images"></span>' + 
+                        '<span class="icon call-images"></span>' + 
                     '</div>' + 
 
                     '<div class="notification-content">' + 
@@ -448,10 +491,10 @@ var Call = (function() {
             // Apply button events
             if(typeof map[type].buttons === 'object') {
                 $.each(map[type].buttons, function(button, attrs) {
-                    jingle_tools_all_sel.find('a.reply-button[data-action="' + button + '"]').click(function() {
+                    call_tools_all_sel.find('a.reply-button[data-action="' + button + '"]').click(function() {
                         try {
                             // Remove notification
-                            self.unnotify(xid);
+                            self._unnotify(xid);
 
                             // Execute callback, if any
                             if(typeof attrs.cb === 'function') {
@@ -469,10 +512,10 @@ var Call = (function() {
             }
 
             // Enable notification box!
-            jingle_tool_sel.addClass('active');
+            call_tool_sel.addClass('active');
 
             // Open notification box!
-            jingle_content_sel.show();
+            call_content_sel.show();
         } catch(e) {
             Console.error('Call.notify', e);
         } finally {
@@ -491,15 +534,15 @@ var Call = (function() {
 
         try {
             // Selectors
-            var jingle_tools_all_sel = $('#top-content .tools-all:has(.tools.jingle)');
-            var jingle_tool_sel = jingle_tools_all_sel.find('.tools.jingle');
-            var jingle_content_sel = jingle_tools_all_sel.find('.jingle-content');
-            var jingle_subitem_sel = jingle_content_sel.find('.tools-content-subitem');
+            var call_tools_all_sel = $('#top-content .tools-all:has(.tools.call)');
+            var call_tool_sel = call_tools_all_sel.find('.tools.call');
+            var call_content_sel = call_tools_all_sel.find('.call-content');
+            var call_subitem_sel = call_content_sel.find('.tools-content-subitem');
 
             // Close & disable notification box
-            jingle_content_sel.hide();
-            jingle_subitem_sel.empty();
-            jingle_tool_sel.removeClass('active');
+            call_content_sel.hide();
+            call_subitem_sel.empty();
+            call_tool_sel.removeClass('active');
 
             // Stop all sounds
             Audio.stop('incoming-call');
@@ -665,12 +708,12 @@ var Call = (function() {
 
         try {
             // Initialize counter
-            self._stopCounter();
+            self.stop_counter();
             self._start_stamp = DateUtils.getTimeStamp();
-            self._fireClock();
+            self._fire_clock();
             
             // Fire it every second
-            $('#top-content .tools.call .counter').everyTime('1s', self._fireClock);
+            $('#top-content .tools.call .counter').everyTime('1s', self._fire_clock);
 
             Console.info('Call counter started');
         } catch(e) {
@@ -685,10 +728,9 @@ var Call = (function() {
     /**
      * Stop call elpsed time counter
      * @public
-     * @param {object} view_count_sel
      * @return {boolean}
      */
-    self.stop_counter = function(view_count_sel) {
+    self.stop_counter = function() {
 
         try {
             // Reset stamp storage
@@ -701,7 +743,7 @@ var Call = (function() {
             counter_sel.stopTime();
 
             $('#top-content .tools.call .counter').text(default_count);
-            view_count_sel.find('.elapsed').text(default_count);
+            $('#jingle, #muji').find('.elapsed').text(default_count);
 
             Console.info('Call counter stopped');
         } catch(e) {
@@ -716,10 +758,9 @@ var Call = (function() {
     /**
      * Fires the counter clock (once more)
      * @private
-     * @param {object} view_count_sel
      * @return {undefined}
      */
-    self._fire_clock = function(view_count_sel) {
+    self._fire_clock = function() {
 
         try {
             // Process updated time
@@ -735,8 +776,8 @@ var Call = (function() {
             }
             
             // Display updated counter
-            $('#top-content .tools.call .counter').text(default_count);
-            view_count_sel.find('.elapsed').text(default_count);
+            $('#top-content .tools.call .counter').text(count);
+            $('#jingle, #muji').find('.elapsed').text(count);
         } catch(e) {
             Console.error('Call._fire_clock', e);
         }

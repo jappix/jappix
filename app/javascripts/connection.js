@@ -461,7 +461,7 @@ var Connection = (function () {
             Interface.removeGeneralWait();
 
             // Init Jingle
-            Jingle.init();
+            Call.init();
         } catch(e) {
             Console.error('Connection.handleConnected', e);
         }
