@@ -425,6 +425,34 @@ var Call = (function() {
 
 
     /**
+     * Returns the notification map (based on call type)
+     * @private
+     * @param {string} call_type
+     * @return {object}
+     */
+    self._get_notify_map = function(call_type) {
+
+        var map = {};
+
+        try {
+            switch(call_type) {
+                case JSJAC_JINGLE_SESSION_SINGLE:
+                    map = Jingle._notify_map(); break;
+                case JSJAC_JINGLE_SESSION_MUJI:
+                    map = Muji._notify_map(); break;
+                default:
+                    return;
+            }
+        } catch(e) {
+            Console.error('Call._get_notify_map', e);
+        } finally {
+            return map;
+        }
+
+    };
+
+
+    /**
      * Notify for something related to calls
      * @public
      * @param {string} call_type
@@ -436,16 +464,7 @@ var Call = (function() {
     self.notify = function(call_type, xid, type, mode) {
 
         try {
-            var map;
-
-            switch(call_type) {
-                case JSJAC_JINGLE_SESSION_SINGLE:
-                    map = Jingle._notify_map(); break;
-                case JSJAC_JINGLE_SESSION_MUJI:
-                    map = Muji._notify_map(); break;
-                default:
-                    return;
-            }
+            var map = self._get_notify_map(call_type);
 
             if(!(type in map)) {
                 throw 'Notification type not recognized!';
@@ -672,10 +691,9 @@ var Call = (function() {
     self.adapt_remote = function(videobox_sel) {
 
         try {
-            var remote_video_sel, sizes,
-                remote_sel = videobox_sel.find('.remote_video');
+            var remote_video_sel, sizes;
 
-            remote_sel.each(function() {
+            videobox_sel.find('.remote_video').each(function() {
                 remote_video_sel = $(this).find('video');
 
                 // Process new sizes

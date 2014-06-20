@@ -892,7 +892,7 @@ var Jingle = (function() {
 
             // Create DOM
             $('body').append(
-                '<div id="jingle" class="lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
+                '<div id="jingle" class="videochat_box lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
                     '<div class="videobox">' + 
                         '<div class="topbar">' + 
                             '<div class="card">' + 

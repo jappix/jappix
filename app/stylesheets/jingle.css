@@ -1,7 +1,7 @@
 /*
 
 Jappix - An open social platform
-This is the discovery CSS stylesheet for Jappix
+This is the Jingle CSS stylesheet for Jappix
 
 -------------------------------------------------
 
@@ -9,47 +9,6 @@ License: AGPL
 Author: Valérian Saliou
 
 */
-
-#jingle {
-    display: none;
-}
-
-#jingle .videobox {
-    background: #ededed;
-    border: 1px solid rgb(0,0,0);
-    border: 1px solid rgba(0,0,0,0.8);
-    text-shadow: none;
-    min-width: 550px;
-    min-height: 420px;
-    overflow: hidden;
-    position: absolute;
-    left: 100px;
-    right: 100px;
-    top: 40px;
-    bottom: 40px;
-    -moz-box-shadow: 0 0 12px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.4);
-    box-shadow: 0 0 12px rgba(0,0,0,0.4);
-}
-
-#jingle .videobox .topbar {
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.5);
-    border-bottom: 1px solid rgb(0,0,0);
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    color: #ffffff;
-    text-shadow: 0 1px 1px rgb(0,0,0);
-    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-    height: 40px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 4;
-    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
-    box-shadow: 0 0 5px rgba(0,0,0,0.25);
-}
 
 #jingle .videobox .topbar .card {
     margin: 4px 0 0 12px;
@@ -62,17 +21,13 @@ html[dir="rtl"] #jingle .videobox .topbar .card {
 
 #jingle .videobox .topbar .card,
 #jingle .videobox .topbar .card .avatar-container,
-#jingle .videobox .topbar .card .identity,
-#jingle .videobox .topbar .controls,
-#jingle .videobox .topbar .elapsed {
+#jingle .videobox .topbar .card .identity {
     float: left;
 }
 
 html[dir="rtl"] #jingle .videobox .topbar .card,
 html[dir="rtl"] #jingle .videobox .topbar .card .avatar-container,
-html[dir="rtl"] #jingle .videobox .topbar .card .identity,
-html[dir="rtl"] #jingle .videobox .topbar .controls,
-html[dir="rtl"] #jingle .videobox .topbar .elapsed {
+html[dir="rtl"] #jingle .videobox .topbar .card .identity {
     float: right;
 }
 
@@ -111,196 +66,8 @@ html[dir="rtl"] #jingle .videobox .topbar .card .identity {
     font-size: 10px;
 }
 
-#jingle .videobox .topbar .controls {
-    margin-left: 50px;
-}
-
-html[dir="rtl"] #jingle .videobox .topbar .controls {
-    margin-left: 0;
-    margin-right: 50px;
-}
-
-#jingle .videobox .topbar .controls a {
-    margin-top: 7px;
-    float: left;
-}
-
-html[dir="rtl"] #jingle .videobox .topbar .controls a {
-    float: right;
-}
-
-#jingle .videobox .topbar .controls a,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button {
-    border-width: 1px;
-    border-style: solid;
-    font-size: 10px;
-    color: #ffffff;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 5px 6px 6px 6px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-}
-
-#jingle .videobox .topbar .controls a:active,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button:active {
-    padding-top: 6px;
-    padding-bottom: 5px;
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
-}
-
-#jingle .videobox .topbar .controls a .icon {
-    width: 14px;
-    height: 14px;
-    margin: -1px 7px 0 2px;
-    float: left;
-}
-
-#jingle .videobox .topbar .controls a.stop,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.red {
-    background: #cc283f;
-    border-color: #5e121d;
-}
-
-#jingle .videobox .topbar .controls a.stop:active,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.red:active {
-    background: #a92134;
-    border-color: #480e16;
-}
-
-#jingle .videobox .topbar .controls a.stop .icon {
-    background-position: 0 -62px;
-}
-
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.green {
-    background: #5ea45e;
-    border-color: #1a2e1a;
-}
-
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.green:active {
-    background: #549253;
-    border-color: #0f1a0f;
-}
-
-#jingle .videobox .topbar .controls a.mute,
-#jingle .videobox .topbar .controls a.unmute,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.blue {
-    background: #6e8dc5;
-    border-color: #303d55;
-}
-
-#jingle .videobox .topbar .controls a.mute,
-#jingle .videobox .topbar .controls a.unmute {
-    margin-left: 6px;
-}
-
-html[dir="rtl"] #jingle .videobox .topbar .controls a.mute,
-html[dir="rtl"] #jingle .videobox .topbar .controls a.unmute {
-    margin-left: 0;
-    margin-right: 6px;
-}
-
-#jingle .videobox .topbar .controls a.mute:active,
-#jingle .videobox .topbar .controls a.unmute:active,
-.call-content .call-notify .notification-content .reply-buttons a.reply-button.blue:active {
-    background: #6480b1;
-    border-color: #222b3b;
-}
-
-#jingle .videobox .topbar .controls a.mute .icon {
-    background-position: 0 -81px;
-}
-
-#jingle .videobox .topbar .controls a.unmute {
-    display: none;
-}
-
-#jingle .videobox .topbar .controls a.unmute .icon {
-    background-position: 0 -100px;
-}
-
-#jingle .videobox .topbar .elapsed {
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.1);
-    border: 1px solid rgb(255,255,255);
-    border: 1px solid rgba(255,255,255,0.25);
-    outline: 1px solid rgb(0,0,0);
-    outline: 1px solid rgba(0,0,0,0.2);
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin: 10px 0 0 46px;
-    padding: 2px 6px;
-}
-
-html[dir="rtl"] #jingle .videobox .topbar .elapsed {
-    margin-left: 0;
-    margin-right: 46px;
-}
-
-#jingle .videobox .topbar .actions {
-    margin: 7px 15px 0 0;
-    float: right;
-}
-
-html[dir="rtl"] #jingle .videobox .topbar .actions {
-    margin-right: 0;
-    margin-left: 15px;
-    float: left;
-}
-
-#jingle .videobox .topbar .actions a {
-    float: left;
-}
-
-#jingle .videobox .topbar .actions a.close {
-    background-position: 0 -44px;
-    width: 18px;
-    height: 12px;
-    margin-top: 6px;
-}
-
-#jingle .videobox .local_video {
-    background-position: 0 -56px;
-    border: 1px solid rgb(0,0,0);
-    border: 1px solid rgba(0,0,0,0.5);
-    width: 180px;
-    height: 101px;
-    opacity: 0.6;
-    overflow: hidden;
-    position: absolute;
-    left: 18px;
-    bottom: 18px;
-    z-index: 3;
-    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.25);
-    box-shadow: 0 0 8px rgba(0,0,0,0.25);
-    -webkit-transition: all 0.4s ease-in-out 0.2s;
-    -moz-transition: all 0.4s ease-in-out 0.2s;
-    -o-transition: all 0.4s ease-in-out 0.2s;
-    transition: all 0.4s ease-in-out 0.2s;
-}
-
-html[dir="rtl"] #jingle .videobox .local_video {
-    left: auto;
-    right: 18px;
-}
-
-#jingle .videobox .local_video:disabled {
-    opacity: 0.2 !important;
-}
-
-#jingle .videobox .local_video:hover {
-    width: 320px;
-    height: 180px;
-    opacity: 1;
-    cursor: pointer;
-}
-
 #jingle .videobox .remote_video {
+    background-color: #000000;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -309,6 +76,11 @@ html[dir="rtl"] #jingle .videobox .local_video {
     right: 0;
     bottom: 0;
     z-index: 1;
+}
+
+#jingle .videobox .remote_video video {
+    width: 100%;
+    height: 100%;
 }
 
 #jingle .videobox .branding {

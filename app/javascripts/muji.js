@@ -684,7 +684,7 @@ var Muji = (function() {
 
             // Create DOM
             $('body').append(
-                '<div id="muji" class="lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
+                '<div id="muji" class="videochat_box lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
                     '<div class="videoroom">' + 
                         '<div class="topbar">' + 
                             '<div class="controls">' + 
@@ -705,8 +705,6 @@ var Muji = (function() {
                         '</div>' + 
 
                         '<div class="remote_container"></div>' + 
-
-                        '<div class="branding jingle-images"></div>' + 
                     '</div>' + 
 
                     '<div class="chatroom">' + 
