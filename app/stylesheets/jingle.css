@@ -66,6 +66,10 @@ html[dir="rtl"] #jingle .videobox .topbar .card .identity {
     font-size: 10px;
 }
 
+#jingle .videobox .topbar .controls {
+    margin-left: 50px;
+}
+
 #jingle .videobox .remote_video {
     background-color: #000000;
     width: 100%;

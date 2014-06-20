@@ -158,6 +158,10 @@ var Talk = (function () {
                                     '<a href="#" class="groupchat talk-images" title="' + Common._e("Your groupchats") +  '"></a>' + 
                                 '</div>' + 
                                 
+                                '<div class="roster-muji roster-icon muji-hidable">' + 
+                                    '<a href="#" class="muji talk-images" title="' + Common._e("Audio/video conference") +  '"></a>' + 
+                                '</div>' + 
+                                
                                 '<div class="roster-more roster-icon">' + 
                                     '<a href="#" class="more talk-images" title="' + Common._e("More stuff") +  '"></a>' + 
                                 '</div>' + 

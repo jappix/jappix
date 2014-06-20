@@ -356,7 +356,10 @@ html[dir="rtl"] .manage-infos p.bm-group input {
         background-position: 1px -2047px;
 }
 
-body.in_jingle_call .call-jingle {
+body.in_jingle_call .call-jingle,
+body.in_muji_call .call-jingle,
+body.in_jingle_call .roster-muji,
+body.in_muji_call .roster-muji {
         opacity: 0.35;
 }
 
@@ -367,7 +370,10 @@ body.in_jingle_call .call-jingle {
         display: none;
 }
 
-body.in_jingle_call .call-jingle a {
+body.in_jingle_call .call-jingle a,
+body.in_muji_call .call-jingle a,
+body.in_jingle_call .roster-muji a,
+body.in_muji_call .roster-muji a {
         cursor: default;
 }
 
@@ -455,7 +461,7 @@ html[dir="rtl"] #roster .roster-icon {
         width: 16px;
         display: block;
 }
- 
+
 #roster .add,
 #page-engine .text .tools-add {
         background-position: 0 -1047px;
@@ -469,7 +475,11 @@ html[dir="rtl"] #roster .roster-icon {
 #page-switch .groupchat-default {
         background-position: 0 -1082px;
 }
- 
+
+#roster .muji {
+        background-position: 0 -2047px;
+}
+
 #roster .more {
         background-position: 0 -1100px;
 }
@@ -520,7 +530,15 @@ html[dir="rtl"] .buddy-conf-subarrow {
         margin-right: 9px;
         float: right;
 }
- 
+
+.buddy-conf-muji .buddy-conf-subarrow {
+        margin-left: 8px;
+}
+
+html[dir="rtl"] .buddy-conf-muji .buddy-conf-subarrow {
+        margin-right: 8px;
+}
+
 .buddy-conf-subitem {
         background-color: rgb(0,0,0);
         background-color: rgba(0,0,0,0.8);

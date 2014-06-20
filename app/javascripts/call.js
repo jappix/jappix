@@ -87,6 +87,7 @@ var Call = (function() {
     self.init = function() {
 
         try {
+            // Listen for incoming Jingle/Muji packet
             JSJaCJingle.listen({
                 connection: con,
                 debug: self._consoleAdapter,
@@ -141,16 +142,20 @@ var Call = (function() {
                 // Receive a multiparty (Muji) call
                 muji_invite: function(stanza, args) {
                     try {
-                        // TODO
-                        alert('RECEIVED MUJI INVITE');
-
-                        // Session values
-                        Muji.receive(xid, stanza);
+                        if(!self.is_ongoing()) {
+                            // Session values
+                            Muji.receive(args, stanza);
+                        }
                     } catch(e) {
                         Console.error('Call.init[muji_invite]', e);
                     }
                 }
             });
+
+            // Enable Jingle/Muji UI elements if plugin could start
+            if(JSJAC_JINGLE_AVAILABLE) {
+                $('.jingle-hidable, .muji-hidable').show();
+            }
         } catch(e) {
             Console.error('Call.init', e);
         }
@@ -461,20 +466,34 @@ var Call = (function() {
      * @param {string} mode
      * @return {boolean}
      */
-    self.notify = function(call_type, xid, type, mode) {
+    self.notify = function(call_type, xid, type, mode, sender_xid) {
 
         try {
+            sender_xid = sender_xid || xid;
+
+            // Notification data map
             var map = self._get_notify_map(call_type);
 
             if(!(type in map)) {
                 throw 'Notification type not recognized!';
             }
 
+            // Selectors
             var call_tools_all_sel = $('#top-content .tools-all:has(.tools.call)');
             var call_tool_sel = call_tools_all_sel.find('.tools.call');
             var call_content_sel = call_tools_all_sel.find('.call-content');
             var call_subitem_sel = call_content_sel.find('.tools-content-subitem');
 
+            // Generate proper full name
+            var fullname;
+
+            if(call_type === JSJAC_JINGLE_SESSION_MUJI) {
+                fullname = Common._e("Conference call");
+            } else {
+                fullname = Name.getBuddy(xid).htmlEnc();
+            }
+
+            // Generate buttons code
             var buttons_html = '';
             var i = 0;
 
@@ -486,7 +505,7 @@ var Call = (function() {
 
             // Append notification to DOM
             call_subitem_sel.html(
-                '<div class="call-notify notify-' + type + ' ' + hex_md5(xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
+                '<div class="call-notify notify-' + type + ' ' + hex_md5(sender_xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
                     '<div class="avatar-pane">' + 
                         '<div class="avatar-container">' + 
                             '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
@@ -496,7 +515,7 @@ var Call = (function() {
                     '</div>' + 
 
                     '<div class="notification-content">' + 
-                        '<span class="fullname">' + Name.getBuddy(xid).htmlEnc() + '</span>' + 
+                        '<span class="fullname">' + fullname + '</span>' + 
                         '<span class="text">' + map[type].text + '</span>' + 
 
                         '<div class="reply-buttons">' + buttons_html + '</div>' + 
@@ -505,7 +524,7 @@ var Call = (function() {
             );
 
             // Apply user avatar
-            Avatar.get(xid, 'cache', 'true', 'forget');
+            Avatar.get(sender_xid, 'cache', 'true', 'forget');
 
             // Apply button events
             if(typeof map[type].buttons === 'object') {
@@ -905,6 +924,7 @@ var Call = (function() {
                         case 'close':
                             manager._hide_interface(); break;
                         case 'stop':
+                        case 'leave':
                             manager.stop(); break;
                         case 'mute':
                             manager.mute(); break;

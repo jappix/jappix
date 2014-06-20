@@ -10,10 +10,375 @@ Author: Valérian Saliou
 
 */
 
-#muji .remote_container {
+#muji .videochat_items {
+    min-width: 600px;
+    left: 60px;
+    right: 60px;
+}
 
+#muji .remote_container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+/* Default video */
+#muji .remote_container .remote_video_shaper {
+    display: none;
+    float: left;
+}
+
+/* 1 video view */
+#muji .remote_container[data-count="1"] .remote_video_shaper:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 2 video views */
+#muji .remote_container[data-count="2"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="2"] .remote_video_shaper:nth-child(2) {
+    width: 50%;
+    height: 100%;
+    display: block;
+}
+
+/* 3 video views */
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(2),
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(3) {
+    height: 50%;
+    display: block;
+}
+
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(1) {
+    width: 100%;
+    float: none;
+}
+
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(2),
+#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(3) {
+    width: 50%;
+}
+
+/* 4 video views */
+#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(2),
+#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(3),
+#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(4) {
+    height: 50%;
+    width: 50%;
+    display: block;
+}
+
+/* 5 video views */
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(2),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(3),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(4),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(5) {
+    height: 50%;
+    display: block;
+}
+
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(2) {
+    width: 50%;
+}
+
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(3),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(4),
+#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(5) {
+    width: 33.33333333%;
+}
+
+/* 6 video views */
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(1),
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(2),
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(3),
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(4),
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(5),
+#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(6) {
+    height: 50%;
+    width: 33.33333333%;
+    display: block;
+}
+
+#muji .empty_message {
+    text-align: center;
+    margin-top: -11px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+}
+
+#muji .empty_message .text {
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+
+#muji .videoroom,
+#muji .chatroom {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+#muji .videoroom {
+    background-color: #000000;
+    left: 0;
+    right: 280px;
+}
+
+#muji .videoroom .topbar .controls {
+    margin-left: 18px;
+}
+
+#muji .videoroom .topbar .elapsed {
+    margin-left: 80px;
 }
 
 #muji .chatroom {
-    
+    background: #ffffff;
+    width: 280px;
+    right: 0;
+}
+
+#muji .videoroom .local_video {
+    width: 140px;
+    height: 78px;
+}
+
+#muji .videoroom .local_video:hover {
+    width: 220px;
+    height: 123px;
+}
+
+#muji .chatroom .chatroom_participants {
+    background: #fcfcfc;
+    border-bottom: 1px solid #e1e1e1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#muji .chatroom .chatroom_participants .participants_default_view {
+    text-align: center;
+    height: 40px;
+}
+
+#muji .chatroom .chatroom_participants .participants_default_view .participants_counter {
+    color: #444444;
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 11px;
+    display: inline-block;
+}
+
+#muji .chatroom .chatroom_participants .participants_default_view .participants_invite {
+    background-position: 0 -287px;
+    width: 13px;
+    height: 13px;
+    opacity: 0.6;
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: 16px;
+}
+
+#muji .chatroom .chatroom_participants .participants_default_view .participants_invite:hover,
+#muji .chatroom .chatroom_participants .participants_default_view .participants_invite:focus {
+    opacity: 1;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box {
+    border-top: 1px solid #e1e1e1;
+    display: none;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 4px 2px 2px 6px;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one {
+    background: #d7e2f4;
+    border: 1px solid #aab9f4;
+    font-size: 0.75em;
+    margin: 0 4px 3px 0;
+    padding: 2px 4px;
+    display: inline-block;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove {
+    background-position: 0 -300px;
+    width: 9px;
+    height: 9px;
+    margin-left: 3px;
+    margin-top: 1px;
+    display: inline-block;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:hover,
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:focus,
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:active {
+    background-position: 1px -308px;
+    margin-left: 2px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    padding: 1px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:hover,
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:focus {
+    background-color: #8299ad;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:active {
+    background-color: #5b6e80;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form {
+    height: 32px;
+    margin-left: 8px;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form input.invite_xid {
+    font-size: 0.8em;
+    width: 100%;
+    height: 100%;
+}
+
+#muji .chatroom .chatroom_view {
+    padding: 4px 4px 12px 8px;
+    overflow: auto;
+    position: absolute;
+    top: 41px;
+    left: 0;
+    right: 0;
+    bottom: 41px;
+}
+
+#muji .chatroom .chatroom_view .room_message {
+    margin-top: 10px;
+    position: relative;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_content {
+    /* TODO */
+}
+
+#muji .chatroom .chatroom_view .room_message.me .message_content {
+    float: left;
+}
+
+#muji .chatroom .chatroom_view .room_message.him .message_content {
+    margin-right: 30px;
+    float: right;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_content .message_bubble {
+    font-size: 0.85em;
+    padding: 7px 12px 8px 12px;
+    display: block;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#muji .chatroom .chatroom_view .room_message.me .message_content .message_bubble {
+    background-color: #8dc2ef;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#muji .chatroom .chatroom_view .room_message.him .message_content .message_bubble {
+    background-color: #bcdf6a;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_content .message_author {
+    color: #6c6c6c;
+    font-size: 0.75em;
+    margin-top: 2px;
+    display: block;
+}
+
+#muji .chatroom .chatroom_view .room_message.him .message_content .message_author {
+    text-align: right;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_avatar {
+    position: absolute;
+    right: 0;
+    bottom: 16px;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_avatar.avatar-container {
+    text-align: center;
+    height: 24px;
+    width: 24px;
+}
+
+#muji .chatroom .chatroom_view .room_message .message_avatar.avatar-container .avatar {
+    max-height: 24px;
+    max-width: 24px;
+}
+
+#muji .chatroom form.chatroom_form {
+    background: #fcfcfc;
+    border-top: 1px solid #e1e1e1;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#muji .chatroom form.chatroom_form .message_icon {
+    background-position: 0 -272px;
+    width: 17px;
+    height: 15px;
+    position: absolute;
+    top: 13px;
+    left: 12px;
+}
+
+#muji .chatroom form.chatroom_form .message_separator {
+    background: #e9e9e9;
+    width: 1px;
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 40px;
+}
+
+#muji .chatroom form.chatroom_form .message_input_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 52px;
+}
+
+#muji .chatroom form.chatroom_form .message_input_container input.message_input {
+    font-size: 0.8em;
+    width: 100%;
+    height: 100%;
 }

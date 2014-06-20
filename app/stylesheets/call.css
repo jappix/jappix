@@ -14,8 +14,7 @@ Author: Valérian Saliou
     display: none;
 }
 
-.videochat_box .videobox,
-.videochat_box .videoroom {
+.videochat_box .videochat_items {
     background: #ededed;
     border: 1px solid rgb(0,0,0);
     border: 1px solid rgba(0,0,0,0.8);
@@ -33,7 +32,7 @@ Author: Valérian Saliou
     box-shadow: 0 0 12px rgba(0,0,0,0.4);
 }
 
-.videochat_box .videobox .topbar {
+.videochat_box .videochat_items .topbar {
     background: rgb(0,0,0);
     background: rgba(0,0,0,0.5);
     border-bottom: 1px solid rgb(0,0,0);
@@ -52,35 +51,31 @@ Author: Valérian Saliou
     box-shadow: 0 0 5px rgba(0,0,0,0.25);
 }
 
-.videochat_box .videobox .topbar .controls,
-.videochat_box .videobox .topbar .elapsed {
+.videochat_box .videochat_items .topbar .controls,
+.videochat_box .videochat_items .topbar .elapsed {
     float: left;
 }
 
-html[dir="rtl"] .videochat_box .videobox .topbar .controls,
-html[dir="rtl"] .videochat_box .videobox .topbar .elapsed {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .controls,
+html[dir="rtl"] .videochat_box .videochat_items .topbar .elapsed {
     float: right;
 }
 
-.videochat_box .videobox .topbar .controls {
-    margin-left: 50px;
-}
-
-html[dir="rtl"] .videochat_box .videobox .topbar .controls {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .controls {
     margin-left: 0;
     margin-right: 50px;
 }
 
-.videochat_box .videobox .topbar .controls a {
+.videochat_box .videochat_items .topbar .controls a {
     margin-top: 7px;
     float: left;
 }
 
-html[dir="rtl"] .videochat_box .videobox .topbar .controls a {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .controls a {
     float: right;
 }
 
-.videochat_box .videobox .topbar .controls a,
+.videochat_box .videochat_items .topbar .controls a,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button {
     border-width: 1px;
     border-style: solid;
@@ -94,7 +89,7 @@ html[dir="rtl"] .videochat_box .videobox .topbar .controls a {
     border-radius: 2px;
 }
 
-.videochat_box .videobox .topbar .controls a:active,
+.videochat_box .videochat_items .topbar .controls a:active,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button:active {
     padding-top: 6px;
     padding-bottom: 5px;
@@ -103,26 +98,29 @@ html[dir="rtl"] .videochat_box .videobox .topbar .controls a {
     box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
 }
 
-.videochat_box .videobox .topbar .controls a .icon {
+.videochat_box .videochat_items .topbar .controls a .icon {
     width: 14px;
     height: 14px;
     margin: -1px 7px 0 2px;
     float: left;
 }
 
-.videochat_box .videobox .topbar .controls a.stop,
+.videochat_box .videochat_items .topbar .controls a.stop,
+.videochat_box .videochat_items .topbar .controls a.leave,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button.red {
     background: #cc283f;
     border-color: #5e121d;
 }
 
-.videochat_box .videobox .topbar .controls a.stop:active,
+.videochat_box .videochat_items .topbar .controls a.stop:active,
+.videochat_box .videochat_items .topbar .controls a.leave:active,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button.red:active {
     background: #a92134;
     border-color: #480e16;
 }
 
-.videochat_box .videobox .topbar .controls a.stop .icon {
+.videochat_box .videochat_items .topbar .controls a.stop .icon,
+.videochat_box .videochat_items .topbar .controls a.leave .icon {
     background-position: 0 -62px;
 }
 
@@ -136,44 +134,44 @@ html[dir="rtl"] .videochat_box .videobox .topbar .controls a {
     border-color: #0f1a0f;
 }
 
-.videochat_box .videobox .topbar .controls a.mute,
-.videochat_box .videobox .topbar .controls a.unmute,
+.videochat_box .videochat_items .topbar .controls a.mute,
+.videochat_box .videochat_items .topbar .controls a.unmute,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button.blue {
     background: #6e8dc5;
     border-color: #303d55;
 }
 
-.videochat_box .videobox .topbar .controls a.mute,
-.videochat_box .videobox .topbar .controls a.unmute {
+.videochat_box .videochat_items .topbar .controls a.mute,
+.videochat_box .videochat_items .topbar .controls a.unmute {
     margin-left: 6px;
 }
 
-html[dir="rtl"] .videochat_box .videobox .topbar .controls a.mute,
-html[dir="rtl"] .videochat_box .videobox .topbar .controls a.unmute {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .controls a.mute,
+html[dir="rtl"] .videochat_box .videochat_items .topbar .controls a.unmute {
     margin-left: 0;
     margin-right: 6px;
 }
 
-.videochat_box .videobox .topbar .controls a.mute:active,
-.videochat_box .videobox .topbar .controls a.unmute:active,
+.videochat_box .videochat_items .topbar .controls a.mute:active,
+.videochat_box .videochat_items .topbar .controls a.unmute:active,
 .call-content .call-notify .notification-content .reply-buttons a.reply-button.blue:active {
     background: #6480b1;
     border-color: #222b3b;
 }
 
-.videochat_box .videobox .topbar .controls a.mute .icon {
+.videochat_box .videochat_items .topbar .controls a.mute .icon {
     background-position: 0 -81px;
 }
 
-.videochat_box .videobox .topbar .controls a.unmute {
+.videochat_box .videochat_items .topbar .controls a.unmute {
     display: none;
 }
 
-.videochat_box .videobox .topbar .controls a.unmute .icon {
+.videochat_box .videochat_items .topbar .controls a.unmute .icon {
     background-position: 0 -100px;
 }
 
-.videochat_box .videobox .topbar .elapsed {
+.videochat_box .videochat_items .topbar .elapsed {
     background: rgb(0,0,0);
     background: rgba(0,0,0,0.1);
     border: 1px solid rgb(255,255,255);
@@ -187,34 +185,34 @@ html[dir="rtl"] .videochat_box .videobox .topbar .controls a.unmute {
     padding: 2px 6px;
 }
 
-html[dir="rtl"] .videochat_box .videobox .topbar .elapsed {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .elapsed {
     margin-left: 0;
     margin-right: 46px;
 }
 
-.videochat_box .videobox .topbar .actions {
+.videochat_box .videochat_items .topbar .actions {
     margin: 7px 15px 0 0;
     float: right;
 }
 
-html[dir="rtl"] .videochat_box .videobox .topbar .actions {
+html[dir="rtl"] .videochat_box .videochat_items .topbar .actions {
     margin-right: 0;
     margin-left: 15px;
     float: left;
 }
 
-.videochat_box .videobox .topbar .actions a {
+.videochat_box .videochat_items .topbar .actions a {
     float: left;
 }
 
-.videochat_box .videobox .topbar .actions a.close {
+.videochat_box .videochat_items .topbar .actions a.close {
     background-position: 0 -44px;
     width: 18px;
     height: 12px;
     margin-top: 6px;
 }
 
-.videochat_box .videobox .local_video {
+.videochat_box .videochat_items .local_video {
     background-position: 0 -56px;
     border: 1px solid rgb(0,0,0);
     border: 1px solid rgba(0,0,0,0.5);
@@ -235,22 +233,22 @@ html[dir="rtl"] .videochat_box .videobox .topbar .actions {
     transition: all 0.4s ease-in-out 0.2s;
 }
 
-html[dir="rtl"] .videochat_box .videobox .local_video {
+html[dir="rtl"] .videochat_box .videochat_items .local_video {
     left: auto;
     right: 18px;
 }
 
-.videochat_box .videobox .local_video:disabled {
+.videochat_box .videochat_items .local_video:disabled {
     opacity: 0.2 !important;
 }
 
-.videochat_box .videobox .local_video:hover {
+.videochat_box .videochat_items .local_video:hover {
     width: 320px;
     height: 180px;
     opacity: 1;
     cursor: pointer;
 }
 
-.videochat_box .videobox .local_video video {
+.videochat_box .videochat_items .local_video video {
     width: 100%;
 }

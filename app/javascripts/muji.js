@@ -82,141 +82,305 @@ var Muji = (function() {
                 resolution: 'sd',
                 debug: Call._consoleAdapter,
 
+                // Safety options (optional)
+                password_protect: true,
+
                 // Custom handlers (optional)
                 room_message_in: function(muji, stanza) {
-                    console.log('room_message_in');
+                    var from = muji.utils.stanza_from(stanza);
+                    var username = muji.utils.extract_username(from);
+                    var body = stanza.getBody();
+                    var muji_sel = $('#muji');
+
+                    var mode = (username === $('#muji').attr('data-username') === username) ? 'him' : 'me';
+
+                    if(username & body && muji_sel.size()) {
+                        var avatar_html = '';
+
+                        if(mode === 'him') {
+                            avatar_html = 
+                            '<div class="message_avatar avatar-container">' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                            '</div>';
+                        }
+
+                        $('#muji .chatroom .chatroom_view').append(
+                            '<div class="room_message ' + mode + ' ' + hex_md5(from) + '">' + 
+                                avatar_html + 
+
+                                '<div class="message_content">' + 
+                                    '<span class="message_bubble">' + body.htmlEnc() + '</span>' + 
+                                    '<span class="message_author">' + username.htmlEnc() + '</span>' + 
+                                '</div>' + 
+
+                                '<div class="clear"></div>' + 
+                            '</div>'
+                        );
+                    }
+
+                    Console.log('Muji._args', 'room_message_in');
                 },
 
                 room_message_out: function(muji, stanza) {
-                    console.log('room_message_out');
+                    Console.log('Muji._args', 'room_message_out');
                 },
 
                 room_presence_in: function(muji, stanza) {
-                    console.log('room_presence_in');
+                    Console.log('Muji._args', 'room_presence_in');
                 },
 
                 room_presence_out: function(muji, stanza) {
-                    console.log('room_presence_out');
+                    Console.log('Muji._args', 'room_presence_out');
                 },
                 
                 session_prepare_pending: function(muji, stanza) {
-                    console.log('session_prepare_pending');
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'preparing',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_prepare_pending');
                 },
                 
                 session_prepare_success: function(muji, stanza) {
-                    console.log('session_prepare_success');
+                    Console.log('Muji._args', 'session_prepare_success');
                 },
                 
                 session_prepare_error: function(muji, stanza) {
-                    console.log('session_prepare_error');
+                    self._reset();
+
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'error',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_prepare_error');
                 },
                 
                 session_initiate_pending: function(muji) {
-                    console.log('session_initiate_pending');
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'preparing',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_initiate_pending');
                 },
                 
                 session_initiate_success: function(muji, stanza) {
-                    console.log('session_initiate_success');
+                    Call._unnotify();
+
+                    // Start call! Go Go Go!
+                    Call.start_session(muji.get_media());
+                    self._show_interface();
+                    Call.start_counter();
+
+                    Console.log('Muji._args', 'session_initiate_success');
                 },
                 
                 session_initiate_error: function(muji, stanza) {
-                    console.log('session_initiate_error');
+                    self._reset();
+
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'error',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_initiate_error');
                 },
                 
                 session_leave_pending: function(muji) {
-                    console.log('session_leave_pending');
+                    self._reset();
+
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'ending',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_leave_pending');
                 },
                 
                 session_leave_success: function(muji, stanza) {
-                    console.log('session_leave_success');
+                    self._reset();
+
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'ended',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_leave_success');
                 },
                 
                 session_leave_error: function(muji, stanza) {
-                    console.log('session_leave_error');
+                    self._reset();
+
+                    Call.notify(
+                        JSJAC_JINGLE_SESSION_MUJI,
+                        muji.get_to(),
+                        'ended',
+                        muji.get_media(),
+                        Common.getXID()
+                    );
+
+                    Console.log('Muji._args', 'session_leave_error');
                 },
                 
                 participant_prepare: function(muji, stanza) {
-                    console.log('participant_prepare');
+                    Console.log('Muji._args', 'participant_prepare');
                 },
                 
                 participant_initiate: function(muji, stanza) {
-                    console.log('participant_initiate');
+                    Console.log('Muji._args', 'participant_initiate');
                 },
                 
                 participant_leave: function(muji, stanza) {
-                    console.log('participant_leave');
+                    Console.log('Muji._args', 'participant_leave');
                 },
                 
                 participant_session_initiate_pending: function(muji, session) {
-                    console.log('participant_session_initiate_pending');
+                    Console.log('Muji._args', 'participant_session_initiate_pending');
                 },
                 
                 participant_session_initiate_success: function(muji, session, stanza) {
-                    console.log('participant_session_initiate_success');
+                    Console.log('Muji._args', 'participant_session_initiate_success');
                 },
                 
                 participant_session_initiate_error: function(muji, session, stanza) {
-                    console.log('participant_session_initiate_error');
+                    Console.log('Muji._args', 'participant_session_initiate_error');
                 },
                 
                 participant_session_initiate_request: function(muji, session, stanza) {
-                    console.log('participant_session_initiate_request');
+                    Console.log('Muji._args', 'participant_session_initiate_request');
                 },
                 
                 participant_session_accept_pending: function(muji, session) {
-                    console.log('participant_session_accept_pending');
+                    Console.log('Muji._args', 'participant_session_accept_pending');
                 },
                 
                 participant_session_accept_success: function(muji, session, stanza) {
-                    console.log('participant_session_accept_success');
+                    Console.log('Muji._args', 'participant_session_accept_success');
                 },
                 
                 participant_session_accept_error: function(muji, session, stanza) {
-                    console.log('participant_session_accept_error');
+                    Console.log('Muji._args', 'participant_session_accept_error');
                 },
                 
                 participant_session_accept_request: function(muji, session, stanza) {
-                    console.log('participant_session_accept_request');
+                    Console.log('Muji._args', 'participant_session_accept_request');
                 },
                 
                 participant_session_info_pending: function(muji, session) {
-                    console.log('participant_session_info_pending');
+                    Console.log('Muji._args', 'participant_session_info_pending');
                 },
                 
                 participant_session_info_success: function(muji, session, stanza) {
-                    console.log('participant_session_info_success');
+                    Console.log('Muji._args', 'participant_session_info_success');
                 },
                 
                 participant_session_info_error: function(muji, session, stanza) {
-                    console.log('participant_session_info_error');
+                    Console.log('Muji._args', 'participant_session_info_error');
                 },
                 
                 participant_session_info_request: function(muji, session, stanza) {
-                    console.log('participant_session_info_request');
+                    Console.log('Muji._args', 'participant_session_info_request');
                 },
                 
                 participant_session_terminate_pending: function(muji, session) {
-                    console.log('participant_session_terminate_pending');
+                    Console.log('Muji._args', 'participant_session_terminate_pending');
                 },
                 
                 participant_session_terminate_success: function(muji, session, stanza) {
-                    console.log('participant_session_terminate_success');
+                    Console.log('Muji._args', 'participant_session_terminate_success');
                 },
                 
                 participant_session_terminate_error: function(muji, session, stanza) {
-                    console.log('participant_session_terminate_error');
+                    Console.log('Muji._args', 'participant_session_terminate_error');
                 },
                 
                 participant_session_terminate_request: function(muji, session, stanza) {
-                    console.log('participant_session_terminate_request');
+                    Console.log('Muji._args', 'participant_session_terminate_request');
                 },
                 
                 add_remote_view: function(muji, username, media) {
-                    console.log('add_remote_view');
+                    Console.log('Muji._args', 'add_remote_view');
+
+                    var nobody_sel = $('#room_container h6');
+                    var container_sel = $('#room_container .video_remote_container').filter(function() {
+                        return ($(this).attr('data-username') + '') === (username + '');
+                    });
+
+                    // Not already in view?
+                    if(!container_sel.size()) {
+                        // NOTE: we can use 'media' parameter to either append an 'audio' or a 'video' element
+                        view_sel = $('<video src="" alt=""></video>');
+
+                        view_sel.attr('data-username', username);
+                        view_sel.insertBefore('#room_container .clear:last').hide();
+
+                        var fn_reveal_view = function() {
+                            view_sel.stop(true).hide().fadeIn(400);
+                        };
+
+                        if(nobody_sel.is(':visible')) {
+                            // If is animated, only delay video container reveal
+                            if(nobody_sel.is(':animated')) {
+                                view_sel.oneTime(250, fn_reveal_view);
+                            } else {
+                                nobody_sel.stop(true).fadeOut(250, fn_reveal_view);
+                            }
+                        } else {
+                            fn_reveal_view();
+                        }
+                    }
+
+                    // IMPORTANT: return view selector
+                    return view_sel[0];
                 },
                 
                 remove_remote_view: function(muji, username) {
-                    console.log('remove_remote_view');
+                    Console.log('Muji._args', 'remove_remote_view');
+
+                    var nobody_sel = $('#room_container h6');
+                    var container_sel = $('#room_container .video_remote_container').filter(function() {
+                        return ($(this).attr('data-username') + '') === (username + '');
+                    });
+
+                    // Exists in view?
+                    if(container_sel.size()) {
+                        container_sel.stop(true).fadeOut(250, function() {
+                            $(this).remove();
+
+                            if(!$('#room_container .video_remote_container').size() && nobody_sel.is(':hidden')) {
+                                nobody_sel.stop(true).fadeIn(400);
+                            }
+                        });
+
+                        // IMPORTANT: return view selector
+                        var view_sel = container_sel.find('video.video_remote');
+
+                        if(view_sel.size()) {
+                            return view_sel[0];
+                        }
+                    }
+
+                    return null;
                 }
             };
         } catch(e) {
@@ -264,7 +428,7 @@ var Muji = (function() {
             // Start the Jingle negotiation
             var args = self._args(
                 con,
-                full_xid,
+                room,
                 hash,
                 media,
                 muji_sel.find('.local_video video')[0]
@@ -273,7 +437,7 @@ var Muji = (function() {
             self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
             self._session.join();
 
-            Console.debug('Join Muji conference: ' + full_xid);
+            Console.debug('Join Muji conference: ' + room);
 
             status = true;
         } catch(e) {
@@ -312,15 +476,23 @@ var Muji = (function() {
     /**
      * Receive a Muji call
      * @public
-     * @param {string} room
+     * @param {object} args
      * @param {object} stanza
      * @return {boolean}
      */
-    self.receive = function(room, stanza) {
+    self.receive = function(args, stanza) {
 
         try {
             if(!Call.is_ongoing()) {
-                self._new(room, null, stanza);
+                Call.notify(
+                    JSJAC_JINGLE_SESSION_MUJI,
+                    args.jid,
+                    ('call_' + (args.media || 'video')),
+                    args.media,
+                    args.from
+                );
+                
+                Audio.play('incoming-call', true);
             }
         } catch(e) {
             Console.error('Muji.receive', e);
@@ -576,8 +748,8 @@ var Muji = (function() {
                     }
                 },
 
-                'initiating': {
-                    'text': Common._e("Initiating group call"),
+                'preparing': {
+                    'text': Common._e("Preparing group call..."),
 
                     'buttons': {
                         'cancel': {
@@ -685,30 +857,69 @@ var Muji = (function() {
             // Create DOM
             $('body').append(
                 '<div id="muji" class="videochat_box lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
-                    '<div class="videoroom">' + 
-                        '<div class="topbar">' + 
-                            '<div class="controls">' + 
-                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon jingle-images"></span>' + Common._e("Stop") + '</a>' + 
-                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon jingle-images"></span>' + Common._e("Mute") + '</a>' + 
-                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon jingle-images"></span>' + Common._e("Unmute") + '</a>' + 
+                    '<div class="videochat_items">' + 
+                        '<div class="videoroom">' + 
+                            '<div class="topbar">' + 
+                                '<div class="controls">' + 
+                                    '<a href="#" class="leave control-button" data-type="leave"><span class="icon call-images"></span>' + Common._e("Leave") + '</a>' + 
+                                    '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' + 
+                                    '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' + 
+                                '</div>' + 
+
+                                '<div class="elapsed">00:00:00</div>' + 
+
+                                '<div class="actions">' + 
+                                    '<a href="#" class="close action-button call-images" data-type="close"></a>' + 
+                                '</div>' + 
                             '</div>' + 
 
-                            '<div class="elapsed">00:00:00</div>' + 
+                            '<div class="local_video">' + 
+                                '<video src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' + 
+                            '</div>' + 
 
-                            '<div class="actions">' + 
-                                '<a href="#" class="close action-button jingle-images" data-type="close"></a>' + 
+                            '<div class="remote_container">' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper"></div>' + 
+                            '</div>' + 
+
+                            '<div class="empty_message">' + 
+                                '<span class="text">' + Common._e("Nobody there. Invite some people!") + '</span>' + 
                             '</div>' + 
                         '</div>' + 
 
-                        '<div class="local_video">' + 
-                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' + 
+                        '<div class="chatroom">' + 
+                            '<div class="chatroom_participants">' + 
+                                '<div class="participants_default_view">' + 
+                                    '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' + 
+                                    '<a class="participants_invite call-images" href="#" title="' + Common._e("Invite people...") + '"></a>' + 
+                                '</div>' + 
+
+                                '<div class="participants_invite_box">' + 
+                                    '<div class="participants_invite_list">' + 
+                                        '<span class="invite_one" data-xid="valerian@jappix.com">Valérian Saliou<a class="invite_one_remove call-images" href="#"></a></span>' + 
+                                    '</div>' + 
+
+                                    '<form class="participants_invite_form" action="#" method="post">' + 
+                                        '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" />' + 
+                                    '</form>' + 
+                                '</div>' + 
+                            '</div>' + 
+
+                            '<div class="chatroom_view"></div>' + 
+
+                            '<form class="chatroom_form" action="#" method="post">' + 
+                                '<span class="message_icon call-images"></span>' + 
+                                '<span class="message_separator"></span>' + 
+
+                                '<div class="message_input_container">' + 
+                                    '<input class="message_input input-reset" name="message" type="text" placeholder="' + Common._e("Send a message...") + '" />' + 
+                                '</div>' + 
+                            '</form>' + 
                         '</div>' + 
-
-                        '<div class="remote_container"></div>' + 
-                    '</div>' + 
-
-                    '<div class="chatroom">' + 
-                        '<p>TODO</p>' + 
                     '</div>' + 
                 '</div>'
             );
@@ -796,12 +1007,93 @@ var Muji = (function() {
     self._events_interface = function() {
 
         try {
+            // Common selectors
+            var muji_chatroom = $('#muji .chatroom');
+            var chatroom_participants = muji_chatroom.find('.chatroom_participants');
+            var participants_invite = chatroom_participants.find('.participants_default_view .participants_invite');
+            var participants_invite_box = chatroom_participants.find('.participants_invite_box');
+            var participants_invite_list = participants_invite_box.find('.participants_invite_list');
+            var participants_invite_form = participants_invite_box.find('.participants_invite_form');
+            var participants_invite_input = participants_invite_form.find('input[name="xid"]');
+
             // Apply events
             Call.events_interface(
                 self,
                 $('#muji'),
                 $('#muji .videoroom')
             );
+
+            // People invite event
+            participants_invite.click(function() {
+                try {
+                    if(!participants_invite_box.is(':animated')) {
+                        if(participants_invite_box.is(':hidden')) {
+                            participants_invite_box.stop(true).slideDown(250, function() {
+                                participants_invite_input.focus();
+                            });
+                        } else {
+                            participants_invite_input.blur();
+                            participants_invite_box.stop(true).slideUp(250, function() {
+                                participants_invite_list.empty().hide();
+                                participants_invite_input.val('');
+                            });
+                        }
+                    }
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
+                } finally {
+                    return false;
+                }
+            });
+
+            // Invite input key events
+            participants_invite_input.keyup(function(e) {
+                try {
+                    if(e.keyCode == 13) {
+                        // Enter : continue
+                        // TODO
+                    } else if(e.keyCode == 27) {
+                        // Escape: close interface
+                        participants_invite.click();
+                    }
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
+                } finally {
+                    return false;
+                }
+            });
+
+            // Invite form send event
+            participants_invite_form.submit(function() {
+                try {
+                    // TODO
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
+                } finally {
+                    return false;
+                }
+            });
+
+            // Message send event
+            muji_chatroom.find('form.chatroom_form').submit(function() {
+                try {
+                    if(self._session === null) {
+                        throw 'Muji session unavailable';
+                    }
+
+                    var input_sel = $(this).find('input[name="message"]');
+                    var body = input_sel.val();
+
+                    if(body) {
+                        self._session.send_message(body);
+                        input_sel.val('');
+                    }
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
+                } finally {
+                    return false;
+                }
+            });
         } catch(e) {
             Console.error('Muji._events_interface', e);
         } finally {

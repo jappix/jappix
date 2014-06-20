@@ -271,15 +271,6 @@ var Connection = (function () {
             
             // And we handle everything that happen
             self.setupCon(con, extend_obj);
-
-            var con_args = {
-                'domain': $.trim(lServer),
-                'username': $.trim(lNick),
-                'resource': random_resource,
-                'pass': lPass,
-                'secure': true,
-                'xmllang': XML_LANG
-            };
             
             // Generate a resource
             var random_resource = DataStore.getDB(self.desktop_hash, 'session', 'resource');
@@ -287,6 +278,15 @@ var Connection = (function () {
             if(!random_resource) {
                 random_resource = lResource + ' (' + (new Date()).getTime() + ')';
             }
+
+            var con_args = {
+                'domain': lServer.trim(),
+                'username': lNick.trim(),
+                'resource': random_resource,
+                'pass': lPass,
+                'secure': true,
+                'xmllang': XML_LANG
+            };
 
             self.desktop_hash = 'jd.' + hex_md5(con_args.username + '@' + con_args.domain);
             

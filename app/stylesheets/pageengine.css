@@ -647,7 +647,9 @@ html[dir="rtl"] #page-engine .text .chat-tools-smileys {
 }
 
 body.in_jingle_call #page-engine .text .tools-jingle-video,
-body.in_jingle_call #page-engine .text .tools-jingle-audio {
+body.in_jingle_call #page-engine .text .tools-jingle-audio,
+body.in_muji_call #page-engine .text .tools-jingle-video,
+body.in_muji_call #page-engine .text .tools-jingle-audio {
     opacity: 0.35;
     cursor: default;
 }

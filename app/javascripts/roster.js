@@ -1380,6 +1380,54 @@ var Roster = (function () {
                 
                 return false;
             });
+
+            // When the user click on the muji button, show the muji menu
+            $('#roster .foot .muji').click(function() {
+                // Yet displayed?
+                if(Common.exists('#buddy-conf-muji') || Call.is_ongoing()) {
+                    return Bubble.close();
+                }
+                
+                // Add the bubble
+                Bubble.show('#buddy-conf-muji');
+                
+                // Append the content
+                $('#roster .roster-muji').append(
+                    '<div id="buddy-conf-muji" class="buddy-conf-item bubble removable">' + 
+                        '<div class="buddy-conf-subarrow talk-images"></div>' + 
+                        
+                        '<div class="buddy-conf-subitem">' + 
+                            '<p class="buddy-conf-p">' + Common._e("Launch a group call") +  '</p>' + 
+
+                            '<p class="buddy-conf-text">' + 
+                                '- <a href="#" class="buddy-conf-muji-conference" data-media="audio">' + Common._e("Audio conference") +  '</a>' + 
+                            '</p>' + 
+                            
+                            '<p class="buddy-conf-text">' + 
+                                '- <a href="#" class="buddy-conf-muji-conference" data-media="video">' + Common._e("Video conference") +  '</a>' + 
+                            '</p>' + 
+                        '</div>' + 
+                    '</div>'
+                );
+                
+                // When the user wants to launch 
+                $('.buddy-conf-muji-conference').click(function() {
+                    var media = $(this).attr('data-media');
+
+                    var room_name = hex_md5(media + DateUtils.getTimeStamp() + Math.random());
+                    var room = Common.generateXID(room_name, 'groupchat');
+
+                    if(media && room && room_name) {
+                        Muji.start(room, media);
+                    }
+
+                    Bubble.close();
+                    
+                    return false;
+                });
+                
+                return false;
+            });
             
             // When the user click on the more button, show the more menu
             $('#roster .foot .more').click(function() {

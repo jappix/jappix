@@ -108,7 +108,8 @@ html[dir="rtl"] .general-wait-content {
 .mam-hidable,
 .commands-hidable,
 .privacy-hidable,
-.xmpplinks-hidable {
+.xmpplinks-hidable,
+.muji-hidable {
     display: none;
 }
  

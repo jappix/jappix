@@ -103,7 +103,7 @@ var Jingle = (function() {
                     if(Call.is_ongoing() && !self.is_same_sid(jingle)) {
                         jingle.terminate(JSJAC_JINGLE_REASON_BUSY);
 
-                        Console.warn('session_initiate_success', 'Dropped incoming call (already in a call)');
+                        Console.warn('Jingle._args > session_initiate_success', 'Dropped incoming call (already in a call)');
                     } else {
                         // Incoming call?
                         if(jingle.is_responder()) {
@@ -249,9 +249,9 @@ var Jingle = (function() {
                             );
                         }
 
-                        Console.debug('Stopped current Jingle call');
+                        Console.debug('Jingle._args > session_terminate_success', 'Stopped current Jingle call');
                     } else {
-                        Console.warn('session_terminate_success', 'Dropped stanza with unmatching SID');
+                        Console.warn('Jingle._args > session_terminate_success', 'Dropped stanza with unmatching SID');
                     }
 
                     Console.log('Jingle._args', 'session_terminate_success');
@@ -271,9 +271,9 @@ var Jingle = (function() {
                             );
                         }
 
-                        Console.warn('Stopped current Jingle call, but with brute force!');
+                        Console.warn('Jingle._args > session_terminate_error', 'Stopped current Jingle call, but with brute force!');
                     } else {
-                        Console.warn('session_terminate_error', 'Dropped stanza with unmatching SID');
+                        Console.warn('Jingle._args > session_terminate_error', 'Dropped stanza with unmatching SID');
                     }
 
                     Console.log('Jingle._args', 'session_terminate_error');
@@ -893,7 +893,7 @@ var Jingle = (function() {
             // Create DOM
             $('body').append(
                 '<div id="jingle" class="videochat_box lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
-                    '<div class="videobox">' + 
+                    '<div class="videobox videochat_items">' + 
                         '<div class="topbar">' + 
                             '<div class="card">' + 
                                 '<div class="avatar-container">' + 
@@ -907,15 +907,15 @@ var Jingle = (function() {
                             '</div>' + 
 
                             '<div class="controls">' + 
-                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon jingle-images"></span>' + Common._e("Stop") + '</a>' + 
-                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon jingle-images"></span>' + Common._e("Mute") + '</a>' + 
-                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon jingle-images"></span>' + Common._e("Unmute") + '</a>' + 
+                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon call-images"></span>' + Common._e("Stop") + '</a>' + 
+                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' + 
+                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' + 
                             '</div>' + 
 
                             '<div class="elapsed">00:00:00</div>' + 
 
                             '<div class="actions">' + 
-                                '<a href="#" class="close action-button jingle-images" data-type="close"></a>' + 
+                                '<a href="#" class="close action-button call-images" data-type="close"></a>' + 
                             '</div>' + 
                         '</div>' + 
 
@@ -927,7 +927,7 @@ var Jingle = (function() {
                             '<video src="" alt=""></video>' + 
                         '</div>' + 
 
-                        '<div class="branding jingle-images"></div>' + 
+                        '<div class="branding call-images"></div>' + 
                     '</div>' + 
                 '</div>'
             );

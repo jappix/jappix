@@ -165,6 +165,21 @@ msgstr ""
 msgid "Your groupchats"
 msgstr ""
 
+msgid "Audio/video conference"
+msgstr ""
+
+msgid "Launch a group call"
+msgstr ""
+
+msgid "Audio conference"
+msgstr ""
+
+msgid "Video conference"
+msgstr ""
+
+msgid "Conference call"
+msgstr ""
+
 msgid "Manage your favorite groupchats"
 msgstr ""
 
@@ -2046,10 +2061,22 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
+msgid "Leave"
+msgstr ""
+
 msgid "Mute"
 msgstr ""
 
 msgid "Unmute"
+msgstr ""
+
+msgid "Nobody there. Invite some people!"
+msgstr ""
+
+msgid "Invite people..."
+msgstr ""
+
+msgid "Enter people names..."
 msgstr ""
 
 msgid "Is calling you"
@@ -2094,7 +2121,7 @@ msgstr ""
 msgid "Incoming group call"
 msgstr ""
 
-msgid "Initiating group call"
+msgid "Preparing group call..."
 msgstr ""
 
 msgid "Connecting to group call..."
@@ -2125,6 +2152,15 @@ msgid "Audio Call"
 msgstr ""
 
 msgid "Video Call"
+msgstr ""
+
+msgid "%s participant"
+msgstr ""
+
+msgid "%s participants"
+msgstr ""
+
+msgid "Send a message..."
 msgstr ""
 
 msgid "Edited"
