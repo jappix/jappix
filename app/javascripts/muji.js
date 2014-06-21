@@ -397,10 +397,10 @@ var Muji = (function() {
      * @private
      * @param room
      * @param mode
-     * @param stanza
+     * @param args_invite
      * @return {boolean}
      */
-    self._new = function(room, mode, stanza) {
+    self._new = function(room, mode, stanza, args_invite) {
 
         var status = false;
 
@@ -434,8 +434,23 @@ var Muji = (function() {
                 muji_sel.find('.local_video video')[0]
             );
 
-            self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
-            self._session.join();
+            if(typeof args_invite == 'object') {
+                if(args_invite.password) {
+                    args.password = args_invite.password;
+                }
+
+                args.media = (args_invite.media == JSJAC_JINGLE_MEDIA_VIDEO) ? JSJAC_JINGLE_MEDIA_VIDEO
+                                                                             : JSJAC_JINGLE_MEDIA_AUDIO;
+
+                self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
+
+                Console.debug('Receive Muji call: ' + args_invite.jid);
+            } else {
+                self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
+                self._session.join();
+
+                Console.debug('Create Muji call: ' + args_invite.jid);
+            }
 
             Console.debug('Join Muji conference: ' + room);
 
@@ -484,12 +499,21 @@ var Muji = (function() {
 
         try {
             if(!Call.is_ongoing()) {
+                // Create call session
+                self._new(
+                    args.jid,
+                    (args.media || JSJAC_JINGLE_MEDIA_VIDEO),
+                    stanza,
+                    args
+                );
+
+                // Notify user
                 Call.notify(
                     JSJAC_JINGLE_SESSION_MUJI,
                     args.jid,
                     ('call_' + (args.media || 'video')),
                     args.media,
-                    args.from
+                    Common.bareXID(args.from)
                 );
                 
                 Audio.play('incoming-call', true);
@@ -708,7 +732,7 @@ var Muji = (function() {
                             'text': Common._e("Accept"),
                             'color': 'green',
                             'cb': function(xid, mode) {
-                                self._session.accept();
+                                self._session.join();
                                 Audio.stop('incoming-call');
                             }
                         },
@@ -732,7 +756,7 @@ var Muji = (function() {
                             'text': Common._e("Accept"),
                             'color': 'green',
                             'cb': function(xid, mode) {
-                                self._session.accept();
+                                self._session.join();
                                 Audio.stop('incoming-call');
                             }
                         },
@@ -1009,6 +1033,7 @@ var Muji = (function() {
         try {
             // Common selectors
             var muji_chatroom = $('#muji .chatroom');
+            var chatroom_form = muji_chatroom.find('form.chatroom_form');
             var chatroom_participants = muji_chatroom.find('.chatroom_participants');
             var participants_invite = chatroom_participants.find('.participants_default_view .participants_invite');
             var participants_invite_box = chatroom_participants.find('.participants_invite_box');
@@ -1063,6 +1088,11 @@ var Muji = (function() {
                 }
             });
 
+            // Input auto-focus
+            chatroom_form.click(function() {
+                chatroom_form.find('input[name="message"]').focus();
+            });
+
             // Invite form send event
             participants_invite_form.submit(function() {
                 try {
@@ -1075,7 +1105,7 @@ var Muji = (function() {
             });
 
             // Message send event
-            muji_chatroom.find('form.chatroom_form').submit(function() {
+            chatroom_form.submit(function() {
                 try {
                     if(self._session === null) {
                         throw 'Muji session unavailable';

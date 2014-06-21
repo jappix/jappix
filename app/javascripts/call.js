@@ -113,7 +113,7 @@ var Call = (function() {
                                 JSJAC_JINGLE_SESSION_SINGLE,
                                 {
                                     to: stanza.getFrom(),
-                                    debug: JSJAC_JINGLE_STORE_DEBUG
+                                    debug: JSJaCJingleStorage.get_debug()
                                 }
                             );
 
@@ -487,7 +487,7 @@ var Call = (function() {
             // Generate proper full name
             var fullname;
 
-            if(call_type === JSJAC_JINGLE_SESSION_MUJI) {
+            if(call_type === JSJAC_JINGLE_SESSION_MUJI && sender_xid === Common.getXID()) {
                 fullname = Common._e("Conference call");
             } else {
                 fullname = Name.getBuddy(xid).htmlEnc();
