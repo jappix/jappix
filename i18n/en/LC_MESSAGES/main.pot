@@ -2160,6 +2160,9 @@ msgstr ""
 msgid "%s participants"
 msgstr ""
 
+msgid "(full)"
+msgstr ""
+
 msgid "Send a message..."
 msgstr ""
 

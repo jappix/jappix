@@ -92,9 +92,9 @@ var Muji = (function() {
                     var body = stanza.getBody();
                     var muji_sel = $('#muji');
 
-                    var mode = (username === $('#muji').attr('data-username') === username) ? 'him' : 'me';
+                    var mode = (username === $('#muji').attr('data-username')) ? 'me' : 'him';
 
-                    if(username & body && muji_sel.size()) {
+                    if(username && body && muji_sel.size()) {
                         var avatar_html = '';
 
                         if(mode === 'him') {
@@ -104,7 +104,7 @@ var Muji = (function() {
                             '</div>';
                         }
 
-                        $('#muji .chatroom .chatroom_view').append(
+                        muji_sel.find('.chatroom .chatroom_view').append(
                             '<div class="room_message ' + mode + ' ' + hex_md5(from) + '">' + 
                                 avatar_html + 
 
@@ -116,6 +116,10 @@ var Muji = (function() {
                                 '<div class="clear"></div>' + 
                             '</div>'
                         );
+
+                        self._message_scroll();
+
+                        Console.log('Muji._args > room_message_in', 'Displayed Muji message from: ' + username);
                     }
 
                     Console.log('Muji._args', 'room_message_in');
@@ -134,6 +138,10 @@ var Muji = (function() {
                 },
                 
                 session_prepare_pending: function(muji, stanza) {
+                    // Temporary username
+                    $('#muji').attr('data-username', muji.get_username());
+
+                    // Notify user about preparing call
                     Call.notify(
                         JSJAC_JINGLE_SESSION_MUJI,
                         muji.get_to(),
@@ -146,6 +154,9 @@ var Muji = (function() {
                 },
                 
                 session_prepare_success: function(muji, stanza) {
+                    // Final username
+                    $('#muji').attr('data-username', muji.get_username());
+
                     Console.log('Muji._args', 'session_prepare_success');
                 },
                 
@@ -321,60 +332,95 @@ var Muji = (function() {
                 add_remote_view: function(muji, username, media) {
                     Console.log('Muji._args', 'add_remote_view');
 
-                    var nobody_sel = $('#room_container h6');
-                    var container_sel = $('#room_container .video_remote_container').filter(function() {
+                    var muji_sel = $('#muji');
+                    var nobody_sel = muji_sel.find('.empty_message');
+                    var remote_container_sel = $('#muji .remote_container');
+                    var remote_video_shaper_sel = remote_container_sel.find('.remote_video_shaper');
+
+                    var view_sel = null;
+                    var container_sel = remote_video_shaper_sel.filter(function() {
                         return ($(this).attr('data-username') + '') === (username + '');
                     });
 
+                    var count_participants = remote_video_shaper_sel.filter(':has(video)').size();
+
                     // Not already in view?
                     if(!container_sel.size()) {
-                        // NOTE: we can use 'media' parameter to either append an 'audio' or a 'video' element
-                        view_sel = $('<video src="" alt=""></video>');
+                        // Select first empty view
+                        var first_empty_view_sel = remote_video_shaper_sel.filter(':not(:has(video)):first');
 
-                        view_sel.attr('data-username', username);
-                        view_sel.insertBefore('#room_container .clear:last').hide();
+                        if(first_empty_view_sel.size()) {
+                            container_sel = first_empty_view_sel;
 
-                        var fn_reveal_view = function() {
-                            view_sel.stop(true).hide().fadeIn(400);
-                        };
+                            // Append view
+                            view_sel = $('<video src="" alt=""></video>');
 
-                        if(nobody_sel.is(':visible')) {
-                            // If is animated, only delay video container reveal
-                            if(nobody_sel.is(':animated')) {
-                                view_sel.oneTime(250, fn_reveal_view);
-                            } else {
-                                nobody_sel.stop(true).fadeOut(250, fn_reveal_view);
-                            }
+                            container_sel.attr('data-username', username);
+                            view_sel.appendTo(container_sel);
+
+                            // Append username label
+                            container_sel.append(
+                                '<span class="label_username">' + username.htmlEnc() + '</span>'
+                            );
+
+                            // Update counter
+                            muji_sel.attr(
+                                'data-count',
+                                ++count_participants
+                            );
                         } else {
-                            fn_reveal_view();
+                            // Room is full...
+                            muji_sel.find('.chatroom_participants .participants_full:hidden').show();
                         }
                     }
 
+                    nobody_sel.hide();
+                    Muji._update_count_participants(count_participants);
+
                     // IMPORTANT: return view selector
-                    return view_sel[0];
+                    return (view_sel !== null) ? view_sel[0] : view_sel;
                 },
                 
                 remove_remote_view: function(muji, username) {
                     Console.log('Muji._args', 'remove_remote_view');
 
-                    var nobody_sel = $('#room_container h6');
-                    var container_sel = $('#room_container .video_remote_container').filter(function() {
+                    var muji_sel = $('#muji');
+                    var nobody_sel = muji_sel.find('.empty_message');
+                    var remote_container_sel = $('#muji .remote_container');
+                    var remote_video_shaper_sel = remote_container_sel.find('.remote_video_shaper');
+
+                    var container_sel = remote_video_shaper_sel.filter(function() {
                         return ($(this).attr('data-username') + '') === (username + '');
                     });
 
+                    var count_participants = remote_video_shaper_sel.filter(':has(video)').size();
+
                     // Exists in view?
                     if(container_sel.size()) {
-                        container_sel.stop(true).fadeOut(250, function() {
-                            $(this).remove();
+                        var view_sel = container_sel.find('video');
 
-                            if(!$('#room_container .video_remote_container').size() && nobody_sel.is(':hidden')) {
-                                nobody_sel.stop(true).fadeIn(400);
+                        // Remove video
+                        view_sel.stop(true).fadeOut(250, function() {
+                            container_sel.empty();
+
+                            // Update counter
+                            muji_sel.attr(
+                                'data-count',
+                                --count_participants
+                            );
+
+                            // Nobody left in the room?
+                            if(!remote_video_shaper_sel.find('video').size()) {
+                                nobody_sel.show();
+                                muji_sel.removeAttr('data-count');
                             }
+
+                            // Update participants counter
+                            muji_sel.find('.chatroom_participants .participants_full:visible').hide();
+                            Muji._update_count_participants(count_participants);
                         });
 
                         // IMPORTANT: return view selector
-                        var view_sel = container_sel.find('video.video_remote');
-
                         if(view_sel.size()) {
                             return view_sel[0];
                         }
@@ -444,12 +490,12 @@ var Muji = (function() {
 
                 self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
 
-                Console.debug('Receive Muji call: ' + args_invite.jid);
+                Console.debug('Receive Muji call: ' + room);
             } else {
                 self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
                 self._session.join();
 
-                Console.debug('Create Muji call: ' + args_invite.jid);
+                Console.debug('Create Muji call: ' + room);
             }
 
             Console.debug('Join Muji conference: ' + room);
@@ -459,6 +505,35 @@ var Muji = (function() {
             Console.error('Muji._new', e);
         } finally {
             return status;
+        }
+
+    };
+
+
+    /**
+     * Updates the participants counter value
+     * @private
+     * @param {number} count_participants
+     * @return {undefined}
+     */
+    self._update_count_participants = function(count_participants) {
+
+        try {
+            count_participants = (count_participants || 0);
+
+            var participants_counter_sel = $('#muji .chatroom_participants .participants_counter');
+
+            if(count_participants === 1) {
+                participants_counter_sel.text(
+                    Common.printf(Common._e("%s participant"), count_participants)
+                );
+            } else {
+                participants_counter_sel.text(
+                    Common.printf(Common._e("%s participants"), count_participants)
+                );
+            }
+        } catch(e) {
+            Console.error('Muji._update_count_participants', e);
         }
 
     };
@@ -483,6 +558,27 @@ var Muji = (function() {
             }
         } catch(e) {
             Console.error('Muji._adapt', e);
+        }
+
+    };
+
+
+    /**
+     * Scrolls down to last received message
+     * @private
+     * @return {undefined}
+     */
+    self._message_scroll = function() {
+
+        try {
+            var chatroom_view_sel = $('#muji .chatroom .chatroom_view');
+
+            // Scroll down to message
+            if(chatroom_view_sel[0]) {
+                chatroom_view_sel[0].scrollTop = chatroom_view_sel[0].scrollHeight;
+            }
+        } catch(e) {
+            Console.error('Muji._message_scroll', e);
         }
 
     };
@@ -902,12 +998,12 @@ var Muji = (function() {
                             '</div>' + 
 
                             '<div class="remote_container">' + 
-                                '<div class="remote_video_shaper"></div>' + 
-                                '<div class="remote_video_shaper"></div>' + 
-                                '<div class="remote_video_shaper"></div>' + 
-                                '<div class="remote_video_shaper"></div>' + 
-                                '<div class="remote_video_shaper"></div>' + 
-                                '<div class="remote_video_shaper"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
+                                '<div class="remote_video_shaper remote_video"></div>' + 
                             '</div>' + 
 
                             '<div class="empty_message">' + 
@@ -919,6 +1015,8 @@ var Muji = (function() {
                             '<div class="chatroom_participants">' + 
                                 '<div class="participants_default_view">' + 
                                     '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' + 
+                                    '<span class="participants_full">' + Common._e("(full)") + '</span>' + 
+
                                     '<a class="participants_invite call-images" href="#" title="' + Common._e("Invite people...") + '"></a>' + 
                                 '</div>' + 
 
@@ -993,6 +1091,8 @@ var Muji = (function() {
                 $('#muji'),
                 $('#muji .videoroom')
             );
+
+            self._message_scroll();
         } catch(e) {
             Console.error('Muji._show_interface', e);
         } finally {

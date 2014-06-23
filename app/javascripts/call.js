@@ -715,19 +715,21 @@ var Call = (function() {
             videobox_sel.find('.remote_video').each(function() {
                 remote_video_sel = $(this).find('video');
 
-                // Process new sizes
-                sizes = Call._process_size(
-                    $(this),
-                    remote_video_sel[0]
-                );
+                if(remote_video_sel.size()) {
+                    // Process new sizes
+                    sizes = Call._process_size(
+                        $(this),
+                        remote_video_sel[0]
+                    );
 
-                // Apply new sizes
-                remote_video_sel.css({
-                    'height': sizes.height,
-                    'width': sizes.width,
-                    'margin-top': sizes.top,
-                    'margin-left': sizes.left
-                });
+                    // Apply new sizes
+                    remote_video_sel.css({
+                        'height': sizes.height,
+                        'width': sizes.width,
+                        'margin-top': sizes.top,
+                        'margin-left': sizes.left
+                    });
+                }
             });
         } catch(e) {
             Console.error('Call.adapt_remote', e);

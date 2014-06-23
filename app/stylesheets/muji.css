@@ -26,83 +26,117 @@ Author: Valérian Saliou
 
 /* Default video */
 #muji .remote_container .remote_video_shaper {
+    overflow: hidden;
     display: none;
     float: left;
+    position: relative;
 }
 
 /* 1 video view */
-#muji .remote_container[data-count="1"] .remote_video_shaper:nth-child(1) {
+#muji[data-count="1"] .remote_container .remote_video_shaper:nth-child(1) {
     width: 100%;
     height: 100%;
     display: block;
 }
 
 /* 2 video views */
-#muji .remote_container[data-count="2"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="2"] .remote_video_shaper:nth-child(2) {
+#muji[data-count="2"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="2"] .remote_container .remote_video_shaper:nth-child(2) {
     width: 50%;
     height: 100%;
     display: block;
 }
 
 /* 3 video views */
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(2),
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(3) {
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(2),
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(3) {
     height: 50%;
     display: block;
 }
 
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(1) {
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(1) {
     width: 100%;
     float: none;
 }
 
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(2),
-#muji .remote_container[data-count="3"] .remote_video_shaper:nth-child(3) {
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(2),
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(3) {
     width: 50%;
 }
 
 /* 4 video views */
-#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(2),
-#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(3),
-#muji .remote_container[data-count="4"] .remote_video_shaper:nth-child(4) {
+#muji[data-count="4"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="4"] .remote_container .remote_video_shaper:nth-child(2),
+#muji[data-count="4"] .remote_container .remote_video_shaper:nth-child(3),
+#muji[data-count="4"] .remote_container .remote_video_shaper:nth-child(4) {
     height: 50%;
     width: 50%;
     display: block;
 }
 
 /* 5 video views */
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(2),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(3),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(4),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(5) {
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(2),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(3),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(4),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(5) {
     height: 50%;
     display: block;
 }
 
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(2) {
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(2) {
     width: 50%;
 }
 
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(3),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(4),
-#muji .remote_container[data-count="5"] .remote_video_shaper:nth-child(5) {
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(3),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(4),
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(5) {
     width: 33.33333333%;
 }
 
 /* 6 video views */
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(1),
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(2),
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(3),
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(4),
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(5),
-#muji .remote_container[data-count="6"] .remote_video_shaper:nth-child(6) {
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(1),
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(2),
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(3),
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(4),
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(5),
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(6) {
     height: 50%;
     width: 33.33333333%;
+    display: block;
+}
+
+#muji .remote_container .remote_video_shaper .label_username {
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.6);
+    color: #ffffff;
+    font-size: 0.75em;
+    padding: 3px 6px 4px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+html[dir="rtl"] #muji .remote_container .remote_video_shaper .label_username {
+    padding-right: 10px;
+    padding-left: 6px;
+    left: auto;
+    right: 0;
+}
+
+#muji[data-count="1"] .remote_container .remote_video_shaper .label_username,
+#muji[data-count="2"] .remote_container .remote_video_shaper .label_username,
+#muji[data-count="3"] .remote_container .remote_video_shaper:nth-child(1) .label_username,
+#muji[data-count="4"] .remote_container .remote_video_shaper:nth-child(n+1):nth-child(-n+2) .label_username,
+#muji[data-count="5"] .remote_container .remote_video_shaper:nth-child(n+1):nth-child(-n+2) .label_username,
+#muji[data-count="6"] .remote_container .remote_video_shaper:nth-child(n+1):nth-child(-n+3) .label_username {
+    top: 48px;
+}
+
+#muji .remote_container .remote_video_shaper:hover .label_username {
     display: block;
 }
 
@@ -134,18 +168,36 @@ Author: Valérian Saliou
     right: 280px;
 }
 
+html[dir="rtl"] #muji .videoroom {
+    right: 0;
+    left: 280px;
+}
+
 #muji .videoroom .topbar .controls {
     margin-left: 18px;
+}
+
+html[dir="rtl"] #muji .videoroom .topbar .controls {
+    margin-right: 18px;
 }
 
 #muji .videoroom .topbar .elapsed {
     margin-left: 80px;
 }
 
+html[dir="rtl"] #muji .videoroom .topbar .elapsed {
+    margin-right: 80px;
+}
+
 #muji .chatroom {
     background: #ffffff;
     width: 280px;
     right: 0;
+}
+
+html[dir="rtl"] #muji .chatroom {
+    right: auto;
+    left: 0;
 }
 
 #muji .videoroom .local_video {
@@ -173,13 +225,26 @@ Author: Valérian Saliou
     height: 40px;
 }
 
-#muji .chatroom .chatroom_participants .participants_default_view .participants_counter {
+#muji .chatroom .chatroom_participants .participants_default_view .participants_counter,
+#muji .chatroom .chatroom_participants .participants_default_view .participants_full {
     color: #444444;
     font-size: 0.9em;
     font-weight: bold;
     letter-spacing: 1px;
     margin-top: 11px;
     display: inline-block;
+}
+
+#muji .chatroom .chatroom_participants .participants_default_view .participants_full {
+    color: #5a6d7f;
+    font-size: 0.8em;
+    margin-left: 6px;
+    display: none;
+}
+
+html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_default_view .participants_full {
+    margin-left: auto;
+    margin-right: 6px;
 }
 
 #muji .chatroom .chatroom_participants .participants_default_view .participants_invite {
@@ -191,6 +256,11 @@ Author: Valérian Saliou
     position: absolute;
     top: 14px;
     right: 16px;
+}
+
+html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_default_view .participants_invite {
+    right: auto;
+    left: 16px;
 }
 
 #muji .chatroom .chatroom_participants .participants_default_view .participants_invite:hover,
@@ -229,6 +299,11 @@ Author: Valérian Saliou
     display: inline-block;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove {
+    margin-left: auto;
+    margin-right: 3px;
+}
+
 #muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:hover,
 #muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:focus,
 #muji .chatroom .chatroom_participants .participants_invite_box .participants_invite_list .invite_one .invite_one_remove:active {
@@ -256,6 +331,11 @@ Author: Valérian Saliou
     margin-left: 8px;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form {
+    margin-left: auto;
+    margin-right: 8px;
+}
+
 #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form input.invite_xid {
     font-size: 0.8em;
     width: 100%;
@@ -272,22 +352,32 @@ Author: Valérian Saliou
     bottom: 41px;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_view {
+    padding-left: 8px;
+}
+
 #muji .chatroom .chatroom_view .room_message {
     margin-top: 10px;
     position: relative;
-}
-
-#muji .chatroom .chatroom_view .room_message .message_content {
-    /* TODO */
 }
 
 #muji .chatroom .chatroom_view .room_message.me .message_content {
     float: left;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message.me .message_content {
+    float: right;
+}
+
 #muji .chatroom .chatroom_view .room_message.him .message_content {
     margin-right: 30px;
     float: right;
+}
+
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message.him .message_content {
+    margin-right: auto;
+    margin-left: 30px;
+    float: left;
 }
 
 #muji .chatroom .chatroom_view .room_message .message_content .message_bubble {
@@ -306,11 +396,29 @@ Author: Valérian Saliou
     border-bottom-left-radius: 0;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message.me .message_content .message_bubble {
+    -moz-border-radius-bottomleft: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 #muji .chatroom .chatroom_view .room_message.him .message_content .message_bubble {
     background-color: #bcdf6a;
     -moz-border-radius-bottomright: 0;
     -webkit-border-bottom-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message.him .message_content .message_bubble {
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 #muji .chatroom .chatroom_view .room_message .message_content .message_author {
@@ -324,10 +432,19 @@ Author: Valérian Saliou
     text-align: right;
 }
 
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message.him .message_content .message_author {
+    text-align: left;
+}
+
 #muji .chatroom .chatroom_view .room_message .message_avatar {
     position: absolute;
     right: 0;
     bottom: 16px;
+}
+
+html[dir="rtl"] #muji .chatroom .chatroom_view .room_message .message_avatar {
+    right: auto;
+    left: 0;
 }
 
 #muji .chatroom .chatroom_view .room_message .message_avatar.avatar-container {
@@ -360,6 +477,11 @@ Author: Valérian Saliou
     left: 12px;
 }
 
+html[dir="rtl"] #muji .chatroom form.chatroom_form .message_icon {
+    left: auto;
+    right: 12px;
+}
+
 #muji .chatroom form.chatroom_form .message_separator {
     background: #e9e9e9;
     width: 1px;
@@ -369,12 +491,22 @@ Author: Valérian Saliou
     left: 40px;
 }
 
+html[dir="rtl"] #muji .chatroom form.chatroom_form .message_separator {
+    left: auto;
+    right: 40px;
+}
+
 #muji .chatroom form.chatroom_form .message_input_container {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 52px;
+}
+
+html[dir="rtl"] #muji .chatroom form.chatroom_form .message_input_container {
+    left: auto;
+    right: 52px;
 }
 
 #muji .chatroom form.chatroom_form .message_input_container input.message_input {
