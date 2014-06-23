@@ -182,7 +182,7 @@ var Muji = (function() {
                     Call.notify(
                         JSJAC_JINGLE_SESSION_MUJI,
                         muji.get_to(),
-                        'preparing',
+                        'waiting',
                         muji.get_media(),
                         Common.getXID()
                     );
@@ -245,6 +245,10 @@ var Muji = (function() {
                 
                 session_leave_error: function(muji, stanza) {
                     self._reset();
+
+                    if(typeof muji.parent != 'undefined') {
+                        muji = muji.parent;
+                    }
 
                     Call.notify(
                         JSJAC_JINGLE_SESSION_MUJI,
@@ -976,7 +980,7 @@ var Muji = (function() {
                             'text': Common._e("Decline"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.leave();
+                                self._session.abort();
                                 Audio.stop('incoming-call');
                             }
                         }
@@ -1000,7 +1004,7 @@ var Muji = (function() {
                             'text': Common._e("Decline"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.leave();
+                                self._session.abort();
                                 Audio.stop('incoming-call');
                             }
                         }
@@ -1015,14 +1019,14 @@ var Muji = (function() {
                             'text': Common._e("Cancel"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.leave();
+                                self._session.abort();
                             }
                         }
                     }
                 },
 
                 'waiting': {
-                    'text': Common._e("Waiting..."),
+                    'text': Common._e("Preparing group call..."),
 
                     'buttons': {
                         'cancel': {
