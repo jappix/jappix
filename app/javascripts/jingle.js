@@ -924,7 +924,7 @@ var Jingle = (function() {
                         '</div>' + 
 
                         '<div class="remote_video">' + 
-                            '<video src="" alt=""></video>' + 
+                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_remote.png' + '"></video>' + 
                         '</div>' + 
 
                         '<div class="branding call-images"></div>' + 
@@ -972,11 +972,13 @@ var Jingle = (function() {
     self._show_interface = function() {
 
         try {
-            Call.show_interface(
-                self,
-                $('#jingle'),
-                $('#jingle .videobox')
-            );
+            if(self.is_video()) {
+                Call.show_interface(
+                    self,
+                    $('#jingle'),
+                    $('#jingle .videobox')
+                );
+            }
         } catch(e) {
             Console.error('Jingle._show_interface', e);
         } finally {

@@ -22,6 +22,7 @@ var Muji = (function() {
 
     /* Variables */
     self._session = null;
+    self._caller_xid = null;
 
 
     /**
@@ -36,11 +37,10 @@ var Muji = (function() {
 
             if(call_tool_sel.is('.active')) {
                 Console.info('Opened call notification drawer');
-            } else if(call_tool_sel.is('.streaming.video')) {
-                // Videoroom?
+            } else if(call_tool_sel.is('.streaming')) {
                 self._show_interface();
 
-                Console.info('Opened Muji videoroom');
+                Console.info('Opened Muji box');
             } else {
                 Console.warn('Could not open any Muji tool (race condition on state)');
             }
@@ -151,7 +151,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'preparing',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_prepare_pending');
@@ -172,7 +172,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'error',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_prepare_error');
@@ -184,7 +184,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'waiting',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_initiate_pending');
@@ -209,7 +209,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'error',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_initiate_error');
@@ -223,7 +223,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'ending',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_leave_pending');
@@ -237,7 +237,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'ended',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_leave_success');
@@ -255,7 +255,7 @@ var Muji = (function() {
                         muji.get_to(),
                         'ended',
                         muji.get_media(),
-                        Common.getXID()
+                        self.get_caller_xid()
                     );
 
                     Console.log('Muji._args', 'session_leave_error');
@@ -360,8 +360,15 @@ var Muji = (function() {
                         if(first_empty_view_sel.size()) {
                             container_sel = first_empty_view_sel;
 
+                            // Remote poster
+                            var remote_poster = './images/placeholders/jingle_video_remote.png';
+
+                            if(media === 'audio') {
+                                remote_poster = './images/placeholders/jingle_audio_remote.png';
+                            }
+
                             // Append view
-                            view_sel = $('<video src="" alt=""></video>');
+                            view_sel = $('<video src="" alt="" poster="' + remote_poster + '"></video>');
 
                             container_sel.attr('data-username', username);
                             view_sel.appendTo(container_sel);
@@ -499,10 +506,13 @@ var Muji = (function() {
                                                                              : JSJAC_JINGLE_MEDIA_AUDIO;
 
                 self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
+                self._caller_xid = Common.bareXID(args_invite.from);
 
                 Console.debug('Receive Muji call: ' + room);
             } else {
                 self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_MUJI, args);
+                self._caller_xid = Common.getXID();
+
                 self._session.join();
 
                 Console.debug('Create Muji call: ' + room);
@@ -574,6 +584,326 @@ var Muji = (function() {
             }
         } catch(e) {
             Console.error('Muji._update_invite_participants', e);
+        }
+
+    };
+
+
+    /**
+     * Resets the participants invite filter
+     * @private
+     * @return {undefined}
+     */
+    self._reset_participants_invite_filter = function() {
+
+        try {
+            // Selectors
+            var chatroom_sel = $('#muji .chatroom');
+            var invite_form_sel = chatroom_sel.find('form.participants_invite_form');
+            var invite_search_sel = chatroom_sel.find('.participants_invite_search');
+
+            // Apply
+            invite_form_sel.find('input.invite_xid').val('');
+
+            invite_search_sel.empty();
+        } catch(e) {
+            Console.error('Muji._reset_participants_invite_filter', e);
+        }
+
+    };
+
+
+    /**
+     * Engages the participants invite filter
+     * @private
+     * @param {string} value
+     * @return {undefined}
+     */
+    self._engage_participants_invite_filter = function(value) {
+
+        try {
+            // Selectors
+            var chatroom_sel = $('#muji .chatroom');
+            var invite_input_sel = chatroom_sel.find('form.participants_invite_form input.invite_xid');
+            var invite_search_sel = chatroom_sel.find('.participants_invite_search');
+
+            // Reset UI
+            invite_search_sel.empty();
+
+            // Proceed search
+            var results_arr = Search.processBuddy(value);
+            var results_html = '';
+            var bold_regex = new RegExp('((^)|( ))' + value, 'gi');
+
+            // Exclude already selected buddies
+            var exclude_obj = self._list_participants_invite_list();
+
+            if(results_arr && results_arr.length) {
+                var i, j,
+                    cur_xid, cur_full_xid, cur_hash, cur_support, cur_name, cur_title,
+                    cur_name_bolded, cur_support_class;
+
+                for(i = 0; i < results_arr.length; i++) {
+                    // Generate result data
+                    cur_xid = results_arr[i];
+
+                    if(exclude_obj[cur_xid] !== 1) {
+                        cur_hash = hex_md5(cur_xid);
+                        cur_name = Name.getBuddy(cur_xid);
+
+                        // Get target's full XID
+                        cur_full_xid = Caps.getFeatureResource(cur_xid, NS_MUJI);
+                        cur_support = null;
+
+                        if(cur_full_xid) {
+                            if(Caps.getFeatureResource(cur_xid, NS_JINGLE_APPS_RTP_VIDEO)) {
+                                cur_support = 'video';
+                            } else {
+                                cur_support = 'audio';
+                            }
+                        }
+
+                        // Generate a hint title & a class
+                        if(cur_support) {
+                            cur_title = Common.printf(Common._e("%s is able to receive group calls."), cur_name);
+                            cur_support_class = 'participant_search_has_' + cur_support;
+                        } else {
+                            cur_title = Common.printf(Common._e("%s may not support group calls."), cur_name);
+                            cur_support_class = 'participant_search_unsupported';
+                        }
+
+                        // Bold matches in name
+                        cur_name_bolded = cur_name.htmlEnc().replace(bold_regex, '<b>$&</b>');
+
+                        // Generate result HTML
+                        results_html += 
+                        '<a class="participant_search_one ' + cur_support_class + ' ' + cur_hash + '" href="#" title="' + Common.encodeQuotes(cur_title) + '" data-xid="' + Common.encodeQuotes(cur_full_xid) + '" data-support="' + Common.encodeQuotes(cur_support) + '">' + 
+                            '<span class="avatar-container">' + 
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                            '</span>' + 
+
+                            '<span class="details">' + 
+                                '<span class="name">' + cur_name_bolded + '</span>' + 
+                                '<span class="feature call-images"></span>' + 
+                            '</span>' + 
+                        '</a>';
+                    }
+                }
+
+                // Add to DOM
+                invite_search_sel.append(results_html);
+
+                var search_one_sel = invite_search_sel.find('a.participant_search_one');
+                search_one_sel.filter(':first').addClass('hover');
+
+                // Apply avatars
+                for(j = 0; j < results_arr.length; j++) {
+                    Avatar.get(results_arr[j], 'cache', 'true', 'forget');
+                }
+
+                // Apply events
+                search_one_sel.click(function() {
+                    var this_sel = $(this);
+
+                    self._add_participants_invite_list(
+                        this_sel.attr('data-xid'),
+                        this_sel.text(),
+                        this_sel.attr('data-support')
+                    );
+
+                    self._reset_participants_invite_filter();
+                    invite_input_sel.focus();
+                });
+
+                search_one_sel.hover(function() {
+                    search_one_sel.filter('.hover').removeClass('hover');
+                    $(this).addClass('hover');
+                }, function() {
+                    $(this).removeClass('hover');
+                });
+            }
+        } catch(e) {
+            Console.error('Muji._engage_participants_invite_filter', e);
+        }
+
+    };
+
+
+    /**
+     * Sends participant actual Muji invite
+     * @private
+     * @param {string|object} xid
+     * @return {undefined}
+     */
+    self._send_participants_invite_list = function(xid) {
+
+        try {
+            if(self.in_call()) {
+                self._session.invite(xid);
+            }
+        } catch(e) {
+            Console.error('Muji._send_participants_invite_list', e);
+        }
+
+    };
+
+
+    /**
+     * Adds a participant to the invite list
+     * @private
+     * @param {string} xid
+     * @param {string} name
+     * @param {string} support
+     * @return {undefined}
+     */
+    self._add_participants_invite_list = function(xid, name, support) {
+
+        try {
+            // Selectors
+            var chatroom_sel = $('#muji .chatroom');
+            var invite_form_sel = chatroom_sel.find('form.participants_invite_form');
+            var invite_list_sel = chatroom_sel.find('.participants_invite_list');
+
+            var pre_invite_one_sel = invite_list_sel.find('.invite_one').filter(function() {
+                return (xid === $(this).attr('data-xid')) && true;
+            });
+
+            if(pre_invite_one_sel.size()) {
+                throw 'Already existing for: ' + xid;
+            }
+
+            var title;
+            var _class = [];
+
+            switch(support) {
+                case 'audio':
+                case 'video':
+                    title = Common.printf(Common._e("%s is able to receive group calls."), name); break;
+
+                default:
+                    title = Common.printf(Common._e("%s may not support group calls."), name);
+                    _class.push('invite_unsupported');
+            }
+
+            // Append element
+            var invite_one_sel = $('<span class="invite_one ' + _class.join(' ') + '" data-xid="' + Common.encodeQuotes(xid) + '" title="' + title + '">' + name.htmlEnc() + '<a class="invite_one_remove call-images" href="#"></a></span>');
+            invite_one_sel.appendTo(invite_list_sel);
+
+            // Events
+            invite_one_sel.find('a.invite_one_remove').click(function() {
+                self._remove_participants_invite_list(invite_one_sel);
+            });
+
+            if(invite_list_sel.find('.invite_one').size() >= 1) {
+                invite_form_sel.find('.invite_validate').show();
+                invite_list_sel.filter(':hidden').show();
+            }
+        } catch(e) {
+            Console.error('Muji._add_participants_invite_list', e);
+        }
+
+    };
+
+
+    /**
+     * Removes a participant from the invite list
+     * @private
+     * @param {object} participant_sel
+     * @return {undefined}
+     */
+    self._remove_participants_invite_list = function(participant_sel) {
+
+        try {
+            // Selectors
+            var chatroom_sel = $('#muji .chatroom');
+            var invite_form_sel = chatroom_sel.find('form.participants_invite_form');
+            var invite_list_sel = chatroom_sel.find('.participants_invite_list');
+
+            participant_sel.remove();
+
+            if(invite_list_sel.find('.invite_one').size() === 0) {
+                invite_form_sel.find('.invite_validate').hide();
+                invite_list_sel.filter(':visible').hide();
+            }
+
+            invite_form_sel.find('input.invite_xid').focus();
+        } catch(e) {
+            Console.error('Muji._remove_participants_invite_list', e);
+        }
+
+    };
+
+
+    /**
+     * Hovers either the next or previous participant
+     * @private
+     * @param {string} direction
+     * @return {undefined}
+     */
+    self._hover_participants_invite_list = function(direction) {
+
+        try {
+            // Up/down: navigate through results
+            var chatroom_sel = $('#muji .chatroom');
+            var participants_invite_search_sel = chatroom_sel.find('.participants_invite_search');
+            var participant_search_one_sel = chatroom_sel.find('.participant_search_one');
+
+            if(participant_search_one_sel.size()) {
+                var hover_index = participant_search_one_sel.index($('.hover'));
+                
+                // Up (decrement) or down (increment)?
+                if(direction === 'up') {
+                    hover_index--;
+                } else {
+                    hover_index++;
+                }
+                
+                if(!hover_index) {
+                    hover_index = 0;
+                }
+                
+                // Nobody before/after?
+                if(participant_search_one_sel.eq(hover_index).size() === 0) {
+                    if(direction === 'up') {
+                        hover_index = participant_search_one_sel.filter(':last').index();
+                    } else {
+                        hover_index = 0;
+                    }
+                }
+                
+                // Hover the previous/next user
+                participant_search_one_sel.removeClass('hover');
+                participant_search_one_sel.eq(hover_index).addClass('hover');
+
+                // Scroll to the hovered user (if out of limits)
+                participants_invite_search_sel.scrollTo(
+                    participant_search_one_sel.filter('.hover:first'), 0, { margin: true }
+                );
+            }
+        } catch(e) {
+            Console.error('Muji._hover_participants_invite_list', e);
+        }
+
+    };
+
+
+    /**
+     * Lists the participants in the invite list
+     * @private
+     * @return {object}
+     */
+    self._list_participants_invite_list = function() {
+
+        var participants_obj = {};
+
+        try {
+            $('#muji .chatroom .participants_invite_list .invite_one').each(function() {
+                participants_obj[$(this).attr('data-xid')] = 1;
+            });
+        } catch(e) {
+            Console.error('Muji._list_participants_invite_list', e);
+        } finally {
+            return participants_obj;
         }
 
     };
@@ -955,6 +1285,22 @@ var Muji = (function() {
 
 
     /**
+     * Returns the caller XID
+     * @public
+     * @return {string}
+     */
+    self.get_caller_xid = function() {
+
+        try {
+            return self._caller_xid || Common.getXID();
+        } catch(e) {
+            Console.error('Muji.get_caller_xid', e);
+        }
+
+    };
+
+
+    /**
      * Get the notification map
      * @private
      * @return {object}
@@ -1117,6 +1463,13 @@ var Muji = (function() {
                 throw 'Muji interface already exist!';
             }
 
+            // Local poster
+            var local_poster = './images/placeholders/jingle_video_local.png';
+
+            if(mode === 'audio') {
+                local_poster = './images/placeholders/jingle_audio_local.png';
+            }
+
             // Create DOM
             $('body').append(
                 '<div id="muji" class="videochat_box lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
@@ -1137,7 +1490,7 @@ var Muji = (function() {
                             '</div>' + 
 
                             '<div class="local_video">' + 
-                                '<video src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' + 
+                                '<video src="" alt="" poster="' + local_poster + '"></video>' + 
                             '</div>' + 
 
                             '<div class="remote_container">' + 
@@ -1164,13 +1517,20 @@ var Muji = (function() {
                                 '</div>' + 
 
                                 '<div class="participants_invite_box">' + 
-                                    '<div class="participants_invite_list">' + 
-                                        '<span class="invite_one" data-xid="valerian@jappix.com">Valérian Saliou<a class="invite_one_remove call-images" href="#"></a></span>' + 
-                                    '</div>' + 
+                                    '<div class="participants_invite_list"></div>' + 
 
                                     '<form class="participants_invite_form" action="#" method="post">' + 
-                                        '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" />' + 
+                                        '<div class="invite_input_container">' + 
+                                            '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" autocomplete="off" />' + 
+                                        '</div>' + 
+
+                                        '<span class="invite_validate">' + 
+                                            '<span class="invite_separator"></span>' + 
+                                            '<a class="invite_go call-images" href="#"></a>' + 
+                                        '</span>' + 
                                     '</form>' + 
+
+                                    '<div class="participants_invite_search"></div>' + 
                                 '</div>' + 
                             '</div>' + 
 
@@ -1181,7 +1541,7 @@ var Muji = (function() {
                                 '<span class="message_separator"></span>' + 
 
                                 '<div class="message_input_container">' + 
-                                    '<input class="message_input input-reset" name="message" type="text" placeholder="' + Common._e("Send a message...") + '" />' + 
+                                    '<input class="message_input input-reset" name="message" type="text" placeholder="' + Common._e("Send a message...") + '" autocomplete="off" />' + 
                                 '</div>' + 
                             '</form>' + 
                         '</div>' + 
@@ -1284,6 +1644,8 @@ var Muji = (function() {
             var participants_invite_list = participants_invite_box.find('.participants_invite_list');
             var participants_invite_form = participants_invite_box.find('.participants_invite_form');
             var participants_invite_input = participants_invite_form.find('input[name="xid"]');
+            var participants_invite_validate = participants_invite_form.find('.invite_validate');
+            var participants_invite_search = participants_invite_box.find('.participants_invite_search');
 
             // Apply events
             Call.events_interface(
@@ -1303,8 +1665,11 @@ var Muji = (function() {
                         } else {
                             participants_invite_input.blur();
                             participants_invite_box.stop(true).slideUp(250, function() {
+                                // Reset everything
                                 participants_invite_list.empty().hide();
+                                participants_invite_validate.hide();
                                 participants_invite_input.val('');
+                                self._reset_participants_invite_filter();
                             });
                         }
                     }
@@ -1316,19 +1681,47 @@ var Muji = (function() {
             });
 
             // Invite input key events
-            participants_invite_input.keyup(function(e) {
+            participants_invite_input.keydown(function(e) {
                 try {
-                    if(e.keyCode == 13) {
-                        // Enter : continue
-                        // TODO
-                    } else if(e.keyCode == 27) {
-                        // Escape: close interface
-                        participants_invite.click();
+                    if(e.keyCode == 9) {
+                        self._hover_participants_invite_list('down');
+
+                        return false;
                     }
                 } catch(_e) {
                     Console.error('Muji._show_interface[event]', _e);
-                } finally {
-                    return false;
+                }
+            });
+
+            participants_invite_input.keyup(function(e) {
+                try {
+                    var this_sel = $(this);
+
+                    if(e.keyCode == 27) {
+                        // Escape: close interface
+                        if(!this_sel.val().trim()) {
+                            participants_invite.click();
+                        } else {
+                            self._reset_participants_invite_filter();
+                        }
+
+                        return false;
+                    } else if(e.keyCode == 9) {
+                        // Tabulate: skip there (see keydown above)
+                        return false;
+                    } else if(e.keyCode == 38 || e.keyCode == 40) {
+                        var direction = (e.keyCode == 38) ? 'up' : 'down';
+                        self._hover_participants_invite_list(direction);
+
+                        return false;
+                    } else {
+                        // Other keys: assume something has been typed
+                        self._engage_participants_invite_filter(
+                            this_sel.val()
+                        );
+                    }
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
                 }
             });
 
@@ -1340,7 +1733,35 @@ var Muji = (function() {
             // Invite form send event
             participants_invite_form.submit(function() {
                 try {
-                    // TODO
+                    if(participants_invite_search.find('.participant_search_one.hover').size()) {
+                        // Add the hovered user
+                        var participant_search_one_hover_sel = participants_invite_search.find('.participant_search_one.hover:first');
+
+                        if(participant_search_one_hover_sel.size() >= 1) {
+                            participant_search_one_hover_sel.click();
+
+                            return false;
+                        }
+                    } else {
+                        var invite_arr = Object.keys(self._list_participants_invite_list());
+
+                        if(invite_arr && invite_arr.length) {
+                            self._send_participants_invite_list(invite_arr);
+                        }
+
+                        participants_invite.click();
+                    }
+                } catch(_e) {
+                    Console.error('Muji._show_interface[event]', _e);
+                } finally {
+                    return false;
+                }
+            });
+
+            // Invite form validate event
+            participants_invite_validate.find('.invite_go').click(function() {
+                try {
+                    participants_invite_form.submit();
                 } catch(_e) {
                     Console.error('Muji._show_interface[event]', _e);
                 } finally {

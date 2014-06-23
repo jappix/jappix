@@ -490,7 +490,7 @@ var Call = (function() {
             if(call_type === JSJAC_JINGLE_SESSION_MUJI && sender_xid === Common.getXID()) {
                 fullname = Common._e("Conference call");
             } else {
-                fullname = Name.getBuddy(xid).htmlEnc();
+                fullname = Name.getBuddy(sender_xid).htmlEnc();
             }
 
             // Generate buttons code
@@ -609,8 +609,8 @@ var Call = (function() {
             }
 
             // Get the intrinsic size of the video
-            var video_w = video.videoWidth;
-            var video_h = video.videoHeight;
+            var video_w = video[0].videoWidth  || video.width();
+            var video_h = video[0].videoHeight || video.height();
 
             // Get the screen size of the video
             var screen_w = screen.width();
@@ -684,7 +684,7 @@ var Call = (function() {
             // Process new sizes
             var sizes = Call._process_size(
                 local_sel,
-                local_video_sel[0]
+                local_video_sel
             );
 
             // Apply new sizes
@@ -719,7 +719,7 @@ var Call = (function() {
                     // Process new sizes
                     sizes = Call._process_size(
                         $(this),
-                        remote_video_sel[0]
+                        remote_video_sel
                     );
 
                     // Apply new sizes
@@ -854,7 +854,7 @@ var Call = (function() {
     self.show_interface = function(manager, call_sel, video_container_sel) {
 
         try {
-            if(manager.in_call() && manager.is_video()) {
+            if(manager.in_call()) {
                 call_sel.filter(':hidden').show();
 
                 // Launch back some events

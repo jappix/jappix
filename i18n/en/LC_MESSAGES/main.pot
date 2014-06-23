@@ -2163,6 +2163,12 @@ msgstr ""
 msgid "(full)"
 msgstr ""
 
+msgid "%s is able to receive group calls."
+msgstr ""
+
+msgid "%s may not support group calls."
+msgstr ""
+
 msgid "Send a message..."
 msgstr ""
 

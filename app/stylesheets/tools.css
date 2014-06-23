@@ -140,23 +140,27 @@ html[dir="rtl"] #top-content .tools-all {
 
 #top-content .notifications:hover,
 #top-content .music:hover,
-#top-content .call.streaming.video:hover {
+#top-content .call.streaming.video:hover,
+.in_muji_call #top-content .call.streaming.audio:hover {
     cursor: pointer;
 }
 
 #top-content .music:hover,
 #top-content .notifications:hover,
 #top-content .call.streaming.video:hover,
+.in_muji_call #top-content .call.streaming.audio:hover,
 #top-content .music:focus,
 #top-content .notifications:focus,
-#top-content .call.streaming.video:focus {
+#top-content .call.streaming.video:focus,
+.in_muji_call #top-content .call.streaming.audio:focus {
     background-color: rgb(232,241,243);
     background-color: rgba(232,241,243,0.7);
 }
 
 #top-content .music:active,
 #top-content .notifications:active,
-#top-content .call.streaming.video:active {
+#top-content .call.streaming.video:active,
+.in_muji_call #top-content .call.streaming.audio:active {
     background-color: rgb(232,241,243);
     background-color: rgba(232,241,243,0.8);
 }
