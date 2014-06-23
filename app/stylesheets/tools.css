@@ -66,6 +66,11 @@ html[dir="rtl"] #top-content .tools-all {
     display: none;
 }
 
+#top-content .call .notify {
+    margin-left: 0;
+    left: -2px;
+}
+
 #top-content .call.video {
     background-position: 7px -2205px;
 }

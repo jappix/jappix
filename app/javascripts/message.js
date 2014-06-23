@@ -1356,6 +1356,11 @@ var Message = (function () {
             var hash = hex_md5(xid);
             var xHTML = $(node).find('html body').size();
             var is_groupchat_user = false;
+
+            // This message comes from a Muji room (ignore)
+            if(Muji.is_room(xid)) {
+                return false;
+            }
             
             // This message comes from a groupchat user
             if(Utils.isPrivate(xid) && ((type == 'chat') || !type) && resource) {

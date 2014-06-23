@@ -117,7 +117,11 @@ var Muji = (function() {
                             '</div>'
                         );
 
-                        self._message_scroll();
+                        if($('#muji').is(':visible')) {
+                            self._message_scroll();
+                        } else {
+                            self._message_notify();
+                        }
 
                         Console.log('Muji._args > room_message_in', 'Displayed Muji message from: ' + username);
                     }
@@ -376,6 +380,7 @@ var Muji = (function() {
 
                     nobody_sel.hide();
                     Muji._update_count_participants(count_participants);
+                    Muji._update_invite_participants();
 
                     // IMPORTANT: return view selector
                     return (view_sel !== null) ? view_sel[0] : view_sel;
@@ -418,6 +423,7 @@ var Muji = (function() {
                             // Update participants counter
                             muji_sel.find('.chatroom_participants .participants_full:visible').hide();
                             Muji._update_count_participants(count_participants);
+                            Muji._update_invite_participants();
                         });
 
                         // IMPORTANT: return view selector
@@ -540,6 +546,36 @@ var Muji = (function() {
 
 
     /**
+     * Updates the participants invite tool
+     * @private
+     * @return {undefined}
+     */
+    self._update_invite_participants = function() {
+
+        try {
+            var chatroom_participants_sel = $('#muji .chatroom_participants');
+
+            var participants_invite_sel = chatroom_participants_sel.find('.participants_invite');
+            var participants_invite_box_sel = chatroom_participants_sel.find('.participants_invite_box');
+
+            if(self.is_full()) {
+                if(participants_invite_box_sel.is(':visible')) {
+                    participants_invite_box_sel.stop(true);
+                    participants_invite_sel.click();
+                }
+
+                participants_invite_sel.filter(':visible').hide();
+            } else {
+                participants_invite_sel.filter(':hidden').show();
+            }
+        } catch(e) {
+            Console.error('Muji._update_invite_participants', e);
+        }
+
+    };
+
+
+    /**
      * Adapts the Muji view to the window size
      * @private
      * @return {undefined}
@@ -574,11 +610,66 @@ var Muji = (function() {
             var chatroom_view_sel = $('#muji .chatroom .chatroom_view');
 
             // Scroll down to message
-            if(chatroom_view_sel[0]) {
+            if(chatroom_view_sel.size() && chatroom_view_sel.is(':visible')) {
                 chatroom_view_sel[0].scrollTop = chatroom_view_sel[0].scrollHeight;
             }
         } catch(e) {
             Console.error('Muji._message_scroll', e);
+        }
+
+    };
+
+
+    /**
+     * Notifies that a new message has been received
+     * @private
+     * @return {undefined}
+     */
+    self._message_notify = function() {
+
+        try {
+            // Selectors
+            var tools_call_sel = $('#top-content .tools.call');
+            var notify_sel = tools_call_sel.find('.notify');
+
+            if(!notify_sel.size()) {
+                notify_sel = $(
+                    '<div class="notify one-counter" data-counter="0">0</div>'
+                );
+
+                notify_sel.appendTo(tools_call_sel);
+            }
+
+            // Count & update
+            var count_notifications = parseInt((notify_sel.attr('data-counter') || 0), 10);
+            count_notifications++;
+
+            notify_sel.text(count_notifications);
+            notify_sel.attr('data-counter', count_notifications);
+
+            // Update general interface
+            Interface.updateTitle();
+        } catch(e) {
+            Console.error('Muji._message_notify', e);
+        }
+
+    };
+
+
+    /**
+     * Removes displayed message notifications
+     * @private
+     * @return {undefined}
+     */
+    self._message_unnotify = function() {
+
+        try {
+            $('#top-content .tools.call .notify').remove();
+
+            // Update general interface
+            Interface.updateTitle();
+        } catch(e) {
+            Console.error('Muji._message_unnotify', e);
         }
 
     };
@@ -659,6 +750,9 @@ var Muji = (function() {
             self._destroy_interface();
             $('body').removeClass('in_muji_call');
 
+            // Clean notifications
+            self._message_unnotify();
+
             // Hack: stop audio in case it is still ringing
             Audio.stop('incoming-call');
             Audio.stop('outgoing-call');
@@ -730,6 +824,51 @@ var Muji = (function() {
             );
         } catch(e) {
             Console.error('Muji.mute', e);
+        }
+
+    };
+
+
+    /**
+     * Checks whether room given is Muji room or not
+     * @public
+     * @param {string} room
+     * @return {boolean}
+     */
+    self.is_room = function(room) {
+
+        is_room = false;
+
+        try {
+            if(self.in_call() && self._session.get_to()) {
+                is_room = (room === self._session.get_to());
+            }
+        } catch(e) {
+            Console.error('Muji.is_room', e);
+        } finally {
+            return is_room;
+        }
+
+    };
+
+
+    /**
+     * Checks whether room is full or not (over-capacity)
+     * @public
+     * @return {boolean}
+     */
+    self.is_full = function() {
+
+        is_full = false;
+
+        try {
+            if($('#muji .chatroom_participants .participants_full').is(':visible')) {
+                is_full = true;
+            }
+        } catch(e) {
+            Console.error('Muji.is_full', e);
+        } finally {
+            return is_full;
         }
 
     };
@@ -1093,6 +1232,7 @@ var Muji = (function() {
             );
 
             self._message_scroll();
+            self._message_unnotify();
         } catch(e) {
             Console.error('Muji._show_interface', e);
         } finally {

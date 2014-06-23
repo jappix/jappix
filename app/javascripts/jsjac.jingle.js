@@ -2368,7 +2368,7 @@ var R_NS_JINGLE_TRANSPORT                           = /^urn:xmpp:jingle:transpor
 /**
  * @constant
  * @global
- * @type {Arrat}
+ * @type {Array}
  * @readonly
  * @default
  * @public
@@ -2406,6 +2406,23 @@ var MAP_DISCO_JINGLE                                = [
   /* http://xmpp.org/extensions/xep-0262.html */
   NS_JINGLE_APPS_RTP_ZRTP,
 
+  /* http://xmpp.org/extensions/xep-0278.html */
+  NS_JABBER_JINGLENODES,
+
+  /* http://xmpp.org/extensions/xep-0215.html */
+  NS_EXTDISCO
+];
+
+
+/**
+ * @constant
+ * @global
+ * @type {Array}
+ * @readonly
+ * @default
+ * @public
+ */
+var MAP_DISCO_MUJI                                = [
   /* http://xmpp.org/extensions/xep-0272.html */
   NS_MUJI,
 
@@ -2413,13 +2430,7 @@ var MAP_DISCO_JINGLE                                = [
   NS_MUJI_INVITE,
 
   /* http://xmpp.org/extensions/xep-0249.html */
-  NS_JABBER_CONFERENCE,
-
-  /* http://xmpp.org/extensions/xep-0278.html */
-  NS_JABBER_JINGLENODES,
-
-  /* http://xmpp.org/extensions/xep-0215.html */
-  NS_EXTDISCO
+  NS_JABBER_CONFERENCE
 ];
 
 
@@ -4313,14 +4324,14 @@ var JSJaCJingleStorage = new (ring.create(
        * @default
        * @private
        */
-      this._single_initiate = function(stanza) {};
+      this._single_initiate = undefined;
 
       /**
        * @type {Function}
        * @default
        * @private
        */
-      this._muji_invite     = function(stanza) {};
+      this._muji_invite     = undefined;
 
       /**
        * @type {Object}
@@ -4402,6 +4413,18 @@ var JSJaCJingleStorage = new (ring.create(
      * @returns {Function} Single initiate
      */
     get_single_initiate: function() {
+      if(typeof this._single_initiate == 'function')
+        return this._single_initiate;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Single initiate raw value
+     * @public
+     * @returns {Function} Single initiate raw value
+     */
+    get_single_initiate_raw: function() {
       return this._single_initiate;
     },
 
@@ -4411,6 +4434,18 @@ var JSJaCJingleStorage = new (ring.create(
      * @returns {Function} Muji invite
      */
     get_muji_invite: function() {
+      if(typeof this._muji_invite == 'function')
+        return this._muji_invite;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Muji invite raw value
+     * @public
+     * @returns {Function} Muji invite raw value
+     */
+    get_muji_invite_raw: function() {
       return this._muji_invite;
     },
 
@@ -17164,7 +17199,19 @@ var JSJaCJingle = new (ring.create(
      * @returns {Array} Feature namespaces
      */
     disco: function() {
-      return JSJAC_JINGLE_AVAILABLE ? MAP_DISCO_JINGLE : [];
+      // Check for listen status
+      var has_muji = (typeof JSJaCJingleStorage.get_muji_invite_raw() == 'function' && true);
+      var has_jingle = ((has_muji || (typeof JSJaCJingleStorage.get_single_initiate_raw() == 'function')) && true);
+
+      if(JSJAC_JINGLE_AVAILABLE && has_jingle) {
+        if(has_muji) {
+          return MAP_DISCO_JINGLE.concat(MAP_DISCO_MUJI);
+        } else {
+          return MAP_DISCO_JINGLE;
+        }
+      }
+
+      return [];
     },
 
     /**
