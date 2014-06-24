@@ -677,7 +677,7 @@ var Muji = (function() {
 
                         // Generate result HTML
                         results_html += 
-                        '<a class="participant_search_one ' + cur_support_class + ' ' + cur_hash + '" href="#" title="' + Common.encodeQuotes(cur_title) + '" data-xid="' + Common.encodeQuotes(cur_full_xid) + '" data-support="' + Common.encodeQuotes(cur_support) + '">' + 
+                        '<a class="participant_search_one ' + cur_support_class + ' ' + cur_hash + '" href="#" title="' + Common.encodeQuotes(cur_title) + '" data-xid="' + Common.encodeQuotes(cur_full_xid || cur_xid) + '" data-support="' + Common.encodeQuotes(cur_support) + '">' + 
                             '<span class="avatar-container">' + 
                                 '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
                             '</span>' + 
