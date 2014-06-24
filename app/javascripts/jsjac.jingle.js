@@ -3,7 +3,7 @@
  * @fileoverview JSJaC Jingle library, implementation of XEP-0166.
  *
  * @version 0.7.0
- * @date 2014-06-23
+ * @date 2014-06-24
  * @author Valérian Saliou https://valeriansaliou.name/
  * @license MPL 2.0
  *
