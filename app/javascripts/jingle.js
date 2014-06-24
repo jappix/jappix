@@ -258,7 +258,11 @@ var Jingle = (function() {
                 },
 
                 session_terminate_error: function(jingle, stanza) {
-                     // Ensure we this is the same call session ID (SID)
+                    if(typeof jingle.parent != 'undefined') {
+                        jingle = jingle.parent;
+                    }
+
+                    // Ensure we this is the same call session ID (SID)
                     if(self._session.get_sid() == jingle.get_sid()) {
                         if(self._bypass_termination_notify !== true) {
                             self._reset();
