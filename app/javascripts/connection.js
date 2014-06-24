@@ -460,7 +460,7 @@ var Connection = (function () {
             // Remove the waiting item
             Interface.removeGeneralWait();
 
-            // Init Jingle
+            // Init call
             Call.init();
         } catch(e) {
             Console.error('Connection.handleConnected', e);
@@ -522,6 +522,9 @@ var Connection = (function () {
         try {
             Console.info('Jappix is now disconnected.');
             
+            // Abort ongoing call (if any)
+            Call.stop(true);
+
             // Normal disconnection
             if(!self.current_session && !self.connected) {
                 Talk.destroy();

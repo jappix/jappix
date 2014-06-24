@@ -186,13 +186,14 @@ var Call = (function() {
     /**
      * Stops current call
      * @public
+     * @param {boolean} abort
      * @return {boolean}
      */
-    self.stop = function() {
+    self.stop = function(abort) {
 
         try {
-            Jingle.stop();
-            Muji.stop();
+            Jingle.stop(abort);
+            Muji.stop(abort);
         } catch(e) {
             Console.error('Call.stop', e);
         } finally {

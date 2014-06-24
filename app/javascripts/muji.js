@@ -1102,9 +1102,10 @@ var Muji = (function() {
     /**
      * Stops current Muji call
      * @public
+     * @param {boolean} abort
      * @return {boolean}
      */
-    self.stop = function() {
+    self.stop = function(abort) {
 
         try {
             // Reset interface
@@ -1112,7 +1113,12 @@ var Muji = (function() {
 
             // Stop Muji session
             if(self._session !== null) {
-                self._session.leave();
+                if(abort === true) {
+                    self._session.abort();
+                    self._session.get_session_leave_error(self._session, null);
+                } else {
+                    self._session.leave();
+                }
 
                 Console.debug('Stopping current Muji call...');
             } else {

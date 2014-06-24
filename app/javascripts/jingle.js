@@ -503,9 +503,10 @@ var Jingle = (function() {
     /**
      * Stops current Jingle call
      * @public
+     * @param {boolean} abort
      * @return {boolean}
      */
-    self.stop = function() {
+    self.stop = function(abort) {
 
         try {
             // Reset interface
@@ -514,7 +515,13 @@ var Jingle = (function() {
             // Stop Jingle session
             if(self._session !== null) {
                 self._call_ender = 'local';
-                self._session.terminate();
+
+                if(abort === true) {
+                    self._session.abort();
+                    self._session.get_session_terminate_error(self._session, null);
+                } else {
+                    self._session.terminate();
+                }
 
                 Console.debug('Stopping current Jingle call...');
             } else {
