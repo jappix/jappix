@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-29 17:06+0100\n"
+"PO-Revision-Date: 2014-06-24 14:56+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/jappix/language/"
 "fr/)\n"
@@ -197,6 +197,21 @@ msgstr "Ajouter un ami"
 
 msgid "Your groupchats"
 msgstr "Vos salons de discussion"
+
+msgid "Audio/video conference"
+msgstr "Conférence audio/vidéo"
+
+msgid "Launch a group call"
+msgstr "Lancer un appel de groupe"
+
+msgid "Audio conference"
+msgstr "Conférence audio"
+
+msgid "Video conference"
+msgstr "Conférence vidéo"
+
+msgid "Conference call"
+msgstr "Appel de groupe"
 
 msgid "Manage your favorite groupchats"
 msgstr "Gérer mes salons favoris"
@@ -2387,11 +2402,23 @@ msgstr "Slot AdSense"
 msgid "Stop"
 msgstr "Stop"
 
+msgid "Leave"
+msgstr "Partir"
+
 msgid "Mute"
 msgstr "Muet"
 
 msgid "Unmute"
 msgstr "Audible"
+
+msgid "Nobody there. Invite some people!"
+msgstr "Il n'y a personne. Invitez du monde !"
+
+msgid "Invite people..."
+msgstr "Inviter des personnes..."
+
+msgid "Enter people names..."
+msgstr "Entrez les noms..."
 
 msgid "Is calling you"
 msgstr "Vous appelle"
@@ -2432,6 +2459,24 @@ msgstr "Est déjà en appel"
 msgid "Ending call..."
 msgstr "Fin de l'appel..."
 
+msgid "Incoming group call"
+msgstr "Appel de groupe"
+
+msgid "Preparing group call..."
+msgstr "Préparation de l'appel..."
+
+msgid "Connecting to group call..."
+msgstr "Connexion à l'appel..."
+
+msgid "Group call error"
+msgstr "Erreur d'appel"
+
+msgid "Ending group call..."
+msgstr "Fin de l'appel..."
+
+msgid "Group call ended"
+msgstr "Appel terminé"
+
 msgid "Accept"
 msgstr "Accepter"
 
@@ -2449,6 +2494,24 @@ msgstr "Appel Audio"
 
 msgid "Video Call"
 msgstr "Appel Vidéo"
+
+msgid "%s participant"
+msgstr "%s participant"
+
+msgid "%s participants"
+msgstr "%s participants"
+
+msgid "(full)"
+msgstr "(maxi)"
+
+msgid "%s is able to receive group calls."
+msgstr "%s peut recevoir des appels de groupe."
+
+msgid "%s may not support group calls."
+msgstr "%s ne semble pas supporter les appels de groupe."
+
+msgid "Send a message..."
+msgstr "Envoyer un message..."
 
 msgid "Edited"
 msgstr "Édité"
