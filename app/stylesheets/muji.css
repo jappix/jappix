@@ -359,46 +359,31 @@ html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_invite_box 
 }
 
 #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate {
+    background: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    color: #94a6aa;
+    text-decoration: none;
+    padding: 4px 6px 5px 6px;
     display: none;
+    position: absolute;
+    top: 4px;
+    right: 9px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
 }
 
-#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_go {
+#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate:active {
+    padding-top: 5px;
+    padding-bottom: 4px;
+}
+
+#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_validate_icon {
     background-position: 0 -329px;
     width: 14px;
     height: 11px;
-    opacity: 0.6;
+    margin-top: 2px;
     display: block;
-    position: absolute;
-    top: 11px;
-    right: 16px;
-}
-
-html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_go {
-    right: auto;
-    left: 8px;
-}
-
-#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_go:hover,
-#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_go:active {
-    opacity: 1;
-}
-
-#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_separator,
-#muji .chatroom form.chatroom_form .message_separator {
-    background: #e9e9e9;
-    width: 1px;
-    position: absolute;
-    top: 6px;
-    bottom: 6px;
-}
-
-#muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_separator {
-    right: 40px;
-}
-
-html[dir="rtl"] #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_validate .invite_separator {
-    right: auto;
-    left: 32px;
 }
 
 #muji .chatroom .chatroom_participants .participants_invite_box form.participants_invite_form .invite_input_container {
@@ -672,6 +657,11 @@ html[dir="rtl"] #muji .chatroom form.chatroom_form .message_icon {
 }
 
 #muji .chatroom form.chatroom_form .message_separator {
+    background: #e9e9e9;
+    width: 1px;
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
     left: 40px;
 }
 

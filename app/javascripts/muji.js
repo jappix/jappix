@@ -1516,8 +1516,10 @@ var Muji = (function() {
                         '<div class="chatroom">' + 
                             '<div class="chatroom_participants">' + 
                                 '<div class="participants_default_view">' + 
-                                    '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' + 
-                                    '<span class="participants_full">' + Common._e("(full)") + '</span>' + 
+                                    '<div class="participants_default_details">' + 
+                                        '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' + 
+                                        '<span class="participants_full">' + Common._e("(full)") + '</span>' + 
+                                    '</div>' + 
 
                                     '<a class="participants_invite call-images" href="#" title="' + Common._e("Invite people...") + '"></a>' + 
                                 '</div>' + 
@@ -1530,10 +1532,9 @@ var Muji = (function() {
                                             '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" autocomplete="off" />' + 
                                         '</div>' + 
 
-                                        '<span class="invite_validate">' + 
-                                            '<span class="invite_separator"></span>' + 
-                                            '<a class="invite_go call-images" href="#"></a>' + 
-                                        '</span>' + 
+                                        '<a class="invite_validate" href="#">' + 
+                                            '<span class="invite_validate_icon call-images"></span>' + 
+                                        '</a>' + 
                                     '</form>' + 
 
                                     '<div class="participants_invite_search"></div>' + 
@@ -1765,7 +1766,7 @@ var Muji = (function() {
             });
 
             // Invite form validate event
-            participants_invite_validate.find('.invite_go').click(function() {
+            participants_invite_validate.click(function() {
                 try {
                     participants_invite_form.submit();
                 } catch(_e) {
