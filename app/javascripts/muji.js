@@ -20,6 +20,10 @@ var Muji = (function() {
     var self = {};
 
 
+    /* Constants */
+    self.INVITE_MAX_DELAY = 60;
+
+
     /* Variables */
     self._session = null;
     self._caller_xid = null;
@@ -1020,6 +1024,16 @@ var Muji = (function() {
 
         try {
             if(!Call.is_ongoing()) {
+                // Outdated invite?
+                var invite_delay = DateUtils.readMessageDelay(stanza.getNode(), true);
+                var date_now = DateUtils.getTimeStamp();
+
+                if(invite_delay && 
+                   (date_now - DateUtils.extractStamp(invite_delay)) >= self.INVITE_MAX_DELAY) {
+                    Console.warn('Muji.receive', 'Discarded outdated invite from: ' + Common.getStanzaFrom(stanza));
+                    return;
+                }
+
                 // Create call session
                 self._new(
                     args.jid,

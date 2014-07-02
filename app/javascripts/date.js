@@ -406,9 +406,10 @@ var DateUtils = (function () {
      * Reads a message delay
      * @public
      * @param {string} node
-     * @return {string}
+     * @param {boolean} return_date
+     * @return {string|Date}
      */
-    self.readMessageDelay = function(node) {
+    self.readMessageDelay = function(node, return_date) {
 
         try {
             // Initialize
@@ -425,8 +426,14 @@ var DateUtils = (function () {
                 // Old delay (obsolete XEP!)
                 var x_delay = jQuery(node).find('x[xmlns="' + NS_DELAY + '"]:first').attr('stamp');
                 
-                if(x_delay)
+                if(x_delay) {
                     delay = x_delay.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');
+                }
+            }
+
+            // Return a date object?
+            if(return_date === true && delay) {
+                return Date.jab2date(delay);
             }
             
             return delay;
