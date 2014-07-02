@@ -1332,7 +1332,7 @@ var Muji = (function() {
                             'text': Common._e("Decline"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.abort();
+                                self.stop(true);
                                 Audio.stop('incoming-call');
                             }
                         }
@@ -1356,7 +1356,7 @@ var Muji = (function() {
                             'text': Common._e("Decline"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.abort();
+                                self.stop(true);
                                 Audio.stop('incoming-call');
                             }
                         }
@@ -1371,7 +1371,7 @@ var Muji = (function() {
                             'text': Common._e("Cancel"),
                             'color': 'red',
                             'cb': function(xid, mode) {
-                                self._session.abort();
+                                self.stop(true);
                             }
                         }
                     }
