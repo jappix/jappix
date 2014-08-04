@@ -57,29 +57,29 @@ var Bubble = (function () {
                 if($(selector).is(':visible')) {
                     return self.close();
                 }
-                
+
                 // Close all the bubbles
                 self.close();
-                
+
                 // Show the requested bubble
                 $(selector).show();
             }
-            
+
             // Removable bubbles special things
             else {
                 // This bubble is yet added? So abort!
                 if(Common.exists(selector)) {
                     return self.close();
                 }
-                
+
                 // Close all the bubbles
                 self.close();
             }
-            
+
             // Creates a new click event to close the bubble
             $('body').on('click', function(evt) {
                 var target = evt.target;
-                
+
                 // If this is a click away from a bubble
                 if(!$(target).parents('.ibubble').size()) {
                     self.close();

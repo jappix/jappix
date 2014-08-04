@@ -49,7 +49,7 @@ var MAM = (function () {
         try {
             // Lock the archiving options
             $('#archiving').attr('disabled', true);
-            
+
             // Get the archiving configuration
             var iq = new JSJaCIQ();
             iq.setType('get');
@@ -146,7 +146,7 @@ var MAM = (function () {
             for(var c in args) {
                 if(args[c])  purge.appendChild(iq.buildNode(c, {'xmlns': NS_METRONOME_MAM_PURGE}, args[c]));
             }
-            
+
             con.send(iq, function(iq) {
                 if(iq.getType() == 'result') {
                     Console.info('Archives purged (MAM).');
@@ -253,7 +253,7 @@ var MAM = (function () {
 
                     // Create MAM messages target
                     var target_html = '<div class="mam-chunk" data-start="' + Common.encodeQuotes(start_stamp) + '" data-end="' + Common.encodeQuotes(start_end) + '"></div>';
-                    
+
                     var target_content_sel = $('#' + hex_md5(res_with) + ' .content');
                     var target_wait_sel = target_content_sel.find('.wait-mam');
 
@@ -347,7 +347,7 @@ var MAM = (function () {
                             time = DateUtils.relative(delay);
                             stamp = DateUtils.extractStamp(Date.jab2date(delay));
                         }
-                        
+
                         // Last-minute checks before display
                         if(time && stamp) {
                             var mam_chunk_path = '#' + hash + ' .mam-chunk';

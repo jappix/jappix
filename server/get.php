@@ -56,12 +56,12 @@ if(isset($_GET['f']) && !empty($_GET['f']) && isSafe($_GET['f'])) {
 // Read the group var (only for text files)
 if(isset($_GET['g']) && !empty($_GET['g']) && preg_match('/^(\S+)\.xml$/', $_GET['g']) && preg_match('/^(css|stylesheets|js|javascripts)$/', $type) && isSafe($_GET['g']) && file_exists(JAPPIX_BASE.'/app/bundles/'.$_GET['g'])) {
     $xml_data = file_get_contents(JAPPIX_BASE.'/app/bundles/'.$_GET['g']);
-    
+
     // Any data?
     if($xml_data) {
         $xml_read = new SimpleXMLElement($xml_data);
         $xml_parse = $xml_read->$type;
-        
+
         // Files were added to the list before (with file var)?
         if($file) {
             $file .= '~'.$xml_parse;
@@ -77,7 +77,7 @@ if($file && $type) {
     $type = normalizeFileType($type);
     $dir = JAPPIX_BASE.'/app/'.$type.'/';
     $path = $dir.$file;
-    
+
     // Read request headers
     $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? trim($_SERVER['HTTP_IF_MODIFIED_SINCE']) : null;
     $if_modified_since = $if_modified_since ? strtotime($if_modified_since) : null;
@@ -93,17 +93,17 @@ if($file && $type) {
             // CSS file
             case 'css':
                 $type = 'stylesheets'; break;
-            
+
             // JS file
             case 'js':
                 $type = 'javascripts';  break;
-            
+
             // Audio file
             case 'ogg':
             case 'oga':
             case 'mp3':
                 $type = 'sounds'; break;
-            
+
             // Image file
             case 'png':
             case 'jpg':
@@ -111,7 +111,7 @@ if($file && $type) {
             case 'gif':
             case 'bmp':
                 $type = 'images'; break;
-            
+
             // Image file
             case 'woff':
             case 'ttf':
@@ -120,7 +120,7 @@ if($file && $type) {
                 $type = 'fonts'; break;
         }
     }
-    
+
     // JS and CSS special stuffs
     if(($type == 'stylesheets') || ($type == 'javascripts')) {
         // Compression var
@@ -129,19 +129,19 @@ if($file && $type) {
         } else {
             $cache_encoding = 'plain';
         }
-        
+
         // Get the vars
         $version = getVersion();
         $hash = genHash($version);
         $cache_hash = md5($path.$hash.staticLocation()).'_'.$cache_encoding;
-        
+
         // Check if the browser supports DEFLATE
         $deflate_support = false;
-        
+
         if(isset($_SERVER['HTTP_ACCEPT_ENCODING']) && substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') && hasCompression() && !$is_developer) {
             $deflate_support = true;
         }
-        
+
         // Internationalization
         if($type == 'javascripts') {
             if(isset($_GET['l']) && !empty($_GET['l']) && !preg_match('/\.\.\//', $_GET['l']) && is_dir(JAPPIX_BASE.'/i18n/'.$_GET['l'])) {
@@ -152,7 +152,7 @@ if($file && $type) {
         } else {
             $locale = '';
         }
-        
+
         // Define the cache lang name
         if($locale) {
             $cache_lang = $cache_hash.'_'.$locale;
@@ -160,23 +160,23 @@ if($file && $type) {
             $cache_lang = $cache_hash;
         }
     }
-    
+
     // Explode the file string
     if(strpos($file, '~') !== false) {
         $array = explode('~', $file);
     } else {
         $array = array($file);
     }
-    
+
     // Define the reading vars
     $continue = true;
     $loop_files = true;
-    
+
     // Check the cache exists for text files (avoid the heavy file_exists loop!)
     if(!$is_developer && (($type == 'stylesheets') || ($type == 'javascripts')) && hasCache($cache_lang)) {
         $loop_files = false;
     }
-    
+
     // Check if the all the file(s) exist(s)
     if($loop_files) {
         foreach($array as $current) {
@@ -187,19 +187,19 @@ if($file && $type) {
             }
         }
     }
-    
+
     // We can read the file(s)
     if($continue) {
         // We get the file MIME type
         $mime = strtolower(preg_replace('/(^)(.+)(\.)(.+)($)/i', '$4', $file));
-        
+
         // We set up a known MIME type (and some other headers)
         if(($type == 'stylesheets') || ($type == 'javascripts')) {
             // DEFLATE header
             if($deflate_support) {
                 header('Content-Encoding: deflate');
             }
-            
+
             // MIME header
             if($type == 'stylesheets') {
                 header('Content-Type: text/css; charset=utf-8');
@@ -233,7 +233,7 @@ if($file && $type) {
                     header('Content-Type: '.getFileMIME($path));
             }
         }
-        
+
         // Read the text file(s) (CSS & JS)
         if(($type == 'stylesheets') || ($type == 'javascripts')) {
             // Storage vars
@@ -243,14 +243,14 @@ if($file && $type) {
             if(hasCache($cache_lang) && !$is_developer) {
                 $last_modified = filemtime(pathCache($cache_lang));
                 $cache_read = readCache($cache_lang);
-                
+
                 if($deflate_support || !$has_compression) {
                     $output_data = $cache_read;
                 } else {
                     $output_data = gzinflate($cache_read);
                 }
             }
-            
+
             // Else, we generate the cache
             else {
                 // First try to read the cache reference
@@ -258,7 +258,7 @@ if($file && $type) {
                     // Read the reference
                     $last_modified = filemtime(pathCache($cache_hash));
                     $cache_reference = readCache($cache_hash);
-                    
+
                     // Filter the cache reference
                     if($has_compression) {
                         $output = gzinflate($cache_reference);
@@ -266,7 +266,7 @@ if($file && $type) {
                         $output = $cache_reference;
                     }
                 }
-                
+
                 // No cache reference, we should generate it
                 else {
                     // Last modified date is now
@@ -274,24 +274,24 @@ if($file && $type) {
 
                     // Initialize the loop
                     $looped = '';
-                    
+
                     // Add the content of the current file
                     foreach($array as $current) {
                         $looped .= rmBOM(file_get_contents($dir.$current))."\n";
                     }
-                    
+
                     // Filter the CSS
                     if($type == 'stylesheets') {
                         // Apply the CSS logos
                         $looped = setLogos($looped, $array);
-                        
+
                         // Apply the CSS background
                         $looped = setBackground($looped);
-                        
+
                         // Set the Get API paths
                         $looped = setPath($looped, $hash, HOST_STATIC, $type, '');
                     }
-                    
+
                     // Optimize the code rendering
                     if($type == 'stylesheets') {
                         // Can minify the CSS
@@ -309,45 +309,45 @@ if($file && $type) {
                             $output = $looped;
                         }
                     }
-                    
+
                     // Generate the reference cache
                     if($has_compression) {
                         $final = gzdeflate($output, 9);
                     } else {
                         $final = $output;
                     }
-                    
+
                     // Write it!
                     genCache($final, $is_developer, $cache_hash);
                 }
-                
+
                 // Filter the JS
                 if($type == 'javascripts') {
                     // Set the JS locales
                     $output = setLocales($output, $locale);
-                    
+
                     // Set the JS configuration
                     $output = setConfiguration($output, $hash, $locale, $version, uploadMaxSize());
-                    
+
                     // Set the Get API paths
                     $output = setPath($output, $hash, HOST_STATIC, $type, $locale);
-                    
+
                     // Translate the JS script
                     require_once('./gettext.php');
                     includeTranslation($locale, 'main');
                     $output = setTranslation($output);
-                    
+
                     // Generate the cache
                     if($has_compression) {
                         $final = gzdeflate($output, 9);
                     } else {
                         $final = $output;
                     }
-                    
+
                     // Write it!
                     genCache($final, $is_developer, $cache_lang);
                 }
-                
+
                 // Output a well-encoded string
                 if($deflate_support || !$has_compression) {
                     $output_data = $final;
@@ -364,7 +364,7 @@ if($file && $type) {
                 }
 
                 // Check browser cache
-                if(!$is_developer && hasCaching() && 
+                if(!$is_developer && hasCaching() &&
                     ($if_modified_since && ($last_modified <= $if_modified_since))) {
                     // Use browser cache
                     header('Status: 304 Not Modified', true, 304);
@@ -381,7 +381,7 @@ if($file && $type) {
             // Free up memory (prevents leaks)
             unset($output_data);
         }
-        
+
         // Read the binary file (PNG, OGA and others)
         else {
             // Process re-usable HTTP headers values
@@ -393,7 +393,7 @@ if($file && $type) {
             }
 
             // Check browser cache
-            if(!$is_developer && hasCaching() && 
+            if(!$is_developer && hasCaching() &&
                 ($if_modified_since && ($last_modified <= $if_modified_since))) {
                 // Use browser cache
                 header('Status: 304 Not Modified', true, 304);
@@ -409,7 +409,7 @@ if($file && $type) {
 
         exit;
     }
-    
+
     // The file was not found
     header('Status: 404 Not Found', true, 404);
     exit('HTTP/1.1 404 Not Found');

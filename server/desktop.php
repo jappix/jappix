@@ -23,7 +23,7 @@ if(!defined('JAPPIX_BASE')) {
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    
+
     <?php
         // Enable compatibility mode for IE 10
         if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match("/MSIE 10\.0/", $_SERVER['HTTP_USER_AGENT'])) {
@@ -34,12 +34,12 @@ if(!defined('JAPPIX_BASE')) {
 
     <title><?php echo htmlspecialchars(SERVICE_NAME); ?> &bull; <?php echo htmlspecialchars(SERVICE_DESC); ?></title>
     <link rel="shortcut icon" href="./favicon.ico" />
-    
+
     <?php echoGetFiles($hash, '', 'css', 'desktop.xml', ''); echo "\n"; ?>
     <!--[if lt IE 9]><?php echoGetFiles($hash, '', 'css', '', 'ie.css'); ?><![endif]-->
-    
+
     <?php echoGetFiles($hash, $locale, 'js', 'desktop.xml', ''); echo "\n";
-    
+
     if(anonymousMode()) {
         echo "\n\t";
         echoGetFiles($hash, '', 'css', 'anonymous.xml', '');
@@ -47,7 +47,7 @@ if(!defined('JAPPIX_BASE')) {
         echoGetFiles($hash, $locale, 'js', 'anonymous.xml', '');
         echo "\n";
     }
-    
+
     if(httpAuthEnabled()) {
         echo "\n\t";
         echoGetFiles($hash, '', 'js', 'httpauth.xml', '');
@@ -66,7 +66,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
     <!-- BEGIN HOMEPAGE -->
     <div id="home">
         <div class="home-images plane"></div>
-        
+
         <div class="main">
             <div class="mainview">
                 <div class="left">
@@ -75,34 +75,34 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     <p class="secondary"><?php _e("Jappix is an open social platform, that let's you easily get or keep in touch with everyone."); ?></p>
                     <p class="secondary"><?php _e("Join the millions of users who are currently using the XMPP Network (Google Talk, etc), don't stay out!"); ?></p>
                 </div>
-                
+
                 <div class="right">
                     <h1 class="top default"><?php _e("Hi there!"); ?></h1>
-                    
+
                     <div class="default homediv">
                         <p><?php printf(T_("Welcome to %1s, “%2s”."), htmlspecialchars(SERVICE_NAME), htmlspecialchars(SERVICE_DESC)); ?></p>
-                        
+
                         <p><?php _e("Login to your existing XMPP account or create a new one for free!"); ?></p>
-                        
+
                         <button class="login buttons-images">
                             <span class="home-images"></span>
                             <span class="text"><?php _e("Login"); ?></span>
                         </button>
-                        
+
                         <button class="register buttons-images">
                             <span class="home-images"></span>
                             <span class="text"><?php _e("Register"); ?></span>
                         </button>
-                        
+
                         <p class="notice"><?php _e("For your account safety, when you login or register, make sure your password remains secret."); ?></p>
                     </div>
-                    
+
                     <div class="navigation">
                         <?php
-                        
+
                             // Keep get var
                             $keep_get = keepGet('m', false);
-                        
+
                         ?>
                         <a class="home-images mobile" href="./?m=mobile<?php echo $keep_get; ?>"><span class="vert_center"><?php _e("Mobile"); ?></span></a>
                         <?php if(showManagerLink()) { ?>
@@ -111,32 +111,32 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     </div>
                 </div>
             </div>
-            
+
             <?php if((ADS_ENABLE == 'on') && (ADS_STANDARD || ADS_STANDARD)) { ?>
                 <?php require_once('./server/functions-advertising.php'); ?>
                 <?php $advertise_link = 'http://www.backlinks.com/?aff=58769'; ?>
-                
+
                 <div class="friendsview">
                     <div class="friends">
                         <div class="group content">
                             <?php displayAdverts('content', $advertise_link); ?>
                         </div>
-                        
+
                         <div class="group standard">
                             <div class="separator">
                                 <span class="sep_top"></span>
                                 <span class="sep_bottom"></span>
                             </div>
-                            
+
                             <?php displayAdverts('standard', $advertise_link); ?>
                         </div>
-                        
+
                         <a class="group refer" href="<?php echo $advertise_link; ?>" target="_blank">
                             <div class="separator">
                                 <span class="sep_top"></span>
                                 <span class="sep_bottom"></span>
                             </div>
-                            
+
                             <span class="home-images icon"></span>
                             <span class="label"><?php _e("Advertise here"); ?></span>
                         </a>
@@ -144,7 +144,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 </div>
             <?php } ?>
         </div>
-        
+
         <div class="home-images corporation">
             <div class="corp_network">
                 <h2 class="nomargin">Jappix.com</h2>
@@ -174,7 +174,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         <span class="desc"><?php _e("Legal disclaimer for Jappix."); ?></span>
                     </a>
                 </div>
-                
+
                 <h2>Jappix.org</h2>
                 <div class="tabulate">
                     <a href="https://jappix.org/">
@@ -186,7 +186,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         <span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
                     </a>
                 </div>
-                
+
                 <h2>Jappix.pro</h2>
                 <div class="tabulate">
                     <a href="https://jappix.pro/">
@@ -194,7 +194,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         <span class="desc"><?php _e("Jappix for your company."); ?></span>
                     </a>
                 </div>
-                
+
                 <h2>Jappix.net</h2>
                 <div class="tabulate">
                     <a href="https://jappix.net/">
@@ -204,11 +204,11 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 </div>
             </div>
         </div>
-        
+
         <div class="home-images aboutus">
             <div class="aboutus_org">
                 <span class="version"><b>Jappix</b> <?php echo htmlspecialchars($version); ?></span>
-                
+
                 <h2><?php _e("Credits"); ?></h2>
                 <span class="one">
                     <a class="name" href="http://www.post-pro.fr/">PostPro</a>
@@ -218,7 +218,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     <a class="name" href="https://frenchtouch.pro/">FrenchTouch</a>
                     <a class="desc" href="https://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
                 </span>
-                
+
                 <?php if(hasLegal()) { ?>
                     <h2><?php _e("Legal"); ?></h2>
                     <span class="one">
@@ -226,7 +226,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         <a class="desc" href="<?php echo htmlspecialchars(LEGAL); ?>"><?php _e("Terms of use and legal"); ?></a>
                     </span>
                 <?php } ?>
-                
+
                 <?php if(hasOwner()) { ?>
                     <h2><?php _e("Owner"); ?></h2>
                     <span class="one">
@@ -236,7 +236,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 <?php } ?>
             </div>
         </div>
-        
+
         <?php if(!LANGUAGE || LANGUAGE == 'all') { ?>
             <div class="locale" data-keepget="<?php echo(keepGet('l', false)); ?>">
                 <div class="current">
@@ -244,24 +244,24 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 </div>
             </div>
         <?php } ?>
-        
+
         <?php
-        
+
             // Add the notice
             $conf_notice = readNotice();
             $type_notice = $conf_notice['type'];
             $text_notice = $conf_notice['notice'];
-            
+
             // Simple notice
             if(($type_notice == 'simple') || ($type_notice == 'advanced')) {
                 // We must encode special HTML characters
                 if($type_notice == 'simple')
                     $text_notice = '<span class="title home-images">'.T_("Notice").'</span><span class="text">'.htmlentities($text_notice).'</span>';
-                
+
                 // Echo the notice
                 echo('<div class="notice '.$type_notice.'">'.$text_notice.'</div>');
             }
-        
+
         ?>
     </div>
     <!-- END HOMEPAGE -->

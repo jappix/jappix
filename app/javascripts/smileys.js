@@ -102,7 +102,7 @@ var Smileys = (function () {
                     hash
                 );
             }
-            
+
             return links;
         } catch(e) {
             Console.error('Smileys.links', e);

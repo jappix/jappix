@@ -58,11 +58,11 @@ var Groupchat = (function () {
             input_sel.focus(function() {
                 // Clean notifications for this chat
                 Interface.chanCleanNotify(hash);
-                
+
                 // Store focus on this chat!
                 Interface.chat_focus_hash = hash;
             });
-            
+
             // Blur event
             input_sel.blur(function() {
                 // Reset storage about focus on this chat!
@@ -111,12 +111,12 @@ var Groupchat = (function () {
                         } else {
                             // Send the message
                             Message.send(hash, 'groupchat');
-                            
+
                             // Reset the composing database entry
                             DataStore.setDB(Connection.desktop_hash, 'chatstate', room, 'off');
                         }
                     }
-                    
+
                     return false;
                 }
 
@@ -127,14 +127,14 @@ var Groupchat = (function () {
                         Correction.leave(room);
                     }
                 }
-                
+
                 // Tabulation key (without any modifiers)
                 else if(!e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey && e.keyCode == 9) {
                     Autocompletion.create(hash);
-                    
+
                     return false;
                 }
-                
+
                 // Reset the autocompleter
                 else {
                     Autocompletion.reset(hash);
@@ -175,17 +175,17 @@ var Groupchat = (function () {
 
                 // Add/remove the active class
                 this_sel.toggleClass('active');
-                
+
                 // We require at least one room to be chosen
                 if(Common.exists('#suggest .content a.one.active')) {
                     $('#suggest a.next').removeClass('disabled');
                 } else {
                     $('#suggest a.next').addClass('disabled');
                 }
-                
+
                 return false;
             });
-            
+
             $('#suggest a.next').click(function() {
                 var this_sel = $(this);
 
@@ -193,18 +193,18 @@ var Groupchat = (function () {
                 if(this_sel.hasClass('disabled')) {
                     return false;
                 }
-                
+
                 // Store groupchats to join?
                 if(this_sel.is('.continue')) {
                     $('#suggest .content a.one.active').each(function() {
                         JOIN_SUGGEST.push(this_sel.attr('data-xid'));
                     });
                 }
-                
+
                 // Switch to talk UI
                 $('#suggest').remove();
                 Connection.triggerConnected();
-                
+
                 return false;
             });
         } catch(e) {
@@ -230,17 +230,17 @@ var Groupchat = (function () {
             if(Utils.isAnonymous()) {
                 return;
             }
-            
+
             // We check if the user is a room owner or administrator to give him privileges
             if(affiliation == 'owner' || affiliation == 'admin') {
                 $('#' + id + ' .tools-mucadmin').show();
             }
-            
+
             // We check if the room hasn't been yet created
             if(statuscode == 201) {
                 Board.openThisInfo(4);
             }
-            
+
             // We add the click event
             $('#' + id + ' .tools-mucadmin').click(function() {
                 MUCAdmin.open(xid, affiliation);
@@ -265,11 +265,11 @@ var Groupchat = (function () {
         try {
             // Room hash
             var hash = hex_md5(room);
-            
+
             // Reset the elements
             $('#' + hash + ' .muc-ask').remove();
             $('#' + hash + ' .compose').show();
-            
+
             // No nickname?
             if(!nickname) {
                 // Get some values
@@ -278,22 +278,22 @@ var Groupchat = (function () {
                 } else {
                     nickname = ANONYMOUS_NICK;
                 }
-                
+
                 // If the nickname could not be retrieved, ask it
                 if(!nickname) {
                     self.generateMUCAsk('nickname', room, hash, nickname, password);
                 }
             }
-            
+
             // Got our nickname?
             if(nickname) {
                 // Get our general presence
                 var show = DataStore.getDB(Connection.desktop_hash, 'presence-show', 1);
                 var status = DataStore.getDB(Connection.desktop_hash, 'options', 'presence-status');
-            
+
                 // Set my nick
                 $('#' + hash).attr('data-nick', escape(nickname));
-            
+
                 // Send the appropriate presence
                 Presence.send(room + '/' + nickname, '', show, status, '', true, password, self.handleMUC);
             }
@@ -322,50 +322,50 @@ var Groupchat = (function () {
             var nickname = Common.thisResource(from);
             var hash = hex_md5(room);
             var id = presence.getID();
-            
+
             // No ID: must fix M-Link bug
             if(id === null) {
                 id = 1;
                 presence.setID(id);
             }
-            
+
             Console.info('First MUC presence: ' + from);
-            
+
             // Catch the errors
             if(!Errors.handle(xml)) {
                 // Define some stuffs
                 var muc_user = $(xml).find('x[xmlns="' + NS_MUC_USER + '"]');
                 var affiliation = muc_user.find('item').attr('affiliation');
                 var statuscode = parseInt(muc_user.find('status').attr('code'));
-                
+
                 // Handle my presence
                 Presence.handle(presence);
-                
+
                 // Configure the new room
                 if(affiliation == 'owner' || affiliation == 'admin') {
                     console.debug('presence', presence.xml());
                     self._initialConfiguration(id, room);
                 }
-                
+
                 // Check if I am a room owner
                 self.openAdmin(affiliation, hash, room, statuscode);
-                
+
                 // Tell the MUC we can notify the incoming presences
                 $(document).oneTime('15s', function() {
                     $('#' + hash).attr('data-initial', 'true');
                 });
-                
+
                 // Enable the chatting input
                 $(document).oneTime(10, function() {
                     $('#' + hash + ' .message-area').removeAttr('disabled').focus();
                 });
             }
-            
+
             // A password is required
             else if($(xml).find('error[type="auth"] not-authorized').size()) {
                 self.generateMUCAsk('password', room, hash, nickname);
             }
-            
+
             // There's a nickname conflict
             else if($(xml).find('error[type="cancel"] conflict').size()) {
                 self.generateMUCAsk('nickname', room, hash);
@@ -392,34 +392,34 @@ var Groupchat = (function () {
         try {
             // Generate the path to the elements
             var path_to = '#' + hash + ' .muc-ask';
-            
+
             // Define the label text
             var label_text;
-            
+
             switch(type) {
                 case 'nickname':
                     label_text = Common._e("Nickname");
                     break;
-                
+
                 case 'password':
                     label_text = Common._e("Password");
                     break;
             }
-            
+
             // Create the HTML markup
             $('#' + hash + ' .compose').hide();
-            
+
             $('#' + hash).append(
-                '<div class="muc-ask text">' + 
-                    '<label>' + label_text + '</label>' + 
-                    '<input class="focusable" type="text" />' + 
+                '<div class="muc-ask text">' +
+                    '<label>' + label_text + '</label>' +
+                    '<input class="focusable" type="text" />' +
                 '</div>'
             );
-            
+
             // When a key is pressed in the input
             $(path_to + ' input').keyup(function(e) {
                 var value_input = $(this).val();
-                
+
                 // Enter key pressed
                 if(e.keyCode == 13) {
                     // $.trim() fixes #304
@@ -427,14 +427,14 @@ var Groupchat = (function () {
                         nickname = $.trim(value_input);
                         return self.getMUC(room, nickname, password);
                     }
-                    
+
                     if(type == 'password' && value_input) {
                         password = value_input;
                         return self.getMUC(room, nickname, password);
                     }
                 }
             });
-            
+
             // Focus on the input
             $(document).oneTime(10, function() {
                 $(path_to + ' input').focus();
@@ -462,37 +462,37 @@ var Groupchat = (function () {
 
         try {
             Console.info('New groupchat: ' + room);
-    
+
             // Create the chat content
             Chat.generate('groupchat', hash, room, chan);
-            
+
             // Create the chat switcher
             Chat.generateSwitch('groupchat', hash, room, chan);
-            
+
             // The icons-hover functions
             Tooltip.icons(room, hash);
-            
+
             // Click event on the add tool
             $('#' + hash + ' .tools-add').click(function() {
                 // Hide the icon (to tell the user all is okay)
                 $(this).hide();
-                
+
                 // Add the groupchat to the user favorites
                 Favorites.addThis(room, chan);
             });
-            
+
             // Must show the add button?
             if(!DataStore.existDB(Connection.desktop_hash, 'favorites', room)) {
                 $('#' + hash + ' .tools-add').show();
             }
-            
+
             // The event handlers
             var input_sel = $('#' + hash + ' .message-area');
             self._createEvents(input_sel, hash, room);
-            
+
             // Chatstate events
             ChatState.events(input_sel, room, hash, 'groupchat');
-            
+
             // Get the current muc informations and content
             self.getMUC(room, nickname, password);
         } catch(e) {
@@ -513,30 +513,30 @@ var Groupchat = (function () {
             // Values array
             var muc_arr = [GROUPCHATS_JOIN];
             var new_arr = [];
-            
+
             // Try to split it
             if(GROUPCHATS_JOIN.indexOf(',') != -1) {
                 muc_arr = GROUPCHATS_JOIN.split(',');
             }
-            
+
             for(var i in muc_arr) {
                 // Get the current value
                 var muc_current = $.trim(muc_arr[i]);
-                
+
                 // No current value?
                 if(!muc_current) {
                     continue;
                 }
-                
+
                 // Filter the current value
                 muc_current = Common.generateXID(muc_current, 'groupchat');
-                
+
                 // Add the current value
                 if(!Utils.existArrayValue(new_arr, muc_current)) {
                     new_arr.push(muc_current);
                 }
             }
-            
+
             return new_arr;
         } catch(e) {
             Console.error('Groupchat.arrayJoin', e);
@@ -557,7 +557,7 @@ var Groupchat = (function () {
             if(!JOIN_SUGGEST) {
                 return;
             }
-            
+
             // Join the chats
             if(JOIN_SUGGEST.length) {
                 for(var g in JOIN_SUGGEST) {
@@ -580,17 +580,17 @@ var Groupchat = (function () {
 
         try {
             var groupchat_arr = self.arrayJoin();
-    
+
             // Must suggest the user?
             if((GROUPCHATS_SUGGEST == 'on') && groupchat_arr.length) {
                 if(Common.exists('#suggest')) {
                     return;
                 }
-                
+
                 // Create HTML code
                 var html = '<div id="suggest" class="removable">';
                     html += '<div class="title">' + Common._e("Suggested chatrooms") + '</div>';
-                    
+
                     html += '<div class="content">';
                         for(var g in groupchat_arr) {
                             html += '<a class="one" href="#" data-xid="' + Common.encodeQuotes(groupchat_arr[g]) + '">';
@@ -601,21 +601,21 @@ var Groupchat = (function () {
                             html += '</a>';
                         }
                     html += '</div>';
-                    
+
                     html += '<div class="bottom">';
                         html += '<a class="next continue disabled" href="#">' + Common._e("Continue") + '</a>';
                         html += '<a class="next skip" href="#">' + Common._e("Skip") + '</a>';
                     html += '</div>';
                 html += '</div>';
-                
+
                 // Append HTML code
                 $('body').append(html);
-                
+
                 // Attach events
                 self._suggestCheckEvents();
             } else {
                 JOIN_SUGGEST = groupchat_arr;
-                
+
                 Connection.triggerConnected();
             }
         } catch(e) {
@@ -646,20 +646,20 @@ var Groupchat = (function () {
                 var iq = new JSJaCIQ();
                 iq.setTo(room_xid);
                 iq.setType('set');
-                
+
                 var iqQuery = iq.setQuery(NS_MUC_ADMIN);
                 var item = iqQuery.appendChild(iq.buildNode('item', {
                     'affiliation': 'outcast',
                     'jid': ban_xid,
                     'xmlns': NS_MUC_ADMIN
                 }));
-                
+
                 if(reason) {
                     item.appendChild(iq.buildNode('reason', {
                         'xmlns': NS_MUC_ADMIN
                     }, reason));
                 }
-                
+
                 con.send(iq, Errors.handleReply);
 
                 Console.log('Banned user with XID: ' + ban_xid + ' from room: ' + room_xid);
@@ -693,20 +693,20 @@ var Groupchat = (function () {
                 var iq = new JSJaCIQ();
                 iq.setTo(room_xid);
                 iq.setType('set');
-                
+
                 var iqQuery = iq.setQuery(NS_MUC_ADMIN);
                 var item = iqQuery.appendChild(iq.buildNode('item', {
                     'nick': nick,
                     'role': 'none',
                     'xmlns': NS_MUC_ADMIN
                 }));
-                
+
                 if(reason) {
                     item.appendChild(iq.buildNode('reason', {
                         'xmlns': NS_MUC_ADMIN
                     }, reason));
                 }
-                
+
                 con.send(iq, Errors.handleReply);
 
                 Console.info('Kicked user "' + nick + '" from room: ' + room_xid);
@@ -810,7 +810,7 @@ var Groupchat = (function () {
         }
 
     };
-    
+
     /**
      * Sends initial configuration of the room
      * @private
@@ -834,7 +834,7 @@ var Groupchat = (function () {
                 'xmlns': NS_XDATA,
                 'type': 'submit'
             }));
-            
+
             // Build a new field node
             var iqField = iqX.appendChild(iq.buildNode('field', {
                 'var': 'FORM_TYPE',
@@ -844,7 +844,7 @@ var Groupchat = (function () {
 
             iqField.appendChild(iq.buildNode('value', {
                 'xmlns': NS_XDATA
-            }, NS_MUC_CONFIG)); 
+            }, NS_MUC_CONFIG));
 
             con.send(iq);
 
@@ -853,7 +853,7 @@ var Groupchat = (function () {
             Console.error('Groupchat._initialConfiguration', e);
         }
     };
-    
+
 
 
     /**

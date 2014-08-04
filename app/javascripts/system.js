@@ -29,7 +29,7 @@ var System = (function () {
 
         try {
             var url = window.location.href;
-            
+
             // If the URL has variables, remove them
             if(url.indexOf('?') != -1) {
                 url = url.split('?')[0];
@@ -38,12 +38,12 @@ var System = (function () {
             if(url.indexOf('#') != -1) {
                 url = url.split('#')[0];
             }
-            
+
             // No "/" at the end
             if(!url.match(/(.+)\/$/)) {
                 url += '/';
             }
-            
+
             return url;
         } catch(e) {
             Console.error('System.location', e);

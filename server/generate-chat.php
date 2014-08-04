@@ -40,14 +40,14 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
     $date = $_POST['date'];
     $type = $_POST['type'];
     $direction = $_POST['direction'];
-    
+
     // Generate the XID link
     $xid_link = 'xmpp:'.$xid;
-    
+
     if($type == 'groupchat') {
         $xid_link .= '?join';
     }
-    
+
     // Generates the avatar code
     if($avatar != 'none') {
         $avatar = '<div class="avatar-container">'.$avatar.'</div>';
@@ -59,24 +59,24 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
     if($direction != 'rtl') {
         $direction = 'ltr';
     }
-    
+
     // Generates an human-readable date
     $date = explode('T', $date);
     $date = explode('-', $date[0]);
     $date = $date[2].'/'.$date[1].'/'.$date[0];
-    
+
     // Generate some values
     $content_dir = '../tmp/archives/';
     $filename = 'jappix-chat-'.md5($xid.time());
     $filepath = $content_dir.$filename.'.html';
-    
+
     // Generate Jappix logo Base64 code
     $logo = base64_encode(file_get_contents(JAPPIX_BASE.'/app/images/sprites/archives.png'));
-    
+
     // Create the HTML code
-    $new_text_inter = 
+    $new_text_inter =
 '<!DOCTYPE html>
-<html dir="'.$direction.'"> 
+<html dir="'.$direction.'">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -86,7 +86,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             background-color: #424242;
             font-family : Verdana, Arial, Helvetica, sans-serif;
@@ -96,15 +96,15 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
             margin: 8px;
             padding: 8px 12px;
         }
-        
+
         a {
             color: white;
         }
-        
+
         #head {
-        
+
         }
-        
+
         #head .avatar-container {
             text-align: center;
             height: 70px;
@@ -118,33 +118,33 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
             margin-right: 0;
             float: right;
         }
-        
+
         #head .avatar {
             max-height: 70px;
             max-width: 70px;
         }
-        
+
         #head h1 {
             font-size: 2.2em;
             margin: 0;
             text-shadow: 1px 1px 1px black;
         }
-        
+
         #head h3 {
             font-size: 0.95em;
             margin: 0;
         }
-        
+
         #head h5 {
             font-size: 0.9em;
             margin: 8px 0 16px 0;
         }
-        
+
         #head h3,
         #head h5 {
             text-shadow: 0 0 1px black;
         }
-        
+
         #head a.logo {
             position: absolute;
             top: 16px;
@@ -168,30 +168,30 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
             -moz-box-shadow: 0 0 20px #202020;
             -webkit-box-shadow: 0 0 20px #202020;
         }
-        
+
         #content a {
             color: black;
         }
-        
+
         #content .one-group {
             border-bottom: 1px dotted #d0d0d0;
             padding-bottom: 8px;
             margin-bottom: 10px;
         }
-        
+
         #content .one-group b.name {
             display: block;
             margin-bottom: 4px;
         }
-        
+
         #content .one-group b.name.me {
             color: #123a5c;
         }
-        
+
         #content .one-group b.name.him {
             color: #801e1e;
         }
-        
+
         #content .one-group span.date {
             font-size: 0.9em;
             float: right;
@@ -204,17 +204,17 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
         #content .user-message {
             margin-bottom: 3px;
         }
-        
+
         #content .system-message {
             color: #053805;
             margin-bottom: 3px;
             padding-left: 0 !important;
         }
-        
+
         #content .system-message a {
             color: #053805;
         }
-        
+
         .hidden {
             display: none !important;
         }
@@ -224,34 +224,34 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
 <body>
     <div id="head">
         '.$avatar.'
-        
+
         <h1>'.$nick.'</h1>
         <h3><a href="'.$xid_link.'">'.$xid.'</a></h3>
         <h5>'.$date.'</h5>
-        
+
         <a class="logo" href="https://jappix.org/" target="_blank">
             <img src="data:image/png;base64,'.$logo.'" alt="" />
         </a>
     </div>
-    
+
     <div id="content">
         '.$original.'
     </div>
 </body>
 </html>'
 ;
-    
+
     $new_text = stripslashes($new_text_inter);
-    
+
     // Write the code into a file
     file_put_contents($filepath, $new_text, LOCK_EX);
-    
+
     // Security: remove the file and stop the script if too bit (+6MiB)
     if(filesize($filepath) > 6000000) {
         unlink($filepath);
         exit;
     }
-    
+
     // Return to the user the generated file ID
     exit($filename);
 }

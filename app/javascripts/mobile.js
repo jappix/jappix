@@ -31,20 +31,20 @@ var Mobile = (function () {
         try {
             // Reset the panels
             self.resetPanel();
-            
+
             // Get the values
             var xid = aForm.xid.value;
             var username, domain;
-            
+
             // A domain is specified
             if(xid.indexOf('@') != -1) {
                 username = self.getXIDNick(xid);
                 domain = self.getXIDHost(xid);
-                
+
                 // Domain is locked and not the same
                 if((LOCK_HOST == 'on') && (domain != HOST_MAIN)) {
                     self.showThis('error');
-                    
+
                     return false;
                 }
             } else {
@@ -52,19 +52,19 @@ var Mobile = (function () {
                 username = xid;
                 domain = HOST_MAIN;
             }
-            
+
             var pwd = aForm.pwd.value;
             var reg = false;
-            
+
             if(aForm.reg) {
                 reg = aForm.reg.checked;
             }
-            
+
             // Enough parameters
             if(username && domain && pwd) {
                 // Show the info notification
                 self.showThis('info');
-                
+
                 if(HOST_WEBSOCKET && typeof window.WebSocket != 'undefined') {
                     // WebSocket supported & configured
                     con = new JSJaCWebSocketConnection({
@@ -72,16 +72,16 @@ var Mobile = (function () {
                     });
                 } else {
                     var httpbase = (HOST_BOSH_MAIN || HOST_BOSH);
-                    
+
                     // Check BOSH origin
                     BOSH_SAME_ORIGIN = Origin.isSame(httpbase);
-                    
+
                     // We create the new http-binding connection
                     con = new JSJaCHttpBindingConnection({
                         httpbase: httpbase
                     });
                 }
-                
+
                 // And we handle everything that happen
                 con.registerHandler('message', self.handleMessage);
                 con.registerHandler('presence', self.handlePresence);
@@ -89,7 +89,7 @@ var Mobile = (function () {
                 con.registerHandler('onconnect', self.handleConnected);
                 con.registerHandler('onerror', self.handleError);
                 con.registerHandler('ondisconnect', self.handleDisconnected);
-                
+
                 // We retrieve what the user typed in the login inputs
                 oArgs = {};
                 oArgs.username = username;
@@ -103,11 +103,11 @@ var Mobile = (function () {
                 if(reg) {
                     oArgs.register = true;
                 }
-                
+
                 // We connect !
                 con.connect(oArgs);
             }
-            
+
             // Not enough parameters
             else {
                 self.showThis('error');
@@ -148,7 +148,7 @@ var Mobile = (function () {
     self.doInitialize = function() {
 
         try {
-            if(typeof HTTP_AUTH === 'object' && 
+            if(typeof HTTP_AUTH === 'object' &&
                 HTTP_AUTH.user && HTTP_AUTH.password && HTTP_AUTH.host) {
                 var form_sel = document.forms['login-form'];
 
@@ -218,7 +218,7 @@ var Mobile = (function () {
             // Hide the opened panels
             self.hideThis('info');
             self.hideThis('error');
-            
+
             //Show the target panel
             if(id) {
                 self.showThis(id);
@@ -240,7 +240,7 @@ var Mobile = (function () {
         try {
             // Reset the "secret" input values
             document.getElementById('pwd').value = '';
-            
+
             // Remove the useless DOM elements
             var body = document.getElementsByTagName('body')[0];
             body.removeChild(document.getElementById('talk'));
@@ -319,25 +319,25 @@ var Mobile = (function () {
 
         try {
             var type = msg.getType();
-            
+
             if(type == 'chat' || type == 'normal') {
                 // Get the body
                 var body = msg.getBody();
-                
+
                 if(body) {
                     // Get the values
                     var xid = self.cutResource(msg.getFrom());
                     var hash = hex_md5(xid);
                     var nick = self.getNick(xid, hash);
-                    
+
                     // No nickname?
                     if(!nick) {
                         nick = xid;
                     }
-                
+
                     // Create the chat if it does not exist
                     self.chat(xid, nick);
-                
+
                     // Display the message
                     self.displayMessage(xid, body, nick, hash);
                 }
@@ -363,7 +363,7 @@ var Mobile = (function () {
             var hash = hex_md5(xid);
             var type = pre.getType();
             var show = pre.getShow();
-            
+
             // Online buddy
             if(!type) {
                 // Display the correct presence
@@ -371,19 +371,19 @@ var Mobile = (function () {
                     case 'chat':
                         self.displayPresence(hash, show);
                         break;
-                    
+
                     case 'away':
                         self.displayPresence(hash, show);
                         break;
-                    
+
                     case 'xa':
                         self.displayPresence(hash, show);
                         break;
-                    
+
                     case 'dnd':
                         self.displayPresence(hash, show);
                         break;
-                    
+
                     default:
                         self.displayPresence(hash, 'available');
                         break;
@@ -411,7 +411,7 @@ var Mobile = (function () {
             var iqQueryXMLNS = iq.getQueryXMLNS();
             var iqType = iq.getType();
             var iqQuery;
-            
+
             // Create the response
             var iqResponse = new JSJaCIQ();
 
@@ -420,43 +420,43 @@ var Mobile = (function () {
                 iqResponse.setTo(iqFrom);
                 iqResponse.setType('result');
             }
-            
+
             // Disco#infos query
             if((iqQueryXMLNS == NS_DISCO_INFO) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0030.html */
-                
+
                 iqQuery = iqResponse.setQuery(NS_DISCO_INFO);
-                
+
                 // We set the name of the client
                 iqQuery.appendChild(iq.appendNode('identity', {
                     'category': 'client',
                     'type': 'mobile',
                     'name': 'Jappix Mobile'
                 }));
-                
+
                 // We set all the supported features
                 var fArray = new Array(
                     NS_DISCO_INFO,
                     NS_VERSION
                 );
-                
+
                 for(var i in fArray) {
                     iqQuery.appendChild(iq.buildNode('feature', {'var': fArray[i]}));
                 }
-                
+
                 con.send(iqResponse);
             }
-            
+
             // Software version query
             else if((iqQueryXMLNS == NS_VERSION) && (iqType == 'get')) {
                 /* REF: http://xmpp.org/extensions/xep-0092.html */
-                
+
                 iqQuery = iqResponse.setQuery(NS_VERSION);
-                
+
                 iqQuery.appendChild(iq.buildNode('name', 'Jappix Mobile'));
                 iqQuery.appendChild(iq.buildNode('version', JAPPIX_VERSION));
                 iqQuery.appendChild(iq.buildNode('os', BrowserDetect.OS));
-                
+
                 con.send(iqResponse);
             }
         } catch(e) {
@@ -477,27 +477,27 @@ var Mobile = (function () {
             // Reset the elements
             self.hideThis('home');
             self.resetPanel();
-            
+
             // Create the talk page
             document.getElementsByTagName('body')[0].innerHTML +=
-            '<div id="talk">' + 
-                '<div class="header">' + 
-                    '<div class="mobile-images"></div>' + 
-                    '<button onclick="Mobile.doLogout();">' + self._e("Disconnect") + '</button>' + 
-                '</div>' + 
-                
-                '<div id="roster"></div>' + 
-            '</div>' + 
-            
-            '<div id="chat">' + 
-                '<div class="header">' + 
-                    '<div class="mobile-images"></div>' + 
-                    '<button onclick="Mobile.returnToRoster();">' + self._e("Previous") + '</button>' + 
-                '</div>' + 
-                
-                '<div id="chans"></div>' + 
+            '<div id="talk">' +
+                '<div class="header">' +
+                    '<div class="mobile-images"></div>' +
+                    '<button onclick="Mobile.doLogout();">' + self._e("Disconnect") + '</button>' +
+                '</div>' +
+
+                '<div id="roster"></div>' +
+            '</div>' +
+
+            '<div id="chat">' +
+                '<div class="header">' +
+                    '<div class="mobile-images"></div>' +
+                    '<button onclick="Mobile.returnToRoster();">' + self._e("Previous") + '</button>' +
+                '</div>' +
+
+                '<div id="chans"></div>' +
             '</div>';
-            
+
             // Get the roster items
             self.getRoster();
         } catch(e) {
@@ -534,7 +534,7 @@ var Mobile = (function () {
         try {
             // Reset the elements
             self.resetDOM();
-            
+
             // Show the home page
             self.showThis('home');
         } catch(e) {
@@ -556,17 +556,17 @@ var Mobile = (function () {
             // Error: send presence anyway
             if(!iq || (iq.getType() != 'result'))
                 return self.sendPresence('', 'available', 1);
-            
+
             // Define some pre-vars
             var current, xid, nick, oneBuddy, oneID, hash, cur_buddy;
             var roster_buddies = [];
 
             var roster = document.getElementById('roster');
-            
+
             // Get roster items
             var iqNode = iq.getNode();
             var bItems = iqNode.getElementsByTagName('item');
-            
+
             // Display each elements from the roster
             for(var i = 0; i < bItems.length; i++) {
                 // Get the values
@@ -574,7 +574,7 @@ var Mobile = (function () {
                 xid = current.getAttribute('jid').htmlEnc();
                 nick = current.getAttribute('name');
                 hash = hex_md5(xid);
-                
+
                 // No defined nick?
                 if(!nick) {
                     nick = self.getDirectNick(xid);
@@ -601,7 +601,7 @@ var Mobile = (function () {
                     cur_buddy.nick
                 );
             }
-            
+
             // Start handling buddies presence
             self.sendPresence('', 'available', 1);
         } catch(e) {
@@ -623,7 +623,7 @@ var Mobile = (function () {
             var body = aForm.body.value;
             var xid = aForm.xid.value;
             var hash = hex_md5(xid);
-            
+
             if(body && xid) {
                 // Send the message
                 var aMsg = new JSJaCMessage();
@@ -631,10 +631,10 @@ var Mobile = (function () {
                 aMsg.setType('chat');
                 aMsg.setBody(body);
                 con.send(aMsg);
-                
+
                 // Clear our input
                 aForm.body.value = '';
-                
+
                 // Display the message we sent
                 self.displayMessage(xid, body, 'me', hash);
             }
@@ -660,7 +660,7 @@ var Mobile = (function () {
 
         try {
             var presence = new JSJaCPresence();
-            
+
             if(type)
                 presence.setType(type);
             if(show)
@@ -669,7 +669,7 @@ var Mobile = (function () {
                 presence.setPriority(priority);
             if(status)
                 presence.setStatus(status);
-            
+
             con.send(presence);
         } catch(e) {
             Console.error('Mobile.sendPresence', e);
@@ -689,7 +689,7 @@ var Mobile = (function () {
             iq = new JSJaCIQ();
             iq.setType('get');
             iq.setQuery(NS_ROSTER);
-            
+
             con.send(iq, self.handleRoster);
         } catch(e) {
             Console.error('Mobile.getRoster', e);
@@ -726,7 +726,7 @@ var Mobile = (function () {
 
         try {
             var path = 'buddy-' + hash;
-            
+
             if(self.exists(path)) {
                 return document.getElementById(path).innerHTML;
             } else {
@@ -752,7 +752,7 @@ var Mobile = (function () {
         try {
             // Get the index of our char to explode
             var index = toStr.indexOf(toEx);
-            
+
             // We split if necessary the string
             if(index !== -1) {
                 if(i === 0) {
@@ -761,7 +761,7 @@ var Mobile = (function () {
                     toStr = toStr.substr(index + 1);
                 }
             }
-            
+
             // We return the value
             return toStr;
         } catch(e) {
@@ -833,13 +833,13 @@ var Mobile = (function () {
         try {
             // Encode in HTML
             msg = msg.htmlEnc();
-    
+
             // Highlighted text
             msg = msg.replace(/(\s|^)\*(.+)\*(\s|$)/gi,'$1<em>$2</em>$3');
-            
+
             // Links
             msg = Links.apply(msg, 'mini');
-            
+
             return msg;
         } catch(e) {
             Console.error('Mobile.filter', e);
@@ -862,20 +862,20 @@ var Mobile = (function () {
         try {
             // Get the path
             var path = 'content-' + hash;
-            
+
             // Display the message
             html = '<span><b';
-            
+
             if(nick == 'me') {
                 html += ' class="me">' + self._e("You");
             } else {
                 html += ' class="him">' + nick;
             }
-            
+
             html += '</b> ' + self.filter(body) + '</span>';
-            
+
             document.getElementById(path).innerHTML += html;
-            
+
             // Scroll to the last element
             document.getElementById(path).lastChild.scrollIntoView();
         } catch(e) {
@@ -928,7 +928,7 @@ var Mobile = (function () {
             roster_buddies.sort(function(one, two) {
                 one_nick = (one.nick + '').toLowerCase();
                 two_nick = (two.nick + '').toLowerCase();
-                
+
                 return one_nick < two_nick ? -1 : (one_nick > two_nick ? 1 : 0);
             });
         } catch(e) {
@@ -950,7 +950,7 @@ var Mobile = (function () {
         try {
             // Hide the chats
             self.hideThis('chat');
-            
+
             // Show the roster
             self.showThis('talk');
         } catch(e) {
@@ -971,16 +971,16 @@ var Mobile = (function () {
         try {
             // Hide the roster page
             self.hideThis('talk');
-            
+
             // Hide the other chats
             var divs = document.getElementsByTagName('div');
-            
+
             for(var i = 0; i < divs.length; i++) {
                 if(divs.item(i).getAttribute('class') == 'one-chat') {
                     divs.item(i).style.display = 'none';
                 }
             }
-            
+
             // Show the chat
             self.showThis('chat');
             self.showThis(hash);
@@ -1005,7 +1005,7 @@ var Mobile = (function () {
             // Define the variables
             var chat = document.getElementById('chans');
             var oneChat = document.createElement('div');
-            
+
             // Apply the DOM modification
             oneChat.setAttribute('id', 'chat-' + hash);
             oneChat.setAttribute('class', 'one-chat');
@@ -1029,18 +1029,18 @@ var Mobile = (function () {
 
         try {
             var hash = hex_md5(xid);
-            
+
             // If the chat was not yet opened
             if(!self.exists('chat-' + hash)) {
                 // No nick?
                 if(!nick) {
                     nick = self.getNick(xid, hash);
                 }
-                
+
                 // Create the chat
                 self.createChat(xid, nick, hash);
             }
-            
+
             // Switch to the chat
             self.chatSwitch('chat-' + hash);
         } catch(e) {

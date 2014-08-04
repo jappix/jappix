@@ -42,7 +42,7 @@ if((isset($_SESSION['jappix_user']) && !empty($_SESSION['jappix_user'])) && (iss
     // Get the session values
     $user = $_SESSION['jappix_user'];
     $password = $_SESSION['jappix_password'];
-    
+
     // Checks the user is admin
     $is_admin = isAdmin($user, $password);
 }

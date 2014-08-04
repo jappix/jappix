@@ -1,19 +1,19 @@
 /*
- 
+
 Jappix - An open social platform
 This is the others CSS stylesheet for Jappix
- 
+
 -------------------------------------------------
- 
+
 License: AGPL
 Author: Valérian Saliou
- 
+
 */
- 
+
 #audio {
     display: none;
 }
- 
+
 #top-content {
     position: absolute;
     right: 5px;
@@ -22,7 +22,7 @@ Author: Valérian Saliou
     min-width: 860px;
     z-index: 50;
 }
- 
+
 #main-content {
     position: absolute;
     top: 34px;
@@ -32,7 +32,7 @@ Author: Valérian Saliou
     min-width: 850px;
     min-height: 450px;
 }
- 
+
 #left-content {
     position: absolute;
     top: 0;
@@ -45,7 +45,7 @@ html[dir="rtl"] #left-content {
     left: auto;
     right: 0;
 }
- 
+
 #right-content,
 #suggest {
     background-color: rgb(20,20,20);
@@ -68,7 +68,7 @@ html[dir="rtl"] #right-content {
     left: 0;
     right: 260px;
 }
- 
+
 #general-wait {
     background: url(../images/others/blank.gif) repeat;
     z-index: 10000;
@@ -78,7 +78,7 @@ html[dir="rtl"] #right-content {
     left: 0;
     right: 0;
 }
- 
+
 .general-wait-content {
     background-color: rgb(255,255,255);
     background-color: rgba(255,255,255,0.9);
@@ -112,7 +112,7 @@ html[dir="rtl"] .general-wait-content {
 .muji-hidable {
     display: none;
 }
- 
+
 #reconnect .pane {
     background-color: rgb(20,20,20);
     background-color: rgba(20,20,20,0.85);
@@ -128,7 +128,7 @@ html[dir="rtl"] .general-wait-content {
     -webkit-box-shadow: 0 0 35px #232323;
     box-shadow: 0 0 35px #232323;
 }
- 
+
 #reconnect .pane a {
     margin-top: -4px;
     float: right;

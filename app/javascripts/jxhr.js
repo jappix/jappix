@@ -8,16 +8,16 @@
     var SETTIMEOUT = global.setTimeout, // for better compression
         doc = global.document,
         callback_counter = 0;
-        
+
     global.jXHR = function() {
         var script_url,
             script_loaded,
             jsonp_callback,
             scriptElem,
             publicAPI = null;
-            
+
         function removeScript() { try { scriptElem.parentNode.removeChild(scriptElem); } catch (err) { } }
-            
+
         function reset() {
             script_loaded = false;
             script_url = "";
@@ -25,12 +25,12 @@
             scriptElem = null;
             fireReadyStateChange(0);
         }
-        
+
         function ThrowError(msg) {
-            try { 
-                publicAPI.onerror.call(publicAPI,msg,script_url); 
-            } catch (err) { 
-                //throw new Error(msg); 
+            try {
+                publicAPI.onerror.call(publicAPI,msg,script_url);
+            } catch (err) {
+                //throw new Error(msg);
             }
         }
 
@@ -41,7 +41,7 @@
             if (publicAPI.readyState !== 4) ThrowError("handleScriptLoad: Script failed to load ["+script_url+"].");
             removeScript();
         }
-        
+
         function parseXMLString(xmlStr) {
             var xmlDoc = null;
             if(window.DOMParser) {
@@ -49,15 +49,15 @@
                 xmlDoc = parser.parseFromString(xmlStr,"text/xml");
             }
             else {
-                xmlDoc = new ActiveXObject("Microsoft.XMLDOM"); 
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
                 xmlDoc.async="false";
                 xmlDoc.loadXML(xmlStr);
             }
             return xmlDoc;
         }
-        
+
         function fireReadyStateChange(rs,args) {
-        
+
             args = args || [];
             publicAPI.readyState = rs;
             if (rs == 4) {
@@ -66,7 +66,7 @@
             }
             if (typeof publicAPI.onreadystatechange === "function") publicAPI.onreadystatechange.apply(publicAPI,args);
         }
-                
+
         publicAPI = {
             onerror:null,
             onreadystatechange:null,
@@ -80,10 +80,10 @@
                 var internal_callback = "cb"+(callback_counter++);
                 (function(icb){
                     global.jXHR[icb] = function() {
-                        try { fireReadyStateChange.call(publicAPI,4,arguments); } 
-                        catch(err) { 
+                        try { fireReadyStateChange.call(publicAPI,4,arguments); }
+                        catch(err) {
                             publicAPI.readyState = -1;
-                            ThrowError("Script failed to run ["+script_url+"]."); 
+                            ThrowError("Script failed to run ["+script_url+"].");
                         }
                         global.jXHR[icb] = null;
                     };
@@ -110,7 +110,7 @@
         };
 
         reset();
-        
+
         return publicAPI;
     };
 })(window);

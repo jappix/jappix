@@ -94,7 +94,7 @@ var Call = (function() {
 
                 // TODO: setting a fallback fucks up some calls...
                 // fallback: './server/jingle.php',
-                
+
                 single_initiate: function(stanza) {
                     try {
                         // Already in a call?
@@ -287,7 +287,7 @@ var Call = (function() {
         is_same = false;
 
         try {
-            if(compare_session && session  && 
+            if(compare_session && session  &&
                compare_session.get_sid() === session.get_sid()) {
                 is_same = true;
             }
@@ -506,21 +506,21 @@ var Call = (function() {
 
             // Append notification to DOM
             call_subitem_sel.html(
-                '<div class="call-notify notify-' + type + ' ' + hex_md5(sender_xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' + 
-                    '<div class="avatar-pane">' + 
-                        '<div class="avatar-container">' + 
-                            '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
-                        '</div>' + 
+                '<div class="call-notify notify-' + type + ' ' + hex_md5(sender_xid) + '" data-type="' + type + '" data-xid="' + Common.encodeQuotes(xid) + '">' +
+                    '<div class="avatar-pane">' +
+                        '<div class="avatar-container">' +
+                            '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' +
+                        '</div>' +
 
-                        '<span class="icon call-images"></span>' + 
-                    '</div>' + 
+                        '<span class="icon call-images"></span>' +
+                    '</div>' +
 
-                    '<div class="notification-content">' + 
-                        '<span class="fullname">' + fullname + '</span>' + 
-                        '<span class="text">' + map[type].text + '</span>' + 
+                    '<div class="notification-content">' +
+                        '<span class="fullname">' + fullname + '</span>' +
+                        '<span class="text">' + map[type].text + '</span>' +
 
-                        '<div class="reply-buttons">' + buttons_html + '</div>' + 
-                    '</div>' + 
+                        '<div class="reply-buttons">' + buttons_html + '</div>' +
+                    '</div>' +
                 '</div>'
             );
 
@@ -751,7 +751,7 @@ var Call = (function() {
             self.stop_counter();
             self._start_stamp = DateUtils.getTimeStamp();
             self._fire_clock();
-            
+
             // Fire it every second
             $('#top-content .tools.call .counter').everyTime('1s', self._fire_clock);
 
@@ -779,7 +779,7 @@ var Call = (function() {
             // Reset counter
             var counter_sel = $('#top-content .tools.call .counter');
             var default_count = counter_sel.attr('data-default');
-            
+
             counter_sel.stopTime();
 
             $('#top-content .tools.call .counter').text(default_count);
@@ -808,13 +808,13 @@ var Call = (function() {
                 DateUtils.getTimeStamp(),
                 self._start_stamp
             );
-            
+
             if(count.getHours()) {
                 count = count.toString('H:mm:ss');
             } else {
                 count = count.toString('mm:ss');
             }
-            
+
             // Display updated counter
             $('#top-content .tools.call .counter').text(count);
             $('#jingle, #muji').find('.elapsed').text(count);

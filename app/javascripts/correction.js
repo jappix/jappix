@@ -134,9 +134,9 @@ var Correction = (function () {
 
             text_sel.addClass('correction-active');
             text_sel.prepend(
-                '<div class="correction-toolbox">' + 
-                    '<span class="correction-editing">' + Common._e("Editing") + '</span>' + 
-                    '<a class="correction-cancel" href="#">' + Common._e("Cancel") + '</a>' + 
+                '<div class="correction-toolbox">' +
+                    '<span class="correction-editing">' + Common._e("Editing") + '</span>' +
+                    '<a class="correction-cancel" href="#">' + Common._e("Cancel") + '</a>' +
                 '</div>'
             );
 
@@ -146,8 +146,8 @@ var Correction = (function () {
             message_sel.find('.correction-edit').hide();
 
             message_sel.append(
-                '<span class="correction-label">' + 
-                    Common._e("Being edited") + 
+                '<span class="correction-label">' +
+                    Common._e("Being edited") +
                 '</span>'
             );
 
@@ -224,14 +224,14 @@ var Correction = (function () {
             // Generates the correct message depending of the choosen style
             var generate_message = Message.generate(message, message_body, hash);
             args.xhtml = (generate_message === 'XHTML');
-            
+
             // Receipt request
             var receipt_request = Receipts.request(hash);
-            
+
             if(receipt_request) {
                 message.appendNode('request', {'xmlns': NS_URN_RECEIPTS});
             }
-            
+
             // Chatstate
             message.appendNode('active', {'xmlns': NS_CHATSTATES});
 

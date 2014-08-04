@@ -57,11 +57,11 @@ if(REGISTER_API == 'on') {
     $password = isset($_POST['password']) ? trim($_POST['password']) : null;
     $domain = isset($_POST['domain']) ? trim($_POST['domain']) : null;
     $captcha = isset($_POST['captcha']) ? trim($_POST['captcha']) : null;
-    
+
     // Enough data?
     if(!$username || !$password || !$domain || !$captcha) {
         $error = true;
-        
+
         if(!$username) {
             $error_reason = 'Username POST Field Missing';
         } else if(!$password) {
@@ -88,50 +88,50 @@ if(REGISTER_API == 'on') {
 
         // Which command to execute?
         $command_str = null;
-        
+
         if(XMPPD == 'metronome') {
             $xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'metronomectl';
-            
+
             // Command string
             $command_str = 'sudo '.$xmppd_ctl.' adduser '.escapeshellarg($username.'@'.$domain).' '.escapeshellarg($password);
         } else if(XMPPD == 'ejabberd') {
             $xmppd_ctl = XMPPD_CTL ? XMPPD_CTL : 'ejabberdctl';
-            
+
             // Command string
             $command_str = 'sudo '.$xmppd_ctl.' register '.escapeshellarg($username).' '.escapeshellarg($domain).' '.escapeshellarg($password);
         } else {
             $error = true;
             $error_reason = 'Unsupported XMPP Daemon';
         }
-        
+
         // Execute command
         if($command_str) {
             // Here we go!
             $command_output = array();
-            
+
             exec($command_str, $command_output);
-            
+
             // Check if user could be registered
             $command_return = 0;
-            
+
             foreach($command_output as $command_line) {
                 if(((XMPPD == 'metronome') && preg_match('/User successfully added/i', $command_line)) || ((XMPPD == 'ejabberd') && preg_match('/User (.+) successfully registered/i', $command_line))) {
                     $command_return = 1;
-                    
+
                     break;
                 }
-                
+
                 if(((XMPPD == 'metronome') && preg_match('/User already exists/i', $command_line)) || ((XMPPD == 'ejabberd') && preg_match('/User (.+) already registered/i', $command_line))) {
                     $command_return = 2;
-                    
+
                     break;
                 }
             }
-            
+
             // Check for errors
             if($command_return != 1) {
                 $error = true;
-                
+
                 if($command_return == 2) {
                     $error_reason = 'Username Unavailable';
                 } else {
@@ -155,7 +155,7 @@ $status_message = 'Success';
 if($error) {
     $status_code = '0';
     $status_message = 'Server error';
-    
+
     if($error_reason) {
         $status_message = $error_reason;
     }
@@ -166,7 +166,7 @@ $api_response = '<jappix xmlns="jappix:account:register">';
         $api_response .= '<status>'.htmlspecialchars($status_code).'</status>';
         $api_response .= '<message>'.htmlspecialchars($status_message).'</message>';
     $api_response .= '</query>';
-    
+
     if($xml_output) {
         $api_response .= '<data>';
             $api_response .= $xml_output;

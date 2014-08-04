@@ -32,9 +32,9 @@ var Name = (function () {
             var iq = new JSJaCIQ();
             iq.setType('get');
             iq.setTo(xid);
-            
+
             iq.appendNode('vCard', {'xmlns': NS_VCARD});
-            
+
             con.send(iq, self.handleAddUser);
         } catch(e) {
             Console.error('Name.getAddUser', e);
@@ -56,14 +56,14 @@ var Name = (function () {
             if(!Common.exists('.add-contact-name-get[data-for="' + escape(Common.bareXID(Common.getStanzaFrom(iq))) + '"]')) {
                 return false;
             }
-            
+
             // Reset the waiting item
             $('.add-contact-name-get').hide().removeAttr('data-for');
-            
+
             // Get the names
             if(iq.getType() == 'result') {
                 var full_name = self.generateBuddy(iq)[0];
-                
+
                 if(full_name) {
                     $('.add-contact-name').val(full_name);
                 }
@@ -88,29 +88,29 @@ var Name = (function () {
         try {
             // Get the IQ content
             var vcard_sel = $(iq.getNode()).find('vCard');
-            
+
             // Get the full name & the nickname
             var pFull = vcard_sel.find('FN:first').text();
             var pNick = vcard_sel.find('NICKNAME:first').text();
-            
+
             // No full name?
             if(!pFull) {
                 // Get the given name
                 var pN = vcard_sel.find('N:first');
                 var pGiven = pN.find('GIVEN:first').text();
-                
+
                 if(pGiven) {
                     pFull = pGiven;
-                    
+
                     // Get the family name (optional)
                     var pFamily = pN.find('FAMILY:first').text();
-                    
+
                     if(pFamily) {
                         pFull += ' ' + pFamily;
                     }
                 }
             }
-            
+
             return [pFull, pNick];
         } catch(e) {
             Console.error('Name.generateBuddy', e);
@@ -130,21 +130,21 @@ var Name = (function () {
         try {
             // Initialize
             var cname, bname;
-            
+
             // Cut the XID resource
             xid = Common.bareXID(xid);
-            
+
             // This is me?
             if(Utils.isAnonymous() && !xid) {
                 bname = Common._e("You");
             } else if(xid == Common.getXID()) {
                 bname = self.get();
             }
-            
+
             // Not me!
             else {
                 cname = $('#roster .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
-                
+
                 // Complete name exists?
                 if(cname) {
                     bname = cname.revertHtmlEnc();
@@ -152,7 +152,7 @@ var Name = (function () {
                     bname = Common.getXIDNick(xid);
                 }
             }
-            
+
             return bname;
         } catch(e) {
             Console.error('Name.getBuddy', e);
@@ -171,12 +171,12 @@ var Name = (function () {
         try {
             // Try to read the user nickname
             var nick = DataStore.getDB(Connection.desktop_hash, 'profile', 'nick');
-            
+
             // No nick?
             if(!nick) {
                 nick = con.username;
             }
-            
+
             return nick;
         } catch(e) {
             Console.error('Name.getNick', e);
@@ -195,12 +195,12 @@ var Name = (function () {
         try {
             // Try to read the user name
             var name = DataStore.getDB(Connection.desktop_hash, 'profile', 'name');
-            
+
             // No name? Use the nickname instead
             if(!name) {
                 name = self.getNick();
             }
-            
+
             return name;
         } catch(e) {
             Console.error('Name.get', e);

@@ -55,7 +55,7 @@ var Utils = (function () {
             if((HTTPS_STORAGE != 'on') && url.match(/^https(.+)/)) {
                 url = 'http' + RegExp.$1;
             }
-            
+
             return url;
         } catch(e) {
             Console.error('Utils.generateURL', e);
@@ -77,7 +77,7 @@ var Utils = (function () {
             if(value == condition) {
                 return ' disabled=""';
             }
-            
+
             return '';
         } catch(e) {
             Console.error('Utils.disableInput', e);
@@ -100,7 +100,7 @@ var Utils = (function () {
             if(string.length > limit) {
                 string = string.substr(0, limit) + '...';
             }
-            
+
             return string;
         } catch(e) {
             Console.error('Utils.truncate', e);
@@ -216,37 +216,37 @@ var Utils = (function () {
             // Get browser name & version
             var browser_name = BrowserDetect.browser;
             var browser_version = BrowserDetect.version;
-            
+
             // No DOM storage
             if(!DataStore.hasDB() || !DataStore.hasPersistent()) {
                 return true;
             }
-            
+
             // Obsolete IE
             if((browser_name == 'Explorer') && (browser_version < 8)) {
                 return true;
             }
-            
+
             // Obsolete Chrome
             if((browser_name == 'Chrome') && (browser_version < 7)) {
                 return true;
             }
-            
+
             // Obsolete Safari
             if((browser_name == 'Safari') && (browser_version < 4)) {
                 return true;
             }
-            
+
             // Obsolete Firefox
             if((browser_name == 'Firefox') && (browser_version < 3.5)) {
                 return true;
             }
-            
+
             // Obsolete Opera
             if((browser_name == 'Opera') && (browser_version < 9)) {
                 return true;
             }
-            
+
             return false;
         } catch(e) {
             Console.error('Utils.isObsolete', e);
@@ -348,7 +348,7 @@ var Utils = (function () {
         } catch(e) {
             Console.error('Utils.quoteMyNick', e);
         }
-    
+
     };
 
 
@@ -362,7 +362,7 @@ var Utils = (function () {
 
         try {
             var cat;
-            
+
             switch(ext) {
                 // Images
                 case 'jpg':
@@ -378,9 +378,9 @@ var Utils = (function () {
                 case 'psb':
                 case 'xcf':
                     cat = 'image';
-                    
+
                     break;
-                
+
                 // Videos
                 case 'ogv':
                 case 'ogg':
@@ -402,9 +402,9 @@ var Utils = (function () {
                 case '3gp':
                 case 'avc':
                     cat = 'video';
-                    
+
                     break;
-                
+
                 // Sounds
                 case 'oga':
                 case 'mka':
@@ -429,9 +429,9 @@ var Utils = (function () {
                 case 'snd':
                 case 'voc':
                     cat = 'audio';
-                    
+
                     break;
-                
+
                 // Documents
                 case 'pdf':
                 case 'odt':
@@ -470,9 +470,9 @@ var Utils = (function () {
                 case 'dhtml':
                 case 'mshtml':
                     cat = 'document';
-                    
+
                     break;
-                
+
                 // Packages
                 case 'tgz':
                 case 'gz':
@@ -497,16 +497,16 @@ var Utils = (function () {
                 case 'arj':
                 case 'msi':
                     cat = 'package';
-                    
+
                     break;
-                
+
                 // Others
                 default:
                     cat = 'other';
-                    
+
                     break;
             }
-            
+
             return cat;
         } catch(e) {
             Console.error('Utils.fileCategory', e);
@@ -524,7 +524,7 @@ var Utils = (function () {
 
         try {
             navigator.registerProtocolHandler('xmpp', JAPPIX_LOCATION + '?x=%s', SERVICE_NAME);
-            
+
             return true;
         } catch(e) {
             Console.error('Utils.xmppLinksHandler', e);
@@ -629,13 +629,13 @@ var Utils = (function () {
 
         try {
             var array = [];
-            
+
             // Any string to convert?
             if(string) {
                 // More than one item
                 if(string.match(/,/gi)) {
                     var string_split = string.split(',');
-                    
+
                     for(var i in string_split) {
                         if(string_split[i]) {
                             array.push(string_split[i]);
@@ -644,12 +644,12 @@ var Utils = (function () {
                         }
                     }
                 }
-                
+
                 // Only one item
                 else
                     array.push(string);
             }
-            
+
             return array;
         } catch(e) {
             Console.error('Utils.stringToArray', e);
@@ -672,18 +672,18 @@ var Utils = (function () {
             if(!array || !array.length) {
                 return 0;
             }
-            
+
             // Read the index of the value
             var index = 0;
-            
+
             for(var i = 0; i < array.length; i++) {
                 if(array[i] == value) {
                     index = i;
-                    
+
                     break;
                 }
             }
-            
+
             return index;
         } catch(e) {
             Console.error('Utils.indexArrayValue', e);

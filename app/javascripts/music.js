@@ -29,10 +29,10 @@ var Music = (function () {
 
         try {
             var path = '.music-content';
-    
+
             // Show the music bubble
             Bubble.show(path);
-            
+
             $(document).oneTime(10, function() {
                 $(path + ' input').focus();
             });
@@ -58,18 +58,18 @@ var Music = (function () {
             var path = '.music-content ';
             var content = path + '.list';
             var path_type = content + ' .' + type;
-            
+
             // Create the result container
             if(!Common.exists(path_type)) {
                 var code = '<div class="' + type + '"></div>';
-                
+
                 if(type == 'local') {
                     $(content).prepend(code);
                 } else {
                     $(content).append(code);
                 }
             }
-            
+
             // Fill the results
             $(xml).find('track').each(function() {
                 // Parse the XML
@@ -82,42 +82,42 @@ var Music = (function () {
                 var duration = this_sel.find('duration').text();
                 var uri = this_sel.find('url').text();
                 var mime = this_sel.find('type').text() || 'audio/ogg';
-                
+
                 // Local URL?
                 if(type == 'local') {
                     uri = Utils.generateURL(uri);
                 }
-                
+
                 // Append the HTML code
                 $(path_type).append('<a href="#" class="song" data-id="' + id + '">' + title + '</a>');
-                
+
                 // Current playing song?
                 var current_song = $(path_type + ' a[data-id="' + id + '"]');
-                
+
                 if(Common.exists('.music-audio[data-id="' + id + '"]')) {
                     current_song.addClass('playing');
                 }
-                
+
                 // Click event
                 current_song.click(function() {
                     return self.add(id,  title, artist, source, duration, uri, mime, type);
                 });
             });
-            
+
             // The search is finished
             if(Common.exists(content + ' .jamendo') && Common.exists(content + ' .local')) {
                 // Get the result values
                 var jamendo = $(content + ' .jamendo').text();
                 var local = $(content + ' .local').text();
-                
+
                 // Enable the input
                 $(path + 'input').val('').removeAttr('disabled');
-                
+
                 // No result
                 if(!jamendo && !local) {
                     $(path + '.no-results').show();
                 }
-                
+
                 // We must put a separator between the categories
                 if(jamendo && local) {
                     $(content + ' .local').addClass('special');
@@ -139,22 +139,22 @@ var Music = (function () {
 
         try {
             var path = '.music-content ';
-            
+
             // We get the input string
             var string = $(path + 'input').val();
-            
+
             // We lock the search input
             $(path + 'input').attr('disabled', true);
-            
+
             // We reset the results
             $(path + '.list div').remove();
             $(path + '.no-results').hide();
-            
+
             // Get the Jamendo results
             $.get('./server/music-search.php', {searchquery: string, location: 'jamendo'}, function(data) {
                 self.parse(data, 'jamendo');
             });
-            
+
             // Get the local results
             $.get('./server/music-search.php', {
                 searchquery: string,
@@ -180,14 +180,14 @@ var Music = (function () {
         try {
             // Initialize
             var audio_sel = document.getElementById('top-content').getElementsByTagName('audio')[0];
-            
+
             // Nothing to play, exit
             if(!audio_sel) {
                 return false;
             }
-            
+
             var stopButton = $('#top-content a.stop');
-            
+
             // User play a song
             if(action == 'play') {
                 stopButton.show();
@@ -196,8 +196,8 @@ var Music = (function () {
 
                 audio_sel.addEventListener('ended', function() {
                     self.action('stop');
-                }, true);  
-                
+                }, true);
+
                 Console.log('Music is now playing.');
             } else if(action == 'stop') {
                 // User stop the song / end of song
@@ -209,7 +209,7 @@ var Music = (function () {
                 $('.music-audio').remove();
 
                 self.publish();
-                
+
                 Console.log('Music is now stopped.');
             }
         } catch(e) {
@@ -240,13 +240,13 @@ var Music = (function () {
             if(Features.enabledPEP()) {
                 var iq = new JSJaCIQ();
                 iq.setType('set');
-                
+
                 // Create the main PubSub nodes
                 var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
                 var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_TUNE, 'xmlns': NS_PUBSUB}));
                 var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
                 var tune = item.appendChild(iq.buildNode('tune', {'xmlns': NS_TUNE}));
-                
+
                 // Enough data?
                 if(title || artist || source || uri) {
                     var music_data = {
@@ -256,13 +256,13 @@ var Music = (function () {
                         'length': length,
                         'uri': uri
                     };
-                    
+
                     // Create the children nodes
                     var cur_value;
 
                     for(var cur_name in music_data) {
                         cur_value = music_data[cur_name];
-                        
+
                         if(cur_value) {
                             tune.appendChild(iq.buildNode(cur_name, {
                                 'xmlns': NS_TUNE
@@ -270,9 +270,9 @@ var Music = (function () {
                         }
                     }
                 }
-                
+
                 con.send(iq);
-                
+
                 Console.info('New tune sent: ' + title);
             }
         } catch(e) {
@@ -300,28 +300,28 @@ var Music = (function () {
         try {
             var path = '.music-content ';
             var music_audio_sel = $('.music-audio');
-            
+
             // We remove & create a new audio tag
             music_audio_sel.remove();
             $(path + '.player').prepend('<audio class="music-audio" type="' + mime + '" data-id="' + id + '" />');
-            
+
             // We apply the new source to the player
             if(type == 'jamendo') {
                 music_audio_sel.attr('src', 'http://api.jamendo.com/get2/stream/track/redirect/?id=' + id + '&streamencoding=ogg2');
             } else {
                 music_audio_sel.attr('src', uri);
             }
-            
+
             // We play the target sound
             self.action('play');
-            
+
             // We set the actived class
             $('#top-content .music').addClass('actived');
-            
+
             // We set a current played track indicator
             $(path + '.list a').removeClass('playing');
             $(path + 'a[data-id="' + id + '"]').addClass('playing');
-            
+
             // We publish what we listen
             self.publish(title, artist, source, duration, uri);
         } catch(e) {
@@ -348,7 +348,7 @@ var Music = (function () {
                 if(e.keyCode == 13 && $(this).val()) {
                     self.search();
                 }
-                
+
                 // Escape : quit
                 if(e.keyCode == 27) {
                     Bubble.close();

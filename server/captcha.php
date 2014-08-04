@@ -47,21 +47,21 @@ function captcha($security_code) {
     $font     = 4;
     $offset_x = 8;
     $offset_y = 3;
-    
+
     // Create image
     $im = @imagecreate($width, $height);
     $background_color = imagecolorallocate($im, 10, 102, 174);
     $text_color = imagecolorallocate($im, rand(150, 255), rand(150, 255), rand(150, 255));
 
     // Create the circles
-    $r = 0.01; $g = 0.51; $b = 0.87;    
+    $r = 0.01; $g = 0.51; $b = 0.87;
 
     for($i = 1; $i <= $circles; $i++) {
         $value = rand(200, 255);
         $randomcolor = imagecolorallocate($im, $value * $r, $value * $g, $value * $b);
         imagefilledellipse($im, rand(0, $width - 10), rand(0, $height - 3), rand(20, 70), rand(20, 70), $randomcolor);
     }
-    
+
     // Create the text
     imagerectangle($im, 0, 0, $width - 1, $height - 1, $text_color);
     imagestring($im, $font, $offset_x, $offset_y, $security_code, $text_color);
@@ -80,10 +80,10 @@ function captcha($security_code) {
         imageline($im, $x, 0, $x, $height, $randomcolor);
     }
 
-    // Tell the browser what kind of file is come in 
+    // Tell the browser what kind of file is come in
     header('Content-Type: image/png');
 
-    // Output the newly created image in jpeg format 
+    // Output the newly created image in jpeg format
     imagepng($im);
 
     // Free up resources

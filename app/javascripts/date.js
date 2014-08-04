@@ -87,7 +87,7 @@ var DateUtils = (function () {
             if(self.last_activity === 0) {
                 return 0;
             }
-            
+
             return self.getTimeStamp() - self.last_activity;
         } catch(e) {
             Console.error('DateUtils.getLastActivity', e);
@@ -129,7 +129,7 @@ var DateUtils = (function () {
             if(self.presence_last_activity === 0) {
                 return 0;
             }
-            
+
             return self.getTimeStamp() - self.presence_last_activity;
         } catch(e) {
             Console.error('DateUtils.getPresenceLast', e);
@@ -170,7 +170,7 @@ var DateUtils = (function () {
                 minutes = date.getMinutes();
                 seconds = date.getSeconds();
             }
-            
+
             // Generates the date string
             date_string = year + '-';
             date_string += Common.padZero(month + 1) + '-';
@@ -178,7 +178,7 @@ var DateUtils = (function () {
             date_string += Common.padZero(hours) + ':';
             date_string += Common.padZero(minutes) + ':';
             date_string += Common.padZero(seconds) + 'Z';
-            
+
             // Returns the date string
             return date_string;
         } catch(e) {
@@ -221,7 +221,7 @@ var DateUtils = (function () {
             var time = Common.padZero(init.getHours()) + ':';
             time += Common.padZero(init.getMinutes()) + ':';
             time += Common.padZero(init.getSeconds());
-            
+
             return time;
         } catch(e) {
             Console.error('DateUtils.getCompleteTime', e);
@@ -241,26 +241,26 @@ var DateUtils = (function () {
             // Get the date
             var date = new Date();
             var offset = date.getTimezoneOffset();
-            
+
             // Default vars
             var sign = '';
             var hours = 0;
             var minutes = 0;
-            
+
             // Process a neutral offset
             if(offset < 0) {
                 offset = offset * -1;
                 sign = '+';
             }
-            
+
             // Get the values
             var n_date = new Date(offset * 60 * 1000);
             hours = n_date.getHours() - 1;
             minutes = n_date.getMinutes();
-            
+
             // Process the TZO
             tzo = sign + Common.padZero(hours) + ':' + Common.padZero(minutes);
-            
+
             // Return the processed value
             return tzo;
         } catch(e) {
@@ -301,7 +301,7 @@ var DateUtils = (function () {
         try {
             var date = Date.jab2date(to_parse);
             var parsed = date.toLocaleDateString() + ' (' + date.toLocaleTimeString() + ')';
-            
+
             return parsed;
         } catch(e) {
             Console.error('DateUtils.parse', e);
@@ -321,7 +321,7 @@ var DateUtils = (function () {
         try {
             var date = Date.jab2date(to_parse);
             var parsed = date.toLocaleDateString();
-            
+
             return parsed;
         } catch(e) {
             Console.error('DateUtils.parseDay', e);
@@ -341,7 +341,7 @@ var DateUtils = (function () {
         try {
             var date = Date.jab2date(to_parse);
             var parsed = date.toLocaleTimeString();
-            
+
             return parsed;
         } catch(e) {
             Console.error('DateUtils.parseTime', e);
@@ -363,36 +363,36 @@ var DateUtils = (function () {
             var current_date = Date.jab2date(self.getXMPPTime('utc'));
             var current_day = current_date.getDate();
             var current_stamp = current_date.getTime();
-            
+
             // Parse the given date
             var old_date = Date.jab2date(to_parse);
             var old_day = old_date.getDate();
             var old_stamp = old_date.getTime();
             var old_time = old_date.toLocaleTimeString();
-            
+
             // Get the day number between the two dates
             var days = Math.round((current_stamp - old_stamp) / 86400000);
-            
+
             // Invalid date?
             if(isNaN(old_stamp) || isNaN(days)) {
                 return self.getCompleteTime();
             }
-            
+
             // Is it today?
             if(current_day == old_day) {
                 return old_time;
             }
-            
+
             // It is yesterday?
             if(days <= 1) {
                 return Common._e("Yesterday") + ' - ' + old_time;
             }
-            
+
             // Is it less than a week ago?
             if(days <= 7) {
                 return Common.printf(Common._e("%s days ago"), days) + ' - ' + old_time;
             }
-            
+
             // Another longer period
             return old_date.toLocaleDateString() + ' - ' + old_time;
         } catch(e) {
@@ -414,10 +414,10 @@ var DateUtils = (function () {
         try {
             // Initialize
             var delay, d_delay;
-            
+
             // Read the delay
             d_delay = jQuery(node).find('delay[xmlns="' + NS_URN_DELAY + '"]:first').attr('stamp');
-            
+
             // Get delay
             if(d_delay) {
                 // New delay (valid XEP)
@@ -425,7 +425,7 @@ var DateUtils = (function () {
             } else {
                 // Old delay (obsolete XEP!)
                 var x_delay = jQuery(node).find('x[xmlns="' + NS_DELAY + '"]:first').attr('stamp');
-                
+
                 if(x_delay) {
                     delay = x_delay.replace(/^(\w{4})(\w{2})(\w{2})T(\w{2}):(\w{2}):(\w{2})Z?(\S+)?/, '$1-$2-$3T$4:$5:$6Z$7');
                 }
@@ -435,7 +435,7 @@ var DateUtils = (function () {
             if(return_date === true && delay) {
                 return Date.jab2date(delay);
             }
-            
+
             return delay;
         } catch(e) {
             Console.error('DateUtils.readMessageDelay', e);

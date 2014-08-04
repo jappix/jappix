@@ -93,13 +93,13 @@ class DrawSVGChart {
             return TRUE;
 
         $this->xml_object = new DOMDocument('1.0', 'utf-8');
-	
+
 	// Process the static file host prefix
 	$static_prefix = '.';
-	
+
 	if(hasStatic())
 		$static_prefix = HOST_STATIC.'/php';
-	
+
         // Add the stylesheet
         $style = $this->xml_object->createProcessingInstruction("xml-stylesheet",
                  "type='text/css' href='".getFiles(genHash(getVersion()), '', 'css', '', 'stats-svg.css')."'");
@@ -184,10 +184,10 @@ class DrawSVGChart {
         foreach ($scale as $level)
         {
             $type = $this->type;
-            
+
             if(($type == 'share') || ($type == 'others'))
                 $level = formatBytes($level);
-            
+
             if ($top)
                 $color = '#CED0D5';
             else
@@ -321,7 +321,7 @@ class DrawSVGChart {
                 $value = formatBytes($data);
             else
                 $value = $data;
-            
+
             // Create the chart with datas
             $g = $this->xml_object->createElement('g');
             $g->setAttribute('transform', 'translate('.$x.')');
@@ -336,7 +336,7 @@ class DrawSVGChart {
 
             if ($this->link)
             {
-                $text = $this->xml_object->createElement('text');            
+                $text = $this->xml_object->createElement('text');
 
                 $link = $this->xml_object->createElement('a', mb_substr(filterSpecialXML($onlykeys_datas[$element]), 0, 7));
                 $link->setAttribute('xlink:href', str_replace('{data}', filterSpecialXML($onlykeys_datas[$element]), $this->link));
@@ -450,7 +450,7 @@ class DrawSVGChart {
 
             $x_base = $x_base + 50;
             $y_base = $y_base + 20;
-            $element ++;            
+            $element ++;
         }
 
         if ($this->evolution)
@@ -487,7 +487,7 @@ class DrawSVGChart {
                 $this->svg->appendChild($element);
 
             // Return the XML
-            $this->xml_object->formatOutput = true; 
+            $this->xml_object->formatOutput = true;
             return $this->xml_object->saveXML();
         }
     }

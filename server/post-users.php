@@ -43,7 +43,7 @@ if(isset($_POST['user_repassword']) && ($user_password != $_POST['user_repasswor
 if($valid_user) {
     // Add our user
     manageUsers('add', array($user_name => $user_password));
-    
+
     // Reset the user name
     $user_name = '';
 }

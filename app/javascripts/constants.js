@@ -187,7 +187,7 @@ function STANZA_ERROR(code, type, cond) {
     if(window == this) {
         return new STANZA_ERROR(code, type, cond);
     }
-    
+
     this.code = code;
     this.type = type;
     this.cond = cond;

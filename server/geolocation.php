@@ -34,10 +34,10 @@ if(isStatic() || isUpload()) {
 if((isset($_GET['latitude']) && !empty($_GET['latitude'])) && (isset($_GET['longitude']) && !empty($_GET['longitude'])) && (isset($_GET['language']) && !empty($_GET['language']))) {
     // Set a XML header
     header('Content-Type: text/xml; charset=utf-8');
-    
+
     // Get the XML content
     $xml = readUrl('http://maps.googleapis.com/maps/api/geocode/xml?latlng='.urlencode($_GET['latitude']).','.urlencode($_GET['longitude']).'&language='.urlencode($_GET['language']).'&sensor=true');
-    
+
     exit($xml);
 }
 

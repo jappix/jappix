@@ -4652,7 +4652,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} object
      * @returns {Number} Object length
      */
-    object_length: function(object) {    
+    object_length: function(object) {
       var key;
       var l = 0;
 
@@ -4748,7 +4748,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} object
      * @returns {Date|Array|Object} Cloned object
      */
-    object_clone: function(object) {    
+    object_clone: function(object) {
       try {
         var copy, i, attr;
 
@@ -4796,7 +4796,7 @@ var JSJaCJingleUtils = ring.create(
      * @public
      * @returns {Object} Browser info
      */
-    browser: function() {    
+    browser: function() {
       var browser_info = {
         name    : 'Generic'
       };
@@ -4832,7 +4832,7 @@ var JSJaCJingleUtils = ring.create(
      * @public
      * @returns {Object} ICE config
      */
-    config_ice: function() {    
+    config_ice: function() {
       try {
         // Collect data (user + server)
         var stun_config = this.array_collect(
@@ -4927,7 +4927,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {DOM} stanza
      * @returns {String|Object} Node value
      */
-    stanza_get_value: function(stanza) {    
+    stanza_get_value: function(stanza) {
       try {
         return stanza.firstChild.nodeValue || null;
       } catch(e) {
@@ -4948,7 +4948,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} name
      * @returns {String|Object} Attribute value
      */
-    stanza_get_attribute: function(stanza, name) {    
+    stanza_get_attribute: function(stanza, name) {
       if(!name) return null;
 
       try {
@@ -4971,7 +4971,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} name
      * @param {*} value
      */
-    stanza_set_attribute: function(stanza, name, value) {    
+    stanza_set_attribute: function(stanza, name, value) {
       if(!(name && value && stanza)) return;
 
       try {
@@ -4993,7 +4993,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} [ns]
      * @returns {DOM} Selected DOM elements
      */
-    stanza_get_element: function(stanza, name, ns) {    
+    stanza_get_element: function(stanza, name, ns) {
       var matches_result = [];
 
       // Assert
@@ -5036,7 +5036,7 @@ var JSJaCJingleUtils = ring.create(
       try {
         var i,
             error_child, cur_error_child;
-        
+
         error_child = stanza.getChild('error', NS_CLIENT);
 
         if(error_child && error_child.length) {
@@ -5066,7 +5066,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {DOM|Object} Jingle node
      */
-    stanza_jingle: function(stanza) {    
+    stanza_jingle: function(stanza) {
       try {
         return stanza.getChild('jingle', this.parent.get_namespace());
       } catch(e) {
@@ -5082,7 +5082,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {DOM|Object} Jingle node
      */
-    stanza_muji: function(stanza) {    
+    stanza_muji: function(stanza) {
       try {
         return stanza.getChild('muji', NS_MUJI);
       } catch(e) {
@@ -5098,7 +5098,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {String|Object} From value
      */
-    stanza_from: function(stanza) {    
+    stanza_from: function(stanza) {
       try {
         return stanza.getFrom() || null;
       } catch(e) {
@@ -5130,7 +5130,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {String|Object} SID value
      */
-    stanza_sid: function(stanza) {    
+    stanza_sid: function(stanza) {
       try {
         return this.stanza_get_attribute(
           this.stanza_jingle(stanza),
@@ -5147,7 +5147,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {Boolean} Safety state
      */
-    stanza_safe: function(stanza) {    
+    stanza_safe: function(stanza) {
       try {
         return !((stanza.getType() == JSJAC_JINGLE_IQ_TYPE_SET && this.stanza_sid(stanza) != this.parent.get_sid()) || this.stanza_from(stanza) != this.parent.get_to());
       } catch(e) {
@@ -5163,7 +5163,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {String|Object} Reason code
      */
-    stanza_terminate_reason: function(stanza) {    
+    stanza_terminate_reason: function(stanza) {
       try {
         var jingle = this.stanza_jingle(stanza);
 
@@ -5192,7 +5192,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {String|Object} Info code
      */
-    stanza_session_info: function(stanza) {    
+    stanza_session_info: function(stanza) {
       try {
         var jingle = this.stanza_jingle(stanza);
 
@@ -5218,7 +5218,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} t_id
      * @param {Object} [handlers]
      */
-    stanza_timeout: function(t_node, t_type, t_id, handlers) {    
+    stanza_timeout: function(t_node, t_type, t_id, handlers) {
       try {
         var t_sid = this.parent.get_sid();
         var t_status = this.parent.get_status();
@@ -5259,7 +5259,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Array} attrs
      * @param {Object} [value]
      */
-    stanza_parse_node: function(parent, name, ns, obj, attrs, value) {    
+    stanza_parse_node: function(parent, name, ns, obj, attrs, value) {
       try {
         var i, j,
             error, child, child_arr;
@@ -5304,7 +5304,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {Boolean} Success
      */
-    stanza_parse_content: function(stanza) {    
+    stanza_parse_content: function(stanza) {
       try {
         var i,
             jingle, namespace, content, cur_content,
@@ -5378,7 +5378,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {Boolean} Success
      */
-    stanza_parse_group: function(stanza) {    
+    stanza_parse_group: function(stanza) {
       try {
         var i, j,
             jingle,
@@ -5435,7 +5435,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {DOM} stanza_content
      * @returns {Object} Payload object
      */
-    stanza_parse_payload: function(stanza_content) {    
+    stanza_parse_payload: function(stanza_content) {
       var payload_obj = {
         descriptions : {},
         transports   : {}
@@ -5708,7 +5708,7 @@ var JSJaCJingleUtils = ring.create(
      * @public
      * @param {Array} Candidates array
      */
-    stanza_parse_candidate: function(stanza_content) {    
+    stanza_parse_candidate: function(stanza_content) {
       var candidate_arr = [];
 
       try {
@@ -5716,7 +5716,7 @@ var JSJaCJingleUtils = ring.create(
 
         var fn_parse_transport = function(namespace, parse_obj) {
           var transport = _this.stanza_get_element(stanza_content, 'transport', namespace);
-          
+
           if(transport.length) {
             _this.stanza_parse_node(
               transport,
@@ -5756,7 +5756,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} [value]
      * @returns {DOM} Built node
      */
-    stanza_build_node: function(doc, parent, children, name, ns, value) {    
+    stanza_build_node: function(doc, parent, children, name, ns, value) {
       var node = null;
 
       try {
@@ -5792,7 +5792,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} attrs
      * @returns {DOM} Jingle node
      */
-    stanza_generate_jingle: function(stanza, attrs) {    
+    stanza_generate_jingle: function(stanza, attrs) {
       var jingle = null;
 
       try {
@@ -5816,7 +5816,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @returns {DOM} Muji node
      */
-    stanza_generate_muji: function(stanza) {    
+    stanza_generate_muji: function(stanza) {
       var muji = null;
 
       try {
@@ -5835,7 +5835,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {DOM} jingle
      * @param {Object} args
      */
-    stanza_generate_session_info: function(stanza, jingle, args) {    
+    stanza_generate_session_info: function(stanza, jingle, args) {
       try {
         var info = jingle.appendChild(stanza.buildNode(args.info, { 'xmlns': NS_JINGLE_APPS_RTP_INFO }));
 
@@ -5861,7 +5861,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Boolean} has_transport
      * @param {Object} [override_content]
      */
-    stanza_generate_content_local: function(stanza, jingle, has_transport, override_content) {    
+    stanza_generate_content_local: function(stanza, jingle, has_transport, override_content) {
       try {
         var cur_media;
         var content_local = override_content ? override_content : this.parent.get_content_local();
@@ -6011,8 +6011,8 @@ var JSJaCJingleUtils = ring.create(
 
               // Encryption?
               if(has_transport === true) {
-                if(cs_d_encryption && 
-                   (cs_d_encryption.crypto && cs_d_encryption.crypto.length || 
+                if(cs_d_encryption &&
+                   (cs_d_encryption.crypto && cs_d_encryption.crypto.length ||
                     cs_d_encryption['zrtp-hash'] && cs_d_encryption['zrtp-hash'].length)) {
                   var encryption = description.appendChild(stanza.buildNode('encryption', { 'xmlns': NS_JINGLE_APPS_RTP }));
 
@@ -6107,7 +6107,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {JSJaCPacket} stanza
      * @param {DOM} jingle
      */
-    stanza_generate_group_local: function(stanza, jingle) {    
+    stanza_generate_group_local: function(stanza, jingle) {
       try {
         var i,
             cur_semantics, cur_group, cur_group_name,
@@ -6147,7 +6147,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} transports
      * @returns {Object} Content object
      */
-    generate_content: function(creator, name, senders, payloads, transports) {    
+    generate_content: function(creator, name, senders, payloads, transports) {
       var content_obj = {};
 
       try {
@@ -6198,7 +6198,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} transport_init_obj
      * @returns {Object} Transport object
      */
-    generate_transport: function(transport_init_obj) {    
+    generate_transport: function(transport_init_obj) {
       var transport_obj = {
         'ice': {},
         'raw': {}
@@ -6252,7 +6252,7 @@ var JSJaCJingleUtils = ring.create(
      * Builds local content
      * @public
      */
-    build_content_local: function() {    
+    build_content_local: function() {
       try {
         var cur_name;
 
@@ -6278,7 +6278,7 @@ var JSJaCJingleUtils = ring.create(
      * Builds remote content
      * @public
      */
-    build_content_remote: function() {    
+    build_content_remote: function() {
       try {
         var cur_name;
 
@@ -6306,7 +6306,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} media
      * @returns {String} Media name
      */
-    name_generate: function(media) {    
+    name_generate: function(media) {
       var name = null;
 
       try {
@@ -6358,7 +6358,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} name
      * @returns {String} Media
      */
-    media_generate: function(name) {    
+    media_generate: function(name) {
       var cur_media;
       var media = null;
 
@@ -6446,7 +6446,7 @@ var JSJaCJingleUtils = ring.create(
      * @public
      * @returns {Object} constraints object
      */
-    generate_constraints: function() {    
+    generate_constraints: function() {
       var constraints = {
         audio : false,
         video : false
@@ -6534,7 +6534,7 @@ var JSJaCJingleUtils = ring.create(
             constraints.video.mandatory.minFrameRate = this.parent.get_fps();
 
           // Custom video source? (screenshare)
-          if(this.parent.get_media()        == JSJAC_JINGLE_MEDIA_VIDEO         && 
+          if(this.parent.get_media()        == JSJAC_JINGLE_MEDIA_VIDEO         &&
              this.parent.get_video_source() != JSJAC_JINGLE_VIDEO_SOURCE_CAMERA ) {
             if(document.location.protocol !== 'https:')
               this.parent.get_debug().log('[JSJaCJingle:utils] generate_constraints > HTTPS might be required to share screen, otherwise you may get a permission denied error.', 0);
@@ -6542,7 +6542,7 @@ var JSJaCJingleUtils = ring.create(
             // Unsupported browser? (for that feature)
             if(this.browser().name != JSJAC_JINGLE_BROWSER_CHROME) {
               this.parent.get_debug().log('[JSJaCJingle:utils] generate_constraints > Video source not supported by ' + this.browser().name + ' (source: ' + this.parent.get_video_source() + ').', 1);
-              
+
               this.parent.terminate(JSJAC_JINGLE_REASON_MEDIA_ERROR);
               return;
             }
@@ -6566,7 +6566,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Array} payloads
      * @returns {Boolean} Credientials same state
      */
-    is_sdp_common_credentials: function(payloads) {    
+    is_sdp_common_credentials: function(payloads) {
       var is_same = true;
 
       try {
@@ -6601,7 +6601,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Object} candidates_obj
      * @returns {Number} Number of candidates
      */
-    count_candidates: function(candidates_obj) {    
+    count_candidates: function(candidates_obj) {
       var count_candidates = 0;
 
       try {
@@ -6625,7 +6625,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {Array} candidates
      * @returns {Object} Network details
      */
-    network_extract_main: function(media, candidates) {    
+    network_extract_main: function(media, candidates) {
       var network_obj = {
         'ip': JSJAC_JINGLE_SDP_CANDIDATE_IP_DEFAULT,
         'port': JSJAC_JINGLE_SDP_CANDIDATE_PORT_DEFAULT,
@@ -6734,8 +6734,8 @@ var JSJaCJingleUtils = ring.create(
      * @returns {String} JID value
      */
     connection_jid: function() {
-      return this.parent.get_connection().username + '@' + 
-             this.parent.get_connection().domain   + '/' + 
+      return this.parent.get_connection().username + '@' +
+             this.parent.get_connection().domain   + '/' +
              this.parent.get_connection().resource;
     },
 
@@ -6772,7 +6772,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} type
      * @returns {Object} View register functions map
      */
-    map_register_view: function(type) {    
+    map_register_view: function(type) {
       var fn = {
         type   : null,
         mute   : false,
@@ -6820,7 +6820,7 @@ var JSJaCJingleUtils = ring.create(
      * @param {String} type
      * @returns {Object} View unregister functions map
      */
-    map_unregister_view: function(type) {    
+    map_unregister_view: function(type) {
       return this.map_register_view(type);
     },
   }
@@ -7458,9 +7458,9 @@ var JSJaCJingleSDP = ring.create(
           constraints = this.parent.utils.generate_constraints();
 
           // Still nothing?!
-          if(typeof constraints.video                     !== 'object'  || 
-             typeof constraints.video.mandatory           !== 'object'  || 
-             typeof constraints.video.mandatory.minWidth  !== 'number'  || 
+          if(typeof constraints.video                     !== 'object'  ||
+             typeof constraints.video.mandatory           !== 'object'  ||
+             typeof constraints.video.mandatory.minWidth  !== 'number'  ||
              typeof constraints.video.mandatory.minHeight !== 'number'  ) {
             this.parent.get_debug().log('[JSJaCJingle:sdp] _resolution_payload > Could not get local video resolution (not sending it).', 1);
             return payload;
@@ -7591,7 +7591,7 @@ var JSJaCJingleSDP = ring.create(
      * @param {Object} candidates
      * @returns {Object} SDP object
      */
-    _generate: function(type, group, payloads, candidates) {    
+    _generate: function(type, group, payloads, candidates) {
       try {
         var sdp_obj = {};
 
@@ -7694,7 +7694,7 @@ var JSJaCJingleSDP = ring.create(
      * @param {Object} sdp_candidates
      * @returns {Object} SDP description payloads
      */
-    _generate_description: function(type, group, payloads, sdp_candidates) {    
+    _generate_description: function(type, group, payloads, sdp_candidates) {
       var payloads_obj = {};
 
       try {
@@ -7798,16 +7798,16 @@ var JSJaCJingleSDP = ring.create(
           );
           payloads_str += WEBRTC_SDP_LINE_BREAK;
 
-          payloads_str += 'c=' + 
-                          cur_network_obj.scope + ' ' + 
-                          cur_network_obj.protocol + ' ' + 
+          payloads_str += 'c=' +
+                          cur_network_obj.scope + ' ' +
+                          cur_network_obj.protocol + ' ' +
                           cur_network_obj.ip;
           payloads_str += WEBRTC_SDP_LINE_BREAK;
 
-          payloads_str += 'a=rtcp:' + 
-                          cur_network_obj.port + ' ' + 
-                          cur_network_obj.scope + ' ' + 
-                          cur_network_obj.protocol + ' ' + 
+          payloads_str += 'a=rtcp:' +
+                          cur_network_obj.port + ' ' +
+                          cur_network_obj.scope + ' ' +
+                          cur_network_obj.protocol + ' ' +
                           cur_network_obj.ip;
           payloads_str += WEBRTC_SDP_LINE_BREAK;
 
@@ -7868,10 +7868,10 @@ var JSJaCJingleSDP = ring.create(
             for(j in cur_d_encryption.crypto) {
               cur_d_crypto_obj = cur_d_encryption.crypto[j];
 
-              payloads_str += 'a=crypto:'                       + 
-                              cur_d_crypto_obj.tag           + ' ' + 
-                              cur_d_crypto_obj['crypto-suite']  + ' ' + 
-                              cur_d_crypto_obj['key-params']    + 
+              payloads_str += 'a=crypto:'                       +
+                              cur_d_crypto_obj.tag           + ' ' +
+                              cur_d_crypto_obj['crypto-suite']  + ' ' +
+                              cur_d_crypto_obj['key-params']    +
                               (cur_d_crypto_obj['session-params'] ? (' ' + cur_d_crypto_obj['session-params']) : '');
 
               payloads_str += WEBRTC_SDP_LINE_BREAK;
@@ -7881,8 +7881,8 @@ var JSJaCJingleSDP = ring.create(
             for(p in cur_d_encryption['zrtp-hash']) {
               cur_d_zrtp_hash_obj = cur_d_encryption['zrtp-hash'][p];
 
-              payloads_str += 'a=zrtp-hash:'                  + 
-                              cur_d_zrtp_hash_obj.version  + ' ' + 
+              payloads_str += 'a=zrtp-hash:'                  +
+                              cur_d_zrtp_hash_obj.version  + ' ' +
                               cur_d_zrtp_hash_obj.value;
 
               payloads_str += WEBRTC_SDP_LINE_BREAK;
@@ -8051,7 +8051,7 @@ var JSJaCJingleSDP = ring.create(
      * @private
      * @returns {String} SDP origin raw text
      */
-    _generate_origin: function() {    
+    _generate_origin: function() {
       var sdp_origin = '';
 
       try {
@@ -8106,7 +8106,7 @@ var JSJaCJingleSDP = ring.create(
      * @param {Object} fingerprint
      * @returns {String} SDP credentials raw text
      */
-    _generate_credentials: function(ufrag, pwd, fingerprint) {    
+    _generate_credentials: function(ufrag, pwd, fingerprint) {
       var sdp = '';
 
       // ICE credentials
@@ -8134,7 +8134,7 @@ var JSJaCJingleSDP = ring.create(
      * @param {Array} payload
      * @returns {String} SDP media raw text
      */
-    _generate_description_media: function(media, port, crypto, fingerprint, payload) {    
+    _generate_description_media: function(media, port, crypto, fingerprint, payload) {
       var sdp_media = '';
 
       try {
@@ -9198,8 +9198,8 @@ var __JSJaCJingleBase = ring.create(
      * @returns {Array} Stanza handler
      */
     get_registered_handlers: function(node, type, id) {
-      if(id && node in this._registered_handlers  && 
-         type in this._registered_handlers[node]  && 
+      if(id && node in this._registered_handlers  &&
+         type in this._registered_handlers[node]  &&
          typeof this._registered_handlers[node][type][id] == 'object')
         return this._registered_handlers[node][type][id];
 
@@ -10597,7 +10597,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
             /* @function */
             handlers[i](stanza);
           }
-          
+
           this.unregister_handler(JSJAC_JINGLE_STANZA_IQ, type, id);
 
           return;
@@ -11105,7 +11105,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
 
         // Schedule success
         var _this = this;
-        
+
         this.register_handler(JSJAC_JINGLE_STANZA_IQ, JSJAC_JINGLE_IQ_TYPE_RESULT, args.id, function(stanza) {
           /* @function */
           (_this.get_session_initiate_success())(_this, stanza);
@@ -11165,7 +11165,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
 
         // Schedule success
         var _this = this;
-        
+
         this.register_handler(JSJAC_JINGLE_STANZA_IQ, JSJAC_JINGLE_IQ_TYPE_RESULT, args.id, function(stanza) {
           /* @function */
           (_this.get_session_terminate_success())(_this, stanza);
@@ -11255,7 +11255,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
 
         // Schedule success
         var _this = this;
-        
+
         this.register_handler(JSJAC_JINGLE_STANZA_IQ, JSJAC_JINGLE_IQ_TYPE_RESULT, args.id, function(stanza) {
           _this._handle_transport_info_success(stanza);
         });
@@ -11635,7 +11635,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
 
           // Remote description
           var _this = this;
-          
+
           this.get_peer_connection().setRemoteDescription(
             (new WEBRTC_SESSION_DESCRIPTION(sdp_remote.description)),
 
@@ -12547,7 +12547,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
           function(sdp_local) {
             _this._peer_got_description(sdp_local);
           }.bind(this),
-          
+
           this._peer_fail_description.bind(this),
           WEBRTC_CONFIGURATION.create_answer
         );
@@ -12640,7 +12640,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
       this._set_remote_stream(null);
 
       // Close the media stream
-      if(this.get_peer_connection()  && 
+      if(this.get_peer_connection()  &&
          (typeof this.get_peer_connection().close == 'function'))
         this.get_peer_connection().close();
 
@@ -13256,7 +13256,7 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
 
         if(!(name in this._candidates_remote))
           this._set_candidates_remote(name, []);
-     
+
         var c, i;
         var candidate_ids = [];
 
@@ -14377,7 +14377,7 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
           x_invite.setAttribute('password', this.get_password());
 
         stanza.getNode().appendChild(x_invite);
-        
+
         stanza.appendNode('x', {
           'media': this.get_media(),
           'xmlns': NS_MUJI_INVITE
@@ -15444,7 +15444,7 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
       this._set_local_stream(null);
 
       // Close the media stream
-      if(this.get_peer_connection()  && 
+      if(this.get_peer_connection()  &&
          (typeof this.get_peer_connection().close == 'function'))
         this.get_peer_connection().close();
 
@@ -15522,7 +15522,7 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
     _shortcut_participant_view: function(username) {
       if((this.get_participants(username) || {}).view)
         return this.get_participants(username).view;
-      
+
       return this.get_add_remote_view()(this, username, this.get_media());
     },
 
@@ -15795,7 +15795,7 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
     _receive_autoconfigure_room_password: function(stanza) {
       try {
         var parse_obj = this._parse_autoconfigure_room_password(stanza);
-        
+
         this._set_password(parse_obj.password);
 
         if(parse_obj.password != parse_obj.old_password) {
@@ -16899,7 +16899,7 @@ var JSJaCJingleInit = new (ring.create(
         });
       } catch(e) {
         JSJaCJingleStorage.get_debug().log('[JSJaCJingle:init] _extdisco > ' + e, 1);
-        
+
         // Execute deferred requests
         JSJaCJingle._defer(false);
       }
@@ -16974,7 +16974,7 @@ var JSJaCJingleInit = new (ring.create(
         });
       } catch(e) {
         JSJaCJingleStorage.get_debug().log('[JSJaCJingle:init] _relaynodes > ' + e, 1);
-        
+
         // Execute deferred requests
         JSJaCJingle._defer(false);
       }
@@ -16993,7 +16993,7 @@ var JSJaCJingleInit = new (ring.create(
         JSJaCJingle._defer(true);
 
         // Generate fallback API URL
-        fallback_url += '?username=' + 
+        fallback_url += '?username=' +
                         encodeURIComponent(JSJaCJingleStorage.get_connection().username + '@' + JSJaCJingleStorage.get_connection().domain);
 
         // Proceed request

@@ -140,7 +140,7 @@ if($ads_enable == 'on') {
         <option value="all" <?php if($language == 'all') echo('selected=""'); ?>>All languages available</option>
 
         <?php
-            
+
             // Available languages
             foreach(availableLocales(null, true) as $current_lng => $current_name) {
                 if($current_lng == $language)
@@ -148,7 +148,7 @@ if($ads_enable == 'on') {
                 else
                     echo('<option value="'.$current_lng.'">'.$current_name.'</option>');
             }
-        
+
         ?>
     </select>
 </fieldset>
@@ -199,11 +199,11 @@ if($ads_enable == 'on') {
     <input type="hidden" name="multi_files" value="<?php echo $multi_files; ?>" />
 
     <input type="hidden" name="developer" value="<?php echo $developer; ?>" />
-    
+
     <input type="hidden" name="register_api" value="<?php echo $register_api; ?>" />
-    
+
     <input type="hidden" name="xmppd_ctl" value="<?php echo $xmppd_ctl; ?>" />
-    
+
     <input type="hidden" name="xmppd" value="<?php echo $xmppd; ?>" />
 </fieldset>
 
@@ -219,7 +219,7 @@ if($ads_enable == 'on') {
     <legend><?php printf(T_("Advertising (%s)"), 'BackLinks.com'); ?></legend>
 
     <label for="ads_standard"><?php _e("Standard ads key"); ?></label><input id="ads_standard" type="text" name="ads_standard" value="<?php echo $ads_standard; ?>" placeholder="XXXX-XXXX-XXXX" />
-    
+
     <label for="ads_content"><?php _e("Content ads key"); ?></label><input id="ads_content" type="text" name="ads_content" value="<?php echo $ads_content; ?>" placeholder="XXXX-XXXX-XXXX" />
 </fieldset>
 
@@ -227,6 +227,6 @@ if($ads_enable == 'on') {
     <legend><?php printf(T_("Advertising (%s)"), 'AdSense'); ?></legend>
 
     <label for="gads_client"><?php _e("AdSense client ID"); ?></label><input id="gads_client" type="text" name="gads_client" value="<?php echo $gads_client; ?>" placeholder="ca-pub-XXXXXXXXXXXXXXXX" />
-    
+
     <label for="gads_slot"><?php _e("AdSense slot"); ?></label><input id="gads_slot" type="text" name="gads_slot" value="<?php echo $gads_slot; ?>" placeholder="XXXXXXXXXX" />
 </fieldset>

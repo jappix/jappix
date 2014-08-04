@@ -31,7 +31,7 @@ $http_host = $default_host;
 if($_SERVER['HTTP_HOST']) {
     $http_host_split = str_replace('www.', '', $_SERVER['HTTP_HOST']);
     $http_host_split = preg_replace('/:[0-9]+$/i', '', $http_host_split);
-    
+
     if($http_host_split) {
         $http_host = $http_host_split;
     }
@@ -67,11 +67,11 @@ $hosts_data = readXML('conf', 'hosts');
 if($hosts_data) {
     // Initialize the hosts configuration XML data
     $hosts_xml = new SimpleXMLElement($hosts_data);
-    
+
     // Loop the hosts configuration elements
     foreach($hosts_xml->children() as $hosts_child) {
         $hosts_value = $hosts_child->getName();
-        
+
         // Only push this to the array if it exists
         if(isset($hosts_conf[$hosts_value]) && (string)$hosts_child) {
             $hosts_conf[$hosts_value] = str_replace('{PROTOCOL}', $protocol, (string)$hosts_child);

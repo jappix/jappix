@@ -18,7 +18,7 @@ var RosterX = (function () {
      * @private
      */
     var self = {};
-    
+
 
     /**
      * Opens the rosterx tools
@@ -30,32 +30,32 @@ var RosterX = (function () {
 
         try {
             // Popup HTML content
-            var html = 
-            '<div class="top">' + Common._e("Suggested friends") + '</div>' + 
-            
-            '<div class="content">' + 
-                '<div class="rosterx-head">' + 
-                    '<a href="#" class="uncheck">' + Common._e("Uncheck all") + '</a>' + 
-                    '<a href="#" class="check">' + Common._e("Check all") + '</a>' + 
-                '</div>' + 
-                
-                '<div class="results"></div>' + 
-            '</div>' + 
-            
-            '<div class="bottom">' + 
-                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' + 
-                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' + 
+            var html =
+            '<div class="top">' + Common._e("Suggested friends") + '</div>' +
+
+            '<div class="content">' +
+                '<div class="rosterx-head">' +
+                    '<a href="#" class="uncheck">' + Common._e("Uncheck all") + '</a>' +
+                    '<a href="#" class="check">' + Common._e("Check all") + '</a>' +
+                '</div>' +
+
+                '<div class="results"></div>' +
+            '</div>' +
+
+            '<div class="bottom">' +
+                '<a href="#" class="finish save">' + Common._e("Save") + '</a>' +
+                '<a href="#" class="finish cancel">' + Common._e("Cancel") + '</a>' +
             '</div>';
-            
+
             // Create the popup
             Popup.create('rosterx', html);
-            
+
             // Associate the events
             self.instance();
-            
+
             // Parse the data
             self.parse(data);
-            
+
             Console.log('Roster Item Exchange popup opened.');
         } catch(e) {
             Console.error('RosterX.open', e);
@@ -94,22 +94,22 @@ var RosterX = (function () {
         try {
             // Main selector
             var x = $(data).find('x[xmlns="' + NS_ROSTERX + '"]:first');
-            
+
             // Parse data
             x.find('item').each(function() {
                 var this_sel = $(this);
 
                 // Generate group XML
                 var group = '';
-                
+
                 this_sel.find('group').each(function() {
                     group += '<group>' + this_sel.text().htmlEnc() + '</group>';
                 });
-                
+
                 if(group) {
                     group = '<groups>' + group + '</groups>';
                 }
-                
+
                 // Display it!
                 self.display(
                     this_sel.attr('jid'),
@@ -118,17 +118,17 @@ var RosterX = (function () {
                     this_sel.attr('action')
                 );
             });
-            
+
             // Click to check/uncheck
             $('#rosterx .oneresult').click(function(evt) {
                 // No need to apply when click on input
                 if($(evt.target).is('input[type="checkbox"]')) {
                     return;
                 }
-                
+
                 // Input selector
                 var checkbox = $(this).find('input[type="checkbox"]');
-                
+
                 // Check or uncheck?
                 if(checkbox.filter(':checked').size()) {
                     checkbox.removeAttr('checked');
@@ -159,24 +159,24 @@ var RosterX = (function () {
             if(!xid) {
                 return false;
             }
-            
+
             // Set up a default action if no one
             if(!action || (action != 'modify') || (action != 'delete')) {
                 action = 'add';
             }
-            
+
             // Override "undefined" for nickname
             if(!nick) {
                 nick = '';
             }
-            
+
             // Display it
             $('#rosterx .results').append(
-                '<div class="oneresult">' + 
-                    '<input type="checkbox" checked="" data-name="' + Common.encodeQuotes(nick) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-action="' + Common.encodeQuotes(action) + '" data-group="' + Common.encodeQuotes(group) + '" />' + 
-                    '<span class="name">' + nick.htmlEnc() + '</span>' + 
-                    '<span class="xid">' + xid.htmlEnc() + '</span>' + 
-                    '<span class="action ' + action + ' talk-images"></span>' + 
+                '<div class="oneresult">' +
+                    '<input type="checkbox" checked="" data-name="' + Common.encodeQuotes(nick) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-action="' + Common.encodeQuotes(action) + '" data-group="' + Common.encodeQuotes(group) + '" />' +
+                    '<span class="name">' + nick.htmlEnc() + '</span>' +
+                    '<span class="xid">' + xid.htmlEnc() + '</span>' +
+                    '<span class="action ' + action + ' talk-images"></span>' +
                 '</div>'
             );
 
@@ -205,19 +205,19 @@ var RosterX = (function () {
                 var xid = this_sel.attr('data-xid');
                 var action = this_sel.attr('data-action');
                 var group = this_sel.attr('data-group');
-                
+
                 // Parse groups XML
                 var group_arr = [];
-                
+
                 if(group) {
                     $(group).find('group').each(function() {
                         group_arr.push(this_sel.text().revertHtmlEnc());
                     });
                 }
-                
+
                 // Process the asked action
                 var roster_item = $('#roster .' + hex_md5(xid));
-                
+
                 switch(action) {
                     // Buddy add
                     case 'add':
@@ -225,25 +225,25 @@ var RosterX = (function () {
                             Presence.sendSubscribe(xid, 'subscribe');
                             Roster.send(xid, '', nick, group_arr);
                         }
-                        
+
                         break;
-                    
+
                     // Buddy edit
                     case 'modify':
                         if(Common.exists(roster_item))
                             Roster.send(xid, '', nick, group_arr);
-                        
+
                         break;
-                    
+
                     // Buddy delete
                     case 'delete':
                         if(Common.exists(roster_item))
                             Roster.send(xid, 'remove');
-                        
+
                         break;
                 }
             });
-            
+
             // Close the popup
             self.close();
         } catch(e) {
@@ -275,16 +275,16 @@ var RosterX = (function () {
                     return self.close();
                 }
             });
-            
+
             $('#rosterx .rosterx-head a').click(function() {
                 var this_sel = $(this);
-                
+
                 if(this_sel.is('.check')) {
                     $('#rosterx .results input[type="checkbox"]').attr('checked', true);
                 } else if(this_sel.is('.uncheck')) {
                     $('#rosterx .results input[type="checkbox"]').removeAttr('checked');
                 }
-                
+
                 return false;
             });
         } catch(e) {

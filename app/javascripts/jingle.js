@@ -132,7 +132,7 @@ var Jingle = (function() {
                             Audio.play('outgoing-call', true);
                         }
                     }
-                    
+
                     Console.log('Jingle._args', 'session_initiate_success');
                 },
 
@@ -588,10 +588,10 @@ var Jingle = (function() {
         in_call = false;
 
         try {
-            if(self._session && 
-              (self._session.get_status() === JSJAC_JINGLE_STATUS_INITIATING  || 
-               self._session.get_status() === JSJAC_JINGLE_STATUS_INITIATED   || 
-               self._session.get_status() === JSJAC_JINGLE_STATUS_ACCEPTING   || 
+            if(self._session &&
+              (self._session.get_status() === JSJAC_JINGLE_STATUS_INITIATING  ||
+               self._session.get_status() === JSJAC_JINGLE_STATUS_INITIATED   ||
+               self._session.get_status() === JSJAC_JINGLE_STATUS_ACCEPTING   ||
                self._session.get_status() === JSJAC_JINGLE_STATUS_ACCEPTED    ||
                self._session.get_status() === JSJAC_JINGLE_STATUS_TERMINATING)) {
                 in_call = true;
@@ -903,43 +903,43 @@ var Jingle = (function() {
 
             // Create DOM
             $('body').append(
-                '<div id="jingle" class="videochat_box lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
-                    '<div class="videobox videochat_items">' + 
-                        '<div class="topbar">' + 
-                            '<div class="card">' + 
-                                '<div class="avatar-container">' + 
-                                    '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
-                                '</div>' + 
+                '<div id="jingle" class="videochat_box lock removable ' + hex_md5(xid) + '" data-xid="' + Common.encodeQuotes(xid) + '" data-mode="' + Common.encodeQuotes(mode) + '">' +
+                    '<div class="videobox videochat_items">' +
+                        '<div class="topbar">' +
+                            '<div class="card">' +
+                                '<div class="avatar-container">' +
+                                    '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' +
+                                '</div>' +
 
-                                '<div class="identity">' + 
-                                    '<span class="name">' + Name.getBuddy(xid).htmlEnc() + '</span>' + 
-                                    '<span class="xid">' + xid.htmlEnc() + '</span>' + 
-                                '</div>' + 
-                            '</div>' + 
+                                '<div class="identity">' +
+                                    '<span class="name">' + Name.getBuddy(xid).htmlEnc() + '</span>' +
+                                    '<span class="xid">' + xid.htmlEnc() + '</span>' +
+                                '</div>' +
+                            '</div>' +
 
-                            '<div class="controls">' + 
-                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon call-images"></span>' + Common._e("Stop") + '</a>' + 
-                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' + 
-                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' + 
-                            '</div>' + 
+                            '<div class="controls">' +
+                                '<a href="#" class="stop control-button" data-type="stop"><span class="icon call-images"></span>' + Common._e("Stop") + '</a>' +
+                                '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' +
+                                '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' +
+                            '</div>' +
 
-                            '<div class="elapsed">00:00:00</div>' + 
+                            '<div class="elapsed">00:00:00</div>' +
 
-                            '<div class="actions">' + 
-                                '<a href="#" class="close action-button call-images" data-type="close"></a>' + 
-                            '</div>' + 
-                        '</div>' + 
+                            '<div class="actions">' +
+                                '<a href="#" class="close action-button call-images" data-type="close"></a>' +
+                            '</div>' +
+                        '</div>' +
 
-                        '<div class="local_video">' + 
-                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' + 
-                        '</div>' + 
+                        '<div class="local_video">' +
+                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_local.png' + '"></video>' +
+                        '</div>' +
 
-                        '<div class="remote_video">' + 
-                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_remote.png' + '"></video>' + 
-                        '</div>' + 
+                        '<div class="remote_video">' +
+                            '<video src="" alt="" poster="' + './images/placeholders/jingle_video_remote.png' + '"></video>' +
+                        '</div>' +
 
-                        '<div class="branding call-images"></div>' + 
-                    '</div>' + 
+                        '<div class="branding call-images"></div>' +
+                    '</div>' +
                 '</div>'
             );
 
@@ -1055,7 +1055,7 @@ var Jingle = (function() {
         } catch(e) {
             Console.error('Jingle.launch', e);
         }
-    
+
     };
 
 

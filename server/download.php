@@ -39,7 +39,7 @@ $key_found = false;
 foreach($keys as $key) {
     if($key == $_GET['key']) {
         $key_found = true;
-        
+
         break;
     }
 }

@@ -302,7 +302,7 @@ class gettext_reader {
    * Loads the translation tables from the MO file into the cache
    * If caching is enabled, also loads all strings into a cache
    * to speed up translation lookups
-   * 
+   *
    * @access private
    */
   function load_tables() {
@@ -643,12 +643,12 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
                        ."(\.([-A-Za-z0-9_]))?"    // charset
                        ."(@([-A-Za-z0-9_]+))?/",  // @ modifier
                        $locale, $matches)) {
-          
+
           $lang = '';
           $country = '';
           $charset = '';
           $modifier = '';
-          
+
           if(isset($matches[1]))
              $lang = $matches[1];
           if(isset($matches[3]))
@@ -657,7 +657,7 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
              $charset = $matches[5];
           if(isset($matches[7]))
              $modifier = $matches[7];
-          
+
           if ($modifier) {
             $locale_names = array("${lang}_$country.$charset@$modifier",
                                   "${lang}_$country@$modifier",

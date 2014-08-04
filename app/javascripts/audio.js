@@ -57,36 +57,36 @@ var Audio = (function () {
             // If the audio elements aren't yet in the DOM
             if(!Common.exists('#audio')) {
                 $('body').append(
-                    '<div id="audio">' + 
-                        '<audio id="new-chat" preload="auto" data-duration="2">' + 
-                            '<source src="' + './sounds/new-chat.mp3' + '" />' + 
-                            '<source src="' + './sounds/new-chat.oga' + '" />' + 
-                        '</audio>' + 
-                        
-                        '<audio id="receive-message" preload="auto" data-duration="2">' + 
-                            '<source src="' + './sounds/receive-message.mp3' + '" />' + 
-                            '<source src="' + './sounds/receive-message.oga' + '" />' + 
-                        '</audio>' + 
-                        
-                        '<audio id="notification" preload="auto" data-duration="2">' + 
-                            '<source src="' + './sounds/notification.mp3' + '" />' + 
-                            '<source src="' + './sounds/notification.oga' + '" />' + 
-                        '</audio>' + 
+                    '<div id="audio">' +
+                        '<audio id="new-chat" preload="auto" data-duration="2">' +
+                            '<source src="' + './sounds/new-chat.mp3' + '" />' +
+                            '<source src="' + './sounds/new-chat.oga' + '" />' +
+                        '</audio>' +
 
-                        '<audio id="catch-attention" preload="auto" data-duration="3">' + 
-                            '<source src="' + './sounds/catch-attention.mp3' + '" />' + 
-                            '<source src="' + './sounds/catch-attention.oga' + '" />' + 
-                        '</audio>' + 
-                        
-                        '<audio id="incoming-call" preload="auto" data-duration="7">' + 
-                            '<source src="' + './sounds/incoming-call.mp3' + '" />' + 
-                            '<source src="' + './sounds/incoming-call.oga' + '" />' + 
-                        '</audio>' + 
-                        
-                        '<audio id="outgoing-call" preload="auto" data-duration="30">' + 
-                            '<source src="' + './sounds/outgoing-call.mp3' + '" />' + 
-                            '<source src="' + './sounds/outgoing-call.oga' + '" />' + 
-                        '</audio>' + 
+                        '<audio id="receive-message" preload="auto" data-duration="2">' +
+                            '<source src="' + './sounds/receive-message.mp3' + '" />' +
+                            '<source src="' + './sounds/receive-message.oga' + '" />' +
+                        '</audio>' +
+
+                        '<audio id="notification" preload="auto" data-duration="2">' +
+                            '<source src="' + './sounds/notification.mp3' + '" />' +
+                            '<source src="' + './sounds/notification.oga' + '" />' +
+                        '</audio>' +
+
+                        '<audio id="catch-attention" preload="auto" data-duration="3">' +
+                            '<source src="' + './sounds/catch-attention.mp3' + '" />' +
+                            '<source src="' + './sounds/catch-attention.oga' + '" />' +
+                        '</audio>' +
+
+                        '<audio id="incoming-call" preload="auto" data-duration="7">' +
+                            '<source src="' + './sounds/incoming-call.mp3' + '" />' +
+                            '<source src="' + './sounds/incoming-call.oga' + '" />' +
+                        '</audio>' +
+
+                        '<audio id="outgoing-call" preload="auto" data-duration="30">' +
+                            '<source src="' + './sounds/outgoing-call.mp3' + '" />' +
+                            '<source src="' + './sounds/outgoing-call.oga' + '" />' +
+                        '</audio>' +
                     '</div>'
                 );
             }
@@ -112,11 +112,11 @@ var Audio = (function () {
             if(!self._isSupported()) {
                 return false;
             }
-            
+
             // If the sounds are enabled
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'sounds') === '1') {
                 self._appendDOM();
-                
+
                 // We play the target sound
                 var audio_raw_sel = $('#audio audio').filter('#' + name);
                 var audio_sel = audio_raw_sel[0];
@@ -133,7 +133,7 @@ var Audio = (function () {
                         var duration = parseInt((audio_raw_sel.attr('data-duration') || 0), 10);
 
                         self._timeout_stop = false;
-                        
+
                         audio_raw_sel.oneTime((duration + 's'), function() {
                             if(!self._timeout_stop) {
                                 self.play(name, repeat);
@@ -170,7 +170,7 @@ var Audio = (function () {
             if(!self._isSupported()) {
                 return false;
             }
-            
+
             self._timeout_stop = true;
 
             // Check the audio container exists before doing anything...
@@ -180,7 +180,7 @@ var Audio = (function () {
 
             if(audio_parent_sel.size()) {
                 audio_raw_sel.stopTime();
-                
+
                 if(audio_sel) {
                     if(!audio_sel.paused) {
                         audio_sel.pause();

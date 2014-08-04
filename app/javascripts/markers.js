@@ -242,7 +242,7 @@ var Markers = (function () {
      * @public
      * @param {string} from
      * @param {object} message
-     * @param {boolean} is_mam_marker   
+     * @param {boolean} is_mam_marker
      * @return {undefined}
      */
     self.handle = function(from, message, is_mam_marker) {
@@ -319,7 +319,7 @@ var Markers = (function () {
                 if(target.is(':disabled')) {
                     return;
                 }
-                
+
                 // Send displayed message marker?
                 if(type == 'chat' && self.hasSupport(xid) === true) {
                     var last_message = $('#' + hash + ' .content .one-line.user-message[data-markable="true"]:last');

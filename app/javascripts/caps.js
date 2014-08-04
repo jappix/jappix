@@ -106,7 +106,7 @@ var Caps = (function () {
                 cur_type = $(this).attr('type') || '';
                 cur_lang = $(this).attr('xml:lang') || '';
                 cur_name = $(this).attr('name') || '';
-                
+
                 identities.push(cur_category + '/' + cur_type + '/' + cur_lang + '/' + cur_name);
             });
         } catch(e) {
@@ -133,7 +133,7 @@ var Caps = (function () {
 
             $(query).find('feature').each(function() {
                 cur_var = $(this).attr('var');
-                
+
                 // Add the current value to the array
                 if(cur_var) {
                     features.push(cur_var);
@@ -166,57 +166,57 @@ var Caps = (function () {
                 // Initialize some stuffs
                 cur_string = '';
                 cur_sort_var = [];
-                
+
                 // Add the form type field
                 $(this).find('field[var="FORM_TYPE"] value').each(function() {
                     cur_text = $(this).text();
-                    
+
                     if(cur_text) {
                         cur_string += cur_text + '<';
                     }
                 });
-                
+
                 // Add the var attributes into an array
                 $(this).find('field:not([var="FORM_TYPE"])').each(function() {
                     cur_var = $(this).attr('var');
-                    
+
                     if(cur_var) {
                         cur_sort_var.push(cur_var);
                     }
                 });
-                
+
                 // Sort the var attributes
                 cur_sort_var = cur_sort_var.sort();
-                
+
                 // Loop this sorted var attributes
                 $.each(cur_sort_var, function(i) {
                     // Initialize the value sorting
                     cur_sort_val = [];
-                    
+
                     // Append it to the string
                     cur_string += cur_sort_var[i] + '<';
-                    
+
                     // Add each value to the array
                     $(this).find('field[var=' + cur_sort_var[i] + '] value').each(function() {
                         cur_sort_val.push($(this).text());
                     });
-                    
+
                     // Sort the values
                     cur_sort_val = cur_sort_val.sort();
-                    
+
                     // Append the values to the string
                     for(var j in cur_sort_val) {
                         cur_string += cur_sort_val[j] + '<';
                     }
                 });
-                
+
                 // Any string?
                 if(cur_string) {
                     // Remove the undesired double '<' from the string
                     if(cur_string.match(/(.+)(<)+$/)) {
                         cur_string = cur_string.substring(0, cur_string.length - 1);
                     }
-                    
+
                     // Add the current string to the array
                     data_forms.push(cur_string);
                 }
@@ -249,7 +249,7 @@ var Caps = (function () {
                 // Remove the tooltip elements
                 style_sel.hide();
                 style_sel.find('.bubble-style').remove();
-                
+
                 // Reset the markers
                 message_area_sel.removeAttr('style')
                                 .removeAttr('data-font')
@@ -341,7 +341,7 @@ var Caps = (function () {
 
             if(iq_oob_xid || NS_XOOB in features) {
                 file_sel.show();
-                
+
                 // Set a marker
                 file_sel.attr(
                     'data-oob',
@@ -351,7 +351,7 @@ var Caps = (function () {
                 // Remove the tooltip elements
                 file_sel.hide();
                 file_sel.find('.bubble-style').remove();
-                
+
                 // Reset the marker
                 file_sel.removeAttr('data-oob');
             }
@@ -489,7 +489,7 @@ var Caps = (function () {
 
             var disco_jingle = JSJaCJingle.disco();
             var disco_all = disco_base.concat(disco_jingle);
-            
+
             return Utils.uniqueArrayValues(disco_all);
         } catch(e) {
             Console.error('Caps.myDiscoInfos', e);
@@ -511,35 +511,35 @@ var Caps = (function () {
             // No CAPS
             if(!caps) {
                 Console.warn('No CAPS: ' + to);
-                
+
                 self.displayDiscoInfos(to, '');
-                
+
                 return false;
             }
-            
+
             // Get the stored disco infos
             var xml = self.read(caps);
-            
+
             // Yet stored
             if(xml) {
                 Console.info('CAPS from cache: ' + to);
-                
+
                 self.displayDiscoInfos(to, xml);
-                
+
                 return true;
             }
-            
+
             Console.info('CAPS from the network: ' + to);
-            
+
             // Not stored: get the disco#infos
             var iq = new JSJaCIQ();
-            
+
             iq.setTo(to);
             iq.setType('get');
             iq.setQuery(NS_DISCO_INFO);
-            
+
             con.send(iq, self.handleDiscoInfos);
-            
+
             return true;
         } catch(e) {
             Console.error('Caps.getDiscoInfos', e);
@@ -560,34 +560,34 @@ var Caps = (function () {
             if(!iq || (iq.getType() == 'error')) {
                 return;
             }
-            
+
             var from = Common.fullXID(Common.getStanzaFrom(iq));
             var query = iq.getQuery();
-            
+
             // Parse values
             var identities = self._parseDiscoIdentities(query);
             var features = self._parseDiscoFeatures(query);
             var data_forms = self._parseDiscoDataForms(query);
-            
+
             // Process the CAPS
             var caps = self.process(identities, features, data_forms);
-            
+
             // Get the XML string
             var xml = Common.xmlToString(query);
-            
+
             // Store the disco infos
             DataStore.setPersistent('global', 'caps', caps, xml);
-            
+
             // This is our server
             if(from == Utils.getServer()) {
                 // Handle the features
                 Features.handle(xml);
-                
+
                 Console.info('Got our server CAPS');
             } else {
                 // Display the disco infos
                 self.displayDiscoInfos(from, xml);
-                
+
                 Console.info('Got CAPS: ' + from);
             }
         } catch(e) {
@@ -609,12 +609,12 @@ var Caps = (function () {
         try {
             // Generate the chat path
             var xid = Common.bareXID(from);
-            
+
             // This comes from a private groupchat chat?
             if(Utils.isPrivate(xid)) {
                 xid = from;
             }
-            
+
             hash = hex_md5(xid);
 
             // Display the supported features
@@ -627,14 +627,14 @@ var Caps = (function () {
                     features[current] = 1;
                 }
             });
-            
+
             // Paths
             var path_sel = $('#' + hash);
             var roster_sel = $('#roster .buddy.' + hash);
             var message_area_sel = path_sel.find('.message-area');
             var style_sel = path_sel.find('.chat-tools-style');
             var file_sel = path_sel.find('.chat-tools-file');
-            
+
             // Apply Features
             self._applyDiscoXHTMLIM(xid, features, style_sel, message_area_sel);
             self._applyDiscoJingle(xid, path_sel, roster_sel);
@@ -663,30 +663,30 @@ var Caps = (function () {
         try {
             // Initialize
             var caps_str = '';
-            
+
             // Sort the arrays
             identities = identities.sort();
             features = features.sort();
             dataforms = dataforms.sort();
-            
+
             // Process the sorted identity string
             for(var a in identities) {
                 caps_str += identities[a] + '<';
             }
-            
+
             // Process the sorted feature string
             for(var b in features) {
                 caps_str += features[b] + '<';
             }
-            
+
             // Process the sorted data-form string
             for(var c in dataforms) {
                 caps_str += dataforms[c] + '<';
             }
-            
+
             // Process the SHA-1 hash
             var cHash = b64_sha1(caps_str);
-            
+
             return cHash;
         } catch(e) {
             Console.error('Caps.process', e);
@@ -705,8 +705,8 @@ var Caps = (function () {
         try {
             return self.process(
                 [
-                    self.disco_infos.identity.category + '/' + 
-                    self.disco_infos.identity.type     + '//' + 
+                    self.disco_infos.identity.category + '/' +
+                    self.disco_infos.identity.type     + '//' +
                     self.disco_infos.identity.name
                 ],
 

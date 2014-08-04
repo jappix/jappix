@@ -29,24 +29,24 @@ var AdHoc = (function () {
 
         try {
             // Popup HTML content
-            var html = 
-            '<div class="top">' + Common._e("Commands") + '</div>' + 
-            
-            '<div class="content">' + 
-                '<div class="adhoc-head"></div>' + 
-                
-                '<div class="results adhoc-results"></div>' + 
-            '</div>' + 
-            
-            '<div class="bottom">' + 
-                '<div class="wait wait-medium"></div>' + 
-                
-                '<a href="#" class="finish">' + Common._e("Close") + '</a>' + 
+            var html =
+            '<div class="top">' + Common._e("Commands") + '</div>' +
+
+            '<div class="content">' +
+                '<div class="adhoc-head"></div>' +
+
+                '<div class="results adhoc-results"></div>' +
+            '</div>' +
+
+            '<div class="bottom">' +
+                '<div class="wait wait-medium"></div>' +
+
+                '<a href="#" class="finish">' + Common._e("Close") + '</a>' +
             '</div>';
-            
+
             // Create the popup
             Popup.create('adhoc', html);
-            
+
             // Associate the events
             self.launch();
         } catch(e) {
@@ -88,16 +88,16 @@ var AdHoc = (function () {
         try {
             // Open the popup
             self.open();
-            
+
             // Add a XID marker
             $('#adhoc .adhoc-head').html('<b>' + Name.getBuddy(xid).htmlEnc() + '</b> (' + xid.htmlEnc() + ')');
-            
+
             // Get the highest entity resource
             var highest = Presence.highestPriority(xid);
-            
+
             if(highest)
                 xid = highest;
-            
+
             // Start a new adhoc command
             DataForm.go(xid, 'command', '', '', 'adhoc');
         } catch(e) {
@@ -120,10 +120,10 @@ var AdHoc = (function () {
         try {
             // Open the popup
             self.open();
-            
+
             // Add a XID marker
             $('#adhoc .adhoc-head').html('<b>' + server.htmlEnc() + '</b>');
-            
+
             // Start a new adhoc command
             DataForm.go(server, 'command', '', '', 'adhoc');
         } catch(e) {

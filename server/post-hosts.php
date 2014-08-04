@@ -130,7 +130,7 @@ if(isset($_POST['bosh_proxy']) && !empty($_POST['bosh_proxy'])) {
 }
 
 // Generate the hosts XML content
-$hosts_xml = 
+$hosts_xml =
     '<main>'.$host_main.'</main>
     <muc>'.$host_muc.'</muc>
     <pubsub>'.$host_pubsub.'</pubsub>

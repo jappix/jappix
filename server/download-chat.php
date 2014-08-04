@@ -36,7 +36,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {
     $filename = $_GET['id'];
     $content_dir = '../tmp/archives/';
     $filepath = $content_dir.$filename.'.html';
-    
+
     // We set special headers
     header("Content-disposition: attachment; filename=\"$filename.html\"");
     header("Content-Type: application/force-download");
@@ -46,7 +46,7 @@ if(isset($_GET['id']) && !empty($_GET['id']) && isSafe($_GET['id'])) {
     header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
     header("Expires: 0");
     readfile($filepath);
-    
+
     // We delete the stored log file
     unlink($filepath);
 }

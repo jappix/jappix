@@ -106,17 +106,17 @@ var Receipts = (function () {
             var aMsg = new JSJaCMessage();
             aMsg.setTo(to);
             aMsg.setID(id);
-            
+
             // Any type?
             if(type) {
                 aMsg.setType(type);
             }
-            
+
             // Append the received node
             aMsg.appendNode('received', {'xmlns': NS_URN_RECEIPTS, 'id': id});
-            
+
             con.send(aMsg);
-            
+
             Console.log('Sent received to: ' + to);
         } catch(e) {
             Console.error('Receipts.sendReceived', e);
@@ -137,14 +137,14 @@ var Receipts = (function () {
         try {
             // Line selector
             var path = $('#' + hash + ' .one-line[data-id="' + id + '"]');
-            
+
             // Add a received marker
             path.attr('data-received', 'true')
                 .removeAttr('data-lost');
-            
+
             // Group selector
             var group = path.parent();
-            
+
             // Remove the group marker
             if(!group.find('.one-line[data-lost]').size()) {
                 group.find('b.name').removeClass('talk-images')
@@ -177,7 +177,7 @@ var Receipts = (function () {
                 if(this_sel.attr('data-received') != 'true') {
                     // Add a "lost" marker
                     this_sel.attr('data-lost', 'true');
-                    
+
                     // Add a warn on the buddy-name
                     this_sel.parent().find('b.name').addClass('talk-images')
                                                     .attr(

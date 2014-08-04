@@ -60,7 +60,7 @@ if(isset($_GET['username']) && !empty($_GET['username'])) {
     } else {
         $json = file_get_contents($cache_path);
     }
-    
+
     exit($json);
 }
 

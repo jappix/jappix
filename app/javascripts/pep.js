@@ -63,14 +63,14 @@ var PEP = (function () {
             if(node_sel) {
                 display_args.pep_value = node_sel.find('value').text() || 'none';
                 display_args.pep_text = node_sel.find('text').text();
-                
+
                 display_args.style_value = icon_fn(display_args.pep_value);
                 display_args.style_text = display_args.pep_text ? display_args.pep_text : Common._e("unknown");
             } else {
                 display_args.style_value = icon_fn('undefined');
                 display_args.style_text = Common._e("unknown");
             }
-            
+
             display_args.display_text = display_args.style_text;
             display_args.style_text = display_args.style_text.htmlEnc();
         } catch(e) {
@@ -142,14 +142,14 @@ var PEP = (function () {
 
         try {
             tune_args.style_value = 'tune-note';
-            
+
             if(node_sel) {
                 // Parse the tune XML
                 var tune_artist = node_sel.find('artist').text();
                 var tune_title = node_sel.find('title').text();
                 var tune_album = node_sel.find('album').text();
                 var tune_uri = node_sel.find('uri').text();
-                
+
                 // Apply the good values
                 if(!tune_artist && !tune_album && !tune_title) {
                     tune_args.style_text = Common._e("unknown");
@@ -157,13 +157,13 @@ var PEP = (function () {
                 } else {
                     tune_args.final_uri = tune_uri ||
                                           'http://grooveshark.com/search?q=' + encodeURIComponent(tune_artist + ' ' + tune_title + ' ' + tune_album);
-                    
+
                     var final_artist = tune_artist || Common._e("unknown");
                     var final_title = tune_title || Common._e("unknown");
                     var final_album = tune_album || Common._e("unknown");
-                    
+
                     tune_args.final_link = ' href="' + tune_args.final_uri + '" target="_blank"';
-                    
+
                     // Generate the text to be displayed
                     tune_args.display_text = final_artist + ' - ' + final_title + ' (' + final_album + ')';
                     tune_args.style_text =  '<a' + tune_args.final_link + '>' + tune_args.display_text + '</a>';
@@ -193,11 +193,11 @@ var PEP = (function () {
 
         try {
             geolocation_args.style_value = 'location-world';
-            
+
             if(node_sel) {
                 geolocation_args.geoloc_lat = node_sel.find('lat').text();
                 geolocation_args.geoloc_lon = node_sel.find('lon').text();
-                geolocation_args.geoloc_human = node_sel.find('human').text() || 
+                geolocation_args.geoloc_human = node_sel.find('human').text() ||
                                    Common._e("See his/her position on the globe");
                 geolocation_args.geoloc_real = geolocation_args.geoloc_human;
 
@@ -205,11 +205,11 @@ var PEP = (function () {
                 if(geolocation_args.geoloc_lat && geolocation_args.geoloc_lon) {
                     geolocation_args.final_uri = 'http://maps.google.com/?q=' + Common.encodeQuotes(geolocation_args.geoloc_lat) + ',' + Common.encodeQuotes(geolocation_args.geoloc_lon);
                     geolocation_args.final_link = ' href="' + geolocation_args.final_uri + '" target="_blank"';
-                    
-                    geolocation_args.style_text = '<a' + geolocation_args.final_link + '>' + 
-                                                      geolocation_args.geoloc_human.htmlEnc() + 
+
+                    geolocation_args.style_text = '<a' + geolocation_args.final_link + '>' +
+                                                      geolocation_args.geoloc_human.htmlEnc() +
                                                   '</a>';
-                    geolocation_args.display_text = geolocation_args.geoloc_real || 
+                    geolocation_args.display_text = geolocation_args.geoloc_real ||
                                                      (geolocation_args.geoloc_lat + '; ' + geolocation_args.geoloc_lon);
                 } else {
                     geolocation_args.style_text = Common._e("unknown");
@@ -241,21 +241,21 @@ var PEP = (function () {
 
         try {
             var this_buddy = '#roster .buddy[data-xid="' + escape(xid) + '"]';
-            
+
             if(Common.exists(this_buddy)) {
                 $(this_buddy + ' .bi-' + type).replaceWith(
                     '<p class="bi-' + type + ' talk-images ' + display_args.style_value + '" title="' + Common.encodeQuotes(display_args.display_text) + '">' + display_args.style_text + '</p>'
                 );
             }
-            
+
             // Apply the text to the buddy chat
             if(Common.exists('#' + hash)) {
                 // Selector
                 var bc_pep = $('#' + hash + ' .bc-pep');
-                
+
                 // We remove the old PEP item
                 bc_pep.find('a.bi-' + type).remove();
-                
+
                 // If the new PEP item is not null, create a new one
                 if(display_args.style_text != Common._e("unknown")) {
                     bc_pep.prepend(
@@ -288,7 +288,7 @@ var PEP = (function () {
                 // Change the input value
                 var display_value = '';
                 var display_attribute = display_args.pep_value;
-                
+
                 // Must apply default values?
                 if(display_args.pep_value == 'none') {
                     if(type == 'mood') {
@@ -297,16 +297,16 @@ var PEP = (function () {
                         display_attribute = 'exercising';
                     }
                 }
-                
+
                 // No text?
                 if(display_args.display_text != Common._e("unknown")) {
                     display_value = display_args.display_text;
                 }
-                
+
                 // Store this user event in our database
                 DataStore.setDB(Connection.desktop_hash, type + '-value', 1, display_attribute);
                 DataStore.setDB(Connection.desktop_hash, type + '-text', 1, display_value);
-                
+
                 // Apply this PEP event
                 $('#my-infos .f-' + type + ' a.picker').attr('data-value', display_attribute);
                 $('#my-infos .f-' + type + ' input').val(display_value);
@@ -314,12 +314,12 @@ var PEP = (function () {
             } else if((type == 'tune') || (type == 'geoloc')) {
                 // Reset the values
                 $('#my-infos .f-others a.' + type).remove();
-                
+
                 // Not empty?
                 if(display_args.display_text != Common._e("unknown")) {
                     // Specific stuffs
                     var href, title, icon_class;
-                    
+
                     if(type == 'tune') {
                         href = display_args.final_uri;
                         title = display_args.display_text;
@@ -329,25 +329,25 @@ var PEP = (function () {
                         title = Common._e("Where are you?") + ' (' + display_args.display_text + ')';
                         icon_class = 'location-world';
                     }
-                    
+
                     // Must create the container?
                     if(!Common.exists('#my-infos .f-others')) {
                         $('#my-infos .content').append('<div class="element f-others"></div>');
                     }
-                    
+
                     // Create the element
                     $('#my-infos .f-others').prepend(
-                        '<a class="icon ' + type + '" href="' + Common.encodeQuotes(href) + '" target="_blank" title="' + Common.encodeQuotes(title) +  '">' + 
-                            '<span class="talk-images ' + icon_class + '"></span>' + 
+                        '<a class="icon ' + type + '" href="' + Common.encodeQuotes(href) + '" target="_blank" title="' + Common.encodeQuotes(title) +  '">' +
+                            '<span class="talk-images ' + icon_class + '"></span>' +
                         '</a>'
                     );
                 }
-                
+
                 // Empty?
                 else if(!Common.exists('#my-infos .f-others a.icon')) {
                     $('#my-infos .f-others').remove();
                 }
-                
+
                 // Process the roster height again
                 Roster.adapt();
             }
@@ -372,8 +372,8 @@ var PEP = (function () {
             var cur_value;
 
             for(var cur_arg in args) {
-                storage_data += '<' + cur_arg + '>' + 
-                                    (args[cur_arg] || '').htmlEnc() + 
+                storage_data += '<' + cur_arg + '>' +
+                                    (args[cur_arg] || '').htmlEnc() +
                                 '</' + cur_arg + '>';
             }
         } catch(e) {
@@ -409,17 +409,17 @@ var PEP = (function () {
                 'amorous': Common._e("Amorous"),
                 'confident': Common._e("Confident")
             };
-            
+
             // Yet displayed?
             var can_append = !Common.exists(path);
-            
+
             // Add this bubble!
             Bubble.show(path);
-            
+
             if(!can_append) {
                 return false;
             }
-            
+
             // Generate the HTML code
             var html = '<div class="bubble removable">';
 
@@ -428,15 +428,15 @@ var PEP = (function () {
                 if(cur_mood_name == mood_val) {
                     continue;
                 }
-                
+
                 html += '<a href="#" class="talk-images" data-value="' + cur_mood_name + '" title="' + moods_obj[cur_mood_name] + '"></a>';
             }
-            
+
             html += '</div>';
-            
+
             // Append the HTML code
             $('#my-infos .f-mood').append(html);
-            
+
             // Click event
             $(path + ' a').click(function() {
                 // Update the mood marker
@@ -444,15 +444,15 @@ var PEP = (function () {
                     'data-value',
                     $(this).attr('data-value')
                 );
-                
+
                 // Close the bubble
                 Bubble.close();
-                
+
                 // Focus on the status input
                 $(document).oneTime(10, function() {
                     $('#mood-text').focus();
                 });
-                
+
                 return;
             });
         } catch(e) {
@@ -492,44 +492,44 @@ var PEP = (function () {
             };
 
             var can_append = !Common.exists(path);
-            
+
             // Add this bubble!
             Bubble.show(path);
-            
+
             if(!can_append) {
                 return false;
             }
-            
+
             // Generate the HTML code
             var html = '<div class="bubble removable">';
-            
+
             for(var cur_activity_name in activities_obj) {
                 // Yet in use: no need to display it!
                 if(cur_activity_name == activity_val) {
                     continue;
                 }
-                
+
                 html += '<a href="#" class="talk-images" data-value="' + cur_activity_name + '" title="' + activities_obj[cur_activity_name] + '"></a>';
             }
-            
+
             html += '</div>';
-            
+
             // Append the HTML code
             $('#my-infos .f-activity').append(html);
-            
+
             // Click event
             $(path + ' a').click(function() {
                 // Update the activity marker
                 picker_sel.attr('data-value', $(this).attr('data-value'));
-                
+
                 // Close the bubble
                 Bubble.close();
-                
+
                 // Focus on the status input
                 $(document).oneTime(10, function() {
                     $('#activity-text').focus();
                 });
-                
+
                 return false;
             });
         } catch(e) {
@@ -557,7 +557,7 @@ var PEP = (function () {
             element_text_sel.keyup(function(e) {
                 if(e.keyCode == 13) {
                     $(this).blur();
-                    
+
                     return false;
                 }
             });
@@ -567,18 +567,18 @@ var PEP = (function () {
                 // Read the parameters
                 var value = $('#my-infos .f-' + name + ' a.picker').attr('data-value');
                 var text = $(this).val();
-                
+
                 // Must send?
                 if((value != DataStore.getDB(Connection.desktop_hash, name + '-value', 1)) || (text != DataStore.getDB(Connection.desktop_hash, name + '-text', 1))) {
                     // Update the local stored values
                     DataStore.setDB(Connection.desktop_hash, name + '-value', 1, value);
                     DataStore.setDB(Connection.desktop_hash, name + '-text', 1, text);
-                    
+
                     // Send it!
                     send_fn(value, undefined, text);
                 }
             });
-            
+
             // Input focus handler
             element_text_sel.focus(function() {
                 Bubble.close();
@@ -648,7 +648,7 @@ var PEP = (function () {
         try {
             if(value1 || value2 || value3 || value4) {
                 var xml = '<pep type="' + type + '">';
-                
+
                 // Generate the subnodes
                 switch(type) {
                     case 'tune':
@@ -674,16 +674,16 @@ var PEP = (function () {
                             'text': value2
                         });
                 }
-                
+
                 // End the XML node
                 xml += '</pep>';
-                
+
                 // Update the input with the new value
                 DataStore.setDB(Connection.desktop_hash, 'pep-' + type, xid, xml);
             } else {
                 DataStore.removeDB(Connection.desktop_hash, 'pep-' + type, xid);
             }
-            
+
             // Display the PEP event
             self.display(xid, type);
         } catch(e) {
@@ -707,7 +707,7 @@ var PEP = (function () {
             var value = $(Common.XMLFromString(
                 DataStore.getDB(Connection.desktop_hash, 'pep-' + type, xid))
             );
-            
+
             // If the PEP element exists
             if(type) {
                 // Get the user hash
@@ -735,7 +735,7 @@ var PEP = (function () {
 
                 // Append foreign PEP user values
                 self._appendForeignDisplayObject(xid, hash, type, display_args);
-                
+
                 // PEP values of the logged in user?
                 if(xid == Common.getXID()) {
                     self._appendOwnDisplayObject(type, display_args);
@@ -759,7 +759,7 @@ var PEP = (function () {
         try {
             // The main var
             var icon;
-            
+
             // Switch the values
             switch(value) {
                 case 'angry':
@@ -772,13 +772,13 @@ var PEP = (function () {
                 case 'strong':
                     icon = 'mood-one';
                     break;
-                
+
                 case 'contemplative':
                 case 'happy':
                 case 'playful':
                     icon = 'mood-two';
                     break;
-                
+
                 case 'aroused':
                 case 'envious':
                 case 'excited':
@@ -790,7 +790,7 @@ var PEP = (function () {
                 case 'shy':
                     icon = 'mood-three';
                     break;
-                
+
                 case 'calm':
                 case 'cautious':
                 case 'contented':
@@ -801,7 +801,7 @@ var PEP = (function () {
                 case 'none':
                     icon = 'mood-four';
                     break;
-                
+
                 case 'afraid':
                 case 'amazed':
                 case 'confused':
@@ -819,7 +819,7 @@ var PEP = (function () {
                 case 'impressed':
                     icon = 'mood-five';
                     break;
-                
+
                 case 'crazy':
                 case 'distracted':
                 case 'neutral':
@@ -827,7 +827,7 @@ var PEP = (function () {
                 case 'thirsty':
                     icon = 'mood-six';
                     break;
-                
+
                 case 'amorous':
                 case 'curious':
                 case 'in_love':
@@ -835,7 +835,7 @@ var PEP = (function () {
                 case 'sarcastic':
                     icon = 'mood-eight';
                     break;
-                
+
                 case 'brave':
                 case 'confident':
                 case 'hopeful':
@@ -844,12 +844,12 @@ var PEP = (function () {
                 case 'thankful':
                     icon = 'mood-nine';
                     break;
-                
+
                 default:
                     icon = 'mood-seven';
                     break;
             }
-            
+
             // Return the good icon name
             return icon;
         } catch(e) {
@@ -870,45 +870,45 @@ var PEP = (function () {
         try {
             // The main var
             var icon;
-            
+
             // Switch the values
             switch(value) {
                 case 'doing_chores':
                     icon = 'activity-doing_chores';
                     break;
-                
+
                 case 'drinking':
                     icon = 'activity-drinking';
                     break;
-                
+
                 case 'eating':
                     icon = 'activity-eating';
                     break;
-                
+
                 case 'grooming':
                     icon = 'activity-grooming';
                     break;
-                
+
                 case 'having_appointment':
                     icon = 'activity-having_appointment';
                     break;
-                
+
                 case 'inactive':
                     icon = 'activity-inactive';
                     break;
-                
+
                 case 'relaxing':
                     icon = 'activity-relaxing';
                     break;
-                
+
                 case 'talking':
                     icon = 'activity-talking';
                     break;
-                
+
                 case 'traveling':
                     icon = 'activity-traveling';
                     break;
-                
+
                 case 'working':
                     icon = 'activity-working';
                     break;
@@ -916,7 +916,7 @@ var PEP = (function () {
                     icon = 'activity-exercising';
                     break;
             }
-            
+
             // Return the good icon name
             return icon;
         } catch(e) {
@@ -941,21 +941,21 @@ var PEP = (function () {
             // We propagate the mood on the xmpp network
             var iq = new JSJaCIQ();
             iq.setType('set');
-            
+
             // We create the XML document
             var pubsub = iq.appendNode('pubsub', {'xmlns': NS_PUBSUB});
             var publish = pubsub.appendChild(iq.buildNode('publish', {'node': NS_MOOD, 'xmlns': NS_PUBSUB}));
             var item = publish.appendChild(iq.buildNode('item', {'xmlns': NS_PUBSUB}));
             var mood = item.appendChild(iq.buildNode('mood', {'xmlns': NS_MOOD}));
-            
+
             if(value != 'none') {
                 mood.appendChild(iq.buildNode(value, {'xmlns': NS_MOOD}));
                 mood.appendChild(iq.buildNode('text', {'xmlns': NS_MOOD}, text));
             }
-            
+
             // And finally we send the mood that is set
             con.send(iq);
-            
+
             Console.info('New mood sent: ' + value + ' (' + text + ')');
         } catch(e) {
             Console.error('PEP.sendMood', e);
@@ -978,7 +978,7 @@ var PEP = (function () {
             // We propagate the mood on the xmpp network
             var iq = new JSJaCIQ();
             iq.setType('set');
-            
+
             // We create the XML document
             var pubsub = iq.appendNode('pubsub', {
                 'xmlns': NS_PUBSUB
@@ -996,12 +996,12 @@ var PEP = (function () {
             var activity = item.appendChild(iq.buildNode('activity', {
                 'xmlns': NS_ACTIVITY
             }));
-            
+
             if(main != 'none') {
                 var mainType = activity.appendChild(iq.buildNode(main, {
                     'xmlns': NS_ACTIVITY
                 }));
-                
+
                 // Child nodes
                 if(sub) {
                     mainType.appendChild(iq.buildNode(sub, {
@@ -1015,10 +1015,10 @@ var PEP = (function () {
                     }, text));
                 }
             }
-            
+
             // And finally we send the mood that is set
             con.send(iq);
-            
+
             Console.info('New activity sent: ' + main + ' (' + text + ')');
         } catch(e) {
             Console.error('PEP.sendActivity', e);
@@ -1051,7 +1051,7 @@ var PEP = (function () {
         try {
             var iq = new JSJaCIQ();
             iq.setType('set');
-            
+
             // Create XML nodes
             var pubsub = iq.appendNode('pubsub', {
                 'xmlns': NS_PUBSUB
@@ -1069,7 +1069,7 @@ var PEP = (function () {
             var geoloc = item.appendChild(iq.buildNode('geoloc', {
                 'xmlns': NS_GEOLOC
             }));
-            
+
             // Position object
             var position_obj = {
                 'lat': lat,
@@ -1101,10 +1101,10 @@ var PEP = (function () {
                     );
                 }
             }
-            
+
             // And finally we send the XML
             con.send(iq);
-            
+
             // For logger
             if(lat && lon) {
                 Console.info('Geolocated.');
@@ -1128,7 +1128,7 @@ var PEP = (function () {
 
         try {
             var result = $(data).find('result:first');
-    
+
             // Get latitude and longitude
             var geometry_sel = result.find('geometry:first location:first');
 
@@ -1136,7 +1136,7 @@ var PEP = (function () {
             var lng = geometry_sel.find('lng').text();
 
             var addr_comp_sel = result.find('address_component');
-            
+
             var array = [
                 lat,
                 lng,
@@ -1150,7 +1150,7 @@ var PEP = (function () {
                 result.find('formatted_address:first').text(),
                 'http://maps.google.com/?q=' + Common.encodeQuotes(lat) + ',' + Common.encodeQuotes(lng)
             ];
-            
+
             return array;
         } catch(e) {
             Console.error('PEP.parsePosition', e);
@@ -1175,18 +1175,18 @@ var PEP = (function () {
             if(locality) {
                 // Any locality
                 human_value += locality;
-                
+
                 if(region) {
                     human_value += ', ' + region;
                 }
-                
+
                 if(country) {
                     human_value += ', ' + country;
                 }
             } else if(region) {
                 // Any region
                 human_value += region;
-                
+
                 if(country) {
                     human_value += ', ' + country;
                 }
@@ -1216,7 +1216,7 @@ var PEP = (function () {
             var lat = '' + position.coords.latitude;
             var lon = '' + position.coords.longitude;
             var alt = '' + position.coords.altitude;
-            
+
             // Get full position (from Google Maps API)
             $.get('./server/geolocation.php', {
                 latitude: lat,
@@ -1226,7 +1226,7 @@ var PEP = (function () {
                 // Still connected?
                 if(Common.isConnected()) {
                     var results = self.parsePosition(data);
-                    
+
                     self.sendPosition(
                         (Utils.isNumber(lat) ? lat : null),
                         (Utils.isNumber(lon) ? lon : null),
@@ -1241,14 +1241,14 @@ var PEP = (function () {
                         results[9],
                         results[10]
                     );
-                    
+
                     // Store data
                     DataStore.setDB(Connection.desktop_hash, 'geolocation', 'now', Common.xmlToString(data));
-                    
+
                     Console.log('Position details got from Google Maps API.');
                 }
             });
-            
+
             Console.log('Position got: latitude > ' + lat + ' / longitude > ' + lon + ' / altitude > ' + alt);
         } catch(e) {
             Console.error('PEP.getPosition', e);
@@ -1266,19 +1266,19 @@ var PEP = (function () {
 
         try {
             // Don't fire it until options & features are not retrieved!
-            if(!DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') || 
-                (DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '0') || 
+            if(!DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') ||
+                (DataStore.getDB(Connection.desktop_hash, 'options', 'geolocation') == '0') ||
                 !Features.enabledPEP()) {
                 return;
             }
-            
+
             // We publish the user location if allowed
             if(navigator.geolocation) {
                 // Wait a bit... (to fix a bug)
                 $('#my-infos').stopTime().oneTime('1s', function() {
                     navigator.geolocation.getCurrentPosition(self.getPosition);
                 });
-                
+
                 Console.info('Geolocating...');
             } else {
                 Console.error('Not geolocated: browser does not support it.');
@@ -1300,7 +1300,7 @@ var PEP = (function () {
         try {
             var iq = new JSJaCIQ();
             iq.setType('get');
-            
+
             var pubsub = iq.appendNode('pubsub', {
                 'xmlns': NS_PUBSUB
             });
@@ -1309,9 +1309,9 @@ var PEP = (function () {
                 'node': NS_GEOLOC,
                 'xmlns': NS_PUBSUB
             }));
-            
+
             ps_items.setAttribute('max_items', '0');
-            
+
             con.send(iq, self.handleInitGeoloc);
         } catch(e) {
             Console.error('PEP.getInitGeoloc', e);
@@ -1333,7 +1333,7 @@ var PEP = (function () {
             if((iq.getType() == 'error') && $(iq.getNode()).find('item-not-found').size()) {
                 // The node may not exist, create it!
                 Pubsub.setup('', NS_GEOLOC, '1', '1', '', '', true);
-                
+
                 Console.warn('Error while getting geoloc, trying to reconfigure the PubSub node!');
             }
         } catch(e) {
@@ -1375,21 +1375,21 @@ var PEP = (function () {
             DataStore.setDB(Connection.desktop_hash, 'mood-text', 1, '');
             DataStore.setDB(Connection.desktop_hash, 'activity-value', 1, '');
             DataStore.setDB(Connection.desktop_hash, 'activity-text', 1, '');
-            
+
             // Click event for user mood
             $('#my-infos .f-mood a.picker').click(function() {
                 return PEP._callbackMoodPicker(
                     $(this)
                 );
             });
-            
+
             // Click event for user activity
             $('#my-infos .f-activity a.picker').click(function() {
                 return PEP._callbackActivityPicker(
                     $(this)
                 );
             });
-            
+
             // Attach events
             self._eventsMoodText(
                 $('#mood-text')

@@ -151,7 +151,7 @@ function setConfiguration($string, $hash, $locale, $version, $max_upload) {
     } else {
         $bosh_special = HOST_BOSH;
     }
-    
+
     // Configuration array
     $array = array(
                 // xml:lang

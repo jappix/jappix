@@ -102,22 +102,22 @@ var Muji = (function() {
                         var avatar_html = '';
 
                         if(mode === 'him') {
-                            avatar_html = 
-                            '<div class="message_avatar avatar-container">' + 
-                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
+                            avatar_html =
+                            '<div class="message_avatar avatar-container">' +
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' +
                             '</div>';
                         }
 
                         muji_sel.find('.chatroom .chatroom_view').append(
-                            '<div class="room_message ' + mode + ' ' + hex_md5(from) + '">' + 
-                                avatar_html + 
+                            '<div class="room_message ' + mode + ' ' + hex_md5(from) + '">' +
+                                avatar_html +
 
-                                '<div class="message_content">' + 
-                                    '<span class="message_bubble">' + body.htmlEnc() + '</span>' + 
-                                    '<span class="message_author">' + username.htmlEnc() + '</span>' + 
-                                '</div>' + 
+                                '<div class="message_content">' +
+                                    '<span class="message_bubble">' + body.htmlEnc() + '</span>' +
+                                    '<span class="message_author">' + username.htmlEnc() + '</span>' +
+                                '</div>' +
 
-                                '<div class="clear"></div>' + 
+                                '<div class="clear"></div>' +
                             '</div>'
                         );
 
@@ -144,7 +144,7 @@ var Muji = (function() {
                 room_presence_out: function(muji, stanza) {
                     Console.log('Muji._args', 'room_presence_out');
                 },
-                
+
                 session_prepare_pending: function(muji, stanza) {
                     // Temporary username
                     $('#muji').attr('data-username', muji.get_username());
@@ -160,14 +160,14 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_prepare_pending');
                 },
-                
+
                 session_prepare_success: function(muji, stanza) {
                     // Final username
                     $('#muji').attr('data-username', muji.get_username());
 
                     Console.log('Muji._args', 'session_prepare_success');
                 },
-                
+
                 session_prepare_error: function(muji, stanza) {
                     self._reset();
 
@@ -181,7 +181,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_prepare_error');
                 },
-                
+
                 session_initiate_pending: function(muji) {
                     Call.notify(
                         JSJAC_JINGLE_SESSION_MUJI,
@@ -193,7 +193,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_initiate_pending');
                 },
-                
+
                 session_initiate_success: function(muji, stanza) {
                     Call._unnotify();
 
@@ -204,7 +204,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_initiate_success');
                 },
-                
+
                 session_initiate_error: function(muji, stanza) {
                     self._reset();
 
@@ -218,7 +218,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_initiate_error');
                 },
-                
+
                 session_leave_pending: function(muji) {
                     self._reset();
 
@@ -232,7 +232,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_leave_pending');
                 },
-                
+
                 session_leave_success: function(muji, stanza) {
                     self._reset();
 
@@ -246,7 +246,7 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_leave_success');
                 },
-                
+
                 session_leave_error: function(muji, stanza) {
                     self._reset();
 
@@ -264,83 +264,83 @@ var Muji = (function() {
 
                     Console.log('Muji._args', 'session_leave_error');
                 },
-                
+
                 participant_prepare: function(muji, stanza) {
                     Console.log('Muji._args', 'participant_prepare');
                 },
-                
+
                 participant_initiate: function(muji, stanza) {
                     Console.log('Muji._args', 'participant_initiate');
                 },
-                
+
                 participant_leave: function(muji, stanza) {
                     Console.log('Muji._args', 'participant_leave');
                 },
-                
+
                 participant_session_initiate_pending: function(muji, session) {
                     Console.log('Muji._args', 'participant_session_initiate_pending');
                 },
-                
+
                 participant_session_initiate_success: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_initiate_success');
                 },
-                
+
                 participant_session_initiate_error: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_initiate_error');
                 },
-                
+
                 participant_session_initiate_request: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_initiate_request');
                 },
-                
+
                 participant_session_accept_pending: function(muji, session) {
                     Console.log('Muji._args', 'participant_session_accept_pending');
                 },
-                
+
                 participant_session_accept_success: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_accept_success');
                 },
-                
+
                 participant_session_accept_error: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_accept_error');
                 },
-                
+
                 participant_session_accept_request: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_accept_request');
                 },
-                
+
                 participant_session_info_pending: function(muji, session) {
                     Console.log('Muji._args', 'participant_session_info_pending');
                 },
-                
+
                 participant_session_info_success: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_info_success');
                 },
-                
+
                 participant_session_info_error: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_info_error');
                 },
-                
+
                 participant_session_info_request: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_info_request');
                 },
-                
+
                 participant_session_terminate_pending: function(muji, session) {
                     Console.log('Muji._args', 'participant_session_terminate_pending');
                 },
-                
+
                 participant_session_terminate_success: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_terminate_success');
                 },
-                
+
                 participant_session_terminate_error: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_terminate_error');
                 },
-                
+
                 participant_session_terminate_request: function(muji, session, stanza) {
                     Console.log('Muji._args', 'participant_session_terminate_request');
                 },
-                
+
                 add_remote_view: function(muji, username, media) {
                     Console.log('Muji._args', 'add_remote_view');
 
@@ -400,7 +400,7 @@ var Muji = (function() {
                     // IMPORTANT: return view selector
                     return (view_sel !== null) ? view_sel[0] : view_sel;
                 },
-                
+
                 remove_remote_view: function(muji, username) {
                     Console.log('Muji._args', 'remove_remote_view');
 
@@ -680,16 +680,16 @@ var Muji = (function() {
                         cur_name_bolded = cur_name.htmlEnc().replace(bold_regex, '<b>$&</b>');
 
                         // Generate result HTML
-                        results_html += 
-                        '<a class="participant_search_one ' + cur_support_class + ' ' + cur_hash + '" href="#" title="' + Common.encodeQuotes(cur_title) + '" data-xid="' + Common.encodeQuotes(cur_full_xid || cur_xid) + '" data-support="' + Common.encodeQuotes(cur_support) + '">' + 
-                            '<span class="avatar-container">' + 
-                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' + 
-                            '</span>' + 
+                        results_html +=
+                        '<a class="participant_search_one ' + cur_support_class + ' ' + cur_hash + '" href="#" title="' + Common.encodeQuotes(cur_title) + '" data-xid="' + Common.encodeQuotes(cur_full_xid || cur_xid) + '" data-support="' + Common.encodeQuotes(cur_support) + '">' +
+                            '<span class="avatar-container">' +
+                                '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' +
+                            '</span>' +
 
-                            '<span class="details">' + 
-                                '<span class="name">' + cur_name_bolded + '</span>' + 
-                                '<span class="feature call-images"></span>' + 
-                            '</span>' + 
+                            '<span class="details">' +
+                                '<span class="name">' + cur_name_bolded + '</span>' +
+                                '<span class="feature call-images"></span>' +
+                            '</span>' +
                         '</a>';
                     }
                 }
@@ -854,18 +854,18 @@ var Muji = (function() {
 
             if(participant_search_one_sel.size()) {
                 var hover_index = participant_search_one_sel.index($('.hover'));
-                
+
                 // Up (decrement) or down (increment)?
                 if(direction === 'up') {
                     hover_index--;
                 } else {
                     hover_index++;
                 }
-                
+
                 if(!hover_index) {
                     hover_index = 0;
                 }
-                
+
                 // Nobody before/after?
                 if(participant_search_one_sel.eq(hover_index).size() === 0) {
                     if(direction === 'up') {
@@ -874,7 +874,7 @@ var Muji = (function() {
                         hover_index = 0;
                     }
                 }
-                
+
                 // Hover the previous/next user
                 participant_search_one_sel.removeClass('hover');
                 participant_search_one_sel.eq(hover_index).addClass('hover');
@@ -1028,7 +1028,7 @@ var Muji = (function() {
                 var invite_delay = DateUtils.readMessageDelay(stanza.getNode(), true);
                 var date_now = DateUtils.getTimeStamp();
 
-                if(invite_delay && 
+                if(invite_delay &&
                    (date_now - DateUtils.extractStamp(invite_delay)) >= self.INVITE_MAX_DELAY) {
                     Console.warn('Muji.receive', 'Discarded outdated invite from: ' + Common.getStanzaFrom(stanza));
                     return;
@@ -1050,7 +1050,7 @@ var Muji = (function() {
                     args.media,
                     Common.bareXID(args.from)
                 );
-                
+
                 Audio.play('incoming-call', true);
             }
         } catch(e) {
@@ -1238,10 +1238,10 @@ var Muji = (function() {
         in_call = false;
 
         try {
-            if(self._session && 
-              (self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_PREPARING   || 
-               self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_PREPARED    || 
-               self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_INITIATING  || 
+            if(self._session &&
+              (self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_PREPARING   ||
+               self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_PREPARED    ||
+               self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_INITIATING  ||
                self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_INITIATED   ||
                self._session.get_status() === JSJAC_JINGLE_MUJI_STATUS_LEAVING)) {
                 in_call = true;
@@ -1492,81 +1492,81 @@ var Muji = (function() {
 
             // Create DOM
             $('body').append(
-                '<div id="muji" class="videochat_box lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' + 
-                    '<div class="videochat_items">' + 
-                        '<div class="videoroom">' + 
-                            '<div class="topbar">' + 
-                                '<div class="controls">' + 
-                                    '<a href="#" class="leave control-button" data-type="leave"><span class="icon call-images"></span>' + Common._e("Leave") + '</a>' + 
-                                    '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' + 
-                                    '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' + 
-                                '</div>' + 
+                '<div id="muji" class="videochat_box lock removable ' + hex_md5(room) + '" data-room="' + Common.encodeQuotes(room) + '" data-mode="' + Common.encodeQuotes(mode) + '">' +
+                    '<div class="videochat_items">' +
+                        '<div class="videoroom">' +
+                            '<div class="topbar">' +
+                                '<div class="controls">' +
+                                    '<a href="#" class="leave control-button" data-type="leave"><span class="icon call-images"></span>' + Common._e("Leave") + '</a>' +
+                                    '<a href="#" class="mute control-button" data-type="mute"><span class="icon call-images"></span>' + Common._e("Mute") + '</a>' +
+                                    '<a href="#" class="unmute control-button" data-type="unmute"><span class="icon call-images"></span>' + Common._e("Unmute") + '</a>' +
+                                '</div>' +
 
-                                '<div class="elapsed">00:00:00</div>' + 
+                                '<div class="elapsed">00:00:00</div>' +
 
-                                '<div class="actions">' + 
-                                    '<a href="#" class="close action-button call-images" data-type="close"></a>' + 
-                                '</div>' + 
-                            '</div>' + 
+                                '<div class="actions">' +
+                                    '<a href="#" class="close action-button call-images" data-type="close"></a>' +
+                                '</div>' +
+                            '</div>' +
 
-                            '<div class="local_video">' + 
-                                '<video src="" alt="" poster="' + local_poster + '"></video>' + 
-                            '</div>' + 
+                            '<div class="local_video">' +
+                                '<video src="" alt="" poster="' + local_poster + '"></video>' +
+                            '</div>' +
 
-                            '<div class="remote_container">' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                                '<div class="remote_video_shaper remote_video"></div>' + 
-                            '</div>' + 
+                            '<div class="remote_container">' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                                '<div class="remote_video_shaper remote_video"></div>' +
+                            '</div>' +
 
-                            '<div class="empty_message">' + 
-                                '<span class="text">' + Common._e("Nobody there. Invite some people!") + '</span>' + 
-                            '</div>' + 
-                        '</div>' + 
+                            '<div class="empty_message">' +
+                                '<span class="text">' + Common._e("Nobody there. Invite some people!") + '</span>' +
+                            '</div>' +
+                        '</div>' +
 
-                        '<div class="chatroom">' + 
-                            '<div class="chatroom_participants">' + 
-                                '<div class="participants_default_view">' + 
-                                    '<div class="participants_default_details">' + 
-                                        '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' + 
-                                        '<span class="participants_full">' + Common._e("(full)") + '</span>' + 
-                                    '</div>' + 
+                        '<div class="chatroom">' +
+                            '<div class="chatroom_participants">' +
+                                '<div class="participants_default_view">' +
+                                    '<div class="participants_default_details">' +
+                                        '<span class="participants_counter">' + Common.printf(Common._e("%s participants"), 0) + '</span>' +
+                                        '<span class="participants_full">' + Common._e("(full)") + '</span>' +
+                                    '</div>' +
 
-                                    '<a class="participants_invite call-images" href="#" title="' + Common._e("Invite people...") + '"></a>' + 
-                                '</div>' + 
+                                    '<a class="participants_invite call-images" href="#" title="' + Common._e("Invite people...") + '"></a>' +
+                                '</div>' +
 
-                                '<div class="participants_invite_box">' + 
-                                    '<div class="participants_invite_list"></div>' + 
+                                '<div class="participants_invite_box">' +
+                                    '<div class="participants_invite_list"></div>' +
 
-                                    '<form class="participants_invite_form" action="#" method="post">' + 
-                                        '<div class="invite_input_container">' + 
-                                            '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" autocomplete="off" />' + 
-                                        '</div>' + 
+                                    '<form class="participants_invite_form" action="#" method="post">' +
+                                        '<div class="invite_input_container">' +
+                                            '<input class="invite_xid input-reset" name="xid" type="text" placeholder="' + Common._e("Enter people names...") + '" autocomplete="off" />' +
+                                        '</div>' +
 
-                                        '<a class="invite_validate" href="#">' + 
-                                            '<span class="invite_validate_icon call-images"></span>' + 
-                                        '</a>' + 
-                                    '</form>' + 
+                                        '<a class="invite_validate" href="#">' +
+                                            '<span class="invite_validate_icon call-images"></span>' +
+                                        '</a>' +
+                                    '</form>' +
 
-                                    '<div class="participants_invite_search"></div>' + 
-                                '</div>' + 
-                            '</div>' + 
+                                    '<div class="participants_invite_search"></div>' +
+                                '</div>' +
+                            '</div>' +
 
-                            '<div class="chatroom_view"></div>' + 
+                            '<div class="chatroom_view"></div>' +
 
-                            '<form class="chatroom_form" action="#" method="post">' + 
-                                '<span class="message_icon call-images"></span>' + 
-                                '<span class="message_separator"></span>' + 
+                            '<form class="chatroom_form" action="#" method="post">' +
+                                '<span class="message_icon call-images"></span>' +
+                                '<span class="message_separator"></span>' +
 
-                                '<div class="message_input_container">' + 
-                                    '<input class="message_input input-reset" name="message" type="text" placeholder="' + Common._e("Send a message...") + '" autocomplete="off" />' + 
-                                '</div>' + 
-                            '</form>' + 
-                        '</div>' + 
-                    '</div>' + 
+                                '<div class="message_input_container">' +
+                                    '<input class="message_input input-reset" name="message" type="text" placeholder="' + Common._e("Send a message...") + '" autocomplete="off" />' +
+                                '</div>' +
+                            '</form>' +
+                        '</div>' +
+                    '</div>' +
                 '</div>'
             );
 
@@ -1831,7 +1831,7 @@ var Muji = (function() {
         } catch(e) {
             Console.error('Muji.launch', e);
         }
-    
+
     };
 
 

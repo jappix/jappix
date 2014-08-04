@@ -50,29 +50,29 @@ var Features = (function () {
             var to = Utils.getServer();
             var caps = con.server_caps;
             var xml = null;
-            
+
             // Try to get the stored data
             if(caps) {
                 xml = Common.XMLFromString(
                     DataStore.getPersistent('global', 'caps', caps)
                 );
             }
-            
+
             // Any stored data?
             if(xml) {
                 self.handle(xml);
-                
+
                 Console.log('Read server CAPS from cache.');
             } else {
                 // Not stored (or no CAPS)!
                 var iq = new JSJaCIQ();
-                
+
                 iq.setTo(to);
                 iq.setType('get');
                 iq.setQuery(NS_DISCO_INFO);
-                
+
                 con.send(iq, Caps.handleDiscoInfos);
-                
+
                 Console.log('Read server CAPS from network.');
             }
         } catch(e) {
@@ -93,7 +93,7 @@ var Features = (function () {
         try {
             // Selector
             var selector = $(xml);
-            
+
             // Functions
             var check_feature_fn = function(namespace) {
                 // This weird selector fixes an IE8 bug...
@@ -137,21 +137,21 @@ var Features = (function () {
                 // Get the PEP nodes to initiate
                 Microblog.getInit();
                 PEP.getInitGeoloc();
-                
+
                 // Get the notifications
                 Notification.get();
-                
+
                 // Geolocate the user
                 PEP.geolocate();
-                
+
                 // Enable microblogging send tools
                 Microblog.wait('sync');
                 $('.postit.attach').css('display', 'block');
-                
+
                 Console.info('XMPP server supports PEP.');
             } else {
                 Microblog.wait('unsync');
-                
+
                 Console.warn('XMPP server does not support PEP.');
             }
 
@@ -159,10 +159,10 @@ var Features = (function () {
             if(features.pep === false && features[NS_URN_MAM] === false) {
                 $('#options fieldset.privacy').hide();
             }
-            
+
             // Apply the features
             self.apply('talk');
-            
+
             // Process the roster height
             if(features.pep === true) {
                 Roster.adapt();
@@ -192,12 +192,12 @@ var Features = (function () {
         try {
             // Path to the elements
             var path = '#' + id + ' .';
-            
+
             // PEP features
             if(self.enabledPEP()) {
                 $(path + 'pep-hidable').show();
             }
-            
+
             // PubSub features
             if(self.enabledPubSub()) {
                 $(path + 'pubsub-hidable').show();
@@ -207,7 +207,7 @@ var Features = (function () {
             if(self.enabledPubSubCN()) {
                 $(path + 'pubsub-hidable-cn').show();
             }
-            
+
             // MAM features
             if(self.enabledMAM()) {
                 $(path + 'mam-hidable').show();
@@ -223,12 +223,12 @@ var Features = (function () {
             if(self.enabledCorrection()) {
                 $(path + 'correction-hidable').show();
             }
-            
+
             // Commands features
             if(self.enabledCommands()) {
                 $(path + 'commands-hidable').show();
             }
-            
+
             // XMPP links (browser feature)
             if(navigator.registerProtocolHandler) {
                 $(path + 'xmpplinks-hidable').show();

@@ -34,7 +34,7 @@ var Autocompletion = (function () {
             // Put the two strings into lower case
             var sort_a = a[0].toLowerCase();
             var sort_b = b[0].toLowerCase();
-            
+
             // Process the sort
             if(sort_a > sort_b) {
                 return 1;
@@ -192,7 +192,7 @@ var Autocompletion = (function () {
             }
 
             var query = message_area_sel.attr('data-autocompletion-query');
-            
+
             if(query === undefined) {
                 // The autocompletion has not been yet launched
                 query = self.getSubQueries(value);
@@ -201,11 +201,11 @@ var Autocompletion = (function () {
                 // The autocompletion has already stored a query
                 query = JSON.parse(query);
             }
-            
+
             // Get the pointer
             var pointer = message_area_sel.attr('data-autocompletion-pointer');
             var i = pointer ? parseInt(pointer, 10) : 0;
-            
+
             // We get the nickname
             var nick_result = self.process(query[0], hash)[i];
             var nick;
@@ -213,12 +213,12 @@ var Autocompletion = (function () {
             if(nick_result !== undefined) {
                 nick = nick_result[0];
             }
-            
+
             // Shit, this is my nick!
             if((nick !== undefined) && (nick.toLowerCase() == Name.getMUCNick(hash).toLowerCase())) {
                 // Increment
                 i++;
-                
+
                 // Get the next nick
                 nick_result = self.process(query[0], hash)[i];
 
@@ -226,7 +226,7 @@ var Autocompletion = (function () {
                     nick = nick_result[0];
                 }
             }
-            
+
             // We quote the nick
             if((nick_result !== undefined) && (nick !== undefined)) {
                 // Increment
@@ -237,7 +237,7 @@ var Autocompletion = (function () {
                     nick,
                     query[1][nick_result[1]]
                 );
-                
+
                 // Put a pointer
                 message_area_sel.attr('data-autocompletion-pointer', i);
             }

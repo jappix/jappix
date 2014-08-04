@@ -34,26 +34,26 @@ if(isStatic()) {
 if(isset($_GET['id']) && !empty($_GET['id'])) {
     $file_id = $_GET['id'];
     $file_path = JAPPIX_BASE.'/tmp/send/'.$file_id;
-    
+
     // Get file name
     if(isset($_GET['name']) && !empty($_GET['name'])) {
         $file_name = $_GET['name'];
     } else {
         $file_name = $file_id;
     }
-    
+
     // Hack?
     if(!isSafe($file_id)) {
         header('Status: 406 Not Acceptable', true, 406);
         exit('HTTP/1.1 406 Not Acceptable');
     }
-    
+
     // File does not exist
     if(!file_exists($file_path)) {
         header('Status: 404 Not Found', true, 404);
         exit('HTTP/1.1 404 Not Found');
     }
-    
+
     // Remove a file
     if(isset($_GET['action']) && ($_GET['action'] == 'remove')) {
         header('Status: 204 No Content', true, 204);
@@ -62,7 +62,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
         exit('File Removed.');
     }
-    
+
     // Receive a file
     header("Content-disposition: attachment; filename=\"$file_name\"");
     header("Content-Type: application/force-download");
@@ -79,26 +79,26 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 // Send a file
 else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id']) && !empty($_POST['id'])) && (isset($_POST['location']) && !empty($_POST['location']))) {
     header('Content-Type: text/xml; charset=utf-8');
-    
+
     // Get the file name
     $tmp_filename = $_FILES['file']['tmp_name'];
     $filename = $_FILES['file']['name'];
-    
+
     // Get the location
     if(HOST_UPLOAD) {
         $location = HOST_UPLOAD.'/';
     } else {
         $location = $_POST['location'];
     }
-    
+
     // Get the file new name
     $ext = getFileExt($filename);
     $new_name = preg_replace('/(^)(.+)(\.)(.+)($)/i', '$2', $filename);
-    
+
     // Define some vars
     $name = sha1(time().$filename);
     $path = JAPPIX_BASE.'/tmp/send/'.$name.'.'.$ext;
-    
+
     // Forbidden file?
     if(!isSafeAllowed($filename) || !isSafeAllowed($name.'.'.$ext)) {
         exit(
@@ -108,7 +108,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 </jappix>'
         );
     }
-    
+
     // File upload error?
     if(!is_uploaded_file($tmp_filename) || !move_uploaded_file($tmp_filename, $path)) {
         exit(
@@ -118,7 +118,7 @@ else if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['id
 </jappix>'
         );
     }
-    
+
     // Return the path to the file
     exit(
 '<jappix xmlns=\'jappix:file:send\'>

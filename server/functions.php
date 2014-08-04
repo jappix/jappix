@@ -50,16 +50,16 @@ function hasOwner() {
 // The function to get the users.xml file hashed name
 function usersConfName() {
     $conf_dir = JAPPIX_BASE.'/store/conf';
-    
+
     // No conf folder?
     if(!is_dir($conf_dir)) {
         return '';
     }
-    
+
     // Read the conf folder
     $conf_scan = scandir($conf_dir.'/');
     $conf_name = '';
-    
+
     // Loop the XML files
     foreach($conf_scan as $current) {
         if(preg_match('/(.+)(\.users\.xml)($)/', $current)) {
@@ -67,7 +67,7 @@ function usersConfName() {
             break;
         }
     }
-    
+
     // Return the users file name
     return $conf_name;
 }
@@ -86,12 +86,12 @@ function writeXML($type, $xmlns, $xml) {
     // Generate the file path
     $conf_path = JAPPIX_BASE.'/store/'.$type.'/';
     $conf_name = $xmlns.'.xml';
-    
+
     // Secured stored file?
     if(($type == 'conf') && ($xmlns == 'users')) {
         // Get the secured file name
         $conf_secured = usersConfName();
-        
+
         // Does this file exist?
         if($conf_secured) {
             $conf_name = $conf_secured;
@@ -99,18 +99,18 @@ function writeXML($type, $xmlns, $xml) {
             $conf_name = hash('sha256', rand(1, 99999999).time()).'.users.xml';
         }
     }
-    
+
     // Generate the file complete path
     $conf_file = $conf_path.$conf_name;
-    
+
     // Write the installed marker
     $gen_xml = '<?xml version="1.0" encoding="utf-8" ?>
 <jappix xmlns="jappix:'.$type.':'.$xmlns.'">
     '.trim($xml).'
 </jappix>';
-    
+
     file_put_contents($conf_file, $gen_xml, LOCK_EX);
-    
+
     return true;
 }
 
@@ -119,25 +119,25 @@ function readXML($type, $xmlns) {
     // Generate the file path
     $conf_path = JAPPIX_BASE.'/store/'.$type.'/';
     $conf_name = $xmlns.'.xml';
-    
+
     // Secured stored file?
     if(($type == 'conf') && ($xmlns == 'users')) {
         // Get the secured file name
         $conf_secured = usersConfName();
-        
+
         // Does this file exist?
         if($conf_secured) {
             $conf_name = $conf_secured;
         }
     }
-    
+
     // Generate the file complete path
     $conf_file = $conf_path.$conf_name;
-    
+
     if(file_exists($conf_file)) {
         return file_get_contents($conf_file);
     }
-    
+
     return false;
 }
 
@@ -194,7 +194,7 @@ function readUrl($url) {
         // Fallback on default method
         $data = @file_get_contents($url, false, $context);
     }
-    
+
     return $data;
 }
 
@@ -202,7 +202,7 @@ function readUrl($url) {
 function getVersion() {
     $file = file_get_contents(JAPPIX_BASE.'/VERSION');
     $version = trim($file);
-    
+
     return $version;
 }
 
@@ -218,73 +218,73 @@ function checkLanguage() {
         // We define some stuffs
         $defined_lang = strtolower($_GET['l']);
         $lang_file = JAPPIX_BASE.'/i18n/'.$defined_lang.'/LC_MESSAGES/main.mo';
-        
+
         if($defined_lang == 'en') {
             $lang_found = true;
         } else {
             $lang_found = file_exists($lang_file);
         }
-        
+
         // We check if the asked translation exists
         if($lang_found) {
             $lang = $defined_lang;
-            
+
             // Write a cookie
             setcookie('jappix_locale', $lang, (time() + 31536000));
-            
+
             return $lang;
         }
     }
-    
+
     // No language has been defined, but a cookie is stored
     if(isset($_COOKIE['jappix_locale'])) {
         $check_cookie = $_COOKIE['jappix_locale'];
-        
+
         // The cookie has a value, check this value
         if($check_cookie && (file_exists(JAPPIX_BASE.'/i18n/'.$check_cookie.'/LC_MESSAGES/main.mo') || ($check_cookie == 'en'))) {
             return $check_cookie;
         }
     }
-    
+
     // No cookie defined (or an unsupported value), naturally, we check the browser language
     if(!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         return 'en';
     }
-    
+
     // We get the language of the browser
     $nav_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
     $check_en = strtolower($nav_langs[0]);
-    
+
     // We check if this is not english
     if($check_en == 'en') {
         return 'en';
     }
-    
+
     $order = array();
-    
+
     foreach($nav_langs as $entry) {
         $index = explode('=', $entry);
         $lang = strtolower(substr(trim($index[0]), 0, 2));
-        
+
         if(!isset($index[1]) || !$index[1]) {
             $index = 1;
         } else {
             $index = $index[1];
         }
-        
+
         $order[$lang] = $index;
     }
-    
+
     arsort($order);
-    
+
     foreach($order as $nav_lang => $val) {
         $lang_found = file_exists(JAPPIX_BASE.'/i18n/'.$nav_lang.'/LC_MESSAGES/main.mo');
-        
+
         if($lang_found) {
             return $nav_lang;
         }
     }
-    
+
     // If Jappix doen't know that language, we include the english translation
     return 'en';
 }
@@ -292,7 +292,7 @@ function checkLanguage() {
 // The function to convert a ISO language code to its full name
 function getLanguageName($code) {
     $code = strtolower($code);
-    
+
     $known = array(
         'aa' => 'Afaraf',
         'ab' => 'Аҧсуа',
@@ -484,11 +484,11 @@ function getLanguageName($code) {
         'zh-tw'  => '中文繁體',
         'zu' => 'isiZulu'
     );
-    
+
     if(isset($known[$code])) {
         return $known[$code];
     }
-    
+
     return null;
 }
 
@@ -501,13 +501,13 @@ function isRTL($code) {
 function htmlTag($locale) {
     // Initialize the tag
     $html = '<html xml:lang="'.$locale.'" lang="'.$locale.'" dir="';
-    
+
     // Set the good text direction
     $html .= isRTL($locale) ? 'rtl' : 'ltr';
-    
+
     // Close the tag
     $html .= '">';
-    
+
     echo($html);
 }
 
@@ -516,7 +516,7 @@ function availableLocales($active_locale=null, $bypass_settings=false) {
     // Initialize
     $scan = scandir(JAPPIX_BASE.'/i18n/');
     $list = array();
-    
+
     // Loop the available languages
     foreach($scan as $current_id) {
         // Pass?
@@ -526,16 +526,16 @@ function availableLocales($active_locale=null, $bypass_settings=false) {
 
         // Get the current language name
         $current_name = getLanguageName($current_id);
-        
+
         // Not valid?
         if((strtolower($current_id) == $active_locale) || ($current_name == null)) {
             continue;
         }
-        
+
         // Add this to the list
         $list[$current_id] = $current_name;
     }
-    
+
     return $list;
 }
 
@@ -545,12 +545,12 @@ function languageSwitcher($active_locale) {
     $keep_get = keepGet('l', false);
     $list = availableLocales($active_locale);
     $html = '';
-    
+
     // Generate the HTML code
     foreach($list as $current_id => $current_name) {
         $html .= '<a href="./?l='.$current_id.$keep_get.'">'.htmlspecialchars($current_name).'</a>, ';
     }
-    
+
     // Output the HTML code
     return $html;
 }
@@ -559,12 +559,12 @@ function languageSwitcher($active_locale) {
 function genStrongHash($string) {
     // Initialize
     $i = 0;
-    
+
     // Loop to generate a incredibly strong hash (can be a bit slow)
     while($i++ < 10) {
         $string = hash('sha256', $string);
     }
-    
+
     return $string;
 }
 
@@ -576,25 +576,25 @@ function genHash($version) {
     $conf_hosts = $conf_path.'hosts.xml';
     $conf_background = $conf_path.'background.xml';
     $logos_dir = JAPPIX_BASE.'/store/logos/';
-    
+
     // Get the hash of the configuration files
     $hash_main = file_exists($conf_main) ? md5_file($conf_main) : '0';
     $hash_hosts = file_exists($conf_hosts) ? md5_file($conf_hosts) : '0';
     $hash_background = file_exists($conf_background) ? md5_file($conf_background) : '0';
-    
+
     // Get the hash of the logos folder
     $hash_logos = '';
-    
+
     if(is_dir($logos_dir)) {
         $logos_scan = scandir($logos_dir.'/');
-        
+
         foreach($logos_scan as $logos_current) {
             if(getFileExt($logos_current) == 'png') {
                 $hash_logos .= md5_file($logos_dir.$logos_current);
             }
         }
     }
-    
+
     return md5($version.$hash_main.$hash_hosts.$hash_background.$hash_logos);
 }
 
@@ -675,7 +675,7 @@ function getFiles($h, $l, $t, $g, $f) {
     } else {
         $path_to = hasStatic() ? HOST_STATIC.'/' : JAPPIX_BASE.'/';
     }
-    
+
     if(!multiFiles()) {
         $values = array();
 
@@ -698,18 +698,18 @@ function getFiles($h, $l, $t, $g, $f) {
         if($f) {
             $values[] = 'f='.$f;
         }
-        
+
         return $path_to.'server/get.php?'.implode('&amp;', $values);
     }
-    
+
     if($g && !empty($g) && preg_match('/^(\S+)\.xml$/', $g) && preg_match('/^(css|js)$/', $t) && isSafe($g) && file_exists('bundles/'.$g)) {
         $xml_data = file_get_contents('bundles/'.$g);
-        
+
         // Any data?
         if($xml_data) {
             $xml_read = new SimpleXMLElement($xml_data);
             $xml_parse = $xml_read->$t;
-            
+
             // Files were added to the list before (with file var)?
             if($f) {
                 $f .= '~'.$xml_parse;
@@ -718,14 +718,14 @@ function getFiles($h, $l, $t, $g, $f) {
             }
         }
     }
-    
+
     // Explode the f string
     if(strpos($f, '~') !== false) {
         $array = explode('~', $f);
     } else {
         $array = array($f);
     }
-    
+
     $a = array();
     foreach($array as $file) {
         $a[] = $path_to.$t.'/'.$file;
@@ -744,7 +744,7 @@ function echoGetFiles($h, $l, $t, $g, $f) {
     } else if($t == 'js') {
         $pattern = '<script type="text/javascript" src="%s"></script>';
     }
-    
+
     $files = getFiles($h, $l, $t, $g, $f);
 
     if(is_string($files)) {
@@ -839,7 +839,7 @@ function sslLink() {
         // Using HTTP
         $link = '<a class="home-images encrypted" href="https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"><span class="vert_center">'.T_('Encrypted').'</span></a>';
     }
-    
+
     return $link;
 }
 
@@ -868,7 +868,7 @@ function staticURL() {
         // Full URL
         $url = $protocol.'://'.$_SERVER['HTTP_HOST'].$port_section.$_SERVER['REQUEST_URI'];
     }
-    
+
     return $url;
 }
 
@@ -919,9 +919,9 @@ function getFileType($ext) {
         case 'psb':
         case 'xcf':
             $file_type = 'image';
-            
+
             break;
-        
+
         // Videos
         case 'ogv':
         case 'mkv':
@@ -942,9 +942,9 @@ function getFileType($ext) {
         case '3gp':
         case 'avc':
             $file_type = 'video';
-            
+
             break;
-        
+
         // Sounds
         case 'oga':
         case 'ogg':
@@ -970,9 +970,9 @@ function getFileType($ext) {
         case 'snd':
         case 'voc':
             $file_type = 'audio';
-            
+
             break;
-        
+
         // Documents
         case 'pdf':
         case 'odt':
@@ -1011,9 +1011,9 @@ function getFileType($ext) {
         case 'dhtml':
         case 'mshtml':
             $file_type = 'document';
-            
+
             break;
-        
+
         // Packages
         case 'tgz':
         case 'gz':
@@ -1038,16 +1038,16 @@ function getFileType($ext) {
         case 'arj':
         case 'msi':
             $file_type = 'package';
-            
+
             break;
-        
+
         // Others
         default:
             $file_type = 'other';
-            
+
             break;
     }
-    
+
     return $file_type;
 }
 
@@ -1056,7 +1056,7 @@ function getFileMIME($path) {
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $cmime = finfo_file($finfo, $path);
     finfo_close($finfo);
-    
+
     return $cmime;
 }
 
@@ -1064,55 +1064,55 @@ function getFileMIME($path) {
 function keepGet($current, $no_get) {
     // Get the HTTP GET vars
     $request = $_SERVER['REQUEST_URI'];
-    
+
     if(strrpos($request, '?') === false) {
         $get = '';
     } else {
         $uri = explode('?', $request);
         $get = $uri[1];
     }
-    
+
     // We now sanitize get variables
     $sanitized = preg_split('/[&]/', preg_replace("/(^&)/", "", $get));
-    foreach($sanitized as &$get_var) { 
+    foreach($sanitized as &$get_var) {
         $get_var = preg_replace_callback(
             '/^(.*=)(.+)$/',
             function($m) { $data = urldecode($m[2]); return '&' . $m[1] . urlencode($data); },
             $get_var
-        ); 
+        );
     }
-    
+
     // Merge the sanitized array
     $proper = '';
     foreach($sanitized as &$get_var) {
         $proper = $proper.$get_var;
     }
-    
+
     // Remove the items we don't want here
     $proper = str_replace('&', '&amp;', $proper);
     $proper = preg_replace('/((^)|(&amp;))(('.$current.'=)([^&]+))/i', '', $proper);
-    
+
     // Nothing at the end?
     if(!$proper) {
         return '';
     }
-    
+
     // We have no defined GET var
     if($no_get) {
         // Remove the first "&" if it appears
         if(preg_match('/^(&(amp;)?)/i', $proper)) {
             $proper = preg_replace('/^(&(amp;)?)/i', '', $proper);
         }
-        
+
         // Add the first "?"
         $proper = '?'.$proper;
     }
-    
+
     // Add a first "&" if there is no one and no defined GET var
     else if(!$no_get && (substr($proper, 0, 1) != '&') && (substr($proper, 0, 5) != '&amp;')) {
         $proper = '&amp;'.$proper;
     }
-    
+
     return $proper;
 }
 
@@ -1170,7 +1170,7 @@ function isAllowedExt($path) {
             return true;
         }
     }
-    
+
     return false;
 }
 
@@ -1182,13 +1182,13 @@ function isSafeAllowed($path) {
 // Set the good unity for a size in bytes
 function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
-    
+
     $bytes = max($bytes, 0);
     $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
     $pow = min($pow, count($units) - 1);
-    
+
     $bytes /= pow(1024, $pow);
-    
+
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
@@ -1205,15 +1205,15 @@ function humanToBytes($string) {
                 'Z' => '000000000000000000000',
                 'Y' => '000000000000000000000000'
                );
-    
+
     // Filter the string
     foreach($values as $key => $zero) {
         $string = str_replace($key, $zero, $string);
     }
-    
+
     // Converts the string into an integer
     $string = intval($string);
-    
+
     return $string;
 }
 
@@ -1223,18 +1223,18 @@ function uploadMaxSize() {
     if(ini_get('file_uploads') != 1) {
         return 0;
     }
-    
+
     // Upload maximum file size
     $upload = humanToBytes(ini_get('upload_max_filesize'));
-    
+
     // POST maximum size
     $post = humanToBytes(ini_get('post_max_size'));
-    
+
     // Return the lowest value
     if($upload <= $post) {
         return $upload;
     }
-    
+
     return $post;
 }
 
@@ -1250,7 +1250,7 @@ function normalizeChars($string) {
         'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
         'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r'
     );
-    
+
     return strtr($string, $table);
 }
 
@@ -1258,10 +1258,10 @@ function normalizeChars($string) {
 function filterSpecialXML($string) {
     // Strange thing: when $string = 'Mises à jour' -> bug! but 'Mise à jour' -> ok!
     $string = normalizeChars($string);
-    
+
     // Encodes with HTML special chars
     $string = htmlspecialchars($string);
-    
+
     return $string;
 }
 
@@ -1269,36 +1269,36 @@ function filterSpecialXML($string) {
 function writeTotalVisit() {
     // Get the current time stamp
     $stamp = time();
-    
+
     // Initialize the defaults
     $array = array(
                 'total' => 0,
                 'stamp' => $stamp
               );
-    
+
     // Try to read the saved data
     $total_data = readXML('access', 'total');
-    
+
     // Get the XML file values
     if($total_data) {
         // Initialize the visits reading
         $read_xml = new SimpleXMLElement($total_data);
-        
+
         // Loop the visit elements
         foreach($read_xml->children() as $current_child) {
             $array[$current_child->getName()] = intval((string)$current_child);
         }
     }
-    
+
     // Increment the total number of visits
     $array['total']++;
-    
+
     // Generate the new XML data
-    $total_xml = 
+    $total_xml =
     '<total>'.$array['total'].'</total>
     <stamp>'.$array['stamp'].'</stamp>'
     ;
-    
+
     // Re-write the new values
     writeXML('access', 'total', $total_xml);
 }
@@ -1307,10 +1307,10 @@ function writeTotalVisit() {
 function writeMonthsVisit() {
     // Get the current month
     $month = intval(date('m'));
-    
+
     // Define the stats array
     $array = array();
-    
+
     if($month <= 8) {
         // January to August period
         for($i = 1; $i <= 8; $i++) {
@@ -1320,7 +1320,7 @@ function writeMonthsVisit() {
         // August to September period
         $i = 8;
         $j = 1;
-        
+
         while($j <= 3) {
             if(($i >= 8) && ($i <= 12)) {
                 // Last year months
@@ -1331,39 +1331,39 @@ function writeMonthsVisit() {
             }
         }
     }
-    
+
     // Try to read the saved data
     $months_data = readXML('access', 'months');
-    
+
     // Get the XML file values
     if($months_data) {
         // Initialize the visits reading
         $read_xml = new SimpleXMLElement($months_data);
-        
+
         // Loop the visit elements
         foreach($read_xml->children() as $current_child) {
             $current_month = $current_child->getName();
-            
+
             // Parse the current month id
             $current_id = intval(preg_replace('/month_([0-9]+)/i', '$1', $current_month));
-            
+
             // Is this month still valid?
             if((($month <= 8) && ($current_id <= $month)) || (($month >= 8) && ($current_id >= 8) && ($current_id <= $month))) {
                 $array[$current_month] = intval((string)$current_child);
             }
         }
     }
-    
+
     // Increment the current month value
     $array['month_'.$month]++;
-    
+
     // Generate the new XML data
     $months_xml = '';
-    
+
     foreach($array as $array_key => $array_value) {
         $months_xml .= "\n".'   <'.$array_key.'>'.$array_value.'</'.$array_key.'>';
     }
-    
+
     // Re-write the new values
     writeXML('access', 'months', $months_xml);
 }
@@ -1372,7 +1372,7 @@ function writeMonthsVisit() {
 function writeVisit() {
     // Write total visits
     writeTotalVisit();
-    
+
     // Write months visits
     writeMonthsVisit();
 }
@@ -1390,7 +1390,7 @@ function defaultBackground() {
         'image_color' => '#cae1e9',
         'color_color' => '#cae1e9'
     );
-    
+
     return $background_default;
 }
 
@@ -1398,34 +1398,34 @@ function defaultBackground() {
 function readNotice() {
     // Read the notice configuration XML
     $notice_data = readXML('conf', 'notice');
-    
+
     // Define the default values
     $notice_default = array(
         'type' => 'none',
         'notice' => ''
     );
-    
+
     // Stored data array
     $notice_conf = array();
-    
+
     // Read the stored values
     if($notice_data) {
         // Initialize the notice configuration XML data
         $notice_xml = new SimpleXMLElement($notice_data);
-        
+
         // Loop the notice configuration elements
         foreach($notice_xml->children() as $notice_child) {
             $notice_conf[$notice_child->getName()] = utf8_decode((string)$notice_child);
         }
     }
-    
+
     // Checks no value is missing in the stored configuration
     foreach($notice_default as $notice_name => $notice_value) {
         if(!isset($notice_conf[$notice_name]) || empty($notice_conf[$notice_name])) {
             $notice_conf[$notice_name] = $notice_default[$notice_name];
         }
     }
-    
+
     return $notice_conf;
 }
 
@@ -1434,21 +1434,21 @@ function getUsers() {
     // Try to read the XML file
     $data = readXML('conf', 'users');
     $array = array();
-    
+
     // Any data?
     if($data) {
         $read = new SimpleXMLElement($data);
-        
+
         // Check the submitted user exists
         foreach($read->children() as $child) {
             // Get the node attributes
             $attributes = $child->attributes();
-            
+
             // Push the attributes to the global array (converted into strings)
             $array[$attributes['name'].''] = $attributes['password'].'';
         }
     }
-    
+
     return $array;
 }
 
@@ -1456,7 +1456,7 @@ function getUsers() {
 function manageUsers($action, $array) {
     // Try to read the old XML file
     $users_array = getUsers();
-    
+
     // What must we do?
     switch($action) {
         // Add some users
@@ -1464,9 +1464,9 @@ function manageUsers($action, $array) {
             foreach($array as $array_user => $array_password) {
                 $users_array[$array_user] = genStrongHash($array_password);
             }
-            
+
             break;
-        
+
         // Remove some users
         case 'remove':
             foreach($array as $array_user) {
@@ -1475,17 +1475,17 @@ function manageUsers($action, $array) {
                     unset($users_array[$array_user]);
                 }
             }
-            
+
             break;
     }
-    
+
     // Regenerate the XML
     $users_xml = '';
-    
+
     foreach($users_array as $users_name => $users_password) {
         $users_xml .= "\n".'    <user name="'.stripslashes(htmlspecialchars($users_name)).'" password="'.stripslashes($users_password).'" />';
     }
-    
+
     // Write the main configuration
     writeXML('conf', 'users', $users_xml);
 }
@@ -1496,7 +1496,7 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
     if(!function_exists('gd_info')) {
         return false;
     }
-    
+
     try {
         // Initialize GD
         switch($ext) {
@@ -1507,28 +1507,28 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
             default:
                 $img_resize = imagecreatefromjpeg($path);
         }
-        
+
         // Get the image size
         $img_size = getimagesize($path);
         $img_width = $img_size[0];
         $img_height = $img_size[1];
         $new_x = 0;
         $new_y = 0;
-        
+
         // Check if we need to generate a square
         if(($mode == 'square') && ($img_width != $img_height) && ($width == $height)) {
             $square = true;
         } else {
             $square = false;
         }
-        
+
         // Necessary to change the image width
         if(($img_width > $width) && ($img_width > $img_height)) {
             // Process the new sizes
             $new_width = $width;
             $img_process = (($new_width * 100) / $img_width);
             $new_height = (($img_height * $img_process) / 100);
-            
+
             // Process square size
             if($square) {
                 $new_x = ceil(($img_width - $img_height) / 2);
@@ -1536,26 +1536,26 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
                 $square_height = $img_height;
             }
         }
-        
+
         // Necessary to change the image height
         else if(($img_height > $height) && ($img_width < $img_height)) {
             // Process the new sizes
             $new_height = $height;
             $img_process = (($new_height * 100) / $img_height);
             $new_width = (($img_width * $img_process) / 100);
-            
+
             // Process square size
             if($square) {
                 $square_width = $img_width;
                 $square_height = $img_width;
             }
         }
-        
+
         // Else, just use the old sizes
         else {
             $new_width = $img_width;
             $new_height = $img_height;
-            
+
             // Process square size
             if($square) {
                 if($img_height < $img_width) {
@@ -1568,28 +1568,28 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
                 }
             }
         }
-        
+
         // Re-create image in case of square
         if($square) {
             // Select a square of the full image
             $square_img = imagecreatetruecolor($square_width, $square_height);
             imagecopy($square_img, $img_resize, 0, 0, $new_x, $new_y, $square_width, $square_height);
-            
+
             // Re-set image width & height with square ones
             $img_width = $square_width;
             $img_height = $square_height;
-            
+
             $new_width = $width;
             $new_height = $height;
-            
+
             // Re-set resized image
             unset($img_resize);
             $img_resize = $square_img;
         }
-        
+
         // Create the new image
         $new_img = imagecreatetruecolor($new_width, $new_height);
-        
+
         // Must keep alpha pixels?
         if(($ext == 'png') || ($ext == 'gif')) {
             $current_transparent = imagecolortransparent($img_resize);
@@ -1609,36 +1609,36 @@ function resizeImage($path, $ext, $width, $height, $mode = 'default') {
             } elseif($ext == 'png') {
                 imagealphablending($new_img, false);
                 $color = imagecolorallocatealpha($new_img, 0, 0, 0, 127);
-                
+
                 imagefill($new_img, 0, 0, $color);
                 imagesavealpha($new_img, true);
             }
         }
-        
+
         // Copy the new image
         imagecopyresampled($new_img, $img_resize, 0, 0, 0, 0, $new_width, $new_height, $img_width, $img_height);
-        
+
         // Destroy the old data
         imagedestroy($img_resize);
         unlink($path);
-        
+
         // Write the new image
         switch($ext) {
             case 'png':
                 imagepng($new_img, $path);
                 break;
-            
+
             case 'gif':
                 imagegif($new_img, $path);
                 break;
-            
+
             default:
                 imagejpeg($new_img, $path, 85);
         }
-        
+
         return true;
     }
-    
+
     catch(Exception $e) {
         return false;
     }

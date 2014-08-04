@@ -140,7 +140,7 @@ var addToHome = (function (w) {
             options.message = '';
         }
         if ( options.message === '' ) {         // We look for a suitable language (defaulted to en_us)
-            options.message = language in intl ? intl[language] : intl['en_us'];
+            options.message = language in intl ? intl[language] : intl.en_us;
         }
 
         if ( options.touchIcon ) {

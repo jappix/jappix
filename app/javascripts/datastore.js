@@ -165,7 +165,7 @@ var DataStore = (function () {
             try {
                 return self.storageDB.getItem(dbID + '_' + type + '_' + id);
             }
-            
+
             catch(e) {
                 Console.error('Error while getting a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
             }
@@ -195,7 +195,7 @@ var DataStore = (function () {
 
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while writing a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
             }
@@ -221,10 +221,10 @@ var DataStore = (function () {
         try {
             try {
                 self.storageDB.removeItem(dbID + '_' + type + '_' + id);
-                
+
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while removing a temporary database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
             }
@@ -266,15 +266,15 @@ var DataStore = (function () {
         try {
             try {
                 self.storageDB.clear();
-                
+
                 Console.info('Temporary database cleared.');
-                
+
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while clearing temporary database', e);
-                
+
                 return false;
             }
         } catch(e) {
@@ -297,7 +297,7 @@ var DataStore = (function () {
             // Try to write something
             self.storagePersistent.setItem('haspersistent_check', 'ok');
             self.storagePersistent.removeItem('haspersistent_check');
-            
+
             has_persistent = true;
         } catch(e) {
             Console.error('DataStore.hasPersistent', e);
@@ -322,10 +322,10 @@ var DataStore = (function () {
             try {
                 return self.storagePersistent.getItem(dbID + '_' + type + '_' + id);
             }
-            
+
             catch(e) {
                 Console.error('Error while getting a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
-                
+
                 return null;
             }
         } catch(e) {
@@ -349,24 +349,24 @@ var DataStore = (function () {
         try {
             try {
                 self.storagePersistent.setItem(dbID + '_' + type + '_' + id, value);
-                
+
                 return true;
             }
-            
+
             // Database might be full
             catch(e) {
                 Console.warn('Retrying: could not write a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
-                
+
                 // Flush it!
                 self.flushPersistent();
-                
+
                 // Set the item again
                 try {
                     self.storagePersistent.setItem(dbID + ' -> ' + type + '_' + id, value);
-                    
+
                     return true;
                 }
-                
+
                 // New error!
                 catch(_e) {
                     Console.error('Aborted: error while writing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', _e);
@@ -397,7 +397,7 @@ var DataStore = (function () {
 
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while removing a persistent database entry (' + dbID + ' -> ' + type + ' -> ' + id + ')', e);
             }
@@ -442,10 +442,10 @@ var DataStore = (function () {
                 self.storagePersistent.clear();
 
                 Console.info('Persistent database cleared.');
-                
+
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while clearing persistent database', e);
             }
@@ -470,20 +470,20 @@ var DataStore = (function () {
             try {
                 // Get the stored session entry
                 var session = self.getPersistent('global', 'session', 1);
-                
+
                 // Reset the persistent database
                 self.resetPersistent();
-                
+
                 // Restaure the stored session entry
                 if(session) {
                     self.setPersistent('global', 'session', 1, session);
                 }
-                
+
                 Console.info('Persistent database flushed.');
-                
+
                 return true;
             }
-            
+
             catch(e) {
                 Console.error('Error while flushing persistent database', e);
             }

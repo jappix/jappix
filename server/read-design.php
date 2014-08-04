@@ -34,14 +34,14 @@ switch($background['type']) {
     case 'image':
         $background_image = ' checked=""';
         $background_default = '';
-        
+
         break;
-    
+
     // Advanced notice input
     case 'color':
         $background_color = ' checked=""';
         $background_default = '';
-        
+
         break;
 }
 
@@ -50,21 +50,21 @@ switch($background['image_repeat']) {
     case 'no-repeat':
         $background_image_repeat_no = ' selected=""';
         $background_image_repeat_x = '';
-        
+
         break;
-        
+
     // Repeat
     case 'repeat':
         $background_image_repeat_all = ' selected=""';
         $background_image_repeat_x = '';
-        
+
         break;
-    
+
     // Y repeat
     case 'repeat-y':
         $background_image_repeat_y = ' selected=""';
         $background_image_repeat_x = '';
-        
+
         break;
 }
 
@@ -73,14 +73,14 @@ switch($background['image_horizontal']) {
     case 'left':
         $background_image_horizontal_left = ' selected=""';
         $background_image_horizontal_center = '';
-        
+
         break;
-    
+
     // Right position
     case 'right':
         $background_image_horizontal_right = ' selected=""';
         $background_image_horizontal_center = '';
-        
+
         break;
 }
 
@@ -89,14 +89,14 @@ switch($background['image_vertical']) {
     case 'top':
         $background_image_vertical_top = ' selected=""';
         $background_image_vertical_center = '';
-        
+
         break;
-    
+
     // Right position
     case 'bottom':
         $background_image_vertical_bottom = ' selected=""';
         $background_image_vertical_center = '';
-        
+
         break;
 }
 
@@ -113,14 +113,14 @@ switch($notice_conf['type']) {
     case 'simple':
         $notice_simple = ' checked=""';
         $notice_none = '';
-        
+
         break;
-    
+
     // Advanced notice input
     case 'advanced':
         $notice_advanced = ' checked=""';
         $notice_none = '';
-        
+
         break;
 }
 

@@ -21,7 +21,7 @@ if(!defined('JAPPIX_BASE')) {
 if(isset($_GET['p']) && preg_match('/^((everything)|(cache)|(archives)|(send)|(updates))$/', $_GET['p'])) {
     purgeFolder($_GET['p']);
 ?>
-    
+
     <p class="info smallspace success"><?php _e("The storage folder you wanted to clean is now empty!"); ?></p>
 
 <?php }

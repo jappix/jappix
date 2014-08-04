@@ -35,9 +35,9 @@ var Carbons = (function () {
 
             var iq = new JSJaCIQ();
             iq.setType('set');
-            
+
             iq.appendNode(type, {'xmlns': NS_URN_CARBONS});
-            
+
             con.send(iq, function(iq) {
                 self._handleConfigure(iq, type);
             });

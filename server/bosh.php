@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Max-Age: 31536000');
-    
+
     exit;
 }
 
@@ -50,7 +50,7 @@ if($data) {
     // CORS headers
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers: Content-Type');
-    
+
     $method = 'POST';
 }
 
@@ -81,7 +81,7 @@ if(function_exists('curl_init')) {
 if($use_curl) {
     // Initialize CURL
     $connection = curl_init(HOST_BOSH);
-    
+
     // Set the CURL settings
     curl_setopt($connection, CURLOPT_HEADER, 0);
     curl_setopt($connection, CURLOPT_POST, 1);
@@ -94,7 +94,7 @@ if($use_curl) {
     curl_setopt($connection, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
-    
+
     // Get the CURL output
     $output = curl_exec($connection);
 }
@@ -138,7 +138,7 @@ header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 if($method == 'POST') {
     // XML header
     header('Content-Type: text/xml; charset=utf-8');
-    
+
     if(!$output) {
         echo('<body xmlns=\'http://jabber.org/protocol/httpbind\' type=\'terminate\'/>');
     } else {
@@ -150,10 +150,10 @@ if($method == 'POST') {
 if($method == 'GET') {
     // JSON header
     header('Content-type: application/json');
-    
+
     // Encode output to JSON
     $json_output = json_encode($output);
-    
+
     if(($output == false) || ($output == '') || ($json_output == 'null')) {
         echo($callback.'({"reply":"<body xmlns=\'http:\/\/jabber.org\/protocol\/httpbind\' type=\'terminate\'\/>"});');
     } else {

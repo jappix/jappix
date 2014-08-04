@@ -154,16 +154,16 @@ var Common = (function () {
                 if(type == 'groupchat') {
                     return xid + '@' + HOST_MUC;
                 }
-                
+
                 // Gateway XID
                 if(self.isDomain(xid) === true) {
                     return xid;
                 }
-                
+
                 // User XID
                 return xid + '@' + HOST_MAIN;
             }
-            
+
             // Nothing special (yet bare XID)
             return xid;
         } catch(e) {
@@ -221,14 +221,14 @@ var Common = (function () {
             if(!given_char || !str) {
                 return '';
             }
-            
+
             var char_index = str.lastIndexOf(given_char);
             var str_return = str;
-            
+
             if(char_index >= 0) {
                 str_return = str.substr(char_index + 1);
             }
-            
+
             return str_return;
         } catch(e) {
             Console.error('Common.strAfterLast', e);
@@ -250,7 +250,7 @@ var Common = (function () {
         try {
             // Get the index of our char to explode
             var index = toStr.indexOf(toEx);
-            
+
             // We split if necessary the string
             if(index !== -1) {
                 if(i === 0) {
@@ -259,7 +259,7 @@ var Common = (function () {
                     toStr = toStr.substr(index + 1);
                 }
             }
-            
+
             // We return the value
             return toStr;
         } catch(e) {
@@ -424,12 +424,12 @@ var Common = (function () {
         try {
             // Cut the resource
             xid = self.cutResource(xid);
-            
+
             // Launch nodeprep
             if(xid.indexOf('@') !== -1) {
                 xid = self.nodeprep(self.getXIDNick(xid, true)) + '@' + self.getXIDHost(xid);
             }
-            
+
             return xid;
         } catch(e) {
             Console.error('Common.bareXID', e);
@@ -450,12 +450,12 @@ var Common = (function () {
             // Normalizes the XID
             var full = self.bareXID(xid);
             var resource = self.thisResource(xid);
-            
+
             // Any resource?
             if(resource) {
                 full += '/' + resource;
             }
-            
+
             return full;
         } catch(e) {
             Console.error('Common.fullXID', e);
@@ -480,7 +480,7 @@ var Common = (function () {
                     return self.explodeThis('\\40', aXID, 0);
                 }
             }
-            
+
             return self.explodeThis('@', aXID, 0);
         } catch(e) {
             Console.error('Common.getXIDNick', e);
@@ -566,7 +566,7 @@ var Common = (function () {
             if(con.username && con.domain) {
                 return con.username + '@' + con.domain;
             }
-            
+
             return '';
         } catch(e) {
             Console.error('Common.getXID', e);
@@ -592,15 +592,15 @@ var Common = (function () {
                 '00236b',
                 '4e005c'
             );
-            
+
             var number = 0;
-            
+
             for(var i = 0; i < xid.length; i++) {
                 number += xid.charCodeAt(i);
             }
-            
+
             var color = '#' + colors[number % (colors.length)];
-            
+
             return color;
         } catch(e) {
             Console.error('Common.generateColor', e);
@@ -642,12 +642,12 @@ var Common = (function () {
 
         try {
             var from = stanza.getFrom();
-            
+
             // No from, we assume this is our XID
             if(!from) {
                 from = self.getXID();
             }
-            
+
             return from;
         } catch(e) {
             Console.error('Common.getStanzaFrom', e);
@@ -692,12 +692,12 @@ var Common = (function () {
             if(i > -10 && i < 0) {
                 return '-0' + (i * -1);
             }
-            
+
             // Positive number (without first 0)
             if(i < 10 && i >= 0) {
                 return '0' + i;
             }
-            
+
             // All is okay
             return i;
         } catch(e) {
@@ -798,7 +798,7 @@ var Common = (function () {
             if(window.XMLSerializer) {
                 xml_str = (new XMLSerializer()).serializeToString(xmlData);
             }
-            
+
             // For Internet Explorer
             if(window.ActiveXObject) {
                 xml_str = xmlData.xml;
@@ -825,21 +825,21 @@ var Common = (function () {
             if(!sXML) {
                 return '';
             }
-            
+
             // Add the XML tag
             if(!sXML.match(/^<\?xml/i)) {
                 sXML = '<?xml version="1.0"?>' + sXML;
             }
-            
+
             // Parse it!
             if(window.DOMParser) {
                 return (new DOMParser()).parseFromString(sXML, 'text/xml');
             }
-            
+
             if(window.ActiveXObject) {
                 var oXML = new ActiveXObject('Microsoft.XMLDOM');
                 oXML.loadXML(sXML);
-                
+
                 return oXML;
             }
         } catch(e) {
@@ -861,7 +861,7 @@ var Common = (function () {
 
         try {
             var timer = 0;
-            
+
             return function(callback, ms) {
                 clearTimeout(timer);
                 timer = setTimeout(callback, ms);
