@@ -7,6 +7,7 @@ Here's the log of what has changed over the Jappix releases.
 Primo, v1.1.1 (Development)
 ---------------------------
 
+ * Ignore empty XHTML-IM messages  @eijebong, @valeriansaliou
  * (...)
 
 

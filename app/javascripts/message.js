@@ -60,17 +60,17 @@ var Message = (function () {
             /* REF: http://xmpp.org/extensions/xep-0085.html */
 
             var node_sel = $(node);
-            
+
             // Re-process the hash?
             var chatstate_hash = (type == 'groupchat') ? hex_md5(from) : hash;
 
             // Do something depending of the received state
             if(node_sel.find('active').size()) {
                 ChatState.display('active', chatstate_hash, type);
-                
+
                 // Tell Jappix the entity supports chatstates
                 $('#' + chatstate_hash + ' .message-area').attr('data-chatstates', 'true');
-                
+
                 Console.log('Active chatstate received from: ' + from);
             } else if(node_sel.find('composing').size()) {
                 ChatState.display('composing', chatstate_hash, type);
@@ -140,9 +140,9 @@ var Message = (function () {
 
                     // Open a new notification
                     Notification.create(jappix_me_notification_ns, xid, [jappix_app_name_value, jappix_app_data_url_value], body);
-                    
+
                     Console.log('Jappix Me notification from: ' + xid + ' with namespace: ' + jappix_me_notification_ns);
-                    
+
                     is_exit = true;
                 }
             }
@@ -170,10 +170,10 @@ var Message = (function () {
             // We get the needed values
             var iFrom = node_sel.find('x[xmlns="' + NS_MUC_USER + '"] invite').attr('from');
             var iRoom = node_sel.find('x[xmlns="' + NS_XCONFERENCE + '"]').attr('jid') || from;
-            
+
             // We display the notification
             Notification.create('invite_room', iFrom, [iRoom], body);
-            
+
             Console.log('Invite Request from: ' + iFrom + ' to join: ' + iRoom);
         } catch(e) {
             Console.error('Message._handleInvite', e);
@@ -197,7 +197,7 @@ var Message = (function () {
         try {
             // Open a new notification
             Notification.create('request', xid, [message], body);
-            
+
             Console.log('HTTP Request from: ' + xid);
         } catch(e) {
             Console.error('Message._handleRequest', e);
@@ -221,7 +221,7 @@ var Message = (function () {
 
         try {
             OOB.handle(from, id, 'x', node);
-            
+
             Console.log('Message OOB request from: ' + xid);
         } catch(e) {
             Console.error('Message._handleOOB', e);
@@ -245,7 +245,7 @@ var Message = (function () {
         try {
             // Open a new notification
             Notification.create('rosterx', xid, [message], body);
-            
+
             Console.log('Roster Item Exchange from: ' + xid);
         } catch(e) {
             Console.error('Message._handleRosterItemExchange', e);
@@ -290,20 +290,20 @@ var Message = (function () {
         try {
             var message_date = delay || DateUtils.getXMPPTime('utc');
             var message_id = hex_md5(xid + subject + message_date);
-            
+
             // Store the received message
             Inbox.storeMessage(xid, subject, body, 'unread', message_id, message_date);
-            
+
             // Display the inbox message
             if(Common.exists('#inbox')) {
                 Inbox.displayMessage(xid, subject, body, 'unread', message_id, message_date);
             }
-            
+
             // Check we have new messages (play a sound if any unread messages)
             if(Inbox.checkMessages()) {
                 Audio.play('notification');
             }
-            
+
             // Send it to the server
             Inbox.store();
         } catch(e) {
@@ -331,7 +331,7 @@ var Message = (function () {
             var items_sel = $(node).find('event items');
             var node_attr = items_sel.attr('node');
             var text;
-            
+
             // Turn around the different result cases
             if(node_attr) {
                 switch(node_attr) {
@@ -341,35 +341,35 @@ var Message = (function () {
                         var mood = items_sel.find('mood');
                         var value = '';
                         text = '';
-                        
+
                         // There's something
                         if(mood.children().size()) {
                             value = node.getElementsByTagName('mood').item(0).childNodes.item(0).nodeName || '';
                             text = mood.find('text').text();
                         }
-                        
+
                         // Store the PEP event (and display it)
                         PEP.store(xid, 'mood', value, text);
-                        
+
                         break;
-                    
+
                     // Activity
                     case NS_ACTIVITY:
                         // Retrieve the values
                         var activity_sel = items_sel.find('activity');
                         text = '';
-                        
+
                         // There's something
                         if(activity_sel.children().size()) {
                             value = node.getElementsByTagName('activity').item(0).childNodes.item(0).nodeName || '';
                             text = activity_sel.find('text').text();
                         }
-                        
+
                         // Store the PEP event (and display it)
                         PEP.store(xid, 'activity', value, text);
-                        
+
                         break;
-                    
+
                     // Tune
                     case NS_TUNE:
                         // Retrieve the values
@@ -378,43 +378,43 @@ var Message = (function () {
                         var source = tune_sel.find('source').text();
                         var title = tune_sel.find('title').text();
                         var uri = tune_sel.find('uri').text();
-                        
+
                         // Store the PEP event (and display it)
                         PEP.store(xid, 'tune', artist, title, source, uri);
-                        
+
                         break;
-                    
+
                     // Geolocation
                     case NS_GEOLOC:
                         // Retrieve the values
                         var geoloc_sel = items_sel.find('geoloc');
                         var lat = geoloc_sel.find('lat').text();
                         var lon = geoloc_sel.find('lon').text();
-                        
+
                         // Any extra-values?
                         var locality = geoloc_sel.find('locality').text();
                         var region = geoloc_sel.find('region').text();
                         var country = geoloc_sel.find('country').text();
                         var human = PEP.humanPosition(locality, region, country);
-                        
+
                         // Store the PEP event (and display it)
                         PEP.store(xid, 'geoloc', lat, lon, human);
-                        
+
                         break;
-                    
+
                     // Microblog
                     case NS_URN_MBLOG:
                         Microblog.display(message, xid, hash, 'mixed', 'push');
-                        
+
                         break;
-                    
+
                     // Inbox
                     case NS_URN_INBOX:
                         // Do not handle friend's notifications
                         if(xid == Common.getXID()) {
                             Notification.handle(message);
                         }
-                        
+
                         break;
                 }
             }
@@ -446,12 +446,12 @@ var Message = (function () {
             var filter_subject = subject.replace(/\n+/g, ' ');
             var filteredSubject = Filter.message(filter_subject, resource, true);
             var filteredName = resource.htmlEnc();
-            
+
             // Display the new subject at the top
             $('#' + hash + ' .top .name .bc-infos .muc-topic').replaceWith(
                 '<span class="muc-topic" title="' + filter_subject + '">' + filteredSubject + '</span>'
             );
-            
+
             // Display the new subject as a system message
             if(resource) {
                 var topic_body = filteredName + ' ' + Common._e("changed the subject to:") + ' ' + Filter.message(subject, resource, true);
@@ -486,10 +486,10 @@ var Message = (function () {
 
         try {
             /* REF: http://xmpp.org/extensions/xep-0045.html */
-            
+
             // Message type
             var message_type = 'user-message';
-            
+
             if(delay && resource) {
                 // Old message
                 message_type = 'old-message';
@@ -497,38 +497,38 @@ var Message = (function () {
                 // System message
                 message_type = 'system-message';
             }
-            
+
             var nickQuote = '';
-            
+
             // If this is not an old message
             if(message_type == 'user-message') {
                 var myNick = Name.getMUCNick(hash);
-                
+
                 // If an user quoted our nick (with some checks)
                 var regex = new RegExp('((^)|( )|(@))' + Common.escapeRegex(myNick) + '(($)|(:)|(,)|( ))', 'gi');
-                
+
                 if(body.match(regex) && (myNick != resource) && (message_type == 'user-message')) {
                     nickQuote = ' my-nick';
                 }
-                
+
                 // We notify the user if there's a new personal message
                 if(nickQuote) {
                     Interface.messageNotify(hash, 'personal');
                     Board.quick(from, 'groupchat', raw_body, resource);
                     Audio.play('receive-message');
                 }
-                
+
                 // We notify the user there's a new unread MUC message
                 else {
                     Interface.messageNotify(hash, 'unread');
-                    
+
                     // Play sound to all users in the MUC, except user who sent the message.
                     if(myNick != resource) {
                         Audio.play('receive-message');
                     }
                 }
             }
-            
+
             // Display the received message
             self.display(
                 type,
@@ -583,30 +583,30 @@ var Message = (function () {
             // Gets the nickname of the user
             var fromName = resource;
             var chatType = 'chat';
-            
+
             // Must send a receipt notification?
             if(Receipts.has(message) && (id !== null)) {
                 Receipts.sendReceived(type, from, id);
             }
-            
+
             // It does not come from a groupchat user, get the full name
             if(!is_groupchat_user) {
                 fromName = Name.getBuddy(xid);
             } else {
                 chatType = 'private';
             }
-            
+
             // If the chat isn't yet opened, open it !
             if(!Common.exists('#' + hash)) {
                 // We create a new chat
                 Chat.create(hash, xid, fromName, chatType);
-                
+
                 // We tell the user that a new chat has started
                 Audio.play('new-chat');
             } else {
                 Audio.play('receive-message');
             }
-            
+
             // Display the received message
             var message_sel = self.display(
                 type,
@@ -628,7 +628,7 @@ var Message = (function () {
                 is_storable,
                 is_markable
             );
-            
+
             // We notify the user
             Interface.messageNotify(hash, 'personal');
             Board.quick(xid, 'chat', raw_body, fromName);
@@ -664,16 +664,16 @@ var Message = (function () {
             // Help text
             var help_text = '<p class="help" xmlns="http://www.w3.org/1999/xhtml">';
             help_text += '<b>' + Common._e("Available shortcuts:") + '</b>';
-            
+
             // Shortcuts array
             var shortcuts = [];
-            
+
             // Common shortcuts
             shortcuts.push(Common.printf(Common._e("%s removes the chat logs"), '<em>/clear</em>'));
             shortcuts.push(Common.printf(Common._e("%s joins a groupchat"), '<em>/join jid</em>'));
             shortcuts.push(Common.printf(Common._e("%s closes the chat"), '<em>/part</em>'));
             shortcuts.push(Common.printf(Common._e("%s shows the user profile"), '<em>/whois jid</em>'));
-            
+
             // Groupchat shortcuts
             if(type == 'groupchat') {
                 shortcuts.push(Common.printf(Common._e("%s sends a message to the room"), '<em>/say message</em>'));
@@ -684,19 +684,19 @@ var Message = (function () {
                 shortcuts.push(Common.printf(Common._e("%s bans a user of the room"), '<em>/ban [reason:] nickname</em>'));
                 shortcuts.push(Common.printf(Common._e("%s invites someone to join the room"), '<em>/invite jid message</em>'));
             }
-            
+
             // Generate the code from the array
             shortcuts = shortcuts.sort();
-            
+
             for(var s in shortcuts) {
                 help_text += shortcuts[s] + '<br />';
             }
-            
+
             help_text += '</p>';
-            
+
             // Display the message
             self.display(type, xid, hash, 'help', help_text, DateUtils.getCompleteTime(), DateUtils.getTimeStamp(), 'system-message', false);
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -717,7 +717,7 @@ var Message = (function () {
 
         try {
             Chat.clean(hex_md5(xid));
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -742,9 +742,9 @@ var Message = (function () {
             // Join
             var room_gen = Common.generateXID(e_1, 'groupchat');
             var pass = e_2;
-            
+
             Chat.checkCreate(room_gen, 'groupchat');
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -785,18 +785,18 @@ var Message = (function () {
 
         try {
             var whois_xid = RegExp.$3;
-            
+
             // Groupchat WHOIS
             if(type == 'groupchat') {
                 nXID = Utils.getMUCUserXID(xid, whois_xid);
-                
+
                 if(!nXID) {
                     Board.openThisInfo(6);
                 } else {
                     UserInfos.open(nXID);
                 }
             }
-            
+
             // Chat or private WHOIS
             else {
                 if(!whois_xid) {
@@ -805,7 +805,7 @@ var Message = (function () {
                     UserInfos.open(whois_xid);
                 }
             }
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -850,25 +850,25 @@ var Message = (function () {
 
         try {
             message_packet.setType('chat');
-            
+
             // Generates the correct message depending of the choosen style
             var genMsg = self.generate(message_packet, body, hash);
             var html_escape = (genMsg !== 'XHTML');
-            
+
             // Receipt request
             var receipt_request = Receipts.request(hash);
-            
+
             if(receipt_request) {
                 message_packet.appendNode('request', {
                     'xmlns': NS_URN_RECEIPTS
                 });
             }
-            
+
             // Chatstate
             message_packet.appendNode('active', {
                 'xmlns': NS_CHATSTATES
             });
-            
+
             // Markable message?
             var has_markers = Markers.hasSupport(xid);
 
@@ -878,15 +878,15 @@ var Message = (function () {
 
             // Send it!
             con.send(message_packet, Errors.handleReply);
-            
+
             // Filter the xHTML message (for us!)
             if(!html_escape) {
                 body = Filter.xhtml(message_packet.getNode());
             }
-            
+
             // Finally we display the message we just sent
             var my_xid = Common.getXID();
-            
+
             var message_sel = self.display(
                 'chat',
                 my_xid,
@@ -908,7 +908,7 @@ var Message = (function () {
                     Common._e("Sending...")
                 ).show();
             }
-            
+
             // Receipt timer
             if(receipt_request) {
                 Receipts.checkReceived(hash, id);
@@ -932,10 +932,10 @@ var Message = (function () {
 
         try {
             body = body.replace(/^\/say (.+)/, '$1');
-            
+
             message_packet.setType('groupchat');
             self.generate(message_packet, body, hash);
-            
+
             con.send(message_packet, Errors.handleReply);
         } catch(e) {
             Console.error('Message._sendGroupchatSat', e);
@@ -957,7 +957,7 @@ var Message = (function () {
 
         try {
             var nick = $.trim(e_1);
-            
+
             // Does not exist yet?
             if(nick && !Utils.getMUCUserXID(xid, nick)) {
                 // Send a new presence
@@ -971,10 +971,10 @@ var Message = (function () {
                     false,
                     Errors.handleReply
                 );
-                
+
                 // Change the stored nickname
                 $('#' + hex_md5(xid)).attr('data-nick', escape(nick));
-                
+
                 // Reset chatstate
                 ChatState.send('active', xid, hash);
             }
@@ -1001,7 +1001,7 @@ var Message = (function () {
             var msg_nick = e_1;
             var msg_body = e_2;
             var nick_xid = Utils.getMUCUserXID(xid, msg_nick);
-            
+
             // We check if the user exists
             if(!nick_xid) {
                 Board.openThisInfo(6);
@@ -1009,7 +1009,7 @@ var Message = (function () {
                 message_packet.setType('chat');
                 message_packet.setTo(nick_xid);
                 self.generate(message_packet, msg_body, hash);
-                
+
                 con.send(message_packet, Errors.handleReply);
             }
         } catch(e) {
@@ -1032,12 +1032,12 @@ var Message = (function () {
 
         try {
             var topic = body.replace(/^\/topic (.+)/, '$1');
-            
+
             message_packet.setType('groupchat');
             message_packet.setSubject(topic);
-            
+
             con.send(message_packet, Errors.handleMessage);
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -1062,7 +1062,7 @@ var Message = (function () {
         try {
             var ban_nick = $.trim(e_1);
             var ban_reason = '';
-            
+
             // We check if the user exists, if not it may be because a reason is given
             // we do not check it at first because the nickname could contain ':'
             var ban_xid = Utils.getMUCUserRealXID(xid, ban_nick);
@@ -1078,9 +1078,9 @@ var Message = (function () {
 
                 ban_xid = Utils.getMUCUserXID(xid, ban_nick);
             }
-            
+
             Groupchat.banUser(xid, ban_xid, ban_reason);
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -1121,9 +1121,9 @@ var Message = (function () {
 
                 kick_xid = Utils.getMUCUserXID(xid, kick_nick);
             }
-            
+
             Groupchat.kickUser(xid, kick_xid, kick_nick, kick_reason);
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -1157,15 +1157,15 @@ var Message = (function () {
                 'to': i_xid,
                 'xmlns': NS_MUC_USER
             }));
-            
+
             if(invite_reason) {
                 node.appendChild(message_packet.buildNode('reason', {
                     'xmlns': NS_MUC_USER
                 }, invite_reason));
             }
-            
+
             con.send(message_packet, Errors.handleReply);
-            
+
             // Reset chatstate
             ChatState.send('active', xid, hash);
         } catch(e) {
@@ -1189,16 +1189,16 @@ var Message = (function () {
 
         try {
             message_packet.setType('groupchat');
-            
+
             // Chatstate
             message_packet.appendNode('active', {
                 'xmlns': NS_CHATSTATES
             });
-            
+
             self.generate(message_packet, body, hash);
-            
+
             con.send(message_packet, Errors.handleMessage);
-            
+
             Console.info('Message sent to: ' + xid + ' / ' + type);
         } catch(e) {
             Console.error('Message._sendGroupchatMessage', e);
@@ -1228,7 +1228,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // /nick shortcut
             else if(body.match(/^\/nick (.+)/)) {
                 self._sendGroupchatNick(
@@ -1238,7 +1238,7 @@ var Message = (function () {
                     body
                 );
             }
-            
+
             // /msg shortcut
             else if(body.match(/^\/msg (\S+)\s+(.+)/)) {
                 self._sendGroupchatMsg(
@@ -1249,7 +1249,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // /topic shortcut
             else if(body.match(/^\/topic (.+)/)) {
                 self._sendGroupchatTopic(
@@ -1259,7 +1259,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // /ban shortcut
             else if(body.match(/^\/ban (.*)/)) {
                 self._sendGroupchatBan(
@@ -1270,7 +1270,7 @@ var Message = (function () {
                     RegExp.$2
                 );
             }
-            
+
             // /kick shortcut
             else if(body.match(/^\/kick (.*)/)) {
                 self._sendGroupchatKick(
@@ -1281,7 +1281,7 @@ var Message = (function () {
                     RegExp.$2
                 );
             }
-            
+
             // /invite shortcut
             else if(body.match(/^\/invite (\S+)\s*(.*)/)) {
                 self._sendGroupchatInvite(
@@ -1292,7 +1292,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // No shortcut, this is a message
             else {
                 self._sendGroupchatMessage(
@@ -1323,7 +1323,7 @@ var Message = (function () {
             if(Errors.handleReply(message)) {
                 return;
             }
-            
+
             // Carbon-forwarded message?
             if(message.getChild('sent', NS_URN_CARBONS)) {
                 Carbons.handleSent(message); return;
@@ -1346,33 +1346,37 @@ var Message = (function () {
             var body = $.trim(message.getBody());
             var node = message.getNode();
             var subject = $.trim(message.getSubject());
-            
+
             // Keep raw message body
             var raw_body = body;
-            
+
             // We generate some values
             var xid = Common.bareXID(from);
             var resource = Common.thisResource(from);
             var hash = hex_md5(xid);
-            var xHTML = $(node).find('html body').size();
+            var xHTML_sel = $(node).find('html body');
+            var xHTML = xHTML_sel.size();
             var is_groupchat_user = false;
+
+            // Check for non-empty body
+            var has_body = (((xHTML && Filter.has_xhtml_body(xHTML_sel)) || body) && true);
 
             // This message comes from a Muji room (ignore)
             if(Muji.is_room(xid)) {
                 return false;
             }
-            
+
             // This message comes from a groupchat user
             if(Utils.isPrivate(xid) && ((type == 'chat') || !type) && resource) {
                 is_groupchat_user = true;
                 xid = from;
                 hash = hex_md5(xid);
             }
-            
+
             // Get message date
             var time, stamp;
             var delay = DateUtils.readMessageDelay(node);
-            
+
             // Any delay?
             if(delay) {
                 time = DateUtils.relative(delay);
@@ -1381,18 +1385,18 @@ var Message = (function () {
                 time = DateUtils.getCompleteTime();
                 stamp = DateUtils.extractStamp(new Date());
             }
-            
+
             // Received message
             if(Receipts.hasReceived(message)) {
                 return Receipts.messageReceived(hash, id);
             }
 
             // Chatstate message
-            if(node && !delay && 
+            if(node && !delay &&
                 ((((type == 'chat') || !type) && !Common.exists('#page-switch .' + hash + ' .unavailable')) || (type == 'groupchat'))) {
                 self._handleChatstate(from, hash, type, node);
             }
-            
+
             // Jappix App message
             if(message.getChild('app', 'jappix:app')) {
                 if(self._handleJappixApp(xid, body, node) === true) {
@@ -1404,17 +1408,17 @@ var Message = (function () {
             if($(node).find('x[xmlns="' + NS_MUC_USER + '"] invite').size()) {
                 return self._handleInvite(body, node);
             }
-            
+
             // Request message
             if(message.getChild('confirm', NS_HTTP_AUTH)) {
                 return self._handleRequest(xid, message, body);
             }
-            
+
             // OOB message
             if(message.getChild('x', NS_XOOB)) {
                 return self._handleOOB(from, xid, id, node);
             }
-            
+
             // Roster Item Exchange message
             if(message.getChild('x', NS_ROSTERX)) {
                 return self._handleRosterItemExchange(xid, message, body);
@@ -1424,36 +1428,36 @@ var Message = (function () {
             if(message.getChild('attention', NS_URN_ATTENTION)) {
                 return self._handleAttention(xid, body);
             }
-            
+
             // Normal message
             if((type == 'normal') && body) {
                 return self._handleNormal(xid, subject, body, delay);
             }
-            
+
             // PubSub event
             if($(node).find('event').attr('xmlns') == NS_PUBSUB_EVENT) {
                 return self._handlePubsub(xid, hash, message, node);
             }
-            
+
             // If this is a room topic message
             if(subject && (type == 'groupchat')) {
                 self._handleRoomTopic(type, from, hash, subject, resource, time, stamp);
             }
-            
+
             // If the message has a content
-            if(xHTML || body) {
+            if(has_body === true) {
                 var filteredMessage;
                 var html_escape = true;
-                
+
                 // IE bug fix
                 if((BrowserDetect.browser == 'Explorer') && (BrowserDetect.version < 9)) {
                     xHTML = 0;
                 }
-                
+
                 // If this is a xHTML message
                 if(xHTML) {
                     html_escape = false;
-                    
+
                     // Filter the xHTML message
                     body = Filter.xhtml(node);
                 }
@@ -1463,7 +1467,7 @@ var Message = (function () {
 
                 // Storable message?
                 var is_storable = message.getChild('no-permanent-storage', NS_URN_HINTS) ? false : true;
-                
+
                 // Groupchat message
                 if(type == 'groupchat') {
                     self._handleGroupchat(
@@ -1534,42 +1538,42 @@ var Message = (function () {
             var body = $.trim(message_area.val());
             var xid = unescape(message_area.attr('data-to'));
             var nXID;
-            
+
             // If the user didn't entered any message, stop
             if(!body || !xid) {
                 return false;
             }
-        
+
             // We send the message through the XMPP network
             var message_packet = new JSJaCMessage();
             message_packet.setTo(xid);
-            
+
             // Set an ID
             var id = genID();
             message_packet.setID(id);
-            
+
             // /help shortcut
             if(body.match(/^\/help\s*(.*)/)) {
                 self._sendHelp(type, xid, hash);
             }
-            
+
             // /clear shortcut
             else if(body.match(/^\/clear/)) {
                 self._sendClear(xid, hash);
             }
-            
+
             // /join shortcut
             else if(body.match(/^\/join (\S+)\s*(.*)/)) {
                 self._sendJoin(xid, hash, RegExp.$1, RegExp.$2);
             }
-            
+
             // /part shortcut
-            else if(body.match(/^\/part\s*(.*)/) && 
-                (!Utils.isAnonymous() || (Utils.isAnonymous() && 
+            else if(body.match(/^\/part\s*(.*)/) &&
+                (!Utils.isAnonymous() || (Utils.isAnonymous() &&
                 (xid != Common.generateXID(ANONYMOUS_ROOM, 'groupchat'))))) {
                 self._sendPart(xid, type);
             }
-            
+
             // /whois shortcut
             else if(body.match(/^\/whois(( (\S+))|($))/)) {
                 self._sendWHOIS(type, xid, hash, RegExp.$3);
@@ -1590,7 +1594,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // Groupchat message type
             else if(type == 'groupchat') {
                 self._sendGroupchat(
@@ -1601,7 +1605,7 @@ var Message = (function () {
                     message_packet
                 );
             }
-            
+
             // We reset the message input
             $('#' + hash + ' .message-area').val('');
         } catch(e) {
@@ -1629,45 +1633,45 @@ var Message = (function () {
             var checkbox = styles + ' input[type="checkbox"]';
             var color = '#' + hash + ' .message-area[data-color]';
             var style = '';
-            
+
             // Get the font value
             $(font).filter('[data-font]').each(function() {
                 style += 'font-family: ' + $(this).attr('data-font') + ';';
             });
-            
+
             // Get the font value
             $(fontsize).filter('[data-value]').each(function() {
                 style += 'font-size: ' + $(this).attr('data-value') + 'px;';
             });
-            
+
             // Loop the input values
             $(checkbox).filter(':checked').each(function() {
                 // If there is a previous element
                 if(style) {
                     style += ' ';
                 }
-                
+
                 // Get the current style
                 switch($(this).attr('class')) {
                     case 'bold':
                         style += 'font-weight: bold;';
                         break;
-                    
+
                     case 'italic':
                         style += 'font-style: italic;';
                         break;
-                    
+
                     case 'underline':
                         style += 'text-decoration: underline;';
                         break;
                 }
             });
-            
+
             // Get the color value
             $(color).each(function() {
                 style += 'color: #' + $(this).attr('data-color');
             });
-            
+
             return style;
         } catch(e) {
             Console.error('Message.generateStyle', e);
@@ -1771,19 +1775,19 @@ var Message = (function () {
         try {
             // Create the classical body
             message_packet.setBody(body);
-            
+
             // Get the style
             var style = $('#' + hash + ' .message-area').attr('style');
-            
+
             // A message style is choosen
             if(style) {
                 // Explode the message body new lines (to create one <p /> element by line)
                 var new_lines = new Array(body);
-                
+
                 if(body.match(/\n/)) {
                     new_lines = body.split('\n');
                 }
-                
+
                 // Create the XML elements
                 var html_node = message_packet.appendNode('html', {
                     'xmlns': NS_XHTML_IM
@@ -1792,33 +1796,33 @@ var Message = (function () {
                 var body_node = html_node.appendChild(message_packet.buildNode('body', {
                     'xmlns': NS_XHTML
                 }));
-                
+
                 // Use the exploded body array to create one element per entry
                 for(var i in new_lines) {
                     // Current line
                     var cLine = new_lines[i];
-                    
+
                     // Blank line, we put a <br />
                     if(cLine.match(/(^)(\s+)($)/) || !cLine) {
                         body_node.appendChild(message_packet.buildNode('br', {'xmlns': NS_XHTML}));
                     }
-                    
+
                     // Line with content, we put a <p />
                     else {
                         // HTML encode the line
                         cLine = cLine.htmlEnc();
-                        
+
                         // Filter the links
                         cLine = Links.apply(cLine, 'xhtml-im', style);
-                        
+
                         // Append the filtered line
                         $(body_node).append($('<p style="' + style + '">' + cLine + '</p>'));
                     }
                 }
-                
+
                 return 'XHTML';
             }
-            
+
             return 'PLAIN';
         } catch(e) {
             Console.error('Message.generate', e);
@@ -1861,7 +1865,7 @@ var Message = (function () {
             }
 
             // Auto-calculate mode for groupchat?
-            if(type == 'groupchat' && !mode) { 
+            if(type == 'groupchat' && !mode) {
                 var own_groupchat_nickname = $('#' + hash).attr('data-nick') || '';
                 own_groupchat_nickname = unescape(own_groupchat_nickname);
 
@@ -1875,27 +1879,27 @@ var Message = (function () {
             // Generate some stuffs
             var has_avatar = false;
             var xid_hash = '';
-            
+
             if(!nick_quote) {
                 nick_quote = '';
             }
-            
+
             if(message_type != 'system-message') {
                 has_avatar = true;
                 xid_hash = hex_md5(xid);
             }
-            
+
             // Can scroll?
             var cont_scroll = document.getElementById('chat-content-' + hash);
             var can_scroll = false;
-            
+
             if((!cont_scroll.scrollTop || ((cont_scroll.clientHeight + cont_scroll.scrollTop) == cont_scroll.scrollHeight)) && no_scroll !== true) {
                 can_scroll = true;
             }
-            
+
             // Any ID?
             var data_id = '';
-            
+
             if(id) {
                 data_id = ' data-id="' + id + '"';
             }
@@ -1911,48 +1915,48 @@ var Message = (function () {
 
             // Markable state?
             var data_markable = (is_markable === true) ? ' data-markable="true"' : '';
-            
+
             // Filter the message
             var filteredMessage = Filter.message(body, name, html_escape);
 
             // Display the received message in the room
             var message_code = '<div class="one-line ' + message_type + nick_quote + '" data-stamp="' + stamp + '" data-mode="' + mode + '"' + data_id + data_edited + data_markable + data_edit_count + '><div class="message-content">';
-            
+
             // Name color attribute
             if(type == 'groupchat') {
                 attribute = ' style="color: ' + Common.generateColor(name) + ';" class="name';
             } else {
                 attribute = ' class="name';
-                
+
                 if(mode) {
                     attribute += ' ' + mode;
                 }
             }
-            
+
             // Close the class attribute
             if(message_type == 'system-message') {
                 attribute += ' hidden"';
             } else {
                 attribute += '"';
             }
-            
+
             // Filter the previous displayed message
             var last = c_target_sel.find('.one-group:not(.from-history):last');
             var last_name = last.find('b.name').attr('data-xid');
             var last_type = last.attr('data-type');
             var last_stamp = parseInt(last.attr('data-stamp'));
             var grouped = false;
-            
+
             // We can group it with another previous message
             if((last_name == xid) && (message_type == last_type) && ((stamp - last_stamp) <= 1800)) {
                 grouped = true;
             }
-            
+
             // Is it a /me command?
             if(body.match(/(^|>)(\/me )([^<]+)/)) {
                 filteredMessage = '<i>' + filteredMessage + '</i>';
             }
-            
+
             message_code += filteredMessage + '</div>';
 
             // Message correction containers
@@ -1975,22 +1979,22 @@ var Message = (function () {
             if(type == 'chat') {
                 message_code += '<span class="message-marker"></span>';
             }
-            
+
             message_code += '</div>';
-            
+
             // Must group it?
             if(!grouped) {
                 // Generate message headers
                 var message_head = '';
-                
+
                 // Any avatar to add?
                 if(has_avatar) {
                     message_head += '<div class="avatar-container"><img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" /></div>';
                 }
-                
+
                 // Add the date & the name
                 message_head += '<span class="date">' + time + '</span><b data-xid="' + Common.encodeQuotes(xid) + '" ' + attribute + '>' + name + '</b>';
-                
+
                 // Generate message code
                 message_code = '<div class="one-group ' + xid_hash + '" data-type="' + message_type + '" data-stamp="' + stamp + '">' + message_head + message_code + '</div>';
             }
@@ -2009,13 +2013,13 @@ var Message = (function () {
                 // Filter the DOM
                 var dom_filter = $('#' + hash + ' .content').clone().contents();
                 var default_avatar = ('./images/others/default-avatar.png').replace(/&amp;/g, '&'); // Fixes #252
-                
+
                 $(dom_filter).find('.system-message').parent().remove();
                 $(dom_filter).find('.avatar-container img.avatar').attr('src', default_avatar);
                 $(dom_filter).find('.one-line').parent().slice(0, $(dom_filter).find('.one-line').parent().size() - MAM.REQ_MAX).remove();
-                
+
                 var store_html = $(dom_filter).parent().html();
-                
+
                 // Store the data
                 if(store_html && is_storable !== false) {
                     self.storeLocalArchive(hash, store_html);
@@ -2025,12 +2029,12 @@ var Message = (function () {
                     Console.info('Message.display', 'Won\'t store message since it\'s labeled as not storable (' + xid + ')');
                 }
             }
-            
+
             // Must get the avatar?
             if(has_avatar && xid && !grouped) {
                 Avatar.get(xid, 'cache', 'true', 'forget');
             }
-            
+
             // Scroll to this message
             if(can_scroll) {
                 Interface.autoScroll(hash);

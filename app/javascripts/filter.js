@@ -285,7 +285,7 @@ var Filter = (function () {
             'ul',
             'var'
         ],
-        
+
         'attributes': [
             'accesskey',
             'alt',
@@ -345,17 +345,17 @@ var Filter = (function () {
 
         try {
             var filtered = message;
-            
+
             // We encode the HTML special chars
             if(html_escape) {
                 filtered = filtered.htmlEnc();
             }
-            
+
             // Security: don't filter huge messages (avoids crash attacks)
             if(filtered.length < 10000) {
                 // /me command
                 filtered = filtered.replace(self.message_regex.commands.me, nick + ' $7');
-                
+
                 // We replace the smilies text into images
                 var cur_emote;
 
@@ -371,7 +371,7 @@ var Filter = (function () {
                         )
                     );
                 }
-                
+
                 // Text formatting
                 var cur_formatting;
 
@@ -388,14 +388,40 @@ var Filter = (function () {
                 if(html_escape) {
                     filtered = Links.apply(filtered, 'desktop');
                 }
-                
+
                 // Filter integratebox links
                 filtered = IntegrateBox.filter(filtered);
             }
-            
+
             return filtered;
         } catch(e) {
             Console.error('Filter.message', e);
+        }
+
+    };
+
+
+    /**
+     * Returns whether XHTML body exists or not
+     * @public
+     * @param {DOM} xhtml_sel
+     * @return {boolean}
+     */
+    self.has_xhtml_body = function(xhtml_sel) {
+
+        var has_xhtml_body = false;
+
+        try {
+            xhtml_sel.find('*').each(function() {
+                if($(this).text()) {
+                    has_xhtml_body = true;
+                    return false;
+                }
+            });
+        } catch(e) {
+            Console.error('Filter.has_xhtml_body', e);
+        } finally {
+            return has_xhtml_body;
         }
 
     };
@@ -411,12 +437,12 @@ var Filter = (function () {
 
         try {
             var code_sel = $(code);
-            
+
             // Check if Filter for XHTML-IM images is enabled
             if(DataStore.getDB(Connection.desktop_hash, 'options', 'no-xhtml-images') != '1') {
                 self.xhtml_allow.elements.push("img");
             }
-            
+
             // Remove forbidden elements
             code_sel.find('html body *').each(function() {
                 // This element is not authorized
@@ -424,31 +450,31 @@ var Filter = (function () {
                     $(this).remove();
                 }
             });
-            
+
             // Remove forbidden attributes
             code_sel.find('html body *').each(function() {
                 // Put a pointer on this element (jQuery way & normal way)
                 var cSelector = $(this);
                 var cElement = (this);
-                
+
                 // Loop the attributes of the current element
                 $(cElement.attributes).each(function(index) {
                     // Read the current attribute
                     var cAttr = cElement.attributes[index];
                     var cName = cAttr.name;
                     var cVal = cAttr.value;
-                    
+
                     // This attribute is not authorized, or contains JS code
-                    if(!Utils.existArrayValue(self.xhtml_allow.attributes, cName.toLowerCase()) || 
+                    if(!Utils.existArrayValue(self.xhtml_allow.attributes, cName.toLowerCase()) ||
                         ((cVal.toLowerCase()).match(/(^|"|')javascript:/))) {
                         cSelector.removeAttr(cName);
                     }
                 });
             });
-            
+
             // Filter some other elements
             code_sel.find('a').attr('target', '_blank');
-            
+
             return code_sel.find('html body').html();
         } catch(e) {
             Console.error('Filter.xhtml', e);
