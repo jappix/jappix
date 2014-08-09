@@ -4,13 +4,13 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
-# DonIncognito <joe.brendel.ronck@gmail.com>, 2013
+# Joé BRENDEL <joe.brendel.ronck@gmail.com>, 2013
 # Kahr Patrick <patrick@nerds.lu>, 2013-2014
-# Tullius, 2013
+# Thull Michel, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:21+0100\n"
+"PO-Revision-Date: 2014-08-09 15:36+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Luxembourgish (http://www.transifex.com/projects/p/jappix/"
 "language/lb/)\n"
@@ -189,6 +189,21 @@ msgstr "E Kolleg adden"
 
 msgid "Your groupchats"
 msgstr "Deng Gruppenchats"
+
+msgid "Audio/video conference"
+msgstr ""
+
+msgid "Launch a group call"
+msgstr ""
+
+msgid "Audio conference"
+msgstr ""
+
+msgid "Video conference"
+msgstr ""
+
+msgid "Conference call"
+msgstr ""
 
 msgid "Manage your favorite groupchats"
 msgstr "Organiséier deng Gruppenchats"
@@ -852,7 +867,7 @@ msgid "Hi there!"
 msgstr "Moien!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr ""
+msgstr "Wëllkomm op %1s, \"%2s\"."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -1215,7 +1230,7 @@ msgid "Friends"
 msgstr "Kollegen"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr ""
+msgstr "Wëllkomm op Jappix, denger eegener sozialer Cloud+"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1250,10 +1265,10 @@ msgid ""
 "When you will press the save button, the profile editor will be opened. "
 "Happy socializing!"
 msgstr ""
-"Wann dier op Späicheren dréckt geet den Profileditor op. Happy socializing!"
+"Wanns du op Späicheren drécks geet den Profileditor op. Happy socializing!"
 
 msgid "Share Jappix on %s"
-msgstr "Deelt Jappix op %s"
+msgstr "Deel Jappix op %s"
 
 msgid "Follow Jappix topic on %s"
 msgstr "Jappix op  %s followen"
@@ -1280,7 +1295,7 @@ msgid "Jappix installation"
 msgstr "Jappix-Installatioun"
 
 msgid "Welcome to the Jappix installation!"
-msgstr "Moien fir d'Installatioun vun Jappix!"
+msgstr "Wëlkomm bei der Installatioun vun Jappix!"
 
 msgid ""
 "This tool will help you installing Jappix, the first full-featured XMPP-"
@@ -1296,7 +1311,7 @@ msgid "Welcome"
 msgstr "Moien"
 
 msgid "Storage configuration"
-msgstr "Späicher Konfiguratioun"
+msgstr "Späicher-Konfiguratioun"
 
 msgid "Administrator account"
 msgstr "Administrator-Kont"
@@ -1326,7 +1341,7 @@ msgstr ""
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
-"Et as Zäit fier Äer eegen Social Cloud opzebauen: weider bei dee nächste "
+"Et as Zäit fier deng eegen Social Cloud opzebauen: weider bei dee nächste "
 "Schrëtt!"
 
 msgid ""
@@ -1346,22 +1361,22 @@ msgstr ""
 "Besëtzer vum Uerdner op %3s setzen (Hängt vun denger Konfiguratioun of)."
 
 msgid "The folder is writable, you can continue!"
-msgstr "An desen Uerdner kënnt Der schreiwen, Dier kënnt weidermaachen!"
+msgstr "Du hues d'Schreiwrechter fier dësen Uerdner, du kanns weidermaachen!"
 
 msgid ""
 "Jappix offers you the possibility to manage your configuration, install new "
 "plugins or search for updates. That's why you must create an administrator "
 "account to access the manager."
 msgstr ""
-"Jappix gëtt Iech d'Méiglechkeet fier äer Astellungen ze geréieren, nei "
-"Plugins ze installéieren oder no Updates ze sichen. Dofier musst dier en "
+"Jappix gëtt Dier d'Méiglechkeet fier deng Astellungen ze geréieren, nei "
+"Plugins ze installéieren oder no Updates ze sichen. Dofier musst de en "
 "Administrator-Kont opmaachen fier un de Manager ze kommen."
 
 msgid ""
 "When Jappix will be installed, just click on the manager link on the home "
 "page to access it."
 msgstr ""
-"Wann Jappix installéiert gëtt, klickt op de Manager-Link op der Haaptsäit "
+"Wann Jappix bis installéiert as, klick op de Manager-Link op der Haaptsäit "
 "fier eranzekommen."
 
 msgid "Oops, you missed something or the two passwords do not match!"
@@ -1527,7 +1542,7 @@ msgid "Finish"
 msgstr "Fäerdeg"
 
 msgid "Check again"
-msgstr "Nach eng Kéier préifen"
+msgstr "Nach eng Kéier iwwerpréifen"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
@@ -2376,11 +2391,23 @@ msgstr "AdSense slot"
 msgid "Stop"
 msgstr "Stop"
 
+msgid "Leave"
+msgstr ""
+
 msgid "Mute"
 msgstr "Mute"
 
 msgid "Unmute"
 msgstr "Unmute"
+
+msgid "Nobody there. Invite some people!"
+msgstr ""
+
+msgid "Invite people..."
+msgstr ""
+
+msgid "Enter people names..."
+msgstr ""
 
 msgid "Is calling you"
 msgstr "Rifft dech un"
@@ -2421,6 +2448,24 @@ msgstr "As besat"
 msgid "Ending call..."
 msgstr "Uruff beendegen..."
 
+msgid "Incoming group call"
+msgstr ""
+
+msgid "Preparing group call..."
+msgstr ""
+
+msgid "Connecting to group call..."
+msgstr ""
+
+msgid "Group call error"
+msgstr ""
+
+msgid "Ending group call..."
+msgstr ""
+
+msgid "Group call ended"
+msgstr ""
+
 msgid "Accept"
 msgstr "Unhuelen"
 
@@ -2438,3 +2483,51 @@ msgstr "Uruff"
 
 msgid "Video Call"
 msgstr "Video Konferenz"
+
+msgid "%s participant"
+msgstr ""
+
+msgid "%s participants"
+msgstr ""
+
+msgid "(full)"
+msgstr ""
+
+msgid "%s is able to receive group calls."
+msgstr ""
+
+msgid "%s may not support group calls."
+msgstr ""
+
+msgid "Send a message..."
+msgstr ""
+
+msgid "Edited"
+msgstr "Editéiert"
+
+msgid "Edited (%s)"
+msgstr "editéiert (%s)"
+
+msgid "Editing"
+msgstr "editéiert"
+
+msgid "Being edited"
+msgstr "gëtt editéiert"
+
+msgid "Delivered"
+msgstr "verschéckt"
+
+msgid "Read"
+msgstr "liesen"
+
+msgid "Sending..."
+msgstr "fortschécken..."
+
+msgid "%s requested your attention to the conversation"
+msgstr ""
+
+msgid "You requested %s's attention to the conversation"
+msgstr ""
+
+msgid "Attention to conversation requested."
+msgstr ""

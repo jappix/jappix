@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:21+0100\n"
+"PO-Revision-Date: 2014-08-09 15:36+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/jappix/language/"
 "he/)\n"
@@ -36,7 +36,7 @@ msgid "Social channel, chat and more."
 msgstr "ערוץ חברתי, צ'אט ועוד."
 
 msgid "Create your public profile."
-msgstr "צור את הדיקן הפומבי שלך."
+msgstr "צור דיקן פומבי משלך."
 
 msgid "A mini-chat for your website."
 msgstr "מיני צ'אט עבור אתר הרשת שלך."
@@ -60,7 +60,7 @@ msgid "Jappix for your company."
 msgstr "Jappix עבור הפירמה שלך."
 
 msgid "Find a public Jappix node."
-msgstr "מצא נקודת ממסר Jappix פומבית."
+msgstr "מצא צומת Jappix פומבי."
 
 msgid "Credits"
 msgstr "תודות"
@@ -84,7 +84,7 @@ msgid "Owner"
 msgstr "בעלים"
 
 msgid "Node owner"
-msgstr "בעל הממסר"
+msgstr "בעל צומת"
 
 msgid "By using our service, you accept %s."
 msgstr "על ידי שימוש בשירותנו, הינך מסכים/ה %s."
@@ -144,7 +144,7 @@ msgid "Register"
 msgstr "הרשמה"
 
 msgid "Here we go!"
-msgstr "קדימה לדרך!"
+msgstr "המשך!"
 
 msgid "Server"
 msgstr "שרת"
@@ -185,6 +185,21 @@ msgstr "הוספת חברים"
 
 msgid "Your groupchats"
 msgstr "שיחות הקבוצה שלך"
+
+msgid "Audio/video conference"
+msgstr "ועידת אודיו/וידאו"
+
+msgid "Launch a group call"
+msgstr "שגר שיחה קבוצתית"
+
+msgid "Audio conference"
+msgstr "ועידה קולית"
+
+msgid "Video conference"
+msgstr "ועידה חזותית"
+
+msgid "Conference call"
+msgstr "שיחת ועידה"
 
 msgid "Manage your favorite groupchats"
 msgstr "ניהול שיחות הקבוצה המועדפות עליך"
@@ -1571,7 +1586,7 @@ msgstr "משתמשים"
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
 "node."
-msgstr "זהו אזור מוגבל: רק משתמשים מורשים יכולים לנהל את ממסר Jappix זה."
+msgstr "זהו אזור מוגבל: רק משתמשים מורשים יכולים לנהל את צומת Jappix זה."
 
 msgid "Please use the form below to login to the administration panel."
 msgstr "אנא השתמש בתבנית שלמטה כדי להתחבר את לוח הניהול."
@@ -1602,16 +1617,16 @@ msgstr ""
 "אותן למטה."
 
 msgid "Change your Jappix node configuration with this tool."
-msgstr "שינוי תצורת ממסר Jappix בעזרת כלי זה."
+msgstr "שינוי תצורת צומת Jappix בעזרת כלי זה."
 
 msgid "Change the XMPP hosts that this Jappix node serves with this tool."
-msgstr "שנה מארחי XMPP שממסר Jappix זה משרת, בעזרת כלי זה."
+msgstr "שנה מארחי XMPP אשר צומת Jappix זה משרת, בעזרת כלי זה."
 
 msgid ""
 "All this Jappix node stored files can be managed with this tool: please "
 "select a sub-folder and start editing its content!"
 msgstr ""
-"כל הקבצים אשר מאוחסנים בממסר ‫Jappix זה יכולים להתנהל בעזרת כלי זה: אנא בחר "
+"כל הקבצים אשר מאוחסנים בצומת ‫Jappix זה יכולים להתנהל בעזרת כלי זה: אנא בחר "
 "תיקיית משנה ולאחר מכן תעמוד לרשותך האפשרות להתחיל לערוך את התוכן שלה!"
 
 msgid "Jappix is fully customisable: you can change its design right here."
@@ -1663,14 +1678,14 @@ msgid ""
 "You can define more than one administrator for this Jappix node. You can "
 "also change a password with this tool."
 msgstr ""
-"ניתן לתחום יותר ממנהלן אחד עבור ממסר Jappix זה. ניתן גם לשנות את הסיסמה "
-"בעזרת כלי זה."
+"באפשרותך לתחום יותר מאשר מנהלן אחד עבור צומת Jappix זה. באפשרותך גם לשנות את "
+"הסיסמה בעזרת כלי זה."
 
 msgid ""
 "Update your Jappix node with this tool, or check if a new one is available. "
 "Informations about the latest version are also displayed (in english)."
 msgstr ""
-"עדכון ממסר Jappix בעזרת כלי זה, לחלופין ניתן לבדוק אם ממסר חדש זמין כעת. "
+"עדכון צומת Jappix בעזרת כלי זה, לחלופין ניתן לבדוק אם ממסר חדש זמין כעת. "
 "מידע אודות הגרסה האחרונה גם כן מוצג (באנגלית)."
 
 msgid "Access statistics"
@@ -1770,7 +1785,7 @@ msgid ""
 "Change your Jappix node background with this tool. You can either set a "
 "custom color or an uploaded image. Let your creativity flow!"
 msgstr ""
-"שינוי רקע ממסר Jappix בעזרת כלי זה. ניתן להגדיר צבע מותאם או להעלות תמונה. "
+"שינוי רקע צומת Jappix בעזרת כלי זה. ניתן להגדיר צבע מותאם או להעלות תמונה. "
 "התירו ליצירתיות לזרום!"
 
 msgid "Use default background"
@@ -1934,7 +1949,7 @@ msgstr "תיקיית האחסון שרצית לטהר, הינה ריקה כעת!
 
 msgid ""
 "Keep your Jappix node fresh and fast, clean the storage folders regularly!"
-msgstr "שמור על ממסר Jappix רענן ומהיר, על ידי טיהור תיקיות האחסון בקביעות!"
+msgstr "שמור על צומת Jappix רענן ומהיר, על ידי טיהור תיקיות האחסון בקביעות!"
 
 msgid ""
 "Upload your music (Ogg Vorbis, MP3 or WAV) to be able to listen to it in "
@@ -2296,11 +2311,23 @@ msgstr "משבצת AdSense"
 msgid "Stop"
 msgstr "עצור"
 
+msgid "Leave"
+msgstr ""
+
 msgid "Mute"
 msgstr "השתק"
 
 msgid "Unmute"
 msgstr "בטל השתקה"
+
+msgid "Nobody there. Invite some people!"
+msgstr "אף אחד לא נמצא שם. הזמן כמה אנשים!"
+
+msgid "Invite people..."
+msgstr "הזמנת אנשים..."
+
+msgid "Enter people names..."
+msgstr "הזנת שמות אנשים..."
 
 msgid "Is calling you"
 msgstr "מחייג/ת אליך"
@@ -2309,7 +2336,7 @@ msgid "Initiating call"
 msgstr "מתחיל כעת קריאה"
 
 msgid "Connecting to call..."
-msgstr "כעת מתחבר אל קריאה..."
+msgstr "כעת מתחבר אל שיחה..."
 
 msgid "Waiting..."
 msgstr "כעת ממתין..."
@@ -2341,6 +2368,24 @@ msgstr "כבר בעיצומה של שיחה"
 msgid "Ending call..."
 msgstr "כעת מסיים שיחה..."
 
+msgid "Incoming group call"
+msgstr "שיחת קבוצה נכנסת"
+
+msgid "Preparing group call..."
+msgstr "כעת מכין שיחת קבוצה..."
+
+msgid "Connecting to group call..."
+msgstr "כעת מתחבר אל שיחת קבוצה..."
+
+msgid "Group call error"
+msgstr "שגיאת שיחת קבוצה"
+
+msgid "Ending group call..."
+msgstr "כעת מסיים שיחת קבוצה..."
+
+msgid "Group call ended"
+msgstr "שיחת קבוצה הסתיימה"
+
 msgid "Accept"
 msgstr "קבל"
 
@@ -2354,7 +2399,55 @@ msgid "Retry"
 msgstr "נסה שוב"
 
 msgid "Audio Call"
-msgstr "שיחה קולית (אודיו)"
+msgstr "שיחה קולית"
 
 msgid "Video Call"
-msgstr "שיחה חזותית (וידאו)"
+msgstr "שיחה חזותית"
+
+msgid "%s participant"
+msgstr "משתתף %s"
+
+msgid "%s participants"
+msgstr "%s משתתפים"
+
+msgid "(full)"
+msgstr "(מלא)"
+
+msgid "%s is able to receive group calls."
+msgstr "%s מסוגל/ת לקבל שיחות קבוצתיות."
+
+msgid "%s may not support group calls."
+msgstr "%s עשוי שלא לתמוך בשיחות קבוצתיות."
+
+msgid "Send a message..."
+msgstr "שליחת הודעה..."
+
+msgid "Edited"
+msgstr ""
+
+msgid "Edited (%s)"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Being edited"
+msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Sending..."
+msgstr "כעת שולח..."
+
+msgid "%s requested your attention to the conversation"
+msgstr "%s ביקש/ה את תשומת לבך אל הדיון"
+
+msgid "You requested %s's attention to the conversation"
+msgstr "ביקשת את הסבת צומת הלב של %s אל הדיון"
+
+msgid "Attention to conversation requested."
+msgstr "הסבת צומת לב אל הדיון התבקשה."
