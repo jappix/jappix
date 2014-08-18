@@ -234,9 +234,10 @@ var Chat = (function () {
      * @private
      * @param {string} type
      * @param {string} id
+     * @param {string} xid
      * @return {object}
      */
-    self._generateChatCode = function(type, id) {
+    self._generateChatCode = function(type, id, xid) {
 
         var code_args = {};
 
@@ -400,7 +401,7 @@ var Chat = (function () {
             var escaped_xid = escape(xid);
 
             // Special code
-            var chat_args = self._generateChatCode(type, id);
+            var chat_args = self._generateChatCode(type, id, xid);
 
             // Append the chat HTML code
             $('#page-engine').append(
