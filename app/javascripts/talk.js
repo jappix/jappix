@@ -311,7 +311,7 @@ var Talk = (function () {
             Presence.first_sent = false;
             Search.search_filtered = false;
             Avatar.pending = [];
-            JOIN_SUGGEST = [];
+            Groupchat.join_suggest = [];
 
             // Kill all timers, exept the board ones
             $('*:not(#board .one-board)').stopTime();

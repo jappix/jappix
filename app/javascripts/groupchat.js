@@ -21,7 +21,7 @@ var Groupchat = (function () {
 
 
     /* Variables */
-    var JOIN_SUGGEST = [];
+    self.join_suggest = [];
 
 
     /**
@@ -197,7 +197,9 @@ var Groupchat = (function () {
                 // Store groupchats to join?
                 if(this_sel.is('.continue')) {
                     $('#suggest .content a.one.active').each(function() {
-                        JOIN_SUGGEST.push(this_sel.attr('data-xid'));
+                        self.join_suggest.push(
+                            $(this).attr('data-xid')
+                        );
                     });
                 }
 
@@ -554,14 +556,14 @@ var Groupchat = (function () {
 
         try {
             // Nothing to join?
-            if(!JOIN_SUGGEST) {
+            if(!self.join_suggest) {
                 return;
             }
 
             // Join the chats
-            if(JOIN_SUGGEST.length) {
-                for(var g in JOIN_SUGGEST) {
-                    Chat.checkCreate(JOIN_SUGGEST[g], 'groupchat');
+            if(self.join_suggest.length) {
+                for(var g in self.join_suggest) {
+                    Chat.checkCreate(self.join_suggest[g], 'groupchat');
                 }
             }
         } catch(e) {
@@ -614,7 +616,7 @@ var Groupchat = (function () {
                 // Attach events
                 self._suggestCheckEvents();
             } else {
-                JOIN_SUGGEST = groupchat_arr;
+                self.join_suggest = groupchat_arr;
 
                 Connection.triggerConnected();
             }
