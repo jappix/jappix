@@ -245,10 +245,10 @@ var Markers = (function () {
      * @param {boolean} is_mam_marker
      * @return {undefined}
      */
-    self.handle = function(from, message, is_mam_marker) {
+    self.handle = function(from, message, is_mam_marker, is_groupchat_user) {
 
         try {
-            var xid = Common.bareXID(from);
+            var xid = ((is_groupchat_user !== true && Common.bareXID(from)) || from);
             var marker_sel = $(message).find('[xmlns="' + NS_URN_MARKERS + '"]');
 
             if(marker_sel.size()) {

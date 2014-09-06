@@ -1512,7 +1512,7 @@ var Message = (function () {
 
             // Message marker?
             if(Markers.hasResponseMarker(node)) {
-                return Markers.handle(from, node);
+                return Markers.handle(from, node, false, is_groupchat_user);
             }
 
             return false;
