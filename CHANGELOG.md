@@ -4,15 +4,15 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-Primo, v1.1.1 (Development)
----------------------------
+Primo, v1.1.1 (September 2014)
+------------------------------
 
  * Ignore empty XHTML-IM messages  @eijebong, @valeriansaliou
- * (...)
+ * Fix a bug with message markers  @valeriansaliou
 
 
-Primo, v1.1.0 (Jun 2014)
-------------------------
+Primo, v1.1.0 (June 2014)
+-------------------------
 
  * XEP-0272: Multiparty Jingle (Muji)      @valeriansaliou
  * Prevent client crash on huge messages   @valeriansaliou
