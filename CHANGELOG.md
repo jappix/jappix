@@ -4,6 +4,12 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
+Primo, v1.1.2 (Development)
+---------------------------
+
+ * (...)
+
+
 Primo, v1.1.1 (September 2014)
 ------------------------------
 
