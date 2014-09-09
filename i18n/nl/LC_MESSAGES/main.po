@@ -4,11 +4,12 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
+# devMaeb <devmaeb@gmail.com>, 2014
 # Midgard, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:21+0100\n"
+"PO-Revision-Date: 2014-09-09 22:53+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/jappix/language/"
 "nl/)\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -55,7 +56,7 @@ msgid "Contribute to the Jappix code."
 msgstr "Draag bij aan de Jappixcode."
 
 msgid "Jappix for your company."
-msgstr ""
+msgstr "Jappix voor uw bedrijf."
 
 msgid "Find a public Jappix node."
 msgstr "Zoek een openbare Jappix-node."
@@ -70,7 +71,7 @@ msgid "Web agency"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Legaal"
 
 msgid "Legal disclaimer"
 msgstr ""
@@ -79,16 +80,16 @@ msgid "Terms of use and legal"
 msgstr ""
 
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 msgid "Node owner"
 msgstr ""
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Door onze dienst te gebruiken gaat u akkoord met %s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "onze gebruiksvoorwaarden"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -158,7 +159,7 @@ msgid "Remember me"
 msgstr "Herinner mij"
 
 msgid "This tool has been disabled!"
-msgstr ""
+msgstr "Dit hulpmiddel is uitgeschakeld!"
 
 msgid ""
 "Due to a network issue, you were disconnected. What do you want to do now?"
@@ -187,6 +188,21 @@ msgstr "Een vriend toevoegen"
 
 msgid "Your groupchats"
 msgstr "Jouw groepschats"
+
+msgid "Audio/video conference"
+msgstr "Audio/video bespreking"
+
+msgid "Launch a group call"
+msgstr ""
+
+msgid "Audio conference"
+msgstr "Audio bespreking"
+
+msgid "Video conference"
+msgstr "Video bespreking"
+
+msgid "Conference call"
+msgstr ""
 
 msgid "Manage your favorite groupchats"
 msgstr "Beheer je favoriete groepsgesprekken"
@@ -428,7 +444,7 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Edit options"
-msgstr ""
+msgstr "Bewerk opties"
 
 msgid "Channel"
 msgstr "Kanaal"
@@ -446,22 +462,22 @@ msgid "Message archiving"
 msgstr "Bericht archivering"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "Bewaar de geschiedenis van je gesprekken"
 
 msgid "Geolocation"
 msgstr "Geolocatie"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 msgid "Store all chats"
-msgstr ""
+msgstr "Bewaar alle gesprekken"
 
 msgid "Store friend chats"
 msgstr ""
 
 msgid "Remove all archives"
-msgstr ""
+msgstr "Verwijder alle archieven"
 
 msgid "Empty"
 msgstr "Leeg"
@@ -494,7 +510,7 @@ msgid "Suggested chatrooms"
 msgstr ""
 
 msgid "Skip"
-msgstr ""
+msgstr "Overslaan"
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -628,13 +644,13 @@ msgid "Manage favorite rooms"
 msgstr ""
 
 msgid "Change favorites"
-msgstr ""
+msgstr "Favorieten veranderen"
 
 msgid "Search a room"
 msgstr "Zoek een kamer"
 
 msgid "Select a favorite"
-msgstr ""
+msgstr "Selecteer een favoriet"
 
 msgid "Getting the name..."
 msgstr ""
@@ -673,19 +689,19 @@ msgid "Accounts"
 msgstr ""
 
 msgid "Authentications"
-msgstr ""
+msgstr "Authenticaties"
 
 msgid "Automation"
-msgstr ""
+msgstr "Automatie"
 
 msgid "Clients"
-msgstr ""
+msgstr "Cliënten"
 
 msgid "Collaboration"
 msgstr "Samenwerking"
 
 msgid "Components"
-msgstr ""
+msgstr "Onderdelen"
 
 msgid "Rooms"
 msgstr "Kamers"
@@ -715,7 +731,7 @@ msgid "Service offline or broken"
 msgstr ""
 
 msgid "Your inbox"
-msgstr ""
+msgstr "Uw inbox"
 
 msgid "Available actions"
 msgstr "Beschikabre acties"
@@ -736,10 +752,10 @@ msgid "Content"
 msgstr "Inhoud"
 
 msgid "Send message"
-msgstr ""
+msgstr "Bericht versturen"
 
 msgid "Your inbox is empty."
-msgstr ""
+msgstr "Uw inbox is leeg"
 
 msgid "MUC administration"
 msgstr "MUC beheer"
@@ -748,7 +764,7 @@ msgid "You administrate this room"
 msgstr ""
 
 msgid "Enter new subject"
-msgstr ""
+msgstr "Nieuw onderwerp invoeren"
 
 msgid "Configuration"
 msgstr "Configuratie"
@@ -846,6 +862,7 @@ msgstr ""
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
+"Log in op je bestaande XMPP account of creëer gratis een nieuw account!"
 
 msgid ""
 "For your account safety, when you login or register, make sure your password "
@@ -997,7 +1014,7 @@ msgid "commented an item you follow: “%s”."
 msgstr ""
 
 msgid "liked your post: “%s”."
-msgstr ""
+msgstr "vindt jouw bericht leuk: \"%s\"."
 
 msgid "quoted you somewhere: “%s”."
 msgstr ""
@@ -1033,10 +1050,10 @@ msgid "Open"
 msgstr ""
 
 msgid "Show"
-msgstr ""
+msgstr "Tonen"
 
 msgid "Hide"
-msgstr ""
+msgstr "Verbergen"
 
 msgid "Submit"
 msgstr "Verzend"
@@ -1078,7 +1095,7 @@ msgid "Ask for authorization"
 msgstr "Vraag om een authorisatie"
 
 msgid "Unblock"
-msgstr ""
+msgstr "Deblokkeren"
 
 msgid "Prohibit"
 msgstr "Toegestaan"
@@ -1108,19 +1125,19 @@ msgid "Please enable JavaScript"
 msgstr "Activeer Javascript"
 
 msgid "Show comments"
-msgstr ""
+msgstr "Laat reacties zien"
 
 msgid "Loading comments..."
-msgstr ""
+msgstr "Reacties aan het laden..."
 
 msgid "Could not get the comments!"
-msgstr ""
+msgstr "De reacties konden niet worden opgehaald!"
 
 msgid "Comments locked!"
 msgstr ""
 
 msgid "Type your comment here..."
-msgstr ""
+msgstr "Typ uw reactie hier..."
 
 msgid "Your channel"
 msgstr "Jouw kanaal"
@@ -1149,25 +1166,25 @@ msgid "Authorization failed"
 msgstr ""
 
 msgid "Registration failed, please choose a different username"
-msgstr ""
+msgstr "Registratie mislukt, kies een andere gebruikersnaam"
 
 msgid "Service unavailable"
-msgstr ""
+msgstr "Dienst niet beschikbaar"
 
 msgid "Internal server error, try later"
 msgstr "Interne server fout, probeer het later"
 
 msgid "Your form has been sent."
-msgstr ""
+msgstr "Uw formulier is verzonden."
 
 msgid "Application"
 msgstr "Applicatie"
 
 msgid "Media integration"
-msgstr ""
+msgstr "Media integratie"
 
 msgid "Keep local chat archives"
-msgstr ""
+msgstr "Behoud lokale gespreksarchieven"
 
 msgid "XMPP links"
 msgstr "XMPP links"
@@ -1176,7 +1193,7 @@ msgid "Open XMPP links with Jappix"
 msgstr "Open XMPP links met Jappix"
 
 msgid "changed the subject to:"
-msgstr ""
+msgstr "onderwerp veranderd naar:"
 
 msgid "Welcome!"
 msgstr "Welkom!"
@@ -1185,7 +1202,7 @@ msgid "Friends"
 msgstr "Vrienden"
 
 msgid "Welcome to Jappix, your own social cloud!"
-msgstr ""
+msgstr "Welkom bij Jappix, uw eigen sociale cloud!"
 
 msgid ""
 "Before you start using it, you will have to change some settings, search for "
@@ -1193,32 +1210,36 @@ msgid ""
 msgstr ""
 
 msgid "Enable notification sounds"
-msgstr ""
+msgstr "Schakel notificatiegeluiden in"
 
 msgid "Share your position on the globe"
-msgstr ""
+msgstr "Deel je locatie op de wereld"
 
 msgid "Offline friends"
-msgstr ""
+msgstr "Offline vrienden"
 
 msgid "Don't hide offline friends"
-msgstr ""
+msgstr "Verberg offline vrienden niet"
 
 msgid ""
 "Use this tool to find your friends on the server you are using right now, or "
 "add them later."
 msgstr ""
+"Gebruik dit hulpmiddel om jouw vrienden op de server die je nu gebruikt te "
+"vinden, of voeg ze later toe."
 
 msgid "Good job! Now, you can share Jappix with your friends!"
-msgstr ""
+msgstr "Goed gedaan! Nu mag je Jappix met je vrienden delen!"
 
 msgid ""
 "When you will press the save button, the profile editor will be opened. "
 "Happy socializing!"
 msgstr ""
+"Wanneer je op de knop om op te slaan klikt, zal de profielbewerker openen. "
+"Veel plezier met socialiseren!"
 
 msgid "Share Jappix on %s"
-msgstr ""
+msgstr "Deel Jappix via %s"
 
 msgid "Follow Jappix topic on %s"
 msgstr ""
@@ -1233,36 +1254,38 @@ msgid "Unknown country"
 msgstr "Onbekend land"
 
 msgid "Click to enable"
-msgstr ""
+msgstr "Klik om in te schakelen"
 
 msgid "Click to disable"
-msgstr ""
+msgstr "Klik om uit te zetten"
 
 msgid "Installation"
-msgstr ""
+msgstr "Installatie"
 
 msgid "Jappix installation"
-msgstr ""
+msgstr "Jappix installatie"
 
 msgid "Welcome to the Jappix installation!"
-msgstr ""
+msgstr "Welkom bij de installatie van Jappix!"
 
 msgid ""
 "This tool will help you installing Jappix, the first full-featured XMPP-"
 "based social platform, on your server with ease."
 msgstr ""
+"Dit zal je helpen met het gemakkelijk installeren van Jappix, het eerste "
+"volledige XMPP-gebaseerde sociale platform, op jouw server."
 
 msgid "Installation Steps:"
-msgstr ""
+msgstr "Stappen van de installatie:"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Welkom"
 
 msgid "Storage configuration"
-msgstr ""
+msgstr "Opslagconfiguratie"
 
 msgid "Administrator account"
-msgstr ""
+msgstr "Beheerdersaccount"
 
 msgid "Main configuration"
 msgstr ""
@@ -1271,7 +1294,7 @@ msgid "Hosts configuration"
 msgstr ""
 
 msgid "Services installation"
-msgstr ""
+msgstr "Installatie van diensten"
 
 msgid ""
 "If the current language does not match yours (%1s), you can make Jappix "
@@ -1282,9 +1305,13 @@ msgid ""
 "If you want to get some help about the Jappix installation and "
 "configuration, you can use our whole documentation, available at:"
 msgstr ""
+"Als je hulp nodig hebt bij de installatie en configuratie van Jappix, kun je "
+"onze hele documentatie gebruiken, verkrijgbaar op:"
 
 msgid "It's time to build your own social cloud: just go to the next step!"
 msgstr ""
+"Het is tijd om jouw eigen sociale cloud te bouwen: ga door naar de volgende "
+"stap!"
 
 msgid ""
 "Jappix stores persistent data (such as shared files, chat logs, your own "
@@ -1298,13 +1325,16 @@ msgid ""
 msgstr ""
 
 msgid "The folder is writable, you can continue!"
-msgstr ""
+msgstr "De map is bewerkbaar, je kunt doorgaan!"
 
 msgid ""
 "Jappix offers you the possibility to manage your configuration, install new "
 "plugins or search for updates. That's why you must create an administrator "
 "account to access the manager."
 msgstr ""
+"Jappix biedt je de mogelijkheid om je configuratie te beheren, nieuwe "
+"plugins te installeren of naar updates te zoeken. Dat is waarom je een "
+"beheerdersaccount moet creëren zodat je toegang hebt tot de beheerder."
 
 msgid ""
 "When Jappix will be installed, just click on the manager link on the home "
@@ -1313,6 +1343,7 @@ msgstr ""
 
 msgid "Oops, you missed something or the two passwords do not match!"
 msgstr ""
+"Oeps, je bent iets vergeten of de twee wachtwoorden komen niet overeen!"
 
 msgid ""
 "Jappix needs that you specify some values to work. Please correct the "
@@ -1329,12 +1360,14 @@ msgid ""
 "Need help? You'd better read our documentation page about how to fill this "
 "form!"
 msgstr ""
+"Hulp nodig? Lees onze documentatiepagina om te weten te komen hoe je dit "
+"formulier invult!"
 
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 msgid "Service"
-msgstr ""
+msgstr "Dienst"
 
 msgid "Service name"
 msgstr ""
@@ -1343,49 +1376,49 @@ msgid "Service description"
 msgstr ""
 
 msgid "Owner name"
-msgstr ""
+msgstr "Naam van de eigenaar"
 
 msgid "Owner website"
-msgstr ""
+msgstr "Website van de eigenaar"
 
 msgid "Connection"
-msgstr ""
+msgstr "Verbinding"
 
 msgid "Lock the host"
 msgstr ""
 
 msgid "Anonymous mode"
-msgstr ""
+msgstr "Anonieme modus"
 
 msgid "HTTP authentication"
-msgstr ""
+msgstr "HTTP authenticatie"
 
 msgid "Registration allowed"
-msgstr ""
+msgstr "Registratie toegestaan"
 
 msgid "Use the built-in BOSH proxy"
-msgstr ""
+msgstr "Gebruik de ingebouwde BOSH proxy"
 
 msgid "Manager link"
 msgstr ""
 
 msgid "Groupchats to join"
-msgstr ""
+msgstr "Groepsgesprekken om aan deel te nemen"
 
 msgid "Suggest groupchats"
-msgstr ""
+msgstr "Suggereer groepsgesprekken"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Encryptie"
 
 msgid "HTTPS storage"
-msgstr ""
+msgstr "HTTPS opslag"
 
 msgid "Force HTTPS"
 msgstr ""
 
 msgid "Compression"
-msgstr ""
+msgstr "Compressie"
 
 msgid "Cache assets"
 msgstr ""
@@ -1395,12 +1428,18 @@ msgid ""
 "can leave it as it is and continue if you want to use the official service "
 "hosts."
 msgstr ""
+"Deze pagina helpt je bij het selecteren van de standaard hosts waarmee "
+"Jappix verbinding zal maken. Je kunt dit laten zoals het is en doorgaan, als "
+"je de officiële service hosts wil gebruiken."
 
 msgid ""
 "Maybe you don't know what a BOSH server is? In fact, this is a relay between "
 "a Jappix client and a XMPP server, which is necessary because of technical "
 "limitations."
 msgstr ""
+"Misschien weet je niet wat een BOSH server is? In feite is dit een relais "
+"tussen een Jappix client en een XMPP server, dit is nodig vanwege technische "
+"beperkingen."
 
 msgid "Main host"
 msgstr ""
@@ -1412,13 +1451,13 @@ msgid "Pubsub host"
 msgstr ""
 
 msgid "Anonymous host"
-msgstr ""
+msgstr "Anonieme host"
 
 msgid "Directory host"
 msgstr ""
 
 msgid "BOSH host"
-msgstr ""
+msgstr "BOSH host"
 
 msgid "WebSocket host"
 msgstr ""
@@ -1442,26 +1481,26 @@ msgid ""
 msgstr ""
 
 msgid "Thanks for using Jappix!"
-msgstr ""
+msgstr "Bedankt voor het gebruiken van Jappix!"
 
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 msgid "Finish"
-msgstr ""
+msgstr "Voltooien"
 
 msgid "Check again"
-msgstr ""
+msgstr "Opnieuw controleren"
 
 msgid ""
 "The folder is not writable, set the right permissions to the %s directory."
 msgstr ""
 
 msgid "%s is installed on your system."
-msgstr ""
+msgstr "$s is geïnstalleerd op uw systeem."
 
 msgid "%1s is not installed on your system, you should install %2s."
-msgstr ""
+msgstr "%1s is niet geïnstalleerd op uw systeem, u moet %2s installeren."
 
 msgid "PHP maximum upload size is sufficient (%s)."
 msgstr ""
@@ -1472,79 +1511,86 @@ msgid ""
 msgstr ""
 
 msgid "Jappix manager"
-msgstr ""
+msgstr "Jappix beheerder"
 
 msgid "Manager access"
-msgstr ""
+msgstr "Toegang tot de beheerder"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistieken"
 
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 msgid "Design"
-msgstr ""
+msgstr "Ontwerp"
 
 msgid "Repeat"
-msgstr ""
+msgstr "Herhalen"
 
 msgid "All"
-msgstr ""
+msgstr "Alles"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 msgid "Center"
-msgstr ""
+msgstr "Midden"
 
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 msgid "Top"
-msgstr ""
+msgstr "Boven"
 
 msgid "Bottom"
-msgstr ""
+msgstr "Onder"
 
 msgid "Adapt"
 msgstr ""
 
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"
 
 msgid ""
 "This is a restricted area: only the authorized users can manage this Jappix "
 "node."
 msgstr ""
+"Dit is een beperkt gebied: alleen de geautoriseerde gebruikers kunnen deze "
+"Jappix node beheren."
 
 msgid "Please use the form below to login to the administration panel."
 msgstr ""
+"Gebruik het formulier hier onder om in te loggen in het administratiepanel"
 
 msgid ""
 "To improve security, sessions are limited in time and when your browser will "
 "be closed, you will be logged out."
 msgstr ""
+"Om beveiliging te verbeteren, zijn sessie beperkt in tijd. Wanneer je "
+"browser sluit, zul je worden uitgelogd."
 
 msgid "Credentials"
 msgstr ""
 
 msgid "You have been logged out. Goodbye!"
-msgstr ""
+msgstr "Je bent uitgelogd. Een goede dag!"
 
 msgid ""
 "Oops, you could not be recognized as a valid administrator. Check your "
 "credentials!"
 msgstr ""
+"Oeps, je kon niet als geldige beheerder worden herkend. Controleer je "
+"gegevens!"
 
 msgid ""
 "Basic statistics are processed by Jappix about some important things, you "
@@ -1581,10 +1627,10 @@ msgid "Your image was added to the list!"
 msgstr ""
 
 msgid "Changes saved!"
-msgstr ""
+msgstr "Wijzigingen opgeslagen!"
 
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 msgid ""
 "You can set your own service logo to replace the default one. Take care of "
@@ -1592,7 +1638,7 @@ msgid ""
 msgstr ""
 
 msgid "Upload each logo with the recommended maximum pixel size."
-msgstr ""
+msgstr "Upload elk logo met de aangerade maximum pixel grootte."
 
 msgid ""
 "Your logo format must be PNG. Leave a field empty and the logo will not be "
@@ -1600,10 +1646,10 @@ msgid ""
 msgstr ""
 
 msgid "Remove this logo"
-msgstr ""
+msgstr "Verwijder dit logo"
 
 msgid "View this logo"
-msgstr ""
+msgstr "Bekijk dit logo"
 
 msgid ""
 "You can define more than one administrator for this Jappix node. You can "
@@ -1616,97 +1662,97 @@ msgid ""
 msgstr ""
 
 msgid "Access statistics"
-msgstr ""
+msgstr "Toegangsstatistieken"
 
 msgid "Share statistics"
 msgstr ""
 
 msgid "Other statistics"
-msgstr ""
+msgstr "Andere statistieken"
 
 msgid "January"
-msgstr ""
+msgstr "Januari"
 
 msgid "February"
-msgstr ""
+msgstr "Februari"
 
 msgid "March"
-msgstr ""
+msgstr "Maart"
 
 msgid "April"
-msgstr ""
+msgstr "April"
 
 msgid "May"
-msgstr ""
+msgstr "Mei"
 
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 msgid "August"
-msgstr ""
+msgstr "Augustus"
 
 msgid "September"
-msgstr ""
+msgstr "September"
 
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 msgid "November"
-msgstr ""
+msgstr "November"
 
 msgid "December"
-msgstr ""
+msgstr "December"
 
 msgid "Monday"
-msgstr ""
+msgstr "Maandag"
 
 msgid "Tuesday"
-msgstr ""
+msgstr "Dinsdag"
 
 msgid "Wednesday"
-msgstr ""
+msgstr "Woensdag"
 
 msgid "Thursday"
-msgstr ""
+msgstr "Donderdag"
 
 msgid "Friday"
-msgstr ""
+msgstr "Vrijdag"
 
 msgid "Saturday"
-msgstr ""
+msgstr "Zaterdag"
 
 msgid "Sunday"
-msgstr ""
+msgstr "Zondag"
 
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
 msgid "Archives"
-msgstr ""
+msgstr "Archieven"
 
 msgid "Music"
-msgstr ""
+msgstr "Muziek"
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Achtergronden"
 
 msgid "Share"
-msgstr ""
+msgstr "Delen"
 
 msgid "Background"
-msgstr ""
+msgstr "Achtergrond"
 
 msgid "Notice"
 msgstr ""
 
 msgid "Your design preferences have been saved!"
-msgstr ""
+msgstr "Je ontwerpvoorkeuren zijn opgeslagen!"
 
 msgid "Please check your inputs: something is missing!"
-msgstr ""
+msgstr "Controleer je invoeringen: er mist iets!"
 
 msgid ""
 "Change your Jappix node background with this tool. You can either set a "
@@ -1714,30 +1760,35 @@ msgid ""
 msgstr ""
 
 msgid "Use default background"
-msgstr ""
+msgstr "Gebruik standaard achtergrond"
 
 msgid "Use your own image"
-msgstr ""
+msgstr "Gebruik je eigen afbeelding"
 
 msgid "Select a background to use and change the display options."
 msgstr ""
+"Selecteer een achtergrond om te gebruiken en verander de weergaveopties."
 
 msgid "Use your own color"
-msgstr ""
+msgstr "Gebruik je eigen kleur"
 
 msgid "Type the hexadecimal color value you want to use as a background."
 msgstr ""
+"Typ de hexadecimale waarde van de kleur die je wil gebruiken als achtergrond."
 
 msgid "Manage backgrounds"
-msgstr ""
+msgstr "Beheer achtergronden"
 
 msgid ""
 "You can add a new background to the list with this tool. Please send a valid "
 "image."
 msgstr ""
+"Je kan een nieuwe achtergrond aan de lijst toevoegen met dit hulpmiddel. "
+"Verzend alstublieft een geldige afbeelding."
 
 msgid "If you want to remove some backgrounds, use the browser below."
 msgstr ""
+"Als je enkele achtergronden wil verwijderen, gebruik de browser hieronder."
 
 msgid ""
 "Define a homepage notice for all your users, such as a warn, an important "
@@ -1760,10 +1811,10 @@ msgid ""
 msgstr ""
 
 msgid "Available updates"
-msgstr ""
+msgstr "Beschikbare updates"
 
 msgid "What's new?"
-msgstr ""
+msgstr "Wat is er nieuw?"
 
 msgid "Your storage folders are not writable, please apply the good rights!"
 msgstr ""
@@ -1776,55 +1827,63 @@ msgid ""
 "You are using a development version of Jappix. Update it through our "
 "repository by executing: %s."
 msgstr ""
+"U gebruikt een ontwikkelaarsversie van Jappix. Update het via onze "
+"repository door dit uit te voeren: %s."
 
 msgid ""
 "A new Jappix version is available! Check what is new and launch the update!"
 msgstr ""
+"Een nieuwe versie van Jappix is beschikbaar. Check wat er nieuw is en start "
+"de update!"
 
 msgid "Your version is out to date. Update it now to %s by clicking here!"
 msgstr ""
+"Uw huidige versie is verouderd. Update hem nu naar %s door hier te klikken!"
 
 msgid ""
 "Your version seems to be up to date, but you can check updates manually by "
 "clicking here."
 msgstr ""
+"Uw huidige versie lijkt up-to-date, u kan zelf echter altijd naar updates "
+"zoeken door hier te klikken."
 
 msgid "Check for updates"
-msgstr ""
+msgstr "Zoek naar updates"
 
 msgid "Update in progress"
-msgstr ""
+msgstr "Update is in behandeling"
 
 msgid ""
 "Jappix has been updated: you are now running the latest version. Have fun!"
 msgstr ""
+"Jappix is bijgewerkt: u gebruikt nu de meest recente versie. Veel plezier!"
 
 msgid "The update has failed! Please try again later."
-msgstr ""
+msgstr "De update is afgebroken. Probeer het later opnieuw."
 
 msgid "Downloading package..."
-msgstr ""
+msgstr "Pakket aan het downloaden..."
 
 msgid "Removing current Jappix system files..."
-msgstr ""
+msgstr "Huidige Jappix systeembestanden aan het verwijderen..."
 
 msgid "Extracting package..."
-msgstr ""
+msgstr "Pakket uitpakken..."
 
 msgid "Regenerating storage folder tree..."
 msgstr ""
 
 msgid "Jappix is now up to date!"
-msgstr ""
+msgstr "Jappix is nu up-to-date!"
 
 msgid "Aborted: socket error!"
-msgstr ""
+msgstr "Afgebroken: socket error!"
 
 msgid "Aborted: buffer error!"
-msgstr ""
+msgstr "Afgebroken: buffer error!"
 
 msgid "Aborted: everything is not writable!"
-msgstr ""
+msgstr "Afgebroken: niets is bewerkbaar!"
 
 msgid "Aborted: could not extract the package!"
 msgstr ""
@@ -1833,19 +1892,19 @@ msgid "Visits"
 msgstr ""
 
 msgid "Daily"
-msgstr ""
+msgstr "Dagelijks"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Wekelijks"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Maandelijks"
 
 msgid "Yearly"
-msgstr ""
+msgstr "Jaarlijks"
 
 msgid "Size"
-msgstr ""
+msgstr "Grootte"
 
 msgid "Clean everything"
 msgstr ""
@@ -1883,22 +1942,22 @@ msgid ""
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 msgid "Artist"
-msgstr ""
+msgstr "Artiest"
 
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 msgid "File"
-msgstr ""
+msgstr "Bestand"
 
 msgid "Upload"
-msgstr ""
+msgstr "Uploaden"
 
 msgid "The folder is empty."
-msgstr ""
+msgstr "De map is leeg."
 
 msgid "The music could not be received, please retry!"
 msgstr ""
@@ -1908,13 +1967,13 @@ msgid ""
 msgstr ""
 
 msgid "Your music has been added!"
-msgstr ""
+msgstr "Je muziek is toegevoegd!"
 
 msgid "The selected elements have been removed."
-msgstr ""
+msgstr "De geselecteerde elementen zijn verwijderd."
 
 msgid "You must select elements to remove!"
-msgstr ""
+msgstr "Je moet elementen selecteren om ze te kunnen verwijderen!"
 
 msgid ""
 "Add a new user with this tool, or change a password (type an existing "
@@ -1922,10 +1981,10 @@ msgid ""
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Beheren"
 
 msgid "List"
-msgstr ""
+msgstr "Lijst"
 
 msgid ""
 "Remove users with this tool. Note that you cannot remove a user if he is the "
@@ -1933,7 +1992,7 @@ msgid ""
 msgstr ""
 
 msgid "The user has been added!"
-msgstr ""
+msgstr "De gebruiker is toegevoegd!"
 
 msgid "The chosen users have been removed."
 msgstr ""
@@ -1942,22 +2001,22 @@ msgid "You must select one or more users to be removed!"
 msgstr ""
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Gisteren"
 
 msgid "%s days ago"
-msgstr ""
+msgstr "%s dagen geleden"
 
 msgid "User currently active"
-msgstr ""
+msgstr "Gebruiker momenteel actief"
 
 msgid "Last seen: %s"
-msgstr ""
+msgstr "Laatst gezien: %s"
 
 msgid "Inactive since: %s"
-msgstr ""
+msgstr "Inactief sinds: %s"
 
 msgid "Your friend seems not to have received your message(s)!"
-msgstr ""
+msgstr "Je vriend lijkt je bericht(en) niet te hebben ontvangen!"
 
 msgid "Static content server"
 msgstr ""
@@ -1972,55 +2031,55 @@ msgid "This is the user uploads server for %1s, “%2s”."
 msgstr ""
 
 msgid "Suggested friends"
-msgstr ""
+msgstr "Voorgestelde vrienden"
 
 msgid "Check all"
-msgstr ""
+msgstr "Alles aanvinken"
 
 msgid "Uncheck all"
-msgstr ""
+msgstr "Alles uitvinken"
 
 msgid "Choose"
-msgstr ""
+msgstr "Kies"
 
 msgid "List name"
 msgstr ""
 
 msgid "Allow"
-msgstr ""
+msgstr "Toestaan"
 
 msgid "Deny"
-msgstr ""
+msgstr "Weigeren"
 
 msgid "Group"
-msgstr ""
+msgstr "Groep"
 
 msgid "Subscription"
-msgstr ""
+msgstr "Abonnement"
 
 msgid "Both"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "Van"
 
 msgid "Everybody"
-msgstr ""
+msgstr "Iedereen"
 
 msgid "Send messages"
-msgstr ""
+msgstr "Berichten versturen"
 
 msgid "Send queries"
-msgstr ""
+msgstr "Queries versturen"
 
 msgid "See my status"
-msgstr ""
+msgstr "Mijn status bekijken"
 
 msgid "Send his/her status"
-msgstr ""
+msgstr "Zijn/haar status versturen"
 
 msgid "Everything"
-msgstr ""
+msgstr "Alles"
 
 msgid "Item"
 msgstr ""
@@ -2032,13 +2091,13 @@ msgid "Active for this session"
 msgstr ""
 
 msgid "Always active"
-msgstr ""
+msgstr "Altijd actief"
 
 msgid "User directory"
-msgstr ""
+msgstr "Gebruikersmap"
 
 msgid "Search a friend"
-msgstr ""
+msgstr "Zoek een vriend"
 
 msgid ""
 "The feature requested is not implemented by the recipient or server and "
@@ -2046,13 +2105,13 @@ msgid ""
 msgstr ""
 
 msgid "Send him/her a message"
-msgstr ""
+msgstr "Stuur hem/haar een bericht"
 
 msgid "Start a chat with him/her"
-msgstr ""
+msgstr "Start een chat met hem/haar"
 
 msgid "Available shortcuts:"
-msgstr ""
+msgstr "Beschikbare snelkoppelingen:"
 
 msgid "%s removes the chat logs"
 msgstr ""
@@ -2061,7 +2120,7 @@ msgid "%s joins a groupchat"
 msgstr ""
 
 msgid "%s closes the chat"
-msgstr ""
+msgstr "% sluit de chat"
 
 msgid "%s shows the user profile"
 msgstr ""
@@ -2070,7 +2129,7 @@ msgid "%s sends a message to the room"
 msgstr ""
 
 msgid "%s changes your nickname"
-msgstr ""
+msgstr "%s verandert jouw bijnaam"
 
 msgid "%s sends a message to someone in the room"
 msgstr ""
@@ -2088,10 +2147,10 @@ msgid "%s invites someone to join the room"
 msgstr ""
 
 msgid "Public profile"
-msgstr ""
+msgstr "Openbaar profiel"
 
 msgid "Your profile anywhere on the Web."
-msgstr ""
+msgstr "Jouw profiel overal op het Web."
 
 msgid ""
 "%s is a Jappix.com service which makes your XMPP profile public. It is "
@@ -2112,16 +2171,17 @@ msgid ""
 msgstr ""
 
 msgid "Yay, let's create your public profile!"
-msgstr ""
+msgstr "Jottem, laten we jouw openbare profiel creëren!"
 
 msgid "Enable my public profile"
-msgstr ""
+msgstr "Mijn openbare profiel aanzetten"
 
 msgid "Jappix for your phone"
-msgstr ""
+msgstr "Jappix voor je telefoon"
 
 msgid "A single phone app for messages, channels, profiles and much more!"
 msgstr ""
+"Een enkele mobiele app voor berichten, kanalen, profielen en veel meer!"
 
 msgid ""
 "This notification is only informative, maybe the data it links to have been "
@@ -2129,10 +2189,10 @@ msgid ""
 msgstr ""
 
 msgid "You haven't provided any file to download"
-msgstr ""
+msgstr "Je hebt geen bestand om te downloaden verstrekt"
 
 msgid "You cannot download a file if you don't provide a key"
-msgstr ""
+msgstr "Je kan geen bestand downloaden als je geen sleutel verstrekt"
 
 msgid "Woah this file isn't found, please double check"
 msgstr ""
@@ -2147,7 +2207,7 @@ msgid "New event!"
 msgstr ""
 
 msgid "%s is typing..."
-msgstr ""
+msgstr "%s is aan het typen..."
 
 msgid ""
 "The security code you entered is invalid. Please retry with another one."
@@ -2155,30 +2215,32 @@ msgstr ""
 
 msgid "The username you picked is not available. Please try another one."
 msgstr ""
+"De gebruikersnaam die je hebt gekozen is niet verkrijgbaar. Probeer een "
+"andere gebruikersnaam."
 
 msgid "There was an error registering your account. Please retry."
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 msgid "Enter password"
-msgstr ""
+msgstr "Voer wachtwoord in"
 
 msgid "Once again..."
-msgstr ""
+msgstr "Opnieuw..."
 
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 msgid "Security code"
-msgstr ""
+msgstr "Beveiligingscode"
 
 msgid "Advertising space available!"
-msgstr ""
+msgstr "Advertentieruimte beschikbaar!"
 
 msgid "Advertise here"
-msgstr ""
+msgstr "Adverteer hier"
 
 msgid "Analytics (%s)"
 msgstr ""
@@ -2196,7 +2258,7 @@ msgid "Advertising (%s)"
 msgstr ""
 
 msgid "Enable ads"
-msgstr ""
+msgstr "Schakel advertenties in"
 
 msgid "Standard ads key"
 msgstr ""
@@ -2213,44 +2275,56 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
+msgid "Leave"
+msgstr "Verlaten"
+
 msgid "Mute"
-msgstr ""
+msgstr "Dempen"
 
 msgid "Unmute"
 msgstr ""
 
-msgid "Is calling you"
+msgid "Nobody there. Invite some people!"
 msgstr ""
+
+msgid "Invite people..."
+msgstr "Mensen uitnodigen..."
+
+msgid "Enter people names..."
+msgstr ""
+
+msgid "Is calling you"
+msgstr "Belt je"
 
 msgid "Initiating call"
 msgstr ""
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "Verbinden met gesprek..."
 
 msgid "Waiting..."
-msgstr ""
+msgstr "Wachten..."
 
 msgid "Ringing..."
 msgstr ""
 
 msgid "Declined the call"
-msgstr ""
+msgstr "Heeft het gesprek geweigerd"
 
 msgid "Call error"
 msgstr ""
 
 msgid "Ended the call"
-msgstr ""
+msgstr "Heeft het gesprek beëndigd"
 
 msgid "Call ended"
-msgstr ""
+msgstr "Gesprek beëindigd"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "Gesprek geannuleerd"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "Heeft het gesprek geannuleerd"
 
 msgid "Is already in a call"
 msgstr ""
@@ -2258,20 +2332,86 @@ msgstr ""
 msgid "Ending call..."
 msgstr ""
 
-msgid "Accept"
+msgid "Incoming group call"
 msgstr ""
+
+msgid "Preparing group call..."
+msgstr ""
+
+msgid "Connecting to group call..."
+msgstr ""
+
+msgid "Group call error"
+msgstr ""
+
+msgid "Ending group call..."
+msgstr ""
+
+msgid "Group call ended"
+msgstr ""
+
+msgid "Accept"
+msgstr "Accepteren"
 
 msgid "Decline"
-msgstr ""
+msgstr "Weigeren"
 
 msgid "Okay"
-msgstr ""
+msgstr "Okido"
 
 msgid "Retry"
-msgstr ""
+msgstr "Opnieuw proberen"
 
 msgid "Audio Call"
 msgstr ""
 
 msgid "Video Call"
+msgstr ""
+
+msgid "%s participant"
+msgstr ""
+
+msgid "%s participants"
+msgstr ""
+
+msgid "(full)"
+msgstr ""
+
+msgid "%s is able to receive group calls."
+msgstr ""
+
+msgid "%s may not support group calls."
+msgstr ""
+
+msgid "Send a message..."
+msgstr ""
+
+msgid "Edited"
+msgstr "Bewerkt"
+
+msgid "Edited (%s)"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Being edited"
+msgstr "Wordt bewerkt"
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Sending..."
+msgstr ""
+
+msgid "%s requested your attention to the conversation"
+msgstr ""
+
+msgid "You requested %s's attention to the conversation"
+msgstr ""
+
+msgid "Attention to conversation requested."
 msgstr ""
