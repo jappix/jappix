@@ -345,7 +345,6 @@ var Groupchat = (function () {
 
                 // Configure the new room
                 if(affiliation == 'owner' || affiliation == 'admin') {
-                    console.debug('presence', presence.xml());
                     self._initialConfiguration(id, room);
                 }
 
