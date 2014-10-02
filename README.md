@@ -6,7 +6,7 @@ Jappix is a fresh new open social platform which enables you to create your own 
 You can build your own Jappix installation for your own requirements: if you want to use it as a personal social client, you can download it and put it on your webserver. It's easy, fast and free.
 
 
-[![build status](https://ci.frenchtouch.pro/projects/7/status.png?ref=master)](https://ci.frenchtouch.pro/projects/7?ref=master)
+[![build status](https://ci.hakuma.holdings/projects/7/status.png?ref=master)](https://ci.hakuma.holdings/projects/7?ref=master)
 
 
 License
@@ -45,7 +45,7 @@ Mirrors
 In case a master service is down (GitHub for Git access or Jappix.org for project download), here is a list of available mirrors:
 
 * Project website mirror: https://project.jappix.com/
-* Development repository mirror: https://code.frenchtouch.pro/jappix/jappix
+* Development repository mirror: https://code.hakuma.holdings/jappix/jappix
 
 
 MUC Links

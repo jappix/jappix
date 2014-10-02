@@ -54,7 +54,7 @@ msgstr ""
 msgid "Association"
 msgstr ""
 
-msgid "Web agency"
+msgid "Company"
 msgstr ""
 
 msgid "Legal"

@@ -215,8 +215,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     <a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
                 </span>
                 <span class="one">
-                    <a class="name" href="https://frenchtouch.pro/">FrenchTouch</a>
-                    <a class="desc" href="https://frenchtouch.pro/"><?php _e("Web agency"); ?></a>
+                    <a class="name" href="https://hakuma.holdings/">Hakuma Holdings</a>
+                    <a class="desc" href="https://hakuma.holdings/"><?php _e("Company"); ?></a>
                 </span>
 
                 <?php if(hasLegal()) { ?>
