@@ -2091,6 +2091,12 @@ msgstr ""
 msgid "Waiting..."
 msgstr ""
 
+msgid "Proposing call..."
+msgstr ""
+
+msgid "No answer"
+msgstr ""
+
 msgid "Ringing..."
 msgstr ""
 

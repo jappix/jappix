@@ -22,6 +22,10 @@ var Call = (function() {
 
     /* Variables */
     self._start_stamp = 0;
+    self.call_auto_accept = {
+        'from' : null,
+        'sid'  : null
+    };
 
 
     /**
@@ -136,6 +140,123 @@ var Call = (function() {
                         Jingle.receive(xid, stanza);
                     } catch(e) {
                         Console.error('Call.init[single_initiate]', e);
+                    }
+                },
+
+                single_propose: function(stanza, proposed_medias) {
+                    try {
+                        var stanza_from = stanza.getFrom() || null;
+                        var call_id = JSJaCJingleBroadcast.get_call_id(stanza);
+
+                        // Request for Jingle session to be accepted
+                        if(stanza_from && call_id) {
+                            var call_media_main = 'audio';
+
+                            if(JSJAC_JINGLE_MEDIA_VIDEO in proposed_medias) {
+                                call_media_main = 'video';
+                            }
+
+                            Call.notify(
+                                JSJAC_JINGLE_SESSION_SINGLE,
+                                Common.bareXID(stanza_from),
+                                ('broadcast_' + call_media_main),
+                                call_media_main,
+                                null,
+
+                                {
+                                    full_xid: stanza_from,
+                                    call_id: call_id,
+                                    medias: proposed_medias
+                                }
+                            );
+
+                            Audio.play('incoming-call', true);
+
+                            // Save initiator (security: don't save SID until it's accepted)
+                            self.call_auto_accept.from = stanza_from;
+                            self.call_auto_accept.sid  = null;
+                        }
+                    } catch(e) {
+                        Console.error('Call.init[single_propose]', e);
+                    }
+                },
+
+                single_retract: function(stanza) {
+                    try {
+                        var stanza_from = stanza.getFrom() || null;
+                        var call_id = JSJaCJingleBroadcast.get_call_id(stanza);
+                        var call_medias = JSJaCJingleBroadcast.get_call_medias(call_id);
+
+                        // Call retracted (from initiator)
+                        if(self.call_auto_accept.from == stanza_from) {
+                            Audio.stop('incoming-call');
+
+                            Call.notify(
+                                JSJAC_JINGLE_SESSION_SINGLE,
+                                Common.bareXID(stanza_from),
+                                'remote_canceled'
+                            );
+                        }
+                    } catch(e) {
+                        Console.error('Call.init[single_retract]', e);
+                    }
+                },
+
+                single_accept: function(stanza) {
+                    try {
+                        var stanza_from = stanza.getFrom() || null;
+                        var call_id = JSJaCJingleBroadcast.get_call_id(stanza);
+
+                        // Another resource accepted the call
+                        if(self.call_auto_accept.sid == call_id  &&
+                           stanza_from && Common.getFullXID() != stanza_from) {
+                            self._unnotify();
+                            Audio.stop('incoming-call');
+                        }
+                    } catch(e) {
+                        Console.error('Call.init[single_accept]', e);
+                    }
+                },
+
+                single_reject: function(stanza) {
+                    try {
+                        var stanza_from = stanza.getFrom() || null;
+                        var call_id = JSJaCJingleBroadcast.get_call_id(stanza);
+
+                        // Another resource rejected the call
+                        if(self.call_auto_accept.sid == call_id  &&
+                           stanza_from && Common.getFullXID() != stanza_from) {
+                            self._unnotify();
+                            Audio.stop('incoming-call');
+                        }
+                    } catch(e) {
+                        Console.error('Call.init[single_reject]', e);
+                    }
+                },
+
+                single_proceed: function(stanza) {
+                    try {
+                        // Read broadcast parameters
+                        var call_to = stanza.getFrom() || null;
+                        var call_id = JSJaCJingleBroadcast.get_call_id(stanza);
+                        var call_medias = JSJaCJingleBroadcast.get_call_medias(call_id);
+
+                        // Check medias to include
+                        var has_media_video = false;
+
+                        for(var i = 0; i < call_medias.length; i++) {
+                            if(call_medias[i] === JSJAC_JINGLE_MEDIA_VIDEO) {
+                                has_media_video = true;
+                                break;
+                            }
+                        }
+
+                        var call_media_picked = has_media_video ? JSJAC_JINGLE_MEDIA_VIDEO : JSJAC_JINGLE_MEDIA_AUDIO;
+
+                        // Follow up Jingle call
+                        Jingle.follow_up(call_to, call_media_picked, call_id);
+                    } catch(e) {
+                        Console.error('Call.init[single_proceed]', e);
                     }
                 },
 
@@ -465,9 +586,10 @@ var Call = (function() {
      * @param {string} xid
      * @param {string} type
      * @param {string} mode
+     * @param {object} [options_arr]
      * @return {boolean}
      */
-    self.notify = function(call_type, xid, type, mode, sender_xid) {
+    self.notify = function(call_type, xid, type, mode, sender_xid, options_arr) {
 
         try {
             sender_xid = sender_xid || xid;
@@ -533,11 +655,11 @@ var Call = (function() {
                     call_tools_all_sel.find('a.reply-button[data-action="' + button + '"]').click(function() {
                         try {
                             // Remove notification
-                            self._unnotify(xid);
+                            self._unnotify();
 
                             // Execute callback, if any
                             if(typeof attrs.cb === 'function') {
-                                attrs.cb(xid, mode);
+                                attrs.cb(xid, mode, options_arr);
                             }
 
                             Console.info('Closed call notification drawer');

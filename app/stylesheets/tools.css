@@ -571,13 +571,15 @@ html[dir="rtl"] .call-content .call-notify .avatar-pane .avatar-container .avata
     bottom: 8px;
 }
 
-.call-content .call-notify.notify-call_audio .avatar-pane .icon {
+.call-content .call-notify.notify-call_audio .avatar-pane .icon,
+.call-content .call-notify.notify-broadcast_audio .avatar-pane .icon {
     background-position: 0 -120px;
     width: 33px;
     height: 33px;
 }
 
-.call-content .call-notify.notify-call_video .avatar-pane .icon {
+.call-content .call-notify.notify-call_video .avatar-pane .icon,
+.call-content .call-notify.notify-broadcast_video .avatar-pane .icon {
     background-position: 0 -154px;
     width: 33px;
     height: 22px;

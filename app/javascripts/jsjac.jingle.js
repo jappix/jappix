@@ -2,7 +2,7 @@
  * jsjac-jingle [uncompressed]
  * @fileoverview JSJaC Jingle library, implementation of XEP-0166.
  *
- * @version 0.7.6
+ * @version 0.8.0
  * @date 2014-10-13
  * @author Valérian Saliou https://valeriansaliou.name/
  * @license MPL 2.0
@@ -4606,14 +4606,21 @@ var JSJaCJingleStorage = new (ring.create(
        * @default
        * @private
        */
-      this._single_prepare = undefined;
+      this._single_propose = undefined;
 
       /**
        * @type {Function}
        * @default
        * @private
        */
-      this._single_proceed = undefined;
+      this._single_retract = undefined;
+
+      /**
+       * @type {Function}
+       * @default
+       * @private
+       */
+      this._single_accept = undefined;
 
       /**
        * @type {Function}
@@ -4621,6 +4628,13 @@ var JSJaCJingleStorage = new (ring.create(
        * @private
        */
       this._single_reject = undefined;
+
+      /**
+       * @type {Function}
+       * @default
+       * @private
+       */
+      this._single_proceed = undefined;
 
       /**
        * @type {Function}
@@ -4737,25 +4751,37 @@ var JSJaCJingleStorage = new (ring.create(
     },
 
     /**
-     * Gets the Single prepare function
+     * Gets the Single propose function
      * @public
-     * @returns {Function} Single prepare
+     * @returns {Function} Single propose
      */
-    get_single_prepare: function() {
-      if(typeof this._single_prepare == 'function')
-        return this._single_prepare;
+    get_single_propose: function() {
+      if(typeof this._single_propose == 'function')
+        return this._single_propose;
 
       return function(stanza) {};
     },
 
     /**
-     * Gets the Single proceed function
+     * Gets the Single retract function
      * @public
-     * @returns {Function} Single proceed
+     * @returns {Function} Single retract
      */
-    get_single_proceed: function() {
-      if(typeof this._single_proceed == 'function')
-        return this._single_proceed;
+    get_single_retract: function() {
+      if(typeof this._single_retract == 'function')
+        return this._single_retract;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Single accept function
+     * @public
+     * @returns {Function} Single accept
+     */
+    get_single_accept: function() {
+      if(typeof this._single_accept == 'function')
+        return this._single_accept;
 
       return function(stanza) {};
     },
@@ -4768,6 +4794,18 @@ var JSJaCJingleStorage = new (ring.create(
     get_single_reject: function() {
       if(typeof this._single_reject == 'function')
         return this._single_reject;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Single proceed function
+     * @public
+     * @returns {Function} Single proceed
+     */
+    get_single_proceed: function() {
+      if(typeof this._single_proceed == 'function')
+        return this._single_proceed;
 
       return function(stanza) {};
     },
@@ -4886,21 +4924,30 @@ var JSJaCJingleStorage = new (ring.create(
     },
 
     /**
-     * Sets the Single prepare function
+     * Sets the Single propose function
      * @public
-     * @param {Function} Single prepare
+     * @param {Function} Single propose
      */
-    set_single_prepare: function(single_prepare) {
-      this._single_prepare = single_prepare;
+    set_single_propose: function(single_propose) {
+      this._single_propose = single_propose;
     },
 
     /**
-     * Sets the Single proceed function
+     * Sets the Single retract function
      * @public
-     * @param {Function} Single proceed
+     * @param {Function} Single retract
      */
-    set_single_proceed: function(single_proceed) {
-      this._single_proceed = single_proceed;
+    set_single_retract: function(single_retract) {
+      this._single_retract = single_retract;
+    },
+
+    /**
+     * Sets the Single accept function
+     * @public
+     * @param {Function} Single accept
+     */
+    set_single_accept: function(single_accept) {
+      this._single_accept = single_accept;
     },
 
     /**
@@ -4910,6 +4957,15 @@ var JSJaCJingleStorage = new (ring.create(
      */
     set_single_reject: function(single_reject) {
       this._single_reject = single_reject;
+    },
+
+    /**
+     * Sets the Single proceed function
+     * @public
+     * @param {Function} Single proceed
+     */
+    set_single_proceed: function(single_proceed) {
+      this._single_proceed = single_proceed;
     },
 
     /**
@@ -17594,11 +17650,14 @@ var JSJaCJingleBroadcast = new (ring.create(
      * @public
      * @param {String} to
      * @param {Object} medias
+     * @returns {String} Call ID
      */
     propose: function(to, medias, cb_timeout) {
+      var id, self;
+
       try {
-        var self = this;
-        var id = this._send_remote_propose(to, medias);
+        self = this;
+        id = this._send_remote_propose(to, medias);
 
         if(typeof cb_timeout == 'function') {
           setTimeout(function() {
@@ -17606,7 +17665,7 @@ var JSJaCJingleBroadcast = new (ring.create(
             if(self._exists_id(id) === false) {
               JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > Propose successful.', 4);
             } else {
-              cb_timeout();
+              cb_timeout(id);
 
               JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > Propose timeout.', 2);
             }
@@ -17614,6 +17673,8 @@ var JSJaCJingleBroadcast = new (ring.create(
         }
       } catch(e) {
         JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > ' + e, 1);
+      } finally {
+        return id;
       }
     },
 
@@ -17661,7 +17722,6 @@ var JSJaCJingleBroadcast = new (ring.create(
         this._register_id(id, medias);
 
         this._send_local_reject(id);
-        this._send_remote_retract(to, id);
       } catch(e) {
         JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] reject > ' + e, 1);
       }
@@ -17687,6 +17747,13 @@ var JSJaCJingleBroadcast = new (ring.create(
         );
 
         if(stanza_child) {
+          var _this = this;
+
+          var id_unregister_fn = function(stanza) {
+            id = _this.get_call_id(stanza);
+            if(id)  _this._unregister_id(id);
+          };
+
           switch(stanza_child.tagName) {
             case JSJAC_JINGLE_MESSAGE_ACTION_PROPOSE:
               proposed_medias = {};
@@ -17707,23 +17774,31 @@ var JSJaCJingleBroadcast = new (ring.create(
                 }
               }
 
-              JSJaCJingleStorage.get_single_prepare()(stanza, proposed_medias);
+              JSJaCJingleStorage.get_single_propose()(stanza, proposed_medias);
 
               is_handled = true; break;
 
-            case JSJAC_JINGLE_MESSAGE_ACTION_PROCEED:
-              JSJaCJingleStorage.get_single_proceed()(stanza);
+            case JSJAC_JINGLE_MESSAGE_ACTION_RETRACT:
+              JSJaCJingleStorage.get_single_retract()(stanza);
+              id_unregister_fn(stanza);
 
-              id = this.get_call_id(stanza);
-              if(id)  this._unregister_id(id);
+              is_handled = true; break;
+
+            case JSJAC_JINGLE_MESSAGE_ACTION_ACCEPT:
+              JSJaCJingleStorage.get_single_accept()(stanza);
+              id_unregister_fn(stanza);
 
               is_handled = true; break;
 
             case JSJAC_JINGLE_MESSAGE_ACTION_REJECT:
               JSJaCJingleStorage.get_single_reject()(stanza);
+              id_unregister_fn(stanza);
 
-              id = this.get_call_id(stanza);
-              if(id)  this._unregister_id(id);
+              is_handled = true; break;
+
+            case JSJAC_JINGLE_MESSAGE_ACTION_PROCEED:
+              JSJaCJingleStorage.get_single_proceed()(stanza);
+              id_unregister_fn(stanza);
 
               is_handled = true; break;
           }
@@ -18356,7 +18431,11 @@ var JSJaCJingle = new (ring.create(
      * @param     {Object}           [args]
      * @property  {JSJaCConnection}  [args.connection]       - The connection to be attached to.
      * @property  {Function}         [args.single_initiate]  - The Jingle session initiate request custom handler.
-     * @property  {Function}         [args.single_prepare]   - The Jingle session prepare request custom handler.
+     * @property  {Function}         [args.single_propose]   - The Jingle session propose request custom handler.
+     * @property  {Function}         [args.single_retract]   - The Jingle session retract request custom handler.
+     * @property  {Function}         [args.single_accept]    - The Jingle session accept request custom handler.
+     * @property  {Function}         [args.single_reject]    - The Jingle session reject request custom handler.
+     * @property  {Function}         [args.single_proceed]   - The Jingle session proceed request custom handler.
      * @property  {Function}         [args.muji_invite]      - The Muji session invite message custom handler.
      * @property  {JSJaCDebugger}    [args.debug]            - A reference to a debugger implementing the JSJaCDebugger interface.
      * @property  {Boolean}          [args.extdisco]         - Whether or not to discover external services as per XEP-0215.
@@ -18371,12 +18450,16 @@ var JSJaCJingle = new (ring.create(
           JSJaCJingleStorage.set_connection(args.connection);
         if(args && args.single_initiate)
           JSJaCJingleStorage.set_single_initiate(args.single_initiate);
-        if(args && args.single_prepare)
-          JSJaCJingleStorage.set_single_prepare(args.single_prepare);
-        if(args && args.single_proceed)
-          JSJaCJingleStorage.set_single_proceed(args.single_proceed);
+        if(args && args.single_propose)
+          JSJaCJingleStorage.set_single_propose(args.single_propose);
+        if(args && args.single_retract)
+          JSJaCJingleStorage.set_single_retract(args.single_retract);
+        if(args && args.single_accept)
+          JSJaCJingleStorage.set_single_accept(args.single_accept);
         if(args && args.single_reject)
           JSJaCJingleStorage.set_single_reject(args.single_reject);
+        if(args && args.single_proceed)
+          JSJaCJingleStorage.set_single_proceed(args.single_proceed);
         if(args && args.muji_invite)
           JSJaCJingleStorage.set_muji_invite(args.muji_invite);
         if(args && args.debug)

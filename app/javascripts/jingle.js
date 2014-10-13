@@ -63,9 +63,10 @@ var Jingle = (function() {
      * @param hash
      * @param local_view
      * @param remote_view
+     * @param [sid]
      * @return {object}
      */
-    self._args = function(connection, xid, hash, media, local_view, remote_view) {
+    self._args = function(connection, xid, hash, media, local_view, remote_view, sid) {
 
         args = {};
 
@@ -107,19 +108,30 @@ var Jingle = (function() {
                     } else {
                         // Incoming call?
                         if(jingle.is_responder()) {
-                            Call.notify(
-                                JSJAC_JINGLE_SESSION_SINGLE,
-                                Common.bareXID(jingle.get_to()),
-                                ('call_' + jingle.get_media()),
-                                jingle.get_media()
-                            );
+                            // Auto-accept (we previously accepted the associated broadcast request)
+                            if(Call.call_auto_accept.from == jingle.get_to() && Call.call_auto_accept.sid == jingle.get_sid()) {
+                                Call.call_auto_accept.from = null;
+                                Call.call_auto_accept.sid  = null;
 
-                            // Play ringtone
-                            // Hard-fix: avoids the JSJaC packets group timer (that will delay success reply)
-                            setTimeout(function() {
-                                Audio.play('incoming-call', true);
-                                jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
-                            }, 250);
+                                // Delay acceptance (status change is delayed)
+                                setTimeout(function() {
+                                    jingle.accept();
+                                }, 250);
+                            } else {
+                                Call.notify(
+                                    JSJAC_JINGLE_SESSION_SINGLE,
+                                    Common.bareXID(jingle.get_to()),
+                                    ('call_' + jingle.get_media()),
+                                    jingle.get_media()
+                                );
+
+                                // Play ringtone
+                                // Hard-fix: avoids the JSJaC packets group timer (that will delay success reply)
+                                setTimeout(function() {
+                                    Audio.play('incoming-call', true);
+                                    jingle.info(JSJAC_JINGLE_SESSION_INFO_RINGING);
+                                }, 250);
+                            }
                         } else {
                             Call.notify(
                                 JSJAC_JINGLE_SESSION_SINGLE,
@@ -321,6 +333,10 @@ var Jingle = (function() {
                     Console.log('Jingle._args', 'session_terminate_request');
                 }
             };
+
+            if(sid && typeof sid == 'string') {
+                args.sid = sid;
+            }
         } catch(e) {
             Console.error('Jingle._args', e);
         } finally {
@@ -337,9 +353,10 @@ var Jingle = (function() {
      * @param mode
      * @param is_callee
      * @param stanza
+     * @param [sid]
      * @return {boolean}
      */
-    self._new = function(xid, mode, is_callee, stanza) {
+    self._new = function(xid, mode, is_callee, stanza, sid) {
 
         var status = false;
 
@@ -383,7 +400,8 @@ var Jingle = (function() {
                 bare_hash,
                 media,
                 jingle_sel.find('.local_video video')[0],
-                jingle_sel.find('.remote_video video')[0]
+                jingle_sel.find('.remote_video video')[0],
+                sid
             );
 
             self._session = new JSJaCJingle.session(JSJAC_JINGLE_SESSION_SINGLE, args);
@@ -466,11 +484,123 @@ var Jingle = (function() {
     self.start = function(xid, mode) {
 
         try {
-            if(!Call.is_ongoing()) {
-                self._new(xid, mode);
+            // Remote user supports XEP-0353
+            if(Caps.getFeatureResource(xid, NS_JINGLE_MESSAGE)) {
+                Jingle.propose(xid, mode);
+            } else {
+                Jingle.initialize(xid, mode);
             }
         } catch(e) {
             Console.error('Jingle.start', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Initializes a Jingle call
+     * @public
+     * @param {string} xid
+     * @param {string} mode
+     * @return {boolean}
+     */
+    self.initialize = function(xid, mode) {
+
+        try {
+            if(!Call.is_ongoing()) {
+                Console.info('Jingle.initialize', 'Initiating call with: ' + xid);
+
+                self._new(xid, mode);
+            }
+        } catch(e) {
+            Console.error('Jingle.initialize', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Proposes a Jingle call
+     * @public
+     * @param {string} xid
+     * @param {string} mode
+     * @return {boolean}
+     */
+    self.propose = function(xid, mode) {
+
+        try {
+            if(!Call.is_ongoing()) {
+                Console.info('Jingle.propose', 'Proposing call to: ' + xid);
+
+                var medias = [JSJAC_JINGLE_MEDIA_AUDIO];
+
+                if(mode == 'video') {
+                    medias.push(JSJAC_JINGLE_MEDIA_VIDEO);
+                }
+
+                var call_id = JSJaCJingleBroadcast.propose(
+                    xid, medias,
+
+                    function(id) {
+                        // Timeout
+                        Call.notify(
+                            JSJAC_JINGLE_SESSION_SINGLE,
+                            xid,
+                            'broadcast_timeout',
+                            mode
+                        );
+
+                        // Retract
+                        JSJaCJingleBroadcast.retract(xid, id);
+                    }
+                );
+
+                // Send directed presence? (for CAPS, XEP-compliant)
+                if(!Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]')) {
+                    Presence.send(xid);
+                }
+
+                Call.notify(
+                    JSJAC_JINGLE_SESSION_SINGLE,
+                    xid,
+                    'broadcast_proposing',
+                    mode,
+                    null,
+
+                    {
+                        call_id: call_id
+                    }
+                );
+            }
+        } catch(e) {
+            Console.error('Jingle.propose', e);
+        } finally {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Follows up a Jingle call (from broadcast)
+     * @public
+     * @param {string} xid
+     * @param {string} mode
+     * @param {string} sid
+     * @return {boolean}
+     */
+    self.follow_up = function(xid, mode, sid) {
+
+        try {
+            if(!Call.is_ongoing()) {
+                self._new(xid, mode, false, null, sid);
+            }
+        } catch(e) {
+            Console.error('Jingle.follow_up', e);
         } finally {
             return false;
         }
@@ -662,6 +792,55 @@ var Jingle = (function() {
     self._notify_map = function() {
 
         try {
+            var broadcast_media_fn = function(xid, mode, attrs) {
+                JSJaCJingleBroadcast.accept(
+                    attrs.full_xid, attrs.call_id, attrs.medias
+                );
+
+                // Send directed presence? (for CAPS, XEP-compliant)
+                if(!Common.exists('#roster .buddy[data-xid="' + escape(xid) + '"]')) {
+                    Presence.send(attrs.full_xid);
+                }
+
+                // Marker to auto-accept call later
+                Call.call_auto_accept.from = attrs.full_xid;
+                Call.call_auto_accept.sid  = attrs.call_id;
+
+                var medias_arr = [];
+
+                for(var cur_media in attrs.medias) {
+                    medias_arr.push(cur_media);
+                }
+
+                Audio.stop('incoming-call');
+
+                Call.notify(
+                    JSJAC_JINGLE_SESSION_SINGLE,
+                    xid,
+                    'broadcast_wait',
+                    medias_arr
+                );
+
+                // Schedule timeout (in case we don't receive the Jingle initialization stanza)
+                setTimeout(function() {
+                    if(self._session !== null                                &&
+                       Call.call_auto_accept.sid == self._session.get_sid()  &&
+                       self._session.get_status() !== JSJAC_JINGLE_STATUS_INACTIVE) {
+                        // Call received
+                        Call.call_auto_accept.from = null;
+                        Call.call_auto_accept.sid  = null;
+                    } else {
+                        // Reset UI (timeout)
+                        Call.notify(
+                            JSJAC_JINGLE_SESSION_SINGLE,
+                            xid,
+                            'broadcast_error',
+                            medias_arr
+                        );
+                    }
+                }, (JSJAC_JINGLE_BROADCAST_TIMEOUT * 1000));
+            };
+
             return {
                 'call_audio': {
                     'text': Common._e("Is calling you"),
@@ -706,6 +885,104 @@ var Jingle = (function() {
                             'cb': function(xid, mode) {
                                 self._session.terminate(JSJAC_JINGLE_REASON_DECLINE);
                                 Audio.stop('incoming-call');
+                            }
+                        }
+                    }
+                },
+
+                'broadcast_audio': {
+                    'text': Common._e("Is calling you"),
+
+                    'buttons': {
+                        'accept': {
+                            'text': Common._e("Accept"),
+                            'color': 'green',
+                            'cb': broadcast_media_fn
+                        },
+
+                        'decline': {
+                            'text': Common._e("Decline"),
+                            'color': 'red',
+                            'cb': function(xid, mode, attrs) {
+                                JSJaCJingleBroadcast.reject(
+                                    attrs.full_xid, attrs.call_id, attrs.medias
+                                );
+
+                                Audio.stop('incoming-call');
+                            }
+                        }
+                    }
+                },
+
+                'broadcast_video': {
+                    'text': Common._e("Is calling you"),
+
+                    'buttons': {
+                        'accept': {
+                            'text': Common._e("Accept"),
+                            'color': 'green',
+                            'cb': broadcast_media_fn
+                        },
+
+                        'decline': {
+                            'text': Common._e("Decline"),
+                            'color': 'red',
+                            'cb': function(xid, mode, attrs) {
+                                JSJaCJingleBroadcast.reject(
+                                    attrs.full_xid, attrs.call_id, attrs.medias
+                                );
+
+                                Audio.stop('incoming-call');
+                            }
+                        }
+                    }
+                },
+
+                'broadcast_wait': {
+                    'text': Common._e("Waiting...")
+                },
+
+                'broadcast_proposing': {
+                    'text': Common._e("Proposing call..."),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid, mode, attrs) {
+                                // Retract from call
+                                JSJaCJingleBroadcast.retract(
+                                    xid,
+                                    attrs.call_id
+                                );
+                            }
+                        }
+                    }
+                },
+
+                'broadcast_timeout': {
+                    'text': Common._e("No answer"),
+
+                    'buttons': {
+                        'okay': {
+                            'text': Common._e("Okay"),
+                            'color': 'blue',
+                            'cb': function(xid, mode) {
+                                self._reset();
+                            }
+                        }
+                    }
+                },
+
+                'broadcast_error': {
+                    'text': Common._e("Call error"),
+
+                    'buttons': {
+                        'cancel': {
+                            'text': Common._e("Cancel"),
+                            'color': 'red',
+                            'cb': function(xid, mode) {
+                                self._reset();
                             }
                         }
                     }

@@ -555,7 +555,7 @@ var Common = (function () {
 
 
     /**
-     * Gets the full XID of the user
+     * Gets the bare XID of the user
      * @public
      * @return {string}
      */
@@ -570,6 +570,29 @@ var Common = (function () {
             return '';
         } catch(e) {
             Console.error('Common.getXID', e);
+        }
+
+    };
+
+
+    /**
+     * Gets the full XID of the user
+     * @public
+     * @return {string}
+     */
+    self.getFullXID = function() {
+
+        try {
+            var xid = self.getXID();
+
+            // Return the full XID of the user
+            if(xid) {
+                return xid + '/' + con.resource;
+            }
+
+            return '';
+        } catch(e) {
+            Console.error('Common.getFullXID', e);
         }
 
     };
