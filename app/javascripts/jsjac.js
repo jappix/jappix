@@ -13,7 +13,7 @@ Authors: Stefan Strigler, Valérian Saliou, Zash, Maranda
 /**
  * @fileoverview Magic dependency loading. Taken from script.aculo.us
  * and modified to break it.
- * @author Stefan Strigler steve@zeank.in-berlin.de 
+ * @author Stefan Strigler steve@zeank.in-berlin.de
  * @version 1.3
  */
 
@@ -68,18 +68,18 @@ XmlHttp.create = function () {
       // Able to use CORS?
       if (window.XMLHttpRequest) {
         var req = new XMLHttpRequest();
-        
+
         if (req.withCredentials !== undefined)
           return req;
       }
-      
+
       // Fallback on JSONP
       return new jXHR();
     }
     // Might be local-domain?
     if (window.XMLHttpRequest) {
       var req = new XMLHttpRequest();
-      
+
       // some versions of Moz do not support the readyState property
       // and the onreadystate event so we patch it!
       if (req.readyState == null) {
@@ -90,7 +90,7 @@ XmlHttp.create = function () {
          req.onreadystatechange();
            }, false);
       }
-      
+
       return req;
     }
     if (window.ActiveXObject) {
@@ -109,7 +109,7 @@ XmlHttp.create = function () {
 XmlHttp.getPrefix = function() {
   if (XmlHttp.prefix) // I know what you did last summer
     return XmlHttp.prefix;
- 
+
   var prefixes = ["MSXML2", "Microsoft", "MSXML", "MSXML3"];
   var o;
   for (var i = 0; i < prefixes.length; i++) {
@@ -120,7 +120,7 @@ XmlHttp.getPrefix = function() {
     }
     catch (ex) {};
   }
- 
+
   throw new Error("Could not find an installed XML parser");
 };
 
@@ -153,7 +153,7 @@ XmlDocument.create = function (name,ns) {
     } else if (window.ActiveXObject) {
       doc = new ActiveXObject(XmlDocument.getPrefix() + ".DomDocument");
     }
-   
+
     if (!doc.documentElement || doc.documentElement.tagName != name ||
         (doc.documentElement.namespaceURI &&
          doc.documentElement.namespaceURI != ns)) {
@@ -165,7 +165,7 @@ XmlDocument.create = function (name,ns) {
               doc.appendChild(doc.createElement(name));
           } catch (dex) {
             doc = document.implementation.createDocument(ns,name,null);
-           
+
             if (doc.documentElement == null)
               doc.appendChild(doc.createElement(name));
 
@@ -176,7 +176,7 @@ XmlDocument.create = function (name,ns) {
             }
           }
         }
-   
+
     return doc;
   }
   catch (ex) { }
@@ -201,7 +201,7 @@ XmlDocument.getPrefix = function() {
     }
     catch (ex) {};
   }
- 
+
   throw new Error("Could not find an installed XML parser");
 };
 
@@ -215,14 +215,14 @@ if (typeof(Document) != 'undefined' && window.DOMParser) {
    * @private
    */
   Document.prototype.loadXML = function (s) {
-  
+
     // parse the string to a new doc
     var doc2 = (new DOMParser()).parseFromString(s, "text/xml");
-  
+
     // remove all initial children
     while (this.hasChildNodes())
       this.removeChild(this.lastChild);
-    
+
     // insert and import nodes
     for (var i = 0; i < doc2.childNodes.length; i++) {
       this.appendChild(this.importNode(doc2.childNodes[i], true));
@@ -331,10 +331,10 @@ Date.jab2date = function(ts) {
   // Timestamp
   if(!isNaN(ts))
     return new Date(ts * 1000);
-  
+
   // Get the UTC date
   var date = new Date(Date.UTC(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2)));
-  
+
   if (ts.substr(ts.length-6,1) != 'Z') { // there's an offset
     var date_offset = date.getTimezoneOffset() * 60 * 1000;
     var offset = new Date();
@@ -367,7 +367,7 @@ Date.hrTime = function(ts) {
  if (!Date.now) {
      Date.now = function() { return new Date().getTime(); }
  }
- 
+
  /**
  * somewhat opposit to {@link #hrTime}
  * expects a javascript Date object as parameter and returns a jabber
@@ -1085,7 +1085,7 @@ function utf8t2d(t)
       }
   return d;
 }
-  
+
 // returns plaintext from an array of bytesrepresenting dezimal numbers, which
 // represent an UTF-8 encoded text; browser which does not understand unicode
 // like NN401 will show "?"-signs instead
@@ -1203,7 +1203,7 @@ function cnonce(size) {
 JSJAC_HAVEKEYS = true;          // whether to use keys
 JSJAC_NKEYS    = 16;            // number of keys to generate
 
-JSJAC_INACTIVITY = 300;         // qnd hack to make suspend/resume 
+JSJAC_INACTIVITY = 300;         // qnd hack to make suspend/resume
                                     // work more smoothly with polling
 JSJAC_ERR_COUNT = 10;           // number of retries in case of connection
                                     // errors
@@ -1227,7 +1227,7 @@ JSJAC_REGID_TIMEOUT = 20000;    // time in msec until registered
 JSJACHBC_MAX_HOLD = 1;          // default for number of connctions
                                 // held by connection manager
 
-JSJACHBC_MAX_WAIT = 300;        // default 'wait' param - how long an
+JSJACHBC_MAX_WAIT = 20;         // default 'wait' param - how long an
                                 // idle connection should be held by
                                 // connection manager
 
@@ -1290,7 +1290,7 @@ JSJaCJSON.toString = function (obj) {
               a[a.length] = v;
               b = true;
             }
-    } catch(e) { 
+    } catch(e) {
     }
         }
       }
@@ -1331,7 +1331,7 @@ JSJaCJSON.toString = function (obj) {
             }
           }
         }
-         
+
         a[a.length] = '}';
         return a.join('');
       }
@@ -1359,7 +1359,7 @@ switch (typeof(obj)) {
    return s.object(obj);
  case 'array':
    return s.array(obj);
-   
+
  }
 };
 
@@ -2499,7 +2499,7 @@ function JSJaCError(code,type,condition) {
  * @constructor
  * @param {Function} func The hash function to be used for creating the keys
  * @param {Debugger} oDbg Reference to debugger implementation [optional]
- */                  
+ */
 function JSJaCKeys(func,oDbg) {
   var seed = Math.random();
 
@@ -2748,30 +2748,30 @@ JSJaCConnection.prototype.connected = function() { return this._connected; };
  */
 JSJaCConnection.prototype.disconnect = function() {
   this._setStatus('disconnecting');
- 
+
   if (!this.connected())
     return;
   this._connected = false;
- 
+
   clearInterval(this._interval);
   clearInterval(this._inQto);
- 
+
   if (this._timeout)
     clearTimeout(this._timeout); // remove timer
- 
+
   var slot = this._getFreeSlot();
   // Intentionally synchronous
   this._req[slot] = this._setupRequest(false);
- 
+
   request = this._getRequestString(false, true);
- 
+
   this.oDbg.log("Disconnecting: " + request,4);
   this._req[slot].r.send(request);
- 
+
   try {
     DataStore.removeDB(MINI_HASH, 'jsjac', 'state');
   } catch (e) {}
- 
+
   this.oDbg.log("Disconnected: "+this._req[slot].r.responseText,2);
   this._handleEvent('ondisconnect');
 };
@@ -3116,7 +3116,7 @@ JSJaCConnection.prototype.status = function() { return this._status; };
  */
 JSJaCConnection.prototype.suspend = function(has_pause) {
   var data = this.suspendToData(has_pause);
-  
+
   try {
     var c = DataStore.setDB(MINI_HASH, 'jsjac', 'state', JSJaCJSON.toString(data));
     return c;
@@ -3133,7 +3133,7 @@ JSJaCConnection.prototype.suspend = function(has_pause) {
  * @type Object
  */
 JSJaCConnection.prototype.suspendToData = function(has_pause) {
-  
+
   // remove timers
   if(has_pause) {
     clearTimeout(this._timeout);
@@ -3142,7 +3142,7 @@ JSJaCConnection.prototype.suspendToData = function(has_pause) {
 
     this._suspend();
   }
-  
+
   var u = ('_connected,_keys,_ID,_inQ,_pQueue,_regIDs,_errcnt,_inactivity,domain,username,resource,jid,fulljid,_sid,_httpbase,_timerval,_is_polling').split(',');
   u = u.concat(this._getSuspendVars());
   var s = new Object();
@@ -3159,12 +3159,12 @@ JSJaCConnection.prototype.suspendToData = function(has_pause) {
 
     s[u[i]] = o;
   }
-  
+
   if(has_pause) {
     this._connected = false;
     this._setStatus('suspending');
   }
-  
+
   return s;
 };
 
@@ -3680,7 +3680,7 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
         this._handleEvent('ondisconnect');
         return false;
     }
-    
+
     this.mechs = new Object();
     var lMec1 = doc.getElementsByTagName("mechanisms");
     this.has_sasl = false;
@@ -3699,7 +3699,7 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
         this.oDbg.log("No support for SASL detected",2);
         return false;
     }
-    
+
     // Get the server CAPS (if available)
     this.server_caps=null;
     var sCaps = doc.getElementsByTagName("c");
@@ -3707,7 +3707,7 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
       var c_sCaps=sCaps.item(i);
       var x_sCaps=c_sCaps.getAttribute("xmlns");
       var v_sCaps=c_sCaps.getAttribute("ver");
-      
+
       if ((x_sCaps == NS_CAPS) && v_sCaps) {
         this.server_caps=v_sCaps;
         break;
@@ -3719,7 +3719,7 @@ JSJaCConnection.prototype._parseStreamFeatures = function(doc) {
     if (doc.getElementsByTagName("session")) {
 	this.legacy_sessions=true;
     }
-    
+
     return true;
 };
 
@@ -4162,13 +4162,13 @@ JSJaCHttpBindingConnection.prototype._getStreamID = function(req) {
     return;
   }
   var body = req.responseXML.documentElement;
-  
+
   // any session error?
   if(body.getAttribute('type') == 'terminate') {
     this._handleEvent('onerror',JSJaCError('503','cancel','service-unavailable'));
     return;
   }
-  
+
   // extract stream id used for non-SASL authentication
   if (body.getAttribute('authid')) {
     this.streamid = body.getAttribute('authid');
@@ -4444,7 +4444,7 @@ JSJaCHttpBindingConnection.prototype._reInitStreamWait = function(req, cb) {
         var featuresNL = doc.getElementsByTagName('stream:features');
         for (var i=0, l=featuresNL.length; i<l; i++) {
             if (featuresNL.item(i).namespaceURI == 'http://etherx.jabber.org/streams' ||
-                featuresNL.item(i).getAttribute('xmlns') == 
+                featuresNL.item(i).getAttribute('xmlns') ==
                 'http://etherx.jabber.org/streams') {
                 var features = featuresNL.item(i);
                 break;
@@ -4454,7 +4454,7 @@ JSJaCHttpBindingConnection.prototype._reInitStreamWait = function(req, cb) {
             var bind = features.getElementsByTagName('bind');
             for (var i=0, l=bind.length; i<l; i++) {
                 if (bind.item(i).namespaceURI == 'urn:ietf:params:xml:ns:xmpp-bind' ||
-                    bind.item(i).getAttribute('xmlns') == 
+                    bind.item(i).getAttribute('xmlns') ==
                     'urn:ietf:params:xml:ns:xmpp-bind') {
                     bind = bind.item(i);
                     break;
@@ -4464,7 +4464,7 @@ JSJaCHttpBindingConnection.prototype._reInitStreamWait = function(req, cb) {
     }
     this.oDbg.log(features);
     this.oDbg.log(bind);
-    
+
     if (features) {
         if (bind) {
             cb();
