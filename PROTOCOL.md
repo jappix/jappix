@@ -67,6 +67,7 @@ Here are listed the XMPP Protocol Extensions that Jappix supports, as well as th
  * XEP-0334: Message Processing Hints *v0.1*
  * XEP-0338: Jingle Grouping Framework *v0.1*
  * XEP-0339: Source-Specific Media Attributes in Jingle *v0.1*
+ * XEP-0353: Jingle Message Initiation *v0.1*
 
 
 # XMPP Extensions (Updated)
