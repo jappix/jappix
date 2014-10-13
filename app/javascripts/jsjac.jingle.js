@@ -2,8 +2,8 @@
  * jsjac-jingle [uncompressed]
  * @fileoverview JSJaC Jingle library, implementation of XEP-0166.
  *
- * @version 0.7.0
- * @date 2014-06-24
+ * @version 0.7.6
+ * @date 2014-10-13
  * @author Valérian Saliou https://valeriansaliou.name/
  * @license MPL 2.0
  *
@@ -12,7 +12,7 @@
  * @depends https://github.com/sstrigler/JSJaC
  */
 
-//     Underscore.js 1.6.0
+//     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -28,9 +28,6 @@
   // Save the previous value of the `_` variable.
   var previousUnderscore = root._;
 
-  // Establish the object that gets returned to break out of a loop iteration.
-  var breaker = {};
-
   // Save bytes in the minified (but not gzipped) version:
   var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
 
@@ -45,15 +42,6 @@
   // All **ECMAScript 5** native function implementations that we hope to use
   // are declared here.
   var
-    nativeForEach      = ArrayProto.forEach,
-    nativeMap          = ArrayProto.map,
-    nativeReduce       = ArrayProto.reduce,
-    nativeReduceRight  = ArrayProto.reduceRight,
-    nativeFilter       = ArrayProto.filter,
-    nativeEvery        = ArrayProto.every,
-    nativeSome         = ArrayProto.some,
-    nativeIndexOf      = ArrayProto.indexOf,
-    nativeLastIndexOf  = ArrayProto.lastIndexOf,
     nativeIsArray      = Array.isArray,
     nativeKeys         = Object.keys,
     nativeBind         = FuncProto.bind;
@@ -67,8 +55,7 @@
 
   // Export the Underscore object for **Node.js**, with
   // backwards-compatibility for the old `require()` API. If we're in
-  // the browser, add `_` as a global object via a string identifier,
-  // for Closure Compiler "advanced" mode.
+  // the browser, add `_` as a global object.
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
       exports = module.exports = _;
@@ -79,98 +66,125 @@
   }
 
   // Current version.
-  _.VERSION = '1.6.0';
+  _.VERSION = '1.7.0';
+
+  // Internal function that returns an efficient (for current engines) version
+  // of the passed-in callback, to be repeatedly applied in other Underscore
+  // functions.
+  var createCallback = function(func, context, argCount) {
+    if (context === void 0) return func;
+    switch (argCount == null ? 3 : argCount) {
+      case 1: return function(value) {
+        return func.call(context, value);
+      };
+      case 2: return function(value, other) {
+        return func.call(context, value, other);
+      };
+      case 3: return function(value, index, collection) {
+        return func.call(context, value, index, collection);
+      };
+      case 4: return function(accumulator, value, index, collection) {
+        return func.call(context, accumulator, value, index, collection);
+      };
+    }
+    return function() {
+      return func.apply(context, arguments);
+    };
+  };
+
+  // A mostly-internal function to generate callbacks that can be applied
+  // to each element in a collection, returning the desired result — either
+  // identity, an arbitrary callback, a property matcher, or a property accessor.
+  _.iteratee = function(value, context, argCount) {
+    if (value == null) return _.identity;
+    if (_.isFunction(value)) return createCallback(value, context, argCount);
+    if (_.isObject(value)) return _.matches(value);
+    return _.property(value);
+  };
 
   // Collection Functions
   // --------------------
 
   // The cornerstone, an `each` implementation, aka `forEach`.
-  // Handles objects with the built-in `forEach`, arrays, and raw objects.
-  // Delegates to **ECMAScript 5**'s native `forEach` if available.
-  var each = _.each = _.forEach = function(obj, iterator, context) {
+  // Handles raw objects in addition to array-likes. Treats all
+  // sparse array-likes as if they were dense.
+  _.each = _.forEach = function(obj, iteratee, context) {
     if (obj == null) return obj;
-    if (nativeForEach && obj.forEach === nativeForEach) {
-      obj.forEach(iterator, context);
-    } else if (obj.length === +obj.length) {
-      for (var i = 0, length = obj.length; i < length; i++) {
-        if (iterator.call(context, obj[i], i, obj) === breaker) return;
+    iteratee = createCallback(iteratee, context);
+    var i, length = obj.length;
+    if (length === +length) {
+      for (i = 0; i < length; i++) {
+        iteratee(obj[i], i, obj);
       }
     } else {
       var keys = _.keys(obj);
-      for (var i = 0, length = keys.length; i < length; i++) {
-        if (iterator.call(context, obj[keys[i]], keys[i], obj) === breaker) return;
+      for (i = 0, length = keys.length; i < length; i++) {
+        iteratee(obj[keys[i]], keys[i], obj);
       }
     }
     return obj;
   };
 
-  // Return the results of applying the iterator to each element.
-  // Delegates to **ECMAScript 5**'s native `map` if available.
-  _.map = _.collect = function(obj, iterator, context) {
-    var results = [];
-    if (obj == null) return results;
-    if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
-    each(obj, function(value, index, list) {
-      results.push(iterator.call(context, value, index, list));
-    });
+  // Return the results of applying the iteratee to each element.
+  _.map = _.collect = function(obj, iteratee, context) {
+    if (obj == null) return [];
+    iteratee = _.iteratee(iteratee, context);
+    var keys = obj.length !== +obj.length && _.keys(obj),
+        length = (keys || obj).length,
+        results = Array(length),
+        currentKey;
+    for (var index = 0; index < length; index++) {
+      currentKey = keys ? keys[index] : index;
+      results[index] = iteratee(obj[currentKey], currentKey, obj);
+    }
     return results;
   };
 
   var reduceError = 'Reduce of empty array with no initial value';
 
   // **Reduce** builds up a single result from a list of values, aka `inject`,
-  // or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
-  _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-    var initial = arguments.length > 2;
+  // or `foldl`.
+  _.reduce = _.foldl = _.inject = function(obj, iteratee, memo, context) {
     if (obj == null) obj = [];
-    if (nativeReduce && obj.reduce === nativeReduce) {
-      if (context) iterator = _.bind(iterator, context);
-      return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
+    iteratee = createCallback(iteratee, context, 4);
+    var keys = obj.length !== +obj.length && _.keys(obj),
+        length = (keys || obj).length,
+        index = 0, currentKey;
+    if (arguments.length < 3) {
+      if (!length) throw new TypeError(reduceError);
+      memo = obj[keys ? keys[index++] : index++];
     }
-    each(obj, function(value, index, list) {
-      if (!initial) {
-        memo = value;
-        initial = true;
-      } else {
-        memo = iterator.call(context, memo, value, index, list);
-      }
-    });
-    if (!initial) throw new TypeError(reduceError);
+    for (; index < length; index++) {
+      currentKey = keys ? keys[index] : index;
+      memo = iteratee(memo, obj[currentKey], currentKey, obj);
+    }
     return memo;
   };
 
   // The right-associative version of reduce, also known as `foldr`.
-  // Delegates to **ECMAScript 5**'s native `reduceRight` if available.
-  _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
-    var initial = arguments.length > 2;
+  _.reduceRight = _.foldr = function(obj, iteratee, memo, context) {
     if (obj == null) obj = [];
-    if (nativeReduceRight && obj.reduceRight === nativeReduceRight) {
-      if (context) iterator = _.bind(iterator, context);
-      return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
+    iteratee = createCallback(iteratee, context, 4);
+    var keys = obj.length !== + obj.length && _.keys(obj),
+        index = (keys || obj).length,
+        currentKey;
+    if (arguments.length < 3) {
+      if (!index) throw new TypeError(reduceError);
+      memo = obj[keys ? keys[--index] : --index];
     }
-    var length = obj.length;
-    if (length !== +length) {
-      var keys = _.keys(obj);
-      length = keys.length;
+    while (index--) {
+      currentKey = keys ? keys[index] : index;
+      memo = iteratee(memo, obj[currentKey], currentKey, obj);
     }
-    each(obj, function(value, index, list) {
-      index = keys ? keys[--length] : --length;
-      if (!initial) {
-        memo = obj[index];
-        initial = true;
-      } else {
-        memo = iterator.call(context, memo, obj[index], index, list);
-      }
-    });
-    if (!initial) throw new TypeError(reduceError);
     return memo;
   };
 
   // Return the first value which passes a truth test. Aliased as `detect`.
   _.find = _.detect = function(obj, predicate, context) {
     var result;
-    any(obj, function(value, index, list) {
-      if (predicate.call(context, value, index, list)) {
+    predicate = _.iteratee(predicate, context);
+    _.some(obj, function(value, index, list) {
+      if (predicate(value, index, list)) {
         result = value;
         return true;
       }
@@ -179,61 +193,58 @@
   };
 
   // Return all the elements that pass a truth test.
-  // Delegates to **ECMAScript 5**'s native `filter` if available.
   // Aliased as `select`.
   _.filter = _.select = function(obj, predicate, context) {
     var results = [];
     if (obj == null) return results;
-    if (nativeFilter && obj.filter === nativeFilter) return obj.filter(predicate, context);
-    each(obj, function(value, index, list) {
-      if (predicate.call(context, value, index, list)) results.push(value);
+    predicate = _.iteratee(predicate, context);
+    _.each(obj, function(value, index, list) {
+      if (predicate(value, index, list)) results.push(value);
     });
     return results;
   };
 
   // Return all the elements for which a truth test fails.
   _.reject = function(obj, predicate, context) {
-    return _.filter(obj, function(value, index, list) {
-      return !predicate.call(context, value, index, list);
-    }, context);
+    return _.filter(obj, _.negate(_.iteratee(predicate)), context);
   };
 
   // Determine whether all of the elements match a truth test.
-  // Delegates to **ECMAScript 5**'s native `every` if available.
   // Aliased as `all`.
   _.every = _.all = function(obj, predicate, context) {
-    predicate || (predicate = _.identity);
-    var result = true;
-    if (obj == null) return result;
-    if (nativeEvery && obj.every === nativeEvery) return obj.every(predicate, context);
-    each(obj, function(value, index, list) {
-      if (!(result = result && predicate.call(context, value, index, list))) return breaker;
-    });
-    return !!result;
+    if (obj == null) return true;
+    predicate = _.iteratee(predicate, context);
+    var keys = obj.length !== +obj.length && _.keys(obj),
+        length = (keys || obj).length,
+        index, currentKey;
+    for (index = 0; index < length; index++) {
+      currentKey = keys ? keys[index] : index;
+      if (!predicate(obj[currentKey], currentKey, obj)) return false;
+    }
+    return true;
   };
 
   // Determine if at least one element in the object matches a truth test.
-  // Delegates to **ECMAScript 5**'s native `some` if available.
   // Aliased as `any`.
-  var any = _.some = _.any = function(obj, predicate, context) {
-    predicate || (predicate = _.identity);
-    var result = false;
-    if (obj == null) return result;
-    if (nativeSome && obj.some === nativeSome) return obj.some(predicate, context);
-    each(obj, function(value, index, list) {
-      if (result || (result = predicate.call(context, value, index, list))) return breaker;
-    });
-    return !!result;
+  _.some = _.any = function(obj, predicate, context) {
+    if (obj == null) return false;
+    predicate = _.iteratee(predicate, context);
+    var keys = obj.length !== +obj.length && _.keys(obj),
+        length = (keys || obj).length,
+        index, currentKey;
+    for (index = 0; index < length; index++) {
+      currentKey = keys ? keys[index] : index;
+      if (predicate(obj[currentKey], currentKey, obj)) return true;
+    }
+    return false;
   };
 
   // Determine if the array or object contains a given value (using `===`).
   // Aliased as `include`.
   _.contains = _.include = function(obj, target) {
     if (obj == null) return false;
-    if (nativeIndexOf && obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
-    return any(obj, function(value) {
-      return value === target;
-    });
+    if (obj.length !== +obj.length) obj = _.values(obj);
+    return _.indexOf(obj, target) >= 0;
   };
 
   // Invoke a method (with arguments) on every item in a collection.
@@ -262,51 +273,67 @@
     return _.find(obj, _.matches(attrs));
   };
 
-  // Return the maximum element or (element-based computation).
-  // Can't optimize arrays of integers longer than 65,535 elements.
-  // See [WebKit Bug 80797](https://bugs.webkit.org/show_bug.cgi?id=80797)
-  _.max = function(obj, iterator, context) {
-    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
-      return Math.max.apply(Math, obj);
-    }
-    var result = -Infinity, lastComputed = -Infinity;
-    each(obj, function(value, index, list) {
-      var computed = iterator ? iterator.call(context, value, index, list) : value;
-      if (computed > lastComputed) {
-        result = value;
-        lastComputed = computed;
+  // Return the maximum element (or element-based computation).
+  _.max = function(obj, iteratee, context) {
+    var result = -Infinity, lastComputed = -Infinity,
+        value, computed;
+    if (iteratee == null && obj != null) {
+      obj = obj.length === +obj.length ? obj : _.values(obj);
+      for (var i = 0, length = obj.length; i < length; i++) {
+        value = obj[i];
+        if (value > result) {
+          result = value;
+        }
       }
-    });
+    } else {
+      iteratee = _.iteratee(iteratee, context);
+      _.each(obj, function(value, index, list) {
+        computed = iteratee(value, index, list);
+        if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
+          result = value;
+          lastComputed = computed;
+        }
+      });
+    }
     return result;
   };
 
   // Return the minimum element (or element-based computation).
-  _.min = function(obj, iterator, context) {
-    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
-      return Math.min.apply(Math, obj);
-    }
-    var result = Infinity, lastComputed = Infinity;
-    each(obj, function(value, index, list) {
-      var computed = iterator ? iterator.call(context, value, index, list) : value;
-      if (computed < lastComputed) {
-        result = value;
-        lastComputed = computed;
+  _.min = function(obj, iteratee, context) {
+    var result = Infinity, lastComputed = Infinity,
+        value, computed;
+    if (iteratee == null && obj != null) {
+      obj = obj.length === +obj.length ? obj : _.values(obj);
+      for (var i = 0, length = obj.length; i < length; i++) {
+        value = obj[i];
+        if (value < result) {
+          result = value;
+        }
       }
-    });
+    } else {
+      iteratee = _.iteratee(iteratee, context);
+      _.each(obj, function(value, index, list) {
+        computed = iteratee(value, index, list);
+        if (computed < lastComputed || computed === Infinity && result === Infinity) {
+          result = value;
+          lastComputed = computed;
+        }
+      });
+    }
     return result;
   };
 
-  // Shuffle an array, using the modern version of the
+  // Shuffle a collection, using the modern version of the
   // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
   _.shuffle = function(obj) {
-    var rand;
-    var index = 0;
-    var shuffled = [];
-    each(obj, function(value) {
-      rand = _.random(index++);
-      shuffled[index - 1] = shuffled[rand];
-      shuffled[rand] = value;
-    });
+    var set = obj && obj.length === +obj.length ? obj : _.values(obj);
+    var length = set.length;
+    var shuffled = Array(length);
+    for (var index = 0, rand; index < length; index++) {
+      rand = _.random(0, index);
+      if (rand !== index) shuffled[index] = shuffled[rand];
+      shuffled[rand] = set[index];
+    }
     return shuffled;
   };
 
@@ -321,21 +348,14 @@
     return _.shuffle(obj).slice(0, Math.max(0, n));
   };
 
-  // An internal function to generate lookup iterators.
-  var lookupIterator = function(value) {
-    if (value == null) return _.identity;
-    if (_.isFunction(value)) return value;
-    return _.property(value);
-  };
-
-  // Sort the object's values by a criterion produced by an iterator.
-  _.sortBy = function(obj, iterator, context) {
-    iterator = lookupIterator(iterator);
+  // Sort the object's values by a criterion produced by an iteratee.
+  _.sortBy = function(obj, iteratee, context) {
+    iteratee = _.iteratee(iteratee, context);
     return _.pluck(_.map(obj, function(value, index, list) {
       return {
         value: value,
         index: index,
-        criteria: iterator.call(context, value, index, list)
+        criteria: iteratee(value, index, list)
       };
     }).sort(function(left, right) {
       var a = left.criteria;
@@ -350,12 +370,12 @@
 
   // An internal function used for aggregate "group by" operations.
   var group = function(behavior) {
-    return function(obj, iterator, context) {
+    return function(obj, iteratee, context) {
       var result = {};
-      iterator = lookupIterator(iterator);
-      each(obj, function(value, index) {
-        var key = iterator.call(context, value, index, obj);
-        behavior(result, key, value);
+      iteratee = _.iteratee(iteratee, context);
+      _.each(obj, function(value, index) {
+        var key = iteratee(value, index, obj);
+        behavior(result, value, key);
       });
       return result;
     };
@@ -363,32 +383,32 @@
 
   // Groups the object's values by a criterion. Pass either a string attribute
   // to group by, or a function that returns the criterion.
-  _.groupBy = group(function(result, key, value) {
-    _.has(result, key) ? result[key].push(value) : result[key] = [value];
+  _.groupBy = group(function(result, value, key) {
+    if (_.has(result, key)) result[key].push(value); else result[key] = [value];
   });
 
   // Indexes the object's values by a criterion, similar to `groupBy`, but for
   // when you know that your index values will be unique.
-  _.indexBy = group(function(result, key, value) {
+  _.indexBy = group(function(result, value, key) {
     result[key] = value;
   });
 
   // Counts instances of an object that group by a certain criterion. Pass
   // either a string attribute to count by, or a function that returns the
   // criterion.
-  _.countBy = group(function(result, key) {
-    _.has(result, key) ? result[key]++ : result[key] = 1;
+  _.countBy = group(function(result, value, key) {
+    if (_.has(result, key)) result[key]++; else result[key] = 1;
   });
 
   // Use a comparator function to figure out the smallest index at which
   // an object should be inserted so as to maintain order. Uses binary search.
-  _.sortedIndex = function(array, obj, iterator, context) {
-    iterator = lookupIterator(iterator);
-    var value = iterator.call(context, obj);
+  _.sortedIndex = function(array, obj, iteratee, context) {
+    iteratee = _.iteratee(iteratee, context, 1);
+    var value = iteratee(obj);
     var low = 0, high = array.length;
     while (low < high) {
-      var mid = (low + high) >>> 1;
-      iterator.call(context, array[mid]) < value ? low = mid + 1 : high = mid;
+      var mid = low + high >>> 1;
+      if (iteratee(array[mid]) < value) low = mid + 1; else high = mid;
     }
     return low;
   };
@@ -404,7 +424,18 @@
   // Return the number of elements in an object.
   _.size = function(obj) {
     if (obj == null) return 0;
-    return (obj.length === +obj.length) ? obj.length : _.keys(obj).length;
+    return obj.length === +obj.length ? obj.length : _.keys(obj).length;
+  };
+
+  // Split a collection into two arrays: one whose elements all satisfy the given
+  // predicate, and one whose elements all do not satisfy the predicate.
+  _.partition = function(obj, predicate, context) {
+    predicate = _.iteratee(predicate, context);
+    var pass = [], fail = [];
+    _.each(obj, function(value, key, obj) {
+      (predicate(value, key, obj) ? pass : fail).push(value);
+    });
+    return [pass, fail];
   };
 
   // Array Functions
@@ -415,7 +446,7 @@
   // allows it to work with `_.map`.
   _.first = _.head = _.take = function(array, n, guard) {
     if (array == null) return void 0;
-    if ((n == null) || guard) return array[0];
+    if (n == null || guard) return array[0];
     if (n < 0) return [];
     return slice.call(array, 0, n);
   };
@@ -425,14 +456,14 @@
   // the array, excluding the last N. The **guard** check allows it to work with
   // `_.map`.
   _.initial = function(array, n, guard) {
-    return slice.call(array, 0, array.length - ((n == null) || guard ? 1 : n));
+    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
   };
 
   // Get the last element of an array. Passing **n** will return the last N
   // values in the array. The **guard** check allows it to work with `_.map`.
   _.last = function(array, n, guard) {
     if (array == null) return void 0;
-    if ((n == null) || guard) return array[array.length - 1];
+    if (n == null || guard) return array[array.length - 1];
     return slice.call(array, Math.max(array.length - n, 0));
   };
 
@@ -441,7 +472,7 @@
   // the rest N values in the array. The **guard**
   // check allows it to work with `_.map`.
   _.rest = _.tail = _.drop = function(array, n, guard) {
-    return slice.call(array, (n == null) || guard ? 1 : n);
+    return slice.call(array, n == null || guard ? 1 : n);
   };
 
   // Trim out all falsy values from an array.
@@ -450,23 +481,26 @@
   };
 
   // Internal implementation of a recursive `flatten` function.
-  var flatten = function(input, shallow, output) {
+  var flatten = function(input, shallow, strict, output) {
     if (shallow && _.every(input, _.isArray)) {
       return concat.apply(output, input);
     }
-    each(input, function(value) {
-      if (_.isArray(value) || _.isArguments(value)) {
-        shallow ? push.apply(output, value) : flatten(value, shallow, output);
+    for (var i = 0, length = input.length; i < length; i++) {
+      var value = input[i];
+      if (!_.isArray(value) && !_.isArguments(value)) {
+        if (!strict) output.push(value);
+      } else if (shallow) {
+        push.apply(output, value);
       } else {
-        output.push(value);
+        flatten(value, shallow, strict, output);
       }
-    });
+    }
     return output;
   };
 
   // Flatten out an array, either recursively (by default), or just one level.
   _.flatten = function(array, shallow) {
-    return flatten(array, shallow, []);
+    return flatten(array, shallow, false, []);
   };
 
   // Return a version of the array that does not contain the specified value(s).
@@ -474,68 +508,77 @@
     return _.difference(array, slice.call(arguments, 1));
   };
 
-  // Split an array into two arrays: one whose elements all satisfy the given
-  // predicate, and one whose elements all do not satisfy the predicate.
-  _.partition = function(array, predicate) {
-    var pass = [], fail = [];
-    each(array, function(elem) {
-      (predicate(elem) ? pass : fail).push(elem);
-    });
-    return [pass, fail];
-  };
-
   // Produce a duplicate-free version of the array. If the array has already
   // been sorted, you have the option of using a faster algorithm.
   // Aliased as `unique`.
-  _.uniq = _.unique = function(array, isSorted, iterator, context) {
-    if (_.isFunction(isSorted)) {
-      context = iterator;
-      iterator = isSorted;
+  _.uniq = _.unique = function(array, isSorted, iteratee, context) {
+    if (array == null) return [];
+    if (!_.isBoolean(isSorted)) {
+      context = iteratee;
+      iteratee = isSorted;
       isSorted = false;
     }
-    var initial = iterator ? _.map(array, iterator, context) : array;
-    var results = [];
+    if (iteratee != null) iteratee = _.iteratee(iteratee, context);
+    var result = [];
     var seen = [];
-    each(initial, function(value, index) {
-      if (isSorted ? (!index || seen[seen.length - 1] !== value) : !_.contains(seen, value)) {
-        seen.push(value);
-        results.push(array[index]);
+    for (var i = 0, length = array.length; i < length; i++) {
+      var value = array[i];
+      if (isSorted) {
+        if (!i || seen !== value) result.push(value);
+        seen = value;
+      } else if (iteratee) {
+        var computed = iteratee(value, i, array);
+        if (_.indexOf(seen, computed) < 0) {
+          seen.push(computed);
+          result.push(value);
+        }
+      } else if (_.indexOf(result, value) < 0) {
+        result.push(value);
       }
-    });
-    return results;
+    }
+    return result;
   };
 
   // Produce an array that contains the union: each distinct element from all of
   // the passed-in arrays.
   _.union = function() {
-    return _.uniq(_.flatten(arguments, true));
+    return _.uniq(flatten(arguments, true, true, []));
   };
 
   // Produce an array that contains every item shared between all the
   // passed-in arrays.
   _.intersection = function(array) {
-    var rest = slice.call(arguments, 1);
-    return _.filter(_.uniq(array), function(item) {
-      return _.every(rest, function(other) {
-        return _.contains(other, item);
-      });
-    });
+    if (array == null) return [];
+    var result = [];
+    var argsLength = arguments.length;
+    for (var i = 0, length = array.length; i < length; i++) {
+      var item = array[i];
+      if (_.contains(result, item)) continue;
+      for (var j = 1; j < argsLength; j++) {
+        if (!_.contains(arguments[j], item)) break;
+      }
+      if (j === argsLength) result.push(item);
+    }
+    return result;
   };
 
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
-    var rest = concat.apply(ArrayProto, slice.call(arguments, 1));
-    return _.filter(array, function(value){ return !_.contains(rest, value); });
+    var rest = flatten(slice.call(arguments, 1), true, true, []);
+    return _.filter(array, function(value){
+      return !_.contains(rest, value);
+    });
   };
 
   // Zip together multiple lists into a single array -- elements that share
   // an index go together.
-  _.zip = function() {
-    var length = _.max(_.pluck(arguments, 'length').concat(0));
-    var results = new Array(length);
+  _.zip = function(array) {
+    if (array == null) return [];
+    var length = _.max(arguments, 'length').length;
+    var results = Array(length);
     for (var i = 0; i < length; i++) {
-      results[i] = _.pluck(arguments, '' + i);
+      results[i] = _.pluck(arguments, i);
     }
     return results;
   };
@@ -556,10 +599,8 @@
     return result;
   };
 
-  // If the browser doesn't supply us with indexOf (I'm looking at you, **MSIE**),
-  // we need this function. Return the position of the first occurrence of an
-  // item in an array, or -1 if the item is not included in the array.
-  // Delegates to **ECMAScript 5**'s native `indexOf` if available.
+  // Return the position of the first occurrence of an item in an array,
+  // or -1 if the item is not included in the array.
   // If the array is large and already in sort order, pass `true`
   // for **isSorted** to use binary search.
   _.indexOf = function(array, item, isSorted) {
@@ -567,26 +608,23 @@
     var i = 0, length = array.length;
     if (isSorted) {
       if (typeof isSorted == 'number') {
-        i = (isSorted < 0 ? Math.max(0, length + isSorted) : isSorted);
+        i = isSorted < 0 ? Math.max(0, length + isSorted) : isSorted;
       } else {
         i = _.sortedIndex(array, item);
         return array[i] === item ? i : -1;
       }
     }
-    if (nativeIndexOf && array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
     for (; i < length; i++) if (array[i] === item) return i;
     return -1;
   };
 
-  // Delegates to **ECMAScript 5**'s native `lastIndexOf` if available.
   _.lastIndexOf = function(array, item, from) {
     if (array == null) return -1;
-    var hasIndex = from != null;
-    if (nativeLastIndexOf && array.lastIndexOf === nativeLastIndexOf) {
-      return hasIndex ? array.lastIndexOf(item, from) : array.lastIndexOf(item);
+    var idx = array.length;
+    if (typeof from == 'number') {
+      idx = from < 0 ? idx + from + 1 : Math.min(idx, from + 1);
     }
-    var i = (hasIndex ? from : array.length);
-    while (i--) if (array[i] === item) return i;
+    while (--idx >= 0) if (array[idx] === item) return idx;
     return -1;
   };
 
@@ -598,15 +636,13 @@
       stop = start || 0;
       start = 0;
     }
-    step = arguments[2] || 1;
+    step = step || 1;
 
     var length = Math.max(Math.ceil((stop - start) / step), 0);
-    var idx = 0;
-    var range = new Array(length);
+    var range = Array(length);
 
-    while(idx < length) {
-      range[idx++] = start;
-      start += step;
+    for (var idx = 0; idx < length; idx++, start += step) {
+      range[idx] = start;
     }
 
     return range;
@@ -616,7 +652,7 @@
   // ------------------
 
   // Reusable constructor function for prototype setting.
-  var ctor = function(){};
+  var Ctor = function(){};
 
   // Create a function bound to a given object (assigning `this`, and arguments,
   // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
@@ -624,17 +660,18 @@
   _.bind = function(func, context) {
     var args, bound;
     if (nativeBind && func.bind === nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
-    if (!_.isFunction(func)) throw new TypeError;
+    if (!_.isFunction(func)) throw new TypeError('Bind must be called on a function');
     args = slice.call(arguments, 2);
-    return bound = function() {
+    bound = function() {
       if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
-      ctor.prototype = func.prototype;
-      var self = new ctor;
-      ctor.prototype = null;
+      Ctor.prototype = func.prototype;
+      var self = new Ctor;
+      Ctor.prototype = null;
       var result = func.apply(self, args.concat(slice.call(arguments)));
-      if (Object(result) === result) return result;
+      if (_.isObject(result)) return result;
       return self;
     };
+    return bound;
   };
 
   // Partially apply a function by creating a version that has had some of its
@@ -657,27 +694,34 @@
   // are the method names to be bound. Useful for ensuring that all callbacks
   // defined on an object belong to it.
   _.bindAll = function(obj) {
-    var funcs = slice.call(arguments, 1);
-    if (funcs.length === 0) throw new Error('bindAll must be passed function names');
-    each(funcs, function(f) { obj[f] = _.bind(obj[f], obj); });
+    var i, length = arguments.length, key;
+    if (length <= 1) throw new Error('bindAll must be passed function names');
+    for (i = 1; i < length; i++) {
+      key = arguments[i];
+      obj[key] = _.bind(obj[key], obj);
+    }
     return obj;
   };
 
   // Memoize an expensive function by storing its results.
   _.memoize = function(func, hasher) {
-    var memo = {};
-    hasher || (hasher = _.identity);
-    return function() {
-      var key = hasher.apply(this, arguments);
-      return _.has(memo, key) ? memo[key] : (memo[key] = func.apply(this, arguments));
+    var memoize = function(key) {
+      var cache = memoize.cache;
+      var address = hasher ? hasher.apply(this, arguments) : key;
+      if (!_.has(cache, address)) cache[address] = func.apply(this, arguments);
+      return cache[address];
     };
+    memoize.cache = {};
+    return memoize;
   };
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
   _.delay = function(func, wait) {
     var args = slice.call(arguments, 2);
-    return setTimeout(function(){ return func.apply(null, args); }, wait);
+    return setTimeout(function(){
+      return func.apply(null, args);
+    }, wait);
   };
 
   // Defers a function, scheduling it to run after the current call stack has
@@ -695,12 +739,12 @@
     var context, args, result;
     var timeout = null;
     var previous = 0;
-    options || (options = {});
+    if (!options) options = {};
     var later = function() {
       previous = options.leading === false ? 0 : _.now();
       timeout = null;
       result = func.apply(context, args);
-      context = args = null;
+      if (!timeout) context = args = null;
     };
     return function() {
       var now = _.now();
@@ -708,12 +752,12 @@
       var remaining = wait - (now - previous);
       context = this;
       args = arguments;
-      if (remaining <= 0) {
+      if (remaining <= 0 || remaining > wait) {
         clearTimeout(timeout);
         timeout = null;
         previous = now;
         result = func.apply(context, args);
-        context = args = null;
+        if (!timeout) context = args = null;
       } else if (!timeout && options.trailing !== false) {
         timeout = setTimeout(later, remaining);
       }
@@ -730,13 +774,14 @@
 
     var later = function() {
       var last = _.now() - timestamp;
-      if (last < wait) {
+
+      if (last < wait && last > 0) {
         timeout = setTimeout(later, wait - last);
       } else {
         timeout = null;
         if (!immediate) {
           result = func.apply(context, args);
-          context = args = null;
+          if (!timeout) context = args = null;
         }
       }
     };
@@ -746,28 +791,13 @@
       args = arguments;
       timestamp = _.now();
       var callNow = immediate && !timeout;
-      if (!timeout) {
-        timeout = setTimeout(later, wait);
-      }
+      if (!timeout) timeout = setTimeout(later, wait);
       if (callNow) {
         result = func.apply(context, args);
         context = args = null;
       }
 
       return result;
-    };
-  };
-
-  // Returns a function that will be executed at most one time, no matter how
-  // often you call it. Useful for lazy initialization.
-  _.once = function(func) {
-    var ran = false, memo;
-    return function() {
-      if (ran) return memo;
-      ran = true;
-      memo = func.apply(this, arguments);
-      func = null;
-      return memo;
     };
   };
 
@@ -778,16 +808,23 @@
     return _.partial(wrapper, func);
   };
 
+  // Returns a negated version of the passed-in predicate.
+  _.negate = function(predicate) {
+    return function() {
+      return !predicate.apply(this, arguments);
+    };
+  };
+
   // Returns a function that is the composition of a list of functions, each
   // consuming the return value of the function that follows.
   _.compose = function() {
-    var funcs = arguments;
+    var args = arguments;
+    var start = args.length - 1;
     return function() {
-      var args = arguments;
-      for (var i = funcs.length - 1; i >= 0; i--) {
-        args = [funcs[i].apply(this, args)];
-      }
-      return args[0];
+      var i = start;
+      var result = args[start].apply(this, arguments);
+      while (i--) result = args[i].call(this, result);
+      return result;
     };
   };
 
@@ -799,6 +836,23 @@
       }
     };
   };
+
+  // Returns a function that will only be executed before being called N times.
+  _.before = function(times, func) {
+    var memo;
+    return function() {
+      if (--times > 0) {
+        memo = func.apply(this, arguments);
+      } else {
+        func = null;
+      }
+      return memo;
+    };
+  };
+
+  // Returns a function that will be executed at most one time, no matter how
+  // often you call it. Useful for lazy initialization.
+  _.once = _.partial(_.before, 2);
 
   // Object Functions
   // ----------------
@@ -817,7 +871,7 @@
   _.values = function(obj) {
     var keys = _.keys(obj);
     var length = keys.length;
-    var values = new Array(length);
+    var values = Array(length);
     for (var i = 0; i < length; i++) {
       values[i] = obj[keys[i]];
     }
@@ -828,7 +882,7 @@
   _.pairs = function(obj) {
     var keys = _.keys(obj);
     var length = keys.length;
-    var pairs = new Array(length);
+    var pairs = Array(length);
     for (var i = 0; i < length; i++) {
       pairs[i] = [keys[i], obj[keys[i]]];
     }
@@ -857,45 +911,62 @@
 
   // Extend a given object with all the properties in passed-in object(s).
   _.extend = function(obj) {
-    each(slice.call(arguments, 1), function(source) {
-      if (source) {
-        for (var prop in source) {
-          obj[prop] = source[prop];
+    if (!_.isObject(obj)) return obj;
+    var source, prop;
+    for (var i = 1, length = arguments.length; i < length; i++) {
+      source = arguments[i];
+      for (prop in source) {
+        if (hasOwnProperty.call(source, prop)) {
+            obj[prop] = source[prop];
         }
       }
-    });
+    }
     return obj;
   };
 
   // Return a copy of the object only containing the whitelisted properties.
-  _.pick = function(obj) {
-    var copy = {};
-    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
-    each(keys, function(key) {
-      if (key in obj) copy[key] = obj[key];
-    });
-    return copy;
+  _.pick = function(obj, iteratee, context) {
+    var result = {}, key;
+    if (obj == null) return result;
+    if (_.isFunction(iteratee)) {
+      iteratee = createCallback(iteratee, context);
+      for (key in obj) {
+        var value = obj[key];
+        if (iteratee(value, key, obj)) result[key] = value;
+      }
+    } else {
+      var keys = concat.apply([], slice.call(arguments, 1));
+      obj = new Object(obj);
+      for (var i = 0, length = keys.length; i < length; i++) {
+        key = keys[i];
+        if (key in obj) result[key] = obj[key];
+      }
+    }
+    return result;
   };
 
    // Return a copy of the object without the blacklisted properties.
-  _.omit = function(obj) {
-    var copy = {};
-    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
-    for (var key in obj) {
-      if (!_.contains(keys, key)) copy[key] = obj[key];
+  _.omit = function(obj, iteratee, context) {
+    if (_.isFunction(iteratee)) {
+      iteratee = _.negate(iteratee);
+    } else {
+      var keys = _.map(concat.apply([], slice.call(arguments, 1)), String);
+      iteratee = function(value, key) {
+        return !_.contains(keys, key);
+      };
     }
-    return copy;
+    return _.pick(obj, iteratee, context);
   };
 
   // Fill in a given object with default properties.
   _.defaults = function(obj) {
-    each(slice.call(arguments, 1), function(source) {
-      if (source) {
-        for (var prop in source) {
-          if (obj[prop] === void 0) obj[prop] = source[prop];
-        }
+    if (!_.isObject(obj)) return obj;
+    for (var i = 1, length = arguments.length; i < length; i++) {
+      var source = arguments[i];
+      for (var prop in source) {
+        if (obj[prop] === void 0) obj[prop] = source[prop];
       }
-    });
+    }
     return obj;
   };
 
@@ -917,7 +988,7 @@
   var eq = function(a, b, aStack, bStack) {
     // Identical objects are equal. `0 === -0`, but they aren't identical.
     // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
-    if (a === b) return a !== 0 || 1 / a == 1 / b;
+    if (a === b) return a !== 0 || 1 / a === 1 / b;
     // A strict comparison is necessary because `null == undefined`.
     if (a == null || b == null) return a === b;
     // Unwrap any wrapped objects.
@@ -925,29 +996,27 @@
     if (b instanceof _) b = b._wrapped;
     // Compare `[[Class]]` names.
     var className = toString.call(a);
-    if (className != toString.call(b)) return false;
+    if (className !== toString.call(b)) return false;
     switch (className) {
-      // Strings, numbers, dates, and booleans are compared by value.
+      // Strings, numbers, regular expressions, dates, and booleans are compared by value.
+      case '[object RegExp]':
+      // RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')
       case '[object String]':
         // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
         // equivalent to `new String("5")`.
-        return a == String(b);
+        return '' + a === '' + b;
       case '[object Number]':
-        // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
-        // other numeric values.
-        return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
+        // `NaN`s are equivalent, but non-reflexive.
+        // Object(NaN) is equivalent to NaN
+        if (+a !== +a) return +b !== +b;
+        // An `egal` comparison is performed for other numeric values.
+        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
       case '[object Date]':
       case '[object Boolean]':
         // Coerce dates and booleans to numeric primitive values. Dates are compared by their
         // millisecond representations. Note that invalid dates with millisecond representations
         // of `NaN` are not equivalent.
-        return +a == +b;
-      // RegExps are compared by their source patterns and flags.
-      case '[object RegExp]':
-        return a.source == b.source &&
-               a.global == b.global &&
-               a.multiline == b.multiline &&
-               a.ignoreCase == b.ignoreCase;
+        return +a === +b;
     }
     if (typeof a != 'object' || typeof b != 'object') return false;
     // Assume equality for cyclic structures. The algorithm for detecting cyclic
@@ -956,25 +1025,29 @@
     while (length--) {
       // Linear search. Performance is inversely proportional to the number of
       // unique nested structures.
-      if (aStack[length] == a) return bStack[length] == b;
+      if (aStack[length] === a) return bStack[length] === b;
     }
     // Objects with different constructors are not equivalent, but `Object`s
     // from different frames are.
     var aCtor = a.constructor, bCtor = b.constructor;
-    if (aCtor !== bCtor && !(_.isFunction(aCtor) && (aCtor instanceof aCtor) &&
-                             _.isFunction(bCtor) && (bCtor instanceof bCtor))
-                        && ('constructor' in a && 'constructor' in b)) {
+    if (
+      aCtor !== bCtor &&
+      // Handle Object.create(x) cases
+      'constructor' in a && 'constructor' in b &&
+      !(_.isFunction(aCtor) && aCtor instanceof aCtor &&
+        _.isFunction(bCtor) && bCtor instanceof bCtor)
+    ) {
       return false;
     }
     // Add the first object to the stack of traversed objects.
     aStack.push(a);
     bStack.push(b);
-    var size = 0, result = true;
+    var size, result;
     // Recursively compare objects and arrays.
-    if (className == '[object Array]') {
+    if (className === '[object Array]') {
       // Compare array lengths to determine if a deep comparison is necessary.
       size = a.length;
-      result = size == b.length;
+      result = size === b.length;
       if (result) {
         // Deep compare the contents, ignoring non-numeric properties.
         while (size--) {
@@ -983,20 +1056,16 @@
       }
     } else {
       // Deep compare objects.
-      for (var key in a) {
-        if (_.has(a, key)) {
-          // Count the expected number of properties.
-          size++;
-          // Deep compare each member.
+      var keys = _.keys(a), key;
+      size = keys.length;
+      // Ensure that both objects contain the same number of properties before comparing deep equality.
+      result = _.keys(b).length === size;
+      if (result) {
+        while (size--) {
+          // Deep compare each member
+          key = keys[size];
           if (!(result = _.has(b, key) && eq(a[key], b[key], aStack, bStack))) break;
         }
-      }
-      // Ensure that both objects contain the same number of properties.
-      if (result) {
-        for (key in b) {
-          if (_.has(b, key) && !(size--)) break;
-        }
-        result = !size;
       }
     }
     // Remove the first object from the stack of traversed objects.
@@ -1014,7 +1083,7 @@
   // An "empty" object has no enumerable own-properties.
   _.isEmpty = function(obj) {
     if (obj == null) return true;
-    if (_.isArray(obj) || _.isString(obj)) return obj.length === 0;
+    if (_.isArray(obj) || _.isString(obj) || _.isArguments(obj)) return obj.length === 0;
     for (var key in obj) if (_.has(obj, key)) return false;
     return true;
   };
@@ -1027,18 +1096,19 @@
   // Is a given value an array?
   // Delegates to ECMA5's native Array.isArray
   _.isArray = nativeIsArray || function(obj) {
-    return toString.call(obj) == '[object Array]';
+    return toString.call(obj) === '[object Array]';
   };
 
   // Is a given variable an object?
   _.isObject = function(obj) {
-    return obj === Object(obj);
+    var type = typeof obj;
+    return type === 'function' || type === 'object' && !!obj;
   };
 
   // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
-  each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
+  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
     _['is' + name] = function(obj) {
-      return toString.call(obj) == '[object ' + name + ']';
+      return toString.call(obj) === '[object ' + name + ']';
     };
   });
 
@@ -1046,14 +1116,14 @@
   // there isn't any inspectable "Arguments" type.
   if (!_.isArguments(arguments)) {
     _.isArguments = function(obj) {
-      return !!(obj && _.has(obj, 'callee'));
+      return _.has(obj, 'callee');
     };
   }
 
-  // Optimize `isFunction` if appropriate.
-  if (typeof (/./) !== 'function') {
+  // Optimize `isFunction` if appropriate. Work around an IE 11 bug.
+  if (typeof /./ !== 'function') {
     _.isFunction = function(obj) {
-      return typeof obj === 'function';
+      return typeof obj == 'function' || false;
     };
   }
 
@@ -1064,12 +1134,12 @@
 
   // Is the given value `NaN`? (NaN is the only number which does not equal itself).
   _.isNaN = function(obj) {
-    return _.isNumber(obj) && obj != +obj;
+    return _.isNumber(obj) && obj !== +obj;
   };
 
   // Is a given value a boolean?
   _.isBoolean = function(obj) {
-    return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
+    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
   };
 
   // Is a given value equal to null?
@@ -1085,7 +1155,7 @@
   // Shortcut function for checking if an object has a given property directly
   // on itself (in other words, not on a prototype).
   _.has = function(obj, key) {
-    return hasOwnProperty.call(obj, key);
+    return obj != null && hasOwnProperty.call(obj, key);
   };
 
   // Utility Functions
@@ -1098,16 +1168,18 @@
     return this;
   };
 
-  // Keep the identity function around for default iterators.
+  // Keep the identity function around for default iteratees.
   _.identity = function(value) {
     return value;
   };
 
   _.constant = function(value) {
-    return function () {
+    return function() {
       return value;
     };
   };
+
+  _.noop = function(){};
 
   _.property = function(key) {
     return function(obj) {
@@ -1117,20 +1189,23 @@
 
   // Returns a predicate for checking whether an object has a given set of `key:value` pairs.
   _.matches = function(attrs) {
+    var pairs = _.pairs(attrs), length = pairs.length;
     return function(obj) {
-      if (obj === attrs) return true; //avoid comparing an object to itself.
-      for (var key in attrs) {
-        if (attrs[key] !== obj[key])
-          return false;
+      if (obj == null) return !length;
+      obj = new Object(obj);
+      for (var i = 0; i < length; i++) {
+        var pair = pairs[i], key = pair[0];
+        if (pair[1] !== obj[key] || !(key in obj)) return false;
       }
       return true;
-    }
+    };
   };
 
   // Run a function **n** times.
-  _.times = function(n, iterator, context) {
+  _.times = function(n, iteratee, context) {
     var accum = Array(Math.max(0, n));
-    for (var i = 0; i < n; i++) accum[i] = iterator.call(context, i);
+    iteratee = createCallback(iteratee, context, 1);
+    for (var i = 0; i < n; i++) accum[i] = iteratee(i);
     return accum;
   };
 
@@ -1144,54 +1219,44 @@
   };
 
   // A (possibly faster) way to get the current timestamp as an integer.
-  _.now = Date.now || function() { return new Date().getTime(); };
-
-  // List of HTML entities for escaping.
-  var entityMap = {
-    escape: {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;'
-    }
+  _.now = Date.now || function() {
+    return new Date().getTime();
   };
-  entityMap.unescape = _.invert(entityMap.escape);
 
-  // Regexes containing the keys and values listed immediately above.
-  var entityRegexes = {
-    escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
-    unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
+   // List of HTML entities for escaping.
+  var escapeMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    '`': '&#x60;'
   };
+  var unescapeMap = _.invert(escapeMap);
 
   // Functions for escaping and unescaping strings to/from HTML interpolation.
-  _.each(['escape', 'unescape'], function(method) {
-    _[method] = function(string) {
-      if (string == null) return '';
-      return ('' + string).replace(entityRegexes[method], function(match) {
-        return entityMap[method][match];
-      });
+  var createEscaper = function(map) {
+    var escaper = function(match) {
+      return map[match];
     };
-  });
+    // Regexes for identifying a key that needs to be escaped
+    var source = '(?:' + _.keys(map).join('|') + ')';
+    var testRegexp = RegExp(source);
+    var replaceRegexp = RegExp(source, 'g');
+    return function(string) {
+      string = string == null ? '' : '' + string;
+      return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+    };
+  };
+  _.escape = createEscaper(escapeMap);
+  _.unescape = createEscaper(unescapeMap);
 
   // If the value of the named `property` is a function then invoke it with the
   // `object` as context; otherwise, return it.
   _.result = function(object, property) {
     if (object == null) return void 0;
     var value = object[property];
-    return _.isFunction(value) ? value.call(object) : value;
-  };
-
-  // Add your own custom functions to the Underscore object.
-  _.mixin = function(obj) {
-    each(_.functions(obj), function(name) {
-      var func = _[name] = obj[name];
-      _.prototype[name] = function() {
-        var args = [this._wrapped];
-        push.apply(args, arguments);
-        return result.call(this, func.apply(_, args));
-      };
-    });
+    return _.isFunction(value) ? object[property]() : value;
   };
 
   // Generate a unique integer id (unique within the entire client session).
@@ -1222,22 +1287,26 @@
     '\\':     '\\',
     '\r':     'r',
     '\n':     'n',
-    '\t':     't',
     '\u2028': 'u2028',
     '\u2029': 'u2029'
   };
 
-  var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
+  var escaper = /\\|'|\r|\n|\u2028|\u2029/g;
+
+  var escapeChar = function(match) {
+    return '\\' + escapes[match];
+  };
 
   // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
-  _.template = function(text, data, settings) {
-    var render;
+  // NB: `oldSettings` only exists for backwards compatibility.
+  _.template = function(text, settings, oldSettings) {
+    if (!settings && oldSettings) settings = oldSettings;
     settings = _.defaults({}, settings, _.templateSettings);
 
     // Combine delimiters into one regular expression via alternation.
-    var matcher = new RegExp([
+    var matcher = RegExp([
       (settings.escape || noMatch).source,
       (settings.interpolate || noMatch).source,
       (settings.evaluate || noMatch).source
@@ -1247,19 +1316,18 @@
     var index = 0;
     var source = "__p+='";
     text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
-      source += text.slice(index, offset)
-        .replace(escaper, function(match) { return '\\' + escapes[match]; });
+      source += text.slice(index, offset).replace(escaper, escapeChar);
+      index = offset + match.length;
 
       if (escape) {
         source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
-      }
-      if (interpolate) {
+      } else if (interpolate) {
         source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
-      }
-      if (evaluate) {
+      } else if (evaluate) {
         source += "';\n" + evaluate + "\n__p+='";
       }
-      index = offset + match.length;
+
+      // Adobe VMs need the match returned to produce the correct offest.
       return match;
     });
     source += "';\n";
@@ -1269,29 +1337,31 @@
 
     source = "var __t,__p='',__j=Array.prototype.join," +
       "print=function(){__p+=__j.call(arguments,'');};\n" +
-      source + "return __p;\n";
+      source + 'return __p;\n';
 
     try {
-      render = new Function(settings.variable || 'obj', '_', source);
+      var render = new Function(settings.variable || 'obj', '_', source);
     } catch (e) {
       e.source = source;
       throw e;
     }
 
-    if (data) return render(data, _);
     var template = function(data) {
       return render.call(this, data, _);
     };
 
-    // Provide the compiled function source as a convenience for precompilation.
-    template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
+    // Provide the compiled source as a convenience for precompilation.
+    var argument = settings.variable || 'obj';
+    template.source = 'function(' + argument + '){\n' + source + '}';
 
     return template;
   };
 
-  // Add a "chain" function, which will delegate to the wrapper.
+  // Add a "chain" function. Start chaining a wrapped Underscore object.
   _.chain = function(obj) {
-    return _(obj).chain();
+    var instance = _(obj);
+    instance._chain = true;
+    return instance;
   };
 
   // OOP
@@ -1305,42 +1375,44 @@
     return this._chain ? _(obj).chain() : obj;
   };
 
+  // Add your own custom functions to the Underscore object.
+  _.mixin = function(obj) {
+    _.each(_.functions(obj), function(name) {
+      var func = _[name] = obj[name];
+      _.prototype[name] = function() {
+        var args = [this._wrapped];
+        push.apply(args, arguments);
+        return result.call(this, func.apply(_, args));
+      };
+    });
+  };
+
   // Add all of the Underscore functions to the wrapper object.
   _.mixin(_);
 
   // Add all mutator Array functions to the wrapper.
-  each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
+  _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
     var method = ArrayProto[name];
     _.prototype[name] = function() {
       var obj = this._wrapped;
       method.apply(obj, arguments);
-      if ((name == 'shift' || name == 'splice') && obj.length === 0) delete obj[0];
+      if ((name === 'shift' || name === 'splice') && obj.length === 0) delete obj[0];
       return result.call(this, obj);
     };
   });
 
   // Add all accessor Array functions to the wrapper.
-  each(['concat', 'join', 'slice'], function(name) {
+  _.each(['concat', 'join', 'slice'], function(name) {
     var method = ArrayProto[name];
     _.prototype[name] = function() {
       return result.call(this, method.apply(this._wrapped, arguments));
     };
   });
 
-  _.extend(_.prototype, {
-
-    // Start chaining a wrapped Underscore object.
-    chain: function() {
-      this._chain = true;
-      return this;
-    },
-
-    // Extracts the result from a wrapped and chained object.
-    value: function() {
-      return this._wrapped;
-    }
-
-  });
+  // Extracts the result from a wrapped and chained object.
+  _.prototype.value = function() {
+    return this._wrapped;
+  };
 
   // AMD registration happens at the end for compatibility with AMD loaders
   // that may not enforce next-turn semantics on modules. Even though general
@@ -1354,7 +1426,7 @@
       return _;
     });
   }
-}).call(this);
+}.call(this));
 
 /*
 Ring.js
@@ -1485,7 +1557,7 @@ function declare(_) {
             _.extend(current, claz.__properties__);
             _.each(_.keys(current), function(key) {
                 var p = current[key];
-                if (typeof p !== "function" || ! fnTest.test(p) ||
+                if (typeof p !== "function" || ! fnTest.test(p) || p.__classId__ ||
                     (key !== "__ringConstructor__" && claz.__ringConvertedObject__))
                     return;
                 current[key] = (function(name, fct, supProto) {
@@ -1946,7 +2018,27 @@ var WEBRTC_SDP_TYPE_ANSWER     = 'answer';
  * @default
  * @public
  */
-var R_WEBRTC_SDP_CANDIDATE     = /^a=candidate:(\w{1,32}) (\d{1,5}) (udp|tcp) (\d{1,10}) ([a-zA-Z0-9:\.]{1,45}) (\d{1,5}) (typ) (host|srflx|prflx|relay)( (raddr) ([a-zA-Z0-9:\.]{1,45}) (rport) (\d{1,5}))?( (generation) (\d))?/i;
+var R_WEBRTC_SHORT_CANDIDATE   = 'candidate:(\\w{1,32}) (\\d{1,5}) (udp|tcp) (\\d{1,10}) ([a-zA-Z0-9:\\.]{1,45}) (\\d{1,5}) (typ) (host|srflx|prflx|relay)( (raddr) ([a-zA-Z0-9:\\.]{1,45}) (rport) (\\d{1,5}))?( (generation) (\\d))?';
+
+/**
+ * @constant
+ * @global
+ * @type {RegExp}
+ * @readonly
+ * @default
+ * @public
+ */
+var R_WEBRTC_DATA_CANDIDATE    = new RegExp('^(?:a=)?' + R_WEBRTC_SHORT_CANDIDATE, 'i');
+
+/**
+ * @constant
+ * @global
+ * @type {RegExp}
+ * @readonly
+ * @default
+ * @public
+ */
+var R_WEBRTC_SDP_CANDIDATE     = new RegExp('^a=' + R_WEBRTC_SHORT_CANDIDATE, 'i');
 
 /**
  * @constant
@@ -2203,6 +2295,16 @@ var NS_JINGLE_SECURITY_STUB                         = 'urn:xmpp:jingle:security:
  * @default
  * @public
  */
+var NS_JINGLE_MESSAGE                               = 'urn:xmpp:jingle-message:0';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
 var NS_JABBER_JINGLENODES                           = 'http://jabber.org/protocol/jinglenodes';
 
 /**
@@ -2406,6 +2508,9 @@ var MAP_DISCO_JINGLE                                = [
   /* http://xmpp.org/extensions/xep-0262.html */
   NS_JINGLE_APPS_RTP_ZRTP,
 
+  /* http://xmpp.org/extensions/xep-0353.html */
+  NS_JINGLE_MESSAGE,
+
   /* http://xmpp.org/extensions/xep-0278.html */
   NS_JABBER_JINGLENODES,
 
@@ -2548,6 +2653,16 @@ var JSJAC_JINGLE_MEDIA_READYSTATE_COMPLETED          = 4;
  * @public
  */
 var JSJAC_JINGLE_STANZA_TIMEOUT                      = 10;
+
+/**
+ * @constant
+ * @global
+ * @type {Number}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_BROADCAST_TIMEOUT                   = 30;
 
 /**
  * @constant
@@ -2928,6 +3043,56 @@ var JSJAC_JINGLE_ACTION_TRANSPORT_REJECT             = 'transport-reject';
  * @public
  */
 var JSJAC_JINGLE_ACTION_TRANSPORT_REPLACE            = 'transport-replace';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_MESSAGE_ACTION_PROPOSE              = 'propose';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_MESSAGE_ACTION_RETRACT              = 'retract';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_MESSAGE_ACTION_ACCEPT               = 'accept';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_MESSAGE_ACTION_PROCEED              = 'proceed';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_MESSAGE_ACTION_REJECT               = 'reject';
 
 /**
  * @constant
@@ -3538,6 +3703,76 @@ var JSJAC_JINGLE_IQ_TYPE_ERROR                       = 'error';
  * @default
  * @public
  */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_NEW            = 'new';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_CHECKING       = 'checking';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_CONNECTED      = 'connected';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_COMPLETED      = 'completed';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_FAILED         = 'failed';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_DISCONNECTED   = 'disconnected';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_ICE_CONNECTION_STATE_CLOSED         = 'closed';
+
+/**
+ * @constant
+ * @global
+ * @type {String}
+ * @readonly
+ * @default
+ * @public
+ */
 var JSJAC_JINGLE_SDP_CANDIDATE_TYPE_HOST             = 'host';
 
 /**
@@ -4000,11 +4235,14 @@ var JSJAC_JINGLE_MUJI_MUC_CONFIG_SECRET              = 'muc#roomconfig_roomsecre
  * @default
  * @public
  */
-var JSJAC_JINGLE_SDP_CANDIDATE_TYPES  = {};
-JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_HOST]   = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
-JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_SRFLX]  = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
-JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_PRFLX]  = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
-JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_RELAY]  = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_RAW;
+var JSJAC_JINGLE_ICE_CONNECTION_STATES = {};
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_NEW]           = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_CHECKING]      = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_CONNECTED]     = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_COMPLETED]     = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_FAILED]        = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_DISCONNECTED]  = 1;
+JSJAC_JINGLE_ICE_CONNECTION_STATES[JSJAC_JINGLE_ICE_CONNECTION_STATE_CLOSED]        = 1;
 
 /**
  * @constant
@@ -4014,12 +4252,11 @@ JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_RELAY]  = JSJAC
  * @default
  * @public
  */
-var JSJAC_JINGLE_BROWSERS             = {};
-JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_FIREFOX]                      = 1;
-JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_CHROME]                       = 1;
-JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_SAFARI]                       = 1;
-JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_OPERA]                        = 1;
-JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_IE]                           = 1;
+var JSJAC_JINGLE_SDP_CANDIDATE_TYPES   = {};
+JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_HOST]              = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
+JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_SRFLX]             = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
+JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_PRFLX]             = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_ICE;
+JSJAC_JINGLE_SDP_CANDIDATE_TYPES[JSJAC_JINGLE_SDP_CANDIDATE_TYPE_RELAY]             = JSJAC_JINGLE_SDP_CANDIDATE_METHOD_RAW;
 
 /**
  * @constant
@@ -4029,11 +4266,12 @@ JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_IE]                           = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_SENDERS              = {};
-JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_BOTH.jingle]                   = JSJAC_JINGLE_SENDERS_BOTH.sdp;
-JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_INITIATOR.jingle]              = JSJAC_JINGLE_SENDERS_INITIATOR.sdp;
-JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_NONE.jingle]                   = JSJAC_JINGLE_SENDERS_NONE.sdp;
-JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_RESPONDER.jingle]              = JSJAC_JINGLE_SENDERS_RESPONDER.sdp;
+var JSJAC_JINGLE_BROWSERS              = {};
+JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_FIREFOX]                                 = 1;
+JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_CHROME]                                  = 1;
+JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_SAFARI]                                  = 1;
+JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_OPERA]                                   = 1;
+JSJAC_JINGLE_BROWSERS[JSJAC_JINGLE_BROWSER_IE]                                      = 1;
 
 /**
  * @constant
@@ -4043,9 +4281,11 @@ JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_RESPONDER.jingle]              = JSJAC
  * @default
  * @public
  */
-var JSJAC_JINGLE_CREATORS             = {};
-JSJAC_JINGLE_CREATORS[JSJAC_JINGLE_CREATOR_INITIATOR]                    = 1;
-JSJAC_JINGLE_CREATORS[JSJAC_JINGLE_CREATOR_RESPONDER]                    = 1;
+var JSJAC_JINGLE_SENDERS               = {};
+JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_BOTH.jingle]                              = JSJAC_JINGLE_SENDERS_BOTH.sdp;
+JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_INITIATOR.jingle]                         = JSJAC_JINGLE_SENDERS_INITIATOR.sdp;
+JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_NONE.jingle]                              = JSJAC_JINGLE_SENDERS_NONE.sdp;
+JSJAC_JINGLE_SENDERS[JSJAC_JINGLE_SENDERS_RESPONDER.jingle]                         = JSJAC_JINGLE_SENDERS_RESPONDER.sdp;
 
 /**
  * @constant
@@ -4055,14 +4295,9 @@ JSJAC_JINGLE_CREATORS[JSJAC_JINGLE_CREATOR_RESPONDER]                    = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_STATUSES             = {};
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INACTIVE]                      = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INITIATING]                    = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INITIATED]                     = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_ACCEPTING]                     = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_ACCEPTED]                      = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_TERMINATING]                   = 1;
-JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_TERMINATED]                    = 1;
+var JSJAC_JINGLE_CREATORS              = {};
+JSJAC_JINGLE_CREATORS[JSJAC_JINGLE_CREATOR_INITIATOR]                               = 1;
+JSJAC_JINGLE_CREATORS[JSJAC_JINGLE_CREATOR_RESPONDER]                               = 1;
 
 /**
  * @constant
@@ -4072,22 +4307,14 @@ JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_TERMINATED]                    = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_ACTIONS              = {};
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_ACCEPT]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_ADD]                    = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_MODIFY]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_REJECT]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_REMOVE]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_DESCRIPTION_INFO]               = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SECURITY_INFO]                  = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_ACCEPT]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_INFO]                   = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_INITIATE]               = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_TERMINATE]              = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_ACCEPT]               = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_INFO]                 = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_REJECT]               = 1;
-JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_REPLACE]              = 1;
+var JSJAC_JINGLE_STATUSES              = {};
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INACTIVE]                                 = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INITIATING]                               = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_INITIATED]                                = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_ACCEPTING]                                = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_ACCEPTED]                                 = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_TERMINATING]                              = 1;
+JSJAC_JINGLE_STATUSES[JSJAC_JINGLE_STATUS_TERMINATED]                               = 1;
 
 /**
  * @constant
@@ -4097,12 +4324,22 @@ JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_REPLACE]              = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_ERRORS               = {};
-JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_OUT_OF_ORDER.jingle]              = 1;
-JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_TIE_BREAK.jingle]                 = 1;
-JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_UNKNOWN_SESSION.jingle]           = 1;
-JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_UNSUPPORTED_INFO.jingle]          = 1;
-JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_SECURITY_REQUIRED.jingle]         = 1;
+var JSJAC_JINGLE_ACTIONS               = {};
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_ACCEPT]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_ADD]                               = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_MODIFY]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_REJECT]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_CONTENT_REMOVE]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_DESCRIPTION_INFO]                          = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SECURITY_INFO]                             = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_ACCEPT]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_INFO]                              = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_INITIATE]                          = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_SESSION_TERMINATE]                         = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_ACCEPT]                          = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_INFO]                            = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_REJECT]                          = 1;
+JSJAC_JINGLE_ACTIONS[JSJAC_JINGLE_ACTION_TRANSPORT_REPLACE]                         = 1;
 
 /**
  * @constant
@@ -4112,16 +4349,12 @@ JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_SECURITY_REQUIRED.jingle]         = 1;
  * @default
  * @public
  */
-var XMPP_ERRORS                       = {};
-XMPP_ERRORS[XMPP_ERROR_UNEXPECTED_REQUEST.xmpp]                          = 1;
-XMPP_ERRORS[XMPP_ERROR_CONFLICT.xmpp]                                    = 1;
-XMPP_ERRORS[XMPP_ERROR_ITEM_NOT_FOUND.xmpp]                              = 1;
-XMPP_ERRORS[XMPP_ERROR_NOT_ACCEPTABLE.xmpp]                              = 1;
-XMPP_ERRORS[XMPP_ERROR_FEATURE_NOT_IMPLEMENTED.xmpp]                     = 1;
-XMPP_ERRORS[XMPP_ERROR_SERVICE_UNAVAILABLE.xmpp]                         = 1;
-XMPP_ERRORS[XMPP_ERROR_REDIRECT.xmpp]                                    = 1;
-XMPP_ERRORS[XMPP_ERROR_RESOURCE_CONSTRAINT.xmpp]                         = 1;
-XMPP_ERRORS[XMPP_ERROR_BAD_REQUEST.xmpp]                                 = 1;
+var JSJAC_JINGLE_MESSAGE_ACTIONS               = {};
+JSJAC_JINGLE_MESSAGE_ACTIONS[JSJAC_JINGLE_MESSAGE_ACTION_PROPOSE]                   = 1;
+JSJAC_JINGLE_MESSAGE_ACTIONS[JSJAC_JINGLE_MESSAGE_ACTION_RETRACT]                   = 1;
+JSJAC_JINGLE_MESSAGE_ACTIONS[JSJAC_JINGLE_MESSAGE_ACTION_ACCEPT]                    = 1;
+JSJAC_JINGLE_MESSAGE_ACTIONS[JSJAC_JINGLE_MESSAGE_ACTION_PROCEED]                   = 1;
+JSJAC_JINGLE_MESSAGE_ACTIONS[JSJAC_JINGLE_MESSAGE_ACTION_REJECT]                    = 1;
 
 /**
  * @constant
@@ -4131,24 +4364,12 @@ XMPP_ERRORS[XMPP_ERROR_BAD_REQUEST.xmpp]                                 = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_REASONS              = {};
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_ALTERNATIVE_SESSION]            = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_BUSY]                           = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_CANCEL]                         = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_CONNECTIVITY_ERROR]             = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_DECLINE]                        = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_EXPIRED]                        = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_FAILED_APPLICATION]             = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_FAILED_TRANSPORT]               = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_GENERAL_ERROR]                  = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_GONE]                           = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_INCOMPATIBLE_PARAMETERS]        = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_MEDIA_ERROR]                    = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_SECURITY_ERROR]                 = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_SUCCESS]                        = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_TIMEOUT]                        = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_UNSUPPORTED_APPLICATIONS]       = 1;
-JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_UNSUPPORTED_TRANSPORTS]         = 1;
+var JSJAC_JINGLE_ERRORS                = {};
+JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_OUT_OF_ORDER.jingle]                         = 1;
+JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_TIE_BREAK.jingle]                            = 1;
+JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_UNKNOWN_SESSION.jingle]                      = 1;
+JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_UNSUPPORTED_INFO.jingle]                     = 1;
+JSJAC_JINGLE_ERRORS[JSJAC_JINGLE_ERROR_SECURITY_REQUIRED.jingle]                    = 1;
 
 /**
  * @constant
@@ -4158,13 +4379,16 @@ JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_UNSUPPORTED_TRANSPORTS]         = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_SESSION_INFOS        = {};
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_ACTIVE]             = 1;
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_HOLD]               = 1;
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_MUTE]               = 1;
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_RINGING]            = 1;
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_UNHOLD]             = 1;
-JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_UNMUTE]             = 1;
+var XMPP_ERRORS                        = {};
+XMPP_ERRORS[XMPP_ERROR_UNEXPECTED_REQUEST.xmpp]                                     = 1;
+XMPP_ERRORS[XMPP_ERROR_CONFLICT.xmpp]                                               = 1;
+XMPP_ERRORS[XMPP_ERROR_ITEM_NOT_FOUND.xmpp]                                         = 1;
+XMPP_ERRORS[XMPP_ERROR_NOT_ACCEPTABLE.xmpp]                                         = 1;
+XMPP_ERRORS[XMPP_ERROR_FEATURE_NOT_IMPLEMENTED.xmpp]                                = 1;
+XMPP_ERRORS[XMPP_ERROR_SERVICE_UNAVAILABLE.xmpp]                                    = 1;
+XMPP_ERRORS[XMPP_ERROR_REDIRECT.xmpp]                                               = 1;
+XMPP_ERRORS[XMPP_ERROR_RESOURCE_CONSTRAINT.xmpp]                                    = 1;
+XMPP_ERRORS[XMPP_ERROR_BAD_REQUEST.xmpp]                                            = 1;
 
 /**
  * @constant
@@ -4174,9 +4398,24 @@ JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_UNMUTE]             = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_MEDIAS               = {};
-JSJAC_JINGLE_MEDIAS[JSJAC_JINGLE_MEDIA_AUDIO]                            = { label: '0' };
-JSJAC_JINGLE_MEDIAS[JSJAC_JINGLE_MEDIA_VIDEO]                            = { label: '1' };
+var JSJAC_JINGLE_REASONS               = {};
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_ALTERNATIVE_SESSION]                       = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_BUSY]                                      = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_CANCEL]                                    = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_CONNECTIVITY_ERROR]                        = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_DECLINE]                                   = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_EXPIRED]                                   = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_FAILED_APPLICATION]                        = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_FAILED_TRANSPORT]                          = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_GENERAL_ERROR]                             = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_GONE]                                      = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_INCOMPATIBLE_PARAMETERS]                   = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_MEDIA_ERROR]                               = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_SECURITY_ERROR]                            = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_SUCCESS]                                   = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_TIMEOUT]                                   = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_UNSUPPORTED_APPLICATIONS]                  = 1;
+JSJAC_JINGLE_REASONS[JSJAC_JINGLE_REASON_UNSUPPORTED_TRANSPORTS]                    = 1;
 
 /**
  * @constant
@@ -4186,9 +4425,13 @@ JSJAC_JINGLE_MEDIAS[JSJAC_JINGLE_MEDIA_VIDEO]                            = { lab
  * @default
  * @public
  */
-var JSJAC_JINGLE_VIDEO_SOURCES        = {};
-JSJAC_JINGLE_VIDEO_SOURCES[JSJAC_JINGLE_VIDEO_SOURCE_CAMERA]             = 1;
-JSJAC_JINGLE_VIDEO_SOURCES[JSJAC_JINGLE_VIDEO_SOURCE_SCREEN]             = 1;
+var JSJAC_JINGLE_SESSION_INFOS         = {};
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_ACTIVE]                        = 1;
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_HOLD]                          = 1;
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_MUTE]                          = 1;
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_RINGING]                       = 1;
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_UNHOLD]                        = 1;
+JSJAC_JINGLE_SESSION_INFOS[JSJAC_JINGLE_SESSION_INFO_UNMUTE]                        = 1;
 
 /**
  * @constant
@@ -4198,13 +4441,9 @@ JSJAC_JINGLE_VIDEO_SOURCES[JSJAC_JINGLE_VIDEO_SOURCE_SCREEN]             = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_MESSAGE_TYPES        = {};
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_ALL]                = 1;
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_NORMAL]             = 1;
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_CHAT]               = 1;
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_HEADLINE]           = 1;
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_GROUPCHAT]          = 1;
-JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_ERROR]              = 1;
+var JSJAC_JINGLE_MEDIAS                = {};
+JSJAC_JINGLE_MEDIAS[JSJAC_JINGLE_MEDIA_AUDIO]                                       = { label: '0' };
+JSJAC_JINGLE_MEDIAS[JSJAC_JINGLE_MEDIA_VIDEO]                                       = { label: '1' };
 
 /**
  * @constant
@@ -4214,11 +4453,9 @@ JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_ERROR]              = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_PRESENCE_TYPES       = {};
-JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_ALL]              = 1;
-JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_AVAILABLE]        = 1;
-JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_UNAVAILABLE]      = 1;
-JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_ERROR]            = 1;
+var JSJAC_JINGLE_VIDEO_SOURCES         = {};
+JSJAC_JINGLE_VIDEO_SOURCES[JSJAC_JINGLE_VIDEO_SOURCE_CAMERA]                        = 1;
+JSJAC_JINGLE_VIDEO_SOURCES[JSJAC_JINGLE_VIDEO_SOURCE_SCREEN]                        = 1;
 
 /**
  * @constant
@@ -4228,12 +4465,42 @@ JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_ERROR]            = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_IQ_TYPES             = {};
-JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_ALL]                          = 1;
-JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_RESULT]                       = 1;
-JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_SET]                          = 1;
-JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_GET]                          = 1;
-JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_ERROR]                        = 1;
+var JSJAC_JINGLE_MESSAGE_TYPES         = {};
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_ALL]                           = 1;
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_NORMAL]                        = 1;
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_CHAT]                          = 1;
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_HEADLINE]                      = 1;
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_GROUPCHAT]                     = 1;
+JSJAC_JINGLE_MESSAGE_TYPES[JSJAC_JINGLE_MESSAGE_TYPE_ERROR]                         = 1;
+
+/**
+ * @constant
+ * @global
+ * @type {Object}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_PRESENCE_TYPES        = {};
+JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_ALL]                         = 1;
+JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_AVAILABLE]                   = 1;
+JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_UNAVAILABLE]                 = 1;
+JSJAC_JINGLE_PRESENCE_TYPES[JSJAC_JINGLE_PRESENCE_TYPE_ERROR]                       = 1;
+
+/**
+ * @constant
+ * @global
+ * @type {Object}
+ * @readonly
+ * @default
+ * @public
+ */
+var JSJAC_JINGLE_IQ_TYPES              = {};
+JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_ALL]                                     = 1;
+JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_RESULT]                                  = 1;
+JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_SET]                                     = 1;
+JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_GET]                                     = 1;
+JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_ERROR]                                   = 1;
 
 
 
@@ -4249,7 +4516,7 @@ JSJAC_JINGLE_IQ_TYPES[JSJAC_JINGLE_IQ_TYPE_ERROR]                        = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_MUJI_ACTIONS         = {};
+var JSJAC_JINGLE_MUJI_ACTIONS          = {};
 JSJAC_JINGLE_MUJI_ACTIONS[JSJAC_JINGLE_MUJI_ACTION_PREPARE]    = 1;
 JSJAC_JINGLE_MUJI_ACTIONS[JSJAC_JINGLE_MUJI_ACTION_INITIATE]   = 1;
 JSJAC_JINGLE_MUJI_ACTIONS[JSJAC_JINGLE_MUJI_ACTION_LEAVE]      = 1;
@@ -4262,7 +4529,7 @@ JSJAC_JINGLE_MUJI_ACTIONS[JSJAC_JINGLE_MUJI_ACTION_LEAVE]      = 1;
  * @default
  * @public
  */
-var JSJAC_JINGLE_MUJI_STATUS          = {};
+var JSJAC_JINGLE_MUJI_STATUS           = {};
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_INACTIVE]    = 1;
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_PREPARING]   = 1;
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_PREPARED]    = 1;
@@ -4270,6 +4537,7 @@ JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_INITIATING]  = 1;
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_INITIATED]   = 1;
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_LEAVING]     = 1;
 JSJAC_JINGLE_MUJI_STATUS[JSJAC_JINGLE_MUJI_STATUS_LEFT]        = 1;
+
 /**
  * @fileoverview JSJaC Jingle library - Storage layer
  *
@@ -4320,11 +4588,39 @@ var JSJaCJingleStorage = new (ring.create(
       this._sessions[JSJAC_JINGLE_SESSION_MUJI]    = {};
 
       /**
+       * @type {Object}
+       * @default
+       * @private
+       */
+      this._broadcast_ids                          = {};
+
+      /**
        * @type {Function}
        * @default
        * @private
        */
       this._single_initiate = undefined;
+
+      /**
+       * @type {Function}
+       * @default
+       * @private
+       */
+      this._single_prepare = undefined;
+
+      /**
+       * @type {Function}
+       * @default
+       * @private
+       */
+      this._single_proceed = undefined;
+
+      /**
+       * @type {Function}
+       * @default
+       * @private
+       */
+      this._single_reject = undefined;
 
       /**
        * @type {Function}
@@ -4386,7 +4682,7 @@ var JSJaCJingleStorage = new (ring.create(
 
 
     /**
-     * JSJSAC JINGLE GETTERS
+     * JSJSAC JINGLE STORAGE GETTERS
      */
 
     /**
@@ -4408,6 +4704,18 @@ var JSJaCJingleStorage = new (ring.create(
     },
 
     /**
+     * Gets the broadcast_ids storage
+     * @public
+     * @returns {Object} Broadcast ID medias
+     */
+    get_broadcast_ids: function(id) {
+      if(id in this._broadcast_ids)
+        return this._broadcast_ids[id];
+
+      return null;
+    },
+
+    /**
      * Gets the Single initiate function
      * @public
      * @returns {Function} Single initiate
@@ -4426,6 +4734,42 @@ var JSJaCJingleStorage = new (ring.create(
      */
     get_single_initiate_raw: function() {
       return this._single_initiate;
+    },
+
+    /**
+     * Gets the Single prepare function
+     * @public
+     * @returns {Function} Single prepare
+     */
+    get_single_prepare: function() {
+      if(typeof this._single_prepare == 'function')
+        return this._single_prepare;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Single proceed function
+     * @public
+     * @returns {Function} Single proceed
+     */
+    get_single_proceed: function() {
+      if(typeof this._single_proceed == 'function')
+        return this._single_proceed;
+
+      return function(stanza) {};
+    },
+
+    /**
+     * Gets the Single reject function
+     * @public
+     * @returns {Function} Single reject
+     */
+    get_single_reject: function() {
+      if(typeof this._single_reject == 'function')
+        return this._single_reject;
+
+      return function(stanza) {};
     },
 
     /**
@@ -4497,7 +4841,7 @@ var JSJaCJingleStorage = new (ring.create(
 
 
     /**
-     * JSJSAC JINGLE SETTERS
+     * JSJSAC JINGLE STORAGE SETTERS
      */
 
     /**
@@ -4519,12 +4863,53 @@ var JSJaCJingleStorage = new (ring.create(
     },
 
     /**
+     * Sets the broadcast IDs storage
+     * @public
+     * @param {String} id
+     * @param {Object} medias
+     * @param {Boolean} [proceed_unset]
+     */
+    set_broadcast_ids: function(id, medias, proceed_unset) {
+      this._broadcast_ids[id] = medias;
+
+      if(proceed_unset === true && id in this._broadcast_ids)
+        delete this._broadcast_ids[id];
+    },
+
+    /**
      * Sets the Single initiate function
      * @public
      * @param {Function} Single initiate
      */
     set_single_initiate: function(single_initiate) {
       this._single_initiate = single_initiate;
+    },
+
+    /**
+     * Sets the Single prepare function
+     * @public
+     * @param {Function} Single prepare
+     */
+    set_single_prepare: function(single_prepare) {
+      this._single_prepare = single_prepare;
+    },
+
+    /**
+     * Sets the Single proceed function
+     * @public
+     * @param {Function} Single proceed
+     */
+    set_single_proceed: function(single_proceed) {
+      this._single_proceed = single_proceed;
+    },
+
+    /**
+     * Sets the Single reject function
+     * @public
+     * @param {Function} Single reject
+     */
+    set_single_reject: function(single_reject) {
+      this._single_reject = single_reject;
     },
 
     /**
@@ -4582,6 +4967,7 @@ var JSJaCJingleStorage = new (ring.create(
     },
   }
 ))();
+
 /**
  * @fileoverview JSJaC Jingle library - Utilities
  *
@@ -5929,7 +6315,8 @@ var JSJaCJingleUtils = ring.create(
             // Payload-type
             if(cs_d_payload) {
               var i, j,
-                  cur_ssrc_id, cur_cs_d_ssrc_group_semantics,
+                  cur_ssrc_id,
+                  cur_cs_d_ssrc_group_semantics, cur_cs_d_ssrc_group_semantics_sub,
                   cs_d_p, payload_type;
 
               for(i in cs_d_payload) {
@@ -5975,18 +6362,22 @@ var JSJaCJingleUtils = ring.create(
               if(cs_d_ssrc_group) {
                 for(cur_cs_d_ssrc_group_semantics in cs_d_ssrc_group) {
                   for(j in cs_d_ssrc_group[cur_cs_d_ssrc_group_semantics]) {
-                    var ssrc_group = description.appendChild(stanza.buildNode('ssrc-group', {
-                      'semantics': cur_cs_d_ssrc_group_semantics,
-                      'xmlns': NS_JINGLE_APPS_RTP_SSMA
-                    }));
+                    cur_cs_d_ssrc_group_semantics_sub = cs_d_ssrc_group[cur_cs_d_ssrc_group_semantics][j];
 
-                    this.stanza_build_node(
-                      stanza,
-                      ssrc_group,
-                      cs_d_ssrc_group[cur_cs_d_ssrc_group_semantics][j].sources,
-                      'source',
-                      NS_JINGLE_APPS_RTP_SSMA
-                    );
+                    if(cur_cs_d_ssrc_group_semantics_sub !== undefined) {
+                      var ssrc_group = description.appendChild(stanza.buildNode('ssrc-group', {
+                        'semantics': cur_cs_d_ssrc_group_semantics,
+                        'xmlns': NS_JINGLE_APPS_RTP_SSMA
+                      }));
+
+                      this.stanza_build_node(
+                        stanza,
+                        ssrc_group,
+                        cur_cs_d_ssrc_group_semantics_sub.sources,
+                        'source',
+                        NS_JINGLE_APPS_RTP_SSMA
+                      );
+                    }
                   }
                 }
               }
@@ -6825,6 +7216,7 @@ var JSJaCJingleUtils = ring.create(
     },
   }
 );
+
 /**
  * @fileoverview JSJaC Jingle library - SDP tools
  *
@@ -7517,7 +7909,7 @@ var JSJaCJingleSDP = ring.create(
         if(!sdp_candidate)  return candidate;
 
         var error     = 0;
-        var matches   = R_WEBRTC_SDP_CANDIDATE.exec(sdp_candidate);
+        var matches   = R_WEBRTC_DATA_CANDIDATE.exec(sdp_candidate);
 
         // Matches!
         if(matches) {
@@ -7556,15 +7948,16 @@ var JSJaCJingleSDP = ring.create(
 
       // Convert SDP raw data to an object
       var candidate_obj   = this._parse_candidate(candidate_data);
+      var candidate_name  = this.parent.utils.name_generate(candidate_media);
 
       this.parent._set_candidates_local(
-        this.parent.utils.name_generate(candidate_media),
+        candidate_name,
         candidate_obj
       );
 
       // Enqueue candidate
       this.parent._set_candidates_queue_local(
-        this.parent.utils.name_generate(candidate_media),
+        candidate_name,
         candidate_obj
       );
     },
@@ -8161,6 +8554,7 @@ var JSJaCJingleSDP = ring.create(
     },
   }
 );
+
 /**
  * @fileoverview JSJaC Jingle library - Base call lib
  *
@@ -8918,7 +9312,10 @@ var __JSJaCJingleBase = ring.create(
           },
 
           function(e) {
-            if(_this.get_sdp_trace())  _this.get_debug().log('[JSJaCJingle:base] _peer_got_description > SDP (local:error)' + '\n\n' + (e.message || e.name || 'Unknown error'), 4);
+            var error_str = (typeof e == 'string') ? e : null;
+            error_str = (error_str || e.message || e.name || 'Unknown error');
+
+            if(_this.get_sdp_trace())  _this.get_debug().log('[JSJaCJingle:base] _peer_got_description > SDP (local:error)' + '\n\n' + error_str, 1);
 
             // Error (descriptions are incompatible)
           }
@@ -9918,6 +10315,7 @@ var __JSJaCJingleBase = ring.create(
     },
   }
 );
+
 /**
  * @fileoverview JSJaC Jingle library - Single (one-to-one) call lib
  *
@@ -9962,7 +10360,12 @@ var __JSJaCJingleBase = ring.create(
  * @property   {Function}  [args.session_terminate_success]  - The terminate success custom handler.
  * @property   {Function}  [args.session_terminate_error]    - The terminate error custom handler.
  * @property   {Function}  [args.session_terminate_request]  - The terminate request custom handler.
+ * @property   {Function}  [args.stream_add]                 - The stream add custom handler.
+ * @property   {Function}  [args.stream_remove]              - The stream remove custom handler.
+ * @property   {Function}  [args.stream_connected]           - The stream connected custom handler.
+ * @property   {Function}  [args.stream_disconnected]        - The stream disconnected custom handler.
  * @property   {DOM}       [args.remote_view]                - The path to the remote stream view element.
+ * @property   {DOM}       [args.sid]                        - The session ID (forced).
  */
 var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
   /** @lends JSJaCJingleSingle.prototype */
@@ -10101,6 +10504,38 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
          */
         this._session_terminate_request = args.session_terminate_request;
 
+      if(args && args.stream_add)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._stream_add = args.stream_add;
+
+      if(args && args.stream_remove)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._stream_remove = args.stream_remove;
+
+      if(args && args.stream_connected)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._stream_connected = args.stream_connected;
+
+      if(args && args.stream_disconnected)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._stream_disconnected = args.stream_disconnected;
+
       if(args && args.remote_view)
         /**
          * @member {Object}
@@ -10108,6 +10543,14 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
          * @private
          */
         this._remote_view = [args.remote_view];
+
+      if(args && args.sid)
+        /**
+         * @member {String}
+         * @default
+         * @private
+         */
+        this._sid = [args.sid];
 
       /**
        * @member {Object}
@@ -10150,6 +10593,13 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
        * @private
        */
       this._candidates_queue_remote = {};
+
+      /**
+       * @member {String|Object}
+       * @default
+       * @private
+       */
+      this._last_ice_state = null;
 
       /**
        * @constant
@@ -10219,7 +10669,8 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
         this._set_status(JSJAC_JINGLE_STATUS_INITIATING);
 
         // Set session values
-        this._set_sid(this.utils.generate_sid());
+        if(!this.get_sid())  this._set_sid(this.utils.generate_sid());
+
         this._set_initiator(this.utils.connection_jid());
         this._set_responder(this.get_to());
 
@@ -12317,6 +12768,24 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
          * @type {Function}
          */
         this.get_peer_connection().oniceconnectionstatechange = function(data) {
+          switch(this.iceConnectionState) {
+            case JSJAC_JINGLE_ICE_CONNECTION_STATE_CONNECTED:
+            case JSJAC_JINGLE_ICE_CONNECTION_STATE_COMPLETED:
+              if(_this.get_last_ice_state() !== JSJAC_JINGLE_ICE_CONNECTION_STATE_CONNECTED) {
+                /* @function */
+                (_this.get_stream_connected()).bind(this)(_this, data);
+                _this._set_last_ice_state(JSJAC_JINGLE_ICE_CONNECTION_STATE_CONNECTED);
+              } break;
+
+            case JSJAC_JINGLE_ICE_CONNECTION_STATE_DISCONNECTED:
+            case JSJAC_JINGLE_ICE_CONNECTION_STATE_CLOSED:
+              if(_this.get_last_ice_state() !== JSJAC_JINGLE_ICE_CONNECTION_STATE_DISCONNECTED) {
+                /* @function */
+                (_this.get_stream_disconnected()).bind(this)(_this, data);
+                _this._set_last_ice_state(JSJAC_JINGLE_ICE_CONNECTION_STATE_DISCONNECTED);
+              } break;
+          }
+
           _this._peer_connection_callback_oniceconnectionstatechange.bind(this)(_this, data);
         };
 
@@ -12326,6 +12795,8 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
          * @type {Function}
          */
         this.get_peer_connection().onaddstream = function(data) {
+          /* @function */
+          (_this.get_stream_add()).bind(this)(_this, data);
           _this._peer_connection_callback_onaddstream.bind(this)(_this, data);
         };
 
@@ -12335,6 +12806,8 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
          * @type {Function}
          */
         this.get_peer_connection().onremovestream = function(data) {
+          /* @function */
+          (_this.get_stream_remove()).bind(this)(_this, data);
           _this._peer_connection_callback_onremovestream.bind(this)(_this, data);
         };
       } catch(e) {
@@ -12862,6 +13335,54 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
     },
 
     /**
+     * Gets the stream add event callback function
+     * @public
+     * @event JSJaCJingleSingle#stream_add
+     * @returns {Function} Callback function
+     */
+    get_stream_add: function() {
+      return this._shortcut_get_handler(
+        this._stream_add
+      );
+    },
+
+    /**
+     * Gets the stream remove event callback function
+     * @public
+     * @event JSJaCJingleSingle#stream_remove
+     * @returns {Function} Callback function
+     */
+    get_stream_remove: function() {
+      return this._shortcut_get_handler(
+        this._stream_remove
+      );
+    },
+
+    /**
+     * Gets the stream connected event callback function
+     * @public
+     * @event JSJaCJingleSingle#stream_connected
+     * @returns {Function} Callback function
+     */
+    get_stream_connected: function() {
+      return this._shortcut_get_handler(
+        this._stream_connected
+      );
+    },
+
+    /**
+     * Gets the stream disconnected event callback function
+     * @public
+     * @event JSJaCJingleSingle#stream_disconnected
+     * @returns {Function} Callback function
+     */
+    get_stream_disconnected: function() {
+      return this._shortcut_get_handler(
+        this._stream_disconnected
+      );
+    },
+
+    /**
      * Gets the prepended ID
      * @public
      * @returns {String} Prepended ID value
@@ -12960,6 +13481,15 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
         return (name in this._candidates_queue_remote) ? this._candidates_queue_remote[name] : {};
 
       return this._candidates_queue_remote;
+    },
+
+    /**
+     * Gets the last ICE state value
+     * @public
+     * @returns {String|Object} Last ICE state value
+     */
+    get_last_ice_state: function() {
+      return this._last_ice_state;
     },
 
 
@@ -13110,6 +13640,42 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
      */
     _set_session_terminate_request: function(terminate_request) {
       this._session_terminate_request = terminate_request;
+    },
+
+    /**
+     * Sets the stream add event callback function
+     * @private
+     * @param {Function} stream_add
+     */
+    _set_stream_add: function(stream_add) {
+      this._stream_add = stream_add;
+    },
+
+    /**
+     * Sets the stream remove event callback function
+     * @private
+     * @param {Function} stream_remove
+     */
+    _set_stream_remove: function(stream_remove) {
+      this._stream_remove = stream_remove;
+    },
+
+    /**
+     * Sets the stream connected event callback function
+     * @private
+     * @param {Function} stream_connected
+     */
+    _set_stream_connected: function(stream_connected) {
+      this._stream_connected = stream_connected;
+    },
+
+    /**
+     * Sets the stream disconnected event callback function
+     * @private
+     * @param {Function} stream_disconnected
+     */
+    _set_stream_disconnected: function(stream_disconnected) {
+      this._stream_disconnected = stream_disconnected;
     },
 
     /**
@@ -13271,8 +13837,18 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
         this.get_debug().log('[JSJaCJingle:single] _set_candidates_remote_add > ' + e, 1);
       }
     },
+
+    /**
+     * Sets the last ICE state value
+     * @private
+     * @param {String|Object} last_ice_state
+     */
+    _set_last_ice_state: function(last_ice_state) {
+      this._last_ice_state = last_ice_state;
+    },
   }
 );
+
 /**
  * @fileoverview JSJaC Jingle library - Multi-user call lib
  *
@@ -13336,6 +13912,10 @@ var JSJaCJingleSingle = ring.create([__JSJaCJingleBase],
  * @property   {Function}  [args.participant_session_terminate_success]  - The participant session terminate success custom handler.
  * @property   {Function}  [args.participant_session_terminate_error]    - The participant session terminate error custom handler.
  * @property   {Function}  [args.participant_session_terminate_request]  - The participant session terminate request custom handler.
+ * @property   {Function}  [args.participant_stream_add]                 - The participant stream add custom handler.
+ * @property   {Function}  [args.participant_stream_remove]              - The participant stream remove custom handler.
+ * @property   {Function}  [args.participant_stream_connected]           - The participant stream connected custom handler.
+ * @property   {Function}  [args.participant_stream_disconnected]        - The participant stream disconnected custom handler.
  * @property   {Function}  [args.add_remote_view]                        - The remote view media add (audio/video) custom handler.
  * @property   {Function}  [args.remove_remote_view]                     - The remote view media removal (audio/video) custom handler.
  */
@@ -13603,6 +14183,38 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
          * @private
          */
         this._participant_session_terminate_request = args.participant_session_terminate_request;
+
+      if(args && args.participant_stream_add)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._participant_stream_add = args.participant_stream_add;
+
+      if(args && args.participant_stream_remove)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._participant_stream_remove = args.participant_stream_remove;
+
+      if(args && args.participant_stream_connected)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._participant_stream_connected = args.participant_stream_connected;
+
+      if(args && args.participant_stream_disconnected)
+        /**
+         * @member {Function}
+         * @default
+         * @private
+         */
+        this._participant_stream_disconnected = args.participant_stream_disconnected;
 
       if(args && args.add_remote_view)
         /**
@@ -15226,6 +15838,78 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
       }
     },
 
+    /**
+     * Handles the stream add event
+     * @private
+     * @event JSJaCJingleMuji#_handle_participant_stream_add
+     * @param {JSJaCJingleSingle} session
+     * @param {MediaStreamEvent} data
+     */
+    _handle_participant_stream_add: function(session, data) {
+      this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_add', 4);
+
+      try {
+        /* @function */
+        (this.get_participant_stream_add())(this, session, data);
+      } catch(e) {
+        this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_add > ' + e, 1);
+      }
+    },
+
+    /**
+     * Handles the stream remove event
+     * @private
+     * @event JSJaCJingleMuji#_handle_participant_stream_remove
+     * @param {JSJaCJingleSingle} session
+     * @param {MediaStreamEvent} data
+     */
+    _handle_participant_stream_remove: function(session, data) {
+      this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_remove', 4);
+
+      try {
+        /* @function */
+        (this.get_participant_stream_remove())(this, session, data);
+      } catch(e) {
+        this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_remove > ' + e, 1);
+      }
+    },
+
+    /**
+     * Handles the stream connected event
+     * @private
+     * @event JSJaCJingleMuji#_handle_participant_stream_connected
+     * @param {JSJaCJingleSingle} session
+     * @param {MediaStreamEvent} data
+     */
+    _handle_participant_stream_connected: function(session, data) {
+      this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_connected', 4);
+
+      try {
+        /* @function */
+        (this.get_participant_stream_connected())(this, session, data);
+      } catch(e) {
+        this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_connected > ' + e, 1);
+      }
+    },
+
+    /**
+     * Handles the stream disconnected event
+     * @private
+     * @event JSJaCJingleMuji#_handle_participant_stream_disconnected
+     * @param {JSJaCJingleSingle} session
+     * @param {MediaStreamEvent} data
+     */
+    _handle_participant_stream_disconnected: function(session, data) {
+      this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_disconnected', 4);
+
+      try {
+        /* @function */
+        (this.get_participant_stream_disconnected())(this, session, data);
+      } catch(e) {
+        this.get_debug().log('[JSJaCJingle:muji] _handle_participant_stream_disconnected > ' + e, 1);
+      }
+    },
+
 
 
     /**
@@ -15747,6 +16431,11 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
         args.session_terminate_success  = this._handle_participant_session_terminate_success.bind(this);
         args.session_terminate_error    = this._handle_participant_session_terminate_error.bind(this);
         args.session_terminate_request  = this._handle_participant_session_terminate_request.bind(this);
+
+        args.stream_add                 = this._handle_participant_stream_add.bind(this);
+        args.stream_remove              = this._handle_participant_stream_remove.bind(this);
+        args.stream_connected           = this._handle_participant_stream_connected.bind(this);
+        args.stream_disconnected        = this._handle_participant_stream_disconnected.bind(this);
       } catch(e) {
         this.get_debug().log('[JSJaCJingle:muji] _generate_participant_session_args > ' + e, 1);
       } finally {
@@ -16328,6 +17017,54 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
     },
 
     /**
+     * Gets the participant stream add event callback function
+     * @public
+     * @event JSJaCJingleMuji#get_participant_stream_add
+     * @returns {Function} Participant stream add event callback function
+     */
+    get_participant_stream_add: function() {
+      return this._shortcut_get_handler(
+        this._participant_stream_add
+      );
+    },
+
+    /**
+     * Gets the participant stream remove event callback function
+     * @public
+     * @event JSJaCJingleMuji#get_participant_stream_remove
+     * @returns {Function} Participant stream remove event callback function
+     */
+    get_participant_stream_remove: function() {
+      return this._shortcut_get_handler(
+        this._participant_stream_remove
+      );
+    },
+
+    /**
+     * Gets the participant stream connected event callback function
+     * @public
+     * @event JSJaCJingleMuji#get_participant_stream_connected
+     * @returns {Function} Participant stream connected event callback function
+     */
+    get_participant_stream_connected: function() {
+      return this._shortcut_get_handler(
+        this._participant_stream_connected
+      );
+    },
+
+    /**
+     * Gets the participant stream disconnected event callback function
+     * @public
+     * @event JSJaCJingleMuji#get_participant_stream_disconnected
+     * @returns {Function} Participant stream disconnected event callback function
+     */
+    get_participant_stream_disconnected: function() {
+      return this._shortcut_get_handler(
+        this._participant_stream_disconnected
+      );
+    },
+
+    /**
      * Gets the remote view add callback function
      * @public
      * @event JSJaCJingleMuji#get_add_remote_view
@@ -16709,6 +17446,42 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
     },
 
     /**
+     * Sets the participant stream add event callback function
+     * @private
+     * @param {Function} participant_stream_add
+     */
+    _set_participant_stream_add: function(participant_stream_add) {
+      this._participant_stream_add = participant_stream_add;
+    },
+
+    /**
+     * Sets the participant stream remove event callback function
+     * @private
+     * @param {Function} participant_stream_remove
+     */
+    _set_participant_stream_remove: function(participant_stream_remove) {
+      this._participant_stream_remove = participant_stream_remove;
+    },
+
+    /**
+     * Sets the participant stream connected event callback function
+     * @private
+     * @param {Function} participant_stream_connected
+     */
+    _set_participant_stream_connected: function(participant_stream_connected) {
+      this._participant_stream_connected = participant_stream_connected;
+    },
+
+    /**
+     * Sets the participant stream disconnected event callback function
+     * @private
+     * @param {Function} participant_stream_disconnected
+     */
+    _set_participant_stream_disconnected: function(participant_stream_disconnected) {
+      this._participant_stream_disconnected = participant_stream_disconnected;
+    },
+
+    /**
      * Sets the add remote view callback function
      * @private
      * @param {Function} add_remote_view
@@ -16789,6 +17562,442 @@ var JSJaCJingleMuji = ring.create([__JSJaCJingleBase],
     },
   }
 );
+/**
+ * @fileoverview JSJaC Jingle library - Initialization broadcast lib (XEP-0353)
+ *
+ * @url https://github.com/valeriansaliou/jsjac-jingle
+ * @depends https://github.com/sstrigler/JSJaC
+ * @author Valérian Saliou https://valeriansaliou.name/
+ * @license Mozilla Public License v2.0 (MPL v2.0)
+ */
+
+
+/** @module jsjac-jingle/broadcast */
+/** @exports JSJaCJingleBroadcast */
+
+
+/**
+ * Library initialization class.
+ * @class
+ * @classdesc  Initialization broadcast class.
+ * @requires   nicolas-van/ring.js
+ * @requires   jsjac-jingle/main
+ * @see        {@link http://ringjs.neoname.eu/|Ring.js}
+ * @see        {@link http://stefan-strigler.de/jsjac-1.3.4/doc/|JSJaC Documentation}
+ * @see        {@link http://xmpp.org/extensions/xep-0353.html|XEP-0353: Jingle Message Initiation}
+ */
+var JSJaCJingleBroadcast = new (ring.create(
+  /** @lends JSJaCJingleBroadcast.prototype */
+  {
+    /**
+     * Proposes a call
+     * @public
+     * @param {String} to
+     * @param {Object} medias
+     */
+    propose: function(to, medias, cb_timeout) {
+      try {
+        var self = this;
+        var id = this._send_remote_propose(to, medias);
+
+        if(typeof cb_timeout == 'function') {
+          setTimeout(function() {
+            // Call answered
+            if(self._exists_id(id) === false) {
+              JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > Propose successful.', 4);
+            } else {
+              cb_timeout();
+
+              JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > Propose timeout.', 2);
+            }
+          }, (JSJAC_JINGLE_BROADCAST_TIMEOUT * 1000));
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] propose > ' + e, 1);
+      }
+    },
+
+    /**
+     * Retracts from a call
+     * @public
+     * @param {String} to
+     * @param {String} id
+     */
+    retract: function(to, id) {
+      try {
+        this._send_remote_retract(to, id);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] retract > ' + e, 1);
+      }
+    },
+
+    /**
+     * Accepts a call
+     * @public
+     * @param {String} to
+     * @param {String} id
+     * @param {Object} medias
+     */
+    accept: function(to, id, medias) {
+      try {
+        this._register_id(id, medias);
+
+        this._send_local_accept(id);
+        this._send_remote_proceed(to, id);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] accept > ' + e, 1);
+      }
+    },
+
+    /**
+     * Rejects a call
+     * @public
+     * @param {String} to
+     * @param {String} id
+     * @param {Object} medias
+     */
+    reject: function(to, id, medias) {
+      try {
+        this._register_id(id, medias);
+
+        this._send_local_reject(id);
+        this._send_remote_retract(to, id);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] reject > ' + e, 1);
+      }
+    },
+
+    /**
+     * Handles a call
+     * @public
+     * @param {JSJaCPacket} stanza
+     */
+    handle: function(stanza) {
+      var i,
+          is_handled, stanza_child,
+          description, cur_description, cur_media,
+          proposed_medias,
+          id;
+
+      try {
+        is_handled = false;
+
+        stanza_child = stanza.getChild(
+          '*', NS_JINGLE_MESSAGE
+        );
+
+        if(stanza_child) {
+          switch(stanza_child.tagName) {
+            case JSJAC_JINGLE_MESSAGE_ACTION_PROPOSE:
+              proposed_medias = {};
+
+              description = stanza_child.getElementsByTagNameNS(
+                NS_JINGLE_APPS_RTP, 'description'
+              );
+
+              for(i = 0; i < description.length; i++) {
+                cur_description = description[i];
+
+                if(cur_description) {
+                  cur_media = cur_description.getAttribute('media');
+
+                  if(cur_media && cur_media in JSJAC_JINGLE_MEDIAS) {
+                    proposed_medias[cur_media] = 1;
+                  }
+                }
+              }
+
+              JSJaCJingleStorage.get_single_prepare()(stanza, proposed_medias);
+
+              is_handled = true; break;
+
+            case JSJAC_JINGLE_MESSAGE_ACTION_PROCEED:
+              JSJaCJingleStorage.get_single_proceed()(stanza);
+
+              id = this.get_call_id(stanza);
+              if(id)  this._unregister_id(id);
+
+              is_handled = true; break;
+
+            case JSJAC_JINGLE_MESSAGE_ACTION_REJECT:
+              JSJaCJingleStorage.get_single_reject()(stanza);
+
+              id = this.get_call_id(stanza);
+              if(id)  this._unregister_id(id);
+
+              is_handled = true; break;
+          }
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] handle > ' + e, 1);
+      } finally {
+        return is_handled;
+      }
+    },
+
+    /**
+     * Returns the call ID
+     * @public
+     * @param {JSJaCPacket} stanza
+     * @returns {String} Call ID
+     */
+    get_call_id: function(stanza) {
+      var call_id = null;
+
+      try {
+        var stanza_child = stanza.getChild(
+          '*', NS_JINGLE_MESSAGE
+        );
+
+        if(stanza_child) {
+          call_id = stanza_child.getAttribute('id') || null;
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] get_call_id > ' + e, 1);
+      } finally {
+        return call_id;
+      }
+    },
+
+    /**
+     * Returns the call medias
+     * @public
+     * @param {String} id
+     * @returns {Object} Call medias
+     */
+    get_call_medias: function(id) {
+      var call_medias = [];
+
+      try {
+        call_medias = JSJaCJingleStorage.get_broadcast_ids(id) || [];
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] get_call_medias > ' + e, 1);
+      } finally {
+        return call_medias;
+      }
+    },
+
+    /**
+     * Broadcasts a Jingle session proposal (remote packet)
+     * @private
+     * @see {@link http://xmpp.org/extensions/xep-0353.html#intent|XEP-0353 - Propose}
+     */
+    _send_remote_propose: function(to, medias) {
+      var i, cur_media, propose, id;
+
+      try {
+        id = this._register_id(null, medias);
+        propose = this._build_stanza(
+          to, id, JSJAC_JINGLE_MESSAGE_ACTION_PROPOSE
+        );
+
+        if(medias && typeof medias == 'object' && medias.length) {
+          for(i = 0; i < medias.length; i++) {
+            cur_media = medias[i];
+
+            if(cur_media) {
+              propose[1].appendChild(
+                propose[0].buildNode('description', {
+                  'xmlns': NS_JINGLE_APPS_RTP,
+                  'media': cur_media
+                })
+              );
+            }
+          }
+        }
+
+        this._send_stanza(propose);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_remote_propose > ' + e, 1);
+      } finally {
+        return id;
+      }
+    },
+
+    /**
+     * Broadcasts a Jingle session retract (remote packet)
+     * @private
+     * @see {@link http://xmpp.org/extensions/xep-0353.html#retract|XEP-0353 - Retract}
+     */
+    _send_remote_retract: function(to, id) {
+      try {
+        if(this._exists_id(id) === true) {
+          var retract = this._build_stanza(
+            to, id, JSJAC_JINGLE_MESSAGE_ACTION_RETRACT
+          );
+
+          this._send_stanza(retract);
+          this._unregister_id(id);
+        } else {
+          JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_remote_retract > Cannot retract, target ID not existing.', 0);
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_remote_retract > ' + e, 1);
+      }
+    },
+
+    /**
+     * Broadcasts a Jingle session proceed (remote packet)
+     * @private
+     * @see {@link http://xmpp.org/extensions/xep-0353.html#accept|XEP-0353 - Accept}
+     */
+    _send_remote_proceed: function(to, id) {
+      try {
+        // ID shouldn't exist at this point since we're the receiving party
+        if(this._exists_id(id) === true) {
+          var proceed = this._build_stanza(
+            to, id, JSJAC_JINGLE_MESSAGE_ACTION_PROCEED
+          );
+
+          this._send_stanza(proceed);
+          this._unregister_id(id);
+        } else {
+          JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_remote_proceed > Cannot proceed, target ID not existing.', 0);
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_remote_proceed > ' + e, 1);
+      }
+    },
+
+    /**
+     * Broadcasts a Jingle session accept (local packet)
+     * @private-
+     * @see {@link http://xmpp.org/extensions/xep-0353.html#accept|XEP-0353 - Accept}
+     */
+    _send_local_accept: function(id) {
+      try {
+        // ID shouldn't exist at this point since we're the receiving party
+        if(this._exists_id(id) === true) {
+          var accept = this._build_stanza(
+            null, id, JSJAC_JINGLE_MESSAGE_ACTION_ACCEPT
+          );
+
+          this._send_stanza(accept);
+        } else {
+          JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_local_accept > Cannot accept, target ID not existing.', 0);
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_local_accept > ' + e, 1);
+      }
+    },
+
+    /**
+     * Broadcasts a Jingle session reject (local packet)
+     * @private
+     * @see {@link http://xmpp.org/extensions/xep-0353.html#reject|XEP-0353 - Reject}
+     */
+    _send_local_reject: function(id) {
+      try {
+        // ID shouldn't exist at this point since we're the receiving party
+        if(this._exists_id(id) === true) {
+          var reject = this._build_stanza(
+            null, id, JSJAC_JINGLE_MESSAGE_ACTION_REJECT
+          );
+
+          this._send_stanza(reject);
+        } else {
+          JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_local_reject > Cannot reject, target ID not existing.', 0);
+        }
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_local_reject > ' + e, 1);
+      }
+    },
+
+    /**
+     * Builds a XEP-0353 stanza
+     * @private
+     */
+    _build_stanza: function(to, id, action) {
+      stanza_arr = [];
+
+      try {
+        var connection, stanza, node;
+
+        stanza = new JSJaCMessage();
+
+        // Set to connection user?
+        if(to === null) {
+          connection = JSJaCJingleStorage.get_connection();
+          to = (connection.username + '@' + connection.domain);
+        }
+
+        stanza.setTo(to);
+
+        node = stanza.getNode().appendChild(
+          stanza.buildNode(action, {
+            'xmlns': NS_JINGLE_MESSAGE,
+            'id': id
+          })
+        );
+
+        stanza_arr = [stanza, node];
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _build_stanza > ' + e, 1);
+      } finally {
+        return stanza_arr;
+      }
+    },
+
+    /**
+     * Sends a XEP-0353 stanza
+     * @private
+     */
+    _send_stanza: function(stanza_arr) {
+      try {
+        JSJaCJingleStorage.get_connection().send(
+          stanza_arr[0]
+        );
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _send_stanza > ' + e, 1);
+      }
+    },
+
+    /**
+     * Returns whether an ID exists or not
+     * @private
+     */
+    _exists_id: function(id) {
+      var is_existing = false;
+
+      try {
+        is_existing = (JSJaCJingleStorage.get_broadcast_ids(id) !== null) && true;
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _exists_id > ' + e, 1);
+      } finally {
+        return is_existing;
+      }
+    },
+
+    /**
+     * Registers an ID
+     * @private
+     */
+    _register_id: function(id, medias) {
+      try {
+        id = id || JSJaCUtils.cnonce(16);
+
+        JSJaCJingleStorage.set_broadcast_ids(id, medias);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _register_id > ' + e, 1);
+      } finally {
+        return id;
+      }
+    },
+
+    /**
+     * Unregisters an ID
+     * @private
+     */
+    _unregister_id: function(id) {
+      try {
+        JSJaCJingleStorage.set_broadcast_ids(id, null, true);
+      } catch(e) {
+        JSJaCJingleStorage.get_debug().log('[JSJaCJingle:broadcast] _unregister_id > ' + e, 1);
+      }
+    },
+  }
+))();
+
 /**
  * @fileoverview JSJaC Jingle library - Initialization components
  *
@@ -17147,6 +18356,7 @@ var JSJaCJingle = new (ring.create(
      * @param     {Object}           [args]
      * @property  {JSJaCConnection}  [args.connection]       - The connection to be attached to.
      * @property  {Function}         [args.single_initiate]  - The Jingle session initiate request custom handler.
+     * @property  {Function}         [args.single_prepare]   - The Jingle session prepare request custom handler.
      * @property  {Function}         [args.muji_invite]      - The Muji session invite message custom handler.
      * @property  {JSJaCDebugger}    [args.debug]            - A reference to a debugger implementing the JSJaCDebugger interface.
      * @property  {Boolean}          [args.extdisco]         - Whether or not to discover external services as per XEP-0215.
@@ -17161,6 +18371,12 @@ var JSJaCJingle = new (ring.create(
           JSJaCJingleStorage.set_connection(args.connection);
         if(args && args.single_initiate)
           JSJaCJingleStorage.set_single_initiate(args.single_initiate);
+        if(args && args.single_prepare)
+          JSJaCJingleStorage.set_single_prepare(args.single_prepare);
+        if(args && args.single_proceed)
+          JSJaCJingleStorage.set_single_proceed(args.single_proceed);
+        if(args && args.single_reject)
+          JSJaCJingleStorage.set_single_reject(args.single_reject);
         if(args && args.muji_invite)
           JSJaCJingleStorage.set_muji_invite(args.muji_invite);
         if(args && args.debug)
@@ -17258,7 +18474,7 @@ var JSJaCJingle = new (ring.create(
           if(jingle && !JSJAC_JINGLE_AVAILABLE) {
             JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_iq > Dropped Jingle packet (WebRTC not available).', 0);
 
-            (new JSJaCJingleSingle({ to: from })).send_error(stanza, XMPP_ERROR_SERVICE_UNAVAILABLE);
+            (new JSJaCJingleSingle({ to: from }))._send_error(stanza, XMPP_ERROR_SERVICE_UNAVAILABLE);
           } else if(is_muji) {
             var username, participant;
 
@@ -17282,7 +18498,7 @@ var JSJaCJingle = new (ring.create(
               } else if(stanza.getType() == JSJAC_JINGLE_IQ_TYPE_SET && from) {
                 JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_iq > Unknown Muji participant session route (sid: ' + sid + ').', 0);
 
-                (new JSJaCJingleSingle({ to: from })).send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
+                (new JSJaCJingleSingle({ to: from }))._send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
               }
             } else if(sid) {
               if(action == JSJAC_JINGLE_ACTION_SESSION_INITIATE) {
@@ -17292,7 +18508,7 @@ var JSJaCJingle = new (ring.create(
               } else if(stanza.getType() == JSJAC_JINGLE_IQ_TYPE_SET && from) {
                 JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_iq > Unknown Muji participant session (sid: ' + sid + ').', 0);
 
-                (new JSJaCJingleSingle({ to: from })).send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
+                (new JSJaCJingleSingle({ to: from }))._send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
               }
             }
           } else if(is_single) {
@@ -17311,7 +18527,7 @@ var JSJaCJingle = new (ring.create(
               } else if(stanza.getType() == JSJAC_JINGLE_IQ_TYPE_SET && from) {
                 JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_iq > Unknown Jingle session (sid: ' + sid + ').', 0);
 
-                (new JSJaCJingleSingle({ to: from })).send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
+                (new JSJaCJingleSingle({ to: from }))._send_error(stanza, JSJAC_JINGLE_ERROR_UNKNOWN_SESSION);
               }
             }
           } else {
@@ -17330,47 +18546,56 @@ var JSJaCJingle = new (ring.create(
      */
     _route_message: function(stanza) {
       try {
-        // Muji?
         var from = stanza.getFrom();
 
         if(from) {
           var jid = new JSJaCJID(from);
-          var room = jid.getNode() + '@' + jid.getDomain();
 
-          var session_route = this._read(JSJAC_JINGLE_SESSION_MUJI, room);
+          // Broadcast message?
+          var is_handled_broadcast = JSJaCJingleBroadcast.handle(stanza);
 
-          var x_conference = stanza.getChild('x', NS_JABBER_CONFERENCE);
-          var x_invite = stanza.getChild('x', NS_MUJI_INVITE);
+          if(is_handled_broadcast === true) {
+            // XEP-0353: Jingle Message Initiation
+            // Nothing to do there.
+          } else {
+            // Muji?
+            var room = jid.getNode() + '@' + jid.getDomain();
 
-          var is_invite = (x_conference && x_invite && true);
+            var session_route = this._read(JSJAC_JINGLE_SESSION_MUJI, room);
 
-          if(is_invite === true) {
-            if(session_route === null) {
-              JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Muji invite received (room: ' + room + ').', 2);
+            var x_conference = stanza.getChild('x', NS_JABBER_CONFERENCE);
+            var x_invite = stanza.getChild('x', NS_MUJI_INVITE);
 
-              // Read invite data
-              var err = 0;
-              var args = {
-                from     : (from                                   || err++),
-                jid      : (x_conference.getAttribute('jid')       || err++),
-                password : (x_conference.getAttribute('password')  || null),
-                reason   : (x_conference.getAttribute('reason')    || null),
-                media    : (x_invite.getAttribute('media')         || err++)
-              };
+            var is_invite = (x_conference && x_invite && true);
 
-              if(err === 0) {
-                JSJaCJingleStorage.get_muji_invite()(stanza, args);
+            if(is_invite === true) {
+              if(session_route === null) {
+                JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Muji invite received (room: ' + room + ').', 2);
+
+                // Read invite data
+                var err = 0;
+                var args = {
+                  from     : (from                                   || err++),
+                  jid      : (x_conference.getAttribute('jid')       || err++),
+                  password : (x_conference.getAttribute('password')  || null),
+                  reason   : (x_conference.getAttribute('reason')    || null),
+                  media    : (x_invite.getAttribute('media')         || err++)
+                };
+
+                if(err === 0) {
+                  JSJaCJingleStorage.get_muji_invite()(stanza, args);
+                } else {
+                  JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Dropped invite because incomplete (room: ' + room + ').', 0);
+                }
               } else {
-                JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Dropped invite because incomplete (room: ' + room + ').', 0);
+                JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Dropped invite because Muji already joined (room: ' + room + ').', 0);
               }
             } else {
-              JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Dropped invite because Muji already joined (room: ' + room + ').', 0);
-            }
-          } else {
-            if(session_route !== null) {
-              JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Routed to Jingle session (room: ' + room + ').', 2);
+              if(session_route !== null) {
+                JSJaCJingleStorage.get_debug().log('[JSJaCJingle:main] _route_message > Routed to Jingle session (room: ' + room + ').', 2);
 
-              session_route.handle_message(stanza);
+                session_route.handle_message(stanza);
+              }
             }
           }
         }
