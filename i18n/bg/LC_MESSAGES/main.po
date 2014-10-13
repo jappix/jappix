@@ -4,10 +4,11 @@
 # License: AGPL
 # Authors: Valérian Saliou, JanCBorchardt
 # Translators:
+# sahwar <ve4ernik@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:20+0100\n"
+"PO-Revision-Date: 2014-10-13 10:45+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/jappix/"
 "language/bg/)\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -60,12 +61,12 @@ msgid "Find a public Jappix node."
 msgstr ""
 
 msgid "Credits"
-msgstr ""
+msgstr "Благодарности"
 
 msgid "Association"
 msgstr ""
 
-msgid "Web agency"
+msgid "Company"
 msgstr ""
 
 msgid "Legal"
@@ -84,10 +85,10 @@ msgid "Node owner"
 msgstr ""
 
 msgid "By using our service, you accept %s."
-msgstr ""
+msgstr "Като използвате нашата услуга, вие приемате %s."
 
 msgid "our terms of use"
-msgstr ""
+msgstr "нашите условия за ползване"
 
 msgid ""
 "Jappix has been interrupted by a network issue, a bug or bad login (check "
@@ -199,6 +200,21 @@ msgstr "Добяване на приятел"
 msgid "Your groupchats"
 msgstr "Вашите групови чатове"
 
+msgid "Audio/video conference"
+msgstr ""
+
+msgid "Launch a group call"
+msgstr ""
+
+msgid "Audio conference"
+msgstr "Аудио конференция"
+
+msgid "Video conference"
+msgstr "Видео конференция"
+
+msgid "Conference call"
+msgstr "Конферетно обаждане"
+
 msgid "Manage your favorite groupchats"
 msgstr "Управление на любимите ви групови чатове"
 
@@ -254,7 +270,7 @@ msgid "Busy"
 msgstr "зает"
 
 msgid "Offline"
-msgstr ""
+msgstr "извън линия"
 
 msgid "Mood"
 msgstr "Настроение"
@@ -457,22 +473,22 @@ msgid "Message archiving"
 msgstr "Архивиране на съобщенията"
 
 msgid "Store an history of your chats"
-msgstr ""
+msgstr "Запис на историята на вашите чатове"
 
 msgid "Geolocation"
 msgstr "Геолокация"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 msgid "Store all chats"
-msgstr ""
+msgstr "Запис на всички чатове"
 
 msgid "Store friend chats"
 msgstr ""
 
 msgid "Remove all archives"
-msgstr ""
+msgstr "Премахване на всички архиви"
 
 msgid "Empty"
 msgstr "Празно"
@@ -571,7 +587,7 @@ msgid "Underlined text"
 msgstr "Подчертан текст"
 
 msgid "Send a file"
-msgstr ""
+msgstr "Изпращане на файл"
 
 msgid ""
 "Once uploaded, your friend will be prompted to download the file you sent."
@@ -613,7 +629,7 @@ msgid "All tabs"
 msgstr "Всички подпрозорци (табове)"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "Присъединяване към групов чат"
 
 msgid "Close this tab"
 msgstr "Затваряне на подпрозореца (таба)"
@@ -817,10 +833,10 @@ msgid "left the chat room"
 msgstr "напусна чат стаята"
 
 msgid "%s left"
-msgstr ""
+msgstr "%s напусна чата"
 
 msgid "%s joined"
-msgstr ""
+msgstr "%s се присъедини към чата"
 
 msgid "no status"
 msgstr "без статус"
@@ -841,6 +857,8 @@ msgid ""
 "Jappix is an open social platform, that let's you easily get or keep in "
 "touch with everyone."
 msgstr ""
+"Jappix е отворена социална платформа, която ви позволява лесно да поддържате "
+"връзка с всекиго."
 
 msgid ""
 "Join the millions of users who are currently using the XMPP Network (Google "
@@ -855,7 +873,7 @@ msgid "Hi there!"
 msgstr "Ей, ти там, здравей!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr ""
+msgstr "Добре дошли в %1s, „%2s“."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -999,7 +1017,7 @@ msgid "would like to get authorization."
 msgstr "желае да получи пълномощно."
 
 msgid "would like to send you a file: “%s”."
-msgstr ""
+msgstr "желае да ви изпрати файл: „%s“."
 
 msgid "has received a file exchange request: “%s”."
 msgstr ""
@@ -1053,13 +1071,13 @@ msgid ""
 msgstr ""
 
 msgid "Open"
-msgstr ""
+msgstr "Отваряне"
 
 msgid "Show"
-msgstr ""
+msgstr "Показване"
 
 msgid "Hide"
-msgstr ""
+msgstr "Скриване"
 
 msgid "Submit"
 msgstr "Изпращане"
@@ -1194,7 +1212,7 @@ msgid "Media integration"
 msgstr "Медийна интеграция"
 
 msgid "Keep local chat archives"
-msgstr ""
+msgstr "Пазене на локални архиви на чата"
 
 msgid "XMPP links"
 msgstr "XMPP връзки"
@@ -2361,10 +2379,22 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
+msgid "Leave"
+msgstr ""
+
 msgid "Mute"
 msgstr ""
 
 msgid "Unmute"
+msgstr ""
+
+msgid "Nobody there. Invite some people!"
+msgstr ""
+
+msgid "Invite people..."
+msgstr ""
+
+msgid "Enter people names..."
 msgstr ""
 
 msgid "Is calling you"
@@ -2406,6 +2436,24 @@ msgstr ""
 msgid "Ending call..."
 msgstr ""
 
+msgid "Incoming group call"
+msgstr ""
+
+msgid "Preparing group call..."
+msgstr ""
+
+msgid "Connecting to group call..."
+msgstr ""
+
+msgid "Group call error"
+msgstr ""
+
+msgid "Ending group call..."
+msgstr ""
+
+msgid "Group call ended"
+msgstr ""
+
 msgid "Accept"
 msgstr ""
 
@@ -2422,4 +2470,52 @@ msgid "Audio Call"
 msgstr ""
 
 msgid "Video Call"
+msgstr ""
+
+msgid "%s participant"
+msgstr ""
+
+msgid "%s participants"
+msgstr ""
+
+msgid "(full)"
+msgstr ""
+
+msgid "%s is able to receive group calls."
+msgstr ""
+
+msgid "%s may not support group calls."
+msgstr ""
+
+msgid "Send a message..."
+msgstr ""
+
+msgid "Edited"
+msgstr ""
+
+msgid "Edited (%s)"
+msgstr ""
+
+msgid "Editing"
+msgstr ""
+
+msgid "Being edited"
+msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Sending..."
+msgstr ""
+
+msgid "%s requested your attention to the conversation"
+msgstr ""
+
+msgid "You requested %s's attention to the conversation"
+msgstr ""
+
+msgid "Attention to conversation requested."
 msgstr ""

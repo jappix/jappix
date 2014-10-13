@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-09-09 22:53+0100\n"
+"PO-Revision-Date: 2014-10-13 10:45+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/jappix/language/"
 "nl/)\n"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Association"
 msgstr ""
 
-msgid "Web agency"
+msgid "Company"
 msgstr ""
 
 msgid "Legal"
