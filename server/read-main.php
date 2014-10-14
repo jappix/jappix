@@ -46,6 +46,10 @@ $main_conf = array(
     'ads_content'           => '',
     'gads_client'           => '',
     'gads_slot'             => '',
+    'AUTH_CAS',             => 'off', 
+    'CAS_SERVER',           => 'cas.server.com', 
+    'CAS_URI',              => '/cas',
+    'CAS_CACERT',           => '/etc/pki/CA/certs/rootCA.pem',
     'multi_files'           => 'off',
     'developer'             => 'off',
     'statistics'            => 'on',
@@ -110,5 +114,8 @@ define('STATISTICS', $main_conf['statistics']);
 define('REGISTER_API', $main_conf['register_api']);
 define('XMPPD_CTL', $main_conf['xmppd_ctl']);
 define('XMPPD', $main_conf['xmppd']);
-
+define('AUTH_CAS', $main_conf['AUTH_CAS']);
+define('CAS_SERVER', $main_conf['CAS_SERVER']);
+define('CAS_URI', $main_conf['CAS_URI']);
+define('CAS_CACERT', $main_conf['CAS_CACERT']);
 ?>
