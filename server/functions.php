@@ -864,7 +864,6 @@ function CasAuthentication() {
 
 
     echo '<script type="text/javascript">
-		document.domain = "starxpert.fr";
 
             jQuery(document).ready(function() {
 		Connection.doLogin('.json_encode($auth['user']).',"'.HOST_MAIN.'",'.json_encode($auth['password']).',"'.JAPPIX_RESOURCE.'", 10,false);
