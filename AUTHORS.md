@@ -14,8 +14,7 @@ Founders
 Organizations
 -------------
 
-* PostPro (association)
-* FrenchTouch Web Agency (company)
+* Hakuma Holdings Ltd.
 
 
 Developers

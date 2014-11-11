@@ -51,9 +51,6 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-msgid "Association"
-msgstr ""
-
 msgid "Company"
 msgstr ""
 

@@ -211,10 +211,6 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 
                 <h2><?php _e("Credits"); ?></h2>
                 <span class="one">
-                    <a class="name" href="http://www.post-pro.fr/">PostPro</a>
-                    <a class="desc" href="http://www.post-pro.fr/"><?php _e("Association"); ?></a>
-                </span>
-                <span class="one">
                     <a class="name" href="https://hakuma.holdings/">Hakuma Holdings</a>
                     <a class="desc" href="https://hakuma.holdings/"><?php _e("Company"); ?></a>
                 </span>
