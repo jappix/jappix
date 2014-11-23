@@ -12,7 +12,7 @@ You can build your own Jappix installation for your own requirements: if you wan
 License
 -------
 
-Jappix is released under the terms of the AGPL license. See COPYING for details.
+Jappix is released under the terms of the AGPL license. See COPYING for more details.
 
 
 Installation
