@@ -181,25 +181,17 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                         <span class="name">Jappix Download</span>
                         <span class="desc"><?php _e("Get Jappix, get support."); ?></span>
                     </a>
+                    <a href="https://business.jappix.org/">
+                        <span class="name">Jappix Business</span>
+                        <span class="desc"><?php _e("Jappix for your company."); ?></span>
+                    </a>
+                    <a href="https://network.jappix.org/">
+                        <span class="name">Jappix Network</span>
+                        <span class="desc"><?php _e("Find a public Jappix node."); ?></span>
+                    </a>
                     <a href="https://github.com/jappix/jappix">
                         <span class="name">Jappix (GitHub)</span>
                         <span class="desc"><?php _e("Contribute to the Jappix code."); ?></span>
-                    </a>
-                </div>
-
-                <h2>Jappix.pro</h2>
-                <div class="tabulate">
-                    <a href="https://jappix.pro/">
-                        <span class="name">Jappix Pro</span>
-                        <span class="desc"><?php _e("Jappix for your company."); ?></span>
-                    </a>
-                </div>
-
-                <h2>Jappix.net</h2>
-                <div class="tabulate">
-                    <a href="https://jappix.net/">
-                        <span class="name">Jappix Network</span>
-                        <span class="desc"><?php _e("Find a public Jappix node."); ?></span>
                     </a>
                 </div>
             </div>
