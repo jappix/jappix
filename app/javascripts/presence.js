@@ -1448,7 +1448,11 @@ var Presence = (function () {
 
         try {
             // Get some stuffs
-            var priority = DataStore.getDB(Connection.desktop_hash, 'priority', 1) || '1';
+            var priority = '0';
+
+            if(show != 'away' && show != 'xa') {
+                priority = DataStore.getDB(Connection.desktop_hash, 'priority', 1) || '1';
+            }
 
             checksum = checksum || DataStore.getDB(Connection.desktop_hash, 'checksum', 1);
 
