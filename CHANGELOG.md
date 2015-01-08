@@ -4,10 +4,11 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-Primo, v1.1.3 (Development)
----------------------------
+Primo, v1.1.3 (January 2015)
+----------------------------
 
- * (...)
+ * Better default priorities        @beanow, @valeriansaliou
+ * Fix IE11+ browser compatibility  @valeriansaliou
 
 
 Primo, v1.1.2 (October 2014)
