@@ -820,6 +820,59 @@ function httpAuthentication() {
           </script>';
 }
 
+
+#Authentification CAS
+function CasAuth(){
+    $auth = array(
+        'user' => null,
+        'password' => null,
+	'host'     => null
+    );
+
+    ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.'/usr/share/pear');
+    require_once('CAS.php');
+    if (DEVELOPER == 'on'){
+        phpCAS::setDebug(session_save_path() . '/tmp/cas.log');
+    }
+    phpCAS::proxy(CAS_VERSION_2_0,CAS_SERVER,443,CAS_URI);
+   phpCAS::setPGTStorageFile(session_save_path());
+    if (CAS_CACERT != '' && file_exists (CAS_CACERT)){
+        phpCAS::setCasServerCACert(CAS_CACERT);
+    } else {
+        phpCAS::setNoCasServerValidation();
+    }
+    phpCAS::forceAuthentication();
+    $auth['user'] = phpCAS::getUser();
+    $auth['password'] = phpCAS::retrievePT('xmpp://'.HOST_MAIN,$err_code,$output);
+    $auth['host'] = HOST_MAIN;
+
+	return $auth;
+}
+
+
+
+ // The function to check if HTTP authentication is authorized and possible
+function CasEnabled() {
+
+	echo $auth;
+  return  (AUTH_CAS == 'on');
+
+}
+
+function CasAuthentication() {
+    $auth = CasAuth();
+
+
+    echo '<script type="text/javascript">
+
+            jQuery(document).ready(function() {
+		Connection.doLogin('.json_encode($auth['user']).',"'.HOST_MAIN.'",'.json_encode($auth['password']).',"'.JAPPIX_RESOURCE.'", 10,false);
+            });
+          </script>';
+   session_destroy();
+}
+
+
 // The function to quickly translate a string
 function _e($string) {
     echo T_gettext($string);

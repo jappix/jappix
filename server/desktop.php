@@ -48,6 +48,14 @@ if(!defined('JAPPIX_BASE')) {
         echo "\n";
     }
 
+    if (CasEnabled()) {
+        CasAuthentication();
+        echo "\n";
+
+    }
+
+
+
     if(httpAuthEnabled()) {
         echo "\n\t";
         echoGetFiles($hash, '', 'js', 'httpauth.xml', '');
@@ -62,7 +70,7 @@ if(!defined('JAPPIX_BASE')) {
 <?php
 
 // Homepage?
-if(!anonymousMode() && !httpAuthEnabled()) { ?>
+if(!anonymousMode() && !httpAuthEnabled()  && !CasEnabled() ) { ?>
     <!-- BEGIN HOMEPAGE -->
     <div id="home">
         <div class="home-images plane"></div>
