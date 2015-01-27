@@ -1,4 +1,4 @@
-[![jappix logo](https://project.jappix.com/img/logos/jappix_github.png)]
+![jappix logo](https://project.jappix.com/img/logos/jappix_github.png)
 
 
 Jappix is a fresh new open social platform which enables you to create your own cloud, wherever you want to. People must be able to get in touch with all their friends on a free decentralized network!
