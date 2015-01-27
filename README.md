@@ -1,4 +1,4 @@
-<img src="https://project.jappix.com/img/logos/jappix_github.png" alt="Jappix" />
+[![jappix logo](https://project.jappix.com/img/logos/jappix_github.png)]
 
 
 Jappix is a fresh new open social platform which enables you to create your own cloud, wherever you want to. People must be able to get in touch with all their friends on a free decentralized network!
@@ -7,6 +7,7 @@ You can build your own Jappix installation for your own requirements: if you wan
 
 
 [![build status](https://ci.hakuma.holdings/projects/7/status.png?ref=master)](https://ci.hakuma.holdings/projects/7?ref=master)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jappix/jappix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 License
