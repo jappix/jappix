@@ -13,6 +13,8 @@ You can build your own Jappix installation for your own requirements: if you wan
 License
 -------
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jappix/jappix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Jappix is released under the terms of the AGPL license. See COPYING for more details.
 
 
