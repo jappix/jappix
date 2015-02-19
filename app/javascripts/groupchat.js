@@ -395,15 +395,17 @@ var Groupchat = (function () {
             var path_to = '#' + hash + ' .muc-ask';
 
             // Define the label text
-            var label_text;
+            var label_text, input_type;
 
             switch(type) {
                 case 'nickname':
                     label_text = Common._e("Nickname");
+                    input_type = 'text';
                     break;
 
                 case 'password':
                     label_text = Common._e("Password");
+                    input_type = 'password';
                     break;
             }
 
@@ -413,7 +415,7 @@ var Groupchat = (function () {
             $('#' + hash).append(
                 '<div class="muc-ask text">' +
                     '<label>' + label_text + '</label>' +
-                    '<input class="focusable" type="text" />' +
+                    '<input class="focusable" type="' + input_type + '" />' +
                 '</div>'
             );
 
