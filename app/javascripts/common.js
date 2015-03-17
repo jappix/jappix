@@ -894,6 +894,17 @@ var Common = (function () {
         }
 
     };
+    
+    /**
+     * Convert all applicable characters to HTML entities
+     * @public
+     * @param {string} cb
+     * @return {string}
+     */
+    self.htmlentities = function(s) {
+        return $('<div/>').text(s + '').html();
+    };
+
 
 
     /**
