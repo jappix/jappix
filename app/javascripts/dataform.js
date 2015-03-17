@@ -591,8 +591,8 @@ var DataForm = (function () {
                                     '<div class="avatar-container">' +
                                         '<img class="avatar" src="' + './images/others/default-avatar.png' + '" alt="" />' +
                                     '</div>' +
-                                    '<div class="one-fn">' + bName + '</div>' +
-                                    '<div class="one-ctry">' + bCountry + '</div>' +
+                                    '<div class="one-fn">' + Common.htmlentities(bName) + '</div>' +
+                                    '<div class="one-ctry">' + Common.htmlentities(bCountry) + '</div>' +
                                     '<div class="one-jid">' + bXID + '</div>' +
                                     '<div class="buttons-container">';
 
