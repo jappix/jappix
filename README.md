@@ -7,7 +7,7 @@ Jappix is a fresh new open social platform which enables you to create your own 
 You can build your own Jappix installation for your own requirements: if you want to use it as a personal social client, you can download it and install it on your webserver. It's easy, fast and free.
 
 
-[![Build Status](https://semaphoreci.com/api/v1/projects/a06c5237-88ed-4735-9363-c5b088ae0cea/376005/shields_badge.svg)](https://semaphoreci.com/valeriansaliou/jappix)
+[![build status](https://ci.hakuma.holdings/projects/7/status.png?ref=master)](https://ci.hakuma.holdings/projects/7?ref=master)
 
 
 License
