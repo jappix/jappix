@@ -203,8 +203,8 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
 
                 <h2><?php _e("Credits"); ?></h2>
                 <span class="one">
-                    <a class="name" href="https://project.jappix.com/">Jappix Project</a>
-                    <a class="desc" href="https://project.jappix.com/"><?php _e("Company"); ?></a>
+                    <a class="name" href="https://hakuma.holdings/">Hakuma Holdings</a>
+                    <a class="desc" href="https://hakuma.holdings/"><?php _e("Company"); ?></a>
                 </span>
 
                 <?php if(hasLegal()) { ?>
