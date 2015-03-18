@@ -1,0 +1,33 @@
+{
+  "name": "jappix",
+  "description": "Jappix, a full-featured XMPP web-client (Jappix Desktop, Jappix Mobile & Jappix Mini).",
+  "version": "1.0.0",
+  "homepage": "https://jappix.org/",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jappix/jappix.git"
+  },
+
+  "author": {
+    "name": "Valérian Saliou",
+    "url": "https://valeriansaliou.name/"
+  },
+
+  "main": "Gruntfile.js",
+
+  "engines": {
+    "node": ">=0.8.0"
+  },
+
+  "scripts": {
+    "test": "npm install; grunt test"
+  },
+
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-csslint": "0.2.0",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-phplint": "0.0.5"
+  }
+}
