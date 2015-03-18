@@ -6,6 +6,6 @@ tmp/avatar/
 tmp/archives/
 tmp/send/
 log/
-test/node_modules/
+node_modules/
 .DS_Store
 *.esproj
