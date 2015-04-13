@@ -77,7 +77,6 @@ module.exports = function(grunt) {
         '!./server/drawsvgchart.php',
         '!./server/gettext.php',
         '!./server/jsmin.php',
-        '!./server/mobile-detect.php',
         '!./server/srand.php'
       ]
     }

@@ -67,15 +67,6 @@ if(!isInstalled()) {
     if($_COOKIE['jappix_mode'] == 'mobile') {
         $include_app = 'mobile';
     }
-} else {
-    // No cookie, is this a mobile device?
-    require_once('./server/mobile-detect.php');
-    $mobile = new Mobile_Detect();
-
-    // Really mobile?
-    if(($mobile -> isMobile()) && !($mobile -> isTablet())) {
-        $include_app = 'mobile';
-    }
 }
 
 // Special stuffs for Jappix apps?
