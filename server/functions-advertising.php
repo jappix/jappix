@@ -35,16 +35,15 @@ function getAdverts($type) {
     // Must get from server?
     if(!file_exists($cache_file) || (isset($_SERVER['HTTP_USER_AGENT']) && ($_SERVER['HTTP_USER_AGENT'] == 'BackLinks.com'))) {
         // Get the cache data
-        if(isset($_SERVER['SCRIPT_URI']) && strlen($_SERVER['SCRIPT_URI'])) {
+        if(strlen($_SERVER['SCRIPT_URI']))
             $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_URI'].((strlen($_SERVER['QUERY_STRING'])) ? '?'.$_SERVER['QUERY_STRING'] : '');
-        } else {
+        if(!strlen($_SERVER['REQUEST_URI']))
             $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'].((strlen($_SERVER['QUERY_STRING'])) ? '?'.$_SERVER['QUERY_STRING'] : '');
-        }
 
-        $query  = 'LinkUrl='.urlencode(((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        $query .= '&Key=' .urlencode($key);
+        $query = 'LinkUrl='.urlencode((($_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        $query .= '&Key='.urlencode($key);
         $query .= '&OpenInNewWindow=1';
-        $code   = @file_get_contents('http://www.backlinks.com/'.$script.'?'.$query);
+        $code = @file_get_contents('http://www.backlinks.com/'.$script.'?'.$query);
 
         // Write code to cache
         @file_put_contents($cache_file, $code);
