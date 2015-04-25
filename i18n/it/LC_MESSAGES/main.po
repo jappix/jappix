@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jappix\n"
-"PO-Revision-Date: 2014-05-08 10:21+0100\n"
+"PO-Revision-Date: 2015-04-23 14:19+0100\n"
 "Last-Translator: Valérian Saliou <valerian@valeriansaliou.name>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/jappix/language/"
 "it/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "POT-Creation-Date: \n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.7\n"
 
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -458,7 +458,7 @@ msgid "Geolocation"
 msgstr "Geolocazione"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Disattivato"
 
 msgid "Store all chats"
 msgstr ""
@@ -497,10 +497,10 @@ msgid "New (2 times)"
 msgstr "Nuovo (2 volte)"
 
 msgid "Suggested chatrooms"
-msgstr "Chatroom Suggerite"
+msgstr "Stanze di chat Suggerite"
 
 msgid "Skip"
-msgstr ""
+msgstr "Salta"
 
 msgid "Continue"
 msgstr "Continua"
@@ -611,7 +611,7 @@ msgid "All tabs"
 msgstr "Tutti i cavalieri"
 
 msgid "Join groupchat"
-msgstr ""
+msgstr "Unisciti alle stanze di chat"
 
 msgid "Close this tab"
 msgstr "Chiudi questo cavaliere"
@@ -833,7 +833,7 @@ msgid "no reason"
 msgstr "nessuna ragione"
 
 msgid "Communicate with the entire world!"
-msgstr "Comunica con l'intero mondo"
+msgstr "Comunica con il mondo intero!"
 
 msgid ""
 "Jappix is an open social platform, that let's you easily get or keep in "
@@ -853,7 +853,7 @@ msgid "Hi there!"
 msgstr "Ciao!"
 
 msgid "Welcome to %1s, “%2s”."
-msgstr ""
+msgstr "Benvenuto su %1s, “%2s”."
 
 msgid "Login to your existing XMPP account or create a new one for free!"
 msgstr ""
@@ -1544,7 +1544,7 @@ msgid "Jappix manager"
 msgstr "Manager di Jappix"
 
 msgid "Manager access"
-msgstr "Accedi al manager"
+msgstr "Accedi al pannello di contorllo"
 
 msgid "Statistics"
 msgstr "Statistiche"
@@ -1600,7 +1600,7 @@ msgstr ""
 
 msgid "Please use the form below to login to the administration panel."
 msgstr ""
-"Perpiacere utilizza il modulo qui sotto per accedere al Pannello "
+"Per favore utilizza il modulo qui sotto per accedere al Pannello "
 "amministrativo."
 
 msgid ""
@@ -1779,7 +1779,7 @@ msgid "Total"
 msgstr "Totali"
 
 msgid "Archives"
-msgstr ""
+msgstr "Archivi"
 
 msgid "Music"
 msgstr "Musica"
@@ -2351,67 +2351,67 @@ msgid "AdSense slot"
 msgstr ""
 
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 msgid "Mute"
-msgstr ""
+msgstr "Mute"
 
 msgid "Unmute"
-msgstr ""
+msgstr "Togli mute"
 
 msgid "Is calling you"
-msgstr ""
+msgstr "Ti sta chiamando"
 
 msgid "Initiating call"
-msgstr ""
+msgstr "Inizializzazione chiamata"
 
 msgid "Connecting to call..."
-msgstr ""
+msgstr "Connessione alla chiamata"
 
 msgid "Waiting..."
-msgstr ""
+msgstr "Attendi..."
 
 msgid "Ringing..."
-msgstr ""
+msgstr "Sta squillando"
 
 msgid "Declined the call"
-msgstr ""
+msgstr "Rifiuta la chiamata"
 
 msgid "Call error"
-msgstr ""
+msgstr "Errore di chiamata"
 
 msgid "Ended the call"
-msgstr ""
+msgstr "Termina la chiamata"
 
 msgid "Call ended"
-msgstr ""
+msgstr "Chiamata terminata"
 
 msgid "Call canceled"
-msgstr ""
+msgstr "Chiamata cancellata"
 
 msgid "Canceled the call"
-msgstr ""
+msgstr "Cancella la chiamata"
 
 msgid "Is already in a call"
-msgstr ""
+msgstr "Già in chiamata"
 
 msgid "Ending call..."
-msgstr ""
+msgstr "Call in chiusura..."
 
 msgid "Accept"
-msgstr ""
+msgstr "Accetta"
 
 msgid "Decline"
-msgstr ""
+msgstr "Rifiuta"
 
 msgid "Okay"
-msgstr ""
+msgstr "OK"
 
 msgid "Retry"
-msgstr ""
+msgstr "Riprova"
 
 msgid "Audio Call"
-msgstr ""
+msgstr "Chiamata Audio"
 
 msgid "Video Call"
-msgstr ""
+msgstr "Video Chiamata"
