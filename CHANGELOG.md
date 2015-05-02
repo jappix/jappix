@@ -4,10 +4,11 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-Primo, v1.1.4 (Development)
+Primo, v1.1.4 (April 2015)
 ---------------------------
 
- * (...)
+ * Fix various issues           @valeriansaliou
+ * Fix XSS attack on dataforms  @V1RTUOZ
 
 
 Primo, v1.1.3 (January 2015)
