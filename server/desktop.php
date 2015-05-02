@@ -112,14 +112,16 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                 </div>
             </div>
 
-            <?php if((ADS_ENABLE == 'on') && (ADS_STANDARD || ADS_STANDARD)) { ?>
+            <?php if((ADS_ENABLE == 'on') && ADS_STANDARD) { ?>
                 <?php require_once('./server/functions-advertising.php'); ?>
                 <?php $advertise_link = 'http://www.backlinks.com/?aff=58769'; ?>
 
                 <div class="friendsview">
                     <div class="friends">
                         <div class="group content">
-                            <?php displayAdverts('content', $advertise_link); ?>
+                            <a href="https://www.digitalocean.com/?refcode=b1009ddd4c62" target="_blank">
+                                <img src="<?php echo getFiles($hash, '', 'images', '', 'banners/digitalocean.png'); ?>" alt="" />
+                            </a>
                         </div>
 
                         <div class="group standard">
@@ -128,7 +130,7 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                                 <span class="sep_bottom"></span>
                             </div>
 
-                            <?php displayAdverts('standard', $advertise_link); ?>
+                            <?php displayAdverts($advertise_link); ?>
                         </div>
 
                         <a class="group refer" href="<?php echo $advertise_link; ?>" target="_blank">

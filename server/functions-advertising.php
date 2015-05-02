@@ -14,16 +14,11 @@ Author: Valérian Saliou
 
 */
 
-// Get the adverts for the given advertising type
-function getAdverts($type) {
+// Get the adverts
+function getAdverts() {
     // Available pages
-    if($type == 'content') {
-        $script = 'enginec.php';
-        $key = ADS_CONTENT;
-    } else {
-        $script = 'engine.php';
-        $key = ADS_STANDARD;
-    }
+    $script = 'engine.php';
+    $key = ADS_STANDARD;
 
     // Not available?
     if(!$key) {
@@ -58,10 +53,10 @@ function getAdverts($type) {
     return $code;
 }
 
-// Display the adverts for the given advertising type
-function displayAdverts($type, $refer) {
+// Display the adverts
+function displayAdverts($refer) {
         // Get content ads
-        $ads_content = getAdverts($type);
+        $ads_content = getAdverts();
 
         if(strpos(strtolower($ads_content), '</a>')) {
             echo($ads_content);

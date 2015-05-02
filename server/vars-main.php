@@ -42,7 +42,6 @@ $analytics_url = htmlspecialchars(ANALYTICS_URL);
 $analytics_id = htmlspecialchars(ANALYTICS_ID);
 $ads_enable = htmlspecialchars(ADS_ENABLE);
 $ads_standard = htmlspecialchars(ADS_STANDARD);
-$ads_content = htmlspecialchars(ADS_CONTENT);
 $gads_client = htmlspecialchars(GADS_CLIENT);
 $gads_slot = htmlspecialchars(GADS_SLOT);
 $multi_files = htmlspecialchars(MULTI_FILES);

@@ -2046,9 +2046,6 @@ msgstr ""
 msgid "Standard ads key"
 msgstr ""
 
-msgid "Content ads key"
-msgstr ""
-
 msgid "AdSense client ID"
 msgstr ""
 

@@ -191,13 +191,6 @@ if(isset($_POST['ads_standard']) && !empty($_POST['ads_standard'])) {
     $ads_standard = stripslashes(htmlspecialchars($main_default['ads_standard']));
 }
 
-// Advertising (content)
-if(isset($_POST['ads_content']) && !empty($_POST['ads_content'])) {
-    $ads_content = stripslashes(htmlspecialchars(trim($_POST['ads_content'])));
-} else {
-    $ads_content = stripslashes(htmlspecialchars($main_default['ads_content']));
-}
-
 // Google AdSense Client ID
 if(isset($_POST['gads_client']) && !empty($_POST['gads_client'])) {
     $gads_client = stripslashes(htmlspecialchars(trim($_POST['gads_client'])));
@@ -273,7 +266,6 @@ $conf_xml =
     <analytics_id>'.$analytics_id.'</analytics_id>
     <ads_enable>'.$ads_enable.'</ads_enable>
     <ads_standard>'.$ads_standard.'</ads_standard>
-    <ads_content>'.$ads_content.'</ads_content>
     <gads_client>'.$gads_client.'</gads_client>
     <gads_slot>'.$gads_slot.'</gads_slot>
     <multi_files>'.$multi_files.'</multi_files>

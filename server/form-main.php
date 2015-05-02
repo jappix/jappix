@@ -215,12 +215,10 @@ if($ads_enable == 'on') {
     <label for="analytics_id"><?php _e("Piwik tracking ID"); ?></label><input id="analytics_id" type="number" name="analytics_id" value="<?php echo $analytics_id; ?>" placeholder="1" min="1" />
 </fieldset>
 
-<?php if(($ads_enable == 'on') || $ads_standard || $ads_content) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
+<?php if(($ads_enable == 'on') || $ads_standard) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
     <legend><?php printf(T_("Advertising (%s)"), 'BackLinks.com'); ?></legend>
 
     <label for="ads_standard"><?php _e("Standard ads key"); ?></label><input id="ads_standard" type="text" name="ads_standard" value="<?php echo $ads_standard; ?>" placeholder="XXXX-XXXX-XXXX" />
-
-    <label for="ads_content"><?php _e("Content ads key"); ?></label><input id="ads_content" type="text" name="ads_content" value="<?php echo $ads_content; ?>" placeholder="XXXX-XXXX-XXXX" />
 </fieldset>
 
 <?php if(($ads_enable == 'on') || $gads_client || $gads_slot) { ?><fieldset><?php } else { ?><fieldset style="display: none;"><?php } ?>
