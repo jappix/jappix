@@ -4,7 +4,7 @@
 
 Jappix is a fresh new open social platform which enables you to create your own cloud, wherever you want to. People must be able to get in touch with all their friends on a free decentralized network!
 
-You can build your own Jappix installation for your own requirements: if you want to use it as a personal social client, you can download it and install it on your webserver.
+You can build your own Jappix installation for your own requirements. If you want to use it as a personal social client, you can download it and install it on your webserver.
 
 
 [![Build Status](https://travis-ci.org/jappix/jappix.svg?branch=master)](https://travis-ci.org/jappix/jappix)
