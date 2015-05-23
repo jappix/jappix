@@ -40,15 +40,6 @@ Links
 * Jappix commercial support: https://business.jappix.org/
 
 
-Mirrors
--------
-
-In case a master service is down (GitHub for Git access or Jappix.org for project download), here is a list of available mirrors:
-
-* Project website mirror: https://project.jappix.com/
-* Development repository mirror: https://code.hakuma.holdings/jappix/jappix
-
-
 MUC Links
 ---------
 
