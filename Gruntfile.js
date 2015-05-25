@@ -2,7 +2,7 @@
  * Jappix
  * Tasks (uses GruntJS)
  *
- * Copyright 2013, FrenchTouch Web Agency
+ * Copyright 2013, Jappix
  * Author: Valérian Saliou <valerian@valeriansaliou.name>
  */
 
