@@ -11,12 +11,6 @@ Founders
 * Julien Barrier
 
 
-Organizations
--------------
-
-* Hakuma Holdings Ltd.
-
-
 Developers
 ----------
 
