@@ -1,4 +1,4 @@
-![jappix logo](https://project.jappix.com/img/logos/jappix_github.png)
+![jappix logo](https://i.imgur.com/guijeTq.png)
 
 [![Build Status](https://travis-ci.org/jappix/jappix.svg?branch=master)](https://travis-ci.org/jappix/jappix) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jappix/jappix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
