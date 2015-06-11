@@ -575,9 +575,10 @@ var Message = (function () {
      * @param {boolean} is_markable
      * @param {boolean} is_groupchat_user
      * @param {object} message
+     * @param {string} nick
      * @return {undefined}
      */
-    self._handleChat = function(from, xid, hash, type, resource, id, body, raw_body, time, stamp, html_escape, message_edit, is_storable, is_markable, is_groupchat_user, message) {
+    self._handleChat = function(from, xid, hash, type, resource, id, body, raw_body, time, stamp, html_escape, message_edit, is_storable, is_markable, is_groupchat_user, message, nick) {
 
         try {
             // Gets the nickname of the user
@@ -597,6 +598,9 @@ var Message = (function () {
             } else {
                 chatType = 'private';
             }
+
+            // if the user is sending a nickname, prefer that
+            if (nick) fromName = nick;
 
             // If the chat isn't yet opened, open it !
             if(!Common.exists('#' + hash)) {
@@ -1346,6 +1350,7 @@ var Message = (function () {
             var id = message.getID();
             var type = message.getType();
             var body = $.trim(message.getBody());
+            var nick = $.trim(message.getNick());
             var node = message.getNode();
             var subject = $.trim(message.getSubject());
 
@@ -1485,7 +1490,8 @@ var Message = (function () {
                         html_escape,
                         delay,
                         message_edit,
-                        is_storable
+                        is_storable,
+                        nick
                     );
                 } else {
                     // Markable message?
@@ -1507,7 +1513,8 @@ var Message = (function () {
                         is_storable,
                         is_markable,
                         is_groupchat_user,
-                        message
+                        message,
+                        nick
                     );
                 }
             }
