@@ -131,26 +131,33 @@ var Name = (function () {
             // Initialize
             var cname, bname;
 
-            // Cut the XID resource
-            xid = Common.bareXID(xid);
+            // If the buddy is an anonymous account we use the resource
+            // if not empty
+            if (self.buddyIsAnonymous(xid) && Common.thisResource(xid)) {
+              bname = Common.thisResource(xid);
+            } else {
 
-            // This is me?
-            if(Utils.isAnonymous() && !xid) {
-                bname = Common._e("You");
-            } else if(xid == Common.getXID()) {
-                bname = self.get();
-            }
+              // Cut the XID resource
+              xid = Common.bareXID(xid);
 
-            // Not me!
-            else {
-                cname = $('#roster .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
+              // This is me?
+              if(Utils.isAnonymous() && !xid) {
+                  bname = Common._e("You");
+              } else if(xid == Common.getXID()) {
+                  bname = self.get();
+              }
 
-                // Complete name exists?
-                if(cname) {
-                    bname = cname.revertHtmlEnc();
-                } else {
-                    bname = Common.getXIDNick(xid);
-                }
+              // Not me!
+              else {
+                  cname = $('#roster .buddy[data-xid="' + escape(xid) + '"]:first .buddy-name').html();
+
+                  // Complete name exists?
+                  if(cname) {
+                      bname = cname.revertHtmlEnc();
+                  } else {
+                      bname = Common.getXIDNick(xid);
+                  }
+              }
             }
 
             return bname;
@@ -224,6 +231,15 @@ var Name = (function () {
         }
 
     };
+
+    /*
+     * Checks if the XID is from an anonymous account
+     * @public
+     * @param {string} xid
+     */
+    self.buddyIsAnonymous = function(xid) {
+      return /^([a-f\d]{8}(-[a-f\d]{4}){3}-[a-f\d]{12}?)@/ig.test(xid)
+    }
 
 
     /**

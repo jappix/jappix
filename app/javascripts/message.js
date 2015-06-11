@@ -591,7 +591,9 @@ var Message = (function () {
 
             // It does not come from a groupchat user, get the full name
             if(!is_groupchat_user) {
+              if (!Name.buddyIsAnonymous(xid)) {
                 fromName = Name.getBuddy(xid);
+              }
             } else {
                 chatType = 'private';
             }
