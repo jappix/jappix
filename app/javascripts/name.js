@@ -238,8 +238,8 @@ var Name = (function () {
      * @param {string} xid
      */
     self.buddyIsAnonymous = function(xid) {
-      return /^([a-f\d]{8}(-[a-f\d]{4}){3}-[a-f\d]{12}?)@/ig.test(xid)
-    }
+      return /^([a-f\d]{8}(-[a-f\d]{4}){3}-[a-f\d]{12}?)@/ig.test(xid);
+    };
 
 
     /**
