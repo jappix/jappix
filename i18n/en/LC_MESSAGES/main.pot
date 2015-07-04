@@ -42,12 +42,6 @@ msgstr ""
 msgid "Contribute to the Jappix code."
 msgstr ""
 
-msgid "Jappix for your company."
-msgstr ""
-
-msgid "Find a public Jappix node."
-msgstr ""
-
 msgid "Credits"
 msgstr ""
 
