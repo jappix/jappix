@@ -4,10 +4,10 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-Primo, v1.1.5 (Development)
+Primo, v1.1.5 (August 2015)
 ---------------------------
 
- * (...)
+ * Critical file upload security fix  @valeriansaliou
 
 
 Primo, v1.1.4 (April 2015)
