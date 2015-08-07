@@ -61,7 +61,7 @@ if((isset($_FILES['file']) && !empty($_FILES['file'])) && (isset($_POST['user'])
     $thumb_xml = '';
 
     // Forbidden file?
-    if(!isSafeAllowed($user) || !isSafeAllowed($filename) || !isSafeAllowed($name.'.'.$ext)) {
+    if(!isSafe($user) || !isSafeAllowed($filename) || !isSafeAllowed($name.'.'.$ext)) {
         exit(
 '<jappix xmlns=\'jappix:file:post\'>
     <error>forbidden-type</error>
