@@ -1141,7 +1141,9 @@ function securityHTML() {
 
 // Checks if a relative server path is safe
 function isSafe($path) {
-    return !preg_match('/^\//', $path) && !preg_match('/\.\.\//', $path);
+    return !preg_match('/^\//', $path)     &&   # Absolute path      (forbidden)
+           !preg_match('/\.\.\//', $path)  &&   # Previous directory (forbidden)
+           !preg_match('/[[:cntrl:]]/', $path); # Control characters (forbidden)
 }
 
 // Checks if a relative server path is safe
