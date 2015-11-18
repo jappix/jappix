@@ -1077,7 +1077,7 @@ function keepGet($current, $no_get) {
     foreach($sanitized as &$get_var) {
         $get_var = preg_replace_callback(
             '/^(.*=)(.+)$/',
-            function($m) { $data = urldecode($m[2]); return '&' . $m[1] . urlencode($data); },
+            function($m) { $data = htmlentities(urldecode($m[2])); return '&' . htmlentities($m[1]) . urlencode($data); },
             $get_var
         );
     }
