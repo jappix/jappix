@@ -75,7 +75,7 @@ var MAM = (function () {
         try {
             if(iq.getType() != 'error') {
                 // Read packet
-                var cur_default = $(iq.getNode()).find('prefs[xmlns="' + NS_URN_MAM + '"]').attr('default') || 'never';
+                var cur_default = $(iq.getNode()).find('prefs').attr('default') || 'never';
 
                 if(!(cur_default in self.PREF_DEFAULTS)) {
                     cur_default = 'never';
