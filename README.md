@@ -32,9 +32,7 @@ Links
 
 * Jappix project website: https://jappix.org/
 * Jappix project dev panel: https://github.com/jappix/jappix
-* Jappix nodes list: https://network.jappix.org/
 * Jappix main service: https://jappix.com/
-* Jappix commercial support: https://business.jappix.org/
 
 
 MUC Links
