@@ -22,7 +22,7 @@ Please refer to the installation instructions that are located in the INSTALL.md
 Translations
 ------------
 
-Help us translate Jappix and get Jappix in your language!
+Help us translate Jappix and get Jappix in your language.
 
 Start translating on https://www.transifex.com/projects/p/jappix/ (new translators are automatically approved when they join a translation team).
 
