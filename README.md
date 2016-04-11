@@ -10,13 +10,13 @@ You can build your own Jappix installation for your own requirements. If you wan
 License
 -------
 
-Jappix is released under the terms of the AGPL license. See COPYING for more details.
+Jappix is released under the terms of the AGPL license. See COPYING.md for more details.
 
 
 Installation
 ------------
 
-Please refer to the installation instructions that are located in the INSTALL file to process the Jappix installation.
+Please refer to the installation instructions that are located in the INSTALL.md file to process the Jappix installation.
 
 
 Translations
@@ -49,9 +49,6 @@ We're social and you can join us on:
 
 * Twitter: https://twitter.com/jappixorg
 * Facebook: https://www.facebook.com/jappix
-* Google+: https://plus.google.com/b/107215163233435523450/
-
-We're not on your favorite social network? Contact us and we'll do everything we can to be there too!
 
 
 One more thing...
