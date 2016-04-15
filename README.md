@@ -16,7 +16,7 @@ Jappix is released under the terms of the AGPL license. See COPYING.md for more 
 Installation
 ------------
 
-Please refer to the installation instructions that are located in the INSTALL.md file to process the Jappix installation.
+Please refer to the installation instructions in the INSTALL.md file to process the Jappix installation.
 
 
 Translations
