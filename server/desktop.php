@@ -177,9 +177,9 @@ if(!anonymousMode() && !httpAuthEnabled()) { ?>
                     </a>
                 </div>
 
-                <h2>Jappix.org</h2>
+                <h2>Jappix.com</h2>
                 <div class="tabulate">
-                    <a href="https://jappix.org/">
+                    <a href="https://jappix.com/">
                         <span class="name">Jappix Download</span>
                         <span class="desc"><?php _e("Get Jappix, get support."); ?></span>
                     </a>

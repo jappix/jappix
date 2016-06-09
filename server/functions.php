@@ -141,7 +141,7 @@ function readXML($type, $xmlns) {
     return false;
 }
 
-// Creates a secure download context (StartSSL provider, used on Jappix.org which is the update source)
+// Creates a secure download context (StartSSL provider, used on Jappix.com which is the update source)
 function requestContext($remote_url, $type = 'default', $opt = null) {
     $options = array();
     $url_parse = parse_url($remote_url);
@@ -149,7 +149,7 @@ function requestContext($remote_url, $type = 'default', $opt = null) {
     $ca_path = JAPPIX_BASE.'/misc/certs/';
 
     // Official update host?
-    if($url_parse['scheme'] === 'https' && $url_parse['host'] === 'jappix.org') {
+    if($url_parse['scheme'] === 'https' && $url_parse['host'] === 'project.jappix.com') {
         if($type === 'curl') {
             curl_setopt($opt, CURLOPT_SSL_VERIFYPEER, TRUE);
             curl_setopt($opt, CURLOPT_CAPATH, $ca_path);

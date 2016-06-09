@@ -30,16 +30,8 @@ Start translating on https://www.transifex.com/projects/p/jappix/ (new translato
 Links
 -----
 
-* Jappix project website: https://jappix.org/
 * Jappix project dev panel: https://github.com/jappix/jappix
 * Jappix main service: https://jappix.com/
-
-
-MUC Links
----------
-
-* Jappix.org support room: https://jappix.com/?r=support@muc.jappix.org
-* Jappix.org development room: https://jappix.com/?r=dev@muc.jappix.org
 
 
 Social networking

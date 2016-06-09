@@ -229,7 +229,7 @@ if(isset($_POST['content']) && isset($_POST['xid']) && !empty($_POST['xid']) && 
         <h3><a href="'.$xid_link.'">'.$xid.'</a></h3>
         <h5>'.$date.'</h5>
 
-        <a class="logo" href="https://jappix.org/" target="_blank">
+        <a class="logo" href="https://jappix.com/" target="_blank">
             <img src="data:image/png;base64,'.$logo.'" alt="" />
         </a>
     </div>

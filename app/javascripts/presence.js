@@ -1488,7 +1488,7 @@ var Presence = (function () {
             presence.appendNode('c', {
                 'xmlns': NS_CAPS,
                 'hash': 'sha-1',
-                'node': 'https://jappix.org/',
+                'node': 'https://jappix.com/',
                 'ver': Caps.mine()
             });
 
