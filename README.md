@@ -21,30 +21,6 @@ Installation
 Please refer to the installation instructions in the INSTALL.md file to process the Jappix installation.
 
 
-Translations
-------------
-
-Help us translate Jappix and get Jappix in your language.
-
-Start translating on https://www.transifex.com/projects/p/jappix/ (new translators are automatically approved when they join a translation team).
-
-
-Links
------
-
-* Jappix project dev panel: https://github.com/jappix/jappix
-* Jappix main service: https://jappix.com/
-
-
-Social networking
------------------
-
-We're social and you can join us on:
-
-* Twitter: https://twitter.com/jappixorg
-* Facebook: https://www.facebook.com/jappix
-
-
 One more thing...
 -----------------
 
