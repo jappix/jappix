@@ -4,10 +4,10 @@ Jappix Changelog
 Here's the log of what has changed over the Jappix releases.
 
 
-Primo, v1.1.7 (Development)
----------------------------
+Primo, v1.1.7 (January 2017)
+----------------------------
 
- * (...)
+ * Improve Carbons  @valeriansaliou
 
 
 Primo, v1.1.6 (August 2015)

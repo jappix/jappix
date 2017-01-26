@@ -127,10 +127,13 @@ var Carbons = (function () {
     self._getForwarded = function(message) {
 
         try {
-            var forwarded_message = $(message.getNode()).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]:first message:first');
+            // Check message is forwarded from our local user
+            if(Common.bareXID(Common.getStanzaFrom(message)) == Common.getXID()) {
+                var forwarded_message = $(message.getNode()).find('forwarded[xmlns="' + NS_URN_FORWARD + '"]:first message:first');
 
-            if(forwarded_message[0]) {
-                return JSJaCPacket.wrapNode(forwarded_message[0]);
+                if(forwarded_message[0]) {
+                    return JSJaCPacket.wrapNode(forwarded_message[0]);
+                }
             }
 
             return null;
