@@ -1,8 +1,8 @@
 /*!
  * jQuery Form Plugin
- * version: 3.48.0-2013.12.28
+ * version: 3.51.0-2014.06.20
  * Requires jQuery v1.5 or later
- * Copyright (c) 2013 M. Alsup
+ * Copyright (c) 2014 M. Alsup
  * Examples and documentation at: http://malsup.com/jquery/form/
  * Project repository: https://github.com/malsup/form
  * Dual licensed under the MIT and GPL licenses.
@@ -72,7 +72,7 @@ feature.formdata = window.FormData !== undefined;
 var hasProp = !!$.fn.prop;
 
 // attr2 uses prop when it can but checks the return type for
-// an expected string.  this accounts for the case where a form
+// an expected string.  this accounts for the case where a form 
 // contains inputs with names like "action" or "method"; in those
 // cases "prop" returns the element
 $.fn.attr2 = function() {
@@ -461,7 +461,7 @@ $.fn.ajaxSubmit = function(options) {
 
         var CLIENT_TIMEOUT_ABORT = 1;
         var SERVER_ABORT = 2;
-
+                
         function getDoc(frame) {
             /* it looks like contentWindow or contentDocument do not
              * carry the protocol property in ie8, when running under ssl
@@ -469,9 +469,9 @@ $.fn.ajaxSubmit = function(options) {
              * the protocol is know but not on the other two objects. strange?
              * "Same origin policy" http://en.wikipedia.org/wiki/Same_origin_policy
              */
-
+            
             var doc = null;
-
+            
             // IE8 cascading access check
             try {
                 if (frame.contentWindow) {
@@ -507,8 +507,8 @@ $.fn.ajaxSubmit = function(options) {
         // take a breath so that pending repaints get some cpu time before the upload starts
         function doSubmit() {
             // make sure form attrs are set
-            var t = $form.attr2('target'),
-                a = $form.attr2('action'),
+            var t = $form.attr2('target'), 
+                a = $form.attr2('action'), 
                 mp = 'multipart/form-data',
                 et = $form.attr('enctype') || $form.attr('encoding') || mp;
 
@@ -619,7 +619,7 @@ $.fn.ajaxSubmit = function(options) {
             if (xhr.aborted || callbackProcessed) {
                 return;
             }
-
+            
             doc = getDoc(io);
             if(!doc) {
                 log('cannot access response document');
@@ -950,13 +950,13 @@ $.fn.formToArray = function(semantic, elements) {
     var els = semantic ? form.getElementsByTagName('*') : form.elements;
     var els2;
 
-    if ( els ) {
+    if (els && !/MSIE [678]/.test(navigator.userAgent)) { // #390
         els = $(els).get();  // convert to standard array
     }
 
     // #386; account for inputs outside the form which use the 'form' attribute
     if ( formId ) {
-        els2 = $(':input[form=' + formId + ']').get();
+        els2 = $(':input[form="' + formId + '"]').get(); // hat tip @thet
         if ( els2.length ) {
             els = (els || []).concat(els2);
         }
@@ -1188,13 +1188,13 @@ $.fn.clearFields = $.fn.clearInputs = function(includeHidden) {
         else if (tag == 'select') {
             this.selectedIndex = -1;
         }
-		else if (t == "file") {
-			if (/MSIE/.test(navigator.userAgent)) {
-				$(this).replaceWith($(this).clone(true));
-			} else {
-				$(this).val('');
-			}
-		}
+        else if (t == "file") {
+            if (/MSIE/.test(navigator.userAgent)) {
+                $(this).replaceWith($(this).clone(true));
+            } else {
+                $(this).val('');
+            }
+        }
         else if (includeHidden) {
             // includeHidden can be the value true, or it can be a selector string
             // indicating a special test; for example:
@@ -1275,4 +1275,3 @@ function log() {
 }
 
 }));
-
