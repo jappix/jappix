@@ -19,14 +19,18 @@ if(!defined('JAPPIX_BASE')) {
 
 if((ANALYTICS_TRACK == 'on') && ANALYTICS_URL && ANALYTICS_ID && is_numeric(ANALYTICS_ID)) { ?>
     <!-- BEGIN ANALYTICS -->
-    <script type="text/javascript">
-        document.write(unescape("%3Cscript src='<?php echo ANALYTICS_URL; ?>piwik.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-
-    <script type="text/javascript">
-        try {
-            Piwik.getTracker("<?php echo ANALYTICS_URL; ?>piwik.php", <?php echo ANALYTICS_ID; ?>).trackPageView();
-        } catch(err) {}
-    </script>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="<?php echo ANALYTICS_URL; ?>";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '<?php echo ANALYTICS_ID; ?>']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
     <!-- END ANALYTICS -->
 <?php } ?>
