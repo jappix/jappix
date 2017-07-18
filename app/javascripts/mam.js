@@ -249,7 +249,11 @@ var MAM = (function () {
 
             if(iq.getType() != 'error') {
                 if(res_with) {
-                    var res_sel = $(iq.getQuery());
+                    // [ivucica] For ...mam:1 or later, this should be asking
+                    // for <fin xmlns="urn:xmpp:mam:VERSION_HERE">, not for
+                    // <query...>. Therefore, replacing $(iq.getQuery)).
+		    // (In mam:0, <fin/> in the final <message/>.)
+                    var res_sel = $(iq.getNode().getElementsByTagName('fin').item(0));
                     var res_rsm_sel = res_sel.find('set[xmlns="' + NS_RSM + '"]');
 
                     // Store that data
