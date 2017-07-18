@@ -184,14 +184,33 @@ var MAM = (function () {
             }
 
             var iq = new JSJaCIQ();
-            iq.setType('get');
+            iq.setType('set');
             iq.setID(req_id);
 
             var query = iq.setQuery(NS_URN_MAM);
+            query.setAttribute('queryid', req_id);
 
+            // Build data form.
+            var form = iq.buildNode('x', {'xmlns': 'jabber:x:data', 'type': 'submit'})
+
+            var field = iq.buildNode('field', {'xmlns': 'jabber:x:data', 'var': 'FORM_TYPE', 'type': 'hidden'});
+            field.appendChild(iq.buildNode('value', NS_URN_MAM));
+            form.appendChild(field);
+
+            var hasArgs = false;
             for(var c in args) {
-                if(args[c] !== null)  query.appendChild(iq.buildNode(c, {'xmlns': NS_URN_MAM}, args[c]));
+                if(args[c] !== null)  {
+                    var field = iq.buildNode('field', {'xmlns': 'jabber:x:data', 'var': c});
+                    field.appendChild(iq.buildNode('value', args[c]));
+                    form.appendChild(field);
+                    hasArgs = true;
+                }
             }
+
+            if(hasArgs) {
+                query.appendChild(form);
+            }
+            // End build data form.
 
             if(rsm_args && typeof rsm_args == 'object') {
                 var rsm_set = query.appendChild(iq.buildNode('set', {'xmlns': NS_RSM}));
