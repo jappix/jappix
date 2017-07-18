@@ -273,6 +273,10 @@ var MAM = (function () {
                     // Generate stamps for easy operations
                     var start_stamp = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with].date.start));
                     var start_end = DateUtils.extractStamp(Date.jab2date(self.map_states[res_with].date.end));
+                    if (start_end == 0) {
+                        // [ivucica] Otherwise, on an empty screen we would get ... nothing. See c_target_sel function.
+                        start_end = Math.ceil(Date.now() / 1000);
+                    }
 
                     // Create MAM messages target
                     var target_html = '<div class="mam-chunk" data-start="' + Common.encodeQuotes(start_stamp) + '" data-end="' + Common.encodeQuotes(start_end) + '"></div>';
