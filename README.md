@@ -1,7 +1,5 @@
 ![jappix logo](https://jappix.github.io/jappix/images/logo.png)
 
-[![Build Status](https://travis-ci.org/jappix/jappix.svg?branch=master)](https://travis-ci.org/jappix/jappix) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jappix/jappix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 **Notice: the Jappix project is no longer maintained. We still accept PR (Pull Requests) though.**
 
 Jappix is a fresh new open social platform which enables you to host your communication platform wherever you want to. People must be able to get in touch with all their friends on a free decentralized network!
