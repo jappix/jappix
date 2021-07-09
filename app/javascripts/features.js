@@ -328,7 +328,22 @@ var Features = (function () {
      * @return {boolean}
      */
     self.enabledMAM = function() {
-
+        // TODO(ivucica): replace with result based on querying bare JID of current user, not based on whether the server supports it
+        //
+        // What this function is doing was correct only in XEP-0313-0.1. Even in
+        // 0.2 this became wrong, as the server is not the one announcing the
+        // capability; it's the user's bare JID, or the remote user's bare JID,
+        // or the room's JID.
+        //
+        // Basing whether MAM is enabled on a global value determined from caps
+        // of the server is bad. Correct implementation would understand that
+        // multiple archives can be queried; for example, MUC could respond with
+        // MAM capability even without user's server not responding with MAM on
+        // user's JID.
+        //
+        // We will assume that the current server supports MAM and be done with
+        // it for now. Long term, this function needs to be eliminated.
+        return true;
         try {
             return self.isEnabled(NS_URN_MAM);
         } catch(e) {
